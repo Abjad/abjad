@@ -78,15 +78,15 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         handler.on_build_finished(self.app, None)
         actual = '\n'.join(self.app.body)
         expected = abjad.String.normalize(r'''
-            <a href="../_images/abjadbook/lilypond-e16d48b9daaa5fc687733330eebf40e142583e58.ly" title="" class="abjadbook">
-                <img src="../_images/abjadbook/lilypond-e16d48b9daaa5fc687733330eebf40e142583e58.png" alt=""/>
+            <a href="../_images/abjadbook/lilypond-7803f52afedde4eb2ade80aa92cfa82c1e7cc36b.ly" title="" class="abjadbook">
+                <img src="../_images/abjadbook/lilypond-7803f52afedde4eb2ade80aa92cfa82c1e7cc36b.png" alt=""/>
             </a>
             ''')
         self.assertEqual(actual, expected)
         assert len(os.listdir(self.abjadbook_images_directory)) == 2
         for name in (
-            'lilypond-e16d48b9daaa5fc687733330eebf40e142583e58.ly',
-            'lilypond-e16d48b9daaa5fc687733330eebf40e142583e58.png',
+            'lilypond-7803f52afedde4eb2ade80aa92cfa82c1e7cc36b.ly',
+            'lilypond-7803f52afedde4eb2ade80aa92cfa82c1e7cc36b.png',
             ):
             path = os.path.join(self.images_directory, 'abjadbook', name)
             assert os.path.exists(path)
@@ -113,15 +113,15 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         handler.on_build_finished(self.app, None)
         actual = '\n'.join(self.app.body)
         expected = abjad.String.normalize(r'''
-            <a href="../_images/abjadbook/lilypond-9ff77da7bd81f083920be0b350b205fd6b6767a1.ly" title="" class="abjadbook">
-                <img src="../_images/abjadbook/lilypond-9ff77da7bd81f083920be0b350b205fd6b6767a1.png" alt=""/>
+            <a href="../_images/abjadbook/lilypond-4da9e9fdacc548126c08ef963af14d1b25cad4a9.ly" title="" class="abjadbook">
+                <img src="../_images/abjadbook/lilypond-4da9e9fdacc548126c08ef963af14d1b25cad4a9.png" alt=""/>
             </a>
             ''')
         self.assertEqual(actual, expected)
         assert len(os.listdir(self.abjadbook_images_directory)) == 2
         for name in (
-            'lilypond-9ff77da7bd81f083920be0b350b205fd6b6767a1.ly',
-            'lilypond-9ff77da7bd81f083920be0b350b205fd6b6767a1.png',
+            'lilypond-4da9e9fdacc548126c08ef963af14d1b25cad4a9.ly',
+            'lilypond-4da9e9fdacc548126c08ef963af14d1b25cad4a9.png',
             ):
             path = os.path.join(self.images_directory, 'abjadbook', name)
             assert os.path.exists(path)
@@ -149,15 +149,15 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         handler.on_build_finished(self.app, None)
         actual = '\n'.join(self.app.body)
         expected = abjad.String.normalize(r'''
-            <a href="../_images/abjadbook/lilypond-28a967840c6a267316825bff73ccd5418c06ed04.ly" title="" class="abjadbook">
-                <img src="../_images/abjadbook/lilypond-28a967840c6a267316825bff73ccd5418c06ed04.png" alt=""/>
+            <a href="../_images/abjadbook/lilypond-6868d59d5934f664a4e11b137839de0f9bcfd373.ly" title="" class="abjadbook">
+                <img src="../_images/abjadbook/lilypond-6868d59d5934f664a4e11b137839de0f9bcfd373.png" alt=""/>
             </a>
             ''')
         self.assertEqual(actual, expected)
         assert len(os.listdir(self.abjadbook_images_directory)) == 2
         for name in (
-            'lilypond-28a967840c6a267316825bff73ccd5418c06ed04.ly',
-            'lilypond-28a967840c6a267316825bff73ccd5418c06ed04.png',
+            'lilypond-6868d59d5934f664a4e11b137839de0f9bcfd373.ly',
+            'lilypond-6868d59d5934f664a4e11b137839de0f9bcfd373.png',
             ):
             path = os.path.join(self.images_directory, 'abjadbook', name)
             assert os.path.exists(path)
@@ -185,19 +185,19 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             pass
         handler.on_build_finished(self.app, None)
         assert len(self.app.builder.thumbnails) == 1
-        assert '../_images/abjadbook/lilypond-28a967840c6a267316825bff73ccd5418c06ed04.png' in self.app.builder.thumbnails
+        assert '../_images/abjadbook/lilypond-6868d59d5934f664a4e11b137839de0f9bcfd373.png' in self.app.builder.thumbnails
         actual = '\n'.join(self.app.body)
         expected = abjad.String.normalize(r'''
-            <a data-lightbox="group-lilypond-28a967840c6a267316825bff73ccd5418c06ed04.ly" href="../_images/abjadbook/lilypond-28a967840c6a267316825bff73ccd5418c06ed04.png" title="" data-title="" class="abjadbook thumbnail">
-                <img src="../_images/abjadbook/lilypond-28a967840c6a267316825bff73ccd5418c06ed04-thumbnail.png" alt=""/>
+            <a data-lightbox="group-lilypond-6868d59d5934f664a4e11b137839de0f9bcfd373.ly" href="../_images/abjadbook/lilypond-6868d59d5934f664a4e11b137839de0f9bcfd373.png" title="" data-title="" class="abjadbook thumbnail">
+                <img src="../_images/abjadbook/lilypond-6868d59d5934f664a4e11b137839de0f9bcfd373-thumbnail.png" alt=""/>
             </a>
             ''')
         self.assertEqual(actual, expected)
         assert len(os.listdir(self.abjadbook_images_directory)) == 3
         for name in (
-            'lilypond-28a967840c6a267316825bff73ccd5418c06ed04.ly',
-            'lilypond-28a967840c6a267316825bff73ccd5418c06ed04.png',
-            'lilypond-28a967840c6a267316825bff73ccd5418c06ed04-thumbnail.png',
+            'lilypond-6868d59d5934f664a4e11b137839de0f9bcfd373.ly',
+            'lilypond-6868d59d5934f664a4e11b137839de0f9bcfd373.png',
+            'lilypond-6868d59d5934f664a4e11b137839de0f9bcfd373-thumbnail.png',
             ):
             path = os.path.join(self.images_directory, 'abjadbook', name)
             assert os.path.exists(path)
@@ -225,8 +225,8 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         handler.on_build_finished(self.app, None)
         actual = '\n'.join(self.app.body)
         expected = abjad.String.normalize(r'''
-            <a href="../_images/abjadbook/lilypond-be904c180d556273c3bd4c6e53c4636e5c7aaf4f.ly" title="" class="abjadbook">
-                <img src="../_images/abjadbook/lilypond-be904c180d556273c3bd4c6e53c4636e5c7aaf4f.png" alt=""/>
+            <a href="../_images/abjadbook/lilypond-c6c477783474a7d258cef8c73fe6f086e11e4280.ly" title="" class="abjadbook">
+                <img src="../_images/abjadbook/lilypond-c6c477783474a7d258cef8c73fe6f086e11e4280.png" alt=""/>
             </a>
             ''')
         self.assertEqual(actual, expected)
@@ -235,8 +235,8 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             'default.ly',
             'external-settings-file-1.ly',
             'external-settings-file-2.ly',
-            'lilypond-be904c180d556273c3bd4c6e53c4636e5c7aaf4f.ly',
-            'lilypond-be904c180d556273c3bd4c6e53c4636e5c7aaf4f.png',
+            'lilypond-c6c477783474a7d258cef8c73fe6f086e11e4280.ly',
+            'lilypond-c6c477783474a7d258cef8c73fe6f086e11e4280.png',
             'non-proportional.ly',
             ):
             path = os.path.join(self.images_directory, 'abjadbook', name)
@@ -267,31 +267,31 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         handler.on_build_finished(self.app, None)
         actual = '\n'.join(self.app.body)
         expected = abjad.String.normalize(r'''
-            <a href="../_images/abjadbook/lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5.ly" title="" class="abjadbook">
-                <img src="../_images/abjadbook/lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5-page1.png" alt=""/>
+            <a href="../_images/abjadbook/lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1.ly" title="" class="abjadbook">
+                <img src="../_images/abjadbook/lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1-page1.png" alt=""/>
             </a>
-            <a href="../_images/abjadbook/lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5.ly" title="" class="abjadbook">
-                <img src="../_images/abjadbook/lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5-page2.png" alt=""/>
+            <a href="../_images/abjadbook/lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1.ly" title="" class="abjadbook">
+                <img src="../_images/abjadbook/lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1-page2.png" alt=""/>
             </a>
-            <a href="../_images/abjadbook/lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5.ly" title="" class="abjadbook">
-                <img src="../_images/abjadbook/lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5-page3.png" alt=""/>
+            <a href="../_images/abjadbook/lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1.ly" title="" class="abjadbook">
+                <img src="../_images/abjadbook/lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1-page3.png" alt=""/>
             </a>
-            <a href="../_images/abjadbook/lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5.ly" title="" class="abjadbook">
-                <img src="../_images/abjadbook/lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5-page4.png" alt=""/>
+            <a href="../_images/abjadbook/lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1.ly" title="" class="abjadbook">
+                <img src="../_images/abjadbook/lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1-page4.png" alt=""/>
             </a>
-            <a href="../_images/abjadbook/lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5.ly" title="" class="abjadbook">
-                <img src="../_images/abjadbook/lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5-page5.png" alt=""/>
+            <a href="../_images/abjadbook/lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1.ly" title="" class="abjadbook">
+                <img src="../_images/abjadbook/lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1-page5.png" alt=""/>
             </a>
             ''')
         self.assertEqual(actual, expected)
         assert len(os.listdir(self.abjadbook_images_directory)) == 6
         for name in (
-            'lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5.ly',
-            'lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5-page1.png',
-            'lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5-page2.png',
-            'lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5-page3.png',
-            'lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5-page4.png',
-            'lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5-page5.png',
+            'lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1.ly',
+            'lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1-page1.png',
+            'lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1-page2.png',
+            'lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1-page3.png',
+            'lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1-page4.png',
+            'lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1-page5.png',
             ):
             path = os.path.join(self.images_directory, 'abjadbook', name)
             assert os.path.exists(path)
@@ -322,25 +322,25 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         handler.on_build_finished(self.app, None)
         actual = '\n'.join(self.app.body)
         expected = abjad.String.normalize(r'''
-            <a href="../_images/abjadbook/lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5.ly" title="" class="abjadbook">
-                <img src="../_images/abjadbook/lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5-page2.png" alt=""/>
+            <a href="../_images/abjadbook/lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1.ly" title="" class="abjadbook">
+                <img src="../_images/abjadbook/lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1-page2.png" alt=""/>
             </a>
-            <a href="../_images/abjadbook/lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5.ly" title="" class="abjadbook">
-                <img src="../_images/abjadbook/lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5-page3.png" alt=""/>
+            <a href="../_images/abjadbook/lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1.ly" title="" class="abjadbook">
+                <img src="../_images/abjadbook/lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1-page3.png" alt=""/>
             </a>
-            <a href="../_images/abjadbook/lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5.ly" title="" class="abjadbook">
-                <img src="../_images/abjadbook/lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5-page4.png" alt=""/>
+            <a href="../_images/abjadbook/lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1.ly" title="" class="abjadbook">
+                <img src="../_images/abjadbook/lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1-page4.png" alt=""/>
             </a>
             ''')
         self.assertEqual(actual, expected)
         assert len(os.listdir(self.abjadbook_images_directory)) == 6
         for name in (
-            'lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5.ly',
-            'lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5-page1.png',
-            'lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5-page2.png',
-            'lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5-page3.png',
-            'lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5-page4.png',
-            'lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5-page5.png',
+            'lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1.ly',
+            'lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1-page1.png',
+            'lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1-page2.png',
+            'lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1-page3.png',
+            'lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1-page4.png',
+            'lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1-page5.png',
             ):
             path = os.path.join(self.images_directory, 'abjadbook', name)
             assert os.path.exists(path)
@@ -373,28 +373,28 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         actual = '\n'.join(self.app.body)
         expected = abjad.String.normalize(r'''
             <div class="table-row">
-                <a href="../_images/abjadbook/lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5.ly" title="" class="table-cell">
-                    <img src="../_images/abjadbook/lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5-page2.png" alt=""/>
+                <a href="../_images/abjadbook/lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1.ly" title="" class="table-cell">
+                    <img src="../_images/abjadbook/lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1-page2.png" alt=""/>
                 </a>
-                <a href="../_images/abjadbook/lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5.ly" title="" class="table-cell">
-                    <img src="../_images/abjadbook/lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5-page3.png" alt=""/>
+                <a href="../_images/abjadbook/lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1.ly" title="" class="table-cell">
+                    <img src="../_images/abjadbook/lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1-page3.png" alt=""/>
                 </a>
             </div>
             <div class="table-row">
-                <a href="../_images/abjadbook/lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5.ly" title="" class="table-cell">
-                    <img src="../_images/abjadbook/lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5-page4.png" alt=""/>
+                <a href="../_images/abjadbook/lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1.ly" title="" class="table-cell">
+                    <img src="../_images/abjadbook/lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1-page4.png" alt=""/>
                 </a>
             </div>
             ''')
         self.assertEqual(actual, expected)
         assert len(os.listdir(self.abjadbook_images_directory)) == 6
         for name in (
-            'lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5.ly',
-            'lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5-page1.png',
-            'lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5-page2.png',
-            'lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5-page3.png',
-            'lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5-page4.png',
-            'lilypond-d8a292fabe1535f5ab562e33bc3c97216675f8a5-page5.png',
+            'lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1.ly',
+            'lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1-page1.png',
+            'lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1-page2.png',
+            'lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1-page3.png',
+            'lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1-page4.png',
+            'lilypond-961ede3dfbd0b5c408f4c705ff62e4939fd859a1-page5.png',
             ):
             path = os.path.join(self.images_directory, 'abjadbook', name)
             assert os.path.exists(path)
@@ -428,28 +428,28 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         actual = '\n'.join(self.app.body)
         expected = abjad.String.normalize(r'''
             <div class="table-row">
-                <a href="../_images/abjadbook/lilypond-6900efb6ce21bef42b89ef019e69f08e070d7315.ly" title="" class="table-cell">
-                    <img src="../_images/abjadbook/lilypond-6900efb6ce21bef42b89ef019e69f08e070d7315-page2.png" alt=""/>
+                <a href="../_images/abjadbook/lilypond-19c0fcbf7e06c54c75e38181eb11da94ce50d35b.ly" title="" class="table-cell">
+                    <img src="../_images/abjadbook/lilypond-19c0fcbf7e06c54c75e38181eb11da94ce50d35b-page2.png" alt=""/>
                 </a>
-                <a href="../_images/abjadbook/lilypond-6900efb6ce21bef42b89ef019e69f08e070d7315.ly" title="" class="table-cell">
-                    <img src="../_images/abjadbook/lilypond-6900efb6ce21bef42b89ef019e69f08e070d7315-page3.png" alt=""/>
+                <a href="../_images/abjadbook/lilypond-19c0fcbf7e06c54c75e38181eb11da94ce50d35b.ly" title="" class="table-cell">
+                    <img src="../_images/abjadbook/lilypond-19c0fcbf7e06c54c75e38181eb11da94ce50d35b-page3.png" alt=""/>
                 </a>
             </div>
             <div class="table-row">
-                <a href="../_images/abjadbook/lilypond-6900efb6ce21bef42b89ef019e69f08e070d7315.ly" title="" class="table-cell">
-                    <img src="../_images/abjadbook/lilypond-6900efb6ce21bef42b89ef019e69f08e070d7315-page4.png" alt=""/>
+                <a href="../_images/abjadbook/lilypond-19c0fcbf7e06c54c75e38181eb11da94ce50d35b.ly" title="" class="table-cell">
+                    <img src="../_images/abjadbook/lilypond-19c0fcbf7e06c54c75e38181eb11da94ce50d35b-page4.png" alt=""/>
                 </a>
             </div>
             ''')
         self.assertEqual(actual, expected)
         assert len(os.listdir(self.abjadbook_images_directory)) == 6
         for name in (
-            'lilypond-6900efb6ce21bef42b89ef019e69f08e070d7315.ly',
-            'lilypond-6900efb6ce21bef42b89ef019e69f08e070d7315-page1.png',
-            'lilypond-6900efb6ce21bef42b89ef019e69f08e070d7315-page2.png',
-            'lilypond-6900efb6ce21bef42b89ef019e69f08e070d7315-page3.png',
-            'lilypond-6900efb6ce21bef42b89ef019e69f08e070d7315-page4.png',
-            'lilypond-6900efb6ce21bef42b89ef019e69f08e070d7315-page5.png',
+            'lilypond-19c0fcbf7e06c54c75e38181eb11da94ce50d35b.ly',
+            'lilypond-19c0fcbf7e06c54c75e38181eb11da94ce50d35b-page1.png',
+            'lilypond-19c0fcbf7e06c54c75e38181eb11da94ce50d35b-page2.png',
+            'lilypond-19c0fcbf7e06c54c75e38181eb11da94ce50d35b-page3.png',
+            'lilypond-19c0fcbf7e06c54c75e38181eb11da94ce50d35b-page4.png',
+            'lilypond-19c0fcbf7e06c54c75e38181eb11da94ce50d35b-page5.png',
             ):
             path = os.path.join(self.images_directory, 'abjadbook', name)
             assert os.path.exists(path)
@@ -481,36 +481,36 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         handler.on_build_finished(self.app, None)
         actual = '\n'.join(self.app.body)
         expected = abjad.String.normalize(r'''
-            <a data-lightbox="group-lilypond-e95e4239a7b2d051083422fe9ff795547273601e.ly" href="../_images/abjadbook/lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page1.png" title="" data-title="" class="abjadbook thumbnail">
-                <img src="../_images/abjadbook/lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page1-thumbnail.png" alt=""/>
+            <a data-lightbox="group-lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208.ly" href="../_images/abjadbook/lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page1.png" title="" data-title="" class="abjadbook thumbnail">
+                <img src="../_images/abjadbook/lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page1-thumbnail.png" alt=""/>
             </a>
-            <a data-lightbox="group-lilypond-e95e4239a7b2d051083422fe9ff795547273601e.ly" href="../_images/abjadbook/lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page2.png" title="" data-title="" class="abjadbook thumbnail">
-                <img src="../_images/abjadbook/lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page2-thumbnail.png" alt=""/>
+            <a data-lightbox="group-lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208.ly" href="../_images/abjadbook/lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page2.png" title="" data-title="" class="abjadbook thumbnail">
+                <img src="../_images/abjadbook/lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page2-thumbnail.png" alt=""/>
             </a>
-            <a data-lightbox="group-lilypond-e95e4239a7b2d051083422fe9ff795547273601e.ly" href="../_images/abjadbook/lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page3.png" title="" data-title="" class="abjadbook thumbnail">
-                <img src="../_images/abjadbook/lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page3-thumbnail.png" alt=""/>
+            <a data-lightbox="group-lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208.ly" href="../_images/abjadbook/lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page3.png" title="" data-title="" class="abjadbook thumbnail">
+                <img src="../_images/abjadbook/lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page3-thumbnail.png" alt=""/>
             </a>
-            <a data-lightbox="group-lilypond-e95e4239a7b2d051083422fe9ff795547273601e.ly" href="../_images/abjadbook/lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page4.png" title="" data-title="" class="abjadbook thumbnail">
-                <img src="../_images/abjadbook/lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page4-thumbnail.png" alt=""/>
+            <a data-lightbox="group-lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208.ly" href="../_images/abjadbook/lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page4.png" title="" data-title="" class="abjadbook thumbnail">
+                <img src="../_images/abjadbook/lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page4-thumbnail.png" alt=""/>
             </a>
-            <a data-lightbox="group-lilypond-e95e4239a7b2d051083422fe9ff795547273601e.ly" href="../_images/abjadbook/lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page5.png" title="" data-title="" class="abjadbook thumbnail">
-                <img src="../_images/abjadbook/lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page5-thumbnail.png" alt=""/>
+            <a data-lightbox="group-lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208.ly" href="../_images/abjadbook/lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page5.png" title="" data-title="" class="abjadbook thumbnail">
+                <img src="../_images/abjadbook/lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page5-thumbnail.png" alt=""/>
             </a>
             ''')
         self.assertEqual(actual, expected)
         assert len(os.listdir(self.abjadbook_images_directory)) == 11
         for name in (
-            'lilypond-e95e4239a7b2d051083422fe9ff795547273601e.ly',
-            'lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page1.png',
-            'lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page1-thumbnail.png',
-            'lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page2.png',
-            'lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page2-thumbnail.png',
-            'lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page3.png',
-            'lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page3-thumbnail.png',
-            'lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page4.png',
-            'lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page4-thumbnail.png',
-            'lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page5.png',
-            'lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page5-thumbnail.png',
+            'lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208.ly',
+            'lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page1.png',
+            'lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page1-thumbnail.png',
+            'lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page2.png',
+            'lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page2-thumbnail.png',
+            'lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page3.png',
+            'lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page3-thumbnail.png',
+            'lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page4.png',
+            'lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page4-thumbnail.png',
+            'lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page5.png',
+            'lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page5-thumbnail.png',
             ):
             path = os.path.join(self.images_directory, 'abjadbook', name)
             assert os.path.exists(path)
@@ -544,41 +544,41 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         actual = '\n'.join(self.app.body)
         expected = abjad.String.normalize(r'''
             <div class="table-row">
-                <a data-lightbox="group-lilypond-e95e4239a7b2d051083422fe9ff795547273601e.ly" href="../_images/abjadbook/lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page1.png" title="" data-title="" class="table-cell thumbnail">
-                    <img src="../_images/abjadbook/lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page1-thumbnail.png" alt=""/>
+                <a data-lightbox="group-lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208.ly" href="../_images/abjadbook/lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page1.png" title="" data-title="" class="table-cell thumbnail">
+                    <img src="../_images/abjadbook/lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page1-thumbnail.png" alt=""/>
                 </a>
-                <a data-lightbox="group-lilypond-e95e4239a7b2d051083422fe9ff795547273601e.ly" href="../_images/abjadbook/lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page2.png" title="" data-title="" class="table-cell thumbnail">
-                    <img src="../_images/abjadbook/lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page2-thumbnail.png" alt=""/>
-                </a>
-            </div>
-            <div class="table-row">
-                <a data-lightbox="group-lilypond-e95e4239a7b2d051083422fe9ff795547273601e.ly" href="../_images/abjadbook/lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page3.png" title="" data-title="" class="table-cell thumbnail">
-                    <img src="../_images/abjadbook/lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page3-thumbnail.png" alt=""/>
-                </a>
-                <a data-lightbox="group-lilypond-e95e4239a7b2d051083422fe9ff795547273601e.ly" href="../_images/abjadbook/lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page4.png" title="" data-title="" class="table-cell thumbnail">
-                    <img src="../_images/abjadbook/lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page4-thumbnail.png" alt=""/>
+                <a data-lightbox="group-lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208.ly" href="../_images/abjadbook/lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page2.png" title="" data-title="" class="table-cell thumbnail">
+                    <img src="../_images/abjadbook/lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page2-thumbnail.png" alt=""/>
                 </a>
             </div>
             <div class="table-row">
-                <a data-lightbox="group-lilypond-e95e4239a7b2d051083422fe9ff795547273601e.ly" href="../_images/abjadbook/lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page5.png" title="" data-title="" class="table-cell thumbnail">
-                    <img src="../_images/abjadbook/lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page5-thumbnail.png" alt=""/>
+                <a data-lightbox="group-lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208.ly" href="../_images/abjadbook/lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page3.png" title="" data-title="" class="table-cell thumbnail">
+                    <img src="../_images/abjadbook/lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page3-thumbnail.png" alt=""/>
+                </a>
+                <a data-lightbox="group-lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208.ly" href="../_images/abjadbook/lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page4.png" title="" data-title="" class="table-cell thumbnail">
+                    <img src="../_images/abjadbook/lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page4-thumbnail.png" alt=""/>
+                </a>
+            </div>
+            <div class="table-row">
+                <a data-lightbox="group-lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208.ly" href="../_images/abjadbook/lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page5.png" title="" data-title="" class="table-cell thumbnail">
+                    <img src="../_images/abjadbook/lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page5-thumbnail.png" alt=""/>
                 </a>
             </div>
             ''')
         self.assertEqual(actual, expected)
         assert len(os.listdir(self.abjadbook_images_directory)) == 11
         for name in (
-            'lilypond-e95e4239a7b2d051083422fe9ff795547273601e.ly',
-            'lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page1.png',
-            'lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page1-thumbnail.png',
-            'lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page2.png',
-            'lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page2-thumbnail.png',
-            'lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page3.png',
-            'lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page3-thumbnail.png',
-            'lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page4.png',
-            'lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page4-thumbnail.png',
-            'lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page5.png',
-            'lilypond-e95e4239a7b2d051083422fe9ff795547273601e-page5-thumbnail.png',
+            'lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208.ly',
+            'lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page1.png',
+            'lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page1-thumbnail.png',
+            'lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page2.png',
+            'lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page2-thumbnail.png',
+            'lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page3.png',
+            'lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page3-thumbnail.png',
+            'lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page4.png',
+            'lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page4-thumbnail.png',
+            'lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page5.png',
+            'lilypond-73b5c6d2d76fa211ae38dd0081a86219dbfe6208-page5-thumbnail.png',
             ):
             path = os.path.join(self.images_directory, 'abjadbook', name)
             assert os.path.exists(path)

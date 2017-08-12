@@ -10,36 +10,33 @@ from abjad.tools.abjadbooktools.ImageOutputProxy import ImageOutputProxy
 
 
 class LilyPondOutputProxy(ImageOutputProxy):
-    r'''A LilyPond output proxy.
+    r"""
+    A LilyPond output proxy.
 
     ::
 
-        >>> import abjad
         >>> from abjad.tools import abjadbooktools
-
-    ::
-
         >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
         >>> proxy = abjadbooktools.LilyPondOutputProxy(staff)
         >>> print(format(proxy))
-        abjadbooktools.LilyPondOutputProxy(
-            lilypondfiletools.LilyPondFile(
+        abjad.abjadbooktools.LilyPondOutputProxy(
+            abjad.LilyPondFile(
                 comments=[],
                 global_staff_size=12,
                 includes=[],
                 items=[
-                    lilypondfiletools.Block(
+                    abjad.Block(
                         name='header',
                         ),
-                    lilypondfiletools.Block(
+                    abjad.Block(
                         name='layout',
                         ),
-                    lilypondfiletools.Block(
+                    abjad.Block(
                         name='score',
                         ),
                     ],
-                lilypond_language_token=lilypondfiletools.LilyPondLanguageToken(),
-                lilypond_version_token=lilypondfiletools.LilyPondVersionToken(
+                lilypond_language_token=abjad.LilyPondLanguageToken(),
+                lilypond_version_token=abjad.LilyPondVersionToken(
                     version_string='2.19.0',
                     ),
                 )
@@ -50,7 +47,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
         >>> proxy.as_latex(relative_output_directory='assets')
         ['\\noindent\\includegraphics{assets/lilypond-0b731cedacea34e85fbb92b66b42b40b.pdf}']
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -147,10 +144,14 @@ class LilyPondOutputProxy(ImageOutputProxy):
         configuration=None,
         output_directory=None,
         ):
-        r'''Creates a docutils node representation of the output proxy.
+        r"""
+        Creates a docutils node representation of the output proxy.
 
         ::
 
+            >>> from abjad.tools import abjadbooktools
+            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+            >>> proxy = abjadbooktools.LilyPondOutputProxy(staff)
             >>> for node in proxy.as_docutils():
             ...     print(node.pformat())
             ...
@@ -194,7 +195,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
             <BLANKLINE>
 
         Returns list of docutils nodes.
-        '''
+        """
         from abjad.tools import abjadbooktools
         result = []
         try:
@@ -217,8 +218,9 @@ class LilyPondOutputProxy(ImageOutputProxy):
 
     @property
     def file_name_prefix(self):
-        r'''Gets file name prefix of LilyPond output proxy.
+        """
+        Gets file name prefix of LilyPond output proxy.
 
         Returns string.
-        '''
+        """
         return 'lilypond'
