@@ -4,10 +4,6 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 class Harp(Instrument):
     r'''Harp.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
@@ -59,7 +55,6 @@ class Harp(Instrument):
         middle_c_sounding_pitch=None,
         pitch_range='[B0, G#7]',
         ):
-        from abjad.tools import scoretools
         Instrument.__init__(
             self,
             name=name,
@@ -87,6 +82,7 @@ class Harp(Instrument):
 
             ::
 
+                >>> harp = abjad.instrumenttools.Harp()
                 >>> harp.allowable_clefs
                 ClefList([Clef(name='treble'), Clef(name='bass')])
 
@@ -106,6 +102,7 @@ class Harp(Instrument):
 
             ::
 
+                >>> harp = abjad.instrumenttools.Harp()
                 >>> harp.default_scope
                 'PianoStaff'
 
@@ -121,6 +118,7 @@ class Harp(Instrument):
 
             ::
 
+                >>> harp = abjad.instrumenttools.Harp()
                 >>> harp.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -140,6 +138,7 @@ class Harp(Instrument):
 
             ::
 
+                >>> harp = abjad.instrumenttools.Harp()
                 >>> harp.name
                 'harp'
 
@@ -155,6 +154,7 @@ class Harp(Instrument):
 
             ::
 
+                >>> harp = abjad.instrumenttools.Harp()
                 >>> harp.name_markup
                 Markup(contents=['Harp'])
 
@@ -174,6 +174,7 @@ class Harp(Instrument):
 
             ::
 
+                >>> harp = abjad.instrumenttools.Harp()
                 >>> harp.pitch_range
                 PitchRange('[B0, G#7]')
 
@@ -193,6 +194,7 @@ class Harp(Instrument):
 
             ::
 
+                >>> harp = abjad.instrumenttools.Harp()
                 >>> harp.short_name
                 'hp.'
 
@@ -208,6 +210,7 @@ class Harp(Instrument):
 
             ::
 
+                >>> harp = abjad.instrumenttools.Harp()
                 >>> harp.short_name_markup
                 Markup(contents=['Hp.'])
 

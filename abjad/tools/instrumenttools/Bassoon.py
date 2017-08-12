@@ -4,10 +4,6 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 class Bassoon(Instrument):
     r'''Bassoon.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
@@ -79,6 +75,7 @@ class Bassoon(Instrument):
 
             ::
 
+                >>> bassoon = abjad.instrumenttools.Bassoon()
                 >>> bassoon.allowable_clefs
                 ClefList([Clef(name='bass'), Clef(name='tenor')])
 
@@ -98,6 +95,7 @@ class Bassoon(Instrument):
 
             ::
 
+                >>> bassoon = abjad.instrumenttools.Bassoon()
                 >>> bassoon.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -117,6 +115,7 @@ class Bassoon(Instrument):
 
             ::
 
+                >>> bassoon = abjad.instrumenttools.Bassoon()
                 >>> bassoon.name
                 'bassoon'
 
@@ -132,6 +131,7 @@ class Bassoon(Instrument):
 
             ::
 
+                >>> bassoon = abjad.instrumenttools.Bassoon()
                 >>> bassoon.name_markup
                 Markup(contents=['Bassoon'])
 
@@ -151,6 +151,7 @@ class Bassoon(Instrument):
 
             ::
 
+                >>> bassoon = abjad.instrumenttools.Bassoon()
                 >>> bassoon.pitch_range
                 PitchRange('[Bb1, Eb5]')
 
@@ -170,6 +171,7 @@ class Bassoon(Instrument):
 
             ::
 
+                >>> bassoon = abjad.instrumenttools.Bassoon()
                 >>> bassoon.short_name
                 'bsn.'
 
@@ -185,6 +187,7 @@ class Bassoon(Instrument):
 
             ::
 
+                >>> bassoon = abjad.instrumenttools.Bassoon()
                 >>> bassoon.short_name_markup
                 Markup(contents=['Bsn.'])
 

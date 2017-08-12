@@ -1,12 +1,9 @@
+from abjad.tools import indicatortools
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Cello(Instrument):
     r'''Cello.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -82,6 +79,7 @@ class Cello(Instrument):
 
             ::
 
+                >>> cello = abjad.instrumenttools.Cello()
                 >>> cello.allowable_clefs
                 ClefList([Clef(name='bass'), Clef(name='tenor'), Clef(name='treble')])
 
@@ -99,8 +97,11 @@ class Cello(Instrument):
 
         ..  container:: example
 
-            >>> cello.default_tuning
-            Tuning(pitches=PitchSegment(['c,', 'g,', 'd', 'a']))
+            ::
+
+                >>> cello = abjad.instrumenttools.Cello()
+                >>> cello.default_tuning
+                Tuning(pitches=PitchSegment(['c,', 'g,', 'd', 'a']))
 
         Returns tuning.
         '''
@@ -114,6 +115,7 @@ class Cello(Instrument):
 
             ::
 
+                >>> cello = abjad.instrumenttools.Cello()
                 >>> cello.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -133,6 +135,7 @@ class Cello(Instrument):
 
             ::
 
+                >>> cello = abjad.instrumenttools.Cello()
                 >>> cello.name
                 'cello'
 
@@ -148,6 +151,7 @@ class Cello(Instrument):
 
             ::
 
+                >>> cello = abjad.instrumenttools.Cello()
                 >>> cello.name_markup
                 Markup(contents=['Cello'])
 
@@ -167,6 +171,7 @@ class Cello(Instrument):
 
             ::
 
+                >>> cello = abjad.instrumenttools.Cello()
                 >>> cello.pitch_range
                 PitchRange('[C2, G5]')
 
@@ -186,6 +191,7 @@ class Cello(Instrument):
 
             ::
 
+                >>> cello = abjad.instrumenttools.Cello()
                 >>> cello.short_name
                 'vc.'
 
@@ -201,6 +207,7 @@ class Cello(Instrument):
 
             ::
 
+                >>> cello = abjad.instrumenttools.Cello()
                 >>> cello.short_name_markup
                 Markup(contents=['Vc.'])
 

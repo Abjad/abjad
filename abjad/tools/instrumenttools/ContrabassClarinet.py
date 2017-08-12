@@ -4,10 +4,6 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 class ContrabassClarinet(Instrument):
     r'''Contrassbass clarinet.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
@@ -75,6 +71,7 @@ class ContrabassClarinet(Instrument):
 
             ::
 
+                >>> contrabass_clarinet = abjad.instrumenttools.ContrabassClarinet()
                 >>> contrabass_clarinet.allowable_clefs
                 ClefList([Clef(name='treble'), Clef(name='bass')])
 
@@ -94,6 +91,7 @@ class ContrabassClarinet(Instrument):
 
             ::
 
+                >>> contrabass_clarinet = abjad.instrumenttools.ContrabassClarinet()
                 >>> contrabass_clarinet.middle_c_sounding_pitch
                 NamedPitch('bf,,')
 
@@ -113,6 +111,7 @@ class ContrabassClarinet(Instrument):
 
             ::
 
+                >>> contrabass_clarinet = abjad.instrumenttools.ContrabassClarinet()
                 >>> contrabass_clarinet.name
                 'contrabass clarinet'
 
@@ -128,6 +127,7 @@ class ContrabassClarinet(Instrument):
 
             ::
 
+                >>> contrabass_clarinet = abjad.instrumenttools.ContrabassClarinet()
                 >>> contrabass_clarinet.name_markup
                 Markup(contents=['Contrabass clarinet'])
 
@@ -147,6 +147,7 @@ class ContrabassClarinet(Instrument):
 
             ::
 
+                >>> contrabass_clarinet = abjad.instrumenttools.ContrabassClarinet()
                 >>> contrabass_clarinet.pitch_range
                 PitchRange('[Bb0, G4]')
 
@@ -166,6 +167,7 @@ class ContrabassClarinet(Instrument):
 
             ::
 
+                >>> contrabass_clarinet = abjad.instrumenttools.ContrabassClarinet()
                 >>> contrabass_clarinet.short_name
                 'cbass. cl.'
 
@@ -181,6 +183,7 @@ class ContrabassClarinet(Instrument):
 
             ::
 
+                >>> contrabass_clarinet = abjad.instrumenttools.ContrabassClarinet()
                 >>> contrabass_clarinet.short_name_markup
                 Markup(contents=['Cbass. cl.'])
 

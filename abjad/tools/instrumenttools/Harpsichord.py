@@ -4,10 +4,6 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 class Harpsichord(Instrument):
     r'''Harpsichord.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
@@ -59,7 +55,6 @@ class Harpsichord(Instrument):
         middle_c_sounding_pitch=None,
         pitch_range='[C2, C7]',
         ):
-        from abjad.tools import scoretools
         Instrument.__init__(
             self,
             name=name,
@@ -87,6 +82,7 @@ class Harpsichord(Instrument):
 
             ::
 
+                >>> harpsichord = abjad.instrumenttools.Harpsichord()
                 >>> harpsichord.allowable_clefs
                 ClefList([Clef(name='treble'), Clef(name='bass')])
 
@@ -106,6 +102,7 @@ class Harpsichord(Instrument):
 
             ::
 
+                >>> harpsichord = abjad.instrumenttools.Harpsichord()
                 >>> harpsichord.default_scope
                 'PianoStaff'
 
@@ -121,6 +118,7 @@ class Harpsichord(Instrument):
 
             ::
 
+                >>> harpsichord = abjad.instrumenttools.Harpsichord()
                 >>> harpsichord.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -140,6 +138,7 @@ class Harpsichord(Instrument):
 
             ::
 
+                >>> harpsichord = abjad.instrumenttools.Harpsichord()
                 >>> harpsichord.name
                 'harpsichord'
 
@@ -155,6 +154,7 @@ class Harpsichord(Instrument):
 
             ::
 
+                >>> harpsichord = abjad.instrumenttools.Harpsichord()
                 >>> harpsichord.name_markup
                 Markup(contents=['Harpsichord'])
 
@@ -174,6 +174,7 @@ class Harpsichord(Instrument):
 
             ::
 
+                >>> harpsichord = abjad.instrumenttools.Harpsichord()
                 >>> harpsichord.pitch_range
                 PitchRange('[C2, C7]')
 
@@ -193,6 +194,7 @@ class Harpsichord(Instrument):
 
             ::
 
+                >>> harpsichord = abjad.instrumenttools.Harpsichord()
                 >>> harpsichord.short_name
                 'hpschd.'
 
@@ -208,6 +210,7 @@ class Harpsichord(Instrument):
 
             ::
 
+                >>> harpsichord = abjad.instrumenttools.Harpsichord()
                 >>> harpsichord.short_name_markup
                 Markup(contents=['Hpschd.'])
 

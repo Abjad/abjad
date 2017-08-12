@@ -4,10 +4,6 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 class Accordion(Instrument):
     r'''Accordion.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
@@ -90,7 +86,7 @@ class Accordion(Instrument):
 
                 >>> accordion = abjad.instrumenttools.Accordion()
                 >>> f(accordion)
-                instrumenttools.Accordion(
+                abjad.instrumenttools.Accordion(
                     name='accordion',
                     short_name='acc.',
                     name_markup=abjad.Markup(
@@ -99,7 +95,7 @@ class Accordion(Instrument):
                     short_name_markup=abjad.Markup(
                         contents=['Acc.'],
                         ),
-                    allowable_clefs=instrumenttools.ClefList(
+                    allowable_clefs=abjad.instrumenttools.ClefList(
                         [
                             abjad.Clef(
                                 name='treble',
@@ -128,6 +124,7 @@ class Accordion(Instrument):
 
             ::
 
+                >>> accordion = abjad.instrumenttools.Accordion()
                 >>> accordion.allowable_clefs
                 ClefList([Clef(name='treble'), Clef(name='bass')])
 
@@ -147,6 +144,7 @@ class Accordion(Instrument):
 
             ::
 
+                >>> accordion = abjad.instrumenttools.Accordion()
                 >>> accordion.default_scope
                 'PianoStaff'
 
@@ -162,6 +160,7 @@ class Accordion(Instrument):
 
             ::
 
+                >>> accordion = abjad.instrumenttools.Accordion()
                 >>> accordion.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -181,6 +180,7 @@ class Accordion(Instrument):
 
             ::
 
+                >>> accordion = abjad.instrumenttools.Accordion()
                 >>> accordion.name
                 'accordion'
 
@@ -196,6 +196,7 @@ class Accordion(Instrument):
 
             ::
 
+                >>> accordion = abjad.instrumenttools.Accordion()
                 >>> accordion.name_markup
                 Markup(contents=['Accordion'])
 
@@ -215,6 +216,7 @@ class Accordion(Instrument):
 
             ::
 
+                >>> accordion = abjad.instrumenttools.Accordion()
                 >>> accordion.pitch_range
                 PitchRange('[E1, C8]')
 
@@ -234,6 +236,7 @@ class Accordion(Instrument):
 
             ::
 
+                >>> accordion = abjad.instrumenttools.Accordion()
                 >>> accordion.short_name
                 'acc.'
 
@@ -249,6 +252,7 @@ class Accordion(Instrument):
 
             ::
 
+                >>> accordion = abjad.instrumenttools.Accordion()
                 >>> accordion.short_name_markup
                 Markup(contents=['Acc.'])
 

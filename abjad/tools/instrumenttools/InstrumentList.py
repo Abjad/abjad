@@ -5,10 +5,6 @@ from abjad.tools.topleveltools import new
 class InstrumentList(TypedList):
     r'''Instrument list.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
@@ -21,9 +17,9 @@ class InstrumentList(TypedList):
         ::
 
             >>> f(instruments)
-            instrumenttools.InstrumentList(
+            abjad.instrumenttools.InstrumentList(
                 [
-                    instrumenttools.Flute(
+                    abjad.instrumenttools.Flute(
                         name='flute',
                         short_name='fl.',
                         name_markup=abjad.Markup(
@@ -32,7 +28,7 @@ class InstrumentList(TypedList):
                         short_name_markup=abjad.Markup(
                             contents=['Fl.'],
                             ),
-                        allowable_clefs=instrumenttools.ClefList(
+                        allowable_clefs=abjad.instrumenttools.ClefList(
                             [
                                 abjad.Clef(
                                     name='treble',
@@ -42,7 +38,7 @@ class InstrumentList(TypedList):
                         middle_c_sounding_pitch=abjad.NamedPitch("c'"),
                         pitch_range=abjad.PitchRange('[C4, D7]'),
                         ),
-                    instrumenttools.Guitar(
+                    abjad.instrumenttools.Guitar(
                         name='guitar',
                         short_name='gt.',
                         name_markup=abjad.Markup(
@@ -51,7 +47,7 @@ class InstrumentList(TypedList):
                         short_name_markup=abjad.Markup(
                             contents=['Gt.'],
                             ),
-                        allowable_clefs=instrumenttools.ClefList(
+                        allowable_clefs=abjad.instrumenttools.ClefList(
                             [
                                 abjad.Clef(
                                     name='treble',
@@ -103,6 +99,10 @@ class InstrumentList(TypedList):
 
             ::
 
+                >>> instruments = abjad.instrumenttools.InstrumentList([
+                ...     abjad.instrumenttools.Flute(),
+                ...     abjad.instrumenttools.Guitar()
+                ...     ])
                 >>> instruments
                 InstrumentList([Flute(), Guitar()])
 
@@ -115,20 +115,20 @@ class InstrumentList(TypedList):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _name_to_instrument(instrument_name):
+    def _name_to_instrument(name):
         from abjad.tools import instrumenttools
-        if instrument_name in (
+        if name in (
             'alto',
             'baritone',
             'bass',
             'soprano',
             'tenor',
             ):
-            instrument_name = instrument_name + ' Voice'
-        instrument_name = instrument_name.title()
-        instrument_name = instrument_name.replace(' ', '')
-        instrument_name = instrument_name.replace('-', '')
-        instrument_class = instrumenttools.__dict__[instrument_name]
+            name = name + ' Voice'
+        name = name.title()
+        name = name.replace(' ', '')
+        name = name.replace('-', '')
+        instrument_class = instrumenttools.__dict__[name]
         instrument = instrument_class()
         return instrument
 
@@ -136,7 +136,7 @@ class InstrumentList(TypedList):
     def _name_percussion(instrument, session):
         from ide import idetools
         import abjad
-        if isinstance(instrument, abjad.Percussion):
+        if isinstance(instrument, abjad.instrumenttools.Percussion):
             Percussion = abjad.instrumenttools.Percussion
             items = Percussion.known_percussion[:]
             selector = idetools.Selector(session=session, items=items)
@@ -154,19 +154,23 @@ class InstrumentList(TypedList):
 
     @staticmethod
     def _make_item_creator_class():
-        from ide.idetools.Controller import Controller
-        class ItemCreator(Controller):
+        from ide import idetools
+
+        class ItemCreator(idetools.Controller):
+
             ### CLASS VARIABLES ###
             __slots__ = ('_is_ranged', '_target',)
+
             ### INITIALIZER ###
+
             def __init__(self, is_ranged=False, session=None, target=None):
-                Controller.__init__(self, session=session)
+                idetools.Controller.__init__(self, session=session)
                 self._is_ranged = is_ranged
                 self._target = target
+
             ### PRIVATE METHODS ###
+
             def _run(self):
-                from ide import idetools
-                import abjad
                 controller = idetools.ControllerContext(controller=self)
                 with controller:
                     items = abjad.instrumenttools.Instrument._list_names()
@@ -197,9 +201,12 @@ class InstrumentList(TypedList):
                         result = instruments[0]
                     self._target = result
                     return self.target
+
             @property
             def target(self):
                 return self._target
+
+        import abjad
         return ItemCreator
 
     ### PRIVATE PROPERTIES ###

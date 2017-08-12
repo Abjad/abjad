@@ -4,10 +4,6 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 class AltoVoice(Instrument):
     r'''Alto voice.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
@@ -75,6 +71,7 @@ class AltoVoice(Instrument):
 
             ::
 
+                >>> alto = abjad.instrumenttools.AltoVoice()
                 >>> alto.allowable_clefs
                 ClefList([Clef(name='treble')])
 
@@ -94,6 +91,7 @@ class AltoVoice(Instrument):
 
             ::
 
+                >>> alto = abjad.instrumenttools.AltoVoice()
                 >>> alto.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -113,6 +111,7 @@ class AltoVoice(Instrument):
 
             ::
 
+                >>> alto = abjad.instrumenttools.AltoVoice()
                 >>> alto.name
                 'alto'
 
@@ -128,6 +127,7 @@ class AltoVoice(Instrument):
 
             ::
 
+                >>> alto = abjad.instrumenttools.AltoVoice()
                 >>> alto.name_markup
                 Markup(contents=['Alto'])
 
@@ -147,6 +147,7 @@ class AltoVoice(Instrument):
 
             ::
 
+                >>> alto = abjad.instrumenttools.AltoVoice()
                 >>> alto.pitch_range
                 PitchRange('[F3, G5]')
 
@@ -166,6 +167,7 @@ class AltoVoice(Instrument):
 
             ::
 
+                >>> alto = abjad.instrumenttools.AltoVoice()
                 >>> alto.short_name
                 'alto'
 
@@ -181,6 +183,7 @@ class AltoVoice(Instrument):
 
             ::
 
+                >>> alto = abjad.instrumenttools.AltoVoice()
                 >>> alto.short_name_markup
                 Markup(contents=['Alto'])
 

@@ -4,10 +4,6 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 class Piccolo(Instrument):
     r'''Piccolo.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
@@ -73,6 +69,7 @@ class Piccolo(Instrument):
 
             ::
 
+                >>> piccolo = abjad.instrumenttools.Piccolo()
                 >>> piccolo.allowable_clefs
                 ClefList([Clef(name='treble')])
 
@@ -92,6 +89,7 @@ class Piccolo(Instrument):
 
             ::
 
+                >>> piccolo = abjad.instrumenttools.Piccolo()
                 >>> piccolo.middle_c_sounding_pitch
                 NamedPitch("c''")
 
@@ -111,6 +109,7 @@ class Piccolo(Instrument):
 
             ::
 
+                >>> piccolo = abjad.instrumenttools.Piccolo()
                 >>> piccolo.name
                 'piccolo'
 
@@ -126,6 +125,7 @@ class Piccolo(Instrument):
 
             ::
 
+                >>> piccolo = abjad.instrumenttools.Piccolo()
                 >>> piccolo.name_markup
                 Markup(contents=['Piccolo'])
 
@@ -145,6 +145,7 @@ class Piccolo(Instrument):
 
             ::
 
+                >>> piccolo = abjad.instrumenttools.Piccolo()
                 >>> piccolo.pitch_range
                 PitchRange('[D5, C8]')
 
@@ -164,6 +165,7 @@ class Piccolo(Instrument):
 
             ::
 
+                >>> piccolo = abjad.instrumenttools.Piccolo()
                 >>> piccolo.short_name
                 'picc.'
 
@@ -179,6 +181,7 @@ class Piccolo(Instrument):
 
             ::
 
+                >>> piccolo = abjad.instrumenttools.Piccolo()
                 >>> piccolo.short_name_markup
                 Markup(contents=['Picc.'])
 

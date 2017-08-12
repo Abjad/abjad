@@ -4,10 +4,6 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 class Violin(Instrument):
     r'''Violin.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
@@ -78,6 +74,7 @@ class Violin(Instrument):
 
             ::
 
+                >>> violin = abjad.instrumenttools.Violin()
                 >>> violin.allowable_clefs
                 ClefList([Clef(name='treble')])
 
@@ -95,8 +92,11 @@ class Violin(Instrument):
 
         ..  container:: example
 
-            >>> violin.default_tuning
-            Tuning(pitches=PitchSegment(['g', "d'", "a'", "e''"]))
+            ::
+
+                >>> violin = abjad.instrumenttools.Violin()
+                >>> violin.default_tuning
+                Tuning(pitches=PitchSegment(['g', "d'", "a'", "e''"]))
 
         Returns tuning.
         '''
@@ -110,6 +110,7 @@ class Violin(Instrument):
 
             ::
 
+                >>> violin = abjad.instrumenttools.Violin()
                 >>> violin.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -129,6 +130,7 @@ class Violin(Instrument):
 
             ::
 
+                >>> violin = abjad.instrumenttools.Violin()
                 >>> violin.name
                 'violin'
 
@@ -144,6 +146,7 @@ class Violin(Instrument):
 
             ::
 
+                >>> violin = abjad.instrumenttools.Violin()
                 >>> violin.name_markup
                 Markup(contents=['Violin'])
 
@@ -199,6 +202,7 @@ class Violin(Instrument):
 
             ::
 
+                >>> violin = abjad.instrumenttools.Violin()
                 >>> violin.pitch_range
                 PitchRange('[G3, G7]')
 
@@ -218,6 +222,7 @@ class Violin(Instrument):
 
             ::
 
+                >>> violin = abjad.instrumenttools.Violin()
                 >>> violin.short_name
                 'vn.'
 
@@ -233,6 +238,7 @@ class Violin(Instrument):
 
             ::
 
+                >>> violin = abjad.instrumenttools.Violin()
                 >>> violin.short_name_markup
                 Markup(contents=['Vn.'])
 

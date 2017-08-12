@@ -4,10 +4,6 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 class ClarinetInBFlat(Instrument):
     r'''Clarinet in B-flat.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
@@ -75,6 +71,7 @@ class ClarinetInBFlat(Instrument):
 
         ::
 
+            >>> clarinet = abjad.instrumenttools.ClarinetInBFlat()
             >>> for performer_name in clarinet._get_performer_names():
             ...     performer_name
             'instrumentalist'
@@ -98,6 +95,7 @@ class ClarinetInBFlat(Instrument):
 
             ::
 
+                >>> clarinet = abjad.instrumenttools.ClarinetInBFlat()
                 >>> clarinet.allowable_clefs
                 ClefList([Clef(name='treble')])
 
@@ -117,6 +115,7 @@ class ClarinetInBFlat(Instrument):
 
             ::
 
+                >>> clarinet = abjad.instrumenttools.ClarinetInBFlat()
                 >>> clarinet.middle_c_sounding_pitch
                 NamedPitch('bf')
 
@@ -136,6 +135,7 @@ class ClarinetInBFlat(Instrument):
 
             ::
 
+                >>> clarinet = abjad.instrumenttools.ClarinetInBFlat()
                 >>> clarinet.name
                 'clarinet in B-flat'
 
@@ -151,6 +151,7 @@ class ClarinetInBFlat(Instrument):
 
             ::
 
+                >>> clarinet = abjad.instrumenttools.ClarinetInBFlat()
                 >>> clarinet.name_markup
                 Markup(contents=['Clarinet in B-flat'])
 
@@ -170,6 +171,7 @@ class ClarinetInBFlat(Instrument):
 
             ::
 
+                >>> clarinet = abjad.instrumenttools.ClarinetInBFlat()
                 >>> clarinet.pitch_range
                 PitchRange('[D3, Bb6]')
 
@@ -189,6 +191,7 @@ class ClarinetInBFlat(Instrument):
 
             ::
 
+                >>> clarinet = abjad.instrumenttools.ClarinetInBFlat()
                 >>> clarinet.short_name
                 'cl. in B-flat'
 
@@ -204,6 +207,7 @@ class ClarinetInBFlat(Instrument):
 
             ::
 
+                >>> clarinet = abjad.instrumenttools.ClarinetInBFlat()
                 >>> clarinet.short_name_markup
                 Markup(contents=['Cl. in B-flat'])
 

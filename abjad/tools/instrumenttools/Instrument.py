@@ -5,11 +5,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 class Instrument(AbjadValueObject):
     '''Instrument.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###

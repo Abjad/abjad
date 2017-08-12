@@ -4,10 +4,6 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 class Vibraphone(Instrument):
     r'''Vibraphone.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
@@ -72,6 +68,7 @@ class Vibraphone(Instrument):
 
             ::
 
+                >>> vibraphone = abjad.instrumenttools.Vibraphone()
                 >>> vibraphone.allowable_clefs
                 ClefList([Clef(name='treble')])
 
@@ -91,6 +88,7 @@ class Vibraphone(Instrument):
 
             ::
 
+                >>> vibraphone = abjad.instrumenttools.Vibraphone()
                 >>> vibraphone.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -110,6 +108,7 @@ class Vibraphone(Instrument):
 
             ::
 
+                >>> vibraphone = abjad.instrumenttools.Vibraphone()
                 >>> vibraphone.name
                 'vibraphone'
 
@@ -125,6 +124,7 @@ class Vibraphone(Instrument):
 
             ::
 
+                >>> vibraphone = abjad.instrumenttools.Vibraphone()
                 >>> vibraphone.name_markup
                 Markup(contents=['Vibraphone'])
 
@@ -144,6 +144,7 @@ class Vibraphone(Instrument):
 
             ::
 
+                >>> vibraphone = abjad.instrumenttools.Vibraphone()
                 >>> vibraphone.pitch_range
                 PitchRange('[F3, F6]')
 
@@ -163,6 +164,7 @@ class Vibraphone(Instrument):
 
             ::
 
+                >>> vibraphone = abjad.instrumenttools.Vibraphone()
                 >>> vibraphone.short_name
                 'vibr.'
 
@@ -178,6 +180,7 @@ class Vibraphone(Instrument):
 
             ::
 
+                >>> vibraphone = abjad.instrumenttools.Vibraphone()
                 >>> vibraphone.short_name_markup
                 Markup(contents=['Vibr.'])
 

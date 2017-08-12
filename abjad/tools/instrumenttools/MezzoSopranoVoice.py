@@ -4,10 +4,6 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 class MezzoSopranoVoice(Instrument):
     r'''Mezzo-soprano voice.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
@@ -58,7 +54,6 @@ class MezzoSopranoVoice(Instrument):
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
             pitch_range=pitch_range,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
             )
         self._performer_names.extend([
             'vocalist',
@@ -76,6 +71,7 @@ class MezzoSopranoVoice(Instrument):
 
             ::
 
+                >>> mezzo_soprano = abjad.instrumenttools.MezzoSopranoVoice()
                 >>> mezzo_soprano.allowable_clefs
                 ClefList([Clef(name='treble')])
 
@@ -95,6 +91,7 @@ class MezzoSopranoVoice(Instrument):
 
             ::
 
+                >>> mezzo_soprano = abjad.instrumenttools.MezzoSopranoVoice()
                 >>> mezzo_soprano.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -114,6 +111,7 @@ class MezzoSopranoVoice(Instrument):
 
             ::
 
+                >>> mezzo_soprano = abjad.instrumenttools.MezzoSopranoVoice()
                 >>> mezzo_soprano.name
                 'mezzo-soprano'
 
@@ -129,6 +127,7 @@ class MezzoSopranoVoice(Instrument):
 
             ::
 
+                >>> mezzo_soprano = abjad.instrumenttools.MezzoSopranoVoice()
                 >>> mezzo_soprano.name_markup
                 Markup(contents=['Mezzo-soprano'])
 
@@ -148,6 +147,7 @@ class MezzoSopranoVoice(Instrument):
 
             ::
 
+                >>> mezzo_soprano = abjad.instrumenttools.MezzoSopranoVoice()
                 >>> mezzo_soprano.pitch_range
                 PitchRange('[A3, C6]')
 
@@ -167,6 +167,7 @@ class MezzoSopranoVoice(Instrument):
 
             ::
 
+                >>> mezzo_soprano = abjad.instrumenttools.MezzoSopranoVoice()
                 >>> mezzo_soprano.short_name
                 'mezz.'
 
@@ -182,6 +183,7 @@ class MezzoSopranoVoice(Instrument):
 
             ::
 
+                >>> mezzo_soprano = abjad.instrumenttools.MezzoSopranoVoice()
                 >>> mezzo_soprano.short_name_markup
                 Markup(contents=['Mezz.'])
 

@@ -4,10 +4,6 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 class ContrabassFlute(Instrument):
     r'''Contrabass flute.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
@@ -73,6 +69,7 @@ class ContrabassFlute(Instrument):
 
             ::
 
+                >>> contrabass_flute = abjad.instrumenttools.ContrabassFlute()
                 >>> contrabass_flute.allowable_clefs
                 ClefList([Clef(name='treble')])
 
@@ -92,6 +89,7 @@ class ContrabassFlute(Instrument):
 
             ::
 
+                >>> contrabass_flute = abjad.instrumenttools.ContrabassFlute()
                 >>> contrabass_flute.middle_c_sounding_pitch
                 NamedPitch('g,')
 
@@ -111,6 +109,7 @@ class ContrabassFlute(Instrument):
 
             ::
 
+                >>> contrabass_flute = abjad.instrumenttools.ContrabassFlute()
                 >>> contrabass_flute.name
                 'contrabass flute'
 
@@ -126,6 +125,7 @@ class ContrabassFlute(Instrument):
 
             ::
 
+                >>> contrabass_flute = abjad.instrumenttools.ContrabassFlute()
                 >>> contrabass_flute.name_markup
                 Markup(contents=['Contrabass flute'])
 
@@ -145,6 +145,7 @@ class ContrabassFlute(Instrument):
 
             ::
 
+                >>> contrabass_flute = abjad.instrumenttools.ContrabassFlute()
                 >>> contrabass_flute.pitch_range
                 PitchRange('[G2, G5]')
 
@@ -164,6 +165,7 @@ class ContrabassFlute(Instrument):
 
             ::
 
+                >>> contrabass_flute = abjad.instrumenttools.ContrabassFlute()
                 >>> contrabass_flute.short_name
                 'cbass. fl.'
 
@@ -179,6 +181,7 @@ class ContrabassFlute(Instrument):
 
             ::
 
+                >>> contrabass_flute = abjad.instrumenttools.ContrabassFlute()
                 >>> contrabass_flute.short_name_markup
                 Markup(contents=['Cbass. fl.'])
 

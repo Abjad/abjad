@@ -4,10 +4,6 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 class AltoSaxophone(Instrument):
     r'''Alto saxophone.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
@@ -79,7 +75,7 @@ class AltoSaxophone(Instrument):
 
                 >>> alto_sax = abjad.instrumenttools.AltoSaxophone()
                 >>> f(alto_sax)
-                instrumenttools.AltoSaxophone(
+                abjad.instrumenttools.AltoSaxophone(
                     name='alto saxophone',
                     short_name='alt. sax.',
                     name_markup=abjad.Markup(
@@ -88,7 +84,7 @@ class AltoSaxophone(Instrument):
                     short_name_markup=abjad.Markup(
                         contents=['Alt. sax.'],
                         ),
-                    allowable_clefs=instrumenttools.ClefList(
+                    allowable_clefs=abjad.instrumenttools.ClefList(
                         [
                             abjad.Clef(
                                 name='treble',
@@ -114,6 +110,7 @@ class AltoSaxophone(Instrument):
 
             ::
 
+                >>> alto_saxophone = abjad.instrumenttools.AltoSaxophone()
                 >>> alto_saxophone.allowable_clefs
                 ClefList([Clef(name='treble')])
 
@@ -133,6 +130,7 @@ class AltoSaxophone(Instrument):
 
             ::
 
+                >>> alto_saxophone = abjad.instrumenttools.AltoSaxophone()
                 >>> alto_saxophone.middle_c_sounding_pitch
                 NamedPitch('ef')
 
@@ -152,6 +150,7 @@ class AltoSaxophone(Instrument):
 
             ::
 
+                >>> alto_saxophone = abjad.instrumenttools.AltoSaxophone()
                 >>> alto_saxophone.name
                 'alto saxophone'
 
@@ -167,6 +166,7 @@ class AltoSaxophone(Instrument):
 
             ::
 
+                >>> alto_saxophone = abjad.instrumenttools.AltoSaxophone()
                 >>> alto_saxophone.name_markup
                 Markup(contents=['Alto saxophone'])
 
@@ -186,6 +186,7 @@ class AltoSaxophone(Instrument):
 
             ::
 
+                >>> alto_saxophone = abjad.instrumenttools.AltoSaxophone()
                 >>> alto_saxophone.pitch_range
                 PitchRange('[Db3, A5]')
 
@@ -205,6 +206,7 @@ class AltoSaxophone(Instrument):
 
             ::
 
+                >>> alto_saxophone = abjad.instrumenttools.AltoSaxophone()
                 >>> alto_saxophone.short_name
                 'alt. sax.'
 
@@ -220,6 +222,7 @@ class AltoSaxophone(Instrument):
 
             ::
 
+                >>> alto_saxophone = abjad.instrumenttools.AltoSaxophone()
                 >>> alto_saxophone.short_name_markup
                 Markup(contents=['Alt. sax.'])
 

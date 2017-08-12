@@ -4,10 +4,6 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 class TenorSaxophone(Instrument):
     r'''Tenor saxophone.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
@@ -74,6 +70,7 @@ class TenorSaxophone(Instrument):
 
             ::
 
+                >>> tenor_saxophone = abjad.instrumenttools.TenorSaxophone()
                 >>> tenor_saxophone.allowable_clefs
                 ClefList([Clef(name='treble')])
 
@@ -93,6 +90,7 @@ class TenorSaxophone(Instrument):
 
             ::
 
+                >>> tenor_saxophone = abjad.instrumenttools.TenorSaxophone()
                 >>> tenor_saxophone.middle_c_sounding_pitch
                 NamedPitch('bf,')
 
@@ -112,6 +110,7 @@ class TenorSaxophone(Instrument):
 
             ::
 
+                >>> tenor_saxophone = abjad.instrumenttools.TenorSaxophone()
                 >>> tenor_saxophone.name
                 'tenor saxophone'
 
@@ -127,6 +126,7 @@ class TenorSaxophone(Instrument):
 
             ::
 
+                >>> tenor_saxophone = abjad.instrumenttools.TenorSaxophone()
                 >>> tenor_saxophone.name_markup
                 Markup(contents=['Tenor saxophone'])
 
@@ -146,6 +146,7 @@ class TenorSaxophone(Instrument):
 
             ::
 
+                >>> tenor_saxophone = abjad.instrumenttools.TenorSaxophone()
                 >>> tenor_saxophone.pitch_range
                 PitchRange('[Ab2, E5]')
 
@@ -165,6 +166,7 @@ class TenorSaxophone(Instrument):
 
             ::
 
+                >>> tenor_saxophone = abjad.instrumenttools.TenorSaxophone()
                 >>> tenor_saxophone.short_name
                 'ten. sax.'
 
@@ -180,6 +182,7 @@ class TenorSaxophone(Instrument):
 
             ::
 
+                >>> tenor_saxophone = abjad.instrumenttools.TenorSaxophone()
                 >>> tenor_saxophone.short_name_markup
                 Markup(contents=['Ten. sax.'])
 

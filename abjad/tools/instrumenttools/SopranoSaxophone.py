@@ -4,10 +4,6 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 class SopranoSaxophone(Instrument):
     r'''Soprano saxophone.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
@@ -74,6 +70,7 @@ class SopranoSaxophone(Instrument):
 
             ::
 
+                >>> soprano_saxophone = abjad.instrumenttools.SopranoSaxophone()
                 >>> soprano_saxophone.allowable_clefs
                 ClefList([Clef(name='treble')])
 
@@ -93,6 +90,7 @@ class SopranoSaxophone(Instrument):
 
             ::
 
+                >>> soprano_saxophone = abjad.instrumenttools.SopranoSaxophone()
                 >>> soprano_saxophone.middle_c_sounding_pitch
                 NamedPitch('bf')
 
@@ -112,6 +110,7 @@ class SopranoSaxophone(Instrument):
 
             ::
 
+                >>> soprano_saxophone = abjad.instrumenttools.SopranoSaxophone()
                 >>> soprano_saxophone.name
                 'soprano saxophone'
 
@@ -127,6 +126,7 @@ class SopranoSaxophone(Instrument):
 
             ::
 
+                >>> soprano_saxophone = abjad.instrumenttools.SopranoSaxophone()
                 >>> soprano_saxophone.name_markup
                 Markup(contents=['Soprano saxophone'])
 
@@ -146,6 +146,7 @@ class SopranoSaxophone(Instrument):
 
             ::
 
+                >>> soprano_saxophone = abjad.instrumenttools.SopranoSaxophone()
                 >>> soprano_saxophone.pitch_range
                 PitchRange('[Ab3, E6]')
 
@@ -165,6 +166,7 @@ class SopranoSaxophone(Instrument):
 
             ::
 
+                >>> soprano_saxophone = abjad.instrumenttools.SopranoSaxophone()
                 >>> soprano_saxophone.short_name
                 'sop. sax.'
 
@@ -180,6 +182,7 @@ class SopranoSaxophone(Instrument):
 
             ::
 
+                >>> soprano_saxophone = abjad.instrumenttools.SopranoSaxophone()
                 >>> soprano_saxophone.short_name_markup
                 Markup(contents=['Sop. sax.'])
 

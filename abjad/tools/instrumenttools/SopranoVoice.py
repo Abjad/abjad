@@ -4,10 +4,6 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 class SopranoVoice(Instrument):
     r'''Soprano voice.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
@@ -75,6 +71,7 @@ class SopranoVoice(Instrument):
 
             ::
 
+                >>> soprano = abjad.instrumenttools.SopranoVoice()
                 >>> soprano.allowable_clefs
                 ClefList([Clef(name='treble')])
 
@@ -94,6 +91,7 @@ class SopranoVoice(Instrument):
 
             ::
 
+                >>> soprano = abjad.instrumenttools.SopranoVoice()
                 >>> soprano.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -113,6 +111,7 @@ class SopranoVoice(Instrument):
 
             ::
 
+                >>> soprano = abjad.instrumenttools.SopranoVoice()
                 >>> soprano.name
                 'soprano'
 
@@ -128,6 +127,7 @@ class SopranoVoice(Instrument):
 
             ::
 
+                >>> soprano = abjad.instrumenttools.SopranoVoice()
                 >>> soprano.name_markup
                 Markup(contents=['Soprano'])
 
@@ -147,6 +147,7 @@ class SopranoVoice(Instrument):
 
             ::
 
+                >>> soprano = abjad.instrumenttools.SopranoVoice()
                 >>> soprano.pitch_range
                 PitchRange('[C4, E6]')
 
@@ -166,6 +167,7 @@ class SopranoVoice(Instrument):
 
             ::
 
+                >>> soprano = abjad.instrumenttools.SopranoVoice()
                 >>> soprano.short_name
                 'sop.'
 
@@ -181,6 +183,7 @@ class SopranoVoice(Instrument):
 
             ::
 
+                >>> soprano = abjad.instrumenttools.SopranoVoice()
                 >>> soprano.short_name_markup
                 Markup(contents=['Sop.'])
 

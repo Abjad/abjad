@@ -4,10 +4,6 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 class Contrabassoon(Instrument):
     r'''Contrabassoon.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
@@ -77,6 +73,7 @@ class Contrabassoon(Instrument):
 
             ::
 
+                >>> contrabassoon = abjad.instrumenttools.Contrabassoon()
                 >>> contrabassoon.allowable_clefs
                 ClefList([Clef(name='bass')])
 
@@ -96,6 +93,7 @@ class Contrabassoon(Instrument):
 
             ::
 
+                >>> contrabassoon = abjad.instrumenttools.Contrabassoon()
                 >>> contrabassoon.middle_c_sounding_pitch
                 NamedPitch('c')
 
@@ -115,6 +113,7 @@ class Contrabassoon(Instrument):
 
             ::
 
+                >>> contrabassoon = abjad.instrumenttools.Contrabassoon()
                 >>> contrabassoon.name
                 'contrabassoon'
 
@@ -130,6 +129,7 @@ class Contrabassoon(Instrument):
 
             ::
 
+                >>> contrabassoon = abjad.instrumenttools.Contrabassoon()
                 >>> contrabassoon.name_markup
                 Markup(contents=['Contrabassoon'])
 
@@ -149,6 +149,7 @@ class Contrabassoon(Instrument):
 
             ::
 
+                >>> contrabassoon = abjad.instrumenttools.Contrabassoon()
                 >>> contrabassoon.pitch_range
                 PitchRange('[Bb0, Bb4]')
 
@@ -168,6 +169,7 @@ class Contrabassoon(Instrument):
 
             ::
 
+                >>> contrabassoon = abjad.instrumenttools.Contrabassoon()
                 >>> contrabassoon.short_name
                 'contrabsn.'
 
@@ -183,6 +185,7 @@ class Contrabassoon(Instrument):
 
             ::
 
+                >>> contrabassoon = abjad.instrumenttools.Contrabassoon()
                 >>> contrabassoon.short_name_markup
                 Markup(contents=['Contrabsn.'])
 

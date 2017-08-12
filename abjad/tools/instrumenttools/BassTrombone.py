@@ -4,10 +4,6 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 class BassTrombone(Instrument):
     r'''Bass trombone.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
@@ -75,6 +71,7 @@ class BassTrombone(Instrument):
 
             ::
 
+                >>> bass_trombone = abjad.instrumenttools.BassTrombone()
                 >>> bass_trombone.allowable_clefs
                 ClefList([Clef(name='bass')])
 
@@ -94,6 +91,7 @@ class BassTrombone(Instrument):
 
             ::
 
+                >>> bass_trombone = abjad.instrumenttools.BassTrombone()
                 >>> bass_trombone.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -113,6 +111,7 @@ class BassTrombone(Instrument):
 
             ::
 
+                >>> bass_trombone = abjad.instrumenttools.BassTrombone()
                 >>> bass_trombone.name
                 'bass trombone'
 
@@ -128,6 +127,7 @@ class BassTrombone(Instrument):
 
             ::
 
+                >>> bass_trombone = abjad.instrumenttools.BassTrombone()
                 >>> bass_trombone.name_markup
                 Markup(contents=['Bass trombone'])
 
@@ -147,6 +147,7 @@ class BassTrombone(Instrument):
 
             ::
 
+                >>> bass_trombone = abjad.instrumenttools.BassTrombone()
                 >>> bass_trombone.pitch_range
                 PitchRange('[C2, F4]')
 
@@ -166,6 +167,7 @@ class BassTrombone(Instrument):
 
             ::
 
+                >>> bass_trombone = abjad.instrumenttools.BassTrombone()
                 >>> bass_trombone.short_name
                 'bass trb.'
 
@@ -181,6 +183,7 @@ class BassTrombone(Instrument):
 
             ::
 
+                >>> bass_trombone = abjad.instrumenttools.BassTrombone()
                 >>> bass_trombone.short_name_markup
                 Markup(contents=['Bass trb.'])
 
