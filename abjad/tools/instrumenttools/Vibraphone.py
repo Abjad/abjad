@@ -44,24 +44,24 @@ class Vibraphone(Instrument):
 
     def __init__(
         self,
-        instrument_name='vibraphone',
-        short_instrument_name='vibr.',
-        instrument_name_markup=None,
-        short_instrument_name_markup=None,
+        name='vibraphone',
+        short_name='vibr.',
+        name_markup=None,
+        short_name_markup=None,
         allowable_clefs=None,
         pitch_range='[F3, F6]',
-        sounding_pitch_of_written_middle_c=None,
+        middle_c_sounding_pitch=None,
         ):
         Instrument.__init__(
             self,
-            instrument_name=instrument_name,
-            short_instrument_name=short_instrument_name,
-            instrument_name_markup=instrument_name_markup,
-            short_instrument_name_markup=short_instrument_name_markup,
+            name=name,
+            short_name=short_name,
+            name_markup=name_markup,
+            short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
             pitch_range=pitch_range,
-            sounding_pitch_of_written_middle_c=\
-                sounding_pitch_of_written_middle_c,
+            middle_c_sounding_pitch=\
+                middle_c_sounding_pitch,
             )
         self._performer_names.extend([
             'percussionist',
@@ -90,38 +90,57 @@ class Vibraphone(Instrument):
         return Instrument.allowable_clefs.fget(self)
 
     @property
-    def instrument_name(self):
+    def middle_c_sounding_pitch(self):
+        r'''Gets sounding pitch of vibraphone's written middle C.
+
+        ..  container:: example
+
+            ::
+
+                >>> vibraphone.middle_c_sounding_pitch
+                NamedPitch("c'")
+
+            ::
+
+                >>> show(vibraphone.middle_c_sounding_pitch) # doctest: +SKIP
+
+        Returns named pitch.
+        '''
+        return Instrument.middle_c_sounding_pitch.fget(self)
+
+    @property
+    def name(self):
         r'''Gets vibraphone's name.
 
         ..  container:: example
 
             ::
 
-                >>> vibraphone.instrument_name
+                >>> vibraphone.name
                 'vibraphone'
 
         Returns string.
         '''
-        return Instrument.instrument_name.fget(self)
+        return Instrument.name.fget(self)
 
     @property
-    def instrument_name_markup(self):
+    def name_markup(self):
         r'''Gets vibraphone's instrument name markup.
 
         ..  container:: example
 
             ::
 
-                >>> vibraphone.instrument_name_markup
+                >>> vibraphone.name_markup
                 Markup(contents=['Vibraphone'])
 
             ::
 
-                >>> show(vibraphone.instrument_name_markup) # doctest: +SKIP
+                >>> show(vibraphone.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
-        return Instrument.instrument_name_markup.fget(self)
+        return Instrument.name_markup.fget(self)
 
     @property
     def pitch_range(self):
@@ -143,54 +162,35 @@ class Vibraphone(Instrument):
         return Instrument.pitch_range.fget(self)
 
     @property
-    def short_instrument_name(self):
+    def short_name(self):
         r'''Gets vibraphone's short instrument name.
 
         ..  container:: example
 
             ::
 
-                >>> vibraphone.short_instrument_name
+                >>> vibraphone.short_name
                 'vibr.'
 
         Returns string.
         '''
-        return Instrument.short_instrument_name.fget(self)
+        return Instrument.short_name.fget(self)
 
     @property
-    def short_instrument_name_markup(self):
+    def short_name_markup(self):
         r'''Gets vibraphone's short instrument name markup.
 
         ..  container:: example
 
             ::
 
-                >>> vibraphone.short_instrument_name_markup
+                >>> vibraphone.short_name_markup
                 Markup(contents=['Vibr.'])
 
             ::
 
-                >>> show(vibraphone.short_instrument_name_markup) # doctest: +SKIP
+                >>> show(vibraphone.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
-        return Instrument.short_instrument_name_markup.fget(self)
-
-    @property
-    def sounding_pitch_of_written_middle_c(self):
-        r'''Gets sounding pitch of vibraphone's written middle C.
-
-        ..  container:: example
-
-            ::
-
-                >>> vibraphone.sounding_pitch_of_written_middle_c
-                NamedPitch("c'")
-
-            ::
-
-                >>> show(vibraphone.sounding_pitch_of_written_middle_c) # doctest: +SKIP
-
-        Returns named pitch.
-        '''
-        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
+        return Instrument.short_name_markup.fget(self)

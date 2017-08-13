@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import abjad
 import pytest
-import abjad
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___01():

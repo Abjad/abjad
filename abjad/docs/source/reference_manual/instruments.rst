@@ -74,43 +74,43 @@ Use ``detach()`` to detach an instrument from a component:
 Getting the name of an instrument
 ---------------------------------
 
-Use ``instrument_name`` to get the name of any instrument:
+Use ``name`` to get the name of any instrument:
 
 ..  abjad::
 
-    violin.instrument_name
+    violin.name
 
-Use ``instrument_name_markup`` to get the instrument name markup of
+Use ``name_markup`` to get the instrument name markup of
 any instrument:
 
 ..  abjad::
 
-    violin.instrument_name_markup
+    violin.name_markup
 
 ..  abjad::
 
-    show(violin.instrument_name_markup)
+    show(violin.name_markup)
 
 
 Getting the short name of an instrument
 ---------------------------------------
 
-Use ``short_instrument_name`` to get the short name of any instrument:
+Use ``short_name`` to get the short name of any instrument:
 
 ..  abjad::
 
-    violin.short_instrument_name
+    violin.short_name
 
-Use ``short_instrument_name_markup`` to get the short instrument name
+Use ``short_name_markup`` to get the short instrument name
 markup of any instrument:
 
 ..  abjad::
 
-    violin.short_instrument_name_markup
+    violin.short_name_markup
 
 ..  abjad::
 
-    show(violin.short_instrument_name_markup)
+    show(violin.short_name_markup)
 
 
 Getting an instrument's range
@@ -130,16 +130,16 @@ Use ``pitch_range`` to get the range of any instrument:
 Getting an instrument's level of transposition
 ----------------------------------------------
 
-Use ``sounding_pitch_of_written_middle_c`` to get an instrument's level of
+Use ``middle_c_sounding_pitch`` to get an instrument's level of
 transposition:
 
 ..  abjad::
 
-    violin.sounding_pitch_of_written_middle_c
+    violin.middle_c_sounding_pitch
 
 ..  abjad::
 
-    show(violin.sounding_pitch_of_written_middle_c)
+    show(violin.middle_c_sounding_pitch)
 
 
 Getting an instrument's allowable clefs
@@ -165,8 +165,8 @@ You can change the properties of any instrument at initialization:
 ..  abjad::
 
     viola = abjad.instrumenttools.Viola(
-        instrument_name='Bratsche',
-        short_instrument_name='Br.',
+        name='Bratsche',
+        short_name='Br.',
         allowable_clefs=['alto', 'treble'],
         pitch_range='[C3, C6]',
         )

@@ -44,24 +44,24 @@ class EnglishHorn(Instrument):
 
     def __init__(
         self,
-        instrument_name='English horn',
-        short_instrument_name='Eng. hn.',
-        instrument_name_markup=None,
-        short_instrument_name_markup=None,
+        name='English horn',
+        short_name='Eng. hn.',
+        name_markup=None,
+        short_name_markup=None,
         allowable_clefs=None,
         pitch_range='[E3, C6]',
-        sounding_pitch_of_written_middle_c='F3',
+        middle_c_sounding_pitch='F3',
         ):
         Instrument.__init__(
             self,
-            instrument_name=instrument_name,
-            short_instrument_name=short_instrument_name,
-            instrument_name_markup=instrument_name_markup,
-            short_instrument_name_markup=short_instrument_name_markup,
+            name=name,
+            short_name=short_name,
+            name_markup=name_markup,
+            short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
             pitch_range=pitch_range,
-            sounding_pitch_of_written_middle_c=\
-                sounding_pitch_of_written_middle_c,
+            middle_c_sounding_pitch=\
+                middle_c_sounding_pitch,
             )
         self._performer_names.extend([
             'wind player',
@@ -92,38 +92,57 @@ class EnglishHorn(Instrument):
         return Instrument.allowable_clefs.fget(self)
 
     @property
-    def instrument_name(self):
+    def middle_c_sounding_pitch(self):
+        r'''Gets sounding pitch of English horn's written middle C.
+
+        ..  container:: example
+
+            ::
+
+                >>> english_horn.middle_c_sounding_pitch
+                NamedPitch('f')
+
+            ::
+
+                >>> show(english_horn.middle_c_sounding_pitch) # doctest: +SKIP
+
+        Returns named pitch.
+        '''
+        return Instrument.middle_c_sounding_pitch.fget(self)
+
+    @property
+    def name(self):
         r'''Gets English horn's name.
 
         ..  container:: example
 
             ::
 
-                >>> english_horn.instrument_name
+                >>> english_horn.name
                 'English horn'
 
         Returns string.
         '''
-        return Instrument.instrument_name.fget(self)
+        return Instrument.name.fget(self)
 
     @property
-    def instrument_name_markup(self):
+    def name_markup(self):
         r'''Gets English horn's instrument name markup.
 
         ..  container:: example
 
             ::
 
-                >>> english_horn.instrument_name_markup
+                >>> english_horn.name_markup
                 Markup(contents=['English horn'])
 
             ::
 
-                >>> show(english_horn.instrument_name_markup) # doctest: +SKIP
+                >>> show(english_horn.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
-        return Instrument.instrument_name_markup.fget(self)
+        return Instrument.name_markup.fget(self)
 
     @property
     def pitch_range(self):
@@ -145,54 +164,35 @@ class EnglishHorn(Instrument):
         return Instrument.pitch_range.fget(self)
 
     @property
-    def short_instrument_name(self):
+    def short_name(self):
         r'''Gets English horn's short instrument name.
 
         ..  container:: example
 
             ::
 
-                >>> english_horn.short_instrument_name
+                >>> english_horn.short_name
                 'Eng. hn.'
 
         Returns string.
         '''
-        return Instrument.short_instrument_name.fget(self)
+        return Instrument.short_name.fget(self)
 
     @property
-    def short_instrument_name_markup(self):
+    def short_name_markup(self):
         r'''Gets English horn's short instrument name markup.
 
         ..  container:: example
 
             ::
 
-                >>> english_horn.short_instrument_name_markup
+                >>> english_horn.short_name_markup
                 Markup(contents=['Eng. hn.'])
 
             ::
 
-                >>> show(english_horn.short_instrument_name_markup) # doctest: +SKIP
+                >>> show(english_horn.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
-        return Instrument.short_instrument_name_markup.fget(self)
-
-    @property
-    def sounding_pitch_of_written_middle_c(self):
-        r'''Gets sounding pitch of English horn's written middle C.
-
-        ..  container:: example
-
-            ::
-
-                >>> english_horn.sounding_pitch_of_written_middle_c
-                NamedPitch('f')
-
-            ::
-
-                >>> show(english_horn.sounding_pitch_of_written_middle_c) # doctest: +SKIP
-
-        Returns named pitch.
-        '''
-        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
+        return Instrument.short_name_markup.fget(self)

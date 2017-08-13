@@ -48,25 +48,25 @@ class Viola(Instrument):
 
     def __init__(
         self,
-        instrument_name='viola',
-        short_instrument_name='va.',
-        instrument_name_markup=None,
-        short_instrument_name_markup=None,
+        name='viola',
+        short_name='va.',
+        name_markup=None,
+        short_name_markup=None,
         allowable_clefs=('alto', 'treble'),
         default_tuning=('C3', 'G3', 'D4', 'A4'),
         pitch_range='[C3, D6]',
-        sounding_pitch_of_written_middle_c=None,
+        middle_c_sounding_pitch=None,
         ):
         Instrument.__init__(
             self,
-            instrument_name=instrument_name,
-            short_instrument_name=short_instrument_name,
-            instrument_name_markup=instrument_name_markup,
-            short_instrument_name_markup=short_instrument_name_markup,
+            name=name,
+            short_name=short_name,
+            name_markup=name_markup,
+            short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
             pitch_range=pitch_range,
-            sounding_pitch_of_written_middle_c=\
-                sounding_pitch_of_written_middle_c,
+            middle_c_sounding_pitch=\
+                middle_c_sounding_pitch,
             )
         self._performer_names.extend([
             'string player',
@@ -111,38 +111,57 @@ class Viola(Instrument):
         return self._default_tuning
 
     @property
-    def instrument_name(self):
+    def middle_c_sounding_pitch(self):
+        r'''Gets sounding pitch of viola's written middle C.
+
+        ..  container:: example
+
+            ::
+
+                >>> viola.middle_c_sounding_pitch
+                NamedPitch("c'")
+
+            ::
+
+                >>> show(viola.middle_c_sounding_pitch) # doctest: +SKIP
+
+        Returns named pitch.
+        '''
+        return Instrument.middle_c_sounding_pitch.fget(self)
+
+    @property
+    def name(self):
         r'''Gets viola's name.
 
         ..  container:: example
 
             ::
 
-                >>> viola.instrument_name
+                >>> viola.name
                 'viola'
 
         Returns string.
         '''
-        return Instrument.instrument_name.fget(self)
+        return Instrument.name.fget(self)
 
     @property
-    def instrument_name_markup(self):
+    def name_markup(self):
         r'''Gets viola's instrument name markup.
 
         ..  container:: example
 
             ::
 
-                >>> viola.instrument_name_markup
+                >>> viola.name_markup
                 Markup(contents=['Viola'])
 
             ::
 
-                >>> show(viola.instrument_name_markup) # doctest: +SKIP
+                >>> show(viola.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
-        return Instrument.instrument_name_markup.fget(self)
+        return Instrument.name_markup.fget(self)
 
     @property
     def pitch_range(self):
@@ -164,54 +183,35 @@ class Viola(Instrument):
         return Instrument.pitch_range.fget(self)
 
     @property
-    def short_instrument_name(self):
+    def short_name(self):
         r'''Gets viola's short instrument name.
 
         ..  container:: example
 
             ::
 
-                >>> viola.short_instrument_name
+                >>> viola.short_name
                 'va.'
 
         Returns string.
         '''
-        return Instrument.short_instrument_name.fget(self)
+        return Instrument.short_name.fget(self)
 
     @property
-    def short_instrument_name_markup(self):
+    def short_name_markup(self):
         r'''Gets viola's short instrument name markup.
 
         ..  container:: example
 
             ::
 
-                >>> viola.short_instrument_name_markup
+                >>> viola.short_name_markup
                 Markup(contents=['Va.'])
 
             ::
 
-                >>> show(viola.short_instrument_name_markup) # doctest: +SKIP
+                >>> show(viola.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
-        return Instrument.short_instrument_name_markup.fget(self)
-
-    @property
-    def sounding_pitch_of_written_middle_c(self):
-        r'''Gets sounding pitch of viola's written middle C.
-
-        ..  container:: example
-
-            ::
-
-                >>> viola.sounding_pitch_of_written_middle_c
-                NamedPitch("c'")
-
-            ::
-
-                >>> show(viola.sounding_pitch_of_written_middle_c) # doctest: +SKIP
-
-        Returns named pitch.
-        '''
-        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
+        return Instrument.short_name_markup.fget(self)

@@ -14,7 +14,7 @@ def test_rhythmmakertools_DurationSpellingSpecifier_01():
         )
 
     duration_spelling_specifier = rhythmmakertools.DurationSpellingSpecifier(
-        decrease_durations_monotonically=True,
+        decrease_monotonic=True,
         forbid_meter_rewriting=False,
         rewrite_meter=True,
         spell_metrically='unassignable',

@@ -13,8 +13,8 @@ class PerformerList(TypedList):
 
     ### PUBLIC METHODS ###
 
-    def get_instrument(self, instrument_name):
-        r'''Gets first instrument in performer list with `instrument_name`.
+    def get_instrument(self, name):
+        r'''Gets first instrument in performer list with `name`.
 
         ..  container:: example
 
@@ -32,6 +32,6 @@ class PerformerList(TypedList):
         Returns instrument or none.
         '''
         for performer in self:
-            instrument = performer.get_instrument(instrument_name)
+            instrument = performer.get_instrument(name)
             if instrument is not None:
                 return instrument

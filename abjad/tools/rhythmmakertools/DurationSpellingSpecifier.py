@@ -18,9 +18,9 @@ class DurationSpellingSpecifier(AbjadValueObject):
     __documentation_section__ = 'Specifiers'
 
     __slots__ = (
-        '_decrease_durations_monotonically',
+        '_decrease_monotonic',
         '_forbid_meter_rewriting',
-        '_forbidden_written_duration',
+        '_forbidden_duration',
         '_rewrite_meter',
         '_spell_metrically',
         )
@@ -31,20 +31,19 @@ class DurationSpellingSpecifier(AbjadValueObject):
 
     def __init__(
         self,
-        decrease_durations_monotonically=True,
+        decrease_monotonic=True,
         forbid_meter_rewriting=None,
-        forbidden_written_duration=None,
+        forbidden_duration=None,
         rewrite_meter=None,
         spell_metrically=None,
         ):
         from abjad.tools import rhythmmakertools
-        assert isinstance(decrease_durations_monotonically, bool)
-        if forbidden_written_duration is not None:
-            forbidden_written_duration = durationtools.Duration(
-                forbidden_written_duration)
-        self._decrease_durations_monotonically = \
-            decrease_durations_monotonically
-        self._forbidden_written_duration = forbidden_written_duration
+        assert isinstance(decrease_monotonic, bool)
+        if forbidden_duration is not None:
+            forbidden_duration = durationtools.Duration(
+                forbidden_duration)
+        self._decrease_monotonic = decrease_monotonic
+        self._forbidden_duration = forbidden_duration
         assert isinstance(rewrite_meter, (bool, type(None)))
         self._rewrite_meter = rewrite_meter
         assert (spell_metrically is None or
@@ -68,7 +67,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
                 >>> specifier = rhythmmakertools.DurationSpellingSpecifier()
                 >>> f(specifier)
                 rhythmmakertools.DurationSpellingSpecifier(
-                    decrease_durations_monotonically=True,
+                    decrease_monotonic=True,
                     )
 
         Returns string.
@@ -86,7 +85,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
             ::
 
                 >>> rhythmmakertools.DurationSpellingSpecifier()
-                DurationSpellingSpecifier(decrease_durations_monotonically=True)
+                DurationSpellingSpecifier(decrease_monotonic=True)
 
         Returns string.
         '''
@@ -179,7 +178,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def decrease_durations_monotonically(self):
+    def decrease_monotonic(self):
         r'''Is true when all durations should be spelled as a tied series of
         monotonically decreasing values. Otherwise false.
 
@@ -188,14 +187,14 @@ class DurationSpellingSpecifier(AbjadValueObject):
             ::
 
                 >>> specifier = rhythmmakertools.DurationSpellingSpecifier()
-                >>> specifier.decrease_durations_monotonically
+                >>> specifier.decrease_monotonic
                 True
 
         Defaults to true.
 
         Returns true or false.
         '''
-        return self._decrease_durations_monotonically
+        return self._decrease_monotonic
 
     @property
     def forbid_meter_rewriting(self):
@@ -216,7 +215,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
         return self._forbid_meter_rewriting
 
     @property
-    def forbidden_written_duration(self):
+    def forbidden_duration(self):
         r'''Gets forbidden written duration.
 
         ..  container:: example
@@ -224,14 +223,14 @@ class DurationSpellingSpecifier(AbjadValueObject):
             ::
 
                 >>> specifier = rhythmmakertools.DurationSpellingSpecifier()
-                >>> specifier.forbidden_written_duration is None
+                >>> specifier.forbidden_duration is None
                 True
 
         Defaults to none.
 
         Returns duration or none.
         '''
-        return self._forbidden_written_duration
+        return self._forbidden_duration
 
     @property
     def rewrite_meter(self):

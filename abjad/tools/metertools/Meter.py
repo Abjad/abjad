@@ -199,7 +199,7 @@ class Meter(AbjadValueObject):
 
             >>> meter = abjad.Meter(
             ...     (7, 4),
-            ...     decrease_durations_monotonically=False,
+            ...     decrease_monotonic=False,
             ...     )
             >>> print(meter.pretty_rtm_format)
             (7/4 (
@@ -284,7 +284,7 @@ class Meter(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_decrease_durations_monotonically',
+        '_decrease_monotonic',
         '_denominator',
         '_numerator',
         '_preferred_boundary_depth',
@@ -296,7 +296,7 @@ class Meter(AbjadValueObject):
     def __init__(
         self,
         argument=None,
-        decrease_durations_monotonically=True,
+        decrease_monotonic=True,
         preferred_boundary_depth=None,
         ):
 
@@ -308,7 +308,7 @@ class Meter(AbjadValueObject):
             node,
             factors,
             denominator,
-            decrease_durations_monotonically,
+            decrease_monotonic,
             ):
             if factors:
                 factor, factors = factors[0], factors[1:]
@@ -325,7 +325,7 @@ class Meter(AbjadValueObject):
                                 child,
                                 factors,
                                 denominator,
-                                decrease_durations_monotonically,
+                                decrease_monotonic,
                                 )
                     else:
                         for _ in range(factor):
@@ -336,7 +336,7 @@ class Meter(AbjadValueObject):
                     parts = [3]
                     total = 3
                     while total < factor:
-                        if decrease_durations_monotonically:
+                        if decrease_monotonic:
                             parts.append(2)
                         else:
                             parts.insert(0, 2)
@@ -353,7 +353,7 @@ class Meter(AbjadValueObject):
                                     child,
                                     factors,
                                     denominator,
-                                    decrease_durations_monotonically,
+                                    decrease_monotonic,
                                     )
                         else:
                             for _ in range(part):
@@ -366,8 +366,8 @@ class Meter(AbjadValueObject):
                     preprolated_duration=(1, denominator))
                     for _ in range(node.preprolated_duration.numerator)])
 
-        decrease_durations_monotonically = \
-            bool(decrease_durations_monotonically)
+        decrease_monotonic = \
+            bool(decrease_monotonic)
 
         try:
             numerator = argument.numerator
@@ -379,8 +379,8 @@ class Meter(AbjadValueObject):
         if isinstance(argument, type(self)):
             root = argument.root_node
             numerator, denominator = argument.numerator, argument.denominator
-            decrease_durations_monotonically = \
-                argument.decrease_durations_monotonically
+            decrease_monotonic = \
+                argument.decrease_monotonic
 
         elif isinstance(argument, (str, rhythmtreetools.RhythmTreeContainer)):
             if isinstance(argument, str):
@@ -423,7 +423,7 @@ class Meter(AbjadValueObject):
                 root,
                 factors,
                 denominator,
-                decrease_durations_monotonically,
+                decrease_monotonic,
                 )
 
         else:
@@ -434,8 +434,8 @@ class Meter(AbjadValueObject):
         self._root_node = root
         self._numerator = numerator
         self._denominator = denominator
-        self._decrease_durations_monotonically = \
-            decrease_durations_monotonically
+        self._decrease_monotonic = \
+            decrease_monotonic
 
     ### SPECIAL METHODS ###
 
@@ -1202,7 +1202,7 @@ class Meter(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def decrease_durations_monotonically(self):
+    def decrease_monotonic(self):
         r'''Is true when meter divides large primes into collections of ``2``
         and ``3`` that decrease monotonically. Otherwise false.
 
@@ -1214,12 +1214,12 @@ class Meter(AbjadValueObject):
 
                 >>> meter = abjad.Meter(
                 ...     (7, 4),
-                ...     decrease_durations_monotonically=True,
+                ...     decrease_monotonic=True,
                 ...     )
 
             ::
 
-                >>> meter.decrease_durations_monotonically
+                >>> meter.decrease_monotonic
                 True
 
             ::
@@ -1248,12 +1248,12 @@ class Meter(AbjadValueObject):
 
                 >>> meter = abjad.Meter(
                 ...     (7, 4),
-                ...     decrease_durations_monotonically=False,
+                ...     decrease_monotonic=False,
                 ...     )
 
             ::
 
-                >>> meter.decrease_durations_monotonically
+                >>> meter.decrease_monotonic
                 False
 
             ::
@@ -1273,7 +1273,7 @@ class Meter(AbjadValueObject):
 
         Returns true or false.
         '''
-        return self._decrease_durations_monotonically
+        return self._decrease_monotonic
 
     @property
     def denominator(self):

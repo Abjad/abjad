@@ -2,10 +2,6 @@
 import copy
 from abjad.tools import indicatortools
 from abjad.tools import markuptools
-from abjad.tools import pitchtools
-from abjad.tools import datastructuretools
-from abjad.tools import systemtools
-from abjad.tools.topleveltools import new
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -24,14 +20,14 @@ class Instrument(AbjadValueObject):
         '_allowable_clefs',
         '_default_scope',
         '_do_not_format',
-        '_instrument_name',
-        '_instrument_name_markup',
+        '_middle_c_sounding_pitch',
+        '_name',
+        '_name_markup',
         '_is_primary_instrument',
         '_performer_names',
         '_pitch_range',
-        '_short_instrument_name',
-        '_short_instrument_name_markup',
-        '_sounding_pitch_of_written_middle_c',
+        '_short_name',
+        '_short_name_markup',
         '_starting_clefs',
         )
 
@@ -43,50 +39,48 @@ class Instrument(AbjadValueObject):
 
     def __init__(
         self,
-        instrument_name=None,
-        short_instrument_name=None,
-        instrument_name_markup=None,
-        short_instrument_name_markup=None,
+        name=None,
+        short_name=None,
+        name_markup=None,
+        short_name_markup=None,
         allowable_clefs=None,
         pitch_range=None,
-        sounding_pitch_of_written_middle_c=None,
+        middle_c_sounding_pitch=None,
         ):
-        from abjad.tools import instrumenttools
-        from abjad.tools import scoretools
+        import abjad
         self._do_not_format = False
-        if instrument_name is not None:
-            instrument_name = str(instrument_name)
-        self._instrument_name = instrument_name
-        if instrument_name_markup is not None:
-            instrument_name_markup = markuptools.Markup(
-                instrument_name_markup)
-        self._instrument_name_markup = instrument_name_markup
-        if short_instrument_name is not None:
-            short_instrument_name = str(short_instrument_name)
-        self._short_instrument_name = short_instrument_name
-        if short_instrument_name_markup is not None:
-            short_instrument_name_markup = markuptools.Markup(
-                short_instrument_name_markup)
-        self._short_instrument_name_markup = short_instrument_name_markup
+        if name is not None:
+            name = str(name)
+        self._name = name
+        if name_markup is not None:
+            name_markup = abjad.Markup(
+                name_markup)
+        self._name_markup = name_markup
+        if short_name is not None:
+            short_name = str(short_name)
+        self._short_name = short_name
+        if short_name_markup is not None:
+            short_name_markup = abjad.Markup(
+                short_name_markup)
+        self._short_name_markup = short_name_markup
         allowable_clefs = allowable_clefs or ['treble']
-        allowable_clefs = instrumenttools.ClefList(allowable_clefs)
+        allowable_clefs = abjad.instrumenttools.ClefList(allowable_clefs)
         self._allowable_clefs = allowable_clefs
         if isinstance(pitch_range, str):
-            pitch_range = pitchtools.PitchRange(pitch_range)
-        elif isinstance(pitch_range, pitchtools.PitchRange):
+            pitch_range = abjad.PitchRange(pitch_range)
+        elif isinstance(pitch_range, abjad.PitchRange):
             pitch_range = copy.copy(pitch_range)
         elif pitch_range is None:
-            pitch_range = pitchtools.PitchRange()
+            pitch_range = abjad.PitchRange()
         else:
             raise TypeError(pitch_range)
         self._pitch_range = pitch_range
-        sounding_pitch_of_written_middle_c = \
-            sounding_pitch_of_written_middle_c or pitchtools.NamedPitch("c'")
-        sounding_pitch_of_written_middle_c = \
-            pitchtools.NamedPitch(sounding_pitch_of_written_middle_c)
-        self._sounding_pitch_of_written_middle_c = \
-            sounding_pitch_of_written_middle_c
-        self._default_scope = scoretools.Staff
+        middle_c_sounding_pitch = middle_c_sounding_pitch or \
+            abjad.NamedPitch("c'")
+        middle_c_sounding_pitch = abjad.NamedPitch(
+            middle_c_sounding_pitch)
+        self._middle_c_sounding_pitch = middle_c_sounding_pitch
+        self._default_scope = abjad.Staff
         self._is_primary_instrument = False
         self._performer_names = ['instrumentalist']
         self._starting_clefs = copy.copy(allowable_clefs)
@@ -94,10 +88,10 @@ class Instrument(AbjadValueObject):
     ### PRIVATE PROPERTIES ###
 
     @staticmethod
-    def _default_instrument_name_to_instrument_class(default_instrument_name):
+    def _default_name_to_instrument_class(default_name):
         for instrument_class in Instrument._list_instruments():
             instrument = instrument_class()
-            if instrument.instrument_name == default_instrument_name:
+            if instrument.name == default_name:
                 return instrument_class
 
     @property
@@ -113,13 +107,14 @@ class Instrument(AbjadValueObject):
 
     def _get_default_performer_name(self):
         if self._performer_names is None:
-            performer_name = '{} player'.format(self._default_instrument_name)
+            performer_name = '{} player'.format(self._default_name)
             return performer_name
         else:
             return self._performer_names[-1]
 
     def _get_format_specification(self):
-        return systemtools.FormatSpecification(
+        import abjad
+        return abjad.FormatSpecification(
             self,
             repr_args_values=[],
             repr_is_indented=False,
@@ -129,69 +124,71 @@ class Instrument(AbjadValueObject):
     # TODO: _scope_name needs to be taken from IndicatorWrapper!
     #       should not be stored on instrument.
     def _get_lilypond_format(self):
+        import abjad
         result = []
         if self._do_not_format:
             return result
-        instrument_name_markup = self.instrument_name_markup
-        if instrument_name_markup.direction is not None:
-            instrument_name_markup = new(
-                instrument_name_markup,
+        name_markup = self.name_markup
+        if name_markup.direction is not None:
+            name_markup = abjad.new(
+                name_markup,
                 direction=None,
                 )
         line = r'\set {!s}.instrumentName = {!s}'
         line = line.format(
             self._scope_name,
-            instrument_name_markup,
+            name_markup,
             )
         result.append(line)
         line = r'\set {!s}.shortInstrumentName = {!s}'
-        short_instrument_name_markup = self.short_instrument_name_markup
-        if short_instrument_name_markup.direction is not None:
-            short_instrument_name_markup = new(
-                short_instrument_name_markup,
+        short_name_markup = self.short_name_markup
+        if short_name_markup.direction is not None:
+            short_name_markup = abjad.new(
+                short_name_markup,
                 direction=None,
                 )
         line = line.format(
             self._scope_name,
-            short_instrument_name_markup,
+            short_name_markup,
             )
         result.append(line)
         return result
 
     def _get_performer_names(self):
         if self._performer_names is None:
-            performer_name = '{} player'.format(self._default_instrument_name)
+            performer_name = '{} player'.format(self._default_name)
             return [performer_name]
         else:
             return self._performer_names[:]
 
     def _initialize_default_name_markups(self):
-        if self._instrument_name_markup is None:
-            if self.instrument_name:
-                string = self.instrument_name
-                string = datastructuretools.String(string).capitalize_start()
-                markup = markuptools.Markup(contents=string)
-                self._instrument_name_markup = markup
+        import abjad
+        if self._name_markup is None:
+            if self.name:
+                string = self.name
+                string = abjad.String(string).capitalize_start()
+                markup = abjad.Markup(contents=string)
+                self._name_markup = markup
             else:
-                self._instrument_name_markup = None
-        if self._short_instrument_name_markup is None:
-            if self.short_instrument_name:
-                string = self.short_instrument_name
-                string = datastructuretools.String(string).capitalize_start()
-                markup = markuptools.Markup(contents=string)
-                self._short_instrument_name_markup = markup
+                self._name_markup = None
+        if self._short_name_markup is None:
+            if self.short_name:
+                string = self.short_name
+                string = abjad.String(string).capitalize_start()
+                markup = abjad.Markup(contents=string)
+                self._short_name_markup = markup
             else:
-                self._short_instrument_name_markup = None
+                self._short_name_markup = None
 
     @classmethod
-    def _list_instrument_names(class_):
+    def _list_names(class_):
         r'''Lists instrument names.
 
         ::
 
-            >>> function = abjad.instrumenttools.Instrument._list_instrument_names
-            >>> for instrument_name in function():
-            ...     instrument_name
+            >>> function = abjad.instrumenttools.Instrument._list_names
+            >>> for name in function():
+            ...     name
             ...
             'accordion'
             'alto'
@@ -200,13 +197,13 @@ class Instrument(AbjadValueObject):
 
         Returns list.
         '''
-        instrument_names = []
+        names = []
         for instrument_class in class_._list_instruments():
             instrument = instrument_class()
-            assert instrument.instrument_name is not None, repr(instrument)
-            instrument_names.append(instrument.instrument_name)
-        instrument_names.sort(key=lambda x: x.lower())
-        return instrument_names
+            assert instrument.name is not None, repr(instrument)
+            names.append(instrument.name)
+        names.sort(key=lambda x: x.lower())
+        return names
 
     @staticmethod
     def _list_instruments(classes=None):
@@ -264,7 +261,7 @@ class Instrument(AbjadValueObject):
 
     @property
     def allowable_clefs(self):
-        r'''Gets allowable clefs of instrument.
+        r'''Gets allowable clefs.
 
         Returns clef list.
         '''
@@ -273,66 +270,66 @@ class Instrument(AbjadValueObject):
         return self._allowable_clefs
 
     @property
-    def instrument_name(self):
+    def middle_c_sounding_pitch(self):
+        r'''Gets sounding pitch of written middle C.
+
+        Returns named pitch.
+        '''
+        return self._middle_c_sounding_pitch
+
+    @property
+    def name(self):
         r'''Gets instrument name.
 
         Returns string.
         '''
-        return self._instrument_name
+        return self._name
 
     @property
-    def instrument_name_markup(self):
+    def name_markup(self):
         r'''Gets instrument name markup.
 
         Returns markup.
         '''
-        if self._instrument_name_markup is None:
+        if self._name_markup is None:
             self._initialize_default_name_markups()
-        if not isinstance(self._instrument_name_markup, markuptools.Markup):
-            markup = markuptools.Markup(contents=self._instrument_name_markup)
-            self._instrument_name_markup = markup
-        if self._instrument_name_markup.contents != ('',):
-            return self._instrument_name_markup
+        if not isinstance(self._name_markup, markuptools.Markup):
+            markup = markuptools.Markup(contents=self._name_markup)
+            self._name_markup = markup
+        if self._name_markup.contents != ('',):
+            return self._name_markup
 
     @property
     def pitch_range(self):
-        r'''Gets pitch range of instrument.
+        r'''Gets pitch range.
 
         Returns pitch range.
         '''
         return self._pitch_range
 
     @property
-    def short_instrument_name(self):
+    def short_name(self):
         r'''Gets short instrument name.
 
         Returns string.
         '''
-        return self._short_instrument_name
+        return self._short_name
 
     @property
-    def short_instrument_name_markup(self):
+    def short_name_markup(self):
         r'''Gets short instrument name markup.
 
         Returns markup.
         '''
-        if self._short_instrument_name_markup is None:
+        if self._short_name_markup is None:
             self._initialize_default_name_markups()
         if not isinstance(
-            self._short_instrument_name_markup, markuptools.Markup):
+            self._short_name_markup, markuptools.Markup):
             markup = markuptools.Markup(
-                contents=self._short_instrument_name_markup)
-            self._short_instrument_name_markup = markup
-        if self._short_instrument_name_markup.contents != ('',):
-            return self._short_instrument_name_markup
-
-    @property
-    def sounding_pitch_of_written_middle_c(self):
-        r'''Gets sounding pitch of written middle C.
-
-        Returns named pitch.
-        '''
-        return self._sounding_pitch_of_written_middle_c
+                contents=self._short_name_markup)
+            self._short_name_markup = markup
+        if self._short_name_markup.contents != ('',):
+            return self._short_name_markup
 
     ### PUBLIC METHODS ###
 
@@ -386,7 +383,7 @@ class Instrument(AbjadValueObject):
             instrument = abjad.inspect(leaf).get_effective(abjad.Instrument)
             if not instrument:
                 continue
-            sounding_pitch = instrument.sounding_pitch_of_written_middle_c
+            sounding_pitch = instrument.middle_c_sounding_pitch
             interval = abjad.NamedPitch('C4') - sounding_pitch
             interval *= -1
             if isinstance(leaf, abjad.Note):
@@ -450,7 +447,7 @@ class Instrument(AbjadValueObject):
             instrument = abjad.inspect(leaf).get_effective(abjad.Instrument)
             if not instrument:
                 continue
-            sounding_pitch = instrument.sounding_pitch_of_written_middle_c
+            sounding_pitch = instrument.middle_c_sounding_pitch
             interval = abjad.NamedPitch('C4') - sounding_pitch
             if isinstance(leaf, abjad.Note):
                 written_pitch = leaf.written_pitch

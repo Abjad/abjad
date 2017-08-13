@@ -44,24 +44,24 @@ class SopranoSaxophone(Instrument):
 
     def __init__(
         self,
-        instrument_name='soprano saxophone',
-        short_instrument_name='sop. sax.',
-        instrument_name_markup=None,
-        short_instrument_name_markup=None,
+        name='soprano saxophone',
+        short_name='sop. sax.',
+        name_markup=None,
+        short_name_markup=None,
         allowable_clefs=None,
         pitch_range='[Ab3, E6]',
-        sounding_pitch_of_written_middle_c='Bb3',
+        middle_c_sounding_pitch='Bb3',
         ):
         Instrument.__init__(
             self,
-            instrument_name=instrument_name,
-            short_instrument_name=short_instrument_name,
-            instrument_name_markup=instrument_name_markup,
-            short_instrument_name_markup=short_instrument_name_markup,
+            name=name,
+            short_name=short_name,
+            name_markup=name_markup,
+            short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
             pitch_range=pitch_range,
-            sounding_pitch_of_written_middle_c=\
-                sounding_pitch_of_written_middle_c,
+            middle_c_sounding_pitch=\
+                middle_c_sounding_pitch,
             )
         self._performer_names.extend([
             'wind player',
@@ -92,38 +92,57 @@ class SopranoSaxophone(Instrument):
         return Instrument.allowable_clefs.fget(self)
 
     @property
-    def instrument_name(self):
+    def middle_c_sounding_pitch(self):
+        r'''Gets sounding pitch of soprano saxophone's written middle C.
+
+        ..  container:: example
+
+            ::
+
+                >>> soprano_saxophone.middle_c_sounding_pitch
+                NamedPitch('bf')
+
+            ::
+
+                >>> show(soprano_saxophone.middle_c_sounding_pitch) # doctest: +SKIP
+
+        Returns named pitch.
+        '''
+        return Instrument.middle_c_sounding_pitch.fget(self)
+
+    @property
+    def name(self):
         r'''Gets soprano saxophone's name.
 
         ..  container:: example
 
             ::
 
-                >>> soprano_saxophone.instrument_name
+                >>> soprano_saxophone.name
                 'soprano saxophone'
 
         Returns string.
         '''
-        return Instrument.instrument_name.fget(self)
+        return Instrument.name.fget(self)
 
     @property
-    def instrument_name_markup(self):
+    def name_markup(self):
         r'''Gets soprano saxophone's instrument name markup.
 
         ..  container:: example
 
             ::
 
-                >>> soprano_saxophone.instrument_name_markup
+                >>> soprano_saxophone.name_markup
                 Markup(contents=['Soprano saxophone'])
 
             ::
 
-                >>> show(soprano_saxophone.instrument_name_markup) # doctest: +SKIP
+                >>> show(soprano_saxophone.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
-        return Instrument.instrument_name_markup.fget(self)
+        return Instrument.name_markup.fget(self)
 
     @property
     def pitch_range(self):
@@ -145,54 +164,35 @@ class SopranoSaxophone(Instrument):
         return Instrument.pitch_range.fget(self)
 
     @property
-    def short_instrument_name(self):
+    def short_name(self):
         r'''Gets soprano saxophone's short instrument name.
 
         ..  container:: example
 
             ::
 
-                >>> soprano_saxophone.short_instrument_name
+                >>> soprano_saxophone.short_name
                 'sop. sax.'
 
         Returns string.
         '''
-        return Instrument.short_instrument_name.fget(self)
+        return Instrument.short_name.fget(self)
 
     @property
-    def short_instrument_name_markup(self):
+    def short_name_markup(self):
         r'''Gets soprano saxophone's short instrument name markup.
 
         ..  container:: example
 
             ::
 
-                >>> soprano_saxophone.short_instrument_name_markup
+                >>> soprano_saxophone.short_name_markup
                 Markup(contents=['Sop. sax.'])
 
             ::
 
-                >>> show(soprano_saxophone.short_instrument_name_markup) # doctest: +SKIP
+                >>> show(soprano_saxophone.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
-        return Instrument.short_instrument_name_markup.fget(self)
-
-    @property
-    def sounding_pitch_of_written_middle_c(self):
-        r'''Gets sounding pitch of soprano saxophone's written middle C.
-
-        ..  container:: example
-
-            ::
-
-                >>> soprano_saxophone.sounding_pitch_of_written_middle_c
-                NamedPitch('bf')
-
-            ::
-
-                >>> show(soprano_saxophone.sounding_pitch_of_written_middle_c) # doctest: +SKIP
-
-        Returns named pitch.
-        '''
-        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
+        return Instrument.short_name_markup.fget(self)
