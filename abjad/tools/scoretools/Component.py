@@ -4,7 +4,6 @@ import abc
 import bisect
 import copy
 from abjad.tools import durationtools
-from abjad.tools import systemtools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
 from abjad.tools import timespantools
@@ -89,11 +88,11 @@ class Component(AbjadObject):
 
         Returns string.
         '''
-        from abjad.tools import systemtools
+        import abjad
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
         elif format_specification == 'storage':
-            return systemtools.StorageFormatAgent(self).get_storage_format()
+            return abjad.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
     def __getnewargs__(self):
@@ -134,7 +133,8 @@ class Component(AbjadObject):
 
         Returns string.
         '''
-        return systemtools.StorageFormatAgent(self).get_repr_format()
+        import abjad
+        return abjad.StorageFormatAgent(self).get_repr_format()
 
     def __rmul__(self, n):
         r'''Copies component `n` times and detach spanners.
@@ -198,6 +198,9 @@ class Component(AbjadObject):
             new._lilypond_grob_name_manager = copy.copy(override(self))
         if getattr(self, '_lilypond_setting_name_manager', None) is not None:
             new._lilypond_setting_name_manager = copy.copy(setting(self))
+        for wrapper in self._get_annotation_wrappers():
+            new_wrapper = copy.copy(wrapper)
+            attach(new_wrapper, new)
         for wrapper in self._get_indicators(unwrap=False):
             new_wrapper = copy.copy(wrapper)
             attach(new_wrapper, new)
@@ -232,8 +235,9 @@ class Component(AbjadObject):
         pass
 
     def _format_component(self, pieces=False):
+        import abjad
         result = []
-        manager = systemtools.LilyPondFormatManager
+        manager = abjad.LilyPondFormatManager
         bundle = manager.bundle_format_contributions(self)
         result.extend(self._format_before_slot(bundle))
         result.extend(self._format_open_brackets_slot(bundle))
@@ -258,6 +262,14 @@ class Component(AbjadObject):
 
     def _format_opening_slot(self, bundle):
         pass
+
+    def _get_annotation(self, name):
+        for wrapper in self._get_annotation_wrappers():
+            if wrapper.name == name:
+                return wrapper.indicator
+
+    def _get_annotation_wrappers(self):
+        return [_ for _ in self._indicator_wrappers if _.is_annotation]
 
     def _get_components(self, prototype=None, include_self=True):
         argument = self
@@ -382,9 +394,10 @@ class Component(AbjadObject):
         slot_identifier,
         bundle=None
         ):
+        import abjad
         result = []
         if bundle is None:
-            manager = systemtools.LilyPondFormatManager
+            manager = abjad.LilyPondFormatManager
             bundle = manager.bundle_format_contributions(self)
         slot_names = (
             'before',
@@ -412,11 +425,12 @@ class Component(AbjadObject):
         return self._format_component(pieces=True)
 
     def _get_format_specification(self):
+        import abjad
         values = []
         summary = self._get_contents_summary()
         if summary:
             values.append(summary)
-        return systemtools.FormatSpecification(
+        return abjad.FormatSpecification(
             client=self,
             repr_args_values=values,
             storage_format_kwargs_names=[]
@@ -453,8 +467,8 @@ class Component(AbjadObject):
             raise ValueError(message)
         return indicators[0]
 
-    def _get_indicators(self, prototype=None, name=None, unwrap=True):
-        from abjad.tools import systemtools
+    def _get_indicators(self, prototype=None, unwrap=True):
+        import abjad
         prototype = prototype or (object,)
         if not isinstance(prototype, tuple):
             prototype = (prototype,)
@@ -466,23 +480,23 @@ class Component(AbjadObject):
                 prototype_objects.append(indicator_prototype)
         prototype_objects = tuple(prototype_objects)
         prototype_classes = tuple(prototype_classes)
-        matching_indicators = []
-        for indicator in self._indicator_wrappers:
-            if name is not None and indicator._name != name:
+        result = []
+        for wrapper in self._indicator_wrappers:
+            if wrapper.is_annotation:
                 continue
-            if isinstance(indicator, prototype_classes):
-                matching_indicators.append(indicator)
-            elif any(indicator == x for x in prototype_objects):
-                matching_indicators.append(indicator)
-            elif isinstance(indicator, systemtools.IndicatorWrapper):
-                if isinstance(indicator.indicator, prototype_classes):
-                    matching_indicators.append(indicator)
-                elif any(indicator.indicator == x for x in prototype_objects):
-                    matching_indicators.append(indicator)
+            if isinstance(wrapper, prototype_classes):
+                result.append(wrapper)
+            elif any(wrapper == _ for _ in prototype_objects):
+                result.append(wrapper)
+            elif isinstance(wrapper, abjad.IndicatorWrapper):
+                if isinstance(wrapper.indicator, prototype_classes):
+                    result.append(wrapper)
+                elif any(wrapper.indicator == _ for _ in prototype_objects):
+                    result.append(wrapper)
         if unwrap:
-            matching_indicators = [x.indicator for x in matching_indicators]
-        matching_indicators = tuple(matching_indicators)
-        return matching_indicators
+            result = [_.indicator for _ in result]
+        result = tuple(result)
+        return result
 
     def _get_lilypond_format(self):
         self._update_now(indicators=True)
@@ -492,8 +506,8 @@ class Component(AbjadObject):
         return selectiontools.Lineage(self)
 
     def _get_markup(self, direction=None):
-        from abjad.tools import markuptools
-        markup = self._get_indicators(markuptools.Markup)
+        import abjad
+        markup = self._get_indicators(abjad.Markup)
         if direction == Up:
             return tuple(x for x in markup if x.direction == Up)
         elif direction == Down:
@@ -889,8 +903,8 @@ class Component(AbjadObject):
                 component._offsets_in_seconds_are_current = False
 
     def _update_logical_measure_numbers(self):
-        from abjad.tools import systemtools
-        update_manager = systemtools.UpdateManager()
+        import abjad
+        update_manager = abjad.UpdateManager()
         update_manager._update_logical_measure_numbers(self)
 
     def _update_now(
@@ -899,8 +913,8 @@ class Component(AbjadObject):
         offsets_in_seconds=False,
         indicators=False,
         ):
-        from abjad.tools import systemtools
-        update_manager = systemtools.UpdateManager()
+        import abjad
+        update_manager = abjad.UpdateManager()
         return update_manager._update_now(
             self,
             offsets=offsets,

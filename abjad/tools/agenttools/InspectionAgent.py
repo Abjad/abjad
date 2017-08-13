@@ -115,9 +115,9 @@ class InspectionAgent(abctools.AbjadObject):
 
         Returns annotation or default.
         '''
-        for wrapper in self.get_indicators(unwrap=False):
-            if wrapper.name == name:
-                return wrapper.indicator
+        annotation = self._client._get_annotation(name)
+        if annotation is not None:
+            return annotation
         return default
 
     def get_badly_formed_components(self):
@@ -323,12 +323,8 @@ class InspectionAgent(abctools.AbjadObject):
             message = 'multiple indicators attached to client.'
             raise Exception(message)
 
-    def get_indicators(
-        self,
-        prototype=None,
-        unwrap=True,
-        ):
-        r'''Get all indicators matching `prototype` attached to client.
+    def get_indicators(self, prototype=None, unwrap=True):
+        r'''Get indicators.
 
         Returns tuple.
         '''
