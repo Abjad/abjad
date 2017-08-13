@@ -4,8 +4,6 @@ import functools
 import math
 import numbers
 import re
-from abjad.tools import mathtools
-from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.pitchtools.Accidental import Accidental
 from abjad.tools.pitchtools.Octave import Octave
@@ -46,7 +44,7 @@ class Pitch(AbjadValueObject):
         (?P<diatonic_pitch_class_name>
             [A-G]   # exactly one diatonic pitch-class name
         )
-        {}          # plus an optional accidental symbol 
+        {}          # plus an optional accidental symbol
         (?P<octave_number>
             [-]?    # plus an optional negative sign
             [0-9]+  # plus one or more digits
@@ -98,11 +96,11 @@ class Pitch(AbjadValueObject):
 
         Returns string.
         '''
-        from abjad.tools import systemtools
+        import abjad
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
         elif format_specification == 'storage':
-            return systemtools.StorageFormatAgent(self).get_storage_format()
+            return abjad.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
     def __illustrate__(self):
@@ -244,7 +242,7 @@ class Pitch(AbjadValueObject):
         Returns octave.
         '''
         raise NotImplementedError
-            
+
     @abc.abstractproperty
     def pitch_class(self):
         r'''Gets pitch-class of pitch.

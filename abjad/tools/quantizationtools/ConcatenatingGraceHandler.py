@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import scoretools
-from abjad.tools import scoretools
 from abjad.tools import durationtools
-from abjad.tools import scoretools
-from abjad.tools import scoretools
 from abjad.tools import scoretools
 from abjad.tools.quantizationtools.GraceHandler import GraceHandler
 
@@ -13,7 +9,7 @@ class ConcatenatingGraceHandler(GraceHandler):
 
     Concatenates all but the final ``QEvent`` attached to a ``QGrid`` offset
     into a ``GraceContainer``, using a fixed leaf duration ``duration``.
-    
+
     ::
 
         >>> import abjad

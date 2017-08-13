@@ -7,7 +7,7 @@ def sign(n):
     ::
 
         >>> import abjad
-    
+
     ..  container:: example
 
         Returns -1 on negative `n`:

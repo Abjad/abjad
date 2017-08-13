@@ -65,7 +65,6 @@ class PrototypeSelectorCallback(AbjadValueObject):
 
         Returns tuple of selections.
         '''
-        import abjad
         assert isinstance(argument, collections.Iterable), repr(argument)
         result = []
         prototype = self.prototype

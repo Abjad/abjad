@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from abjad.tools.spannertools.Spanner import Spanner
-from abjad.tools.topleveltools import override
 
 
 class PianoPedalSpanner(Spanner):
@@ -64,16 +63,13 @@ class PianoPedalSpanner(Spanner):
         overrides=None,
         style='mixed',
         ):
-        Spanner.__init__(
-            self,
-            overrides=overrides,
-            )
-        if not kind in list(self._kinds.keys()):
+        Spanner.__init__(self, overrides=overrides)
+        if kind not in list(self._kinds.keys()):
             message = 'kind must be in {!r}.'
             message = message.format(list(self._kinds.keys()))
             raise ValueError(message)
         self._kind = kind
-        if not style in self._styles:
+        if style not in self._styles:
             message = 'style must be in {!r}.'
             message = message.format(self._styles)
             raise ValueError(message)

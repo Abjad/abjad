@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import collections
 from abjad.tools.datastructuretools.TypedCollection import TypedCollection
-from abjad.tools.topleveltools import new
 
 
 class TypedFrozenset(TypedCollection):

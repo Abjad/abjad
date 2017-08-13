@@ -60,7 +60,7 @@ class Rotation(AbjadValueObject):
                 >>> items = [0, 2, 4, 5]
                 >>> segment = abjad.PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
-    
+
             Example operators:
 
             ::
@@ -123,7 +123,7 @@ class Rotation(AbjadValueObject):
                     \bar "|."
                     \override Score.BarLine.transparent = ##f
                 }
-                
+
         ..  container:: example
 
             Returns compound operator:

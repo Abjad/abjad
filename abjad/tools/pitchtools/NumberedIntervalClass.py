@@ -89,7 +89,7 @@ class NumberedIntervalClass(IntervalClass):
             number *= sign
         else:
             message = 'can not initialize {} from {!r}.'
-            message = message.format(type(self).__name__, item)
+            message = message.format(type(self).__name__, number)
             raise ValueError(message)
         self._number = number
 

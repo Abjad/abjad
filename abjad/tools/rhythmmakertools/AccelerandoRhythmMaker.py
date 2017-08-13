@@ -2,14 +2,10 @@
 import math
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
-from abjad.tools import scoretools
-from abjad.tools import selectiontools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import inspect
-from abjad.tools.topleveltools import iterate
-from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import override
 
 
@@ -464,7 +460,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
         '_interpolation_specifiers',
         )
 
-    ### INITIALIZER ### 
+    ### INITIALIZER ###
+
     def __init__(
         self,
         beam_specifier=None,
@@ -505,7 +502,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     @staticmethod
     def _fix_rounding_error(
-        selection, 
+        selection,
         total_duration,
         interpolation_specifier,
         ):
@@ -682,7 +679,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
     @staticmethod
     def _interpolate_exponential(y1, y2, mu, exponent=1):
         r'''Interpolates between `y1` and `y2` at position `mu`.
-        
+
         Exponents equal to 1 leave durations unscaled:
 
         ::
@@ -772,7 +769,6 @@ class AccelerandoRhythmMaker(RhythmMaker):
         Returns selection of notes.
         '''
         import abjad
-        from abjad.tools import rhythmmakertools
         total_duration = abjad.Duration(total_duration)
         interpolation_specifier = interpolation_specifiers[index]
         durations = AccelerandoRhythmMaker._interpolate_divide(
@@ -797,7 +793,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
             notes.append(note)
         selection = abjad.select(notes)
         class_._fix_rounding_error(
-            selection, 
+            selection,
             total_duration,
             interpolation_specifier,
             )

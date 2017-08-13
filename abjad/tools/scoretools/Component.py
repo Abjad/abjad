@@ -597,7 +597,7 @@ class Component(AbjadObject):
                 raise MissingMeasureError
         else:
             message = 'unknown component: {!r}.'
-            raise TypeError(message.format(component))
+            raise TypeError(message.format(self))
 
     def _get_sibling(self, n):
         if n == 0:

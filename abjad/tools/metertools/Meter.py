@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
-from abjad.tools import graphtools
 from abjad.tools import indicatortools
 from abjad.tools import mathtools
 from abjad.tools import rhythmtreetools
@@ -366,8 +365,7 @@ class Meter(AbjadValueObject):
                     preprolated_duration=(1, denominator))
                     for _ in range(node.preprolated_duration.numerator)])
 
-        decrease_monotonic = \
-            bool(decrease_monotonic)
+        decrease_monotonic = bool(decrease_monotonic)
 
         try:
             numerator = argument.numerator
@@ -379,8 +377,7 @@ class Meter(AbjadValueObject):
         if isinstance(argument, type(self)):
             root = argument.root_node
             numerator, denominator = argument.numerator, argument.denominator
-            decrease_monotonic = \
-                argument.decrease_monotonic
+            decrease_monotonic = argument.decrease_monotonic
 
         elif isinstance(argument, (str, rhythmtreetools.RhythmTreeContainer)):
             if isinstance(argument, str):
@@ -434,8 +431,7 @@ class Meter(AbjadValueObject):
         self._root_node = root
         self._numerator = numerator
         self._denominator = denominator
-        self._decrease_monotonic = \
-            decrease_monotonic
+        self._decrease_monotonic = decrease_monotonic
 
     ### SPECIAL METHODS ###
 
@@ -1038,7 +1034,7 @@ class Meter(AbjadValueObject):
                     depth=0,
                     logical_tie=item,
                     )
-            elif isinstance(item, scoretools.Tuplet) and rewrite_tuplets == False:
+            elif isinstance(item, scoretools.Tuplet) and not rewrite_tuplets:
                 pass
             else:
                 #print('DESCENDING:', item)

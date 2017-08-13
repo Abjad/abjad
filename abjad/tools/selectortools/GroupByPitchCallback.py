@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 import collections
-from abjad.tools import datastructuretools
-from abjad.tools import mathtools
 from abjad.tools import selectiontools
 from abjad.tools.abctools import AbjadValueObject
 
@@ -51,7 +49,7 @@ class GroupByPitchCallback(AbjadValueObject):
         selections = self._map_contiguity(selections)
         selections = [selectiontools.Selection(_) for _ in selections]
         return tuple(selections)
-    
+
     ### PRIVATE METHODS ###
 
     @staticmethod

@@ -3,7 +3,6 @@ import copy
 import numbers
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.Interval import Interval
-from abjad.tools.topleveltools import new
 
 
 class NamedInterval(Interval):
@@ -116,7 +115,7 @@ class NamedInterval(Interval):
                 number *= -1
         else:
             message = 'can not initialize {} from {!r}'
-            message = message.format(type(self).__init__, arguments)
+            message = message.format(type(self).__init__, name)
             raise ValueError(message)
         self._quality_string = quality_string
         self._number = number
@@ -235,7 +234,7 @@ class NamedInterval(Interval):
         Returns number.
         '''
         return super(NamedInterval, self).__hash__()
-        
+
     def __lt__(self, argument):
         r'''Is true when `argument` is a named interval with a number greater
         than that of this named interval.
@@ -339,7 +338,6 @@ class NamedInterval(Interval):
 
         Returns new named interval.
         '''
-        from abjad.tools import pitchtools
         if not isinstance(argument, type(self)):
             message = 'must be named interval: {!r}.'
             message = message.format(argument)
@@ -578,7 +576,7 @@ class NamedInterval(Interval):
     @property
     def named_interval_class(self):
         r'''DEPRECATED.
-        
+
         Gets named interval class of named interval.
 
         ..  container:: example
@@ -837,7 +835,7 @@ class NamedInterval(Interval):
         r'''Makes named interval from `quality` and `number`.
 
         ..  container:: example
-            
+
             ::
 
                 >>> abjad.NamedInterval.from_quality_and_number(

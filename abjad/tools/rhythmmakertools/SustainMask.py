@@ -914,7 +914,10 @@ class SustainMask(AbjadValueObject):
         '''
         import abjad
         if 0 < n:
-            indices = list(reversed(range(-1, -n-1, -1)))
+            start = -1
+            stop = -n - 1
+            stride = -1
+            indices = list(reversed(range(start, stop, stride)))
         else:
             indices = None
         pattern = abjad.Pattern(

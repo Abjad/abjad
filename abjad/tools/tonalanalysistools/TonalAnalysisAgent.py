@@ -95,9 +95,9 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         for x in range(len(ordered_npcs)):
             ordered_npcs = ordered_npcs.rotate(1)
             segment = pitchtools.IntervalClassSegment(
-                    items=mathtools.difference_series(list(ordered_npcs)),
-                    item_class=pitchtools.NamedInversionEquivalentIntervalClass,
-                    )
+                items=mathtools.difference_series(list(ordered_npcs)),
+                item_class=pitchtools.NamedInversionEquivalentIntervalClass,
+                )
             if segment.is_tertian:
                 break
         else:
@@ -220,7 +220,6 @@ class TonalAnalysisAgent(abctools.AbjadObject):
     @staticmethod
     def _is_neighbor_note(note):
         import abjad
-        from abjad.tools import tonalanalysistools
         if not isinstance(note, abjad.Note):
             message = 'must be note: {!r}.'
             message = message.format(note)
@@ -249,7 +248,6 @@ class TonalAnalysisAgent(abctools.AbjadObject):
     @staticmethod
     def _is_passing_tone(note):
         import abjad
-        from abjad.tools import tonalanalysistools
         if not isinstance(note, abjad.Note):
             message = 'must be note: {!r}.'
             message = message.format(note)
@@ -566,7 +564,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
-                
+
                 >>> f(staff)
                 \new Staff {
                     c'8

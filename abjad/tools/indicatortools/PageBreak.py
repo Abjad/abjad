@@ -77,7 +77,6 @@ class PageBreak(AbjadValueObject):
 
             ::
 
-                
                 >>> page_break = abjad.PageBreak()
                 >>> page_break.default_scope
                 <class 'abjad.tools.scoretools.Score.Score'>

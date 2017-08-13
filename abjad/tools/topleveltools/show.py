@@ -46,7 +46,7 @@ def show(argument, return_timing=False, **keywords):
     Writes LilyPond input file and output PDF to Abjad output directory.
 
     Opens output PDF.
-    
+
     Returns none when `return_timing` is false.
 
     Returns pair of `abjad_formatting_time` and `lilypond_rendering_time`

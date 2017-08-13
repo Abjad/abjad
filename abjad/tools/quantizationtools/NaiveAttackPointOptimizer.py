@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import indicatortools
-from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools.topleveltools import iterate
 from abjad.tools.quantizationtools.AttackPointOptimizer \

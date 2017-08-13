@@ -5266,7 +5266,7 @@ class Selector(AbjadValueObject):
                 }
 
             ::
-            
+
                 >>> for item in result:
                 ...     item
                 ...
@@ -5897,7 +5897,6 @@ class Selector(AbjadValueObject):
                     )
                 results_by_prefix[this_prefix] = argument
         return results_by_selector
-
 
     def select(self, apply_to_each=False):
         r'''Selects last result.

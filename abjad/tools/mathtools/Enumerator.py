@@ -163,9 +163,10 @@ class Enumerator(abctools.AbjadValueObject):
         yield tuple(rgf)
         while not rgf == last_rgf:
             for i, x in enumerate(reversed(rgf)):
-                if x < max(rgf[:-(i+1)]) + 1:
-                    first_part = rgf[:-(i+1)]
-                    increased_part = [rgf[-(i+1)] + 1]
+                stop = -(i + 1)
+                if x < max(rgf[:stop]) + 1:
+                    first_part = rgf[:stop]
+                    increased_part = [rgf[stop] + 1]
                     trailing_ones = i * [1]
                     rgf = first_part + increased_part + trailing_ones
                     yield tuple(rgf)
@@ -321,14 +322,14 @@ class Enumerator(abctools.AbjadValueObject):
         '''Yields outer product of sequences in sequence.
 
         ..  container:: example
-            
+
             ::
 
                 >>> sequences = [[1, 2, 3], ['a', 'b']]
                 >>> enumerator = abjad.Enumerator(sequences)
                 >>> for sequence_ in enumerator.yield_outer_product():
                 ...     sequence_
-                ... 
+                ...
                 Sequence([1, 'a'])
                 Sequence([1, 'b'])
                 Sequence([2, 'a'])
@@ -337,14 +338,14 @@ class Enumerator(abctools.AbjadValueObject):
                 Sequence([3, 'b'])
 
         ..  container:: example
-            
+
             ::
 
                 >>> sequences = [[1, 2, 3], ['a', 'b'], ['X', 'Y']]
                 >>> enumerator = abjad.Enumerator(sequences)
                 >>> for sequence_ in enumerator.yield_outer_product():
                 ...     sequence_
-                ... 
+                ...
                 Sequence([1, 'a', 'X'])
                 Sequence([1, 'a', 'Y'])
                 Sequence([1, 'b', 'X'])
@@ -359,14 +360,14 @@ class Enumerator(abctools.AbjadValueObject):
                 Sequence([3, 'b', 'Y'])
 
         ..  container:: example
-            
+
             ::
 
                 >>> sequences = [[1, 2, 3], [4, 5], [6, 7, 8]]
                 >>> enumerator = abjad.Enumerator(sequences)
                 >>> for sequence_ in enumerator.yield_outer_product():
                 ...     sequence_
-                ... 
+                ...
                 Sequence([1, 4, 6])
                 Sequence([1, 4, 7])
                 Sequence([1, 4, 8])
@@ -464,7 +465,8 @@ class Enumerator(abctools.AbjadValueObject):
         '''
         import abjad
         for i, item in enumerate(self.sequence):
-            for item_ in self.sequence[i+1:]:
+            start = i + 1
+            for item_ in self.sequence[start:]:
                 pair = [item, item_]
                 yield abjad.Sequence(items=pair)
 
@@ -530,7 +532,7 @@ class Enumerator(abctools.AbjadValueObject):
                 >>> enumerator = abjad.Enumerator([1, 2, 3])
                 >>> for permutation in enumerator.yield_permutations():
                 ...     permutation
-                ... 
+                ...
                 Sequence([1, 2, 3])
                 Sequence([1, 3, 2])
                 Sequence([2, 1, 3])
@@ -554,7 +556,7 @@ class Enumerator(abctools.AbjadValueObject):
             ::
 
                 >>> enumerator = abjad.Enumerator([21, 22, 23, 24])
-                >>> for set_partition in enumerator.yield_set_partitions(): 
+                >>> for set_partition in enumerator.yield_set_partitions():
                 ...     set_partition
                 ...
                 Sequence([Sequence([21, 22, 23, 24])])
@@ -592,7 +594,7 @@ class Enumerator(abctools.AbjadValueObject):
                 >>> enumerator = abjad.Enumerator([0, 1, 2])
                 >>> for subsequence in enumerator.yield_subsequences():
                 ...     subsequence
-                ... 
+                ...
                 Sequence([])
                 Sequence([0])
                 Sequence([0, 1])
@@ -610,7 +612,7 @@ class Enumerator(abctools.AbjadValueObject):
                 ...     minimum_length=3,
                 ...     ):
                 ...     subsequence
-                ... 
+                ...
                 Sequence([0, 1, 2])
                 Sequence([0, 1, 2, 3])
                 Sequence([0, 1, 2, 3, 4])
@@ -627,7 +629,7 @@ class Enumerator(abctools.AbjadValueObject):
                 ...     maximum_length=3,
                 ...     ):
                 ...     subsequence
-                ... 
+                ...
                 Sequence([])
                 Sequence([0])
                 Sequence([0, 1])
@@ -652,7 +654,7 @@ class Enumerator(abctools.AbjadValueObject):
                 ...     maximum_length=3,
                 ...     ):
                 ...     subsequence
-                ... 
+                ...
                 Sequence([0, 1, 2])
                 Sequence([1, 2, 3])
                 Sequence([2, 3, 4])

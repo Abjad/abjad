@@ -109,8 +109,10 @@ class AbjadBookScript(commandlinetools.CommandlineScript):
         for section in parser.sections():
             configuration[section] = {}
             for key, value in parser.items(section):
-                value = tuple(_.strip() for _ in value.splitlines()
-                    if _.strip())
+                value = tuple(
+                    _.strip() for _ in value.splitlines()
+                    if _.strip()
+                    )
                 configuration[section][key] = value
         return configuration
 

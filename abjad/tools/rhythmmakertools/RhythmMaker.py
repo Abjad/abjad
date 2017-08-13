@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import collections
-import copy
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
@@ -218,7 +217,6 @@ class RhythmMaker(AbjadValueObject):
         tie_specifier = self._get_tie_specifier()
         tie_specifier(selections)
 
-
     def _apply_tuplet_spelling_specifier(self, selections, divisions):
         # TODO: migrate functionality to TupletSpellingSpecifier.__call__()
         tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()
@@ -250,7 +248,7 @@ class RhythmMaker(AbjadValueObject):
                 divisions_.append(division)
         divisions = divisions_
         prototype = mathtools.NonreducedFraction
-        assert all( isinstance(_, prototype) for _ in divisions)
+        assert all(isinstance(_, prototype) for _ in divisions)
         return divisions
 
     def _flatten_trivial_tuplets(self, selections):

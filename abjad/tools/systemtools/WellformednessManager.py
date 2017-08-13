@@ -290,10 +290,10 @@ class WellformednessManager(AbjadObject):
                 raise Exception('too many hairpins')
             assert len(hairpins) == 2
             hairpins_are_enchained = False
-            if (hairpins[0]._is_my_last_leaf(leaf) and 
+            if (hairpins[0]._is_my_last_leaf(leaf) and
                 hairpins[-1]._is_my_first_leaf(leaf)):
                 hairpins_are_enchained = True
-            if (hairpins[-1]._is_my_last_leaf(leaf) and 
+            if (hairpins[-1]._is_my_last_leaf(leaf) and
                 hairpins[0]._is_my_first_leaf(leaf)):
                 hairpins_are_enchained = True
             if not hairpins_are_enchained:
@@ -386,7 +386,7 @@ class WellformednessManager(AbjadObject):
                 0 /	1 overlapping ties
                 0 /	0 short hairpins
                 0 /	0 tied rests
-        
+
         Does not check tied rests, chords or skips.
 
         Returns violator ties together with total number of ties.
@@ -738,13 +738,10 @@ class WellformednessManager(AbjadObject):
                     common_leaves &= set(glissandi[1]._get_leaves())
                     if len(common_leaves) == 1:
                         x = list(common_leaves)[0]
-                        if (
-                            (glissandi[0]._is_my_first_leaf(x) and
-                            glissandi[1]._is_my_last_leaf(x))
-                            or
+                        if ((glissandi[0]._is_my_first_leaf(x) and
+                            glissandi[1]._is_my_last_leaf(x)) or
                             (glissandi[1]._is_my_first_leaf(x) and
-                            glissandi[0]._is_my_last_leaf(x))
-                            ):
+                            glissandi[0]._is_my_last_leaf(x))):
                             break
                 for glissando in glissandi:
                     if glissando not in violators:
@@ -809,13 +806,10 @@ class WellformednessManager(AbjadObject):
                     common_leaves &= set(hairpins[1]._get_leaves())
                     if len(common_leaves) == 1:
                         x = list(common_leaves)[0]
-                        if (
-                            (hairpins[0]._is_my_first_leaf(x) and
-                            hairpins[1]._is_my_last_leaf(x))
-                            or
+                        if ((hairpins[0]._is_my_first_leaf(x) and
+                            hairpins[1]._is_my_last_leaf(x)) or
                             (hairpins[1]._is_my_first_leaf(x) and
-                            hairpins[0]._is_my_last_leaf(x))
-                            ):
+                            hairpins[0]._is_my_last_leaf(x))):
                             break
                 for hairpin in hairpins:
                     if hairpin not in violators:

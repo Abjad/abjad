@@ -4,7 +4,7 @@ from abjad.tools.scoretools.GraceContainer import GraceContainer
 
 class AcciaccaturaContainer(GraceContainer):
     r'''Acciaccatura container.
-    
+
     ::
 
         >>> import abjad

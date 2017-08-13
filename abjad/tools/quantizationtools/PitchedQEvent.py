@@ -5,7 +5,7 @@ from abjad.tools.quantizationtools.QEvent import QEvent
 
 class PitchedQEvent(QEvent):
     r'''Pitched q-event.
-    
+
     Indicates the onset of a period of pitched material in a q-event sequence.
 
     ::

@@ -6,7 +6,7 @@ from abjad.tools.quantizationtools.QSchema import QSchema
 
 class MeasurewiseQSchema(QSchema):
     r'''Measurewise q-schema.
-    
+
     Treats measures as its timestep unit.
 
     ::

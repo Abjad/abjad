@@ -147,7 +147,7 @@ class Spanner(AbjadObject):
                 components,
                 contiguous=True,
                 ):
-                raise Except(components)
+                raise Exception(components)
         component._spanners.add(self)
         self._components.append(component)
 
@@ -434,7 +434,6 @@ class Spanner(AbjadObject):
             return leaf
 
     def _get_my_nth_leaf(self, n):
-        from abjad.tools import scoretools
         if not isinstance(n, int):
             raise TypeError
         if 0 <= n:
@@ -459,7 +458,7 @@ class Spanner(AbjadObject):
             return indicators[0]
         message = 'multiple piecewise indicators found.'
         raise Exception(message)
-            
+
     def _get_piecewise_indicators(self, leaf, prototype=None):
         import abjad
         assert leaf in self, repr(leaf)

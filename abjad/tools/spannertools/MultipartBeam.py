@@ -220,7 +220,7 @@ class MultipartBeam(Beam):
                 }
 
             Abjad beams all rests.
-            
+
             LilyPond beams only small-duration rests.
 
         ..  container:: example

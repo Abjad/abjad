@@ -262,6 +262,7 @@ def test_spannertools_Beam___init___09():
 
     assert len(beam) == 5
 
+
 def test_spannertools_Beam___init___10():
     r'''Voice with tuplets and top-level leaves.
     '''

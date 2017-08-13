@@ -34,8 +34,8 @@ class RegistrationComponent(AbjadValueObject):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        source_pitch_range='[A0, C8]', 
+        self,
+        source_pitch_range='[A0, C8]',
         target_octave_start_pitch=0,
         ):
         from abjad.tools import pitchtools

@@ -3,6 +3,7 @@ import collections
 import copy
 import itertools
 import types
+# must import datastructuretools for Exact constant to be available
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import systemtools
@@ -634,7 +635,6 @@ class Selection(object):
         return new_components
 
     def _copy_and_include_enclosing_containers(self):
-        from abjad.tools import scoretools
         assert self._all_in_same_logical_voice(self, contiguous=True)
         # get governor
         parentage = self[0]._get_parentage(include_self=True)
@@ -727,7 +727,7 @@ class Selection(object):
             old_denominators.append(effective_time_signature.denominator)
             new_duration += effective_time_signature.duration
         new_time_signature = \
-            measure._duration_and_possible_denominators_to_time_signature(
+            measure._duration_to_time_signature(
                 new_duration,
                 old_denominators,
                 )

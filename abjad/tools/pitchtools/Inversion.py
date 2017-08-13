@@ -209,7 +209,7 @@ class Inversion(AbjadValueObject):
                 PitchClassSegment("c bf af")
 
         ..  container:: example
-        
+
             Inverts pitch class set:
 
             ::

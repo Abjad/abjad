@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import collections
-from abjad.tools import datastructuretools
 from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadValueObject
 
@@ -383,8 +381,8 @@ class Scheme(AbjadValueObject):
     def format_embedded_scheme_value(value, force_quotes=False):
         r'''Formats `value` as an embedded Scheme value.
         '''
-        from abjad.tools import datastructuretools
-        if isinstance(value, datastructuretools.OrdinalConstant):
+        import abjad
+        if isinstance(value, abjad.OrdinalConstant):
             result = '#' + repr(value).lower()
         else:
             result = Scheme.format_scheme_value(

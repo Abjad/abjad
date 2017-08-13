@@ -72,7 +72,6 @@ class DoctestScript(CommandlineScript):
         globs['abjad'] = importlib.import_module('abjad')
         globs['f'] = getattr(globs['abjad'], 'f')
         globs['show'] = getattr(globs['abjad'], 'show')
-        module_names_for_globs = list(self._module_names_for_globs)
         if not abjad_only:
             for module_name in self._module_names_for_globs:
                 try:

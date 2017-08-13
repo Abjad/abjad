@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 import itertools
-from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import mutate
 from abjad.tools.selectiontools.Selection import Selection
 
 

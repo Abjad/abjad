@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import copy
 from abjad.tools import durationtools
-from abjad.tools import indicatortools
 from abjad.tools.scoretools.Leaf import Leaf
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import inspect

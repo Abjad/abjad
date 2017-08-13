@@ -505,7 +505,7 @@ class Duration(AbjadObject, Fraction):
             )
 
     @staticmethod
-    def _group_nonreduced_fractions_by_implied_prolation(durations):
+    def _group_by_implied_prolation(durations):
         durations = [
             mathtools.NonreducedFraction(duration)
             for duration in durations

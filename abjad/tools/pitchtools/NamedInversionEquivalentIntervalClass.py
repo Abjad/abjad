@@ -86,7 +86,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
                 message = message.format(type(self).__name__, name)
                 raise Exception(message)
             result = match.groups()
-            direction_string, quality_abbreviation, number_string =  result
+            direction_string, quality_abbreviation, number_string = result
             quality_string = self._quality_abbreviation_to_quality_string[
                 quality_abbreviation]
             number = int(number_string)

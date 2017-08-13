@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import indicatortools
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
@@ -49,9 +48,10 @@ class Violin(Instrument):
         short_name_markup=None,
         allowable_clefs=None,
         default_tuning=('G3', 'D4', 'A4', 'E5'),
-        pitch_range='[G3, G7]',
         middle_c_sounding_pitch=None,
+        pitch_range='[G3, G7]',
         ):
+        import abjad
         Instrument.__init__(
             self,
             name=name,
@@ -59,16 +59,15 @@ class Violin(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            middle_c_sounding_pitch=\
-                middle_c_sounding_pitch,
             )
         self._performer_names.extend([
             'string player',
             'violinist',
             ])
         self._is_primary_instrument = True
-        self._default_tuning = indicatortools.Tuning(default_tuning)
+        self._default_tuning = abjad.Tuning(default_tuning)
 
     ### PUBLIC PROPERTIES ###
 

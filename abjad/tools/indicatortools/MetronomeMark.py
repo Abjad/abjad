@@ -405,7 +405,7 @@ class MetronomeMark(AbjadValueObject):
                 False
 
             ::
-                
+
                 >>> mark_2 == mark_1
                 False
 

@@ -2019,7 +2019,7 @@ class TupletRhythmMaker(RhythmMaker):
             braces (representing measures). The graphic output of the two
             examples is the same.
 
-            .. note:: Flattening trivial tuplets makes it possible 
+            .. note:: Flattening trivial tuplets makes it possible
                 subsequently to rewrite the meter of the untupletted notes.
 
         Defaults to none.

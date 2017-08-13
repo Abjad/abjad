@@ -555,9 +555,6 @@ class Expression(AbjadValueObject):
             not callback.is_composite):
             markup = abjad.MarkupList(['(', markup, ')']).concat()
         markup = callback._make_method_markup(markup)
-        next_callback = None
-        if 1 < len(self.callbacks):
-            next_callback = self.callbacks[1]
         previous_precedence = callback.precedence or 0
         previous_callback = callback
         for callback in self.callbacks[1:]:
@@ -1841,8 +1838,8 @@ class Expression(AbjadValueObject):
             try:
                 string = template.format(*strings)
             except Exception as e:
-                message = '{!r} with template {!r} and names {!r} raises {!r}.'
-                message = message.format(self, template, names, e)
+                message = '{!r} with template {!r} raises {!r}.'
+                message = message.format(self, template, e)
                 raise Exception(message)
             return self._compile_callback_strings(string)
 

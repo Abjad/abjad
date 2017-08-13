@@ -48,7 +48,7 @@ class Retrograde(AbjadValueObject):
                 >>> items = [0, 2, 4, 5]
                 >>> segment = abjad.PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
-    
+
             Example operators:
 
             ::
@@ -194,7 +194,7 @@ class Retrograde(AbjadValueObject):
 
     def __radd__(self, operator):
         r'''Right-addition not defined on retrograde.
-        
+
         ..  container:: example
 
             ::

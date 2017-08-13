@@ -159,7 +159,7 @@ def tweak(argument):
             >>> abjad.tweak(markup_1)
             LilyPondTweakManager(('color', 'red'))
 
-    ''' 
+    '''
     from abjad.tools import lilypondnametools
     if getattr(argument, '_lilypond_tweak_manager', None) is None:
         manager = lilypondnametools.LilyPondTweakManager()

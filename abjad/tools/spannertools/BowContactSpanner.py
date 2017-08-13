@@ -314,8 +314,10 @@ class BowContactSpanner(Spanner):
         previous_leaf = abjad.inspect(leaf).get_leaf(-1)
         previous_contact_point = None
         if previous_leaf is not None:
-            previous_contact_points = abjad.inspect(previous_leaf
-                ).get_indicators(abjad.BowContactPoint)
+            agent = abjad.inspect(previous_leaf)
+            previous_contact_points = agent.get_indicators(
+                abjad.BowContactPoint
+                )
             if previous_contact_points:
                 previous_contact_point = previous_contact_points[0]
         if (self._is_my_first_leaf(leaf) or
@@ -328,8 +330,8 @@ class BowContactSpanner(Spanner):
                 direction_change = Up
         else:
             previous_leaf = abjad.inspect(leaf).get_leaf(-1)
-            previous_contact_point = abjad.inspect(previous_leaf
-                ).get_indicator(abjad.BowContactPoint)
+            agent = abjad.inspect(previous_leaf)
+            previous_contact_point = agent.get_indicator(abjad.BowContactPoint)
             if (previous_contact_point < this_contact_point and
                 next_contact_point < this_contact_point):
                 direction_change = Up

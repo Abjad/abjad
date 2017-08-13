@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-import inspect
 from abjad.tools.datastructuretools.TypedList import TypedList
-from abjad.tools.markuptools.Markup import Markup
 
 
 class MarkupList(TypedList):
@@ -553,7 +551,7 @@ class MarkupList(TypedList):
         import abjad
         if not len(self) == 2:
             message = 'markup list must be length 2: {!r}.'
-            message = message.format(markup_list)
+            message = message.format(self)
             raise Exception(message)
         markup_1, markup_2 = self.items
         contents_1 = abjad.Markup._parse_markup_command_argument(markup_1)
@@ -661,7 +659,7 @@ class MarkupList(TypedList):
                     >>> show(markup_list) # doctest: +SKIP
 
                 ..  docs::
-            
+
                     >>> f(markup_list.__illustrate__().items[-1])
                     \markup {
                         \column

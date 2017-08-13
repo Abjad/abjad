@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import durationtools
-from abjad.tools import mathtools
 from abjad.tools import selectiontools
 from abjad.tools import systemtools
 from abjad.tools.topleveltools import inspect
@@ -302,11 +301,13 @@ class Container(Component):
 
         Returns Graphviz graph.
         '''
+        from abjad.tools import graphtools
+        import abjad
         def recurse(component, leaf_cluster):
             component_node = component._as_graphviz_node()
             node_mapping[component] = component_node
             node_order = [component_node.name]
-            if isinstance(component, scoretools.Container):
+            if isinstance(component, abjad.Container):
                 graph.append(component_node)
                 this_leaf_cluster = graphtools.GraphvizSubgraph(
                     name=component_node.name,
@@ -318,12 +319,12 @@ class Container(Component):
                 all_are_leaves = True
                 pending_node_order = []
                 for child in component:
-                    if not isinstance(child, scoretools.Leaf):
+                    if not isinstance(child, abjad.Leaf):
                         all_are_leaves = False
                     child_node, child_node_order = recurse(
                         child, this_leaf_cluster)
                     pending_node_order.extend(child_node_order)
-                    edge = graphtools.GraphvizEdge()
+                    edge = abjad.graphtools.GraphvizEdge()
                     edge.attach(component_node, child_node)
                 if all_are_leaves:
                     pending_node_order.reverse()
@@ -334,11 +335,9 @@ class Container(Component):
                 leaf_cluster.append(component_node)
             return component_node, node_order
 
-        from abjad.tools import graphtools
-        from abjad.tools import scoretools
         node_order = []
         node_mapping = {}
-        graph = graphtools.GraphvizGraph(
+        graph = abjad.graphtools.GraphvizGraph(
             name='G',
             attributes={
                 'style': 'rounded',
@@ -350,7 +349,7 @@ class Container(Component):
                 'shape': 'none',
                 },
             )
-        leaf_cluster = graphtools.GraphvizSubgraph(name='leaves')
+        leaf_cluster = abjad.graphtools.GraphvizSubgraph(name='leaves')
         component_node, node_order = recurse(self, leaf_cluster)
         if len(leaf_cluster) == 1:
             graph.append(leaf_cluster[0])
@@ -359,11 +358,11 @@ class Container(Component):
         graph._node_order = node_order
 
         if spanner:
-            pairs = datastructuretools.Sequence(spanner.components).nwise()
+            pairs = abjad.sequence(spanner.components).nwise()
             for component_one, component_two in pairs:
                 node_one = node_mapping[component_one]
                 node_two = node_mapping[component_two]
-                edge = graphtools.GraphvizEdge(
+                edge = abjad.graphtools.GraphvizEdge(
                     attributes={
                         'constraint': False,
                         'penwidth': 5,
@@ -449,8 +448,11 @@ class Container(Component):
     def _append_without_withdrawing_from_crossing_spanners(self, component):
         '''Not composer-safe.
         '''
-        self._set_item(slice(len(self), len(self)), [component],
-            withdraw_components_from_crossing_spanners=False)
+        self._set_item(
+            slice(len(self), len(self)),
+            [component],
+            withdraw_components_from_crossing_spanners=False,
+            )
 
     def _as_graphviz_node(self):
         from abjad.tools import graphtools
@@ -607,8 +609,10 @@ class Container(Component):
 
     def _get_contents_duration(self):
         if self.is_simultaneous:
-            return max([durationtools.Duration(0)] +
-                [x._get_preprolated_duration() for x in self])
+            return max(
+                [durationtools.Duration(0)] +
+                [x._get_preprolated_duration() for x in self]
+                )
         else:
             duration = durationtools.Duration(0)
             for x in self:
@@ -631,8 +635,10 @@ class Container(Component):
 
     def _get_duration_in_seconds(self):
         if self.is_simultaneous:
-            return max([durationtools.Duration(0)] +
-                [x._get_duration(in_seconds=True) for x in self])
+            return max(
+                [durationtools.Duration(0)] +
+                [x._get_duration(in_seconds=True) for x in self]
+                )
         else:
             duration = durationtools.Duration(0)
             for leaf in iterate(self).by_leaf():

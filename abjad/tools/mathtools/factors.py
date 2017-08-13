@@ -19,7 +19,7 @@ def factors(n):
 
             >>> for n in range(10, 20):
             ...   print(n, abjad.mathtools.factors(n))
-            ... 
+            ...
             10 [2, 5]
             11 [11]
             12 [2, 2, 3]

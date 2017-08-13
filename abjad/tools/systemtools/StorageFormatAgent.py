@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import collections
-import platform
 import sys
 import types
 from abjad.tools.abctools import AbjadValueObject
@@ -84,9 +83,8 @@ class StorageFormatAgent(AbjadValueObject):
                 as_storage_format=as_storage_format,
                 )
             return list(pieces)
-        elif (not as_storage_format and 
-            hasattr(self._client, '_get_format_specification')
-            ):
+        elif (not as_storage_format and
+            hasattr(self._client, '_get_format_specification')):
             pieces = self._format_specced_object(
                 as_storage_format=as_storage_format,
                 )

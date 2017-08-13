@@ -63,8 +63,8 @@ class TypedCounter(TypedCollection):
 
         Returns new typed counter.
         '''
-        if (not isinstance(argument, type(self))
-            or not self.item_class == argument.item_class):
+        if (not isinstance(argument, type(self)) or
+            not self.item_class == argument.item_class):
             return NotImplemented
         result = type(self)()
         result._collection = self._collection + argument._collection
@@ -75,8 +75,8 @@ class TypedCounter(TypedCollection):
 
         Returns new typed counter.
         '''
-        if (not isinstance(argument, type(self))
-            or not self.item_class == argument.item_class):
+        if (not isinstance(argument, type(self)) or
+            not self.item_class == argument.item_class):
             return NotImplemented
         result = type(self)()
         result._collection = self._collection & argument._collection
@@ -99,21 +99,13 @@ class TypedCounter(TypedCollection):
         argument = self._item_coercer(argument)
         return self._collection.__getitem__(argument)
 
-#    # TODO: This method is never accessed.
-#    def __missing__(self, item):
-#        r'''Returns zero.
-#
-#        Returns zero.
-#        '''
-#        return 0
-
     def __or__(self, argument):
         r'''Logical OR of typed counter and `argument`.
 
         Returns new typed counter.
         '''
-        if (not isinstance(argument, type(self))
-            or not self.item_class == argument.item_class):
+        if (not isinstance(argument, type(self)) or
+            not self.item_class == argument.item_class):
             return NotImplemented
         result = type(self)()
         result._collection = self._collection | argument._collection
@@ -124,8 +116,8 @@ class TypedCounter(TypedCollection):
 
         Returns new typed counter.
         '''
-        if (not isinstance(argument, type(self))
-            or not self.item_class == argument.item_class):
+        if (not isinstance(argument, type(self)) or
+            not self.item_class == argument.item_class):
             return NotImplemented
         result = type(self)()
         result._collection = argument._collection + self._collection
@@ -151,8 +143,8 @@ class TypedCounter(TypedCollection):
 
         Returns new typed counter.
         '''
-        if (not isinstance(argument, type(self))
-            or not self.item_class == argument.item_class):
+        if (not isinstance(argument, type(self)) or
+            not self.item_class == argument.item_class):
             return NotImplemented
         result = type(self)()
         result._collection = self._collection - argument._collection

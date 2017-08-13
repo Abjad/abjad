@@ -47,7 +47,7 @@ class LaissezVibrer(AbjadValueObject):
 
                 >>> str(abjad.LaissezVibrer())
                 '\\laissezVibrer'
-                    
+
         Returns string.
         '''
         return r'\laissezVibrer'

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import durationtools
 from abjad.tools.datastructuretools.TypedList import TypedList
 
 
@@ -68,14 +67,8 @@ class CompoundInequality(TypedList):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        items=None,
-        logical_operator='and',
-        ):
-        TypedList.__init__(self,
-            items=items,
-            )
+    def __init__(self, items=None, logical_operator='and'):
+        TypedList.__init__(self, items=items)
         self._logical_operator = logical_operator
 
     ### PUBLIC METHODS ###
@@ -164,7 +157,6 @@ class CompoundInequality(TypedList):
         r'''Gets offset indices of compound inequality.
         '''
         from abjad.tools import timespantools
-        from abjad.tools import timespantools
         timespans = timespantools.TimespanList()
         for element in self:
             # TODO: compress the following two branches
@@ -194,7 +186,7 @@ class CompoundInequality(TypedList):
             result = timespans.compute_logical_xor()
         else:
             message = 'unknown logical operator: {!r}.'
-            message = mesage.format(self.logical_operator)
+            message = message.format(self.logical_operator)
             raise ValueError(message)
         return result
 

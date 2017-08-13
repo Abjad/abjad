@@ -74,8 +74,7 @@ class LilyPondFormatManager(AbjadObject):
             elif (wrapper.scope is None and
                 hasattr(wrapper.indicator, '_format_leaf_children') and
                 not getattr(wrapper.indicator, '_format_leaf_children') and
-                wrapper.component is not component
-                ):
+                wrapper.component is not component):
                 continue
             # store markup
             elif isinstance(wrapper.indicator, abjad.Markup):
@@ -135,7 +134,6 @@ class LilyPondFormatManager(AbjadObject):
 
     @staticmethod
     def _populate_grob_override_format_contributions(component, bundle):
-        from abjad.tools import pitchtools
         from abjad.tools import scoretools
         from abjad.tools import topleveltools
         result = []
@@ -169,7 +167,6 @@ class LilyPondFormatManager(AbjadObject):
 
     @staticmethod
     def _populate_indicator_format_contributions(component, bundle):
-        import abjad
         manager = LilyPondFormatManager
         (
             up_markup,

@@ -20,7 +20,7 @@ class Signature(abctools.AbjadValueObject):
         '_subscript',
         '_superscript',
         )
-        
+
     ### INITIALIZER ###
 
     def __init__(

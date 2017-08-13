@@ -172,7 +172,7 @@ class Duplication(abctools.AbjadValueObject):
                 >>> pitch_classes = abjad.PitchClassSegment([0, 1, 4, 7, 9])
                 >>> operator_(pitch_classes)
                 PitchClassSegment([0, 1, 1, 4, 4, 4, 7, 7, 7, 7, 9])
-                
+
         Returns new object with type equal to that of `argument`.
         '''
         import abjad

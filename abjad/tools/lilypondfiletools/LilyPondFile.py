@@ -168,7 +168,7 @@ class LilyPondFile(AbjadObject):
                     >>> score_block.items.append(score)
                     >>> score_block.items.append(layout_block)
                     >>> score_block.items.append(midi_block)
-                  
+
                 ::
 
                     >>> f(score_block)
@@ -248,7 +248,7 @@ class LilyPondFile(AbjadObject):
                         }
                     >>
                 >>
-                
+
             ::
 
                 >>> lilypond_file['score']
@@ -1463,7 +1463,6 @@ class LilyPondFile(AbjadObject):
             message = message.format(selections)
             raise TypeError(message)
         score = abjad.Score()
-        package = abjad.lilypondfiletools
         lilypond_file = abjad.LilyPondFile.floating(score)
         if pitched_staff is None:
             for note in abjad.iterate(selections).by_class(

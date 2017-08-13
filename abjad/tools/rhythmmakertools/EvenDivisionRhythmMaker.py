@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
 import math
 from abjad.tools import datastructuretools
-from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import scoretools
-from abjad.tools import selectiontools
 from abjad.tools.topleveltools import inspect
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
@@ -288,15 +285,16 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         return selections
 
     def _burnish_division_part(self, division_part, token):
+        import abjad
         assert len(division_part) == len(token)
         new_division_part = []
         for leaf, burnishing in zip(division_part, token):
-            if burnishing in (-1, scoretools.Rest):
-                new_division_part.append(scoretools.Rest(leaf))
+            if burnishing in (-1, abjad.Rest):
+                new_division_part.append(abjad.Rest(leaf))
             elif burnishing == 0:
                 new_division_part.append(leaf)
-            elif burnishing in (1, scoretools.Note):
-                new_division_part.append(scoretools.Note(leaf))
+            elif burnishing in (1, abjad.Note):
+                new_division_part.append(abjad.Note(leaf))
             else:
                 raise ValueError
         new_division_part = type(division_part)(new_division_part)
@@ -311,6 +309,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         left_counts,
         right_counts,
         ):
+        import abjad
         lefts_index, rights_index = 0, 0
         for selection_index, selection in enumerate(selections):
             tuplet = selection[0]
@@ -331,12 +330,12 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             left = left[:left_length]
             middle = middle_length * [middle_classes[selection_index]]
             right = right[:right_length]
-            left_part, middle_part, right_part = datastructuretools.Sequence(
-                    leaves).partition_by_counts(
-                    [left_length, middle_length, right_length],
-                    cyclic=False,
-                    overhang=False,
-                    )
+            result = abjad.sequence(leaves).partition_by_counts(
+                [left_length, middle_length, right_length],
+                cyclic=False,
+                overhang=False,
+                )
+            left_part, middle_part, right_part = result
             left_part = self._burnish_division_part(left_part, left)
             middle_part = self._burnish_division_part(middle_part, middle)
             right_part = self._burnish_division_part(right_part, right)
@@ -354,6 +353,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         left_counts,
         right_counts,
         ):
+        import abjad
         if len(selections) == 1:
             self._burnish_each_selection(
                 selections,
@@ -385,12 +385,11 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             middle_classes = [1]
         middle = [middle_classes[0]]
         middle = middle_length * middle
-        left_part, middle_part = datastructuretools.Sequence(
-                leaves).partition_by_counts(
-                [left_length, middle_length],
-                cyclic=False,
-                overhang=False,
-                )
+        left_part, middle_part = abjad.Sequence(leaves).partition_by_counts(
+            [left_length, middle_length],
+            cyclic=False,
+            overhang=False,
+            )
         left_part = self._burnish_division_part(left_part, left)
         middle_part = self._burnish_division_part(middle_part, middle)
         burnished_leaves = left_part + middle_part
@@ -416,12 +415,11 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         middle_length = len(leaves) - right_length
         right = right[:right_length]
         middle = middle_length * [middle_classes[0]]
-        middle_part, right_part = datastructuretools.Sequence(
-                leaves).partition_by_counts(
-                [middle_length, right_length],
-                cyclic=False,
-                overhang=False,
-                )
+        middle_part, right_part = abjad.Sequence(leaves).partition_by_counts(
+            [middle_length, right_length],
+            cyclic=False,
+            overhang=False,
+            )
         middle_part = self._burnish_division_part(middle_part, middle)
         right_part = self._burnish_division_part(right_part, right)
         burnished_leaves = middle_part + right_part

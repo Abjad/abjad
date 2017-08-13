@@ -269,7 +269,7 @@ class CompoundOperator(AbjadValueObject):
         else:
             markup = markuptools.Markup.concat(markups, direction=direction)
         return markup
-        
+
     def _with_operator(self, operator):
         operators = self.operators or []
         operators = operators + [operator]

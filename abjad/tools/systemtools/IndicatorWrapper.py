@@ -188,13 +188,13 @@ class IndicatorWrapper(AbjadValueObject):
                     )
 
         Copies indicator and scope.
-        
+
         Does not copy start component.
 
         Does not copy piecewise spanner.
 
         This is to avoid reference problems.
-        
+
         Returns new indicator wrapper.
         '''
         new = type(self)(
@@ -211,7 +211,7 @@ class IndicatorWrapper(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _bind_correct_effective_context(self, correct_effective_context):
-        import abjad 
+        import abjad
         self._unbind_effective_context()
         if correct_effective_context is not None:
             correct_effective_context._dependent_wrappers.append(self)

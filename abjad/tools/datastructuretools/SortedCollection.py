@@ -186,7 +186,7 @@ class SortedCollection(object):
 
     def find(self, k):
         r'''Returns first item with a key == k.
-        
+
         Raises ValueError if not found.
         '''
         i = bisect.bisect_left(self._keys, k)
@@ -197,7 +197,7 @@ class SortedCollection(object):
 
     def find_ge(self, k):
         r'''Returns first item with a key >= equal to k.
-        
+
         Raises ValueError if not found.
         '''
         i = bisect.bisect_left(self._keys, k)
@@ -208,7 +208,7 @@ class SortedCollection(object):
 
     def find_gt(self, k):
         r'''Returns first item with a key > k.
-        
+
         Raises ValueError if not found.
         '''
         i = bisect.bisect_right(self._keys, k)
@@ -219,29 +219,31 @@ class SortedCollection(object):
 
     def find_le(self, k):
         r'''Returns last item with a key <= k.
-        
+
         Raises ValueError if not found.
         '''
         i = bisect.bisect_right(self._keys, k)
         if i:
-            return self._items[i-1]
+            index = i - 1
+            return self._items[index]
         message = 'no item found with key at or below: %r' % (k,)
         raise ValueError(message)
 
     def find_lt(self, k):
         r'''Returns last item with a key < k.
-        
+
         Raises ValueError if not found.
         '''
         i = bisect.bisect_left(self._keys, k)
         if i:
-            return self._items[i-1]
+            index = i - 1
+            return self._items[index]
         message = 'no item found with key below: %r' % (k,)
         raise ValueError(message)
 
     def index(self, item):
         r'''Find the position of an item.
-        
+
         Raises ValueError if not found.
         '''
         k = self._key(item)
@@ -251,7 +253,7 @@ class SortedCollection(object):
 
     def insert(self, item):
         r'''Inserts a new item.
-        
+
         If equal keys are found, adds to the left.
         '''
         k = self._key(item)
@@ -261,7 +263,7 @@ class SortedCollection(object):
 
     def insert_right(self, item):
         r'''Insert a new item.
-        
+
         If equal keys are found, add to the right.
         '''
         k = self._key(item)
@@ -271,7 +273,7 @@ class SortedCollection(object):
 
     def remove(self, item):
         r'''Remove first occurence of item.
-        
+
         Raises ValueError if not found.
         '''
         i = self.index(item)
@@ -371,7 +373,7 @@ if __name__ == '__main__':
         assert item == sd[i]
     sd.insert('jUmPeD')
     sd.insert_right('QuIcK')
-    assert sd._keys ==['BROWN', 'FOX', 'JUMPED', 'JUMPED', 'QUICK', 'QUICK', 'THE']
+    assert sd._keys == ['BROWN', 'FOX', 'JUMPED', 'JUMPED', 'QUICK', 'QUICK', 'THE']
     assert sd._items == ['Brown', 'Fox', 'jUmPeD', 'jumped', 'quick', 'QuIcK', 'The']
     assert sd.find_le('JUMPED') == 'jumped', sd.find_le('JUMPED')
     assert sd.find_ge('JUMPED') == 'jUmPeD'
@@ -379,7 +381,7 @@ if __name__ == '__main__':
     assert sd.find_ge('GOAT') == 'jUmPeD'
     assert sd.find('FOX') == 'Fox'
     assert sd[3] == 'jumped'
-    assert sd[3:5] ==['jumped', 'quick']
+    assert sd[3:5] == ['jumped', 'quick']
     assert sd[-2] == 'QuIcK'
     assert sd[-4:-2] == ['jumped', 'quick']
     for i, item in enumerate(sd):
@@ -394,5 +396,4 @@ if __name__ == '__main__':
     assert list(sd) == ['Brown', 'Fox', 'jUmPeD', 'quick', 'QuIcK', 'The']
 
     import doctest
-    from operator import itemgetter
     print((doctest.testmod()))

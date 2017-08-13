@@ -2,7 +2,6 @@
 import functools
 import re
 from abjad.tools import mathtools
-from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadValueObject
 
 
@@ -255,7 +254,7 @@ class Accidental(AbjadValueObject):
 
             ::
 
-                >>> accidental = abjad.Accidental('qs') 
+                >>> accidental = abjad.Accidental('qs')
 
             ::
 
@@ -496,7 +495,7 @@ class Accidental(AbjadValueObject):
             ::
 
                 >>> accidental = abjad.Accidental('qs')
-                
+
             ::
 
                 >>> accidental - accidental
@@ -851,4 +850,3 @@ class Accidental(AbjadValueObject):
                 for note_head in leaf.note_heads:
                     pitch = note_head.written_pitch._respell_with_sharps()
                     note_head.written_pitch = pitch
-

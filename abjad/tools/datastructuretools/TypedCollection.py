@@ -118,7 +118,7 @@ class TypedCollection(AbjadObject):
     @property
     def item_class(self):
         r'''Gets item class of collection.
-        
+
         Collection coerces items according to `item_class`.
 
         Returns class.

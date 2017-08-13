@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from abjad.tools.pitchtools.Segment import Segment
 from abjad.tools.topleveltools import iterate
-from abjad.tools.topleveltools import new
 from abjad.tools.topleveltools import select
 
 

@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
 import copy
-from abjad.tools import datastructuretools
-from abjad.tools import scoretools
-from abjad.tools import scoretools
 from abjad.tools.quantizationtools.QTarget import QTarget
-from abjad.tools.topleveltools import attach
 
 
 class MeasurewiseQTarget(QTarget):

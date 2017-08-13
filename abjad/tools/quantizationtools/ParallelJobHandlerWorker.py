@@ -5,7 +5,7 @@ import pickle
 
 class ParallelJobHandlerWorker(multiprocessing.Process):
     r'''Parallel job-handler worker.
-    
+
     Worker process which runs ``QuantizationJobs``.
 
     ::
@@ -34,7 +34,6 @@ class ParallelJobHandlerWorker(multiprocessing.Process):
 
         Returns none.
         '''
-        process_name = self.name
         while True:
             job = self.job_queue.get()
             if job is None:

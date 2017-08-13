@@ -85,14 +85,12 @@ class NoteMaker(AbjadValueObject):
 
     ..  container:: example
 
-        Set ``decrease_monotonic=True`` to express tied values in
-        decreasing duration:
+        Set ``decrease_monotonic=True`` to express tied values in decreasing
+        duration:
 
         ::
 
-            >>> maker = abjad.NoteMaker(
-            ...     decrease_monotonic=True,
-            ...     )
+            >>> maker = abjad.NoteMaker(decrease_monotonic=True)
             >>> notes = maker([0], [(13, 16)])
             >>> staff = abjad.Staff(notes)
             >>> show(staff) # doctest: +SKIP
@@ -107,14 +105,12 @@ class NoteMaker(AbjadValueObject):
 
     ..  container:: example
 
-        Set ``decrease_monotonic=False`` to express tied values
-        in increasing duration:
+        Set ``decrease_monotonic=False`` to express tied values in increasing
+        duration:
 
         ::
 
-            >>> maker = abjad.NoteMaker(
-            ...     decrease_monotonic=False,
-            ...     )
+            >>> maker = abjad.NoteMaker(decrease_monotonic=False)
             >>> notes = maker([0], [(13, 16)])
             >>> staff = abjad.Staff(notes)
             >>> show(staff) # doctest: +SKIP
@@ -195,8 +191,7 @@ class NoteMaker(AbjadValueObject):
         decrease_monotonic=True,
         use_messiaen_style_ties=False,
         ):
-        self._decrease_monotonic = \
-            decrease_monotonic
+        self._decrease_monotonic = decrease_monotonic
         self._use_messiaen_style_ties = use_messiaen_style_ties
 
     ### SPECIAL METHODS ###
@@ -219,7 +214,7 @@ class NoteMaker(AbjadValueObject):
         nonreduced_fractions = nonreduced_fractions.repeat_to_length(size)
         pitches = abjad.Sequence(pitches).repeat_to_length(size)
         Duration = abjad.Duration
-        durations = Duration._group_nonreduced_fractions_by_implied_prolation(
+        durations = Duration._group_by_implied_prolation(
             nonreduced_fractions)
         result = []
         for duration in durations:

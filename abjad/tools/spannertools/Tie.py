@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import mathtools
 from abjad.tools import datastructuretools
 from abjad.tools.spannertools.Spanner import Spanner
-from abjad.tools.topleveltools import iterate
 
 
 class Tie(Spanner):

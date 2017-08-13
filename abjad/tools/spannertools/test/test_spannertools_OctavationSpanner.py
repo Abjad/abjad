@@ -7,7 +7,7 @@ def test_spannertools_OctavationSpanner_01():
     '''
 
     staff = abjad.Staff([abjad.Note("c'8"), abjad.Note("c'8"), abjad.Note("c'8"), abjad.Note("c'8")])
-    spanner =  abjad.OctavationSpanner()
+    spanner = abjad.OctavationSpanner()
     abjad.attach(spanner, staff[:])
 
     assert spanner.start == 1

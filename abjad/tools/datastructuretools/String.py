@@ -70,7 +70,7 @@ class String(str):
         {}
         """.format(
             underscore_delimited_lowercase_regex_body,
-            underscore_delimited_lowercase_regex_body
+            underscore_delimited_lowercase_regex_body,
             )
 
     underscore_delimited_lowercase_package_regex = re.compile(
@@ -191,8 +191,7 @@ class String(str):
         for character in self:
             if (not character.isalpha() and
                 not character.isdigit() and
-                not character in wordlike_characters
-                ):
+                character not in wordlike_characters):
                 if current_word:
                     words.append(current_word)
                     current_word = ''
@@ -523,7 +522,7 @@ class String(str):
 
     def pluralize(self, count=None):
         r'''Pluralizes English string.
-        
+
         ..  container:: example
 
             Changes terminal `-y` to `-ies`:
@@ -601,7 +600,6 @@ class String(str):
 
             ::
 
-                    
                 >>> abjad.String('Déja vu').to_accent_free_snake_case()
                 'deja_vu'
 
@@ -860,7 +858,7 @@ class String(str):
 
     def to_space_delimited_lowercase(self):
         r'''Changes string to space-delimited lowercase.
-        
+
         ..  container:: example
 
             Changes upper camel case `string` to space-delimited lowercase:
@@ -993,7 +991,7 @@ class String(str):
         elif argument in lookup:
             return lookup[argument]
         raise ValueError(argument)
-        
+
     @staticmethod
     def to_tridirectional_lilypond_symbol(argument):
         r'''Changes `argument` to tridirectional LilyPond symbol.

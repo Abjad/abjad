@@ -37,7 +37,7 @@ class Infinity(AbjadValueObject):
 
             >>> NegativeInfinity < Infinity
             True
-    
+
     Initializes as a system singleton at start-up.
 
     Available as a built-in after Abjad starts.

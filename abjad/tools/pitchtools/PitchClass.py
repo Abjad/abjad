@@ -2,8 +2,6 @@
 import abc
 import functools
 import re
-from abjad.tools import mathtools
-from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.pitchtools.Accidental import Accidental
 
@@ -14,7 +12,7 @@ class PitchClass(AbjadValueObject):
 
     ::
 
-        >>> import abjad 
+        >>> import abjad
 
     '''
 

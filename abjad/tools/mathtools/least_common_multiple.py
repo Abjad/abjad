@@ -57,7 +57,6 @@ def least_common_multiple(*integers):
 
     Returns positive integer.
     '''
-    from abjad.tools import mathtools
     if len(integers) == 1:
         if not isinstance(integers[0], int):
             message = 'must be integer: {!r}.'

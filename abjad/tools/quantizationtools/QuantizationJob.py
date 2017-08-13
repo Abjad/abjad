@@ -5,7 +5,7 @@ from abjad.tools.abctools import AbjadObject
 
 class QuantizationJob(AbjadObject):
     r'''Quantization job.
-    
+
     Copiable, picklable class for generating all ``QGrids`` which are valid
     under a given ``SearchTree`` for a sequence of ``QEventProxies``.
 
@@ -183,7 +183,7 @@ class QuantizationJob(AbjadObject):
 
             >>> for q_event_proxy in job.q_event_proxies:
             ...     print(format(q_event_proxy, 'storage'))
-            ... 
+            ...
             quantizationtools.QEventProxy(
                 quantizationtools.PitchedQEvent(
                     offset=abjad.Offset(250, 1),

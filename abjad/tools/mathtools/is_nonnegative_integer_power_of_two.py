@@ -16,7 +16,7 @@ def is_nonnegative_integer_power_of_two(argument):
 
             >>> for n in range(10):
             ...     print(n, abjad.mathtools.is_nonnegative_integer_power_of_two(n))
-            ... 
+            ...
             0 True
             1 True
             2 True

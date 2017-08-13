@@ -20,7 +20,7 @@ def divisors(n):
 
             >>> for x in range(10, 20):
             ...     print(x, abjad.mathtools.divisors(x))
-            ... 
+            ...
             10 [1, 2, 5, 10]
             11 [1, 11]
             12 [1, 2, 3, 4, 6, 12]

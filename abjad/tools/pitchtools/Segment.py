@@ -22,7 +22,6 @@ class Segment(TypedTuple):
 
     def __init__(self, items=None, item_class=None):
         from abjad.tools import datastructuretools
-        from abjad.tools import markuptools
         prototype = (
             collections.Iterator,
             types.GeneratorType,

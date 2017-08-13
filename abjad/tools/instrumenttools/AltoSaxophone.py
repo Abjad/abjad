@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import indicatortools
-from abjad.tools import markuptools
-from abjad.tools import pitchtools
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
@@ -49,8 +46,8 @@ class AltoSaxophone(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=None,
-        pitch_range='[Db3, A5]',
         middle_c_sounding_pitch='Eb3',
+        pitch_range='[Db3, A5]',
         ):
         Instrument.__init__(
             self,
@@ -59,9 +56,8 @@ class AltoSaxophone(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            middle_c_sounding_pitch=\
-                middle_c_sounding_pitch,
             )
         self._performer_names.extend([
             'wind player',
@@ -101,8 +97,8 @@ class AltoSaxophone(Instrument):
                                 ),
                             ]
                         ),
-                    pitch_range=abjad.PitchRange('[Db3, A5]'),
                     middle_c_sounding_pitch=abjad.NamedPitch('ef'),
+                    pitch_range=abjad.PitchRange('[Db3, A5]'),
                     )
 
         Returns string.

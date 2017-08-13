@@ -102,7 +102,7 @@ class Ratio(NonreducedRatio):
 
                 >>> ratio_3 == ratio_3
                 True
-            
+
         '''
         return super(Ratio, self).__eq__(argument)
 

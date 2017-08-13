@@ -75,7 +75,7 @@ class TwelveToneRow(PitchClassSegment):
         ..  container:: example
 
             Permutes pitch-classes:
-            
+
             ::
 
                 >>> row([abjad.NumberedPitchClass(2)])
@@ -94,7 +94,7 @@ class TwelveToneRow(PitchClassSegment):
         ..  container:: example
 
             Permutes pitch-class segment:
-            
+
             ::
 
                 >>> items = [-2, -1, 6, 7, -1, 7]
@@ -291,7 +291,6 @@ class TwelveToneRow(PitchClassSegment):
                     \bar "|."
                     \override Score.BarLine.transparent = ##f
                 }
-        
 
         Returns permuted pitch-classes in object of type `pitch_classes`.
         '''
@@ -304,7 +303,7 @@ class TwelveToneRow(PitchClassSegment):
             new_pitch_classes.append(new_pitch_class)
         result = type(pitch_classes)(new_pitch_classes)
         return result
-        
+
     def __getitem__(self, argument):
         r'''Gets item or slice identified by `argument`.
 
@@ -757,7 +756,7 @@ class TwelveToneRow(PitchClassSegment):
         ..  container:: example
 
             Gets items in row:
-        
+
             ::
 
                 >>> row = abjad.TwelveToneRow()
@@ -793,9 +792,10 @@ class TwelveToneRow(PitchClassSegment):
                 >>> show(row) # doctest: +SKIP
 
             ::
-                
+
                 >>> for item in row.items:
                 ...     item
+                ...
                 NumberedPitchClass(1)
                 NumberedPitchClass(11)
                 NumberedPitchClass(9)
@@ -830,7 +830,7 @@ class TwelveToneRow(PitchClassSegment):
         ..  container:: example
 
             Example row:
-        
+
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
@@ -840,7 +840,9 @@ class TwelveToneRow(PitchClassSegment):
         ..  container:: example
 
             Counts pitch-class 11 in row:
-        
+
+            ::
+
                 >>> row.count(11)
                 1
 
@@ -849,7 +851,7 @@ class TwelveToneRow(PitchClassSegment):
             Counts pitch-class 9 in row:
 
             ::
-                
+
                 >>> row.count(9)
                 1
 
@@ -858,7 +860,7 @@ class TwelveToneRow(PitchClassSegment):
             Counts string in row:
 
             ::
-                
+
                 >>> row.count('text')
                 0
 
@@ -897,7 +899,7 @@ class TwelveToneRow(PitchClassSegment):
             Is false:
 
             ::
-            
+
                 >>> row = abjad.TwelveToneRow()
                 >>> show(row) # doctest: +SKIP
 
@@ -911,7 +913,7 @@ class TwelveToneRow(PitchClassSegment):
             Is false:
 
             ::
-            
+
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
                 >>> row = abjad.TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
@@ -934,7 +936,7 @@ class TwelveToneRow(PitchClassSegment):
         ..  container:: example
 
             Example row:
-        
+
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
@@ -944,7 +946,7 @@ class TwelveToneRow(PitchClassSegment):
         ..  container:: example
 
             Gets index of pitch-class 11:
-        
+
             ::
 
                 >>> row.index(11)
@@ -955,7 +957,7 @@ class TwelveToneRow(PitchClassSegment):
             Gets index of pitch-class 9:
 
             ::
-                
+
                 >>> row.index(9)
                 2
 
@@ -964,7 +966,7 @@ class TwelveToneRow(PitchClassSegment):
             Returns nonnegative integer less than 12:
 
             ::
-                
+
                 >>> isinstance(row.index(9), int)
                 True
 
@@ -1125,7 +1127,6 @@ class TwelveToneRow(PitchClassSegment):
                 TwelveToneRow([9, 11, 1, 7, 4, 3, 5, 6, 0, 8, 2, 10])
 
         '''
-        from abjad.tools import pitchtools
         if axis is None:
             axis = self[0]
         items = [pc.invert(axis=axis) for pc in self]
@@ -1246,7 +1247,7 @@ class TwelveToneRow(PitchClassSegment):
         '''
         superclass = super(TwelveToneRow, self)
         return superclass.multiply(n=n)
-    
+
     def retrograde(self):
         r'''Gets retrograde of row.
 

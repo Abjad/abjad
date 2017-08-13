@@ -127,7 +127,7 @@ class BendAfter(AbjadValueObject):
 
                 >>> bend = abjad.BendAfter(2)
                 >>> bend.bend_amount
-                2.0 
+                2.0
 
         Returns float.
         '''

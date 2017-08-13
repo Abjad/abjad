@@ -28,7 +28,7 @@ class RomanNumeral(AbjadValueObject):
         ::
 
             >>> roman_numeral = tonalanalysistools.RomanNumeral('bII')
-    
+
     '''
 
     ### CLASS VARIABLES ###
@@ -447,7 +447,6 @@ class RomanNumeral(AbjadValueObject):
         quality = tonalanalysistools.ChordQuality(quality)
         extent = tonalanalysistools.ChordExtent(extent)
         inversion = tonalanalysistools.ChordInversion(inversion)
-        suspension = None
         roman_numeral = RomanNumeral()
         roman_numeral._root_scale_degree = scale_degree
         roman_numeral._quality = quality

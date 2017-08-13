@@ -257,7 +257,6 @@ class ChordSuspension(AbjadValueObject):
         '''
         return self._stop
 
-
     @property
     def title_string(self):
         r'''Gets title string.

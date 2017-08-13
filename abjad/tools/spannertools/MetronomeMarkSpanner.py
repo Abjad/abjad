@@ -1700,7 +1700,6 @@ class MetronomeMarkSpanner(Spanner):
         previous_indicators = self._get_previous_piecewise(leaf)
         previous_tempo = previous_indicators[0]
         previous_tempo_trend = previous_indicators[1]
-        previous_metric_modulation = previous_indicators[2]
         # stop any previous tempo trend
         if previous_tempo_trend:
             spanner_stop = r'\stopTextSpan'

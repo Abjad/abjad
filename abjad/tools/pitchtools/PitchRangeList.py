@@ -97,7 +97,7 @@ class PitchRangeList(TypedList):
 
                 >>> (-39, 48) in ranges
                 False
-        
+
         Returns true or false.
         '''
         return super(PitchRangeList, self).__contains__(argument)
@@ -253,7 +253,7 @@ class PitchRangeList(TypedList):
                         abjad.PitchRange('[C4, C6]'),
                         ]
                     )
-        
+
         Returns none.
         '''
         return super(PitchRangeList, self).append(argument)

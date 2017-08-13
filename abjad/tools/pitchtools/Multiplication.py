@@ -52,7 +52,7 @@ class Multiplication(AbjadValueObject):
                 >>> items = [0, 2, 4, 5]
                 >>> segment = abjad.PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
-    
+
             Example operators:
 
             ::
@@ -208,7 +208,7 @@ class Multiplication(AbjadValueObject):
     def _is_identity_operator(self):
         if self.n == 1:
             return True
-        return False 
+        return False
 
     ### PUBLIC PROPERTIES ###
 

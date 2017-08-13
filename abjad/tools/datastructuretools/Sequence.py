@@ -413,9 +413,9 @@ class Sequence(abctools.AbjadValueObject):
                 ::
 
                     >>> sequence = abjad.Sequence([1, 2, 3, 4, 5, 6])
-                    
+
                 ::
-                
+
                     >>> sequence[0]
                     1
 
@@ -464,9 +464,9 @@ class Sequence(abctools.AbjadValueObject):
                 ::
 
                     >>> sequence = abjad.Sequence([1, 2, 3, 4, 5, 6])
-                 
+
                 ::
-                
+
                     >>> sequence[-1]
                     6
 
@@ -942,13 +942,14 @@ class Sequence(abctools.AbjadValueObject):
         else:
             for item in sequence:
                 # flatten an iterable by one level
-                for item_ in Sequence._flatten_helper(item, classes, depth-1):
+                depth_ = depth - 1
+                for item_ in Sequence._flatten_helper(item, classes, depth_):
                     yield item_
 
     @staticmethod
     def _make_map_markup(markup, operand):
         import abjad
-        markup_list = abjad.MarkupList() 
+        markup_list = abjad.MarkupList()
         operand_markup = operand.get_markup(name='X')
         markup_list.append(operand_markup)
         markup_list.append('/@')
@@ -1557,7 +1558,7 @@ class Sequence(abctools.AbjadValueObject):
                 >>> sequence = abjad.sequence(items)
                 >>> for item in sequence.group_by():
                 ...     item
-                ... 
+                ...
                 Sequence([0, 0])
                 Sequence([-1, -1])
                 Sequence([2])
@@ -2163,7 +2164,8 @@ class Sequence(abctools.AbjadValueObject):
             item_buffer = item_buffer + first_n_minus_1
             if item_buffer:
                 for x in range(n - 1):
-                    yield type(self)(items=item_buffer[x:x+n])
+                    stop = x + n
+                    yield type(self)(items=item_buffer[x:stop])
         else:
             item_buffer = []
             for item in self:
@@ -2171,7 +2173,7 @@ class Sequence(abctools.AbjadValueObject):
                 if len(item_buffer) == n:
                     yield type(self)(items=item_buffer)
                     item_buffer.pop(0)
-    
+
     @systemtools.Signature(
         argument_list_callback='_make_partition_indicator',
         method_name='partition',
@@ -2873,7 +2875,7 @@ class Sequence(abctools.AbjadValueObject):
                     ...     )
 
                 ::
-                
+
                     >>> for part in parts:
                     ...     part
                     Sequence([1, 2, 3])
@@ -2896,7 +2898,7 @@ class Sequence(abctools.AbjadValueObject):
                     ...     )
 
                 ::
-                
+
                     >>> for part in expression(range(16)):
                     ...     part
                     Sequence([1, 2, 3])
@@ -3513,8 +3515,8 @@ class Sequence(abctools.AbjadValueObject):
             if overhang:
                 counts = Sequence(counts).repeat_to_weight(len(sequence))
             else:
-                counts = Sequence(counts).repeat_to_weight( 
-                    len(sequence), 
+                counts = Sequence(counts).repeat_to_weight(
+                    len(sequence),
                     allow_total=Less,
                     )
         elif overhang:
@@ -3688,7 +3690,7 @@ class Sequence(abctools.AbjadValueObject):
                 >>> sequence = sequence.partition_by_ratio_of_weights(ratio)
                 >>> for item in sequence:
                 ...     item
-                ... 
+                ...
                 Sequence([1, 1, 1])
                 Sequence([1, 1, 1, 1])
                 Sequence([1, 1, 1])
@@ -3702,7 +3704,7 @@ class Sequence(abctools.AbjadValueObject):
                 >>> sequence = sequence.partition_by_ratio_of_weights(ratio)
                 >>> for item in sequence:
                 ...     item
-                ... 
+                ...
                 Sequence([1, 1, 1])
                 Sequence([1, 1])
                 Sequence([1, 1, 1])
@@ -3717,7 +3719,7 @@ class Sequence(abctools.AbjadValueObject):
                 >>> sequence = sequence.partition_by_ratio_of_weights(ratio)
                 >>> for item in sequence:
                 ...     item
-                ... 
+                ...
                 Sequence([1, 1, 1])
                 Sequence([1, 1, 1])
                 Sequence([1, 1, 1, 1])
@@ -3731,7 +3733,7 @@ class Sequence(abctools.AbjadValueObject):
                 >>> sequence = sequence.partition_by_ratio_of_weights(ratio)
                 >>> for item in sequence:
                 ...     item
-                ... 
+                ...
                 Sequence([1, 1, 1, 1])
                 Sequence([1, 1, 1])
                 Sequence([1, 1, 1])
@@ -3746,7 +3748,7 @@ class Sequence(abctools.AbjadValueObject):
                 >>> sequence = sequence.partition_by_ratio_of_weights(ratio)
                 >>> for item in sequence:
                 ...     item
-                ... 
+                ...
                 Sequence([1, 1, 1, 1, 1, 1, 2, 2])
                 Sequence([2, 2, 2, 2])
 
@@ -3760,7 +3762,7 @@ class Sequence(abctools.AbjadValueObject):
                 >>> sequence = sequence.partition_by_ratio_of_weights(ratio)
                 >>> for item in sequence:
                 ...     item
-                ... 
+                ...
                 Sequence([1, 1, 1, 1, 1, 1])
                 Sequence([2, 2, 2])
                 Sequence([2, 2, 2])
@@ -3774,11 +3776,11 @@ class Sequence(abctools.AbjadValueObject):
                 >>> sequence = sequence.partition_by_ratio_of_weights(ratio)
                 >>> for item in sequence:
                 ...     item
-                ... 
+                ...
                 Sequence([5])
                 Sequence([5])
                 Sequence([])
-            
+
         ..  container:: example
 
             ::
@@ -3788,12 +3790,12 @@ class Sequence(abctools.AbjadValueObject):
                 >>> sequence = sequence.partition_by_ratio_of_weights(ratio)
                 >>> for item in sequence:
                 ...     item
-                ... 
+                ...
                 Sequence([5])
                 Sequence([])
                 Sequence([5])
                 Sequence([])
-            
+
         ..  container:: example
 
             ::
@@ -3803,7 +3805,7 @@ class Sequence(abctools.AbjadValueObject):
                 >>> sequence = sequence.partition_by_ratio_of_weights(ratio)
                 >>> for item in sequence:
                 ...     item
-                ... 
+                ...
                 Sequence([5])
                 Sequence([5])
                 Sequence([])
@@ -3817,7 +3819,7 @@ class Sequence(abctools.AbjadValueObject):
                 >>> sequence = sequence.partition_by_ratio_of_weights(ratio)
                 >>> for item in sequence:
                 ...     item
-                ... 
+                ...
                 Sequence([5])
                 Sequence([5])
                 Sequence([])
@@ -3973,7 +3975,7 @@ class Sequence(abctools.AbjadValueObject):
                 ...     allow_part_weights=Less,
                 ...     ):
                 ...     item
-                ... 
+                ...
                 Sequence([3, 3, 3])
                 Sequence([3])
                 Sequence([4, 4, 4, 4, 5, 5])
@@ -4106,9 +4108,7 @@ class Sequence(abctools.AbjadValueObject):
 
         Returns nested sequence.
         '''
-        import abjad
         if allow_part_weights == Exact:
-            sequence = type(self)(items=self)
             candidate = type(self)(items=self)
             candidate = candidate.split(
                 weights,
@@ -4522,7 +4522,7 @@ class Sequence(abctools.AbjadValueObject):
         ..  container:: example
 
             ::
-            
+
                 >>> sequence = abjad.Sequence([0, -1, -2, -3, -4])
                 >>> sequence.repeat_to_length(11)
                 Sequence([0, -1, -2, -3, -4, 0, -1, -2, -3, -4, 0])
@@ -4848,7 +4848,7 @@ class Sequence(abctools.AbjadValueObject):
                 ::
 
                     >>> sequence = abjad.Sequence([[1, 2], 3, [4, 5]])
-                    
+
                 ::
 
                     >>> sequence.reverse()
@@ -4901,7 +4901,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> pitch = abjad.NumberedPitch(3)
                     >>> segment_2 = abjad.PitchClassSegment([4, 5])
                     >>> sequence = abjad.Sequence([segment_1, pitch, segment_2])
-                    
+
                 ::
 
                     >>> for item in sequence.reverse(recurse=True):
@@ -4965,7 +4965,7 @@ class Sequence(abctools.AbjadValueObject):
         items = _reverse_helper(self.items)
         return type(self)(items=items)
 
-    @systemtools.Signature( 
+    @systemtools.Signature(
         is_operator=True,
         method_name='r',
         subscript='n',
@@ -4982,9 +4982,9 @@ class Sequence(abctools.AbjadValueObject):
                 ::
 
                     >>> sequence = abjad.Sequence(range(10))
-                    
+
                 ::
-                
+
                     >>> sequence.rotate(n=4)
                     Sequence([6, 7, 8, 9, 0, 1, 2, 3, 4, 5])
 
@@ -5034,9 +5034,9 @@ class Sequence(abctools.AbjadValueObject):
                 ::
 
                     >>> sequence = abjad.Sequence(range(10))
-                    
+
                 ::
-                
+
                     >>> sequence.rotate(n=-3)
                     Sequence([3, 4, 5, 6, 7, 8, 9, 0, 1, 2])
 
@@ -5162,7 +5162,7 @@ class Sequence(abctools.AbjadValueObject):
         items = list(self)
         items.sort(key=key, reverse=reverse)
         return type(self)(items=items)
-        
+
     @systemtools.Signature(
         argument_list_callback='_make_split_indicator',
         )
@@ -5330,9 +5330,9 @@ class Sequence(abctools.AbjadValueObject):
                 ::
 
                     >>> sequence = abjad.Sequence([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
-                    
+
                 ::
-                
+
                     >>> sequence.sum()
                     55
 
@@ -5381,12 +5381,12 @@ class Sequence(abctools.AbjadValueObject):
                 ::
 
                     >>> sequence = abjad.Sequence([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10])
-                    
+
                 ::
-                
+
                     >>> sequence.sum()
                     5
-                    
+
             ..  container:: example expression
 
                 ::
@@ -5586,7 +5586,7 @@ class Sequence(abctools.AbjadValueObject):
                 >>> for weight in range(1, 11):
                 ...     result = sequence.truncate(weight=weight)
                 ...     print(weight, result)
-                ... 
+                ...
                 1 Sequence([-1])
                 2 Sequence([-1, 1])
                 3 Sequence([-1, 2])
@@ -5607,7 +5607,7 @@ class Sequence(abctools.AbjadValueObject):
                 >>> for sum_ in range(1, 11):
                 ...     result = sequence.truncate(sum=sum_)
                 ...     print(sum_, result)
-                ... 
+                ...
                 1 Sequence([-1, 2])
                 2 Sequence([-1, 2, -3, 4])
                 3 Sequence([-1, 2, -3, 4, -5, 6])
@@ -5676,7 +5676,7 @@ class Sequence(abctools.AbjadValueObject):
 
     def zip(self, cyclic=False, truncate=True):
         r'''Zips sequences in sequence.
-        
+
         ..  container:: example
 
             Zips cyclically:
@@ -5697,7 +5697,7 @@ class Sequence(abctools.AbjadValueObject):
                 >>> sequence = abjad.sequence(items)
                 >>> for item in sequence.zip(cyclic=True):
                 ...     item
-                ... 
+                ...
                 Sequence([10, 20, 30])
                 Sequence([11, 21, 31])
                 Sequence([12, 20, 32])
@@ -5728,7 +5728,7 @@ class Sequence(abctools.AbjadValueObject):
                 >>> items = [[1, 2, 3, 4], [11, 12, 13], [21, 22, 23]]
                 >>> for item in abjad.sequence(items).zip():
                 ...     item
-                ...     
+                ...
                 Sequence([1, 11, 21])
                 Sequence([2, 12, 22])
                 Sequence([3, 13, 23])

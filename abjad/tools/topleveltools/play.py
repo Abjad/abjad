@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import os
 
 
 def play(argument):
@@ -20,7 +19,7 @@ def play(argument):
 
     Appends ``.mid`` filename extension under Windows.
 
-    Appends ``.midi`` filename extension under other operating systems. 
+    Appends ``.midi`` filename extension under other operating systems.
 
     Opens MIDI file.
 

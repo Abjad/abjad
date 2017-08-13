@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 import copy
 from abjad.tools import durationtools
+from abjad.tools import graphtools
 from abjad.tools import indicatortools
 from abjad.tools import mathtools
 from abjad.tools import systemtools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
-from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import setting
 from abjad.tools.scoretools.Container import Container
@@ -224,7 +224,6 @@ class Measure(Container):
         self.append(skip)
 
     def _as_graphviz_node(self):
-        from abjad.tools import documentationtools
         from abjad.tools import scoretools
         node = scoretools.Component._as_graphviz_node(self)
         fraction = mathtools.NonreducedFraction(
@@ -293,7 +292,7 @@ class Measure(Container):
         return new
 
     @staticmethod
-    def _duration_and_possible_denominators_to_time_signature(
+    def _duration_to_time_signature(
         duration,
         denominators=None,
         factor=None,
@@ -326,9 +325,9 @@ class Measure(Container):
     def _format_content_pieces(self):
         from abjad.tools import systemtools
         result = []
-        if self.has_non_power_of_two_denominator and \
-            type(self) is Measure and \
-            self.implicit_scaling:
+        if (self.has_non_power_of_two_denominator and
+            type(self) is Measure and
+            self.implicit_scaling):
             indent = systemtools.LilyPondFormatManager.indent
             string = "{}\\scaleDurations #'({} . {}) {{"
             string = string.format(
@@ -427,12 +426,11 @@ class Measure(Container):
             old_denominator = old_time_signature.denominator
             old_duration = old_time_signature.duration
             new_duration = multiplier * old_duration
-            new_time_signature = \
-                self._duration_and_possible_denominators_to_time_signature(
-                    new_duration,
-                    [old_denominator],
-                    multiplier.denominator,
-                    )
+            new_time_signature = self._duration_to_time_signature(
+                new_duration,
+                [old_denominator],
+                multiplier.denominator,
+                )
         abjad.detach(abjad.TimeSignature, self)
         abjad.attach(new_time_signature, self)
         contents_multiplier_denominator = \
@@ -447,8 +445,7 @@ class Measure(Container):
         # save old time signature duration
         old_time_signature_duration = self.time_signature.duration
         # find new time signature
-        new_time_signature = \
-            self._duration_and_possible_denominators_to_time_signature(
+        new_time_signature = self._duration_to_time_signature(
             old_time_signature_duration,
             factor=factor,
             )
@@ -896,67 +893,64 @@ class Measure(Container):
 
         Returns none.
         '''
-        from abjad.tools import indicatortools
+        import abjad
         if multiplier == 0:
             raise ZeroDivisionError
         old_time_signature = self.time_signature
-        old_pair = \
-            (old_time_signature.numerator, old_time_signature.denominator)
+        old_pair = old_time_signature.pair
         old_multiplier = old_time_signature.implied_prolation
-        old_multiplier_pair = \
-            (old_multiplier.numerator, old_multiplier.denominator)
-        multiplied_pair = mathtools.NonreducedFraction(old_multiplier_pair)
+        old_multiplier_pair = old_multiplier.pair
+        multiplied_pair = abjad.NonreducedFraction(old_multiplier_pair)
         multiplied_pair = multiplied_pair.multiply_without_reducing(multiplier)
         multiplied_pair = multiplied_pair.pair
-        reduced_pair = mathtools.NonreducedFraction(old_multiplier_pair)
+        reduced_pair = abjad.NonreducedFraction(old_multiplier_pair)
         reduced_pair = reduced_pair.multiply_with_cross_cancelation(multiplier)
         reduced_pair = reduced_pair.pair
         if reduced_pair != multiplied_pair:
-            new_pair = mathtools.NonreducedFraction(old_pair)
-            new_pair = \
-                new_pair.multiply_with_numerator_preservation(multiplier)
-            new_time_signature = indicatortools.TimeSignature(new_pair)
-            detach(indicatortools.TimeSignature, self)
-            attach(new_time_signature, self)
-            remaining_multiplier = durationtools.Multiplier(reduced_pair)
-            if remaining_multiplier != durationtools.Multiplier(1):
+            new_pair = abjad.NonreducedFraction(old_pair)
+            new_pair = new_pair.multiply(multiplier, preserve_numerator=True)
+            new_time_signature = abjad.TimeSignature(new_pair)
+            abjad.detach(indicatortools.TimeSignature, self)
+            abjad.attach(new_time_signature, self)
+            remaining_multiplier = abjad.Multiplier(reduced_pair)
+            if remaining_multiplier != abjad.Multiplier(1):
                 self._scale_contents(remaining_multiplier)
         elif self._all_contents_are_scalable_by_multiplier(multiplier):
             self._scale_contents(multiplier)
-            if (
-                old_time_signature.has_non_power_of_two_denominator or
-                not mathtools.is_nonnegative_integer_power_of_two(multiplier)
-                ):
-                new_pair = mathtools.NonreducedFraction(old_pair)
+            if (old_time_signature.has_non_power_of_two_denominator or
+                not mathtools.is_nonnegative_integer_power_of_two(multiplier)):
+                new_pair = abjad.NonreducedFraction(old_pair)
                 new_pair = new_pair.multiply_with_cross_cancelation(multiplier)
                 new_pair = new_pair.pair
             # multiplier is a negative power of two, like 1/2, 1/4, etc.
-            elif multiplier < durationtools.Multiplier(0):
-                new_pair = \
-                    mathtools.NonreducedFraction.multiply_without_reducing(
-                        old_pair, multiplier)
+            elif multiplier < abjad.Multiplier(0):
+                new_pair = abjad.NonreducedFraction.multiply_without_reducing(
+                    old_pair,
+                    multiplier,
+                    )
             # multiplier is a nonnegative power of two, like 0, 1, 2, 4, etc.
-            elif durationtools.Multiplier(0) < multiplier:
-                new_pair = mathtools.NonreducedFraction(old_pair)
-                new_pair = new_pair.multiply_with_numerator_preservation(
-                    multiplier)
-            elif multiplier == durationtools.Multiplier(0):
+            elif abjad.Multiplier(0) < multiplier:
+                new_pair = abjad.NonreducedFraction(old_pair)
+                new_pair = new_pair.multiply(
+                    multiplier,
+                    preserve_numerator=True,
+                    )
+            elif multiplier == abjad.Multiplier(0):
                 raise ZeroDivisionError
-            new_time_signature = indicatortools.TimeSignature(new_pair)
-            detach(indicatortools.TimeSignature, self)
-            attach(new_time_signature, self)
+            new_time_signature = abjad.TimeSignature(new_pair)
+            abjad.detach(abjad.TimeSignature, self)
+            abjad.attach(new_time_signature, self)
             if new_time_signature.has_non_power_of_two_denominator:
                 self.implicit_scaling = True
         else:
-            new_pair = mathtools.NonreducedFraction(old_pair)
-            new_pair = new_pair.multiply_with_numerator_preservation(
-                multiplier)
-            new_time_signature = indicatortools.TimeSignature(new_pair)
-            detach(indicatortools.TimeSignature, self)
-            attach(new_time_signature, self)
+            new_pair = abjad.NonreducedFraction(old_pair)
+            new_pair = new_pair.multiply(multiplier, preserve_numerator=True)
+            new_time_signature = abjad.TimeSignature(new_pair)
+            abjad.detach(abjad.TimeSignature, self)
+            abjad.attach(new_time_signature, self)
             if new_time_signature.has_non_power_of_two_denominator:
                 self.implicit_scaling = True
-            remaining_multiplier = \
-                multiplier / new_time_signature.implied_prolation
-            if remaining_multiplier != durationtools.Multiplier(1):
+            implied_prolation = new_time_signature.implied_prolation
+            remaining_multiplier = multiplier / implied_prolation
+            if remaining_multiplier != abjad.Multiplier(1):
                 self._scale_contents(remaining_multiplier)

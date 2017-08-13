@@ -179,7 +179,7 @@ class MarkupCommand(AbjadValueObject):
                 >>> command_3 = abjad.MarkupCommand('line')
 
             ::
-            
+
                 >>> command_1 == command_1
                 True
                 >>> command_1 == command_2

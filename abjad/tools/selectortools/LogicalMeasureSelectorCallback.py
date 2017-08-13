@@ -121,7 +121,6 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
-
     def _get_first_component(self, argument):
         from abjad.tools import scoretools
         if isinstance(argument, scoretools.Component):

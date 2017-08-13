@@ -61,7 +61,6 @@ class HorizontalBracketSpanner(Spanner):
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format_bundle(self, leaf):
-        import abjad
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         if self._is_my_first_leaf(leaf):
             bundle.right.spanner_starts.append(r'\startGroup')

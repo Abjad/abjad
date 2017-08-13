@@ -23,7 +23,7 @@ class StringNumber(AbjadValueObject):
                 )
 
     ..  container:: example
-        
+
         Strings II and III:
 
         ::
@@ -76,7 +76,7 @@ class StringNumber(AbjadValueObject):
                 (1,)
 
         ..  container:: example
-            
+
             Strings II and III:
 
             ::
@@ -108,7 +108,7 @@ class StringNumber(AbjadValueObject):
                 ('i',)
 
         ..  container:: example
-            
+
             Strings II and III:
 
             ::

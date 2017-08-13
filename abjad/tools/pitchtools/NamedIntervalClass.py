@@ -382,7 +382,7 @@ class NamedIntervalClass(IntervalClass):
     @property
     def name(self):
         r'''Gets name of named interval-class.
-        
+
         ..  container:: example
 
             ::
