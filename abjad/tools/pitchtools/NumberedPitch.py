@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import numbers
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.Pitch import Pitch

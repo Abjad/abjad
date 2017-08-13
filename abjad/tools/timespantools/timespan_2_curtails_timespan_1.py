@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 def timespan_2_curtails_timespan_1(

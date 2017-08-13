@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 _lilypond_parsers_by_language = {}

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.lilypondfiletools.Block import Block
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import setting

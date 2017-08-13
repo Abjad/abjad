@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 def timespan_2_delays_timespan_1(timespan_1=None, timespan_2=None, hold=False):

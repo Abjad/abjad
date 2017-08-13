@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import abc
 import bisect
 from abjad.tools import datastructuretools

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 def timespan_2_happens_during_timespan_1(

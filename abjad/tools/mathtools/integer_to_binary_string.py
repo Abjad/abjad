@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 def integer_to_binary_string(n):

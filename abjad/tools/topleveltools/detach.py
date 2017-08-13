@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 def detach(prototype, component_expression=None):

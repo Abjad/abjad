@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import bisect
 import copy
 from abjad.tools import durationtools

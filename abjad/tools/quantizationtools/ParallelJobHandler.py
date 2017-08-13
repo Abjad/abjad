@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import multiprocessing
 import pickle
 from abjad.tools.quantizationtools.JobHandler import JobHandler

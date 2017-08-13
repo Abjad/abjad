@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 import os
 from abjad.tools import datastructuretools
 from abjad.tools import indicatortools

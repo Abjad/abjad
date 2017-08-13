@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import indicatortools
 from abjad.tools import systemtools
 from abjad.tools.quantizationtools.QSchema import QSchema

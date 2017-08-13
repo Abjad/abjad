@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import copy
 from abjad.tools import datastructuretools
 from abjad.tools import scoretools

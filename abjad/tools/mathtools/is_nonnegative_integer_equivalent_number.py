@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 def is_nonnegative_integer_equivalent_number(argument):

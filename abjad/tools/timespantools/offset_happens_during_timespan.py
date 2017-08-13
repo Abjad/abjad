@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 def offset_happens_during_timespan(timespan=None, offset=None, hold=False):

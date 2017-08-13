@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 def yield_all_classes(

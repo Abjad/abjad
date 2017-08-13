@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import scoretools
 from abjad.tools.lilypondparsertools.Music import Music
 

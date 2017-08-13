@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.datastructuretools.TypedList import TypedList
 
 

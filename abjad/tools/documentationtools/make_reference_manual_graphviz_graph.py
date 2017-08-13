@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 def make_reference_manual_graphviz_graph(graph):

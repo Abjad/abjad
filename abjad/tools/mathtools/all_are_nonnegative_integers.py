@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 def all_are_nonnegative_integers(argument):

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 def timespan_2_starts_before_timespan_1_stops(

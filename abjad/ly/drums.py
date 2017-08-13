@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 lilypond_version = "2.16.1"
 
 drums = {

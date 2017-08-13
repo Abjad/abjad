@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import abc
 from abjad.tools.abctools import AbjadObject
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 try:
     import builtins
 except ImportError:

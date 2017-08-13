@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 def list_all_ide_classes(modules=None, ignored_classes=None):

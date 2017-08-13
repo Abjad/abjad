@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import abjad
 from abjad import abjad_configuration
 from base import ScorePackageScriptTestCase

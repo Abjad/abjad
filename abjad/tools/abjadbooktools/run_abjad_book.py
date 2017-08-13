@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 def run_abjad_book():

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 def is_integer_equivalent_n_tuple(argument, n):

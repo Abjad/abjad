@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from experimental.demos.bach import helpers
 
 

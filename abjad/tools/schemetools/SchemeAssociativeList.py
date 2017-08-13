@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.schemetools.Scheme import Scheme
 
 

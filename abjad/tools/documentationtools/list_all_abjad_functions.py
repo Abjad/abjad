@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 def list_all_abjad_functions(modules=None):

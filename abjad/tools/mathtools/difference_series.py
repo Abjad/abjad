@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 def difference_series(argument):

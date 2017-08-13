@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import abjad
 import {score_package_name}
 

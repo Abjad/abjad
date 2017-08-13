@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 # TODO: move to Sequence

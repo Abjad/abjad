@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 import sys
 if sys.version_info[0] == 2:
     import bach

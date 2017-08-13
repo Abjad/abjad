@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 def make_desordre_pitches():

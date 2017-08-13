@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import shutil
 import sys
 from abjad.tools import commandlinetools
@@ -52,7 +51,6 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
     }
     """)
     fancy_segment_maker_code = datastructuretools.String.normalize(r"""
-        # -*- coding: utf-8 -*-
         import abjad
 
         class SegmentMaker(abjad.abctools.AbjadObject):

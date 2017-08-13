@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import spannertools

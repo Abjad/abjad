@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import systemtools
 from abjad.tools.datastructuretools import TreeNode
 from abjad.tools.rhythmtreetools import RhythmTreeMixin

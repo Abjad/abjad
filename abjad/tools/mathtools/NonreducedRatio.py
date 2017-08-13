@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 import fractions
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject

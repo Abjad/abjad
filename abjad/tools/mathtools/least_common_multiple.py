@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 def least_common_multiple(*integers):

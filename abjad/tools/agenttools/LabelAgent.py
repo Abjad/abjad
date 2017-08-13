@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import inspect
 from abjad.tools import abctools
 from abjad.tools import markuptools

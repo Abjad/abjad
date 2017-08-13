@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 from abjad.tools import abctools
 from abjad.tools.topleveltools import new

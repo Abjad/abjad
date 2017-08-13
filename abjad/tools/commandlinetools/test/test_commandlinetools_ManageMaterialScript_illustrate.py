@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import abjad
 import os
 import platform
@@ -48,7 +47,6 @@ class Test(ScorePackageScriptTestCase):
         definition_path = material_path.joinpath('definition.py')
         with open(str(definition_path), 'w') as file_pointer:
             file_pointer.write(abjad.String.normalize(r'''
-            # -*- coding: utf-8 -*-
             from abjad.tools import lilypondfiletools
 
 
@@ -115,8 +113,6 @@ class Test(ScorePackageScriptTestCase):
         definition_path = material_path.joinpath('definition.py')
         with open(str(definition_path), 'w') as file_pointer:
             file_pointer.write(abjad.String.normalize(r'''
-            # -*- coding: utf-8 -*-
-
             test_material = None
             '''))
         script = abjad.commandlinetools.ManageMaterialScript()
@@ -142,7 +138,6 @@ class Test(ScorePackageScriptTestCase):
         definition_path = material_path.joinpath('definition.py')
         with open(str(definition_path), 'w') as file_pointer:
             file_pointer.write(abjad.String.normalize(r'''
-            # -*- coding: utf-8 -*-
             from abjad.tools import abctools
 
 

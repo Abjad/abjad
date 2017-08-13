@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 def offset_happens_after_timespan_stops(

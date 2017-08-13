@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 import random
 from experimental.tools.constrainttools.Domain import Domain
 from experimental.tools.constrainttools._Constraint._Constraint \

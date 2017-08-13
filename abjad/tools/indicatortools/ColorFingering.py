@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import functools
 from abjad.tools import markuptools
 from abjad.tools import mathtools

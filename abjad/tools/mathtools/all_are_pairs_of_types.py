@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 def all_are_pairs_of_types(argument, first_type, second_type):

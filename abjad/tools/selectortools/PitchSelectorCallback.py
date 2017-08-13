@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 from abjad.tools import pitchtools
 from abjad.tools.abctools import AbjadValueObject

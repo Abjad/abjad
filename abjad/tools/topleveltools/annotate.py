@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 def annotate(component, name, indicator):

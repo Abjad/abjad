@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Abjad Experimental Packages documentation build configuration file, created by
 # sphinx-quickstart on Fri Jun  8 16:43:43 2012.

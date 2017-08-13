@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 def is_positive_integer_power_of_two(argument):

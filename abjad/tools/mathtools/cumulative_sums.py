@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 def cumulative_sums(argument, start=0):

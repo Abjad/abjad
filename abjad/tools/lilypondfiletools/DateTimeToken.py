@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import time
 from abjad.tools.abctools import AbjadObject
 

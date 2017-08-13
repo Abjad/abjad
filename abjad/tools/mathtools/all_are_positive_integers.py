@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 def all_are_positive_integers(argument):

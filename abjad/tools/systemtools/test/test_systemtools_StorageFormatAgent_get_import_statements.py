@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import abjad
 from abjad.tools import durationtools
 from abjad.tools import indicatortools

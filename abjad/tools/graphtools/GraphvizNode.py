@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.datastructuretools import TreeContainer
 from abjad.tools.graphtools.GraphvizMixin import GraphvizMixin
 

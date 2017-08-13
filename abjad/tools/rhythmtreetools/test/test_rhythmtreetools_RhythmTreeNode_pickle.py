@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import abjad
 import pickle
 from abjad.tools import rhythmtreetools

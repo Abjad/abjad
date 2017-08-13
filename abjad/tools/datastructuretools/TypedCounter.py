@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 from abjad.tools import systemtools
 from abjad.tools.datastructuretools.TypedCollection import TypedCollection

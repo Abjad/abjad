@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 def show(argument, return_timing=False, **keywords):

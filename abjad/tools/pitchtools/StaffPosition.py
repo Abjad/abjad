@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import functools
 import numbers
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
