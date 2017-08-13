@@ -33,8 +33,7 @@ class Percussion(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     known_percussion = list(sorted(set([
         'agogô',

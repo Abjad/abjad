@@ -32,8 +32,7 @@ class MetronomeMarkList(TypedList):
 
     __documentation_section__ = 'Collections'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

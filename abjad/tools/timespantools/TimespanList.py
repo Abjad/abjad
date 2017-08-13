@@ -137,8 +137,7 @@ class TimespanList(TypedList):
 
     __documentation_section__ = 'Timespans'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

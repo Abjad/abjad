@@ -53,8 +53,7 @@ class SkipRhythmMaker(RhythmMaker):
 
     __documentation_section__ = 'Rhythm-makers'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

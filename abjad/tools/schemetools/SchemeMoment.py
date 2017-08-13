@@ -26,8 +26,7 @@ class SchemeMoment(Scheme):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

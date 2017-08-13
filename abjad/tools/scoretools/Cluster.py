@@ -35,8 +35,7 @@ class Cluster(Container):
 
     __documentation_section__ = 'Containers'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     _is_counttime_component = True
 

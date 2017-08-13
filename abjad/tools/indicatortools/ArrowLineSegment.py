@@ -81,8 +81,7 @@ class ArrowLineSegment(LineSegment):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     _publish_storage_format = True
 

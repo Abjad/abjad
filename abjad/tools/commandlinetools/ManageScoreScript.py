@@ -22,8 +22,7 @@ class ManageScoreScript(ScorePackageScript):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     alias = 'score'
     short_description = 'Manage score packages.'

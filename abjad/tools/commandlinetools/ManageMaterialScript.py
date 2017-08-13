@@ -19,8 +19,7 @@ class ManageMaterialScript(ScorePackageScript):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     alias = 'material'
     short_description = 'Manage score package materials.'

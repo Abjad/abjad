@@ -53,8 +53,7 @@ class AcciaccaturaContainer(GraceContainer):
 
     __documentation_section__ = 'Containers'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### PRIVATE METHODS ###
 

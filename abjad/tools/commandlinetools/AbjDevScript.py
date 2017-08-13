@@ -24,8 +24,7 @@ class AbjDevScript(CommandlineScript):
 
     short_description = 'Entry-point to Abjad developer scripts catalog.'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

@@ -106,8 +106,7 @@ class RhythmTreeParser(Parser):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### PUBLIC PROPERTIES ###
 

@@ -19,8 +19,7 @@ class ManageSegmentScript(ScorePackageScript):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     alias = 'segment'
     short_description = 'Manage score package segments.'

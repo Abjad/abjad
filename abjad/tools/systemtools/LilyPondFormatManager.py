@@ -14,8 +14,7 @@ class LilyPondFormatManager(AbjadObject):
 
     __documentation_section__ = 'LilyPond formatting'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     lilypond_color_constants = (
         'black',

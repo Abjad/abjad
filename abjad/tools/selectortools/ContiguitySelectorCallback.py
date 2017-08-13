@@ -15,8 +15,7 @@ class ContiguitySelectorCallback(AbjadValueObject):
 
     __documentation_section__ = 'Callbacks'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

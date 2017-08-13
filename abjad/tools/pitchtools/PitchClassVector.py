@@ -38,8 +38,7 @@ class PitchClassVector(Vector):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

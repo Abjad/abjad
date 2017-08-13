@@ -21,8 +21,7 @@ class CheckClassSections(CommandlineScript):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     alias = 'check-class-sections'
     short_description = (

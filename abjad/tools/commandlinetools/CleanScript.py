@@ -16,8 +16,7 @@ class CleanScript(CommandlineScript):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     alias = 'clean'
     short_description = (

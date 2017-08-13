@@ -23,8 +23,7 @@ class DoctestScript(CommandlineScript):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     _module_names_for_globs = (
         'abjad',

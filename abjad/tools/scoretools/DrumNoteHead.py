@@ -22,8 +22,7 @@ class DrumNoteHead(NoteHead):
 
     __documentation_section__ = 'Note-heads'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

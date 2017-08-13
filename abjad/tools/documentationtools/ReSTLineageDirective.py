@@ -30,8 +30,7 @@ class ReSTLineageDirective(ReSTDirective):
 
     __documentation_section__ = 'reStructuredText'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

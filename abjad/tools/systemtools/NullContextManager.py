@@ -9,8 +9,7 @@ class NullContextManager(ContextManager):
 
     __documentation_section__ = 'Context managers'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

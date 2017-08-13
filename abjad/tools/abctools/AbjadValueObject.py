@@ -8,8 +8,7 @@ class AbjadValueObject(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

@@ -19,8 +19,7 @@ class DistanceHeuristic(Heuristic):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### PRIVATE METHODS ###
 

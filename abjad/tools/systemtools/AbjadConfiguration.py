@@ -53,8 +53,7 @@ class AbjadConfiguration(Configuration):
     # for caching
     _lilypond_version_string = None
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

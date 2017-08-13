@@ -33,8 +33,7 @@ class Glockenspiel(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

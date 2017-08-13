@@ -8,8 +8,7 @@ class ContextManager(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INTIALIZER ###
 

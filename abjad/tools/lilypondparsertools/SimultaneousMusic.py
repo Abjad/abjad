@@ -7,5 +7,4 @@ class SimultaneousMusic(Music):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()

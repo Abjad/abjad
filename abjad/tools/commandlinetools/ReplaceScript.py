@@ -27,8 +27,7 @@ class ReplaceScript(CommandlineScript):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     alias = 'replace'
     short_description = 'Replace text.'

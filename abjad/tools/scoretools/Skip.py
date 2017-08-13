@@ -28,8 +28,7 @@ class Skip(Leaf):
 
     __documentation_section__ = 'Leaves'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

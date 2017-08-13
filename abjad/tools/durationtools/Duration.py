@@ -132,8 +132,7 @@ class Duration(AbjadObject, Fraction):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### CONSTRUCTOR ###
 

@@ -26,8 +26,7 @@ class BenchmarkScoreMaker(AbjadObject):
 
     __documentation_section__ = 'Benchmarking'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### PUBLIC METHODS ###
 

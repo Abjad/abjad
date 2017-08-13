@@ -17,8 +17,7 @@ class StatsScript(CommandlineScript):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     alias = 'stats'
     short_description = 'Build statistics about Python modules in PATH.'

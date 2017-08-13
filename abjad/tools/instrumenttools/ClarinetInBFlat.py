@@ -33,8 +33,7 @@ class ClarinetInBFlat(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     performer_abbreviation = 'cl.'
 

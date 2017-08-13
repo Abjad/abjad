@@ -35,8 +35,7 @@ class IntervalClassSegment(Segment):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### PRIVATE PROPERTIES ###
 

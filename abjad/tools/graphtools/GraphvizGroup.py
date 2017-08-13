@@ -9,8 +9,7 @@ class GraphvizGroup(TreeContainer):
 
     __documentation_section__ = 'Graphviz'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

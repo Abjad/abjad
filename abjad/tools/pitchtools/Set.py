@@ -12,8 +12,7 @@ class Set(TypedFrozenset):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

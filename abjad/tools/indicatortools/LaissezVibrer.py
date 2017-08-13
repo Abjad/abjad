@@ -26,8 +26,7 @@ class LaissezVibrer(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     _format_slot = 'right'
 

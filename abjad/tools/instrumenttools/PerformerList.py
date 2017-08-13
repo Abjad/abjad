@@ -7,8 +7,7 @@ class PerformerList(TypedList):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### PUBLIC METHODS ###
 

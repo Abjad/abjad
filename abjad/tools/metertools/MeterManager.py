@@ -14,8 +14,7 @@ class MeterManager(abctools.AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### PUBLIC METHODS ###
 

@@ -79,8 +79,7 @@ class ReSTDocument(TreeContainer):
 
     __documentation_section__ = 'reStructuredText'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### PRIVATE PROPERTIES ###
 

@@ -57,8 +57,7 @@ class BreathMark(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     _format_slot = 'after'
 

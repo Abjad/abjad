@@ -17,8 +17,7 @@ class PitchClass(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     _diatonic_pitch_class_name_regex_body = '''
         ([a-g,A-G]) # exactly one lowercase a - g or uppercase A - G

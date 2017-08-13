@@ -96,8 +96,7 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
 
     __documentation_section__ = 'Callbacks'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

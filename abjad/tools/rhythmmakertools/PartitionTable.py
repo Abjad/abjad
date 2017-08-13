@@ -92,8 +92,7 @@ class PartitionTable(TypedOrderedDict):
 
     __documentation_section__ = 'Specifiers'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     _publish_storage_format = True
 
