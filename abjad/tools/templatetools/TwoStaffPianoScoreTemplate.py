@@ -5,10 +5,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class TwoStaffPianoScoreTemplate(AbjadValueObject):
     '''Two-staff piano score template.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

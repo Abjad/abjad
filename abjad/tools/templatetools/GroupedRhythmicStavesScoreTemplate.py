@@ -5,10 +5,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class GroupedRhythmicStavesScoreTemplate(AbjadValueObject):
     r'''Grouped rhythmic staves score template.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         One voice per staff:
@@ -107,6 +103,8 @@ class GroupedRhythmicStavesScoreTemplate(AbjadValueObject):
 
             ::
 
+                >>> class_ = abjad.templatetools.GroupedRhythmicStavesScoreTemplate
+                >>> template_1 = class_(staff_count=4)
                 >>> score_1 = template_1()
                 >>> show(score_1) # doctest: +SKIP
 
@@ -140,6 +138,7 @@ class GroupedRhythmicStavesScoreTemplate(AbjadValueObject):
 
             ::
 
+                >>> template_2 = class_(staff_count=[2, 1, 2])
                 >>> score_2 = template_2()
                 >>> show(score_2) # doctest: +SKIP
 
@@ -227,6 +226,8 @@ class GroupedRhythmicStavesScoreTemplate(AbjadValueObject):
 
         ::
 
+            >>> class_ = abjad.templatetools.GroupedRhythmicStavesScoreTemplate
+            >>> template_1 = class_(staff_count=4)
             >>> template_1.staff_count
             4
 

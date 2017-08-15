@@ -3,11 +3,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class StringQuartetScoreTemplate(AbjadValueObject):
-    '''String quartet score template.
-
-    ::
-
-        >>> import abjad
+    r'''String quartet score template.
 
     ..  container:: example
 
