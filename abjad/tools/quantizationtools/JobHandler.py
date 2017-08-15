@@ -5,11 +5,6 @@ from abjad.tools.abctools import AbjadObject
 class JobHandler(AbjadObject):
     r'''Abstact job-handler.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     ``JobHandlers`` control how ``QuantizationJob`` instances are
     processed by the ``Quantizer``, either serially or in parallel.
     '''

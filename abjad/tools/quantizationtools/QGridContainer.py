@@ -4,18 +4,13 @@ from abjad.tools.rhythmtreetools import RhythmTreeContainer
 class QGridContainer(RhythmTreeContainer):
     r'''Q-grid container.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     ..  container:: example
 
         ::
 
-            >>> container = quantizationtools.QGridContainer()
+            >>> container = abjad.quantizationtools.QGridContainer()
             >>> f(container)
-            quantizationtools.QGridContainer(
+            abjad.quantizationtools.QGridContainer(
                 preprolated_duration=abjad.Duration(1, 1),
                 )
 

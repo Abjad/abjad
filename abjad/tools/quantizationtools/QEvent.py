@@ -7,11 +7,6 @@ from abjad.tools.abctools import AbjadObject
 class QEvent(AbjadObject):
     r'''Abstract Q-event.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     Represents an attack point to be quantized.
 
     All ``QEvents`` possess a rational offset in milliseconds, and an optional

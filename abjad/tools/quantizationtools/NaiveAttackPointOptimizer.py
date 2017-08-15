@@ -11,11 +11,6 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
     Optimizes attack points by fusing tie leaves within logical ties with leaf
     durations decreasing monotonically.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     Logical ties will be partitioned into sub-logical-ties if leaves are found
     with metronome marks attached.
     '''

@@ -7,12 +7,6 @@ class QSchemaItem(AbjadObject):
     '''Abstract q-schema item.
 
     Represents a change of state in the timeline of a quantization process.
-
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     '''
 
     ### CLASS VARIABLES ###

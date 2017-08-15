@@ -6,12 +6,6 @@ class NullAttackPointOptimizer(AttackPointOptimizer):
     r'''Null attack-point optimizer.
 
     Performs no attack point optimization.
-
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     '''
 
     ### CLASS VARIABLES ###

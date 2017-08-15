@@ -5,23 +5,18 @@ from abjad.tools.quantizationtools.SearchTree import SearchTree
 class WeightedSearchTree(SearchTree):
     r'''Weighted search tree.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     ..  container:: example
 
         Allows for dividing nodes in a q-grid into parts with unequal weights.
 
         ::
 
-            >>> search_tree = quantizationtools.WeightedSearchTree()
+            >>> search_tree = abjad.quantizationtools.WeightedSearchTree()
 
         ::
 
             >>> f(search_tree)
-            quantizationtools.WeightedSearchTree(
+            abjad.quantizationtools.WeightedSearchTree(
                 definition={
                     'divisors': (2, 3, 5, 7),
                     'max_depth': 3,

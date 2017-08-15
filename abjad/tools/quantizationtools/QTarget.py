@@ -15,11 +15,6 @@ from abjad.tools.topleveltools import mutate
 class QTarget(AbjadObject):
     r'''Abstract q-target.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     ``QTarget`` is created by a concrete ``QSchema`` instance, and represents
     the mold into which the timepoints contained by a ``QSequence`` instance
     will be poured, as structured by that ``QSchema`` instance.

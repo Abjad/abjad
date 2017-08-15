@@ -8,20 +8,15 @@ class QEventProxy(AbjadObject):
 
     Maps Q-event offset with the range of its beatspan to the range 0-1.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     ..  container:: example
 
         ::
 
-            >>> q_event = quantizationtools.PitchedQEvent(130, [0, 1, 4])
-            >>> proxy = quantizationtools.QEventProxy(q_event, 0.5)
+            >>> q_event = abjad.quantizationtools.PitchedQEvent(130, [0, 1, 4])
+            >>> proxy = abjad.quantizationtools.QEventProxy(q_event, 0.5)
             >>> f(proxy)
-            quantizationtools.QEventProxy(
-                quantizationtools.PitchedQEvent(
+            abjad.quantizationtools.QEventProxy(
+                abjad.quantizationtools.PitchedQEvent(
                     offset=abjad.Offset(130, 1),
                     pitches=(
                         abjad.NamedPitch("c'"),

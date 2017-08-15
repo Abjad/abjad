@@ -150,7 +150,7 @@ def test_quantizationtools_Quantizer___call___04():
 
 def test_quantizationtools_Quantizer___call___05():
 
-    q_schema = quantizationtools.BeatwiseQSchema(
+    q_schema = abjad.quantizationtools.BeatwiseQSchema(
         {'search_tree': quantizationtools.UnweightedSearchTree({2: None})},
         {'search_tree': quantizationtools.UnweightedSearchTree({3: None})},
         {'search_tree': quantizationtools.UnweightedSearchTree({5: None})},

@@ -4,18 +4,13 @@ from abjad.tools.quantizationtools.QEvent import QEvent
 class TerminalQEvent(QEvent):
     r'''Terminal q-event.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     ..  container:: example
 
         ::
 
-            >>> q_event = quantizationtools.TerminalQEvent(1000)
+            >>> q_event = abjad.quantizationtools.TerminalQEvent(1000)
             >>> print(format(q_event))
-            quantizationtools.TerminalQEvent(
+            abjad.quantizationtools.TerminalQEvent(
                 offset=abjad.Offset(1000, 1),
                 )
 

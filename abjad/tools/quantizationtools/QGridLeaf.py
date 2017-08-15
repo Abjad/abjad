@@ -6,16 +6,11 @@ from abjad.tools.rhythmtreetools import RhythmTreeMixin
 class QGridLeaf(RhythmTreeMixin, TreeNode):
     r'''Q-grid leaf.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     ..  container:: example
 
         ::
 
-            >>> leaf = quantizationtools.QGridLeaf()
+            >>> leaf = abjad.quantizationtools.QGridLeaf()
             >>> leaf
             QGridLeaf(
                 preprolated_duration=Duration(1, 1),

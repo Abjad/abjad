@@ -7,19 +7,14 @@ class PitchedQEvent(QEvent):
 
     Indicates the onset of a period of pitched material in a q-event sequence.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     ..  container:: example
 
         ::
 
             >>> pitches = [0, 1, 4]
-            >>> q_event = quantizationtools.PitchedQEvent(1000, pitches)
+            >>> q_event = abjad.quantizationtools.PitchedQEvent(1000, pitches)
             >>> f(q_event)
-            quantizationtools.PitchedQEvent(
+            abjad.quantizationtools.PitchedQEvent(
                 offset=abjad.Offset(1000, 1),
                 pitches=(
                     abjad.NamedPitch("c'"),

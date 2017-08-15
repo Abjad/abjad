@@ -3,12 +3,6 @@ from abjad.tools.quantizationtools.JobHandler import JobHandler
 
 class SerialJobHandler(JobHandler):
     r'''Serial job-handler.
-
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     '''
 
     ### CLASS VARIABLES ###

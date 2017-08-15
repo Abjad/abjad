@@ -8,30 +8,25 @@ class QuantizationJob(AbjadObject):
     Copiable, picklable class for generating all ``QGrids`` which are valid
     under a given ``SearchTree`` for a sequence of ``QEventProxies``.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     ..  container:: example
 
         ::
 
-            >>> q_event_a = quantizationtools.PitchedQEvent(250, [0, 1])
-            >>> q_event_b = quantizationtools.SilentQEvent(500)
-            >>> q_event_c = quantizationtools.PitchedQEvent(750, [3, 7])
-            >>> proxy_a = quantizationtools.QEventProxy(q_event_a, 0.25)
-            >>> proxy_b = quantizationtools.QEventProxy(q_event_b, 0.5)
-            >>> proxy_c = quantizationtools.QEventProxy(q_event_c, 0.75)
+            >>> q_event_a = abjad.quantizationtools.PitchedQEvent(250, [0, 1])
+            >>> q_event_b = abjad.quantizationtools.SilentQEvent(500)
+            >>> q_event_c = abjad.quantizationtools.PitchedQEvent(750, [3, 7])
+            >>> proxy_a = abjad.quantizationtools.QEventProxy(q_event_a, 0.25)
+            >>> proxy_b = abjad.quantizationtools.QEventProxy(q_event_b, 0.5)
+            >>> proxy_c = abjad.quantizationtools.QEventProxy(q_event_c, 0.75)
 
         ::
 
             >>> definition = {2: {2: None}, 3: None, 5: None}
-            >>> search_tree = quantizationtools.UnweightedSearchTree(definition)
+            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree(definition)
 
         ::
 
-            >>> job = quantizationtools.QuantizationJob(
+            >>> job = abjad.quantizationtools.QuantizationJob(
             ...     1, search_tree, [proxy_a, proxy_b, proxy_c])
 
     ..  container:: example
@@ -74,12 +69,8 @@ class QuantizationJob(AbjadObject):
         q_grids=None,
         ):
         from abjad.tools import quantizationtools
-
-        search_tree = search_tree or \
-            quantizationtools.UnweightedSearchTree()
-
+        search_tree = search_tree or quantizationtools.UnweightedSearchTree()
         q_event_proxies = q_event_proxies or []
-
         assert isinstance(search_tree, quantizationtools.SearchTree)
         assert all(
             isinstance(x, quantizationtools.QEventProxy)
@@ -161,11 +152,6 @@ class QuantizationJob(AbjadObject):
     def job_id(self):
         r'''The job id of the ``QuantizationJob``.
 
-        ::
-
-            >>> job.job_id
-            1
-
         Only meaningful when the job is processed via multiprocessing,
         as the job id is necessary to reconstruct the order of jobs.
 
@@ -180,11 +166,31 @@ class QuantizationJob(AbjadObject):
 
         ::
 
+            >>> q_event_a = abjad.quantizationtools.PitchedQEvent(250, [0, 1])
+            >>> q_event_b = abjad.quantizationtools.SilentQEvent(500)
+            >>> q_event_c = abjad.quantizationtools.PitchedQEvent(750, [3, 7])
+            >>> proxy_a = abjad.quantizationtools.QEventProxy(q_event_a, 0.25)
+            >>> proxy_b = abjad.quantizationtools.QEventProxy(q_event_b, 0.5)
+            >>> proxy_c = abjad.quantizationtools.QEventProxy(q_event_c, 0.75)
+
+        ::
+
+            >>> definition = {2: {2: None}, 3: None, 5: None}
+            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree(definition)
+
+        ::
+
+            >>> job = abjad.quantizationtools.QuantizationJob(
+            ...     1, search_tree, [proxy_a, proxy_b, proxy_c])
+            >>> job()
+
+        ::
+
             >>> for q_event_proxy in job.q_event_proxies:
             ...     print(format(q_event_proxy, 'storage'))
             ...
-            quantizationtools.QEventProxy(
-                quantizationtools.PitchedQEvent(
+            abjad.quantizationtools.QEventProxy(
+                abjad.quantizationtools.PitchedQEvent(
                     offset=abjad.Offset(250, 1),
                     pitches=(
                         abjad.NamedPitch("c'"),
@@ -193,14 +199,14 @@ class QuantizationJob(AbjadObject):
                     ),
                 abjad.Offset(1, 4)
                 )
-            quantizationtools.QEventProxy(
-                quantizationtools.SilentQEvent(
+            abjad.quantizationtools.QEventProxy(
+                abjad.quantizationtools.SilentQEvent(
                     offset=abjad.Offset(500, 1),
                     ),
                 abjad.Offset(1, 2)
                 )
-            quantizationtools.QEventProxy(
-                quantizationtools.PitchedQEvent(
+            abjad.quantizationtools.QEventProxy(
+                abjad.quantizationtools.PitchedQEvent(
                     offset=abjad.Offset(750, 1),
                     pitches=(
                         abjad.NamedPitch("ef'"),
@@ -220,6 +226,26 @@ class QuantizationJob(AbjadObject):
 
         ::
 
+            >>> q_event_a = abjad.quantizationtools.PitchedQEvent(250, [0, 1])
+            >>> q_event_b = abjad.quantizationtools.SilentQEvent(500)
+            >>> q_event_c = abjad.quantizationtools.PitchedQEvent(750, [3, 7])
+            >>> proxy_a = abjad.quantizationtools.QEventProxy(q_event_a, 0.25)
+            >>> proxy_b = abjad.quantizationtools.QEventProxy(q_event_b, 0.5)
+            >>> proxy_c = abjad.quantizationtools.QEventProxy(q_event_c, 0.75)
+
+        ::
+
+            >>> definition = {2: {2: None}, 3: None, 5: None}
+            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree(definition)
+
+        ::
+
+            >>> job = abjad.quantizationtools.QuantizationJob(
+            ...     1, search_tree, [proxy_a, proxy_b, proxy_c])
+            >>> job()
+
+        ::
+
             >>> for q_grid in job.q_grids:
             ...     print(q_grid.rtm_format)
             1
@@ -235,11 +261,6 @@ class QuantizationJob(AbjadObject):
     @property
     def search_tree(self):
         r'''The search tree the ``QuantizationJob`` was instantiated with.
-
-        ::
-
-            >>> job.search_tree
-            UnweightedSearchTree(definition={2: {2: None}, 3: None, 5: None})
 
         Return ``SearchTree`` instance.
         '''

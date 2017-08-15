@@ -15,21 +15,19 @@ class QGrid(AbjadObject):
 
     ::
 
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-        >>> q_grid = quantizationtools.QGrid()
+        >>> q_grid = abjad.quantizationtools.QGrid()
 
     ..  container:: example
 
         ::
 
             >>> f(q_grid)
-            quantizationtools.QGrid(
-                root_node=quantizationtools.QGridLeaf(
+            abjad.quantizationtools.QGrid(
+                root_node=abjad.quantizationtools.QGridLeaf(
                     preprolated_duration=abjad.Duration(1, 1),
                     is_divisible=True,
                     ),
-                next_downbeat=quantizationtools.QGridLeaf(
+                next_downbeat=abjad.quantizationtools.QGridLeaf(
                     preprolated_duration=abjad.Duration(1, 1),
                     is_divisible=True,
                     ),
@@ -47,10 +45,10 @@ class QGrid(AbjadObject):
 
         ::
 
-            >>> q_event_a = quantizationtools.PitchedQEvent(250, [0])
-            >>> q_event_b = quantizationtools.PitchedQEvent(750, [1])
-            >>> proxy_a = quantizationtools.QEventProxy(q_event_a, 0.25)
-            >>> proxy_b = quantizationtools.QEventProxy(q_event_b, 0.75)
+            >>> q_event_a = abjad.quantizationtools.PitchedQEvent(250, [0])
+            >>> q_event_b = abjad.quantizationtools.PitchedQEvent(750, [1])
+            >>> proxy_a = abjad.quantizationtools.QEventProxy(q_event_a, 0.25)
+            >>> proxy_b = abjad.quantizationtools.QEventProxy(q_event_b, 0.75)
 
         ::
 
@@ -61,8 +59,8 @@ class QGrid(AbjadObject):
             >>> for q_event_proxy in q_grid.root_node.q_event_proxies:
             ...     f(q_event_proxy)
             ...
-            quantizationtools.QEventProxy(
-                quantizationtools.PitchedQEvent(
+            abjad.quantizationtools.QEventProxy(
+                abjad.quantizationtools.PitchedQEvent(
                     offset=abjad.Offset(250, 1),
                     pitches=(
                         abjad.NamedPitch("c'"),
@@ -76,8 +74,8 @@ class QGrid(AbjadObject):
             >>> for q_event_proxy in q_grid.next_downbeat.q_event_proxies:
             ...     f(q_event_proxy)
             ...
-            quantizationtools.QEventProxy(
-                quantizationtools.PitchedQEvent(
+            abjad.quantizationtools.QEventProxy(
+                abjad.quantizationtools.PitchedQEvent(
                     offset=abjad.Offset(750, 1),
                     pitches=(
                         abjad.NamedPitch("cs'"),

@@ -10,9 +10,7 @@ class MeasurewiseQSchema(QSchema):
 
     ::
 
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-        >>> q_schema = quantizationtools.MeasurewiseQSchema()
+        >>> q_schema = abjad.quantizationtools.MeasurewiseQSchema()
 
     ..  container:: example
 
@@ -21,8 +19,8 @@ class MeasurewiseQSchema(QSchema):
         ::
 
             >>> f(q_schema)
-            quantizationtools.MeasurewiseQSchema(
-                search_tree=quantizationtools.UnweightedSearchTree(
+            abjad.quantizationtools.MeasurewiseQSchema(
+                search_tree=abjad.quantizationtools.UnweightedSearchTree(
                     definition={
                         2: {
                             2: {
@@ -75,11 +73,11 @@ class MeasurewiseQSchema(QSchema):
 
         ::
 
-            >>> search_tree = quantizationtools.UnweightedSearchTree({7: None})
+            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({7: None})
             >>> time_signature = abjad.TimeSignature((3, 4))
             >>> tempo = abjad.MetronomeMark((1, 4), 54)
             >>> use_full_measure = True
-            >>> q_schema = quantizationtools.MeasurewiseQSchema(
+            >>> q_schema = abjad.quantizationtools.MeasurewiseQSchema(
             ...     search_tree=search_tree,
             ...     tempo=tempo,
             ...     time_signature=time_signature,
@@ -136,13 +134,13 @@ class MeasurewiseQSchema(QSchema):
 
         ::
 
-            >>> a = {'search_tree': quantizationtools.UnweightedSearchTree({2: None})}
-            >>> b = {'search_tree': quantizationtools.UnweightedSearchTree({3: None})}
-            >>> c = {'search_tree': quantizationtools.UnweightedSearchTree({5: None})}
+            >>> a = {'search_tree': abjad.quantizationtools.UnweightedSearchTree({2: None})}
+            >>> b = {'search_tree': abjad.quantizationtools.UnweightedSearchTree({3: None})}
+            >>> c = {'search_tree': abjad.quantizationtools.UnweightedSearchTree({5: None})}
 
         ::
 
-            >>> q_schema = quantizationtools.MeasurewiseQSchema(a, b, c)
+            >>> q_schema = abjad.quantizationtools.MeasurewiseQSchema(a, b, c)
 
         ::
 
@@ -187,7 +185,7 @@ class MeasurewiseQSchema(QSchema):
 
         ::
 
-            >>> q_schema = quantizationtools.MeasurewiseQSchema(settings)
+            >>> q_schema = abjad.quantizationtools.MeasurewiseQSchema(settings)
 
         ::
 
@@ -235,7 +233,7 @@ class MeasurewiseQSchema(QSchema):
 
         ::
 
-            >>> q_schema = quantizationtools.MeasurewiseQSchema(
+            >>> q_schema = abjad.quantizationtools.MeasurewiseQSchema(
             ...     (2, {'time_signature': abjad.TimeSignature((7, 32))}),
             ...     (4, {'time_signature': abjad.TimeSignature((3, 4))}),
             ...     (6, {'time_signature': abjad.TimeSignature((5, 8))}),

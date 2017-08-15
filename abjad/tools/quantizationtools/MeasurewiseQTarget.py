@@ -5,11 +5,6 @@ from abjad.tools.quantizationtools.QTarget import QTarget
 class MeasurewiseQTarget(QTarget):
     r'''Measurewise quantization target.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     Not composer-safe.
 
     Used internally by ``Quantizer``.

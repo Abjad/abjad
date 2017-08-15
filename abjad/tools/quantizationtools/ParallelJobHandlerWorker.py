@@ -7,11 +7,6 @@ class ParallelJobHandlerWorker(multiprocessing.Process):
 
     Worker process which runs ``QuantizationJobs``.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     Not composer-safe.
 
     Used internally by ``ParallelJobHandler``.

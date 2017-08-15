@@ -8,12 +8,6 @@ class ParallelJobHandler(JobHandler):
 
     Processes ``QuantizationJob`` instances in parallel, based on the number of
     CPUs available.
-
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     '''
 
     ### CLASS VARIABLES ###

@@ -5,11 +5,6 @@ from abjad.tools.abctools import AbjadObject
 class AttackPointOptimizer(AbjadObject):
     r'''Abstract attack-point optimizer.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     Attack-point optimizers may alter the number, order, and individual
     durations of leaves in a logical tie, but may not alter the overall
     duration of that logical tie.

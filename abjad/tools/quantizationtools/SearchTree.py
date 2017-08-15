@@ -8,11 +8,6 @@ from abjad.tools.abctools import AbjadObject
 class SearchTree(AbjadObject):
     r'''Abstract search tree.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     ``SearchTrees`` encapsulate strategies for generating collections of
     ``QGrids``, given a set of ``QEventProxy`` instances as input.
 

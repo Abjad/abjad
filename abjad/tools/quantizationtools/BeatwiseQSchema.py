@@ -9,11 +9,7 @@ class BeatwiseQSchema(QSchema):
 
     Treats beats as timestep unit.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-        >>> q_schema = quantizationtools.BeatwiseQSchema()
+        >>> q_schema = abjad.quantizationtools.BeatwiseQSchema()
 
     ..  container:: example
 
@@ -22,9 +18,9 @@ class BeatwiseQSchema(QSchema):
         ::
 
             >>> f(q_schema)
-            quantizationtools.BeatwiseQSchema(
+            abjad.quantizationtools.BeatwiseQSchema(
                 beatspan=abjad.Duration(1, 4),
-                search_tree=quantizationtools.UnweightedSearchTree(
+                search_tree=abjad.quantizationtools.UnweightedSearchTree(
                     definition={
                         2: {
                             2: {
@@ -75,9 +71,9 @@ class BeatwiseQSchema(QSchema):
         ::
 
             >>> beatspan = abjad.Duration(5, 16)
-            >>> search_tree = quantizationtools.UnweightedSearchTree({7: None})
+            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({7: None})
             >>> tempo = abjad.MetronomeMark((1, 4), 54)
-            >>> q_schema = quantizationtools.BeatwiseQSchema(
+            >>> q_schema = abjad.quantizationtools.BeatwiseQSchema(
             ...     beatspan=beatspan,
             ...     search_tree=search_tree,
             ...     tempo=tempo,
@@ -125,7 +121,7 @@ class BeatwiseQSchema(QSchema):
 
         ::
 
-            >>> q_schema = quantizationtools.BeatwiseQSchema(a, b, c)
+            >>> q_schema = abjad.quantizationtools.BeatwiseQSchema(a, b, c)
 
         ::
 
@@ -156,8 +152,8 @@ class BeatwiseQSchema(QSchema):
 
         ::
 
-            >>> a = {'search_tree': quantizationtools.UnweightedSearchTree({2: None})}
-            >>> b = {'search_tree': quantizationtools.UnweightedSearchTree({3: None})}
+            >>> a = {'search_tree': abjad.quantizationtools.UnweightedSearchTree({2: None})}
+            >>> b = {'search_tree': abjad.quantizationtools.UnweightedSearchTree({3: None})}
 
         ::
 
@@ -168,12 +164,12 @@ class BeatwiseQSchema(QSchema):
 
         ::
 
-            >>> q_schema = quantizationtools.MeasurewiseQSchema(settings)
+            >>> q_schema = abjad.quantizationtools.MeasurewiseQSchema(settings)
 
         ::
 
             >>> f(q_schema[0]['search_tree'])
-            quantizationtools.UnweightedSearchTree(
+            abjad.quantizationtools.UnweightedSearchTree(
                 definition={
                     2: {
                         2: {
@@ -208,7 +204,7 @@ class BeatwiseQSchema(QSchema):
         ::
 
             >>> print(format(q_schema[1]['search_tree']))
-            quantizationtools.UnweightedSearchTree(
+            abjad.quantizationtools.UnweightedSearchTree(
                 definition={
                     2: {
                         2: {
@@ -266,9 +262,9 @@ class BeatwiseQSchema(QSchema):
 
         ::
 
-            >>> q_schema = quantizationtools.MeasurewiseQSchema(
-            ...     (2, {'search_tree': quantizationtools.UnweightedSearchTree({2: None})}),
-            ...     (4, {'search_tree': quantizationtools.UnweightedSearchTree({3: None})}),
+            >>> q_schema = abjad.quantizationtools.MeasurewiseQSchema(
+            ...     (2, {'search_tree': abjad.quantizationtools.UnweightedSearchTree({2: None})}),
+            ...     (4, {'search_tree': abjad.quantizationtools.UnweightedSearchTree({3: None})}),
             ...     )
 
     '''

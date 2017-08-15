@@ -6,12 +6,6 @@ class CollapsingGraceHandler(GraceHandler):
 
     Collapses pitch information into a single chord rather than creating a
     grace container.
-
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     '''
 
     ### CLASS VARIABLES ###

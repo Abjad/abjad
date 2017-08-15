@@ -8,11 +8,6 @@ class DistanceHeuristic(Heuristic):
     leaves of that ``QGrid`` when choosing the optimal ``QGrid`` for a given
     ``QTargetBeat``.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     The ``QGrid`` with the smallest distance and fewest number of
     leaves will be selected.
     '''

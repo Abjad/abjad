@@ -4,16 +4,11 @@ from abjad.tools.quantizationtools.QEvent import QEvent
 class SilentQEvent(QEvent):
     r'''Silent q-event.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     ..  container:: example
 
         ::
 
-            >>> q_event = quantizationtools.SilentQEvent(1000)
+            >>> q_event = abjad.quantizationtools.SilentQEvent(1000)
             >>> q_event
             SilentQEvent(offset=Offset(1000, 1))
 

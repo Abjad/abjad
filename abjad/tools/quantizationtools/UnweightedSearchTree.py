@@ -5,18 +5,13 @@ from abjad.tools.quantizationtools.SearchTree import SearchTree
 class UnweightedSearchTree(SearchTree):
     r'''Unweighted search tree based on Paul Nauert's model.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     ..  container:: example
 
         ::
 
-            >>> search_tree = quantizationtools.UnweightedSearchTree()
+            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree()
             >>> f(search_tree)
-            quantizationtools.UnweightedSearchTree(
+            abjad.quantizationtools.UnweightedSearchTree(
                 definition={
                     2: {
                         2: {
@@ -72,11 +67,11 @@ class UnweightedSearchTree(SearchTree):
 
         ::
 
-            >>> q_event_a = quantizationtools.PitchedQEvent(130, [0, 1, 4])
-            >>> q_event_b = quantizationtools.PitchedQEvent(150, [2, 3, 5])
-            >>> proxy_a = quantizationtools.QEventProxy(q_event_a, 0.5)
-            >>> proxy_b = quantizationtools.QEventProxy(q_event_b, 0.667)
-            >>> q_grid = quantizationtools.QGrid()
+            >>> q_event_a = abjad.quantizationtools.PitchedQEvent(130, [0, 1, 4])
+            >>> q_event_b = abjad.quantizationtools.PitchedQEvent(150, [2, 3, 5])
+            >>> proxy_a = abjad.quantizationtools.QEventProxy(q_event_a, 0.5)
+            >>> proxy_b = abjad.quantizationtools.QEventProxy(q_event_b, 0.667)
+            >>> q_grid = abjad.quantizationtools.QGrid()
             >>> q_grid.fit_q_events([proxy_a, proxy_b])
 
         ::
@@ -101,7 +96,7 @@ class UnweightedSearchTree(SearchTree):
         ::
 
             >>> definition = {2: {2: None}, 3: None}
-            >>> search_tree = quantizationtools.UnweightedSearchTree(definition)
+            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree(definition)
 
         ::
 
@@ -163,7 +158,7 @@ class UnweightedSearchTree(SearchTree):
         ::
 
             >>> import pprint
-            >>> search_tree = quantizationtools.UnweightedSearchTree()
+            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree()
             >>> pprint.pprint(search_tree.default_definition)
             {2: {2: {2: {2: None}, 3: None}, 3: None, 5: None, 7: None},
              3: {2: {2: None}, 3: None, 5: None},

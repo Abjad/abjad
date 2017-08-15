@@ -5,11 +5,6 @@ from abjad.tools.abctools import AbjadObject
 class Heuristic(AbjadObject):
     r'''Abstract heuristic.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     Heuristics rank Q-grids according to the criteria they encapsulate.
 
     They provide the means by which the quantizer selects a single ``QGrid``

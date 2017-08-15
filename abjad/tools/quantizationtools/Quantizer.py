@@ -4,11 +4,6 @@ from abjad.tools.abctools import AbjadObject
 class Quantizer(AbjadObject):
     r'''Quantizer.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     ..  container:: example
 
         Quantizes sequences of attack-points, encapsulated by
@@ -16,11 +11,11 @@ class Quantizer(AbjadObject):
 
         ::
 
-            >>> quantizer = quantizationtools.Quantizer()
+            >>> quantizer = abjad.quantizationtools.Quantizer()
             >>> durations = [1000] * 8
             >>> pitches = range(8)
             >>> q_event_sequence = \
-            ...     quantizationtools.QEventSequence.from_millisecond_pitch_pairs(
+            ...     abjad.quantizationtools.QEventSequence.from_millisecond_pitch_pairs(
             ...     tuple(zip(durations, pitches)))
 
     ..  container:: example
@@ -71,7 +66,7 @@ class Quantizer(AbjadObject):
 
         ::
 
-            >>> measurewise_q_schema = quantizationtools.MeasurewiseQSchema(
+            >>> measurewise_q_schema = abjad.quantizationtools.MeasurewiseQSchema(
             ...     {'tempo': ((1, 4), 78), 'time_signature': (2, 4)},
             ...     {'tempo': ((1, 8), 57), 'time_signature': (5, 4)},
             ...     )
@@ -152,7 +147,7 @@ class Quantizer(AbjadObject):
 
         ::
 
-            >>> beatwise_q_schema = quantizationtools.BeatwiseQSchema(
+            >>> beatwise_q_schema = abjad.quantizationtools.BeatwiseQSchema(
             ... {
             ...     2: {'tempo': ((1, 4), 120)},
             ...     5: {'tempo': ((1, 4), 90)},
