@@ -7,10 +7,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class OrdinalConstant(AbjadValueObject):
     r'''Ordinal constant.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Initializes with `dimension`, `value` and `representation`:

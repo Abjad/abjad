@@ -6,10 +6,6 @@ from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 class TypedCounter(TypedCollection):
     r'''Typed counter.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

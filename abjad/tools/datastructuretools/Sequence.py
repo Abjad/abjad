@@ -16,10 +16,6 @@ from abjad.tools import mathtools
 class Sequence(abctools.AbjadValueObject):
     r'''Sequence.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Initializes sequence:
@@ -1795,7 +1791,7 @@ class Sequence(abctools.AbjadValueObject):
 
     @systemtools.Signature()
     def join(self):
-        '''Join subsequences in `sequence`.
+        r'''Join subsequences in `sequence`.
 
         ..  container:: example
 
@@ -4836,7 +4832,7 @@ class Sequence(abctools.AbjadValueObject):
         method_name_callback='_make_reverse_method_name',
         )
     def reverse(self, recurse=False):
-        '''Reverses sequence.
+        r'''Reverses sequence.
 
         ..  container:: example
 
@@ -4970,7 +4966,7 @@ class Sequence(abctools.AbjadValueObject):
         subscript='n',
         )
     def rotate(self, n=0):
-        '''Rotates sequence by index `n`.
+        r'''Rotates sequence by index `n`.
 
         ..  container:: example
 
@@ -5318,7 +5314,7 @@ class Sequence(abctools.AbjadValueObject):
 
     @systemtools.Signature()
     def sum(self):
-        '''Sums sequence.
+        r'''Sums sequence.
 
         ..  container:: example
 

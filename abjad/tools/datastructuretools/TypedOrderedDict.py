@@ -6,10 +6,6 @@ from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 class TypedOrderedDict(TypedCollection):
     r'''Typed ordered dictionary.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Initializes from list of pairs:

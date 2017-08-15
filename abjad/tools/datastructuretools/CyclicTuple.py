@@ -5,10 +5,6 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class CyclicTuple(AbjadObject):
     '''Cylic tuple.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Initializes from string:

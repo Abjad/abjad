@@ -6,10 +6,6 @@ from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 class TypedList(TypedCollection):
     r'''Typed list.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         No item coercion:

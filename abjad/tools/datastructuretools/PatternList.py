@@ -4,11 +4,6 @@ from abjad.tools.datastructuretools.TypedTuple import TypedTuple
 class PatternList(TypedTuple):
     r'''Pattern list.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import rhythmmakertools
-
     ..  container:: example
 
         Three patterns:
@@ -252,12 +247,12 @@ class PatternList(TypedTuple):
                 >>> patterns = abjad.PatternList([
                 ...     abjad.Pattern(
                 ...         indices=[0],
-                ...         payload=rhythmmakertools.NoteRhythmMaker(),
+                ...         payload=abjad.rhythmmakertools.NoteRhythmMaker(),
                 ...         period=1,
                 ...         ),
                 ...     abjad.Pattern(
                 ...         indices=[-3, -2, -1],
-                ...         payload=rhythmmakertools.EvenDivisionRhythmMaker(),
+                ...         payload=abjad.rhythmmakertools.EvenDivisionRhythmMaker(),
                 ...         ),
                 ...     ])
 

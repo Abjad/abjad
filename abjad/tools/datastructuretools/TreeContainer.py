@@ -5,10 +5,6 @@ from abjad.tools.datastructuretools.TreeNode import TreeNode
 class TreeContainer(TreeNode):
     r'''Tree container.
 
-    ::
-
-        >>> import abjad
-
     Inner node in a generalized tree data structure.
 
     ::

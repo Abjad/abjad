@@ -11,10 +11,6 @@ from abjad.tools.abctools import AbjadValueObject
 class Expression(AbjadValueObject):
     r'''Expression.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example expression
 
         Makes identity expression:

@@ -6,10 +6,6 @@ from abjad.tools.abctools import AbjadObject
 class TreeNode(AbjadObject):
     r'''Tree node.
 
-    ::
-
-        >>> import abjad
-
     Node in a generalized tree.
     '''
 

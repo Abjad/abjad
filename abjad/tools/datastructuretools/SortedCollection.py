@@ -4,10 +4,6 @@ import bisect
 class SortedCollection(object):
     r'''Sorted collection.
 
-    ::
-
-        >>> import abjad
-
     Sequence sorted by a key function.
 
     SortedCollection() is much easier to work with than using bisect()
