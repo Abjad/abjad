@@ -4,10 +4,6 @@ from abjad.tools.durationtools.Duration import Duration
 class Multiplier(Duration):
     '''Multiplier.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Initializes from integer numerator:

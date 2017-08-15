@@ -12,10 +12,6 @@ from abjad.tools.topleveltools.setting import setting
 class Duration(AbjadObject, Fraction):
     r'''Duration.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Initializes from integer numerator:
