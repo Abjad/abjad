@@ -1,4 +1,3 @@
-from __future__ import print_function
 from ply import lex
 from abjad import Fraction
 from abjad.tools import indicatortools

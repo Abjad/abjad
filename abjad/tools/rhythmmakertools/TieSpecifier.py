@@ -1,4 +1,3 @@
-from __future__ import print_function
 import collections
 import itertools
 from abjad.tools import datastructuretools

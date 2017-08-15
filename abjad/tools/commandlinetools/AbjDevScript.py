@@ -1,4 +1,3 @@
-from __future__ import print_function
 from abjad.tools.commandlinetools.CommandlineScript import CommandlineScript
 
 

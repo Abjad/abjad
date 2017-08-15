@@ -1,8 +1,7 @@
 #! /usr/bin/env python
 import os
 import setuptools
-import sys
-from distutils.version import StrictVersion
+
 
 version_file_path = os.path.join(
     os.path.dirname(__file__),
@@ -58,13 +57,6 @@ install_requires = [
     'ply',
     'six',
     ]
-version = '.'.join(str(x) for x in sys.version_info[:3])
-if StrictVersion(version) < StrictVersion('3.4.0'):
-    install_requires.append('enum34')
-    install_requires.append('pathlib2')
-if StrictVersion(version) < StrictVersion('3.3.0'):
-    install_requires.append('funcsigs')
-    install_requires.append('mock')
 
 extras_require = {
     'accelerated': [
@@ -72,7 +64,7 @@ extras_require = {
         ],
     'development': [
         'pytest>=3.0.0',
-        'sphinx>=1.5.0',
+        'sphinx>=1.6.0',
         'sphinx-rtd-theme',
         'PyPDF2',
         ],

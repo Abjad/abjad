@@ -1,4 +1,3 @@
-from __future__ import print_function
 import collections
 import inspect
 from abjad.tools import abctools

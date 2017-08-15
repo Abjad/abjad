@@ -1,12 +1,9 @@
+import pathlib
 import shutil
 import sys
 from abjad.tools import commandlinetools
 from abjad.tools import datastructuretools
 from abjad.tools import systemtools
-try:
-    import pathlib
-except ImportError:
-    import pathlib2 as pathlib
 
 
 class ScorePackageScriptTestCase(systemtools.TestCase):

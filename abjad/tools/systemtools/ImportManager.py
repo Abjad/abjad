@@ -1,4 +1,3 @@
-from __future__ import print_function
 import os
 import types
 from abjad.tools.abctools import AbjadObject

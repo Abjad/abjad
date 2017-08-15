@@ -1,13 +1,9 @@
-from __future__ import print_function
 import datetime
 import os
+import pathlib
 import sys
 from abjad.tools import datastructuretools
 from abjad.tools.commandlinetools.ScorePackageScript import ScorePackageScript
-try:
-    import pathlib
-except ImportError:
-    import pathlib2 as pathlib
 
 
 class ManageScoreScript(ScorePackageScript):

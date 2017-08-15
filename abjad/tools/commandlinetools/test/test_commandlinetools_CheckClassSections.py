@@ -4,14 +4,8 @@ import doctest
 import re
 import shutil
 import unittest
-try:
-    import pathlib
-except ImportError:
-    import pathlib2 as pathlib
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO
+import pathlib
+from io import StringIO
 
 
 class TestCheckClassSections(unittest.TestCase):

@@ -1,10 +1,7 @@
 import abjad
 import os
+import pathlib
 import shutil
-try:
-    import pathlib
-except ImportError:
-    import pathlib2 as pathlib
 
 
 class TestCase(abjad.TestCase):
