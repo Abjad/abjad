@@ -6,10 +6,6 @@ from abjad.tools.abctools import AbjadValueObject
 class MarkupCommand(AbjadValueObject):
     r'''LilyPond markup command.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Initializes a complex LilyPond markup command:

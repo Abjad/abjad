@@ -4,10 +4,6 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 class MarkupList(TypedList):
     '''Markup list.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Initializes from strings:

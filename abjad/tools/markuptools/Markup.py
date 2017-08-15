@@ -14,10 +14,6 @@ from abjad.tools.markuptools.Postscript import Postscript
 class Markup(AbjadValueObject):
     r'''LilyPond markup.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Initializes from string:
