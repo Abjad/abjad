@@ -12,11 +12,6 @@ from abjad.tools.topleveltools import select
 class EvenRunRhythmMaker(RhythmMaker):
     r'''Even run rhythm-maker.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import rhythmmakertools
-
     ..  container:: example
 
         Makes even run of notes each equal in duration to ``1/d``
@@ -25,7 +20,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> rhythm_maker = rhythmmakertools.EvenRunRhythmMaker()
+            >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker()
 
         ::
 
@@ -107,7 +102,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.EvenRunRhythmMaker()
+                >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker()
                 >>> divisions = [(4, 8), (3, 4), (2, 4)]
                 >>> result = rhythm_maker(divisions)
                 >>> for selection in result:
@@ -132,8 +127,9 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ::
 
+                >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker()
                 >>> f(rhythm_maker)
-                rhythmmakertools.EvenRunRhythmMaker()
+                abjad.rhythmmakertools.EvenRunRhythmMaker()
 
         Set `format_specification` to `''` or `'storage'`.
 
@@ -218,10 +214,10 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> specifier = rhythmmakertools.DurationSpellingSpecifier(
+                >>> specifier = abjad.rhythmmakertools.DurationSpellingSpecifier(
                 ...     forbidden_duration=(1, 4),
                 ...     )
-                >>> rhythm_maker = rhythmmakertools.EvenRunRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker(
                 ...     duration_spelling_specifier=specifier,
                 ...     )
 
@@ -285,7 +281,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.EvenRunRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker(
                 ...     exponent=0,
                 ...     )
 
@@ -341,7 +337,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.EvenRunRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker(
                 ...     exponent=1,
                 ...     )
 
@@ -406,7 +402,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.EvenRunRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker(
                 ...     exponent=2,
                 ...     )
 
@@ -500,10 +496,10 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> tie_specifier = rhythmmakertools.TieSpecifier(
+                >>> tie_specifier = abjad.rhythmmakertools.TieSpecifier(
                 ...     tie_across_divisions=False,
                 ...     )
-                >>> rhythm_maker = rhythmmakertools.EvenRunRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker(
                 ...     tie_specifier=tie_specifier,
                 ...     )
 
@@ -563,10 +559,10 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> tie_specifier = rhythmmakertools.TieSpecifier(
+                >>> tie_specifier = abjad.rhythmmakertools.TieSpecifier(
                 ...     tie_across_divisions=True,
                 ...     )
-                >>> rhythm_maker = rhythmmakertools.EvenRunRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker(
                 ...     tie_specifier=tie_specifier,
                 ...     )
 
@@ -627,10 +623,10 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> tie_specifier = rhythmmakertools.TieSpecifier(
+                >>> tie_specifier = abjad.rhythmmakertools.TieSpecifier(
                 ...     tie_across_divisions=[1, 0],
                 ...     )
-                >>> rhythm_maker = rhythmmakertools.EvenRunRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker(
                 ...     tie_specifier=tie_specifier,
                 ...     )
 

@@ -10,11 +10,6 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 class NoteRhythmMaker(RhythmMaker):
     r'''Note rhythm-maker.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import rhythmmakertools
-
     ..  container:: example
 
         Makes notes equal to the duration of input divisions. Adds ties where
@@ -22,7 +17,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+            >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker()
 
         ::
 
@@ -99,7 +94,7 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker()
                 >>> divisions = [(5, 8), (3, 8)]
                 >>> result = rhythm_maker(divisions)
                 >>> for x in result:
@@ -124,9 +119,9 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker()
                 >>> f(rhythm_maker)
-                rhythmmakertools.NoteRhythmMaker()
+                abjad.rhythmmakertools.NoteRhythmMaker()
 
         Returns string.
         '''
@@ -140,7 +135,7 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythmmakertools.NoteRhythmMaker()
+                >>> abjad.rhythmmakertools.NoteRhythmMaker()
                 NoteRhythmMaker()
 
         Returns string.
@@ -275,8 +270,8 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
-                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
                 ...         beam_each_division=True,
                 ...         ),
                 ...     )
@@ -312,8 +307,8 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
-                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
                 ...         beam_divisions_together=True,
                 ...         ),
                 ...     )
@@ -357,8 +352,8 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
-                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
                 ...         beam_divisions_together=False,
                 ...         beam_each_division=False,
                 ...         ),
@@ -404,7 +399,7 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker()
 
             ::
 
@@ -445,8 +440,8 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
-                ...     burnish_specifier=rhythmmakertools.BurnishSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+                ...     burnish_specifier=abjad.rhythmmakertools.BurnishSpecifier(
                 ...         left_classes=[abjad.Rest],
                 ...         left_counts=[1],
                 ...         outer_divisions_only=True,
@@ -492,8 +487,8 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
-                ...     burnish_specifier=rhythmmakertools.BurnishSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+                ...     burnish_specifier=abjad.rhythmmakertools.BurnishSpecifier(
                 ...         left_classes=[abjad.Rest],
                 ...         left_counts=[2],
                 ...         outer_divisions_only=True,
@@ -539,8 +534,8 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
-                ...     burnish_specifier=rhythmmakertools.BurnishSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+                ...     burnish_specifier=abjad.rhythmmakertools.BurnishSpecifier(
                 ...         left_classes=[abjad.Rest],
                 ...         left_counts=[1],
                 ...         right_classes=[abjad.Rest],
@@ -598,7 +593,7 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker()
 
             ::
 
@@ -638,9 +633,9 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[
-                ...         rhythmmakertools.SilenceMask(
+                ...         abjad.rhythmmakertools.SilenceMask(
                 ...             pattern=abjad.index_every([0], period=2),
                 ...             ),
                 ...         ],
@@ -684,7 +679,7 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[abjad.silence_all()],
                 ...     )
 
@@ -726,11 +721,11 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> mask = rhythmmakertools.SilenceMask(
+                >>> mask = abjad.rhythmmakertools.SilenceMask(
                 ...     pattern=abjad.index_all(),
                 ...     use_multimeasure_rests=True,
                 ...     )
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[mask],
                 ...     )
 
@@ -775,10 +770,10 @@ class NoteRhythmMaker(RhythmMaker):
                 >>> pattern_1 = abjad.index_every([0], period=2)
                 >>> pattern_2 = abjad.index([0, -1])
                 >>> pattern = pattern_1 & ~pattern_2
-                >>> mask = rhythmmakertools.SilenceMask(
+                >>> mask = abjad.rhythmmakertools.SilenceMask(
                 ...     pattern=pattern,
                 ...     )
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[mask],
                 ...     )
 
@@ -833,7 +828,7 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker()
 
             ::
 
@@ -867,8 +862,8 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
-                ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
                 ...         forbidden_duration=(1, 2),
                 ...         ),
                 ...     )
@@ -905,8 +900,8 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
-                ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
                 ...         spell_metrically=True,
                 ...         ),
                 ...     )
@@ -951,8 +946,8 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
-                ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
                 ...         spell_metrically='unassignable',
                 ...         ),
                 ...     )
@@ -997,12 +992,12 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> partition_table = rhythmmakertools.PartitionTable([
+                >>> partition_table = abjad.rhythmmakertools.PartitionTable([
                 ...     (5, [3, 2]),
                 ...     (9, [3, 3, 3]),
                 ...     ])
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
-                ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
                 ...         spell_metrically=partition_table,
                 ...         ),
                 ...     )
@@ -1045,8 +1040,8 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
-                ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
                 ...         rewrite_meter=True,
                 ...         ),
                 ...     )
@@ -1094,7 +1089,7 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker()
 
             ::
 
@@ -1134,7 +1129,7 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     logical_tie_masks=abjad.silence_every([0], period=2)
                 ...     )
 
@@ -1176,7 +1171,7 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     logical_tie_masks=abjad.silence_all(),
                 ...     )
 
@@ -1227,8 +1222,8 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
-                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=False,
                 ...         ),
                 ...     )
@@ -1271,8 +1266,8 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
-                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=True,
                 ...         ),
                 ...     )
@@ -1319,8 +1314,8 @@ class NoteRhythmMaker(RhythmMaker):
                 ...     indices=[0],
                 ...     period=2,
                 ...     )
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
-                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=pattern,
                 ...         ),
                 ...     )
@@ -1363,8 +1358,8 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
-                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=True,
                 ...         use_messiaen_style_ties=True,
                 ...         ),
@@ -1410,8 +1405,8 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
-                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
                 ...         strip_ties=True,
                 ...         ),
                 ...     )
@@ -1451,11 +1446,11 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
-                ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
                 ...         spell_metrically=True,
                 ...         ),
-                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
                 ...         strip_ties=True,
                 ...         ),
                 ...     )
@@ -1506,7 +1501,7 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker()
 
             ::
 
@@ -1545,8 +1540,8 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
-                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
                 ...         is_diminution=False,
                 ...         ),
                 ...     )

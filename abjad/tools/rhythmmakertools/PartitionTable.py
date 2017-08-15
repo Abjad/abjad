@@ -5,11 +5,6 @@ from abjad.tools.datastructuretools import TypedOrderedDict
 class PartitionTable(TypedOrderedDict):
     r'''Partition table.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import rhythmmakertools
-
     ..  container:: example
 
         Partitions integers roughly ``1:1`` (restricted to assignable values)
@@ -17,7 +12,7 @@ class PartitionTable(TypedOrderedDict):
 
         ::
 
-            >>> table = rhythmmakertools.PartitionTable([
+            >>> table = abjad.rhythmmakertools.PartitionTable([
             ...     (2, [1, 1]),
             ...     (3, [2, 1]),
             ...     (5, [3, 2]),
@@ -55,7 +50,7 @@ class PartitionTable(TypedOrderedDict):
 
         ::
 
-            >>> table = rhythmmakertools.PartitionTable([
+            >>> table = abjad.rhythmmakertools.PartitionTable([
             ...     (2, [1, 1]),
             ...     (3, [1, 2]),
             ...     (5, [2, 3]),
@@ -113,7 +108,7 @@ class PartitionTable(TypedOrderedDict):
 
             ::
 
-                >>> table = rhythmmakertools.PartitionTable([
+                >>> table = abjad.rhythmmakertools.PartitionTable([
                 ...     (2, [1, 1]),
                 ...     (3, [2, 1]),
                 ...     (5, [3, 2]),
@@ -148,7 +143,7 @@ class PartitionTable(TypedOrderedDict):
 
             ::
 
-                >>> table = rhythmmakertools.PartitionTable([
+                >>> table = abjad.rhythmmakertools.PartitionTable([
                 ...     (5, [1, 3, 1]),
                 ...     (7, [1, 2, 4]),
                 ...     ])

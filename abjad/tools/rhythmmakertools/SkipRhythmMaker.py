@@ -4,18 +4,13 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 class SkipRhythmMaker(RhythmMaker):
     r'''Skip rhythm-maker.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import rhythmmakertools
-
     ..  container:: example
 
         Makes skips equal to the duration of input divisions.
 
         ::
 
-            >>> rhythm_maker = rhythmmakertools.SkipRhythmMaker()
+            >>> rhythm_maker = abjad.rhythmmakertools.SkipRhythmMaker()
 
         ::
 
@@ -77,8 +72,9 @@ class SkipRhythmMaker(RhythmMaker):
 
             ::
 
+                >>> rhythm_maker = abjad.rhythmmakertools.SkipRhythmMaker()
                 >>> f(rhythm_maker)
-                rhythmmakertools.SkipRhythmMaker()
+                abjad.rhythmmakertools.SkipRhythmMaker()
 
         Returns string.
         '''

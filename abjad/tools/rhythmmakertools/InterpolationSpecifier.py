@@ -4,12 +4,6 @@ from abjad.tools.abctools import AbjadValueObject
 
 class InterpolationSpecifier(AbjadValueObject):
     r'''Interpolation specifier.
-
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import rhythmmakertools
-
     '''
 
     ### CLASS VARIABLES ###
@@ -47,14 +41,14 @@ class InterpolationSpecifier(AbjadValueObject):
 
             ::
 
-                >>> specifier = rhythmmakertools.InterpolationSpecifier(
+                >>> specifier = abjad.rhythmmakertools.InterpolationSpecifier(
                 ...     start_duration=(1, 4),
                 ...     stop_duration=(1, 16),
                 ...     written_duration=(1, 16),
                 ...     )
                 >>> specifier = specifier.reverse()
                 >>> f(specifier)
-                rhythmmakertools.InterpolationSpecifier(
+                abjad.rhythmmakertools.InterpolationSpecifier(
                     start_duration=abjad.Duration(1, 16),
                     stop_duration=abjad.Duration(1, 4),
                     written_duration=abjad.Duration(1, 16),
@@ -66,14 +60,14 @@ class InterpolationSpecifier(AbjadValueObject):
 
             ::
 
-                >>> specifier = rhythmmakertools.InterpolationSpecifier(
+                >>> specifier = abjad.rhythmmakertools.InterpolationSpecifier(
                 ...     start_duration=(1, 16),
                 ...     stop_duration=(1, 4),
                 ...     written_duration=(1, 16),
                 ...     )
                 >>> specifier = specifier.reverse()
                 >>> f(specifier)
-                rhythmmakertools.InterpolationSpecifier(
+                abjad.rhythmmakertools.InterpolationSpecifier(
                     start_duration=abjad.Duration(1, 4),
                     stop_duration=abjad.Duration(1, 16),
                     written_duration=abjad.Duration(1, 16),

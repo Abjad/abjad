@@ -15,12 +15,6 @@ from abjad.tools.topleveltools import mutate
 
 class RhythmMaker(AbjadValueObject):
     '''Abstract rhythm-maker.
-
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import rhythmmakertools
-
     '''
 
     ### CLASS VARIABLES ###

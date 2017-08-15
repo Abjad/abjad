@@ -7,16 +7,11 @@ from abjad.tools.abctools import AbjadValueObject
 class Talea(AbjadValueObject):
     '''Talea.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import rhythmmakertools
-
     ..  container:: example
 
         ::
 
-            >>> talea = rhythmmakertools.Talea(
+            >>> talea = abjad.rhythmmakertools.Talea(
             ...    counts=[2, 1, 3, 2, 4, 1, 1],
             ...    denominator=16,
             ...    )
@@ -61,7 +56,7 @@ class Talea(AbjadValueObject):
 
             ::
 
-                >>> talea = rhythmmakertools.Talea(
+                >>> talea = abjad.rhythmmakertools.Talea(
                 ...    counts=[2, 1, 3, 2, 4, 1, 1],
                 ...    denominator=16,
                 ...    )
@@ -109,7 +104,7 @@ class Talea(AbjadValueObject):
 
             ::
 
-                >>> talea = rhythmmakertools.Talea(
+                >>> talea = abjad.rhythmmakertools.Talea(
                 ...    counts=[2, 1, 3, 2, 4, 1, 1],
                 ...    denominator=16,
                 ...    )
@@ -140,7 +135,7 @@ class Talea(AbjadValueObject):
 
             ::
 
-                >>> talea = rhythmmakertools.Talea(
+                >>> talea = abjad.rhythmmakertools.Talea(
                 ...    counts=[2, 1, 3, 2, 4, 1, 1],
                 ...    denominator=16,
                 ...    )
@@ -166,7 +161,7 @@ class Talea(AbjadValueObject):
 
             ::
 
-                >>> talea = rhythmmakertools.Talea(
+                >>> talea = abjad.rhythmmakertools.Talea(
                 ...    counts=[2, 1, 3, 2, 4, 1, 1],
                 ...    denominator=16,
                 ...    )
@@ -193,7 +188,7 @@ class Talea(AbjadValueObject):
 
             ::
 
-                >>> talea = rhythmmakertools.Talea(
+                >>> talea = abjad.rhythmmakertools.Talea(
                 ...    counts=[2, 1, 3, 2, 4, 1, 1],
                 ...    denominator=16,
                 ...    )
