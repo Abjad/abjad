@@ -4,10 +4,6 @@ from abjad.tools.selectiontools.Selection import Selection
 class Lineage(Selection):
     r'''Lineage of a component.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

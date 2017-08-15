@@ -7,10 +7,6 @@ from abjad.tools.selectiontools.Selection import Selection
 class VerticalMoment(Selection):
     r'''Vertical moment of a component.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

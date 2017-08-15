@@ -14,10 +14,6 @@ from abjad.tools.topleveltools import select
 class Selection(object):
     r'''Selection of components.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

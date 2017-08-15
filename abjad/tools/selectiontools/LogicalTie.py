@@ -7,10 +7,6 @@ from abjad.tools.selectiontools.Selection import Selection
 class LogicalTie(Selection):
     r'''Logical tie of a component.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

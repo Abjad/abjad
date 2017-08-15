@@ -5,10 +5,6 @@ from abjad.tools.selectiontools.Selection import Selection
 class Descendants(Selection):
     r'''Descendants of a component.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

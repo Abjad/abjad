@@ -7,10 +7,6 @@ from abjad.tools.selectiontools.Selection import Selection
 class Parentage(Selection):
     r'''Parentage of a component.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
