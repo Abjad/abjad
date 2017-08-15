@@ -9,10 +9,6 @@ class InheritanceGraph(AbjadObject):
     r'''Generates a graph of a class or collection of
     classes as a dictionary of parent-children relationships:
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

@@ -4,10 +4,6 @@ from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 class ReSTAutodocDirective(ReSTDirective):
     r'''A ReST autodoc directive.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

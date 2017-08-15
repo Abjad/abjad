@@ -4,10 +4,6 @@ from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 class ReSTInheritanceDiagram(ReSTDirective):
     r'''A ReST inheritance diagram directive.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

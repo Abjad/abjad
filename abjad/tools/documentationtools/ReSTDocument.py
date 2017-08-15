@@ -4,10 +4,6 @@ from abjad.tools.datastructuretools.TreeContainer import TreeContainer
 class ReSTDocument(TreeContainer):
     r'''A ReST document tree.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

@@ -5,10 +5,6 @@ from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 class ReSTAutosummaryDirective(ReSTDirective):
     r'''A ReST Autosummary directive.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

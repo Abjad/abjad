@@ -5,10 +5,6 @@ from abjad.tools.datastructuretools.TreeNode import TreeNode
 class ReSTTOCItem(TreeNode):
     r'''A ReST TOC item.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

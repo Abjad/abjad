@@ -4,10 +4,6 @@ from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 class ReSTOnlyDirective(ReSTDirective):
     r'''A ReST `only` directive.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

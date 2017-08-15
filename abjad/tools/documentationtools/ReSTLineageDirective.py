@@ -4,10 +4,6 @@ from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 class ReSTLineageDirective(ReSTDirective):
     r'''A ReST lineage directive.
 
-    ::
-
-        >>> import abjad
-
     Digrams inheritance of Abjad classes.
 
     ..  container:: example

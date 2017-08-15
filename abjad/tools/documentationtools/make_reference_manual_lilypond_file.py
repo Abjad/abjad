@@ -6,10 +6,6 @@ from abjad.tools.topleveltools import setting
 def make_reference_manual_lilypond_file(music=None, **keywords):
     r'''Makes reference manual LilyPond file.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

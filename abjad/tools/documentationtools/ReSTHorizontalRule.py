@@ -4,10 +4,6 @@ from abjad.tools.datastructuretools.TreeNode import TreeNode
 class ReSTHorizontalRule(TreeNode):
     r'''A ReST horizontal rule.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

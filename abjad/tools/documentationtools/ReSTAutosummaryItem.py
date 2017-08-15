@@ -4,10 +4,6 @@ from abjad.tools.datastructuretools.TreeNode import TreeNode
 class ReSTAutosummaryItem(TreeNode):
     r'''A ReST autosummary item.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

@@ -5,10 +5,6 @@ from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 class ReSTTOCDirective(ReSTDirective):
     r'''A ReST TOC directive.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

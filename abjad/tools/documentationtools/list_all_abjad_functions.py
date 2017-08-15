@@ -3,10 +3,6 @@
 def list_all_abjad_functions(modules=None):
     r'''Lists all public functions defined in Abjad.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
