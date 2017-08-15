@@ -451,15 +451,15 @@ class NamedInterval(Interval):
             )
 
     def _transpose_pitch(self, pitch):
-        from abjad.tools import pitchtools
+        import abjad
         pitch_number = pitch.number + self.semitones
-        diatonic_pitch_class_number = \
-            (pitch._get_diatonic_pitch_class_number() + self.staff_spaces) % 7
+        diatonic_pitch_class_number = pitch._get_diatonic_pitch_class_number()
+        diatonic_pitch_class_number += self.staff_spaces
+        diatonic_pitch_class_number %= 7
         diatonic_pitch_class_name = \
-            pitchtools.PitchClass._diatonic_pitch_class_number_to_diatonic_pitch_class_name[
+            abjad.PitchClass._diatonic_pitch_class_number_to_diatonic_pitch_class_name[
                 diatonic_pitch_class_number]
-        class_ = pitchtools.NamedPitch
-        named_pitch = class_.from_pitch_number(
+        named_pitch = abjad.NamedPitch.from_pitch_number(
             pitch_number,
             diatonic_pitch_class_name,
             )
@@ -598,9 +598,9 @@ class NamedInterval(Interval):
 
         Returns named inversion-equivalent interval-class.
         '''
-        from abjad.tools import pitchtools
+        import abjad
         quality_string, number = self._quality_string, self.number
-        return pitchtools.NamedIntervalClass.from_quality_and_number(
+        return abjad.NamedIntervalClass.from_quality_and_number(
             quality_string,
             number,
             )
