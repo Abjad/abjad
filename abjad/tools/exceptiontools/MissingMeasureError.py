@@ -1,5 +1,3 @@
-
-
 class MissingMeasureError(Exception):
     r'''No measure found.
     '''

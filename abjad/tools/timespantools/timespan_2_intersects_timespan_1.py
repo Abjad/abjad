@@ -1,5 +1,3 @@
-
-
 def timespan_2_intersects_timespan_1(
     timespan_1=None,
     timespan_2=None,

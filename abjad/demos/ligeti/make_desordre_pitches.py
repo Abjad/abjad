@@ -1,5 +1,3 @@
-
-
 def make_desordre_pitches():
     r'''Makes Désordre pitches.
     '''

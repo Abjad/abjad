@@ -1,4 +1,3 @@
-
 from abjad.tools.pitchtools import NamedPitchClass
 
 

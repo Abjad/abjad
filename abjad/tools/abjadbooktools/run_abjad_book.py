@@ -1,5 +1,3 @@
-
-
 def run_abjad_book():
     r'''Entry point for abjad-book.
     '''

@@ -1,5 +1,3 @@
-
-
 class SelectorLibrary(object):
     r'''Selector library.
     '''

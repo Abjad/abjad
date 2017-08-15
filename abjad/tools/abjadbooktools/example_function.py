@@ -1,5 +1,3 @@
-
-
 def example_function(argument):
     r'''This is a multiline docstring.
 

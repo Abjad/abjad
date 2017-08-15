@@ -1,5 +1,3 @@
-
-
 def timespan_2_overlaps_only_stop_of_timespan_1(
     timespan_1=None,
     timespan_2=None,

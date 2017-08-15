@@ -1,5 +1,3 @@
-
-
 def run_ajv():
     r'''Entry point for setuptools.
 

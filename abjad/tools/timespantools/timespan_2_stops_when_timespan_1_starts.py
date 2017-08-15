@@ -1,5 +1,3 @@
-
-
 def timespan_2_stops_when_timespan_1_starts(
     timespan_1=None,
     timespan_2=None,

@@ -1,5 +1,3 @@
-
-
 def all_are_integer_equivalent_numbers(argument):
     '''Is true when `argument` is an iterable collection with
     integer-equivalent items. Otherwise false.

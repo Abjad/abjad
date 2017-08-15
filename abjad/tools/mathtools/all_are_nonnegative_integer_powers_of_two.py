@@ -1,5 +1,3 @@
-
-
 def all_are_nonnegative_integer_powers_of_two(argument):
     '''Is true when `argument` is an iterable collection of nonnegative
     integer powers of two. Otherwise false.

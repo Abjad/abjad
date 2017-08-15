@@ -1,5 +1,3 @@
-
-
 def timespan_2_stops_after_timespan_1_stops(
     timespan_1=None,
     timespan_2=None,

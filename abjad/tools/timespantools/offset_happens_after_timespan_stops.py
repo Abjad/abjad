@@ -1,5 +1,3 @@
-
-
 def offset_happens_after_timespan_stops(
     timespan=None,
     offset=None,

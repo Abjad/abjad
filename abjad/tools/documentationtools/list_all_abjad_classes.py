@@ -1,5 +1,3 @@
-
-
 def list_all_abjad_classes(modules=None, ignored_classes=None):
     r'''Lists all public classes defined in Abjad.
 
