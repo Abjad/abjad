@@ -6,10 +6,6 @@ from abjad.tools.schemetools.Scheme import Scheme
 class SchemeVector(Scheme):
     '''Abjad model of Scheme vector.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Scheme vector of boolean values:

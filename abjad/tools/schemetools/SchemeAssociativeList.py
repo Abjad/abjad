@@ -4,10 +4,6 @@ from abjad.tools.schemetools.Scheme import Scheme
 class SchemeAssociativeList(Scheme):
     '''Abjad model of Scheme associative list.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

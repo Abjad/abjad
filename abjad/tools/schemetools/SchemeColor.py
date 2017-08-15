@@ -4,10 +4,6 @@ from abjad.tools.schemetools.Scheme import Scheme
 class SchemeColor(Scheme):
     r'''Abjad model of Scheme color.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

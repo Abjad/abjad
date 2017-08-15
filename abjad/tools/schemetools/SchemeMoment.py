@@ -8,10 +8,6 @@ from abjad.tools.schemetools.Scheme import Scheme
 class SchemeMoment(Scheme):
     r'''Abjad model of Scheme moment.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Initializes with two integers:

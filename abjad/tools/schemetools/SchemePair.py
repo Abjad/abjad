@@ -4,10 +4,6 @@ from abjad.tools.schemetools.Scheme import Scheme
 class SchemePair(Scheme):
     r'''Abjad model of Scheme pair.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Initializes from two values:

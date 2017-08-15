@@ -5,10 +5,6 @@ from abjad.tools.abctools import AbjadValueObject
 class Scheme(AbjadValueObject):
     r'''Abjad model of Scheme code.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         A Scheme boolean value:

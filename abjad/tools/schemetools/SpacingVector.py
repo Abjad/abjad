@@ -4,10 +4,6 @@ from abjad.tools.schemetools.SchemeVector import SchemeVector
 class SpacingVector(SchemeVector):
     r'''Abjad model of Scheme spacing vector.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
