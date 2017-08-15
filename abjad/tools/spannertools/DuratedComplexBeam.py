@@ -7,10 +7,6 @@ from abjad.tools.spannertools.ComplexBeam import ComplexBeam
 class DuratedComplexBeam(ComplexBeam):
     r'''Durated complex beam.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Two groups:

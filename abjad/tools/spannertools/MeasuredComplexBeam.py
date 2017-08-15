@@ -5,10 +5,6 @@ from abjad.tools.spannertools.ComplexBeam import ComplexBeam
 class MeasuredComplexBeam(ComplexBeam):
     r'''Measured complex beam.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

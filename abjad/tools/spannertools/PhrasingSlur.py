@@ -5,10 +5,6 @@ from abjad.tools.spannertools.Spanner import Spanner
 class PhrasingSlur(Spanner):
     r'''Phrasing slur.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Spans four notes:

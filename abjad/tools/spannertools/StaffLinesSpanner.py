@@ -5,10 +5,6 @@ from abjad.tools.spannertools.Spanner import Spanner
 class StaffLinesSpanner(Spanner):
     r'''Staff lines spanner.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

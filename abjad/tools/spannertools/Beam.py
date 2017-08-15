@@ -5,10 +5,6 @@ from abjad.tools.spannertools.Spanner import Spanner
 class Beam(Spanner):
     r'''Beam.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

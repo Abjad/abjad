@@ -5,10 +5,6 @@ from abjad.tools.spannertools.Spanner import Spanner
 class TextSpanner(Spanner):
     r'''Text spanner.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Text spanner with no grob overrides:

@@ -5,10 +5,6 @@ from abjad.tools.spannertools.Spanner import Spanner
 class ComplexTrillSpanner(Spanner):
     r'''Complex trill spanner.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

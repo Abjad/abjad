@@ -5,10 +5,6 @@ from abjad.tools.spannertools.Spanner import Spanner
 class Slur(Spanner):
     r'''Slur.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Slurs four notes:

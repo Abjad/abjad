@@ -5,10 +5,6 @@ from abjad.tools.spannertools.Spanner import Spanner
 class MetronomeMarkSpanner(Spanner):
     r'''MetronomeMark spanner.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         With metronome marks only:

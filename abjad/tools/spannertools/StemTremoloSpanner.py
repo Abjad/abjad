@@ -5,10 +5,6 @@ from abjad.tools.spannertools.Spanner import Spanner
 class StemTremoloSpanner(Spanner):
     r'''Stem tremolo spanner.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

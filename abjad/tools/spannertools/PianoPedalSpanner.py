@@ -4,10 +4,6 @@ from abjad.tools.spannertools.Spanner import Spanner
 class PianoPedalSpanner(Spanner):
     r'''Piano pedal spanner.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

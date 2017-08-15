@@ -7,10 +7,6 @@ from abjad.tools.topleveltools import inspect
 class ClefSpanner(Spanner):
     r'''Clef spanner.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Attaches percussion clef spanner to notes in middle of staff:

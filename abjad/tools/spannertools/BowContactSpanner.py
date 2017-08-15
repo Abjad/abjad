@@ -4,10 +4,6 @@ from abjad.tools.spannertools.Spanner import Spanner
 class BowContactSpanner(Spanner):
     r'''Bow contact spanner.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

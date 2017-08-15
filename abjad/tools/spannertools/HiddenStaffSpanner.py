@@ -4,10 +4,6 @@ from abjad.tools.spannertools.Spanner import Spanner
 class HiddenStaffSpanner(Spanner):
     r'''Hidden staff spanner.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

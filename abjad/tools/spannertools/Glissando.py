@@ -5,10 +5,6 @@ from abjad.tools.spannertools.Spanner import Spanner
 class Glissando(Spanner):
     r'''Glissando.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

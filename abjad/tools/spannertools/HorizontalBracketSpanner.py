@@ -5,10 +5,6 @@ from abjad.tools.spannertools.Spanner import Spanner
 class HorizontalBracketSpanner(Spanner):
     r'''Horizontal bracket spanner.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

@@ -6,10 +6,6 @@ from abjad.tools.spannertools.Spanner import Spanner
 class Hairpin(Spanner):
     r'''Hairpin.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Crescendo:

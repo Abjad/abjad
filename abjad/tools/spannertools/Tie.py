@@ -5,10 +5,6 @@ from abjad.tools.spannertools.Spanner import Spanner
 class Tie(Spanner):
     r'''Tie.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Ties four notes:

@@ -5,10 +5,6 @@ from abjad.tools.spannertools.Spanner import Spanner
 class TrillSpanner(Spanner):
     r'''Trill spanner.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Attaches unpitched trill spanner to all notes in staff:

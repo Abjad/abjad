@@ -5,10 +5,6 @@ from abjad.tools.spannertools.Spanner import Spanner
 class OctavationSpanner(Spanner):
     r'''Octavation spanner.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Spans four notes:
