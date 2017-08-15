@@ -4,10 +4,6 @@ from abjad.tools.abctools import AbjadValueObject
 class LineSegment(AbjadValueObject):
     r'''Line segment.
 
-    ::
-
-        >>> import abjad
-
     Line segments format as text spanners.
 
     ..  container:: example

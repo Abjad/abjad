@@ -5,10 +5,6 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 class TimeSignatureList(TypedList):
     r'''Time signature list.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Two time signatures:

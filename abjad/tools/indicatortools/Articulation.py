@@ -7,10 +7,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class Articulation(AbjadValueObject):
     r'''Articulation.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Initializes from name:

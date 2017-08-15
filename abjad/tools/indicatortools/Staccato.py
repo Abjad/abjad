@@ -5,10 +5,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class Staccato(AbjadValueObject):
     r'''Staccato.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Attached to a single note:

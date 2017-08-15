@@ -8,10 +8,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class MetricModulation(AbjadValueObject):
     r'''Metric modulation.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         With notes:

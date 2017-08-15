@@ -5,10 +5,6 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 class MetronomeMarkList(TypedList):
     r'''Metronome mark list.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

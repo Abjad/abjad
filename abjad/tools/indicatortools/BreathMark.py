@@ -4,10 +4,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class BreathMark(AbjadValueObject):
     r'''Breath mark.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Attached to a single note:

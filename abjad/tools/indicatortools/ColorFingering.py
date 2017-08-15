@@ -8,10 +8,6 @@ from abjad.tools.abctools import AbjadValueObject
 class ColorFingering(AbjadValueObject):
     r'''Color fingering.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         First color fingering:

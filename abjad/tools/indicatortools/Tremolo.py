@@ -4,10 +4,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class Tremolo(AbjadValueObject):
     r'''Tremolo (of exactly two notes).
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         With two beams:

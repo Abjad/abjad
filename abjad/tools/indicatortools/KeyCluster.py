@@ -4,10 +4,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class KeyCluster(AbjadValueObject):
     r'''Key cluster.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Default values:

@@ -5,10 +5,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class LilyPondCommand(AbjadValueObject):
     r'''LilyPond command.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Dotted slur:

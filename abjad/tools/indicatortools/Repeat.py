@@ -4,10 +4,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class Repeat(AbjadValueObject):
     r'''Repeat.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Volta repeat:

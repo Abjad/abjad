@@ -4,10 +4,6 @@ from abjad.tools.indicatortools.LineSegment import LineSegment
 class ArrowLineSegment(LineSegment):
     r'''Arrow line segment.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         String contact position spanner:

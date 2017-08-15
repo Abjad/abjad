@@ -5,10 +5,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class RehearsalMark(AbjadValueObject):
     r'''Rehearsal mark.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Rehearsal A:

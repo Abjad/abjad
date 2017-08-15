@@ -4,10 +4,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class StaffChange(AbjadValueObject):
     r'''Staff change.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Explicit staff change:
@@ -16,10 +12,8 @@ class StaffChange(AbjadValueObject):
 
             >>> staff_group = abjad.StaffGroup()
             >>> staff_group.context_name = 'PianoStaff'
-            >>> rh_staff = abjad.Staff("c'8 d'8 e'8 f'8")
-            >>> rh_staff.name = 'RHStaff'
-            >>> lh_staff = abjad.Staff("s2")
-            >>> lh_staff.name = 'LHStaff'
+            >>> rh_staff = abjad.Staff("c'8 d'8 e'8 f'8", name='RHStaff')
+            >>> lh_staff = abjad.Staff("s2", name='LHStaff')
             >>> staff_group.extend([rh_staff, lh_staff])
             >>> staff_change = abjad.StaffChange(lh_staff)
             >>> abjad.attach(staff_change, rh_staff[2])
@@ -89,6 +83,7 @@ class StaffChange(AbjadValueObject):
 
             ::
 
+                >>> lh_staff = abjad.Staff("s2", name='LHStaff')
                 >>> staff_change = abjad.StaffChange(staff=lh_staff)
                 >>> print(str(staff_change))
                 \change Staff = LHStaff
@@ -141,6 +136,7 @@ class StaffChange(AbjadValueObject):
 
             ::
 
+                >>> lh_staff = abjad.Staff("s2", name='LHStaff')
                 >>> staff_change = abjad.StaffChange(staff=lh_staff)
                 >>> staff_change.default_scope
                 <class 'abjad.tools.scoretools.Staff.Staff'>
@@ -169,6 +165,7 @@ class StaffChange(AbjadValueObject):
 
             ::
 
+                >>> lh_staff = abjad.Staff("s2", name='LHStaff')
                 >>> staff_change = abjad.StaffChange(staff=lh_staff)
                 >>> staff_change.staff
                 Staff('s2', name='LHStaff')

@@ -8,10 +8,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class TimeSignature(AbjadValueObject):
     r'''Time signature.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         First time signature:

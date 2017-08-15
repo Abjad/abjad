@@ -5,10 +5,6 @@ from abjad.tools.abctools import AbjadValueObject
 class StringNumber(AbjadValueObject):
     r'''String number.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         String I:

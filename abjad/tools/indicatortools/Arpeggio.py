@@ -4,10 +4,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class Arpeggio(AbjadValueObject):
     r'''Arpeggio.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Without direction arrow:

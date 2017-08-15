@@ -14,11 +14,6 @@ from abjad.tools.topleveltools import new
 class MetronomeMark(AbjadValueObject):
     r'''MetronomeMark.
 
-    ::
-
-        >>> import abjad
-        >>> import pytest
-
     ..  container:: example
 
         Initializes integer-valued metronome mark:
@@ -282,9 +277,10 @@ class MetronomeMark(AbjadValueObject):
 
                 >>> mark_1 = abjad.MetronomeMark(textual_indication='Langsam')
                 >>> mark_2 = abjad.MetronomeMark((1, 4), 90)
-                >>> statement = 'mark_1 + mark_2'
-                >>> pytest.raises(ImpreciseMetronomeMarkError, statement)
-                <ExceptionInfo ImpreciseMetronomeMarkError ...>
+                >>> mark_1 + mark_2
+                Traceback (most recent call last):
+                ...
+                abjad.tools.exceptiontools.ImpreciseMetronomeMarkError.ImpreciseMetronomeMarkError
 
         ..  container:: example
 
@@ -294,9 +290,10 @@ class MetronomeMark(AbjadValueObject):
 
                 >>> mark_1 = abjad.MetronomeMark((1, 8), (90, 92))
                 >>> mark_2 = abjad.MetronomeMark((1, 4), 90)
-                >>> statement = 'mark_1 + mark_2'
-                >>> pytest.raises(ImpreciseMetronomeMarkError, statement)
-                <ExceptionInfo ImpreciseMetronomeMarkError ...>
+                >>> mark_1 + mark_2
+                Traceback (most recent call last):
+                ...
+                abjad.tools.exceptiontools.ImpreciseMetronomeMarkError.ImpreciseMetronomeMarkError
 
         ..  container:: example
 
@@ -304,9 +301,10 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> statement = 'abjad.MetronomeMark((1, 4), 60) + 90'
-                >>> pytest.raises(TypeError, statement)
-                <ExceptionInfo TypeError ...>
+                >>> abjad.MetronomeMark((1, 4), 60) + 90
+                Traceback (most recent call last):
+                ...
+                TypeError: 90
 
         Returns new metronome mark or none.
         '''
@@ -564,9 +562,10 @@ class MetronomeMark(AbjadValueObject):
 
                 >>> mark_1 = abjad.MetronomeMark(textual_indication='Langsam')
                 >>> mark_2 = abjad.MetronomeMark((1, 4), 90)
-                >>> statement = 'mark_1 + mark_2'
-                >>> pytest.raises(ImpreciseMetronomeMarkError, statement)
-                <ExceptionInfo ImpreciseMetronomeMarkError ...>
+                >>> mark_1 + mark_2
+                Traceback (most recent call last):
+                ...
+                abjad.tools.exceptiontools.ImpreciseMetronomeMarkError.ImpreciseMetronomeMarkError
 
         ..  container:: example
 
@@ -576,9 +575,10 @@ class MetronomeMark(AbjadValueObject):
 
                 >>> mark_1 = abjad.MetronomeMark((1, 8), (90, 92))
                 >>> mark_2 = abjad.MetronomeMark((1, 4), 90)
-                >>> statement = 'mark_1 + mark_2'
-                >>> pytest.raises(ImpreciseMetronomeMarkError, statement)
-                <ExceptionInfo ImpreciseMetronomeMarkError ...>
+                >>> mark_1 + mark_2
+                Traceback (most recent call last):
+                ...
+                abjad.tools.exceptiontools.ImpreciseMetronomeMarkError.ImpreciseMetronomeMarkError
 
         ..  container:: example
 
@@ -586,9 +586,10 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> statement = '90 + abjad.MetronomeMark((1, 4), 60)'
-                >>> pytest.raises(TypeError, statement)
-                <ExceptionInfo TypeError ...>
+                >>> 90 + abjad.MetronomeMark((1, 4), 60)
+                Traceback (most recent call last):
+                ...
+                TypeError: 90
 
         Returns new metronome mark or none.
         '''
@@ -733,9 +734,10 @@ class MetronomeMark(AbjadValueObject):
 
                 >>> mark_1 = abjad.MetronomeMark(textual_indication='Langsam')
                 >>> mark_2 = abjad.MetronomeMark((1, 2), 90)
-                >>> statement = 'mark_1 - mark_2'
-                >>> pytest.raises(ImpreciseMetronomeMarkError, statement)
-                <ExceptionInfo ImpreciseMetronomeMarkError ...>
+                >>> mark_1 - mark_2
+                Traceback (most recent call last):
+                ...
+                abjad.tools.exceptiontools.ImpreciseMetronomeMarkError.ImpreciseMetronomeMarkError
 
         Returns new metronome mark.
         '''

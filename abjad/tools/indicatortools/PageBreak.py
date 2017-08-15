@@ -4,10 +4,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class PageBreak(AbjadValueObject):
     r'''Page break.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Default page break:

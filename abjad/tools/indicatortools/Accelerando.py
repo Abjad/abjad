@@ -4,10 +4,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class Accelerando(AbjadValueObject):
     r'''Accelerando.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

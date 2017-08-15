@@ -5,10 +5,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class BarLine(AbjadValueObject):
     r'''Bar line.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Final bar line:

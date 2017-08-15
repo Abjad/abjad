@@ -6,10 +6,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class StemTremolo(AbjadValueObject):
     r'''Stem tremolo.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Sixteenth-note tremolo:

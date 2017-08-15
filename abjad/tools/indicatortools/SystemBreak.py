@@ -4,10 +4,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class SystemBreak(AbjadValueObject):
     r'''System break indicator.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Default system break:

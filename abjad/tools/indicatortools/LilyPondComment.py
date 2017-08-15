@@ -4,10 +4,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class LilyPondComment(AbjadValueObject):
     r'''LilyPond comment.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Two-word comment:

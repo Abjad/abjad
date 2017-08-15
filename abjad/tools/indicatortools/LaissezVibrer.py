@@ -4,10 +4,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class LaissezVibrer(AbjadValueObject):
     r'''Laissez vibrer.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
