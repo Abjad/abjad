@@ -4,10 +4,6 @@ from abjad.tools.mathtools.NonreducedRatio import NonreducedRatio
 class Ratio(NonreducedRatio):
     '''Ratio.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Ratio of two numbers:

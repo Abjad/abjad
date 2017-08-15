@@ -1,12 +1,6 @@
-
-
 def is_integer_equivalent_n_tuple(argument, n):
     r'''Is true when `argument` is a tuple of `n` integer-equivalent items.
     Otherwise false.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

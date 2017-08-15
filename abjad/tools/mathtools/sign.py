@@ -1,11 +1,5 @@
-
-
 def sign(n):
     r'''Gets sign of `n`.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

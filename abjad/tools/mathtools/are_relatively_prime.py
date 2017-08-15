@@ -6,10 +6,6 @@ def are_relatively_prime(argument):
     '''Is true when `argument` is an iterable collection of relative primes.
     Otherwise false.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

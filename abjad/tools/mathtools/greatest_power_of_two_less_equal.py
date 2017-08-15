@@ -5,10 +5,6 @@ import numbers
 def greatest_power_of_two_less_equal(n, i=0):
     r'''Gets greatest integer power of two less than or equal to positive `n`.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

@@ -4,10 +4,6 @@ import collections
 def cumulative_products(argument):
     r'''Gets cumulative products of `argument`.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

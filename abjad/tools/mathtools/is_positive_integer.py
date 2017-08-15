@@ -4,10 +4,6 @@ import numbers
 def is_positive_integer(argument):
     '''Is true when `argument` equals a positive integer. Otherwise false.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

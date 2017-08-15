@@ -1,11 +1,5 @@
-
-
 def factors(n):
     r'''Gets prime factors less than or equal to `n` .
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

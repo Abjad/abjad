@@ -4,10 +4,6 @@ def all_are_equal(argument):
     '''Is true when `argument` is an iterable collection of equal items.
     Otherwise false.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

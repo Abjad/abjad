@@ -1,12 +1,6 @@
-
-
 def is_nonnegative_integer_equivalent_number(argument):
     '''Is true when `argument` is a nonnegative integer-equivalent number.
     Otherwise false.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

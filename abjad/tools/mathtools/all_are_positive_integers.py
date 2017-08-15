@@ -4,10 +4,6 @@ def all_are_positive_integers(argument):
     '''Is true when `argument` is an iterable collection of positive integers.
     Otherwise false.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

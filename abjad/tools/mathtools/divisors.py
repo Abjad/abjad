@@ -4,10 +4,6 @@ import math
 def divisors(n):
     r'''Gets positive divisors of `n` in increasing order.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

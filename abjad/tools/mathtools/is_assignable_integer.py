@@ -1,12 +1,6 @@
-
-
 def is_assignable_integer(argument):
     r'''Is true when `argument` is equivalent to an integer that can be written
     without recourse to ties. Otherwise false.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

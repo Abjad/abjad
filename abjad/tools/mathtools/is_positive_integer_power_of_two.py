@@ -1,12 +1,6 @@
-
-
 def is_positive_integer_power_of_two(argument):
     r'''Is true when `argument` is a positive integer power of 2. Otherwise
     false.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

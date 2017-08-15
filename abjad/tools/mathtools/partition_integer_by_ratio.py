@@ -4,10 +4,6 @@ import sys
 def partition_integer_by_ratio(n, ratio):
     r'''Partitions positive integer-equivalent `n` by `ratio`.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

@@ -167,7 +167,7 @@ class LabelAgent(abctools.AbjadObject):
                             qualified_method_name='abjad.LabelAgent.with_durations',
                             ),
                         ],
-                    proxy_class=agenttools.LabelAgent,
+                    proxy_class=abjad.LabelAgent,
                     )
 
             ::

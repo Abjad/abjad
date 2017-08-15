@@ -1,12 +1,6 @@
-
-
 def is_positive_integer_equivalent_number(argument):
     '''Is true when `argument` is a positive integer-equivalent number.
     Otherwise false.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

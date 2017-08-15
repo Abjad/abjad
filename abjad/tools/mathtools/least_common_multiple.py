@@ -1,11 +1,5 @@
-
-
 def least_common_multiple(*integers):
     r'''Gets least common multiple of positive `integers`.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

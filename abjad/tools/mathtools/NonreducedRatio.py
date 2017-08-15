@@ -6,10 +6,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class NonreducedRatio(AbjadValueObject):
     '''Nonreduced ratio.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Nonreduced ratio of two numbers:

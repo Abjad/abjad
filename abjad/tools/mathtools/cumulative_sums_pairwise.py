@@ -1,12 +1,6 @@
-
-
 # TODO: move to Sequence
 def cumulative_sums_pairwise(argument):
     r'''Gets pairwise cumulative sums of `argument` from zero.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

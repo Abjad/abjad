@@ -6,10 +6,6 @@ def all_are_pairs_of_types(argument, first_type, second_type):
     `first_type` and where the second member of each pair is an instance of
     `second_type`. Otherwise false.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

@@ -4,10 +4,6 @@ def all_are_nonnegative_integers(argument):
     '''Is true when `argument` is an iterable collection of nonnegative
     integers. Otherwise false.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

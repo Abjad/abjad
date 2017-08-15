@@ -4,6 +4,10 @@ from abjad.tools.mathtools.Infinity import Infinity
 class NegativeInfinity(Infinity):
     r'''Negative infinity.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         All numbers compare greater than negative infinity:
