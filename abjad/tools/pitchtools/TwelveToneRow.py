@@ -5,10 +5,6 @@ from abjad.tools.topleveltools import new
 class TwelveToneRow(PitchClassSegment):
     '''Twelve-tone row.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Initializes from defaults:

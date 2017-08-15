@@ -6,11 +6,6 @@ from abjad.tools.pitchtools.PitchClass import PitchClass
 class NumberedPitchClass(PitchClass):
     '''Numbered pitch-class.
 
-    ::
-
-        >>> import abjad
-        >>> import pytest
-
     ..  container:: example
 
         Initializes from number of semitones:
@@ -287,9 +282,10 @@ class NumberedPitchClass(PitchClass):
 
             ::
 
-                >>> statement = '1 + abjad.NumberedPitchClass(9)'
-                >>> pytest.raises(NotImplementedError, statement)
-                <ExceptionInfo NotImplementedError ...>
+                >>> 1 + abjad.NumberedPitchClass(9)
+                Traceback (most recent call last):
+                ...
+                NotImplementedError: right-addition not defined on NumberedPitchClass.
 
         Raises not implemented error.
         '''

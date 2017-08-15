@@ -5,10 +5,6 @@ from abjad.tools.pitchtools.Set import Set
 class PitchClassSet(Set):
     '''Pitch-class set.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Initializes numbered pitch-class set:

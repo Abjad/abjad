@@ -4,10 +4,6 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 class RegistrationList(TypedList):
     '''Registration list.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Two registrations:

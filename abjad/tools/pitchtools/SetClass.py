@@ -5,10 +5,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class SetClass(AbjadValueObject):
     r'''Set-class.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Initializes transposition-inversion set-class (with Forte rank):

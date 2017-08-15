@@ -9,10 +9,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class Octave(AbjadValueObject):
     r'''Octave.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example:
 
         Initializes octave from integer:

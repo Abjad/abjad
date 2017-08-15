@@ -6,10 +6,6 @@ from abjad.tools.pitchtools.Pitch import Pitch
 class NumberedPitch(Pitch):
     r'''Numbered pitch.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Initializes from number:

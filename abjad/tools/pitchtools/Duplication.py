@@ -6,10 +6,6 @@ from abjad.tools.topleveltools import new
 class Duplication(abctools.AbjadValueObject):
     r'''Duplication.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example:
 
         ::

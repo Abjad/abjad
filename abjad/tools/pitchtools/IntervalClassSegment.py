@@ -6,10 +6,6 @@ from abjad.tools.topleveltools import new
 class IntervalClassSegment(Segment):
     r'''Interval-class segment.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         An interval-class segment:

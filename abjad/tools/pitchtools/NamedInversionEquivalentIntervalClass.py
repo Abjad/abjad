@@ -5,10 +5,6 @@ from abjad.tools.pitchtools.NamedIntervalClass import NamedIntervalClass
 class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
     '''Named inversion-equivalent interval-class.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Initializes from string:

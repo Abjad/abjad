@@ -6,10 +6,6 @@ from abjad.tools.pitchtools.IntervalClass import IntervalClass
 class NumberedIntervalClass(IntervalClass):
     '''Numbered interval-class.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Initializes from integer:

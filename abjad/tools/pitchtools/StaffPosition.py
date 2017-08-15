@@ -7,10 +7,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class StaffPosition(AbjadValueObject):
     r'''Staff position.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Initializes staff position at middle line of staff:

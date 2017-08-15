@@ -5,10 +5,6 @@ from abjad.tools.pitchtools.IntervalClass import IntervalClass
 class NamedIntervalClass(IntervalClass):
     '''Named interval-class.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Initializes from name:

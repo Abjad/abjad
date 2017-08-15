@@ -8,11 +8,6 @@ from abjad.tools.pitchtools.Accidental import Accidental
 @functools.total_ordering
 class PitchClass(AbjadValueObject):
     '''Abstract pitch-class.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###

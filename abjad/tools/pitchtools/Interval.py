@@ -7,10 +7,6 @@ from abjad.tools.abctools import AbjadValueObject
 @functools.total_ordering
 class Interval(AbjadValueObject):
     '''Abstract interval.
-
-    ::
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###

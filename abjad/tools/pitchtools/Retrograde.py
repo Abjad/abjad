@@ -4,11 +4,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class Retrograde(AbjadValueObject):
     r'''Retrograde operator.
 
-    ::
-
-        >>> import abjad
-        >>> import pytest
-
     ..  container:: example:
 
         ::
@@ -198,9 +193,10 @@ class Retrograde(AbjadValueObject):
 
             ::
 
-                >>> string = 'abjad.Retrograde().__radd__(abjad.Retrograde())'
-                >>> pytest.raises(NotImplementedError, string)
-                <ExceptionInfo NotImplementedError ...>
+                >>> abjad.Retrograde().__radd__(abjad.Retrograde())
+                Traceback (most recent call last):
+                ...
+                NotImplementedError: right-addition not defined on Retrograde.
 
         Raises not implemented error.
         '''

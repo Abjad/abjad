@@ -7,10 +7,6 @@ from abjad.tools.pitchtools.Interval import Interval
 class NumberedInterval(Interval):
     '''Numbered interval.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Initializes from number of semitones:

@@ -5,10 +5,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class CompoundOperator(AbjadValueObject):
     r'''Compound operator.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Rotation followed by transposition:

@@ -5,10 +5,6 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 class PitchRangeList(TypedList):
     r"""Pitch range list.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Two pitch ranges:

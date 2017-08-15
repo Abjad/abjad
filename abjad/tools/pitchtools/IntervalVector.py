@@ -5,10 +5,6 @@ from abjad.tools.pitchtools.Vector import Vector
 class IntervalVector(Vector):
     r'''Interval vector.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Initializes from pitch segment:
@@ -87,7 +83,7 @@ class IntervalVector(Vector):
 
             ::
 
-                >>> segment = abjad.PitchSegment(
+                >>> pitch_segment = abjad.PitchSegment(
                 ...     items=[0, 11, 7, 4, 2, 9, 3, 8, 10, 1, 5, 6],
                 ...     )
                 >>> vector = abjad.IntervalVector(

@@ -8,10 +8,6 @@ from abjad.tools.abctools import AbjadValueObject
 class Accidental(AbjadValueObject):
     '''Accidental.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
             >>> abjad.Accidental('ff')

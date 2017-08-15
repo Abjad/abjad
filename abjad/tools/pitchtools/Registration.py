@@ -6,10 +6,6 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 class Registration(TypedList):
     '''Registration.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Registration in two parts:

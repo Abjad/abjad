@@ -4,11 +4,6 @@ from abjad.tools.pitchtools.Set import Set
 
 class IntervalSet(Set):
     r'''Interval set.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###

@@ -7,10 +7,6 @@ from abjad.tools.pitchtools.Interval import Interval
 class NamedInterval(Interval):
     '''Named interval.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Initializes ascending major ninth from string:

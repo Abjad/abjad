@@ -8,10 +8,6 @@ from abjad.tools.topleveltools import new
 class IntervalSegment(Segment):
     r'''Interval segment.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Initializes from string:

@@ -6,10 +6,6 @@ from abjad.tools.topleveltools import select
 class PitchSegment(Segment):
     r'''Pitch segment.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Numbered pitch segment:

@@ -4,10 +4,6 @@ from abjad.tools.pitchtools.Vector import Vector
 class PitchVector(Vector):
     r'''Pitch vector.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
