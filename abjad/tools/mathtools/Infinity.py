@@ -5,10 +5,6 @@ from abjad.tools.abctools import AbjadValueObject
 class Infinity(AbjadValueObject):
     r'''Infinity.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         All numbers compare less than infinity:
