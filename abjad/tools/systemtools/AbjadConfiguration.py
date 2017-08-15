@@ -8,10 +8,6 @@ from abjad.tools.systemtools.Configuration import Configuration
 class AbjadConfiguration(Configuration):
     r'''Abjad configuration.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
@@ -132,6 +128,7 @@ class AbjadConfiguration(Configuration):
 
             ::
 
+                >>> abjad_configuration = abjad.AbjadConfiguration()
                 >>> abjad_configuration.get_abjad_startup_string()
                 'Abjad 3.0.0 (development)'
 
@@ -152,6 +149,7 @@ class AbjadConfiguration(Configuration):
 
             ::
 
+                >>> abjad_configuration = abjad.AbjadConfiguration()
                 >>> abjad_configuration.get_abjad_version_string()
                 '3.0.0'
 
@@ -168,6 +166,7 @@ class AbjadConfiguration(Configuration):
 
             ::
 
+                >>> abjad_configuration = abjad.AbjadConfiguration()
                 >>> abjad_configuration.get_lilypond_minimum_version_string() # doctest: +SKIP
                 '2.17.0'
 
@@ -186,6 +185,7 @@ class AbjadConfiguration(Configuration):
 
             ::
 
+                >>> abjad_configuration = abjad.AbjadConfiguration()
                 >>> abjad_configuration.get_lilypond_version_string() # doctest: +SKIP
                 '2.19.1'
 
@@ -225,6 +225,7 @@ class AbjadConfiguration(Configuration):
 
             ::
 
+                >>> abjad_configuration = abjad.AbjadConfiguration()
                 >>> abjad_configuration.get_python_version_string() # doctest: +SKIP
                 '2.7.5'
 
@@ -240,6 +241,7 @@ class AbjadConfiguration(Configuration):
 
             ::
 
+                >>> abjad_configuration = abjad.AbjadConfiguration()
                 >>> abjad_configuration.get_tab_width()
                 4
 
@@ -257,6 +259,7 @@ class AbjadConfiguration(Configuration):
 
             ::
 
+                >>> abjad_configuration = abjad.AbjadConfiguration()
                 >>> abjad_configuration.get_text_editor() # doctest: +SKIP
                 'vi'
 
@@ -279,6 +282,7 @@ class AbjadConfiguration(Configuration):
 
             ::
 
+                >>> abjad_configuration = abjad.AbjadConfiguration()
                 >>> abjad_configuration.list_package_dependency_versions() # doctest: +SKIP
                 {'sphinx': '1.1.2', 'pytest': '2.1.2'}
 
@@ -321,6 +325,7 @@ class AbjadConfiguration(Configuration):
 
             ::
 
+                >>> abjad_configuration = abjad.AbjadConfiguration()
                 >>> abjad_configuration.set_default_accidental_spelling('sharps')
 
             ::
@@ -334,6 +339,7 @@ class AbjadConfiguration(Configuration):
 
             ::
 
+                >>> abjad_configuration = abjad.AbjadConfiguration()
                 >>> abjad_configuration.set_default_accidental_spelling('flats')
 
             ::
@@ -347,6 +353,7 @@ class AbjadConfiguration(Configuration):
 
             ::
 
+                >>> abjad_configuration = abjad.AbjadConfiguration()
                 >>> abjad_configuration.set_default_accidental_spelling()
 
             ::

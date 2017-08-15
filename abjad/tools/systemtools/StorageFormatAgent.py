@@ -355,8 +355,8 @@ class StorageFormatAgent(AbjadValueObject):
 
             ::
 
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
-                ...     burnish_specifier=rhythmmakertools.BurnishSpecifier(
+                >>> maker = abjad.rhythmmakertools.EvenDivisionRhythmMaker(
+                ...     burnish_specifier=abjad.rhythmmakertools.BurnishSpecifier(
                 ...         left_classes=[abjad.Rest],
                 ...         left_counts=[1],
                 ...         right_classes=[abjad.Rest],
@@ -558,20 +558,20 @@ class StorageFormatAgent(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(3, 2)],
                 ...     division_masks=[
                 ...         abjad.silence_every([1], period=2),
                 ...         ],
                 ...     )
                 >>> f(rhythm_maker)
-                rhythmmakertools.TupletRhythmMaker(
+                abjad.rhythmmakertools.TupletRhythmMaker(
                     tuplet_ratios=[
                         abjad.Ratio((3, 2)),
                         ],
                     division_masks=abjad.PatternList(
                         (
-                            rhythmmakertools.SilenceMask(
+                            abjad.SilenceMask(
                                 pattern=abjad.Pattern(
                                     indices=[1],
                                     period=2,

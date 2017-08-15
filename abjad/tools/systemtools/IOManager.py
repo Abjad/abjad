@@ -18,11 +18,6 @@ except NameError:
 
 class IOManager(AbjadObject):
     r'''Manages Abjad IO.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###

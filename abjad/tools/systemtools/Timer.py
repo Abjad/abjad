@@ -8,10 +8,6 @@ from abjad.tools.abctools import ContextManager
 class Timer(ContextManager):
     r'''A timing context manager.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

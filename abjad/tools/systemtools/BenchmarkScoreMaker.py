@@ -4,10 +4,6 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class BenchmarkScoreMaker(AbjadObject):
     '''Benchmark score-maker.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

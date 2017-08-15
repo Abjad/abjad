@@ -4,10 +4,6 @@ from abjad.tools.abctools import AbjadObject
 class WellformednessManager(AbjadObject):
     r'''Wellformedness manager.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
