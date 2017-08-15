@@ -6,10 +6,6 @@ from abjad.tools.datastructuretools.TypedCounter import TypedCounter
 class OffsetCounter(TypedCounter):
     r'''Offset counter.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

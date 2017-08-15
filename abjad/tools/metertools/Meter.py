@@ -11,10 +11,6 @@ from abjad.tools.abctools import AbjadValueObject
 class Meter(AbjadValueObject):
     '''Meter.
 
-    ::
-
-        >>> import abjad
-
     Meter models a common practice understanding of beats and other levels of
     rhythmic organization structured as a tree. Meter structure corresponds to
     the monotonically increasing sequence of factors in the numerator of a
@@ -1294,6 +1290,7 @@ class Meter(AbjadValueObject):
 
             ::
 
+                >>> meter = abjad.Meter((7, 4))
                 >>> for depth, offsets in enumerate(
                 ...     meter.depthwise_offset_inventory):
                 ...     print(depth, offsets)
@@ -1320,6 +1317,7 @@ class Meter(AbjadValueObject):
 
             ::
 
+                >>> meter = abjad.Meter((7, 4))
                 >>> meter.duration
                 Duration(7, 4)
 
@@ -1570,45 +1568,45 @@ class Meter(AbjadValueObject):
 
                 >>> meter = abjad.Meter((7, 4))
                 >>> print(format(meter.root_node))
-                rhythmtreetools.RhythmTreeContainer(
+                abjad.rhythmtreetools.RhythmTreeContainer(
                     children=(
-                        rhythmtreetools.RhythmTreeContainer(
+                        abjad.rhythmtreetools.RhythmTreeContainer(
                             children=(
-                                rhythmtreetools.RhythmTreeLeaf(
+                                abjad.rhythmtreetools.RhythmTreeLeaf(
                                     preprolated_duration=abjad.Duration(1, 4),
                                     is_pitched=True,
                                     ),
-                                rhythmtreetools.RhythmTreeLeaf(
+                                abjad.rhythmtreetools.RhythmTreeLeaf(
                                     preprolated_duration=abjad.Duration(1, 4),
                                     is_pitched=True,
                                     ),
-                                rhythmtreetools.RhythmTreeLeaf(
+                                abjad.rhythmtreetools.RhythmTreeLeaf(
                                     preprolated_duration=abjad.Duration(1, 4),
                                     is_pitched=True,
                                     ),
                                 ),
                             preprolated_duration=abjad.NonreducedFraction(3, 4),
                             ),
-                        rhythmtreetools.RhythmTreeContainer(
+                        abjad.rhythmtreetools.RhythmTreeContainer(
                             children=(
-                                rhythmtreetools.RhythmTreeLeaf(
+                                abjad.rhythmtreetools.RhythmTreeLeaf(
                                     preprolated_duration=abjad.Duration(1, 4),
                                     is_pitched=True,
                                     ),
-                                rhythmtreetools.RhythmTreeLeaf(
+                                abjad.rhythmtreetools.RhythmTreeLeaf(
                                     preprolated_duration=abjad.Duration(1, 4),
                                     is_pitched=True,
                                     ),
                                 ),
                             preprolated_duration=abjad.NonreducedFraction(2, 4),
                             ),
-                        rhythmtreetools.RhythmTreeContainer(
+                        abjad.rhythmtreetools.RhythmTreeContainer(
                             children=(
-                                rhythmtreetools.RhythmTreeLeaf(
+                                abjad.rhythmtreetools.RhythmTreeLeaf(
                                     preprolated_duration=abjad.Duration(1, 4),
                                     is_pitched=True,
                                     ),
-                                rhythmtreetools.RhythmTreeLeaf(
+                                abjad.rhythmtreetools.RhythmTreeLeaf(
                                     preprolated_duration=abjad.Duration(1, 4),
                                     is_pitched=True,
                                     ),

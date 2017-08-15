@@ -5,11 +5,6 @@ from abjad.tools import durationtools
 
 class MeterManager(abctools.AbjadObject):
     r'''Meter manager.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###

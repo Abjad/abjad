@@ -6,10 +6,6 @@ from abjad.tools.abctools import AbjadValueObject
 class MetricAccentKernel(AbjadValueObject):
     r'''Metric accent kernel.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
