@@ -8,12 +8,6 @@ from abjad.tools import mathtools
 
 class RhythmTreeMixin(abctools.AbjadObject):
     r'''Abstract rhythm-tree node.
-
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import rhythmtreetools
-
     '''
 
     ### CLASS VARIABLES ###
@@ -87,7 +81,7 @@ class RhythmTreeMixin(abctools.AbjadObject):
         ::
 
             >>> rtm = '(1 ((1 (1 1)) (1 (1 1))))'
-            >>> tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
+            >>> tree = abjad.rhythmtreetools.RhythmTreeParser()(rtm)[0]
 
         ::
 
@@ -121,11 +115,11 @@ class RhythmTreeMixin(abctools.AbjadObject):
 
         ::
 
-            >>> a = rhythmtreetools.RhythmTreeContainer(preprolated_duration=1)
-            >>> b = rhythmtreetools.RhythmTreeContainer(preprolated_duration=2)
-            >>> c = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=3)
-            >>> d = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=4)
-            >>> e = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=5)
+            >>> a = abjad.rhythmtreetools.RhythmTreeContainer(preprolated_duration=1)
+            >>> b = abjad.rhythmtreetools.RhythmTreeContainer(preprolated_duration=2)
+            >>> c = abjad.rhythmtreetools.RhythmTreeLeaf(preprolated_duration=3)
+            >>> d = abjad.rhythmtreetools.RhythmTreeLeaf(preprolated_duration=4)
+            >>> e = abjad.rhythmtreetools.RhythmTreeLeaf(preprolated_duration=5)
 
         ::
 
@@ -176,7 +170,7 @@ class RhythmTreeMixin(abctools.AbjadObject):
 
         ::
 
-            >>> node = rhythmtreetools.RhythmTreeLeaf(
+            >>> node = abjad.rhythmtreetools.RhythmTreeLeaf(
             ...     preprolated_duration=1)
             >>> node.preprolated_duration
             Duration(1, 1)
@@ -206,7 +200,7 @@ class RhythmTreeMixin(abctools.AbjadObject):
         ::
 
             >>> rtm = '(1 ((1 (1 1)) (1 (1 1))))'
-            >>> tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
+            >>> tree = abjad.rhythmtreetools.RhythmTreeParser()(rtm)[0]
             >>> print(tree.pretty_rtm_format)
             (1 (
                 (1 (
@@ -249,7 +243,7 @@ class RhythmTreeMixin(abctools.AbjadObject):
         ::
 
             >>> rtm = '(1 ((1 (1 1)) (1 (1 1))))'
-            >>> tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
+            >>> tree = abjad.rhythmtreetools.RhythmTreeParser()(rtm)[0]
             >>> tree.rtm_format
             '(1 ((1 (1 1)) (1 (1 1))))'
 
@@ -264,7 +258,7 @@ class RhythmTreeMixin(abctools.AbjadObject):
         ::
 
             >>> rtm = '(1 ((1 (1 1)) (1 (1 1))))'
-            >>> tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
+            >>> tree = abjad.rhythmtreetools.RhythmTreeParser()(rtm)[0]
 
         ::
 
