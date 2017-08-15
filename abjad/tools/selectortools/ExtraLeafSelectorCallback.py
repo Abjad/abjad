@@ -4,11 +4,6 @@ from abjad.tools.abctools import AbjadValueObject
 
 class ExtraLeafSelectorCallback(AbjadValueObject):
     r'''Extra leaf selector callback.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###

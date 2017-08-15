@@ -5,11 +5,6 @@ from abjad.tools.abctools import AbjadValueObject
 
 class DurationSelectorCallback(AbjadValueObject):
     r'''Duration selector callback.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###

@@ -7,10 +7,6 @@ from abjad.tools.abctools import AbjadValueObject
 class LogicalMeasureSelectorCallback(AbjadValueObject):
     r'''Logical measure selector callback.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Score for examples 1 - 3:

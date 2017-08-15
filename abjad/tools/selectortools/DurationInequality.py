@@ -9,10 +9,6 @@ from abjad.tools.selectortools.Inequality import Inequality
 class DurationInequality(Inequality):
     r'''Duration inequality.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

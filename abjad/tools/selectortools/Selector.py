@@ -10,10 +10,6 @@ from abjad.tools.topleveltools import select
 class Selector(AbjadValueObject):
     r'''Selector.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Selects note runs:

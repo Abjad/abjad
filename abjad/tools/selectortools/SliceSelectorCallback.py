@@ -7,11 +7,6 @@ from abjad.tools.topleveltools import select
 
 class SliceSelectorCallback(AbjadValueObject):
     r'''Slice selector callback.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###

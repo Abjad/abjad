@@ -7,10 +7,6 @@ from abjad.tools.abctools import AbjadValueObject
 class CountsSelectorCallback(AbjadValueObject):
     r'''Counts selector callback.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Initializes callback by hand:

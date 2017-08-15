@@ -5,11 +5,6 @@ from abjad.tools.abctools import AbjadValueObject
 
 class PitchSelectorCallback(AbjadValueObject):
     r'''Pitch selector callback.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###

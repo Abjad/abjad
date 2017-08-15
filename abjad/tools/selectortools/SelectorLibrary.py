@@ -2,11 +2,6 @@
 
 class SelectorLibrary(object):
     r'''Selector library.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###

@@ -4,11 +4,6 @@ from abjad.tools.abctools import AbjadValueObject
 
 class LengthSelectorCallback(AbjadValueObject):
     r'''Length selector callback.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###

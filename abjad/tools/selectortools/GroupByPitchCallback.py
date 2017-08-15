@@ -5,11 +5,6 @@ from abjad.tools.abctools import AbjadValueObject
 
 class GroupByPitchCallback(AbjadValueObject):
     r'''Group-by-pitch selector callback.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###

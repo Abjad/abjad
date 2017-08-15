@@ -7,11 +7,6 @@ from abjad.tools.abctools import AbjadValueObject
 
 class PartitionByRatioCallback(AbjadValueObject):
     r'''Partition-by-ratio selector callback.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###

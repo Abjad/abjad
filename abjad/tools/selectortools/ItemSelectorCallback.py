@@ -4,11 +4,6 @@ from abjad.tools.abctools import AbjadValueObject
 
 class ItemSelectorCallback(AbjadValueObject):
     r'''Item selector callback.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###

@@ -5,11 +5,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 class Inequality(AbjadValueObject):
     '''Inequality.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###
