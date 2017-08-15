@@ -375,8 +375,6 @@ class AbjadConfiguration(Configuration):
     def _initial_comment(self):
         current_time = self._current_time
         return [
-            '-*- coding: utf-8 -*-',
-            '',
             'Abjad configuration file created on {}.'.format(current_time),
             "This file is interpreted by Python's ConfigParser ",
             'and follows ini syntax.',

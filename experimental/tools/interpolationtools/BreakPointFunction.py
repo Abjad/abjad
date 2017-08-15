@@ -10,6 +10,10 @@ class BreakPointFunction(AbjadObject):
 
     ::
 
+        >>> import experimental
+
+    ::
+
         >>> bpf = experimental.interpolationtools.BreakPointFunction({
         ...     0.:   0.,
         ...     0.75: (-1, 1.),

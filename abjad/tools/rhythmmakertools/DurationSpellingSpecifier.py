@@ -32,10 +32,9 @@ class DurationSpellingSpecifier(AbjadValueObject):
         ):
         from abjad.tools import rhythmmakertools
         assert isinstance(decrease_monotonic, bool)
-        if forbidden_duration is not None:
-            forbidden_duration = durationtools.Duration(
-                forbidden_duration)
         self._decrease_monotonic = decrease_monotonic
+        if forbidden_duration is not None:
+            forbidden_duration = durationtools.Duration(forbidden_duration)
         self._forbidden_duration = forbidden_duration
         assert isinstance(rewrite_meter, (bool, type(None)))
         self._rewrite_meter = rewrite_meter

@@ -656,9 +656,7 @@ class LeafMaker(AbjadValueObject):
         # check input
         duration = abjad.Duration(duration)
         if forbidden_duration is not None:
-            forbidden_duration = abjad.Duration(
-                forbidden_duration,
-                )
+            forbidden_duration = abjad.Duration(forbidden_duration)
             assert forbidden_duration.is_assignable
             assert forbidden_duration.numerator == 1
         # find preferred numerator of written durations if necessary
@@ -669,10 +667,9 @@ class LeafMaker(AbjadValueObject):
                 duration.denominator,
                 ]
             denominator = abjad.mathtools.least_common_multiple(*denominators)
-            forbidden_duration = abjad.NonreducedFraction(
-                forbidden_duration)
-            forbidden_duration = \
-                forbidden_duration.with_denominator(denominator)
+            forbidden_duration = abjad.NonreducedFraction(forbidden_duration)
+            forbidden_duration = forbidden_duration.with_denominator(
+                denominator)
             duration = abjad.NonreducedFraction(duration)
             duration = duration.with_denominator(denominator)
             forbidden_numerator = forbidden_duration.numerator

@@ -224,7 +224,7 @@ class NoteRhythmMaker(RhythmMaker):
             use_messiaen_style_ties=tie_specifier.use_messiaen_style_ties,
             )
         for division in divisions:
-            if (bool(duration_specifier.spell_metrically) or
+            if (duration_specifier.spell_metrically is True or
                 (duration_specifier.spell_metrically == 'unassignable' and
                 not mathtools.is_assignable_integer(division.numerator))):
                 meter = metertools.Meter(division)
@@ -237,10 +237,8 @@ class NoteRhythmMaker(RhythmMaker):
             else:
                 durations = [division]
             selection = leaf_maker(pitches=0, durations=durations)
-            if (
-                1 < len(selection) and
-                not selection[0]._has_spanner(spannertools.Tie)
-                ):
+            if (1 < len(selection) and
+                not selection[0]._has_spanner(spannertools.Tie)):
                 tie = spannertools.Tie(
                     use_messiaen_style_ties=tie_specifier.use_messiaen_style_ties,
                     )

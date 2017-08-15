@@ -113,7 +113,9 @@ class LilyPondFile(AbjadObject):
             self._date_time_token = lilypondfiletools.DateTimeToken()
         self._default_paper_size = default_paper_size
         self._global_staff_size = global_staff_size
-        self._includes = list(includes or [])
+        includes = list(includes or [])
+        includes = [str(_) for _ in includes]
+        self._includes = includes
         self._items = list(items or [])
         self._lilypond_language_token = None
         if lilypond_language_token is not False:

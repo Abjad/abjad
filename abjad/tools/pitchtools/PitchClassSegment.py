@@ -1,4 +1,3 @@
-# -* coding: utf-8 -*-
 import inspect
 from abjad.tools import systemtools
 from abjad.tools.pitchtools.Segment import Segment
