@@ -6,10 +6,6 @@ from abjad.tools.lilypondnametools.LilyPondNameManager \
 class LilyPondSettingNameManager(LilyPondNameManager):
     '''LilyPond setting name manager.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Initializes with toplevel function:

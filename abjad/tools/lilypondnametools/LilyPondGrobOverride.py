@@ -6,10 +6,6 @@ class LilyPondGrobOverride(AbjadValueObject):
 
     ::
 
-        >>> import abjad
-
-    ::
-
         >>> override = abjad.LilyPondGrobOverride(
         ...    context_name='Staff',
         ...    grob_name='TextSpanner',

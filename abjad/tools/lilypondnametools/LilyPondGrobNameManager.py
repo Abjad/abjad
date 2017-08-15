@@ -5,12 +5,6 @@ from abjad.tools.lilypondnametools.LilyPondNameManager \
 class LilyPondGrobNameManager(LilyPondNameManager):
     '''LilyPond grob name manager.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import lilypondnametools
-
-
     ..  container:: example
 
         Initializes with toplevel override function:

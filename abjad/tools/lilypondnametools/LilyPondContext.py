@@ -6,20 +6,15 @@ class LilyPondContext(abctools.AbjadValueObject):
 
     ::
 
-        >>> import abjad
-        >>> from abjad.tools import lilypondnametools
-
-    ::
-
-        >>> context = lilypondnametools.LilyPondContext('MensuralStaff')
+        >>> context = abjad.LilyPondContext('MensuralStaff')
         >>> f(context)
-        lilypondnametools.LilyPondContext(
+        abjad.LilyPondContext(
             name='MensuralStaff',
             )
 
     ::
 
-        >>> for lilypond_context in lilypondnametools.LilyPondContext.list_all_contexts():
+        >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
         ...     is_global_context = 'X' if lilypond_context.is_global_context else ' '
         ...     is_score_context = 'X' if lilypond_context.is_score_context else ' '
         ...     is_staff_group_context = 'X' if lilypond_context.is_staff_group_context else ' '
@@ -106,7 +101,7 @@ class LilyPondContext(abctools.AbjadValueObject):
 
         ::
 
-            >>> for lilypond_context in lilypondnametools.LilyPondContext.list_all_contexts():
+            >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
             ...     lilypond_context
             ...
             LilyPondContext(name='ChoirStaff')
@@ -163,14 +158,14 @@ class LilyPondContext(abctools.AbjadValueObject):
 
         ::
 
-            >>> custom_context = lilypondnametools.LilyPondContext.register(
+            >>> custom_context = abjad.LilyPondContext.register(
             ...     accepted_by=['Score', 'StaffGroup'],
             ...     alias='Staff',
             ...     name='BowingStaff',
             ...     removes=['Note_heads_engraver'],
             ...     )
             >>> print(format(custom_context))
-            lilypondnametools.LilyPondContext(
+            abjad.LilyPondContext(
                 name='BowingStaff',
                 )
 
@@ -213,7 +208,7 @@ class LilyPondContext(abctools.AbjadValueObject):
 
         ::
 
-            >>> score_context = lilypondnametools.LilyPondContext('Score')
+            >>> score_context = abjad.LilyPondContext('Score')
             >>> custom_context in score_context.accepts
             True
 
@@ -289,7 +284,7 @@ class LilyPondContext(abctools.AbjadValueObject):
 
         ::
 
-            >>> custom_context = lilypondnametools.LilyPondContext.register(
+            >>> custom_context = abjad.LilyPondContext.register(
             ...     accepted_by=['Score', 'StaffGroup'],
             ...     alias='Staff',
             ...     name='FingeringStaff',
@@ -297,7 +292,7 @@ class LilyPondContext(abctools.AbjadValueObject):
 
         ::
 
-            >>> score_context = lilypondnametools.LilyPondContext('Score')
+            >>> score_context = abjad.LilyPondContext('Score')
             >>> for accepted_context in score_context.accepts:
             ...     accepted_context
             ...
@@ -328,7 +323,7 @@ class LilyPondContext(abctools.AbjadValueObject):
 
         ::
 
-            >>> score_context = lilypondnametools.LilyPondContext('Score')
+            >>> score_context = abjad.LilyPondContext('Score')
             >>> for accepted_context in score_context.accepts:
             ...     accepted_context
             ...
@@ -369,6 +364,7 @@ class LilyPondContext(abctools.AbjadValueObject):
 
         ::
 
+            >>> context = abjad.LilyPondContext('MensuralStaff')
             >>> for accepting_context in context.accepted_by:
             ...     accepting_context
             ...
@@ -376,7 +372,7 @@ class LilyPondContext(abctools.AbjadValueObject):
 
         ::
 
-            >>> for lilypond_context in lilypondnametools.LilyPondContext.list_all_contexts():
+            >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
             ...     print('{}:'.format(lilypond_context.name))
             ...     accepted_by = lilypond_context.accepted_by
             ...     if accepted_by:
@@ -516,6 +512,7 @@ class LilyPondContext(abctools.AbjadValueObject):
 
         ::
 
+            >>> context = abjad.LilyPondContext('MensuralStaff')
             >>> for accepted_context in context.accepts:
             ...     accepted_context
             ...
@@ -536,6 +533,7 @@ class LilyPondContext(abctools.AbjadValueObject):
 
         ::
 
+            >>> context = abjad.LilyPondContext('MensuralStaff')
             >>> context.alias
             LilyPondContext(name='Staff')
 
@@ -556,12 +554,13 @@ class LilyPondContext(abctools.AbjadValueObject):
 
         ::
 
+            >>> context = abjad.LilyPondContext('MensuralStaff')
             >>> context.default_child
             LilyPondContext(name='MensuralVoice')
 
         ::
 
-            >>> for lilypond_context in lilypondnametools.LilyPondContext.list_all_contexts():
+            >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
             ...     print('{}:'.format(lilypond_context.name))
             ...     default_child = lilypond_context.default_child
             ...     if default_child:
@@ -634,6 +633,7 @@ class LilyPondContext(abctools.AbjadValueObject):
 
         ::
 
+            >>> context = abjad.LilyPondContext('MensuralStaff')
             >>> for engraver in context.engravers:
             ...     engraver
             ...
@@ -682,6 +682,7 @@ class LilyPondContext(abctools.AbjadValueObject):
 
         ::
 
+            >>> context = abjad.LilyPondContext('MensuralStaff')
             >>> for grob in context.grobs:
             ...     grob
             ...
@@ -736,7 +737,7 @@ class LilyPondContext(abctools.AbjadValueObject):
 
         ::
 
-            >>> for lilypond_context in lilypondnametools.LilyPondContext.list_all_contexts():
+            >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
             ...     is_bottom_context = 'X' if lilypond_context.is_bottom_context else ' '
             ...     print('[{}] {}'.format(is_bottom_context, lilypond_context.name))
             ...
@@ -785,6 +786,7 @@ class LilyPondContext(abctools.AbjadValueObject):
 
         ::
 
+            >>> context = abjad.LilyPondContext('MensuralStaff')
             >>> context.is_custom
             False
 
@@ -799,7 +801,7 @@ class LilyPondContext(abctools.AbjadValueObject):
 
         ::
 
-            >>> for lilypond_context in lilypondnametools.LilyPondContext.list_all_contexts():
+            >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
             ...     is_global_context = 'X' if lilypond_context.is_global_context else ' '
             ...     print('[{}] {}'.format(is_global_context, lilypond_context.name))
             ...
@@ -852,7 +854,7 @@ class LilyPondContext(abctools.AbjadValueObject):
 
         ::
 
-            >>> for lilypond_context in lilypondnametools.LilyPondContext.list_all_contexts():
+            >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
             ...     is_score_context = 'X' if lilypond_context.is_score_context else ' '
             ...     print('[{}] {}'.format(is_score_context, lilypond_context.name))
             ...
@@ -905,7 +907,7 @@ class LilyPondContext(abctools.AbjadValueObject):
 
         ::
 
-            >>> for lilypond_context in lilypondnametools.LilyPondContext.list_all_contexts():
+            >>> for lilypond_context in abjad.lilypondnametools.LilyPondContext.list_all_contexts():
             ...     is_staff_context = 'X' if lilypond_context.is_staff_context else ' '
             ...     print('[{}] {}'.format(is_staff_context, lilypond_context.name))
             ...
@@ -958,7 +960,7 @@ class LilyPondContext(abctools.AbjadValueObject):
 
         ::
 
-            >>> for lilypond_context in lilypondnametools.LilyPondContext.list_all_contexts():
+            >>> for lilypond_context in abjad.lilypondnametools.LilyPondContext.list_all_contexts():
             ...     is_staff_group_context = 'X' if lilypond_context.is_staff_group_context else ' '
             ...     print('[{}] {}'.format(is_staff_group_context, lilypond_context.name))
             ...
@@ -1010,6 +1012,7 @@ class LilyPondContext(abctools.AbjadValueObject):
 
         ::
 
+            >>> context = abjad.LilyPondContext('MensuralStaff')
             >>> context.name
             'MensuralStaff'
 
@@ -1023,6 +1026,7 @@ class LilyPondContext(abctools.AbjadValueObject):
 
         ::
 
+            >>> context = abjad.LilyPondContext('MensuralStaff')
             >>> for property_name in context.property_names:
             ...     property_name
             ...
