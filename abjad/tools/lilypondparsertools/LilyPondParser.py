@@ -25,10 +25,6 @@ ply.yacc.LRParser._lilypond_patch_parse_debug = _parse_debug
 class LilyPondParser(abctools.Parser):
     r"""A LilyPond syntax parser.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

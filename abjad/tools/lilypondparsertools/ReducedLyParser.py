@@ -14,10 +14,6 @@ from abjad.tools.topleveltools import select
 class ReducedLyParser(abctools.Parser):
     r'''Parses the "reduced-ly" syntax, a modified subset of LilyPond syntax.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
