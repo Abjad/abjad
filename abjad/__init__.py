@@ -52,6 +52,7 @@ from abjad.tools.selectiontools import *
 from abjad.tools.selectortools import *
 from abjad.tools.spannertools import *
 from abjad.tools.systemtools import *
+from abjad.tools.templatetools import ScoreTemplate
 from abjad.tools.topleveltools import *
 
 # mathtools classes (but not functions)

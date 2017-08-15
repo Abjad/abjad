@@ -1,9 +1,13 @@
 import collections
-from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.templatetools.ScoreTemplate import ScoreTemplate
 
 
-class StringQuartetScoreTemplate(AbjadValueObject):
-    r'''String quartet score template.
+class StringQuartetScoreTemplate(ScoreTemplate):
+    '''String quartet score template.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 

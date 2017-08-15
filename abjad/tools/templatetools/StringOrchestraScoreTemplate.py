@@ -1,8 +1,8 @@
 import collections
-from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.templatetools.ScoreTemplate import ScoreTemplate
 
 
-class StringOrchestraScoreTemplate(AbjadValueObject):
+class StringOrchestraScoreTemplate(ScoreTemplate):
     r'''String orchestra score template.
 
     ..  container:: example

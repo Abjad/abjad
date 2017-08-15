@@ -1,8 +1,8 @@
 import collections
-from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.templatetools.ScoreTemplate import ScoreTemplate
 
 
-class TwoStaffPianoScoreTemplate(AbjadValueObject):
+class TwoStaffPianoScoreTemplate(ScoreTemplate):
     '''Two-staff piano score template.
 
     ..  container:: example
