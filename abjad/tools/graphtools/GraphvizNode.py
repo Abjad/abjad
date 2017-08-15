@@ -4,11 +4,6 @@ from abjad.tools.graphtools.GraphvizMixin import GraphvizMixin
 
 class GraphvizNode(GraphvizMixin, TreeContainer):
     r'''A Graphviz node.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###

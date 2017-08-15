@@ -7,10 +7,6 @@ from abjad.tools.topleveltools import new
 class GraphvizGraph(GraphvizMixin, TreeContainer):
     r'''A Graphviz graph.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

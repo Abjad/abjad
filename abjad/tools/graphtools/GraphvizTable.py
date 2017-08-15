@@ -4,10 +4,6 @@ from abjad.tools.datastructuretools import TreeContainer
 class GraphvizTable(TreeContainer):
     r'''A Graphviz table.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
