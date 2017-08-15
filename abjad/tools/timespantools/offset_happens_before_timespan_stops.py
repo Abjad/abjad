@@ -5,12 +5,8 @@ def offset_happens_before_timespan_stops(
     offset=None,
     hold=False,
     ):
-    r'''Makes time relation indicating that `offset` happens
-    before `timespan` stops.
-
-    ::
-
-        >>> import abjad
+    r'''Makes time relation indicating that `offset` happens before `timespan`
+    stops.
 
     ..  container:: example
 
@@ -18,8 +14,8 @@ def offset_happens_before_timespan_stops(
 
             >>> relation = abjad.timespantools.offset_happens_before_timespan_stops()
             >>> f(relation)
-            abjad.OffsetTimespanTimeRelation(
-                inequality=abjad.CompoundInequality(
+            abjad.timespantools.OffsetTimespanTimeRelation(
+                inequality=abjad.timespantools.CompoundInequality(
                     [
                         abjad.TimespanInequality('offset < timespan.stop'),
                         ],

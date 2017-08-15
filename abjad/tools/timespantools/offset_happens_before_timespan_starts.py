@@ -8,10 +8,6 @@ def offset_happens_before_timespan_starts(
     r'''Makes time relation indicating that `offset` happens before `timespan`
     starts.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Makes time relation indicating that `offset` happens before `timespan`
@@ -21,8 +17,8 @@ def offset_happens_before_timespan_starts(
 
             >>> relation = abjad.timespantools.offset_happens_before_timespan_starts()
             >>> f(relation)
-            abjad.OffsetTimespanTimeRelation(
-                inequality=abjad.CompoundInequality(
+            abjad.timespantools.OffsetTimespanTimeRelation(
+                inequality=abjad.timespantools.CompoundInequality(
                     [
                         abjad.TimespanInequality('offset < timespan.start'),
                         ],
@@ -48,8 +44,8 @@ def offset_happens_before_timespan_starts(
         ::
 
             >>> f(relation)
-            abjad.OffsetTimespanTimeRelation(
-                inequality=abjad.CompoundInequality(
+            abjad.timespantools.OffsetTimespanTimeRelation(
+                inequality=abjad.timespantools.CompoundInequality(
                     [
                         abjad.TimespanInequality('offset < timespan.start'),
                         ],
@@ -76,8 +72,8 @@ def offset_happens_before_timespan_starts(
         ::
 
             >>> f(relation)
-            abjad.OffsetTimespanTimeRelation(
-                inequality=abjad.CompoundInequality(
+            abjad.timespantools.OffsetTimespanTimeRelation(
+                inequality=abjad.timespantools.CompoundInequality(
                     [
                         abjad.TimespanInequality('offset < timespan.start'),
                         ],
@@ -105,8 +101,8 @@ def offset_happens_before_timespan_starts(
         ::
 
             >>> f(relation)
-            abjad.OffsetTimespanTimeRelation(
-                inequality=abjad.CompoundInequality(
+            abjad.timespantools.OffsetTimespanTimeRelation(
+                inequality=abjad.timespantools.CompoundInequality(
                     [
                         abjad.TimespanInequality('offset < timespan.start'),
                         ],

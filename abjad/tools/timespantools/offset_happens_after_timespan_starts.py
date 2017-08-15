@@ -8,18 +8,14 @@ def offset_happens_after_timespan_starts(
     r'''Makes time relation indicating that `offset` happens
     after `timespan` starts.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
 
             >>> relation = abjad.timespantools.offset_happens_after_timespan_starts()
             >>> f(relation)
-            abjad.OffsetTimespanTimeRelation(
-                inequality=abjad.CompoundInequality(
+            abjad.timespantools.OffsetTimespanTimeRelation(
+                inequality=abjad.timespantools.CompoundInequality(
                     [
                         abjad.TimespanInequality('timespan.start < offset'),
                         ],

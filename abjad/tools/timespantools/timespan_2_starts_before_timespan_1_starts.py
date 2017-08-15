@@ -8,18 +8,14 @@ def timespan_2_starts_before_timespan_1_starts(
     r'''Makes time relation indicating that `timespan_2` starts
     before `timespan_1` starts.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
 
             >>> relation = abjad.timespantools.timespan_2_starts_before_timespan_1_starts()
             >>> f(relation)
-            abjad.TimespanTimespanTimeRelation(
-                inequality=abjad.CompoundInequality(
+            abjad.timespantools.TimespanTimespanTimeRelation(
+                inequality=abjad.timespantools.CompoundInequality(
                     [
                         abjad.TimespanInequality('timespan_2.start_offset < timespan_1.start_offset'),
                         ],

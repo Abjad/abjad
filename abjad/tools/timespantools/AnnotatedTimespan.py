@@ -4,10 +4,6 @@ from abjad.tools.timespantools.Timespan import Timespan
 class AnnotatedTimespan(Timespan):
     r'''Annotated timespan.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
@@ -76,6 +72,11 @@ class AnnotatedTimespan(Timespan):
 
             ::
 
+                >>> annotated_timespan = abjad.AnnotatedTimespan(
+                ...    annotation=['a', 'b', 'c', 'foo'],
+                ...    start_offset=(1, 4),
+                ...    stop_offset=(7, 8),
+                ...    )
                 >>> annotated_timespan.annotation
                 ['a', 'b', 'c', 'foo']
 

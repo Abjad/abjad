@@ -8,18 +8,14 @@ def timespan_2_starts_after_timespan_1_stops(
     r'''Makes time relation indicating that `timespan_2` starts
     after `timespan_1` stops.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
 
             >>> relation = abjad.timespantools.timespan_2_starts_after_timespan_1_stops()
             >>> f(relation)
-            abjad.TimespanTimespanTimeRelation(
-                inequality=abjad.CompoundInequality(
+            abjad.timespantools.TimespanTimespanTimeRelation(
+                inequality=abjad.timespantools.CompoundInequality(
                     [
                         abjad.TimespanInequality('timespan_1.stop_offset <= timespan_2.start_offset'),
                         ],

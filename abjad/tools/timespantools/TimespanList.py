@@ -9,10 +9,6 @@ from abjad.tools.topleveltools import new
 class TimespanList(TypedList):
     r'''Timespan list.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Contiguous timespan list:

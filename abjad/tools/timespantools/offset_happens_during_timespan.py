@@ -3,18 +3,14 @@
 def offset_happens_during_timespan(timespan=None, offset=None, hold=False):
     r'''Makes time relation indicating that `offset` happens during `timespan`.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
 
             >>> relation = abjad.timespantools.offset_happens_during_timespan()
             >>> f(relation)
-            abjad.OffsetTimespanTimeRelation(
-                inequality=abjad.CompoundInequality(
+            abjad.timespantools.OffsetTimespanTimeRelation(
+                inequality=abjad.timespantools.CompoundInequality(
                     [
                         abjad.TimespanInequality('timespan.start <= offset'),
                         abjad.TimespanInequality('offset < timespan.stop'),
