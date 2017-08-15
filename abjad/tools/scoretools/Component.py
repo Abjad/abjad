@@ -325,17 +325,13 @@ class Component(AbjadObject):
             return parentage.prolation * self._get_preprolated_duration()
 
     def _get_effective(self, prototype=None, unwrap=True, n=0):
-        from abjad.tools import indicatortools
-        from abjad.tools import scoretools
+        import abjad
         # return time signature attached to measure regardless of scope
-        if (
-            prototype == indicatortools.TimeSignature or
-            prototype == (indicatortools.TimeSignature,)
-            ):
-            if isinstance(self, scoretools.Measure):
-                if self._has_indicator(indicatortools.TimeSignature):
-                    indicator = self._get_indicator(
-                        indicatortools.TimeSignature)
+        if (prototype == abjad.TimeSignature or
+            prototype == (abjad.TimeSignature,)):
+            if isinstance(self, abjad.Measure):
+                if self._has_indicator(abjad.TimeSignature):
+                    indicator = self._get_indicator(abjad.TimeSignature)
                     return indicator
                 else:
                     return
@@ -350,17 +346,13 @@ class Component(AbjadObject):
             for wrapper in parent._dependent_wrappers:
                 if isinstance(wrapper.indicator, prototype):
                     offset = wrapper.start_offset
-                    candidate_wrappers.setdefault(offset, []).append(
-                        wrapper
-                        )
+                    candidate_wrappers.setdefault(offset, []).append(wrapper)
             for wrapper in parent._indicator_wrappers:
                 if wrapper.scope is not None:
                     continue
                 if isinstance(wrapper.indicator, prototype):
                     offset = wrapper.start_offset
-                    candidate_wrappers.setdefault(offset, []).append(
-                        wrapper
-                        )
+                    candidate_wrappers.setdefault(offset, []).append(wrapper)
         if not candidate_wrappers:
             return
         # elect most recent candidate wrapper
@@ -377,21 +369,16 @@ class Component(AbjadObject):
         return wrapper
 
     def _get_effective_staff(self):
-        from abjad.tools import indicatortools
-        from abjad.tools import scoretools
-        staff_change = self._get_effective(indicatortools.StaffChange)
+        import abjad
+        staff_change = self._get_effective(abjad.StaffChange)
         if staff_change is not None:
             effective_staff = staff_change.staff
         else:
             parentage = self._get_parentage()
-            effective_staff = parentage.get_first(scoretools.Staff)
+            effective_staff = parentage.get_first(abjad.Staff)
         return effective_staff
 
-    def _get_format_contributions_for_slot(
-        self,
-        slot_identifier,
-        bundle=None
-        ):
+    def _get_format_contributions_for_slot(self, slot_identifier, bundle=None):
         import abjad
         result = []
         if bundle is None:

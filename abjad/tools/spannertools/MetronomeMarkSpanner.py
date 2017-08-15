@@ -2716,6 +2716,117 @@ class MetronomeMarkSpanner(Spanner):
     def attach(self, indicator, leaf):
         r'''Attaches `indicator` to `leaf` in spanner.
 
+        ..  container:: example
+
+            REGRESSION: effective metronome marks still work:
+
+            ::
+
+                >>> staff = abjad.Staff("c'8. d' e'4. g'8. f' ef'4.")
+                >>> score = abjad.Score([staff])
+                >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
+                >>> spanner = abjad.MetronomeMarkSpanner()
+                >>> abjad.attach(spanner, staff[:])
+
+            ::
+
+                >>> mark = abjad.MetronomeMark((1, 4), 60)
+                >>> spanner.attach(mark, staff[0])
+                >>> mark = abjad.MetronomeMark((1, 4), 90)
+                >>> spanner.attach(mark, staff[2])
+                >>> mark = abjad.MetronomeMark((1, 4), 72)
+                >>> spanner.attach(mark, staff[3])
+                >>> mark = abjad.MetronomeMark((1, 4), 60)
+                >>> spanner.attach(mark, staff[5])
+
+            ::
+
+                >>> abjad.override(score).text_script.staff_padding = 2.25
+                >>> show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(score)
+                \new Score \with {
+                    \override TextScript.staff-padding = #2.25
+                } <<
+                    \new Staff {
+                        \time 3/8
+                        c'8. ^ \markup {
+                            \fontsize
+                                #-6
+                                \general-align
+                                    #Y
+                                    #DOWN
+                                    \note-by-number
+                                        #2
+                                        #0
+                                        #1
+                            \upright
+                                {
+                                    =
+                                    60
+                                }
+                            }
+                        d'8.
+                        e'4. ^ \markup {
+                            \fontsize
+                                #-6
+                                \general-align
+                                    #Y
+                                    #DOWN
+                                    \note-by-number
+                                        #2
+                                        #0
+                                        #1
+                            \upright
+                                {
+                                    =
+                                    90
+                                }
+                            }
+                        g'8. ^ \markup {
+                            \fontsize
+                                #-6
+                                \general-align
+                                    #Y
+                                    #DOWN
+                                    \note-by-number
+                                        #2
+                                        #0
+                                        #1
+                            \upright
+                                {
+                                    =
+                                    72
+                                }
+                            }
+                        f'8.
+                        ef'4. ^ \markup {
+                            \fontsize
+                                #-6
+                                \general-align
+                                    #Y
+                                    #DOWN
+                                    \note-by-number
+                                        #2
+                                        #0
+                                        #1
+                            \upright
+                                {
+                                    =
+                                    60
+                                }
+                            }
+                    }
+                >>
+
+            ::
+
+                >>> prototype = abjad.MetronomeMark
+                >>> abjad.inspect(staff[-1]).get_effective(prototype)
+                MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60)
+
         Returns none.
         '''
         super(MetronomeMarkSpanner, self)._attach_piecewise(indicator, leaf)
