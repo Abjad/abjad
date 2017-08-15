@@ -6,14 +6,7 @@ import shutil
 import subprocess
 import sys
 from abjad.tools.abctools import AbjadObject
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO
-try:
-    input = raw_input
-except NameError:
-    pass
+from io import StringIO
 
 
 class IOManager(AbjadObject):

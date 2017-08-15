@@ -2,10 +2,6 @@ import fnmatch
 import os
 import re
 from abjad.tools.commandlinetools.CommandlineScript import CommandlineScript
-try:
-    input = raw_input
-except NameError:
-    pass
 
 
 class ReplaceScript(CommandlineScript):
