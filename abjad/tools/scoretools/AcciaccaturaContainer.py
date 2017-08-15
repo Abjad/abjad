@@ -4,10 +4,6 @@ from abjad.tools.scoretools.GraceContainer import GraceContainer
 class AcciaccaturaContainer(GraceContainer):
     r'''Acciaccatura container.
 
-    ::
-
-        >>> import abjad
-
     Acciaccaturas are played before the beat.
 
     LilyPond positions acciaccaturas immediately before main notes.

@@ -4,10 +4,6 @@ from abjad.tools.scoretools.GraceContainer import GraceContainer
 class AppoggiaturaContainer(GraceContainer):
     r'''Appoggiatura container.
 
-    ::
-
-        >>> import abjad
-
     Appoggiaturas are played on the beat.
 
     LilyPond positions appoggiaturas immediately before main notes.

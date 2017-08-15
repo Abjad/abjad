@@ -5,10 +5,6 @@ from abjad.tools.scoretools.Context import Context
 class Score(Context):
     r'''Score.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

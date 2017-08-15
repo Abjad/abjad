@@ -6,10 +6,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class LeafMaker(AbjadValueObject):
     r'''Leaf-maker.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Integer and string elements in `pitches` result in notes:

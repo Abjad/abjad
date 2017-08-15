@@ -5,10 +5,6 @@ from abjad.tools.scoretools.Leaf import Leaf
 class Skip(Leaf):
     r'''LilyPond skip.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

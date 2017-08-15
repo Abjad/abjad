@@ -11,10 +11,6 @@ from abjad.tools.topleveltools import inspect
 class Chord(Leaf):
     r'''Chord.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

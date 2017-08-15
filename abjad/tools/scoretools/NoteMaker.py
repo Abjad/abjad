@@ -8,10 +8,6 @@ class NoteMaker(AbjadValueObject):
 
     Makes notes according to `pitches` and `durations`.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Cycles through `pitches` when the length of `pitches` is less than the

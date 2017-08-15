@@ -4,10 +4,6 @@ from abjad.tools.scoretools.Context import Context
 class Voice(Context):
     r'''Voice.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

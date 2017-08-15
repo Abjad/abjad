@@ -15,10 +15,6 @@ from abjad.tools.scoretools.Container import Container
 class Measure(Container):
     r'''Measure.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         >>> measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
@@ -468,6 +464,7 @@ class Measure(Container):
 
             ::
 
+                >>> measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
                 >>> measure.always_format_time_signature
                 False
 
@@ -818,6 +815,7 @@ class Measure(Container):
 
             ::
 
+                >>> measure = abjad.Measure((3, 4), "c'4 d'4 e'4")
                 >>> measure.time_signature
                 TimeSignature((3, 4))
 

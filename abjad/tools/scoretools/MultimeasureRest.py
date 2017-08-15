@@ -4,10 +4,6 @@ from abjad.tools.scoretools.Leaf import Leaf
 class MultimeasureRest(Leaf):
     '''Multimeasure rest.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

@@ -4,10 +4,6 @@ from abjad.tools.scoretools.Container import Container
 class AfterGraceContainer(Container):
     r'''After grace container.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         After grace notes:

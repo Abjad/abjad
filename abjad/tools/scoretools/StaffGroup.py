@@ -4,10 +4,6 @@ from abjad.tools.scoretools.Context import Context
 class StaffGroup(Context):
     r'''Staff group.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

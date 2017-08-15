@@ -7,10 +7,6 @@ from abjad.tools.topleveltools import detach
 class Rest(Leaf):
     r'''Rest.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

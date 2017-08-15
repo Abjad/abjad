@@ -6,10 +6,6 @@ from abjad.tools.scoretools.Container import Container
 class Context(Container):
     '''LilyPond context.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

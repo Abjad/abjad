@@ -14,10 +14,6 @@ from abjad.tools.topleveltools import select
 class Tuplet(Container):
     r'''Tuplet.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         A tuplet:
@@ -2310,7 +2306,7 @@ class Tuplet(Container):
         self.preferred_denominator = nonreduced_fractions[1].numerator
 
     def toggle_prolation(self):
-        '''Changes augmented tuplets to diminished;
+        r'''Changes augmented tuplets to diminished;
         changes diminished tuplets to augmented.
 
         ..  container:: example

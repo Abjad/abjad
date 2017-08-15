@@ -4,10 +4,6 @@ from abjad.tools.scoretools.Container import Container
 class GraceContainer(Container):
     r'''Grace container.
 
-    ::
-
-        >>> import abjad
-
     LilyPond positions grace notes immediately before main notes.
 
     LilyPond formats grace notes with neither a slashed nor a slur.

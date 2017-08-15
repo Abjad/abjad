@@ -4,10 +4,6 @@ from abjad.tools.scoretools.Container import Container
 class Cluster(Container):
     '''Cluster.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
