@@ -6,7 +6,7 @@ if six.PY3:
     import builtins
 else:
     import __builtin__ as builtins
-builtins.Identity = OrdinalConstant('value', 0, 'Identity')
+builtins.Identity = OrdinalConstant('identity', 0, 'Identity')
 builtins.Less = OrdinalConstant('value', -1, 'Less')
 builtins.More = OrdinalConstant('value', 1, 'More')
 builtins.Exact = OrdinalConstant('value', 0, 'Exact')
