@@ -234,7 +234,6 @@ class TypedOrderedDict(TypedCollection):
             repr_is_indented=False,
             storage_format_args_values=values,
             storage_format_kwargs_names=names,
-            storage_format_includes_root_package=True,
             )
 
     ### PUBLIC METHODS ###
