@@ -1,4 +1,5 @@
 import collections
+import importlib
 import sys
 import types
 from abjad.tools.abctools import AbjadValueObject
@@ -10,12 +11,6 @@ except ImportError:
 
 class StorageFormatAgent(AbjadValueObject):
     r'''Manages Abjad object storage formats.
-
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import rhythmmakertools
-
     '''
 
     ### CLASS VARIABLES ###
@@ -103,17 +98,14 @@ class StorageFormatAgent(AbjadValueObject):
 
     def _format_class(self, as_storage_format, is_indented):
         if as_storage_format:
-            tools_package_name = self.get_tools_package_name()
-            if tools_package_name in self._exclude_tools_package:
-                result = '{}.{}'.format(
-                    self.get_root_package_name(),
-                    self._client.__name__,
-                    )
-            else:
-                result = '{}.{}'.format(
-                    tools_package_name,
-                    self._client.__name__,
-                    )
+            root_package_name = self.get_root_package_name()
+            root_package = importlib.import_module(root_package_name)
+            parts = [root_package_name]
+            if self._client.__name__ not in dir(root_package):
+                tools_package_name = self.get_tools_package_name()
+                parts.append(tools_package_name)
+            parts.append(self._client.__name__)
+            result = '.'.join(parts)
         else:
             result = self._client.__name__
         return [result]
@@ -539,14 +531,13 @@ class StorageFormatAgent(AbjadValueObject):
         else:
             class_name = self._client.__name__
         if as_storage_format:
-            tools_package_name = agent.get_tools_package_name()
-            if tools_package_name not in self._exclude_tools_package:
-                parts = [tools_package_name, class_name]
-            else:
-                parts = [class_name]
-            if (self.format_specification.storage_format_includes_root_package
-                or tools_package_name in self._exclude_tools_package):
-                parts.insert(0, self.get_root_package_name())
+            root_package_name = self.get_root_package_name()
+            root_package = importlib.import_module(root_package_name)
+            parts = [root_package_name]
+            if class_name not in dir(root_package):
+                tools_package_name = agent.get_tools_package_name()
+                parts.append(tools_package_name)
+            parts.append(class_name)
             return '.'.join(parts)
         return class_name
 
