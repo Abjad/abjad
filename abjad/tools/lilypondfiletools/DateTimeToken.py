@@ -5,10 +5,6 @@ from abjad.tools.abctools import AbjadObject
 class DateTimeToken(AbjadObject):
     '''A LilyPond file date / time token.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         >>> abjad.DateTimeToken()

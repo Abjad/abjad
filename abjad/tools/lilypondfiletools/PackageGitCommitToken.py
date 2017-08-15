@@ -9,10 +9,6 @@ from abjad.tools.abctools import AbjadValueObject
 class PackageGitCommitToken(AbjadValueObject):
     r'''A Python package git commit token.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

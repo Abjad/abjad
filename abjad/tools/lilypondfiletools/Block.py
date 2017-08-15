@@ -5,10 +5,6 @@ from abjad.tools.abctools import AbjadObject
 class Block(AbjadObject):
     '''A LilyPond file block.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Blocks remember attribute assignment order.

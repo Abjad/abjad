@@ -4,10 +4,6 @@ from abjad.tools.abctools import AbjadValueObject
 class LilyPondLanguageToken(AbjadValueObject):
     r'''A LilyPond file ``\language`` token.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
