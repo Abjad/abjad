@@ -5,10 +5,6 @@ from abjad.tools import durationtools
 class InspectionAgent(abctools.AbjadObject):
     r'''Inspection agent.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

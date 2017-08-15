@@ -15,10 +15,6 @@ from abjad.tools.topleveltools import new
 class LabelAgent(abctools.AbjadObject):
     r'''Label agent.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Labels pitch names:
@@ -78,7 +74,7 @@ class LabelAgent(abctools.AbjadObject):
                             qualified_method_name='abjad.LabelAgent.with_pitches',
                             ),
                         ],
-                    proxy_class=agenttools.LabelAgent,
+                    proxy_class=abjad.LabelAgent,
                     )
 
             ::

@@ -8,10 +8,6 @@ from abjad.tools import abctools
 class PersistenceAgent(abctools.AbjadObject):
     r'''Persistence agent.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::

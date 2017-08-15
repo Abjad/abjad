@@ -12,10 +12,6 @@ from abjad.tools.topleveltools import iterate
 class IterationAgent(abctools.AbjadObject):
     r'''Iteration agent.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Iterates components:
