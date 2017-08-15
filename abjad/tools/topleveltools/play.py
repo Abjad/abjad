@@ -1,11 +1,5 @@
-
-
 def play(argument):
     r'''Plays `argument`.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

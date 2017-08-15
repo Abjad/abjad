@@ -13,10 +13,6 @@ def graph(
     ):
     r'''Graphs `argument`.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Graphs staff:
@@ -24,26 +20,26 @@ def graph(
         ::
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> graph(staff) # doctest: +SKIP
+            >>> abjad.graph(staff) # doctest: +SKIP
 
         ..  docs::
 
             >>> print(format(staff.__graph__()))
-            graphtools.GraphvizGraph(
+            abjad.graphtools.GraphvizGraph(
                 attributes={
                     'style': 'rounded',
                     },
                 children=(
-                    graphtools.GraphvizNode(
+                    abjad.graphtools.GraphvizNode(
                         attributes={
                             'margin': 0.05,
                             },
                         children=(
-                            graphtools.GraphvizTable(
+                            abjad.graphtools.GraphvizTable(
                                 children=(
-                                    graphtools.GraphvizTableRow(
+                                    abjad.graphtools.GraphvizTableRow(
                                         children=(
-                                            graphtools.GraphvizTableCell(
+                                            abjad.graphtools.GraphvizTableCell(
                                                 label='Staff',
                                                 attributes={
                                                     'border': 0,
@@ -61,22 +57,22 @@ def graph(
                             ),
                         name='Staff',
                         ),
-                    graphtools.GraphvizSubgraph(
+                    abjad.graphtools.GraphvizSubgraph(
                         attributes={
                             'color': 'grey75',
                             'penwidth': 2,
                             },
                         children=(
-                            graphtools.GraphvizNode(
+                            abjad.graphtools.GraphvizNode(
                                 attributes={
                                     'margin': 0.05,
                                     },
                                 children=(
-                                    graphtools.GraphvizTable(
+                                    abjad.graphtools.GraphvizTable(
                                         children=(
-                                            graphtools.GraphvizTableRow(
+                                            abjad.graphtools.GraphvizTableRow(
                                                 children=(
-                                                    graphtools.GraphvizTableCell(
+                                                    abjad.graphtools.GraphvizTableCell(
                                                         label='Note',
                                                         attributes={
                                                             'border': 0,
@@ -84,10 +80,10 @@ def graph(
                                                         ),
                                                     ),
                                                 ),
-                                            graphtools.GraphvizTableHorizontalRule(),
-                                            graphtools.GraphvizTableRow(
+                                            abjad.graphtools.GraphvizTableHorizontalRule(),
+                                            abjad.graphtools.GraphvizTableRow(
                                                 children=(
-                                                    graphtools.GraphvizTableCell(
+                                                    abjad.graphtools.GraphvizTableCell(
                                                         label="c'4",
                                                         attributes={
                                                             'border': 0,
@@ -105,16 +101,16 @@ def graph(
                                     ),
                                 name='Note_0',
                                 ),
-                            graphtools.GraphvizNode(
+                            abjad.graphtools.GraphvizNode(
                                 attributes={
                                     'margin': 0.05,
                                     },
                                 children=(
-                                    graphtools.GraphvizTable(
+                                    abjad.graphtools.GraphvizTable(
                                         children=(
-                                            graphtools.GraphvizTableRow(
+                                            abjad.graphtools.GraphvizTableRow(
                                                 children=(
-                                                    graphtools.GraphvizTableCell(
+                                                    abjad.graphtools.GraphvizTableCell(
                                                         label='Note',
                                                         attributes={
                                                             'border': 0,
@@ -122,10 +118,10 @@ def graph(
                                                         ),
                                                     ),
                                                 ),
-                                            graphtools.GraphvizTableHorizontalRule(),
-                                            graphtools.GraphvizTableRow(
+                                            abjad.graphtools.GraphvizTableHorizontalRule(),
+                                            abjad.graphtools.GraphvizTableRow(
                                                 children=(
-                                                    graphtools.GraphvizTableCell(
+                                                    abjad.graphtools.GraphvizTableCell(
                                                         label="d'4",
                                                         attributes={
                                                             'border': 0,
@@ -143,16 +139,16 @@ def graph(
                                     ),
                                 name='Note_1',
                                 ),
-                            graphtools.GraphvizNode(
+                            abjad.graphtools.GraphvizNode(
                                 attributes={
                                     'margin': 0.05,
                                     },
                                 children=(
-                                    graphtools.GraphvizTable(
+                                    abjad.graphtools.GraphvizTable(
                                         children=(
-                                            graphtools.GraphvizTableRow(
+                                            abjad.graphtools.GraphvizTableRow(
                                                 children=(
-                                                    graphtools.GraphvizTableCell(
+                                                    abjad.graphtools.GraphvizTableCell(
                                                         label='Note',
                                                         attributes={
                                                             'border': 0,
@@ -160,10 +156,10 @@ def graph(
                                                         ),
                                                     ),
                                                 ),
-                                            graphtools.GraphvizTableHorizontalRule(),
-                                            graphtools.GraphvizTableRow(
+                                            abjad.graphtools.GraphvizTableHorizontalRule(),
+                                            abjad.graphtools.GraphvizTableRow(
                                                 children=(
-                                                    graphtools.GraphvizTableCell(
+                                                    abjad.graphtools.GraphvizTableCell(
                                                         label="e'4",
                                                         attributes={
                                                             'border': 0,
@@ -181,16 +177,16 @@ def graph(
                                     ),
                                 name='Note_2',
                                 ),
-                            graphtools.GraphvizNode(
+                            abjad.graphtools.GraphvizNode(
                                 attributes={
                                     'margin': 0.05,
                                     },
                                 children=(
-                                    graphtools.GraphvizTable(
+                                    abjad.graphtools.GraphvizTable(
                                         children=(
-                                            graphtools.GraphvizTableRow(
+                                            abjad.graphtools.GraphvizTableRow(
                                                 children=(
-                                                    graphtools.GraphvizTableCell(
+                                                    abjad.graphtools.GraphvizTableCell(
                                                         label='Note',
                                                         attributes={
                                                             'border': 0,
@@ -198,10 +194,10 @@ def graph(
                                                         ),
                                                     ),
                                                 ),
-                                            graphtools.GraphvizTableHorizontalRule(),
-                                            graphtools.GraphvizTableRow(
+                                            abjad.graphtools.GraphvizTableHorizontalRule(),
+                                            abjad.graphtools.GraphvizTableRow(
                                                 children=(
-                                                    graphtools.GraphvizTableCell(
+                                                    abjad.graphtools.GraphvizTableCell(
                                                         label="f'4",
                                                         attributes={
                                                             'border': 0,
@@ -252,37 +248,37 @@ def graph(
         ..  docs::
 
             >>> print(format(rhythm_tree.__graph__()))
-            graphtools.GraphvizGraph(
+            abjad.graphtools.GraphvizGraph(
                 attributes={
                     'bgcolor': 'transparent',
                     'truecolor': True,
                     },
                 children=(
-                    graphtools.GraphvizNode(
+                    abjad.graphtools.GraphvizNode(
                         attributes={
                             'label': '3',
                             'shape': 'triangle',
                             },
                         ),
-                    graphtools.GraphvizNode(
+                    abjad.graphtools.GraphvizNode(
                         attributes={
                             'label': '2',
                             'shape': 'triangle',
                             },
                         ),
-                    graphtools.GraphvizNode(
+                    abjad.graphtools.GraphvizNode(
                         attributes={
                             'label': '2',
                             'shape': 'box',
                             },
                         ),
-                    graphtools.GraphvizNode(
+                    abjad.graphtools.GraphvizNode(
                         attributes={
                             'label': '1',
                             'shape': 'box',
                             },
                         ),
-                    graphtools.GraphvizNode(
+                    abjad.graphtools.GraphvizNode(
                         attributes={
                             'label': '2',
                             'shape': 'box',

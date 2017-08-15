@@ -1,5 +1,3 @@
-
-
 def attach(
     indicator,
     argument,
@@ -10,10 +8,6 @@ def attach(
     synthetic_offset=None,
     ):
     r'''Attaches `indicator` to component, selection or spanner `argument`.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

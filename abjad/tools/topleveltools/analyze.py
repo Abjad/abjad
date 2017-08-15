@@ -1,5 +1,3 @@
-
-
 def analyze(argument):
     r'''Makes tonal analysis agent.
 

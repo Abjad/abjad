@@ -1,5 +1,3 @@
-
-
 def override(argument):
     r'''Makes LilyPond grob name manager.
 

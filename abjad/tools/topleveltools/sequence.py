@@ -1,11 +1,5 @@
-
-
 def sequence(items=None, **keywords):
     r'''Makes sequence or sequence expression.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

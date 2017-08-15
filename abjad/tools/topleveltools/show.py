@@ -1,11 +1,5 @@
-
-
 def show(argument, return_timing=False, **keywords):
     r'''Shows `argument`.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

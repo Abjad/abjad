@@ -1,11 +1,5 @@
-
-
 def select(argument=None):
     r'''Selects `argument` or makes empty selector.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

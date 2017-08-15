@@ -1,11 +1,5 @@
-
-
 def inspect(client):
     r'''Makes inspection agent.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

@@ -1,11 +1,5 @@
-
-
 def label(client=None):
     r'''Makes label agent or label expression.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

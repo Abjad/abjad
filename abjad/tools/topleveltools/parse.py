@@ -1,14 +1,8 @@
-
-
 _lilypond_parsers_by_language = {}
 
 
 def parse(string, language='english'):
     r'''Parses LilyPond `string`.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

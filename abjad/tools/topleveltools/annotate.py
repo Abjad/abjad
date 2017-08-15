@@ -1,11 +1,5 @@
-
-
 def annotate(component, name, indicator):
     r'''Annotates `component` with `indicator`.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
