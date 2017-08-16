@@ -44,18 +44,15 @@ keywords = ', '.join(keywords)
 classifiers = [
     'Development Status :: 5 - Production/Stable',
     'License :: OSI Approved :: GNU General Public License (GPL)',
-    'Programming Language :: Python :: 2.7',
-    'Programming Language :: Python :: 3.3',
     'Programming Language :: Python :: 3.4',
     'Programming Language :: Python :: 3.5',
+    'Programming Language :: Python :: 3.6',
     'Programming Language :: Python :: Implementation :: CPython',
-    'Programming Language :: Python :: Implementation :: PyPy',
     'Topic :: Artistic Software',
     ]
 
 install_requires = [
     'ply',
-    'six',
     ]
 
 extras_require = {
@@ -92,7 +89,7 @@ if __name__ == '__main__':
         include_package_data=True,
         install_requires=install_requires,
         keywords=keywords,
-        license='GPL',
+        license='MIT',
         long_description=long_description,
         name='Abjad',
         packages=['abjad'],

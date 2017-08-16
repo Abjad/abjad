@@ -5,10 +5,6 @@ from abjad.tools.templatetools.ScoreTemplate import ScoreTemplate
 class StringQuartetScoreTemplate(ScoreTemplate):
     r'''String quartet score template.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
