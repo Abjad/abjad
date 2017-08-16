@@ -1,6 +1,5 @@
 import functools
 import itertools
-import sys
 from abjad.tools import abctools
 
 
@@ -388,19 +387,16 @@ class Enumerator(abctools.AbjadValueObject):
 
         Returns sequence generator.
         '''
-        import abjad
-        sequences = [abjad.Sequence(_) for _ in self.sequence]
         def _helper(sequence_1, sequence_2):
             result = []
             for item_1 in sequence_1:
                 for item_2 in sequence_2:
                     result.extend([item_1 + [item_2]])
             return result
+        import abjad
+        sequences = [abjad.Sequence(_) for _ in self.sequence]
         sequences[0] = [[_] for _ in sequences[0]]
-        if sys.version_info[0] == 2:
-            result = reduce(_helper, sequences)
-        else:
-            result = functools.reduce(_helper, sequences)
+        result = functools.reduce(_helper, sequences)
         for element in result:
             yield abjad.Sequence(items=element)
 

@@ -1,7 +1,6 @@
 import copy
 import os
 import subprocess
-import sys
 from abjad.tools import documentationtools
 from abjad.tools import systemtools
 from abjad.tools import lilypondfiletools
@@ -199,8 +198,6 @@ class LilyPondOutputProxy(ImageOutputProxy):
         result = []
         try:
             code = format(self.payload)
-            if sys.version_info[0] == 2:
-                code = code.decode('utf-8')
             node = abjadbooktools.abjad_output_block(code, code)
             node['image_layout_specifier'] = self.image_layout_specifier
             node['image_render_specifier'] = self.image_render_specifier

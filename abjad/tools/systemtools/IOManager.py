@@ -628,8 +628,7 @@ class IOManager(AbjadObject):
             stderr=subprocess.STDOUT,
             )
         subprocess_output, _ = process.communicate()
-        if sys.version_info[0] == 3:
-            subprocess_output = subprocess_output.decode('utf-8')
+        subprocess_output = subprocess_output.decode('utf-8')
         exit_code = process.returncode
         with open(log_file_path, 'w') as file_pointer:
             file_pointer.write(date + '\n')

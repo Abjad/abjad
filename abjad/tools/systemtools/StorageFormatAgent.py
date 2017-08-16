@@ -1,6 +1,5 @@
 import collections
 import importlib
-import sys
 import types
 from abjad.tools.abctools import AbjadValueObject
 try:
@@ -397,10 +396,7 @@ class StorageFormatAgent(AbjadValueObject):
         Returns tuple of types.
         '''
         from abjad.tools import abctools
-        if sys.version_info[0] == 2:
-            type_type = types.TypeType
-        else:
-            type_type = type
+        type_type = type
         if result is None:
             result = set()
         agent = StorageFormatAgent(subject)

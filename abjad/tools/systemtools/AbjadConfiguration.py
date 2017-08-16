@@ -1,3 +1,4 @@
+import locale
 import os
 import subprocess
 import sys
@@ -204,14 +205,10 @@ class AbjadConfiguration(Configuration):
                 lilypond = 'lilypond'
         command = lilypond + ' --version'
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-        if sys.version_info[0] == 2:
-            lilypond_version_string = proc.stdout.readline()
-        else:
-            import locale
-            encoding = locale.getdefaultlocale()[1]
-            if encoding is None:
-                encoding = 'utf-8'
-            lilypond_version_string = proc.stdout.readline().decode(encoding)
+        encoding = locale.getdefaultlocale()[1]
+        if encoding is None:
+            encoding = 'utf-8'
+        lilypond_version_string = proc.stdout.readline().decode(encoding)
         lilypond_version_string = lilypond_version_string.split(' ')[-1]
         lilypond_version_string = lilypond_version_string.strip()
         AbjadConfiguration._lilypond_version_string = lilypond_version_string

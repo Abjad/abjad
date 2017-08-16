@@ -3,7 +3,6 @@ import hashlib
 import platform
 import os
 import subprocess
-import sys
 from abjad.tools import systemtools
 from abjad.tools.abjadbooktools.ImageOutputProxy import ImageOutputProxy
 
@@ -361,8 +360,6 @@ class GraphvizOutputProxy(ImageOutputProxy):
         result = []
         try:
             code = str(self.payload)
-            if sys.version_info[0] == 2:
-                code = code.decode('utf-8')
             node = abjadbooktools.abjad_output_block(code, code)
             node['image_layout_specifier'] = self.image_layout_specifier
             node['image_render_specifier'] = self.image_render_specifier

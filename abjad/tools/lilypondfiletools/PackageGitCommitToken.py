@@ -1,7 +1,6 @@
 import importlib
 import os
 import subprocess
-import sys
 from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadValueObject
 
@@ -106,8 +105,7 @@ class PackageGitCommitToken(AbjadValueObject):
         if process.returncode:
             return None
         result = process.stdout.read().splitlines()[0]
-        if sys.version_info[0] == 3:
-            result = result.decode('utf-8')
+        result = result.decode('utf-8')
         return result
 
     ### PUBLIC PROPERTIES ###

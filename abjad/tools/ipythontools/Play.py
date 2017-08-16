@@ -1,7 +1,6 @@
 import os
 import shutil
 import subprocess
-import sys
 import tempfile
 
 
@@ -46,8 +45,7 @@ class Play(object):
     def _check_for_vorbis(self):
         has_vorbis = False
         output = subprocess.check_output('timidity --help', shell=True)
-        if sys.version_info[0] == 3:
-            output = output.decode('utf-8')
+        output = output.decode('utf-8')
         for line in output.splitlines():
             for part in line.split():
                 if part == '-Ov':

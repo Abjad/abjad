@@ -1,7 +1,6 @@
 import abjad
 import platform
 import pytest
-import sys
 
 
 def test_mathtools_NonreducedFraction___add___01():
@@ -40,9 +39,5 @@ def test_mathtools_NonreducedFraction___add___03():
     result_two = abjad.IOManager.count_function_calls(
         'a + 10', locals())
 
-    if sys.version_info[0] == 2:
-        assert result_one <= 80
-        assert result_two <= 80
-    else:
-        assert result_one <= 110
-        assert result_two <= 110
+    assert result_one <= 110
+    assert result_two <= 110

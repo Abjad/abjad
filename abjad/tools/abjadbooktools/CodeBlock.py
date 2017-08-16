@@ -1,6 +1,5 @@
 import importlib
 import inspect
-import sys
 import textwrap
 import types
 from abjad.tools import abctools
@@ -142,8 +141,6 @@ class CodeBlock(abctools.AbjadValueObject):
         module = importlib.import_module(module_name)
         attr = getattr(module, attr_name)
         input_file_contents = inspect.getsource(attr)
-        if sys.version_info[0] == 2:
-            input_file_contents = input_file_contents.decode('utf-8')
         input_file_contents = input_file_contents.splitlines()
         executed_lines = 'from {} import {}'.format(
             module_name,
@@ -401,8 +398,6 @@ class CodeBlock(abctools.AbjadValueObject):
             text_width = self.code_block_specifier.text_width
         if not string:
             return
-        if sys.version_info[0] == 2:
-            string = string.decode('utf-8')
         if string.endswith('\n'):
             string = string[:-1]
         lines = string.splitlines()
