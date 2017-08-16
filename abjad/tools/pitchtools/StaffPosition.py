@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import functools
 import numbers
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
@@ -7,10 +6,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 @functools.total_ordering
 class StaffPosition(AbjadValueObject):
     r'''Staff position.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

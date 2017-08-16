@@ -1,12 +1,5 @@
-# -*- coding: utf-8 -*-
-
-
 def partition_integer_into_canonic_parts(n, decrease_parts_monotonically=True):
     r'''Partitions integer `n` into canonic parts.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

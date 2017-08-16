@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 import enum
 
 
 class Enumeration(enum.IntEnum):
     r'''Enumeration.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

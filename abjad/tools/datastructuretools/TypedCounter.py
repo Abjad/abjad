@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 from abjad.tools import systemtools
 from abjad.tools.datastructuretools.TypedCollection import TypedCollection
@@ -6,10 +5,6 @@ from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 
 class TypedCounter(TypedCollection):
     r'''Typed counter.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -35,8 +30,7 @@ class TypedCounter(TypedCollection):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     _publish_storage_format = True
 

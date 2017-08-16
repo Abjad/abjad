@@ -1,20 +1,12 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function
 import abc
 import argparse
 import inspect
 import os
+import pathlib
 from abjad.tools import abctools
 from abjad.tools import documentationtools
 from abjad.tools import datastructuretools
-try:
-    from ConfigParser import ConfigParser
-except ImportError:
-    from configparser import ConfigParser
-try:
-    import pathlib
-except ImportError:
-    import pathlib2 as pathlib
+from configparser import ConfigParser
 
 
 class CommandlineScript(abctools.AbjadObject):

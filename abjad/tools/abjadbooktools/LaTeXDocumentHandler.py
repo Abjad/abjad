@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function
 import collections
 import os
 from abjad.tools import abctools
@@ -7,7 +5,8 @@ from abjad.tools import systemtools
 
 
 class LaTeXDocumentHandler(abctools.AbjadObject):
-    r"""A LaTeX document handler.
+    r"""
+    A LaTeX document handler.
 
     ::
 
@@ -169,46 +168,6 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
         return asset_output_proxies
 
     def collect_input_blocks(self, input_file_contents, stylesheet=None):
-        r"""Collects input blocks.
-
-        ::
-
-            >>> input_blocks = document_handler.collect_input_blocks(
-            ...     input_file_contents.splitlines())
-
-        ::
-
-            >>> for source_line_range in input_blocks.keys():
-            ...     print(source_line_range)
-            ...
-            (3, 5)
-            (11, 15)
-            (21, 23)
-            (27, 29)
-
-        ::
-
-            >>> for input_block in input_blocks.values():
-            ...     print(format(input_block))
-            ...
-            abjadbooktools.CodeBlock(
-                ('print("hello, world!")',),
-                starting_line_number=5,
-                )
-            abjadbooktools.CodeBlock(
-                ("just_a_string = '''", 'show(Nothing!)', "'''"),
-                starting_line_number=15,
-                )
-            abjadbooktools.CodeBlock(
-                ('show(Note("c\'4"))',),
-                starting_line_number=23,
-                )
-            abjadbooktools.LilyPondBlock(
-                ("{ c'4 d'4 e'4 f'4 }",),
-                starting_line_number=29,
-                )
-
-        """
         import abjad
         from abjad.tools import abjadbooktools
         input_blocks = collections.OrderedDict()
@@ -335,42 +294,6 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
 
     @staticmethod
     def extract_code_block_options(source_line):
-        r'''Extracts code block options.
-
-        ::
-
-            >>> source_line = '<abjad>'
-            >>> document_handler.extract_code_block_options(source_line)
-            {}
-
-        ::
-
-            >>> source_line = '<abjad>[hide=True]'
-            >>> document_handler.extract_code_block_options(source_line)
-            {'hide': True}
-
-        ::
-
-            >>> source_line = '<abjad>[strip_prompt=true, hide=false]'
-            >>> options = document_handler.extract_code_block_options(
-            ...     source_line)
-            >>> for key, value in sorted(options.items()):
-            ...     key, value
-            ...
-            ('hide', False)
-            ('strip_prompt', True)
-
-        ::
-
-            >>> source_line = '<abjad>[allow_exceptions]'
-            >>> options = document_handler.extract_code_block_options(
-            ...     source_line)
-            >>> for key, value in sorted(options.items()):
-            ...     key, value
-            ...
-            ('allow_exceptions', True)
-
-        '''
         options = {}
         line = source_line.strip()
         if '[' in line and line.endswith(']'):

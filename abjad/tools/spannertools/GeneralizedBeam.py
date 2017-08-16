@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import datastructuretools
@@ -7,10 +6,6 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 class GeneralizedBeam(Spanner):
     r'''Generalized beam.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example::
 

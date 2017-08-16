@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import copy
 from abjad.tools import durationtools
 from abjad.tools.scoretools.Leaf import Leaf
@@ -8,10 +7,6 @@ from abjad.tools.topleveltools import inspect
 
 class Note(Leaf):
     r'''Note.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

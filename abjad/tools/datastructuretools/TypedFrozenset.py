@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 
@@ -9,8 +8,7 @@ class TypedFrozenset(TypedCollection):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

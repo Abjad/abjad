@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-
-
 def timespan_2_stops_after_timespan_1_stops(
     timespan_1=None,
     timespan_2=None,
@@ -9,18 +6,14 @@ def timespan_2_stops_after_timespan_1_stops(
     r'''Makes time relation indicating that `timespan_2` stops
     after `timespan_1` stops.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
 
             >>> relation = abjad.timespantools.timespan_2_stops_after_timespan_1_stops()
             >>> f(relation)
-            abjad.TimespanTimespanTimeRelation(
-                inequality=abjad.CompoundInequality(
+            abjad.timespantools.TimespanTimespanTimeRelation(
+                inequality=abjad.timespantools.CompoundInequality(
                     [
                         abjad.TimespanInequality('timespan_1.stop_offset < timespan_2.stop_offset'),
                         ],

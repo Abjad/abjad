@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.pitchtools.Segment import Segment
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import select
@@ -6,10 +5,6 @@ from abjad.tools.topleveltools import select
 
 class PitchSegment(Segment):
     r'''Pitch segment.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -117,8 +112,7 @@ class PitchSegment(Segment):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import functools
 from abjad.tools import durationtools
 from abjad.tools import markuptools
@@ -8,10 +7,6 @@ from abjad.tools.abctools import AbjadValueObject
 @functools.total_ordering
 class BowContactPoint(AbjadValueObject):
     r'''Bow contact point.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

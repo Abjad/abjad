@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class BenchmarkScoreMaker(AbjadObject):
     '''Benchmark score-maker.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -27,8 +22,7 @@ class BenchmarkScoreMaker(AbjadObject):
 
     __documentation_section__ = 'Benchmarking'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### PUBLIC METHODS ###
 

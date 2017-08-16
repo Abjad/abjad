@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.datastructuretools.TreeNode import TreeNode
 
 
 class ReSTHorizontalRule(TreeNode):
     r'''A ReST horizontal rule.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -28,8 +23,7 @@ class ReSTHorizontalRule(TreeNode):
 
     __documentation_section__ = 'reStructuredText'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### PRIVATE PROPERTIES ###
 

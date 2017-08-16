@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Dynamic(AbjadValueObject):
     r'''Dynamic.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

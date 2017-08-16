@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.datastructuretools.TypedList import TypedList
 
 
@@ -38,8 +37,7 @@ class MeterList(TypedList):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

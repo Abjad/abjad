@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
@@ -10,8 +9,7 @@ class BoundedObject(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### PUBLIC PROPERTIES ###
 

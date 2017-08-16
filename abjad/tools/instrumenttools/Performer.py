@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 import collections
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Performer(AbjadValueObject):
     r'''Performer.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -21,11 +16,11 @@ class Performer(AbjadValueObject):
         ::
 
             >>> f(performer)
-            instrumenttools.Performer(
+            abjad.instrumenttools.Performer(
                 name='flutist',
-                instruments=instrumenttools.InstrumentList(
+                instruments=abjad.instrumenttools.InstrumentList(
                     [
-                        instrumenttools.Flute(
+                        abjad.instrumenttools.Flute(
                             name='flute',
                             short_name='fl.',
                             name_markup=abjad.Markup(
@@ -34,7 +29,7 @@ class Performer(AbjadValueObject):
                             short_name_markup=abjad.Markup(
                                 contents=['Fl.'],
                                 ),
-                            allowable_clefs=instrumenttools.ClefList(
+                            allowable_clefs=abjad.instrumenttools.ClefList(
                                 [
                                     abjad.Clef(
                                         name='treble',
@@ -44,7 +39,7 @@ class Performer(AbjadValueObject):
                             middle_c_sounding_pitch=abjad.NamedPitch("c'"),
                             pitch_range=abjad.PitchRange('[C4, D7]'),
                             ),
-                        instrumenttools.Piccolo(
+                        abjad.instrumenttools.Piccolo(
                             name='piccolo',
                             short_name='picc.',
                             name_markup=abjad.Markup(
@@ -53,7 +48,7 @@ class Performer(AbjadValueObject):
                             short_name_markup=abjad.Markup(
                                 contents=['Picc.'],
                                 ),
-                            allowable_clefs=instrumenttools.ClefList(
+                            allowable_clefs=abjad.instrumenttools.ClefList(
                                 [
                                     abjad.Clef(
                                         name='treble',
@@ -290,8 +285,9 @@ class Performer(AbjadValueObject):
 
             ::
 
+                >>> Performer = abjad.instrumenttools.Performer
                 >>> dictionary = \
-                ...     performer.make_performer_name_instrument_dictionary()
+                ...     Performer.make_performer_name_instrument_dictionary()
                 >>> for key, value in sorted(dictionary.items()):
                 ...     print(key + ':')
                 ...     for x in value:

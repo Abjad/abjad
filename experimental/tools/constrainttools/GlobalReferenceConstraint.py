@@ -1,5 +1,3 @@
-# -*- encoding: utf-8 -*-
-import sys
 from experimental.tools.constrainttools._GlobalConstraint._GlobalConstraint \
     import _GlobalConstraint
 
@@ -44,10 +42,7 @@ class GlobalReferenceConstraint(_GlobalConstraint):
         object.__setattr__(self, '_kind', 'global')
         object.__setattr__(self, '_reference', reference)
         assert isinstance(predicate, type(lambda: None))
-        if sys.version_info[0] == 2:
-            assert predicate.func_code.co_argcount == 2
-        else:
-            assert predicate.__code__.co_argcount == 2
+        assert predicate.__code__.co_argcount == 2
         object.__setattr__(self, '_predicate', predicate)
 
     ### SPECIAL METHODS ###

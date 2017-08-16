@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.Segment import Segment
 from abjad.tools.topleveltools import new
@@ -6,10 +5,6 @@ from abjad.tools.topleveltools import new
 
 class IntervalClassSegment(Segment):
     r'''Interval-class segment.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -36,8 +31,7 @@ class IntervalClassSegment(Segment):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### PRIVATE PROPERTIES ###
 

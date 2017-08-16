@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import math
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
@@ -12,27 +11,22 @@ from abjad.tools.topleveltools import override
 class AccelerandoRhythmMaker(RhythmMaker):
     r'''Accelerando rhythm-maker.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import rhythmmakertools
-
     ..  container:: example
 
         Makes accelerando for each input division:
 
         ::
 
-            >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
-            ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+            >>> rhythm_maker = abjad.rhythmmakertools.AccelerandoRhythmMaker(
+            ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
             ...         use_feather_beams=True,
             ...         ),
-            ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
+            ...     interpolation_specifiers=abjad.rhythmmakertools.InterpolationSpecifier(
             ...         start_duration=(1, 8),
             ...         stop_duration=(1, 20),
             ...         written_duration=(1, 16),
             ...         ),
-            ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+            ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
             ...         use_note_duration_bracket=True,
             ...         ),
             ...     )
@@ -235,16 +229,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
-            ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+            >>> rhythm_maker = abjad.rhythmmakertools.AccelerandoRhythmMaker(
+            ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
             ...         use_feather_beams=True,
             ...         ),
-            ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
+            ...     interpolation_specifiers=abjad.rhythmmakertools.InterpolationSpecifier(
             ...         start_duration=(1, 20),
             ...         stop_duration=(1, 8),
             ...         written_duration=(1, 16),
             ...         ),
-            ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+            ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
             ...         use_note_duration_bracket=True,
             ...         ),
             ...     )
@@ -535,7 +529,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> rhythmmakertools.AccelerandoRhythmMaker._interpolate_cosine(
+            >>> abjad.rhythmmakertools.AccelerandoRhythmMaker._interpolate_cosine(
             ...     y1=0,
             ...     y2=1,
             ...     mu=0.5,
@@ -560,7 +554,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> rhythmmakertools.AccelerandoRhythmMaker._interpolate_divide(
+            >>> abjad.rhythmmakertools.AccelerandoRhythmMaker._interpolate_divide(
             ...     total_duration=10,
             ...     start_duration=1,
             ...     stop_duration=1,
@@ -572,7 +566,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> rhythmmakertools.AccelerandoRhythmMaker._interpolate_divide(
+            >>> abjad.rhythmmakertools.AccelerandoRhythmMaker._interpolate_divide(
             ...     total_duration=10,
             ...     start_duration=5,
             ...     stop_duration=1,
@@ -634,7 +628,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> durations = rhythmmakertools.AccelerandoRhythmMaker._interpolate_divide_multiple(
+            >>> durations = abjad.rhythmmakertools.AccelerandoRhythmMaker._interpolate_divide_multiple(
             ...     total_durations=[100, 50],
             ...     reference_durations=[20, 10, 20],
             ...     )
@@ -684,7 +678,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> class_ = rhythmmakertools.AccelerandoRhythmMaker
+            >>> class_ = abjad.rhythmmakertools.AccelerandoRhythmMaker
             >>> for mu in (0, 0.25, 0.5, 0.75, 1):
             ...     class_._interpolate_exponential(100, 200, mu, exponent=1)
             ...
@@ -698,7 +692,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> class_ = rhythmmakertools.AccelerandoRhythmMaker
+            >>> class_ = abjad.rhythmmakertools.AccelerandoRhythmMaker
             >>> for mu in (0, 0.25, 0.5, 0.75, 1):
             ...     class_._interpolate_exponential(100, 200, mu, exponent=2)
             ...
@@ -712,7 +706,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> class_ = rhythmmakertools.AccelerandoRhythmMaker
+            >>> class_ = abjad.rhythmmakertools.AccelerandoRhythmMaker
             >>> for mu in (0, 0.25, 0.5, 0.75, 1):
             ...     class_._interpolate_exponential(100, 200, mu, exponent=0.5)
             ...
@@ -855,17 +849,17 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
-                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.AccelerandoRhythmMaker(
+                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
                 ...         beam_each_division=True,
                 ...         use_feather_beams=True,
                 ...         ),
-                ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
+                ...     interpolation_specifiers=abjad.rhythmmakertools.InterpolationSpecifier(
                 ...         start_duration=(1, 8),
                 ...         stop_duration=(1, 20),
                 ...         written_duration=(1, 16),
                 ...         ),
-                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
                 ...         ),
                 ...     )
@@ -1068,17 +1062,17 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
-                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.AccelerandoRhythmMaker(
+                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
                 ...         beam_divisions_together=True,
                 ...         use_feather_beams=False,
                 ...         ),
-                ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
+                ...     interpolation_specifiers=abjad.rhythmmakertools.InterpolationSpecifier(
                 ...         start_duration=(1, 8),
                 ...         stop_duration=(1, 20),
                 ...         written_duration=(1, 16),
                 ...         ),
-                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
                 ...         ),
                 ...     )
@@ -1332,17 +1326,17 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
-                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.AccelerandoRhythmMaker(
+                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
                 ...         beam_divisions_together=False,
                 ...         beam_each_division=False,
                 ...         ),
-                ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
+                ...     interpolation_specifiers=abjad.rhythmmakertools.InterpolationSpecifier(
                 ...         start_duration=(1, 8),
                 ...         stop_duration=(1, 20),
                 ...         written_duration=(1, 16),
                 ...         ),
-                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
                 ...         ),
                 ...     )
@@ -1550,17 +1544,17 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
-                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.AccelerandoRhythmMaker(
+                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
-                ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
+                ...     interpolation_specifiers=abjad.rhythmmakertools.InterpolationSpecifier(
                 ...         start_duration=(1, 8),
                 ...         stop_duration=(1, 20),
                 ...         written_duration=(1, 16),
                 ...         ),
                 ...     division_masks=None,
-                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
                 ...         ),
                 ...     )
@@ -1763,21 +1757,21 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
-                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.AccelerandoRhythmMaker(
+                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
-                ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
+                ...     interpolation_specifiers=abjad.rhythmmakertools.InterpolationSpecifier(
                 ...         start_duration=(1, 8),
                 ...         stop_duration=(1, 20),
                 ...         written_duration=(1, 16),
                 ...         ),
                 ...     division_masks=[
-                ...         rhythmmakertools.SilenceMask(
+                ...         abjad.rhythmmakertools.SilenceMask(
                 ...             pattern=abjad.index_every([1], period=2),
                 ...             ),
                 ...         ],
-                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
                 ...         ),
                 ...     )
@@ -1912,16 +1906,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
-                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.AccelerandoRhythmMaker(
+                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
-                ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
+                ...     interpolation_specifiers=abjad.rhythmmakertools.InterpolationSpecifier(
                 ...         start_duration=(1, 8),
                 ...         stop_duration=(1, 20),
                 ...         written_duration=(1, 16),
                 ...         ),
-                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
                 ...         ),
                 ...     )
@@ -2124,23 +2118,23 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
-                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.AccelerandoRhythmMaker(
+                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
                 ...     interpolation_specifiers=[
-                ...         rhythmmakertools.InterpolationSpecifier(
+                ...         abjad.rhythmmakertools.InterpolationSpecifier(
                 ...             start_duration=(1, 8),
                 ...             stop_duration=(1, 20),
                 ...             written_duration=(1, 16),
                 ...             ),
-                ...         rhythmmakertools.InterpolationSpecifier(
+                ...         abjad.rhythmmakertools.InterpolationSpecifier(
                 ...             start_duration=(1, 20),
                 ...             stop_duration=(1, 8),
                 ...             written_duration=(1, 16),
                 ...             ),
                 ...         ],
-                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
                 ...         ),
                 ...     )
@@ -2346,16 +2340,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
-                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.AccelerandoRhythmMaker(
+                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
-                ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
+                ...     interpolation_specifiers=abjad.rhythmmakertools.InterpolationSpecifier(
                 ...         start_duration=(1, 8),
                 ...         stop_duration=(1, 20),
                 ...         written_duration=(1, 16),
                 ...         ),
-                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
                 ...         ),
                 ...     )
@@ -2488,8 +2482,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
-                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.AccelerandoRhythmMaker(
+                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
                 ...         beam_each_division=True,
                 ...         beam_rests=True,
                 ...         stemlet_length=0.75,
@@ -2500,18 +2494,18 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         abjad.silence_last(),
                 ...         ],
                 ...     interpolation_specifiers=[
-                ...         rhythmmakertools.InterpolationSpecifier(
+                ...         abjad.rhythmmakertools.InterpolationSpecifier(
                 ...             start_duration=(1, 8),
                 ...             stop_duration=(1, 20),
                 ...             written_duration=(1, 16),
                 ...             ),
-                ...         rhythmmakertools.InterpolationSpecifier(
+                ...         abjad.rhythmmakertools.InterpolationSpecifier(
                 ...             start_duration=(1, 20),
                 ...             stop_duration=(1, 8),
                 ...             written_duration=(1, 16),
                 ...             ),
                 ...         ],
-                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
                 ...         ),
                 ...     )
@@ -2723,8 +2717,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
-                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.AccelerandoRhythmMaker(
+                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
                 ...         beam_each_division=True,
                 ...         beam_rests=True,
                 ...         stemlet_length=0.75,
@@ -2734,18 +2728,18 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         abjad.silence_every([2], period=3),
                 ...         ],
                 ...     interpolation_specifiers=[
-                ...         rhythmmakertools.InterpolationSpecifier(
+                ...         abjad.rhythmmakertools.InterpolationSpecifier(
                 ...             start_duration=(1, 8),
                 ...             stop_duration=(1, 20),
                 ...             written_duration=(1, 16),
                 ...             ),
-                ...         rhythmmakertools.InterpolationSpecifier(
+                ...         abjad.rhythmmakertools.InterpolationSpecifier(
                 ...             start_duration=(1, 20),
                 ...             stop_duration=(1, 8),
                 ...             written_duration=(1, 16),
                 ...             ),
                 ...         ],
-                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
                 ...         ),
                 ...     )
@@ -2969,19 +2963,19 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
-                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.AccelerandoRhythmMaker(
+                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
-                ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
+                ...     interpolation_specifiers=abjad.rhythmmakertools.InterpolationSpecifier(
                 ...         start_duration=(1, 8),
                 ...         stop_duration=(1, 20),
                 ...         written_duration=(1, 16),
                 ...         ),
-                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=False,
                 ...         ),
-                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
                 ...         ),
                 ...     )
@@ -3184,19 +3178,19 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
-                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.AccelerandoRhythmMaker(
+                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
-                ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
+                ...     interpolation_specifiers=abjad.rhythmmakertools.InterpolationSpecifier(
                 ...         start_duration=(1, 8),
                 ...         stop_duration=(1, 20),
                 ...         written_duration=(1, 16),
                 ...         ),
-                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=True,
                 ...         ),
-                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
                 ...         ),
                 ...     )
@@ -3403,19 +3397,19 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...      indices=[0],
                 ...      period=2,
                 ...  )
-                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
-                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.AccelerandoRhythmMaker(
+                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
-                ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
+                ...     interpolation_specifiers=abjad.rhythmmakertools.InterpolationSpecifier(
                 ...         start_duration=(1, 8),
                 ...         stop_duration=(1, 20),
                 ...         written_duration=(1, 16),
                 ...         ),
-                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=pattern,
                 ...         ),
-                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
                 ...         ),
                 ...     )
@@ -3627,19 +3621,19 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
-                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.AccelerandoRhythmMaker(
+                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
-                ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
+                ...     interpolation_specifiers=abjad.rhythmmakertools.InterpolationSpecifier(
                 ...         start_duration=(1, 8),
                 ...         stop_duration=(1, 20),
                 ...         written_duration=(1, 16),
                 ...         ),
-                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=False,
                 ...         ),
-                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
                 ...         ),
                 ...     )
@@ -3842,19 +3836,19 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
-                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                >>> rhythm_maker = abjad.rhythmmakertools.AccelerandoRhythmMaker(
+                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
-                ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
+                ...     interpolation_specifiers=abjad.rhythmmakertools.InterpolationSpecifier(
                 ...         start_duration=(1, 8),
                 ...         stop_duration=(1, 20),
                 ...         written_duration=(1, 16),
                 ...         ),
-                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=False,
                 ...         ),
-                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=False,
                 ...         ),
                 ...     )

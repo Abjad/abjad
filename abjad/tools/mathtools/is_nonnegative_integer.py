@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 import numbers
 
 
 def is_nonnegative_integer(argument):
     '''Is true when `argument` equals a nonnegative integer. Otherwise false.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

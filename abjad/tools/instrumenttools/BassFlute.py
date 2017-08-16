@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class BassFlute(Instrument):
     r'''Bass flute.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -34,8 +29,7 @@ class BassFlute(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -75,6 +69,7 @@ class BassFlute(Instrument):
 
             ::
 
+                >>> bass_flute = abjad.instrumenttools.BassFlute()
                 >>> bass_flute.allowable_clefs
                 ClefList([Clef(name='treble')])
 
@@ -94,6 +89,7 @@ class BassFlute(Instrument):
 
             ::
 
+                >>> bass_flute = abjad.instrumenttools.BassFlute()
                 >>> bass_flute.middle_c_sounding_pitch
                 NamedPitch('c')
 
@@ -113,6 +109,7 @@ class BassFlute(Instrument):
 
             ::
 
+                >>> bass_flute = abjad.instrumenttools.BassFlute()
                 >>> bass_flute.name
                 'bass flute'
 
@@ -128,6 +125,7 @@ class BassFlute(Instrument):
 
             ::
 
+                >>> bass_flute = abjad.instrumenttools.BassFlute()
                 >>> bass_flute.name_markup
                 Markup(contents=['Bass flute'])
 
@@ -147,6 +145,7 @@ class BassFlute(Instrument):
 
             ::
 
+                >>> bass_flute = abjad.instrumenttools.BassFlute()
                 >>> bass_flute.pitch_range
                 PitchRange('[C3, C6]')
 
@@ -166,6 +165,7 @@ class BassFlute(Instrument):
 
             ::
 
+                >>> bass_flute = abjad.instrumenttools.BassFlute()
                 >>> bass_flute.short_name
                 'bass fl.'
 
@@ -181,6 +181,7 @@ class BassFlute(Instrument):
 
             ::
 
+                >>> bass_flute = abjad.instrumenttools.BassFlute()
                 >>> bass_flute.short_name_markup
                 Markup(contents=['Bass fl.'])
 

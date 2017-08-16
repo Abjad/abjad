@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.IntervalClass import IntervalClass
 
 
 class NamedIntervalClass(IntervalClass):
     '''Named interval-class.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

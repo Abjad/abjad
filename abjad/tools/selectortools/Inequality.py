@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import abc
 import operator
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
@@ -6,11 +5,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 class Inequality(AbjadValueObject):
     '''Inequality.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###

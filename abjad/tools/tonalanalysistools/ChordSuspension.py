@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import re
 from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadValueObject
@@ -7,17 +6,13 @@ from abjad.tools.abctools import AbjadValueObject
 class ChordSuspension(AbjadValueObject):
     '''Chord suspension.
 
-    ::
-
-        >>> from abjad.tools import tonalanalysistools
-
     ..  container:: example
 
         Initializes from numbers:
 
         ::
 
-            >>> tonalanalysistools.ChordSuspension('4-b3')
+            >>> abjad.tonalanalysistools.ChordSuspension('4-b3')
             ChordSuspension('4-b3')
 
     ..  container:: example
@@ -26,8 +21,8 @@ class ChordSuspension(AbjadValueObject):
 
         ::
 
-            >>> suspension = tonalanalysistools.ChordSuspension('4-3')
-            >>> tonalanalysistools.ChordSuspension(suspension)
+            >>> suspension = abjad.tonalanalysistools.ChordSuspension('4-3')
+            >>> abjad.tonalanalysistools.ChordSuspension(suspension)
             ChordSuspension('4-3')
 
     9-8, 7-6, 4-3, 2-1 and other types of suspension typical of, for example,
@@ -62,9 +57,9 @@ class ChordSuspension(AbjadValueObject):
 
             ::
 
-                >>> suspension_1 = tonalanalysistools.ChordSuspension('4-3')
-                >>> suspension_2 = tonalanalysistools.ChordSuspension('4-3')
-                >>> suspension_3 = tonalanalysistools.ChordSuspension('2-1')
+                >>> suspension_1 = abjad.tonalanalysistools.ChordSuspension('4-3')
+                >>> suspension_2 = abjad.tonalanalysistools.ChordSuspension('4-3')
+                >>> suspension_3 = abjad.tonalanalysistools.ChordSuspension('2-1')
 
             ::
 
@@ -164,12 +159,12 @@ class ChordSuspension(AbjadValueObject):
 
             ::
 
-                >>> tonalanalysistools.ChordSuspension('4-b3').chord_name
+                >>> abjad.tonalanalysistools.ChordSuspension('4-b3').chord_name
                 'sus4'
 
             ::
 
-                >>> tonalanalysistools.ChordSuspension('b2-1').chord_name
+                >>> abjad.tonalanalysistools.ChordSuspension('b2-1').chord_name
                 'susb2'
 
         Returns string.
@@ -184,12 +179,12 @@ class ChordSuspension(AbjadValueObject):
 
             ::
 
-                >>> tonalanalysistools.ChordSuspension('4-b3').figured_bass_pair
+                >>> abjad.tonalanalysistools.ChordSuspension('4-b3').figured_bass_pair
                 ('4', 'b3')
 
             ::
 
-                >>> tonalanalysistools.ChordSuspension('b2-1').figured_bass_pair
+                >>> abjad.tonalanalysistools.ChordSuspension('b2-1').figured_bass_pair
                 ('b2', '1')
 
         Returns integer pair.
@@ -204,12 +199,12 @@ class ChordSuspension(AbjadValueObject):
 
             ::
 
-                >>> tonalanalysistools.ChordSuspension('4-b3').figured_bass_string
+                >>> abjad.tonalanalysistools.ChordSuspension('4-b3').figured_bass_string
                 '4-b3'
 
             ::
 
-                >>> tonalanalysistools.ChordSuspension('b2-1').figured_bass_string
+                >>> abjad.tonalanalysistools.ChordSuspension('b2-1').figured_bass_string
                 'b2-1'
 
         Returns string.
@@ -225,12 +220,12 @@ class ChordSuspension(AbjadValueObject):
 
             ::
 
-                >>> tonalanalysistools.ChordSuspension('4-b3').start
+                >>> abjad.tonalanalysistools.ChordSuspension('4-b3').start
                 ScaleDegree('4')
 
             ::
 
-                >>> tonalanalysistools.ChordSuspension('b2-1').start
+                >>> abjad.tonalanalysistools.ChordSuspension('b2-1').start
                 ScaleDegree('b2')
 
         Returns scale degree.
@@ -245,12 +240,12 @@ class ChordSuspension(AbjadValueObject):
 
             ::
 
-                >>> tonalanalysistools.ChordSuspension('4-b3').stop
+                >>> abjad.tonalanalysistools.ChordSuspension('4-b3').stop
                 ScaleDegree('b3')
 
             ::
 
-                >>> tonalanalysistools.ChordSuspension('b2-1').stop
+                >>> abjad.tonalanalysistools.ChordSuspension('b2-1').stop
                 ScaleDegree('1')
 
         Returns scale degree.
@@ -265,12 +260,12 @@ class ChordSuspension(AbjadValueObject):
 
             ::
 
-                >>> tonalanalysistools.ChordSuspension('4-b3').title_string
+                >>> abjad.tonalanalysistools.ChordSuspension('4-b3').title_string
                 'FourFlatThreeSuspension'
 
             ::
 
-                >>> tonalanalysistools.ChordSuspension('b2-1').title_string
+                >>> abjad.tonalanalysistools.ChordSuspension('b2-1').title_string
                 'FlatTwoOneSuspension'
 
         Returns string.

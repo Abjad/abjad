@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import setting
 
 
 def make_text_alignment_example_lilypond_file(music=None):
     r'''Makes text-alignment example LilyPond file.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import math
 import numbers
 from abjad.tools.pitchtools.Pitch import Pitch
@@ -6,11 +5,6 @@ from abjad.tools.pitchtools.Pitch import Pitch
 
 class NamedPitch(Pitch):
     r'''Named pitch.
-
-    ::
-
-        >>> import abjad
-        >>> import pytest
 
     ..  container:: example
 
@@ -327,12 +321,14 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> statement = 'abjad.NamedPitch("cs\'").__radd__(1)'
-                >>> pytest.raises(NotImplementedError, statement)
-                <ExceptionInfo NotImplementedError ...>
+                >>> abjad.NamedPitch("cs'").__radd__(1)
+                Traceback (most recent call last):
+                ...
+                NotImplementedError: right-addition not defined on NamedPitch.
 
         '''
-        message = 'right-addition not defined on named pitches.'
+        message = 'right-addition not defined on {}.'
+        message = message.format(type(self).__name__)
         raise NotImplementedError(message)
 
     def __str__(self):

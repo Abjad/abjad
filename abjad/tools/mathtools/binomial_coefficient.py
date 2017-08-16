@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 import math
 
 
 def binomial_coefficient(n, k):
     r'''Gets binomial coefficient of `n` choose `k`.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

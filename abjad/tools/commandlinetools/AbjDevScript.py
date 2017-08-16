@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function
 from abjad.tools.commandlinetools.CommandlineScript import CommandlineScript
 
 
@@ -25,8 +23,7 @@ class AbjDevScript(CommandlineScript):
 
     short_description = 'Entry-point to Abjad developer scripts catalog.'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

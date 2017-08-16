@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.spannertools.Spanner import Spanner
 
 
 class BowContactSpanner(Spanner):
     r'''Bow contact spanner.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -206,8 +201,7 @@ class BowContactSpanner(Spanner):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

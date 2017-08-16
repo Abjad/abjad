@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 import copy
 from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class MetronomeMarkList(TypedList):
     r'''Metronome mark list.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -33,8 +28,7 @@ class MetronomeMarkList(TypedList):
 
     __documentation_section__ = 'Collections'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

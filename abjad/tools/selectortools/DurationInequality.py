@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
@@ -9,10 +8,6 @@ from abjad.tools.selectortools.Inequality import Inequality
 
 class DurationInequality(Inequality):
     r'''Duration inequality.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

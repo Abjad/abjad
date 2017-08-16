@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import markuptools
 from abjad.tools.spannertools.Spanner import Spanner
 
 
 class TextSpanner(Spanner):
     r'''Text spanner.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

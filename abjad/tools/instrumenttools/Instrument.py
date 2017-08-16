@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import copy
 from abjad.tools import markuptools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
@@ -6,11 +5,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 class Instrument(AbjadValueObject):
     '''Instrument.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###

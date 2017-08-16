@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 import time
 from abjad.tools.abctools import AbjadObject
 
 
 class DateTimeToken(AbjadObject):
     '''A LilyPond file date / time token.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

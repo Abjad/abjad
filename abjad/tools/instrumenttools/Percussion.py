@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Percussion(Instrument):
     r'''Percussion instrument.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -34,8 +29,7 @@ class Percussion(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     known_percussion = list(sorted(set([
         'agogô',
@@ -123,6 +117,7 @@ class Percussion(Instrument):
 
             ::
 
+                >>> percussion = abjad.instrumenttools.Percussion()
                 >>> percussion.allowable_clefs
                 ClefList([Clef(name='percussion')])
 
@@ -142,6 +137,7 @@ class Percussion(Instrument):
 
             ::
 
+                >>> percussion = abjad.instrumenttools.Percussion()
                 >>> percussion.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -161,6 +157,7 @@ class Percussion(Instrument):
 
             ::
 
+                >>> percussion = abjad.instrumenttools.Percussion()
                 >>> percussion.name
                 'percussion'
 
@@ -176,6 +173,7 @@ class Percussion(Instrument):
 
             ::
 
+                >>> percussion = abjad.instrumenttools.Percussion()
                 >>> percussion.name_markup
                 Markup(contents=['Percussion'])
 
@@ -195,6 +193,7 @@ class Percussion(Instrument):
 
             ::
 
+                >>> percussion = abjad.instrumenttools.Percussion()
                 >>> percussion.pitch_range
                 PitchRange('[A0, C8]')
 
@@ -214,6 +213,7 @@ class Percussion(Instrument):
 
             ::
 
+                >>> percussion = abjad.instrumenttools.Percussion()
                 >>> percussion.short_name
                 'perc.'
 
@@ -229,6 +229,7 @@ class Percussion(Instrument):
 
             ::
 
+                >>> percussion = abjad.instrumenttools.Percussion()
                 >>> percussion.short_name_markup
                 Markup(contents=['Perc.'])
 

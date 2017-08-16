@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import abc
 from abjad.tools import durationtools
 from abjad.tools import systemtools
@@ -7,11 +6,6 @@ from abjad.tools.abctools import AbjadObject
 
 class QEvent(AbjadObject):
     r'''Abstract Q-event.
-
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
 
     Represents an attack point to be quantized.
 

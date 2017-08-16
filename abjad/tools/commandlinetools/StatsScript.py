@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function
 import inspect
 import os
 import types
@@ -18,8 +16,7 @@ class StatsScript(CommandlineScript):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     alias = 'stats'
     short_description = 'Build statistics about Python modules in PATH.'

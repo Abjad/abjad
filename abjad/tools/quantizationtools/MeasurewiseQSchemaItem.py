@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import indicatortools
 from abjad.tools import durationtools
 from abjad.tools.quantizationtools.QSchemaItem import QSchemaItem
@@ -12,9 +11,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
     ::
 
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-        >>> q_schema_item = quantizationtools.MeasurewiseQSchemaItem()
+        >>> q_schema_item = abjad.quantizationtools.MeasurewiseQSchemaItem()
 
     ..  container:: example
 
@@ -22,11 +19,11 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
         ::
 
-            >>> q_schema_item = quantizationtools.MeasurewiseQSchemaItem(
+            >>> q_schema_item = abjad.quantizationtools.MeasurewiseQSchemaItem(
             ...     tempo=((1, 4), 60),
             ...     )
             >>> print(format(q_schema_item))
-            quantizationtools.MeasurewiseQSchemaItem(
+            abjad.quantizationtools.MeasurewiseQSchemaItem(
                 tempo=abjad.MetronomeMark(
                     reference_duration=abjad.Duration(1, 4),
                     units_per_minute=60,
@@ -39,11 +36,11 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
         ::
 
-            >>> q_schema_item = quantizationtools.MeasurewiseQSchemaItem(
+            >>> q_schema_item = abjad.quantizationtools.MeasurewiseQSchemaItem(
             ...     time_signature=(6, 8),
             ...     )
             >>> print(format(q_schema_item))
-            quantizationtools.MeasurewiseQSchemaItem(
+            abjad.quantizationtools.MeasurewiseQSchemaItem(
                 time_signature=abjad.TimeSignature((6, 8)),
                 )
 

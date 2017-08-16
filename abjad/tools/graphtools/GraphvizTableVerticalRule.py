@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.datastructuretools import TreeNode
 
 
@@ -10,8 +9,7 @@ class GraphvizTableVerticalRule(TreeNode):
 
     __documentation_section__ = 'Graphviz'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

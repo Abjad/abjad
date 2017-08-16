@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import datetime
 import os
 import platform
@@ -7,31 +6,18 @@ import shutil
 import subprocess
 import sys
 from abjad.tools.abctools import AbjadObject
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO
-try:
-    input = raw_input
-except NameError:
-    pass
+from io import StringIO
 
 
 class IOManager(AbjadObject):
     r'''Manages Abjad IO.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###
 
     __documentation_section__ = 'Managers'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### PRIVATE METHODS ###
 
@@ -642,8 +628,7 @@ class IOManager(AbjadObject):
             stderr=subprocess.STDOUT,
             )
         subprocess_output, _ = process.communicate()
-        if sys.version_info[0] == 3:
-            subprocess_output = subprocess_output.decode('utf-8')
+        subprocess_output = subprocess_output.decode('utf-8')
         exit_code = process.returncode
         with open(log_file_path, 'w') as file_pointer:
             file_pointer.write(date + '\n')

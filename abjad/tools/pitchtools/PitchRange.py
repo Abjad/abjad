@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 import copy
 import functools
@@ -11,10 +10,6 @@ from abjad.tools.pitchtools.Pitch import Pitch
 @functools.total_ordering
 class PitchRange(AbjadValueObject):
     r"""Pitch range.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -466,6 +461,7 @@ class PitchRange(AbjadValueObject):
 
             ::
 
+                >>> pitch_range = abjad.PitchRange('[C3, C7]')
                 >>> show(pitch_range) # doctest: +SKIP
 
             ..  docs::
@@ -736,6 +732,7 @@ class PitchRange(AbjadValueObject):
 
             ::
 
+                >>> pitch_range = abjad.PitchRange('[C3, C7]')
                 >>> pitch_range.range_string
                 '[C3, C7]'
 
@@ -749,6 +746,7 @@ class PitchRange(AbjadValueObject):
 
         ::
 
+            >>> pitch_range = abjad.PitchRange('[C3, C7]')
             >>> pitch_range.start_pitch
             NamedPitch('c')
 
@@ -765,6 +763,7 @@ class PitchRange(AbjadValueObject):
 
         ::
 
+            >>> pitch_range = abjad.PitchRange('[C3, C7]')
             >>> pitch_range.start_pitch_is_included_in_range
             True
 
@@ -780,6 +779,7 @@ class PitchRange(AbjadValueObject):
 
         ::
 
+            >>> pitch_range = abjad.PitchRange('[C3, C7]')
             >>> pitch_range.stop_pitch
             NamedPitch("c''''")
 
@@ -796,6 +796,7 @@ class PitchRange(AbjadValueObject):
 
         ::
 
+            >>> pitch_range = abjad.PitchRange('[C3, C7]')
             >>> pitch_range.stop_pitch_is_included_in_range
             True
 

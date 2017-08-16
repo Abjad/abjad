@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 import copy
 from abjad.tools.scoretools.Context import Context
 
 
 class Score(Context):
     r'''Score.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -43,8 +38,7 @@ class Score(Context):
 
     __documentation_section__ = 'Contexts'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     _default_context_name = 'Score'
 

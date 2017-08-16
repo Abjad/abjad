@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
@@ -9,10 +8,6 @@ from abjad.tools.topleveltools import new
 
 class TimespanList(TypedList):
     r'''Timespan list.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -138,8 +133,7 @@ class TimespanList(TypedList):
 
     __documentation_section__ = 'Timespans'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

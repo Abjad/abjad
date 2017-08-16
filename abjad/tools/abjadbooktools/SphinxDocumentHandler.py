@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function
 import collections
 import glob
 import hashlib
@@ -274,8 +272,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 app.builder.warn(message)
                 app.builder.warn(resize_command)
                 if stdout:
-                    if sys.version_info[0] == 3:
-                        stdout = stdout.decode('utf-8')
+                    stdout = stdout.decode('utf-8')
                     app.builder.warn(stdout)
 
     ### ON ENVIRONMENT UPDATED ###
@@ -729,8 +726,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 )
             self.builder.warn(render_command)
             if stdout:
-                if sys.version_info[0] == 3:
-                    stdout = stdout.decode('utf-8')
+                stdout = stdout.decode('utf-8')
                 self.builder.warn(stdout)
         return return_code
 
@@ -757,7 +753,6 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         if not no_trim:
             command = '{} -trim'.format(command)
         command = '{} {}'.format(command, absolute_target_file_path)
-#        command = SphinxDocumentHandler.dyld_path_setting + '; ' + command
         process = subprocess.Popen(
             command,
             shell=True,
@@ -773,8 +768,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 )
             self.builder.warn(command)
             if stdout:
-                if sys.version_info[0] == 3:
-                    stdout = stdout.decode('utf-8')
+                stdout = stdout.decode('utf-8')
                 self.builder.warn(stdout)
         return return_code
 
@@ -1092,8 +1086,6 @@ class SphinxDocumentHandler(abctools.AbjadObject):
     def write_image_source(self, node, absolute_source_file_path):
         with open(absolute_source_file_path, 'w') as file_pointer:
             code = node[0]
-            if sys.version_info[0] == 2:
-                code = code.encode('utf-8')
             file_pointer.write(code)
 
     ### PUBLIC PROPERTIES ###

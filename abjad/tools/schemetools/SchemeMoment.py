@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import functools
 from abjad.tools import durationtools
 from abjad.tools import systemtools
@@ -8,10 +7,6 @@ from abjad.tools.schemetools.Scheme import Scheme
 @functools.total_ordering
 class SchemeMoment(Scheme):
     r'''Abjad model of Scheme moment.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -27,8 +22,7 @@ class SchemeMoment(Scheme):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

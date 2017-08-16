@@ -1,12 +1,5 @@
-# -*- coding: utf-8 -*-
-
-
 def setting(argument):
     r'''Makes LilyPond setting name manager.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

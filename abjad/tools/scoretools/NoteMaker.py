@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 import numbers
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
@@ -8,10 +7,6 @@ class NoteMaker(AbjadValueObject):
     r'''Note-maker.
 
     Makes notes according to `pitches` and `durations`.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

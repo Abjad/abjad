@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import abc
 from abjad.tools.abctools import AbjadObject
 
@@ -6,19 +5,13 @@ from abjad.tools.abctools import AbjadObject
 class JobHandler(AbjadObject):
     r'''Abstact job-handler.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     ``JobHandlers`` control how ``QuantizationJob`` instances are
     processed by the ``Quantizer``, either serially or in parallel.
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

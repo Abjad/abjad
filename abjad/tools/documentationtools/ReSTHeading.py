@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.datastructuretools.TreeNode import TreeNode
 
 
 class ReSTHeading(TreeNode):
     r'''A ReST heading.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

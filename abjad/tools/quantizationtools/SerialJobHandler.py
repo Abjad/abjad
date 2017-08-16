@@ -1,21 +1,13 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.quantizationtools.JobHandler import JobHandler
 
 
 class SerialJobHandler(JobHandler):
     r'''Serial job-handler.
-
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

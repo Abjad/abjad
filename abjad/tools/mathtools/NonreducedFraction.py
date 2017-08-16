@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad import Fraction
 from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
@@ -6,10 +5,6 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 class NonreducedFraction(AbjadObject, Fraction):
     r'''Nonereduced fraction.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -850,6 +845,10 @@ class NonreducedFraction(AbjadObject, Fraction):
 
         ::
 
+            >>> fraction = abjad.NonreducedFraction(-6, 3)
+
+        ::
+
             >>> fraction.imag
             0
 
@@ -894,6 +893,10 @@ class NonreducedFraction(AbjadObject, Fraction):
     @property
     def real(self):
         r'''Nonreduced fractions are their own real component.
+
+        ::
+
+            >>> fraction = abjad.NonreducedFraction(-6, 3)
 
         ::
 

@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-
-
 def run_ajv():
     r'''Entry point for setuptools.
 

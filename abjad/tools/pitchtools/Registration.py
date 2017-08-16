@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import copy
 from abjad.tools import systemtools
 from abjad.tools.datastructuretools.TypedList import TypedList
@@ -6,10 +5,6 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 
 class Registration(TypedList):
     '''Registration.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -40,8 +35,7 @@ class Registration(TypedList):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

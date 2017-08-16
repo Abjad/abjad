@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.quantizationtools.GraceHandler import GraceHandler
 
 
@@ -7,18 +6,12 @@ class DiscardingGraceHandler(GraceHandler):
 
     Dscards all but final q-event attached to an offset.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     Does not create grace containers.
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

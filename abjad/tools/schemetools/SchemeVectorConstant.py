@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import datastructuretools
 from abjad.tools import systemtools
 from abjad.tools.schemetools.Scheme import Scheme
@@ -6,10 +5,6 @@ from abjad.tools.schemetools.Scheme import Scheme
 
 class SchemeVectorConstant(Scheme):
     '''Abjad model of Scheme vector constant.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -29,8 +24,7 @@ class SchemeVectorConstant(Scheme):
 
     ### CLASS VARIABLES ##
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

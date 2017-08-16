@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 import textwrap
 from abjad.tools.datastructuretools.TreeNode import TreeNode
 
 
 class ReSTParagraph(TreeNode):
     r'''A ReST paragraph.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

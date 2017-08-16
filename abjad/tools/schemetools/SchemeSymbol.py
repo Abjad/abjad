@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import systemtools
 from abjad.tools.schemetools.Scheme import Scheme
 
 
 class SchemeSymbol(Scheme):
     r'''Abjad model of Scheme symbol.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -27,8 +22,7 @@ class SchemeSymbol(Scheme):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

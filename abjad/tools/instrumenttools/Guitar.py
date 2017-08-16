@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Guitar(Instrument):
     r'''Guitar.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -79,6 +74,7 @@ class Guitar(Instrument):
 
             ::
 
+                >>> guitar = abjad.instrumenttools.Guitar()
                 >>> guitar.allowable_clefs
                 ClefList([Clef(name='treble')])
 
@@ -98,6 +94,7 @@ class Guitar(Instrument):
 
             ::
 
+                >>> guitar = abjad.instrumenttools.Guitar()
                 >>> guitar.default_tuning
                 Tuning(pitches=PitchSegment(['e,', 'a,', 'd', 'g', 'b', "e'"]))
 
@@ -113,6 +110,7 @@ class Guitar(Instrument):
 
             ::
 
+                >>> guitar = abjad.instrumenttools.Guitar()
                 >>> guitar.middle_c_sounding_pitch
                 NamedPitch('c')
 
@@ -132,6 +130,7 @@ class Guitar(Instrument):
 
             ::
 
+                >>> guitar = abjad.instrumenttools.Guitar()
                 >>> guitar.name
                 'guitar'
 
@@ -147,6 +146,7 @@ class Guitar(Instrument):
 
             ::
 
+                >>> guitar = abjad.instrumenttools.Guitar()
                 >>> guitar.name_markup
                 Markup(contents=['Guitar'])
 
@@ -166,6 +166,7 @@ class Guitar(Instrument):
 
             ::
 
+                >>> guitar = abjad.instrumenttools.Guitar()
                 >>> guitar.pitch_range
                 PitchRange('[E2, E5]')
 
@@ -185,6 +186,7 @@ class Guitar(Instrument):
 
             ::
 
+                >>> guitar = abjad.instrumenttools.Guitar()
                 >>> guitar.short_name
                 'gt.'
 
@@ -200,6 +202,7 @@ class Guitar(Instrument):
 
             ::
 
+                >>> guitar = abjad.instrumenttools.Guitar()
                 >>> guitar.short_name_markup
                 Markup(contents=['Gt.'])
 

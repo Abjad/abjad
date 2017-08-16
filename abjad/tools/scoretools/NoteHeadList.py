@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import systemtools
 from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class NoteHeadList(TypedList):
     r'''Note-head list.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

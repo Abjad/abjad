@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class TenorVoice(Instrument):
     r'''Tenor voice.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -34,8 +29,7 @@ class TenorVoice(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     performer_abbreviation = 'ten.'
 
@@ -77,6 +71,7 @@ class TenorVoice(Instrument):
 
             ::
 
+                >>> tenor = abjad.instrumenttools.TenorVoice()
                 >>> tenor.allowable_clefs
                 ClefList([Clef(name='treble')])
 
@@ -96,6 +91,7 @@ class TenorVoice(Instrument):
 
             ::
 
+                >>> tenor = abjad.instrumenttools.TenorVoice()
                 >>> tenor.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -115,6 +111,7 @@ class TenorVoice(Instrument):
 
             ::
 
+                >>> tenor = abjad.instrumenttools.TenorVoice()
                 >>> tenor.name
                 'tenor'
 
@@ -130,6 +127,7 @@ class TenorVoice(Instrument):
 
             ::
 
+                >>> tenor = abjad.instrumenttools.TenorVoice()
                 >>> tenor.name_markup
                 Markup(contents=['Tenor'])
 
@@ -149,6 +147,7 @@ class TenorVoice(Instrument):
 
             ::
 
+                >>> tenor = abjad.instrumenttools.TenorVoice()
                 >>> tenor.pitch_range
                 PitchRange('[C3, D5]')
 
@@ -168,6 +167,7 @@ class TenorVoice(Instrument):
 
             ::
 
+                >>> tenor = abjad.instrumenttools.TenorVoice()
                 >>> tenor.short_name
                 'ten.'
 
@@ -183,6 +183,7 @@ class TenorVoice(Instrument):
 
             ::
 
+                >>> tenor = abjad.instrumenttools.TenorVoice()
                 >>> tenor.short_name_markup
                 Markup(contents=['Ten.'])
 

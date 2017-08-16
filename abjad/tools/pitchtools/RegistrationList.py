@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class RegistrationList(TypedList):
     '''Registration list.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -57,8 +52,7 @@ class RegistrationList(TypedList):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

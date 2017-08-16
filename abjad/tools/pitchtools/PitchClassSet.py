@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 import copy
 from abjad.tools.pitchtools.Set import Set
 
 
 class PitchClassSet(Set):
     '''Pitch-class set.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -40,8 +35,7 @@ class PitchClassSet(Set):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

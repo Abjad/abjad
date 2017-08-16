@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import pytest
 import abjad
 from abjad.tools import rhythmtreetools

@@ -1,10 +1,8 @@
-# -*- coding: utf-8 -*-
 import copy
 import hashlib
 import platform
 import os
 import subprocess
-import sys
 from abjad.tools import systemtools
 from abjad.tools.abjadbooktools.ImageOutputProxy import ImageOutputProxy
 
@@ -14,17 +12,13 @@ class GraphvizOutputProxy(ImageOutputProxy):
 
     ::
 
-        >>> import abjad
-
-    ::
-
         >>> from abjad.tools import abjadbooktools
         >>> meter = abjad.Meter((4, 4))
         >>> proxy = abjadbooktools.GraphvizOutputProxy(meter)
         >>> print(format(proxy))
         ...
-        abjadbooktools.GraphvizOutputProxy(
-            graphtools.GraphvizGraph(
+        abjad.abjadbooktools.GraphvizOutputProxy(
+            abjad.graphtools.GraphvizGraph(
                 attributes={
                     'bgcolor': 'transparent',
                     'fontname': 'Arial',
@@ -32,42 +26,42 @@ class GraphvizOutputProxy(ImageOutputProxy):
                     'truecolor': True,
                     },
                 children=(
-                    graphtools.GraphvizNode(
+                    abjad.graphtools.GraphvizNode(
                         attributes={
                             'label': '4/4',
                             'shape': 'triangle',
                             },
                         ),
-                    graphtools.GraphvizNode(
+                    abjad.graphtools.GraphvizNode(
                         attributes={
                             'label': '1/4',
                             'shape': 'box',
                             },
                         ),
-                    graphtools.GraphvizNode(
+                    abjad.graphtools.GraphvizNode(
                         attributes={
                             'label': '1/4',
                             'shape': 'box',
                             },
                         ),
-                    graphtools.GraphvizNode(
+                    abjad.graphtools.GraphvizNode(
                         attributes={
                             'label': '1/4',
                             'shape': 'box',
                             },
                         ),
-                    graphtools.GraphvizNode(
+                    abjad.graphtools.GraphvizNode(
                         attributes={
                             'label': '1/4',
                             'shape': 'box',
                             },
                         ),
-                    graphtools.GraphvizSubgraph(
+                    abjad.graphtools.GraphvizSubgraph(
                         attributes={
                             'style': 'rounded',
                             },
                         children=(
-                            graphtools.GraphvizNode(
+                            abjad.graphtools.GraphvizNode(
                                 attributes={
                                     'color': 'white',
                                     'fillcolor': 'black',
@@ -77,19 +71,19 @@ class GraphvizOutputProxy(ImageOutputProxy):
                                     'style': 'filled',
                                     },
                                 children=(
-                                    graphtools.GraphvizGroup(
+                                    abjad.graphtools.GraphvizGroup(
                                         children=(
-                                            graphtools.GraphvizField(
+                                            abjad.graphtools.GraphvizField(
                                                 label='0',
                                                 ),
-                                            graphtools.GraphvizField(
+                                            abjad.graphtools.GraphvizField(
                                                 label='++',
                                                 ),
                                             ),
                                         ),
                                     ),
                                 ),
-                            graphtools.GraphvizNode(
+                            abjad.graphtools.GraphvizNode(
                                 attributes={
                                     'color': 'white',
                                     'fillcolor': 'black',
@@ -99,19 +93,19 @@ class GraphvizOutputProxy(ImageOutputProxy):
                                     'style': 'filled',
                                     },
                                 children=(
-                                    graphtools.GraphvizGroup(
+                                    abjad.graphtools.GraphvizGroup(
                                         children=(
-                                            graphtools.GraphvizField(
+                                            abjad.graphtools.GraphvizField(
                                                 label='1/4',
                                                 ),
-                                            graphtools.GraphvizField(
+                                            abjad.graphtools.GraphvizField(
                                                 label='+',
                                                 ),
                                             ),
                                         ),
                                     ),
                                 ),
-                            graphtools.GraphvizNode(
+                            abjad.graphtools.GraphvizNode(
                                 attributes={
                                     'color': 'white',
                                     'fillcolor': 'black',
@@ -121,19 +115,19 @@ class GraphvizOutputProxy(ImageOutputProxy):
                                     'style': 'filled',
                                     },
                                 children=(
-                                    graphtools.GraphvizGroup(
+                                    abjad.graphtools.GraphvizGroup(
                                         children=(
-                                            graphtools.GraphvizField(
+                                            abjad.graphtools.GraphvizField(
                                                 label='1/2',
                                                 ),
-                                            graphtools.GraphvizField(
+                                            abjad.graphtools.GraphvizField(
                                                 label='+',
                                                 ),
                                             ),
                                         ),
                                     ),
                                 ),
-                            graphtools.GraphvizNode(
+                            abjad.graphtools.GraphvizNode(
                                 attributes={
                                     'color': 'white',
                                     'fillcolor': 'black',
@@ -143,29 +137,29 @@ class GraphvizOutputProxy(ImageOutputProxy):
                                     'style': 'filled',
                                     },
                                 children=(
-                                    graphtools.GraphvizGroup(
+                                    abjad.graphtools.GraphvizGroup(
                                         children=(
-                                            graphtools.GraphvizField(
+                                            abjad.graphtools.GraphvizField(
                                                 label='3/4',
                                                 ),
-                                            graphtools.GraphvizField(
+                                            abjad.graphtools.GraphvizField(
                                                 label='+',
                                                 ),
                                             ),
                                         ),
                                     ),
                                 ),
-                            graphtools.GraphvizNode(
+                            abjad.graphtools.GraphvizNode(
                                 attributes={
                                     'shape': 'Mrecord',
                                     },
                                 children=(
-                                    graphtools.GraphvizGroup(
+                                    abjad.graphtools.GraphvizGroup(
                                         children=(
-                                            graphtools.GraphvizField(
+                                            abjad.graphtools.GraphvizField(
                                                 label='1',
                                                 ),
-                                            graphtools.GraphvizField(
+                                            abjad.graphtools.GraphvizField(
                                                 label='++',
                                                 ),
                                             ),
@@ -286,6 +280,9 @@ class GraphvizOutputProxy(ImageOutputProxy):
 
         ::
 
+            >>> from abjad.tools import abjadbooktools
+            >>> meter = abjad.Meter((4, 4))
+            >>> proxy = abjadbooktools.GraphvizOutputProxy(meter)
             >>> for node in proxy.as_docutils():
             ...     print(node.pformat())
             ...
@@ -363,8 +360,6 @@ class GraphvizOutputProxy(ImageOutputProxy):
         result = []
         try:
             code = str(self.payload)
-            if sys.version_info[0] == 2:
-                code = code.decode('utf-8')
             node = abjadbooktools.abjad_output_block(code, code)
             node['image_layout_specifier'] = self.image_layout_specifier
             node['image_render_specifier'] = self.image_render_specifier

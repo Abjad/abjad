@@ -1,13 +1,5 @@
-# -*- coding: utf-8 -*-
-import sys
-
-
 def partition_integer_by_ratio(n, ratio):
     r'''Partitions positive integer-equivalent `n` by `ratio`.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -99,11 +91,8 @@ def partition_integer_by_ratio(n, ratio):
     cumulative_divisions = mathtools.cumulative_sums(divisions, start=None)
     for division in cumulative_divisions:
         rounded_division = int(round(division)) - sum(result)
-        # This makes rounding behave like Python 2.
-        # Would be good to remove in the long run:
-        if sys.version_info[0] == 3:
-            if division - round(division) == 0.5:
-                rounded_division += 1
+        if division - round(division) == 0.5:
+            rounded_division += 1
         result.append(rounded_division)
     result = result[1:]
     if mathtools.sign(n) == -1:

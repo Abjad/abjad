@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class BassClarinet(Instrument):
     r'''Bass clarinet.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -34,8 +29,7 @@ class BassClarinet(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -78,6 +72,7 @@ class BassClarinet(Instrument):
 
             ::
 
+                >>> bass_clarinet = abjad.instrumenttools.BassClarinet()
                 >>> bass_clarinet.allowable_clefs
                 ClefList([Clef(name='treble'), Clef(name='bass')])
 
@@ -97,6 +92,7 @@ class BassClarinet(Instrument):
 
             ::
 
+                >>> bass_clarinet = abjad.instrumenttools.BassClarinet()
                 >>> bass_clarinet.middle_c_sounding_pitch
                 NamedPitch('bf,')
 
@@ -116,6 +112,7 @@ class BassClarinet(Instrument):
 
             ::
 
+                >>> bass_clarinet = abjad.instrumenttools.BassClarinet()
                 >>> bass_clarinet.name
                 'bass clarinet'
 
@@ -131,6 +128,7 @@ class BassClarinet(Instrument):
 
             ::
 
+                >>> bass_clarinet = abjad.instrumenttools.BassClarinet()
                 >>> bass_clarinet.name_markup
                 Markup(contents=['Bass clarinet'])
 
@@ -150,6 +148,7 @@ class BassClarinet(Instrument):
 
             ::
 
+                >>> bass_clarinet = abjad.instrumenttools.BassClarinet()
                 >>> bass_clarinet.pitch_range
                 PitchRange('[Bb1, G5]')
 
@@ -169,6 +168,7 @@ class BassClarinet(Instrument):
 
             ::
 
+                >>> bass_clarinet = abjad.instrumenttools.BassClarinet()
                 >>> bass_clarinet.short_name
                 'bass cl.'
 
@@ -184,6 +184,7 @@ class BassClarinet(Instrument):
 
             ::
 
+                >>> bass_clarinet = abjad.instrumenttools.BassClarinet()
                 >>> bass_clarinet.short_name_markup
                 Markup(contents=['Bass cl.'])
 

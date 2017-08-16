@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import graphtools
 from abjad.tools import durationtools
 from abjad.tools import scoretools
@@ -10,18 +9,13 @@ from abjad.tools.rhythmtreetools.RhythmTreeMixin import RhythmTreeMixin
 class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
     r'''Rhythm-tree container.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import rhythmtreetools
-
     ..  container:: example
 
         Initializes rhythm-tree container:
 
         ::
 
-            >>> container = rhythmtreetools.RhythmTreeContainer(
+            >>> container = abjad.rhythmtreetools.RhythmTreeContainer(
             ...     preprolated_duration=1,
             ...     children=[],
             ...     )
@@ -29,7 +23,7 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
         ::
 
             >>> f(container)
-            rhythmtreetools.RhythmTreeContainer(
+            abjad.rhythmtreetools.RhythmTreeContainer(
                 preprolated_duration=abjad.Duration(1, 1),
                 )
 
@@ -41,17 +35,17 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
 
         ::
 
-            >>> leaf_a = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=1)
-            >>> leaf_b = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=2)
+            >>> leaf_a = abjad.rhythmtreetools.RhythmTreeLeaf(preprolated_duration=1)
+            >>> leaf_b = abjad.rhythmtreetools.RhythmTreeLeaf(preprolated_duration=2)
             >>> container.extend([leaf_a, leaf_b])
             >>> f(container)
-            rhythmtreetools.RhythmTreeContainer(
+            abjad.rhythmtreetools.RhythmTreeContainer(
                 children=(
-                    rhythmtreetools.RhythmTreeLeaf(
+                    abjad.rhythmtreetools.RhythmTreeLeaf(
                         preprolated_duration=abjad.Duration(1, 1),
                         is_pitched=True,
                         ),
-                    rhythmtreetools.RhythmTreeLeaf(
+                    abjad.rhythmtreetools.RhythmTreeLeaf(
                         preprolated_duration=abjad.Duration(2, 1),
                         is_pitched=True,
                         ),
@@ -61,26 +55,26 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
 
         ::
 
-            >>> another_container = rhythmtreetools.RhythmTreeContainer(
+            >>> another_container = abjad.rhythmtreetools.RhythmTreeContainer(
             ...     preprolated_duration=2)
             >>> another_container.append(
-            ...     rhythmtreetools.RhythmTreeLeaf(preprolated_duration=3))
+            ...     abjad.rhythmtreetools.RhythmTreeLeaf(preprolated_duration=3))
             >>> another_container.append(container[1])
             >>> container.append(another_container)
             >>> f(container)
-            rhythmtreetools.RhythmTreeContainer(
+            abjad.rhythmtreetools.RhythmTreeContainer(
                 children=(
-                    rhythmtreetools.RhythmTreeLeaf(
+                    abjad.rhythmtreetools.RhythmTreeLeaf(
                         preprolated_duration=abjad.Duration(1, 1),
                         is_pitched=True,
                         ),
-                    rhythmtreetools.RhythmTreeContainer(
+                    abjad.rhythmtreetools.RhythmTreeContainer(
                         children=(
-                            rhythmtreetools.RhythmTreeLeaf(
+                            abjad.rhythmtreetools.RhythmTreeLeaf(
                                 preprolated_duration=abjad.Duration(3, 1),
                                 is_pitched=True,
                                 ),
-                            rhythmtreetools.RhythmTreeLeaf(
+                            abjad.rhythmtreetools.RhythmTreeLeaf(
                                 preprolated_duration=abjad.Duration(2, 1),
                                 is_pitched=True,
                                 ),
@@ -148,8 +142,8 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
 
         ::
 
-            >>> a = rhythmtreetools.RhythmTreeParser()('(1 (1 1 1))')[0]
-            >>> b = rhythmtreetools.RhythmTreeParser()('(2 (3 4))')[0]
+            >>> a = abjad.rhythmtreetools.RhythmTreeParser()('(1 (1 1 1))')[0]
+            >>> b = abjad.rhythmtreetools.RhythmTreeParser()('(2 (3 4))')[0]
 
         ::
 
@@ -163,25 +157,25 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
         ::
 
             >>> f(c)
-            rhythmtreetools.RhythmTreeContainer(
+            abjad.rhythmtreetools.RhythmTreeContainer(
                 children=(
-                    rhythmtreetools.RhythmTreeLeaf(
+                    abjad.rhythmtreetools.RhythmTreeLeaf(
                         preprolated_duration=abjad.Duration(1, 1),
                         is_pitched=True,
                         ),
-                    rhythmtreetools.RhythmTreeLeaf(
+                    abjad.rhythmtreetools.RhythmTreeLeaf(
                         preprolated_duration=abjad.Duration(1, 1),
                         is_pitched=True,
                         ),
-                    rhythmtreetools.RhythmTreeLeaf(
+                    abjad.rhythmtreetools.RhythmTreeLeaf(
                         preprolated_duration=abjad.Duration(1, 1),
                         is_pitched=True,
                         ),
-                    rhythmtreetools.RhythmTreeLeaf(
+                    abjad.rhythmtreetools.RhythmTreeLeaf(
                         preprolated_duration=abjad.Duration(3, 1),
                         is_pitched=True,
                         ),
-                    rhythmtreetools.RhythmTreeLeaf(
+                    abjad.rhythmtreetools.RhythmTreeLeaf(
                         preprolated_duration=abjad.Duration(4, 1),
                         is_pitched=True,
                         ),
@@ -212,7 +206,7 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
             ::
 
                 >>> rtm = '(1 (1 (2 (1 1 1)) 2))'
-                >>> tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
+                >>> tree = abjad.rhythmtreetools.RhythmTreeParser()(rtm)[0]
 
             ::
 
@@ -285,7 +279,7 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
         ::
 
             >>> rtm = '(1 (1 (2 (1 1 1)) 2))'
-            >>> tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
+            >>> tree = abjad.rhythmtreetools.RhythmTreeParser()(rtm)[0]
             >>> graph = tree.__graph__()
             >>> print(str(graph))
             digraph G {
@@ -371,9 +365,9 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
 
         ::
 
-            >>> a = rhythmtreetools.RhythmTreeContainer()
-            >>> b = rhythmtreetools.RhythmTreeLeaf()
-            >>> c = rhythmtreetools.RhythmTreeLeaf()
+            >>> a = abjad.rhythmtreetools.RhythmTreeContainer()
+            >>> b = abjad.rhythmtreetools.RhythmTreeLeaf()
+            >>> c = abjad.rhythmtreetools.RhythmTreeLeaf()
 
         ::
 
@@ -456,7 +450,7 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
         ::
 
             >>> rtm = '(1 (1 (2 (1 1 1)) 2))'
-            >>> tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
+            >>> tree = abjad.rhythmtreetools.RhythmTreeParser()(rtm)[0]
 
         ::
 
@@ -499,7 +493,7 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
         ::
 
             >>> rtm = '(1 ((1 (1 1)) (1 (1 1))))'
-            >>> tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
+            >>> tree = abjad.rhythmtreetools.RhythmTreeParser()(rtm)[0]
             >>> tree.rtm_format
             '(1 ((1 (1 1)) (1 (1 1))))'
 

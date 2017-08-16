@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import difflib
 import inspect
 import os
@@ -7,19 +6,13 @@ from abjad.tools.abctools import AbjadObject
 
 class TestManager(AbjadObject):
     r'''Manages test logic.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###
 
     __documentation_section__ = 'Managers'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### PRIVATE METHODS ###
 
@@ -335,9 +328,8 @@ class TestManager(AbjadObject):
 
         ::
 
-            >>> from abjad.tools import rhythmmakertools
-            >>> one = rhythmmakertools.TaleaRhythmMaker(
-            ...     talea=rhythmmakertools.Talea(
+            >>> one = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
             ...         counts=[1, 2, 3],
             ...         denominator=8,
             ...         )
@@ -345,8 +337,8 @@ class TestManager(AbjadObject):
 
         ::
 
-            >>> two = rhythmmakertools.TaleaRhythmMaker(
-            ...     talea=rhythmmakertools.Talea(
+            >>> two = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
             ...         counts=[1, 5, 3],
             ...         denominator=4,
             ...         )
@@ -357,8 +349,8 @@ class TestManager(AbjadObject):
             >>> diff = abjad.TestManager.diff(one, two, 'Diff:')
             >>> print(diff)
             Diff:
-              rhythmmakertools.TaleaRhythmMaker(
-                  talea=rhythmmakertools.Talea(
+              abjad.rhythmmakertools.TaleaRhythmMaker(
+                  talea=abjad.rhythmmakertools.Talea(
             -         counts=[1, 2, 3],
             ?                    ^
             +         counts=[1, 5, 3],
@@ -394,8 +386,8 @@ class TestManager(AbjadObject):
         ::
 
             >>> def foo():
-            ...        function_name = abjad.TestManager.get_current_function_name()
-            ...        print('Function name is {!r}.'.format(function_name))
+            ...     function_name = abjad.TestManager.get_current_function_name()
+            ...     print('Function name is {!r}.'.format(function_name))
 
         ::
 

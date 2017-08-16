@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import metertools
 from abjad.tools import scoretools
 from abjad.tools.topleveltools import mutate
@@ -12,11 +11,6 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
     Attempts to optimize attack points in an expression with regard to the
     effective time signature of that expression.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     ..  container:: example
 
         ::
@@ -27,15 +21,15 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
         ::
 
             >>> source_tempo = abjad.MetronomeMark((1, 4), 60)
-            >>> q_events = quantizationtools.QEventSequence.from_tempo_scaled_leaves(
+            >>> q_events = abjad.quantizationtools.QEventSequence.from_tempo_scaled_leaves(
             ...     staff[:],
             ...     tempo=source_tempo,
             ...     )
             >>> target_tempo = abjad.MetronomeMark((1, 4), 54)
-            >>> q_schema = quantizationtools.MeasurewiseQSchema(
+            >>> q_schema = abjad.quantizationtools.MeasurewiseQSchema(
             ...     tempo=target_tempo,
             ...     )
-            >>> quantizer = quantizationtools.Quantizer()
+            >>> quantizer = abjad.quantizationtools.Quantizer()
 
     ..  container:: example
 
@@ -55,7 +49,7 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
 
         ::
 
-            >>> optimizer = quantizationtools.MeasurewiseAttackPointOptimizer()
+            >>> optimizer = abjad.quantizationtools.MeasurewiseAttackPointOptimizer()
             >>> result = quantizer(
             ...     q_events,
             ...     attack_point_optimizer=optimizer,
@@ -68,8 +62,7 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 import copy
 from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class ClefList(TypedList):
     r'''Clef list.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -19,7 +14,7 @@ class ClefList(TypedList):
         ::
 
             >>> f(clefs)
-            instrumenttools.ClefList(
+            abjad.instrumenttools.ClefList(
                 [
                     abjad.Clef(
                         name='treble',
@@ -68,8 +63,7 @@ class ClefList(TypedList):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 
@@ -80,6 +74,7 @@ class ClefList(TypedList):
 
             ::
 
+                >>> clefs = abjad.instrumenttools.ClefList(['treble', 'bass'])
                 >>> show(clefs) # doctest: +SKIP
 
             ..  docs::

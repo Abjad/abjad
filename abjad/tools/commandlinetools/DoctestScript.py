@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function
 import doctest
 import importlib
 import os
@@ -7,10 +5,7 @@ import sys
 from abjad.tools import datastructuretools
 from abjad.tools import systemtools
 from abjad.tools.commandlinetools.CommandlineScript import CommandlineScript
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO
+from io import StringIO
 
 
 class DoctestScript(CommandlineScript):
@@ -24,8 +19,7 @@ class DoctestScript(CommandlineScript):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     _module_names_for_globs = (
         'abjad',
@@ -94,7 +88,6 @@ class DoctestScript(CommandlineScript):
             globs['ide'] = ide_module
         except ImportError:
             pass
-        globs['print_function'] = print_function
         config_parser = self._config_parser
         try:
             imports = config_parser.get(self.alias, 'imports')

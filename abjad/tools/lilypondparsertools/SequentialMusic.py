@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import scoretools
 from abjad.tools.lilypondparsertools.Music import Music
 
@@ -9,8 +8,7 @@ class SequentialMusic(Music):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### PUBLIC METHODS ###
 

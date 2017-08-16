@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import abc
 
 
@@ -19,8 +18,7 @@ class AbjadObject(AbstractBase):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

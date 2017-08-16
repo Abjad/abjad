@@ -1,22 +1,16 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.rhythmtreetools import RhythmTreeContainer
 
 
 class QGridContainer(RhythmTreeContainer):
     r'''Q-grid container.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     ..  container:: example
 
         ::
 
-            >>> container = quantizationtools.QGridContainer()
+            >>> container = abjad.quantizationtools.QGridContainer()
             >>> f(container)
-            quantizationtools.QGridContainer(
+            abjad.quantizationtools.QGridContainer(
                 preprolated_duration=abjad.Duration(1, 1),
                 )
 
@@ -25,8 +19,7 @@ class QGridContainer(RhythmTreeContainer):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### PRIVATE PROPERTIES ###
 

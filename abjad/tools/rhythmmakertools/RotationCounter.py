@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import systemtools
 from abjad.tools.datastructuretools.TypedCounter import TypedCounter
 
@@ -6,16 +5,11 @@ from abjad.tools.datastructuretools.TypedCounter import TypedCounter
 class RotationCounter(TypedCounter):
     r'''Rotation counter.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import rhythmmakertools
-
     ..  container:: example
 
         ::
 
-            >>> counter = rhythmmakertools.RotationCounter(default=3)
+            >>> counter = abjad.rhythmmakertools.RotationCounter(default=3)
 
         ::
 

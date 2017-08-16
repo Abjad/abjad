@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.datastructuretools import TreeContainer
 
 
@@ -10,8 +9,7 @@ class GraphvizGroup(TreeContainer):
 
     __documentation_section__ = 'Graphviz'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

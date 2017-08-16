@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.spannertools.Beam import Beam
 
 
 class ComplexBeam(Beam):
     r'''Complex beam.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

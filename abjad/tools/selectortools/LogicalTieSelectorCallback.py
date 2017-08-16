@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 from abjad.tools import selectiontools
 from abjad.tools import spannertools
@@ -8,11 +7,6 @@ from abjad.tools.abctools import AbjadValueObject
 
 class LogicalTieSelectorCallback(AbjadValueObject):
     r'''Logical tie selector callback.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###

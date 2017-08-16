@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import datastructuretools
 from abjad.tools.lilypondnametools.LilyPondNameManager \
     import LilyPondNameManager
@@ -6,10 +5,6 @@ from abjad.tools.lilypondnametools.LilyPondNameManager \
 
 class LilyPondSettingNameManager(LilyPondNameManager):
     '''LilyPond setting name manager.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

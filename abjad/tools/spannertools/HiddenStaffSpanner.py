@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.spannertools.Spanner import Spanner
 
 
 class HiddenStaffSpanner(Spanner):
     r'''Hidden staff spanner.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -37,8 +32,7 @@ class HiddenStaffSpanner(Spanner):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

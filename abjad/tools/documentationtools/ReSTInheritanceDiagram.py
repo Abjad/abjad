@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 
 
 class ReSTInheritanceDiagram(ReSTDirective):
     r'''A ReST inheritance diagram directive.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -34,8 +29,7 @@ class ReSTInheritanceDiagram(ReSTDirective):
 
     __documentation_section__ = 'reStructuredText'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

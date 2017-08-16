@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class BassSaxophone(Instrument):
     r'''Bass saxophone.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -34,8 +29,7 @@ class BassSaxophone(Instrument):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -76,6 +70,7 @@ class BassSaxophone(Instrument):
 
             ::
 
+                >>> bass_saxophone = abjad.instrumenttools.BassSaxophone()
                 >>> bass_saxophone.allowable_clefs
                 ClefList([Clef(name='treble')])
 
@@ -95,6 +90,7 @@ class BassSaxophone(Instrument):
 
             ::
 
+                >>> bass_saxophone = abjad.instrumenttools.BassSaxophone()
                 >>> bass_saxophone.middle_c_sounding_pitch
                 NamedPitch('bf,,')
 
@@ -114,6 +110,7 @@ class BassSaxophone(Instrument):
 
             ::
 
+                >>> bass_saxophone = abjad.instrumenttools.BassSaxophone()
                 >>> bass_saxophone.name
                 'bass saxophone'
 
@@ -129,6 +126,7 @@ class BassSaxophone(Instrument):
 
             ::
 
+                >>> bass_saxophone = abjad.instrumenttools.BassSaxophone()
                 >>> bass_saxophone.name_markup
                 Markup(contents=['Bass saxophone'])
 
@@ -148,6 +146,7 @@ class BassSaxophone(Instrument):
 
             ::
 
+                >>> bass_saxophone = abjad.instrumenttools.BassSaxophone()
                 >>> bass_saxophone.pitch_range
                 PitchRange('[Ab2, E4]')
 
@@ -167,6 +166,7 @@ class BassSaxophone(Instrument):
 
             ::
 
+                >>> bass_saxophone = abjad.instrumenttools.BassSaxophone()
                 >>> bass_saxophone.short_name
                 'bass sax.'
 
@@ -182,6 +182,7 @@ class BassSaxophone(Instrument):
 
             ::
 
+                >>> bass_saxophone = abjad.instrumenttools.BassSaxophone()
                 >>> bass_saxophone.short_name_markup
                 Markup(contents=['Bass sax.'])
 

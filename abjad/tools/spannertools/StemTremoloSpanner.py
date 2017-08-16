@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools.spannertools.Spanner import Spanner
 
 
 class StemTremoloSpanner(Spanner):
     r'''Stem tremolo spanner.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

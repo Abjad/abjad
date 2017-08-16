@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import abctools
 
 
@@ -7,13 +6,9 @@ class LilyPondEngraver(abctools.AbjadValueObject):
 
     ::
 
-        >>> from abjad.tools import lilypondnametools
-
-    ::
-
-        >>> engraver = lilypondnametools.LilyPondEngraver('Auto_beam_engraver')
+        >>> engraver = abjad.lilypondnametools.LilyPondEngraver('Auto_beam_engraver')
         >>> print(format(engraver))
-        lilypondnametools.LilyPondEngraver(
+        abjad.LilyPondEngraver(
             name='Auto_beam_engraver',
             )
 
@@ -52,7 +47,7 @@ class LilyPondEngraver(abctools.AbjadValueObject):
 
         ::
 
-            >>> for lilypond_engraver in lilypondnametools.LilyPondEngraver.list_all_engravers():
+            >>> for lilypond_engraver in abjad.lilypondnametools.LilyPondEngraver.list_all_engravers():
             ...     lilypond_engraver
             ...
             LilyPondEngraver(name='Accidental_engraver')
@@ -205,6 +200,7 @@ class LilyPondEngraver(abctools.AbjadValueObject):
 
         ::
 
+            >>> engraver = abjad.lilypondnametools.LilyPondEngraver('Auto_beam_engraver')
             >>> for grob in engraver.grobs:
             ...     grob
             ...
@@ -225,6 +221,7 @@ class LilyPondEngraver(abctools.AbjadValueObject):
 
         ::
 
+            >>> engraver = abjad.lilypondnametools.LilyPondEngraver('Auto_beam_engraver')
             >>> engraver.name
             'Auto_beam_engraver'
 
@@ -238,6 +235,7 @@ class LilyPondEngraver(abctools.AbjadValueObject):
 
         ::
 
+            >>> engraver = abjad.lilypondnametools.LilyPondEngraver('Auto_beam_engraver')
             >>> for property_name in engraver.property_names:
             ...     property_name
             ...

@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import markuptools
 from abjad.tools.spannertools.Spanner import Spanner
 
 
 class MetronomeMarkSpanner(Spanner):
     r'''MetronomeMark spanner.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

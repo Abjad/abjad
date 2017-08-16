@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools.quantizationtools.QSchemaItem import QSchemaItem
 
@@ -11,14 +10,9 @@ class BeatwiseQSchemaItem(QSchemaItem):
 
     ::
 
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
-    ::
-
-        >>> q_schema_item = quantizationtools.BeatwiseQSchemaItem()
+        >>> q_schema_item = abjad.quantizationtools.BeatwiseQSchemaItem()
         >>> f(q_schema_item)
-        quantizationtools.BeatwiseQSchemaItem()
+        abjad.quantizationtools.BeatwiseQSchemaItem()
 
     ..  container:: example
 
@@ -26,11 +20,11 @@ class BeatwiseQSchemaItem(QSchemaItem):
 
         ::
 
-            >>> q_schema_item = quantizationtools.BeatwiseQSchemaItem(
+            >>> q_schema_item = abjad.quantizationtools.BeatwiseQSchemaItem(
             ...     tempo=((1, 4), 60),
             ...     )
             >>> f(q_schema_item)
-            quantizationtools.BeatwiseQSchemaItem(
+            abjad.quantizationtools.BeatwiseQSchemaItem(
                 tempo=abjad.MetronomeMark(
                     reference_duration=abjad.Duration(1, 4),
                     units_per_minute=60,
@@ -43,11 +37,11 @@ class BeatwiseQSchemaItem(QSchemaItem):
 
         ::
 
-            >>> q_schema_item = quantizationtools.BeatwiseQSchemaItem(
+            >>> q_schema_item = abjad.quantizationtools.BeatwiseQSchemaItem(
             ...     beatspan=(1, 8),
             ...     )
             >>> f(q_schema_item)
-            quantizationtools.BeatwiseQSchemaItem(
+            abjad.quantizationtools.BeatwiseQSchemaItem(
                 beatspan=abjad.Duration(1, 8),
                 )
 

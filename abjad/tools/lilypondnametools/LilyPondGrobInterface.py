@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import abctools
 
 
@@ -7,16 +6,9 @@ class LilyPondGrobInterface(abctools.AbjadValueObject):
 
     ::
 
-        >>> from abjad.tools import lilypondnametools
-
-    ::
-
-        >>> string = 'beam-interface'
-        >>> interface = lilypondnametools.LilyPondGrobInterface(string)
-        >>> print(format(interface))
-        lilypondnametools.LilyPondGrobInterface(
-            name='beam-interface',
-            )
+        >>> interface = abjad.lilypondnametools.LilyPondGrobInterface('beam-interface')
+        >>> f(interface)
+        LilyPondGrobInterface(name='beam-interface')
 
     '''
 
@@ -53,7 +45,7 @@ class LilyPondGrobInterface(abctools.AbjadValueObject):
 
         ::
 
-            >>> for grob_interface in lilypondnametools.LilyPondGrobInterface.list_all_interfaces():
+            >>> for grob_interface in abjad.lilypondnametools.LilyPondGrobInterface.list_all_interfaces():
             ...     grob_interface
             ...
             LilyPondGrobInterface(name='accidental-interface')
@@ -209,6 +201,7 @@ class LilyPondGrobInterface(abctools.AbjadValueObject):
 
         ::
 
+            >>> interface = abjad.lilypondnametools.LilyPondGrobInterface('beam-interface')
             >>> interface.name
             'beam-interface'
 
@@ -222,6 +215,7 @@ class LilyPondGrobInterface(abctools.AbjadValueObject):
 
         ::
 
+            >>> interface = abjad.lilypondnametools.LilyPondGrobInterface('beam-interface')
             >>> for property_name in interface.property_names:
             ...     property_name
             ...

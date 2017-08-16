@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
 import abjad
-import sys
 import unittest
 from abjad.tools import abjadbooktools
 
@@ -56,54 +54,29 @@ class CodeBlockTests(unittest.TestCase):
         document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
         result = abjadbooktools.CodeBlock.from_docutils_abjad_import_block(block)
-        if sys.version_info[0] == 2:
-            assert format(result) == abjad.String.normalize(r"""
-                abjadbooktools.CodeBlock(
-                    (
-                        u'def example_function(argument):',
-                        u"    r'''This is a multiline docstring.",
-                        u'',
-                        u'    This is the third line of the docstring.',
-                        u"    '''",
-                        u'    # This is a comment.',
-                        u"    print('Entering example function.')",
-                        u'    try:',
-                        u'        argument = argument + 1',
-                        u'    except TypeError:',
-                        u"        print('Wrong type!')",
-                        u'    print(argument)',
-                        u"    print('Leaving example function.')",
-                        ),
-                    executed_lines=(
-                        'from abjad.tools.abjadbooktools import example_function',
-                        ),
-                    starting_line_number=1,
-                    )
-                """)
-        else:            
-            assert format(result) == abjad.String.normalize(r"""
-                abjadbooktools.CodeBlock(
-                    (
-                        'def example_function(argument):',
-                        "    r'''This is a multiline docstring.",
-                        '',
-                        '    This is the third line of the docstring.',
-                        "    '''",
-                        '    # This is a comment.',
-                        "    print('Entering example function.')",
-                        '    try:',
-                        '        argument = argument + 1',
-                        '    except TypeError:',
-                        "        print('Wrong type!')",
-                        '    print(argument)',
-                        "    print('Leaving example function.')",
-                        ),
-                    executed_lines=(
-                        'from abjad.tools.abjadbooktools import example_function',
-                        ),
-                    starting_line_number=1,
-                    )
-                """)
+        assert format(result) == abjad.String.normalize(r"""
+            abjad.abjadbooktools.CodeBlock(
+                (
+                    'def example_function(argument):',
+                    "    r'''This is a multiline docstring.",
+                    '',
+                    '    This is the third line of the docstring.',
+                    "    '''",
+                    '    # This is a comment.',
+                    "    print('Entering example function.')",
+                    '    try:',
+                    '        argument = argument + 1',
+                    '    except TypeError:',
+                    "        print('Wrong type!')",
+                    '    print(argument)',
+                    "    print('Leaving example function.')",
+                    ),
+                executed_lines=(
+                    'from abjad.tools.abjadbooktools import example_function',
+                    ),
+                starting_line_number=1,
+                )
+            """)
 
     def test_from_docutils_abjad_import_block_02(self):
         source = '''
@@ -114,60 +87,32 @@ class CodeBlockTests(unittest.TestCase):
         document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
         result = abjadbooktools.CodeBlock.from_docutils_abjad_import_block(block)
-        if sys.version_info[0] == 2:
-            assert format(result) == abjad.String.normalize(r"""
-                abjadbooktools.CodeBlock(
-                    (
-                        u'def example_function(argument):',
-                        u"    r'''This is a multiline docstring.",
-                        u'',
-                        u'    This is the third line of the docstring.',
-                        u"    '''",
-                        u'    # This is a comment.',
-                        u"    print('Entering example function.')",
-                        u'    try:',
-                        u'        argument = argument + 1',
-                        u'    except TypeError:',
-                        u"        print('Wrong type!')",
-                        u'    print(argument)',
-                        u"    print('Leaving example function.')",
-                        ),
-                    code_block_specifier=abjadbooktools.CodeBlockSpecifier(
-                        hide=True,
-                        ),
-                    executed_lines=(
-                        'from abjad.tools.abjadbooktools import example_function',
-                        ),
-                    starting_line_number=1,
-                    )
-                """)
-        else:
-            assert format(result) == abjad.String.normalize(r"""
-                abjadbooktools.CodeBlock(
-                    (
-                        'def example_function(argument):',
-                        "    r'''This is a multiline docstring.",
-                        '',
-                        '    This is the third line of the docstring.',
-                        "    '''",
-                        '    # This is a comment.',
-                        "    print('Entering example function.')",
-                        '    try:',
-                        '        argument = argument + 1',
-                        '    except TypeError:',
-                        "        print('Wrong type!')",
-                        '    print(argument)',
-                        "    print('Leaving example function.')",
-                        ),
-                    code_block_specifier=abjadbooktools.CodeBlockSpecifier(
-                        hide=True,
-                        ),
-                    executed_lines=(
-                        'from abjad.tools.abjadbooktools import example_function',
-                        ),
-                    starting_line_number=1,
-                    )
-                """)
+        assert format(result) == abjad.String.normalize(r"""
+            abjad.abjadbooktools.CodeBlock(
+                (
+                    'def example_function(argument):',
+                    "    r'''This is a multiline docstring.",
+                    '',
+                    '    This is the third line of the docstring.',
+                    "    '''",
+                    '    # This is a comment.',
+                    "    print('Entering example function.')",
+                    '    try:',
+                    '        argument = argument + 1',
+                    '    except TypeError:',
+                    "        print('Wrong type!')",
+                    '    print(argument)',
+                    "    print('Leaving example function.')",
+                    ),
+                code_block_specifier=abjad.abjadbooktools.CodeBlockSpecifier(
+                    hide=True,
+                    ),
+                executed_lines=(
+                    'from abjad.tools.abjadbooktools import example_function',
+                    ),
+                starting_line_number=1,
+                )
+            """)
 
     def test_from_docutils_abjad_input_block_01(self):
         source = '''
@@ -181,28 +126,16 @@ class CodeBlockTests(unittest.TestCase):
         document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
         result = abjadbooktools.CodeBlock.from_docutils_abjad_input_block(block)
-        if sys.version_info[0] == 2:
-            assert format(result) == abjad.String.normalize(r"""
-                abjadbooktools.CodeBlock(
-                    (
-                        u'note = Note("c\'4")',
-                        u'if True:',
-                        u'    note.written_pitch = "ds,"',
-                        ),
-                    starting_line_number=2,
-                    )
-                """)
-        else:
-            assert format(result) == abjad.String.normalize(r"""
-                abjadbooktools.CodeBlock(
-                    (
-                        'note = Note("c\'4")',
-                        'if True:',
-                        '    note.written_pitch = "ds,"',
-                        ),
-                    starting_line_number=2,
-                    )
-                """)
+        assert format(result) == abjad.String.normalize(r"""
+            abjad.abjadbooktools.CodeBlock(
+                (
+                    'note = Note("c\'4")',
+                    'if True:',
+                    '    note.written_pitch = "ds,"',
+                    ),
+                starting_line_number=2,
+                )
+            """)
 
     def test_from_docutils_abjad_input_block_02(self):
         source = '''
@@ -217,34 +150,19 @@ class CodeBlockTests(unittest.TestCase):
         document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
         result = abjadbooktools.CodeBlock.from_docutils_abjad_input_block(block)
-        if sys.version_info[0] == 2:
-            assert format(result) == abjad.String.normalize(r"""
-                abjadbooktools.CodeBlock(
-                    (
-                        u'note = Note("c\'4")',
-                        u'if True:',
-                        u'    note.written_pitch = "ds,"',
-                        ),
-                    code_block_specifier=abjadbooktools.CodeBlockSpecifier(
-                        allow_exceptions=True,
-                        ),
-                    starting_line_number=3,
-                    )
-                """)
-        else:
-            assert format(result) == abjad.String.normalize(r"""
-                abjadbooktools.CodeBlock(
-                    (
-                        'note = Note("c\'4")',
-                        'if True:',
-                        '    note.written_pitch = "ds,"',
-                        ),
-                    code_block_specifier=abjadbooktools.CodeBlockSpecifier(
-                        allow_exceptions=True,
-                        ),
-                    starting_line_number=3,
-                    )
-                """)
+        assert format(result) == abjad.String.normalize(r"""
+            abjad.abjadbooktools.CodeBlock(
+                (
+                    'note = Note("c\'4")',
+                    'if True:',
+                    '    note.written_pitch = "ds,"',
+                    ),
+                code_block_specifier=abjad.abjadbooktools.CodeBlockSpecifier(
+                    allow_exceptions=True,
+                    ),
+                starting_line_number=3,
+                )
+            """)
 
     def test_from_docutils_literal_block(self):
         source = '''

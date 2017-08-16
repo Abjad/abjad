@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class BaritoneVoice(Instrument):
     r'''Baritone voice.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -37,8 +32,7 @@ class BaritoneVoice(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     performer_abbreviation = 'bar.'
 
@@ -80,6 +74,7 @@ class BaritoneVoice(Instrument):
 
             ::
 
+                >>> baritone = abjad.instrumenttools.BaritoneVoice()
                 >>> baritone.allowable_clefs
                 ClefList([Clef(name='bass')])
 
@@ -99,6 +94,7 @@ class BaritoneVoice(Instrument):
 
             ::
 
+                >>> baritone = abjad.instrumenttools.BaritoneVoice()
                 >>> baritone.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -118,6 +114,7 @@ class BaritoneVoice(Instrument):
 
             ::
 
+                >>> baritone = abjad.instrumenttools.BaritoneVoice()
                 >>> baritone.name
                 'baritone'
 
@@ -133,6 +130,7 @@ class BaritoneVoice(Instrument):
 
             ::
 
+                >>> baritone = abjad.instrumenttools.BaritoneVoice()
                 >>> baritone.name_markup
                 Markup(contents=['Baritone'])
 
@@ -152,6 +150,7 @@ class BaritoneVoice(Instrument):
 
             ::
 
+                >>> baritone = abjad.instrumenttools.BaritoneVoice()
                 >>> baritone.pitch_range
                 PitchRange('[A2, A4]')
 
@@ -171,6 +170,7 @@ class BaritoneVoice(Instrument):
 
             ::
 
+                >>> baritone = abjad.instrumenttools.BaritoneVoice()
                 >>> baritone.short_name
                 'bar.'
 
@@ -186,6 +186,7 @@ class BaritoneVoice(Instrument):
 
             ::
 
+                >>> baritone = abjad.instrumenttools.BaritoneVoice()
                 >>> baritone.short_name_markup
                 Markup(contents=['Bar.'])
 

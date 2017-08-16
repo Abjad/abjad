@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class BaritoneSaxophone(Instrument):
     r'''Baritone saxophone.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -34,8 +29,7 @@ class BaritoneSaxophone(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -76,6 +70,7 @@ class BaritoneSaxophone(Instrument):
 
             ::
 
+                >>> baritone_saxophone = abjad.instrumenttools.BaritoneSaxophone()
                 >>> baritone_saxophone.allowable_clefs
                 ClefList([Clef(name='treble')])
 
@@ -95,6 +90,7 @@ class BaritoneSaxophone(Instrument):
 
             ::
 
+                >>> baritone_saxophone = abjad.instrumenttools.BaritoneSaxophone()
                 >>> baritone_saxophone.middle_c_sounding_pitch
                 NamedPitch('ef,')
 
@@ -114,6 +110,7 @@ class BaritoneSaxophone(Instrument):
 
             ::
 
+                >>> baritone_saxophone = abjad.instrumenttools.BaritoneSaxophone()
                 >>> baritone_saxophone.name
                 'baritone saxophone'
 
@@ -129,6 +126,7 @@ class BaritoneSaxophone(Instrument):
 
             ::
 
+                >>> baritone_saxophone = abjad.instrumenttools.BaritoneSaxophone()
                 >>> baritone_saxophone.name_markup
                 Markup(contents=['Baritone saxophone'])
 
@@ -148,6 +146,7 @@ class BaritoneSaxophone(Instrument):
 
             ::
 
+                >>> baritone_saxophone = abjad.instrumenttools.BaritoneSaxophone()
                 >>> baritone_saxophone.pitch_range
                 PitchRange('[C2, Ab4]')
 
@@ -167,6 +166,7 @@ class BaritoneSaxophone(Instrument):
 
             ::
 
+                >>> baritone_saxophone = abjad.instrumenttools.BaritoneSaxophone()
                 >>> baritone_saxophone.short_name
                 'bar. sax.'
 
@@ -182,6 +182,7 @@ class BaritoneSaxophone(Instrument):
 
             ::
 
+                >>> baritone_saxophone = abjad.instrumenttools.BaritoneSaxophone()
                 >>> baritone_saxophone.short_name_markup
                 Markup(contents=['Bar. sax.'])
 

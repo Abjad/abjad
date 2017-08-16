@@ -1,21 +1,14 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.Set import Set
 
 
 class IntervalSet(Set):
     r'''Interval set.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

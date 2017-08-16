@@ -1,22 +1,15 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools import AbjadObject
 
 
 class LilyPondFormatManager(AbjadObject):
     r'''Manages LilyPond formatting logic.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###
 
     __documentation_section__ = 'LilyPond formatting'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     lilypond_color_constants = (
         'black',
@@ -514,15 +507,15 @@ class LilyPondFormatManager(AbjadObject):
 
                 >>> manager = abjad.LilyPondFormatManager
                 >>> print(manager.report_spanner_format_contributions(spanner))
-                c8	systemtools.LilyPondFormatBundle(
-                        right=systemtools.SlotContributions(
+                c8	abjad.LilyPondFormatBundle(
+                        right=abjad.SlotContributions(
                             spanner_starts=['['],
                             ),
                         )
-                d8	systemtools.LilyPondFormatBundle()
-                e8	systemtools.LilyPondFormatBundle()
-                f8	systemtools.LilyPondFormatBundle(
-                        right=systemtools.SlotContributions(
+                d8	abjad.LilyPondFormatBundle()
+                e8	abjad.LilyPondFormatBundle()
+                f8	abjad.LilyPondFormatBundle(
+                        right=abjad.SlotContributions(
                             spanner_stops=[']'],
                             ),
                         )

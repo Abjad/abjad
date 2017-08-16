@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class LilyPondCommand(AbjadValueObject):
     r'''LilyPond command.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

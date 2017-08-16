@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 import collections
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class StringOrchestraScoreTemplate(AbjadValueObject):
     r'''String orchestra score template.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

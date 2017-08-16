@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class RehearsalMark(AbjadValueObject):
     r'''Rehearsal mark.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

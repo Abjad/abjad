@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import datastructuretools
 from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 
 
 class ReSTTOCDirective(ReSTDirective):
     r'''A ReST TOC directive.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -57,8 +52,7 @@ class ReSTTOCDirective(ReSTDirective):
 
     __documentation_section__ = 'reStructuredText'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

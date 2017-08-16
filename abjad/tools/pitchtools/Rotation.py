@@ -1,14 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Rotation(AbjadValueObject):
     r'''Rotation operator.
-
-    ::
-
-        >>> import abjad
-        >>> import pytest
 
     ..  container:: example:
 
@@ -243,9 +237,10 @@ class Rotation(AbjadValueObject):
 
             ::
 
-                >>> string = 'abjad.Rotation().__radd__(abjad.Rotation())'
-                >>> pytest.raises(NotImplementedError, string)
-                <ExceptionInfo NotImplementedError ...>
+                >>> abjad.Rotation().__radd__(abjad.Rotation())
+                Traceback (most recent call last):
+                ...
+                NotImplementedError: right-addition not defined on Rotation.
 
         Raises not implemented error.
         '''

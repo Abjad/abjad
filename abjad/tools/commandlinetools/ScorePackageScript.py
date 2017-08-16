@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function
 import abc
 import collections
 import importlib
 import json
 import os
+import pathlib
 import re
 import shutil
 import sys
@@ -13,10 +12,6 @@ import traceback
 from abjad.tools import systemtools
 from abjad.tools import datastructuretools
 from abjad.tools.commandlinetools.CommandlineScript import CommandlineScript
-try:
-    import pathlib
-except ImportError:
-    import pathlib2 as pathlib
 
 
 class ScorePackageScript(CommandlineScript):

@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.pitchtools.Vector import Vector
 
 
 class PitchClassVector(Vector):
     '''Pitch-class vector.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -39,8 +34,7 @@ class PitchClassVector(Vector):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

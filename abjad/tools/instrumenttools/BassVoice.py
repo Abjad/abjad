@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class BassVoice(Instrument):
     r'''Bass voice.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -37,8 +32,7 @@ class BassVoice(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -78,6 +72,7 @@ class BassVoice(Instrument):
 
             ::
 
+                >>> bass = abjad.instrumenttools.BassVoice()
                 >>> bass.allowable_clefs
                 ClefList([Clef(name='bass')])
 
@@ -97,6 +92,7 @@ class BassVoice(Instrument):
 
             ::
 
+                >>> bass = abjad.instrumenttools.BassVoice()
                 >>> bass.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -116,6 +112,7 @@ class BassVoice(Instrument):
 
             ::
 
+                >>> bass = abjad.instrumenttools.BassVoice()
                 >>> bass.name
                 'bass'
 
@@ -131,6 +128,7 @@ class BassVoice(Instrument):
 
             ::
 
+                >>> bass = abjad.instrumenttools.BassVoice()
                 >>> bass.name_markup
                 Markup(contents=['Bass'])
 
@@ -150,6 +148,7 @@ class BassVoice(Instrument):
 
             ::
 
+                >>> bass = abjad.instrumenttools.BassVoice()
                 >>> bass.pitch_range
                 PitchRange('[E2, F4]')
 
@@ -169,6 +168,7 @@ class BassVoice(Instrument):
 
             ::
 
+                >>> bass = abjad.instrumenttools.BassVoice()
                 >>> bass.short_name
                 'bass'
 
@@ -184,6 +184,7 @@ class BassVoice(Instrument):
 
             ::
 
+                >>> bass = abjad.instrumenttools.BassVoice()
                 >>> bass.short_name_markup
                 Markup(contents=['Bass'])
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import copy
 from abjad.tools import datastructuretools
 from abjad.tools import scoretools
@@ -10,11 +9,6 @@ from abjad.tools.topleveltools import select
 class BeatwiseQTarget(QTarget):
     r'''Beatwise q-target.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     Not composer-safe.
 
     Used internally by ``Quantizer``.
@@ -22,8 +16,7 @@ class BeatwiseQTarget(QTarget):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### PRIVATE METHODS ###
 

@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Piano(Instrument):
     r'''Piano.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -46,8 +41,7 @@ class Piano(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -88,6 +82,7 @@ class Piano(Instrument):
 
             ::
 
+                >>> piano = abjad.instrumenttools.Piano()
                 >>> piano.allowable_clefs
                 ClefList([Clef(name='treble'), Clef(name='bass')])
 
@@ -107,6 +102,7 @@ class Piano(Instrument):
 
             ::
 
+                >>> piano = abjad.instrumenttools.Piano()
                 >>> piano.default_scope
                 'PianoStaff'
 
@@ -122,6 +118,7 @@ class Piano(Instrument):
 
             ::
 
+                >>> piano = abjad.instrumenttools.Piano()
                 >>> piano.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -141,6 +138,7 @@ class Piano(Instrument):
 
             ::
 
+                >>> piano = abjad.instrumenttools.Piano()
                 >>> piano.name
                 'piano'
 
@@ -156,6 +154,7 @@ class Piano(Instrument):
 
             ::
 
+                >>> piano = abjad.instrumenttools.Piano()
                 >>> piano.name_markup
                 Markup(contents=['Piano'])
 
@@ -175,6 +174,7 @@ class Piano(Instrument):
 
             ::
 
+                >>> piano = abjad.instrumenttools.Piano()
                 >>> piano.pitch_range
                 PitchRange('[A0, C8]')
 
@@ -194,6 +194,7 @@ class Piano(Instrument):
 
             ::
 
+                >>> piano = abjad.instrumenttools.Piano()
                 >>> piano.short_name
                 'pf.'
 
@@ -209,6 +210,7 @@ class Piano(Instrument):
 
             ::
 
+                >>> piano = abjad.instrumenttools.Piano()
                 >>> piano.short_name_markup
                 Markup(contents=['Pf.'])
 

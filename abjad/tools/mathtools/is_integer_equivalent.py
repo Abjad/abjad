@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 import numbers
 
 
 def is_integer_equivalent(argument):
     '''Is true when `argument` is an integer-equivalent number. Otherwise
     false.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

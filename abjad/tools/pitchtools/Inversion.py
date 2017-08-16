@@ -1,14 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Inversion(AbjadValueObject):
     r'''Inversion operator.
-
-    ::
-
-        >>> import abjad
-        >>> import pytest
 
     ..  container:: example
 
@@ -236,9 +230,10 @@ class Inversion(AbjadValueObject):
 
             ::
 
-                >>> string = 'abjad.Inversion().__radd__(abjad.Inversion())'
-                >>> pytest.raises(NotImplementedError, string)
-                <ExceptionInfo NotImplementedError ...>
+                >>> abjad.Inversion().__radd__(abjad.Inversion())
+                Traceback (most recent call last):
+                ...
+                NotImplementedError: right-addition not defined on Inversion.
 
         Raises not implemented error.
         '''

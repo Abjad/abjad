@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import copy
 from abjad.tools.abctools import AbjadValueObject
 
@@ -19,7 +18,7 @@ class IndicatorWrapper(AbjadValueObject):
         ::
 
             >>> f(wrapper)
-            systemtools.IndicatorWrapper(
+            abjad.IndicatorWrapper(
                 component=abjad.Note("c'4 ^\\accent"),
                 indicator=abjad.Articulation('accent', Up),
                 )
@@ -154,13 +153,13 @@ class IndicatorWrapper(AbjadValueObject):
                 >>> leaf = old_staff[0]
                 >>> wrapper = abjad.inspect(leaf).get_indicator(unwrap=False)
                 >>> f(wrapper)
-                systemtools.IndicatorWrapper(
+                abjad.IndicatorWrapper(
                     component=abjad.Note("c'4 ^ \\markup { pont. }"),
                     indicator=abjad.Markup(
                         contents=['pont.'],
                         ),
                     is_piecewise=True,
-                    piecewise_spanner=spannertools.TextSpanner(),
+                    piecewise_spanner=abjad.TextSpanner(),
                     )
 
             ::
@@ -179,7 +178,7 @@ class IndicatorWrapper(AbjadValueObject):
                 >>> leaf = new_staff[0]
                 >>> wrapper = abjad.inspect(leaf).get_indicator(unwrap=False)
                 >>> f(wrapper)
-                systemtools.IndicatorWrapper(
+                abjad.IndicatorWrapper(
                     component=abjad.Note("c'4 ^ \\markup { pont. }"),
                     indicator=abjad.Markup(
                         contents=['pont.'],

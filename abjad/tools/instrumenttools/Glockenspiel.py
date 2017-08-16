@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Glockenspiel(Instrument):
     r'''Glockenspiel.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -34,8 +29,7 @@ class Glockenspiel(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -73,6 +67,7 @@ class Glockenspiel(Instrument):
 
             ::
 
+                >>> glockenspiel = abjad.instrumenttools.Glockenspiel()
                 >>> glockenspiel.allowable_clefs
                 ClefList([Clef(name='treble')])
 
@@ -92,6 +87,7 @@ class Glockenspiel(Instrument):
 
             ::
 
+                >>> glockenspiel = abjad.instrumenttools.Glockenspiel()
                 >>> glockenspiel.middle_c_sounding_pitch
                 NamedPitch("c'''")
 
@@ -111,6 +107,7 @@ class Glockenspiel(Instrument):
 
             ::
 
+                >>> glockenspiel = abjad.instrumenttools.Glockenspiel()
                 >>> glockenspiel.name
                 'glockenspiel'
 
@@ -126,6 +123,7 @@ class Glockenspiel(Instrument):
 
             ::
 
+                >>> glockenspiel = abjad.instrumenttools.Glockenspiel()
                 >>> glockenspiel.name_markup
                 Markup(contents=['Glockenspiel'])
 
@@ -145,6 +143,7 @@ class Glockenspiel(Instrument):
 
             ::
 
+                >>> glockenspiel = abjad.instrumenttools.Glockenspiel()
                 >>> glockenspiel.pitch_range
                 PitchRange('[G5, C8]')
 
@@ -164,6 +163,7 @@ class Glockenspiel(Instrument):
 
             ::
 
+                >>> glockenspiel = abjad.instrumenttools.Glockenspiel()
                 >>> glockenspiel.short_name
                 'gkspl.'
 
@@ -179,6 +179,7 @@ class Glockenspiel(Instrument):
 
             ::
 
+                >>> glockenspiel = abjad.instrumenttools.Glockenspiel()
                 >>> glockenspiel.short_name_markup
                 Markup(contents=['Gkspl.'])
 

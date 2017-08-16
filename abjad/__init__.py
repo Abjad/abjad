@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # warn on an outdated Python installation
 import distutils.version
 import platform

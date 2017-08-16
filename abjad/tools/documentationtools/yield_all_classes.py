@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-
-
 def yield_all_classes(
     code_root=None,
     include_private_objects=False,

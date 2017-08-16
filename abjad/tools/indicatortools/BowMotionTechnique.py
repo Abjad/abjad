@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class BowMotionTechnique(AbjadValueObject):
     r'''Bow motion technique.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

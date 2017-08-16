@@ -1,12 +1,5 @@
-# -*- coding: utf-8 -*-
-
-
 def difference_series(argument):
     r'''Gets difference series of `argument`.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

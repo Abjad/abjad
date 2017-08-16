@@ -8,10 +8,6 @@ from abjad.tools.topleveltools import new
 class PitchClassSegment(Segment):
     r'''Pitch-class segment.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         Initializes segment with numbered pitch-classes:
@@ -125,8 +121,7 @@ class PitchClassSegment(Segment):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

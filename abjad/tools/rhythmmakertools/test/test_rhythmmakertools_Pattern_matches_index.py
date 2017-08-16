@@ -1,4 +1,3 @@
-# -*- coding: utf -*-
 import abjad
 from abjad.tools import rhythmmakertools
 

@@ -1,27 +1,21 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class SustainMask(AbjadValueObject):
     r'''Sustain mask.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import rhythmmakertools
-
     ..  container:: example
 
         ::
 
-            >>> mask = rhythmmakertools.SustainMask(
+            >>> mask = abjad.rhythmmakertools.SustainMask(
             ...     pattern=abjad.index_every([0, 1, 7], period=16),
             ...     )
 
         ::
 
             >>> f(mask)
-            rhythmmakertools.SustainMask(
+            abjad.SustainMask(
                 pattern=abjad.Pattern(
                     indices=[0, 1, 7],
                     period=16,
@@ -79,7 +73,7 @@ class SustainMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SustainMask(
+                abjad.SustainMask(
                     pattern=abjad.Pattern(
                         indices=[1, 2],
                         ),
@@ -87,7 +81,7 @@ class SustainMask(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[
                 ...         abjad.silence_all(),
                 ...         mask,
@@ -134,7 +128,7 @@ class SustainMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SustainMask(
+                abjad.SustainMask(
                     pattern=abjad.Pattern(
                         indices=[-1, -2],
                         ),
@@ -142,7 +136,7 @@ class SustainMask(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[
                 ...         abjad.silence_all(),
                 ...         mask,
@@ -193,7 +187,7 @@ class SustainMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SustainMask(
+                abjad.SustainMask(
                     pattern=abjad.Pattern(
                         operator='xor',
                         patterns=(
@@ -213,7 +207,7 @@ class SustainMask(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[
                 ...         abjad.silence_all(),
                 ...         mask,
@@ -264,7 +258,7 @@ class SustainMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SustainMask(
+                abjad.SustainMask(
                     pattern=abjad.Pattern(
                         inverted=True,
                         operator='xor',
@@ -285,7 +279,7 @@ class SustainMask(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[
                 ...         abjad.silence_all(),
                 ...         mask,
@@ -343,7 +337,7 @@ class SustainMask(AbjadValueObject):
 
             Without mask:
 
-                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(3, 1)],
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
@@ -406,7 +400,7 @@ class SustainMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SustainMask(
+                abjad.SustainMask(
                     pattern=abjad.Pattern(
                         indices=[0],
                         period=1,
@@ -415,7 +409,7 @@ class SustainMask(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
                 ...     division_masks=[mask],
                 ...     tuplet_ratios=[(3, 1)],
                 ...     )
@@ -478,7 +472,7 @@ class SustainMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SustainMask(
+                abjad.SustainMask(
                     pattern=abjad.Pattern(
                         indices=[1],
                         period=2,
@@ -487,7 +481,7 @@ class SustainMask(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[mask],
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
@@ -531,7 +525,7 @@ class SustainMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SustainMask(
+                abjad.SustainMask(
                     pattern=abjad.Pattern(
                         indices=[1, 2],
                         period=3,
@@ -540,7 +534,7 @@ class SustainMask(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[mask],
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
@@ -600,7 +594,7 @@ class SustainMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SustainMask(
+                abjad.SustainMask(
                     pattern=abjad.Pattern(
                         indices=[0],
                         ),
@@ -608,7 +602,7 @@ class SustainMask(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[16],
                 ...     division_masks=[mask],
                 ...     )
@@ -675,7 +669,7 @@ class SustainMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SustainMask(
+                abjad.SustainMask(
                     pattern=abjad.Pattern(
                         indices=[0, 1],
                         ),
@@ -683,7 +677,7 @@ class SustainMask(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[16],
                 ...     division_masks=[mask],
                 ...     )
@@ -758,7 +752,7 @@ class SustainMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SustainMask(
+                abjad.SustainMask(
                     pattern=abjad.Pattern(
                         indices=[-1],
                         ),
@@ -766,7 +760,7 @@ class SustainMask(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[
                 ...         abjad.silence_all(),
                 ...         mask,
@@ -813,7 +807,7 @@ class SustainMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SustainMask(
+                abjad.SustainMask(
                     pattern=abjad.Pattern(
                         indices=[-2, -1],
                         ),
@@ -821,7 +815,7 @@ class SustainMask(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[
                 ...         abjad.silence_all(),
                 ...         mask
@@ -868,13 +862,13 @@ class SustainMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SustainMask(
+                abjad.SustainMask(
                     pattern=abjad.Pattern(),
                     )
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[
                 ...         abjad.silence_all(),
                 ...         mask,

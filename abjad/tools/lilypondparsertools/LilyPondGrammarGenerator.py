@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools import AbjadObject
 
 
@@ -8,8 +7,7 @@ class LilyPondGrammarGenerator(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import datastructuretools
 from abjad.tools import selectiontools
 from abjad.tools.abctools import AbjadValueObject
@@ -6,11 +5,6 @@ from abjad.tools.abctools import AbjadValueObject
 
 class PatternedSelectorCallback(AbjadValueObject):
     r'''Patterned selector callback.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###

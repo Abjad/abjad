@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 import numbers
 from abjad import Fraction
@@ -14,10 +13,6 @@ from abjad.tools.markuptools.Postscript import Postscript
 
 class Markup(AbjadValueObject):
     r'''LilyPond markup.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

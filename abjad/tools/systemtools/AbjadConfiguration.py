@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+import locale
 import os
 import subprocess
 import sys
@@ -8,10 +8,6 @@ from abjad.tools.systemtools.Configuration import Configuration
 
 class AbjadConfiguration(Configuration):
     r'''Abjad configuration.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -54,8 +50,7 @@ class AbjadConfiguration(Configuration):
     # for caching
     _lilypond_version_string = None
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -134,6 +129,7 @@ class AbjadConfiguration(Configuration):
 
             ::
 
+                >>> abjad_configuration = abjad.AbjadConfiguration()
                 >>> abjad_configuration.get_abjad_startup_string()
                 'Abjad 3.0.0 (development)'
 
@@ -154,6 +150,7 @@ class AbjadConfiguration(Configuration):
 
             ::
 
+                >>> abjad_configuration = abjad.AbjadConfiguration()
                 >>> abjad_configuration.get_abjad_version_string()
                 '3.0.0'
 
@@ -170,6 +167,7 @@ class AbjadConfiguration(Configuration):
 
             ::
 
+                >>> abjad_configuration = abjad.AbjadConfiguration()
                 >>> abjad_configuration.get_lilypond_minimum_version_string() # doctest: +SKIP
                 '2.17.0'
 
@@ -188,6 +186,7 @@ class AbjadConfiguration(Configuration):
 
             ::
 
+                >>> abjad_configuration = abjad.AbjadConfiguration()
                 >>> abjad_configuration.get_lilypond_version_string() # doctest: +SKIP
                 '2.19.1'
 
@@ -206,14 +205,10 @@ class AbjadConfiguration(Configuration):
                 lilypond = 'lilypond'
         command = lilypond + ' --version'
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-        if sys.version_info[0] == 2:
-            lilypond_version_string = proc.stdout.readline()
-        else:
-            import locale
-            encoding = locale.getdefaultlocale()[1]
-            if encoding is None:
-                encoding = 'utf-8'
-            lilypond_version_string = proc.stdout.readline().decode(encoding)
+        encoding = locale.getdefaultlocale()[1]
+        if encoding is None:
+            encoding = 'utf-8'
+        lilypond_version_string = proc.stdout.readline().decode(encoding)
         lilypond_version_string = lilypond_version_string.split(' ')[-1]
         lilypond_version_string = lilypond_version_string.strip()
         AbjadConfiguration._lilypond_version_string = lilypond_version_string
@@ -227,6 +222,7 @@ class AbjadConfiguration(Configuration):
 
             ::
 
+                >>> abjad_configuration = abjad.AbjadConfiguration()
                 >>> abjad_configuration.get_python_version_string() # doctest: +SKIP
                 '2.7.5'
 
@@ -242,6 +238,7 @@ class AbjadConfiguration(Configuration):
 
             ::
 
+                >>> abjad_configuration = abjad.AbjadConfiguration()
                 >>> abjad_configuration.get_tab_width()
                 4
 
@@ -259,6 +256,7 @@ class AbjadConfiguration(Configuration):
 
             ::
 
+                >>> abjad_configuration = abjad.AbjadConfiguration()
                 >>> abjad_configuration.get_text_editor() # doctest: +SKIP
                 'vi'
 
@@ -281,6 +279,7 @@ class AbjadConfiguration(Configuration):
 
             ::
 
+                >>> abjad_configuration = abjad.AbjadConfiguration()
                 >>> abjad_configuration.list_package_dependency_versions() # doctest: +SKIP
                 {'sphinx': '1.1.2', 'pytest': '2.1.2'}
 
@@ -323,6 +322,7 @@ class AbjadConfiguration(Configuration):
 
             ::
 
+                >>> abjad_configuration = abjad.AbjadConfiguration()
                 >>> abjad_configuration.set_default_accidental_spelling('sharps')
 
             ::
@@ -336,6 +336,7 @@ class AbjadConfiguration(Configuration):
 
             ::
 
+                >>> abjad_configuration = abjad.AbjadConfiguration()
                 >>> abjad_configuration.set_default_accidental_spelling('flats')
 
             ::
@@ -349,6 +350,7 @@ class AbjadConfiguration(Configuration):
 
             ::
 
+                >>> abjad_configuration = abjad.AbjadConfiguration()
                 >>> abjad_configuration.set_default_accidental_spelling()
 
             ::

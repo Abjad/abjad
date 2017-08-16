@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Marimba(Instrument):
     r'''Marimba.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -34,8 +29,7 @@ class Marimba(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -73,6 +67,7 @@ class Marimba(Instrument):
 
             ::
 
+                >>> marimba = abjad.instrumenttools.Marimba()
                 >>> marimba.allowable_clefs
                 ClefList([Clef(name='treble'), Clef(name='bass')])
 
@@ -92,6 +87,7 @@ class Marimba(Instrument):
 
             ::
 
+                >>> marimba = abjad.instrumenttools.Marimba()
                 >>> marimba.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -111,6 +107,7 @@ class Marimba(Instrument):
 
             ::
 
+                >>> marimba = abjad.instrumenttools.Marimba()
                 >>> marimba.name
                 'marimba'
 
@@ -126,6 +123,7 @@ class Marimba(Instrument):
 
             ::
 
+                >>> marimba = abjad.instrumenttools.Marimba()
                 >>> marimba.name_markup
                 Markup(contents=['Marimba'])
 
@@ -145,6 +143,7 @@ class Marimba(Instrument):
 
             ::
 
+                >>> marimba = abjad.instrumenttools.Marimba()
                 >>> marimba.pitch_range
                 PitchRange('[F2, C7]')
 
@@ -164,6 +163,7 @@ class Marimba(Instrument):
 
             ::
 
+                >>> marimba = abjad.instrumenttools.Marimba()
                 >>> marimba.short_name
                 'mb.'
 
@@ -179,6 +179,7 @@ class Marimba(Instrument):
 
             ::
 
+                >>> marimba = abjad.instrumenttools.Marimba()
                 >>> marimba.short_name_markup
                 Markup(contents=['Mb.'])
 

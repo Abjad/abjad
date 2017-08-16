@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 import collections
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class CompoundOperator(AbjadValueObject):
     r'''Compound operator.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

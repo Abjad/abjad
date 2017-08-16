@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 
 
 class ReSTLineageDirective(ReSTDirective):
     r'''A ReST lineage directive.
-
-    ::
-
-        >>> import abjad
 
     Digrams inheritance of Abjad classes.
 
@@ -31,8 +26,7 @@ class ReSTLineageDirective(ReSTDirective):
 
     __documentation_section__ = 'reStructuredText'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import functools
 import math
 import numbers
@@ -9,10 +8,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 @functools.total_ordering
 class Octave(AbjadValueObject):
     r'''Octave.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example:
 

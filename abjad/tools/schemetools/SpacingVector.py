@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.schemetools.SchemeVector import SchemeVector
 
 
 class SpacingVector(SchemeVector):
     r'''Abjad model of Scheme spacing vector.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -45,8 +40,7 @@ class SpacingVector(SchemeVector):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

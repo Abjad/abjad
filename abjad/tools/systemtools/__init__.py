@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from .AbjadConfiguration import AbjadConfiguration
 from .BenchmarkScoreMaker import BenchmarkScoreMaker
 from .Configuration import Configuration

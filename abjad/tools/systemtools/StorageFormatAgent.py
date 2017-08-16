@@ -1,22 +1,12 @@
-# -*- encoding: utf-8 -*-
 import collections
-import sys
+import importlib
+import inspect
 import types
 from abjad.tools.abctools import AbjadValueObject
-try:
-    import funcsigs
-except ImportError:
-    import inspect as funcsigs
 
 
 class StorageFormatAgent(AbjadValueObject):
     r'''Manages Abjad object storage formats.
-
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import rhythmmakertools
-
     '''
 
     ### CLASS VARIABLES ###
@@ -104,17 +94,14 @@ class StorageFormatAgent(AbjadValueObject):
 
     def _format_class(self, as_storage_format, is_indented):
         if as_storage_format:
-            tools_package_name = self.get_tools_package_name()
-            if tools_package_name in self._exclude_tools_package:
-                result = '{}.{}'.format(
-                    self.get_root_package_name(),
-                    self._client.__name__,
-                    )
-            else:
-                result = '{}.{}'.format(
-                    tools_package_name,
-                    self._client.__name__,
-                    )
+            root_package_name = self.get_root_package_name()
+            root_package = importlib.import_module(root_package_name)
+            parts = [root_package_name]
+            if self._client.__name__ not in dir(root_package):
+                tools_package_name = self.get_tools_package_name()
+                parts.append(tools_package_name)
+            parts.append(self._client.__name__)
+            result = '.'.join(parts)
         else:
             result = self._client.__name__
         return [result]
@@ -364,8 +351,8 @@ class StorageFormatAgent(AbjadValueObject):
 
             ::
 
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
-                ...     burnish_specifier=rhythmmakertools.BurnishSpecifier(
+                >>> maker = abjad.rhythmmakertools.EvenDivisionRhythmMaker(
+                ...     burnish_specifier=abjad.rhythmmakertools.BurnishSpecifier(
                 ...         left_classes=[abjad.Rest],
                 ...         left_counts=[1],
                 ...         right_classes=[abjad.Rest],
@@ -406,10 +393,7 @@ class StorageFormatAgent(AbjadValueObject):
         Returns tuple of types.
         '''
         from abjad.tools import abctools
-        if sys.version_info[0] == 2:
-            type_type = types.TypeType
-        else:
-            type_type = type
+        type_type = type
         if result is None:
             result = set()
         agent = StorageFormatAgent(subject)
@@ -540,14 +524,13 @@ class StorageFormatAgent(AbjadValueObject):
         else:
             class_name = self._client.__name__
         if as_storage_format:
-            tools_package_name = agent.get_tools_package_name()
-            if tools_package_name not in self._exclude_tools_package:
-                parts = [tools_package_name, class_name]
-            else:
-                parts = [class_name]
-            if (self.format_specification.storage_format_includes_root_package
-                or tools_package_name in self._exclude_tools_package):
-                parts.insert(0, self.get_root_package_name())
+            root_package_name = self.get_root_package_name()
+            root_package = importlib.import_module(root_package_name)
+            parts = [root_package_name]
+            if class_name not in dir(root_package):
+                tools_package_name = agent.get_tools_package_name()
+                parts.append(tools_package_name)
+            parts.append(class_name)
             return '.'.join(parts)
         return class_name
 
@@ -568,20 +551,20 @@ class StorageFormatAgent(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(3, 2)],
                 ...     division_masks=[
                 ...         abjad.silence_every([1], period=2),
                 ...         ],
                 ...     )
                 >>> f(rhythm_maker)
-                rhythmmakertools.TupletRhythmMaker(
+                abjad.rhythmmakertools.TupletRhythmMaker(
                     tuplet_ratios=[
                         abjad.Ratio((3, 2)),
                         ],
                     division_masks=abjad.PatternList(
                         (
-                            rhythmmakertools.SilenceMask(
+                            abjad.SilenceMask(
                                 pattern=abjad.Pattern(
                                     indices=[1],
                                     period=2,
@@ -732,7 +715,7 @@ class StorageFormatAgent(AbjadValueObject):
         if not isinstance(subject, type):
             subject = type(subject)
         try:
-            signature = funcsigs.signature(subject)
+            signature = inspect.signature(subject)
         except ValueError:
             return (
                 positional_names,
@@ -741,18 +724,18 @@ class StorageFormatAgent(AbjadValueObject):
                 accepts_kwargs,
                 )
         for name, parameter in signature.parameters.items():
-            if parameter.kind == funcsigs._POSITIONAL_OR_KEYWORD:
+            if parameter.kind == inspect._POSITIONAL_OR_KEYWORD:
                 if parameter.default == parameter.empty:
                     positional_names.append(name)
                 else:
                     keyword_names.append(name)
             # Python 3 allow keyword only parameters:
-            elif (hasattr(funcsigs, '_KEYWORD_ONLY') and
-                parameter.kind == funcsigs._KEYWORD_ONLY):
+            elif (hasattr(inspect, '_KEYWORD_ONLY') and
+                parameter.kind == inspect._KEYWORD_ONLY):
                 keyword_names.append(name)
-            elif parameter.kind == funcsigs._VAR_POSITIONAL:
+            elif parameter.kind == inspect._VAR_POSITIONAL:
                 accepts_args = True
-            elif parameter.kind == funcsigs._VAR_KEYWORD:
+            elif parameter.kind == inspect._VAR_KEYWORD:
                 accepts_kwargs = True
         return (
             positional_names,

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadValueObject
@@ -6,10 +5,6 @@ from abjad.tools.abctools import AbjadValueObject
 
 class MetricAccentKernel(AbjadValueObject):
     r'''Metric accent kernel.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

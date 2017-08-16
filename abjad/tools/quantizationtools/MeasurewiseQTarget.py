@@ -1,15 +1,9 @@
-# -*- coding: utf-8 -*-
 import copy
 from abjad.tools.quantizationtools.QTarget import QTarget
 
 
 class MeasurewiseQTarget(QTarget):
     r'''Measurewise quantization target.
-
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
 
     Not composer-safe.
 
@@ -18,8 +12,7 @@ class MeasurewiseQTarget(QTarget):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### PRIVATE METHODS ###
 

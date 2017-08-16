@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.durationtools import Duration
 from abjad.tools.lilypondparsertools.LilyPondDuration import LilyPondDuration
 

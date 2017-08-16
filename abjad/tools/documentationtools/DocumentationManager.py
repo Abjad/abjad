@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function
 import enum
 import inspect
 import importlib
@@ -20,8 +18,7 @@ class DocumentationManager(abctools.AbjadObject):
 
     __documentation_section__ = 'Documenters'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     api_directory_name = 'api'
 

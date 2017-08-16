@@ -1,12 +1,5 @@
-# -*- coding: utf-8 -*-
-
-
 def cumulative_sums(argument, start=0):
     r'''Gets cumulative sums of `argument`.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

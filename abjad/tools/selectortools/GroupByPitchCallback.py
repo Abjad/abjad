@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 from abjad.tools import selectiontools
 from abjad.tools.abctools import AbjadValueObject
@@ -6,11 +5,6 @@ from abjad.tools.abctools import AbjadValueObject
 
 class GroupByPitchCallback(AbjadValueObject):
     r'''Group-by-pitch selector callback.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###

@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 import collections
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class CyclicTuple(AbjadObject):
     '''Cylic tuple.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

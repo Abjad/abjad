@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 import copy
 from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class TimeSignatureList(TypedList):
     r'''Time signature list.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -72,8 +67,7 @@ class TimeSignatureList(TypedList):
 
     __documentation_section__ = 'Collections'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

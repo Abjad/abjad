@@ -1,13 +1,7 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function
 import fnmatch
 import os
 import re
 from abjad.tools.commandlinetools.CommandlineScript import CommandlineScript
-try:
-    input = raw_input
-except NameError:
-    pass
 
 
 class ReplaceScript(CommandlineScript):
@@ -28,8 +22,7 @@ class ReplaceScript(CommandlineScript):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     alias = 'replace'
     short_description = 'Replace text.'

@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class BendAfter(AbjadValueObject):
     r'''Fall or doit.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class SystemBreak(AbjadValueObject):
     r'''System break indicator.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

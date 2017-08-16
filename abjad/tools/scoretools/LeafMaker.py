@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 import numbers
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
@@ -6,10 +5,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 class LeafMaker(AbjadValueObject):
     r'''Leaf-maker.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

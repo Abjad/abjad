@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools import AbjadObject
 
 
@@ -12,8 +11,7 @@ class UpdateManager(AbjadObject):
 
     __documentation_section__ = 'Managers'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### PRIVATE METHODS ###
 

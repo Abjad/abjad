@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import spannertools
@@ -13,11 +12,6 @@ from abjad.tools.topleveltools import select
 class BeamSpecifier(AbjadValueObject):
     r'''Beam specifier.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import rhythmmakertools
-
     ..  container:: example
 
         Beams each division by default:
@@ -28,7 +22,7 @@ class BeamSpecifier(AbjadValueObject):
             >>> staff.extend("c'8 c' c'16 c' c' c' c'8 c' c' c'")
             >>> abjad.setting(staff).auto_beaming = False
             >>> selections = [staff[:4], staff[4:]]
-            >>> specifier = rhythmmakertools.BeamSpecifier()
+            >>> specifier = abjad.rhythmmakertools.BeamSpecifier()
             >>> specifier(selections)
             >>> show(staff) # doctest: +SKIP
 
@@ -149,9 +143,9 @@ class BeamSpecifier(AbjadValueObject):
 
             ::
 
-                >>> specifier = rhythmmakertools.BeamSpecifier()
+                >>> specifier = abjad.rhythmmakertools.BeamSpecifier()
                 >>> f(specifier)
-                rhythmmakertools.BeamSpecifier(
+                abjad.rhythmmakertools.BeamSpecifier(
                     beam_each_division=True,
                     )
 
@@ -169,7 +163,7 @@ class BeamSpecifier(AbjadValueObject):
 
             ::
 
-                >>> rhythmmakertools.BeamSpecifier()
+                >>> abjad.rhythmmakertools.BeamSpecifier()
                 BeamSpecifier(beam_each_division=True)
 
         Returns string.
@@ -198,7 +192,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> staff.extend("c'8 c' c'16 c' c' c' c'8 c' c' c'")
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> selections = [staff[:4], staff[4:]]
-                >>> specifier = rhythmmakertools.BeamSpecifier()
+                >>> specifier = abjad.rhythmmakertools.BeamSpecifier()
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
@@ -230,7 +224,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> staff.extend("c'8 c' c'16 c' c' c' c'8 r c' c'")
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> selections = [staff[:4], staff[4:]]
-                >>> specifier = rhythmmakertools.BeamSpecifier(
+                >>> specifier = abjad.rhythmmakertools.BeamSpecifier(
                 ...     beam_divisions_together=True,
                 ...     beam_rests=False,
                 ...     )
@@ -283,7 +277,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> staff.extend("c'8 c' c'16 c' c' c' c'8 r c' c'")
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> selections = [staff[:4], staff[4:]]
-                >>> specifier = rhythmmakertools.BeamSpecifier(
+                >>> specifier = abjad.rhythmmakertools.BeamSpecifier(
                 ...     beam_divisions_together=True,
                 ...     beam_rests=True,
                 ...     )
@@ -332,7 +326,7 @@ class BeamSpecifier(AbjadValueObject):
 
             ::
 
-                >>> specifier = rhythmmakertools.BeamSpecifier()
+                >>> specifier = abjad.rhythmmakertools.BeamSpecifier()
                 >>> specifier.beam_divisions_together is None
                 True
 
@@ -356,7 +350,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> staff.extend("c'8 c' c'16 c' c' c' c'8 c' c' c'")
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> selections = [staff[:4], staff[4:]]
-                >>> specifier = rhythmmakertools.BeamSpecifier(
+                >>> specifier = abjad.rhythmmakertools.BeamSpecifier(
                 ...     beam_each_division=False,
                 ...     )
                 >>> specifier(selections)
@@ -390,7 +384,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> staff.extend("c'8 c' c'16 c' c' c' c'8 r c' c'")
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> selections = [staff[:4], staff[4:]]
-                >>> specifier = rhythmmakertools.BeamSpecifier(
+                >>> specifier = abjad.rhythmmakertools.BeamSpecifier(
                 ...     beam_each_division=True,
                 ...     beam_rests=False,
                 ...     )
@@ -425,7 +419,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> staff.extend("c'8 c' c'16 c' c' c' c'8 r c' c'")
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> selections = [staff[:4], staff[4:]]
-                >>> specifier = rhythmmakertools.BeamSpecifier(
+                >>> specifier = abjad.rhythmmakertools.BeamSpecifier(
                 ...     beam_each_division=True,
                 ...     beam_rests=True,
                 ...     )
@@ -456,7 +450,7 @@ class BeamSpecifier(AbjadValueObject):
 
             ::
 
-                >>> specifier = rhythmmakertools.BeamSpecifier()
+                >>> specifier = abjad.rhythmmakertools.BeamSpecifier()
                 >>> specifier.beam_each_division
                 True
 
@@ -480,7 +474,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> staff.extend("c'8 c' c'16 c' c' c' c'8 r c' c'")
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> selections = [staff[:4], staff[4:]]
-                >>> specifier = rhythmmakertools.BeamSpecifier()
+                >>> specifier = abjad.rhythmmakertools.BeamSpecifier()
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
@@ -512,7 +506,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> staff.extend("c'8 c' c'16 c' c' c' c'8 r c' c'")
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> selections = [staff[:4], staff[4:]]
-                >>> specifier = rhythmmakertools.BeamSpecifier(
+                >>> specifier = abjad.rhythmmakertools.BeamSpecifier(
                 ...     beam_rests=True,
                 ...     )
                 >>> specifier(selections)
@@ -546,7 +540,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> staff.extend("c'8 c' c'16 c' c' c' c'8 s c' c'")
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> selections = [staff[:4], staff[4:]]
-                >>> specifier = rhythmmakertools.BeamSpecifier(
+                >>> specifier = abjad.rhythmmakertools.BeamSpecifier(
                 ...     beam_rests=True,
                 ...     )
                 >>> specifier(selections)
@@ -576,7 +570,7 @@ class BeamSpecifier(AbjadValueObject):
 
             ::
 
-                >>> specifier = rhythmmakertools.BeamSpecifier()
+                >>> specifier = abjad.rhythmmakertools.BeamSpecifier()
                 >>> specifier.beam_rests is None
                 True
 
@@ -600,7 +594,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> staff.extend("c'8 r c'16 c' c' c' c'8 r c' c'")
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> selections = [staff[:4], staff[4:]]
-                >>> specifier = rhythmmakertools.BeamSpecifier(
+                >>> specifier = abjad.rhythmmakertools.BeamSpecifier(
                 ...     beam_divisions_together=True,
                 ...     beam_rests=False,
                 ...     )
@@ -651,7 +645,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> staff.extend("c'8 r c'16 c' c' c' c'8 r c' c'")
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> selections = [staff[:4], staff[4:]]
-                >>> specifier = rhythmmakertools.BeamSpecifier(
+                >>> specifier = abjad.rhythmmakertools.BeamSpecifier(
                 ...     beam_divisions_together=True,
                 ...     beam_rests=False,
                 ...     hide_nibs=True,
@@ -699,7 +693,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> staff.extend("c'8 c' c'16 c' c' c' c'8 r c' c'")
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> selections = [staff[:4], staff[4:]]
-                >>> specifier = rhythmmakertools.BeamSpecifier(
+                >>> specifier = abjad.rhythmmakertools.BeamSpecifier(
                 ...     beam_rests=True,
                 ...     )
                 >>> specifier(selections)
@@ -733,7 +727,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> staff.extend("c'8 c' c'16 c' c' c' c'8 r c' c'")
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> selections = [staff[:4], staff[4:]]
-                >>> specifier = rhythmmakertools.BeamSpecifier(
+                >>> specifier = abjad.rhythmmakertools.BeamSpecifier(
                 ...     beam_rests=True,
                 ...     stemlet_length=2,
                 ...     )
@@ -770,7 +764,7 @@ class BeamSpecifier(AbjadValueObject):
 
             ::
 
-                >>> specifier = rhythmmakertools.BeamSpecifier()
+                >>> specifier = abjad.rhythmmakertools.BeamSpecifier()
                 >>> specifier.stemlet_length is None
                 True
 
@@ -788,7 +782,7 @@ class BeamSpecifier(AbjadValueObject):
 
             ::
 
-                >>> specifier = rhythmmakertools.BeamSpecifier()
+                >>> specifier = abjad.rhythmmakertools.BeamSpecifier()
                 >>> specifier.use_feather_beams is None
                 True
 

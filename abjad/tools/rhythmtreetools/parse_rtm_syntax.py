@@ -1,14 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import scoretools
 
 
 def parse_rtm_syntax(rtm):
     r'''Parses RTM syntax.
-
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import rhythmtreetools
 
     ..  container:: example
 
@@ -17,7 +11,7 @@ def parse_rtm_syntax(rtm):
         ::
 
             >>> rtm = '(1 (1 (1 (1 1)) 1))'
-            >>> tuplet = rhythmtreetools.parse_rtm_syntax(rtm)
+            >>> tuplet = abjad.rhythmtreetools.parse_rtm_syntax(rtm)
             >>> show(tuplet) # doctest: +SKIP
 
         ..  docs::
@@ -37,7 +31,7 @@ def parse_rtm_syntax(rtm):
         ::
 
             >>> rtm = '(3/4 (1 1/2 (4/3 (1 -1/2 1))))'
-            >>> tuplet = rhythmtreetools.parse_rtm_syntax(rtm)
+            >>> tuplet = abjad.rhythmtreetools.parse_rtm_syntax(rtm)
             >>> show(tuplet) # doctest: +SKIP
 
         ..  docs::

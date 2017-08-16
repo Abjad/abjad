@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os
 import re
 import shutil
@@ -8,10 +7,6 @@ from abjad.tools import abctools
 
 class PersistenceAgent(abctools.AbjadObject):
     r'''Persistence agent.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -163,7 +158,7 @@ class PersistenceAgent(abctools.AbjadObject):
         '''
         from abjad.tools import systemtools
         agent = systemtools.StorageFormatAgent(self._client)
-        result = ['# -*- coding: utf-8 -*-']
+        result = []
         import_statements = agent.get_import_statements()
         result.extend(import_statements)
         result.extend(('', ''))

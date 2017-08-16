@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 import bisect
 
 
 class SortedCollection(object):
     r'''Sorted collection.
-
-    ::
-
-        >>> import abjad
 
     Sequence sorted by a key function.
 

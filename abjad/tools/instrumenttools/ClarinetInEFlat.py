@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class ClarinetInEFlat(Instrument):
     r'''Clarinet in E-flat.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -34,8 +29,7 @@ class ClarinetInEFlat(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -77,6 +71,7 @@ class ClarinetInEFlat(Instrument):
 
             ::
 
+                >>> clarinet = abjad.instrumenttools.ClarinetInEFlat()
                 >>> clarinet.allowable_clefs
                 ClefList([Clef(name='treble')])
 
@@ -96,6 +91,7 @@ class ClarinetInEFlat(Instrument):
 
             ::
 
+                >>> clarinet = abjad.instrumenttools.ClarinetInEFlat()
                 >>> clarinet.middle_c_sounding_pitch
                 NamedPitch("ef'")
 
@@ -115,6 +111,7 @@ class ClarinetInEFlat(Instrument):
 
             ::
 
+                >>> clarinet = abjad.instrumenttools.ClarinetInEFlat()
                 >>> clarinet.name
                 'clarinet in E-flat'
 
@@ -130,6 +127,7 @@ class ClarinetInEFlat(Instrument):
 
             ::
 
+                >>> clarinet = abjad.instrumenttools.ClarinetInEFlat()
                 >>> clarinet.name_markup
                 Markup(contents=['Clarinet in E-flat'])
 
@@ -149,6 +147,7 @@ class ClarinetInEFlat(Instrument):
 
             ::
 
+                >>> clarinet = abjad.instrumenttools.ClarinetInEFlat()
                 >>> clarinet.pitch_range
                 PitchRange('[F3, C7]')
 
@@ -168,6 +167,7 @@ class ClarinetInEFlat(Instrument):
 
             ::
 
+                >>> clarinet = abjad.instrumenttools.ClarinetInEFlat()
                 >>> clarinet.short_name
                 'cl. E-flat'
 
@@ -183,6 +183,7 @@ class ClarinetInEFlat(Instrument):
 
             ::
 
+                >>> clarinet = abjad.instrumenttools.ClarinetInEFlat()
                 >>> clarinet.short_name_markup
                 Markup(contents=['Cl. E-flat'])
 

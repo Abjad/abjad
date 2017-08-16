@@ -4,10 +4,6 @@ from abjad.tools.scoretools.NoteHead import NoteHead
 class DrumNoteHead(NoteHead):
     r'''Drum note-head.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
@@ -22,8 +18,7 @@ class DrumNoteHead(NoteHead):
 
     __documentation_section__ = 'Note-heads'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

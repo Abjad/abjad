@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 
 
 class ReSTAutodocDirective(ReSTDirective):
     r'''A ReST autodoc directive.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -39,8 +34,7 @@ class ReSTAutodocDirective(ReSTDirective):
 
     __documentation_section__ = 'reStructuredText'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

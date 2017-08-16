@@ -1,13 +1,9 @@
-# -*- coding: utf-8 -*-
+import pathlib
 import shutil
 import sys
 from abjad.tools import commandlinetools
 from abjad.tools import datastructuretools
 from abjad.tools import systemtools
-try:
-    import pathlib
-except ImportError:
-    import pathlib2 as pathlib
 
 
 class ScorePackageScriptTestCase(systemtools.TestCase):
@@ -52,7 +48,6 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
     }
     """)
     fancy_segment_maker_code = datastructuretools.String.normalize(r"""
-        # -*- coding: utf-8 -*-
         import abjad
 
         class SegmentMaker(abjad.abctools.AbjadObject):

@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-
-
 def list_all_experimental_classes(modules=None, ignored_classes=None):
     r'''Lists all public classes defined in the Abjad experimental branch.
 

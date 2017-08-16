@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 from abjad.tools import systemtools
 from abjad.tools.datastructuretools.TypedCollection import TypedCollection
@@ -6,10 +5,6 @@ from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 
 class TypedOrderedDict(TypedCollection):
     r'''Typed ordered dictionary.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -114,8 +109,7 @@ class TypedOrderedDict(TypedCollection):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     _publish_storage_format = True
 
@@ -236,7 +230,6 @@ class TypedOrderedDict(TypedCollection):
             repr_is_indented=False,
             storage_format_args_values=values,
             storage_format_kwargs_names=names,
-            storage_format_includes_root_package=True,
             )
 
     ### PUBLIC METHODS ###

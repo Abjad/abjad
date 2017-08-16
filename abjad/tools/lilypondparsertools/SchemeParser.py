@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from ply import lex
 from ply import yacc
 from abjad.tools import abctools

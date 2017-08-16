@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class LilyPondLiteral(AbjadValueObject):
     r'''LilyPond literal.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

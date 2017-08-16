@@ -1,7 +1,5 @@
-# -*- coding: utf-8 -*-
 import os
 import subprocess
-import sys
 from docutils import nodes
 from docutils.parsers.rst import Directive
 from sphinx.util.nodes import set_source_info
@@ -30,18 +28,11 @@ class ShellDirective(Directive):
     def _read_from_pipe(self, pipe, strip=True):
         lines = []
         string = pipe.read()
-        if sys.version_info[0] == 2:
-            for line in string.splitlines():
-                line = str(line)
-                if strip:
-                    line = line.strip()
-                lines.append(line)
-        else:
-            for line in string.splitlines():
-                line = line.decode('utf-8')
-                if strip:
-                    line = line.strip()
-                lines.append(line)
+        for line in string.splitlines():
+            line = line.decode('utf-8')
+            if strip:
+                line = line.strip()
+            lines.append(line)
         return '\n'.join(lines)
 
     ### PUBLIC METHODS ###

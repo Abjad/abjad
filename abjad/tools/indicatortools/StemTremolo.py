@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import mathtools
 from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
@@ -6,10 +5,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 class StemTremolo(AbjadValueObject):
     r'''Stem tremolo.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

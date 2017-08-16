@@ -1,15 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import mathtools
 from abjad.tools.abctools import AbjadValueObject
 
 
 class InciseSpecifier(AbjadValueObject):
     r'''Incise specifier.
-
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import rhythmmakertools
 
     ..  container:: example
 
@@ -18,7 +12,7 @@ class InciseSpecifier(AbjadValueObject):
 
         ::
 
-            >>> specifier = rhythmmakertools.InciseSpecifier(
+            >>> specifier = abjad.rhythmmakertools.InciseSpecifier(
             ...     prefix_talea=[-1],
             ...     prefix_counts=[1],
             ...     talea_denominator=16,
@@ -31,7 +25,7 @@ class InciseSpecifier(AbjadValueObject):
 
         ::
 
-            >>> specifier = rhythmmakertools.InciseSpecifier(
+            >>> specifier = abjad.rhythmmakertools.InciseSpecifier(
             ...     prefix_talea=[-1],
             ...     prefix_counts=[1],
             ...     suffix_talea=[-1],
@@ -124,7 +118,7 @@ class InciseSpecifier(AbjadValueObject):
 
             ::
 
-                >>> specifier = rhythmmakertools.InciseSpecifier(
+                >>> specifier = abjad.rhythmmakertools.InciseSpecifier(
                 ...     prefix_talea=[-1],
                 ...     prefix_counts=[1],
                 ...     talea_denominator=16,
@@ -133,7 +127,7 @@ class InciseSpecifier(AbjadValueObject):
             ::
 
                 >>> f(specifier)
-                rhythmmakertools.InciseSpecifier(
+                abjad.rhythmmakertools.InciseSpecifier(
                     prefix_talea=[-1],
                     prefix_counts=[1],
                     talea_denominator=16,
@@ -145,7 +139,7 @@ class InciseSpecifier(AbjadValueObject):
 
             ::
 
-                >>> specifier = rhythmmakertools.InciseSpecifier(
+                >>> specifier = abjad.rhythmmakertools.InciseSpecifier(
                 ...     prefix_talea=[-1],
                 ...     prefix_counts=[0, 1],
                 ...     suffix_talea=[-1],
@@ -156,7 +150,7 @@ class InciseSpecifier(AbjadValueObject):
             ::
 
                 >>> f(specifier)
-                rhythmmakertools.InciseSpecifier(
+                abjad.rhythmmakertools.InciseSpecifier(
                     prefix_talea=[-1],
                     prefix_counts=[0, 1],
                     suffix_talea=[-1],
@@ -228,7 +222,7 @@ class InciseSpecifier(AbjadValueObject):
 
             ::
 
-                >>> specifier = rhythmmakertools.InciseSpecifier(
+                >>> specifier = abjad.rhythmmakertools.InciseSpecifier(
                 ...     prefix_talea=[-1],
                 ...     prefix_counts=[0, 1],
                 ...     suffix_talea=[-1],
@@ -236,7 +230,7 @@ class InciseSpecifier(AbjadValueObject):
                 ...     talea_denominator=16,
                 ...     body_ratio=abjad.Ratio((1, 1)),
                 ...     )
-                >>> rhythm_maker = rhythmmakertools.IncisedRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=specifier,
                 ...     )
 

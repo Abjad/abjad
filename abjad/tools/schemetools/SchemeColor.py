@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.schemetools.Scheme import Scheme
 
 
 class SchemeColor(Scheme):
     r'''Abjad model of Scheme color.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -36,8 +31,7 @@ class SchemeColor(Scheme):
 
     ### CLASS VARIABLES ##
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### PRIVATE PROPERTIES ###
 

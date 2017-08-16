@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function
 import collections
 import itertools
 from abjad.tools import datastructuretools
@@ -15,12 +13,6 @@ from abjad.tools.topleveltools import select
 
 class TieSpecifier(AbjadValueObject):
     r'''Tie specifier.
-
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import rhythmmakertools
-
     '''
 
     ### CLASS VARIABLES ###

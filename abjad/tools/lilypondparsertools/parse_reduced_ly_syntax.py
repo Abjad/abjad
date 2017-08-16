@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.lilypondparsertools.ReducedLyParser import ReducedLyParser
 
 

@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.scoretools.GraceContainer import GraceContainer
 
 
 class AcciaccaturaContainer(GraceContainer):
     r'''Acciaccatura container.
-
-    ::
-
-        >>> import abjad
 
     Acciaccaturas are played before the beat.
 
@@ -54,8 +49,7 @@ class AcciaccaturaContainer(GraceContainer):
 
     __documentation_section__ = 'Containers'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### PRIVATE METHODS ###
 

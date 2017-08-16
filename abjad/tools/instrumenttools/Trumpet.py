@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Trumpet(Instrument):
     r'''Trumpet.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -34,8 +29,7 @@ class Trumpet(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -75,6 +69,7 @@ class Trumpet(Instrument):
 
             ::
 
+                >>> trumpet = abjad.instrumenttools.Trumpet()
                 >>> trumpet.allowable_clefs
                 ClefList([Clef(name='treble')])
 
@@ -94,6 +89,7 @@ class Trumpet(Instrument):
 
             ::
 
+                >>> trumpet = abjad.instrumenttools.Trumpet()
                 >>> trumpet.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -113,6 +109,7 @@ class Trumpet(Instrument):
 
             ::
 
+                >>> trumpet = abjad.instrumenttools.Trumpet()
                 >>> trumpet.name
                 'trumpet'
 
@@ -128,6 +125,7 @@ class Trumpet(Instrument):
 
             ::
 
+                >>> trumpet = abjad.instrumenttools.Trumpet()
                 >>> trumpet.name_markup
                 Markup(contents=['Trumpet'])
 
@@ -147,6 +145,7 @@ class Trumpet(Instrument):
 
             ::
 
+                >>> trumpet = abjad.instrumenttools.Trumpet()
                 >>> trumpet.pitch_range
                 PitchRange('[F#3, D6]')
 
@@ -166,6 +165,7 @@ class Trumpet(Instrument):
 
             ::
 
+                >>> trumpet = abjad.instrumenttools.Trumpet()
                 >>> trumpet.short_name
                 'tp.'
 
@@ -181,6 +181,7 @@ class Trumpet(Instrument):
 
             ::
 
+                >>> trumpet = abjad.instrumenttools.Trumpet()
                 >>> trumpet.short_name_markup
                 Markup(contents=['Tp.'])
 

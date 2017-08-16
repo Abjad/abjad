@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from docutils.parsers.rst import Directive
 from sphinx.util.nodes import set_source_info
 

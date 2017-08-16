@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import multiprocessing
 import pickle
 from abjad.tools.quantizationtools.JobHandler import JobHandler
@@ -9,18 +8,11 @@ class ParallelJobHandler(JobHandler):
 
     Processes ``QuantizationJob`` instances in parallel, based on the number of
     CPUs available.
-
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
-
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

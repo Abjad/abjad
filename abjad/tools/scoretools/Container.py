@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import selectiontools
 from abjad.tools import systemtools
@@ -9,10 +8,6 @@ from abjad.tools.scoretools.Component import Component
 
 class Container(Component):
     r'''Container.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -301,8 +296,6 @@ class Container(Component):
 
         Returns Graphviz graph.
         '''
-        from abjad.tools import graphtools
-        import abjad
         def recurse(component, leaf_cluster):
             component_node = component._as_graphviz_node()
             node_mapping[component] = component_node
@@ -335,6 +328,8 @@ class Container(Component):
                 leaf_cluster.append(component_node)
             return component_node, node_order
 
+        import abjad
+        from abjad.tools import graphtools
         node_order = []
         node_mapping = {}
         graph = abjad.graphtools.GraphvizGraph(

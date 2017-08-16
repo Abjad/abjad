@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import datastructuretools
 from abjad.tools import systemtools
 from abjad.tools.schemetools.Scheme import Scheme
@@ -6,10 +5,6 @@ from abjad.tools.schemetools.Scheme import Scheme
 
 class SchemeVector(Scheme):
     '''Abjad model of Scheme vector.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -41,8 +36,7 @@ class SchemeVector(Scheme):
 
     ### CLASS VARIABLES ##
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

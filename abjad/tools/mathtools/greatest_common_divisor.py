@@ -1,12 +1,5 @@
-# -*- coding: utf-8 -*-
-
-
 def greatest_common_divisor(*integers):
     '''Calculates greatest common divisor of `integers`.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

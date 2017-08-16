@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function
 import importlib
 import inspect
 import types
@@ -9,10 +7,6 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class InheritanceGraph(AbjadObject):
     r'''Generates a graph of a class or collection of
     classes as a dictionary of parent-children relationships:
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

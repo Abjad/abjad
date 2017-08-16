@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools import ContextManager
 
 
 class ForbidUpdate(ContextManager):
     r'''A context manager for forbidding score updates.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

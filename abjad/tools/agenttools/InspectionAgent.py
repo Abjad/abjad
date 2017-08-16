@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import abctools
 from abjad.tools import durationtools
 
 
 class InspectionAgent(abctools.AbjadObject):
     r'''Inspection agent.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

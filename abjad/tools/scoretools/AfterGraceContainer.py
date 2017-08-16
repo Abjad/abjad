@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.scoretools.Container import Container
 
 
 class AfterGraceContainer(Container):
     r'''After grace container.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

@@ -1,12 +1,5 @@
-# -*- coding: utf-8 -*-
-
-
 def tweak(argument):
     r'''Makes LilyPond tweak manager.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

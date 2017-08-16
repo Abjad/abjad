@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Flute(Instrument):
     r'''Flute.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -34,8 +29,7 @@ class Flute(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -76,6 +70,7 @@ class Flute(Instrument):
 
             ::
 
+                >>> flute = abjad.instrumenttools.Flute()
                 >>> flute.allowable_clefs
                 ClefList([Clef(name='treble')])
 
@@ -95,6 +90,7 @@ class Flute(Instrument):
 
             ::
 
+                >>> flute = abjad.instrumenttools.Flute()
                 >>> flute.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -114,6 +110,7 @@ class Flute(Instrument):
 
             ::
 
+                >>> flute = abjad.instrumenttools.Flute()
                 >>> flute.name
                 'flute'
 
@@ -129,6 +126,7 @@ class Flute(Instrument):
 
             ::
 
+                >>> flute = abjad.instrumenttools.Flute()
                 >>> flute.name_markup
                 Markup(contents=['Flute'])
 
@@ -148,6 +146,7 @@ class Flute(Instrument):
 
             ::
 
+                >>> flute = abjad.instrumenttools.Flute()
                 >>> flute.pitch_range
                 PitchRange('[C4, D7]')
 
@@ -167,6 +166,7 @@ class Flute(Instrument):
 
             ::
 
+                >>> flute = abjad.instrumenttools.Flute()
                 >>> flute.short_name
                 'fl.'
 
@@ -182,6 +182,7 @@ class Flute(Instrument):
 
             ::
 
+                >>> flute = abjad.instrumenttools.Flute()
                 >>> flute.short_name_markup
                 Markup(contents=['Fl.'])
 

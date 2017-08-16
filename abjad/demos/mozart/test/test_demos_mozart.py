@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.demos.mozart import make_mozart_lilypond_file
 
 

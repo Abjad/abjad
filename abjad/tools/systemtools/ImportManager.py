@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function
 import os
 import types
 from abjad.tools.abctools import AbjadObject
@@ -13,8 +11,7 @@ class ImportManager(AbjadObject):
 
     __documentation_section__ = 'Managers'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### PRIVATE METHODS ###
 

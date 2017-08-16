@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.spannertools.Beam import Beam
 
 
 class MultipartBeam(Beam):
     r'''Multipart beam.
-
-    ::
-
-        >>> import abjad
 
     Beams together everything that can be beamed and ignores everything else.
 

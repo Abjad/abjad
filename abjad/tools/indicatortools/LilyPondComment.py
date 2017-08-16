@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class LilyPondComment(AbjadValueObject):
     r'''LilyPond comment.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

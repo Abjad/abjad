@@ -1,15 +1,9 @@
-# -*- coding: utf-8 -*-
 import collections
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Transposition(AbjadValueObject):
     r'''Transposition operator.
-
-    ::
-
-        >>> import abjad
-        >>> import pytest
 
     ..  container:: example
 
@@ -181,9 +175,10 @@ class Transposition(AbjadValueObject):
 
             ::
 
-                >>> string = 'abjad.Transposition().__radd__(abjad.Transposition())'
-                >>> pytest.raises(NotImplementedError, string)
-                <ExceptionInfo NotImplementedError ...>
+                >>> abjad.Transposition().__radd__(abjad.Transposition())
+                Traceback (most recent call last):
+                ...
+                NotImplementedError: right-addition not defined on Transposition.
 
         Raises not implemented error.
         '''

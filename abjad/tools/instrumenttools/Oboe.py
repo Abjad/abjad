@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Oboe(Instrument):
     r'''Oboe.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -34,8 +29,7 @@ class Oboe(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -77,6 +71,7 @@ class Oboe(Instrument):
 
             ::
 
+                >>> oboe = abjad.instrumenttools.Oboe()
                 >>> oboe.allowable_clefs
                 ClefList([Clef(name='treble')])
 
@@ -96,6 +91,7 @@ class Oboe(Instrument):
 
             ::
 
+                >>> oboe = abjad.instrumenttools.Oboe()
                 >>> oboe.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -115,6 +111,7 @@ class Oboe(Instrument):
 
             ::
 
+                >>> oboe = abjad.instrumenttools.Oboe()
                 >>> oboe.name
                 'oboe'
 
@@ -130,6 +127,7 @@ class Oboe(Instrument):
 
             ::
 
+                >>> oboe = abjad.instrumenttools.Oboe()
                 >>> oboe.name_markup
                 Markup(contents=['Oboe'])
 
@@ -149,6 +147,7 @@ class Oboe(Instrument):
 
             ::
 
+                >>> oboe = abjad.instrumenttools.Oboe()
                 >>> oboe.pitch_range
                 PitchRange('[Bb3, A6]')
 
@@ -168,6 +167,7 @@ class Oboe(Instrument):
 
             ::
 
+                >>> oboe = abjad.instrumenttools.Oboe()
                 >>> oboe.short_name
                 'ob.'
 
@@ -183,6 +183,7 @@ class Oboe(Instrument):
 
             ::
 
+                >>> oboe = abjad.instrumenttools.Oboe()
                 >>> oboe.short_name_markup
                 Markup(contents=['Ob.'])
 

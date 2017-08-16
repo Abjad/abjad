@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class EnglishHorn(Instrument):
     r'''English horn.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -34,8 +29,7 @@ class EnglishHorn(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -76,6 +70,7 @@ class EnglishHorn(Instrument):
 
             ::
 
+                >>> english_horn = abjad.instrumenttools.EnglishHorn()
                 >>> english_horn.allowable_clefs
                 ClefList([Clef(name='treble')])
 
@@ -95,6 +90,7 @@ class EnglishHorn(Instrument):
 
             ::
 
+                >>> english_horn = abjad.instrumenttools.EnglishHorn()
                 >>> english_horn.middle_c_sounding_pitch
                 NamedPitch('f')
 
@@ -114,6 +110,7 @@ class EnglishHorn(Instrument):
 
             ::
 
+                >>> english_horn = abjad.instrumenttools.EnglishHorn()
                 >>> english_horn.name
                 'English horn'
 
@@ -129,6 +126,7 @@ class EnglishHorn(Instrument):
 
             ::
 
+                >>> english_horn = abjad.instrumenttools.EnglishHorn()
                 >>> english_horn.name_markup
                 Markup(contents=['English horn'])
 
@@ -148,6 +146,7 @@ class EnglishHorn(Instrument):
 
             ::
 
+                >>> english_horn = abjad.instrumenttools.EnglishHorn()
                 >>> english_horn.pitch_range
                 PitchRange('[E3, C6]')
 
@@ -167,6 +166,7 @@ class EnglishHorn(Instrument):
 
             ::
 
+                >>> english_horn = abjad.instrumenttools.EnglishHorn()
                 >>> english_horn.short_name
                 'Eng. hn.'
 
@@ -182,6 +182,7 @@ class EnglishHorn(Instrument):
 
             ::
 
+                >>> english_horn = abjad.instrumenttools.EnglishHorn()
                 >>> english_horn.short_name_markup
                 Markup(contents=['Eng. hn.'])
 

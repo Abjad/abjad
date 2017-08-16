@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import itertools
 from abjad.tools import mathtools
 from abjad.tools.topleveltools import attach
@@ -7,10 +6,6 @@ from abjad.tools.selectiontools.Selection import Selection
 
 class LogicalTie(Selection):
     r'''Logical tie of a component.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -28,8 +23,7 @@ class LogicalTie(Selection):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### PRIVATE METHODS ###
 

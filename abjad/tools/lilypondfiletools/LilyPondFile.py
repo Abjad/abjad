@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 import copy
 from abjad.tools.abctools.AbjadObject import AbjadObject
@@ -6,10 +5,6 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 class LilyPondFile(AbjadObject):
     r'''A LilyPond file.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -1112,18 +1107,13 @@ class LilyPondFile(AbjadObject):
         ):
         r'''Makes rhythm-maker-style LilyPond file.
 
-        ::
-
-            >>> import abjad
-            >>> from abjad.tools import rhythmmakertools
-
         ..  container:: example
 
             Makes rhythmic staff:
 
             ::
 
-                >>> maker = rhythmmakertools.EvenRunRhythmMaker(exponent=1)
+                >>> maker = abjad.rhythmmakertools.EvenRunRhythmMaker(exponent=1)
                 >>> divisions = [(3, 4), (4, 8), (1, 4)]
                 >>> selections = maker(divisions)
                 >>> lilypond_file = abjad.LilyPondFile.rhythm(
@@ -1192,7 +1182,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> maker = rhythmmakertools.EvenRunRhythmMaker(exponent=1)
+                >>> maker = abjad.rhythmmakertools.EvenRunRhythmMaker(exponent=1)
                 >>> divisions = [(3, 4), (4, 8), (1, 4)]
                 >>> selections = maker(divisions)
                 >>> lilypond_file = abjad.LilyPondFile.rhythm(
@@ -1261,7 +1251,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> maker = rhythmmakertools.EvenRunRhythmMaker(exponent=1)
+                >>> maker = abjad.rhythmmakertools.EvenRunRhythmMaker(exponent=1)
                 >>> divisions = [(3, 4), (4, 8), (1, 4)]
                 >>> selections = maker(divisions)
                 >>> lilypond_file = abjad.LilyPondFile.rhythm(
@@ -1331,13 +1321,13 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> maker_1 = rhythmmakertools.EvenRunRhythmMaker(exponent=1)
+                >>> maker_1 = abjad.rhythmmakertools.EvenRunRhythmMaker(exponent=1)
                 >>> divisions = [(3, 4), (4, 8), (1, 4)]
                 >>> selection_1 = abjad.select(maker_1(divisions))
                 >>> for note in abjad.iterate(selection_1).by_class(abjad.Note):
                 ...     note.written_pitch = abjad.NamedPitch("e'")
                 ...
-                >>> maker_2 = rhythmmakertools.EvenRunRhythmMaker(exponent=2)
+                >>> maker_2 = abjad.rhythmmakertools.EvenRunRhythmMaker(exponent=2)
                 >>> selection_2 = abjad.select(maker_2(divisions))
                 >>> selections = {
                 ...     'Voice 1': selection_1,

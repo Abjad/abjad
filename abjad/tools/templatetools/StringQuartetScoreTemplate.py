@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 import collections
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class StringQuartetScoreTemplate(AbjadValueObject):
-    '''String quartet score template.
-
-    ::
-
-        >>> import abjad
+    r'''String quartet score template.
 
     ..  container:: example
 
@@ -63,8 +58,7 @@ class StringQuartetScoreTemplate(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     context_name_abbreviations = collections.OrderedDict({
         'vn1': 'First Violin Voice',

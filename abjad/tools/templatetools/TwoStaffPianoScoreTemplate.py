@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 import collections
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class TwoStaffPianoScoreTemplate(AbjadValueObject):
     '''Two-staff piano score template.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -43,8 +38,7 @@ class TwoStaffPianoScoreTemplate(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     context_name_abbreviations = collections.OrderedDict({
         'rh': 'RH Voice',

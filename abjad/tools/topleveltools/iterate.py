@@ -1,12 +1,5 @@
-# -*- coding: utf-8 -*-
-
-
 def iterate(client=None):
     r'''Makes iteration agent.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

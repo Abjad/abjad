@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 import numbers
 
 
 def integer_equivalent_number_to_integer(number):
     '''Changes integer-equivalent `number` to integer.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

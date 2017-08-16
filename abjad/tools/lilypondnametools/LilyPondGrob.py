@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import abctools
 
 
@@ -7,13 +6,9 @@ class LilyPondGrob(abctools.AbjadValueObject):
 
     ::
 
-        >>> from abjad.tools import lilypondnametools
-
-    ::
-
-        >>> grob = lilypondnametools.LilyPondGrob('Beam')
+        >>> grob = abjad.lilypondnametools.LilyPondGrob('Beam')
         >>> print(format(grob))
-        lilypondnametools.LilyPondGrob(
+        abjad.LilyPondGrob(
             name='Beam',
             )
 
@@ -52,7 +47,7 @@ class LilyPondGrob(abctools.AbjadValueObject):
 
         ::
 
-            >>> for lilypond_grob in lilypondnametools.LilyPondGrob.list_all_grobs():
+            >>> for lilypond_grob in abjad.lilypondnametools.LilyPondGrob.list_all_grobs():
             ...     lilypond_grob
             ...
             LilyPondGrob(name='Accidental')
@@ -208,6 +203,7 @@ class LilyPondGrob(abctools.AbjadValueObject):
 
         ::
 
+            >>> grob = abjad.lilypondnametools.LilyPondGrob('Beam')
             >>> for interface in grob.interfaces:
             ...     interface
             ...
@@ -233,6 +229,7 @@ class LilyPondGrob(abctools.AbjadValueObject):
 
         ::
 
+            >>> grob = abjad.lilypondnametools.LilyPondGrob('Beam')
             >>> grob.name
             'Beam'
 
@@ -246,6 +243,7 @@ class LilyPondGrob(abctools.AbjadValueObject):
 
         ::
 
+            >>> grob = abjad.lilypondnametools.LilyPondGrob('Beam')
             >>> for property_name in grob.property_names:
             ...     property_name
             ...

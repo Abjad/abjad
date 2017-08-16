@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import abctools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
@@ -6,11 +5,6 @@ from abjad.tools import pitchtools
 
 class TonalAnalysisAgent(abctools.AbjadObject):
     r'''Tonal analysis agent.
-
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import tonalanalysistools
 
     ..  container:: example
 

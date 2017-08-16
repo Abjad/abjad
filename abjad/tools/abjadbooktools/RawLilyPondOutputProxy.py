@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os
 import subprocess
 from abjad.tools import systemtools
@@ -6,7 +5,7 @@ from abjad.tools.abjadbooktools.ImageOutputProxy import ImageOutputProxy
 
 
 class RawLilyPondOutputProxy(ImageOutputProxy):
-    """
+    r"""
     A raw LilyPond output proxy.
 
     ::
@@ -15,7 +14,7 @@ class RawLilyPondOutputProxy(ImageOutputProxy):
         >>> raw_lilypond = '{ c d e f }'
         >>> proxy = abjadbooktools.RawLilyPondOutputProxy(raw_lilypond)
         >>> print(format(proxy))
-        abjadbooktools.RawLilyPondOutputProxy(
+        abjad.abjadbooktools.RawLilyPondOutputProxy(
             '\\version "2.19.0"\n\n{ c d e f }'
             )
 
@@ -108,8 +107,9 @@ class RawLilyPondOutputProxy(ImageOutputProxy):
 
     @property
     def file_name_prefix(self):
-        r'''Gets file name prefix of LilyPond output proxy.
+        """
+        Gets file name prefix of LilyPond output proxy.
 
         Returns string.
-        '''
+        """
         return 'lilypond'

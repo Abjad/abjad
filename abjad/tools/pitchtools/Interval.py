@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import abc
 import functools
 import re
@@ -8,16 +7,11 @@ from abjad.tools.abctools import AbjadValueObject
 @functools.total_ordering
 class Interval(AbjadValueObject):
     '''Abstract interval.
-
-    ::
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     _named_interval_quality_abbreviation_regex_body = '''
         (M|         # major

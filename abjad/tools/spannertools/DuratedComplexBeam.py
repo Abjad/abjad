@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
@@ -7,10 +6,6 @@ from abjad.tools.spannertools.ComplexBeam import ComplexBeam
 
 class DuratedComplexBeam(ComplexBeam):
     r'''Durated complex beam.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools import AbjadObject
 
 
 class WellformednessManager(AbjadObject):
     r'''Wellformedness manager.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

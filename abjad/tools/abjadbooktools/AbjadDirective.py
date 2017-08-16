@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import re
 from docutils.parsers.rst import directives
 from docutils.parsers.rst import Directive

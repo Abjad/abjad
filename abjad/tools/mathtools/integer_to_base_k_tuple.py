@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 import math
 
 
 def integer_to_base_k_tuple(n, k):
     '''Changes nonnegative integer `n` to base-`k` tuple.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

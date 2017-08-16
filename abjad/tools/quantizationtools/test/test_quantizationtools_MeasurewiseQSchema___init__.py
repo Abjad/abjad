@@ -1,18 +1,17 @@
-# -*- coding: utf-8 -*-
 import abjad
 from abjad.tools import quantizationtools
 
 
 def test_quantizationtools_MeasurewiseQSchema___init___01():
 
-    item_a = quantizationtools.MeasurewiseQSchemaItem(search_tree=quantizationtools.UnweightedSearchTree({2: None}))
+    item_a = quantizationtools.MeasurewiseQSchemaItem(search_tree=abjad.quantizationtools.UnweightedSearchTree({2: None}))
     item_b = quantizationtools.MeasurewiseQSchemaItem(tempo=((1, 4), 76))
     item_c = quantizationtools.MeasurewiseQSchemaItem(time_signature=(3, 4))
     item_d = quantizationtools.MeasurewiseQSchemaItem(use_full_measure=True)
 
     schema = quantizationtools.MeasurewiseQSchema(
         {2: item_a, 4: item_b, 7: item_c, 8: item_d},
-        search_tree=quantizationtools.UnweightedSearchTree({3: None}),
+        search_tree=abjad.quantizationtools.UnweightedSearchTree({3: None}),
         tempo=((1, 8), 58),
         time_signature=(5, 8),
         use_full_measure=False,

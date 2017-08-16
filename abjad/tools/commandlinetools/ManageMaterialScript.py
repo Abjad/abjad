@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function
 import inspect
 import os
 import sys
@@ -20,8 +18,7 @@ class ManageMaterialScript(ScorePackageScript):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     alias = 'material'
     short_description = 'Manage score package materials.'

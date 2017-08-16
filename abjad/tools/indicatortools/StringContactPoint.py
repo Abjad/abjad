@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools import AbjadValueObject
 
 
 class StringContactPoint(AbjadValueObject):
     r'''String contact point.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

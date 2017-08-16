@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import datastructuretools
 from abjad.tools.spannertools.Spanner import Spanner
 
 
 class PhrasingSlur(Spanner):
     r'''Phrasing slur.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

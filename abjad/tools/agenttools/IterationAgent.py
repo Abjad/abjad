@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function
 import collections
 import inspect
 from abjad.tools import abctools
@@ -12,10 +10,6 @@ from abjad.tools.topleveltools import iterate
 
 class IterationAgent(abctools.AbjadObject):
     r'''Iteration agent.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

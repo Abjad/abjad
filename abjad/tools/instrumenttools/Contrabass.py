@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import indicatortools
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Contrabass(Instrument):
     r'''Contrabass.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -84,6 +79,7 @@ class Contrabass(Instrument):
 
             ::
 
+                >>> contrabass = abjad.instrumenttools.Contrabass()
                 >>> contrabass.allowable_clefs
                 ClefList([Clef(name='bass'), Clef(name='treble')])
 
@@ -101,8 +97,11 @@ class Contrabass(Instrument):
 
         ..  container:: example
 
-            >>> contrabass.default_tuning
-            Tuning(pitches=PitchSegment(['c,,', 'a,,', 'd,', 'g,']))
+            ::
+
+                >>> contrabass = abjad.instrumenttools.Contrabass()
+                >>> contrabass.default_tuning
+                Tuning(pitches=PitchSegment(['c,,', 'a,,', 'd,', 'g,']))
 
         Returns tuning.
         '''
@@ -116,6 +115,7 @@ class Contrabass(Instrument):
 
             ::
 
+                >>> contrabass = abjad.instrumenttools.Contrabass()
                 >>> contrabass.middle_c_sounding_pitch
                 NamedPitch('c')
 
@@ -135,6 +135,7 @@ class Contrabass(Instrument):
 
             ::
 
+                >>> contrabass = abjad.instrumenttools.Contrabass()
                 >>> contrabass.name
                 'contrabass'
 
@@ -150,6 +151,7 @@ class Contrabass(Instrument):
 
             ::
 
+                >>> contrabass = abjad.instrumenttools.Contrabass()
                 >>> contrabass.name_markup
                 Markup(contents=['Contrabass'])
 
@@ -169,6 +171,7 @@ class Contrabass(Instrument):
 
             ::
 
+                >>> contrabass = abjad.instrumenttools.Contrabass()
                 >>> contrabass.pitch_range
                 PitchRange('[C1, G4]')
 
@@ -188,6 +191,7 @@ class Contrabass(Instrument):
 
             ::
 
+                >>> contrabass = abjad.instrumenttools.Contrabass()
                 >>> contrabass.short_name
                 'cb.'
 
@@ -203,6 +207,7 @@ class Contrabass(Instrument):
 
             ::
 
+                >>> contrabass = abjad.instrumenttools.Contrabass()
                 >>> contrabass.short_name_markup
                 Markup(contents=['Cb.'])
 

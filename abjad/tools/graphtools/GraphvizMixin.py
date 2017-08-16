@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import abc
 import copy
 import re
@@ -14,8 +13,7 @@ class GraphvizMixin(AbjadObject):
 
     __documentation_section__ = 'Graphviz'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     _word_pattern = re.compile('^\w[\w\-:]*$')
 

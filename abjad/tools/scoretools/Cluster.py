@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.scoretools.Container import Container
 
 
 class Cluster(Container):
     '''Cluster.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -36,8 +31,7 @@ class Cluster(Container):
 
     __documentation_section__ = 'Containers'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     _is_counttime_component = True
 

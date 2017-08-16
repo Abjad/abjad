@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import functools
 from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
@@ -7,10 +6,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 @functools.total_ordering
 class OrdinalConstant(AbjadValueObject):
     r'''Ordinal constant.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

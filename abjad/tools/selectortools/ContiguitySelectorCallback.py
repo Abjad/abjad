@@ -1,23 +1,16 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.topleveltools import select
 
 
 class ContiguitySelectorCallback(AbjadValueObject):
     r'''Contiguity selector callback.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###
 
     __documentation_section__ = 'Callbacks'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

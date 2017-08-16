@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import abc
 from abjad.tools import abctools
 
@@ -9,8 +8,7 @@ class ScoreTemplate(abctools.AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

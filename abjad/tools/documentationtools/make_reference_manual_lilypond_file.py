@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import markuptools
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import setting
@@ -6,10 +5,6 @@ from abjad.tools.topleveltools import setting
 
 def make_reference_manual_lilypond_file(music=None, **keywords):
     r'''Makes reference manual LilyPond file.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

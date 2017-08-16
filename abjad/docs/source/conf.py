@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import sys
 import sphinx_rtd_theme
 from sphinx.highlighting import PygmentsBridge

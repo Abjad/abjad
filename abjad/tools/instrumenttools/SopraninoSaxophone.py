@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class SopraninoSaxophone(Instrument):
     r'''Sopranino saxophone.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -34,8 +29,7 @@ class SopraninoSaxophone(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -76,6 +70,7 @@ class SopraninoSaxophone(Instrument):
 
             ::
 
+                >>> sopranino_saxophone = abjad.instrumenttools.SopraninoSaxophone()
                 >>> sopranino_saxophone.allowable_clefs
                 ClefList([Clef(name='treble')])
 
@@ -95,6 +90,7 @@ class SopraninoSaxophone(Instrument):
 
             ::
 
+                >>> sopranino_saxophone = abjad.instrumenttools.SopraninoSaxophone()
                 >>> sopranino_saxophone.middle_c_sounding_pitch
                 NamedPitch("ef'")
 
@@ -114,6 +110,7 @@ class SopraninoSaxophone(Instrument):
 
             ::
 
+                >>> sopranino_saxophone = abjad.instrumenttools.SopraninoSaxophone()
                 >>> sopranino_saxophone.name
                 'sopranino saxophone'
 
@@ -129,6 +126,7 @@ class SopraninoSaxophone(Instrument):
 
             ::
 
+                >>> sopranino_saxophone = abjad.instrumenttools.SopraninoSaxophone()
                 >>> sopranino_saxophone.name_markup
                 Markup(contents=['Sopranino saxophone'])
 
@@ -148,6 +146,7 @@ class SopraninoSaxophone(Instrument):
 
             ::
 
+                >>> sopranino_saxophone = abjad.instrumenttools.SopraninoSaxophone()
                 >>> sopranino_saxophone.pitch_range
                 PitchRange('[Db4, F#6]')
 
@@ -167,6 +166,7 @@ class SopraninoSaxophone(Instrument):
 
             ::
 
+                >>> sopranino_saxophone = abjad.instrumenttools.SopraninoSaxophone()
                 >>> sopranino_saxophone.short_name
                 'sopranino sax.'
 
@@ -182,6 +182,7 @@ class SopraninoSaxophone(Instrument):
 
             ::
 
+                >>> sopranino_saxophone = abjad.instrumenttools.SopraninoSaxophone()
                 >>> sopranino_saxophone.short_name_markup
                 Markup(contents=['Sopranino sax.'])
 

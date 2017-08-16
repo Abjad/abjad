@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 import operator
 from abjad.tools import mathtools
@@ -7,11 +6,6 @@ from abjad.tools.abctools import AbjadValueObject
 
 class Pattern(AbjadValueObject):
     r'''Pattern.
-
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import rhythmmakertools
 
     ..  container:: example
 
@@ -1012,7 +1006,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> maker = rhythmmakertools.NoteRhythmMaker()
+                >>> maker = abjad.rhythmmakertools.NoteRhythmMaker()
                 >>> pattern = abjad.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     payload=maker,
@@ -1696,8 +1690,8 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> maker = rhythmmakertools.NoteRhythmMaker(
-                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                >>> maker = abjad.rhythmmakertools.NoteRhythmMaker(
+                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=pattern,
                 ...         use_messiaen_style_ties=True,
                 ...         ),
@@ -1762,7 +1756,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                >>> maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[mask],
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
@@ -1813,7 +1807,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                >>> maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[mask],
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
@@ -1876,8 +1870,8 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> maker = rhythmmakertools.NoteRhythmMaker(
-                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                >>> maker = abjad.rhythmmakertools.NoteRhythmMaker(
+                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=pattern,
                 ...         use_messiaen_style_ties=True,
                 ...         ),
@@ -1929,8 +1923,8 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> maker = rhythmmakertools.NoteRhythmMaker(
-                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                >>> maker = abjad.rhythmmakertools.NoteRhythmMaker(
+                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=pattern,
                 ...         use_messiaen_style_ties=True,
                 ...         ),
@@ -1980,8 +1974,8 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> maker = rhythmmakertools.NoteRhythmMaker(
-                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                >>> maker = abjad.rhythmmakertools.NoteRhythmMaker(
+                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=pattern,
                 ...         use_messiaen_style_ties=True,
                 ...         ),
@@ -2048,8 +2042,8 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> maker = rhythmmakertools.NoteRhythmMaker(
-                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                >>> maker = abjad.rhythmmakertools.NoteRhythmMaker(
+                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=pattern,
                 ...         use_messiaen_style_ties=True,
                 ...         ),
@@ -2102,8 +2096,8 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> maker = rhythmmakertools.NoteRhythmMaker(
-                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                >>> maker = abjad.rhythmmakertools.NoteRhythmMaker(
+                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=pattern,
                 ...         use_messiaen_style_ties=True,
                 ...         ),

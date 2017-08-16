@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import bisect
 from abjad.tools import durationtools
 from abjad.tools import systemtools
@@ -7,10 +6,6 @@ from abjad.tools.abctools import AbjadObject
 
 class TimespanInequality(AbjadObject):
     '''Timespan inequality.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -88,6 +83,8 @@ class TimespanInequality(AbjadObject):
     def __format__(self, format_specification=''):
         r'''Formats inequality.
 
+            >>> template = 'timespan_2.start_offset < timespan_1.start_offset'
+            >>> inequality = abjad.TimespanInequality(template)
             >>> f(inequality)
             abjad.TimespanInequality('timespan_2.start_offset < timespan_1.start_offset')
 
@@ -446,6 +443,8 @@ class TimespanInequality(AbjadObject):
     def template(self):
         r'''Gets template of inequality.
 
+            >>> template = 'timespan_2.start_offset < timespan_1.start_offset'
+            >>> inequality = abjad.TimespanInequality(template)
             >>> inequality.template
             'timespan_2.start_offset < timespan_1.start_offset'
 

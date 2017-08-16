@@ -1,13 +1,5 @@
-# -*- coding: utf-8 -*-
-
-
 class SelectorLibrary(object):
     r'''Selector library.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###

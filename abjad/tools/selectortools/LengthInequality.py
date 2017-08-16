@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import mathtools
 from abjad.tools.selectortools.Inequality import Inequality
 
 
 class LengthInequality(Inequality):
     r'''Length inequality.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

@@ -1,19 +1,14 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools import AbjadValueObject
 
 
 class ChordInversion(AbjadValueObject):
     '''Chord inversion.
 
-    ::
-
-        >>> from abjad.tools import tonalanalysistools
-
     ..  container:: example
 
         ::
 
-            >>> tonalanalysistools.ChordInversion(1)
+            >>> abjad.tonalanalysistools.ChordInversion(1)
             ChordInversion(1)
 
     '''
@@ -77,9 +72,9 @@ class ChordInversion(AbjadValueObject):
 
             ::
 
-                >>> inversion_1 = tonalanalysistools.ChordInversion(0)
-                >>> inversion_2 = tonalanalysistools.ChordInversion(0)
-                >>> inversion_3 = tonalanalysistools.ChordInversion(1)
+                >>> inversion_1 = abjad.tonalanalysistools.ChordInversion(0)
+                >>> inversion_2 = abjad.tonalanalysistools.ChordInversion(0)
+                >>> inversion_3 = abjad.tonalanalysistools.ChordInversion(1)
 
             ::
 
@@ -142,7 +137,7 @@ class ChordInversion(AbjadValueObject):
 
             ::
 
-                >>> inversion = tonalanalysistools.ChordInversion(0)
+                >>> inversion = abjad.tonalanalysistools.ChordInversion(0)
                 >>> inversion.extent_to_figured_bass_string(5)
                 ''
                 >>> inversion.extent_to_figured_bass_string(7)
@@ -150,7 +145,7 @@ class ChordInversion(AbjadValueObject):
 
             ::
 
-                >>> inversion = tonalanalysistools.ChordInversion(1)
+                >>> inversion = abjad.tonalanalysistools.ChordInversion(1)
                 >>> inversion.extent_to_figured_bass_string(5)
                 '6'
                 >>> inversion.extent_to_figured_bass_string(7)
@@ -158,7 +153,7 @@ class ChordInversion(AbjadValueObject):
 
             ::
 
-                >>> inversion = tonalanalysistools.ChordInversion(2)
+                >>> inversion = abjad.tonalanalysistools.ChordInversion(2)
                 >>> inversion.extent_to_figured_bass_string(5)
                 '6/4'
                 >>> inversion.extent_to_figured_bass_string(7)
@@ -166,7 +161,7 @@ class ChordInversion(AbjadValueObject):
 
             ::
 
-                >>> inversion = tonalanalysistools.ChordInversion(3)
+                >>> inversion = abjad.tonalanalysistools.ChordInversion(3)
                 >>> inversion.extent_to_figured_bass_string(7)
                 '4/2'
 
@@ -190,17 +185,17 @@ class ChordInversion(AbjadValueObject):
 
             ::
 
-                >>> tonalanalysistools.ChordInversion(0).name
+                >>> abjad.tonalanalysistools.ChordInversion(0).name
                 'root position'
 
             ::
 
-                >>> tonalanalysistools.ChordInversion(1).name
+                >>> abjad.tonalanalysistools.ChordInversion(1).name
                 'first'
 
             ::
 
-                >>> tonalanalysistools.ChordInversion(2).name
+                >>> abjad.tonalanalysistools.ChordInversion(2).name
                 'second'
 
         Returns string.
@@ -215,17 +210,17 @@ class ChordInversion(AbjadValueObject):
 
             ::
 
-                >>> tonalanalysistools.ChordInversion(0).number
+                >>> abjad.tonalanalysistools.ChordInversion(0).number
                 0
 
             ::
 
-                >>> tonalanalysistools.ChordInversion(1).number
+                >>> abjad.tonalanalysistools.ChordInversion(1).number
                 1
 
             ::
 
-                >>> tonalanalysistools.ChordInversion(2).number
+                >>> abjad.tonalanalysistools.ChordInversion(2).number
                 2
 
         Returns nonnegative integer.
@@ -240,17 +235,17 @@ class ChordInversion(AbjadValueObject):
 
             ::
 
-                >>> tonalanalysistools.ChordInversion(0).title
+                >>> abjad.tonalanalysistools.ChordInversion(0).title
                 'RootPosition'
 
             ::
 
-                >>> tonalanalysistools.ChordInversion(1).title
+                >>> abjad.tonalanalysistools.ChordInversion(1).title
                 'FirstInversion'
 
             ::
 
-                >>> tonalanalysistools.ChordInversion(2).title
+                >>> abjad.tonalanalysistools.ChordInversion(2).title
                 'SecondInversion'
 
         Returns string.

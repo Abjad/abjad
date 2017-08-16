@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import abjad
 import platform
 import unittest
@@ -429,163 +428,49 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         assert actual == target, \
             abjad.TestManager.diff(actual, target, 'Diff:')
 
-    # I hate this test.
-#    def test_on_doctree_read_05(self):
-#        source = r'''
-#        ..  abjad::
-#            :text-width: 40
-#
-#            [x for x in dir() if not x.startswith('_')]
-#        '''
-#        source = abjad.String.normalize(source)
-#        handler = abjadbooktools.SphinxDocumentHandler()
-#        document = handler.parse_rst(source)
-#        handler.on_doctree_read(self.app, document)
-#        actual = abjad.String.normalize(document.pformat())
-#        target = abjad.String.normalize(
-#            r"""
-#            <document source="test">
-#                <literal_block xml:space="preserve">
-#                    >>> [x for x in dir() if not x.startswith('_')]
-#                    ['AbjadObject', 'AbjadValueObject',
-#                    'Accelerando', 'Accidental',
-#                    'Arpeggio', 'ArrowLineSegment', 'Articulation',
-#                    'AssignabilityError', 'BarLine', 'Beam',
-#                    'BendAfter', 'Block', 'BowContactPoint',
-#                    'BowContactSpanner', 'BowMotionTechnique',
-#                    'BowPressure', 'BreathMark', 'Chord', 'Clef',
-#                    'ClefSpanner', 'Cluster', 'ColorFingering',
-#                    'ComplexBeam', 'ComplexTrillSpanner',
-#                    'Component', 'CompoundOperator',
-#                    'Container', 'Context',
-#                    'ContextBlock', 'ContextManager',
-#                    'ContiguitySelectorCallback',
-#                    'CountsSelectorCallback',
-#                    'CyclicTuple', 'DateTimeToken',
-#                    'Descendants', 'Duplication',
-#                    'DuratedComplexBeam', 'Duration',
-#                    'DurationInequality',
-#                    'DurationSelectorCallback', 'Dynamic',
-#                    'Enumeration', 'Expression',
-#                    'ExtraLeafSelectorCallback',
-#                    'ExtraSpannerError', 'Fermata',
-#                    'FlattenSelectorCallback', 'Fraction',
-#                    'GeneralizedBeam', 'Glissando',
-#                    'GraceContainer', 'GroupByPitchCallback',
-#                    'Hairpin', 'HiddenStaffSpanner',
-#                    'HorizontalBracketSpanner',
-#                    'ImpreciseMetronomeMarkError', 'IndicatorWrapper',
-#                    'Inequality', 'Infinity', 'Interval',
-#                    'IntervalClass', 'IntervalClassSegment',
-#                    'IntervalClassSet', 'IntervalClassVector',
-#                    'IntervalSegment', 'IntervalSet',
-#                    'IntervalVector', 'Inversion',
-#                    'ItemSelectorCallback', 'KeyCluster',
-#                    'KeySignature', 'LaissezVibrer', 'Leaf',
-#                    'LengthInequality', 'LengthSelectorCallback',
-#                    'LilyPondCommand', 'LilyPondComment',
-#                    'LilyPondDimension', 'LilyPondFile',
-#                    'LilyPondLanguageToken', 'LilyPondLiteral',
-#                    'LilyPondParserError', 'LilyPondVersionToken',
-#                    'LineSegment', 'Lineage',
-#                    'LogicalMeasureSelectorCallback', 'LogicalTie',
-#                    'LogicalTieSelectorCallback', 'Markup',
-#                    'MarkupCommand', 'MarkupList', 'Measure',
-#                    'MeasuredComplexBeam', 'Meter',
-#                    'MetricModulation', 'MissingMeasureError',
-#                    'MissingSpannerError', 'MissingMetronomeMarkError',
-#                    'MultimeasureRest', 'MultipartBeam',
-#                    'Multiplication', 'Multiplier',
-#                    'NamedInterval', 'NamedIntervalClass',
-#                    'NamedInversionEquivalentIntervalClass',
-#                    'NamedPitch', 'NamedPitchClass',
-#                    'NonreducedFraction', 'NonreducedRatio',
-#                    'Note', 'NumberedInterval',
-#                    'NumberedIntervalClass',
-#                    'NumberedInversionEquivalentIntervalClass',
-#                    'NumberedPitch', 'NumberedPitchClass',
-#                    'ColorMap',
-#                    'OctavationSpanner', 'Octave', 'Offset',
-#                    'OrdinalConstant', 'OverfullContainerError',
-#                    'PackageGitCommitToken', 'PageBreak',
-#                    'Parentage', 'ParentageError', 'Parser',
-#                    'PartitionByRatioCallback', 'Pattern',
-#                    'PatternList', 'PatternedSelectorCallback',
-#                    'PhrasingSlur', 'PianoPedalSpanner', 'Pitch',
-#                    'PitchClass', 'PitchClassSegment',
-#                    'PitchClassSet', 'PitchClassVector',
-#                    'PitchRange', 'PitchRangeList', 'PitchSegment',
-#                    'PitchSelectorCallback', 'PitchSet',
-#                    'PitchVector', 'Postscript',
-#                    'PostscriptOperator',
-#                    'PrototypeSelectorCallback', 'Ratio',
-#                    'Registration', 'RegistrationComponent',
-#                    'RegistrationList', 'RehearsalMark', 'Repeat',
-#                    'Rest', 'Retrograde', 'Ritardando', 'Rotation',
-#                    'RunSelectorCallback', 'Scheme',
-#                    'SchemeAssociativeList', 'SchemeColor',
-#                    'SchemeMoment', 'SchemePair',
-#                    'SchemeParserFinishedError', 'SchemeSymbol',
-#                    'SchemeVector', 'SchemeVectorConstant',
-#                    'Score', 'Segment', 'Selection',
-#                    'SelectionList', 'Selector', 'Sequence', 'Set',
-#                    'SetClass', 'Signature', 'Skip',
-#                    'SliceSelectorCallback', 'Slur',
-#                    'SortedCollection', 'Spanner', 'Staff',
-#                    'StaffChange', 'StaffGroup',
-#                    'StaffLinesSpanner', 'StaffPosition',
-#                    'StemTremolo', 'StemTremoloSpanner',
-#                    'StringContactPoint', 'StringNumber',
-#                    'SystemBreak', 'MetronomeMark', 'MetronomeMarkList',
-#                    'MetronomeMarkSpanner', 'TextSpanner', 'Tie',
-#                    'TimeSignature', 'TimeSignatureList',
-#                    'Timespan', 'Transposition', 'TreeContainer',
-#                    'TreeNode', 'Tremolo', 'TrillSpanner',
-#                    'Tuning', 'Tuplet', 'TwelveToneRow',
-#                    'TypedCollection', 'TypedCounter',
-#                    'TypedFrozenset', 'TypedList',
-#                    'TypedOrderedDict', 'TypedTuple',
-#                    'UnboundedTimeIntervalError',
-#                    'UnderfullContainerError', 'Vector',
-#                    'VerticalMoment', 'Voice',
-#                    'WellformednessError', 'WrapSelectionCallback',
-#                    'abctools', 'abjad_configuration',
-#                    'agenttools', 'attach', 'commandlinetools',
-#                    'datastructuretools', 'demos', 'detach',
-#                    'documentationtools', 'durationtools',
-#                    'exceptiontools', 'ext',
-#                    'f', 'graph', 'graphtools', 'indicatortools',
-#                    'inspect', 'instrumenttools', 'ipythontools',
-#                    'iterate', 'label', 'lilypondfiletools',
-#                    'lilypondnametools', 'lilypondparsertools',
-#                    'ly', 
-#                    'markuptools',
-#                    'mathtools', 'metertools', 'mutate', 'new',
-#                    'override', 'parse', 'persist',
-#                    'pitchtools', 'play', 'print_function',
-#                    'quantizationtools', 'rhythmmakertools',
-#                    'rhythmtreetools', 'schemetools', 'scoretools',
-#                    'select', 'select_all', 'select_every',
-#                    'select_first',
-#                    'select_first_logical_tie_in_pitched_runs',
-#                    'select_last',
-#                    'select_last_logical_tie_in_pitched_runs',
-#                    'select_nonfirst_logical_ties_in_pitched_runs',
-#                    'select_nonlast_logical_ties_in_pitched_runs',
-#                    'select_pitched_runs', 'selectiontools',
-#                    'selectortools', 'sequence',
-#                    'setting', 'show', 'silence', 'silence_all',
-#                    'silence_every', 'silence_except',
-#                    'silence_first', 'silence_last',
-#                    'spannertools', 'datastructuretools', 'sustain',
-#                    'sustain_all', 'sustain_every',
-#                    'sustain_first', 'sustain_last', 'systemtools',
-#                    'templatetools', 'timespantools',
-#                    'tonalanalysistools', 'topleveltools',
-#                    'transpose_pitch_carrier_by_interval', 'tweak']
-#            """)
-#        assert actual == target, \
-#            systemtools.TestManager.diff(actual, target, 'Diff:')
+    def test_on_doctree_read_05(self):
+        source = r'''
+        ..  abjad::
+            :text-width: 40
+
+            from abjad.tools import abjadbooktools
+            [x for x in dir(abjadbooktools) if not x.startswith('_')]
+        '''
+        source = abjad.String.normalize(source)
+        handler = abjadbooktools.SphinxDocumentHandler()
+        document = handler.parse_rst(source)
+        handler.on_doctree_read(self.app, document)
+        actual = abjad.String.normalize(document.pformat())
+        target = abjad.String.normalize(
+            r"""
+            <document source="test">
+                <literal_block xml:space="preserve">
+                    >>> from abjad.tools import abjadbooktools
+                    >>> [x for x in dir(abjadbooktools) if not x.startswith('_')]
+                    ['AbjadBookConsole', 'AbjadBookError',
+                    'AbjadBookScript', 'AbjadDirective',
+                    'AbjadDoctestDirective', 'CodeBlock',
+                    'CodeBlockSpecifier', 'CodeOutputProxy',
+                    'GraphvizOutputProxy',
+                    'ImageLayoutSpecifier',
+                    'ImageOutputProxy',
+                    'ImageRenderSpecifier',
+                    'ImportDirective',
+                    'LaTeXDocumentHandler', 'LilyPondBlock',
+                    'LilyPondOutputProxy',
+                    'RawLilyPondOutputProxy',
+                    'RevealDirective', 'ShellDirective',
+                    'SphinxDocumentHandler',
+                    'ThumbnailDirective',
+                    'abjad_import_block',
+                    'abjad_input_block',
+                    'abjad_output_block',
+                    'abjad_reveal_block',
+                    'abjad_thumbnail_block',
+                    'example_function', 'run_abjad_book']
+            """)
+        assert actual == target, \
+            abjad.TestManager.diff(actual, target, 'Diff:')
 
     def test_on_doctree_read_06(self):
         source = u'''

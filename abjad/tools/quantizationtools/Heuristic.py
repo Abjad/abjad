@@ -1,15 +1,9 @@
-# -*- coding: utf-8 -*-
 import abc
 from abjad.tools.abctools import AbjadObject
 
 
 class Heuristic(AbjadObject):
     r'''Abstract heuristic.
-
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import quantizationtools
 
     Heuristics rank Q-grids according to the criteria they encapsulate.
 
@@ -20,8 +14,7 @@ class Heuristic(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import abjad
 import os
 import platform
@@ -60,7 +59,6 @@ class Test(ScorePackageScriptTestCase):
         definition_path = segment_path.joinpath('definition.py')
         with open(str(definition_path), 'w') as file_pointer:
             file_pointer.write(abjad.String.normalize(r'''
-            # -*- coding: utf-8 -*-
             from abjad.tools import abctools
             from abjad.tools import lilypondfiletools
             from abjad.tools import scoretools
@@ -157,7 +155,6 @@ class Test(ScorePackageScriptTestCase):
         definition_path = segment_path.joinpath('definition.py')
         with open(str(definition_path), 'w') as file_pointer:
             file_pointer.write(abjad.String.normalize(r'''
-            # -*- coding: utf-8 -*-
             from abjad.tools import abctools
 
 

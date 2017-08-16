@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 import itertools
 from abjad.tools import selectiontools
@@ -7,10 +6,6 @@ from abjad.tools.abctools import AbjadValueObject
 
 class LogicalMeasureSelectorCallback(AbjadValueObject):
     r'''Logical measure selector callback.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -97,8 +92,7 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
 
     __documentation_section__ = 'Callbacks'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

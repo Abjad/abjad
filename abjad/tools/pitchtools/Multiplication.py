@@ -1,14 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Multiplication(AbjadValueObject):
     r'''Multiplication operator.
-
-    ::
-
-        >>> import abjad
-        >>> import pytest
 
     ..  container:: example
 
@@ -164,9 +158,10 @@ class Multiplication(AbjadValueObject):
 
             ::
 
-                >>> string = 'abjad.Multiplication().__radd__(abjad.Multiplication())'
-                >>> pytest.raises(NotImplementedError, string)
-                <ExceptionInfo NotImplementedError ...>
+                >>> abjad.Multiplication().__radd__(abjad.Multiplication())
+                Traceback (most recent call last):
+                ...
+                NotImplementedError: right-addition not defined on Multiplication.
 
         Raises not implemented error.
         '''

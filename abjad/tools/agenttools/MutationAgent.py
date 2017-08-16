@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import abctools
 from abjad.tools.topleveltools import iterate
 
@@ -6,15 +5,9 @@ from abjad.tools.topleveltools import iterate
 class MutationAgent(abctools.AbjadObject):
     r'''Mutation agent.
 
-    ::
-
-        >>> import abjad
-        >>> import pytest
-
     ..  container:: example
 
         Creates mutation agent for last two notes in staff:
-
 
         ::
 
@@ -3169,6 +3162,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
+                >>> import pytest
                 >>> staff = abjad.Staff("c'8 [ ( d' e' ] ) c' [ ( d' e' ] )")
                 >>> tuplet = abjad.Tuplet((2, 3), "g'8 a' fs'")
                 >>> statement = 'abjad.mutate(staff[-3:]).wrap(tuplet)'

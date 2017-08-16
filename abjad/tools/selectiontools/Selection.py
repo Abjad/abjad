@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 import copy
 import itertools
@@ -14,10 +13,6 @@ from abjad.tools.topleveltools import select
 
 class Selection(object):
     r'''Selection of components.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

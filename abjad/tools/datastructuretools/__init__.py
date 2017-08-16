@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import six
 from abjad.tools import systemtools
 from abjad.tools import mathtools

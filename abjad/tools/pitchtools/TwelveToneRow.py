@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.pitchtools.PitchClassSegment import PitchClassSegment
 from abjad.tools.topleveltools import new
 
 
 class TwelveToneRow(PitchClassSegment):
     '''Twelve-tone row.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -42,8 +37,7 @@ class TwelveToneRow(PitchClassSegment):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

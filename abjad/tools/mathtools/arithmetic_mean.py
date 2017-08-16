@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 import collections
 from abjad import Fraction
 
 
 def arithmetic_mean(argument):
     '''Gets arithmetic mean of `argument`.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

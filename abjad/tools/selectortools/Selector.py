@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function
 import collections
 from abjad.tools import durationtools
 from abjad.tools import scoretools
@@ -10,10 +8,6 @@ from abjad.tools.topleveltools import select
 
 class Selector(AbjadValueObject):
     r'''Selector.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

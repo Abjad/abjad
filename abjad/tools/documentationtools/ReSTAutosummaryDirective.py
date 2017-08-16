@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import datastructuretools
 from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 
 
 class ReSTAutosummaryDirective(ReSTDirective):
     r'''A ReST Autosummary directive.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -49,8 +44,7 @@ class ReSTAutosummaryDirective(ReSTDirective):
 
     __documentation_section__ = 'reStructuredText'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

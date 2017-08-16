@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.topleveltools import select
 from abjad.tools.selectiontools.Selection import Selection
 
 
 class Descendants(Selection):
     r'''Descendants of a component.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

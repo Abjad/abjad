@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad import Fraction
 
 
 def is_nonnegative_integer_power_of_two(argument):
     r'''Is true when `argument` is a nonnegative integer power of 2.
     Otherwise false.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import re
 import six
 import sys
@@ -582,16 +581,9 @@ class String(str):
 
         Returns ASCII string.
         '''
-        if sys.version_info[0] < 3:
-            unicode_string = unicode(self, 'utf-8')
-        else:
-            unicode_string = self
-        normalized_unicode_string = unicodedata.normalize('NFKD', unicode_string)
+        normalized_unicode_string = unicodedata.normalize('NFKD', self)
         ascii_string = normalized_unicode_string.encode('ascii', 'ignore')
-        if sys.version_info[0] < 3:
-            return ascii_string
-        else:
-            return ascii_string.decode('utf-8')
+        return ascii_string.decode('utf-8')
 
     def to_accent_free_snake_case(self):
         '''Changes string to accent-free snake case.

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
@@ -9,11 +8,7 @@ class LilyPondContextSetting(AbjadValueObject):
 
     ::
 
-        >>> from abjad.tools import lilypondnametools
-
-    ::
-
-        >>> context_setting = lilypondnametools.LilyPondContextSetting(
+        >>> context_setting = abjad.lilypondnametools.LilyPondContextSetting(
         ...    context_name='Score',
         ...    context_property='autoBeaming',
         ...    value=False,

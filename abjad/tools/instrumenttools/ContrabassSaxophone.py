@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class ContrabassSaxophone(Instrument):
     r'''Contrabass saxophone.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -34,8 +29,7 @@ class ContrabassSaxophone(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -76,6 +70,7 @@ class ContrabassSaxophone(Instrument):
 
             ::
 
+                >>> contrabass_saxophone = abjad.instrumenttools.ContrabassSaxophone()
                 >>> contrabass_saxophone.allowable_clefs
                 ClefList([Clef(name='treble')])
 
@@ -95,6 +90,7 @@ class ContrabassSaxophone(Instrument):
 
             ::
 
+                >>> contrabass_saxophone = abjad.instrumenttools.ContrabassSaxophone()
                 >>> contrabass_saxophone.middle_c_sounding_pitch
                 NamedPitch('ef,,')
 
@@ -114,6 +110,7 @@ class ContrabassSaxophone(Instrument):
 
             ::
 
+                >>> contrabass_saxophone = abjad.instrumenttools.ContrabassSaxophone()
                 >>> contrabass_saxophone.name
                 'contrabass saxophone'
 
@@ -129,6 +126,7 @@ class ContrabassSaxophone(Instrument):
 
             ::
 
+                >>> contrabass_saxophone = abjad.instrumenttools.ContrabassSaxophone()
                 >>> contrabass_saxophone.name_markup
                 Markup(contents=['Contrabass saxophone'])
 
@@ -148,6 +146,7 @@ class ContrabassSaxophone(Instrument):
 
             ::
 
+                >>> contrabass_saxophone = abjad.instrumenttools.ContrabassSaxophone()
                 >>> contrabass_saxophone.pitch_range
                 PitchRange('[C1, Ab3]')
 
@@ -167,6 +166,7 @@ class ContrabassSaxophone(Instrument):
 
             ::
 
+                >>> contrabass_saxophone = abjad.instrumenttools.ContrabassSaxophone()
                 >>> contrabass_saxophone.short_name
                 'cbass. sax.'
 
@@ -182,6 +182,7 @@ class ContrabassSaxophone(Instrument):
 
             ::
 
+                >>> contrabass_saxophone = abjad.instrumenttools.ContrabassSaxophone()
                 >>> contrabass_saxophone.short_name_markup
                 Markup(contents=['Cbass. sax.'])
 

@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class FrenchHorn(Instrument):
     r'''French horn.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -34,8 +29,7 @@ class FrenchHorn(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -77,6 +71,7 @@ class FrenchHorn(Instrument):
 
             ::
 
+                >>> french_horn = abjad.instrumenttools.FrenchHorn()
                 >>> french_horn.allowable_clefs
                 ClefList([Clef(name='bass'), Clef(name='treble')])
 
@@ -96,6 +91,7 @@ class FrenchHorn(Instrument):
 
             ::
 
+                >>> french_horn = abjad.instrumenttools.FrenchHorn()
                 >>> french_horn.middle_c_sounding_pitch
                 NamedPitch('f')
 
@@ -115,6 +111,7 @@ class FrenchHorn(Instrument):
 
             ::
 
+                >>> french_horn = abjad.instrumenttools.FrenchHorn()
                 >>> french_horn.name
                 'horn'
 
@@ -130,6 +127,7 @@ class FrenchHorn(Instrument):
 
             ::
 
+                >>> french_horn = abjad.instrumenttools.FrenchHorn()
                 >>> french_horn.name_markup
                 Markup(contents=['Horn'])
 
@@ -149,6 +147,7 @@ class FrenchHorn(Instrument):
 
             ::
 
+                >>> french_horn = abjad.instrumenttools.FrenchHorn()
                 >>> french_horn.pitch_range
                 PitchRange('[B1, F5]')
 
@@ -168,6 +167,7 @@ class FrenchHorn(Instrument):
 
             ::
 
+                >>> french_horn = abjad.instrumenttools.FrenchHorn()
                 >>> french_horn.short_name
                 'hn.'
 
@@ -183,6 +183,7 @@ class FrenchHorn(Instrument):
 
             ::
 
+                >>> french_horn = abjad.instrumenttools.FrenchHorn()
                 >>> french_horn.short_name_markup
                 Markup(contents=['Hn.'])
 

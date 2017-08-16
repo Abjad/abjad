@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 import collections
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class GroupedStavesScoreTemplate(AbjadValueObject):
     r'''Grouped staves score template.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -35,12 +30,14 @@ class GroupedStavesScoreTemplate(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self):
-        '''Calls score template.
+        r'''Calls score template.
 
         ..  container:: example
 
             ::
 
+                >>> class_ = abjad.templatetools.GroupedStavesScoreTemplate
+                >>> template = class_(staff_count=4)
                 >>> score = template()
                 >>> show(score) # doctest: +SKIP
 

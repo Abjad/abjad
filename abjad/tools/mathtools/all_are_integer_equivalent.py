@@ -1,13 +1,6 @@
-# -*- coding: utf-8 -*-
-
-
 def all_are_integer_equivalent(argument):
     '''Is true when `argument` is an iterable collection with
     integer-equivalent items. Otherwise false.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

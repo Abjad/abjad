@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Ritardando(AbjadValueObject):
     r'''Ritardando.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

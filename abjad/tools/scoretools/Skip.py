@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools.scoretools.Leaf import Leaf
 
 
 class Skip(Leaf):
     r'''LilyPond skip.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -29,8 +24,7 @@ class Skip(Leaf):
 
     __documentation_section__ = 'Leaves'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

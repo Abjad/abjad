@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 from abjad.tools import datastructuretools
 from abjad.tools import selectiontools
@@ -7,10 +6,6 @@ from abjad.tools.abctools import AbjadValueObject
 
 class CountsSelectorCallback(AbjadValueObject):
     r'''Counts selector callback.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 try:
     import ConfigParser as configparser
 except ImportError:
@@ -48,8 +47,7 @@ class AbjadBookScript(commandlinetools.CommandlineScript):
 
     __documentation_section__ = 'Entry Points'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     alias = 'book'
     short_description = 'Preprocess LaTeX files with Abjad.'

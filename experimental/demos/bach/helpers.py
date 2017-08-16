@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import abjad
 from experimental.demos.bach.chorale import es_ist_genug
 

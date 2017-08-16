@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import abctools
 from docutils import nodes
 
@@ -16,7 +15,7 @@ class CodeOutputProxy(abctools.AbjadValueObject):
         ...     '2',
         ...     ])
         >>> print(format(proxy))
-        abjadbooktools.CodeOutputProxy(
+        abjad.abjadbooktools.CodeOutputProxy(
             (
                 ">>> print('Hello, world!')",
                 'Hello, world!',

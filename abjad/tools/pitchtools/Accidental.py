@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import functools
 import re
 from abjad.tools import mathtools
@@ -8,10 +7,6 @@ from abjad.tools.abctools import AbjadValueObject
 @functools.total_ordering
 class Accidental(AbjadValueObject):
     '''Accidental.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

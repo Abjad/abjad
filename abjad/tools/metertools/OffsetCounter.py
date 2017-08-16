@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import markuptools
 from abjad.tools.datastructuretools.TypedCounter import TypedCounter
@@ -6,10 +5,6 @@ from abjad.tools.datastructuretools.TypedCounter import TypedCounter
 
 class OffsetCounter(TypedCounter):
     r'''Offset counter.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -47,8 +42,7 @@ class OffsetCounter(TypedCounter):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

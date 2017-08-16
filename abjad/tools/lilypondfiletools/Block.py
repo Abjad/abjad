@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadObject
 
 
 class Block(AbjadObject):
     '''A LilyPond file block.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

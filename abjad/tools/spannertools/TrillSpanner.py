@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import pitchtools
 from abjad.tools.spannertools.Spanner import Spanner
 
 
 class TrillSpanner(Spanner):
     r'''Trill spanner.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

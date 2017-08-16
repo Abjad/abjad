@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function
 import os
 import shutil
 from abjad.tools.commandlinetools.CommandlineScript import CommandlineScript
@@ -17,8 +15,7 @@ class CleanScript(CommandlineScript):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     alias = 'clean'
     short_description = (

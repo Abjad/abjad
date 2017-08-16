@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
@@ -8,11 +7,6 @@ from abjad.tools.topleveltools import select
 
 class SliceSelectorCallback(AbjadValueObject):
     r'''Slice selector callback.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 from abjad.tools import datastructuretools
 from abjad.tools import mathtools
@@ -8,11 +7,6 @@ from abjad.tools.abctools import AbjadValueObject
 
 class PartitionByRatioCallback(AbjadValueObject):
     r'''Partition-by-ratio selector callback.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###

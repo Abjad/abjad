@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import copy
 from abjad.tools import durationtools
 from abjad.tools.scoretools.Leaf import Leaf
@@ -7,10 +6,6 @@ from abjad.tools.topleveltools import detach
 
 class Rest(Leaf):
     r'''Rest.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -34,8 +29,7 @@ class Rest(Leaf):
 
     __documentation_section__ = 'Leaves'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

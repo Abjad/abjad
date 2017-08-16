@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import datastructuretools
 from abjad.tools.spannertools.Spanner import Spanner
 
 
 class Tie(Spanner):
     r'''Tie.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

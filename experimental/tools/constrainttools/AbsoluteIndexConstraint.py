@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 from experimental.tools.constrainttools._AbsoluteConstraint._AbsoluteConstraint \
     import _AbsoluteConstraint
 

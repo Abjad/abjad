@@ -1,12 +1,5 @@
-# -*- coding: utf-8 -*-
-
-
 def mutate(client):
     r'''Makes mutation agent.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

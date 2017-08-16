@@ -1,16 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.lilypondnametools.LilyPondNameManager \
     import LilyPondNameManager
 
 
 class LilyPondGrobNameManager(LilyPondNameManager):
     '''LilyPond grob name manager.
-
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import lilypondnametools
-
 
     ..  container:: example
 

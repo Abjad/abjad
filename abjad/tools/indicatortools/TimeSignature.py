@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 from abjad.tools import durationtools
 from abjad.tools import mathtools
@@ -8,10 +7,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 class TimeSignature(AbjadValueObject):
     r'''Time signature.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

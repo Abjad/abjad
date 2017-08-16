@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import copy
 import functools
 from abjad.tools import systemtools
@@ -8,10 +7,6 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 @functools.total_ordering
 class NoteHead(AbjadObject):
     r'''Note-head.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -76,9 +71,7 @@ class NoteHead(AbjadObject):
         ::
 
             >>> import copy
-
-        ::
-
+            >>> note_head = abjad.NoteHead(13)
             >>> copy.copy(note_head)
             NoteHead("cs''")
 
@@ -142,6 +135,7 @@ class NoteHead(AbjadObject):
 
         ::
 
+            >>> note_head = abjad.NoteHead(13)
             >>> note_head
             NoteHead("cs''")
 
@@ -154,6 +148,7 @@ class NoteHead(AbjadObject):
 
         ::
 
+            >>> note_head = abjad.NoteHead(13)
             >>> str(note_head)
             "cs''"
 
@@ -238,6 +233,7 @@ class NoteHead(AbjadObject):
 
         ::
 
+            >>> note_head = abjad.NoteHead(13)
             >>> note_head.client is None
             True
 

@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.mathtools.NonreducedRatio import NonreducedRatio
 
 
 class Ratio(NonreducedRatio):
     '''Ratio.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -31,8 +26,7 @@ class Ratio(NonreducedRatio):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function
 import os
 import webbrowser
 from abjad.tools import systemtools
@@ -18,8 +16,7 @@ class BuildApiScript(CommandlineScript):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     class ExperimentalDocumentationManager(DocumentationManager):
         r'''API generator for the experimental package.

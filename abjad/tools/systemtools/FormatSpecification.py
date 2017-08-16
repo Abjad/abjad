@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 from abjad.tools.abctools import AbjadValueObject
 
 
@@ -19,7 +18,6 @@ class FormatSpecification(AbjadValueObject):
         '_repr_kwargs_names',
         '_repr_text',
         '_storage_format_args_values',
-        '_storage_format_includes_root_package',
         '_storage_format_is_bracketed',
         '_storage_format_is_indented',
         '_storage_format_kwargs_names',
@@ -39,7 +37,6 @@ class FormatSpecification(AbjadValueObject):
         repr_kwargs_names=None,
         repr_text=None,
         storage_format_args_values=None,
-        storage_format_includes_root_package=None,
         storage_format_is_bracketed=None,
         storage_format_is_indented=True,
         storage_format_kwargs_names=None,
@@ -59,8 +56,6 @@ class FormatSpecification(AbjadValueObject):
             storage_format_is_bracketed)
         self._storage_format_is_indented = self._coerce_boolean(
             storage_format_is_indented)
-        self._storage_format_includes_root_package = self._coerce_boolean(
-            storage_format_includes_root_package)
         self._storage_format_kwargs_names = self._coerce_tuple(
             storage_format_kwargs_names)
         self._storage_format_text = self._coerce_string(storage_format_text)
@@ -113,10 +108,6 @@ class FormatSpecification(AbjadValueObject):
     @property
     def storage_format_args_values(self):
         return self._storage_format_args_values
-
-    @property
-    def storage_format_includes_root_package(self):
-        return self._storage_format_includes_root_package
 
     @property
     def storage_format_is_bracketed(self):

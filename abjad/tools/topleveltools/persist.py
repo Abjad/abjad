@@ -1,12 +1,5 @@
-# -*- coding: utf-8 -*-
-
-
 def persist(client):
     r'''Makes persistence agent.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

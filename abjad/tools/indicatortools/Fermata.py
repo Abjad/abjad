@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Fermata(AbjadValueObject):
     r'''Fermata.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-
-
 def analyze(argument):
     r'''Makes tonal analysis agent.
 

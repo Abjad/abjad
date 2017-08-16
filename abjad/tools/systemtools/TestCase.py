@@ -1,17 +1,10 @@
-# -*- coding: utf-8 -*-
 import abjad
 import argparse
 import doctest
+import pathlib
 import re
 import unittest
-try:
-    import pathlib
-except ImportError:
-    import pathlib2 as pathlib
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO
+from io import StringIO
 
 
 class TestCase(unittest.TestCase):

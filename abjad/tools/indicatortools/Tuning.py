@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools import AbjadValueObject
 
 
 class Tuning(AbjadValueObject):
     r'''Tuning.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -15,9 +10,7 @@ class Tuning(AbjadValueObject):
 
         ::
 
-            >>> indicator = abjad.Tuning(
-            ...     pitches=('G3', 'D4', 'A4', 'E5'),
-            ...     )
+            >>> indicator = abjad.Tuning(pitches=('G3', 'D4', 'A4', 'E5'))
             >>> f(indicator)
             abjad.Tuning(
                 pitches=abjad.PitchSegment(
@@ -237,6 +230,7 @@ class Tuning(AbjadValueObject):
 
             ::
 
+                >>> indicator = abjad.Tuning(pitches=('G3', 'D4', 'A4', 'E5'))
                 >>> pitch_ranges = indicator.pitch_ranges
                 >>> f(pitch_ranges)
                 abjad.PitchRangeList(
@@ -266,6 +260,7 @@ class Tuning(AbjadValueObject):
 
             ::
 
+                >>> indicator = abjad.Tuning(pitches=('G3', 'D4', 'A4', 'E5'))
                 >>> pitches = indicator.pitches
                 >>> f(pitches)
                 abjad.PitchSegment(

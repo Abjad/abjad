@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import copy
 import numbers
 from abjad.tools import mathtools
@@ -7,10 +6,6 @@ from abjad.tools.pitchtools.Interval import Interval
 
 class NamedInterval(Interval):
     '''Named interval.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

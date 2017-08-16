@@ -1,16 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools.abctools import AbjadValueObject
 
 
 class DurationSpellingSpecifier(AbjadValueObject):
     r'''Duration spelling specifier.
-
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import rhythmmakertools
-
     '''
 
     ### CLASS VARIABLES ###
@@ -64,9 +57,9 @@ class DurationSpellingSpecifier(AbjadValueObject):
 
             ::
 
-                >>> specifier = rhythmmakertools.DurationSpellingSpecifier()
+                >>> specifier = abjad.rhythmmakertools.DurationSpellingSpecifier()
                 >>> f(specifier)
-                rhythmmakertools.DurationSpellingSpecifier(
+                abjad.rhythmmakertools.DurationSpellingSpecifier(
                     decrease_monotonic=True,
                     )
 
@@ -84,7 +77,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
 
             ::
 
-                >>> rhythmmakertools.DurationSpellingSpecifier()
+                >>> abjad.rhythmmakertools.DurationSpellingSpecifier()
                 DurationSpellingSpecifier(decrease_monotonic=True)
 
         Returns string.
@@ -186,7 +179,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
 
             ::
 
-                >>> specifier = rhythmmakertools.DurationSpellingSpecifier()
+                >>> specifier = abjad.rhythmmakertools.DurationSpellingSpecifier()
                 >>> specifier.decrease_monotonic
                 True
 
@@ -204,7 +197,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
 
             ::
 
-                >>> specifier = rhythmmakertools.DurationSpellingSpecifier()
+                >>> specifier = abjad.rhythmmakertools.DurationSpellingSpecifier()
                 >>> specifier.forbid_meter_rewriting is None
                 True
 
@@ -222,7 +215,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
 
             ::
 
-                >>> specifier = rhythmmakertools.DurationSpellingSpecifier()
+                >>> specifier = abjad.rhythmmakertools.DurationSpellingSpecifier()
                 >>> specifier.forbidden_duration is None
                 True
 
@@ -241,7 +234,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
 
             ::
 
-                >>> specifier = rhythmmakertools.DurationSpellingSpecifier()
+                >>> specifier = abjad.rhythmmakertools.DurationSpellingSpecifier()
                 >>> specifier.rewrite_meter is None
                 True
 
@@ -262,7 +255,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
 
             ::
 
-                >>> specifier = rhythmmakertools.DurationSpellingSpecifier()
+                >>> specifier = abjad.rhythmmakertools.DurationSpellingSpecifier()
                 >>> specifier.spell_metrically is None
                 True
 

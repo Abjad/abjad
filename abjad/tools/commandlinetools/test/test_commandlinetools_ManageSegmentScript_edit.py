@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import abjad
 import os
 from abjad import abjad_configuration

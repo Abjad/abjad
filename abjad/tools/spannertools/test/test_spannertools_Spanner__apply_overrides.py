@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
 import abjad
-import sys
 
 
 def test_spannertools_Spanner__apply_overrides_01():
@@ -17,12 +15,8 @@ def test_spannertools_Spanner__apply_overrides_01():
         'text_spanner__dash_fraction': '0.25',
     }
 
-    if sys.version_info[0] == 2:
-        overrides['text_spanner__bound_details__left__text'] = \
-            "markuptools.Markup((markuptools.MarkupCommand('italic','\\xe2\\x80\\x9cwhite\\xe2\\x80\\x9d flautando'),markuptools.MarkupCommand('hspace',1)))"
-    else:
-        overrides['text_spanner__bound_details__left__text'] = \
-            "markuptools.Markup((markuptools.MarkupCommand('italic','“white” flautando'),markuptools.MarkupCommand('hspace',1)))"
+    overrides['text_spanner__bound_details__left__text'] = \
+        "markuptools.Markup((markuptools.MarkupCommand('italic','“white” flautando'),markuptools.MarkupCommand('hspace',1)))"
 
     white_flautando_spanner = abjad.TextSpanner(overrides=overrides)
 

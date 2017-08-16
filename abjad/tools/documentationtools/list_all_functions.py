@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 import collections
 import types
 
 
 def list_all_functions(modules=None):
     r'''Lists all public functions defined in `modules`.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

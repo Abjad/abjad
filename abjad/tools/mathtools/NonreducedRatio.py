@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 import fractions
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
@@ -6,10 +5,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 class NonreducedRatio(AbjadValueObject):
     '''Nonreduced ratio.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

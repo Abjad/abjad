@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools import AbjadValueObject
 
 
 # TODO: implement __illustrate__
 class ColorMap(AbjadValueObject):
     '''Color map.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -103,6 +98,17 @@ class ColorMap(AbjadValueObject):
 
             ::
 
+                >>> color_map = abjad.ColorMap(
+                ...     colors=['red', 'green', 'blue'],
+                ...     pitch_iterables=[
+                ...         [-8, 2, 10, 21],
+                ...         [0, 11, 32, 41],
+                ...         [15, 25, 42, 43],
+                ...         ],
+                ...     )
+
+            ::
+
                 >>> color_map[11]
                 'green'
 
@@ -137,6 +143,17 @@ class ColorMap(AbjadValueObject):
 
             ::
 
+                >>> color_map = abjad.ColorMap(
+                ...     colors=['red', 'green', 'blue'],
+                ...     pitch_iterables=[
+                ...         [-8, 2, 10, 21],
+                ...         [0, 11, 32, 41],
+                ...         [15, 25, 42, 43],
+                ...         ],
+                ...     )
+
+            ::
+
                 >>> color_map.colors
                 ['red', 'green', 'blue']
 
@@ -149,6 +166,17 @@ class ColorMap(AbjadValueObject):
         r'''Is true when color map contains all 12-ET pitch-classes.
 
         ..  container:: example
+
+            ::
+
+                >>> color_map = abjad.ColorMap(
+                ...     colors=['red', 'green', 'blue'],
+                ...     pitch_iterables=[
+                ...         [-8, 2, 10, 21],
+                ...         [0, 11, 32, 41],
+                ...         [15, 25, 42, 43],
+                ...         ],
+                ...     )
 
             ::
 
@@ -168,6 +196,17 @@ class ColorMap(AbjadValueObject):
 
             ::
 
+                >>> color_map = abjad.ColorMap(
+                ...     colors=['red', 'green', 'blue'],
+                ...     pitch_iterables=[
+                ...         [-8, 2, 10, 21],
+                ...         [0, 11, 32, 41],
+                ...         [15, 25, 42, 43],
+                ...         ],
+                ...     )
+
+            ::
+
                 >>> color_map.is_twenty_four_tone_complete
                 False
 
@@ -182,6 +221,17 @@ class ColorMap(AbjadValueObject):
         r'''Gets pairs.
 
         ..  container:: example
+
+            ::
+
+                >>> color_map = abjad.ColorMap(
+                ...     colors=['red', 'green', 'blue'],
+                ...     pitch_iterables=[
+                ...         [-8, 2, 10, 21],
+                ...         [0, 11, 32, 41],
+                ...         [15, 25, 42, 43],
+                ...         ],
+                ...     )
 
             ::
 
@@ -214,6 +264,17 @@ class ColorMap(AbjadValueObject):
 
             ::
 
+                >>> color_map = abjad.ColorMap(
+                ...     colors=['red', 'green', 'blue'],
+                ...     pitch_iterables=[
+                ...         [-8, 2, 10, 21],
+                ...         [0, 11, 32, 41],
+                ...         [15, 25, 42, 43],
+                ...         ],
+                ...     )
+
+            ::
+
                 >>> color_map.pitch_iterables
                 [[-8, 2, 10, 21], [0, 11, 32, 41], [15, 25, 42, 43]]
 
@@ -227,6 +288,17 @@ class ColorMap(AbjadValueObject):
         r'''Gets `key` from color map.
 
         ..  container:: example
+
+            ::
+
+                >>> color_map = abjad.ColorMap(
+                ...     colors=['red', 'green', 'blue'],
+                ...     pitch_iterables=[
+                ...         [-8, 2, 10, 21],
+                ...         [0, 11, 32, 41],
+                ...         [15, 25, 42, 43],
+                ...         ],
+                ...     )
 
             ::
 

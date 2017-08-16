@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 import copy
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class RegistrationComponent(AbjadValueObject):
     '''Registration component.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -92,6 +87,7 @@ class RegistrationComponent(AbjadValueObject):
 
             ::
 
+                >>> component = abjad.RegistrationComponent('[A0, C8]', 15)
                 >>> component.source_pitch_range
                 PitchRange('[A0, C8]')
 
@@ -109,6 +105,7 @@ class RegistrationComponent(AbjadValueObject):
 
             ::
 
+                >>> component = abjad.RegistrationComponent('[A0, C8]', 15)
                 >>> component.target_octave_start_pitch
                 NumberedPitch(15)
 

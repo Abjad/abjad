@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.lilypondparsertools.Music import Music
 
 
@@ -8,5 +7,4 @@ class SimultaneousMusic(Music):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()

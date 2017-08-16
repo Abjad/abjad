@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class BarLine(AbjadValueObject):
     r'''Bar line.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

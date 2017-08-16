@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.scoretools.Context import Context
 
 
 class StaffGroup(Context):
     r'''Staff group.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -42,8 +37,7 @@ class StaffGroup(Context):
 
     __documentation_section__ = 'Contexts'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     _default_context_name = 'StaffGroup'
 

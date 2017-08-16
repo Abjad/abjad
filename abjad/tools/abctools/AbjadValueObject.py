@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -9,8 +8,7 @@ class AbjadValueObject(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

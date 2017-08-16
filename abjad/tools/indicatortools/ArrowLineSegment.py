@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.indicatortools.LineSegment import LineSegment
 
 
 class ArrowLineSegment(LineSegment):
     r'''Arrow line segment.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -82,8 +77,7 @@ class ArrowLineSegment(LineSegment):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     _publish_storage_format = True
 

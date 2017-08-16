@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import abc
 import collections
 import types
@@ -14,8 +13,7 @@ class Vector(TypedCounter):
 
     ### CLASS VARIABLES ##
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

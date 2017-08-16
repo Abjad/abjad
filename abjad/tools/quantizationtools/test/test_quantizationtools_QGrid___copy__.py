@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import abjad
 import copy
 from abjad.tools import quantizationtools

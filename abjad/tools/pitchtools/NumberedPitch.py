@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import numbers
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.Pitch import Pitch
@@ -6,10 +5,6 @@ from abjad.tools.pitchtools.Pitch import Pitch
 
 class NumberedPitch(Pitch):
     r'''Numbered pitch.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

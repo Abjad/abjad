@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadValueObject
 
 
 class Scheme(AbjadValueObject):
     r'''Abjad model of Scheme code.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

@@ -1,12 +1,5 @@
-# -*- coding: utf-8 -*-
-
-
 def detach(prototype, component_expression=None):
     r'''Detaches `prototype` indicators from `component_expression`.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

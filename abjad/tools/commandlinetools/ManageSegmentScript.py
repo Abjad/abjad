@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function
 import os
 import sys
 import traceback
@@ -20,8 +18,7 @@ class ManageSegmentScript(ScorePackageScript):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     alias = 'segment'
     short_description = 'Manage score package segments.'

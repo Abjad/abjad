@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import subprocess
 from abjad.tools.datastructuretools import TreeContainer
 from abjad.tools.graphtools.GraphvizMixin import GraphvizMixin
@@ -7,10 +6,6 @@ from abjad.tools.topleveltools import new
 
 class GraphvizGraph(GraphvizMixin, TreeContainer):
     r'''A Graphviz graph.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

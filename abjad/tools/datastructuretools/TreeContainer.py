@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import systemtools
 from abjad.tools.datastructuretools.TreeNode import TreeNode
 
 
 class TreeContainer(TreeNode):
     r'''Tree container.
-
-    ::
-
-        >>> import abjad
 
     Inner node in a generalized tree data structure.
 

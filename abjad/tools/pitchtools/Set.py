@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import abc
 import collections
 import types
@@ -13,8 +12,7 @@ class Set(TypedFrozenset):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

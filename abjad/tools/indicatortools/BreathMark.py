@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class BreathMark(AbjadValueObject):
     r'''Breath mark.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -58,8 +53,7 @@ class BreathMark(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     _format_slot = 'after'
 

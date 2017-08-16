@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.scoretools.Leaf import Leaf
 
 
 class MultimeasureRest(Leaf):
     '''Multimeasure rest.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -22,8 +17,7 @@ class MultimeasureRest(Leaf):
 
     __documentation_section__ = 'Leaves'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.timespantools.TimeRelation import TimeRelation
 
 
 class TimespanTimespanTimeRelation(TimeRelation):
     r'''Timespan vs. timespan time relation.
-
-    ::
-
-        >>> import abjad
 
     Score for examples:
 
@@ -178,8 +173,8 @@ class TimespanTimespanTimeRelation(TimeRelation):
             ::
 
                 >>> f(time_relation)
-                abjad.TimespanTimespanTimeRelation(
-                    inequality=abjad.CompoundInequality(
+                abjad.timespantools.TimespanTimespanTimeRelation(
+                    inequality=abjad.timespantools.CompoundInequality(
                         [
                             abjad.TimespanInequality('timespan_1.start_offset <= timespan_2.start_offset'),
                             abjad.TimespanInequality('timespan_2.start_offset < timespan_1.stop_offset'),
@@ -382,9 +377,9 @@ class TimespanTimespanTimeRelation(TimeRelation):
             ::
 
                 >>> timespan_1 = abjad.Timespan((0), (3, 16))
-                >>> time_relation = \
-                ...     abjad.timespantools.timespan_2_starts_during_timespan_1(
-                ...     timespan_1=timespan_1)
+                >>> time_relation = abjad.timespantools.timespan_2_starts_during_timespan_1(
+                ...     timespan_1=timespan_1,
+                ...     )
                 >>> time_relation.get_offset_indices(start_offsets, stop_offsets)
                 (0, 2)
 
@@ -396,9 +391,9 @@ class TimespanTimespanTimeRelation(TimeRelation):
             ::
 
                 >>> timespan_1 = abjad.Timespan((0), (3, 16))
-                >>> time_relation = \
-                ...     abjad.timespantools.timespan_2_starts_after_timespan_1_stops(
-                ...     timespan_1=timespan_1)
+                >>> time_relation =  abjad.timespantools.timespan_2_starts_after_timespan_1_stops(
+                ...     timespan_1=timespan_1,
+                ...     )
                 >>> time_relation.get_offset_indices(start_offsets, stop_offsets)
                 (2, 8)
 
@@ -432,8 +427,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
             >>> timespan_1 = abjad.Timespan(0, 10)
             >>> timespan_2 = abjad.Timespan(5, 15)
-            >>> time_relation = \
-            ...     abjad.timespantools.timespan_2_starts_during_timespan_1(
+            >>> time_relation = abjad.timespantools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan_1,
             ...     timespan_2=timespan_2,
             ...     hold=True,
@@ -453,6 +447,18 @@ class TimespanTimespanTimeRelation(TimeRelation):
         r'''Is true when `timespan_1` and `timespan_2` are both none.
         Otherwise false.
 
+        ::
+
+            >>> timespan_1 = abjad.Timespan(0, 10)
+            >>> timespan_2 = abjad.Timespan(5, 15)
+            >>> time_relation = abjad.timespantools.timespan_2_starts_during_timespan_1(
+            ...     timespan_1=timespan_1,
+            ...     timespan_2=timespan_2,
+            ...     hold=True,
+            ...     )
+
+        ::
+
             >>> time_relation.is_fully_unloaded
             False
 
@@ -466,6 +472,16 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ::
 
+            >>> timespan_1 = abjad.Timespan(0, 10)
+            >>> timespan_2 = abjad.Timespan(5, 15)
+            >>> time_relation = abjad.timespantools.timespan_2_starts_during_timespan_1(
+            ...     timespan_1=timespan_1,
+            ...     timespan_2=timespan_2,
+            ...     hold=True,
+            ...     )
+
+        ::
+
             >>> time_relation.timespan_1
             Timespan(start_offset=Offset(0, 1), stop_offset=Offset(10, 1))
 
@@ -476,6 +492,16 @@ class TimespanTimespanTimeRelation(TimeRelation):
     @property
     def timespan_2(self):
         r'''Time relation timespan ``2``:
+
+        ::
+
+            >>> timespan_1 = abjad.Timespan(0, 10)
+            >>> timespan_2 = abjad.Timespan(5, 15)
+            >>> time_relation = abjad.timespantools.timespan_2_starts_during_timespan_1(
+            ...     timespan_1=timespan_1,
+            ...     timespan_2=timespan_2,
+            ...     hold=True,
+            ...     )
 
         ::
 

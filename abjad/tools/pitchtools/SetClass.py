@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class SetClass(AbjadValueObject):
     r'''Set-class.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

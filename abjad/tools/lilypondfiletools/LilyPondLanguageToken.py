@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools import AbjadValueObject
 
 
 class LilyPondLanguageToken(AbjadValueObject):
     r'''A LilyPond file ``\language`` token.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -20,8 +15,7 @@ class LilyPondLanguageToken(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

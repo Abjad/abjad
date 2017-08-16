@@ -1,26 +1,20 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class SilenceMask(AbjadValueObject):
     r'''Silence mask.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import rhythmmakertools
-
     ..  container:: example
 
         ::
 
             >>> pattern = abjad.index_every([0, 1, 7], period=16)
-            >>> mask = rhythmmakertools.SilenceMask(pattern)
+            >>> mask = abjad.rhythmmakertools.SilenceMask(pattern)
 
         ::
 
             >>> f(mask)
-            rhythmmakertools.SilenceMask(
+            abjad.SilenceMask(
                 pattern=abjad.Pattern(
                     indices=[0, 1, 7],
                     period=16,
@@ -76,7 +70,7 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-                >>> mask = rhythmmakertools.SilenceMask(
+                >>> mask = abjad.rhythmmakertools.SilenceMask(
                 ...     abjad.index_every([0, 1, 7], period=16),
                 ...     use_multimeasure_rests=False,
                 ...     )
@@ -92,7 +86,7 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-                >>> mask = rhythmmakertools.SilenceMask(
+                >>> mask = abjad.rhythmmakertools.SilenceMask(
                 ...     abjad.index_every([0, 1, 7], period=16),
                 ...     use_multimeasure_rests=True,
                 ...     )
@@ -123,7 +117,7 @@ class SilenceMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SilenceMask(
+                abjad.SilenceMask(
                     pattern=abjad.Pattern(
                         indices=[1, 2],
                         ),
@@ -131,7 +125,7 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[mask],
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
@@ -175,7 +169,7 @@ class SilenceMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SilenceMask(
+                abjad.SilenceMask(
                     pattern=abjad.Pattern(
                         indices=[-1, -2],
                         ),
@@ -183,7 +177,7 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[
                 ...         mask,
                 ...         ],
@@ -233,7 +227,7 @@ class SilenceMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SilenceMask(
+                abjad.SilenceMask(
                     pattern=abjad.Pattern(
                         operator='xor',
                         patterns=(
@@ -253,7 +247,7 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[
                 ...         mask,
                 ...         ],
@@ -303,7 +297,7 @@ class SilenceMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SilenceMask(
+                abjad.SilenceMask(
                     pattern=abjad.Pattern(
                         inverted=True,
                         operator='xor',
@@ -324,7 +318,7 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[
                 ...         mask,
                 ...         ],
@@ -387,7 +381,7 @@ class SilenceMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SilenceMask(
+                abjad.SilenceMask(
                     pattern=abjad.Pattern(
                         indices=[0],
                         period=1,
@@ -396,7 +390,7 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[mask],
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
@@ -438,7 +432,7 @@ class SilenceMask(AbjadValueObject):
                 >>> mask = abjad.silence_all(
                 ...     use_multimeasure_rests=True,
                 ...     )
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[mask],
                 ...     )
 
@@ -508,7 +502,7 @@ class SilenceMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SilenceMask(
+                abjad.SilenceMask(
                     pattern=abjad.Pattern(
                         indices=[1],
                         period=2,
@@ -517,7 +511,7 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[mask],
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
@@ -561,7 +555,7 @@ class SilenceMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SilenceMask(
+                abjad.SilenceMask(
                     pattern=abjad.Pattern(
                         indices=[1, 2],
                         period=3,
@@ -570,7 +564,7 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[mask],
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
@@ -614,7 +608,7 @@ class SilenceMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SilenceMask(
+                abjad.SilenceMask(
                     pattern=abjad.Pattern(
                         indices=[-1],
                         inverted=True,
@@ -623,7 +617,7 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[mask],
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
@@ -685,7 +679,7 @@ class SilenceMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SilenceMask(
+                abjad.SilenceMask(
                     pattern=abjad.Pattern(
                         indices=[1, 2],
                         inverted=True,
@@ -694,7 +688,7 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[mask],
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
@@ -739,7 +733,7 @@ class SilenceMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SilenceMask(
+                abjad.SilenceMask(
                     pattern=abjad.Pattern(
                         indices=[-1, -2],
                         inverted=True,
@@ -748,7 +742,7 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[
                 ...         mask,
                 ...         ],
@@ -798,7 +792,7 @@ class SilenceMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SilenceMask(
+                abjad.SilenceMask(
                     pattern=abjad.Pattern(
                         inverted=True,
                         operator='xor',
@@ -819,7 +813,7 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[
                 ...         mask,
                 ...         ],
@@ -883,7 +877,7 @@ class SilenceMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SilenceMask(
+                abjad.SilenceMask(
                     pattern=abjad.Pattern(
                         indices=[0],
                         ),
@@ -891,7 +885,7 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[mask],
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
@@ -935,7 +929,7 @@ class SilenceMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SilenceMask(
+                abjad.SilenceMask(
                     pattern=abjad.Pattern(
                         indices=[0, 1],
                         ),
@@ -943,7 +937,7 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[mask],
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
@@ -987,13 +981,13 @@ class SilenceMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SilenceMask(
+                abjad.SilenceMask(
                     pattern=abjad.Pattern(),
                     )
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[mask],
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
@@ -1058,7 +1052,7 @@ class SilenceMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SilenceMask(
+                abjad.SilenceMask(
                     pattern=abjad.Pattern(
                         indices=[-1],
                         ),
@@ -1066,7 +1060,7 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[mask],
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
@@ -1110,7 +1104,7 @@ class SilenceMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SilenceMask(
+                abjad.SilenceMask(
                     pattern=abjad.Pattern(
                         indices=[-2, -1],
                         ),
@@ -1118,7 +1112,7 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[mask],
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
@@ -1162,13 +1156,13 @@ class SilenceMask(AbjadValueObject):
             ::
 
                 >>> f(mask)
-                rhythmmakertools.SilenceMask(
+                abjad.SilenceMask(
                     pattern=abjad.Pattern(),
                     )
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[mask],
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]

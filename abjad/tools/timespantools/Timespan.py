@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import copy
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
@@ -10,10 +9,6 @@ from abjad.tools.mathtools.BoundedObject import BoundedObject
 
 class Timespan(BoundedObject):
     r'''Timespan.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -136,7 +131,8 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> f(timespan_1)
+            >>> timespan = abjad.Timespan(0, 10)
+            >>> f(timespan)
             abjad.Timespan(
                 start_offset=abjad.Offset(0, 1),
                 stop_offset=abjad.Offset(10, 1),
@@ -152,6 +148,12 @@ class Timespan(BoundedObject):
     def __ge__(self, argument):
         r'''Is true when `argument` start offset is greater or equal
         to timespan start offset.
+
+        ::
+
+            >>> timespan_1 = abjad.Timespan(0, 10)
+            >>> timespan_2 = abjad.Timespan(5, 12)
+            >>> timespan_3 = abjad.Timespan(-2, 2)
 
         ::
 
@@ -181,6 +183,12 @@ class Timespan(BoundedObject):
     def __gt__(self, argument):
         r'''Is true when `argument` start offset is greater than
         timespan start offset.
+
+        ::
+
+            >>> timespan_1 = abjad.Timespan(0, 10)
+            >>> timespan_2 = abjad.Timespan(5, 12)
+            >>> timespan_3 = abjad.Timespan(-2, 2)
 
         ::
 
@@ -234,6 +242,12 @@ class Timespan(BoundedObject):
 
         ::
 
+            >>> timespan_1 = abjad.Timespan(0, 10)
+            >>> timespan_2 = abjad.Timespan(5, 12)
+            >>> timespan_3 = abjad.Timespan(-2, 2)
+
+        ::
+
             >>> timespan_2 <= timespan_3
             False
 
@@ -262,7 +276,11 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> len(timespan_1)
+            >>> timespan = abjad.Timespan(0, 10)
+
+        ::
+
+            >>> len(timespan)
             1
 
         Returns positive integer.
@@ -271,6 +289,12 @@ class Timespan(BoundedObject):
 
     def __lt__(self, argument):
         r'''Is true when `argument` start offset is less than timespan start offset.
+
+        ::
+
+            >>> timespan_1 = abjad.Timespan(0, 10)
+            >>> timespan_2 = abjad.Timespan(5, 12)
+            >>> timespan_3 = abjad.Timespan(-2, 2)
 
         ::
 

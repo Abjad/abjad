@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-
-
 def timespan_2_intersects_timespan_1(
     timespan_1=None,
     timespan_2=None,
@@ -9,27 +6,23 @@ def timespan_2_intersects_timespan_1(
     r'''Makes time relation indicating that `timespan_2` intersects
     `timespan_1`.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
 
             >>> relation = abjad.timespantools.timespan_2_intersects_timespan_1()
             >>> f(relation)
-            abjad.TimespanTimespanTimeRelation(
-                inequality=abjad.CompoundInequality(
+            abjad.timespantools.TimespanTimespanTimeRelation(
+                inequality=abjad.timespantools.CompoundInequality(
                     [
-                        abjad.CompoundInequality(
+                        abjad.timespantools.CompoundInequality(
                             [
                                 abjad.TimespanInequality('timespan_1.start_offset <= timespan_2.start_offset'),
                                 abjad.TimespanInequality('timespan_2.start_offset < timespan_1.stop_offset'),
                                 ],
                             logical_operator='and',
                             ),
-                        abjad.CompoundInequality(
+                        abjad.timespantools.CompoundInequality(
                             [
                                 abjad.TimespanInequality('timespan_2.start_offset <= timespan_1.start_offset'),
                                 abjad.TimespanInequality('timespan_1.start_offset < timespan_2.stop_offset'),

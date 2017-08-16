@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools import ContextManager
 
 
@@ -10,8 +9,7 @@ class NullContextManager(ContextManager):
 
     __documentation_section__ = 'Context managers'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

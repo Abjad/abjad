@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.Vector import Vector
 
 
 class IntervalVector(Vector):
     r'''Interval vector.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -53,8 +48,7 @@ class IntervalVector(Vector):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -89,7 +83,7 @@ class IntervalVector(Vector):
 
             ::
 
-                >>> segment = abjad.PitchSegment(
+                >>> pitch_segment = abjad.PitchSegment(
                 ...     items=[0, 11, 7, 4, 2, 9, 3, 8, 10, 1, 5, 6],
                 ...     )
                 >>> vector = abjad.IntervalVector(

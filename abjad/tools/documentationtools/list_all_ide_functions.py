@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-
-
 def list_all_ide_functions(modules=None):
     r'''Lists all public functions defined in Abjad IDE.
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import sys
 from abjad.tools.abctools import ContextManager
 
@@ -6,19 +5,11 @@ from abjad.tools.abctools import ContextManager
 class RedirectedStreams(ContextManager):
     r'''A context manager for capturing stdout and stderr output.
 
-    ::
-
-        >>> import abjad
-
     ..  container:: example
 
         ::
 
-            >>> try:
-            ...     from StringIO import StringIO
-            ... except ImportError:
-            ...     from io import StringIO
-            ...
+            >>> from io import StringIO
             >>> string_io = StringIO()
             >>> with abjad.RedirectedStreams(stdout=string_io):
             ...     print("hello, world!")

@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 
 
 class ReSTOnlyDirective(ReSTDirective):
     r'''A ReST `only` directive.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -45,8 +40,7 @@ class ReSTOnlyDirective(ReSTDirective):
 
     __documentation_section__ = 'reStructuredText'
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class MeasureMaker(AbjadValueObject):
     r'''Measure-maker.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

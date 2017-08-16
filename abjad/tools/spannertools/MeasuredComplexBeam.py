@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import scoretools
 from abjad.tools.spannertools.ComplexBeam import ComplexBeam
 
 
 class MeasuredComplexBeam(ComplexBeam):
     r'''Measured complex beam.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

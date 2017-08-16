@@ -1,12 +1,5 @@
-# -*- coding: utf-8 -*-
-
-
 def integer_to_binary_string(n):
     r'''Changes positive integer `n` to binary string.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

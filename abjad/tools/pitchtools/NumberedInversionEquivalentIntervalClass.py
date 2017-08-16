@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import numbers
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.NumberedIntervalClass import NumberedIntervalClass
@@ -6,10 +5,6 @@ from abjad.tools.pitchtools.NumberedIntervalClass import NumberedIntervalClass
 
 class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
     '''Numbered inversion-equivalent interval-class.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

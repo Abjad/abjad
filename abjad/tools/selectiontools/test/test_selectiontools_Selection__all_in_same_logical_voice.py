@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import abjad
 selector = abjad.select().by_leaf(flatten=True)
 

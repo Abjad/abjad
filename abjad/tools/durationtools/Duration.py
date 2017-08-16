@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import copy
 import math
 import re
@@ -12,10 +11,6 @@ from abjad.tools.topleveltools.setting import setting
 
 class Duration(AbjadObject, Fraction):
     r'''Duration.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -133,8 +128,7 @@ class Duration(AbjadObject, Fraction):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### CONSTRUCTOR ###
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 import importlib
 import types
@@ -6,10 +5,6 @@ import types
 
 def list_all_classes(modules=None, ignored_classes=None):
     r'''Lists all public classes defined in `path`.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 import abjad
 from abjad.tools import quantizationtools
 
 
 def test_quantizationtools_BeatwiseQSchema___getitem___01():
 
-    schema = quantizationtools.BeatwiseQSchema()
+    schema = abjad.quantizationtools.BeatwiseQSchema()
 
     assert schema[0] == schema[1] == schema[2] == {
         'beatspan': abjad.Duration(1, 4),
@@ -16,16 +15,16 @@ def test_quantizationtools_BeatwiseQSchema___getitem___01():
 
 def test_quantizationtools_BeatwiseQSchema___getitem___02():
 
-    item_a = quantizationtools.BeatwiseQSchemaItem(
-        search_tree=quantizationtools.UnweightedSearchTree({2: None}))
-    item_b = quantizationtools.BeatwiseQSchemaItem(tempo=((1, 4), 76))
-    item_c = quantizationtools.BeatwiseQSchemaItem(beatspan=(1, 8),
-        search_tree=quantizationtools.UnweightedSearchTree({5: None}))
+    item_a = abjad.quantizationtools.BeatwiseQSchemaItem(
+        search_tree=abjad.quantizationtools.UnweightedSearchTree({2: None}))
+    item_b = abjad.quantizationtools.BeatwiseQSchemaItem(tempo=((1, 4), 76))
+    item_c = abjad.quantizationtools.BeatwiseQSchemaItem(beatspan=(1, 8),
+        search_tree=abjad.quantizationtools.UnweightedSearchTree({5: None}))
 
-    schema = quantizationtools.BeatwiseQSchema(
+    schema = abjad.quantizationtools.BeatwiseQSchema(
         {2: item_a, 4: item_b, 7: item_c},
         beatspan=abjad.Duration(1, 32),
-        search_tree=quantizationtools.UnweightedSearchTree({3: None}),
+        search_tree=abjad.quantizationtools.UnweightedSearchTree({3: None}),
         tempo=abjad.MetronomeMark((1, 16), 36)
         )
 

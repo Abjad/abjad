@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 from abjad.tools import abctools
 from abjad.tools.topleveltools import new
@@ -6,10 +5,6 @@ from abjad.tools.topleveltools import new
 
 class Duplication(abctools.AbjadValueObject):
     r'''Duplication.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example:
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import copy
 from abjad.tools import datastructuretools
 from abjad.tools import systemtools
@@ -7,10 +6,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 class Articulation(AbjadValueObject):
     r'''Articulation.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

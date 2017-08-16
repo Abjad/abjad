@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import indicatortools
 from abjad.tools import scoretools
 from abjad.tools.spannertools.Spanner import Spanner
@@ -6,10 +5,6 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 class Hairpin(Spanner):
     r'''Hairpin.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

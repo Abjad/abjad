@@ -1,12 +1,5 @@
-# -*- coding: utf-8 -*-
-
-
 def weight(argument):
     r'''Gets weight of `argument`.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

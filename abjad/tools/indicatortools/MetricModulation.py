@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 from abjad.tools import durationtools
 from abjad.tools import markuptools
@@ -8,10 +7,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 class MetricModulation(AbjadValueObject):
     r'''Metric modulation.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

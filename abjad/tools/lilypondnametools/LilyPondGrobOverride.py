@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class LilyPondGrobOverride(AbjadValueObject):
     r'''LilyPond grob override.
-
-    ::
-
-        >>> import abjad
 
     ::
 

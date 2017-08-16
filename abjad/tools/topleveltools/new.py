@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 import types
 
 
 def new(argument, **keywords):
     r'''Makes new `argument` with optional `keywords`.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

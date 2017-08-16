@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.schemetools.Scheme import Scheme
 
 
 class SchemeAssociativeList(Scheme):
     '''Abjad model of Scheme associative list.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -35,8 +30,7 @@ class SchemeAssociativeList(Scheme):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import abc
 import functools
 from abjad.tools.abctools import AbjadValueObject
@@ -7,17 +6,11 @@ from abjad.tools.abctools import AbjadValueObject
 @functools.total_ordering
 class IntervalClass(AbjadValueObject):
     '''Abstract interval-class.
-
-    ::
-
-        >> import abjad
-
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 

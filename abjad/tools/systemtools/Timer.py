@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function
 import os
 import subprocess
 import time
@@ -8,10 +6,6 @@ from abjad.tools.abctools import ContextManager
 
 class Timer(ContextManager):
     r'''A timing context manager.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

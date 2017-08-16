@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Tuba(Instrument):
     r'''Tuba.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -37,8 +32,7 @@ class Tuba(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -78,6 +72,7 @@ class Tuba(Instrument):
 
             ::
 
+                >>> tuba = abjad.instrumenttools.Tuba()
                 >>> tuba.allowable_clefs
                 ClefList([Clef(name='bass')])
 
@@ -97,6 +92,7 @@ class Tuba(Instrument):
 
             ::
 
+                >>> tuba = abjad.instrumenttools.Tuba()
                 >>> tuba.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -116,6 +112,7 @@ class Tuba(Instrument):
 
             ::
 
+                >>> tuba = abjad.instrumenttools.Tuba()
                 >>> tuba.name
                 'tuba'
 
@@ -131,6 +128,7 @@ class Tuba(Instrument):
 
             ::
 
+                >>> tuba = abjad.instrumenttools.Tuba()
                 >>> tuba.name_markup
                 Markup(contents=['Tuba'])
 
@@ -150,6 +148,7 @@ class Tuba(Instrument):
 
             ::
 
+                >>> tuba = abjad.instrumenttools.Tuba()
                 >>> tuba.pitch_range
                 PitchRange('[D1, F4]')
 
@@ -169,6 +168,7 @@ class Tuba(Instrument):
 
             ::
 
+                >>> tuba = abjad.instrumenttools.Tuba()
                 >>> tuba.short_name
                 'tb.'
 
@@ -184,6 +184,7 @@ class Tuba(Instrument):
 
             ::
 
+                >>> tuba = abjad.instrumenttools.Tuba()
                 >>> tuba.short_name_markup
                 Markup(contents=['Tb.'])
 

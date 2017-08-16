@@ -1,15 +1,9 @@
-# -*- coding: utf-8 -*-
 import collections
 from abjad.tools.abctools import AbjadValueObject
 
 
 class ItemSelectorCallback(AbjadValueObject):
     r'''Item selector callback.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###

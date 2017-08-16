@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools.abctools import Parser
@@ -6,11 +5,6 @@ from abjad.tools.abctools import Parser
 
 class RhythmTreeParser(Parser):
     r'''Rhythm-tree parser.
-
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import rhythmtreetools
 
     ..  container:: example
 
@@ -21,7 +15,7 @@ class RhythmTreeParser(Parser):
 
         ::
 
-            >>> parser = rhythmtreetools.RhythmTreeParser()
+            >>> parser = abjad.rhythmtreetools.RhythmTreeParser()
 
         ::
 
@@ -34,40 +28,40 @@ class RhythmTreeParser(Parser):
         ::
 
             >>> f(rhythm_tree_container)
-            rhythmtreetools.RhythmTreeContainer(
+            abjad.rhythmtreetools.RhythmTreeContainer(
                 children=(
-                    rhythmtreetools.RhythmTreeLeaf(
+                    abjad.rhythmtreetools.RhythmTreeLeaf(
                         preprolated_duration=abjad.Duration(1, 1),
                         is_pitched=True,
                         ),
-                    rhythmtreetools.RhythmTreeContainer(
+                    abjad.rhythmtreetools.RhythmTreeContainer(
                         children=(
-                            rhythmtreetools.RhythmTreeContainer(
+                            abjad.rhythmtreetools.RhythmTreeContainer(
                                 children=(
-                                    rhythmtreetools.RhythmTreeLeaf(
+                                    abjad.rhythmtreetools.RhythmTreeLeaf(
                                         preprolated_duration=abjad.Duration(1, 1),
                                         is_pitched=True,
                                         ),
-                                    rhythmtreetools.RhythmTreeLeaf(
+                                    abjad.rhythmtreetools.RhythmTreeLeaf(
                                         preprolated_duration=abjad.Duration(1, 1),
                                         is_pitched=True,
                                         ),
-                                    rhythmtreetools.RhythmTreeLeaf(
+                                    abjad.rhythmtreetools.RhythmTreeLeaf(
                                         preprolated_duration=abjad.Duration(1, 1),
                                         is_pitched=True,
                                         ),
                                     ),
                                 preprolated_duration=abjad.Duration(2, 1),
                                 ),
-                            rhythmtreetools.RhythmTreeLeaf(
+                            abjad.rhythmtreetools.RhythmTreeLeaf(
                                 preprolated_duration=abjad.Duration(2, 1),
                                 is_pitched=True,
                                 ),
-                            rhythmtreetools.RhythmTreeLeaf(
+                            abjad.rhythmtreetools.RhythmTreeLeaf(
                                 preprolated_duration=abjad.Duration(2, 1),
                                 is_pitched=True,
                                 ),
-                            rhythmtreetools.RhythmTreeLeaf(
+                            abjad.rhythmtreetools.RhythmTreeLeaf(
                                 preprolated_duration=abjad.Duration(1, 1),
                                 is_pitched=True,
                                 ),
@@ -107,8 +101,7 @@ class RhythmTreeParser(Parser):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### PUBLIC PROPERTIES ###
 

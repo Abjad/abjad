@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.datastructuretools.TypedList import TypedList
 
 
@@ -8,8 +7,7 @@ class PerformerList(TypedList):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### PUBLIC METHODS ###
 

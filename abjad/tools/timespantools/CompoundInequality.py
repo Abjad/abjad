@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class CompoundInequality(TypedList):
     '''Compound time-relation inequality.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -28,16 +23,16 @@ class CompoundInequality(TypedList):
         ::
 
             >>> f(compound_inequality)
-            abjad.CompoundInequality(
+            abjad.timespantools.CompoundInequality(
                 [
-                    abjad.CompoundInequality(
+                    abjad.timespantools.CompoundInequality(
                         [
                             abjad.TimespanInequality('timespan_1.start_offset <= timespan_2.start_offset'),
                             abjad.TimespanInequality('timespan_2.start_offset < timespan_1.stop_offset'),
                             ],
                         logical_operator='and',
                         ),
-                    abjad.CompoundInequality(
+                    abjad.timespantools.CompoundInequality(
                         [
                             abjad.TimespanInequality('timespan_2.start_offset <= timespan_1.start_offset'),
                             abjad.TimespanInequality('timespan_1.start_offset < timespan_2.stop_offset'),

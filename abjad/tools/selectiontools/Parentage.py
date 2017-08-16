@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 from abjad.tools import durationtools
 from abjad.tools import mathtools
@@ -7,10 +6,6 @@ from abjad.tools.selectiontools.Selection import Selection
 
 class Parentage(Selection):
     r'''Parentage of a component.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 

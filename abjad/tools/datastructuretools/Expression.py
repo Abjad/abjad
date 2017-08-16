@@ -1,8 +1,3 @@
-# -*- coding: utf-8 -*-
-try:
-    import funcsigs
-except ImportError:
-    import inspect as funcsigs
 import inspect
 import numbers
 from abjad.tools import systemtools
@@ -11,10 +6,6 @@ from abjad.tools.abctools import AbjadValueObject
 
 class Expression(AbjadValueObject):
     r'''Expression.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example expression
 
@@ -1222,15 +1213,14 @@ class Expression(AbjadValueObject):
             if static_class:
                 method_name = frame.f_code.co_name
                 static_method = getattr(static_class, method_name)
-                #signature = inspect.signature(static_method)
-                signature = funcsigs.signature(static_method)
+                signature = inspect.signature(static_method)
                 argument_names = argument_info.args[:]
             else:
                 assert argument_info.args[0] == 'self'
                 self = argument_info.locals['self']
                 function = getattr(self, function_name)
                 #signature = inspect.signature(function)
-                signature = funcsigs.signature(function)
+                signature = inspect.signature(function)
                 argument_names = argument_info.args[1:]
             argument_strings = []
             for argument_name in argument_names:
@@ -1252,7 +1242,7 @@ class Expression(AbjadValueObject):
 
     @staticmethod
     def _wrap_arguments_new(method, argument_values):
-        signature = funcsigs.signature(method)
+        signature = inspect.signature(method)
         argument_names = [_ for _ in signature.parameters][1:]
         argument_strings = []
         for argument_name in argument_names:

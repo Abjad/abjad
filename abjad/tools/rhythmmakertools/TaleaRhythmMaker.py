@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
@@ -18,19 +17,14 @@ from abjad.tools.topleveltools import select
 class TaleaRhythmMaker(RhythmMaker):
     r'''Talea rhythm-maker.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import rhythmmakertools
-
     ..  container:: example
 
         Repeats talea of 1/16, 2/16, 3/16, 4/16:
 
         ::
 
-            >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-            ...     talea=rhythmmakertools.Talea(
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
             ...         counts=[1, 2, 3, 4],
             ...         denominator=16,
             ...         ),
@@ -83,8 +77,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-            ...     talea=rhythmmakertools.Talea(
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
             ...         counts=[1, 2, 3, 4],
             ...         denominator=16,
             ...         ),
@@ -93,8 +87,8 @@ class TaleaRhythmMaker(RhythmMaker):
         ::
 
             >>> f(rhythm_maker)
-            rhythmmakertools.TaleaRhythmMaker(
-                talea=rhythmmakertools.Talea(
+            abjad.rhythmmakertools.TaleaRhythmMaker(
+                talea=abjad.rhythmmakertools.Talea(
                     counts=[1, 2, 3, 4],
                     denominator=16,
                     ),
@@ -248,8 +242,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
                 ...         ),
@@ -288,8 +282,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Formats talea rhythm-maker:
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
                 ...         ),
@@ -298,8 +292,8 @@ class TaleaRhythmMaker(RhythmMaker):
             ::
 
                 >>> f(rhythm_maker)
-                rhythmmakertools.TaleaRhythmMaker(
-                    talea=rhythmmakertools.Talea(
+                abjad.rhythmmakertools.TaleaRhythmMaker(
+                    talea=abjad.rhythmmakertools.Talea(
                         counts=[1, 2, 3, 4],
                         denominator=16,
                         ),
@@ -309,8 +303,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Storage formats talea rhythm-maker:
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
                 ...         ),
@@ -319,8 +313,8 @@ class TaleaRhythmMaker(RhythmMaker):
             ::
 
                 >>> f(rhythm_maker)
-                rhythmmakertools.TaleaRhythmMaker(
-                    talea=rhythmmakertools.Talea(
+                abjad.rhythmmakertools.TaleaRhythmMaker(
+                    talea=abjad.rhythmmakertools.Talea(
                         counts=[1, 2, 3, 4],
                         denominator=16,
                         ),
@@ -338,8 +332,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
                 ...         ),
@@ -389,8 +383,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
                 ...         ),
@@ -734,12 +728,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1],
                 ...         denominator=16,
                 ...         ),
-                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
                 ...         beam_each_division=True,
                 ...         ),
                 ...     )
@@ -806,12 +800,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1],
                 ...         denominator=16,
                 ...         ),
-                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
                 ...         beam_divisions_together=True,
                 ...         ),
                 ...     )
@@ -934,12 +928,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1],
                 ...         denominator=16,
                 ...         ),
-                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
                 ...         beam_each_division=False,
                 ...         beam_divisions_together=False,
                 ...         ),
@@ -1007,12 +1001,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1, 1, 1, -1],
                 ...         denominator=16,
                 ...         ),
-                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
                 ...         beam_each_division=True,
                 ...         ),
                 ...     )
@@ -1079,12 +1073,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1, 1, 1, -1],
                 ...         denominator=16,
                 ...         ),
-                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
                 ...         beam_each_division=True,
                 ...         beam_rests=True,
                 ...         ),
@@ -1152,12 +1146,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1, 1, 1, -1],
                 ...         denominator=16,
                 ...         ),
-                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
                 ...         beam_each_division=True,
                 ...         beam_rests=True,
                 ...         stemlet_length=0.75,
@@ -1244,12 +1238,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
                 ...         ),
-                ...     burnish_specifier=rhythmmakertools.BurnishSpecifier(
+                ...     burnish_specifier=abjad.rhythmmakertools.BurnishSpecifier(
                 ...         left_classes=[abjad.Rest],
                 ...         left_counts=[1],
                 ...         right_classes=[abjad.Rest],
@@ -1305,12 +1299,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
                 ...         ),
-                ...     burnish_specifier=rhythmmakertools.BurnishSpecifier(
+                ...     burnish_specifier=abjad.rhythmmakertools.BurnishSpecifier(
                 ...         left_classes=[abjad.Rest],
                 ...         left_counts=[1],
                 ...         ),
@@ -1373,8 +1367,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
                 ...         ),
@@ -1427,13 +1421,13 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
                 ...         ),
                 ...     division_masks=[
-                ...         rhythmmakertools.SilenceMask(
+                ...         abjad.rhythmmakertools.SilenceMask(
                 ...             pattern=abjad.index_every([1], period=2),
                 ...             ),
                 ...         ],
@@ -1480,8 +1474,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
                 ...         ),
@@ -1531,14 +1525,14 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1],
                 ...         denominator=16,
                 ...         ),
                 ...     split_divisions_by_counts=[9],
                 ...     division_masks=[
-                ...         rhythmmakertools.SilenceMask(
+                ...         abjad.rhythmmakertools.SilenceMask(
                 ...             pattern=abjad.index_every([1], period=2),
                 ...             ),
                 ...         ],
@@ -1595,8 +1589,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1],
                 ...         denominator=16,
                 ...         ),
@@ -1671,12 +1665,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[5],
                 ...         denominator=16,
                 ...         ),
-                ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
                 ...         decrease_monotonic=True,
                 ...         ),
                 ...     )
@@ -1723,12 +1717,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[5],
                 ...         denominator=16,
                 ...         ),
-                ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
                 ...         decrease_monotonic=False,
                 ...         ),
                 ...     )
@@ -1774,12 +1768,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1, 1, 1, 1, 4, 4],
                 ...         denominator=16,
                 ...         ),
-                ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
                 ...         forbidden_duration=None,
                 ...         ),
                 ...     )
@@ -1821,12 +1815,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Forbids durations equal to ``1/4`` or greater:
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1, 1, 1, 1, 4, 4],
                 ...         denominator=16,
                 ...         ),
-                ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
                 ...         forbidden_duration=(1, 4),
                 ...         ),
                 ...     )
@@ -1874,12 +1868,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Spells all durations metrically:
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[5, 4],
                 ...         denominator=16,
                 ...         ),
-                ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
                 ...         spell_metrically=True,
                 ...         ),
                 ...     )
@@ -1928,12 +1922,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Spells unassignable durations metrically:
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[5, 4],
                 ...         denominator=16,
                 ...         ),
-                ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
                 ...         spell_metrically='unassignable',
                 ...         ),
                 ...     )
@@ -1978,12 +1972,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Rewrites meter:
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[5, 4],
                 ...         denominator=16,
                 ...         ),
-                ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
                 ...         rewrite_meter=True,
                 ...         ),
                 ...     )
@@ -2042,8 +2036,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
                 ...         ),
@@ -2096,8 +2090,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
                 ...         ),
@@ -2159,8 +2153,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
                 ...         ),
@@ -2227,8 +2221,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
                 ...         ),
@@ -2312,11 +2306,11 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
                 ...     logical_tie_masks=[
                 ...         abjad.silence_every([2], period=3),
                 ...         ],
-                ...     talea=rhythmmakertools.Talea(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
                 ...         ),
@@ -2366,12 +2360,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
                 ...     logical_tie_masks=[
                 ...         abjad.silence_first(),
                 ...         abjad.silence_last(),
                 ...         ],
-                ...     talea=rhythmmakertools.Talea(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
                 ...         ),
@@ -2430,8 +2424,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
                 ...         ),
@@ -2481,9 +2475,9 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
                 ...     read_talea_once_only=True,
-                ...     talea=rhythmmakertools.Talea(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
                 ...         ),
@@ -2526,8 +2520,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
                 ...         ),
@@ -2577,9 +2571,9 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
                 ...     rest_tied_notes=True,
-                ...     talea=rhythmmakertools.Talea(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
                 ...         ),
@@ -2645,8 +2639,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[2],
                 ...         denominator=32,
                 ...         ),
@@ -2712,8 +2706,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[2],
                 ...         denominator=32,
                 ...         ),
@@ -2782,8 +2776,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[2],
                 ...         denominator=32,
                 ...         ),
@@ -2874,7 +2868,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker()
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker()
 
             ::
 
@@ -2912,8 +2906,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
                 ...         ),
@@ -2973,8 +2967,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[5, 3, 3, 3],
                 ...         denominator=16,
                 ...         ),
@@ -3024,12 +3018,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[5, 3, 3, 3],
                 ...         denominator=16,
                 ...         ),
-                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=True,
                 ...         ),
                 ...     )
@@ -3082,12 +3076,12 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     indices=[0],
                 ...     period=2,
                 ...     )
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[5, 3, 3, 3],
                 ...         denominator=16,
                 ...         ),
-                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=pattern,
                 ...         ),
                 ...     )
@@ -3136,12 +3130,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[5, 3, 3, 3],
                 ...         denominator=16,
                 ...         ),
-                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=True,
                 ...         use_messiaen_style_ties=True,
                 ...         ),
@@ -3191,12 +3185,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[5, -3, 3, 3],
                 ...         denominator=16,
                 ...         ),
-                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
                 ...         tie_consecutive_notes=True,
                 ...         ),
                 ...     )
@@ -3269,9 +3263,9 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
                 ...     extra_counts_per_division=[0, 4],
-                ...     talea=rhythmmakertools.Talea(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[3, 3, 6, 6],
                 ...         denominator=16,
                 ...         ),
@@ -3327,13 +3321,13 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
                 ...     extra_counts_per_division=[0, 4],
-                ...     talea=rhythmmakertools.Talea(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[3, 3, 6, 6],
                 ...         denominator=16,
                 ...         ),
-                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
                 ...         simplify_redundant_tuplets=True,
                 ...         ),
                 ...     )
@@ -3388,9 +3382,9 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
                 ...     extra_counts_per_division=[1, 0],
-                ...     talea=rhythmmakertools.Talea(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[3, 3, -6, -6],
                 ...         denominator=16,
                 ...         ),
@@ -3451,13 +3445,13 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
+                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
                 ...     extra_counts_per_division=[1, 0],
-                ...     talea=rhythmmakertools.Talea(
+                ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[3, 3, -6, -6],
                 ...         denominator=16,
                 ...         ),
-                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
                 ...         rewrite_rest_filled_tuplets=True,
                 ...         ),
                 ...     )

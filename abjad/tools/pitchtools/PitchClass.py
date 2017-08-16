@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import abc
 import functools
 import re
@@ -9,17 +8,11 @@ from abjad.tools.pitchtools.Accidental import Accidental
 @functools.total_ordering
 class PitchClass(AbjadValueObject):
     '''Abstract pitch-class.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     _diatonic_pitch_class_name_regex_body = '''
         ([a-g,A-G]) # exactly one lowercase a - g or uppercase A - G

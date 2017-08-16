@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import copy
 from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadObject
@@ -6,10 +5,6 @@ from abjad.tools.abctools import AbjadObject
 
 class TreeNode(AbjadObject):
     r'''Tree node.
-
-    ::
-
-        >>> import abjad
 
     Node in a generalized tree.
     '''

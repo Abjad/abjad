@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.durationtools.Duration import Duration
 
 
 class Multiplier(Duration):
     '''Multiplier.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -143,8 +138,7 @@ class Multiplier(Duration):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

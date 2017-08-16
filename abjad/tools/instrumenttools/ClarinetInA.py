@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class ClarinetInA(Instrument):
     r'''Clarinet in A.
-
-    ::
-
-        >>> import abjad
 
     ..  container:: example
 
@@ -38,8 +33,7 @@ class ClarinetInA(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -81,6 +75,7 @@ class ClarinetInA(Instrument):
 
             ::
 
+                >>> clarinet = abjad.instrumenttools.ClarinetInA()
                 >>> clarinet.allowable_clefs
                 ClefList([Clef(name='treble')])
 
@@ -100,6 +95,7 @@ class ClarinetInA(Instrument):
 
             ::
 
+                >>> clarinet = abjad.instrumenttools.ClarinetInA()
                 >>> clarinet.middle_c_sounding_pitch
                 NamedPitch('a')
 
@@ -119,6 +115,7 @@ class ClarinetInA(Instrument):
 
             ::
 
+                >>> clarinet = abjad.instrumenttools.ClarinetInA()
                 >>> clarinet.name
                 'clarinet in A'
 
@@ -134,6 +131,7 @@ class ClarinetInA(Instrument):
 
             ::
 
+                >>> clarinet = abjad.instrumenttools.ClarinetInA()
                 >>> clarinet.name_markup
                 Markup(contents=['Clarinet in A'])
 
@@ -153,6 +151,7 @@ class ClarinetInA(Instrument):
 
             ::
 
+                >>> clarinet = abjad.instrumenttools.ClarinetInA()
                 >>> clarinet.pitch_range
                 PitchRange('[Db3, A6]')
 
@@ -172,6 +171,7 @@ class ClarinetInA(Instrument):
 
             ::
 
+                >>> clarinet = abjad.instrumenttools.ClarinetInA()
                 >>> clarinet.short_name
                 'cl. A \\natural'
 
@@ -187,6 +187,7 @@ class ClarinetInA(Instrument):
 
             ::
 
+                >>> clarinet = abjad.instrumenttools.ClarinetInA()
                 >>> clarinet.short_name_markup
                 Markup(contents=['Cl.', 'A', MarkupCommand('natural')])
 

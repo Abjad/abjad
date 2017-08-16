@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import abc
 import functools
 import math
@@ -13,11 +12,6 @@ from abjad.tools.pitchtools.PitchClass import PitchClass
 @functools.total_ordering
 class Pitch(AbjadValueObject):
     '''Abstract pitch.
-
-    ::
-
-        >>> import abjad
-
     '''
 
     ### CLASS VARIABLES ###
