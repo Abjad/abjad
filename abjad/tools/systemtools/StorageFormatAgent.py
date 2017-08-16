@@ -1,11 +1,8 @@
 import collections
 import importlib
+import inspect
 import types
 from abjad.tools.abctools import AbjadValueObject
-try:
-    import funcsigs
-except ImportError:
-    import inspect as funcsigs
 
 
 class StorageFormatAgent(AbjadValueObject):
@@ -718,7 +715,7 @@ class StorageFormatAgent(AbjadValueObject):
         if not isinstance(subject, type):
             subject = type(subject)
         try:
-            signature = funcsigs.signature(subject)
+            signature = inspect.signature(subject)
         except ValueError:
             return (
                 positional_names,
@@ -727,18 +724,18 @@ class StorageFormatAgent(AbjadValueObject):
                 accepts_kwargs,
                 )
         for name, parameter in signature.parameters.items():
-            if parameter.kind == funcsigs._POSITIONAL_OR_KEYWORD:
+            if parameter.kind == inspect._POSITIONAL_OR_KEYWORD:
                 if parameter.default == parameter.empty:
                     positional_names.append(name)
                 else:
                     keyword_names.append(name)
             # Python 3 allow keyword only parameters:
-            elif (hasattr(funcsigs, '_KEYWORD_ONLY') and
-                parameter.kind == funcsigs._KEYWORD_ONLY):
+            elif (hasattr(inspect, '_KEYWORD_ONLY') and
+                parameter.kind == inspect._KEYWORD_ONLY):
                 keyword_names.append(name)
-            elif parameter.kind == funcsigs._VAR_POSITIONAL:
+            elif parameter.kind == inspect._VAR_POSITIONAL:
                 accepts_args = True
-            elif parameter.kind == funcsigs._VAR_KEYWORD:
+            elif parameter.kind == inspect._VAR_KEYWORD:
                 accepts_kwargs = True
         return (
             positional_names,
