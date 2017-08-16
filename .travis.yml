@@ -58,6 +58,7 @@ install:
 script:
     - coverage run -a `which jupyter` nbconvert --to=html --ExecutePreprocessor.enabled=True abjad/ext/abjad-ipython-notebook-test-no-audio.ipynb
     - coverage run -a `which py.test`
+    - abjad/scr/ajv api -M
 
 after_success:
     - coveralls
