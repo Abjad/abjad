@@ -2,9 +2,9 @@ import abjad
 import pytest
 
 
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_01():
+def test_scoretools_Tuplet_from_ratio_and_pair_01():
 
-    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+    tuplet = abjad.Tuplet.from_ratio_and_pair(
         abjad.NonreducedRatio((1, 2, 4)),
         abjad.NonreducedFraction(6, 16),
         )
@@ -21,9 +21,9 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_01():
         )
 
 
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_02():
+def test_scoretools_Tuplet_from_ratio_and_pair_02():
 
-    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+    tuplet = abjad.Tuplet.from_ratio_and_pair(
         abjad.NonreducedRatio((1, 1, 2, 4)),
         abjad.NonreducedFraction(6, 16),
         )
@@ -41,9 +41,9 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_02():
         )
 
 
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_03():
+def test_scoretools_Tuplet_from_ratio_and_pair_03():
 
-    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+    tuplet = abjad.Tuplet.from_ratio_and_pair(
         abjad.NonreducedRatio((-2, 3, 7)),
         abjad.NonreducedFraction(7, 16),
         )
@@ -59,9 +59,9 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_03():
         '''
         )
 
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_04():
+def test_scoretools_Tuplet_from_ratio_and_pair_04():
 
-    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+    tuplet = abjad.Tuplet.from_ratio_and_pair(
         abjad.NonreducedRatio((7, 7, -4, -1)),
         abjad.NonreducedFraction(1, 4),
         )
@@ -78,9 +78,9 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_04():
         )
 
 
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_05():
+def test_scoretools_Tuplet_from_ratio_and_pair_05():
 
-    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+    tuplet = abjad.Tuplet.from_ratio_and_pair(
         abjad.NonreducedRatio((1, 2, 2)),
         abjad.NonreducedFraction(12, 16),
         )
@@ -97,9 +97,9 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_05():
         )
 
 
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_06():
+def test_scoretools_Tuplet_from_ratio_and_pair_06():
 
-    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+    tuplet = abjad.Tuplet.from_ratio_and_pair(
         abjad.NonreducedRatio((2, 4, 4)),
         abjad.NonreducedFraction(12, 16),
         )
@@ -116,9 +116,9 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_06():
         )
 
 
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_07():
+def test_scoretools_Tuplet_from_ratio_and_pair_07():
 
-    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+    tuplet = abjad.Tuplet.from_ratio_and_pair(
         abjad.NonreducedRatio((4, 8, 8)),
         abjad.NonreducedFraction(12, 16),
         )
@@ -135,9 +135,9 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_07():
         )
 
 
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_08():
+def test_scoretools_Tuplet_from_ratio_and_pair_08():
 
-    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+    tuplet = abjad.Tuplet.from_ratio_and_pair(
         abjad.NonreducedRatio((8, 16, 16)),
         abjad.NonreducedFraction(12, 16),
         )
@@ -154,9 +154,9 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_08():
         )
 
 
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_09():
+def test_scoretools_Tuplet_from_ratio_and_pair_09():
 
-    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+    tuplet = abjad.Tuplet.from_ratio_and_pair(
         abjad.NonreducedRatio((2, 4, 4)),
         abjad.NonreducedFraction(3, 16),
         )
@@ -173,9 +173,9 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_09():
         )
 
 
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_10():
+def test_scoretools_Tuplet_from_ratio_and_pair_10():
 
-    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+    tuplet = abjad.Tuplet.from_ratio_and_pair(
         abjad.NonreducedRatio((2, 4, 4)),
         abjad.NonreducedFraction(6, 16),
         )
@@ -192,9 +192,9 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_10():
         )
 
 
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_11():
+def test_scoretools_Tuplet_from_ratio_and_pair_11():
 
-    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+    tuplet = abjad.Tuplet.from_ratio_and_pair(
         abjad.NonreducedRatio((2, 4, 4)),
         abjad.NonreducedFraction(12, 16),
         )
@@ -211,9 +211,9 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_11():
         )
 
 
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_12():
+def test_scoretools_Tuplet_from_ratio_and_pair_12():
 
-    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+    tuplet = abjad.Tuplet.from_ratio_and_pair(
         abjad.NonreducedRatio((2, 4, 4)),
         abjad.NonreducedFraction(24, 16),
         )
@@ -230,9 +230,9 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_12():
         )
 
 
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_13():
+def test_scoretools_Tuplet_from_ratio_and_pair_13():
 
-    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+    tuplet = abjad.Tuplet.from_ratio_and_pair(
         abjad.NonreducedRatio((1, 2, 2)),
         abjad.NonreducedFraction(6, 2),
         )
@@ -249,9 +249,9 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_13():
         )
 
 
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_14():
+def test_scoretools_Tuplet_from_ratio_and_pair_14():
 
-    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+    tuplet = abjad.Tuplet.from_ratio_and_pair(
         abjad.NonreducedRatio((1, 2, 2)),
         abjad.NonreducedFraction(6, 4),
         )
@@ -268,9 +268,9 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_14():
         )
 
 
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_15():
+def test_scoretools_Tuplet_from_ratio_and_pair_15():
 
-    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+    tuplet = abjad.Tuplet.from_ratio_and_pair(
         abjad.NonreducedRatio((1, 2, 2)),
         abjad.NonreducedFraction(6, 8),
         )
@@ -287,9 +287,9 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_15():
         )
 
 
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_16():
+def test_scoretools_Tuplet_from_ratio_and_pair_16():
 
-    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+    tuplet = abjad.Tuplet.from_ratio_and_pair(
         abjad.NonreducedRatio((1, 2, 2)),
         abjad.NonreducedFraction(6, 16),
         )
@@ -306,9 +306,9 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_16():
         )
 
 
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_17():
+def test_scoretools_Tuplet_from_ratio_and_pair_17():
 
-    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+    tuplet = abjad.Tuplet.from_ratio_and_pair(
         abjad.NonreducedRatio((1, -1, -1)),
         abjad.NonreducedFraction(3, 16),
         )
@@ -324,9 +324,9 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_17():
         )
 
 
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_18():
+def test_scoretools_Tuplet_from_ratio_and_pair_18():
 
-    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+    tuplet = abjad.Tuplet.from_ratio_and_pair(
         abjad.NonreducedRatio((1, 1, -1, -1)),
         abjad.NonreducedFraction(4, 16),
         )
@@ -343,9 +343,9 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_18():
         )
 
 
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_19():
+def test_scoretools_Tuplet_from_ratio_and_pair_19():
 
-    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+    tuplet = abjad.Tuplet.from_ratio_and_pair(
         abjad.NonreducedRatio((1, 1, 1, -1, -1)),
         abjad.NonreducedFraction(5, 16),
         )
@@ -363,9 +363,9 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_19():
         )
 
 
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_20():
+def test_scoretools_Tuplet_from_ratio_and_pair_20():
 
-    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+    tuplet = abjad.Tuplet.from_ratio_and_pair(
         abjad.NonreducedRatio((1, 1, 1, 1, -1, -1)),
         abjad.NonreducedFraction(6, 16),
         )
@@ -384,9 +384,9 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_20():
         )
 
 
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_21():
+def test_scoretools_Tuplet_from_ratio_and_pair_21():
 
-    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+    tuplet = abjad.Tuplet.from_ratio_and_pair(
         abjad.NonreducedRatio((1,)),
         abjad.NonreducedFraction(6, 16),
         )
@@ -394,9 +394,9 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_21():
     assert str(tuplet) == 'Container("c\'4.")'
 
 
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_22():
+def test_scoretools_Tuplet_from_ratio_and_pair_22():
 
-    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+    tuplet = abjad.Tuplet.from_ratio_and_pair(
         abjad.NonreducedRatio((99,)),
         abjad.NonreducedFraction(6, 16),
         )
@@ -404,9 +404,9 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_22():
     assert str(tuplet) == 'Container("c\'4.")'
 
 
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_23():
+def test_scoretools_Tuplet_from_ratio_and_pair_23():
 
-    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+    tuplet = abjad.Tuplet.from_ratio_and_pair(
         abjad.NonreducedRatio((-1,)),
         abjad.NonreducedFraction(6, 16),
         )
@@ -414,9 +414,9 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_23():
     assert str(tuplet) == "Container('r4.')"
 
 
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_24():
+def test_scoretools_Tuplet_from_ratio_and_pair_24():
 
-    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+    tuplet = abjad.Tuplet.from_ratio_and_pair(
         abjad.NonreducedRatio((-99,)),
         abjad.NonreducedFraction(6, 16),
         )
@@ -424,15 +424,15 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_24():
     assert str(tuplet) == "Container('r4.')"
 
 
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_25():
+def test_scoretools_Tuplet_from_ratio_and_pair_25():
 
-    statement = 'Tuplet.from_nonreduced_ratio_and_nonreduced_fraction'
+    statement = 'Tuplet.from_ratio_and_pair'
     statement += '([0], (3, 16))'
     pytest.raises(Exception, statement)
 
 
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_26():
+def test_scoretools_Tuplet_from_ratio_and_pair_26():
 
-    statement = 'Tuplet.from_nonreduced_ratio_and_nonreduced_fraction'
+    statement = 'Tuplet.from_ratio_and_pair'
     statement += '([1, 1, 0, 1], (3, 16))'
     pytest.raises(Exception, statement)

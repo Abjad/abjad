@@ -504,7 +504,7 @@ class Leaf(Component):
         import abjad
         # check input
         proportions = abjad.Ratio(proportions)
-        # find target duration of fixed-duration tuplet
+        # find target duration of tuplet
         target_duration = self.written_duration
         # find basic duration of note in tuplet
         basic_prolated_duration = target_duration / sum(proportions.numbers)

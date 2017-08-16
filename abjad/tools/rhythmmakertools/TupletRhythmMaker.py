@@ -123,7 +123,7 @@ class TupletRhythmMaker(RhythmMaker):
     Object model of a partially evaluated function that accepts a (possibly
     empty) list of divisions as input and returns a list of selections as
     output. Output structured one selection per division with each selection
-    wrapping a single fixed-duration tuplet.
+    wrapping a single tuplet.
 
     Usage follows the two-step configure-once / call-repeatedly pattern shown
     here.
@@ -284,7 +284,7 @@ class TupletRhythmMaker(RhythmMaker):
                 }
 
         Returns list of selections structured one selection per division.
-        Each selection wraps a single fixed-duration tuplet.
+        Each selection wraps a single tuplet.
         '''
         return RhythmMaker.__call__(
             self,
