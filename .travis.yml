@@ -56,7 +56,6 @@ install:
     - if [[ $ACCELERATED == true ]]; then pip install -e .[accelerated]; fi
 
 script:
-    - coverage run -a `which jupyter` nbconvert --to=html --ExecutePreprocessor.enabled=True abjad/ext/abjad-ipython-notebook-test-no-audio.ipynb
     - coverage run -a `which py.test`
     - coverage run -a abjad/scr/ajv api -R
 
