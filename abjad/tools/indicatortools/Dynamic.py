@@ -208,8 +208,8 @@ class Dynamic(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _attachment_test_all(self, component_expression):
-        from abjad.tools import scoretools
-        if not isinstance(component_expression, scoretools.Leaf):
+        import abjad
+        if not isinstance(component_expression, abjad.Leaf):
             return False
         if self.name not in self._lilypond_dynamic_commands:
             return False

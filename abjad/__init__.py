@@ -32,6 +32,21 @@ from abjad.tools import *
 from abjad.tools.abctools import *
 from abjad.tools.agenttools import *
 from abjad.tools.datastructuretools import *
+
+# instantiate ordinal constants
+Identity = OrdinalConstant('identity', 0, 'Identity')
+Less = OrdinalConstant('value', -1, 'Less')
+More = OrdinalConstant('value', 1, 'More')
+Exact = OrdinalConstant('value', 0, 'Exact')
+Left = OrdinalConstant('x', -1, 'Left')
+Right = OrdinalConstant('x', 1, 'Right')
+Both = OrdinalConstant('x', 0, 'Both')
+Center = OrdinalConstant('y', 0, 'Center')
+Up = OrdinalConstant('y', 1, 'Up')
+Down = OrdinalConstant('y', -1, 'Down')
+Top = OrdinalConstant('y', 1, 'Top')
+Bottom = OrdinalConstant('y', -1, 'Bottom')
+
 from abjad.tools.datastructuretools import PatternList
 index = Pattern.index
 index_all = Pattern.index_all
@@ -52,11 +67,15 @@ from abjad.tools.selectiontools import *
 from abjad.tools.selectortools import *
 from abjad.tools.spannertools import *
 from abjad.tools.systemtools import *
+from abjad.tools.templatetools import ScoreTemplate
 from abjad.tools.topleveltools import *
 
 # mathtools classes (but not functions)
 from abjad.tools.mathtools import Infinity
 Infinity = Infinity()
+from abjad.tools.mathtools import NegativeInfinity
+NegativeInfinity = NegativeInfinity()
+
 from abjad.tools.mathtools import Enumerator
 from abjad.tools.mathtools import NonreducedFraction
 from abjad.tools.mathtools import NonreducedRatio

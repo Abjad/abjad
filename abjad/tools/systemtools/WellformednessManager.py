@@ -474,7 +474,7 @@ class WellformednessManager(AbjadObject):
             ::
 
                 >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> clef = abjad.Clef(name='alto')
+                >>> clef = abjad.Clef('alto')
                 >>> abjad.attach(clef, staff[0])
                 >>> violin = abjad.instrumenttools.Violin()
                 >>> abjad.attach(violin, staff[0])
@@ -527,7 +527,7 @@ class WellformednessManager(AbjadObject):
             ::
 
                 >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> clef = abjad.Clef(name='percussion')
+                >>> clef = abjad.Clef('percussion')
                 >>> abjad.attach(clef, staff[0])
                 >>> violin = abjad.instrumenttools.Violin()
                 >>> abjad.attach(violin, staff[0])

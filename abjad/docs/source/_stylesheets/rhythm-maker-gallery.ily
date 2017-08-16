@@ -27,7 +27,7 @@
     }
     \context {
         \Score
-        \accepts TimeSignatureContext
+        \accepts GlobalContext
         \override BarLine.hair-thickness = 0.5
         \override BarNumber.color = #red
         \override BarNumber.transparent = ##t

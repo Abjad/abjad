@@ -119,7 +119,7 @@ class Percussion(Instrument):
 
                 >>> percussion = abjad.instrumenttools.Percussion()
                 >>> percussion.allowable_clefs
-                ClefList([Clef(name='percussion')])
+                ClefList([Clef('percussion')])
 
             ::
 

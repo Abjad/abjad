@@ -69,7 +69,7 @@ class Glockenspiel(Instrument):
 
                 >>> glockenspiel = abjad.instrumenttools.Glockenspiel()
                 >>> glockenspiel.allowable_clefs
-                ClefList([Clef(name='treble')])
+                ClefList([Clef('treble')])
 
             ::
 

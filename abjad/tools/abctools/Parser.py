@@ -3,6 +3,7 @@ import logging
 import os
 import pickle
 import ply
+from ply import yacc
 import traceback
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
@@ -42,8 +43,7 @@ class Parser(AbjadObject):
                 )
             self._logger = logging.getLogger()
         else:
-            self._logger = logging.getLogger()
-            self._logger.addHandler(logging.NullHandler())
+            self._logger = yacc.NullLogger()
 
         self._lexer = ply.lex.lex(
             debug=self.debug,

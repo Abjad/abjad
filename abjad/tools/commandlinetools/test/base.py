@@ -64,23 +64,24 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
 
             def __call__(
                 self,
-                segment_metadata=None,
-                previous_segment_metadata=None,
+                metadata=None,
+                previous_metadata=None,
                 ):
                 score = self.score_template()
                 for i in range(self.measure_count):
                     for voice in abjad.iterate(score).by_class(abjad.Voice):
                         measure = abjad.Measure((4, 4), "c'1")
                         voice.append(measure)
+                self.score_template.attach_defaults(score)
                 lilypond_file = abjad.LilyPondFile.new(
                     score,
                     includes=['../../stylesheets/stylesheet.ily'],
                     )
-                first_bar_number = segment_metadata.get('first_bar_number', 1)
+                first_bar_number = metadata.get('first_bar_number', 1)
                 if 1 < first_bar_number:
                     abjad.setting(score).current_bar_number = first_bar_number
-                segment_number = segment_metadata.get('segment_number', 1)
-                segment_count = segment_metadata.get('segment_count', 1)
+                segment_number = metadata.get('segment_number', 1)
+                segment_count = metadata.get('segment_count', 1)
                 if 1 < segment_number:
                     rehearsal_mark = abjad.RehearsalMark()
                     for voice in abjad.iterate(score).by_class(abjad.Voice):
@@ -92,8 +93,8 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
                         abbreviation='|.',
                         to_each_voice=True,
                         )
-                segment_metadata['measure_count'] = self.measure_count
-                return lilypond_file, segment_metadata
+                metadata['measure_count'] = self.measure_count
+                return lilypond_file, metadata
     """)
 
     ### TEST LIFECYCLE ###

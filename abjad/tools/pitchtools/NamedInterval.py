@@ -451,15 +451,15 @@ class NamedInterval(Interval):
             )
 
     def _transpose_pitch(self, pitch):
-        from abjad.tools import pitchtools
+        import abjad
         pitch_number = pitch.number + self.semitones
-        diatonic_pitch_class_number = \
-            (pitch._get_diatonic_pitch_class_number() + self.staff_spaces) % 7
+        diatonic_pitch_class_number = pitch._get_diatonic_pitch_class_number()
+        diatonic_pitch_class_number += self.staff_spaces
+        diatonic_pitch_class_number %= 7
         diatonic_pitch_class_name = \
-            pitchtools.PitchClass._diatonic_pitch_class_number_to_diatonic_pitch_class_name[
+            abjad.PitchClass._diatonic_pitch_class_number_to_diatonic_pitch_class_name[
                 diatonic_pitch_class_number]
-        class_ = pitchtools.NamedPitch
-        named_pitch = class_.from_pitch_number(
+        named_pitch = abjad.NamedPitch.from_pitch_number(
             pitch_number,
             diatonic_pitch_class_name,
             )
@@ -528,11 +528,31 @@ class NamedInterval(Interval):
             ::
 
                 >>> abjad.NamedInterval('+M9').interval_class
-                2
+                NamedIntervalClass('+M2')
 
-        Returns nonnegative integer.
+            ::
+
+                >>> abjad.NamedInterval('-M9').interval_class
+                NamedIntervalClass('-M2')
+
+            ::
+
+                >>> abjad.NamedInterval('P1').interval_class
+                NamedIntervalClass('P1')
+
+            ::
+
+                >>> abjad.NamedInterval('+P8').interval_class
+                NamedIntervalClass('+P8')
+
+        Returns named interval-class.
         '''
-        return ((abs(self.number) - 1) % 7) + 1
+        import abjad
+        quality_string, number = self._quality_string, self.number
+        return abjad.NamedIntervalClass.from_quality_and_number(
+            quality_string,
+            number,
+            )
 
     @property
     def interval_string(self):
@@ -566,43 +586,6 @@ class NamedInterval(Interval):
             self._get_direction_symbol(),
             self._quality_abbreviation,
             abs(self.number),
-            )
-
-    @property
-    def named_interval_class(self):
-        r'''DEPRECATED.
-
-        Gets named interval class of named interval.
-
-        ..  container:: example
-
-            ::
-
-                >>> abjad.NamedInterval('+M9').named_interval_class
-                NamedIntervalClass('+M2')
-
-            ::
-
-                >>> abjad.NamedInterval('-M9').named_interval_class
-                NamedIntervalClass('-M2')
-
-            ::
-
-                >>> abjad.NamedInterval('P1').named_interval_class
-                NamedIntervalClass('P1')
-
-            ::
-
-                >>> abjad.NamedInterval('+P8').named_interval_class
-                NamedIntervalClass('+P8')
-
-        Returns named inversion-equivalent interval-class.
-        '''
-        from abjad.tools import pitchtools
-        quality_string, number = self._quality_string, self.number
-        return pitchtools.NamedIntervalClass.from_quality_and_number(
-            quality_string,
-            number,
             )
 
     @property
@@ -809,13 +792,11 @@ class NamedInterval(Interval):
         degree_1 = pitch_1._get_diatonic_pitch_number()
         degree_2 = pitch_2._get_diatonic_pitch_number()
         named_interval_number = abs(degree_1 - degree_2) + 1
-        numbered_interval_number = abs(
+        number = abs(
             abjad.NumberedPitch(pitch_1).number -
             abjad.NumberedPitch(pitch_2).number
             )
-        numbered_interval = abjad.NumberedInterval(
-            numbered_interval_number,
-            )
+        numbered_interval = abjad.NumberedInterval(number)
         absolute_named_interval = numbered_interval.to_named_interval(
             named_interval_number
             )

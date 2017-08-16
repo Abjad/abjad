@@ -76,7 +76,7 @@ class Violin(Instrument):
 
                 >>> violin = abjad.instrumenttools.Violin()
                 >>> violin.allowable_clefs
-                ClefList([Clef(name='treble')])
+                ClefList([Clef('treble')])
 
             ::
 

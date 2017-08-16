@@ -73,7 +73,7 @@ class FrenchHorn(Instrument):
 
                 >>> french_horn = abjad.instrumenttools.FrenchHorn()
                 >>> french_horn.allowable_clefs
-                ClefList([Clef(name='bass'), Clef(name='treble')])
+                ClefList([Clef('bass'), Clef('treble')])
 
             ::
 

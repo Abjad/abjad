@@ -378,21 +378,6 @@ class NumberedInterval(Interval):
         return self._number
 
     @property
-    def numbered_interval_number(self):
-        r'''DEPRECATED.
-
-        ..  container:: example
-
-            ::
-
-                >>> abjad.NumberedInterval(-14).numbered_interval_number
-                -14
-
-        Returns integer or float.
-        '''
-        return self._number
-
-    @property
     def semitones(self):
         r'''Gets semitones corresponding to numbered interval.
 

@@ -16,12 +16,8 @@ class ClefList(TypedList):
             >>> f(clefs)
             abjad.instrumenttools.ClefList(
                 [
-                    abjad.Clef(
-                        name='treble',
-                        ),
-                    abjad.Clef(
-                        name='bass',
-                        ),
+                    abjad.Clef('treble'),
+                    abjad.Clef('bass'),
                     ]
                 )
 

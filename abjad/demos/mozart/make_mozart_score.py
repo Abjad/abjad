@@ -78,6 +78,7 @@ def make_mozart_score():
         name='Katzenklavier',
         short_name='kk.',
         )
-    abjad.attach(klavier, score['Piano Staff'])
+    leaf = abjad.inspect(score['Piano Staff']).get_leaf(0)
+    abjad.attach(klavier, leaf)
 
     return score

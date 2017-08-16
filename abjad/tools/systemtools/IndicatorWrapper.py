@@ -336,16 +336,22 @@ class IndicatorWrapper(AbjadValueObject):
         if isinstance(component, abjad.Spanner):
             return
         prototype = type(self.indicator)
-        effective = component._get_effective(prototype, unwrap=False)
-        if (
-            effective is not None and
-            effective.scope is not None and
-            effective.indicator != self.indicator
-            ):
-            if effective.start_offset == self.start_offset:
-                message = 'effective indicator already attached: {!r}.'
-                message = message.format(effective)
-                raise ValueError(message)
+        wrapper = component._get_effective(prototype, unwrap=False)
+        if (wrapper is not None and
+            wrapper.scope is not None and
+            wrapper.indicator != self.indicator):
+            if wrapper.start_offset == self.start_offset:
+                message = 'can not attach {} to ...\n\n{}'
+                message += '\n\n... because {} is already attached to ...\n\n'
+                message += '{}\n\nsee wrapper: {!r}.'
+                message = message.format(
+                    self.indicator,
+                    component,
+                    wrapper.indicator,
+                    wrapper.component,
+                    wrapper,
+                    )
+                raise Exception(message)
 
     ### PUBLIC PROPERTIES ###
 

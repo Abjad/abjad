@@ -87,12 +87,8 @@ class AltoTrombone(Instrument):
                         ),
                     allowable_clefs=abjad.instrumenttools.ClefList(
                         [
-                            abjad.Clef(
-                                name='bass',
-                                ),
-                            abjad.Clef(
-                                name='tenor',
-                                ),
+                            abjad.Clef('bass'),
+                            abjad.Clef('tenor'),
                             ]
                         ),
                     middle_c_sounding_pitch=abjad.NamedPitch("c'"),
@@ -116,7 +112,7 @@ class AltoTrombone(Instrument):
 
                 >>> alto_trombone = abjad.instrumenttools.AltoTrombone()
                 >>> alto_trombone.allowable_clefs
-                ClefList([Clef(name='bass'), Clef(name='tenor')])
+                ClefList([Clef('bass'), Clef('tenor')])
 
             ::
 

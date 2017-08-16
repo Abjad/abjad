@@ -73,7 +73,7 @@ class AltoVoice(Instrument):
 
                 >>> alto = abjad.instrumenttools.AltoVoice()
                 >>> alto.allowable_clefs
-                ClefList([Clef(name='treble')])
+                ClefList([Clef('treble')])
 
             ::
 

@@ -971,7 +971,7 @@ class Sequence(abctools.AbjadValueObject):
             indicator = 'R' + indicator
         if overhang is True:
             indicator += '+'
-        elif overhang is Exact:
+        elif overhang == Exact:
             indicator += '!'
         return indicator
 
@@ -4951,6 +4951,7 @@ class Sequence(abctools.AbjadValueObject):
             return self._update_expression(inspect.currentframe())
         if not recurse:
             return type(self)(items=reversed(self))
+
         def _reverse_helper(item):
             if isinstance(item, collections.Iterable):
                 subitems_ = [_reverse_helper(_) for _ in reversed(item)]

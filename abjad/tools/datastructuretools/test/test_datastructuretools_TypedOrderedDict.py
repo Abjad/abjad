@@ -68,27 +68,19 @@ def test_datastructuretools_TypedOrderedDict_04():
             [
                 (
                     'soprano',
-                    abjad.Clef(
-                        name='treble',
-                        ),
+                    abjad.Clef('treble'),
                     ),
                 (
                     'alto',
-                    abjad.Clef(
-                        name='alto',
-                        ),
+                    abjad.Clef('alto'),
                     ),
                 (
                     'tenor',
-                    abjad.Clef(
-                        name='tenor',
-                        ),
+                    abjad.Clef('tenor'),
                     ),
                 (
                     'bass',
-                    abjad.Clef(
-                        name='bass',
-                        ),
+                    abjad.Clef('bass'),
                     ),
                 ],
             item_class=abjad.Clef,

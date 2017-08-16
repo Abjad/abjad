@@ -73,7 +73,7 @@ class MezzoSopranoVoice(Instrument):
 
                 >>> mezzo_soprano = abjad.instrumenttools.MezzoSopranoVoice()
                 >>> mezzo_soprano.allowable_clefs
-                ClefList([Clef(name='treble')])
+                ClefList([Clef('treble')])
 
             ::
 

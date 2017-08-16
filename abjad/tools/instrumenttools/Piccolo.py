@@ -71,7 +71,7 @@ class Piccolo(Instrument):
 
                 >>> piccolo = abjad.instrumenttools.Piccolo()
                 >>> piccolo.allowable_clefs
-                ClefList([Clef(name='treble')])
+                ClefList([Clef('treble')])
 
             ::
 

@@ -9,7 +9,7 @@ class TenorTrombone(Instrument):
         ::
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> clef = abjad.Clef(name='bass')
+            >>> clef = abjad.Clef('bass')
             >>> abjad.attach(clef, staff[0])
             >>> tenor_trombone = abjad.instrumenttools.TenorTrombone()
             >>> abjad.attach(tenor_trombone, staff[0])
@@ -73,7 +73,7 @@ class TenorTrombone(Instrument):
 
                 >>> tenor_trombone = abjad.instrumenttools.TenorTrombone()
                 >>> tenor_trombone.allowable_clefs
-                ClefList([Clef(name='tenor'), Clef(name='bass')])
+                ClefList([Clef('tenor'), Clef('bass')])
 
             ::
 

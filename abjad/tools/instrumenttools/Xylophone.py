@@ -70,7 +70,7 @@ class Xylophone(Instrument):
 
                 >>> xylophone = abjad.instrumenttools.Xylophone()
                 >>> xylophone.allowable_clefs
-                ClefList([Clef(name='treble')])
+                ClefList([Clef('treble')])
 
             ::
 

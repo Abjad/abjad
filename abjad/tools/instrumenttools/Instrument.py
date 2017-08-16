@@ -99,6 +99,12 @@ class Instrument(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
+    def _attachment_test_all(self, component_expression):
+        import abjad
+        if abjad.inspect(component_expression).has_indicator(Instrument):
+            return False
+        return True
+
     def _get_default_performer_name(self):
         if self._performer_names is None:
             performer_name = '{} player'.format(self._default_name)

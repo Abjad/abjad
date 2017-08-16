@@ -3802,7 +3802,7 @@ class LabelAgent(abctools.AbjadObject):
                                 \tiny
                                     \line
                                         {
-                                            "SC(4-3){0, 1, 2, 5}"
+                                            "SC(4-6){0, 1, 3, 4}"
                                         }
                                 }
                         c''8
@@ -3814,7 +3814,7 @@ class LabelAgent(abctools.AbjadObject):
                                 \tiny
                                     \line
                                         {
-                                            "SC(4-20){0, 2, 3, 6}"
+                                            "SC(4-16){0, 1, 5, 8}"
                                         }
                                 }
                         g'8
@@ -3854,7 +3854,7 @@ class LabelAgent(abctools.AbjadObject):
                                 \tiny
                                     \line
                                         {
-                                            "SC(4-3){0, 1, 2, 5}"
+                                            "SC(4-6){0, 1, 3, 4}"
                                         }
                                 }
                         c''8
@@ -3866,7 +3866,7 @@ class LabelAgent(abctools.AbjadObject):
                                 \tiny
                                     \line
                                         {
-                                            "SC(4-20){0, 2, 3, 6}"
+                                            "SC(4-16){0, 1, 5, 8}"
                                         }
                                 }
                         g'8

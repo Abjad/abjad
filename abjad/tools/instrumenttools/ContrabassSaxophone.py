@@ -72,7 +72,7 @@ class ContrabassSaxophone(Instrument):
 
                 >>> contrabass_saxophone = abjad.instrumenttools.ContrabassSaxophone()
                 >>> contrabass_saxophone.allowable_clefs
-                ClefList([Clef(name='treble')])
+                ClefList([Clef('treble')])
 
             ::
 

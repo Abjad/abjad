@@ -32,10 +32,9 @@ class DurationSpellingSpecifier(AbjadValueObject):
         ):
         from abjad.tools import rhythmmakertools
         assert isinstance(decrease_monotonic, bool)
-        if forbidden_duration is not None:
-            forbidden_duration = durationtools.Duration(
-                forbidden_duration)
         self._decrease_monotonic = decrease_monotonic
+        if forbidden_duration is not None:
+            forbidden_duration = durationtools.Duration(forbidden_duration)
         self._forbidden_duration = forbidden_duration
         assert isinstance(rewrite_meter, (bool, type(None)))
         self._rewrite_meter = rewrite_meter
@@ -158,12 +157,12 @@ class DurationSpellingSpecifier(AbjadValueObject):
         parts = abjad.Sequence(component_durations)
         parts = parts.partition_by_weights(
             weights=durations,
-            allow_part_weights=Exact,
+            allow_part_weights=abjad.Exact,
             )
         part_lengths = [len(_) for _ in parts]
         parts = abjad.Sequence(components).partition_by_counts(
             counts=part_lengths,
-            overhang=Exact,
+            overhang=abjad.Exact,
             )
         selections = [abjad.select(_) for _ in parts]
         return selections

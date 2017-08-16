@@ -12,18 +12,18 @@ class Context(Container):
 
             >>> context = abjad.Context(
             ...     name='MeterVoice',
-            ...     context_name='TimeSignatureContext',
+            ...     context_name='GlobalContext',
             ...     )
 
         ::
 
             >>> context
-            Context(context_name='TimeSignatureContext', name='MeterVoice')
+            Context(context_name='GlobalContext', name='MeterVoice')
 
         ..  docs::
 
             >>> f(context)
-            \context TimeSignatureContext = "MeterVoice" {
+            \context GlobalContext = "MeterVoice" {
             }
 
     '''
@@ -68,10 +68,10 @@ class Context(Container):
 
             >>> context = abjad.Context(
             ...     name='MeterVoice',
-            ...     context_name='TimeSignatureContext',
+            ...     context_name='GlobalContext',
             ...     )
             >>> repr(context)
-            "Context(context_name='TimeSignatureContext', name='MeterVoice')"
+            "Context(context_name='GlobalContext', name='MeterVoice')"
 
         Returns string.
         '''

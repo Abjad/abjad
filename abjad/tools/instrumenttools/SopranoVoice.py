@@ -73,7 +73,7 @@ class SopranoVoice(Instrument):
 
                 >>> soprano = abjad.instrumenttools.SopranoVoice()
                 >>> soprano.allowable_clefs
-                ClefList([Clef(name='treble')])
+                ClefList([Clef('treble')])
 
             ::
 

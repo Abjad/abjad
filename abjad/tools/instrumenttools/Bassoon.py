@@ -77,7 +77,7 @@ class Bassoon(Instrument):
 
                 >>> bassoon = abjad.instrumenttools.Bassoon()
                 >>> bassoon.allowable_clefs
-                ClefList([Clef(name='bass'), Clef(name='tenor')])
+                ClefList([Clef('bass'), Clef('tenor')])
 
             ::
 
