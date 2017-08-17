@@ -59,6 +59,7 @@ from abjad.tools.indicatortools import *
 from abjad.tools.instrumenttools import Instrument
 from abjad.tools.lilypondfiletools import *
 from abjad.tools.lilypondnametools import *
+from abjad.tools.makertools import *
 from abjad.tools.markuptools import *
 from abjad.tools.pitchtools import *
 from abjad.tools.schemetools import *
