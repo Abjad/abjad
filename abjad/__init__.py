@@ -129,7 +129,6 @@ def f(argument):
         print(format(argument, 'lilypond'))
 
 from abjad import demos
-from abjad import ext
 from abjad import ly
 
 # HOUSECLEANING HELPER: uncomment below and run tests;
