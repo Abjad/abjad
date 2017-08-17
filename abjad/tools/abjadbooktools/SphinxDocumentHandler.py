@@ -528,7 +528,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 text = addname_node[0].astext()
                 parts = [x for x in text.split('.') if x]
                 parts = get_unique_parts(parts)
-                if parts[0] in ('abjad', 'experimental', 'ide'):
+                if parts[0] in ('abjad', 'ide'):
                     parts = parts[-1:]
                 if parts:
                     text = '{}.'.format('.'.join(parts))

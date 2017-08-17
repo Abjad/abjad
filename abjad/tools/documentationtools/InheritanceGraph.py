@@ -440,7 +440,7 @@ class InheritanceGraph(AbjadObject):
         for part in parts[1:]:
             if part != name[-1]:
                 name.append(part)
-        if name[0] in ('abjad', 'experimental', 'ide'):
+        if name[0] in ('abjad', 'ide'):
             return name[2:]
         elif 2 < len(name) and name[1] == 'tools':
             return name[2:]

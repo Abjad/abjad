@@ -23,7 +23,6 @@ class DoctestScript(CommandlineScript):
 
     _module_names_for_globs = (
         'abjad',
-        'experimental',
         )
 
     alias = 'doctest'

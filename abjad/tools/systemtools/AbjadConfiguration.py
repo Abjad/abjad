@@ -401,18 +401,6 @@ class AbjadConfiguration(Configuration):
         return abjad.__path__[0]
 
     @property
-    def abjad_experimental_directory(self):
-        r'''Gets Abjad experimental directory.
-
-        Returns string.
-        '''
-        relative_path = os.path.join(
-            self.abjad_root_directory,
-            'experimental',
-            )
-        return os.path.abspath(relative_path)
-
-    @property
     def abjad_output_directory(self):
         r'''Gets Abjad output directory.
 

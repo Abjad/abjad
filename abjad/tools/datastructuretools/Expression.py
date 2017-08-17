@@ -899,11 +899,6 @@ class Expression(AbjadValueObject):
         for module_name in module_names:
             module = __import__(module_name)
             globals_[module_name] = module
-        try:
-            import experimental
-            globals_.update(experimental.__dict__.copy())
-        except ImportError:
-            pass
         return globals_
 
     def _make_initializer_callback(
