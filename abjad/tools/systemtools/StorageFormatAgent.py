@@ -597,10 +597,6 @@ class StorageFormatAgent(AbjadValueObject):
                 tools_package_name = agent.get_tools_package_name()
                 import_statement = 'from abjad.tools import {}'.format(
                     tools_package_name)
-            elif root_package_name == 'experimental':
-                tools_package_name = agent.get_tools_package_name()
-                import_statement = 'from experimental.tools import {}'.format(
-                    tools_package_name)
             else:
                 import_statement = 'import {}'.format(root_package_name)
             import_statements.add(import_statement)
@@ -699,7 +695,7 @@ class StorageFormatAgent(AbjadValueObject):
 
     def get_tools_package_name(self):
         parts = self._get_module_path_parts(self._client)
-        if parts[0] in ('abjad', 'experimental', 'ide'):
+        if parts[0] in ('abjad', 'ide'):
             for part in reversed(parts):
                 if part == parts[-1]:
                     continue

@@ -18,15 +18,6 @@ class BuildApiScript(CommandlineScript):
 
     __slots__ = ()
 
-    class ExperimentalDocumentationManager(DocumentationManager):
-        r'''API generator for the experimental package.
-        '''
-        api_directory_name = None
-        api_title = 'Abjad Experimental API'
-        root_package_name = 'experimental'
-        source_directory_path_parts = ('docs', 'source')
-        tools_packages_package_path = 'experimental.tools'
-
     class IDEDocumentationManager(DocumentationManager):
         r'''API generator for the Abjad IDE package.
         '''
@@ -88,38 +79,6 @@ class BuildApiScript(CommandlineScript):
             else:
                 command = 'make {}'.format(api_format)
                 systemtools.IOManager.spawn_subprocess(command)
-
-    def _build_experimental_api(
-        self,
-        api_format='html',
-        clean=False,
-        rst_only=False,
-        ):
-        from abjad import abjad_configuration
-        api_generator = BuildApiScript.ExperimentalDocumentationManager()
-        api_title = 'experimental'
-        docs_directory = os.path.join(
-            abjad_configuration.abjad_root_directory,
-            'experimental',
-            'docs',
-            )
-        self._build_api(
-            api_generator=api_generator,
-            api_title=api_title,
-            api_format=api_format,
-            clean=clean,
-            docs_directory=docs_directory,
-            rst_only=rst_only,
-            )
-        path = os.path.join(
-            abjad_configuration.abjad_root_directory,
-            'experimental',
-            'docs',
-            'build',
-            'html',
-            'index.html',
-            )
-        return path
 
     def _build_ide_api(
         self,
@@ -219,20 +178,12 @@ class BuildApiScript(CommandlineScript):
         rst_only = arguments.rst_only
         paths = []
         prototype = (
-            arguments.experimental,
             arguments.ide,
             arguments.mainline,
             arguments.score_library,
             )
         if not any(prototype):
             arguments.mainline = True
-        if arguments.experimental:
-            path = self._build_experimental_api(
-                api_format=api_format,
-                clean=clean,
-                rst_only=rst_only,
-                )
-            paths.append(path)
         if arguments.ide:
             path = self._build_ide_api(
                 api_format=api_format,
@@ -316,12 +267,6 @@ class BuildApiScript(CommandlineScript):
             '--score-library',
             action='store_true',
             help='build score library API',
-            )
-        parser.add_argument(
-            '-X',
-            '--experimental',
-            action='store_true',
-            help='build the experimental API',
             )
         parser.add_argument(
             '--api-title',

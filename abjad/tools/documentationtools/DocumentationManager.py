@@ -27,7 +27,6 @@ class DocumentationManager(abctools.AbjadObject):
     lineage_graph_addresses = (
         'abjad',
         'abjad.tools.abjadbooktools',
-        'experimental',
         'ide',
         )
 
@@ -446,7 +445,7 @@ class DocumentationManager(abctools.AbjadObject):
             for part in parts[1:]:
                 if part != name[-1]:
                     name.append(part)
-            if name[0] in ('abjad', 'experimental', 'ide'):
+            if name[0] in ('abjad', 'ide'):
                 return str('.'.join(name[2:]))
             return str('.'.join(name))
         from abjad.tools import documentationtools
