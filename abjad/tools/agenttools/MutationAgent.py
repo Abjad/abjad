@@ -2895,7 +2895,9 @@ class MutationAgent(abctools.AbjadObject):
                 current_shard_duration += duration_
                 advance_to_next_offset = False
             else:
-                raise ValueError
+                message = 'can not process candidate duration: {!r}.'
+                message = message.format(candidate_shard_duration)
+                raise ValueError(message)
         # append any stub shard
         if len(shard):
             result.append(shard)

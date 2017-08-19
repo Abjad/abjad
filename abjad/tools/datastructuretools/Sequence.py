@@ -907,7 +907,7 @@ class Sequence(abctools.AbjadValueObject):
             raise TypeError()
         ltype = type(sequence)
         len_l = len(sequence)
-        indices = [x if 0 <= x else len_l + x for x in indices]
+        indices = [_ if 0 <= _ else len_l + _ for _ in indices]
         result = []
         for i, item in enumerate(sequence):
             if i in indices:
@@ -1011,8 +1011,8 @@ class Sequence(abctools.AbjadValueObject):
         len_weights = len(weights)
         while l_copy:
             target_weight = weights[target_weight_index % len_weights]
-            x = l_copy.pop(0)
-            current_part.append(x)
+            item = l_copy.pop(0)
+            current_part.append(item)
             if target_weight <= mathtools.weight(current_part):
                 result.append(current_part)
                 current_part = []
@@ -1040,19 +1040,19 @@ class Sequence(abctools.AbjadValueObject):
         while l_copy:
             current_target_weight = weights[
                 current_target_weight_index % len(weights)]
-            x = l_copy.pop(0)
+            item = l_copy.pop(0)
             current_part_weight = mathtools.weight(current_part)
-            candidate_part_weight = current_part_weight + mathtools.weight([x])
+            candidate_part_weight = current_part_weight + mathtools.weight([item])
             if candidate_part_weight < current_target_weight:
-                current_part.append(x)
+                current_part.append(item)
             elif candidate_part_weight == current_target_weight:
-                current_part.append(x)
+                current_part.append(item)
                 result.append(current_part)
                 current_part = []
                 current_target_weight_index += 1
             elif current_target_weight < candidate_part_weight:
                 if current_part:
-                    l_copy.insert(0, x)
+                    l_copy.insert(0, item)
                     result.append(current_part)
                     current_part = []
                     current_target_weight_index += 1
@@ -1082,7 +1082,7 @@ class Sequence(abctools.AbjadValueObject):
         for num_weight, target_weight in enumerate(weights):
             while True:
                 try:
-                    x = l_copy.pop(0)
+                    item = l_copy.pop(0)
                 except IndexError:
                     if num_weight + 1 == len(weights):
                         if current_part:
@@ -1090,7 +1090,7 @@ class Sequence(abctools.AbjadValueObject):
                             break
                     message = 'too few elements in sequence.'
                     raise Exception(message)
-                current_part.append(x)
+                current_part.append(item)
                 if target_weight <= mathtools.weight(current_part):
                     result.append(current_part)
                     current_part = []
@@ -1114,16 +1114,16 @@ class Sequence(abctools.AbjadValueObject):
         for target_weight in weights:
             while True:
                 try:
-                    x = l_copy.pop(0)
+                    item = l_copy.pop(0)
                 except IndexError:
                     message = 'too few elements in sequence.'
                     raise Exception(message)
                 current_weight = mathtools.weight(current_part)
-                candidate_weight = current_weight + mathtools.weight([x])
+                candidate_weight = current_weight + mathtools.weight([item])
                 if candidate_weight < target_weight:
-                    current_part.append(x)
+                    current_part.append(item)
                 elif candidate_weight == target_weight:
-                    current_part.append(x)
+                    current_part.append(item)
                     result.append(current_part)
                     current_part = []
                     break
@@ -1131,7 +1131,7 @@ class Sequence(abctools.AbjadValueObject):
                     if current_part:
                         result.append(current_part)
                         current_part = []
-                        l_copy.insert(0, x)
+                        l_copy.insert(0, item)
                         break
                     else:
                         message = 'elements in sequence too big.'
@@ -4538,10 +4538,8 @@ class Sequence(abctools.AbjadValueObject):
 
         Returns new sequence.
         '''
-        if not mathtools.is_nonnegative_integer(length):
-            raise TypeError
-        if not len(self):
-            raise ValueError
+        assert mathtools.is_nonnegative_integer(length), repr(length)
+        assert len(self), repr(self)
         items = []
         start %= len(self)
         stop_index = start + length
@@ -5640,8 +5638,7 @@ class Sequence(abctools.AbjadValueObject):
         Returns new sequence.
         '''
         if weight is not None:
-            if weight < 0:
-                raise ValueError
+            assert 0 <= weight, repr(weight)
             items = []
             if 0 < weight:
                 total = 0
@@ -5656,8 +5653,7 @@ class Sequence(abctools.AbjadValueObject):
                         items.append(trimmed_part)
                         break
         elif sum is not None:
-            if sum < 0:
-                raise ValueError
+            assert 0 <= sum, repr(sum)
             items = []
             if 0 < sum:
                 total = 0

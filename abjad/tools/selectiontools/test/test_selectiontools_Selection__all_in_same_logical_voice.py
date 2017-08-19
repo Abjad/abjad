@@ -1016,9 +1016,9 @@ def test_selectiontools_Selection__all_in_same_logical_voice_28():
 
     voice = abjad.Voice([abjad.Note(n, (1, 8)) for n in range(4)])
     voice.name = 'foo'
-    q = abjad.Container([voice])
+    container = abjad.Container([voice])
     notes = [abjad.Note(n, (1, 8)) for n in range(4, 8)]
-    container = abjad.Container([q] + notes)
+    container = abjad.Container([container] + notes)
 
     r'''
     {
@@ -1724,6 +1724,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_41():
     assert abjad.Selection._all_in_same_logical_voice(leaves[6:10])
     assert not abjad.Selection._all_in_same_logical_voice(leaves[:6])
     assert not abjad.Selection._all_in_same_logical_voice(leaves)
+
 
 ###############################################################################
 ########################## WITH CONTIGUITY CONSTRAINT #########################

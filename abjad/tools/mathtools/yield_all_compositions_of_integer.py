@@ -40,19 +40,19 @@ def yield_all_compositions_of_integer(n):
     '''
     from abjad.tools import mathtools
     compositions = []
-    x = 0
+    integer = 0
     string_length = n
-    while x < 2 ** (n - 1):
-        binary_string = mathtools.integer_to_binary_string(x)
+    while integer < 2 ** (n - 1):
+        binary_string = mathtools.integer_to_binary_string(integer)
         binary_string = binary_string.zfill(string_length)
-        l = [int(c) for c in list(binary_string)]
+        digits = [int(_) for _ in list(binary_string)]
         partition = []
-        g = itertools.groupby(l, lambda x: x)
-        for value, group in g:
+        generator = itertools.groupby(digits, lambda _: _)
+        for value, group in generator:
             partition.append(list(group))
         sublengths = [len(part) for part in partition]
         composition = tuple(sublengths)
         compositions.append(composition)
-        x += 1
+        integer += 1
     for composition in reversed(sorted(compositions)):
         yield composition

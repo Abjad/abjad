@@ -13,8 +13,7 @@ def fraction_to_proper_fraction(rational):
 
     Returns pair.
     '''
-    if not isinstance(rational, Fraction):
-        raise TypeError
+    assert isinstance(rational, Fraction), repr(rational)
     quotient = int(rational)
     residue = rational - quotient
     return quotient, residue

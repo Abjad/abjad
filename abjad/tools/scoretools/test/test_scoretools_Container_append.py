@@ -68,11 +68,11 @@ def test_scoretools_Container_append_04():
     r'''Append spanned leaf from donor container to recipient container.
     '''
 
-    voice = abjad.Voice("c'8 d'8 e'8")
+    voice_1 = abjad.Voice("c'8 d'8 e'8")
     beam = abjad.Beam()
-    abjad.attach(beam, voice[:])
+    abjad.attach(beam, voice_1[:])
 
-    assert format(voice) == abjad.String.normalize(
+    assert format(voice_1) == abjad.String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -82,11 +82,11 @@ def test_scoretools_Container_append_04():
         '''
         )
 
-    u = abjad.Voice("c'8 d'8 e'8 f'8")
+    voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
     beam = abjad.Beam()
-    abjad.attach(beam, u[:])
+    abjad.attach(beam, voice_2[:])
 
-    assert format(u) == abjad.String.normalize(
+    assert format(voice_2) == abjad.String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -97,11 +97,9 @@ def test_scoretools_Container_append_04():
         '''
         )
 
-    voice.append(u[-1])
+    voice_1.append(voice_2[-1])
 
-    "Container voice is now ..."
-
-    assert format(voice) == abjad.String.normalize(
+    assert format(voice_1) == abjad.String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -112,11 +110,9 @@ def test_scoretools_Container_append_04():
         '''
         )
 
-    assert abjad.inspect(voice).is_well_formed()
+    assert abjad.inspect(voice_1).is_well_formed()
 
-    "Container u is now ..."
-
-    assert format(u) == abjad.String.normalize(
+    assert format(voice_2) == abjad.String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -126,7 +122,7 @@ def test_scoretools_Container_append_04():
         '''
         )
 
-    assert abjad.inspect(u).is_well_formed()
+    assert abjad.inspect(voice_2).is_well_formed()
 
 
 def test_scoretools_Container_append_05():

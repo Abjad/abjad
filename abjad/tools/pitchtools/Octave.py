@@ -367,7 +367,6 @@ class Octave(AbjadValueObject):
         else:
             raise TypeError(pitch)
         match = re.match('^([a-z]+)(\,*|\'*)$', name)
-        if match is None:
-            raise Exception
+        assert match is not None, repr(match)
         name, ticks = match.groups()
         return class_(ticks)

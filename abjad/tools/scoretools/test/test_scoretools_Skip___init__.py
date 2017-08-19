@@ -13,12 +13,12 @@ def test_scoretools_Skip___init___02():
     r'''Initialize skip from containerize note.
     '''
 
-    c = abjad.Chord([2, 3, 4], (1, 4))
-    duration = c.written_duration
-    skip = abjad.Skip(c)
+    chord = abjad.Chord([2, 3, 4], (1, 4))
+    duration = chord.written_duration
+    skip = abjad.Skip(chord)
     assert isinstance(skip, abjad.Skip)
     # check that attributes have not been removed or added.
-    assert dir(c) == dir(abjad.Chord([2, 3, 4], (1, 4)))
+    assert dir(chord) == dir(abjad.Chord([2, 3, 4], (1, 4)))
     assert dir(skip) == dir(abjad.Skip((1, 4)))
     assert skip._parent is None
     assert skip.written_duration == duration
@@ -29,12 +29,12 @@ def test_scoretools_Skip___init___03():
     '''
 
     tuplet = abjad.Tuplet((2, 3), 3 * abjad.Chord([2, 3, 4], (1, 4)))
-    d = tuplet[0].written_duration
+    duration = tuplet[0].written_duration
     skip = abjad.Skip(tuplet[0])
     assert isinstance(tuplet[0], abjad.Chord)
     assert isinstance(skip, abjad.Skip)
     assert tuplet[0]._parent is tuplet
-    assert tuplet[0].written_duration == d
+    assert tuplet[0].written_duration == duration
     assert skip._parent is None
 
 
@@ -55,7 +55,7 @@ def test_scoretools_Skip___init___04():
 def test_scoretools_Skip___init___05():
 
     note = abjad.Note(2, (1, 8))
-    d = note.written_duration
+    duration = note.written_duration
     skip = abjad.Skip(note)
     assert isinstance(skip, abjad.Skip)
     # check that attributes have not been removed or added.
@@ -63,18 +63,18 @@ def test_scoretools_Skip___init___05():
     assert dir(skip) == dir(abjad.Skip((1, 4)))
     assert format(skip) == 's8'
     assert skip._parent is None
-    assert skip.written_duration == d
+    assert skip.written_duration == duration
 
 
 def test_scoretools_Skip___init___06():
 
     tuplet = abjad.Tuplet((2, 3), 3 * abjad.Note(0, (1, 8)))
-    d = tuplet[0].written_duration
+    duration = tuplet[0].written_duration
     skip = abjad.Skip(tuplet[0])
     assert isinstance(tuplet[0], abjad.Note)
     assert isinstance(skip, abjad.Skip)
     assert tuplet[0]._parent is tuplet
-    assert tuplet[0].written_duration == d
+    assert tuplet[0].written_duration == duration
 
 
 def test_scoretools_Skip___init___07():
@@ -95,14 +95,14 @@ def test_scoretools_Skip___init___08():
     '''
 
     rest = abjad.Rest((1, 8))
-    d = rest.written_duration
+    duration = rest.written_duration
     skip = abjad.Skip(rest)
     assert isinstance(skip, abjad.Skip)
     # check that attributes have not been removed or added.
     assert dir(rest) == dir(abjad.Rest((1, 4)))
     assert dir(skip) == dir(abjad.Skip((1, 4)))
     assert skip._parent is None
-    assert skip.written_duration == d
+    assert skip.written_duration == duration
 
 
 def test_scoretools_Skip___init___09():
@@ -110,12 +110,12 @@ def test_scoretools_Skip___init___09():
     '''
 
     tuplet = abjad.Tuplet((2, 3), 3 * abjad.Rest((1, 8)))
-    d = tuplet[0].written_duration
+    duration = tuplet[0].written_duration
     skip = abjad.Skip(tuplet[0])
     assert isinstance(skip, abjad.Skip)
     assert isinstance(tuplet[0], abjad.Rest)
     assert tuplet[0]._parent is tuplet
-    assert tuplet[0].written_duration == d
+    assert tuplet[0].written_duration == duration
     assert skip._parent is None
 
 

@@ -1408,7 +1408,9 @@ class Timespan(BoundedObject):
             new_stop_offset = self._stop_offset
             new_start_offset = self._stop_offset - new_duration
         else:
-            raise ValueError
+            message = 'unknown anchor direction: {!r}.'
+            message = message.format(anchor)
+            raise ValueError(message)
         result = new(
             self,
             start_offset=new_start_offset,

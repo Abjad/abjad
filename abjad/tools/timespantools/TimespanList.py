@@ -2416,7 +2416,9 @@ class TimespanList(TypedList):
                 if time_relation(timespan=timespan):
                     result.append(timespan)
             else:
-                raise ValueError
+                message = 'unknown time relation: {!r}.'
+                message = message.format(time_relation)
+                raise ValueError(message)
         return type(self)(result)
 
     def has_timespan_that_satisfies_time_relation(self, time_relation):

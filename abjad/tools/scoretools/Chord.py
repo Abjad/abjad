@@ -168,7 +168,9 @@ class Chord(Leaf):
                 if note_head.written_pitch < pitch:
                     treble.note_heads.remove(note_head)
         else:
-            raise TypeError
+            message = 'invalid pitch carrier: {!r}.'
+            message = message.format(treble)
+            raise TypeError(message)
         if isinstance(bass, scoretools.Note):
             if pitch <= bass.written_pitch:
                 bass = scoretools.Rest(bass)
@@ -179,7 +181,9 @@ class Chord(Leaf):
                 if pitch <= note_head.written_pitch:
                     bass.note_heads.remove(note_head)
         else:
-            raise TypeError
+            message = 'invalid pitch carrier: {!r}.'
+            message = message.format(bass)
+            raise TypeError(message)
         treble = self._cast_defective_chord(treble)
         bass = self._cast_defective_chord(bass)
         up_markup = self._get_markup(direction=Up)

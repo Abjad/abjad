@@ -154,8 +154,7 @@ class Enumerator(abctools.AbjadValueObject):
         Returns generator of tuples.
         '''
         import abjad
-        if not abjad.mathtools.is_positive_integer(length):
-            raise TypeError
+        assert abjad.mathtools.is_positive_integer(length), repr(length)
         last_rgf = list(range(1, length + 1))
         rgf = length * [1]
         yield tuple(rgf)

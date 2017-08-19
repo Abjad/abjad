@@ -116,8 +116,7 @@ class Spanner(AbjadObject):
 
         Returns true or false.
         '''
-        if not isinstance(argument, Spanner):
-            raise TypeError
+        assert isinstance(argument, Spanner), repr(argument)
         return repr(self) < repr(argument)
 
     ### PRIVATE METHODS ###
@@ -435,8 +434,7 @@ class Spanner(AbjadObject):
 
     def _get_my_nth_leaf(self, n):
         import abjad
-        if not isinstance(n, int):
-            raise TypeError
+        assert isinstance(n, int), repr(n)
         if 0 <= n:
             leaves = abjad.iterate(self).by_leaf()
             for leaf_index, leaf in enumerate(leaves):

@@ -1285,6 +1285,7 @@ class IterationAgent(abctools.AbjadObject):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         vertical_moments = self.by_vertical_moment()
+
         def _closure(vertical_moments):
             for moment_1, moment_2 in abjad.Sequence(vertical_moments).nwise():
                 enumerator = mathtools.Enumerator(moment_1.start_leaves)
@@ -1802,6 +1803,7 @@ class IterationAgent(abctools.AbjadObject):
         prototype = scoretools.Leaf
         if pitched:
             prototype = (scoretools.Chord, scoretools.Note)
+
         def _closure():
             leaf, yielded = None, False
             if not reverse:
@@ -1977,6 +1979,7 @@ class IterationAgent(abctools.AbjadObject):
         '''
         if self._expression:
             return self._update_expression(inspect.currentframe())
+
         def _closure():
             if (isinstance(self._client, prototype) and
                 self._client._get_parentage().logical_voice == logical_voice):
@@ -2420,6 +2423,7 @@ class IterationAgent(abctools.AbjadObject):
         # set default class
         if prototype is None:
             prototype = scoretools.Component
+
         def _closure():
             # save logical voice signature of input component
             signature = self._client._get_parentage().logical_voice
@@ -2626,6 +2630,7 @@ class IterationAgent(abctools.AbjadObject):
         from abjad.tools.topleveltools import iterate
         if self._expression:
             return self._update_expression(inspect.currentframe())
+
         def _closure():
             if isinstance(self._client, pitchtools.Pitch):
                 pitch = pitchtools.NamedPitch.from_pitch_carrier(self._client)
@@ -2814,6 +2819,7 @@ class IterationAgent(abctools.AbjadObject):
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
+
         def _closure():
             for leaf_pair in self.by_leaf_pair():
                 leaf_pair_list = list(leaf_pair)
@@ -3000,6 +3006,7 @@ class IterationAgent(abctools.AbjadObject):
         if not isinstance(prototype, collections.Sequence):
             prototype = (prototype,)
         selection = abjad.select(self._client)
+
         def _closure():
             current_run = ()
             for run in selection.group_by(type):
@@ -3130,6 +3137,7 @@ class IterationAgent(abctools.AbjadObject):
         from abjad.tools.topleveltools import inspect as abjad_inspect
         if self._expression:
             return self._update_expression(inspect.currentframe())
+
         def _closure():
             visited_spanners = set()
             for component in self.by_class(reverse=reverse):
@@ -3345,6 +3353,7 @@ class IterationAgent(abctools.AbjadObject):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         prototype = prototype or scoretools.Leaf
+
         def _closure():
             if isinstance(self.client, scoretools.Component):
                 components = [self.client]
@@ -3644,6 +3653,7 @@ class IterationAgent(abctools.AbjadObject):
         '''
         if self._expression:
             return self._update_expression(inspect.currentframe())
+
         def _closure():
             visited_logical_ties = set()
             iterator = self.by_timeline(reverse=reverse)
@@ -3798,6 +3808,7 @@ class IterationAgent(abctools.AbjadObject):
             prototype=prototype,
             reverse=reverse,
             )
+
         def _closure():
             yielded_expr = False
             for component in component_generator:
@@ -3878,6 +3889,7 @@ class IterationAgent(abctools.AbjadObject):
         prototype = (spannertools.Tie,)
         if self._expression:
             return self._update_expression(inspect.currentframe())
+
         def _closure():
             if isinstance(self._client, scoretools.Leaf):
                 logical_tie = self._client._get_logical_tie()
@@ -4126,9 +4138,8 @@ class IterationAgent(abctools.AbjadObject):
                     if component:
                         _buffer_components_starting_with(
                             component[0], buffer, stop_offsets)
+
         def _iterate_vertical_moments(argument):
-            #if not isinstance(argument, scoretools.Component):
-            #    raise TypeError
             governors = (argument,)
             current_offset, stop_offsets, buffer = \
                 durationtools.Offset(0), [], []
@@ -4146,8 +4157,7 @@ class IterationAgent(abctools.AbjadObject):
                 _update_buffer(current_offset, buffer, stop_offsets)
         def _next_in_parent(component):
             from abjad.tools import selectiontools
-            if not isinstance(component, scoretools.Component):
-                raise TypeError
+            assert isinstance(component, scoretools.Component), repr(component)
             selection = selectiontools.Selection(component)
             parent, start, stop = \
                 selection._get_parent_and_start_stop_indices()
@@ -4174,6 +4184,7 @@ class IterationAgent(abctools.AbjadObject):
                         pass
                 else:
                     stop_offsets.append(component._get_timespan().stop_offset)
+
         def _closure():
             if not reverse:
                 for x in _iterate_vertical_moments(self._client):
@@ -4547,6 +4558,7 @@ class IterationAgent(abctools.AbjadObject):
             else:
                 return node
         assert isinstance(self._client, scoretools.Component)
+
         def _closure():
             component = self._client
             client_parent, node, rank = component._parent, component, 0

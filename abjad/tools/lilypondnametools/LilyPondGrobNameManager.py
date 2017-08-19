@@ -135,7 +135,9 @@ class LilyPondGrobNameManager(LilyPondNameManager):
                 attribute_name = attribute_tuple[2]
                 attribute_value = attribute_tuple[3]
             else:
-                raise ValueError
+                message = 'invalid attribute tuple: {!r}.'
+                message = message.format(attribute_tuple)
+                raise ValueError(message)
             if contribution_type == 'override':
                 override_string = manager.make_lilypond_override_string(
                     grob_name,

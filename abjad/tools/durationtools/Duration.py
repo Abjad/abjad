@@ -564,10 +564,8 @@ class Duration(AbjadObject, Fraction):
 
         Returns integer.
         '''
-        if not isinstance(n, (int, float, Fraction)):
-            raise TypeError
-        if n <= 0:
-            raise ValueError
+        assert isinstance(n, (int, float, Fraction)), repr(n)
+        assert 0 <= n, repr(n)
         result = 2 ** (int(math.ceil(math.log(n, 2))) + i)
         return result
 

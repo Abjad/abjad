@@ -1,4 +1,3 @@
-import locale
 import os
 import subprocess
 import sys
@@ -362,8 +361,7 @@ class AbjadConfiguration(Configuration):
         Returns none.
         '''
         from abjad import abjad_configuration
-        if spelling not in ('mixed', 'sharps', 'flats'):
-            raise ValueError
+        assert spelling in ('mixed', 'sharps', 'flats'), repr(spelling)
         abjad_configuration['accidental_spelling'] = spelling
 
     ### PRIVATE PROPERTIES ###

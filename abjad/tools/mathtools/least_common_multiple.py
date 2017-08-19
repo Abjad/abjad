@@ -69,10 +69,8 @@ def least_common_multiple(*integers):
 
 def _least_common_multiple_helper(m, n):
     from abjad.tools import mathtools
-    if not isinstance(m, int):
-        raise TypeError
-    if not isinstance(n, int):
-        raise TypeError
+    assert isinstance(m, int), repr(m)
+    assert isinstance(n, int), repr(n)
     factors_m = mathtools.factors(m)
     factors_n = mathtools.factors(n)
     for x in factors_m:
