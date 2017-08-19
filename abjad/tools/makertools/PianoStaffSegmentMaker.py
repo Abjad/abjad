@@ -1,12 +1,10 @@
 import os
-from abjad.tools import datastructuretools
 from abjad.tools import indicatortools
 from abjad.tools import lilypondfiletools
 from abjad.tools import pitchtools
 from abjad.tools import rhythmmakertools
 from abjad.tools import scoretools
 from abjad.tools import templatetools
-from abjad.tools.topleveltools import iterate
 from abjad.tools.makertools.SegmentMaker import SegmentMaker
 
 
@@ -85,7 +83,7 @@ class PianoStaffSegmentMaker(SegmentMaker):
             return
         time_signature_context = scoretools.Context(
             context_name='GlobalContext',
-            name='Time Signature Context',
+            name='Global Context',
             )
         maker = abjad.MeasureMaker()
         measures = maker(time_signatures)

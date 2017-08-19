@@ -1,4 +1,5 @@
 import os
+import pathlib
 from abjad.tools.abctools import ContextManager
 
 
@@ -22,6 +23,8 @@ class TemporaryDirectoryChange(ContextManager):
     def __init__(self, directory=None, verbose=None):
         if directory is None:
             pass
+        elif isinstance(directory, pathlib.Path):
+            directory = str(directory)
         elif os.path.isdir(directory):
             pass
         elif os.path.isfile(directory):

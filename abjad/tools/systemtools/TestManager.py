@@ -1,6 +1,7 @@
 import difflib
 import inspect
 import os
+import pathlib
 from abjad.tools.abctools import AbjadObject
 
 
@@ -12,7 +13,8 @@ class TestManager(AbjadObject):
 
     __documentation_section__ = 'Managers'
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### PRIVATE METHODS ###
 
@@ -20,8 +22,10 @@ class TestManager(AbjadObject):
     def _compare_backup(path):
         if isinstance(path, str):
             paths = [path]
+        elif isinstance(path, pathlib.Path):
+            paths = [str(path)]
         elif (isinstance(path, (tuple, list))):
-            paths = path
+            paths = [str(_) for _ in path]
         else:
             raise TypeError(path)
         for path in paths:
@@ -279,6 +283,8 @@ class TestManager(AbjadObject):
         Returns true when files compare the same and false when files compare
         differently.
         '''
+        path_1 = str(path_1)
+        path_2 = str(path_2)
         if os.path.exists(path_1) and not os.path.exists(path_2):
             return False
         elif not os.path.exists(path_1) and os.path.exists(path_2):

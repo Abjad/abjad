@@ -74,6 +74,7 @@ class PersistenceAgent(abctools.AbjadObject):
                 ly_file_name,
                 )
         else:
+            ly_file_path = str(ly_file_path)
             ly_file_path = os.path.expanduser(ly_file_path)
         assert ly_file_path.endswith('.ly'), ly_file_path
         timer = systemtools.Timer()
@@ -214,6 +215,7 @@ class PersistenceAgent(abctools.AbjadObject):
         if illustrate_function is None:
             assert hasattr(self._client, '__illustrate__'), repr(self._client)
         if pdf_file_path is not None:
+            pdf_file_path = str(pdf_file_path)
             pdf_file_path = os.path.expanduser(pdf_file_path)
             without_extension = os.path.splitext(pdf_file_path)[0]
             ly_file_path = '{}.ly'.format(without_extension)
