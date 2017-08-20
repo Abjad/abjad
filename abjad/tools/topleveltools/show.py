@@ -45,6 +45,24 @@ def show(argument, return_timing=False, **keywords):
     Returns pair of `abjad_formatting_time` and `lilypond_rendering_time`
     when `return_timing` is true.
     '''
+    return _show(
+        argument,
+        return_timing=return_timing,
+        **keywords
+        )
+
+
+def _show(argument, return_timing=False, **keywords):
+    """
+    Trivial entry-point for easy mocking in abjad-book and IPython.
+
+    Do not move this function elsewhere. The location relative to
+    its non-underscore-prefixed companion is crucial for mocking
+    and replacement.
+
+    Replace this function inside this module object to support
+    special output environments.
+    """
     import abjad
     if not hasattr(argument, '__illustrate__'):
         message = 'must have __illustrate__ method: {!r}.'

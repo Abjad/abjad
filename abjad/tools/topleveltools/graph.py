@@ -299,6 +299,36 @@ def graph(
 
     Returns none.
     '''
+    return _graph(
+        argument,
+        image_format=image_format,
+        layout=layout,
+        graph_attributes=graph_attributes,
+        node_attributes=node_attributes,
+        edge_attributes=edge_attributes,
+        **keywords
+        )
+
+
+def _graph(
+    argument,
+    image_format='pdf',
+    layout='dot',
+    graph_attributes=None,
+    node_attributes=None,
+    edge_attributes=None,
+    **keywords
+    ):
+    """
+    Trivial entry-point for easy mocking in abjad-book and IPython.
+
+    Do not move this function elsewhere. The location relative to
+    its non-underscore-prefixed companion is crucial for mocking
+    and replacement.
+
+    Replace this function inside this module object to support
+    special output environments.
+    """
     from abjad import abjad_configuration
     from abjad.tools import systemtools
 

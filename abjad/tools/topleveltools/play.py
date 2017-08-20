@@ -2,8 +2,7 @@ def play(argument):
     r'''Plays `argument`.
 
     ..  container:: example
-
-        ::
+::
 
             >>> note = abjad.Note("c'4")
             >>> abjad.play(note) # doctest: +SKIP
@@ -18,6 +17,20 @@ def play(argument):
 
     Returns none.
     '''
+    return _play(argument)
+
+
+def _play(argument):
+    """
+    Trivial entry-point for easy mocking in abjad-book and IPython.
+
+    Do not move this function elsewhere. The location relative to
+    its non-underscore-prefixed companion is crucial for mocking
+    and replacement.
+
+    Replace this function inside this module object to support
+    special output environments.
+    """
     from abjad import abjad_configuration
     from abjad.tools import systemtools
     from abjad.tools import topleveltools
