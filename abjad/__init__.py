@@ -2,11 +2,11 @@
 import distutils.version
 import platform
 if not (
-    distutils.version.LooseVersion('2.7.2') <
+    distutils.version.LooseVersion('3.4') <=
     distutils.version.LooseVersion(platform.python_version())
     ):
-    print('WARNING: Abjad does not support Python versions less than 2.7.3.')
-    print('WARNING: Upgrade your Python to 2.7.3 or higher.')
+    print('WARNING: Abjad does not support Python versions less than 3.4.')
+    print('WARNING: Upgrade your Python to 3.4 or higher.')
 del platform
 del distutils
 
