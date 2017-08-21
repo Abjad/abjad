@@ -110,7 +110,7 @@ class LilyPondFile(AbjadObject):
         comments = tuple(comments)
         self._comments = comments
         self._date_time_token = None
-        if date_time_token is not False:
+        if bool(date_time_token):
             self._date_time_token = lilypondfiletools.DateTimeToken()
         self._default_paper_size = default_paper_size
         self._global_staff_size = global_staff_size
@@ -343,7 +343,7 @@ class LilyPondFile(AbjadObject):
 
                 >>> lilypond_file
                 LilyPondFile(comments=[],
-                date_time_token=DateTimeToken(date_string='...'), includes=[],
+                includes=[],
                 items=[<Block(name='header')>, <Block(name='layout')>,
                 <Block(name='paper')>, <Block(name='score')>],
                 lilypond_language_token=LilyPondLanguageToken(),
@@ -514,7 +514,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file = abjad.LilyPondFile.new()
+                >>> lilypond_file = abjad.LilyPondFile.new(date_time_token=True)
 
             ::
 
