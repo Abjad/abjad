@@ -93,7 +93,9 @@ class Interval(AbjadValueObject):
         elif self.direction_number == 1:
             return '+'
         else:
-            raise ValueError
+            message = 'invalid direction number: {!r}.'
+            message = message.format(self.direction_number)
+            raise ValueError(message)
 
     ### PUBLIC PROPERTIES ###
 

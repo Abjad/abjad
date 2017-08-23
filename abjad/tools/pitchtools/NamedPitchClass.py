@@ -417,8 +417,7 @@ class NamedPitchClass(PitchClass):
     def _initialize_by_pitch_name(self, argument):
         from abjad.tools import pitchtools
         match = pitchtools.Pitch._pitch_name_regex.match(argument.lower())
-        if match is None:
-            raise ValueError
+        assert match is not None, repr(match)
         groups = match.groups()
         diatonic_pitch_class_name = groups[0]
         abbreviation = groups[1]

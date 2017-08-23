@@ -7,22 +7,22 @@ def test_systemtools_LilyPondFormatManager_report_component_format_contributions
     tweaked leaf.
     '''
 
-    t = abjad.Note("c'4")
-    abjad.override(t).note_head.style = 'cross'
-    abjad.override(t).note_head.color = 'red'
-    abjad.override(t).stem.color = 'red'
+    note = abjad.Note("c'4")
+    abjad.override(note).note_head.style = 'cross'
+    abjad.override(note).note_head.color = 'red'
+    abjad.override(note).stem.color = 'red'
     articulation = abjad.Articulation('staccato')
-    abjad.attach(articulation, t)
+    abjad.attach(articulation, note)
     articulation = abjad.Articulation('tenuto')
-    abjad.attach(articulation, t)
+    abjad.attach(articulation, note)
     markup = abjad.Markup('some markup', Down)
-    abjad.attach(markup, t)
+    abjad.attach(markup, note)
     comment = abjad.LilyPondComment('textual information before', 'before')
-    abjad.attach(comment, t)
+    abjad.attach(comment, note)
     comment = abjad.LilyPondComment('textual information after', 'after')
-    abjad.attach(comment, t)
+    abjad.attach(comment, note)
 
-    assert systemtools.LilyPondFormatManager.report_component_format_contributions(t) == \
+    assert systemtools.LilyPondFormatManager.report_component_format_contributions(note) == \
         abjad.String.normalize(
         r'''
         slot 1:

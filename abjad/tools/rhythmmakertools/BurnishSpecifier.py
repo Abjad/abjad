@@ -231,7 +231,9 @@ class BurnishSpecifier(AbjadValueObject):
             elif i in (1, scoretools.Note):
                 new_division_part.append(abs(number))
             else:
-                raise ValueError
+                message = 'unknown burnshing: {!r}.'
+                message = message.format(i)
+                raise ValueError(message)
         new_division_part = type(division_part)(new_division_part)
         return new_division_part
 

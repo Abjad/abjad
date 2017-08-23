@@ -190,16 +190,22 @@ class RomanNumeral(AbjadValueObject):
             elif quality_string == '' and not uppercase:
                 return 'minor'
             else:
-                raise ValueError
+                message = 'unknown quality string: {!r}.'
+                message = message.format(quality_string)
+                raise ValueError(message)
         elif extent == 7:
             if quality_string == '' and uppercase:
                 return 'dominant'
             elif quality_string == '' and not uppercase:
                 return 'minor'
             else:
-                raise ValueError
+                message = 'unknown quality string: {!r}.'
+                message = message.format(quality_string)
+                raise ValueError(message)
         else:
-            raise ValueError
+            message = 'unknown extent: {!r}.'
+            message = message.format(extent)
+            raise ValueError(message)
 
     def _get_quality_symbol(self):
         from abjad.tools import tonalanalysistools

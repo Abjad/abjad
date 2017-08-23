@@ -169,7 +169,9 @@ class Segment(TypedTuple):
         elif hasattr(self.item_class, '__abs__'):
             items = [abs(x) for x in self]
         else:
-            raise ValueError
+            message = 'invalid item class: {!r}.'
+            message = message.format(self.item_class)
+            raise ValueError(message)
         return systemtools.FormatSpecification(
             client=self,
             repr_is_indented=False,

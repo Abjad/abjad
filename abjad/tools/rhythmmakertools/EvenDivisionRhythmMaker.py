@@ -290,7 +290,9 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             elif burnishing in (1, abjad.Note):
                 new_division_part.append(abjad.Note(leaf))
             else:
-                raise ValueError
+                message = 'unknown burnishing: {!r}.'
+                message = message.format(burnishing)
+                raise ValueError(message)
         new_division_part = type(division_part)(new_division_part)
         return new_division_part
 

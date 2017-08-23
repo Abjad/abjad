@@ -24,10 +24,8 @@ def integer_to_base_k_tuple(n, k):
 
     Returns tuple of positive integers.
     '''
-    if not isinstance(n, int):
-        raise TypeError
-    if not 0 <= n:
-        raise ValueError
+    assert isinstance(n, int), repr(n)
+    assert 0 <= n, repr(n)
     if n == 0:
         return (0,)
     result = []

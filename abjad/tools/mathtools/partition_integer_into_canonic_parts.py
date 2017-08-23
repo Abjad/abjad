@@ -67,18 +67,16 @@ def partition_integer_into_canonic_parts(n, decrease_parts_monotonically=True):
     Returns tuple of integers.
     '''
     from abjad.tools import mathtools
-    if not isinstance(n, int):
-        raise TypeError
-    if not isinstance(decrease_parts_monotonically, bool):
-        raise ValueError
+    assert isinstance(n, int), repr(n)
+    assert isinstance(decrease_parts_monotonically, bool)
     if n == 0:
         return (0,)
     result = []
     previous_empty = True
     binary_n = mathtools.integer_to_binary_string(abs(n))
     binary_length = len(binary_n)
-    for i, x in enumerate(binary_n):
-        if x == '1':
+    for i, character in enumerate(binary_n):
+        if character == '1':
             place_value = 2 ** (binary_length - i - 1)
             if previous_empty:
                 result.append(place_value)
@@ -89,7 +87,7 @@ def partition_integer_into_canonic_parts(n, decrease_parts_monotonically=True):
             previous_empty = True
     sign_n = mathtools.sign(n)
     if mathtools.sign(n) == -1:
-        result = [sign_n * x for x in result]
+        result = [sign_n * _ for _ in result]
     if decrease_parts_monotonically:
         return tuple(result)
     else:

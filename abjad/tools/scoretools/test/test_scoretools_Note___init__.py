@@ -118,13 +118,13 @@ def test_scoretools_Note___init___10():
     '''
 
     tuplet = abjad.Tuplet((2, 3), 3 * abjad.Rest((1, 8)))
-    d = tuplet[0].written_duration
+    duration = tuplet[0].written_duration
     note = abjad.Note(tuplet[0])
 
     assert isinstance(tuplet[0], abjad.Rest)
     assert isinstance(note, abjad.Note)
     assert tuplet[0]._parent is tuplet
-    assert tuplet[0].written_duration == d
+    assert tuplet[0].written_duration == duration
     assert note._parent is None
 
 
@@ -148,14 +148,14 @@ def test_scoretools_Note___init___12():
     '''
 
     skip = abjad.Skip((1, 8))
-    d = skip.written_duration
+    duration = skip.written_duration
     note = abjad.Note(skip)
 
     assert isinstance(note, abjad.Note)
     assert dir(skip) == dir(abjad.Skip((1, 4)))
     assert dir(note) == dir(abjad.Note("c'4"))
     assert note._parent is None
-    assert note.written_duration == d
+    assert note.written_duration == duration
 
 
 def test_scoretools_Note___init___13():
@@ -163,13 +163,13 @@ def test_scoretools_Note___init___13():
     '''
 
     tuplet = abjad.Tuplet((2, 3), 3 * abjad.Skip((1, 8)))
-    d = tuplet[0].written_duration
+    duration = tuplet[0].written_duration
     note = abjad.Note(tuplet[0])
 
     assert isinstance(tuplet[0], abjad.Skip)
     assert isinstance(note, abjad.Note)
     assert tuplet[0]._parent is tuplet
-    assert tuplet[0].written_duration == d
+    assert tuplet[0].written_duration == duration
     assert note._parent is None
 
 

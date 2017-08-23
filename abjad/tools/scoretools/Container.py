@@ -835,10 +835,8 @@ class Container(Component):
 
     @staticmethod
     def _remove_powers_of_two(n):
-        if not isinstance(n, int):
-            raise TypeError
-        if n <= 0:
-            raise ValueError
+        assert isinstance(n, int), repr(n)
+        assert not n <= 0, repr(n)
         while n % 2 == 0:
             n //= 2
         return n

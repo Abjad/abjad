@@ -94,7 +94,9 @@ class Set(TypedFrozenset):
         elif hasattr(self.item_class, '__abs__'):
             repr_items = [abs(x) for x in items]
         else:
-            raise ValueError
+            message = 'invalid item class: {!r}.'
+            message = message.format(self.item_class)
+            raise ValueError(message)
         return repr_items
 
     def _sort_self(self):

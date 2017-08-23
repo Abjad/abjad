@@ -280,10 +280,10 @@ class Tuplet(Container):
                 mathtools.NonreducedFraction(inverse_multiplier)
             nonreduced_fraction = nonreduced_fraction.with_denominator(
                 self.preferred_denominator)
-            d, n = nonreduced_fraction.pair
+            denominator, numerator = nonreduced_fraction.pair
         else:
-            n, d = self.multiplier.numerator, self.multiplier.denominator
-        return '%s/%s' % (n, d)
+            numerator, denominator = self.multiplier.numerator, self.multiplier.denominator
+        return '%s/%s' % (numerator, denominator)
 
     def _get_power_of_two_denominator(self):
         if self.multiplier:
@@ -2216,8 +2216,8 @@ class Tuplet(Container):
         ratio = abjad.NonreducedRatio(ratio)
         if isinstance(fraction, tuple):
             fraction = abjad.NonreducedFraction(*fraction)
-        n = fraction.numerator
-        d = fraction.denominator
+        numerator = fraction.numerator
+        denominator = fraction.denominator
         duration = abjad.Duration(fraction)
         if len(ratio.numbers) == 1:
             if 0 < ratio.numbers[0]:
@@ -2259,8 +2259,8 @@ class Tuplet(Container):
         if 1 < len(ratio.numbers):
             exponent = int(
                 math.log(
-                    abjad.mathtools.weight(ratio.numbers), 2) - math.log(n, 2))
-            denominator = int(d * 2 ** exponent)
+                    abjad.mathtools.weight(ratio.numbers), 2) - math.log(numerator, 2))
+            denominator = int(denominator * 2 ** exponent)
             music = []
             for x in ratio.numbers:
                 if not x:

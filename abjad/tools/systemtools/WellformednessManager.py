@@ -40,7 +40,7 @@ class WellformednessManager(AbjadObject):
         '''
         if argument is None:
             return
-        check_names = [x for x in dir(self) if x.startswith('check_')]
+        check_names = [_ for _ in dir(self) if _.startswith('check_')]
         triples = []
         for current_check_name in sorted(check_names):
             current_check = getattr(self, current_check_name)
@@ -150,13 +150,13 @@ class WellformednessManager(AbjadObject):
         import abjad
         violators = []
         components = abjad.iterate(argument).by_class()
-        total_ids = [id(x) for x in components]
+        total_ids = [id(_) for _ in components]
         unique_ids = abjad.Sequence(total_ids).remove_repeats()
         if len(unique_ids) < len(total_ids):
             for current_id in unique_ids:
                 if 1 < total_ids.count(current_id):
-                    violators.extend([x for x in components
-                        if id(x) == current_id])
+                    violators.extend([_ for _ in components
+                        if id(_) == current_id])
         return violators, len(total_ids)
 
     def check_empty_containers(self, argument=None):
@@ -732,11 +732,11 @@ class WellformednessManager(AbjadObject):
                     common_leaves = set(glissandi[0]._get_leaves())
                     common_leaves &= set(glissandi[1]._get_leaves())
                     if len(common_leaves) == 1:
-                        x = list(common_leaves)[0]
-                        if ((glissandi[0]._is_my_first_leaf(x) and
-                            glissandi[1]._is_my_last_leaf(x)) or
-                            (glissandi[1]._is_my_first_leaf(x) and
-                            glissandi[0]._is_my_last_leaf(x))):
+                        leaf = list(common_leaves)[0]
+                        if ((glissandi[0]._is_my_first_leaf(leaf) and
+                            glissandi[1]._is_my_last_leaf(leaf)) or
+                            (glissandi[1]._is_my_first_leaf(leaf) and
+                            glissandi[0]._is_my_last_leaf(leaf))):
                             break
                 for glissando in glissandi:
                     if glissando not in violators:
@@ -800,11 +800,11 @@ class WellformednessManager(AbjadObject):
                     common_leaves = set(hairpins[0]._get_leaves())
                     common_leaves &= set(hairpins[1]._get_leaves())
                     if len(common_leaves) == 1:
-                        x = list(common_leaves)[0]
-                        if ((hairpins[0]._is_my_first_leaf(x) and
-                            hairpins[1]._is_my_last_leaf(x)) or
-                            (hairpins[1]._is_my_first_leaf(x) and
-                            hairpins[0]._is_my_last_leaf(x))):
+                        leaf = list(common_leaves)[0]
+                        if ((hairpins[0]._is_my_first_leaf(leaf) and
+                            hairpins[1]._is_my_last_leaf(leaf)) or
+                            (hairpins[1]._is_my_first_leaf(leaf) and
+                            hairpins[0]._is_my_last_leaf(leaf))):
                             break
                 for hairpin in hairpins:
                     if hairpin not in violators:

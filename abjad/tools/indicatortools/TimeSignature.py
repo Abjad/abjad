@@ -256,7 +256,7 @@ class TimeSignature(AbjadValueObject):
         if isinstance(argument, type(self)):
             return self.duration >= argument.duration
         else:
-            raise TypeError
+            raise TypeError(argument)
 
     def __gt__(self, argument):
         r'''Is true when duration of time signature is greater than duration of
@@ -267,7 +267,7 @@ class TimeSignature(AbjadValueObject):
         if isinstance(argument, type(self)):
             return self.duration > argument.duration
         else:
-            raise TypeError
+            raise TypeError(argument)
 
     def __hash__(self):
         r'''Hashes time signature.
@@ -287,7 +287,7 @@ class TimeSignature(AbjadValueObject):
         if isinstance(argument, type(self)):
             return self.duration <= argument.duration
         else:
-            raise TypeError
+            raise TypeError(argument)
 
     def __lt__(self, argument):
         r'''Is true when duration of time signature is less than duration of
@@ -298,7 +298,7 @@ class TimeSignature(AbjadValueObject):
         if isinstance(argument, type(self)):
             return self.duration < argument.duration
         else:
-            raise TypeError
+            raise TypeError(argument)
 
     def __radd__(self, argument):
         r'''Adds `argument` to time signature.
