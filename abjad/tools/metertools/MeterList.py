@@ -57,8 +57,6 @@ class MeterList(TypedList):
 
                 >>> lilypond_file = meters.__illustrate__()
                 >>> f(lilypond_file)
-                % ...
-                <BLANKLINE>
                 \version "..."
                 \language "english"
                 <BLANKLINE>
