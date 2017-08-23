@@ -766,7 +766,7 @@ class Container(Component):
                 self[:] = parsed[:]
         else:
             message = 'can not initialize container from {!r}.'
-            message += ' try using mutate().wrap()?'
+            message += ' Try using mutate().wrap()?'
             message = message.format(music)
             raise TypeError(message)
 
@@ -865,8 +865,6 @@ class Container(Component):
         Only private methods should set this keyword.
         '''
         import abjad
-        from abjad.tools import scoretools
-        from abjad.tools import selectiontools
         # cache argument indicators
         argument_indicators = []
         for component in iterate(argument).by_class():
@@ -890,27 +888,25 @@ class Container(Component):
                 len(argument) == 1 and
                 isinstance(argument[0], str)):
                 argument = self._parse_string(argument[0])[:]
-        prototype = (scoretools.Component, selectiontools.Selection)
+        prototype = (abjad.Component, abjad.Selection)
         assert all(isinstance(_, prototype) for _ in argument)
         new_argument = []
         for item in argument:
-            if isinstance(item, selectiontools.Selection):
+            if isinstance(item, abjad.Selection):
                 new_argument.extend(item)
             else:
                 new_argument.append(item)
         argument = new_argument
-        assert all(isinstance(_, scoretools.Component) for _ in argument)
-        if any(isinstance(_, scoretools.GraceContainer) for _ in argument):
+        assert all(isinstance(_, abjad.Component) for _ in argument)
+        if any(isinstance(_, abjad.GraceContainer) for _ in argument):
             message = 'must attach grace container to note or chord.'
             raise Exception(message)
         if self._check_for_cycles(argument):
-            raise ParentageError('attempted to induce cycles.')
-        if (
-            i.start == i.stop and
+            raise abjad.ParentageError('attempted to induce cycles.')
+        if (i.start == i.stop and
             i.start is not None and
             i.stop is not None and
-            i.start <= -len(self)
-            ):
+            i.start <= -len(self)):
             start, stop = 0, 0
         else:
             start, stop, stride = i.indices(len(self))
@@ -918,14 +914,14 @@ class Container(Component):
         spanners_receipt = self._get_spanners_that_dominate_slice(start, stop)
         #print('RECEIPT', spanners_receipt, self, argument)
         for component in old_components:
-            for child in iterate([component]).by_class():
+            for child in abjad.iterate([component]).by_class():
                 for spanner in child._get_spanners():
                     spanner._remove(child)
         del(self[start:stop])
         # must withdraw before setting in self!
         # otherwise circular withdraw ensues!
         if withdraw_components_from_crossing_spanners:
-            selection = selectiontools.Selection(argument)
+            selection = abjad.Selection(argument)
             if selection._all_in_same_logical_voice(
                 selection,
                 contiguous=True,

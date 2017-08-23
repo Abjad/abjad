@@ -317,7 +317,7 @@ class LogicalTie(Selection):
         import abjad
         # coerce input
         proportions = abjad.Ratio(proportions)
-        # find target duration of fixed-duration tuplet
+        # find target duration of tuplet
         target_duration = self._get_preprolated_duration()
         # find duration of each note in tuplet
         prolated_duration = target_duration / sum(proportions.numbers)

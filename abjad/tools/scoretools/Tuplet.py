@@ -162,7 +162,7 @@ class Tuplet(Container):
                 old_written_duration = component.written_duration
                 new_written_duration = leaf_multiplier * old_written_duration
                 component._set_duration(new_written_duration)
-        # adjust tuplet multiplier (for non-fixed-duration tuplets)
+        # adjust tuplet multiplier
         if self.__class__ is Tuplet:
             numerator, denominator = leaf_multiplier.pair
             multiplier = durationtools.Multiplier(denominator, numerator)
@@ -1303,14 +1303,15 @@ class Tuplet(Container):
                 ...     avoid_dots=True,
                 ...     is_diminution=False,
                 ...     )
-                >>> measure = abjad.Measure((3, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((3, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(measure)
+                >>> f(staff[0])
                 {
                     \time 3/16
                     \tweak text #tuplet-number::calc-fraction-text
@@ -1334,14 +1335,15 @@ class Tuplet(Container):
                 ...     avoid_dots=True,
                 ...     is_diminution=False,
                 ...     )
-                >>> measure = abjad.Measure((3, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((3, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(measure)
+                >>> f(staff[0])
                 {
                     \time 3/16
                     \tweak text #tuplet-number::calc-fraction-text
@@ -1365,14 +1367,15 @@ class Tuplet(Container):
                 ...     decrease_monotonic=False,
                 ...     is_diminution=False,
                 ...     )
-                >>> measure = abjad.Measure((3, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((3, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(measure)
+                >>> f(staff[0])
                 {
                     \time 3/16
                     \tweak text #tuplet-number::calc-fraction-text
@@ -1398,14 +1401,15 @@ class Tuplet(Container):
                 ...     avoid_dots=False,
                 ...     is_diminution=False,
                 ...     )
-                >>> measure = abjad.Measure((3, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((3, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(measure)
+                >>> f(staff[0])
                 {
                     \time 3/16
                     \tweak text #tuplet-number::calc-fraction-text
@@ -1429,14 +1433,15 @@ class Tuplet(Container):
                 ...     decrease_monotonic=False,
                 ...     is_diminution=False,
                 ...     )
-                >>> measure = abjad.Measure((3, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((3, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(measure)
+                >>> f(staff[0])
                 {
                     \time 3/16
                     \tweak text #tuplet-number::calc-fraction-text
@@ -1463,14 +1468,15 @@ class Tuplet(Container):
                 ...     avoid_dots=True,
                 ...     is_diminution=True,
                 ...     )
-                >>> measure = abjad.Measure((3, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((3, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(measure)
+                >>> f(staff[0])
                 {
                     \time 3/16
                     \tweak text #tuplet-number::calc-fraction-text
@@ -1494,14 +1500,15 @@ class Tuplet(Container):
                 ...     avoid_dots=True,
                 ...     is_diminution=True,
                 ...     )
-                >>> measure = abjad.Measure((3, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((3, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(measure)
+                >>> f(staff[0])
                 {
                     \time 3/16
                     \tweak text #tuplet-number::calc-fraction-text
@@ -1525,14 +1532,15 @@ class Tuplet(Container):
                 ...     decrease_monotonic=False,
                 ...     is_diminution=True,
                 ...     )
-                >>> measure = abjad.Measure((3, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((3, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(measure)
+                >>> f(staff[0])
                 {
                     \time 3/16
                     \tweak text #tuplet-number::calc-fraction-text
@@ -1558,14 +1566,15 @@ class Tuplet(Container):
                 ...     avoid_dots=False,
                 ...     is_diminution=True,
                 ...     )
-                >>> measure = abjad.Measure((3, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((3, 16), [tuplet])],
+                ...     context_name = 'RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(measure)
+                >>> f(staff[0])
                 {
                     \time 3/16
                     \times 4/5 {
@@ -1588,14 +1597,15 @@ class Tuplet(Container):
                 ...     decrease_monotonic=False,
                 ...     is_diminution=True,
                 ...     )
-                >>> measure = abjad.Measure((3, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((3, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(measure) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(measure)
+                >>> f(staff[0])
                 {
                     \time 3/16
                     \times 8/11 {
@@ -1609,7 +1619,7 @@ class Tuplet(Container):
 
         Interprets negative `ratio` as rests.
 
-        Returns fixed-duration tuplet.
+        Returns tuplet.
         '''
         import abjad
         # coerce duration and ratio
@@ -1683,9 +1693,10 @@ class Tuplet(Container):
                 ...     abjad.Ratio((1,)),
                 ...     is_diminution=False,
                 ...     )
-                >>> measure = abjad.Measure((3, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((3, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1706,9 +1717,10 @@ class Tuplet(Container):
                 ...     [1, 2],
                 ...     is_diminution=False,
                 ...     )
-                >>> measure = abjad.Measure((3, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((3, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1730,9 +1742,10 @@ class Tuplet(Container):
                 ...     abjad.Ratio((1, 2, 2)),
                 ...     is_diminution=False,
                 ...     )
-                >>> measure = abjad.Measure((3, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((3, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1756,9 +1769,10 @@ class Tuplet(Container):
                 ...     [1, 2, 2, 3],
                 ...     is_diminution=False,
                 ...     )
-                >>> measure = abjad.Measure((3, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((3, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1783,9 +1797,10 @@ class Tuplet(Container):
                 ...     [1, 2, 2, 3, 3],
                 ...     is_diminution=False,
                 ...     )
-                >>> measure = abjad.Measure((3, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((3, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1811,9 +1826,10 @@ class Tuplet(Container):
                 ...     abjad.Ratio((1, 2, 2, 3, 3, 4)),
                 ...     is_diminution=False,
                 ...     )
-                >>> measure = abjad.Measure((3, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((3, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1840,9 +1856,10 @@ class Tuplet(Container):
                 ...     [1],
                 ...     is_diminution=True,
                 ...     )
-                >>> measure = abjad.Measure((3, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((3, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1863,9 +1880,10 @@ class Tuplet(Container):
                 ...     [1, 2],
                 ...     is_diminution=True,
                 ...     )
-                >>> measure = abjad.Measure((3, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((3, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1887,9 +1905,10 @@ class Tuplet(Container):
                 ...     [1, 2, 2],
                 ...     is_diminution=True,
                 ...     )
-                >>> measure = abjad.Measure((3, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((3, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1912,9 +1931,10 @@ class Tuplet(Container):
                 ...     [1, 2, 2, 3],
                 ...     is_diminution=True,
                 ...     )
-                >>> measure = abjad.Measure((3, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((3, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1939,9 +1959,10 @@ class Tuplet(Container):
                 ...     [1, 2, 2, 3, 3],
                 ...     is_diminution=True,
                 ...     )
-                >>> measure = abjad.Measure((3, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((3, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1967,9 +1988,10 @@ class Tuplet(Container):
                 ...     [1, 2, 2, 3, 3, 4],
                 ...     is_diminution=True,
                 ...     )
-                >>> measure = abjad.Measure((3, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((3, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1993,7 +2015,7 @@ class Tuplet(Container):
         return tuplet
 
     @staticmethod
-    def from_nonreduced_ratio_and_nonreduced_fraction(
+    def from_ratio_and_pair(
         ratio,
         fraction,
         allow_trivial=False,
@@ -2006,18 +2028,19 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+                >>> tuplet = abjad.Tuplet.from_ratio_and_pair(
                 ...     abjad.NonreducedRatio((1,)),
                 ...     abjad.NonreducedFraction(7, 16),
                 ...     )
-                >>> measure = abjad.Measure((7, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((7, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(measure)
+                >>> f(staff[0])
                 {
                     \time 7/16
                     {
@@ -2032,19 +2055,20 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+                >>> tuplet = abjad.Tuplet.from_ratio_and_pair(
                 ...     abjad.NonreducedRatio((1,)),
                 ...     abjad.NonreducedFraction(7, 16),
                 ...     allow_trivial=True,
                 ...     )
-                >>> measure = abjad.Measure((7, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((7, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(measure)
+                >>> f(staff[0])
                 {
                     \time 7/16
                     {
@@ -2054,22 +2078,23 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Makes fixed-duration tuplet when prolation is necessary:
+            Makes tuplet when prolation is necessary:
 
             ::
 
-                >>> tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+                >>> tuplet = abjad.Tuplet.from_ratio_and_pair(
                 ...     abjad.NonreducedRatio((1, 2)),
                 ...     abjad.NonreducedFraction(7, 16),
                 ...     )
-                >>> measure = abjad.Measure((7, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((7, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(measure)
+                >>> f(staff[0])
                 {
                     \time 7/16
                     \tweak text #tuplet-number::calc-fraction-text
@@ -2081,18 +2106,19 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+                >>> tuplet = abjad.Tuplet.from_ratio_and_pair(
                 ...     abjad.NonreducedRatio((1, 2, 4)),
                 ...     abjad.NonreducedFraction(7, 16),
                 ...     )
-                >>> measure = abjad.Measure((7, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((7, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(measure)
+                >>> f(staff[0])
                 {
                     \time 7/16
                     {
@@ -2104,18 +2130,19 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+                >>> tuplet = abjad.Tuplet.from_ratio_and_pair(
                 ...     abjad.NonreducedRatio((1, 2, 4, 1)),
                 ...     abjad.NonreducedFraction(7, 16),
                 ...     )
-                >>> measure = abjad.Measure((7, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((7, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(measure)
+                >>> f(staff[0])
                 {
                     \time 7/16
                     \tweak text #tuplet-number::calc-fraction-text
@@ -2129,18 +2156,19 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+                >>> tuplet = abjad.Tuplet.from_ratio_and_pair(
                 ...     abjad.NonreducedRatio((1, 2, 4, 1, 2)),
                 ...     abjad.NonreducedFraction(7, 16),
                 ...     )
-                >>> measure = abjad.Measure((7, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((7, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(measure)
+                >>> f(staff[0])
                 {
                     \time 7/16
                     \tweak text #tuplet-number::calc-fraction-text
@@ -2155,18 +2183,19 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+                >>> tuplet = abjad.Tuplet.from_ratio_and_pair(
                 ...     abjad.NonreducedRatio((1, 2, 4, 1, 2, 4)),
                 ...     abjad.NonreducedFraction(7, 16),
                 ...     )
-                >>> measure = abjad.Measure((7, 16), [tuplet])
-                >>> staff = abjad.Staff([measure])
-                >>> staff.context_name = 'RhythmicStaff'
+                >>> staff = abjad.Staff(
+                ...     [abjad.Measure((7, 16), [tuplet])],
+                ...     context_name='RhythmicStaff',
+                ...     )
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(measure)
+                >>> f(staff[0])
                 {
                     \time 7/16
                     \times 1/2 {
