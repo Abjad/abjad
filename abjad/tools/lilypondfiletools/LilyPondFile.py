@@ -1,5 +1,6 @@
 import collections
 import copy
+import pathlib
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -413,6 +414,9 @@ class LilyPondFile(AbjadObject):
         for include in self.includes:
             if isinstance(include, str):
                 string = r'\include "{}"'.format(include)
+                result.append(string)
+            elif isinstance(include, pathlib.Path):
+                string = r'\include "{!s}"'.format(include)
                 result.append(string)
             else:
                 result.append(format(include))
