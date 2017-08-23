@@ -5,6 +5,7 @@ Creating annotation-aware spanners
 
     import abjad
 
+
 Key points:
 
 #. Investigate the internals of Abjad's ``Spanner`` class.
@@ -446,7 +447,8 @@ Preparing for deployment
 
 ..  abjad::
 
-    abjad.attach(OscillationSpanner(), staff)
+    leaves = abjad.select(staff).by_leaf()
+    abjad.attach(OscillationSpanner(), leaves)
     for i, leaf in enumerate(selector(staff)):
         abjad.attach(annotations[i], leaf)
 
@@ -497,7 +499,8 @@ Now we apply the ``OscillationSpanner`` and the cyclic sequence of
 
 ..  abjad::
 
-    abjad.attach(OscillationSpanner(), staff)
+    leaves = abjad.select(staff).by_leaf()
+    abjad.attach(OscillationSpanner(), leaves)
     for i, leaf in enumerate(selector(staff)):
         abjad.attach(annotations[i], leaf)
 
@@ -535,7 +538,8 @@ via rotation:
         selector = abjad.Selector().by_leaf().by_run(abjad.Note)[:-1].flatten()
         for i, leaf in enumerate(selector(staff)):
             abjad.attach(annotations[i], leaf)
-        abjad.attach(OscillationSpanner(), staff)
+        leaves = abjad.select(staff).by_leaf()
+        abjad.attach(OscillationSpanner(), leaves)
         return staff
 
 ..  abjad::
