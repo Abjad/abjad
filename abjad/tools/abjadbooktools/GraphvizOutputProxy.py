@@ -226,17 +226,17 @@ class GraphvizOutputProxy(ImageOutputProxy):
 
     def _render_pdf_source(
         self,
-        temporary_directory_path,
+        temporary_directory,
         ):
         dot_file_path = os.path.join(
-            temporary_directory_path,
+            temporary_directory,
             self.file_name_without_extension + '.dot',
             )
         source = str(self.payload)
         with open(dot_file_path, 'w') as file_pointer:
             file_pointer.write(source)
         pdf_file_path = os.path.join(
-            temporary_directory_path,
+            temporary_directory,
             self.file_name_without_extension + '.pdf',
             )
         if platform.system() == 'Darwin':

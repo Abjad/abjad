@@ -1,3 +1,4 @@
+import pathlib
 import re
 import six
 import sys
@@ -82,6 +83,13 @@ class String(str):
         re.VERBOSE,
         )
 
+    ### PRIVATE METHODS ###
+
+    def _is_wrapper_directory_name(self):
+        if self in ('.git', '.DS_Store'):
+            return False
+        return True
+
     ### PUBLIC METHODS ###
 
     def capitalize_start(self):
@@ -112,10 +120,10 @@ class String(str):
         Returns new string.
         '''
         if not self:
-            return ''
-        return self[0].upper() + self[1:]
+            return type(self)('')
+        return type(self)(self[0].upper() + self[1:])
 
-    def delimit_words(self):
+    def delimit_words(self, separate_caps=False):
         r'''Delimits words in string.
 
         ..  container:: example
@@ -182,6 +190,36 @@ class String(str):
                 >>> string.delimit_words()
                 ['one', '!', 'two', '!']
 
+        ..  container:: example
+
+            Separates capital letters when keyword is true:
+
+            ::
+
+                >>> string = abjad.String('MRM')
+                >>> string.delimit_words()
+                ['MRM']
+
+            ::
+
+                >>> string.delimit_words(separate_caps=True)
+                ['M', 'R', 'M']
+
+        ..  container:: example
+
+            Separates capital letters when keyword is true:
+
+            ::
+
+                >>> string = abjad.String('MRhM')
+                >>> string.delimit_words()
+                ['MRh', 'M']
+
+            ::
+
+                >>> string.delimit_words(separate_caps=True)
+                ['M', 'Rh', 'M']
+
         Returns list.
         '''
         wordlike_characters = ('<', '>', '!')
@@ -197,7 +235,7 @@ class String(str):
             elif not current_word:
                 current_word = current_word + character
             elif character.isupper():
-                if current_word[-1].isupper():
+                if current_word[-1].isupper() and not separate_caps:
                     current_word = current_word + character
                 else:
                     words.append(current_word)
@@ -222,7 +260,32 @@ class String(str):
                     current_word = character
         if current_word:
             words.append(current_word)
-        return words
+        return [type(self)(_) for _ in words]
+
+    def is_build_directory_name(self):
+        r'''Is true when string is build directory name.
+
+        Returns true or false.
+        '''
+        if not self == self.lower():
+            return False
+        if self[0] == '.':
+            return False
+        if self[0] == '_':
+            return False
+        return True
+
+    def is_classfile_name(self):
+        r'''Is true when string is classfile name.
+
+        Returns true or false.
+        '''
+        path = pathlib.Path(self)
+        if not type(self)(path.stem).is_upper_camel_case():
+            return False
+        if not path.suffix == '.py':
+            return False
+        return True
 
     def is_dash_case(self):
         r'''Is true when string is hyphen-delimited lowercase.
@@ -297,6 +360,110 @@ class String(str):
         Returns true or false.
         '''
         return bool(String.lowercamelcase_regex.match(self))
+
+    def is_lowercase_file_name(self):
+        r'''Is true when string is lowercase file name.
+
+        Returns true or false.
+        '''
+        if not self == self.lower():
+            return False
+        path = pathlib.Path(self)
+        if not (type(self)(path.stem).is_snake_case() or
+            type(self)(path.stem).is_dash_case()):
+            return False
+#        if path.suffix not in ('.py', '.ly', '.pdf'):
+#            return False
+        return True
+
+    def is_module_file_name(self):
+        r'''Is true when string is module file name.
+
+        Returns true or false.
+        '''
+        path = pathlib.Path(self)
+        if not path.name == path.name.lower():
+            return False
+        if not type(self)(path.stem).is_snake_case():
+            return False
+        if not path.suffix == '.py':
+            return False
+        return True
+
+    def is_package_name(self):
+        r'''Is true when string is package name.
+
+        Returns true or false.
+        '''
+        if not self == self.lower():
+            return False
+        if not self.is_snake_case():
+            return False
+        return True
+
+    def is_public_python_file_name(self):
+        r'''Is true when string is public Python file name.
+
+        Returns true or false.
+        '''
+        path = pathlib.Path(self)
+        if path.stem.startswith('_'):
+            return False
+        if not path.suffix == '.py':
+            return False
+        return True
+
+    def is_segment_name(self):
+        r'''Is true when string is segment name or package name.
+
+        ..  container:: example
+
+            ::
+
+                >>> abjad.String('A').is_segment_name()
+                True
+
+            ::
+
+                >>> abjad.String('A1').is_segment_name()
+                True
+
+            ::
+
+                >>> abjad.String('A99').is_segment_name()
+                True
+
+            ::
+
+                >>> abjad.String('segment_01').is_segment_name()
+                True
+
+        ..  container:: example
+
+            ::
+
+                >>> abjad.String('_').is_segment_name()
+                True
+
+        Otherwise false:
+
+        ..  container:: example
+
+            ::
+
+                >>> abjad.String('A_1').is_segment_name()
+                False
+
+        Returns true or false.
+        '''
+        if self.is_package_name():
+            return True
+        if self and (self[0].isupper() or self[0] == '_'):
+            if len(self) == 1:
+                return True
+            if self[1:].isdigit():
+                return True
+        return False
 
     def is_snake_case(self):
         r'''Is true when string is underscore-delimited lowercase.
@@ -438,6 +605,31 @@ class String(str):
         '''
         return isinstance(argument, six.string_types)
 
+    def is_stylesheet_name(self):
+        r'''Is true when string is stylesheet name.
+
+        Returns true or false.
+        '''
+        path = pathlib.Path(self)
+        if not path.name == path.name.lower():
+            return False
+        if not type(self)(path.stem).is_dash_case():
+            return False
+        if not path.suffix == '.ily':
+            return False
+        return True
+
+    def is_tools_file_name(self):
+        r'''Is true when string is tools file name.
+
+        Returns true or false.
+        '''
+        if self.is_classfile_name():
+            return True
+        if self.is_module_file_name():
+            return True
+        return False
+
     def is_upper_camel_case(self):
         r'''Is true when string upper camel case.
 
@@ -460,6 +652,244 @@ class String(str):
         Returns true or false.
         '''
         return bool(String.uppercamelcase_regex.match(self))
+
+    @staticmethod
+    def match_strings(strings, pattern):
+        r'''Matches `pattern` against `strings`.
+
+        ..  container:: example
+
+            ::
+
+                >>> strings = [
+                ...     'AcciaccaturaSpecifier.py',
+                ...     'AnchorCommand.py',
+                ...     'ArpeggiationSpacingSpecifier.py',
+                ...     'AttachCommand.py',
+                ...     'ChordalSpacingSpecifier.py',
+                ...     ]
+
+            ::
+
+                >>> abjad.String.match_strings(strings, 'A')
+                []
+
+            ::
+
+                >>> for i in abjad.String.match_strings(strings, 'At'):
+                ...     strings[i]
+                'AttachCommand.py'
+
+            ::
+
+                >>> for i in abjad.String.match_strings(strings, 'AtC'):
+                ...     strings[i]
+                'AttachCommand.py'
+
+            ::
+
+                >>> for i in abjad.String.match_strings(strings, 'ASS'):
+                ...     strings[i]
+                'ArpeggiationSpacingSpecifier.py'
+
+            ::
+
+                >>> for i in abjad.String.match_strings(strings, 'AC'):
+                ...     strings[i]
+                'AnchorCommand.py'
+                'AttachCommand.py'
+
+            ::
+
+                >>> for i in abjad.String.match_strings(strings, '.py'):
+                ...     strings[i]
+                'AcciaccaturaSpecifier.py'
+                'AnchorCommand.py'
+                'ArpeggiationSpacingSpecifier.py'
+                'AttachCommand.py'
+                'ChordalSpacingSpecifier.py'
+
+            ::
+
+                >>> abjad.String.match_strings(strings, '@AC')
+                []
+
+        ..  container:: example
+
+            Regressions:
+
+            ::
+
+                >>> abjad.String.match_strings(strings, '||')
+                []
+
+            ::
+
+                >>> strings = ['_allegro', '-allegro', '.allegro', 'allegro']
+                >>> for i in abjad.String.match_strings(strings, '_al'):
+                ...     strings[i]
+                '_allegro'
+
+            ::
+
+                >>> for i in abjad.String.match_strings(strings, '-al'):
+                ...     strings[i]
+                '-allegro'
+
+            ::
+
+                >>> for i in abjad.String.match_strings(strings, '.al'):
+                ...     strings[i]
+                '.allegro'
+
+            ::
+
+                >>> for i in abjad.String.match_strings(strings, 'egro'):
+                ...     strings[i]
+                '_allegro'
+                '-allegro'
+                '.allegro'
+                'allegro'
+
+        Returns string or none.
+        '''
+        if not pattern:
+            return []
+        if not pattern[0].isalpha() and not pattern[0] in list('_-.'):
+            return []
+        pattern = String(pattern)
+        indices = []
+        for i, string in enumerate(strings):
+            if string == pattern:
+                indices.append(i)
+        strings = [String(_) for _ in strings]
+        if 3 <= len(pattern):
+            for i, string in enumerate(strings):
+                if string.startswith(pattern):
+                    if i not in indices:
+                        indices.append(i)
+            for i, string in enumerate(strings):
+                string = string.strip_diacritics().lower()
+                if string.startswith(pattern.lower()):
+                    if i not in indices:
+                        indices.append(i)
+        if len(pattern) <= 1:
+            return indices
+        if not pattern.islower() or any(_.isdigit() for _ in pattern):
+            pattern_words = pattern.delimit_words(separate_caps=True)
+            if pattern_words:
+                for i, string in enumerate(strings):
+                    if (string.startswith(pattern_words[0]) and
+                        string.match_word_starts(pattern_words)):
+                        if i not in indices:
+                            indices.append(i)
+                for i, string in enumerate(strings):
+                    if string.match_word_starts(pattern_words):
+                        if i not in indices:
+                            indices.append(i)
+        if pattern.islower():
+            pattern_characters = list(pattern)
+            if pattern_characters:
+                for i, string in enumerate(strings):
+                    if (string.startswith(pattern_characters[0]) and
+                        string.match_word_starts(pattern_characters)):
+                        if i not in indices:
+                            indices.append(i)
+                for i, string in enumerate(strings):
+                    if string.match_word_starts(pattern_characters):
+                        if i not in indices:
+                            indices.append(i)
+        if len(pattern) < 3:
+            return indices
+        for i, string in enumerate(strings):
+            if pattern in string.strip_diacritics().lower():
+                if i not in indices:
+                    indices.append(i)
+        return indices
+
+    def match_word_starts(self, words):
+        r'''Matches word starts.
+
+        ..  container:: example
+
+            ::
+
+                >>> string = abjad.String('StringQuartetScoreTemplate')
+
+            ::
+
+                >>> string.match_word_starts(['Str', 'Quar', 'Temp'])
+                True
+
+            ::
+
+                >>> string.match_word_starts(['S', 'Q', 'S', 'T'])
+                True
+
+            ::
+
+                >>> string.match_word_starts(['Quartet'])
+                True
+
+            ::
+
+                >>> string.match_word_starts(['Q'])
+                True
+
+        ..  container:: example
+
+            ::
+
+                >>> string = abjad.String('StringQuartetScoreTemplate')
+
+            ::
+
+                >>> string.match_word_starts(['Quar', 'Str'])
+                False
+
+            ::
+
+                >>> string.match_word_starts(['uartet'])
+                False
+
+        ..  container:: example
+
+            Regressions:
+
+            ::
+
+                >>> string = abjad.String('IOManager')
+                >>> string.match_word_starts(['I', 'O'])
+                True
+
+            ::
+
+                >>> string = abjad.String('StringQuartetScoreTemplate')
+                >>> string.match_word_starts(['S', 'Q', 'S', 'T', 'T'])
+                False
+
+            ::
+
+                >>> string = abjad.String('AcciaccaturaSpecifier.py')
+                >>> string.match_word_starts(['A', 'S', 'S'])
+                False
+
+        Returns true or false.
+        '''
+        my_words = self.delimit_words(separate_caps=True)
+        indices = []
+        last_index = 0
+        for word in words:
+            for i, my_word in enumerate(my_words):
+                if i < last_index:
+                    continue
+                if my_word.startswith(word) and i not in indices:
+                    indices.append(i)
+                    last_index = i
+                    break
+            else:
+                return False
+        return indices == sorted(indices)
 
     @staticmethod
     def normalize(argument, indent=None):
@@ -517,7 +947,7 @@ class String(str):
                 if line:
                     lines[i] = '{}{}'.format(indent, line)
             string = '\n'.join(lines)
-        return string
+        return String(string)
 
     def pluralize(self, count=None):
         r'''Pluralizes English string.
@@ -549,16 +979,26 @@ class String(str):
                 >>> abjad.String('shape').pluralize()
                 'shapes'
 
+        ..  container:: example
+
+            Does not pluralize:
+
+            ::
+
+                >>> abjad.String('shape').pluralize(count=1)
+                'shape'
+
         Returns string.
         '''
         if count == 1:
-            return self
-        if self.endswith('y'):
-            return self[:-1] + 'ies'
+            result = self
+        elif self.endswith('y'):
+            result = self[:-1] + 'ies'
         elif self.endswith(('s', 'sh', 'x', 'z')):
-            return self + 'es'
+            result = self + 'es'
         else:
-            return self + 's'
+            result = self + 's'
+        return type(self)(result)
 
     def strip_diacritics(self):
         r'''Strips diacritics from binary string.
@@ -583,7 +1023,7 @@ class String(str):
         '''
         normalized_unicode_string = unicodedata.normalize('NFKD', self)
         ascii_string = normalized_unicode_string.encode('ascii', 'ignore')
-        return ascii_string.decode('utf-8')
+        return type(self)(ascii_string.decode('utf-8'))
 
     def to_accent_free_snake_case(self):
         '''Changes string to accent-free snake case.
@@ -607,7 +1047,7 @@ class String(str):
         string = string.replace(' ', '_')
         string = string.replace("'", '_')
         string = string.lower()
-        return string
+        return type(self)(string)
 
     @staticmethod
     def to_bidirectional_direction_string(argument):
@@ -753,7 +1193,7 @@ class String(str):
         words = self.delimit_words()
         words = [_.lower() for _ in words]
         string = '-'.join(words)
-        return string
+        return type(self)(string)
 
     def to_lower_camel_case(self):
         r'''Changes string to lower camel case.
@@ -798,9 +1238,10 @@ class String(str):
         '''
         string = self.to_upper_camel_case()
         if string == '':
-            return string
-        string = string[0].lower() + string[1:]
-        return string
+            pass
+        else:
+            string = string[0].lower() + string[1:]
+        return type(self)(string)
 
     def to_snake_case(self):
         r'''Changes string to snake case.
@@ -846,7 +1287,7 @@ class String(str):
         words = self.delimit_words()
         words = [_.lower() for _ in words]
         string = '_'.join(words)
-        return string
+        return type(self)(string)
 
     def to_space_delimited_lowercase(self):
         r'''Changes string to space-delimited lowercase.
@@ -902,8 +1343,9 @@ class String(str):
                     current_word = current_word + letter
             words.append(current_word)
             string = ' '.join(words)
-            return string
-        return self.replace('_', ' ')
+        else:
+            string = self.replace('_', ' ')
+        return type(self)(string)
 
     @staticmethod
     def to_tridirectional_direction_string(argument):
@@ -1167,4 +1609,4 @@ class String(str):
         words = self.delimit_words()
         words = [_.capitalize() for _ in words]
         string = ''.join(words)
-        return string
+        return type(self)(string)

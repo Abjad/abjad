@@ -155,7 +155,7 @@ class TaleaRhythmMaker(RhythmMaker):
         beam_specifier=None,
         burnish_specifier=None,
         division_masks=None,
-        duration_spelling_specifier=None,
+        duration_specifier=None,
         extra_counts_per_division=None,
         logical_tie_masks=None,
         read_talea_once_only=None,
@@ -163,18 +163,18 @@ class TaleaRhythmMaker(RhythmMaker):
         split_divisions_by_counts=None,
         tie_specifier=None,
         tie_split_notes=True,
-        tuplet_spelling_specifier=None,
+        tuplet_specifier=None,
         helper_functions=None,
         ):
         from abjad.tools import rhythmmakertools
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
-            duration_spelling_specifier=duration_spelling_specifier,
+            duration_specifier=duration_specifier,
             division_masks=division_masks,
             logical_tie_masks=logical_tie_masks,
             tie_specifier=tie_specifier,
-            tuplet_spelling_specifier=tuplet_spelling_specifier,
+            tuplet_specifier=tuplet_specifier,
             )
         prototype = (rhythmmakertools.Talea, type(None))
         assert isinstance(talea, prototype)
@@ -494,7 +494,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
     def _make_leaf_lists(self, numeric_map, talea_denominator):
         leaf_lists = []
-        specifier = self._get_duration_spelling_specifier()
+        specifier = self._get_duration_specifier()
         for map_division in numeric_map:
             leaf_list = self._make_leaves_from_talea(
                 map_division,
@@ -606,7 +606,7 @@ class TaleaRhythmMaker(RhythmMaker):
             self._apply_ties_to_split_notes(selections, unscaled_talea)
         selections = self._handle_rest_tied_notes(selections)
         selections = self._apply_division_masks(selections, rotation)
-        specifier = self._get_duration_spelling_specifier()
+        specifier = self._get_duration_specifier()
         if specifier.rewrite_meter:
             selections = specifier._rewrite_meter_(
                 selections,
@@ -1654,7 +1654,7 @@ class TaleaRhythmMaker(RhythmMaker):
         return superclass.division_masks
 
     @property
-    def duration_spelling_specifier(self):
+    def duration_specifier(self):
         r'''Gets duration spelling specifier.
 
         Several duration spelling specifier configurations are available.
@@ -1671,7 +1671,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         counts=[5],
                 ...         denominator=16,
                 ...         ),
-                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
+                ...     duration_specifier=abjad.rhythmmakertools.DurationSpecifier(
                 ...         decrease_monotonic=True,
                 ...         ),
                 ...     )
@@ -1723,7 +1723,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         counts=[5],
                 ...         denominator=16,
                 ...         ),
-                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
+                ...     duration_specifier=abjad.rhythmmakertools.DurationSpecifier(
                 ...         decrease_monotonic=False,
                 ...         ),
                 ...     )
@@ -1774,7 +1774,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         counts=[1, 1, 1, 1, 4, 4],
                 ...         denominator=16,
                 ...         ),
-                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
+                ...     duration_specifier=abjad.rhythmmakertools.DurationSpecifier(
                 ...         forbidden_duration=None,
                 ...         ),
                 ...     )
@@ -1821,7 +1821,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         counts=[1, 1, 1, 1, 4, 4],
                 ...         denominator=16,
                 ...         ),
-                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
+                ...     duration_specifier=abjad.rhythmmakertools.DurationSpecifier(
                 ...         forbidden_duration=(1, 4),
                 ...         ),
                 ...     )
@@ -1874,7 +1874,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         counts=[5, 4],
                 ...         denominator=16,
                 ...         ),
-                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
+                ...     duration_specifier=abjad.rhythmmakertools.DurationSpecifier(
                 ...         spell_metrically=True,
                 ...         ),
                 ...     )
@@ -1928,7 +1928,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         counts=[5, 4],
                 ...         denominator=16,
                 ...         ),
-                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
+                ...     duration_specifier=abjad.rhythmmakertools.DurationSpecifier(
                 ...         spell_metrically='unassignable',
                 ...         ),
                 ...     )
@@ -1978,7 +1978,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         counts=[5, 4],
                 ...         denominator=16,
                 ...         ),
-                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
+                ...     duration_specifier=abjad.rhythmmakertools.DurationSpecifier(
                 ...         rewrite_meter=True,
                 ...         ),
                 ...     )
@@ -2025,7 +2025,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         Returns duration spelling specifier or none.
         '''
-        return RhythmMaker.duration_spelling_specifier.fget(self)
+        return RhythmMaker.duration_specifier.fget(self)
 
     @property
     def extra_counts_per_division(self):
@@ -3255,7 +3255,7 @@ class TaleaRhythmMaker(RhythmMaker):
         return self._tie_split_notes
 
     @property
-    def tuplet_spelling_specifier(self):
+    def tuplet_specifier(self):
         r'''Gets tuplet spelling specifier.
 
         ..  container:: example
@@ -3328,7 +3328,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         counts=[3, 3, 6, 6],
                 ...         denominator=16,
                 ...         ),
-                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
                 ...         simplify_redundant_tuplets=True,
                 ...         ),
                 ...     )
@@ -3452,7 +3452,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         counts=[3, 3, -6, -6],
                 ...         denominator=16,
                 ...         ),
-                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
                 ...         rewrite_rest_filled_tuplets=True,
                 ...         ),
                 ...     )
@@ -3509,4 +3509,4 @@ class TaleaRhythmMaker(RhythmMaker):
         Returns tuplet spelling specifier or none.
         '''
         superclass = super(TaleaRhythmMaker, self)
-        return superclass.tuplet_spelling_specifier
+        return superclass.tuplet_specifier

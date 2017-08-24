@@ -11,7 +11,7 @@ class TenorTrombone(Instrument):
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
             >>> clef = abjad.Clef('bass')
             >>> abjad.attach(clef, staff[0])
-            >>> tenor_trombone = abjad.instrumenttools.TenorTrombone()
+            >>> tenor_trombone = abjad.TenorTrombone()
             >>> abjad.attach(tenor_trombone, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -43,6 +43,7 @@ class TenorTrombone(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=('tenor', 'bass'),
+        default_scope=None,
         middle_c_sounding_pitch=None,
         pitch_range='[E2, Eb5]',
         ):
@@ -53,12 +54,9 @@ class TenorTrombone(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'brass player',
-            'trombonist',
-            ])
         self._is_primary_instrument = True
 
     ### PUBLIC PROPERTIES ###
@@ -71,13 +69,9 @@ class TenorTrombone(Instrument):
 
             ::
 
-                >>> tenor_trombone = abjad.instrumenttools.TenorTrombone()
+                >>> tenor_trombone = abjad.TenorTrombone()
                 >>> tenor_trombone.allowable_clefs
-                ClefList([Clef('tenor'), Clef('bass')])
-
-            ::
-
-                >>> show(tenor_trombone.allowable_clefs) # doctest: +SKIP
+                ('tenor', 'bass')
 
         Returns clef list.
         '''
@@ -91,7 +85,7 @@ class TenorTrombone(Instrument):
 
             ::
 
-                >>> tenor_trombone = abjad.instrumenttools.TenorTrombone()
+                >>> tenor_trombone = abjad.TenorTrombone()
                 >>> tenor_trombone.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -111,7 +105,7 @@ class TenorTrombone(Instrument):
 
             ::
 
-                >>> tenor_trombone = abjad.instrumenttools.TenorTrombone()
+                >>> tenor_trombone = abjad.TenorTrombone()
                 >>> tenor_trombone.name
                 'tenor trombone'
 
@@ -127,7 +121,7 @@ class TenorTrombone(Instrument):
 
             ::
 
-                >>> tenor_trombone = abjad.instrumenttools.TenorTrombone()
+                >>> tenor_trombone = abjad.TenorTrombone()
                 >>> tenor_trombone.name_markup
                 Markup(contents=['Tenor trombone'])
 
@@ -147,7 +141,7 @@ class TenorTrombone(Instrument):
 
             ::
 
-                >>> tenor_trombone = abjad.instrumenttools.TenorTrombone()
+                >>> tenor_trombone = abjad.TenorTrombone()
                 >>> tenor_trombone.pitch_range
                 PitchRange('[E2, Eb5]')
 
@@ -167,7 +161,7 @@ class TenorTrombone(Instrument):
 
             ::
 
-                >>> tenor_trombone = abjad.instrumenttools.TenorTrombone()
+                >>> tenor_trombone = abjad.TenorTrombone()
                 >>> tenor_trombone.short_name
                 'ten. trb.'
 
@@ -183,7 +177,7 @@ class TenorTrombone(Instrument):
 
             ::
 
-                >>> tenor_trombone = abjad.instrumenttools.TenorTrombone()
+                >>> tenor_trombone = abjad.TenorTrombone()
                 >>> tenor_trombone.short_name_markup
                 Markup(contents=['Ten. trb.'])
 

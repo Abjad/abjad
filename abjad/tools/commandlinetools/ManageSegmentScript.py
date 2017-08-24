@@ -108,7 +108,7 @@ class ManageSegmentScript(ScorePackageScript):
 
     def _handle_create(self, segment_name, force):
         print('Creating segment subpackage {!r} ...'.format(segment_name))
-        segment_path = self._name_to_score_subdirectory_path(
+        segment_path = self._name_to_score_subdirectory(
             segment_name, 'segments', self._score_package_path)
         if segment_path.exists() and not force:
             print('    Path exists: {}'.format(
@@ -117,7 +117,7 @@ class ManageSegmentScript(ScorePackageScript):
         segment_name = segment_path.name
         metadata = self._read_score_metadata_json()
         metadata['score_package_name'] = self._score_package_path.name
-        source_name = 'example_segment'
+        source_name = 'segment'
         source_path = self._get_boilerplate_path().joinpath(source_name)
         suffixes = ('.py', '.tex', '.ly', '.ily')
         for path in self._copy_tree(source_path, segment_path):
@@ -165,7 +165,7 @@ class ManageSegmentScript(ScorePackageScript):
             print('    No matching segments.')
             self._handle_list()
         for path in matching_paths:
-            self._illustrate_one_segment(segment_directory_path=path)
+            self._illustrate_one_segment(segment_directory=path)
             print('    Illustrated {path!s}{sep}'.format(
                 path=path.relative_to(self._score_package_path.parent),
                 sep=os.path.sep))
@@ -203,7 +203,7 @@ class ManageSegmentScript(ScorePackageScript):
             print('    No matching segments.')
             self._handle_list()
         for path in matching_paths:
-            self._render_one_segment(segment_directory_path=path)
+            self._render_one_segment(segment_directory=path)
             print('    Rendered {path!s}{sep}'.format(
                 path=path.relative_to(self._score_package_path.parent),
                 sep=os.path.sep))
@@ -220,8 +220,8 @@ class ManageSegmentScript(ScorePackageScript):
             ]
         old_staged_names = self._read_segments_list_json()
         contents = self._create_staging_contents(all_names, old_staged_names)
-        with systemtools.TemporaryDirectory() as directory_path:
-            with systemtools.TemporaryDirectoryChange(directory_path):
+        with systemtools.TemporaryDirectory() as directory:
+            with systemtools.TemporaryDirectoryChange(directory):
                 file_path = 'segments.txt'
                 with open(file_path, 'w') as file_pointer:
                     file_pointer.write(contents)
@@ -242,11 +242,11 @@ class ManageSegmentScript(ScorePackageScript):
         for name in new_staged_names:
             print('    {}'.format(name))
 
-    def _illustrate_one_segment(self, segment_directory_path):
+    def _illustrate_one_segment(self, segment_directory):
         print('Illustrating {path!s}{sep}'.format(
-            path=segment_directory_path.relative_to(self._score_package_path.parent),
+            path=segment_directory.relative_to(self._score_package_path.parent),
             sep=os.path.sep))
-        segment_name = segment_directory_path.name
+        segment_name = segment_directory.name
         segment_names = self._read_segments_list_json()
         previous_segment_name = None
         index = None
@@ -263,7 +263,7 @@ class ManageSegmentScript(ScorePackageScript):
                 )
             previous_metadata = self._read_json(
                 previous_segment_metadata_path)
-        segment_metadata_path = segment_directory_path.joinpath('metadata.json')
+        segment_metadata_path = segment_directory.joinpath('metadata.json')
         metadata = self._read_json(segment_metadata_path)
         metadata['segment_count'] = len(segment_names)
         metadata['segment_number'] = index
@@ -272,7 +272,7 @@ class ManageSegmentScript(ScorePackageScript):
             previous_metadata.get('first_bar_number', 1)
             )
         segment_package_path = self._path_to_packagesystem_path(
-            segment_directory_path)
+            segment_directory)
         definition_import_path = segment_package_path + '.definition'
         try:
             module = self._import_path(
@@ -296,11 +296,11 @@ class ManageSegmentScript(ScorePackageScript):
         self._report_time(timer, prefix='Abjad runtime')
         ly_path = self._write_lilypond_ly(
             lilypond_file,
-            output_directory_path=segment_directory_path,
+            output_directory=segment_directory,
             )
         self._write_lilypond_pdf(
             ly_path=ly_path,
-            output_directory_path=segment_directory_path,
+            output_directory=segment_directory,
             )
 
     def _process_args(self, arguments):
@@ -339,17 +339,17 @@ class ManageSegmentScript(ScorePackageScript):
         contents = '\n'.join(contents)
         return contents
 
-    def _render_one_segment(self, segment_directory_path):
+    def _render_one_segment(self, segment_directory):
         print('Rendering {path!s}{sep}'.format(
-            path=segment_directory_path.relative_to(self._score_package_path.parent),
+            path=segment_directory.relative_to(self._score_package_path.parent),
             sep=os.path.sep))
-        ly_path = segment_directory_path.joinpath('illustration.ly')
+        ly_path = segment_directory.joinpath('illustration.ly')
         if not ly_path.is_file():
             print('    illustration.ly is missing or malformed.')
             sys.exit(1)
         self._write_lilypond_pdf(
             ly_path=ly_path,
-            output_directory_path=segment_directory_path,
+            output_directory=segment_directory,
             )
 
     def _setup_argument_parser(self, parser):

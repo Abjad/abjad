@@ -235,10 +235,14 @@ class IndicatorWrapper(AbjadValueObject):
         return self
 
     def _find_correct_effective_context(self):
+        import abjad
         scope = self.scope
         if scope is None:
             return None
-        elif isinstance(scope, type):
+        if isinstance(scope, str):
+            if hasattr(abjad, scope):
+                scope = getattr(abjad, scope)
+        if isinstance(scope, type):
             scope_type = scope
             for component in self.component._get_parentage():
                 if isinstance(component, scope_type):
@@ -249,8 +253,7 @@ class IndicatorWrapper(AbjadValueObject):
                 if getattr(component, 'context_name', None) == scope_name:
                     return component
         else:
-            message = 'target context {!r} must be'
-            message += ' context type, context name or none.'
+            message = '{!r} must be context type, context name or none.'
             message = message.format(scope)
             raise TypeError(message)
 
@@ -266,7 +269,13 @@ class IndicatorWrapper(AbjadValueObject):
             return result
         if hasattr(self.indicator, '_get_lilypond_format_bundle'):
             return self.indicator._get_lilypond_format_bundle(self.component)
-        lilypond_format = self.indicator._get_lilypond_format()
+        try:
+            context = self._get_effective_context()
+            lilypond_format = self.indicator._get_lilypond_format(
+                context=context,
+                )
+        except TypeError:
+            lilypond_format = self.indicator._get_lilypond_format()
         if isinstance(lilypond_format, (tuple, list)):
             result.extend(lilypond_format)
         else:
@@ -276,7 +285,7 @@ class IndicatorWrapper(AbjadValueObject):
         if isinstance(self.indicator, abjad.TimeSignature):
             if isinstance(self.component, abjad.Measure):
                 return result
-        result = [r'%%% {} %%%'.format(x) for x in result]
+        result = [r'%%% {} %%%'.format(_) for _ in result]
         return result
 
     def _is_formattable_for_component(self, component):

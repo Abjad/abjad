@@ -8,11 +8,10 @@ class Harp(Instrument):
 
         ::
 
-            >>> staff_group = abjad.StaffGroup()
-            >>> staff_group.context_name = 'PianoStaff'
+            >>> staff_group = abjad.StaffGroup(context_name='PianoStaff')
             >>> staff_group.append(abjad.Staff("c'4 d'4 e'4 f'4"))
             >>> staff_group.append(abjad.Staff("c'2 b2"))
-            >>> harp = abjad.instrumenttools.Harp()
+            >>> harp = abjad.Harp()
             >>> abjad.attach(harp, staff_group[0][0])
             >>> abjad.attach(abjad.Clef('bass'), staff_group[1][0])
             >>> show(staff_group) # doctest: +SKIP
@@ -52,6 +51,7 @@ class Harp(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=('treble', 'bass'),
+        default_scope='StaffGroup',
         middle_c_sounding_pitch=None,
         pitch_range='[B0, G#7]',
         ):
@@ -62,14 +62,10 @@ class Harp(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._default_scope = 'PianoStaff'
-        self._performer_names.extend([
-            'string player',
-            'harpist',
-            ])
         self._is_primary_instrument = True
 
     ### PUBLIC PROPERTIES ###
@@ -82,13 +78,9 @@ class Harp(Instrument):
 
             ::
 
-                >>> harp = abjad.instrumenttools.Harp()
+                >>> harp = abjad.Harp()
                 >>> harp.allowable_clefs
-                ClefList([Clef('treble'), Clef('bass')])
-
-            ::
-
-                >>> show(harp.allowable_clefs) # doctest: +SKIP
+                ('treble', 'bass')
 
         Returns clef list.
         '''
@@ -102,9 +94,9 @@ class Harp(Instrument):
 
             ::
 
-                >>> harp = abjad.instrumenttools.Harp()
+                >>> harp = abjad.Harp()
                 >>> harp.default_scope
-                'PianoStaff'
+                'StaffGroup'
 
         Returns piano staff.
         '''
@@ -118,7 +110,7 @@ class Harp(Instrument):
 
             ::
 
-                >>> harp = abjad.instrumenttools.Harp()
+                >>> harp = abjad.Harp()
                 >>> harp.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -138,7 +130,7 @@ class Harp(Instrument):
 
             ::
 
-                >>> harp = abjad.instrumenttools.Harp()
+                >>> harp = abjad.Harp()
                 >>> harp.name
                 'harp'
 
@@ -154,7 +146,7 @@ class Harp(Instrument):
 
             ::
 
-                >>> harp = abjad.instrumenttools.Harp()
+                >>> harp = abjad.Harp()
                 >>> harp.name_markup
                 Markup(contents=['Harp'])
 
@@ -174,7 +166,7 @@ class Harp(Instrument):
 
             ::
 
-                >>> harp = abjad.instrumenttools.Harp()
+                >>> harp = abjad.Harp()
                 >>> harp.pitch_range
                 PitchRange('[B0, G#7]')
 
@@ -194,7 +186,7 @@ class Harp(Instrument):
 
             ::
 
-                >>> harp = abjad.instrumenttools.Harp()
+                >>> harp = abjad.Harp()
                 >>> harp.short_name
                 'hp.'
 
@@ -210,7 +202,7 @@ class Harp(Instrument):
 
             ::
 
-                >>> harp = abjad.instrumenttools.Harp()
+                >>> harp = abjad.Harp()
                 >>> harp.short_name_markup
                 Markup(contents=['Hp.'])
 

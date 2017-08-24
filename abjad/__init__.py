@@ -48,16 +48,16 @@ Down = OrdinalConstant('y', -1, 'Down')
 Top = OrdinalConstant('y', 1, 'Top')
 Bottom = OrdinalConstant('y', -1, 'Bottom')
 
-from abjad.tools.datastructuretools import PatternList
 index = Pattern.index
 index_all = Pattern.index_all
 index_every = Pattern.index_every
 index_first = Pattern.index_first
 index_last = Pattern.index_last
+
 from abjad.tools.durationtools import *
 from abjad.tools.exceptiontools import *
 from abjad.tools.indicatortools import *
-from abjad.tools.instrumenttools import Instrument
+from abjad.tools.instrumenttools import *
 from abjad.tools.lilypondfiletools import *
 from abjad.tools.lilypondnametools import *
 from abjad.tools.makertools import *
@@ -69,7 +69,7 @@ from abjad.tools.selectiontools import *
 from abjad.tools.selectortools import *
 from abjad.tools.spannertools import *
 from abjad.tools.systemtools import *
-from abjad.tools.templatetools import ScoreTemplate
+from abjad.tools.templatetools import *
 from abjad.tools.topleveltools import *
 
 # mathtools classes (but not functions)
@@ -116,7 +116,6 @@ ImportManager.import_public_names_from_path_into_namespace(
     os.path.join(__path__[0], 'tools', 'exceptiontools'),
     __builtins__,
     )
-del ImportManager
 del os
 del tools
 

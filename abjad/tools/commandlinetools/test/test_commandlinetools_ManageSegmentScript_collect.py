@@ -11,16 +11,16 @@ except ImportError:
 class Test(ScorePackageScriptTestCase):
 
     expected_files = [
-        'test_score/test_score/build/.gitignore',
-        'test_score/test_score/build/assets/.gitignore',
-        'test_score/test_score/build/assets/instrumentation.tex',
-        'test_score/test_score/build/assets/performance-notes.tex',
-        'test_score/test_score/build/parts.ily',
-        'test_score/test_score/build/segments.ily',
-        'test_score/test_score/build/segments/.gitignore',
-        'test_score/test_score/build/segments/segment-one.ily',
-        'test_score/test_score/build/segments/segment-three.ily',
-        'test_score/test_score/build/segments/segment-two.ily',
+        'test_score/test_score/builds/.gitignore',
+        'test_score/test_score/builds/assets/.gitignore',
+        'test_score/test_score/builds/assets/instrumentation.tex',
+        'test_score/test_score/builds/assets/performance-notes.tex',
+        'test_score/test_score/builds/parts.ily',
+        'test_score/test_score/builds/segments.ily',
+        'test_score/test_score/builds/segments/.gitignore',
+        'test_score/test_score/builds/segments/segment-one.ily',
+        'test_score/test_score/builds/segments/segment-three.ily',
+        'test_score/test_score/builds/segments/segment-two.ily',
         ]
 
     if platform.system().lower() == 'windows':
@@ -42,9 +42,9 @@ class Test(ScorePackageScriptTestCase):
                     raise RuntimeError('SystemExit: {}'.format(e.code))
         self.compare_captured_output(r'''
         Collecting segments:
-            segments/segment_one/illustration.ly --> build/segments/segment-one.ily
-            segments/segment_three/illustration.ly --> build/segments/segment-three.ily
-            segments/segment_two/illustration.ly --> build/segments/segment-two.ily
+            segments/segment_one/illustration.ly --> builds/segments/segment-one.ily
+            segments/segment_three/illustration.ly --> builds/segments/segment-three.ily
+            segments/segment_two/illustration.ly --> builds/segments/segment-two.ily
             Reading test_score/segments/metadata.json ... OK!
         '''.replace('/', os.path.sep))
         self.compare_path_contents(self.build_path, self.expected_files)

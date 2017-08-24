@@ -9,7 +9,7 @@ class AltoFlute(Instrument):
         ::
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> alto_flute = abjad.instrumenttools.AltoFlute()
+            >>> alto_flute = abjad.AltoFlute()
             >>> abjad.attach(alto_flute, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -40,6 +40,7 @@ class AltoFlute(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=None,
+        default_scope=None,
         middle_c_sounding_pitch='G3',
         pitch_range='[G3, G6]',
         ):
@@ -50,15 +51,10 @@ class AltoFlute(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'wind player',
-            'flautist',
-            'flutist',
-            ])
-        self._starting_clefs = type(self.allowable_clefs)(['treble'])
 
     ### SPECIAL METHODS ###
 
@@ -72,9 +68,9 @@ class AltoFlute(Instrument):
 
             ::
 
-                >>> alto_flute = abjad.instrumenttools.AltoFlute()
+                >>> alto_flute = abjad.AltoFlute()
                 >>> f(alto_flute)
-                abjad.instrumenttools.AltoFlute(
+                abjad.AltoFlute(
                     name='alto flute',
                     short_name='alt. fl.',
                     name_markup=abjad.Markup(
@@ -83,11 +79,8 @@ class AltoFlute(Instrument):
                     short_name_markup=abjad.Markup(
                         contents=['Alt. fl.'],
                         ),
-                    allowable_clefs=abjad.instrumenttools.ClefList(
-                        [
-                            abjad.Clef('treble'),
-                            ]
-                        ),
+                    allowable_clefs=('treble',),
+                    default_scope='Staff',
                     middle_c_sounding_pitch=abjad.NamedPitch('g'),
                     pitch_range=abjad.PitchRange('[G3, G6]'),
                     )
@@ -107,13 +100,9 @@ class AltoFlute(Instrument):
 
             ::
 
-                >>> alto_flute = abjad.instrumenttools.AltoFlute()
+                >>> alto_flute = abjad.AltoFlute()
                 >>> alto_flute.allowable_clefs
-                ClefList([Clef('treble')])
-
-            ::
-
-                >>> show(alto_flute.allowable_clefs) # doctest: +SKIP
+                ('treble',)
 
         Returns clef list.
         '''
@@ -127,7 +116,7 @@ class AltoFlute(Instrument):
 
             ::
 
-                >>> alto_flute = abjad.instrumenttools.AltoFlute()
+                >>> alto_flute = abjad.AltoFlute()
                 >>> alto_flute.middle_c_sounding_pitch
                 NamedPitch('g')
 
@@ -147,7 +136,7 @@ class AltoFlute(Instrument):
 
             ::
 
-                >>> alto_flute = abjad.instrumenttools.AltoFlute()
+                >>> alto_flute = abjad.AltoFlute()
                 >>> alto_flute.name
                 'alto flute'
 
@@ -163,7 +152,7 @@ class AltoFlute(Instrument):
 
             ::
 
-                >>> alto_flute = abjad.instrumenttools.AltoFlute()
+                >>> alto_flute = abjad.AltoFlute()
                 >>> alto_flute.name_markup
                 Markup(contents=['Alto flute'])
 
@@ -183,7 +172,7 @@ class AltoFlute(Instrument):
 
             ::
 
-                >>> alto_flute = abjad.instrumenttools.AltoFlute()
+                >>> alto_flute = abjad.AltoFlute()
                 >>> alto_flute.pitch_range
                 PitchRange('[G3, G6]')
 
@@ -203,7 +192,7 @@ class AltoFlute(Instrument):
 
             ::
 
-                >>> alto_flute = abjad.instrumenttools.AltoFlute()
+                >>> alto_flute = abjad.AltoFlute()
                 >>> alto_flute.short_name
                 'alt. fl.'
 
@@ -219,7 +208,7 @@ class AltoFlute(Instrument):
 
             ::
 
-                >>> alto_flute = abjad.instrumenttools.AltoFlute()
+                >>> alto_flute = abjad.AltoFlute()
                 >>> alto_flute.short_name_markup
                 Markup(contents=['Alt. fl.'])
 

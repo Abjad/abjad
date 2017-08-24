@@ -9,8 +9,6 @@ class LilyPondFile(AbjadObject):
 
     ..  container:: example
 
-        Makes LilyPond file:
-
         ::
 
             >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
@@ -157,31 +155,31 @@ class LilyPondFile(AbjadObject):
 
             Works with empty layout and MIDI blocks:
 
-                ::
+            ::
 
-                    >>> score = abjad.Score([abjad.Staff("c'8 d'8 e'8 f'8")])
-                    >>> score_block = abjad.Block(name='score')
-                    >>> layout_block = abjad.Block(name='layout')
-                    >>> midi_block = abjad.Block(name='midi')
-                    >>> score_block.items.append(score)
-                    >>> score_block.items.append(layout_block)
-                    >>> score_block.items.append(midi_block)
+                >>> score = abjad.Score([abjad.Staff("c'8 d'8 e'8 f'8")])
+                >>> score_block = abjad.Block(name='score')
+                >>> layout_block = abjad.Block(name='layout')
+                >>> midi_block = abjad.Block(name='midi')
+                >>> score_block.items.append(score)
+                >>> score_block.items.append(layout_block)
+                >>> score_block.items.append(midi_block)
 
-                ::
+            ::
 
-                    >>> f(score_block)
-                    \score {
-                        \new Score <<
-                            \new Staff {
-                                c'8
-                                d'8
-                                e'8
-                                f'8
-                            }
-                        >>
-                        \layout {}
-                        \midi {}
-                    }
+                >>> f(score_block)
+                \score {
+                    \new Score <<
+                        \new Staff {
+                            c'8
+                            d'8
+                            e'8
+                            f'8
+                        }
+                    >>
+                    \layout {}
+                    \midi {}
+                }
 
         Returns string.
         '''
@@ -1111,7 +1109,7 @@ class LilyPondFile(AbjadObject):
         simultaneous_selections=None,
         time_signatures=None,
         ):
-        r'''Makes rhythm-maker-style LilyPond file.
+        r'''Makes rhythm-styled LilyPond file.
 
         ..  container:: example
 
@@ -1119,9 +1117,16 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> maker = abjad.rhythmmakertools.EvenRunRhythmMaker(exponent=1)
                 >>> divisions = [(3, 4), (4, 8), (1, 4)]
-                >>> selections = maker(divisions)
+                >>> maker = abjad.NoteMaker()
+                >>> selections = [
+                ...     maker(6 * [0], [(1, 8)]),
+                ...     maker(8 * [0], [(1, 16)]),
+                ...     maker(2 * [0], [(1, 8)]),
+                ...     ]
+                >>> for selection in selections:
+                ...     abjad.attach(abjad.Beam(), selection[:])
+                ...
                 >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
@@ -1150,34 +1155,28 @@ class LilyPondFile(AbjadObject):
                     \new RhythmicStaff {
                         {
                             \time 3/4
-                            {
-                                c'8 [
-                                c'8
-                                c'8
-                                c'8
-                                c'8
-                                c'8 ]
-                            }
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8
+                            c'8
+                            c'8 ]
                         }
                         {
                             \time 4/8
-                            {
-                                c'16 [
-                                c'16
-                                c'16
-                                c'16
-                                c'16
-                                c'16
-                                c'16
-                                c'16 ]
-                            }
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
                         }
                         {
                             \time 1/4
-                            {
-                                c'8 [
-                                c'8 ]
-                            }
+                            c'8 [
+                            c'8 ]
                         }
                     }
                 >>
@@ -1188,9 +1187,16 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> maker = abjad.rhythmmakertools.EvenRunRhythmMaker(exponent=1)
                 >>> divisions = [(3, 4), (4, 8), (1, 4)]
-                >>> selections = maker(divisions)
+                >>> maker = abjad.NoteMaker()
+                >>> selections = [
+                ...     maker(6 * [0], [(1, 8)]),
+                ...     maker(8 * [0], [(1, 16)]),
+                ...     maker(2 * [0], [(1, 8)]),
+                ...     ]
+                >>> for selection in selections:
+                ...     abjad.attach(abjad.Beam(), selection[:])
+                ...
                 >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     [(6, 8), (4, 8), (2, 8)],
@@ -1219,34 +1225,28 @@ class LilyPondFile(AbjadObject):
                     \new RhythmicStaff {
                         {
                             \time 6/8
-                            {
-                                c'8 [
-                                c'8
-                                c'8
-                                c'8
-                                c'8
-                                c'8 ]
-                            }
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8
+                            c'8
+                            c'8 ]
                         }
                         {
                             \time 4/8
-                            {
-                                c'16 [
-                                c'16
-                                c'16
-                                c'16
-                                c'16
-                                c'16
-                                c'16
-                                c'16 ]
-                            }
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
                         }
                         {
                             \time 2/8
-                            {
-                                c'8 [
-                                c'8 ]
-                            }
+                            c'8 [
+                            c'8 ]
                         }
                     }
                 >>
@@ -1257,9 +1257,16 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> maker = abjad.rhythmmakertools.EvenRunRhythmMaker(exponent=1)
                 >>> divisions = [(3, 4), (4, 8), (1, 4)]
-                >>> selections = maker(divisions)
+                >>> maker = abjad.NoteMaker()
+                >>> selections = [
+                ...     maker(6 * [0], [(1, 8)]),
+                ...     maker(8 * [0], [(1, 16)]),
+                ...     maker(2 * [0], [(1, 8)]),
+                ...     ]
+                >>> for selection in selections:
+                ...     abjad.attach(abjad.Beam(), selection[:])
+                ...
                 >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
@@ -1269,8 +1276,7 @@ class LilyPondFile(AbjadObject):
 
             ..  docs::
 
-                >>> score = lilypond_file[abjad.Score]
-                >>> f(score)
+                >>> f(lilypond_file[abjad.Score])
                 \new Score <<
                     \new GlobalContext {
                         {
@@ -1289,34 +1295,28 @@ class LilyPondFile(AbjadObject):
                     \new Staff {
                         {
                             \time 3/4
-                            {
-                                c'8 [
-                                c'8
-                                c'8
-                                c'8
-                                c'8
-                                c'8 ]
-                            }
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8
+                            c'8
+                            c'8 ]
                         }
                         {
                             \time 4/8
-                            {
-                                c'16 [
-                                c'16
-                                c'16
-                                c'16
-                                c'16
-                                c'16
-                                c'16
-                                c'16 ]
-                            }
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
                         }
                         {
                             \time 1/4
-                            {
-                                c'8 [
-                                c'8 ]
-                            }
+                            c'8 [
+                            c'8 ]
                         }
                     }
                 >>
@@ -1327,14 +1327,29 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> maker_1 = abjad.rhythmmakertools.EvenRunRhythmMaker(exponent=1)
                 >>> divisions = [(3, 4), (4, 8), (1, 4)]
-                >>> selection_1 = abjad.select(maker_1(divisions))
-                >>> for note in abjad.iterate(selection_1).by_class(abjad.Note):
+                >>> maker = abjad.NoteMaker()
+                >>> selections = [
+                ...     maker(6 * [0], [(1, 8)]),
+                ...     maker(8 * [0], [(1, 16)]),
+                ...     maker(2 * [0], [(1, 8)]),
+                ...     ]
+                >>> for selection in selections:
+                ...     abjad.attach(abjad.Beam(), selection[:])
+                ...
+                >>> for note in abjad.iterate(selections).by_class(abjad.Note):
                 ...     note.written_pitch = abjad.NamedPitch("e'")
                 ...
-                >>> maker_2 = abjad.rhythmmakertools.EvenRunRhythmMaker(exponent=2)
-                >>> selection_2 = abjad.select(maker_2(divisions))
+                >>> selection_1 = selections[0] + selections[1] + selections[2]
+                >>> selections = [
+                ...     maker(12 * [0], [(1, 16)]),
+                ...     maker(16 * [0], [(1, 32)]),
+                ...     maker(4 * [0], [(1, 16)]),
+                ...     ]
+                >>> for selection in selections:
+                ...     abjad.attach(abjad.Beam(), selection[:])
+                ...
+                >>> selection_2 = selections[0] + selections[1] + selections[2]
                 >>> selections = {
                 ...     'Voice 1': selection_1,
                 ...     'Voice 2': selection_2,
@@ -1370,74 +1385,60 @@ class LilyPondFile(AbjadObject):
                     \new Staff <<
                         \context Voice = "Voice 1" {
                             \voiceOne
-                            {
-                                e'8 [
-                                e'8
-                                e'8
-                                e'8
-                                e'8
-                                e'8 ]
-                            }
-                            {
-                                e'16 [
-                                e'16
-                                e'16
-                                e'16
-                                e'16
-                                e'16
-                                e'16
-                                e'16 ]
-                            }
-                            {
-                                e'8 [
-                                e'8 ]
-                            }
+                            e'8 [
+                            e'8
+                            e'8
+                            e'8
+                            e'8
+                            e'8 ]
+                            e'16 [
+                            e'16
+                            e'16
+                            e'16
+                            e'16
+                            e'16
+                            e'16
+                            e'16 ]
+                            e'8 [
+                            e'8 ]
                         }
                         \context Voice = "Voice 2" {
                             \voiceTwo
-                            {
-                                c'16 [
-                                c'16
-                                c'16
-                                c'16
-                                c'16
-                                c'16
-                                c'16
-                                c'16
-                                c'16
-                                c'16
-                                c'16
-                                c'16 ]
-                            }
-                            {
-                                c'32 [
-                                c'32
-                                c'32
-                                c'32
-                                c'32
-                                c'32
-                                c'32
-                                c'32
-                                c'32
-                                c'32
-                                c'32
-                                c'32
-                                c'32
-                                c'32
-                                c'32
-                                c'32 ]
-                            }
-                            {
-                                c'16 [
-                                c'16
-                                c'16
-                                c'16 ]
-                            }
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                            c'32 [
+                            c'32
+                            c'32
+                            c'32
+                            c'32
+                            c'32
+                            c'32
+                            c'32
+                            c'32
+                            c'32
+                            c'32
+                            c'32
+                            c'32
+                            c'32
+                            c'32
+                            c'32 ]
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16 ]
                         }
                     >>
                 >>
-
-        Used in rhythm-maker docs.
 
         Returns LilyPond file.
         '''

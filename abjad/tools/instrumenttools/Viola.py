@@ -11,7 +11,7 @@ class Viola(Instrument):
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
             >>> clef = abjad.Clef('alto')
             >>> abjad.attach(clef, staff[0])
-            >>> viola = abjad.instrumenttools.Viola()
+            >>> viola = abjad.Viola()
             >>> abjad.attach(viola, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -45,6 +45,7 @@ class Viola(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=('alto', 'treble'),
+        default_scope=None,
         default_tuning=('C3', 'G3', 'D4', 'A4'),
         middle_c_sounding_pitch=None,
         pitch_range='[C3, D6]',
@@ -57,14 +58,11 @@ class Viola(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
+            middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'string player',
-            'violist',
-            ])
         self._is_primary_instrument = True
-        self._starting_clefs = type(self.allowable_clefs)(['alto'])
         self._default_tuning = abjad.Tuning(default_tuning)
 
     ### PUBLIC PROPERTIES ###
@@ -77,13 +75,9 @@ class Viola(Instrument):
 
             ::
 
-                >>> viola = abjad.instrumenttools.Viola()
+                >>> viola = abjad.Viola()
                 >>> viola.allowable_clefs
-                ClefList([Clef('alto'), Clef('treble')])
-
-            ::
-
-                >>> show(viola.allowable_clefs) # doctest: +SKIP
+                ('alto', 'treble')
 
         Returns clef list.
         '''
@@ -97,7 +91,7 @@ class Viola(Instrument):
 
             ::
 
-                >>> viola = abjad.instrumenttools.Viola()
+                >>> viola = abjad.Viola()
                 >>> viola.default_tuning
                 Tuning(pitches=PitchSegment(['c', 'g', "d'", "a'"]))
 
@@ -113,7 +107,7 @@ class Viola(Instrument):
 
             ::
 
-                >>> viola = abjad.instrumenttools.Viola()
+                >>> viola = abjad.Viola()
                 >>> viola.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -133,7 +127,7 @@ class Viola(Instrument):
 
             ::
 
-                >>> viola = abjad.instrumenttools.Viola()
+                >>> viola = abjad.Viola()
                 >>> viola.name
                 'viola'
 
@@ -149,7 +143,7 @@ class Viola(Instrument):
 
             ::
 
-                >>> viola = abjad.instrumenttools.Viola()
+                >>> viola = abjad.Viola()
                 >>> viola.name_markup
                 Markup(contents=['Viola'])
 
@@ -169,7 +163,7 @@ class Viola(Instrument):
 
             ::
 
-                >>> viola = abjad.instrumenttools.Viola()
+                >>> viola = abjad.Viola()
                 >>> viola.pitch_range
                 PitchRange('[C3, D6]')
 
@@ -189,7 +183,7 @@ class Viola(Instrument):
 
             ::
 
-                >>> viola = abjad.instrumenttools.Viola()
+                >>> viola = abjad.Viola()
                 >>> viola.short_name
                 'va.'
 
@@ -205,7 +199,7 @@ class Viola(Instrument):
 
             ::
 
-                >>> viola = abjad.instrumenttools.Viola()
+                >>> viola = abjad.Viola()
                 >>> viola.short_name_markup
                 Markup(contents=['Va.'])
 

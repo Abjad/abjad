@@ -405,8 +405,10 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             abjad_blocks = handler.collect_abjad_input_blocks(document)
             namespace = abjad.__dict__.copy()
             namespace['abjad'] = abjad
-            for module_name in getattr(app.config, 'abjadbook_console_module_names', ()):
+            for module_name in getattr(
+                app.config, 'abjadbook_console_module_names', ()):
                 module = importlib.import_module(module_name)
+                namespace[module_name] = module
                 namespace.update(module.__dict__)
             abjad_console = abjadbooktools.AbjadBookConsole(
                 document_handler=handler,
@@ -616,13 +618,13 @@ class SphinxDocumentHandler(abctools.AbjadObject):
 
     @staticmethod
     def find_target_file_paths(
-        absolute_directory_path,
-        relative_directory_path,
+        absolute_directory,
+        relative_directory,
         file_name_pattern,
         pages,
         ):
         #print(file_name_pattern, pages)
-        with systemtools.TemporaryDirectoryChange(absolute_directory_path):
+        with systemtools.TemporaryDirectoryChange(absolute_directory):
             file_name_matches = glob.glob(file_name_pattern)
             file_name_matches = [
                 _ for _ in file_name_matches
@@ -650,7 +652,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             if len(target_file_names) == len(pages):
                 found_all_pages = True
         target_file_paths = [
-            posixpath.join(relative_directory_path, _)
+            posixpath.join(relative_directory, _)
             for _ in target_file_names
             ]
         return target_file_paths, found_all_pages
@@ -668,17 +670,17 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         return file_base_name
 
     @staticmethod
-    def get_image_directory_paths(self):
-        absolute_image_directory_path = os.path.join(
+    def get_image_directories(self):
+        absolute_image_directory = os.path.join(
             self.builder.outdir,
             self.builder.imagedir,
             'abjadbook',
             )
-        relative_image_directory_path = posixpath.join(
+        relative_image_directory = posixpath.join(
             self.builder.imgpath,
             'abjadbook',
             )
-        paths = (absolute_image_directory_path, relative_image_directory_path)
+        paths = (absolute_image_directory, relative_image_directory)
         return paths
 
     @staticmethod
@@ -789,17 +791,17 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             node, image_render_specifier)
         source_extension = SphinxDocumentHandler.get_source_extension(node)
         file_name_pattern = '{}*{}'.format(file_base_name, target_extension)
-        absolute_directory_path, relative_directory_path = \
-            SphinxDocumentHandler.get_image_directory_paths(self)
+        absolute_directory, relative_directory = \
+            SphinxDocumentHandler.get_image_directories(self)
         relative_source_file_path = posixpath.join(
-            relative_directory_path,
+            relative_directory,
             file_base_name + source_extension,
             )
 
         # Check for pre-existing target(s).
         target_file_paths, found_all_pages = \
             SphinxDocumentHandler.find_target_file_paths(
-                absolute_directory_path, relative_directory_path,
+                absolute_directory, relative_directory,
                 file_name_pattern, pages)
         if found_all_pages:
             return (relative_source_file_path, target_file_paths)
@@ -807,10 +809,10 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         # Write and render source to target(s).
         source_file_name = file_base_name + source_extension
         absolute_source_file_path = os.path.join(
-            absolute_directory_path, source_file_name)
+            absolute_directory, source_file_name)
         target_file_name = file_base_name + target_extension
         absolute_target_file_path = os.path.join(
-            absolute_directory_path, target_file_name)
+            absolute_directory, target_file_name)
         SphinxDocumentHandler.write_image_source(
             self, node, absolute_source_file_path)
         return_code = SphinxDocumentHandler.interpret_image_source(
@@ -821,12 +823,12 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             file_format='png'
             )
         if return_code:
-            return (relative_directory_path, [])
+            return (relative_directory, [])
 
         # Check for target(s).
         target_file_paths, found_all_pages = \
             SphinxDocumentHandler.find_target_file_paths(
-                absolute_directory_path, relative_directory_path,
+                absolute_directory, relative_directory,
                 file_name_pattern, pages)
         if not found_all_pages:
             return (relative_source_file_path, target_file_paths)
@@ -834,7 +836,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         # Trim and resize target(s).
         for target_file_path in target_file_paths:
             _, file_name = os.path.split(target_file_path)
-            target_path = os.path.join(absolute_directory_path, file_name)
+            target_path = os.path.join(absolute_directory, file_name)
             return_code = SphinxDocumentHandler.postprocess_image_target(
                 self, node, target_path,
                 no_resize=image_render_specifier.no_resize,
@@ -861,17 +863,17 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             node, image_render_specifier)
         source_extension = SphinxDocumentHandler.get_source_extension(node)
         file_name_pattern = '{}*{}'.format(file_base_name, target_extension)
-        absolute_directory_path, relative_directory_path = \
-            SphinxDocumentHandler.get_image_directory_paths(self)
+        absolute_directory, relative_directory = \
+            SphinxDocumentHandler.get_image_directories(self)
         relative_source_file_path = posixpath.join(
-            relative_directory_path,
+            relative_directory,
             file_base_name + source_extension,
             )
 
         # Check for pre-existing target(s).
         target_file_paths, found_all_pages = \
             SphinxDocumentHandler.find_target_file_paths(
-                absolute_directory_path, relative_directory_path,
+                absolute_directory, relative_directory,
                 file_name_pattern, pages)
         if found_all_pages:
             return (relative_source_file_path, target_file_paths)
@@ -879,10 +881,10 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         # Write and render source to target(s).
         source_file_name = file_base_name + source_extension
         absolute_source_file_path = os.path.join(
-            absolute_directory_path, source_file_name)
+            absolute_directory, source_file_name)
         target_file_name = file_base_name + target_extension
         absolute_target_file_path = os.path.join(
-            absolute_directory_path, target_file_name)
+            absolute_directory, target_file_name)
         SphinxDocumentHandler.write_image_source(
             self, node, absolute_source_file_path)
         return_code = SphinxDocumentHandler.interpret_image_source(
@@ -893,12 +895,12 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             file_format='svg'
             )
         if return_code:
-            return (relative_directory_path, [])
+            return (relative_directory, [])
 
         # Check for target(s).
         target_file_paths, found_all_pages = \
             SphinxDocumentHandler.find_target_file_paths(
-                absolute_directory_path, relative_directory_path,
+                absolute_directory, relative_directory,
                 file_name_pattern, pages)
         if not found_all_pages:
             return (relative_source_file_path, target_file_paths)
@@ -943,13 +945,13 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             image_render_specifier = abjadbooktools.ImageRenderSpecifier()
         if node['renderer'] not in ('graphviz', 'lilypond'):
             raise nodes.SkipNode
-        absolute_image_directory_path = os.path.join(
+        absolute_image_directory = os.path.join(
             self.builder.outdir,
             self.builder.imagedir,
             'abjadbook',
             )
-        if not os.path.exists(absolute_image_directory_path):
-            os.makedirs(absolute_image_directory_path)
+        if not os.path.exists(absolute_image_directory):
+            os.makedirs(absolute_image_directory)
         try:
             if node['renderer'] == 'graphviz':
                 relative_source_file_path, relative_target_file_paths = \

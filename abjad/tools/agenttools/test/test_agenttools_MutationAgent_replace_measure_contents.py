@@ -1,6 +1,5 @@
 import abjad
 import pytest
-from abjad.tools import rhythmmakertools
 
 
 def test_agenttools_MutationAgent_replace_measure_contents_01():
@@ -82,8 +81,9 @@ def test_agenttools_MutationAgent_replace_measure_contents_03():
 
     note = abjad.Note("c'4")
     notes = [abjad.Note("c'8"), abjad.Note("d'8")]
+    note, notes
     statement = 'abjad.mutate(note).replace_measure_contents(notes)'
-    assert pytest.raises(MissingMeasureError, statement)
+    assert pytest.raises(abjad.MissingMeasureError, statement)
 
 
 def test_agenttools_MutationAgent_replace_measure_contents_04():
@@ -95,6 +95,7 @@ def test_agenttools_MutationAgent_replace_measure_contents_04():
     staff = abjad.Staff(measures)
     notes = [abjad.Note("c'16"), abjad.Note("d'16"), abjad.Note("e'16"),
         abjad.Note("f'16"), abjad.Note("g'16"), abjad.Note("a'16")]
+    notes, staff
     statement = 'abjad.mutate(staff).replace_measure_contents(notes)'
     assert pytest.raises(StopIteration, statement)
 
@@ -134,13 +135,14 @@ def test_agenttools_MutationAgent_replace_measure_contents_05():
 
 
 def test_agenttools_MutationAgent_replace_measure_contents_06():
-    r'''Preserve ties.
+    r'''Preserves ties.
     '''
 
-    maker = rhythmmakertools.NoteRhythmMaker()
+    maker = abjad.NoteMaker()
     durations = [(5, 16), (3, 16)]
-    leaf_lists = maker(durations)
+    leaf_lists = maker([0], durations)
     leaves = abjad.Sequence(leaf_lists).flatten()
+
     maker = abjad.MeasureMaker()
     measures = maker(durations)
     staff = abjad.Staff(measures)

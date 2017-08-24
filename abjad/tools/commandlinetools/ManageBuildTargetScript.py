@@ -29,7 +29,7 @@ class ManageBuildTargetScript(ScorePackageScript):
         '_segments_path',
         )
 
-    alias = 'build'
+    alias = 'builds'
     short_description = 'Manage score package build targets.'
 
     paper_sizes = collections.OrderedDict([
@@ -172,8 +172,8 @@ class ManageBuildTargetScript(ScorePackageScript):
             dimensions[1][0], dimensions[1][1],
             )
         print(message)
-        target_path = self._name_to_score_subdirectory_path(
-            name, 'build', self._score_package_path)
+        target_path = self._name_to_score_subdirectory(
+            name, 'builds', self._score_package_path)
         if target_path.exists() and not force:
             print('    Path exists: {!s}'.format(
                 target_path.relative_to(self._score_package_path.parent)))
@@ -197,7 +197,7 @@ class ManageBuildTargetScript(ScorePackageScript):
         metadata['uppercase_title'] = metadata['title'].upper()
         metadata['lilypond_version'] = \
             abjad_configuration.get_lilypond_version_string()
-        source_name = 'example_build_target'
+        source_name = 'build'
         source_path = self._get_boilerplate_path().joinpath(source_name)
         suffixes = ('.py', '.tex', '.ly', '.ily')
         for path in self._copy_tree(source_path, target_path):
@@ -402,7 +402,9 @@ class ManageBuildTargetScript(ScorePackageScript):
     def _run_lilypond(self, lilypond_path):
         from abjad import abjad_configuration
         command = '{} -dno-point-and-click -o {} {}'.format(
-            abjad_configuration.get('lilypond_path', 'lilypond'),
+            # not sure why abjad_configuration.get() returns none:
+            #abjad_configuration.get('lilypond_path', 'lilypond'),
+            'lilypond',
             str(lilypond_path).replace('.ly', ''),
             str(lilypond_path),
             )

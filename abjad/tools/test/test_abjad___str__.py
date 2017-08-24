@@ -36,6 +36,7 @@ ignored_classes = (
     abjadbooktools.ShellDirective,
     abjadbooktools.ThumbnailDirective,
     datastructuretools.Enumeration,
+    datastructuretools.Path,
     systemtools.FormatSpecification,
     systemtools.StorageFormatAgent,
     systemtools.TestCase,

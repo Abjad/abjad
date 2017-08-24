@@ -56,8 +56,8 @@ class ManageScoreScript(ScorePackageScript):
             'year': year,
             }
         boilerplate_path = self._get_boilerplate_path()
-        outer_source_path = boilerplate_path.joinpath('example_score')
-        inner_source_path = outer_source_path.joinpath('example_score')
+        outer_source_path = boilerplate_path.joinpath('score')
+        inner_source_path = outer_source_path.joinpath('score')
         suffixes = ('.py', '.tex', '.ly', '.ily', '.md', '.yml')
         for path in self._copy_tree(
             outer_source_path,

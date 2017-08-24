@@ -9,7 +9,7 @@ class BassClarinet(Instrument):
         ::
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> bass_clarinet = abjad.instrumenttools.BassClarinet()
+            >>> bass_clarinet = abjad.BassClarinet()
             >>> abjad.attach(bass_clarinet, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -40,6 +40,7 @@ class BassClarinet(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=('treble', 'bass'),
+        default_scope=None,
         middle_c_sounding_pitch='Bb2',
         pitch_range='[Bb1, G5]',
         ):
@@ -50,17 +51,10 @@ class BassClarinet(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'wind player',
-            'reed player',
-            'single reed player',
-            'clarinettist',
-            'clarinetist',
-            ])
-        self._starting_clefs = type(self.allowable_clefs)(['treble'])
 
     ### PUBLIC PROPERTIES ###
 
@@ -72,13 +66,9 @@ class BassClarinet(Instrument):
 
             ::
 
-                >>> bass_clarinet = abjad.instrumenttools.BassClarinet()
+                >>> bass_clarinet = abjad.BassClarinet()
                 >>> bass_clarinet.allowable_clefs
-                ClefList([Clef('treble'), Clef('bass')])
-
-            ::
-
-                >>> show(bass_clarinet.allowable_clefs) # doctest: +SKIP
+                ('treble', 'bass')
 
         Returns clef list.
         '''
@@ -92,7 +82,7 @@ class BassClarinet(Instrument):
 
             ::
 
-                >>> bass_clarinet = abjad.instrumenttools.BassClarinet()
+                >>> bass_clarinet = abjad.BassClarinet()
                 >>> bass_clarinet.middle_c_sounding_pitch
                 NamedPitch('bf,')
 
@@ -112,7 +102,7 @@ class BassClarinet(Instrument):
 
             ::
 
-                >>> bass_clarinet = abjad.instrumenttools.BassClarinet()
+                >>> bass_clarinet = abjad.BassClarinet()
                 >>> bass_clarinet.name
                 'bass clarinet'
 
@@ -128,7 +118,7 @@ class BassClarinet(Instrument):
 
             ::
 
-                >>> bass_clarinet = abjad.instrumenttools.BassClarinet()
+                >>> bass_clarinet = abjad.BassClarinet()
                 >>> bass_clarinet.name_markup
                 Markup(contents=['Bass clarinet'])
 
@@ -148,7 +138,7 @@ class BassClarinet(Instrument):
 
             ::
 
-                >>> bass_clarinet = abjad.instrumenttools.BassClarinet()
+                >>> bass_clarinet = abjad.BassClarinet()
                 >>> bass_clarinet.pitch_range
                 PitchRange('[Bb1, G5]')
 
@@ -168,7 +158,7 @@ class BassClarinet(Instrument):
 
             ::
 
-                >>> bass_clarinet = abjad.instrumenttools.BassClarinet()
+                >>> bass_clarinet = abjad.BassClarinet()
                 >>> bass_clarinet.short_name
                 'bass cl.'
 
@@ -184,7 +174,7 @@ class BassClarinet(Instrument):
 
             ::
 
-                >>> bass_clarinet = abjad.instrumenttools.BassClarinet()
+                >>> bass_clarinet = abjad.BassClarinet()
                 >>> bass_clarinet.short_name_markup
                 Markup(contents=['Bass cl.'])
 

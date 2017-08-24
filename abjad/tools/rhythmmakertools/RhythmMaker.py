@@ -25,10 +25,10 @@ class RhythmMaker(AbjadValueObject):
         '_beam_specifier',
         '_logical_tie_masks',
         '_division_masks',
-        '_duration_spelling_specifier',
+        '_duration_specifier',
         '_rotation',
         '_tie_specifier',
-        '_tuplet_spelling_specifier',
+        '_tuplet_specifier',
         )
 
     _publish_storage_format = True
@@ -40,9 +40,9 @@ class RhythmMaker(AbjadValueObject):
         beam_specifier=None,
         logical_tie_masks=None,
         division_masks=None,
-        duration_spelling_specifier=None,
+        duration_specifier=None,
         tie_specifier=None,
-        tuplet_spelling_specifier=None,
+        tuplet_specifier=None,
         ):
         from abjad.tools import rhythmmakertools
         prototype = (rhythmmakertools.BeamSpecifier, type(None))
@@ -50,17 +50,17 @@ class RhythmMaker(AbjadValueObject):
         self._beam_specifier = beam_specifier
         logical_tie_masks = self._prepare_masks(logical_tie_masks)
         self._logical_tie_masks = logical_tie_masks
-        prototype = (rhythmmakertools.DurationSpellingSpecifier, type(None))
-        self._duration_spelling_specifier = duration_spelling_specifier
-        assert isinstance(duration_spelling_specifier, prototype)
+        prototype = (rhythmmakertools.DurationSpecifier, type(None))
+        self._duration_specifier = duration_specifier
+        assert isinstance(duration_specifier, prototype)
         division_masks = self._prepare_masks(division_masks)
         self._division_masks = division_masks
         prototype = (rhythmmakertools.TieSpecifier, type(None))
         assert isinstance(tie_specifier, prototype)
         self._tie_specifier = tie_specifier
-        prototype = (rhythmmakertools.TupletSpellingSpecifier, type(None))
-        assert isinstance(tuplet_spelling_specifier, prototype)
-        self._tuplet_spelling_specifier = tuplet_spelling_specifier
+        prototype = (rhythmmakertools.TupletSpecifier, type(None))
+        assert isinstance(tuplet_specifier, prototype)
+        self._tuplet_specifier = tuplet_specifier
 
     ### SPECIAL METHODS ###
 
@@ -106,9 +106,9 @@ class RhythmMaker(AbjadValueObject):
         if not self.division_masks:
             return selections
         new_selections = []
-        duration_spelling_specifier = self._get_duration_spelling_specifier()
-        decrease_monotonic = duration_spelling_specifier.decrease_monotonic
-        forbidden_duration = duration_spelling_specifier.forbidden_duration
+        duration_specifier = self._get_duration_specifier()
+        decrease_monotonic = duration_specifier.decrease_monotonic
+        forbidden_duration = duration_specifier.forbidden_duration
         tie_specifier = self._get_tie_specifier()
         length = len(selections)
         division_masks = self.division_masks
@@ -196,7 +196,7 @@ class RhythmMaker(AbjadValueObject):
         return new_selections
 
     def _apply_specifiers(self, selections, divisions=None):
-        selections = self._apply_tuplet_spelling_specifier(
+        selections = self._apply_tuplet_specifier(
             selections,
             divisions,
             )
@@ -210,9 +210,9 @@ class RhythmMaker(AbjadValueObject):
         tie_specifier = self._get_tie_specifier()
         tie_specifier(selections)
 
-    def _apply_tuplet_spelling_specifier(self, selections, divisions):
-        tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()
-        selections = tuplet_spelling_specifier(selections, divisions)
+    def _apply_tuplet_specifier(self, selections, divisions):
+        tuplet_specifier = self._get_tuplet_specifier()
+        selections = tuplet_specifier(selections, divisions)
         return selections
 
     def _check_well_formedness(self, selections):
@@ -243,11 +243,11 @@ class RhythmMaker(AbjadValueObject):
             return self.beam_specifier
         return rhythmmakertools.BeamSpecifier()
 
-    def _get_duration_spelling_specifier(self):
+    def _get_duration_specifier(self):
         from abjad.tools import rhythmmakertools
-        if self.duration_spelling_specifier is not None:
-            return self.duration_spelling_specifier
-        return rhythmmakertools.DurationSpellingSpecifier()
+        if self.duration_specifier is not None:
+            return self.duration_specifier
+        return rhythmmakertools.DurationSpecifier()
 
     def _get_tie_specifier(self):
         from abjad.tools import rhythmmakertools
@@ -255,11 +255,11 @@ class RhythmMaker(AbjadValueObject):
             return self.tie_specifier
         return rhythmmakertools.TieSpecifier()
 
-    def _get_tuplet_spelling_specifier(self):
+    def _get_tuplet_specifier(self):
         from abjad.tools import rhythmmakertools
-        if self.tuplet_spelling_specifier is not None:
-            return self.tuplet_spelling_specifier
-        return rhythmmakertools.TupletSpellingSpecifier()
+        if self.tuplet_specifier is not None:
+            return self.tuplet_specifier
+        return rhythmmakertools.TupletSpecifier()
 
     @staticmethod
     def _is_leaf_selection(argument):
@@ -337,7 +337,7 @@ class RhythmMaker(AbjadValueObject):
             masks = (masks,)
         if isinstance(masks, prototype):
             masks = (masks,)
-        masks = datastructuretools.PatternList(
+        masks = datastructuretools.PatternTuple(
             items=masks,
             )
         return masks
@@ -419,12 +419,12 @@ class RhythmMaker(AbjadValueObject):
         return self._division_masks
 
     @property
-    def duration_spelling_specifier(self):
+    def duration_specifier(self):
         r'''Gets duration spelling specifier.
 
         Set to duration spelling specifier or none.
         '''
-        return self._duration_spelling_specifier
+        return self._duration_specifier
 
     @property
     def logical_tie_masks(self):
@@ -447,9 +447,9 @@ class RhythmMaker(AbjadValueObject):
         return self._tie_specifier
 
     @property
-    def tuplet_spelling_specifier(self):
+    def tuplet_specifier(self):
         r'''Gets tuplet spelling specifier.
 
         Set to tuplet spelling specifier or none.
         '''
-        return self._tuplet_spelling_specifier
+        return self._tuplet_specifier

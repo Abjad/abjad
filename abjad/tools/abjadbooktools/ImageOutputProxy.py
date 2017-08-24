@@ -76,7 +76,7 @@ class ImageOutputProxy(abctools.AbjadValueObject):
 
     def _render_pdf_source(
         self,
-        temporary_directory_path,
+        temporary_directory,
         ):
         raise NotImplementedError
 

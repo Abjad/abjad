@@ -9,7 +9,7 @@ class SopranoVoice(Instrument):
         ::
 
             >>> staff = abjad.Staff("c''4 d''4 e''4 fs''4")
-            >>> soprano = abjad.instrumenttools.SopranoVoice()
+            >>> soprano = abjad.SopranoVoice()
             >>> abjad.attach(soprano, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -42,6 +42,7 @@ class SopranoVoice(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=None,
+        default_scope=None,
         middle_c_sounding_pitch=None,
         pitch_range='[C4, E6]',
         ):
@@ -52,13 +53,10 @@ class SopranoVoice(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'vocalist',
-            'soprano'
-            ])
         self._is_primary_instrument = True
 
     ### PUBLIC PROPERTIES ###
@@ -71,13 +69,9 @@ class SopranoVoice(Instrument):
 
             ::
 
-                >>> soprano = abjad.instrumenttools.SopranoVoice()
+                >>> soprano = abjad.SopranoVoice()
                 >>> soprano.allowable_clefs
-                ClefList([Clef('treble')])
-
-            ::
-
-                >>> show(soprano.allowable_clefs) # doctest: +SKIP
+                ('treble',)
 
         Returns clef list.
         '''
@@ -91,7 +85,7 @@ class SopranoVoice(Instrument):
 
             ::
 
-                >>> soprano = abjad.instrumenttools.SopranoVoice()
+                >>> soprano = abjad.SopranoVoice()
                 >>> soprano.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -111,7 +105,7 @@ class SopranoVoice(Instrument):
 
             ::
 
-                >>> soprano = abjad.instrumenttools.SopranoVoice()
+                >>> soprano = abjad.SopranoVoice()
                 >>> soprano.name
                 'soprano'
 
@@ -127,7 +121,7 @@ class SopranoVoice(Instrument):
 
             ::
 
-                >>> soprano = abjad.instrumenttools.SopranoVoice()
+                >>> soprano = abjad.SopranoVoice()
                 >>> soprano.name_markup
                 Markup(contents=['Soprano'])
 
@@ -147,7 +141,7 @@ class SopranoVoice(Instrument):
 
             ::
 
-                >>> soprano = abjad.instrumenttools.SopranoVoice()
+                >>> soprano = abjad.SopranoVoice()
                 >>> soprano.pitch_range
                 PitchRange('[C4, E6]')
 
@@ -167,7 +161,7 @@ class SopranoVoice(Instrument):
 
             ::
 
-                >>> soprano = abjad.instrumenttools.SopranoVoice()
+                >>> soprano = abjad.SopranoVoice()
                 >>> soprano.short_name
                 'sop.'
 
@@ -183,7 +177,7 @@ class SopranoVoice(Instrument):
 
             ::
 
-                >>> soprano = abjad.instrumenttools.SopranoVoice()
+                >>> soprano = abjad.SopranoVoice()
                 >>> soprano.short_name_markup
                 Markup(contents=['Sop.'])
 

@@ -7,19 +7,19 @@ from base import ScorePackageScriptTestCase
 class Test(ScorePackageScriptTestCase):
 
     expected_files = [
-        'test_score/test_score/build/.gitignore',
-        'test_score/test_score/build/assets/.gitignore',
-        'test_score/test_score/build/assets/instrumentation.tex',
-        'test_score/test_score/build/assets/performance-notes.tex',
-        'test_score/test_score/build/letter-portrait/back-cover.tex',
-        'test_score/test_score/build/letter-portrait/front-cover.tex',
-        'test_score/test_score/build/letter-portrait/music.ly',
-        'test_score/test_score/build/letter-portrait/parts.ly',
-        'test_score/test_score/build/letter-portrait/preface.tex',
-        'test_score/test_score/build/letter-portrait/score.tex',
-        'test_score/test_score/build/parts.ily',
-        'test_score/test_score/build/segments.ily',
-        'test_score/test_score/build/segments/.gitignore',
+        'test_score/test_score/builds/.gitignore',
+        'test_score/test_score/builds/assets/.gitignore',
+        'test_score/test_score/builds/assets/instrumentation.tex',
+        'test_score/test_score/builds/assets/performance-notes.tex',
+        'test_score/test_score/builds/letter-portrait/back-cover.tex',
+        'test_score/test_score/builds/letter-portrait/front-cover.tex',
+        'test_score/test_score/builds/letter-portrait/music.ly',
+        'test_score/test_score/builds/letter-portrait/parts.ly',
+        'test_score/test_score/builds/letter-portrait/preface.tex',
+        'test_score/test_score/builds/letter-portrait/score.tex',
+        'test_score/test_score/builds/parts.ily',
+        'test_score/test_score/builds/segments.ily',
+        'test_score/test_score/builds/segments/.gitignore',
         ]
 
     if platform.system().lower() == 'windows':
@@ -40,7 +40,7 @@ class Test(ScorePackageScriptTestCase):
                 assert context_manager.exception.code == 1
         self.compare_captured_output(r'''
         Creating build target 'letter-portrait' (8.5in x 11.0in)
-            Path exists: test_score/build/letter-portrait
+            Path exists: test_score/builds/letter-portrait
         '''.replace('/', os.path.sep))
 
     def test_explicit(self):
@@ -60,7 +60,7 @@ class Test(ScorePackageScriptTestCase):
         self.compare_captured_output(r'''
         Creating build target 'a3-landscape' (297mm x 420mm)
             Reading test_score/metadata.json ... OK!
-            Created test_score/build/a3-landscape
+            Created test_score/builds/a3-landscape
         '''.replace('/', os.path.sep))
         path = self.build_path.joinpath('a3-landscape', 'score.tex')
         self.compare_lilypond_contents(path, r'''
@@ -94,7 +94,7 @@ class Test(ScorePackageScriptTestCase):
         self.compare_captured_output(r'''
         Creating build target 'letter-portrait' (8.5in x 11.0in)
             Reading test_score/metadata.json ... OK!
-            Created test_score/build/letter-portrait
+            Created test_score/builds/letter-portrait
         '''.replace('/', os.path.sep))
 
     def test_implicit(self):
@@ -110,7 +110,7 @@ class Test(ScorePackageScriptTestCase):
         self.compare_captured_output(r'''
         Creating build target 'letter-portrait' (8.5in x 11.0in)
             Reading test_score/metadata.json ... OK!
-            Created test_score/build/letter-portrait
+            Created test_score/builds/letter-portrait
         '''.replace('/', os.path.sep))
         self.compare_path_contents(self.build_path, self.expected_files)
         path = self.build_path.joinpath('letter-portrait', 'music.ly')
@@ -281,7 +281,7 @@ class Test(ScorePackageScriptTestCase):
         self.create_score()
         script = abjad.commandlinetools.ManageBuildTargetScript()
         command = ['--new']
-        internal_path = self.score_path.joinpath('test_score', 'build')
+        internal_path = self.score_path.joinpath('test_score', 'builds')
         assert internal_path.exists()
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(internal_path)):
@@ -292,7 +292,7 @@ class Test(ScorePackageScriptTestCase):
         self.compare_captured_output(r'''
         Creating build target 'letter-portrait' (8.5in x 11.0in)
             Reading test_score/metadata.json ... OK!
-            Created test_score/build/letter-portrait
+            Created test_score/builds/letter-portrait
         '''.replace('/', os.path.sep))
 
     def test_named(self):
@@ -313,5 +313,5 @@ class Test(ScorePackageScriptTestCase):
         self.compare_captured_output(r'''
         Creating build target 'world-premiere-version' (297mm x 420mm)
             Reading test_score/metadata.json ... OK!
-            Created test_score/build/world-premiere-version
+            Created test_score/builds/world-premiere-version
         '''.replace('/', os.path.sep))

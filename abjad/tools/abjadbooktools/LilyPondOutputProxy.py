@@ -105,10 +105,10 @@ class LilyPondOutputProxy(ImageOutputProxy):
 
     def _render_pdf_source(
         self,
-        temporary_directory_path,
+        temporary_directory,
         ):
         ly_file_path = os.path.join(
-            temporary_directory_path,
+            temporary_directory,
             self.file_name_without_extension + '.ly',
             )
         source = format(self.payload)
@@ -116,7 +116,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
             file_pointer.write(source)
         systemtools.IOManager.run_lilypond(ly_file_path)
         pdf_file_path = os.path.join(
-            temporary_directory_path,
+            temporary_directory,
             self.file_name_without_extension + '.pdf',
             )
         if not os.path.exists(pdf_file_path):

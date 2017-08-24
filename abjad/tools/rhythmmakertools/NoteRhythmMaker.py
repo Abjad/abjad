@@ -63,20 +63,20 @@ class NoteRhythmMaker(RhythmMaker):
         beam_specifier=None,
         burnish_specifier=None,
         division_masks=None,
-        duration_spelling_specifier=None,
+        duration_specifier=None,
         logical_tie_masks=None,
         tie_specifier=None,
-        tuplet_spelling_specifier=None,
+        tuplet_specifier=None,
         ):
         from abjad.tools import rhythmmakertools
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
-            duration_spelling_specifier=duration_spelling_specifier,
+            duration_specifier=duration_specifier,
             division_masks=division_masks,
             logical_tie_masks=logical_tie_masks,
             tie_specifier=tie_specifier,
-            tuplet_spelling_specifier=tuplet_spelling_specifier,
+            tuplet_specifier=tuplet_specifier,
             )
         if burnish_specifier is not None:
             prototype = rhythmmakertools.BurnishSpecifier
@@ -214,9 +214,9 @@ class NoteRhythmMaker(RhythmMaker):
         import abjad
         from abjad.tools import rhythmmakertools
         selections = []
-        duration_specifier = self._get_duration_spelling_specifier()
+        duration_specifier = self._get_duration_specifier()
         tie_specifier = self._get_tie_specifier()
-        tuplet_specifier = self._get_tuplet_spelling_specifier()
+        tuplet_specifier = self._get_tuplet_specifier()
         leaf_maker = abjad.LeafMaker(
             decrease_monotonic=duration_specifier.decrease_monotonic,
             forbidden_duration=duration_specifier.forbidden_duration,
@@ -817,7 +817,7 @@ class NoteRhythmMaker(RhythmMaker):
         return superclass.division_masks
 
     @property
-    def duration_spelling_specifier(self):
+    def duration_specifier(self):
         r'''Gets duration spelling specifier.
 
         ..  container:: example
@@ -861,7 +861,7 @@ class NoteRhythmMaker(RhythmMaker):
             ::
 
                 >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
+                ...     duration_specifier=abjad.rhythmmakertools.DurationSpecifier(
                 ...         forbidden_duration=(1, 2),
                 ...         ),
                 ...     )
@@ -899,7 +899,7 @@ class NoteRhythmMaker(RhythmMaker):
             ::
 
                 >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
+                ...     duration_specifier=abjad.rhythmmakertools.DurationSpecifier(
                 ...         spell_metrically=True,
                 ...         ),
                 ...     )
@@ -945,7 +945,7 @@ class NoteRhythmMaker(RhythmMaker):
             ::
 
                 >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
+                ...     duration_specifier=abjad.rhythmmakertools.DurationSpecifier(
                 ...         spell_metrically='unassignable',
                 ...         ),
                 ...     )
@@ -995,7 +995,7 @@ class NoteRhythmMaker(RhythmMaker):
                 ...     (9, [3, 3, 3]),
                 ...     ])
                 >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
+                ...     duration_specifier=abjad.rhythmmakertools.DurationSpecifier(
                 ...         spell_metrically=partition_table,
                 ...         ),
                 ...     )
@@ -1039,7 +1039,7 @@ class NoteRhythmMaker(RhythmMaker):
             ::
 
                 >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
+                ...     duration_specifier=abjad.rhythmmakertools.DurationSpecifier(
                 ...         rewrite_meter=True,
                 ...         ),
                 ...     )
@@ -1075,7 +1075,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         Returns duration spelling specifier or none.
         '''
-        return RhythmMaker.duration_spelling_specifier.fget(self)
+        return RhythmMaker.duration_specifier.fget(self)
 
     @property
     def logical_tie_masks(self):
@@ -1445,7 +1445,7 @@ class NoteRhythmMaker(RhythmMaker):
             ::
 
                 >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
+                ...     duration_specifier=abjad.rhythmmakertools.DurationSpecifier(
                 ...         spell_metrically=True,
                 ...         ),
                 ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
@@ -1490,7 +1490,7 @@ class NoteRhythmMaker(RhythmMaker):
         return superclass.tie_specifier
 
     @property
-    def tuplet_spelling_specifier(self):
+    def tuplet_specifier(self):
         r'''Gets tuplet spelling specifier.
 
         ..  container:: example
@@ -1539,7 +1539,7 @@ class NoteRhythmMaker(RhythmMaker):
             ::
 
                 >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
                 ...         is_diminution=False,
                 ...         ),
                 ...     )
@@ -1580,4 +1580,4 @@ class NoteRhythmMaker(RhythmMaker):
         Returns tuplet spelling specifier or none.
         '''
         superclass = super(NoteRhythmMaker, self)
-        return superclass.tuplet_spelling_specifier
+        return superclass.tuplet_specifier

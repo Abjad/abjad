@@ -9,7 +9,7 @@ class FrenchHorn(Instrument):
         ::
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> french_horn = abjad.instrumenttools.FrenchHorn()
+            >>> french_horn = abjad.FrenchHorn()
             >>> abjad.attach(french_horn, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -40,6 +40,7 @@ class FrenchHorn(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=('bass', 'treble'),
+        default_scope=None,
         middle_c_sounding_pitch='F3',
         pitch_range='[B1, F5]',
         ):
@@ -50,16 +51,11 @@ class FrenchHorn(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'wind player',
-            'brass player',
-            'hornist',
-            ])
         self._is_primary_instrument = True
-        self._starting_clefs = type(self.allowable_clefs)(['bass'])
 
     ### PUBLIC PROPERTIES ###
 
@@ -71,13 +67,9 @@ class FrenchHorn(Instrument):
 
             ::
 
-                >>> french_horn = abjad.instrumenttools.FrenchHorn()
+                >>> french_horn = abjad.FrenchHorn()
                 >>> french_horn.allowable_clefs
-                ClefList([Clef('bass'), Clef('treble')])
-
-            ::
-
-                >>> show(french_horn.allowable_clefs) # doctest: +SKIP
+                ('bass', 'treble')
 
         Returns clef list.
         '''
@@ -91,7 +83,7 @@ class FrenchHorn(Instrument):
 
             ::
 
-                >>> french_horn = abjad.instrumenttools.FrenchHorn()
+                >>> french_horn = abjad.FrenchHorn()
                 >>> french_horn.middle_c_sounding_pitch
                 NamedPitch('f')
 
@@ -111,7 +103,7 @@ class FrenchHorn(Instrument):
 
             ::
 
-                >>> french_horn = abjad.instrumenttools.FrenchHorn()
+                >>> french_horn = abjad.FrenchHorn()
                 >>> french_horn.name
                 'horn'
 
@@ -127,7 +119,7 @@ class FrenchHorn(Instrument):
 
             ::
 
-                >>> french_horn = abjad.instrumenttools.FrenchHorn()
+                >>> french_horn = abjad.FrenchHorn()
                 >>> french_horn.name_markup
                 Markup(contents=['Horn'])
 
@@ -147,7 +139,7 @@ class FrenchHorn(Instrument):
 
             ::
 
-                >>> french_horn = abjad.instrumenttools.FrenchHorn()
+                >>> french_horn = abjad.FrenchHorn()
                 >>> french_horn.pitch_range
                 PitchRange('[B1, F5]')
 
@@ -167,7 +159,7 @@ class FrenchHorn(Instrument):
 
             ::
 
-                >>> french_horn = abjad.instrumenttools.FrenchHorn()
+                >>> french_horn = abjad.FrenchHorn()
                 >>> french_horn.short_name
                 'hn.'
 
@@ -183,7 +175,7 @@ class FrenchHorn(Instrument):
 
             ::
 
-                >>> french_horn = abjad.instrumenttools.FrenchHorn()
+                >>> french_horn = abjad.FrenchHorn()
                 >>> french_horn.short_name_markup
                 Markup(contents=['Hn.'])
 

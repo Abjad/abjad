@@ -9,7 +9,7 @@ class Trumpet(Instrument):
         ::
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> trumpet = abjad.instrumenttools.Trumpet()
+            >>> trumpet = abjad.Trumpet()
             >>> abjad.attach(trumpet, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -40,6 +40,7 @@ class Trumpet(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=None,
+        default_scope=None,
         middle_c_sounding_pitch=None,
         pitch_range='[F#3, D6]',
         ):
@@ -50,13 +51,10 @@ class Trumpet(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'brass player',
-            'trumpeter',
-            ])
         self._is_primary_instrument = True
 
     ### PUBLIC PROPERTIES ###
@@ -69,13 +67,9 @@ class Trumpet(Instrument):
 
             ::
 
-                >>> trumpet = abjad.instrumenttools.Trumpet()
+                >>> trumpet = abjad.Trumpet()
                 >>> trumpet.allowable_clefs
-                ClefList([Clef('treble')])
-
-            ::
-
-                >>> show(trumpet.allowable_clefs) # doctest: +SKIP
+                ('treble',)
 
         Returns clef list.
         '''
@@ -89,7 +83,7 @@ class Trumpet(Instrument):
 
             ::
 
-                >>> trumpet = abjad.instrumenttools.Trumpet()
+                >>> trumpet = abjad.Trumpet()
                 >>> trumpet.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -109,7 +103,7 @@ class Trumpet(Instrument):
 
             ::
 
-                >>> trumpet = abjad.instrumenttools.Trumpet()
+                >>> trumpet = abjad.Trumpet()
                 >>> trumpet.name
                 'trumpet'
 
@@ -125,7 +119,7 @@ class Trumpet(Instrument):
 
             ::
 
-                >>> trumpet = abjad.instrumenttools.Trumpet()
+                >>> trumpet = abjad.Trumpet()
                 >>> trumpet.name_markup
                 Markup(contents=['Trumpet'])
 
@@ -145,7 +139,7 @@ class Trumpet(Instrument):
 
             ::
 
-                >>> trumpet = abjad.instrumenttools.Trumpet()
+                >>> trumpet = abjad.Trumpet()
                 >>> trumpet.pitch_range
                 PitchRange('[F#3, D6]')
 
@@ -165,7 +159,7 @@ class Trumpet(Instrument):
 
             ::
 
-                >>> trumpet = abjad.instrumenttools.Trumpet()
+                >>> trumpet = abjad.Trumpet()
                 >>> trumpet.short_name
                 'tp.'
 
@@ -181,7 +175,7 @@ class Trumpet(Instrument):
 
             ::
 
-                >>> trumpet = abjad.instrumenttools.Trumpet()
+                >>> trumpet = abjad.Trumpet()
                 >>> trumpet.short_name_markup
                 Markup(contents=['Tp.'])
 

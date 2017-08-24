@@ -1,0 +1,17 @@
+#! /bin/sh
+
+osascript <<EOF
+try
+    tell application "Preview"
+        set windowCount to number of windows
+        repeat with x from 1 to windowCount
+            set docPath to (path of document of front window)
+            if (docPath is equal to "{file_path}") then
+                close window x
+            end if
+        end repeat
+    end tell
+on error number -1728
+    -- do nothing
+end try
+EOF

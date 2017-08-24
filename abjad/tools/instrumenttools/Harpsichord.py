@@ -10,9 +10,11 @@ class Harpsichord(Instrument):
 
             >>> upper_staff = abjad.Staff("c'4 d'4 e'4 f'4")
             >>> lower_staff = abjad.Staff("c'2 b2")
-            >>> staff_group = abjad.StaffGroup([upper_staff, lower_staff])
-            >>> staff_group.context_name = 'PianoStaff'
-            >>> harpsichord = abjad.instrumenttools.Harpsichord()
+            >>> staff_group = abjad.StaffGroup(
+            ...     [upper_staff, lower_staff],
+            ...     context_name='PianoStaff',
+            ...     )
+            >>> harpsichord = abjad.Harpsichord()
             >>> abjad.attach(harpsichord, staff_group[0][0])
             >>> abjad.attach(abjad.Clef('bass'), lower_staff[0])
             >>> show(staff_group) # doctest: +SKIP
@@ -52,6 +54,7 @@ class Harpsichord(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=('treble', 'bass'),
+        default_scope='StaffGroup',
         middle_c_sounding_pitch=None,
         pitch_range='[C2, C7]',
         ):
@@ -62,14 +65,10 @@ class Harpsichord(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._default_scope = 'PianoStaff'
-        self._performer_names.extend([
-            'keyboardist',
-            'harpsichordist'
-            ])
         self._is_primary_instrument = True
 
     ### PUBLIC PROPERTIES ###
@@ -82,13 +81,9 @@ class Harpsichord(Instrument):
 
             ::
 
-                >>> harpsichord = abjad.instrumenttools.Harpsichord()
+                >>> harpsichord = abjad.Harpsichord()
                 >>> harpsichord.allowable_clefs
-                ClefList([Clef('treble'), Clef('bass')])
-
-            ::
-
-                >>> show(harpsichord.allowable_clefs) # doctest: +SKIP
+                ('treble', 'bass')
 
         Returns clef list.
         '''
@@ -102,9 +97,9 @@ class Harpsichord(Instrument):
 
             ::
 
-                >>> harpsichord = abjad.instrumenttools.Harpsichord()
+                >>> harpsichord = abjad.Harpsichord()
                 >>> harpsichord.default_scope
-                'PianoStaff'
+                'StaffGroup'
 
         Returns piano staff.
         '''
@@ -118,7 +113,7 @@ class Harpsichord(Instrument):
 
             ::
 
-                >>> harpsichord = abjad.instrumenttools.Harpsichord()
+                >>> harpsichord = abjad.Harpsichord()
                 >>> harpsichord.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -138,7 +133,7 @@ class Harpsichord(Instrument):
 
             ::
 
-                >>> harpsichord = abjad.instrumenttools.Harpsichord()
+                >>> harpsichord = abjad.Harpsichord()
                 >>> harpsichord.name
                 'harpsichord'
 
@@ -154,7 +149,7 @@ class Harpsichord(Instrument):
 
             ::
 
-                >>> harpsichord = abjad.instrumenttools.Harpsichord()
+                >>> harpsichord = abjad.Harpsichord()
                 >>> harpsichord.name_markup
                 Markup(contents=['Harpsichord'])
 
@@ -174,7 +169,7 @@ class Harpsichord(Instrument):
 
             ::
 
-                >>> harpsichord = abjad.instrumenttools.Harpsichord()
+                >>> harpsichord = abjad.Harpsichord()
                 >>> harpsichord.pitch_range
                 PitchRange('[C2, C7]')
 
@@ -194,7 +189,7 @@ class Harpsichord(Instrument):
 
             ::
 
-                >>> harpsichord = abjad.instrumenttools.Harpsichord()
+                >>> harpsichord = abjad.Harpsichord()
                 >>> harpsichord.short_name
                 'hpschd.'
 
@@ -210,7 +205,7 @@ class Harpsichord(Instrument):
 
             ::
 
-                >>> harpsichord = abjad.instrumenttools.Harpsichord()
+                >>> harpsichord = abjad.Harpsichord()
                 >>> harpsichord.short_name_markup
                 Markup(contents=['Hpschd.'])
 

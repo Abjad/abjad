@@ -9,7 +9,7 @@ class BaritoneVoice(Instrument):
         ::
 
             >>> staff = abjad.Staff("c4 d4 e4 fs4")
-            >>> baritone = abjad.instrumenttools.BaritoneVoice()
+            >>> baritone = abjad.BaritoneVoice()
             >>> abjad.attach(baritone, staff[0])
             >>> clef = abjad.Clef('bass')
             >>> abjad.attach(clef, staff[0])
@@ -45,6 +45,7 @@ class BaritoneVoice(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=('bass',),
+        default_scope=None,
         middle_c_sounding_pitch=None,
         pitch_range='[A2, A4]',
         ):
@@ -55,14 +56,10 @@ class BaritoneVoice(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'vocalist',
-            'baritone',
-            ])
-        self._is_primary_instrument = True
 
     ### PUBLIC PROPERTIES ###
 
@@ -74,13 +71,9 @@ class BaritoneVoice(Instrument):
 
             ::
 
-                >>> baritone = abjad.instrumenttools.BaritoneVoice()
+                >>> baritone = abjad.BaritoneVoice()
                 >>> baritone.allowable_clefs
-                ClefList([Clef('bass')])
-
-            ::
-
-                >>> show(baritone.allowable_clefs) # doctest: +SKIP
+                ('bass',)
 
         Returns clef list.
         '''
@@ -94,7 +87,7 @@ class BaritoneVoice(Instrument):
 
             ::
 
-                >>> baritone = abjad.instrumenttools.BaritoneVoice()
+                >>> baritone = abjad.BaritoneVoice()
                 >>> baritone.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -114,7 +107,7 @@ class BaritoneVoice(Instrument):
 
             ::
 
-                >>> baritone = abjad.instrumenttools.BaritoneVoice()
+                >>> baritone = abjad.BaritoneVoice()
                 >>> baritone.name
                 'baritone'
 
@@ -130,7 +123,7 @@ class BaritoneVoice(Instrument):
 
             ::
 
-                >>> baritone = abjad.instrumenttools.BaritoneVoice()
+                >>> baritone = abjad.BaritoneVoice()
                 >>> baritone.name_markup
                 Markup(contents=['Baritone'])
 
@@ -150,7 +143,7 @@ class BaritoneVoice(Instrument):
 
             ::
 
-                >>> baritone = abjad.instrumenttools.BaritoneVoice()
+                >>> baritone = abjad.BaritoneVoice()
                 >>> baritone.pitch_range
                 PitchRange('[A2, A4]')
 
@@ -170,7 +163,7 @@ class BaritoneVoice(Instrument):
 
             ::
 
-                >>> baritone = abjad.instrumenttools.BaritoneVoice()
+                >>> baritone = abjad.BaritoneVoice()
                 >>> baritone.short_name
                 'bar.'
 
@@ -186,7 +179,7 @@ class BaritoneVoice(Instrument):
 
             ::
 
-                >>> baritone = abjad.instrumenttools.BaritoneVoice()
+                >>> baritone = abjad.BaritoneVoice()
                 >>> baritone.short_name_markup
                 Markup(contents=['Bar.'])
 

@@ -33,21 +33,21 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         burnish_specifier=None,
         logical_tie_masks=None,
         division_masks=None,
-        duration_spelling_specifier=None,
+        duration_specifier=None,
         extra_counts_per_division=None,
         preferred_denominator='from_counts',
         tie_specifier=None,
-        tuplet_spelling_specifier=None,
+        tuplet_specifier=None,
         ):
         from abjad.tools import rhythmmakertools
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
             logical_tie_masks=logical_tie_masks,
-            duration_spelling_specifier=duration_spelling_specifier,
+            duration_specifier=duration_specifier,
             division_masks=division_masks,
             tie_specifier=tie_specifier,
-            tuplet_spelling_specifier=tuplet_spelling_specifier,
+            tuplet_specifier=tuplet_specifier,
             )
         assert mathtools.all_are_nonnegative_integer_powers_of_two(
             denominators), repr(denominators)
@@ -2571,7 +2571,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         return self._preferred_denominator
 
     @property
-    def tuplet_spelling_specifier(self):
+    def tuplet_specifier(self):
         r'''Gets tuplet spelling specifier.
 
         ..  note:: not yet implemented.
@@ -2579,4 +2579,4 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         Returns tuplet spelling specifier or none.
         '''
         superclass = super(EvenDivisionRhythmMaker, self)
-        return superclass.tuplet_spelling_specifier
+        return superclass.tuplet_specifier

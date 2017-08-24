@@ -92,8 +92,8 @@ class ScorePackageScript(CommandlineScript):
         force=False,
         ):
         from abjad import abjad_configuration
-        target_path = self._name_to_score_subdirectory_path(
-            name, 'build', score_path)
+        target_path = self._name_to_score_subdirectory(
+            name, 'builds', score_path)
         if target_path.exists() and not force:
             print('    Path exists: {!s}'.format(
                 target_path.relative_to(self._score_package_path.parent)))
@@ -117,7 +117,7 @@ class ScorePackageScript(CommandlineScript):
         metadata['uppercase_title'] = metadata['title'].upper()
         metadata['lilypond_version'] = \
             abjad_configuration.get_lilypond_version_string()
-        source_name = 'example_build_target'
+        source_name = 'build'
         source_path = self._get_boilerplate_path().joinpath(source_name)
         suffixes = ('.py', '.tex', '.ly', '.ily')
         for path in self._copy_tree(source_path, target_path):
@@ -142,10 +142,10 @@ class ScorePackageScript(CommandlineScript):
             materials[name] = material
         return materials
 
-    def _import_material(self, material_directory_path, verbose=True):
+    def _import_material(self, material_directory, verbose=True):
         material_import_path = self._path_to_packagesystem_path(
-            material_directory_path)
-        material_name = material_directory_path.name
+            material_directory)
+        material_name = material_directory.name
         definition_import_path = material_import_path + '.definition'
         try:
             module = self._import_path(
@@ -209,7 +209,7 @@ class ScorePackageScript(CommandlineScript):
             return False
         return True
 
-    def _name_to_score_subdirectory_path(self, name, section, score_path):
+    def _name_to_score_subdirectory(self, name, section, score_path):
         score_path = self._path_to_score_package_path(score_path)
         name = datastructuretools.String(name).to_accent_free_snake_case()
         path = score_path.joinpath(section, name)
@@ -249,7 +249,7 @@ class ScorePackageScript(CommandlineScript):
         # Check for parent package if not actually inside a package.
         # E.g.:
         #   - score_root
-        #   - score_root/score/build/build_target
+        #   - score_root/score/builds/build_target
         #   - score_root/score/etc
         if not path.joinpath('__init__.py').exists():
             if path.joinpath(path.name, '__init__.py').exists():
@@ -271,7 +271,7 @@ class ScorePackageScript(CommandlineScript):
             not path.joinpath('__init__.py').exists() or
             not path.joinpath('materials').exists() or
             not path.joinpath('segments').exists() or
-            not path.joinpath('build').exists() or
+            not path.joinpath('builds').exists() or
             not path.joinpath('tools').exists()
             ):
             print('Score directory {!r} is malformed.'.format(path))
@@ -349,7 +349,7 @@ class ScorePackageScript(CommandlineScript):
         self._score_package_path = score_package_path
         self._score_repository_path = score_package_path.parent
         self._root_parent_path = self._score_repository_path.parent
-        self._build_path = self._score_package_path.joinpath('build')
+        self._build_path = self._score_package_path.joinpath('builds')
         self._distribution_path = self._score_package_path.joinpath('distribution')
         self._segments_path = self._score_package_path.joinpath('segments')
         self._materials_path = self._score_package_path.joinpath('materials')
@@ -396,9 +396,9 @@ class ScorePackageScript(CommandlineScript):
     def _write_lilypond_ly(
         self,
         lilypond_file,
-        output_directory_path,
+        output_directory,
         ):
-        ly_path = output_directory_path.joinpath('illustration.ly')
+        ly_path = output_directory.joinpath('illustration.ly')
         message = '    Writing {!s} ... '
         message = message.format(ly_path.relative_to(self._score_repository_path))
         print(message, end='')
@@ -416,15 +416,19 @@ class ScorePackageScript(CommandlineScript):
     def _write_lilypond_pdf(
         self,
         ly_path,
-        output_directory_path,
+        output_directory,
         ):
         from abjad import abjad_configuration
-        pdf_path = output_directory_path.joinpath('illustration.pdf')
+        pdf_path = output_directory.joinpath('illustration.pdf')
         message = '    Writing {!s} ... '
-        message = message.format(pdf_path.relative_to(self._score_repository_path))
+        message = message.format(
+            pdf_path.relative_to(self._score_repository_path)
+            )
         print(message, end='')
         command = '{} -dno-point-and-click -o {} {}'.format(
-            abjad_configuration.get('lilypond_path', 'lilypond'),
+            # not sure why the call to abjad_configuration.get() returns none:
+            #abjad_configuration.get('lilypond_path', 'lilypond'),
+            'lilypond',
             str(ly_path).replace('.ly', ''),
             str(ly_path),
             )

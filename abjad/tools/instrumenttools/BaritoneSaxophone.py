@@ -9,7 +9,7 @@ class BaritoneSaxophone(Instrument):
         ::
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> baritone_saxophone = abjad.instrumenttools.BaritoneSaxophone()
+            >>> baritone_saxophone = abjad.BaritoneSaxophone()
             >>> abjad.attach(baritone_saxophone, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -40,6 +40,7 @@ class BaritoneSaxophone(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=None,
+        default_scope=None,
         middle_c_sounding_pitch='Eb2',
         pitch_range='[C2, Ab4]',
         ):
@@ -50,15 +51,10 @@ class BaritoneSaxophone(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'wind player',
-            'reed player',
-            'single reed player',
-            'saxophonist',
-            ])
 
     ### PUBLIC PROPERTIES ###
 
@@ -70,13 +66,9 @@ class BaritoneSaxophone(Instrument):
 
             ::
 
-                >>> baritone_saxophone = abjad.instrumenttools.BaritoneSaxophone()
+                >>> baritone_saxophone = abjad.BaritoneSaxophone()
                 >>> baritone_saxophone.allowable_clefs
-                ClefList([Clef('treble')])
-
-            ::
-
-                >>> show(baritone_saxophone.allowable_clefs) # doctest: +SKIP
+                ('treble',)
 
         Returns clef list.
         '''
@@ -90,7 +82,7 @@ class BaritoneSaxophone(Instrument):
 
             ::
 
-                >>> baritone_saxophone = abjad.instrumenttools.BaritoneSaxophone()
+                >>> baritone_saxophone = abjad.BaritoneSaxophone()
                 >>> baritone_saxophone.middle_c_sounding_pitch
                 NamedPitch('ef,')
 
@@ -110,7 +102,7 @@ class BaritoneSaxophone(Instrument):
 
             ::
 
-                >>> baritone_saxophone = abjad.instrumenttools.BaritoneSaxophone()
+                >>> baritone_saxophone = abjad.BaritoneSaxophone()
                 >>> baritone_saxophone.name
                 'baritone saxophone'
 
@@ -126,7 +118,7 @@ class BaritoneSaxophone(Instrument):
 
             ::
 
-                >>> baritone_saxophone = abjad.instrumenttools.BaritoneSaxophone()
+                >>> baritone_saxophone = abjad.BaritoneSaxophone()
                 >>> baritone_saxophone.name_markup
                 Markup(contents=['Baritone saxophone'])
 
@@ -146,7 +138,7 @@ class BaritoneSaxophone(Instrument):
 
             ::
 
-                >>> baritone_saxophone = abjad.instrumenttools.BaritoneSaxophone()
+                >>> baritone_saxophone = abjad.BaritoneSaxophone()
                 >>> baritone_saxophone.pitch_range
                 PitchRange('[C2, Ab4]')
 
@@ -166,7 +158,7 @@ class BaritoneSaxophone(Instrument):
 
             ::
 
-                >>> baritone_saxophone = abjad.instrumenttools.BaritoneSaxophone()
+                >>> baritone_saxophone = abjad.BaritoneSaxophone()
                 >>> baritone_saxophone.short_name
                 'bar. sax.'
 
@@ -182,7 +174,7 @@ class BaritoneSaxophone(Instrument):
 
             ::
 
-                >>> baritone_saxophone = abjad.instrumenttools.BaritoneSaxophone()
+                >>> baritone_saxophone = abjad.BaritoneSaxophone()
                 >>> baritone_saxophone.short_name_markup
                 Markup(contents=['Bar. sax.'])
 

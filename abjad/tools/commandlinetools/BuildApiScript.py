@@ -24,7 +24,7 @@ class BuildApiScript(CommandlineScript):
         api_directory_name = None
         api_title = 'Abjad IDE API'
         root_package_name = 'ide'
-        source_directory_path_parts = ('docs', 'source')
+        source_directory_parts = ('docs', 'source')
         tools_packages_package_path = 'ide.tools'
 
     class ScoreLibraryDocumentationManager(DocumentationManager):
@@ -32,7 +32,7 @@ class BuildApiScript(CommandlineScript):
         '''
         api_directory_name = None
         root_package_name = None
-        source_directory_path_parts = None
+        source_directory_parts = None
         tools_packages_package_path = None
 
         def __init__(

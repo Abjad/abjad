@@ -9,7 +9,7 @@ class ContrabassSaxophone(Instrument):
         ::
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> contrabass_saxophone = abjad.instrumenttools.ContrabassSaxophone()
+            >>> contrabass_saxophone = abjad.ContrabassSaxophone()
             >>> abjad.attach(contrabass_saxophone, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -40,6 +40,7 @@ class ContrabassSaxophone(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=None,
+        default_scope=None,
         middle_c_sounding_pitch='Eb1',
         pitch_range='[C1, Ab3]',
         ):
@@ -50,15 +51,10 @@ class ContrabassSaxophone(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'wind player',
-            'reed player',
-            'single reed player',
-            'saxophonist',
-            ])
 
     ### PUBLIC PROPERTIES ###
 
@@ -70,13 +66,9 @@ class ContrabassSaxophone(Instrument):
 
             ::
 
-                >>> contrabass_saxophone = abjad.instrumenttools.ContrabassSaxophone()
+                >>> contrabass_saxophone = abjad.ContrabassSaxophone()
                 >>> contrabass_saxophone.allowable_clefs
-                ClefList([Clef('treble')])
-
-            ::
-
-                >>> show(contrabass_saxophone.allowable_clefs) # doctest: +SKIP
+                ('treble',)
 
         Returns clef list.
         '''
@@ -90,7 +82,7 @@ class ContrabassSaxophone(Instrument):
 
             ::
 
-                >>> contrabass_saxophone = abjad.instrumenttools.ContrabassSaxophone()
+                >>> contrabass_saxophone = abjad.ContrabassSaxophone()
                 >>> contrabass_saxophone.middle_c_sounding_pitch
                 NamedPitch('ef,,')
 
@@ -110,7 +102,7 @@ class ContrabassSaxophone(Instrument):
 
             ::
 
-                >>> contrabass_saxophone = abjad.instrumenttools.ContrabassSaxophone()
+                >>> contrabass_saxophone = abjad.ContrabassSaxophone()
                 >>> contrabass_saxophone.name
                 'contrabass saxophone'
 
@@ -126,7 +118,7 @@ class ContrabassSaxophone(Instrument):
 
             ::
 
-                >>> contrabass_saxophone = abjad.instrumenttools.ContrabassSaxophone()
+                >>> contrabass_saxophone = abjad.ContrabassSaxophone()
                 >>> contrabass_saxophone.name_markup
                 Markup(contents=['Contrabass saxophone'])
 
@@ -146,7 +138,7 @@ class ContrabassSaxophone(Instrument):
 
             ::
 
-                >>> contrabass_saxophone = abjad.instrumenttools.ContrabassSaxophone()
+                >>> contrabass_saxophone = abjad.ContrabassSaxophone()
                 >>> contrabass_saxophone.pitch_range
                 PitchRange('[C1, Ab3]')
 
@@ -166,7 +158,7 @@ class ContrabassSaxophone(Instrument):
 
             ::
 
-                >>> contrabass_saxophone = abjad.instrumenttools.ContrabassSaxophone()
+                >>> contrabass_saxophone = abjad.ContrabassSaxophone()
                 >>> contrabass_saxophone.short_name
                 'cbass. sax.'
 
@@ -182,7 +174,7 @@ class ContrabassSaxophone(Instrument):
 
             ::
 
-                >>> contrabass_saxophone = abjad.instrumenttools.ContrabassSaxophone()
+                >>> contrabass_saxophone = abjad.ContrabassSaxophone()
                 >>> contrabass_saxophone.short_name_markup
                 Markup(contents=['Cbass. sax.'])
 

@@ -9,7 +9,7 @@ class BassVoice(Instrument):
         ::
 
             >>> staff = abjad.Staff("c4 d4 e4 fs4")
-            >>> bass = abjad.instrumenttools.BassVoice()
+            >>> bass = abjad.BassVoice()
             >>> abjad.attach(bass, staff[0])
             >>> clef = abjad.Clef('bass')
             >>> abjad.attach(clef, staff[0])
@@ -43,6 +43,7 @@ class BassVoice(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=('bass',),
+        default_scope=None,
         middle_c_sounding_pitch=None,
         pitch_range='[E2, F4]',
         ):
@@ -53,13 +54,10 @@ class BassVoice(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'vocalist',
-            'bass',
-            ])
         self._is_primary_instrument = True
 
     ### PUBLIC PROPERTIES ###
@@ -72,13 +70,9 @@ class BassVoice(Instrument):
 
             ::
 
-                >>> bass = abjad.instrumenttools.BassVoice()
+                >>> bass = abjad.BassVoice()
                 >>> bass.allowable_clefs
-                ClefList([Clef('bass')])
-
-            ::
-
-                >>> show(bass.allowable_clefs) # doctest: +SKIP
+                ('bass',)
 
         Returns clef list.
         '''
@@ -92,7 +86,7 @@ class BassVoice(Instrument):
 
             ::
 
-                >>> bass = abjad.instrumenttools.BassVoice()
+                >>> bass = abjad.BassVoice()
                 >>> bass.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -112,7 +106,7 @@ class BassVoice(Instrument):
 
             ::
 
-                >>> bass = abjad.instrumenttools.BassVoice()
+                >>> bass = abjad.BassVoice()
                 >>> bass.name
                 'bass'
 
@@ -128,7 +122,7 @@ class BassVoice(Instrument):
 
             ::
 
-                >>> bass = abjad.instrumenttools.BassVoice()
+                >>> bass = abjad.BassVoice()
                 >>> bass.name_markup
                 Markup(contents=['Bass'])
 
@@ -148,7 +142,7 @@ class BassVoice(Instrument):
 
             ::
 
-                >>> bass = abjad.instrumenttools.BassVoice()
+                >>> bass = abjad.BassVoice()
                 >>> bass.pitch_range
                 PitchRange('[E2, F4]')
 
@@ -168,7 +162,7 @@ class BassVoice(Instrument):
 
             ::
 
-                >>> bass = abjad.instrumenttools.BassVoice()
+                >>> bass = abjad.BassVoice()
                 >>> bass.short_name
                 'bass'
 
@@ -184,7 +178,7 @@ class BassVoice(Instrument):
 
             ::
 
-                >>> bass = abjad.instrumenttools.BassVoice()
+                >>> bass = abjad.BassVoice()
                 >>> bass.short_name_markup
                 Markup(contents=['Bass'])
 

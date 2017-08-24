@@ -9,7 +9,7 @@ class ContrabassClarinet(Instrument):
         ::
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> contrabass_clarinet = abjad.instrumenttools.ContrabassClarinet()
+            >>> contrabass_clarinet = abjad.ContrabassClarinet()
             >>> abjad.attach(contrabass_clarinet, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -40,6 +40,7 @@ class ContrabassClarinet(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=('treble', 'bass'),
+        default_scope=None,
         middle_c_sounding_pitch='Bb1',
         pitch_range='[Bb0, G4]',
         ):
@@ -50,16 +51,10 @@ class ContrabassClarinet(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'wind player',
-            'reed player',
-            'single reed player',
-            'clarinettist',
-            'clarinetist',
-            ])
 
     ### PUBLIC PROPERTIES ###
 
@@ -71,13 +66,9 @@ class ContrabassClarinet(Instrument):
 
             ::
 
-                >>> contrabass_clarinet = abjad.instrumenttools.ContrabassClarinet()
+                >>> contrabass_clarinet = abjad.ContrabassClarinet()
                 >>> contrabass_clarinet.allowable_clefs
-                ClefList([Clef('treble'), Clef('bass')])
-
-            ::
-
-                >>> show(contrabass_clarinet.allowable_clefs) # doctest: +SKIP
+                ('treble', 'bass')
 
         Returns clef list.
         '''
@@ -91,7 +82,7 @@ class ContrabassClarinet(Instrument):
 
             ::
 
-                >>> contrabass_clarinet = abjad.instrumenttools.ContrabassClarinet()
+                >>> contrabass_clarinet = abjad.ContrabassClarinet()
                 >>> contrabass_clarinet.middle_c_sounding_pitch
                 NamedPitch('bf,,')
 
@@ -111,7 +102,7 @@ class ContrabassClarinet(Instrument):
 
             ::
 
-                >>> contrabass_clarinet = abjad.instrumenttools.ContrabassClarinet()
+                >>> contrabass_clarinet = abjad.ContrabassClarinet()
                 >>> contrabass_clarinet.name
                 'contrabass clarinet'
 
@@ -127,7 +118,7 @@ class ContrabassClarinet(Instrument):
 
             ::
 
-                >>> contrabass_clarinet = abjad.instrumenttools.ContrabassClarinet()
+                >>> contrabass_clarinet = abjad.ContrabassClarinet()
                 >>> contrabass_clarinet.name_markup
                 Markup(contents=['Contrabass clarinet'])
 
@@ -147,7 +138,7 @@ class ContrabassClarinet(Instrument):
 
             ::
 
-                >>> contrabass_clarinet = abjad.instrumenttools.ContrabassClarinet()
+                >>> contrabass_clarinet = abjad.ContrabassClarinet()
                 >>> contrabass_clarinet.pitch_range
                 PitchRange('[Bb0, G4]')
 
@@ -167,7 +158,7 @@ class ContrabassClarinet(Instrument):
 
             ::
 
-                >>> contrabass_clarinet = abjad.instrumenttools.ContrabassClarinet()
+                >>> contrabass_clarinet = abjad.ContrabassClarinet()
                 >>> contrabass_clarinet.short_name
                 'cbass. cl.'
 
@@ -183,7 +174,7 @@ class ContrabassClarinet(Instrument):
 
             ::
 
-                >>> contrabass_clarinet = abjad.instrumenttools.ContrabassClarinet()
+                >>> contrabass_clarinet = abjad.ContrabassClarinet()
                 >>> contrabass_clarinet.short_name_markup
                 Markup(contents=['Cbass. cl.'])
 

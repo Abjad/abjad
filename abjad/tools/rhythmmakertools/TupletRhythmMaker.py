@@ -136,7 +136,7 @@ class TupletRhythmMaker(RhythmMaker):
     __slots__ = (
         '_preferred_denominator',
         '_tuplet_ratios',
-        '_tuplet_spelling_specifier',
+        '_tuplet_specifier',
         )
 
     ### INITIALIZER ###
@@ -146,18 +146,18 @@ class TupletRhythmMaker(RhythmMaker):
         tuplet_ratios=None,
         beam_specifier=None,
         division_masks=None,
-        duration_spelling_specifier=None,
+        duration_specifier=None,
         preferred_denominator=None,
         tie_specifier=None,
-        tuplet_spelling_specifier=None,
+        tuplet_specifier=None,
         ):
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
-            duration_spelling_specifier=duration_spelling_specifier,
+            duration_specifier=duration_specifier,
             division_masks=division_masks,
             tie_specifier=tie_specifier,
-            tuplet_spelling_specifier=tuplet_spelling_specifier,
+            tuplet_specifier=tuplet_specifier,
             )
         if tuplet_ratios is not None:
             tuplet_ratios = tuple(mathtools.Ratio(x) for x in tuplet_ratios)
@@ -352,18 +352,18 @@ class TupletRhythmMaker(RhythmMaker):
         tuplet_ratios = datastructuretools.CyclicTuple(
             datastructuretools.Sequence(self.tuplet_ratios).rotate(n=rotation)
             )
-        tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()
+        tuplet_specifier = self._get_tuplet_specifier()
         for duration_index, division in enumerate(divisions):
             ratio = tuplet_ratios[duration_index]
             duration = durationtools.Duration(division)
             tuplet = self._make_tuplet(
                 duration,
                 ratio,
-                avoid_dots=tuplet_spelling_specifier.avoid_dots,
-                is_diminution=tuplet_spelling_specifier.is_diminution,
+                avoid_dots=tuplet_specifier.avoid_dots,
+                is_diminution=tuplet_specifier.is_diminution,
                 )
             preferred_denominator = \
-                tuplet_spelling_specifier.preferred_denominator
+                tuplet_specifier.preferred_denominator
             if preferred_denominator is None:
                 pass
             elif preferred_denominator == 'divisions':
@@ -780,7 +780,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, 4)],
-                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
                 ...         avoid_dots=True,
                 ...         preferred_denominator=None,
                 ...         ),
@@ -843,7 +843,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, 4)],
-                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
                 ...         avoid_dots=True,
                 ...         preferred_denominator='divisions',
                 ...         ),
@@ -904,7 +904,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, 4)],
-                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
                 ...         avoid_dots=True,
                 ...         preferred_denominator=(1, 16),
                 ...         ),
@@ -964,7 +964,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, 4)],
-                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
                 ...         avoid_dots=True,
                 ...         preferred_denominator=(1, 32),
                 ...         ),
@@ -1024,7 +1024,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, 4)],
-                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
                 ...         avoid_dots=True,
                 ...         preferred_denominator=(1, 64),
                 ...         ),
@@ -1086,7 +1086,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, 4)],
-                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
                 ...         avoid_dots=True,
                 ...         preferred_denominator=8,
                 ...         ),
@@ -1146,7 +1146,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, 4)],
-                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
                 ...         avoid_dots=True,
                 ...         preferred_denominator=12,
                 ...         ),
@@ -1206,7 +1206,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, 4)],
-                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
                 ...         avoid_dots=True,
                 ...         preferred_denominator=13,
                 ...         ),
@@ -1560,7 +1560,7 @@ class TupletRhythmMaker(RhythmMaker):
             return list(self._tuplet_ratios)
 
     @property
-    def tuplet_spelling_specifier(self):
+    def tuplet_specifier(self):
         r'''Gets tuplet spelling specifier.
 
         ..  container:: example
@@ -1571,7 +1571,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, 1)],
-                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
                 ...         avoid_dots=False,
                 ...         is_diminution=True,
                 ...         ),
@@ -1622,7 +1622,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, 1)],
-                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
                 ...         avoid_dots=True,
                 ...         is_diminution=True,
                 ...         ),
@@ -1675,7 +1675,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, 1)],
-                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
                 ...         avoid_dots=False,
                 ...         is_diminution=False,
                 ...         ),
@@ -1726,7 +1726,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, 1)],
-                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
                 ...         avoid_dots=True,
                 ...         is_diminution=False,
                 ...         ),
@@ -1779,7 +1779,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(3, -2), (1,), (-2, 3), (1, 1)],
-                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
                 ...         avoid_dots=True,
                 ...         simplify_redundant_tuplets=False,
                 ...         ),
@@ -1837,7 +1837,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(3, -2), (1,), (-2, 3), (1, 1)],
-                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
                 ...         avoid_dots=True,
                 ...         simplify_redundant_tuplets=True,
                 ...         ),
@@ -1896,7 +1896,7 @@ class TupletRhythmMaker(RhythmMaker):
                 ...         tie_across_divisions=True,
                 ...         ),
                 ...     tuplet_ratios=[(2, 3), (1, 1)],
-                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
                 ...         flatten_trivial_tuplets=False,
                 ...         ),
                 ...     )
@@ -1962,7 +1962,7 @@ class TupletRhythmMaker(RhythmMaker):
                 ...         tie_across_divisions=True,
                 ...         ),
                 ...     tuplet_ratios=[(2, 3), (1, 1)],
-                ...     tuplet_spelling_specifier=abjad.rhythmmakertools.TupletSpellingSpecifier(
+                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
                 ...         flatten_trivial_tuplets=True,
                 ...         ),
                 ...     )
@@ -2023,4 +2023,4 @@ class TupletRhythmMaker(RhythmMaker):
         Returns tuplet spelling specifier or none.
         '''
         superclass = super(TupletRhythmMaker, self)
-        return superclass.tuplet_spelling_specifier
+        return superclass.tuplet_specifier

@@ -6,7 +6,7 @@ from abjad.tools import systemtools
 def find_all_duplicate_module_names():
 
     all_file_names = []
-    all_directorys = []
+    all_directories = []
     unique_file_names = []
     duplicate_file_names = []
 
@@ -26,7 +26,7 @@ def find_all_duplicate_module_names():
             elif file_name == '__init__.py':
                 continue
             all_file_names.append(file_name)
-            all_directorys.append(directory)
+            all_directories.append(directory)
             if file_name not in unique_file_names:
                 unique_file_names.append(file_name)
             else:
@@ -36,7 +36,7 @@ def find_all_duplicate_module_names():
                     )
                 index = all_file_names.index(file_name)
                 duplicate_directory = \
-                    all_directorys[index]
+                    all_directories[index]
                 first_full_path = os.path.join(
                     duplicate_directory,
                     file_name,

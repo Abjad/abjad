@@ -36,7 +36,7 @@ class TieSpecifier(AbjadValueObject):
             bool,
             collections.Sequence,
             abjad.Pattern,
-            abjad.PatternList,
+            abjad.PatternTuple,
             )
         assert isinstance(tie_across_divisions, prototype)
         self._tie_across_divisions = tie_across_divisions

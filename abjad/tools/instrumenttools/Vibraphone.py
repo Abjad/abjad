@@ -9,7 +9,7 @@ class Vibraphone(Instrument):
         ::
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> vibraphone = abjad.instrumenttools.Vibraphone()
+            >>> vibraphone = abjad.Vibraphone()
             >>> abjad.attach(vibraphone, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -40,6 +40,7 @@ class Vibraphone(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=None,
+        default_scope=None,
         middle_c_sounding_pitch=None,
         pitch_range='[F3, F6]',
         ):
@@ -50,13 +51,10 @@ class Vibraphone(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'percussionist',
-            'vibraphonist',
-            ])
 
     ### PUBLIC PROPERTIES ###
 
@@ -68,13 +66,9 @@ class Vibraphone(Instrument):
 
             ::
 
-                >>> vibraphone = abjad.instrumenttools.Vibraphone()
+                >>> vibraphone = abjad.Vibraphone()
                 >>> vibraphone.allowable_clefs
-                ClefList([Clef('treble')])
-
-            ::
-
-                >>> show(vibraphone.allowable_clefs) # doctest: +SKIP
+                ('treble',)
 
         Returns clef list.
         '''
@@ -88,7 +82,7 @@ class Vibraphone(Instrument):
 
             ::
 
-                >>> vibraphone = abjad.instrumenttools.Vibraphone()
+                >>> vibraphone = abjad.Vibraphone()
                 >>> vibraphone.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -108,7 +102,7 @@ class Vibraphone(Instrument):
 
             ::
 
-                >>> vibraphone = abjad.instrumenttools.Vibraphone()
+                >>> vibraphone = abjad.Vibraphone()
                 >>> vibraphone.name
                 'vibraphone'
 
@@ -124,7 +118,7 @@ class Vibraphone(Instrument):
 
             ::
 
-                >>> vibraphone = abjad.instrumenttools.Vibraphone()
+                >>> vibraphone = abjad.Vibraphone()
                 >>> vibraphone.name_markup
                 Markup(contents=['Vibraphone'])
 
@@ -144,7 +138,7 @@ class Vibraphone(Instrument):
 
             ::
 
-                >>> vibraphone = abjad.instrumenttools.Vibraphone()
+                >>> vibraphone = abjad.Vibraphone()
                 >>> vibraphone.pitch_range
                 PitchRange('[F3, F6]')
 
@@ -164,7 +158,7 @@ class Vibraphone(Instrument):
 
             ::
 
-                >>> vibraphone = abjad.instrumenttools.Vibraphone()
+                >>> vibraphone = abjad.Vibraphone()
                 >>> vibraphone.short_name
                 'vibr.'
 
@@ -180,7 +174,7 @@ class Vibraphone(Instrument):
 
             ::
 
-                >>> vibraphone = abjad.instrumenttools.Vibraphone()
+                >>> vibraphone = abjad.Vibraphone()
                 >>> vibraphone.short_name_markup
                 Markup(contents=['Vibr.'])
 

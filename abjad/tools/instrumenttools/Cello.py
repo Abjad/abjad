@@ -12,7 +12,7 @@ class Cello(Instrument):
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
             >>> clef = abjad.Clef('bass')
             >>> abjad.attach(clef, staff[0])
-            >>> cello = abjad.instrumenttools.Cello()
+            >>> cello = abjad.Cello()
             >>> abjad.attach(cello, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -46,6 +46,7 @@ class Cello(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=('bass', 'tenor', 'treble'),
+        default_scope=None,
         default_tuning=('C2', 'G2', 'D3', 'A3'),
         middle_c_sounding_pitch=None,
         pitch_range='[C2, G5]',
@@ -58,14 +59,10 @@ class Cello(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'string player',
-            'cellist',
-            ])
-        self._starting_clefs = type(self.allowable_clefs)(['bass'])
         self._is_primary_instrument = True
         self._default_tuning = abjad.Tuning(default_tuning)
 
@@ -79,13 +76,9 @@ class Cello(Instrument):
 
             ::
 
-                >>> cello = abjad.instrumenttools.Cello()
+                >>> cello = abjad.Cello()
                 >>> cello.allowable_clefs
-                ClefList([Clef('bass'), Clef('tenor'), Clef('treble')])
-
-            ::
-
-                >>> show(cello.allowable_clefs) # doctest: +SKIP
+                ('bass', 'tenor', 'treble')
 
         Returns clef list.
         '''
@@ -99,7 +92,7 @@ class Cello(Instrument):
 
             ::
 
-                >>> cello = abjad.instrumenttools.Cello()
+                >>> cello = abjad.Cello()
                 >>> cello.default_tuning
                 Tuning(pitches=PitchSegment(['c,', 'g,', 'd', 'a']))
 
@@ -115,7 +108,7 @@ class Cello(Instrument):
 
             ::
 
-                >>> cello = abjad.instrumenttools.Cello()
+                >>> cello = abjad.Cello()
                 >>> cello.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -135,7 +128,7 @@ class Cello(Instrument):
 
             ::
 
-                >>> cello = abjad.instrumenttools.Cello()
+                >>> cello = abjad.Cello()
                 >>> cello.name
                 'cello'
 
@@ -151,7 +144,7 @@ class Cello(Instrument):
 
             ::
 
-                >>> cello = abjad.instrumenttools.Cello()
+                >>> cello = abjad.Cello()
                 >>> cello.name_markup
                 Markup(contents=['Cello'])
 
@@ -171,7 +164,7 @@ class Cello(Instrument):
 
             ::
 
-                >>> cello = abjad.instrumenttools.Cello()
+                >>> cello = abjad.Cello()
                 >>> cello.pitch_range
                 PitchRange('[C2, G5]')
 
@@ -191,7 +184,7 @@ class Cello(Instrument):
 
             ::
 
-                >>> cello = abjad.instrumenttools.Cello()
+                >>> cello = abjad.Cello()
                 >>> cello.short_name
                 'vc.'
 
@@ -207,7 +200,7 @@ class Cello(Instrument):
 
             ::
 
-                >>> cello = abjad.instrumenttools.Cello()
+                >>> cello = abjad.Cello()
                 >>> cello.short_name_markup
                 Markup(contents=['Vc.'])
 

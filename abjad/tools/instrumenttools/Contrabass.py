@@ -12,7 +12,7 @@ class Contrabass(Instrument):
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
             >>> clef = abjad.Clef('bass')
             >>> abjad.attach(clef, staff[0])
-            >>> contrabass = abjad.instrumenttools.Contrabass()
+            >>> contrabass = abjad.Contrabass()
             >>> abjad.attach(contrabass, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -46,6 +46,7 @@ class Contrabass(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=('bass', 'treble'),
+        default_scope=None,
         default_tuning=('C1', 'A1', 'D2', 'G2'),
         middle_c_sounding_pitch='C3',
         pitch_range='[C1, G4]',
@@ -57,16 +58,11 @@ class Contrabass(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'string player',
-            'contrabassist',
-            'bassist',
-            ])
         self._is_primary_instrument = True
-        self._starting_clefs = type(self.allowable_clefs)(['bass'])
         self._default_tuning = indicatortools.Tuning(default_tuning)
 
     ### PUBLIC PROPERTIES ###
@@ -79,13 +75,9 @@ class Contrabass(Instrument):
 
             ::
 
-                >>> contrabass = abjad.instrumenttools.Contrabass()
+                >>> contrabass = abjad.Contrabass()
                 >>> contrabass.allowable_clefs
-                ClefList([Clef('bass'), Clef('treble')])
-
-            ::
-
-                >>> show(contrabass.allowable_clefs) # doctest: +SKIP
+                ('bass', 'treble')
 
         Returns clef list.
         '''
@@ -99,7 +91,7 @@ class Contrabass(Instrument):
 
             ::
 
-                >>> contrabass = abjad.instrumenttools.Contrabass()
+                >>> contrabass = abjad.Contrabass()
                 >>> contrabass.default_tuning
                 Tuning(pitches=PitchSegment(['c,,', 'a,,', 'd,', 'g,']))
 
@@ -115,7 +107,7 @@ class Contrabass(Instrument):
 
             ::
 
-                >>> contrabass = abjad.instrumenttools.Contrabass()
+                >>> contrabass = abjad.Contrabass()
                 >>> contrabass.middle_c_sounding_pitch
                 NamedPitch('c')
 
@@ -135,7 +127,7 @@ class Contrabass(Instrument):
 
             ::
 
-                >>> contrabass = abjad.instrumenttools.Contrabass()
+                >>> contrabass = abjad.Contrabass()
                 >>> contrabass.name
                 'contrabass'
 
@@ -151,7 +143,7 @@ class Contrabass(Instrument):
 
             ::
 
-                >>> contrabass = abjad.instrumenttools.Contrabass()
+                >>> contrabass = abjad.Contrabass()
                 >>> contrabass.name_markup
                 Markup(contents=['Contrabass'])
 
@@ -171,7 +163,7 @@ class Contrabass(Instrument):
 
             ::
 
-                >>> contrabass = abjad.instrumenttools.Contrabass()
+                >>> contrabass = abjad.Contrabass()
                 >>> contrabass.pitch_range
                 PitchRange('[C1, G4]')
 
@@ -191,7 +183,7 @@ class Contrabass(Instrument):
 
             ::
 
-                >>> contrabass = abjad.instrumenttools.Contrabass()
+                >>> contrabass = abjad.Contrabass()
                 >>> contrabass.short_name
                 'cb.'
 
@@ -207,7 +199,7 @@ class Contrabass(Instrument):
 
             ::
 
-                >>> contrabass = abjad.instrumenttools.Contrabass()
+                >>> contrabass = abjad.Contrabass()
                 >>> contrabass.short_name_markup
                 Markup(contents=['Cb.'])
 
