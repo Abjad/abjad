@@ -77,19 +77,19 @@ class EvenRunRhythmMaker(RhythmMaker):
     def __init__(
         self,
         beam_specifier=None,
-        duration_spelling_specifier=None,
+        duration_specifier=None,
         exponent=None,
         tie_specifier=None,
-        tuplet_spelling_specifier=None,
+        tuplet_specifier=None,
         ):
         if exponent is not None:
             assert mathtools.is_nonnegative_integer(exponent)
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
-            duration_spelling_specifier=duration_spelling_specifier,
+            duration_specifier=duration_specifier,
             tie_specifier=tie_specifier,
-            tuplet_spelling_specifier=tuplet_spelling_specifier,
+            tuplet_specifier=tuplet_specifier,
             )
         self._exponent = exponent
 
@@ -142,9 +142,9 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     def _make_container(self, division):
         import abjad
-        duration_spelling_specifier = self._get_duration_spelling_specifier()
+        duration_specifier = self._get_duration_specifier()
         forbidden_duration = \
-            duration_spelling_specifier.forbidden_duration
+            duration_specifier.forbidden_duration
         time_signature = indicatortools.TimeSignature(division)
         implied_prolation = time_signature.implied_prolation
         numerator, denominator = division.pair
@@ -207,18 +207,18 @@ class EvenRunRhythmMaker(RhythmMaker):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def duration_spelling_specifier(self):
+    def duration_specifier(self):
         r'''Gets duration spelling specifier.
 
         ..  container:: example
 
             ::
 
-                >>> specifier = abjad.rhythmmakertools.DurationSpellingSpecifier(
+                >>> specifier = abjad.rhythmmakertools.DurationSpecifier(
                 ...     forbidden_duration=(1, 4),
                 ...     )
                 >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker(
-                ...     duration_spelling_specifier=specifier,
+                ...     duration_specifier=specifier,
                 ...     )
 
             ::
@@ -268,7 +268,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         Returns duration spelling specifier or none.
         '''
-        return self._duration_spelling_specifier
+        return self._duration_specifier
 
     @property
     def exponent(self):
@@ -685,7 +685,7 @@ class EvenRunRhythmMaker(RhythmMaker):
         return RhythmMaker.tie_specifier.fget(self)
 
     @property
-    def tuplet_spelling_specifier(self):
+    def tuplet_specifier(self):
         r'''Gets tuplet spelling specifier.
 
         ..  note:: not yet implemented.
@@ -693,4 +693,4 @@ class EvenRunRhythmMaker(RhythmMaker):
         Returns tuplet spelling specifier or none.
         '''
         superclass = super(EvenRunRhythmMaker, self)
-        return superclass.tuplet_spelling_specifier
+        return superclass.tuplet_specifier

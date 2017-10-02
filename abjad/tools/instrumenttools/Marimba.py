@@ -9,7 +9,7 @@ class Marimba(Instrument):
         ::
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> marimba = abjad.instrumenttools.Marimba()
+            >>> marimba = abjad.Marimba()
             >>> abjad.attach(marimba, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -40,6 +40,7 @@ class Marimba(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=('treble', 'bass'),
+        default_scope=None,
         middle_c_sounding_pitch=None,
         pitch_range='[F2, C7]',
         ):
@@ -50,12 +51,10 @@ class Marimba(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'percussionist',
-            ])
 
     ### PUBLIC PROPERTIES ###
 
@@ -67,13 +66,9 @@ class Marimba(Instrument):
 
             ::
 
-                >>> marimba = abjad.instrumenttools.Marimba()
+                >>> marimba = abjad.Marimba()
                 >>> marimba.allowable_clefs
-                ClefList([Clef('treble'), Clef('bass')])
-
-            ::
-
-                >>> show(marimba.allowable_clefs) # doctest: +SKIP
+                ('treble', 'bass')
 
         Returns clef list.
         '''
@@ -87,7 +82,7 @@ class Marimba(Instrument):
 
             ::
 
-                >>> marimba = abjad.instrumenttools.Marimba()
+                >>> marimba = abjad.Marimba()
                 >>> marimba.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -107,7 +102,7 @@ class Marimba(Instrument):
 
             ::
 
-                >>> marimba = abjad.instrumenttools.Marimba()
+                >>> marimba = abjad.Marimba()
                 >>> marimba.name
                 'marimba'
 
@@ -123,7 +118,7 @@ class Marimba(Instrument):
 
             ::
 
-                >>> marimba = abjad.instrumenttools.Marimba()
+                >>> marimba = abjad.Marimba()
                 >>> marimba.name_markup
                 Markup(contents=['Marimba'])
 
@@ -143,7 +138,7 @@ class Marimba(Instrument):
 
             ::
 
-                >>> marimba = abjad.instrumenttools.Marimba()
+                >>> marimba = abjad.Marimba()
                 >>> marimba.pitch_range
                 PitchRange('[F2, C7]')
 
@@ -163,7 +158,7 @@ class Marimba(Instrument):
 
             ::
 
-                >>> marimba = abjad.instrumenttools.Marimba()
+                >>> marimba = abjad.Marimba()
                 >>> marimba.short_name
                 'mb.'
 
@@ -179,7 +174,7 @@ class Marimba(Instrument):
 
             ::
 
-                >>> marimba = abjad.instrumenttools.Marimba()
+                >>> marimba = abjad.Marimba()
                 >>> marimba.short_name_markup
                 Markup(contents=['Mb.'])
 

@@ -334,39 +334,49 @@ class TestManager(AbjadObject):
 
         ::
 
-            >>> one = abjad.rhythmmakertools.TaleaRhythmMaker(
-            ...     talea=abjad.rhythmmakertools.Talea(
-            ...         counts=[1, 2, 3],
-            ...         denominator=8,
-            ...         )
-            ...     )
+            >>> one = abjad.instrumenttools.Flute()
 
         ::
 
-            >>> two = abjad.rhythmmakertools.TaleaRhythmMaker(
-            ...     talea=abjad.rhythmmakertools.Talea(
-            ...         counts=[1, 5, 3],
-            ...         denominator=4,
-            ...         )
-            ...     )
+            >>> two = abjad.instrumenttools.BassFlute()
 
         ::
 
             >>> diff = abjad.TestManager.diff(one, two, 'Diff:')
             >>> print(diff)
             Diff:
-              abjad.rhythmmakertools.TaleaRhythmMaker(
-                  talea=abjad.rhythmmakertools.Talea(
-            -         counts=[1, 2, 3],
+            - abjad.Flute(
+            + abjad.BassFlute(
+            ?       ++++
+            -     name='flute',
+            +     name='bass flute',
+            ?           +++++
+            -     short_name='fl.',
+            +     short_name='bass fl.',
+            ?                 +++++
+                name_markup=abjad.Markup(
+            -         contents=['Flute'],
             ?                    ^
-            +         counts=[1, 5, 3],
+            +         contents=['Bass flute'],
+            ?                    ^^^^^^
+                    ),
+                short_name_markup=abjad.Markup(
+            -         contents=['Fl.'],
             ?                    ^
-            -         denominator=8,
-            ?                     ^
-            +         denominator=4,
-            ?                     ^
-                      ),
-                  )
+            +         contents=['Bass fl.'],
+            ?                    ^^^^^^
+                    ),
+                allowable_clefs=('treble',),
+                default_scope='Staff',
+            -     middle_c_sounding_pitch=abjad.NamedPitch("c'"),
+            ?                                              ^  -
+            +     middle_c_sounding_pitch=abjad.NamedPitch('c'),
+            ?                                              ^
+            -     pitch_range=abjad.PitchRange('[C4, D7]'),
+            ?                                     ^  ^^
+            +     pitch_range=abjad.PitchRange('[C3, C6]'),
+            ?                                     ^  ^^
+                )
 
         Returns string.
         '''

@@ -11,7 +11,7 @@ class Bassoon(Instrument):
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
             >>> clef = abjad.Clef('bass')
             >>> abjad.attach(clef, staff[0])
-            >>> bassoon = abjad.instrumenttools.Bassoon()
+            >>> bassoon = abjad.Bassoon()
             >>> abjad.attach(bassoon, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -43,6 +43,7 @@ class Bassoon(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=('bass', 'tenor'),
+        default_scope=None,
         middle_c_sounding_pitch=None,
         pitch_range='[Bb1, Eb5]',
         ):
@@ -53,16 +54,10 @@ class Bassoon(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'wind player',
-            'reed player',
-            'double reed player',
-            'bassoonist',
-            ])
-        self._starting_clefs = type(self.allowable_clefs)(['bass'])
         self._is_primary_instrument = True
 
     ### PUBLIC PROPERTIES ###
@@ -75,13 +70,9 @@ class Bassoon(Instrument):
 
             ::
 
-                >>> bassoon = abjad.instrumenttools.Bassoon()
+                >>> bassoon = abjad.Bassoon()
                 >>> bassoon.allowable_clefs
-                ClefList([Clef('bass'), Clef('tenor')])
-
-            ::
-
-                >>> show(bassoon.allowable_clefs) # doctest: +SKIP
+                ('bass', 'tenor')
 
         Returns clef list.
         '''
@@ -95,7 +86,7 @@ class Bassoon(Instrument):
 
             ::
 
-                >>> bassoon = abjad.instrumenttools.Bassoon()
+                >>> bassoon = abjad.Bassoon()
                 >>> bassoon.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -115,7 +106,7 @@ class Bassoon(Instrument):
 
             ::
 
-                >>> bassoon = abjad.instrumenttools.Bassoon()
+                >>> bassoon = abjad.Bassoon()
                 >>> bassoon.name
                 'bassoon'
 
@@ -131,7 +122,7 @@ class Bassoon(Instrument):
 
             ::
 
-                >>> bassoon = abjad.instrumenttools.Bassoon()
+                >>> bassoon = abjad.Bassoon()
                 >>> bassoon.name_markup
                 Markup(contents=['Bassoon'])
 
@@ -151,7 +142,7 @@ class Bassoon(Instrument):
 
             ::
 
-                >>> bassoon = abjad.instrumenttools.Bassoon()
+                >>> bassoon = abjad.Bassoon()
                 >>> bassoon.pitch_range
                 PitchRange('[Bb1, Eb5]')
 
@@ -171,7 +162,7 @@ class Bassoon(Instrument):
 
             ::
 
-                >>> bassoon = abjad.instrumenttools.Bassoon()
+                >>> bassoon = abjad.Bassoon()
                 >>> bassoon.short_name
                 'bsn.'
 
@@ -187,7 +178,7 @@ class Bassoon(Instrument):
 
             ::
 
-                >>> bassoon = abjad.instrumenttools.Bassoon()
+                >>> bassoon = abjad.Bassoon()
                 >>> bassoon.short_name_markup
                 Markup(contents=['Bsn.'])
 

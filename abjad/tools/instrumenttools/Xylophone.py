@@ -9,7 +9,7 @@ class Xylophone(Instrument):
         ::
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> xylophone = abjad.instrumenttools.Xylophone()
+            >>> xylophone = abjad.Xylophone()
             >>> abjad.attach(xylophone, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -40,6 +40,7 @@ class Xylophone(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=None,
+        default_scope=None,
         middle_c_sounding_pitch='C5',
         pitch_range='[C4, C7]',
         ):
@@ -50,13 +51,10 @@ class Xylophone(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'percussionist',
-            'xylophonist',
-            ])
 
     ### PUBLIC PROPERTIES ###
 
@@ -68,13 +66,9 @@ class Xylophone(Instrument):
 
             ::
 
-                >>> xylophone = abjad.instrumenttools.Xylophone()
+                >>> xylophone = abjad.Xylophone()
                 >>> xylophone.allowable_clefs
-                ClefList([Clef('treble')])
-
-            ::
-
-                >>> show(xylophone.allowable_clefs) # doctest: +SKIP
+                ('treble',)
 
         Returns clef list.
         '''
@@ -88,7 +82,7 @@ class Xylophone(Instrument):
 
             ::
 
-                >>> xylophone = abjad.instrumenttools.Xylophone()
+                >>> xylophone = abjad.Xylophone()
                 >>> xylophone.middle_c_sounding_pitch
                 NamedPitch("c''")
 
@@ -108,7 +102,7 @@ class Xylophone(Instrument):
 
             ::
 
-                >>> xylophone = abjad.instrumenttools.Xylophone()
+                >>> xylophone = abjad.Xylophone()
                 >>> xylophone.name
                 'xylophone'
 
@@ -124,7 +118,7 @@ class Xylophone(Instrument):
 
             ::
 
-                >>> xylophone = abjad.instrumenttools.Xylophone()
+                >>> xylophone = abjad.Xylophone()
                 >>> xylophone.name_markup
                 Markup(contents=['Xylophone'])
 
@@ -144,7 +138,7 @@ class Xylophone(Instrument):
 
             ::
 
-                >>> xylophone = abjad.instrumenttools.Xylophone()
+                >>> xylophone = abjad.Xylophone()
                 >>> xylophone.pitch_range
                 PitchRange('[C4, C7]')
 
@@ -164,7 +158,7 @@ class Xylophone(Instrument):
 
             ::
 
-                >>> xylophone = abjad.instrumenttools.Xylophone()
+                >>> xylophone = abjad.Xylophone()
                 >>> xylophone.short_name
                 'xyl.'
 
@@ -180,7 +174,7 @@ class Xylophone(Instrument):
 
             ::
 
-                >>> xylophone = abjad.instrumenttools.Xylophone()
+                >>> xylophone = abjad.Xylophone()
                 >>> xylophone.short_name_markup
                 Markup(contents=['Xyl.'])
 

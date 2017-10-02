@@ -13,28 +13,28 @@ class TestCheckClassSections(unittest.TestCase):
     ansi_escape = re.compile(r'\x1b[^m]*m')
     test_path = pathlib.Path(__file__).parent
     temp_test_dir_name = 'temp_test_dir'
-    subdirectory_path = test_path.joinpath(temp_test_dir_name)
+    subdirectory = test_path.joinpath(temp_test_dir_name)
 
     # Specific test case file contents
-    test_bad_header_order_module_path = subdirectory_path.joinpath(
+    test_bad_header_order_module_path = subdirectory.joinpath(
         'BadHeaderOrder.py'
         )
-    test_property_in_methods_module_path = subdirectory_path.joinpath(
+    test_property_in_methods_module_path = subdirectory.joinpath(
         'PropInMethods.py'
         )
-    test_method_in_properties_module_path = subdirectory_path.joinpath(
+    test_method_in_properties_module_path = subdirectory.joinpath(
         'MethodInProps.py'
         )
-    test_multiple_errors_in_file_module_path = subdirectory_path.joinpath(
+    test_multiple_errors_in_file_module_path = subdirectory.joinpath(
         'MultipleErrors.py'
         )
-    test_multiple_classes_in_one_module_path = subdirectory_path.joinpath(
+    test_multiple_classes_in_one_module_path = subdirectory.joinpath(
         'MultipleClasses.py'
         )
-    test_passing_module_path = subdirectory_path.joinpath(
+    test_passing_module_path = subdirectory.joinpath(
         'GoodClass.py'
         )
-    test_non_property_decorators_module_path = subdirectory_path.joinpath(
+    test_non_property_decorators_module_path = subdirectory.joinpath(
         'NonPropertyDecorators.py'
         )
     test_bad_header_order_module_contents = abjad.String.normalize(r'''
@@ -190,7 +190,7 @@ class TestCheckClassSections(unittest.TestCase):
             raise Exception(diff)
 
     def tearDown(self):
-        shutil.rmtree(str(self.subdirectory_path))
+        shutil.rmtree(str(self.subdirectory))
         self.string_io.close()
 
     def run_script_on_modules(
@@ -231,8 +231,8 @@ class TestCheckClassSections(unittest.TestCase):
         else:
             test_working_directory = self.test_path
         # Create temporary testing modules
-        if not self.subdirectory_path.exists():
-            self.subdirectory_path.mkdir()
+        if not self.subdirectory.exists():
+            self.subdirectory.mkdir()
         for case in modules:
             with open(str(case[0]), 'w') as file_pointer:
                 file_pointer.write(case[1])
@@ -270,7 +270,7 @@ Lines [8]: BAD HEADER ORDER
              ]
         # Run test
         script_output, exit_code = self.run_script_on_modules(
-            test_modules, self.subdirectory_path
+            test_modules, self.subdirectory
             )
         self.compare_strings(expected, script_output)
         self.assertEqual(exit_code, 1)
@@ -295,7 +295,7 @@ Lines [9]: METHOD IN PROPERTIES SECTION
             ]
         # Run test
         script_output, exit_code = self.run_script_on_modules(
-            test_modules, self.subdirectory_path
+            test_modules, self.subdirectory
             )
         self.compare_strings(expected, script_output)
         self.assertEqual(exit_code, 1)
@@ -320,7 +320,7 @@ Lines [7]: PROPERTY IN METHODS SECTION
              ]
         # Run test
         script_output, exit_code = self.run_script_on_modules(
-            test_modules, self.subdirectory_path
+            test_modules, self.subdirectory
             )
         self.compare_strings(expected, script_output)
         self.assertEqual(exit_code, 1)
@@ -346,7 +346,7 @@ Lines [7, 10]: PROPERTY IN METHODS SECTION
              ]
         # Run test
         script_output, exit_code = self.run_script_on_modules(
-            test_modules, self.subdirectory_path
+            test_modules, self.subdirectory
             )
         self.compare_strings(expected, script_output)
         self.assertEqual(exit_code, 1)
@@ -367,7 +367,7 @@ Recursively scanning {} for errors...
              ]
         # Run test
         script_output, exit_code = self.run_script_on_modules(
-            test_modules, self.subdirectory_path
+            test_modules, self.subdirectory
             )
         self.compare_strings(expected, script_output)
         self.assertEqual(exit_code, 0)
@@ -386,7 +386,7 @@ Recursively scanning {} for errors...
             ]
         # Run test
         script_output, exit_code = self.run_script_on_modules(
-            test_modules, self.subdirectory_path
+            test_modules, self.subdirectory
             )
         self.compare_strings(expected, script_output)
         self.assertEqual(exit_code, 0)
@@ -405,7 +405,7 @@ Recursively scanning {} for errors...
             ]
         # Run test
         script_output, exit_code = self.run_script_on_modules(
-            test_modules, self.subdirectory_path
+            test_modules, self.subdirectory
             )
         self.compare_strings(expected, script_output)
         self.assertEqual(exit_code, 0)
@@ -425,7 +425,7 @@ Recursively scanning current working directory for errors...
         # Run test
         script_output, exit_code = self.run_script_on_modules(
             test_modules,
-            working_directory=self.subdirectory_path
+            working_directory=self.subdirectory
             )
         self.compare_strings(expected, script_output)
         self.assertEqual(exit_code, 0)

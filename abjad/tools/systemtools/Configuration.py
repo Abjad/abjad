@@ -1,5 +1,6 @@
 import abc
 import os
+import pathlib
 import six
 import tempfile
 import time
@@ -10,7 +11,7 @@ from six.moves import configparser
 
 
 class Configuration(AbjadObject):
-    r'''A configuration object.
+    r'''Configuration.
     '''
 
     ### CLASS VARIABLES ###
@@ -18,29 +19,29 @@ class Configuration(AbjadObject):
     __documentation_section__ = 'System configuration'
 
     __slots__ = (
-        '_cached_configuration_directory_path',
+        '_cached_configuration_directory',
         '_settings',
         )
 
     ### INITIALIZER ###
 
     def __init__(self):
-        self._cached_configuration_directory_path = None
-        if not os.path.exists(self.configuration_directory_path):
+        self._cached_configuration_directory = None
+        if not os.path.exists(str(self.configuration_directory)):
             try:
-                os.makedirs(self.configuration_directory_path)
+                os.makedirs(str(self.configuration_directory))
             except (IOError, OSError):
                 traceback.print_exc()
         old_contents = ''
-        if os.path.exists(self.configuration_file_path):
-            with open(self.configuration_file_path, 'r') as file_pointer:
-                old_contents = file_pointer.read()
+        if self.configuration_file_path.exists():
+            old_contents = self.configuration_file_path.read_text()
         configuration = self._configuration_from_string(old_contents)
         configuration = self._validate_configuration(configuration)
         new_contents = self._configuration_to_string(configuration)
         if not self._compare_configurations(old_contents, new_contents):
             try:
-                with open(self.configuration_file_path, 'w') as file_pointer:
+                #self.configuration_file_path.write_text(new_contents)
+                with open(str(self.configuration_file_path)) as file_pointer:
                     file_pointer.write(new_contents)
             except (IOError, OSError):
                 traceback.print_exc()
@@ -116,7 +117,7 @@ class Configuration(AbjadObject):
             else:
                 unknown_items.append((key, value))
         result = []
-        for line in self._initial_comment:
+        for line in self._get_initial_comment():
             if line:
                 result.append('# {}'.format(line))
             else:
@@ -145,9 +146,31 @@ class Configuration(AbjadObject):
         string = '\n'.join(result)
         return string
 
+    def _get_current_time(self):
+        return time.strftime("%d %B %Y %H:%M:%S")
+
+    def _get_config_specification(self):
+        specs = self._get_option_specification()
+        return ['{} = {}'.format(key, value)
+            for key, value in sorted(specs.items())]
+
+    @abc.abstractmethod
+    def _get_initial_comment(self):
+        raise NotImplementedError
+
+    def _get_option_comments(self):
+        options = self._get_option_definitions()
+        comments = [(key, options[key]['comment']) for key in options]
+        return dict(comments)
+
     @abc.abstractmethod
     def _get_option_definitions(self):
         raise NotImplementedError
+
+    def _get_option_specification(self):
+        options = self._get_option_definitions()
+        specs = [(key, options[key]['spec']) for key in options]
+        return dict(specs)
 
     def _validate_configuration(self, configuration):
         option_definitions = self._get_option_definitions()
@@ -166,110 +189,76 @@ class Configuration(AbjadObject):
                 configuration[key] = None
         return configuration
 
-    ### PUBLIC METHODS ###
-
-    def get(self, *arguments, **keywords):
-        r'''Get a key.
-        '''
-        return self._settings.get(*arguments, **keywords)
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _config_specification(self):
-        specs = self._option_specification
-        return ['{} = {}'.format(key, value)
-            for key, value in sorted(specs.items())]
-
-    @property
-    def _current_time(self):
-        return time.strftime("%d %B %Y %H:%M:%S")
-
-    @abc.abstractproperty
-    def _initial_comment(self):
-        raise NotImplementedError
-
-    @property
-    def _option_comments(self):
-        options = self._get_option_definitions()
-        comments = [(key, options[key]['comment']) for key in options]
-        return dict(comments)
-
-    @property
-    def _option_specification(self):
-        options = self._get_option_definitions()
-        specs = [(key, options[key]['spec']) for key in options]
-        return dict(specs)
-
     ### PUBLIC PROPERTIES ###
 
-    @abc.abstractproperty
-    def configuration_directory_name(self):
-        r'''Gets configuration directory name.
-
-        Returns string.
-        '''
-        raise NotImplementedError
-
     @property
-    def configuration_directory_path(self):
-        r'''Gets configuration directory path.
+    def configuration_directory(self):
+        r'''Gets configuration directory.
 
-        Defaults to $HOME/{configuration_directory_name}.
+        ..  container:: example
 
-        If $HOME is read-only or
-        $HOME/{configuration_directory_name} is read-only,
-        returns $TEMP/{configuration_directory_name}.
+            ::
+
+                >>> configuration = abjad.AbjadConfiguration()
+                >>> configuration.configuration_directory
+                PosixPath('...')
+
+        Defaults to $HOME/{directory_name}.
+
+        If $HOME is read-only or $HOME/{directory_name} is read-only, returns
+        $TEMP/{directory_name}.
 
         Also caches the initial result to reduce filesystem interaction.
 
-        Returns string.
+        Returns path object.
         '''
-        if self._cached_configuration_directory_path is None:
-            home_directory = self.home_directory
+        if self._cached_configuration_directory is None:
+            directory_name = self._configuration_directory_name
+            home_directory = str(self.home_directory)
             flags = os.W_OK | os.X_OK
             if os.access(home_directory, flags):
-                path = os.path.join(
-                    home_directory,
-                    self.configuration_directory_name,
-                    )
-                if not os.path.exists(path) or (
-                    os.path.exists(path) and os.access(path, flags)):
-                    self._cached_configuration_directory_path = path
-                    return path
+                path = self.home_directory / directory_name
+                if not path.exists() or (
+                    path.exists() and os.access(str(path), flags)):
+                    self._cached_configuration_directory = path
+                    return self._cached_configuration_directory
             temp_directory = self.temp_directory
-            path = os.path.join(
-                temp_directory,
-                self.configuration_directory_name,
-                )
-            self._cached_configuration_directory_path = path
-            return path
-        return self._cached_configuration_directory_path
-
-    @abc.abstractproperty
-    def configuration_file_name(self):
-        r'''Gets configuration file name.
-
-        Returns string.
-        '''
-        raise NotImplementedError
+            path = self.temp_directory / directory_name
+            self._cached_configuration_directory = path
+        return self._cached_configuration_directory
 
     @property
     def configuration_file_path(self):
         r'''Gets configuration file path.
 
-        Returns string.
+        ..  container:: example
+
+            ::
+
+                >>> configuration = abjad.AbjadConfiguration()
+                >>> configuration.configuration_file_path
+                PosixPath('...')
+
+        Returns path object.
         '''
-        return os.path.join(
-            self.configuration_directory_path,
-            self.configuration_file_name,
+        return pathlib.Path(
+            self.configuration_directory,
+            self._configuration_file_name,
             )
 
     @property
     def home_directory(self):
         r'''Gets home directory.
 
-        Returns string.
+        ..  container:: example
+
+            ::
+
+                >>> configuration = abjad.AbjadConfiguration()
+                >>> configuration.home_directory
+                PosixPath('...')
+
+        Returns path object.
         '''
         path = (
             os.environ.get('HOME') or
@@ -277,12 +266,27 @@ class Configuration(AbjadObject):
             os.environ.get('APPDATA') or
             tempfile.gettempdir()
             )
-        return os.path.abspath(path)
+        return pathlib.Path(path).absolute()
 
     @property
     def temp_directory(self):
-        r'''Gets system temp directory.
+        r'''Gets temp directory.
 
-        Returns string.
+        ..  container:: example
+
+            ::
+
+                >>> configuration = abjad.AbjadConfiguration()
+                >>> configuration.temp_directory
+                PosixPath('...')
+
+        Returns path object.
         '''
-        return tempfile.gettempdir()
+        return pathlib.Path(tempfile.gettempdir())
+
+    ### PUBLIC METHODS ###
+
+    def get(self, *arguments, **keywords):
+        r'''Gets a key.
+        '''
+        return self._settings.get(*arguments, **keywords)

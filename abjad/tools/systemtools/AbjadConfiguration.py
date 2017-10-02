@@ -1,3 +1,4 @@
+import importlib
 import os
 import subprocess
 import sys
@@ -46,10 +47,16 @@ class AbjadConfiguration(Configuration):
 
     __documentation_section__ = 'System configuration'
 
+    __slots__ = (
+        '_composer_library_tools',
+        )
+
+    _configuration_directory_name = '.abjad'
+
+    _configuration_file_name = 'abjad.cfg'
+
     # for caching
     _lilypond_version_string = None
-
-    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -60,8 +67,17 @@ class AbjadConfiguration(Configuration):
                 os.makedirs(self.abjad_output_directory)
             except (IOError, OSError):
                 traceback.print_exc()
+        self._composer_library_tools = None
 
     ### PRIVATE METHODS ###
+
+    def _get_initial_comment(self):
+        current_time = self._get_current_time()
+        return [
+            'Abjad configuration file created on {}.'.format(current_time),
+            "This file is interpreted by Python's ConfigParser ",
+            'and follows ini syntax.',
+            ]
 
     def _get_option_definitions(self):
         options = {
@@ -72,7 +88,7 @@ class AbjadConfiguration(Configuration):
                     'Defaults to $HOME/.abjad/output/'
                     ],
                 'default': os.path.join(
-                    self.configuration_directory_path,
+                    str(self.configuration_directory),
                     'output',
                     ),
                 'validator': str,
@@ -83,6 +99,46 @@ class AbjadConfiguration(Configuration):
                     ],
                 'default': 'mixed',
                 'validator': lambda x: x in ('mixed', 'sharps', 'flats'),
+                },
+            'composer_email': {
+                'comment': ['Your email.'],
+                'default': 'first.last@domain.com',
+                'validator': str,
+                },
+            'composer_full_name': {
+                'comment': ['Your full name.'],
+                'default': 'Full Name',
+                'validator': str,
+                },
+            'composer_github_username': {
+                'comment': ['Your GitHub username.'],
+                'default': 'username',
+                'validator': str,
+                },
+            'composer_last_name': {
+                'comment': ['Your last name.'],
+                'default': 'Name',
+                'validator': str,
+                },
+            'composer_library': {
+                'comment': ['Your library.'],
+                'default': 'my_library',
+                'validator': str,
+                },
+            'composer_scores_directory': {
+                'comment': ['Your scores directory.'],
+                'default': str(self.home_directory / 'scores'),
+                'validator': str,
+                },
+            'composer_uppercase_name': {
+                'comment': ['Your full name in uppercase for score covers.'],
+                'default': 'FULL NAME',
+                'validator': str,
+                },
+            'composer_website': {
+                'comment': ['Your website.'],
+                'default': 'www.composername.com',
+                'validator': str,
                 },
             'lilypond_path': {
                 'comment': [
@@ -118,6 +174,162 @@ class AbjadConfiguration(Configuration):
             }
         return options
 
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def abjad_directory(self):
+        r'''Gets Abjad directory.
+
+        Returns string.
+        '''
+        import abjad
+        return abjad.__path__[0]
+
+    @property
+    def abjad_output_directory(self):
+        r'''Gets Abjad output directory.
+
+        Returns string.
+        '''
+        if 'abjad_output_directory' in self._settings:
+            return self._settings['abjad_output_directory']
+        return os.path.join(
+            self.configuration_directory,
+            'output'
+            )
+
+    @property
+    def abjad_root_directory(self):
+        r'''Gets Abjad root directory.
+
+        Returns string.
+        '''
+        relative_path = os.path.join(
+            self.abjad_directory,
+            '..',
+            )
+        return os.path.abspath(relative_path)
+
+    @property
+    def boilerplate_directory(self):
+        r'''Gets Abjad boilerplate directory.
+
+        Return string.
+        '''
+        relative_path = os.path.join(
+            self.abjad_directory,
+            'boilerplate',
+            )
+        return os.path.abspath(relative_path)
+
+    @property
+    def composer_email(self):
+        r'''Gets composer email.
+
+        Returns string.
+        '''
+        return self._settings['composer_email']
+
+    @property
+    def composer_full_name(self):
+        r'''Gets composer full name.
+
+        Returns string.
+        '''
+        return self._settings['composer_full_name']
+
+    @property
+    def composer_github_username(self):
+        r'''Gets GitHub username.
+
+        Returns string.
+        '''
+        return self._settings['composer_github_username']
+
+    @property
+    def composer_last_name(self):
+        r'''Gets composer last name.
+
+        Returns string.
+        '''
+        return self._settings['composer_last_name']
+
+    @property
+    def composer_library(self):
+        r'''Gets composer library package name.
+
+        Returns string.
+        '''
+        return self._settings['composer_library']
+
+    @property
+    def composer_library_tools(self):
+        r'''Gets composer library tools directory.
+
+        Returns string.
+        '''
+        if self._composer_library_tools is None:
+            name = self.composer_library
+            if not name:
+                return
+            try:
+                path = importlib.import_module(name)
+            except ImportError:
+                path = None
+            if not path:
+                return
+            path = os.path.join(path.__path__[0], 'tools')
+            self._composer_library_tools = path
+        return self._composer_library_tools
+
+    @property
+    def composer_scores_directory(self):
+        r'''Gets composer scores directory.
+
+        Returns string.
+        '''
+        if 'composer_scores_directory' in self._settings:
+            return self._settings['composer_scores_directory']
+        return os.path.join(self.home_directory, 'scores')
+
+    @property
+    def composer_uppercase_name(self):
+        r'''Gets composer uppercase name.
+
+        ..  container:: example
+
+            ::
+
+                >>> configuration.composer_uppercase_name # doctest: +SKIP
+                'TREVOR BAČA'
+
+        Returns string.
+        '''
+        return self._settings['composer_uppercase_name']
+
+    @property
+    def composer_website(self):
+        r'''Gets composer website.
+
+        ..  container:: example
+
+            ::
+
+                >>> configuration.composer_website  # doctest: +SKIP
+                'www.trevobaca.com'
+
+        Returns string.
+        '''
+        return self._settings['composer_website']
+
+    @property
+    def lilypond_log_file_path(self):
+        r'''Gets LilyPond log file path.
+
+        Returns string.
+        '''
+        return os.path.join(self.abjad_output_directory, 'lily.log')
+
     ### PUBLIC METHODS ###
 
     @classmethod
@@ -130,7 +342,7 @@ class AbjadConfiguration(Configuration):
 
                 >>> abjad_configuration = abjad.AbjadConfiguration()
                 >>> abjad_configuration.get_abjad_startup_string()
-                'Abjad 3.0.0 (development)'
+                'Abjad 3.0 (development)'
 
         Returns string.
         '''
@@ -151,7 +363,7 @@ class AbjadConfiguration(Configuration):
 
                 >>> abjad_configuration = abjad.AbjadConfiguration()
                 >>> abjad_configuration.get_abjad_version_string()
-                '3.0.0'
+                '3.0'
 
         Returns string.
         '''
@@ -363,86 +575,3 @@ class AbjadConfiguration(Configuration):
         from abjad import abjad_configuration
         assert spelling in ('mixed', 'sharps', 'flats'), repr(spelling)
         abjad_configuration['accidental_spelling'] = spelling
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _initial_comment(self):
-        current_time = self._current_time
-        return [
-            'Abjad configuration file created on {}.'.format(current_time),
-            "This file is interpreted by Python's ConfigParser ",
-            'and follows ini syntax.',
-            ]
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def abjad_boilerplate_directory(self):
-        r'''Gest Abjad boilerplate directory.
-
-        Return string.
-        '''
-        relative_path = os.path.join(
-            self.abjad_directory,
-            'boilerplate',
-            )
-        return os.path.abspath(relative_path)
-
-    @property
-    def abjad_directory(self):
-        r'''Gets Abjad directory.
-
-        Returns string.
-        '''
-        import abjad
-        return abjad.__path__[0]
-
-    @property
-    def abjad_output_directory(self):
-        r'''Gets Abjad output directory.
-
-        Returns string.
-        '''
-        if 'abjad_output_directory' in self._settings:
-            return self._settings['abjad_output_directory']
-        return os.path.join(
-            self.configuration_directory_path,
-            'output'
-            )
-
-    @property
-    def abjad_root_directory(self):
-        r'''Gets Abjad root directory.
-
-        Returns string.
-        '''
-        relative_path = os.path.join(
-            self.abjad_directory,
-            '..',
-            )
-        return os.path.abspath(relative_path)
-
-    @property
-    def configuration_directory_name(self):
-        r'''Gets configuration directory name.
-
-        Returns string.
-        '''
-        return '.abjad'
-
-    @property
-    def configuration_file_name(self):
-        r'''Gets configuration file name.
-
-        Returns string.
-        '''
-        return 'abjad.cfg'
-
-    @property
-    def lilypond_log_file_path(self):
-        r'''Gets LilyPond log file path.
-
-        Returns string.
-        '''
-        return os.path.join(self.abjad_output_directory, 'lily.log')

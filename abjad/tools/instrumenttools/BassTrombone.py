@@ -11,7 +11,7 @@ class BassTrombone(Instrument):
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
             >>> clef = abjad.Clef('bass')
             >>> abjad.attach(clef, staff[0])
-            >>> bass_trombone = abjad.instrumenttools.BassTrombone()
+            >>> bass_trombone = abjad.BassTrombone()
             >>> abjad.attach(bass_trombone, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -43,6 +43,7 @@ class BassTrombone(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=('bass',),
+        default_scope=None,
         middle_c_sounding_pitch=None,
         pitch_range='[C2, F4]',
         ):
@@ -53,13 +54,10 @@ class BassTrombone(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'brass player',
-            'trombonist',
-            ])
 
     ### PUBLIC PROPERTIES ###
 
@@ -71,13 +69,9 @@ class BassTrombone(Instrument):
 
             ::
 
-                >>> bass_trombone = abjad.instrumenttools.BassTrombone()
+                >>> bass_trombone = abjad.BassTrombone()
                 >>> bass_trombone.allowable_clefs
-                ClefList([Clef('bass')])
-
-            ::
-
-                >>> show(bass_trombone.allowable_clefs) # doctest: +SKIP
+                ('bass',)
 
         Returns clef list.
         '''
@@ -91,7 +85,7 @@ class BassTrombone(Instrument):
 
             ::
 
-                >>> bass_trombone = abjad.instrumenttools.BassTrombone()
+                >>> bass_trombone = abjad.BassTrombone()
                 >>> bass_trombone.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -111,7 +105,7 @@ class BassTrombone(Instrument):
 
             ::
 
-                >>> bass_trombone = abjad.instrumenttools.BassTrombone()
+                >>> bass_trombone = abjad.BassTrombone()
                 >>> bass_trombone.name
                 'bass trombone'
 
@@ -127,7 +121,7 @@ class BassTrombone(Instrument):
 
             ::
 
-                >>> bass_trombone = abjad.instrumenttools.BassTrombone()
+                >>> bass_trombone = abjad.BassTrombone()
                 >>> bass_trombone.name_markup
                 Markup(contents=['Bass trombone'])
 
@@ -147,7 +141,7 @@ class BassTrombone(Instrument):
 
             ::
 
-                >>> bass_trombone = abjad.instrumenttools.BassTrombone()
+                >>> bass_trombone = abjad.BassTrombone()
                 >>> bass_trombone.pitch_range
                 PitchRange('[C2, F4]')
 
@@ -167,7 +161,7 @@ class BassTrombone(Instrument):
 
             ::
 
-                >>> bass_trombone = abjad.instrumenttools.BassTrombone()
+                >>> bass_trombone = abjad.BassTrombone()
                 >>> bass_trombone.short_name
                 'bass trb.'
 
@@ -183,7 +177,7 @@ class BassTrombone(Instrument):
 
             ::
 
-                >>> bass_trombone = abjad.instrumenttools.BassTrombone()
+                >>> bass_trombone = abjad.BassTrombone()
                 >>> bass_trombone.short_name_markup
                 Markup(contents=['Bass trb.'])
 

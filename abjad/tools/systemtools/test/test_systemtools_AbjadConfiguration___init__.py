@@ -1,15 +1,23 @@
-import os
 import abjad
-from abjad.tools import systemtools
+import os
+import pathlib
+import pytest
 
 
+@pytest.mark.skipif(
+    os.environ.get('TRAVIS') == 'true',
+    reason="Travis-CI can not find configuration directory."
+    )
 def test_systemtools_AbjadConfiguration___init___01():
 
-    abjad_configuration = systemtools.AbjadConfiguration()
+    configuration = abjad.AbjadConfiguration()
 
-    assert os.path.exists(abjad_configuration.configuration_directory_path)
-    assert os.path.exists(abjad_configuration.configuration_file_path)
-    assert os.path.exists(abjad_configuration.abjad_output_directory)
+#    assert os.path.exists(configuration.configuration_directory)
+#    assert os.path.exists(configuration.configuration_file_path)
+#    assert os.path.exists(configuration.abjad_output_directory)
+    assert configuration.configuration_directory.exists()
+    assert configuration.configuration_file_path.exists()
+    assert pathlib.Path(configuration.abjad_output_directory).exists()
 
     keys = [
         'abjad_output_directory',
@@ -21,4 +29,4 @@ def test_systemtools_AbjadConfiguration___init___01():
         ]
 
     for key in keys:
-        assert key in abjad_configuration
+        assert key in configuration

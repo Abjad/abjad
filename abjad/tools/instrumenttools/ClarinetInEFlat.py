@@ -9,7 +9,7 @@ class ClarinetInEFlat(Instrument):
         ::
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> clarinet = abjad.instrumenttools.ClarinetInEFlat()
+            >>> clarinet = abjad.ClarinetInEFlat()
             >>> abjad.attach(clarinet, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -40,6 +40,7 @@ class ClarinetInEFlat(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=None,
+        default_scope=None,
         middle_c_sounding_pitch='Eb4',
         pitch_range='[F3, C7]',
         ):
@@ -50,16 +51,10 @@ class ClarinetInEFlat(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'wind player',
-            'reed player',
-            'single reed player',
-            'clarinettist',
-            'clarinetist',
-            ])
 
     ### PUBLIC PROPERTIES ###
 
@@ -71,13 +66,9 @@ class ClarinetInEFlat(Instrument):
 
             ::
 
-                >>> clarinet = abjad.instrumenttools.ClarinetInEFlat()
+                >>> clarinet = abjad.ClarinetInEFlat()
                 >>> clarinet.allowable_clefs
-                ClefList([Clef('treble')])
-
-            ::
-
-                >>> show(clarinet.allowable_clefs) # doctest: +SKIP
+                ('treble',)
 
         Returns clef list.
         '''
@@ -91,7 +82,7 @@ class ClarinetInEFlat(Instrument):
 
             ::
 
-                >>> clarinet = abjad.instrumenttools.ClarinetInEFlat()
+                >>> clarinet = abjad.ClarinetInEFlat()
                 >>> clarinet.middle_c_sounding_pitch
                 NamedPitch("ef'")
 
@@ -111,7 +102,7 @@ class ClarinetInEFlat(Instrument):
 
             ::
 
-                >>> clarinet = abjad.instrumenttools.ClarinetInEFlat()
+                >>> clarinet = abjad.ClarinetInEFlat()
                 >>> clarinet.name
                 'clarinet in E-flat'
 
@@ -127,7 +118,7 @@ class ClarinetInEFlat(Instrument):
 
             ::
 
-                >>> clarinet = abjad.instrumenttools.ClarinetInEFlat()
+                >>> clarinet = abjad.ClarinetInEFlat()
                 >>> clarinet.name_markup
                 Markup(contents=['Clarinet in E-flat'])
 
@@ -147,7 +138,7 @@ class ClarinetInEFlat(Instrument):
 
             ::
 
-                >>> clarinet = abjad.instrumenttools.ClarinetInEFlat()
+                >>> clarinet = abjad.ClarinetInEFlat()
                 >>> clarinet.pitch_range
                 PitchRange('[F3, C7]')
 
@@ -167,7 +158,7 @@ class ClarinetInEFlat(Instrument):
 
             ::
 
-                >>> clarinet = abjad.instrumenttools.ClarinetInEFlat()
+                >>> clarinet = abjad.ClarinetInEFlat()
                 >>> clarinet.short_name
                 'cl. E-flat'
 
@@ -183,7 +174,7 @@ class ClarinetInEFlat(Instrument):
 
             ::
 
-                >>> clarinet = abjad.instrumenttools.ClarinetInEFlat()
+                >>> clarinet = abjad.ClarinetInEFlat()
                 >>> clarinet.short_name_markup
                 Markup(contents=['Cl. E-flat'])
 

@@ -81,7 +81,7 @@ class IncisedRhythmMaker(RhythmMaker):
     def __init__(
         self,
         beam_specifier=None,
-        duration_spelling_specifier=None,
+        duration_specifier=None,
         division_masks=None,
         extra_counts_per_division=None,
         incise_specifier=None,
@@ -89,18 +89,18 @@ class IncisedRhythmMaker(RhythmMaker):
         replace_rests_with_skips=None,
         split_divisions_by_counts=None,
         tie_specifier=None,
-        tuplet_spelling_specifier=None,
+        tuplet_specifier=None,
         helper_functions=None,
         ):
         from abjad.tools import rhythmmakertools
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
-            duration_spelling_specifier=duration_spelling_specifier,
+            duration_specifier=duration_specifier,
             division_masks=division_masks,
             logical_tie_masks=logical_tie_masks,
             tie_specifier=tie_specifier,
-            tuplet_spelling_specifier=tuplet_spelling_specifier,
+            tuplet_specifier=tuplet_specifier,
             )
         prototype = (rhythmmakertools.InciseSpecifier, type(None))
         assert isinstance(incise_specifier, prototype)
@@ -289,7 +289,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 attach(beam, leaves)
         selections = [selectiontools.Selection(x) for x in result]
         selections = self._apply_division_masks(selections, rotation)
-        duration_specifier = self._get_duration_spelling_specifier()
+        duration_specifier = self._get_duration_specifier()
         if duration_specifier.rewrite_meter:
             selections = duration_specifier._rewrite_meter_(
                 selections,
@@ -389,7 +389,7 @@ class IncisedRhythmMaker(RhythmMaker):
     def _numeric_map_to_leaf_selections(self, numeric_map, lcd):
         from abjad.tools import rhythmmakertools
         selections = []
-        specifier = self._get_duration_spelling_specifier()
+        specifier = self._get_duration_specifier()
         tie_specifier = self._get_tie_specifier()
         class_ = rhythmmakertools.TaleaRhythmMaker
         for numeric_map_part in numeric_map:
@@ -590,7 +590,7 @@ class IncisedRhythmMaker(RhythmMaker):
         return superclass.division_masks
 
     @property
-    def duration_spelling_specifier(self):
+    def duration_specifier(self):
         r'''Gets duration spelling specifier.
 
         ..  container:: example
@@ -657,7 +657,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...         suffix_counts=[1],
                 ...         talea_denominator=8,
                 ...         ),
-                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
+                ...     duration_specifier=abjad.rhythmmakertools.DurationSpecifier(
                 ...         forbidden_duration=(1, 2),
                 ...         ),
                 ...     )
@@ -712,7 +712,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...         suffix_counts=[1],
                 ...         talea_denominator=8,
                 ...         ),
-                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
+                ...     duration_specifier=abjad.rhythmmakertools.DurationSpecifier(
                 ...         spell_metrically=True,
                 ...         ),
                 ...     )
@@ -766,7 +766,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...         suffix_counts=[1],
                 ...         talea_denominator=8,
                 ...         ),
-                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
+                ...     duration_specifier=abjad.rhythmmakertools.DurationSpecifier(
                 ...         spell_metrically='unassignable',
                 ...         ),
                 ...     )
@@ -817,7 +817,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...         suffix_counts=[1],
                 ...         talea_denominator=8,
                 ...         ),
-                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
+                ...     duration_specifier=abjad.rhythmmakertools.DurationSpecifier(
                 ...         rewrite_meter=True,
                 ...         ),
                 ...     )
@@ -856,7 +856,7 @@ class IncisedRhythmMaker(RhythmMaker):
         Returns duration spelling specifier or none.
         '''
         superclass = super(IncisedRhythmMaker, self)
-        return superclass.duration_spelling_specifier
+        return superclass.duration_specifier
 
     @property
     def extra_counts_per_division(self):
@@ -1543,7 +1543,7 @@ class IncisedRhythmMaker(RhythmMaker):
             ::
 
                 >>> rhythm_maker = abjad.rhythmmakertools.IncisedRhythmMaker(
-                ...     duration_spelling_specifier=abjad.rhythmmakertools.DurationSpellingSpecifier(
+                ...     duration_specifier=abjad.rhythmmakertools.DurationSpecifier(
                 ...         spell_metrically=True,
                 ...         ),
                 ...     incise_specifier=abjad.rhythmmakertools.InciseSpecifier(
@@ -1600,7 +1600,7 @@ class IncisedRhythmMaker(RhythmMaker):
         return superclass.tie_specifier
 
     @property
-    def tuplet_spelling_specifier(self):
+    def tuplet_specifier(self):
         r'''Gets tuplet spelling specifier.
 
         ..  note:: not yet implemented.
@@ -1608,4 +1608,4 @@ class IncisedRhythmMaker(RhythmMaker):
         Returns tuplet spelling specifier or none.
         '''
         superclass = super(IncisedRhythmMaker, self)
-        return superclass.tuplet_spelling_specifier
+        return superclass.tuplet_specifier

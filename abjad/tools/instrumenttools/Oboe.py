@@ -9,7 +9,7 @@ class Oboe(Instrument):
         ::
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> oboe = abjad.instrumenttools.Oboe()
+            >>> oboe = abjad.Oboe()
             >>> abjad.attach(oboe, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -40,6 +40,7 @@ class Oboe(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=None,
+        default_scope=None,
         middle_c_sounding_pitch=None,
         pitch_range='[Bb3, A6]',
         ):
@@ -50,15 +51,10 @@ class Oboe(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'wind player',
-            'reed player',
-            'double reed player',
-            'oboist',
-            ])
         self._is_primary_instrument = True
 
     ### PUBLIC PROPERTIES ###
@@ -71,13 +67,9 @@ class Oboe(Instrument):
 
             ::
 
-                >>> oboe = abjad.instrumenttools.Oboe()
+                >>> oboe = abjad.Oboe()
                 >>> oboe.allowable_clefs
-                ClefList([Clef('treble')])
-
-            ::
-
-                >>> show(oboe.allowable_clefs) # doctest: +SKIP
+                ('treble',)
 
         Returns clef list.
         '''
@@ -91,7 +83,7 @@ class Oboe(Instrument):
 
             ::
 
-                >>> oboe = abjad.instrumenttools.Oboe()
+                >>> oboe = abjad.Oboe()
                 >>> oboe.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -111,7 +103,7 @@ class Oboe(Instrument):
 
             ::
 
-                >>> oboe = abjad.instrumenttools.Oboe()
+                >>> oboe = abjad.Oboe()
                 >>> oboe.name
                 'oboe'
 
@@ -127,7 +119,7 @@ class Oboe(Instrument):
 
             ::
 
-                >>> oboe = abjad.instrumenttools.Oboe()
+                >>> oboe = abjad.Oboe()
                 >>> oboe.name_markup
                 Markup(contents=['Oboe'])
 
@@ -147,7 +139,7 @@ class Oboe(Instrument):
 
             ::
 
-                >>> oboe = abjad.instrumenttools.Oboe()
+                >>> oboe = abjad.Oboe()
                 >>> oboe.pitch_range
                 PitchRange('[Bb3, A6]')
 
@@ -167,7 +159,7 @@ class Oboe(Instrument):
 
             ::
 
-                >>> oboe = abjad.instrumenttools.Oboe()
+                >>> oboe = abjad.Oboe()
                 >>> oboe.short_name
                 'ob.'
 
@@ -183,7 +175,7 @@ class Oboe(Instrument):
 
             ::
 
-                >>> oboe = abjad.instrumenttools.Oboe()
+                >>> oboe = abjad.Oboe()
                 >>> oboe.short_name_markup
                 Markup(contents=['Ob.'])
 

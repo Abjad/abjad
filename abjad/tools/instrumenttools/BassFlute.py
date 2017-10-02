@@ -9,7 +9,7 @@ class BassFlute(Instrument):
         ::
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> bass_flute = abjad.instrumenttools.BassFlute()
+            >>> bass_flute = abjad.BassFlute()
             >>> abjad.attach(bass_flute, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -40,6 +40,7 @@ class BassFlute(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=None,
+        default_scope=None,
         middle_c_sounding_pitch='C3',
         pitch_range='[C3, C6]',
         ):
@@ -50,14 +51,10 @@ class BassFlute(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'wind player',
-            'flautist',
-            'flutist',
-            ])
 
     ### PUBLIC PROPERTIES ###
 
@@ -69,13 +66,9 @@ class BassFlute(Instrument):
 
             ::
 
-                >>> bass_flute = abjad.instrumenttools.BassFlute()
+                >>> bass_flute = abjad.BassFlute()
                 >>> bass_flute.allowable_clefs
-                ClefList([Clef('treble')])
-
-            ::
-
-                >>> show(bass_flute.allowable_clefs) # doctest: +SKIP
+                ('treble',)
 
         Returns clef list.
         '''
@@ -89,7 +82,7 @@ class BassFlute(Instrument):
 
             ::
 
-                >>> bass_flute = abjad.instrumenttools.BassFlute()
+                >>> bass_flute = abjad.BassFlute()
                 >>> bass_flute.middle_c_sounding_pitch
                 NamedPitch('c')
 
@@ -109,7 +102,7 @@ class BassFlute(Instrument):
 
             ::
 
-                >>> bass_flute = abjad.instrumenttools.BassFlute()
+                >>> bass_flute = abjad.BassFlute()
                 >>> bass_flute.name
                 'bass flute'
 
@@ -125,7 +118,7 @@ class BassFlute(Instrument):
 
             ::
 
-                >>> bass_flute = abjad.instrumenttools.BassFlute()
+                >>> bass_flute = abjad.BassFlute()
                 >>> bass_flute.name_markup
                 Markup(contents=['Bass flute'])
 
@@ -145,7 +138,7 @@ class BassFlute(Instrument):
 
             ::
 
-                >>> bass_flute = abjad.instrumenttools.BassFlute()
+                >>> bass_flute = abjad.BassFlute()
                 >>> bass_flute.pitch_range
                 PitchRange('[C3, C6]')
 
@@ -165,7 +158,7 @@ class BassFlute(Instrument):
 
             ::
 
-                >>> bass_flute = abjad.instrumenttools.BassFlute()
+                >>> bass_flute = abjad.BassFlute()
                 >>> bass_flute.short_name
                 'bass fl.'
 
@@ -181,7 +174,7 @@ class BassFlute(Instrument):
 
             ::
 
-                >>> bass_flute = abjad.instrumenttools.BassFlute()
+                >>> bass_flute = abjad.BassFlute()
                 >>> bass_flute.short_name_markup
                 Markup(contents=['Bass fl.'])
 

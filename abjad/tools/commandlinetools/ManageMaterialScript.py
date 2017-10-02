@@ -38,7 +38,7 @@ class ManageMaterialScript(ScorePackageScript):
 
     def _handle_create(self, material_name, force):
         print('Creating material subpackage {!r} ...'.format(material_name))
-        target_path = self._name_to_score_subdirectory_path(
+        target_path = self._name_to_score_subdirectory(
             material_name, 'materials', self._score_package_path)
         if target_path.exists() and not force:
             print('    Path exists: {}'.format(
@@ -47,7 +47,7 @@ class ManageMaterialScript(ScorePackageScript):
         metadata = self._read_score_metadata_json(self._score_package_path)
         metadata['score_package_name'] = self._score_package_path.name
         metadata['material_name'] = target_path.name
-        source_name = 'example_material'
+        source_name = 'material'
         source_path = self._get_boilerplate_path().joinpath(source_name)
         suffixes = ('.py', '.tex', '.ly', '.ily')
         for path in self._copy_tree(source_path, target_path):
@@ -84,7 +84,7 @@ class ManageMaterialScript(ScorePackageScript):
             self._handle_list()
         for path in matching_paths:
             self._illustrate_one_material(
-                material_directory_path=path
+                material_directory=path
                 )
             print('    Illustrated {path!s}{sep}'.format(
                 path=path.relative_to(self._score_package_path.parent),
@@ -135,7 +135,7 @@ class ManageMaterialScript(ScorePackageScript):
             self._handle_list()
         for path in matching_paths:
             self._render_one_material(
-                material_directory_path=path
+                material_directory=path
                 )
             print('    Rendered {path!s}{sep}'.format(
                 path=path.relative_to(self._score_package_path.parent),
@@ -144,11 +144,11 @@ class ManageMaterialScript(ScorePackageScript):
             pdf_path = path.joinpath('illustration.pdf')
             systemtools.IOManager.open_file(str(pdf_path))
 
-    def _illustrate_one_material(self, material_directory_path):
+    def _illustrate_one_material(self, material_directory):
         print('Illustrating {path!s}{sep}'.format(
-            path=material_directory_path.relative_to(self._score_package_path.parent),
+            path=material_directory.relative_to(self._score_package_path.parent),
             sep=os.path.sep))
-        material = self._import_material(material_directory_path)
+        material = self._import_material(material_directory)
         if not hasattr(material, '__illustrate__'):
             template = '    Cannot illustrate material of type {}.'
             message = template.format(type(material).__name__)
@@ -163,11 +163,11 @@ class ManageMaterialScript(ScorePackageScript):
         self._report_time(timer, prefix='Abjad runtime')
         ly_path = self._write_lilypond_ly(
             lilypond_file=lilypond_file,
-            output_directory_path=material_directory_path,
+            output_directory=material_directory,
             )
         self._write_lilypond_pdf(
             ly_path=ly_path,
-            output_directory_path=material_directory_path,
+            output_directory=material_directory,
             )
 
     def _process_args(self, arguments):
@@ -183,17 +183,17 @@ class ManageMaterialScript(ScorePackageScript):
         if arguments.render is not None:
             self._handle_render(material_name=arguments.render)
 
-    def _render_one_material(self, material_directory_path):
+    def _render_one_material(self, material_directory):
         print('Rendering {path!s}{sep}'.format(
-            path=material_directory_path.relative_to(self._score_package_path.parent),
+            path=material_directory.relative_to(self._score_package_path.parent),
             sep=os.path.sep))
-        ly_path = material_directory_path.joinpath('illustration.ly')
+        ly_path = material_directory.joinpath('illustration.ly')
         if not ly_path.is_file():
             print('    illustration.ly is missing or malformed.')
             sys.exit(1)
         self._write_lilypond_pdf(
             ly_path=ly_path,
-            output_directory_path=material_directory_path,
+            output_directory=material_directory,
             )
 
     def _setup_argument_parser(self, parser):

@@ -112,7 +112,7 @@ class SkipRhythmMaker(RhythmMaker):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def tuplet_spelling_specifier(self):
+    def tuplet_specifier(self):
         r'''Gets tuplet spelling specifier.
 
         ..  note:: not yet implemented.
@@ -120,4 +120,4 @@ class SkipRhythmMaker(RhythmMaker):
         Returns tuplet spelling specifier or none.
         '''
         superclass = super(SkipRhythmMaker, self)
-        return superclass.tuplet_spelling_specifier
+        return superclass.tuplet_specifier

@@ -9,7 +9,7 @@ class Piccolo(Instrument):
         ::
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> piccolo = abjad.instrumenttools.Piccolo()
+            >>> piccolo = abjad.Piccolo()
             >>> abjad.attach(piccolo, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -40,6 +40,7 @@ class Piccolo(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=None,
+        default_scope=None,
         middle_c_sounding_pitch='C5',
         pitch_range='[D5, C8]',
         ):
@@ -50,14 +51,10 @@ class Piccolo(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'wind player',
-            'flautist',
-            'flutist',
-            ])
 
     ### PUBLIC PROPERTIES ###
 
@@ -69,13 +66,9 @@ class Piccolo(Instrument):
 
             ::
 
-                >>> piccolo = abjad.instrumenttools.Piccolo()
+                >>> piccolo = abjad.Piccolo()
                 >>> piccolo.allowable_clefs
-                ClefList([Clef('treble')])
-
-            ::
-
-                >>> show(piccolo.allowable_clefs) # doctest: +SKIP
+                ('treble',)
 
         Returns clef list.
         '''
@@ -89,7 +82,7 @@ class Piccolo(Instrument):
 
             ::
 
-                >>> piccolo = abjad.instrumenttools.Piccolo()
+                >>> piccolo = abjad.Piccolo()
                 >>> piccolo.middle_c_sounding_pitch
                 NamedPitch("c''")
 
@@ -109,7 +102,7 @@ class Piccolo(Instrument):
 
             ::
 
-                >>> piccolo = abjad.instrumenttools.Piccolo()
+                >>> piccolo = abjad.Piccolo()
                 >>> piccolo.name
                 'piccolo'
 
@@ -125,7 +118,7 @@ class Piccolo(Instrument):
 
             ::
 
-                >>> piccolo = abjad.instrumenttools.Piccolo()
+                >>> piccolo = abjad.Piccolo()
                 >>> piccolo.name_markup
                 Markup(contents=['Piccolo'])
 
@@ -145,7 +138,7 @@ class Piccolo(Instrument):
 
             ::
 
-                >>> piccolo = abjad.instrumenttools.Piccolo()
+                >>> piccolo = abjad.Piccolo()
                 >>> piccolo.pitch_range
                 PitchRange('[D5, C8]')
 
@@ -165,7 +158,7 @@ class Piccolo(Instrument):
 
             ::
 
-                >>> piccolo = abjad.instrumenttools.Piccolo()
+                >>> piccolo = abjad.Piccolo()
                 >>> piccolo.short_name
                 'picc.'
 
@@ -181,7 +174,7 @@ class Piccolo(Instrument):
 
             ::
 
-                >>> piccolo = abjad.instrumenttools.Piccolo()
+                >>> piccolo = abjad.Piccolo()
                 >>> piccolo.short_name_markup
                 Markup(contents=['Picc.'])
 

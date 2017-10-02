@@ -1,0 +1,48 @@
+\documentclass[11pt]{{report}}
+\usepackage[T1]{{fontenc}}
+\usepackage[papersize={paper_size}, margin=1in]{{geometry}}
+\usepackage{{graphicx}}
+\usepackage{{tikz}}
+\usepackage{{xltxtra,fontspec,xunicode}}
+\usetikzlibrary{{calc}}
+\defaultfontfeatures{{Scale=MatchLowercase}}
+\newlength{{\drop}}
+\pagenumbering{{gobble}}
+\parindent=0pt
+
+\begin{{document}}
+    \begin{{titlepage}}
+        \begin{{tikzpicture}}[remember picture, overlay]
+            \draw[line width = 1.6pt]
+                ($(current page.north west) + (1in,-1in)$)
+                rectangle
+                ($(current page.south east) + (-1in,1in)$);
+            \draw[line width = 0.4pt]
+                ($(current page.north west) + (1in,-1in) + (2.8pt,-2.8pt)$)
+                rectangle
+                ($(current page.south east) + (-1in,1in) + (-2.8pt,2.8pt)$);
+        \end{{tikzpicture}}
+
+        \drop=0.1\textheight
+        \centering
+
+        {{\vspace*{{1\baselineskip}}}}
+
+        {{\fontsize{{2.75cm}}{{1em}}\selectfont {score_title}}}
+
+        \vspace*{{12\baselineskip}}
+
+        {{\fontsize{{0.85cm}}{{1em}}\selectfont \itshape {forces_tagline}}}
+        
+        \vspace*{{1\baselineskip}}
+
+        {{\fontsize{{0.85cm}}{{1em}}\selectfont \itshape {year}}}
+
+        \vfill
+
+        {{\fontsize{{2.75cm}}{{1em}}\selectfont {composer}}}
+
+        \vspace*{{1.25\baselineskip}}
+
+    \end{{titlepage}}
+\end{{document}}

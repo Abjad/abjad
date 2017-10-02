@@ -231,25 +231,20 @@ class Tuning(AbjadValueObject):
             ::
 
                 >>> indicator = abjad.Tuning(pitches=('G3', 'D4', 'A4', 'E5'))
-                >>> pitch_ranges = indicator.pitch_ranges
-                >>> f(pitch_ranges)
-                abjad.PitchRangeList(
-                    [
-                        abjad.PitchRange('[G3, G5]'),
-                        abjad.PitchRange('[D4, D6]'),
-                        abjad.PitchRange('[A4, A6]'),
-                        abjad.PitchRange('[E5, E7]'),
-                        ]
-                    )
+                >>> for range_ in indicator.pitch_ranges:
+                ...     range_
+                PitchRange('[G3, G5]')
+                PitchRange('[D4, D6]')
+                PitchRange('[A4, A6]')
+                PitchRange('[E5, E7]')
 
         Returns pitch-range list.
         '''
-        from abjad.tools import pitchtools
+        import abjad
         result = []
         for pitch in self.pitches:
-            pitch_range = pitchtools.PitchRange.from_pitches(pitch, pitch + 24)
+            pitch_range = abjad.PitchRange.from_pitches(pitch, pitch + 24)
             result.append(pitch_range)
-        result = pitchtools.PitchRangeList(result)
         return result
 
     @property

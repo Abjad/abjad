@@ -9,7 +9,7 @@ class Guitar(Instrument):
         ::
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> guitar = abjad.instrumenttools.Guitar()
+            >>> guitar = abjad.Guitar()
             >>> abjad.attach(guitar, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -42,6 +42,7 @@ class Guitar(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=None,
+        default_scope=None,
         default_tuning=('E2', 'A2', 'D3', 'G3', 'B3', 'E4'),
         middle_c_sounding_pitch='C3',
         pitch_range='[E2, E5]',
@@ -54,13 +55,10 @@ class Guitar(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'string player',
-            'guitarist',
-            ])
         self._is_primary_instrument = True
         self._default_tuning = abjad.Tuning(default_tuning)
 
@@ -74,13 +72,9 @@ class Guitar(Instrument):
 
             ::
 
-                >>> guitar = abjad.instrumenttools.Guitar()
+                >>> guitar = abjad.Guitar()
                 >>> guitar.allowable_clefs
-                ClefList([Clef('treble')])
-
-            ::
-
-                >>> show(guitar.allowable_clefs) # doctest: +SKIP
+                ('treble',)
 
         Returns clef list.
         '''
@@ -94,7 +88,7 @@ class Guitar(Instrument):
 
             ::
 
-                >>> guitar = abjad.instrumenttools.Guitar()
+                >>> guitar = abjad.Guitar()
                 >>> guitar.default_tuning
                 Tuning(pitches=PitchSegment(['e,', 'a,', 'd', 'g', 'b', "e'"]))
 
@@ -110,7 +104,7 @@ class Guitar(Instrument):
 
             ::
 
-                >>> guitar = abjad.instrumenttools.Guitar()
+                >>> guitar = abjad.Guitar()
                 >>> guitar.middle_c_sounding_pitch
                 NamedPitch('c')
 
@@ -130,7 +124,7 @@ class Guitar(Instrument):
 
             ::
 
-                >>> guitar = abjad.instrumenttools.Guitar()
+                >>> guitar = abjad.Guitar()
                 >>> guitar.name
                 'guitar'
 
@@ -146,7 +140,7 @@ class Guitar(Instrument):
 
             ::
 
-                >>> guitar = abjad.instrumenttools.Guitar()
+                >>> guitar = abjad.Guitar()
                 >>> guitar.name_markup
                 Markup(contents=['Guitar'])
 
@@ -166,7 +160,7 @@ class Guitar(Instrument):
 
             ::
 
-                >>> guitar = abjad.instrumenttools.Guitar()
+                >>> guitar = abjad.Guitar()
                 >>> guitar.pitch_range
                 PitchRange('[E2, E5]')
 
@@ -186,7 +180,7 @@ class Guitar(Instrument):
 
             ::
 
-                >>> guitar = abjad.instrumenttools.Guitar()
+                >>> guitar = abjad.Guitar()
                 >>> guitar.short_name
                 'gt.'
 
@@ -202,7 +196,7 @@ class Guitar(Instrument):
 
             ::
 
-                >>> guitar = abjad.instrumenttools.Guitar()
+                >>> guitar = abjad.Guitar()
                 >>> guitar.short_name_markup
                 Markup(contents=['Gt.'])
 

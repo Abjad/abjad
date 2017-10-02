@@ -621,7 +621,9 @@ class WellformednessManager(AbjadObject):
             clef = abjad.inspect(leaf).get_effective(abjad.Clef)
             if clef is None:
                 continue
-            allowable_clefs = list(instrument.allowable_clefs)
+            allowable_clefs = [
+                abjad.Clef(_) for _ in instrument.allowable_clefs
+                ]
             if self.allow_percussion_clef:
                 allowable_clefs.append(abjad.Clef('percussion'))
             if clef not in allowable_clefs:

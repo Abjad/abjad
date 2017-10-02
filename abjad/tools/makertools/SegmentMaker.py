@@ -1,5 +1,3 @@
-from abjad.tools import datastructuretools
-from abjad.tools import lilypondfiletools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -27,34 +25,34 @@ class SegmentMaker(AbjadObject):
     def __call__(
         self,
         metadata=None,
+        midi=None,
         previous_metadata=None,
         ):
         r'''Calls segment-maker.
 
         Returns LilyPond file.
         '''
-        metadata = datastructuretools.TypedOrderedDict(
-            metadata)
-        previous_metadata = datastructuretools.TypedOrderedDict(
-            previous_metadata)
+        import abjad
+        metadata = abjad.TypedOrderedDict(metadata)
+        previous_metadata = abjad.TypedOrderedDict(previous_metadata)
         self._metadata = metadata
         self._previous_metadata = previous_metadata
-        lilypond_file = self._make_lilypond_file()
-        assert isinstance(lilypond_file, lilypondfiletools.LilyPondFile)
+        lilypond_file = self._make_lilypond_file(midi=midi)
+        assert isinstance(lilypond_file, abjad.LilyPondFile)
         self._lilypond_file = lilypond_file
         return self._lilypond_file, self._metadata
 
     def __eq__(self, expr):
         r'''Is true if `expr` is a segment-maker with equivalent properties.
         '''
-        from abjad.tools import systemtools
-        return systemtools.TestManager.compare_objects(self, expr)
+        import abjad
+        return abjad.TestManager.compare_objects(self, expr)
 
     def __hash__(self):
         r'''Hashes segment-maker.
         '''
-        from abjad.tools import systemtools
-        hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
+        import abjad
+        hash_values = abjad.StorageFormatAgent(self).get_hash_values()
         return hash(hash_values)
 
     def __illustrate__(self, **kwargs):

@@ -9,7 +9,7 @@ class ContrabassFlute(Instrument):
         ::
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> contrabass_flute = abjad.instrumenttools.ContrabassFlute()
+            >>> contrabass_flute = abjad.ContrabassFlute()
             >>> abjad.attach(contrabass_flute, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -40,6 +40,7 @@ class ContrabassFlute(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=None,
+        default_scope=None,
         middle_c_sounding_pitch='G2',
         pitch_range='[G2, G5]',
         ):
@@ -50,14 +51,10 @@ class ContrabassFlute(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'wind player',
-            'flautist',
-            'flutist',
-            ])
 
     ### PUBLIC PROPERTIES ###
 
@@ -69,13 +66,9 @@ class ContrabassFlute(Instrument):
 
             ::
 
-                >>> contrabass_flute = abjad.instrumenttools.ContrabassFlute()
+                >>> contrabass_flute = abjad.ContrabassFlute()
                 >>> contrabass_flute.allowable_clefs
-                ClefList([Clef('treble')])
-
-            ::
-
-                >>> show(contrabass_flute.allowable_clefs) # doctest: +SKIP
+                ('treble',)
 
         Returns clef list.
         '''
@@ -89,7 +82,7 @@ class ContrabassFlute(Instrument):
 
             ::
 
-                >>> contrabass_flute = abjad.instrumenttools.ContrabassFlute()
+                >>> contrabass_flute = abjad.ContrabassFlute()
                 >>> contrabass_flute.middle_c_sounding_pitch
                 NamedPitch('g,')
 
@@ -109,7 +102,7 @@ class ContrabassFlute(Instrument):
 
             ::
 
-                >>> contrabass_flute = abjad.instrumenttools.ContrabassFlute()
+                >>> contrabass_flute = abjad.ContrabassFlute()
                 >>> contrabass_flute.name
                 'contrabass flute'
 
@@ -125,7 +118,7 @@ class ContrabassFlute(Instrument):
 
             ::
 
-                >>> contrabass_flute = abjad.instrumenttools.ContrabassFlute()
+                >>> contrabass_flute = abjad.ContrabassFlute()
                 >>> contrabass_flute.name_markup
                 Markup(contents=['Contrabass flute'])
 
@@ -145,7 +138,7 @@ class ContrabassFlute(Instrument):
 
             ::
 
-                >>> contrabass_flute = abjad.instrumenttools.ContrabassFlute()
+                >>> contrabass_flute = abjad.ContrabassFlute()
                 >>> contrabass_flute.pitch_range
                 PitchRange('[G2, G5]')
 
@@ -165,7 +158,7 @@ class ContrabassFlute(Instrument):
 
             ::
 
-                >>> contrabass_flute = abjad.instrumenttools.ContrabassFlute()
+                >>> contrabass_flute = abjad.ContrabassFlute()
                 >>> contrabass_flute.short_name
                 'cbass. fl.'
 
@@ -181,7 +174,7 @@ class ContrabassFlute(Instrument):
 
             ::
 
-                >>> contrabass_flute = abjad.instrumenttools.ContrabassFlute()
+                >>> contrabass_flute = abjad.ContrabassFlute()
                 >>> contrabass_flute.short_name_markup
                 Markup(contents=['Cbass. fl.'])
 

@@ -8,7 +8,8 @@ class ScoreTemplate(abctools.AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### SPECIAL METHODS ###
 
@@ -20,7 +21,12 @@ class ScoreTemplate(abctools.AbjadValueObject):
         '''
         pass
 
-    def __illustrate__(self):
+    def __illustrate__(
+        self,
+        default_paper_size=None,
+        global_staff_size=None,
+        includes=None,
+        ):
         r'''Illustrates score template.
 
         Returns LilyPond file.
@@ -31,6 +37,12 @@ class ScoreTemplate(abctools.AbjadValueObject):
             voice.append(abjad.Skip(1))
         self.attach_defaults(score)
         lilypond_file = score.__illustrate__()
+        lilypond_file = abjad.new(
+            lilypond_file,
+            default_paper_size=default_paper_size,
+            global_staff_size=global_staff_size,
+            includes=includes,
+            )
         return lilypond_file
 
     ### PUBLIC METHODS ###
@@ -47,10 +59,18 @@ class ScoreTemplate(abctools.AbjadValueObject):
             leaf = abjad.inspect(context).get_leaf(0)
             if leaf is None:
                 continue
-            if not abjad.inspect(leaf).get_indicator(abjad.Instrument):
-                instrument = abjad.inspect(context).get_annotation(
-                    'default_instrument')
+            instrument = abjad.inspect(leaf).get_indicator(abjad.Instrument)
+            if instrument is None:
+                string = 'default_instrument'
+                instrument = abjad.inspect(context).get_annotation(string)
                 abjad.attach(instrument, leaf)
-            if not abjad.inspect(leaf).get_indicator(abjad.Clef):
-                clef = abjad.inspect(context).get_annotation('default_clef')
-                abjad.attach(clef, leaf)
+        for staff in abjad.iterate(score).by_class(abjad.Staff):
+            leaf = abjad.inspect(staff).get_leaf(0)
+            clef = abjad.inspect(leaf).get_indicator(abjad.Clef)
+            if clef is not None:
+                continue
+            clef = abjad.inspect(staff).get_annotation('default_clef')
+            instrument = abjad.inspect(leaf).get_effective(abjad.Instrument)
+            if clef is None and instrument is not None:
+                clef = abjad.Clef(instrument.allowable_clefs[0])
+            abjad.attach(clef, leaf)

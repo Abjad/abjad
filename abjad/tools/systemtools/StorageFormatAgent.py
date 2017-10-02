@@ -351,25 +351,18 @@ class StorageFormatAgent(AbjadValueObject):
 
             ::
 
-                >>> maker = abjad.rhythmmakertools.EvenDivisionRhythmMaker(
-                ...     burnish_specifier=abjad.rhythmmakertools.BurnishSpecifier(
-                ...         left_classes=[abjad.Rest],
-                ...         left_counts=[1],
-                ...         right_classes=[abjad.Rest],
-                ...         right_counts=[2],
-                ...         outer_divisions_only=True,
-                ...         ),
-                ...     )
+                >>> flute = abjad.instrumenttools.Flute()
 
             ::
 
-                >>> types = abjad.StorageFormatAgent._get_types(maker)
-                >>> for _ in types:
-                ...     _
+                >>> types = abjad.StorageFormatAgent._get_types(flute)
+                >>> for type_ in types:
+                ...     type_
                 ...
-                <class 'abjad.tools.rhythmmakertools.BurnishSpecifier.BurnishSpecifier'>
-                <class 'abjad.tools.rhythmmakertools.EvenDivisionRhythmMaker.EvenDivisionRhythmMaker'>
-                <class 'abjad.tools.scoretools.Rest.Rest'>
+                <class 'abjad.tools.instrumenttools.Flute.Flute'>
+                <class 'abjad.tools.markuptools.Markup.Markup'>
+                <class 'abjad.tools.pitchtools.NamedPitch.NamedPitch'>
+                <class 'abjad.tools.pitchtools.PitchRange.PitchRange'>
 
         ..  container:: example
 
@@ -387,8 +380,6 @@ class StorageFormatAgent(AbjadValueObject):
                 ...
                 <class 'abjad.tools.datastructuretools.TypedOrderedDict.TypedOrderedDict'>
                 <class 'abjad.tools.pitchtools.NamedPitch.NamedPitch'>
-
-            .. todo:: Shouldn't the above example **not** return OrderedDict?
 
         Returns tuple of types.
         '''
@@ -551,38 +542,32 @@ class StorageFormatAgent(AbjadValueObject):
 
             ::
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(3, 2)],
-                ...     division_masks=[
-                ...         abjad.silence_every([1], period=2),
-                ...         ],
-                ...     )
-                >>> f(rhythm_maker)
-                abjad.rhythmmakertools.TupletRhythmMaker(
-                    tuplet_ratios=[
-                        abjad.Ratio((3, 2)),
-                        ],
-                    division_masks=abjad.PatternList(
-                        (
-                            abjad.SilenceMask(
-                                pattern=abjad.Pattern(
-                                    indices=[1],
-                                    period=2,
-                                    ),
-                                ),
-                            )
+                >>> flute = abjad.Flute()
+                >>> f(flute)
+                abjad.Flute(
+                    name='flute',
+                    short_name='fl.',
+                    name_markup=abjad.Markup(
+                        contents=['Flute'],
                         ),
+                    short_name_markup=abjad.Markup(
+                        contents=['Fl.'],
+                        ),
+                    allowable_clefs=('treble',),
+                    default_scope='Staff',
+                    middle_c_sounding_pitch=abjad.NamedPitch("c'"),
+                    pitch_range=abjad.PitchRange('[C4, D7]'),
                     )
 
             ::
 
-                >>> agent = abjad.StorageFormatAgent(rhythm_maker)
+                >>> agent = abjad.StorageFormatAgent(flute)
                 >>> for line in agent.get_import_statements():
                 ...     line
                 ...
-                'from abjad.tools import datastructuretools'
-                'from abjad.tools import mathtools'
-                'from abjad.tools import rhythmmakertools'
+                'from abjad.tools import instrumenttools'
+                'from abjad.tools import markuptools'
+                'from abjad.tools import pitchtools'
 
         Returns tuple of strings.
         '''

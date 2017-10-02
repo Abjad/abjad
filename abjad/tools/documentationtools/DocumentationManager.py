@@ -32,7 +32,7 @@ class DocumentationManager(abctools.AbjadObject):
 
     root_package_name = 'abjad'
 
-    source_directory_path_parts = ('docs', 'source')
+    source_directory_parts = ('docs', 'source')
 
     tools_packages_package_path = 'abjad.tools'
 
@@ -243,7 +243,7 @@ class DocumentationManager(abctools.AbjadObject):
         if not os.path.exists(path):
             os.makedirs(path)
 
-    def _get_api_directory_path(self, source_directory):
+    def _get_api_directory(self, source_directory):
         if self.api_directory_name:
             path = os.path.join(
                 source_directory,
@@ -255,14 +255,14 @@ class DocumentationManager(abctools.AbjadObject):
 
     def _get_api_index_file_path(self, source_directory):
         if self.api_directory_name:
-            directory_path = os.path.join(
+            directory = os.path.join(
                 source_directory,
                 self.api_directory_name,
                 )
         else:
-            directory_path = source_directory
+            directory = source_directory
         api_index_path = os.path.join(
-            directory_path,
+            directory,
             'index.rst',
             )
         return api_index_path
@@ -504,7 +504,7 @@ class DocumentationManager(abctools.AbjadObject):
         root_package = importlib.import_module(self.root_package_name)
         root_package_path = root_package.__path__[0]
         path_parts = [root_package_path]
-        path_parts.extend(self.source_directory_path_parts)
+        path_parts.extend(self.source_directory_parts)
         source_directory = os.path.join(*path_parts)
         return source_directory
 
@@ -740,7 +740,7 @@ class DocumentationManager(abctools.AbjadObject):
             parts[-1] = '_' + parts[-1] + '.rst'
         else:
             parts[-1] = parts[-1] + '.rst'
-        parts.insert(0, self._get_api_directory_path(source_directory))
+        parts.insert(0, self._get_api_directory(source_directory))
         path = os.path.join(*parts)
         return path
 
@@ -750,12 +750,12 @@ class DocumentationManager(abctools.AbjadObject):
         if not self.__class__.__name__.startswith('ScoreLibrary'):
             parts = parts[1:]
         parts.append('index.rst')
-        parts.insert(0, self._get_api_directory_path(source_directory))
+        parts.insert(0, self._get_api_directory(source_directory))
         path = os.path.join(*parts)
         return path
 
     def _remove_api_directory(self):
-        path = self._get_api_directory_path()
+        path = self._get_api_directory()
         if os.path.exists(path):
             shutil.rmtree(path)
 
@@ -857,7 +857,7 @@ class DocumentationManager(abctools.AbjadObject):
                     rst = self._get_function_rst(function)
                     self._write(file_path, rst.rest_format, rewritten_files)
             for root, directory_names, file_names in os.walk(
-                self._get_api_directory_path(source_directory),
+                self._get_api_directory(source_directory),
                 topdown=False,
                 ):
                 for file_name in file_names[:]:

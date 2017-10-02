@@ -10,7 +10,7 @@ class MezzoSopranoVoice(Instrument):
 
 
             >>> staff = abjad.Staff("c''4 d''4 e''4 fs''4")
-            >>> mezzo_soprano = abjad.instrumenttools.MezzoSopranoVoice()
+            >>> mezzo_soprano = abjad.MezzoSopranoVoice()
             >>> abjad.attach(mezzo_soprano, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -43,6 +43,7 @@ class MezzoSopranoVoice(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=None,
+        default_scope=None,
         middle_c_sounding_pitch=None,
         pitch_range='[A3, C6]',
         ):
@@ -53,12 +54,9 @@ class MezzoSopranoVoice(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'vocalist',
-            'mezzo-soprano',
-            ])
         self._is_primary_instrument = True
 
     ### PUBLIC PROPERTIES ###
@@ -71,13 +69,9 @@ class MezzoSopranoVoice(Instrument):
 
             ::
 
-                >>> mezzo_soprano = abjad.instrumenttools.MezzoSopranoVoice()
+                >>> mezzo_soprano = abjad.MezzoSopranoVoice()
                 >>> mezzo_soprano.allowable_clefs
-                ClefList([Clef('treble')])
-
-            ::
-
-                >>> show(mezzo_soprano.allowable_clefs) # doctest: +SKIP
+                ('treble',)
 
         Returns clef list.
         '''
@@ -91,7 +85,7 @@ class MezzoSopranoVoice(Instrument):
 
             ::
 
-                >>> mezzo_soprano = abjad.instrumenttools.MezzoSopranoVoice()
+                >>> mezzo_soprano = abjad.MezzoSopranoVoice()
                 >>> mezzo_soprano.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -111,7 +105,7 @@ class MezzoSopranoVoice(Instrument):
 
             ::
 
-                >>> mezzo_soprano = abjad.instrumenttools.MezzoSopranoVoice()
+                >>> mezzo_soprano = abjad.MezzoSopranoVoice()
                 >>> mezzo_soprano.name
                 'mezzo-soprano'
 
@@ -127,7 +121,7 @@ class MezzoSopranoVoice(Instrument):
 
             ::
 
-                >>> mezzo_soprano = abjad.instrumenttools.MezzoSopranoVoice()
+                >>> mezzo_soprano = abjad.MezzoSopranoVoice()
                 >>> mezzo_soprano.name_markup
                 Markup(contents=['Mezzo-soprano'])
 
@@ -147,7 +141,7 @@ class MezzoSopranoVoice(Instrument):
 
             ::
 
-                >>> mezzo_soprano = abjad.instrumenttools.MezzoSopranoVoice()
+                >>> mezzo_soprano = abjad.MezzoSopranoVoice()
                 >>> mezzo_soprano.pitch_range
                 PitchRange('[A3, C6]')
 
@@ -167,7 +161,7 @@ class MezzoSopranoVoice(Instrument):
 
             ::
 
-                >>> mezzo_soprano = abjad.instrumenttools.MezzoSopranoVoice()
+                >>> mezzo_soprano = abjad.MezzoSopranoVoice()
                 >>> mezzo_soprano.short_name
                 'mezz.'
 
@@ -183,7 +177,7 @@ class MezzoSopranoVoice(Instrument):
 
             ::
 
-                >>> mezzo_soprano = abjad.instrumenttools.MezzoSopranoVoice()
+                >>> mezzo_soprano = abjad.MezzoSopranoVoice()
                 >>> mezzo_soprano.short_name_markup
                 Markup(contents=['Mezz.'])
 

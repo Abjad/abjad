@@ -9,7 +9,7 @@ class Violin(Instrument):
         ::
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> violin = abjad.instrumenttools.Violin()
+            >>> violin = abjad.Violin()
             >>> abjad.attach(violin, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -42,6 +42,7 @@ class Violin(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=None,
+        default_scope=None,
         default_tuning=('G3', 'D4', 'A4', 'E5'),
         middle_c_sounding_pitch=None,
         pitch_range='[G3, G7]',
@@ -54,13 +55,10 @@ class Violin(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'string player',
-            'violinist',
-            ])
         self._is_primary_instrument = True
         self._default_tuning = abjad.Tuning(default_tuning)
 
@@ -74,13 +72,9 @@ class Violin(Instrument):
 
             ::
 
-                >>> violin = abjad.instrumenttools.Violin()
+                >>> violin = abjad.Violin()
                 >>> violin.allowable_clefs
-                ClefList([Clef('treble')])
-
-            ::
-
-                >>> show(violin.allowable_clefs) # doctest: +SKIP
+                ('treble',)
 
         Returns clef list.
         '''
@@ -94,7 +88,7 @@ class Violin(Instrument):
 
             ::
 
-                >>> violin = abjad.instrumenttools.Violin()
+                >>> violin = abjad.Violin()
                 >>> violin.default_tuning
                 Tuning(pitches=PitchSegment(['g', "d'", "a'", "e''"]))
 
@@ -110,7 +104,7 @@ class Violin(Instrument):
 
             ::
 
-                >>> violin = abjad.instrumenttools.Violin()
+                >>> violin = abjad.Violin()
                 >>> violin.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -130,7 +124,7 @@ class Violin(Instrument):
 
             ::
 
-                >>> violin = abjad.instrumenttools.Violin()
+                >>> violin = abjad.Violin()
                 >>> violin.name
                 'violin'
 
@@ -146,7 +140,7 @@ class Violin(Instrument):
 
             ::
 
-                >>> violin = abjad.instrumenttools.Violin()
+                >>> violin = abjad.Violin()
                 >>> violin.name_markup
                 Markup(contents=['Violin'])
 
@@ -161,7 +155,7 @@ class Violin(Instrument):
             ::
 
                 >>> markup = abjad.Markup('Violin').italic().hcenter_in(12)
-                >>> violin_1 = abjad.instrumenttools.Violin(
+                >>> violin_1 = abjad.Violin(
                 ...     name_markup=markup,
                 ...     )
                 >>> f(violin_1.name_markup)
@@ -202,7 +196,7 @@ class Violin(Instrument):
 
             ::
 
-                >>> violin = abjad.instrumenttools.Violin()
+                >>> violin = abjad.Violin()
                 >>> violin.pitch_range
                 PitchRange('[G3, G7]')
 
@@ -222,7 +216,7 @@ class Violin(Instrument):
 
             ::
 
-                >>> violin = abjad.instrumenttools.Violin()
+                >>> violin = abjad.Violin()
                 >>> violin.short_name
                 'vn.'
 
@@ -238,7 +232,7 @@ class Violin(Instrument):
 
             ::
 
-                >>> violin = abjad.instrumenttools.Violin()
+                >>> violin = abjad.Violin()
                 >>> violin.short_name_markup
                 Markup(contents=['Vn.'])
 

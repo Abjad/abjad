@@ -53,9 +53,9 @@ class Parser(AbjadObject):
 
         if self.pickle_path and not os.path.exists(self.pickle_path):
             try:
-                directory_path, _ = os.path.split(self.pickle_path)
-                if not os.path.exists(directory_path):
-                    os.makedirs(directory_path)
+                directory, _ = os.path.split(self.pickle_path)
+                if not os.path.exists(directory):
+                    os.makedirs(directory)
                 string = pickle.dumps(None)
                 with open(self.pickle_path, 'wb') as file_pointer:
                     file_pointer.write(string)
@@ -147,10 +147,10 @@ class Parser(AbjadObject):
         r'''The output path for files associated with the parser.
         '''
         from abjad import abjad_configuration
-        configuration_directory_path = \
-            abjad_configuration.configuration_directory_path
+        configuration_directory = \
+            abjad_configuration.configuration_directory
         output_path = os.path.join(
-            configuration_directory_path,
+            str(configuration_directory),
             'parsers',
             )
         if not os.path.isdir(output_path):

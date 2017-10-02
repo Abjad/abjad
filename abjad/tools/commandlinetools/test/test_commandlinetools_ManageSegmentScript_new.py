@@ -43,7 +43,7 @@ class Test(ScorePackageScriptTestCase):
         self.create_score()
         script = abjad.commandlinetools.ManageSegmentScript()
         command = ['--new', 'test_segment']
-        internal_path = self.score_path.joinpath('test_score', 'build')
+        internal_path = self.score_path.joinpath('test_score', 'builds')
         assert internal_path.exists()
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(internal_path)):

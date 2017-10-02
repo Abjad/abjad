@@ -1,10 +1,4 @@
-import os
-from abjad.tools import indicatortools
-from abjad.tools import lilypondfiletools
-from abjad.tools import pitchtools
-from abjad.tools import rhythmmakertools
-from abjad.tools import scoretools
-from abjad.tools import templatetools
+import pathlib
 from abjad.tools.makertools.SegmentMaker import SegmentMaker
 
 
@@ -52,11 +46,11 @@ class PianoStaffSegmentMaker(SegmentMaker):
         rh_pitch_range=None,
         lh_pitch_range=None,
         ):
+        import abjad
+        from abjad.tools import rhythmmakertools
         SegmentMaker.__init__(self)
         time_signatures = time_signatures or []
-        time_signatures = [
-            indicatortools.TimeSignature(x) for x in time_signatures
-            ]
+        time_signatures = [abjad.TimeSignature(_) for _ in time_signatures]
         self._time_signatures = time_signatures
         self._divisions = divisions
         if rh_rhythm_maker is None:
@@ -68,10 +62,10 @@ class PianoStaffSegmentMaker(SegmentMaker):
         assert isinstance(lh_rhythm_maker, rhythmmakertools.RhythmMaker)
         self._lh_rhythm_maker = lh_rhythm_maker
         rh_pitch_range = rh_pitch_range or '[C4, C6]'
-        rh_pitch_range = pitchtools.PitchRange(rh_pitch_range)
+        rh_pitch_range = abjad.PitchRange(rh_pitch_range)
         self._rh_pitch_range = rh_pitch_range
         lh_pitch_range = lh_pitch_range or '[C2, C4)'
-        lh_pitch_range = pitchtools.PitchRange(lh_pitch_range)
+        lh_pitch_range = abjad.PitchRange(lh_pitch_range)
         self._lh_pitch_range = lh_pitch_range
 
     ### PRIVATE METHODS ###
@@ -81,7 +75,7 @@ class PianoStaffSegmentMaker(SegmentMaker):
         time_signatures = self.time_signatures
         if not time_signatures:
             return
-        time_signature_context = scoretools.Context(
+        time_signature_context = abjad.Context(
             context_name='GlobalContext',
             name='Global Context',
             )
@@ -90,8 +84,9 @@ class PianoStaffSegmentMaker(SegmentMaker):
         time_signature_context.extend(measures)
         score.insert(0, time_signature_context)
 
-    def _make_lilypond_file(self):
-        template = templatetools.TwoStaffPianoScoreTemplate()
+    def _make_lilypond_file(self, midi=None):
+        import abjad
+        template = abjad.TwoStaffPianoScoreTemplate()
         score = template()
         self._score = score
         self._add_time_signature_context(score)
@@ -101,19 +96,24 @@ class PianoStaffSegmentMaker(SegmentMaker):
         self._populate_rhythms(lh_voice, self.lh_rhythm_maker)
         self._populate_pitches(rh_voice, self.rh_pitch_range)
         self._populate_pitches(lh_voice, self.lh_pitch_range)
-        stylesheet_path = os.path.join(
+        template.attach_defaults(score)
+        stylesheet_path = pathlib.Path(
             '..',
             '..',
             'stylesheets',
             'stylesheet.ily',
             )
-        lilypond_file = lilypondfiletools.LilyPondFile.new(
+        lilypond_file = abjad.LilyPondFile.new(
             music=score,
-            includes=(
-                stylesheet_path,
-                ),
+            includes=[stylesheet_path],
             use_relative_includes=True,
             )
+        if midi:
+            for block in lilypond_file.items[:]:
+                if block.name in ('layout', 'paper'):
+                    lilypond_file.items.remove(block)
+            block = abjad.Block(name='midi')
+            lilypond_file.items.append(block)
         return lilypond_file
 
     def _populate_pitches(self, voice, pitch_range):
@@ -132,7 +132,8 @@ class PianoStaffSegmentMaker(SegmentMaker):
                 note.written_pitch = pitch_number
 
     def _populate_rhythms(self, voice, rhythm_maker):
-        assert isinstance(voice, scoretools.Voice)
+        import abjad
+        assert isinstance(voice, abjad.Voice)
         divisions = self.divisions
         if isinstance(divisions, dict):
             divisions = divisions[voice.name]

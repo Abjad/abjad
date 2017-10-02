@@ -69,12 +69,12 @@ class RawLilyPondOutputProxy(ImageOutputProxy):
 
     def _render_pdf_source(
         self,
-        temporary_directory_path,
+        temporary_directory,
         ):
         from abjad import abjad_configuration
         log_file_path = abjad_configuration.lilypond_log_file_path
         ly_file_path = os.path.join(
-            temporary_directory_path,
+            temporary_directory,
             self.file_name_without_extension + '.ly',
             )
         source = format(self.payload)
@@ -82,7 +82,7 @@ class RawLilyPondOutputProxy(ImageOutputProxy):
             file_pointer.write(source)
         systemtools.IOManager.run_lilypond(ly_file_path)
         pdf_file_path = os.path.join(
-            temporary_directory_path,
+            temporary_directory,
             self.file_name_without_extension + '.pdf',
             )
         if not os.path.exists(pdf_file_path):

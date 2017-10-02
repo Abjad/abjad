@@ -9,7 +9,7 @@ class Percussion(Instrument):
         ::
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> percussion = abjad.instrumenttools.Percussion()
+            >>> percussion = abjad.Percussion()
             >>> abjad.attach(percussion, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -90,6 +90,7 @@ class Percussion(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=('percussion',),
+        default_scope=None,
         middle_c_sounding_pitch=None,
         pitch_range=None,
         ):
@@ -100,12 +101,10 @@ class Percussion(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'percussionist',
-            ])
 
     ### PUBLIC PROPERTIES ###
 
@@ -117,13 +116,9 @@ class Percussion(Instrument):
 
             ::
 
-                >>> percussion = abjad.instrumenttools.Percussion()
+                >>> percussion = abjad.Percussion()
                 >>> percussion.allowable_clefs
-                ClefList([Clef('percussion')])
-
-            ::
-
-                >>> show(percussion.allowable_clefs) # doctest: +SKIP
+                ('percussion',)
 
         Returns clef list.
         '''
@@ -137,7 +132,7 @@ class Percussion(Instrument):
 
             ::
 
-                >>> percussion = abjad.instrumenttools.Percussion()
+                >>> percussion = abjad.Percussion()
                 >>> percussion.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -157,7 +152,7 @@ class Percussion(Instrument):
 
             ::
 
-                >>> percussion = abjad.instrumenttools.Percussion()
+                >>> percussion = abjad.Percussion()
                 >>> percussion.name
                 'percussion'
 
@@ -173,7 +168,7 @@ class Percussion(Instrument):
 
             ::
 
-                >>> percussion = abjad.instrumenttools.Percussion()
+                >>> percussion = abjad.Percussion()
                 >>> percussion.name_markup
                 Markup(contents=['Percussion'])
 
@@ -193,7 +188,7 @@ class Percussion(Instrument):
 
             ::
 
-                >>> percussion = abjad.instrumenttools.Percussion()
+                >>> percussion = abjad.Percussion()
                 >>> percussion.pitch_range
                 PitchRange('[A0, C8]')
 
@@ -213,7 +208,7 @@ class Percussion(Instrument):
 
             ::
 
-                >>> percussion = abjad.instrumenttools.Percussion()
+                >>> percussion = abjad.Percussion()
                 >>> percussion.short_name
                 'perc.'
 
@@ -229,7 +224,7 @@ class Percussion(Instrument):
 
             ::
 
-                >>> percussion = abjad.instrumenttools.Percussion()
+                >>> percussion = abjad.Percussion()
                 >>> percussion.short_name_markup
                 Markup(contents=['Perc.'])
 

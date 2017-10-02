@@ -3,6 +3,7 @@ import inspect
 import pytest
 import abjad
 from abjad.tools import abjadbooktools
+from abjad.tools import datastructuretools
 from abjad.tools import documentationtools
 from abjad.tools import lilypondparsertools
 from abjad.tools import metertools
@@ -15,6 +16,7 @@ ignored_classes = (
     abjadbooktools.CodeOutputProxy,
     abjadbooktools.GraphvizOutputProxy,
     abjadbooktools.LilyPondOutputProxy,
+    datastructuretools.Path,
     systemtools.StorageFormatAgent,
     systemtools.FormatSpecification,
     )
@@ -45,6 +47,7 @@ ignored_classes = (
     abjadbooktools.CodeOutputProxy,
     abjadbooktools.GraphvizOutputProxy,
     abjadbooktools.LilyPondOutputProxy,
+    datastructuretools.Path,
     metertools.Meter,
     tonalanalysistools.RootedChordClass,
     systemtools.StorageFormatAgent,
@@ -93,6 +96,7 @@ ignored_classes = (
     abjadbooktools.ShellDirective,
     abjadbooktools.ThumbnailDirective,
     lilypondparsertools.SyntaxNode,
+    datastructuretools.Path,
     systemtools.TestCase,
     )
 

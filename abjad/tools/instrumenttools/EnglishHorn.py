@@ -9,7 +9,7 @@ class EnglishHorn(Instrument):
         ::
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> english_horn = abjad.instrumenttools.EnglishHorn()
+            >>> english_horn = abjad.EnglishHorn()
             >>> abjad.attach(english_horn, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -40,6 +40,7 @@ class EnglishHorn(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=None,
+        default_scope=None,
         middle_c_sounding_pitch='F3',
         pitch_range='[E3, C6]',
         ):
@@ -50,15 +51,10 @@ class EnglishHorn(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'wind player',
-            'reed player',
-            'double reed player',
-            'oboist',
-            ])
 
     ### PUBLIC PROPERTIES ###
 
@@ -70,13 +66,9 @@ class EnglishHorn(Instrument):
 
             ::
 
-                >>> english_horn = abjad.instrumenttools.EnglishHorn()
+                >>> english_horn = abjad.EnglishHorn()
                 >>> english_horn.allowable_clefs
-                ClefList([Clef('treble')])
-
-            ::
-
-                >>> show(english_horn.allowable_clefs) # doctest: +SKIP
+                ('treble',)
 
         Returns clef list.
         '''
@@ -90,7 +82,7 @@ class EnglishHorn(Instrument):
 
             ::
 
-                >>> english_horn = abjad.instrumenttools.EnglishHorn()
+                >>> english_horn = abjad.EnglishHorn()
                 >>> english_horn.middle_c_sounding_pitch
                 NamedPitch('f')
 
@@ -110,7 +102,7 @@ class EnglishHorn(Instrument):
 
             ::
 
-                >>> english_horn = abjad.instrumenttools.EnglishHorn()
+                >>> english_horn = abjad.EnglishHorn()
                 >>> english_horn.name
                 'English horn'
 
@@ -126,7 +118,7 @@ class EnglishHorn(Instrument):
 
             ::
 
-                >>> english_horn = abjad.instrumenttools.EnglishHorn()
+                >>> english_horn = abjad.EnglishHorn()
                 >>> english_horn.name_markup
                 Markup(contents=['English horn'])
 
@@ -146,7 +138,7 @@ class EnglishHorn(Instrument):
 
             ::
 
-                >>> english_horn = abjad.instrumenttools.EnglishHorn()
+                >>> english_horn = abjad.EnglishHorn()
                 >>> english_horn.pitch_range
                 PitchRange('[E3, C6]')
 
@@ -166,7 +158,7 @@ class EnglishHorn(Instrument):
 
             ::
 
-                >>> english_horn = abjad.instrumenttools.EnglishHorn()
+                >>> english_horn = abjad.EnglishHorn()
                 >>> english_horn.short_name
                 'Eng. hn.'
 
@@ -182,7 +174,7 @@ class EnglishHorn(Instrument):
 
             ::
 
-                >>> english_horn = abjad.instrumenttools.EnglishHorn()
+                >>> english_horn = abjad.EnglishHorn()
                 >>> english_horn.short_name_markup
                 Markup(contents=['Eng. hn.'])
 

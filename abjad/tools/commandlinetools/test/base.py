@@ -12,7 +12,7 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
 
     test_path = pathlib.Path(__file__).parent
     score_path = test_path.joinpath('test_score')
-    build_path = score_path.joinpath('test_score', 'build')
+    build_path = score_path.joinpath('test_score', 'builds')
     distribution_path = score_path.joinpath('test_score', 'distribution')
     materials_path = score_path.joinpath('test_score', 'materials')
     segments_path = score_path.joinpath('test_score', 'segments')

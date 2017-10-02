@@ -11,7 +11,7 @@ class Tuba(Instrument):
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
             >>> clef = abjad.Clef('bass')
             >>> abjad.attach(clef, staff[0])
-            >>> tuba = abjad.instrumenttools.Tuba()
+            >>> tuba = abjad.Tuba()
             >>> abjad.attach(tuba, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -43,6 +43,7 @@ class Tuba(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=('bass',),
+        default_scope=None,
         middle_c_sounding_pitch=None,
         pitch_range='[D1, F4]',
         ):
@@ -53,13 +54,10 @@ class Tuba(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'brass player',
-            'tubist',
-            ])
         self._is_primary_instrument = True
 
     ### PUBLIC PROPERTIES ###
@@ -72,13 +70,9 @@ class Tuba(Instrument):
 
             ::
 
-                >>> tuba = abjad.instrumenttools.Tuba()
+                >>> tuba = abjad.Tuba()
                 >>> tuba.allowable_clefs
-                ClefList([Clef('bass')])
-
-            ::
-
-                >>> show(tuba.allowable_clefs) # doctest: +SKIP
+                ('bass',)
 
         Returns clef list.
         '''
@@ -92,7 +86,7 @@ class Tuba(Instrument):
 
             ::
 
-                >>> tuba = abjad.instrumenttools.Tuba()
+                >>> tuba = abjad.Tuba()
                 >>> tuba.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -112,7 +106,7 @@ class Tuba(Instrument):
 
             ::
 
-                >>> tuba = abjad.instrumenttools.Tuba()
+                >>> tuba = abjad.Tuba()
                 >>> tuba.name
                 'tuba'
 
@@ -128,7 +122,7 @@ class Tuba(Instrument):
 
             ::
 
-                >>> tuba = abjad.instrumenttools.Tuba()
+                >>> tuba = abjad.Tuba()
                 >>> tuba.name_markup
                 Markup(contents=['Tuba'])
 
@@ -148,7 +142,7 @@ class Tuba(Instrument):
 
             ::
 
-                >>> tuba = abjad.instrumenttools.Tuba()
+                >>> tuba = abjad.Tuba()
                 >>> tuba.pitch_range
                 PitchRange('[D1, F4]')
 
@@ -168,7 +162,7 @@ class Tuba(Instrument):
 
             ::
 
-                >>> tuba = abjad.instrumenttools.Tuba()
+                >>> tuba = abjad.Tuba()
                 >>> tuba.short_name
                 'tb.'
 
@@ -184,7 +178,7 @@ class Tuba(Instrument):
 
             ::
 
-                >>> tuba = abjad.instrumenttools.Tuba()
+                >>> tuba = abjad.Tuba()
                 >>> tuba.short_name_markup
                 Markup(contents=['Tb.'])
 

@@ -11,7 +11,7 @@ class AltoTrombone(Instrument):
             >>> staff = abjad.Staff("c4 d4 e4 fs4")
             >>> clef = abjad.Clef('bass')
             >>> abjad.attach(clef, staff[0])
-            >>> alto_trombone = abjad.instrumenttools.AltoTrombone()
+            >>> alto_trombone = abjad.AltoTrombone()
             >>> abjad.attach(alto_trombone, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -43,6 +43,7 @@ class AltoTrombone(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=('bass', 'tenor'),
+        default_scope=None,
         middle_c_sounding_pitch=None,
         pitch_range='[A2, Bb5]',
         ):
@@ -53,14 +54,10 @@ class AltoTrombone(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            default_scope=default_scope,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._performer_names.extend([
-            'brass player',
-            'trombonist',
-            ])
-        self._starting_clefs = type(self.allowable_clefs)(['bass'])
 
     ### SPECIAL METHODS ###
 
@@ -74,9 +71,9 @@ class AltoTrombone(Instrument):
 
             ::
 
-                >>> alto_trombone = abjad.instrumenttools.AltoTrombone()
+                >>> alto_trombone = abjad.AltoTrombone()
                 >>> f(alto_trombone)
-                abjad.instrumenttools.AltoTrombone(
+                abjad.AltoTrombone(
                     name='alto trombone',
                     short_name='alt. trb.',
                     name_markup=abjad.Markup(
@@ -85,12 +82,8 @@ class AltoTrombone(Instrument):
                     short_name_markup=abjad.Markup(
                         contents=['Alt. trb.'],
                         ),
-                    allowable_clefs=abjad.instrumenttools.ClefList(
-                        [
-                            abjad.Clef('bass'),
-                            abjad.Clef('tenor'),
-                            ]
-                        ),
+                    allowable_clefs=('bass', 'tenor'),
+                    default_scope='Staff',
                     middle_c_sounding_pitch=abjad.NamedPitch("c'"),
                     pitch_range=abjad.PitchRange('[A2, Bb5]'),
                     )
@@ -110,13 +103,9 @@ class AltoTrombone(Instrument):
 
             ::
 
-                >>> alto_trombone = abjad.instrumenttools.AltoTrombone()
+                >>> alto_trombone = abjad.AltoTrombone()
                 >>> alto_trombone.allowable_clefs
-                ClefList([Clef('bass'), Clef('tenor')])
-
-            ::
-
-                >>> show(alto_trombone.allowable_clefs) # doctest: +SKIP
+                ('bass', 'tenor')
 
         Returns clef list.
         '''
@@ -130,7 +119,7 @@ class AltoTrombone(Instrument):
 
             ::
 
-                >>> alto_trombone = abjad.instrumenttools.AltoTrombone()
+                >>> alto_trombone = abjad.AltoTrombone()
                 >>> alto_trombone.middle_c_sounding_pitch
                 NamedPitch("c'")
 
@@ -150,7 +139,7 @@ class AltoTrombone(Instrument):
 
             ::
 
-                >>> alto_trombone = abjad.instrumenttools.AltoTrombone()
+                >>> alto_trombone = abjad.AltoTrombone()
                 >>> alto_trombone.name
                 'alto trombone'
 
@@ -166,7 +155,7 @@ class AltoTrombone(Instrument):
 
             ::
 
-                >>> alto_trombone = abjad.instrumenttools.AltoTrombone()
+                >>> alto_trombone = abjad.AltoTrombone()
                 >>> alto_trombone.name_markup
                 Markup(contents=['Alto trombone'])
 
@@ -186,7 +175,7 @@ class AltoTrombone(Instrument):
 
             ::
 
-                >>> alto_trombone = abjad.instrumenttools.AltoTrombone()
+                >>> alto_trombone = abjad.AltoTrombone()
                 >>> alto_trombone.pitch_range
                 PitchRange('[A2, Bb5]')
 
@@ -206,7 +195,7 @@ class AltoTrombone(Instrument):
 
             ::
 
-                >>> alto_trombone = abjad.instrumenttools.AltoTrombone()
+                >>> alto_trombone = abjad.AltoTrombone()
                 >>> alto_trombone.short_name
                 'alt. trb.'
 
@@ -222,7 +211,7 @@ class AltoTrombone(Instrument):
 
             ::
 
-                >>> alto_trombone = abjad.instrumenttools.AltoTrombone()
+                >>> alto_trombone = abjad.AltoTrombone()
                 >>> alto_trombone.short_name_markup
                 Markup(contents=['Alt. trb.'])
 

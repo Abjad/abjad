@@ -8,6 +8,7 @@ from abjad.tools import durationtools
 
 ignored_classes = (
     datastructuretools.Enumeration,
+    datastructuretools.Path,
     )
 
 ignored_package_names = (

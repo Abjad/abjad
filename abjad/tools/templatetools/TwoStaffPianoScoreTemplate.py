@@ -39,7 +39,8 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     context_name_abbreviations = collections.OrderedDict({
         'rh': 'RH Voice',
@@ -59,48 +60,37 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
         Returns score.
         '''
         import abjad
-
-        # make RH voice and staff
         rh_voice = abjad.Voice(
-            [],
             name='RH Voice',
             )
         rh_staff = abjad.Staff(
             [rh_voice],
             name='RH Staff',
             )
-        clef = abjad.Clef('treble')
-        #abjad.attach(clef, rh_staff)
-        abjad.annotate(rh_staff, 'default_clef', clef)
-
-        # make LH voice and staff
         lh_voice = abjad.Voice(
-            [],
             name='LH Voice',
             )
         lh_staff = abjad.Staff(
             [lh_voice],
             name='LH Staff',
             )
-        clef = abjad.Clef('bass')
-        #abjad.attach(clef, lh_staff)
-        abjad.annotate(lh_staff, 'default_clef', clef)
-
-        # make piano staff
+        abjad.annotate(
+            lh_staff,
+            'default_clef',
+            abjad.Clef('bass'),
+            )
         staff_group = abjad.StaffGroup(
             [rh_staff, lh_staff],
             context_name='PianoStaff',
             name='Piano Staff',
             )
-        piano = abjad.instrumenttools.Piano()
-        #abjad.attach(piano, staff_group)
-        abjad.annotate(staff_group, 'default_instrument', piano)
-
-        # make two-staf piano score
-        two_staff_piano_score = abjad.Score(
+        abjad.annotate(
+            staff_group,
+            'default_instrument',
+            abjad.instrumenttools.Piano(),
+            )
+        score = abjad.Score(
             [staff_group],
             name='Two-Staff Piano Score',
             )
-
-        # return two-staff piano score
-        return two_staff_piano_score
+        return score

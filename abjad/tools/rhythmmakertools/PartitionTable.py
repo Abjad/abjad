@@ -93,7 +93,8 @@ class PartitionTable(TypedOrderedDict):
 
     ### PRIVATE METHODS ###
 
-    def _item_coercer(self, item):
+    @staticmethod
+    def _item_coercer(item):
         item = mathtools.NonreducedRatio(item)
         return item
 

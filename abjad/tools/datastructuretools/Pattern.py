@@ -1001,15 +1001,14 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            Pattern with rhythm-maker payload assigned to three
-            of every eight indices:
+            Pattern with string payload assigned to three of every eight
+            indices:
 
             ::
 
-                >>> maker = abjad.rhythmmakertools.NoteRhythmMaker()
                 >>> pattern = abjad.Pattern(
                 ...     indices=[0, 1, 7],
-                ...     payload=maker,
+                ...     payload='Allegro non troppo',
                 ...     period=8,
                 ...     )
 
@@ -1022,17 +1021,18 @@ class Pattern(AbjadValueObject):
                 ...         payload = pattern.payload
                 ...     else:
                 ...         payload = ''
-                ...     print(index, payload)
-                0 NoteRhythmMaker()
-                1 NoteRhythmMaker()
-                2
-                3
-                4
-                5
-                6
-                7 NoteRhythmMaker()
-                8 NoteRhythmMaker()
-                9 NoteRhythmMaker()
+                ...     print(index, repr(payload))
+                ...
+                0 'Allegro non troppo'
+                1 'Allegro non troppo'
+                2 ''
+                3 ''
+                4 ''
+                5 ''
+                6 ''
+                7 'Allegro non troppo'
+                8 'Allegro non troppo'
+                9 'Allegro non troppo'
 
         Defaults to none.
 
@@ -1688,44 +1688,6 @@ class Pattern(AbjadValueObject):
                     period=1,
                     )
 
-            ::
-
-                >>> maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
-                ...         tie_across_divisions=pattern,
-                ...         use_messiaen_style_ties=True,
-                ...         ),
-                ...     )
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> music = maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     music,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    {
-                        \time 7/16
-                        c'4..
-                    }
-                    {
-                        \time 3/8
-                        c'4. \repeatTie
-                    }
-                    {
-                        \time 7/16
-                        c'4.. \repeatTie
-                    }
-                    {
-                        \time 3/8
-                        c'4. \repeatTie
-                    }
-                }
-
         Returns pattern.
         '''
         return Pattern(
@@ -1754,41 +1716,6 @@ class Pattern(AbjadValueObject):
                     period=2,
                     )
 
-            ::
-
-                >>> maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     division_masks=[mask],
-                ...     )
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> music = maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     music,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    {
-                        \time 7/16
-                        c'4..
-                    }
-                    {
-                        \time 3/8
-                        r4.
-                    }
-                    {
-                        \time 7/16
-                        c'4..
-                    }
-                    {
-                        \time 3/8
-                        r4.
-                    }
-                }
-
         ..  container:: example
 
             Indexes every second and third division:
@@ -1804,42 +1731,6 @@ class Pattern(AbjadValueObject):
                     indices=[1, 2],
                     period=3,
                     )
-
-            ::
-
-                >>> maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     division_masks=[mask],
-                ...     )
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> music = maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     music,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    {
-                        \time 7/16
-                        c'4..
-                    }
-                    {
-                        \time 3/8
-                        r4.
-                    }
-                    {
-                        \time 7/16
-                        r4..
-                    }
-                    {
-                        \time 3/8
-                        c'4.
-                    }
-                }
-
 
         Returns pattern.
         '''
@@ -1868,47 +1759,9 @@ class Pattern(AbjadValueObject):
                     indices=[0],
                     )
 
-            ::
-
-                >>> maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
-                ...         tie_across_divisions=pattern,
-                ...         use_messiaen_style_ties=True,
-                ...         ),
-                ...     )
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> music = maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     music,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    {
-                        \time 7/16
-                        c'4..
-                    }
-                    {
-                        \time 3/8
-                        c'4. \repeatTie
-                    }
-                    {
-                        \time 7/16
-                        c'4..
-                    }
-                    {
-                        \time 3/8
-                        c'4.
-                    }
-                }
-
         ..  container:: example
 
-            Selects first two divisions for tie creation:
+            Indexes first two items:
 
             ::
 
@@ -1921,47 +1774,9 @@ class Pattern(AbjadValueObject):
                     indices=[0, 1],
                     )
 
-            ::
-
-                >>> maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
-                ...         tie_across_divisions=pattern,
-                ...         use_messiaen_style_ties=True,
-                ...         ),
-                ...     )
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> music = maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     music,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    {
-                        \time 7/16
-                        c'4..
-                    }
-                    {
-                        \time 3/8
-                        c'4. \repeatTie
-                    }
-                    {
-                        \time 7/16
-                        c'4.. \repeatTie
-                    }
-                    {
-                        \time 3/8
-                        c'4.
-                    }
-                }
-
         ..  container:: example
 
-            Selects no divisions for tie creation:
+            Indexes nothing:
 
             ::
 
@@ -1971,44 +1786,6 @@ class Pattern(AbjadValueObject):
 
                 >>> f(pattern)
                 abjad.Pattern()
-
-            ::
-
-                >>> maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
-                ...         tie_across_divisions=pattern,
-                ...         use_messiaen_style_ties=True,
-                ...         ),
-                ...     )
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> music = maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     music,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    {
-                        \time 7/16
-                        c'4..
-                    }
-                    {
-                        \time 3/8
-                        c'4.
-                    }
-                    {
-                        \time 7/16
-                        c'4..
-                    }
-                    {
-                        \time 3/8
-                        c'4.
-                    }
-                }
 
         Returns pattern.
         '''
@@ -2027,7 +1804,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            Indexes last two divisions for tie creation:
+            Indexes last two items:
 
             ::
 
@@ -2040,50 +1817,9 @@ class Pattern(AbjadValueObject):
                     indices=[-2, -1],
                     )
 
-            ::
-
-                >>> maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
-                ...         tie_across_divisions=pattern,
-                ...         use_messiaen_style_ties=True,
-                ...         ),
-                ...     )
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> music = maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     music,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    {
-                        \time 7/16
-                        c'4..
-                    }
-                    {
-                        \time 3/8
-                        c'4.
-                    }
-                    {
-                        \time 7/16
-                        c'4..
-                    }
-                    {
-                        \time 3/8
-                        c'4. \repeatTie
-                    }
-                }
-
-            (Tie creation happens between adjacent divisions. Selecting only the
-            last division creates no ties.)
-
         ..  container:: example
 
-            Selects no divisions for tie creation:
+            Indexes nothing:
 
             ::
 
@@ -2093,44 +1829,6 @@ class Pattern(AbjadValueObject):
 
                 >>> f(pattern)
                 abjad.Pattern()
-
-            ::
-
-                >>> maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
-                ...         tie_across_divisions=pattern,
-                ...         use_messiaen_style_ties=True,
-                ...         ),
-                ...     )
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> music = maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     music,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    {
-                        \time 7/16
-                        c'4..
-                    }
-                    {
-                        \time 3/8
-                        c'4.
-                    }
-                    {
-                        \time 7/16
-                        c'4..
-                    }
-                    {
-                        \time 3/8
-                        c'4.
-                    }
-                }
 
         Returns pattern.
         '''

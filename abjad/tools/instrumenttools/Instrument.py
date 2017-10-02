@@ -38,6 +38,7 @@ class Instrument(AbjadValueObject):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=None,
+        default_scope=None,
         middle_c_sounding_pitch=None,
         pitch_range=None,
         ):
@@ -47,18 +48,15 @@ class Instrument(AbjadValueObject):
             name = str(name)
         self._name = name
         if name_markup is not None:
-            name_markup = abjad.Markup(
-                name_markup)
+            name_markup = abjad.Markup(name_markup)
         self._name_markup = name_markup
         if short_name is not None:
             short_name = str(short_name)
         self._short_name = short_name
         if short_name_markup is not None:
-            short_name_markup = abjad.Markup(
-                short_name_markup)
+            short_name_markup = abjad.Markup(short_name_markup)
         self._short_name_markup = short_name_markup
-        allowable_clefs = allowable_clefs or ['treble']
-        allowable_clefs = abjad.instrumenttools.ClefList(allowable_clefs)
+        allowable_clefs = allowable_clefs or ('treble',)
         self._allowable_clefs = allowable_clefs
         if isinstance(pitch_range, str):
             pitch_range = abjad.PitchRange(pitch_range)
@@ -74,28 +72,21 @@ class Instrument(AbjadValueObject):
         middle_c_sounding_pitch = abjad.NamedPitch(
             middle_c_sounding_pitch)
         self._middle_c_sounding_pitch = middle_c_sounding_pitch
-        self._default_scope = abjad.Staff
+        self._default_scope = default_scope or 'Staff'
         self._is_primary_instrument = False
         self._performer_names = ['instrumentalist']
         self._starting_clefs = copy.copy(allowable_clefs)
 
     ### PRIVATE PROPERTIES ###
 
-    @staticmethod
-    def _default_name_to_instrument_class(default_name):
-        for instrument_class in Instrument._list_instruments():
-            instrument = instrument_class()
-            if instrument.name == default_name:
-                return instrument_class
-
     @property
     def _scope_name(self):
-        if isinstance(self._default_scope, type):
-            return self._default_scope.__name__
-        elif isinstance(self._default_scope, str):
-            return self._default_scope
+        if isinstance(self.default_scope, type):
+            return self.default_scope.__name__
+        elif isinstance(self.default_scope, str):
+            return self.default_scope
         else:
-            return type(self._default_scope).__name__
+            return type(self.default_scope).__name__
 
     ### PRIVATE METHODS ###
 
@@ -104,13 +95,6 @@ class Instrument(AbjadValueObject):
         if abjad.inspect(component_expression).has_indicator(Instrument):
             return False
         return True
-
-    def _get_default_performer_name(self):
-        if self._performer_names is None:
-            performer_name = '{} player'.format(self._default_name)
-            return performer_name
-        else:
-            return self._performer_names[-1]
 
     def _get_format_specification(self):
         import abjad
@@ -121,9 +105,7 @@ class Instrument(AbjadValueObject):
             repr_kwargs_names=[],
             )
 
-    # TODO: _scope_name needs to be taken from IndicatorWrapper!
-    #       should not be stored on instrument.
-    def _get_lilypond_format(self):
+    def _get_lilypond_format(self, context=None):
         import abjad
         result = []
         if self._do_not_format:
@@ -134,9 +116,13 @@ class Instrument(AbjadValueObject):
                 name_markup,
                 direction=None,
                 )
+        if context is not None:
+            context = context.context_name
+        else:
+            context = self._scope_name
         line = r'\set {!s}.instrumentName = {!s}'
         line = line.format(
-            self._scope_name,
+            context,
             name_markup,
             )
         result.append(line)
@@ -148,18 +134,11 @@ class Instrument(AbjadValueObject):
                 direction=None,
                 )
         line = line.format(
-            self._scope_name,
+            context,
             short_name_markup,
             )
         result.append(line)
         return result
-
-    def _get_performer_names(self):
-        if self._performer_names is None:
-            performer_name = '{} player'.format(self._default_name)
-            return [performer_name]
-        else:
-            return self._performer_names[:]
 
     def _initialize_default_name_markups(self):
         import abjad
@@ -180,83 +159,6 @@ class Instrument(AbjadValueObject):
             else:
                 self._short_name_markup = None
 
-    @classmethod
-    def _list_names(class_):
-        r'''Lists instrument names.
-
-        ::
-
-            >>> function = abjad.instrumenttools.Instrument._list_names
-            >>> for name in function():
-            ...     name
-            ...
-            'accordion'
-            'alto'
-            'alto flute'
-            ...
-
-        Returns list.
-        '''
-        names = []
-        for instrument_class in class_._list_instruments():
-            instrument = instrument_class()
-            assert instrument.name is not None, repr(instrument)
-            names.append(instrument.name)
-        names.sort(key=lambda x: x.lower())
-        return names
-
-    @staticmethod
-    def _list_instruments(classes=None):
-        r'''Lists instruments.
-
-        ::
-
-            >>> function = abjad.instrumenttools.Instrument._list_instruments
-            >>> for instrument in function():
-            ...     instrument.__name__
-            ...
-            'Accordion'
-            'AltoFlute'
-            'AltoSaxophone'
-            'AltoTrombone'
-            'AltoVoice'
-            'BaritoneSaxophone'
-            ...
-
-        Returns list.
-        '''
-        from abjad.tools import instrumenttools
-        if classes is None:
-            classes = (instrumenttools.Instrument,)
-        instruments = []
-        for value in instrumenttools.__dict__.values():
-            try:
-                if issubclass(value, classes):
-                    if value is not instrumenttools.Instrument:
-                        instruments.append(value)
-            except TypeError:
-                pass
-        instruments.sort(key=lambda x: x.__name__.lower())
-        return instruments
-
-    @classmethod
-    def _list_primary_instruments(class_):
-        primary_instruments = []
-        for instrument_class in class_._list_instruments():
-            instrument = instrument_class()
-            if instrument._is_primary_instrument:
-                primary_instruments.append(instrument_class)
-        return primary_instruments
-
-    @classmethod
-    def _list_secondary_instruments(class_):
-        secondary_instruments = []
-        for instrument_class in class_._list_instruments():
-            instrument = instrument_class()
-            if not instrument._is_primary_instrument:
-                secondary_instruments.append(instrument_class)
-        return secondary_instruments
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -265,10 +167,19 @@ class Instrument(AbjadValueObject):
 
         Returns clef list.
         '''
-        import abjad
         if self._allowable_clefs is None:
-            self._allowable_clefs = abjad.instrumenttools.ClefList('treble')
+            self._allowable_clefs = ('treble',)
         return self._allowable_clefs
+
+    @property
+    def default_scope(self):
+        r'''Gets default scope.
+
+        Defaults to staff.
+
+        Returns context or context name.
+        '''
+        return self._default_scope
 
     @property
     def middle_c_sounding_pitch(self):
@@ -344,7 +255,7 @@ class Instrument(AbjadValueObject):
             ::
 
                 >>> staff = abjad.Staff("<c' e' g'>4 d'4 r4 e'4")
-                >>> clarinet = abjad.instrumenttools.ClarinetInBFlat()
+                >>> clarinet = abjad.ClarinetInBFlat()
                 >>> abjad.attach(clarinet, staff[0])
                 >>> show(staff) # doctest: +SKIP
 
@@ -408,7 +319,7 @@ class Instrument(AbjadValueObject):
             ::
 
                 >>> staff = abjad.Staff("<c' e' g'>4 d'4 r4 e'4")
-                >>> clarinet = abjad.instrumenttools.ClarinetInBFlat()
+                >>> clarinet = abjad.ClarinetInBFlat()
                 >>> abjad.attach(clarinet, staff[0])
                 >>> show(staff) # doctest: +SKIP
 
