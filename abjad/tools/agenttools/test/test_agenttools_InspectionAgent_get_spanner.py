@@ -34,4 +34,4 @@ def test_agenttools_InspectionAgent_get_spanner_02():
     slur = abjad.Slur()
     abjad.attach(slur, leaves)
     for leaf in leaves:
-        assert slur == abjad.inspect(leaf).get_spanner(abjad.Slur, in_parentage=True)
+        assert slur == abjad.inspect(leaf).get_spanner(abjad.Slur)

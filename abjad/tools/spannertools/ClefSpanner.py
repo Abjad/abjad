@@ -110,7 +110,7 @@ class ClefSpanner(Spanner):
     def _get_lilypond_format_bundle(self, leaf):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         prototype = (scoretools.Note, scoretools.Chord, type(None))
-        first_leaf = self._get_leaves()[0]
+        first_leaf = self.leaves[0]
         current_clef = inspect(first_leaf).get_effective(indicatortools.Clef)
         set_clef = False
         reset_clef = False

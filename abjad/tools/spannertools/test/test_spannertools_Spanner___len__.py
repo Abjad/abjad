@@ -29,7 +29,6 @@ def test_spannertools_Spanner___len___01():
         )
 
     assert len(beam) == 2
-    assert len(beam.components) == 2
 
 
 def test_spannertools_Spanner___len___02():
@@ -61,4 +60,3 @@ def test_spannertools_Spanner___len___02():
         )
 
     assert len(beam) == 6
-    assert len(beam.components) == 6

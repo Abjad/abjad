@@ -207,7 +207,7 @@ class Component(AbjadObject):
     def _detach_spanners(self, prototype=None):
         spanners = self._get_spanners(prototype=prototype)
         for spanner in spanners:
-            spanner._sever_all_components()
+            spanner._sever_all_leaves()
         return spanners
 
     def _extract(self, scale_contents=False):
@@ -268,13 +268,6 @@ class Component(AbjadObject):
 
     def _get_annotation_wrappers(self):
         return [_ for _ in self._indicator_wrappers if _.is_annotation]
-
-    def _get_components(self, prototype=None, include_self=True):
-        argument = self
-        if include_self:
-            argument = [self]
-        components = iterate(argument).by_class(prototype)
-        return selectiontools.Selection(components)
 
     def _get_contents(self, include_self=True):
         result = []
@@ -600,11 +593,8 @@ class Component(AbjadObject):
                     if 0 <= index + n:
                         return self._parent[index + n]
 
-    def _get_spanner(self, prototype=None, in_parentage=False):
-        spanners = self._get_spanners(
-            prototype=prototype,
-            in_parentage=in_parentage,
-            )
+    def _get_spanner(self, prototype=None):
+        spanners = self._get_spanners(prototype=prototype)
         if not spanners:
             message = 'no spanner found.'
             raise MissingSpannerError(message)
@@ -624,11 +614,7 @@ class Component(AbjadObject):
             indicators.extend(indicators_)
         return indicators
 
-    def _get_spanners(
-        self,
-        prototype=None,
-        in_parentage=False,
-        ):
+    def _get_spanners(self, prototype=None):
         from abjad.tools import spannertools
         prototype = prototype or (spannertools.Spanner,)
         if not isinstance(prototype, tuple):
@@ -646,11 +632,7 @@ class Component(AbjadObject):
         prototype = tuple(prototype)
         spanner_objects = tuple(spanner_objects)
         matching_spanners = set()
-        in_parentage = bool(in_parentage)
-        if in_parentage:
-            components = self._get_parentage(include_self=True)
-        else:
-            components = (self,)
+        components = (self,)
         for component in components:
             for spanner in set(component._spanners):
                 if isinstance(spanner, prototype):
@@ -689,15 +671,8 @@ class Component(AbjadObject):
         indicators = self._get_indicators(prototype=prototype)
         return bool(indicators)
 
-    def _has_spanner(
-        self,
-        prototype=None,
-        in_parentage=False,
-        ):
-        spanners = self._get_spanners(
-            prototype=prototype,
-            in_parentage=in_parentage,
-            )
+    def _has_spanner(self, prototype=None):
+        spanners = self._get_spanners(prototype=prototype)
         return bool(spanners)
 
     def _is_immediate_temporal_successor_of(self, component):

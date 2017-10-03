@@ -82,6 +82,22 @@ class NamedPitch(Pitch):
                 aqs1 * 1/4
             }
 
+        ::
+
+            >>> pitch = abjad.NamedPitch('Aqs3')
+            >>> show(pitch) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> staff = pitch.__illustrate__()[abjad.Staff]
+            >>> f(staff)
+            \new Staff \with {
+                \override TimeSignature.stencil = ##f
+            } {
+                \clef "bass"
+                aqs1 * 1/4
+            }
+
     ..  container:: example
 
         Initializes arrowed pitch:

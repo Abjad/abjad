@@ -25,7 +25,7 @@ def test_spannertools_Spanner__remove_01():
         '''
         )
 
-    beam._remove(beam.components[1])
+    beam._remove(beam[1])
 
     "Spanner is now discontiguous: c'8, e'8, f'8 but no d'8."
 
@@ -75,8 +75,8 @@ def test_spannertools_Spanner__remove_02():
         '''
         )
 
-    result = beam._remove(beam.components[-1])
-    result = beam._remove(beam.components[-1])
+    result = beam._remove(beam[-1])
+    result = beam._remove(beam[-1])
 
     assert format(voice) == abjad.String.normalize(
         r'''

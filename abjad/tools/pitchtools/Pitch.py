@@ -41,11 +41,11 @@ class Pitch(AbjadValueObject):
         {}          # plus an optional accidental symbol
         (?P<octave_number>
             [-]?    # plus an optional negative sign
-            [0-9]+  # plus one or more digits
+            [0-9]*  # plus zero or more digits
         )
         )
         '''.format(
-        Accidental._symbol_regex_body,
+        Accidental._comprehensive_regex_body,
         )
 
     _pitch_class_octave_number_regex = re.compile(

@@ -122,6 +122,7 @@ class Markup(AbjadValueObject):
         self,
         contents=None,
         direction=None,
+        literal=None,
         stack_priority=0,
         ):
         from abjad.tools.topleveltools import parse
@@ -1372,6 +1373,32 @@ class Markup(AbjadValueObject):
         '''
         command = MarkupCommand('fraction', str(numerator), str(denominator))
         return Markup(contents=command, direction=direction)
+
+    @staticmethod
+    def from_literal(string, direction=None, stack_priority=0):
+        r'''Makes markup from literal `string` and bypasses parser.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = abjad.Markup.from_literal('F#4')
+                >>> f(markup)
+                \markup { "F#4" }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        markup = Markup(
+            contents='',
+            direction=direction,
+            stack_priority=stack_priority,
+            )
+        markup._contents = (string,)
+        return markup
 
     def general_align(self, axis, direction):
         r'''LilyPond ``\general-align`` markup command.

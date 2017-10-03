@@ -24,7 +24,7 @@ class LabelAgent(abctools.AbjadObject):
             ::
 
                 >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-                >>> abjad.label(staff).with_pitches()
+                >>> abjad.label(staff).with_pitches(locale='us')
 
             ::
 
@@ -37,22 +37,22 @@ class LabelAgent(abctools.AbjadObject):
                     c'4
                         ^ \markup {
                             \small
-                                c'
+                                C4
                             }
                     e'4
                         ^ \markup {
                             \small
-                                e'
+                                E4
                             }
                     d'4
                         ^ \markup {
                             \small
-                                d'
+                                D4
                             }
                     f'4
                         ^ \markup {
                             \small
-                                f'
+                                F4
                             }
                 }
 
@@ -61,7 +61,7 @@ class LabelAgent(abctools.AbjadObject):
             ::
 
                 >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-                >>> expression = abjad.label().with_pitches()
+                >>> expression = abjad.label().with_pitches(locale='us')
                 >>> f(expression)
                 abjad.Expression(
                     callbacks=[
@@ -70,7 +70,7 @@ class LabelAgent(abctools.AbjadObject):
                             is_initializer=True,
                             ),
                         abjad.Expression(
-                            evaluation_template='{}.with_pitches()',
+                            evaluation_template="{}.with_pitches(locale='us')",
                             qualified_method_name='abjad.LabelAgent.with_pitches',
                             ),
                         ],
@@ -89,22 +89,22 @@ class LabelAgent(abctools.AbjadObject):
                     c'4
                         ^ \markup {
                             \small
-                                c'
+                                C4
                             }
                     e'4
                         ^ \markup {
                             \small
-                                e'
+                                E4
                             }
                     d'4
                         ^ \markup {
                             \small
-                                d'
+                                D4
                             }
                     f'4
                         ^ \markup {
                             \small
-                                f'
+                                F4
                             }
                 }
 
@@ -2934,7 +2934,7 @@ class LabelAgent(abctools.AbjadObject):
                 if label is not None:
                     attach(label, note)
 
-    def with_pitches(self, direction=Up, prototype=None):
+    def with_pitches(self, direction=Up, locale=None, prototype=None):
         r'''Labels logical ties with pitches.
 
         ..  container:: example
@@ -3017,6 +3017,89 @@ class LabelAgent(abctools.AbjadObject):
                             ^ \markup {
                                 \small
                                     fs''
+                                }
+                    }
+
+        ..  container:: example
+
+            Labels logical ties with American pitch names:
+
+            ..  container:: example
+
+                ::
+
+                    >>> staff = abjad.Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
+                    >>> abjad.label(staff).with_pitches(locale='us', prototype=None)
+                    >>> abjad.override(staff).text_script.staff_padding = 4
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  docs::
+
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #4
+                    } {
+                        <a d' fs'>4
+                            ^ \markup {
+                                \small
+                                    \column
+                                        {
+                                            "F#4"
+                                            D4
+                                            A3
+                                        }
+                                }
+                        g'4 ~
+                            ^ \markup {
+                                \small
+                                    G4
+                                }
+                        g'8
+                        r8
+                        fs''4
+                            ^ \markup {
+                                \small
+                                    "F#5"
+                                }
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> staff = abjad.Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
+                    >>> expression = abjad.label().with_pitches(locale='us', prototype=None)
+                    >>> expression(staff)
+                    >>> abjad.override(staff).text_script.staff_padding = 4
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  docs::
+
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #4
+                    } {
+                        <a d' fs'>4
+                            ^ \markup {
+                                \small
+                                    \column
+                                        {
+                                            "F#4"
+                                            D4
+                                            A3
+                                        }
+                                }
+                        g'4 ~
+                            ^ \markup {
+                                \small
+                                    G4
+                                }
+                        g'8
+                        r8
+                        fs''4
+                            ^ \markup {
+                                \small
+                                    "F#5"
                                 }
                     }
 
@@ -3501,54 +3584,60 @@ class LabelAgent(abctools.AbjadObject):
 
         Returns none.
         '''
+        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        prototype = prototype or pitchtools.NamedPitch
-        logical_ties = iterate(self.client).by_logical_tie()
+        prototype = prototype or abjad.NamedPitch
+        logical_ties = abjad.iterate(self.client).by_logical_tie()
         for logical_tie in logical_ties:
             leaf = logical_tie.head
             label = None
-            if prototype is pitchtools.NamedPitch:
-                if isinstance(leaf, scoretools.Note):
-                    pitch = leaf.written_pitch
-                    label = str(pitch)
-                    label = markuptools.Markup(label, direction=direction)
+            if prototype is abjad.NamedPitch:
+                if isinstance(leaf, abjad.Note):
+                    label = leaf.written_pitch.get_name(locale=locale)
+                    label = abjad.Markup.from_literal(
+                        label,
+                        direction=direction,
+                        )
                     label = label.small()
-                elif isinstance(leaf, scoretools.Chord):
+                elif isinstance(leaf, abjad.Chord):
                     pitches = leaf.written_pitches
                     pitches = reversed(pitches)
-                    pitches = [markuptools.Markup(_) for _ in pitches]
-                    label = markuptools.Markup.column(pitches)
+                    pitches = [
+                        abjad.Markup.from_literal(_.get_name(locale=locale))
+                        for _ in pitches
+                        ]
+                    label = abjad.Markup.column(pitches, direction=direction)
                     label = label.small()
-            elif prototype is pitchtools.NumberedPitch:
-                if isinstance(leaf, scoretools.Note):
+            elif prototype is abjad.NumberedPitch:
+                if isinstance(leaf, abjad.Note):
                     pitch = leaf.written_pitch.number
                     label = str(pitch)
-                    label = markuptools.Markup(label, direction=direction)
+                    label = abjad.Markup(label, direction=direction)
                     label = label.small()
-                elif isinstance(leaf, scoretools.Chord):
+                elif isinstance(leaf, abjad.Chord):
                     pitches = leaf.written_pitches
                     pitches = reversed(pitches)
                     pitches = [_.number for _ in pitches]
-                    pitches = [markuptools.Markup(_) for _ in pitches]
-                    label = markuptools.Markup.column(pitches)
+                    pitches = [abjad.Markup(_) for _ in pitches]
+                    label = abjad.Markup.column(pitches)
                     label = label.small()
-            elif prototype is pitchtools.NumberedPitchClass:
-                if isinstance(leaf, scoretools.Note):
+            elif prototype is abjad.NumberedPitchClass:
+                if isinstance(leaf, abjad.Note):
                     pitch = leaf.written_pitch.pitch_class.number
                     label = str(pitch)
-                    label = markuptools.Markup(label, direction=direction)
+                    label = abjad.Markup(label, direction=direction)
                     label = label.small()
-                elif isinstance(leaf, scoretools.Chord):
+                elif isinstance(leaf, abjad.Chord):
                     pitches = leaf.written_pitches
                     pitches = reversed(pitches)
                     pitches = [_.pitch_class.number for _ in pitches]
-                    pitches = [markuptools.Markup(_) for _ in pitches]
-                    label = markuptools.Markup.column(pitches)
+                    pitches = [abjad.Markup(_) for _ in pitches]
+                    label = abjad.Markup.column(pitches)
                     label = label.small()
             if label is not None:
-                label = new(label, direction=direction)
-                attach(label, leaf)
+                label = abjad.new(label, direction=direction)
+                abjad.attach(label, leaf)
 
     def with_set_classes(self, direction=Up, prototype=None):
         r'''Labels items in client with set-classes.

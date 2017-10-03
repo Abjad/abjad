@@ -232,7 +232,7 @@ class Hairpin(Spanner):
         new._stop_dynamic = self.stop_dynamic
 
     def _format_time_test(self, leaf):
-        if not 1 < len(self._get_leaves()):
+        if not 1 < len(self.leaves):
             message = '{} fails format-time test.'
             message = message.format(self)
             raise Exception(message)

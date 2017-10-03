@@ -73,7 +73,7 @@ class RhythmMaker(AbjadValueObject):
         divisions = self._coerce_divisions(divisions)
         selections = self._make_music(divisions, rotation)
         selections = self._apply_specifiers(selections, divisions)
-        self._check_well_formedness(selections)
+        self._check_wellformedness(selections)
         return selections
 
     def __illustrate__(self, divisions=((3, 8), (4, 8), (3, 16), (4, 16))):
@@ -215,11 +215,11 @@ class RhythmMaker(AbjadValueObject):
         selections = tuplet_specifier(selections, divisions)
         return selections
 
-    def _check_well_formedness(self, selections):
+    def _check_wellformedness(self, selections):
         for component in iterate(selections).by_class():
             inspector = inspect(component)
             if not inspector.is_well_formed():
-                report = inspector.tabulate_well_formedness_violations()
+                report = inspector.tabulate_wellformedness()
                 report = repr(component) + '\n' + report
                 raise Exception(report)
 

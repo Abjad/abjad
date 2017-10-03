@@ -353,7 +353,7 @@ class Container(Component):
         graph._node_order = node_order
 
         if spanner:
-            pairs = abjad.sequence(spanner.components).nwise()
+            pairs = abjad.sequence(spanner.leaves).nwise()
             for component_one, component_two in pairs:
                 node_one = node_mapping[component_one]
                 node_two = node_mapping[component_two]
@@ -364,7 +364,7 @@ class Container(Component):
                         },
                     )
                 edge.attach(node_one, node_two)
-            for component in spanner.components:
+            for component in spanner.leaves:
                 node = node_mapping[component]
                 table = node[0]
                 table.attributes['border'] = 4
@@ -1615,8 +1615,8 @@ class Container(Component):
         self._music.reverse()
         self._update_later(offsets=True)
         spanners = self._get_descendants()._get_spanners()
-        for s in spanners:
-            s._components.sort(key=lambda x: x._get_timespan().start_offset)
+        for spanner in spanners:
+            spanner._leaves.sort(key=lambda x: x._get_timespan().start_offset)
 
     ### PUBLIC PROPERTIES ###
 
