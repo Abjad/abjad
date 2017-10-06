@@ -1,4 +1,3 @@
-from abjad.tools import durationtools
 from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadValueObject
 
@@ -49,12 +48,13 @@ class MetricAccentKernel(AbjadValueObject):
     ### INITIALIZER ###
 
     def __init__(self, kernel=None):
+        import abjad
         kernel = kernel or {}
         assert isinstance(kernel, dict)
         #assert 1 < len(kernel)
         for key, value in kernel.items():
-            assert isinstance(key, durationtools.Offset)
-            assert isinstance(value, durationtools.Multiplier)
+            assert isinstance(key, abjad.Offset)
+            assert isinstance(value, abjad.Multiplier)
         self._kernel = kernel.copy()
         self._offsets = tuple(sorted(self._kernel))
 
@@ -77,8 +77,9 @@ class MetricAccentKernel(AbjadValueObject):
 
         Returns float.
         '''
+        import abjad
         offset_count = self.count_offsets(argument)
-        response = durationtools.Multiplier(0, 1)
+        response = abjad.Multiplier(0, 1)
         for offset, count in offset_count.items():
             if offset in self._kernel:
                 weight = self._kernel[offset]
@@ -152,8 +153,7 @@ class MetricAccentKernel(AbjadValueObject):
             ::
 
                 >>> MetricAccentKernel = abjad.MetricAccentKernel
-                >>> selector = abjad.select().by_leaf(flatten=True)
-                >>> leaves = selector(score)
+                >>> leaves = abjad.select(score).by_leaf()
                 >>> counter = abjad.MetricAccentKernel.count_offsets(leaves)
                 >>> for offset, count in sorted(counter.items()):
                 ...     offset, count
@@ -210,7 +210,8 @@ class MetricAccentKernel(AbjadValueObject):
     def duration(self):
         r'''Gets duration.
         '''
-        return durationtools.Duration(self._offsets[-1])
+        import abjad
+        return abjad.Duration(self._offsets[-1])
 
     @property
     def kernel(self):

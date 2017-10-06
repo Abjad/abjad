@@ -7,7 +7,7 @@ from abjad.tools import systemtools
 
 ignored_classes = (
     datastructuretools.String,
-    systemtools.StorageFormatAgent,
+    systemtools.StorageFormatManager,
     systemtools.FormatSpecification,
     )
 

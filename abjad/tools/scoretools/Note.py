@@ -1,8 +1,7 @@
 import copy
-from abjad.tools import durationtools
-from abjad.tools.scoretools.Leaf import Leaf
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import inspect
+from .Leaf import Leaf
 
 
 class Note(Leaf):
@@ -37,13 +36,12 @@ class Note(Leaf):
     ### INITIALIZER ###
 
     def __init__(self, *arguments):
+        import abjad
         from abjad.ly import drums
-        from abjad.tools import scoretools
-        from abjad.tools import topleveltools
         assert len(arguments) in (0, 1, 2)
         if len(arguments) == 1 and isinstance(arguments[0], str):
             string = '{{ {} }}'.format(arguments[0])
-            parsed = topleveltools.parse(string)
+            parsed = abjad.parse(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             arguments = [parsed[0]]
         is_cautionary = False
@@ -69,21 +67,21 @@ class Note(Leaf):
             written_pitch, written_duration = arguments
         elif len(arguments) == 0:
             written_pitch = 'C4'
-            written_duration = durationtools.Duration(1, 4)
+            written_duration = abjad.Duration(1, 4)
         else:
             message = 'can not initialize note from {!r}.'
             raise ValueError(message.format(arguments))
         Leaf.__init__(self, written_duration)
         if written_pitch is not None:
             if written_pitch not in drums:
-                self.note_head = scoretools.NoteHead(
+                self.note_head = abjad.NoteHead(
                     written_pitch=written_pitch,
                     is_cautionary=is_cautionary,
                     is_forced=is_forced,
                     is_parenthesized=is_parenthesized,
                     )
             else:
-                self.note_head = scoretools.DrumNoteHead(
+                self.note_head = abjad.DrumNoteHead(
                     written_pitch=written_pitch,
                     is_cautionary=is_cautionary,
                     is_forced=is_forced,
@@ -106,22 +104,20 @@ class Note(Leaf):
     ### PRIVATE METHODS ###
 
     def _divide(self, pitch=None):
-        from abjad.tools import markuptools
-        from abjad.tools import pitchtools
-        from abjad.tools import scoretools
-        pitch = pitch or pitchtools.NamedPitch('b', 3)
-        pitch = pitchtools.NamedPitch(pitch)
+        import abjad
+        pitch = pitch or abjad.NamedPitch('b', 3)
+        pitch = abjad.NamedPitch(pitch)
         treble = copy.copy(self)
         bass = copy.copy(self)
-        detach(markuptools.Markup, treble)
-        detach(markuptools.Markup, bass)
+        detach(abjad.Markup, treble)
+        detach(abjad.Markup, bass)
         if treble.written_pitch < pitch:
-            treble = scoretools.Rest(treble)
+            treble = abjad.Rest(treble)
         if pitch <= bass.written_pitch:
-            bass = scoretools.Rest(bass)
-        up_markup = self._get_markup(direction=Up)
+            bass = abjad.Rest(bass)
+        up_markup = self._get_markup(direction=abjad.Up)
         up_markup = [copy.copy(markup) for markup in up_markup]
-        down_markup = self._get_markup(direction=Down)
+        down_markup = self._get_markup(direction=abjad.Down)
         down_markup = [copy.copy(markup) for markup in down_markup]
         for markup in up_markup:
             markup(treble)
@@ -156,17 +152,16 @@ class Note(Leaf):
             return self._get_body()[0]
 
     def _get_sounding_pitch(self):
-        from abjad.tools import instrumenttools
-        from abjad.tools import pitchtools
-        if 'sounding pitch' in inspect(self).get_indicators(str):
+        import abjad
+        if 'sounding pitch' in abjad.inspect(self).get_indicators(str):
             return self.written_pitch
         else:
-            instrument = self._get_effective(instrumenttools.Instrument)
+            instrument = self._get_effective(abjad.Instrument)
             if instrument:
                 sounding_pitch = instrument.middle_c_sounding_pitch
             else:
-                sounding_pitch = pitchtools.NamedPitch('C4')
-            interval = pitchtools.NamedPitch('C4') - sounding_pitch
+                sounding_pitch = abjad.NamedPitch('C4')
+            interval = abjad.NamedPitch('C4') - sounding_pitch
             sounding_pitch = interval.transpose(self.written_pitch)
             return sounding_pitch
 

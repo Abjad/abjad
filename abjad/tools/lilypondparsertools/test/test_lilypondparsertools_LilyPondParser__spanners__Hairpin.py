@@ -119,9 +119,9 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_07():
 
     maker = abjad.NoteMaker()
     target = abjad.Staff(maker([0] * 5, [(1, 4)]))
-    hairpin = abjad.Hairpin(descriptor='<', direction=Up)
+    hairpin = abjad.Hairpin(descriptor='<', direction=abjad.Up)
     abjad.attach(hairpin, target[:3])
-    hairpin = abjad.Hairpin(descriptor='>', direction=Down)
+    hairpin = abjad.Hairpin(descriptor='>', direction=abjad.Down)
     abjad.attach(hairpin, target[2:])
     dynamic = abjad.Dynamic('ppp')
     abjad.attach(dynamic, target[-1])

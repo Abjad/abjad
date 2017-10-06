@@ -18,9 +18,9 @@ class Enumerator(abctools.AbjadValueObject):
     ### INITIALIZER ###
 
     def __init__(self, sequence=None):
-        from abjad.tools import datastructuretools
+        import abjad
         if sequence is not None:
-            sequence = datastructuretools.Sequence(items=sequence)
+            sequence = abjad.sequence(items=sequence)
         self._sequence = sequence
 
     ### PRIVATE METHODS ###
@@ -91,7 +91,7 @@ class Enumerator(abctools.AbjadValueObject):
 
         ::
 
-            >>> sequence = abjad.Sequence(range(10))
+            >>> sequence = abjad.sequence(range(10))
             >>> rgf = [1, 1, 2, 2, 1, 2, 3, 3, 2, 4]
 
         ::
@@ -102,7 +102,7 @@ class Enumerator(abctools.AbjadValueObject):
         Returns list of lists.
         '''
         import abjad
-        rgf = abjad.Sequence(items=rgf)
+        rgf = abjad.sequence(items=rgf)
         if not Enumerator._is_restricted_growth_function(rgf):
             message = 'must be restricted growth function: {!r}.'
             message = message.format(rgf)
@@ -118,8 +118,8 @@ class Enumerator(abctools.AbjadValueObject):
             part_index = part_number - 1
             part = partition[part_index]
             part.append(n)
-        partition = [abjad.Sequence(_) for _ in partition]
-        return abjad.Sequence(items=partition)
+        partition = [abjad.sequence(_) for _ in partition]
+        return abjad.sequence(items=partition)
 
     @staticmethod
     def _yield_restricted_growth_functions(length):
@@ -313,7 +313,7 @@ class Enumerator(abctools.AbjadValueObject):
                 if isinstance(self.sequence, str):
                     yield ''.join(sublist)
                 else:
-                    yield abjad.Sequence(items=sublist)
+                    yield abjad.sequence(items=sublist)
 
     def yield_outer_product(self):
         '''Yields outer product of sequences in sequence.
@@ -393,11 +393,11 @@ class Enumerator(abctools.AbjadValueObject):
                     result.extend([item_1 + [item_2]])
             return result
         import abjad
-        sequences = [abjad.Sequence(_) for _ in self.sequence]
+        sequences = [abjad.sequence(_) for _ in self.sequence]
         sequences[0] = [[_] for _ in sequences[0]]
         result = functools.reduce(_helper, sequences)
         for element in result:
-            yield abjad.Sequence(items=element)
+            yield abjad.sequence(items=element)
 
     def yield_pairs(self):
         r'''Yields pairs sequence items.
@@ -462,7 +462,7 @@ class Enumerator(abctools.AbjadValueObject):
             start = i + 1
             for item_ in self.sequence[start:]:
                 pair = [item, item_]
-                yield abjad.Sequence(items=pair)
+                yield abjad.sequence(items=pair)
 
     def yield_partitions(self):
         '''Yields partitions of sequence.
@@ -512,8 +512,8 @@ class Enumerator(abctools.AbjadValueObject):
                 else:
                     part = [n]
                     partition.append(part)
-            parts = [abjad.Sequence(items=_) for _ in partition]
-            partition = abjad.Sequence(items=parts)
+            parts = [abjad.sequence(items=_) for _ in partition]
+            partition = abjad.sequence(items=parts)
             yield partition
 
     def yield_permutations(self):
@@ -539,7 +539,7 @@ class Enumerator(abctools.AbjadValueObject):
         import abjad
         length = len(self.sequence)
         for permutation in itertools.permutations(tuple(range(length))):
-            permutation = abjad.Sequence(items=permutation)
+            permutation = abjad.sequence(items=permutation)
             yield self.sequence.permute(permutation)
 
     def yield_set_partitions(self):

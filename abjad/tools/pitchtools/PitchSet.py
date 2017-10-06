@@ -1,4 +1,5 @@
 import collections
+import inspect
 from abjad.tools.pitchtools.Set import Set
 
 
@@ -49,7 +50,8 @@ class PitchSet(Set):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### SPECIAL METHODS ###
 
@@ -374,8 +376,8 @@ class PitchSet(Set):
 
         Returns pitch set.
         '''
-        from abjad.tools import pitchtools
-        pitch_segment = pitchtools.PitchSegment.from_selection(selection)
+        import abjad
+        pitch_segment = abjad.PitchSegment.from_selection(selection)
         return class_(
             items=pitch_segment,
             item_class=item_class,
@@ -486,7 +488,7 @@ class PitchSet(Set):
                 [_ for _ in self if _.number % 12 == pc]
                 for pc in [x % 12 for x in pitch_classes]
                 ]
-            result = abjad.Sequence(result).flatten()
+            result = abjad.sequence(result).flatten()
         elif isinstance(pitch_classes, int):
             result = [p for p in pitch_classes if p % 12 == pitch_classes][0]
         else:

@@ -274,8 +274,8 @@ class PitchClassSet(Set):
 
         Returns pitch-class set.
         '''
-        from abjad.tools import pitchtools
-        pitch_segment = pitchtools.PitchSegment.from_selection(selection)
+        import abjad
+        pitch_segment = abjad.PitchSegment.from_selection(selection)
         return class_(
             items=pitch_segment,
             item_class=item_class,
@@ -349,7 +349,7 @@ class PitchClassSet(Set):
         candidates = []
         for i in range(self.cardinality):
             candidate = [abjad.NumberedPitch(_) for _ in pitch_classes]
-            candidate = abjad.Sequence(candidate).rotate(n=-i)
+            candidate = abjad.sequence(candidate).rotate(n=-i)
             candidates.append(candidate)
         return self._get_most_compact_ordering(candidates)
 

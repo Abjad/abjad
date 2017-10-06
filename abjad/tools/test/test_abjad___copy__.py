@@ -12,7 +12,7 @@ ignored_classes = (
     abjadbooktools.CodeOutputProxy,
     abjadbooktools.GraphvizOutputProxy,
     abjadbooktools.LilyPondOutputProxy,
-    systemtools.StorageFormatAgent,
+    systemtools.StorageFormatManager,
     systemtools.FormatSpecification,
     )
 

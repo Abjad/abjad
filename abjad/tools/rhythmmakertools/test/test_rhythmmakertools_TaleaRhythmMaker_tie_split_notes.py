@@ -15,7 +15,7 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_01():
     divisions = [(2, 8), (2, 8), (2, 8), (2, 8)]
     selections = rhythm_maker(divisions)
 
-    selections = abjad.Sequence(selections).flatten()
+    selections = abjad.sequence(selections).flatten()
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
@@ -60,7 +60,7 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_02():
     divisions = [(3, 16), (5, 8), (4, 8), (7, 16)]
     selections = rhythm_maker(divisions)
 
-    selections = abjad.Sequence(selections).flatten()
+    selections = abjad.sequence(selections).flatten()
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)

@@ -29,7 +29,7 @@ def test_spannertools_MeasuredComplexBeam_direction_01():
         )
 
     leaves = abjad.select(staff).by_leaf()
-    beam = abjad.MeasuredComplexBeam(direction=Down)
+    beam = abjad.MeasuredComplexBeam(direction=abjad.Down)
     abjad.attach(beam, leaves)
 
     assert format(staff) == abjad.String.normalize(

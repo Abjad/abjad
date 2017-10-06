@@ -17,7 +17,7 @@ ignored_classes = (
     abjadbooktools.GraphvizOutputProxy,
     abjadbooktools.LilyPondOutputProxy,
     datastructuretools.Path,
-    systemtools.StorageFormatAgent,
+    systemtools.StorageFormatManager,
     systemtools.FormatSpecification,
     )
 
@@ -50,7 +50,7 @@ ignored_classes = (
     datastructuretools.Path,
     metertools.Meter,
     tonalanalysistools.RootedChordClass,
-    systemtools.StorageFormatAgent,
+    systemtools.StorageFormatManager,
     systemtools.FormatSpecification,
     )
 

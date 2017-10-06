@@ -6,9 +6,9 @@ def test_lilypondparsertools_LilyPondParser__indicators__Articulation_01():
 
     maker = abjad.NoteMaker()
     target = abjad.Staff(maker(["c''"], [(1, 4)] * 6 + [(1, 2)]))
-    articulation = abjad.Articulation('marcato', Up)
+    articulation = abjad.Articulation('marcato', abjad.Up)
     abjad.attach(articulation, target[0])
-    articulation = abjad.Articulation('stopped', Down)
+    articulation = abjad.Articulation('stopped', abjad.Down)
     abjad.attach(articulation, target[1])
     articulation = abjad.Articulation('tenuto')
     abjad.attach(articulation, target[2])
@@ -48,9 +48,9 @@ def test_lilypondparsertools_LilyPondParser__indicators__Articulation_01():
 def test_lilypondparsertools_LilyPondParser__indicators__Articulation_02():
 
     target = abjad.Staff([abjad.Note("c'", (1, 4))])
-    articulation = abjad.Articulation('marcato', Up)
+    articulation = abjad.Articulation('marcato', abjad.Up)
     abjad.attach(articulation, target[0])
-    articulation = abjad.Articulation('stopped', Down)
+    articulation = abjad.Articulation('stopped', abjad.Down)
     abjad.attach(articulation, target[0])
     articulation = abjad.Articulation('tenuto')
     abjad.attach(articulation, target[0])

@@ -345,9 +345,10 @@ class RomanNumeral(AbjadValueObject):
 
         Returns markup.
         '''
+        import abjad
         symbol = self.symbol
         symbol = symbol.replace('#', r'\sharp ')
-        return markuptools.Markup(symbol, Down)
+        return markuptools.Markup(symbol, abjad.Down)
 
     @property
     def quality(self):

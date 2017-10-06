@@ -1,4 +1,3 @@
-from abjad.tools import durationtools
 from abjad.tools.abctools import AbjadValueObject
 
 
@@ -30,11 +29,12 @@ class DurationSpecifier(AbjadValueObject):
         rewrite_meter=None,
         spell_metrically=None,
         ):
+        import abjad
         from abjad.tools import rhythmmakertools
         assert isinstance(decrease_monotonic, bool)
         self._decrease_monotonic = decrease_monotonic
         if forbidden_duration is not None:
-            forbidden_duration = durationtools.Duration(forbidden_duration)
+            forbidden_duration = abjad.Duration(forbidden_duration)
         self._forbidden_duration = forbidden_duration
         assert isinstance(rewrite_meter, (bool, type(None)))
         self._rewrite_meter = rewrite_meter
@@ -134,7 +134,7 @@ class DurationSpecifier(AbjadValueObject):
         import abjad
         meters = [abjad.Meter(_) for _ in meters]
         durations = [abjad.Duration(_) for _ in meters]
-        selections = abjad.Sequence(selections).flatten()
+        selections = abjad.sequence(selections).flatten()
         meter_duration = sum(durations)
         music_duration = sum(
             abjad.inspect(_).get_duration() for _ in selections)
@@ -154,13 +154,13 @@ class DurationSpecifier(AbjadValueObject):
         components = abjad.mutate(voice).eject_contents()
         component_durations = [
             abjad.inspect(_).get_duration() for _ in components]
-        parts = abjad.Sequence(component_durations)
+        parts = abjad.sequence(component_durations)
         parts = parts.partition_by_weights(
             weights=durations,
             allow_part_weights=abjad.Exact,
             )
         part_lengths = [len(_) for _ in parts]
-        parts = abjad.Sequence(components).partition_by_counts(
+        parts = abjad.sequence(components).partition_by_counts(
             counts=part_lengths,
             overhang=abjad.Exact,
             )

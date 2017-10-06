@@ -74,12 +74,12 @@ class NumberedPitch(Pitch):
     ### INITIALIZER ###
 
     def __init__(self, number=0, arrow=None):
-        from abjad.tools import pitchtools
+        import abjad
         try:
             number = number.number
         except AttributeError:
             pass
-        if Pitch._is_pitch_number(number):
+        if abjad.Pitch._is_pitch_number(number):
             number = number
         elif (isinstance(number, tuple) and
             len(number) == 2 and
@@ -91,10 +91,10 @@ class NumberedPitch(Pitch):
         else:
             if number is None:
                 number = 0
-            number = pitchtools.NamedPitch(number).number
-        number = mathtools.integer_equivalent_number_to_integer(number)
+            number = abjad.NamedPitch(number).number
+        number = abjad.mathtools.integer_equivalent_number_to_integer(number)
         self._number = number
-        if arrow not in (Up, Down, None):
+        if arrow not in (abjad.Up, abjad.Down, None):
             message = 'arrow must be up, down or none: {!r}.'
             message = message.format(arrow)
             raise TypeError(message)
@@ -332,7 +332,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> abjad.NumberedPitch(13, arrow=Up).arrow
+                >>> abjad.NumberedPitch(13, arrow=abjad.Up).arrow
                 Up
 
         ..  container:: example
@@ -341,7 +341,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> abjad.NumberedPitch(13, arrow=Down).arrow
+                >>> abjad.NumberedPitch(13, arrow=abjad.Down).arrow
                 Down
 
         Returns up, down or none.

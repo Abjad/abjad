@@ -3247,7 +3247,7 @@ class PitchClassSegment(Segment):
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        items = abjad.Sequence(self._collection).rotate(n=n)
+        items = abjad.sequence(self._collection).rotate(n=n)
         if stravinsky:
             n = 0 - float(items[0].number)
             segment = new(self, items=items)

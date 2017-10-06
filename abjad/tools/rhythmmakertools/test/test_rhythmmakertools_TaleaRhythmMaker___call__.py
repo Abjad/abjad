@@ -16,7 +16,7 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___01():
     divisions = [(2, 8), (5, 8)]
     selections = rhythm_maker(divisions)
 
-    selections = abjad.Sequence(selections).flatten()
+    selections = abjad.sequence(selections).flatten()
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
@@ -65,7 +65,7 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___02():
     divisions = [(2, 8), (5, 8)]
     selections = rhythm_maker(divisions)
 
-    selections = abjad.Sequence(selections).flatten()
+    selections = abjad.sequence(selections).flatten()
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)

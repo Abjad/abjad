@@ -1,4 +1,4 @@
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from .AbjadObject import AbjadObject
 
 
 class AbjadValueObject(AbjadObject):
@@ -17,8 +17,8 @@ class AbjadValueObject(AbjadObject):
 
         Returns new Abjad value object.
         '''
-        from abjad.tools.topleveltools import new
-        return new(self)
+        import abjad
+        return abjad.new(self)
 
     def __eq__(self, argument):
         r'''Is true when all initialization values of Abjad value object equal
@@ -26,8 +26,8 @@ class AbjadValueObject(AbjadObject):
 
         Returns true or false.
         '''
-        from abjad.tools import systemtools
-        return systemtools.TestManager.compare_objects(self, argument)
+        import abjad
+        return abjad.TestManager.compare_objects(self, argument)
 
     def __hash__(self):
         r'''Hashes Abjad value object.
@@ -35,7 +35,7 @@ class AbjadValueObject(AbjadObject):
         Returns integer.
         '''
         from abjad.tools import systemtools
-        hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
+        hash_values = systemtools.StorageFormatManager(self).get_hash_values()
         try:
             result = hash(hash_values)
         except TypeError:

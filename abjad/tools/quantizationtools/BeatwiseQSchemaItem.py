@@ -1,4 +1,3 @@
-from abjad.tools import durationtools
 from abjad.tools.quantizationtools.QSchemaItem import QSchemaItem
 
 
@@ -63,13 +62,14 @@ class BeatwiseQSchemaItem(QSchemaItem):
         search_tree=None,
         tempo=None,
         ):
+        import abjad
         QSchemaItem.__init__(
             self,
             search_tree=search_tree,
             tempo=tempo,
             )
         if beatspan is not None:
-            beatspan = durationtools.Duration(beatspan)
+            beatspan = abjad.Duration(beatspan)
             assert 0 < beatspan
         self._beatspan = beatspan
 

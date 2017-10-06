@@ -184,7 +184,7 @@ class Scale(PitchClassSegment):
         '''
         import abjad
         dics = []
-        for left, right in abjad.Sequence(self).nwise(wrapped=True):
+        for left, right in abjad.sequence(self).nwise(wrapped=True):
             dic = left - right
             dics.append(dic)
         dicg = abjad.IntervalClassSegment(

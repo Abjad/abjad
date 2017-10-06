@@ -1,5 +1,4 @@
 from abjad.tools import graphtools
-from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools import spannertools
 from abjad.tools.datastructuretools.TreeContainer import TreeContainer

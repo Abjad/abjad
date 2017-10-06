@@ -37,7 +37,7 @@ class ReSTDirective(TreeContainer):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        agent = systemtools.StorageFormatAgent(self)
+        agent = systemtools.StorageFormatManager(self)
         names = list(agent.signature_keyword_names)
         for name in ('children', 'name', 'options'):
             if not getattr(self, name, None) and name in names:

@@ -55,7 +55,7 @@ def make_bartok_score():
     dynamic = abjad.Dynamic('mp')
     abjad.attach(dynamic, lower_measures[1][3])
     score.add_final_bar_line()
-    abjad.selector = abjad.select().by_leaf(flatten=True)
+    abjad.selector = abjad.select().by_leaf()
     upper_leaves = abjad.selector(upper_staff)
     lower_leaves = abjad.selector(lower_staff)
     beam = abjad.Beam()

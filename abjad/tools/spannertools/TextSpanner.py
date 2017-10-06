@@ -299,7 +299,7 @@ class TextSpanner(Spanner):
             # format markup normally
             else:
                 current_markup = current_markups[0]
-                markup = abjad.new(current_markup, direction=Up)
+                markup = abjad.new(current_markup, direction=abjad.Up)
                 string = format(markup, 'lilypond')
                 bundle.right.markup.append(string)
         if current_line_segment is not None:

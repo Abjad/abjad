@@ -1,5 +1,5 @@
-def select(argument=None):
-    r'''Selects `argument` or makes empty selector.
+def select(items=None):
+    r'''Selects `items` or makes select expression.
 
     ..  container:: example
 
@@ -8,7 +8,7 @@ def select(argument=None):
         ::
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> selection = abjad.select(staff[:2])
+            >>> selection = abjad.select(staff[:2]).by_leaf(pitched=True)
             >>> for note in selection:
             ...     abjad.override(note).note_head.color = 'red'
 
@@ -30,24 +30,28 @@ def select(argument=None):
 
     ..  container:: example
 
-        Initializes empty selector:
+        Returns selection agent:
 
         ::
 
-            >>> abjad.select()
-            Selector()
+            >>> abjad.select(staff)
+            Selection([Staff("c'4 d'4 e'4 f'4")])
 
-    Returns selection when `argument` is not none.
+        ::
 
-    Returns selector when `argument` is none.
+            >>> abjad.f(abjad.select())
+            abjad.Expression(
+                callbacks=[
+                    abjad.Expression(
+                        evaluation_template='abjad.Selection',
+                        is_initializer=True,
+                        ),
+                    ],
+                proxy_class=abjad.Selection,
+                )
+
     '''
     import abjad
-    if argument is None:
-        return abjad.Selector()
-    elif isinstance(argument, abjad.Component):
-        return abjad.Selection(argument)
-    elif hasattr(argument, '_music'):
-        return abjad.Selection(argument._music)
-    elif isinstance(argument, abjad.Spanner):
-        return abjad.Selection(argument.leaves)
-    return abjad.Selection(argument)
+    if items is None:
+        return abjad.Expression().select()
+    return abjad.Selection(items=items)

@@ -1,5 +1,4 @@
 from abjad.tools import datastructuretools
-from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.Segment import Segment
 from abjad.tools.topleveltools import new
@@ -37,10 +36,10 @@ class IntervalSegment(Segment):
     ### INITIALIZER ###
 
     def __init__(self, items=None, item_class=None):
-        from abjad.tools import pitchtools
-        if isinstance(items, pitchtools.PitchSegment):
+        import abjad
+        if isinstance(items, abjad.PitchSegment):
             intervals = []
-            for one, two in datastructuretools.Sequence(items).nwise():
+            for one, two in abjad.sequence(items).nwise():
                 intervals.append(one - two)
             items = intervals
         Segment.__init__(
@@ -82,8 +81,9 @@ class IntervalSegment(Segment):
 
         Returns multiplier.
         '''
-        return durationtools.Multiplier.from_float(
-            sum([x.number for x in self])) / len(self)
+        import abjad
+        result = sum([x.number for x in self]) / len(self)
+        return abjad.Multiplier.from_float(result)
 
     @property
     def spread(self):

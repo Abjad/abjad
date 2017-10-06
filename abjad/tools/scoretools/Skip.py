@@ -1,5 +1,4 @@
-from abjad.tools import durationtools
-from abjad.tools.scoretools.Leaf import Leaf
+from .Leaf import Leaf
 
 
 class Skip(Leaf):
@@ -29,12 +28,12 @@ class Skip(Leaf):
     ### INITIALIZER ###
 
     def __init__(self, *arguments):
-        from abjad.tools.topleveltools import parse
+        import abjad
         input_leaf = None
         written_duration = None
         if len(arguments) == 1 and isinstance(arguments[0], str):
             string = '{{ {} }}'.format(arguments[0])
-            parsed = parse(string)
+            parsed = abjad.parse(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             input_leaf = parsed[0]
             written_duration = input_leaf.written_duration
@@ -44,7 +43,7 @@ class Skip(Leaf):
         elif len(arguments) == 1 and not isinstance(arguments[0], str):
             written_duration = arguments[0]
         elif len(arguments) == 0:
-            written_duration = durationtools.Duration(1, 4)
+            written_duration = abjad.Duration(1, 4)
         else:
             message = 'can not initialize skip from {!r}.'
             message = message.format(arguments)

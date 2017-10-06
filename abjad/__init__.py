@@ -31,7 +31,6 @@ del AbjadConfiguration
 # import all tools packages
 from abjad.tools import *
 from abjad.tools.abctools import *
-from abjad.tools.agenttools import *
 from abjad.tools.datastructuretools import *
 
 # instantiate ordinal constants
@@ -54,22 +53,18 @@ index_every = Pattern.index_every
 index_first = Pattern.index_first
 index_last = Pattern.index_last
 
-from abjad.tools.durationtools import *
 from abjad.tools.exceptiontools import *
 from abjad.tools.indicatortools import *
 from abjad.tools.instrumenttools import *
 from abjad.tools.lilypondfiletools import *
 from abjad.tools.lilypondnametools import *
-from abjad.tools.makertools import *
 from abjad.tools.markuptools import *
 from abjad.tools.pitchtools import *
 from abjad.tools.schemetools import *
 from abjad.tools.scoretools import *
-from abjad.tools.selectiontools import *
-from abjad.tools.selectortools import *
+from abjad.tools.segmenttools import *
 from abjad.tools.spannertools import *
 from abjad.tools.systemtools import *
-from abjad.tools.templatetools import *
 from abjad.tools.topleveltools import *
 
 # mathtools classes (but not functions)

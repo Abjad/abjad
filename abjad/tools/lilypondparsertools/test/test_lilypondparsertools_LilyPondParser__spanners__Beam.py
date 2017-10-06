@@ -120,9 +120,9 @@ def test_lilypondparsertools_LilyPondParser__spanners__Beam_07():
 
     maker = abjad.NoteMaker()
     target = abjad.Container(maker([0] * 4, [(1, 4)]))
-    beam = abjad.Beam(direction=Up)
+    beam = abjad.Beam(direction=abjad.Up)
     abjad.attach(beam, target[0:3])
-    beam = abjad.Beam(direction=Down)
+    beam = abjad.Beam(direction=abjad.Down)
     abjad.attach(beam, target[3:])
 
     assert format(target) == abjad.String.normalize(

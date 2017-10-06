@@ -1,4 +1,3 @@
-from abjad.tools import durationtools
 from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadObject
 
@@ -44,27 +43,28 @@ class QEventProxy(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, *arguments):
+        import abjad
         from abjad.tools import quantizationtools
         if len(arguments) == 2:
-            q_event, offset = arguments[0], durationtools.Offset(arguments[1])
+            q_event, offset = arguments[0], abjad.Offset(arguments[1])
             assert isinstance(q_event, quantizationtools.QEvent)
             assert 0 <= offset <= 1
         elif len(arguments) == 3:
             q_event, minimum, maximum = arguments[0], \
-                durationtools.Offset(arguments[1]), \
-                durationtools.Offset(arguments[2])
+                abjad.Offset(arguments[1]), \
+                abjad.Offset(arguments[2])
             assert isinstance(q_event, quantizationtools.QEvent)
             assert minimum <= q_event.offset <= maximum
             offset = (q_event.offset - minimum) / (maximum - minimum)
         elif len(arguments) == 0:
             q_event = None
-            offset = durationtools.Offset(0)
+            offset = abjad.Offset(0)
         else:
             message = 'can not initialize {}: {!r}.'
             message = message.format(type(self).__name__, arguments)
             raise ValueError(message)
         self._q_event = q_event
-        self._offset = durationtools.Offset(offset)
+        self._offset = abjad.Offset(offset)
 
     ### SPECIAL METHODS ###
 
@@ -90,7 +90,7 @@ class QEventProxy(AbjadObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatAgent(self).get_storage_format()
+            return systemtools.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __hash__(self):

@@ -106,8 +106,7 @@ class SkipRhythmMaker(RhythmMaker):
             multiplier = multiplied_duration / written_duration
             abjad.attach(multiplier, skip)
             skips.append(skip)
-        skips = abjad.select(skips)
-        return skips
+        return abjad.select(skips)
 
     ### PUBLIC PROPERTIES ###
 

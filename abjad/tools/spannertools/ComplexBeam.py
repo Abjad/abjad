@@ -68,6 +68,7 @@ class ComplexBeam(Beam):
         isolated_nib_direction=None,
         overrides=None,
         ):
+        import abjad
         Beam.__init__(
             self,
             direction=direction,
@@ -76,7 +77,8 @@ class ComplexBeam(Beam):
         if beam_rests is not None:
             beam_rests = bool(beam_rests)
         self._beam_rests = beam_rests
-        assert isolated_nib_direction in (Left, Right, True, False, None)
+        prototype = (abjad.Left, abjad.Right, True, False, None)
+        assert isolated_nib_direction in prototype
         self._isolated_nib_direction = isolated_nib_direction
 
     ### PRIVATE METHODS ###
@@ -242,12 +244,13 @@ class ComplexBeam(Beam):
     def _get_left_right_for_lone_leaf(self, leaf):
         r'''Gets left and right flag counts for only leaf in spanner.
         '''
+        import abjad
         current_flag_count = leaf.written_duration.flag_count
         left, right = None, None
-        if self.isolated_nib_direction == Left:
+        if self.isolated_nib_direction == abjad.Left:
             left = current_flag_count
             right = 0
-        elif self.isolated_nib_direction == Right:
+        elif self.isolated_nib_direction == abjad.Right:
             left = 0
             right = current_flag_count
         elif self.isolated_nib_direction is True:
@@ -407,7 +410,7 @@ class ComplexBeam(Beam):
             ::
 
                 >>> measure = abjad.Measure((1, 16), "c'16")
-                >>> beam = abjad.ComplexBeam(isolated_nib_direction=Left)
+                >>> beam = abjad.ComplexBeam(isolated_nib_direction=abjad.Left)
                 >>> abjad.attach(beam, measure[:])
                 >>> show(measure) # doctest: +SKIP
 
@@ -428,7 +431,7 @@ class ComplexBeam(Beam):
             ::
 
                 >>> measure = abjad.Measure((1, 16), "c'16")
-                >>> beam = abjad.ComplexBeam(isolated_nib_direction=Right)
+                >>> beam = abjad.ComplexBeam(isolated_nib_direction=abjad.Right)
                 >>> abjad.attach(beam, measure[:])
                 >>> show(measure) # doctest: +SKIP
 

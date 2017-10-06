@@ -38,7 +38,7 @@ ignored_classes = (
     lilypondparsertools.ReducedLyParser,
     lilypondparsertools.SchemeParser,
     rhythmtreetools.RhythmTreeParser,
-    abjad.StorageFormatAgent,
+    abjad.StorageFormatManager,
     abjad.FormatSpecification,
     abjad.TestCase,
     )
@@ -63,10 +63,10 @@ def test_abjad___doc___01(class_):
             if getattr(class_, attribute.name).__doc__ is None:
                 missing_doc_names.append(attribute.name)
     if missing_doc_names:
-        message = '\n'.join('{}.{}'.format(class_.__name__, name)
-            for name in missing_doc_names)
+        names = [class_.__name__ + '.' + _ for _ in missing_doc_names]
+        names = ', '.join(names)
         message = 'Missing docstrings for: {}'
-        message = message.format(message)
+        message = message.format(names)
         raise Exception(message)
 
 

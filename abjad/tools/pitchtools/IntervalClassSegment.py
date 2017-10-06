@@ -98,8 +98,8 @@ class IntervalClassSegment(Segment):
 
         Returns interval-class segment.
         '''
-        from abjad.tools import pitchtools
-        pitch_segment = pitchtools.PitchSegment.from_selection(selection)
+        import abjad
+        pitch_segment = abjad.PitchSegment.from_selection(selection)
         pitches = [_ for _ in pitch_segment]
         intervals = mathtools.difference_series(pitches)
         return class_(

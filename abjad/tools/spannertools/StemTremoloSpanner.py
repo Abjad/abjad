@@ -1,4 +1,3 @@
-from abjad.tools import durationtools
 from abjad.tools.spannertools.Spanner import Spanner
 
 
@@ -36,12 +35,13 @@ class StemTremoloSpanner(Spanner):
         minimum_duration=None,
         overrides=None,
         ):
+        import abjad
         Spanner.__init__(
             self,
             overrides=overrides,
             )
         if minimum_duration is not None:
-            minimum_duration = durationtools.Duration(minimum_duration)
+            minimum_duration = abjad.Duration(minimum_duration)
         self._minimum_duration = minimum_duration
 
     ### PRIVATE METHODS ###

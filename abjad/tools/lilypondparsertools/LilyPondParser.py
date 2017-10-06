@@ -3,7 +3,6 @@ import itertools
 import ply
 from abjad.tools import abctools
 from abjad.tools import datastructuretools
-from abjad.tools import durationtools
 from abjad.tools import indicatortools
 from abjad.tools import lilypondfiletools
 from abjad.tools import markuptools
@@ -400,7 +399,7 @@ class LilyPondParser(abctools.Parser):
         first_leaf = None
         if leaves:
             first_leaf = leaves[0]
-        pairs = datastructuretools.Sequence(leaves).nwise(wrapped=True)
+        pairs = abjad.sequence(leaves).nwise(wrapped=True)
         for leaf, next_leaf in pairs:
 
             span_events = _get_span_events(leaf)
@@ -434,11 +433,11 @@ class LilyPondParser(abctools.Parser):
                             hasattr(spanner_class, 'direction')):
                             direction = span_event.direction
                             spanner = spanner_class(direction=direction)
-                            selection = abjad.select([leaf, next_leaf])
+                            selection = abjad.select([leaf, next_leaf]).by_leaf()
                             attach(spanner, selection)
                         else:
                             spanner = spanner_class()
-                            selection = abjad.select([leaf, next_leaf])
+                            selection = abjad.select([leaf, next_leaf]).by_leaf()
                             attach(spanner, selection)
 
                 # otherwise throw an error
@@ -839,6 +838,7 @@ class LilyPondParser(abctools.Parser):
 
     def _reset_parser_variables(self):
         from abjad.tools import lilypondparsertools
+        import abjad
         try:
             self._parser.restart()
         except:
@@ -847,7 +847,7 @@ class LilyPondParser(abctools.Parser):
         self._chord_pitch_orders = {}
         self._lexer.push_state('notes')
         self._default_duration = lilypondparsertools.LilyPondDuration(
-            durationtools.Duration(1, 4), None)
+            abjad.Duration(1, 4), None)
         self._last_chord = None
         # LilyPond's default!
         # self._last_chord = scoretools.Chord(['c', 'g', "c'"], (1, 4))

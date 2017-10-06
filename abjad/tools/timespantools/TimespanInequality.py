@@ -1,5 +1,4 @@
 import bisect
-from abjad.tools import durationtools
 from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadObject
 
@@ -92,7 +91,7 @@ class TimespanInequality(AbjadObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatAgent(self).get_storage_format()
+            return systemtools.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     ### PRIVATE METHODS ###
@@ -162,6 +161,7 @@ class TimespanInequality(AbjadObject):
 
         Returns true or false.
         '''
+        import abjad
         make_repr = self._make_repr
         template = self.template
         template = template.replace(
@@ -172,7 +172,7 @@ class TimespanInequality(AbjadObject):
             'timespan_2.start_offset', make_repr(timespan_2_start_offset))
         template = template.replace(
             'timespan_2.stop_offset', make_repr(timespan_2_stop_offset))
-        truth_value = eval(template, {'Offset': durationtools.Offset})
+        truth_value = eval(template, {'Offset': abjad.Offset})
         return truth_value
 
     def evaluate_offset_inequality(
@@ -185,6 +185,7 @@ class TimespanInequality(AbjadObject):
 
         Returns true or false.
         '''
+        import abjad
         make_repr = self._make_repr
         template = self.template
         template = self.template
@@ -194,7 +195,7 @@ class TimespanInequality(AbjadObject):
             'timespan.stop', make_repr(timespan_stop))
         template = template.replace(
             'offset', make_repr(offset))
-        truth_value = eval(template, {'Offset': durationtools.Offset})
+        truth_value = eval(template, {'Offset': abjad.Offset})
         return truth_value
 
     def get_offset_indices(

@@ -1,12 +1,9 @@
 from abjad.tools import scoretools
-from abjad.tools import selectiontools
 from abjad.tools import spannertools
 from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
-from abjad.tools.topleveltools import override
-from abjad.tools.topleveltools import select
 
 
 class BeamSpecifier(AbjadValueObject):
@@ -98,43 +95,45 @@ class BeamSpecifier(AbjadValueObject):
 
         Returns none.
         '''
+        import abjad
         if self.beam_divisions_together:
             if self.hide_nibs:
-                beam = spannertools.MultipartBeam(beam_rests=self.beam_rests)
+                beam = abjad.MultipartBeam(beam_rests=self.beam_rests)
             else:
                 durations = []
                 for selection in selections:
-                    if isinstance(selection, selectiontools.Selection):
+                    if isinstance(selection, abjad.Selection):
                         duration = selection.get_duration()
                     else:
                         duration = selection._get_duration()
                     durations.append(duration)
-                beam = spannertools.DuratedComplexBeam(
+                beam = abjad.DuratedComplexBeam(
                     beam_rests=self.beam_rests,
                     durations=durations,
                     span_beam_count=1,
                     )
             components = []
             for selection in selections:
-                if isinstance(selection, selectiontools.Selection):
+                if isinstance(selection, abjad.Selection):
                     components.extend(selection)
-                elif isinstance(selection, scoretools.Tuplet):
+                elif isinstance(selection, abjad.Tuplet):
                     components.append(selection)
                 else:
                     raise TypeError(selection)
             if self.stemlet_length is not None:
-                grob_proxy = override(beam).staff.stem
+                grob_proxy = abjad.override(beam).staff.stem
                 grob_proxy.stemlet_length = self.stemlet_length
-            leaves = select(components).by_leaf()
-            attach(beam, leaves)
+            leaves = abjad.select(components).by_leaf(with_grace_notes=False)
+            abjad.attach(beam, leaves)
         elif self.beam_each_division:
             for selection in selections:
-                beam = spannertools.MultipartBeam(beam_rests=self.beam_rests)
+                beam = abjad.MultipartBeam(beam_rests=self.beam_rests)
                 if self.stemlet_length is not None:
-                    grob_proxy = override(beam).staff.stem
+                    grob_proxy = abjad.override(beam).staff.stem
                     grob_proxy.stemlet_length = self.stemlet_length
-                leaves = select(selection).by_leaf()
-                attach(beam, leaves)
+                leaves = abjad.Selection(selection).by_leaf(
+                    with_grace_notes=False)
+                abjad.attach(beam, leaves)
 
     def __format__(self, format_specification=''):
         r'''Formats beam specifier.
@@ -172,8 +171,8 @@ class BeamSpecifier(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
-    def _detach_all_beams(self, divisions):
-        for component in iterate(divisions).by_class():
+    def _detach_all_beams(self, divisions, with_grace_notes=False):
+        for component in iterate(divisions).by_class(with_grace_notes=False):
             detach(spannertools.Beam, component)
 
     ### PUBLIC PROPERTIES ###

@@ -6,7 +6,9 @@ def test_scoretools_Container___getitem___01():
     r'''Get one container component with positive index.
     '''
 
-    notes = [abjad.Note("c'8"), abjad.Note("d'8"), abjad.Note("e'8"), abjad.Note("f'8")]
+    notes = [
+        abjad.Note("c'8"), abjad.Note("d'8"),
+        abjad.Note("e'8"), abjad.Note("f'8")]
     voice = abjad.Voice(notes)
 
     assert voice[0] is notes[0]
@@ -19,7 +21,9 @@ def test_scoretools_Container___getitem___02():
     r'''Get one container component with negative index.
     '''
 
-    notes = [abjad.Note("c'8"), abjad.Note("d'8"), abjad.Note("e'8"), abjad.Note("f'8")]
+    notes = [
+        abjad.Note("c'8"), abjad.Note("d'8"),
+        abjad.Note("e'8"), abjad.Note("f'8")]
     voice = abjad.Voice(notes)
 
     assert voice[-1] is notes[3]
@@ -32,7 +36,9 @@ def test_scoretools_Container___getitem___03():
     r'''Get slice from container.
     '''
 
-    notes = [abjad.Note("c'8"), abjad.Note("d'8"), abjad.Note("e'8"), abjad.Note("f'8")]
+    notes = [
+        abjad.Note("c'8"), abjad.Note("d'8"),
+        abjad.Note("e'8"), abjad.Note("f'8")]
     voice = abjad.Voice(notes)
 
     assert voice[:1] == notes[:1]
@@ -54,7 +60,7 @@ def test_scoretools_Container___getitem___05():
     r'''Get one named component in subtree rooted at container.
     '''
 
-    template = abjad.templatetools.StringQuartetScoreTemplate()
+    template = abjad.StringQuartetScoreTemplate()
     score = template()
 
     assert score['First Violin Staff'].name == 'First Violin Staff'
@@ -65,7 +71,7 @@ def test_scoretools_Container___getitem___06():
     r'''Bad name raises exception.
     '''
 
-    template = abjad.templatetools.StringQuartetScoreTemplate()
+    template = abjad.StringQuartetScoreTemplate()
     score = template()
 
     assert pytest.raises(Exception, "score['Foo']")
@@ -75,7 +81,7 @@ def test_scoretools_Container___getitem___07():
     r'''Duplicate named contexts raise exception.
     '''
 
-    template = abjad.templatetools.StringQuartetScoreTemplate()
+    template = abjad.StringQuartetScoreTemplate()
     score = template()
 
     assert score['First Violin Voice'].name == 'First Violin Voice'

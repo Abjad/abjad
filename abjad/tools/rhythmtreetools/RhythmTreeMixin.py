@@ -2,7 +2,6 @@ import abc
 from abjad import Fraction
 from abjad.tools import abctools
 from abjad.tools import datastructuretools
-from abjad.tools import durationtools
 from abjad.tools import mathtools
 
 
@@ -18,8 +17,9 @@ class RhythmTreeMixin(abctools.AbjadObject):
 
     @abc.abstractmethod
     def __init__(self, preprolated_duration=1):
+        import abjad
         self._duration = 0
-        self._offset = durationtools.Offset(0)
+        self._offset = abjad.Offset(0)
         self._offsets_are_current = False
         self.preprolated_duration = preprolated_duration
 
@@ -34,6 +34,7 @@ class RhythmTreeMixin(abctools.AbjadObject):
     ### PRIVATE METHODS ###
 
     def _update_offsets_of_entire_tree(self):
+        import abjad
         def recurse(container, current_offset):
             container._offset = current_offset
             container._offsets_are_current = True
@@ -45,7 +46,7 @@ class RhythmTreeMixin(abctools.AbjadObject):
                     child._offsets_are_current = True
                     current_offset += child.duration
             return current_offset
-        offset = durationtools.Offset(0)
+        offset = abjad.Offset(0)
         root = self.root
         try:
             children = self.children
@@ -187,8 +188,9 @@ class RhythmTreeMixin(abctools.AbjadObject):
 
     @preprolated_duration.setter
     def preprolated_duration(self, argument):
+        import abjad
         if not isinstance(argument, Fraction):
-            argument = durationtools.Duration(argument)
+            argument = abjad.Duration(argument)
         assert 0 < argument
         self._duration = argument
         self._mark_entire_tree_for_later_update()
@@ -228,11 +230,12 @@ class RhythmTreeMixin(abctools.AbjadObject):
 
         Returns tuple.
         '''
-        prolations = [durationtools.Multiplier(1)]
+        import abjad
+        prolations = [abjad.Multiplier(1)]
         improper_parentage = self.improper_parentage
-        pairs = datastructuretools.Sequence(improper_parentage).nwise()
+        pairs = abjad.sequence(improper_parentage).nwise()
         for child, parent in pairs:
-            prolations.append(durationtools.Multiplier(
+            prolations.append(abjad.Multiplier(
                 parent.preprolated_duration, parent._get_contents_duration()))
         return tuple(prolations)
 

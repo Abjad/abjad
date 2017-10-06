@@ -1,4 +1,3 @@
-from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools.quantizationtools.GraceHandler import GraceHandler
 
@@ -22,9 +21,10 @@ class ConcatenatingGraceHandler(GraceHandler):
     ### INITIALIZER ###
 
     def __init__(self, grace_duration=None):
+        import abjad
         if grace_duration is None:
             grace_duration = (1, 16)
-        grace_duration = durationtools.Duration(grace_duration)
+        grace_duration = abjad.Duration(grace_duration)
         assert grace_duration.has_power_of_two_denominator
         self._grace_duration = grace_duration
 

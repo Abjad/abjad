@@ -50,12 +50,12 @@ def iterate(client=None):
         ::
 
             >>> abjad.iterate(staff)
-            IterationAgent(client=Staff("c'4 e'4 d'4 f'4"))
+            Iteration(client=Staff("c'4 e'4 d'4 f'4"))
 
     '''
     import abjad
     if client is not None:
-        return abjad.IterationAgent(client=client)
+        return abjad.Iteration(client=client)
     expression = abjad.Expression()
     expression = expression.iterate()
     return expression

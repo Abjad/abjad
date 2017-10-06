@@ -4,7 +4,7 @@ import abjad
 def test_spannertools_PhrasingSlur_direction_01():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    slur = abjad.PhrasingSlur(direction=Up)
+    slur = abjad.PhrasingSlur(direction=abjad.Up)
     abjad.attach(slur, staff[:])
 
     assert format(staff) == abjad.String.normalize(
@@ -24,7 +24,7 @@ def test_spannertools_PhrasingSlur_direction_01():
 def test_spannertools_PhrasingSlur_direction_02():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    slur = abjad.PhrasingSlur(direction=Down)
+    slur = abjad.PhrasingSlur(direction=abjad.Down)
     abjad.attach(slur, staff[:])
 
     assert format(staff) == abjad.String.normalize(

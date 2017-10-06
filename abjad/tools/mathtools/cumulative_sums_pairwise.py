@@ -13,5 +13,5 @@ def cumulative_sums_pairwise(argument):
     '''
     import abjad
     sums = abjad.mathtools.cumulative_sums(argument)
-    pairs = abjad.Sequence(sums).nwise()
+    pairs = abjad.sequence(sums).nwise()
     return type(argument)([tuple(_) for _ in pairs])

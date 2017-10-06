@@ -246,8 +246,8 @@ class MeterList(TypedList):
         durations = [_.duration for _ in self]
         total_duration = sum(durations)
         offsets = abjad.mathtools.cumulative_sums(durations, start=0)
-        timespans = abjad.timespantools.TimespanList()
-        for one, two in abjad.Sequence(offsets).nwise():
+        timespans = abjad.TimespanList()
+        for one, two in abjad.sequence(offsets).nwise():
             timespan = abjad.Timespan(
                 start_offset=one,
                 stop_offset=two,

@@ -8,7 +8,7 @@ def test_rhythmmakertools_NoteRhythmMaker___call___01():
 
     divisions = [(5, 16), (3, 8)]
     leaf_lists = maker(divisions)
-    leaves = abjad.Sequence(leaf_lists).flatten()
+    leaves = abjad.sequence(leaf_lists).flatten()
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
@@ -43,7 +43,7 @@ def test_rhythmmakertools_NoteRhythmMaker___call___02():
 
     divisions = [(5, 16), (3, 8)]
     leaf_lists = maker(divisions)
-    leaves = abjad.Sequence(leaf_lists).flatten()
+    leaves = abjad.sequence(leaf_lists).flatten()
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)

@@ -27,7 +27,7 @@ class Arpeggio(AbjadValueObject):
         ::
 
             >>> chord = abjad.Chord("<c' e' g' c''>4")
-            >>> arpeggio = abjad.Arpeggio(direction=Down)
+            >>> arpeggio = abjad.Arpeggio(direction=abjad.Down)
             >>> abjad.attach(arpeggio, chord)
             >>> show(chord) # doctest: +SKIP
 
@@ -48,8 +48,9 @@ class Arpeggio(AbjadValueObject):
     ### INITIALIZER ###
 
     def __init__(self, direction=None):
+        import abjad
         if direction is not None:
-            assert direction in (Up, Down, Center)
+            assert direction in (abjad.Up, abjad.Down, abjad.Center)
         self._direction = direction
 
     ### PRIVATE METHODS ###
@@ -61,8 +62,8 @@ class Arpeggio(AbjadValueObject):
         import abjad
         bundle = abjad.LilyPondFormatBundle()
         bundle.right.articulations.append(r'\arpeggio')
-        if self.direction in (Up, Down):
-            if self.direction == Up:
+        if self.direction in (abjad.Up, abjad.Down):
+            if self.direction == abjad.Up:
                 command = r'\arpeggioArrowUp'
             else:
                 command = r'\arpeggioArrowDown'
@@ -91,7 +92,7 @@ class Arpeggio(AbjadValueObject):
 
             ::
 
-                >>> arpeggio = abjad.Arpeggio(direction=Down)
+                >>> arpeggio = abjad.Arpeggio(direction=abjad.Down)
                 >>> arpeggio.direction
                 Down
 

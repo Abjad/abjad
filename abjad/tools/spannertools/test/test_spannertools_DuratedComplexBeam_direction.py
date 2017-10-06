@@ -8,7 +8,7 @@ def test_spannertools_DuratedComplexBeam_direction_01():
     beam = abjad.DuratedComplexBeam(
         durations=[(1, 8), (1, 8)],
         span_beam_count=1,
-        direction=Up,
+        direction=abjad.Up,
         )
 
     abjad.attach(beam, container[:])

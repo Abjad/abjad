@@ -8,7 +8,7 @@ def annotate(component, name, indicator):
         ::
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> abjad.annotate(staff[0], 'bow_direction', Down)
+            >>> abjad.annotate(staff[0], 'bow_direction', abjad.Down)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

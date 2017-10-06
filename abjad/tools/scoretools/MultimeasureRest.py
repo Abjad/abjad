@@ -1,4 +1,4 @@
-from abjad.tools.scoretools.Leaf import Leaf
+from .Leaf import Leaf
 
 
 class MultimeasureRest(Leaf):

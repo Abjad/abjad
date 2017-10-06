@@ -1,4 +1,4 @@
-from abjad.tools.scoretools.NoteHead import NoteHead
+from .NoteHead import NoteHead
 
 
 class DrumNoteHead(NoteHead):

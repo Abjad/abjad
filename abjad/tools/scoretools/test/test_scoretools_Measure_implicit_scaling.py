@@ -19,12 +19,12 @@ def test_scoretools_Measure_implicit_scaling_02():
     contribute trivially to contents prolation.
     '''
 
-    music = [
+    components = [
         abjad.Note("c'4"),
         abjad.Tuplet((2, 3), abjad.Note("c'4") * 3),
         abjad.Note("c'4"),
         ]
-    measure = abjad.Measure((4, 4), music)
+    measure = abjad.Measure((4, 4), components)
     leaves = abjad.select(measure).by_leaf()
 
     assert leaves[0].written_duration == abjad.Duration(1, 4)
@@ -38,12 +38,12 @@ def test_scoretools_Measure_implicit_scaling_03():
     contribute trivially to contents prolation.
     '''
 
-    music = [
+    components = [
         abjad.Note("c'4"),
         abjad.Tuplet((2, 3), [abjad.Tuplet((2, 3), 3 * abjad.Note("c'4")), abjad.Note("c'4")]),
         abjad.Note("c'4"),
         ]
-    measure = abjad.Measure((4, 4), music)
+    measure = abjad.Measure((4, 4), components)
     leaves = abjad.select(measure).by_leaf()
 
     assert leaves[0].written_duration == abjad.Duration(1, 4)
@@ -69,12 +69,12 @@ def test_scoretools_Measure_implicit_scaling_05():
     contribute nontrivially to prolation.
     '''
 
-    music = [
+    components = [
         abjad.Note("c'4"),
         abjad.Tuplet((2, 3), 3 * abjad.Note("c'4")),
         abjad.Note("c'4"),
         ]
-    measure = abjad.Measure((4, 5), music)
+    measure = abjad.Measure((4, 5), components)
     measure.implicit_scaling = True
     leaves = abjad.select(measure).by_leaf()
 
@@ -89,12 +89,12 @@ def test_scoretools_Measure_implicit_scaling_06():
     contribute nontrivially to prolation.
     '''
 
-    music = [
+    components = [
         abjad.Note("c'4"),
         abjad.Tuplet((2, 3), [abjad.Tuplet((2, 3), 3 * abjad.Note("c'4")), abjad.Note("c'4")]),
         abjad.Note("c'4"),
         ]
-    measure = abjad.Measure((4, 5), music)
+    measure = abjad.Measure((4, 5), components)
     measure.implicit_scaling = True
     leaves = abjad.select(measure).by_leaf()
 

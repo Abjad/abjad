@@ -1,4 +1,4 @@
-from abjad.tools.scoretools.Context import Context
+from .Context import Context
 
 
 class Voice(Context):
@@ -35,14 +35,14 @@ class Voice(Context):
 
     def __init__(
         self,
-        music=None,
+        components=None,
         context_name='Voice',
         is_simultaneous=None,
         name=None,
         ):
         Context.__init__(
             self,
-            music=music,
+            components=components,
             context_name=context_name,
             is_simultaneous=is_simultaneous,
             name=name,

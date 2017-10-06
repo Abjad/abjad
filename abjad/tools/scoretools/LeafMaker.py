@@ -511,9 +511,9 @@ class LeafMaker(AbjadValueObject):
             durations = [durations]
         nonreduced_fractions = [abjad.NonreducedFraction(_) for _ in durations]
         size = max(len(nonreduced_fractions), len(pitches))
-        nonreduced_fractions = abjad.Sequence(nonreduced_fractions)
+        nonreduced_fractions = abjad.sequence(nonreduced_fractions)
         nonreduced_fractions = nonreduced_fractions.repeat_to_length(size)
-        pitches = abjad.Sequence(pitches).repeat_to_length(size)
+        pitches = abjad.sequence(pitches).repeat_to_length(size)
         Duration = abjad.Duration
         duration_groups = Duration._group_by_implied_prolation(
             nonreduced_fractions
@@ -568,8 +568,7 @@ class LeafMaker(AbjadValueObject):
                 elif not self.is_diminution and tuplet.is_diminution:
                     tuplet.toggle_prolation()
                 result.append(tuplet)
-        result = abjad.select(result)
-        return result
+        return abjad.select(result)
 
     ### PRIVATE METHODS ###
 

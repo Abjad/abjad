@@ -4,7 +4,6 @@ import pytest
 from abjad.tools import abjadbooktools
 from abjad.tools import datastructuretools
 from abjad.tools import documentationtools
-from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import systemtools
 
@@ -24,7 +23,7 @@ ignored_classes = (
     abjadbooktools.ThumbnailDirective,
     datastructuretools.Enumeration,
     datastructuretools.Path,
-    systemtools.StorageFormatAgent,
+    systemtools.StorageFormatManager,
     systemtools.FormatSpecification,
     systemtools.TestCase,
     )
@@ -46,7 +45,7 @@ def test_abjad___init___01(class_):
 valid_types = (
     bool,
     datastructuretools.OrdinalConstant,
-    durationtools.Duration,
+    datastructuretools.Duration,
     float,
     int,
     mathtools.Infinity,

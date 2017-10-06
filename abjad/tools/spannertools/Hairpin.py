@@ -477,7 +477,7 @@ class Hairpin(Spanner):
                 >>> staff = abjad.Staff("r4 c'8 d'8 e'8 f'8 r4")
                 >>> hairpin = abjad.Hairpin(
                 ...     descriptor='p < f',
-                ...     direction=Up,
+                ...     direction=abjad.Up,
                 ...     )
                 >>> abjad.attach(hairpin, staff[:])
                 >>> show(staff) # doctest: +SKIP

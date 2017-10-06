@@ -1,9 +1,7 @@
 import abc
 import bisect
 import copy
-from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import selectiontools
 from abjad.tools import timespantools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
@@ -90,7 +88,7 @@ class Component(AbjadObject):
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
         elif format_specification == 'storage':
-            return abjad.StorageFormatAgent(self).get_storage_format()
+            return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __getnewargs__(self):
@@ -115,15 +113,15 @@ class Component(AbjadObject):
 
         Returns list of new components.
         '''
-        from abjad.tools import spannertools
-        result = mutate(self).copy(n=n)
-        for component in iterate(result).by_class():
-            detach(spannertools.Spanner, component)
+        import abjad
+        result = abjad.mutate(self).copy(n=n)
+        for component in abjad.iterate(result).by_class():
+            detach(abjad.Spanner, component)
         if isinstance(result, type(self)):
             result = [result]
         else:
             result = list(result)
-        result = selectiontools.Selection(result)
+        result = abjad.select(result)
         return result
 
     def __repr__(self):
@@ -132,7 +130,7 @@ class Component(AbjadObject):
         Returns string.
         '''
         import abjad
-        return abjad.StorageFormatAgent(self).get_repr_format()
+        return abjad.StorageFormatManager(self).get_repr_format()
 
     def __rmul__(self, n):
         r'''Copies component `n` times and detach spanners.
@@ -211,13 +209,13 @@ class Component(AbjadObject):
         return spanners
 
     def _extract(self, scale_contents=False):
-        from abjad.tools import selectiontools
+        import abjad
         if scale_contents:
             self._scale_contents(self.multiplier)
-        selection = selectiontools.Selection([self])
+        selection = abjad.select([self])
         parent, start, stop = selection._get_parent_and_start_stop_indices()
-        music_list = list(getattr(self, '_music', ()))
-        parent.__setitem__(slice(start, stop + 1), music_list)
+        components = list(getattr(self, 'components', ()))
+        parent.__setitem__(slice(start, stop + 1), components)
         return self
 
     def _format_after_slot(self, bundle):
@@ -270,27 +268,26 @@ class Component(AbjadObject):
         return [_ for _ in self._indicator_wrappers if _.is_annotation]
 
     def _get_contents(self, include_self=True):
+        import abjad
         result = []
         if include_self:
             result.append(self)
-        result.extend(getattr(self, '_music', []))
-        result = selectiontools.Selection(result)
+        result.extend(getattr(self, 'components', []))
+        result = abjad.select(result)
         return result
 
-    def _get_descendants(
-        self,
-        include_self=True,
-        ):
-        return selectiontools.Descendants(
+    def _get_descendants(self, include_self=True):
+        import abjad
+        return abjad.Descendants(
             self,
             include_self=include_self,
             )
 
     def _get_descendants_starting_with(self):
-        from abjad.tools import scoretools
+        import abjad
         result = []
         result.append(self)
-        if isinstance(self, scoretools.Container):
+        if isinstance(self, abjad.Container):
             if self.is_simultaneous:
                 for x in self:
                     result.extend(x._get_descendants_starting_with())
@@ -299,10 +296,10 @@ class Component(AbjadObject):
         return result
 
     def _get_descendants_stopping_with(self):
-        from abjad.tools import scoretools
+        import abjad
         result = []
         result.append(self)
-        if isinstance(self, scoretools.Container):
+        if isinstance(self, abjad.Container):
             if self.is_simultaneous:
                 for x in self:
                     result.extend(x._get_descendants_stopping_with())
@@ -481,15 +478,16 @@ class Component(AbjadObject):
         return self._format_component()
 
     def _get_lineage(self):
-        return selectiontools.Lineage(self)
+        import abjad
+        return abjad.Lineage(self)
 
     def _get_markup(self, direction=None):
         import abjad
         markup = self._get_indicators(abjad.Markup)
-        if direction == Up:
-            return tuple(x for x in markup if x.direction == Up)
-        elif direction == Down:
-            return tuple(x for x in markup if x.direction == Down)
+        if direction == abjad.Up:
+            return tuple(x for x in markup if x.direction == abjad.Up)
+        elif direction == abjad.Down:
+            return tuple(x for x in markup if x.direction == abjad.Down)
         return markup
 
     def _get_next_measure(self):
@@ -542,7 +540,8 @@ class Component(AbjadObject):
         return result
 
     def _get_parentage(self, include_self=True, with_grace_notes=False):
-        return selectiontools.Parentage(
+        import abjad
+        return abjad.Parentage(
             self,
             include_self=include_self,
             with_grace_notes=with_grace_notes,
@@ -655,13 +654,15 @@ class Component(AbjadObject):
             return self._timespan
 
     def _get_vertical_moment(self, governor=None):
+        import abjad
         offset = self._get_timespan()._start_offset
         if governor is None:
             governor = self._get_parentage().root
-        return selectiontools.VerticalMoment(governor, offset)
+        return abjad.VerticalMoment(governor, offset)
 
     def _get_vertical_moment_at(self, offset):
-        return selectiontools.VerticalMoment(self, offset)
+        import abjad
+        return abjad.VerticalMoment(self, offset)
 
     def _has_effective_indicator(self, prototype=None):
         indicator = self._get_effective(prototype=prototype)
@@ -699,7 +700,7 @@ class Component(AbjadObject):
         prolated_leaf_duration = self._get_duration()
         parentage = self._get_parentage(include_self=False)
         prolations = parentage._prolations
-        current_prolation, i = durationtools.Duration(1), 0
+        current_prolation, i = abjad.Duration(1), 0
         parent = self._parent
         while parent is not None and not parent.is_simultaneous:
             current_prolation *= prolations[i]
@@ -755,7 +756,7 @@ class Component(AbjadObject):
                 if wrapper.component is self:
                     parent._dependent_wrappers.remove(wrapper)
         if self._parent is not None:
-            self._parent._music.remove(self)
+            self._parent._components.remove(self)
         self._parent = None
 
     def _remove_named_children_from_parentage(self, name_dictionary):
@@ -797,7 +798,7 @@ class Component(AbjadObject):
         import abjad
         assert all(isinstance(x, abjad.Component) for x in components)
         selection = abjad.select(self)
-        if direction == Right:
+        if direction == abjad.Right:
             if grow_spanners:
                 insert_offset = self._get_timespan()._stop_offset
                 receipt = selection._get_dominant_spanners()
@@ -824,7 +825,7 @@ class Component(AbjadObject):
                 if grow_spanners:
                     for component in reversed(components):
                         component._set_parent(parent)
-                        parent._music.insert(start + 1, component)
+                        parent._components.insert(start + 1, component)
                 else:
                     after = stop + 1
                     parent.__setitem__(slice(after, after), components)
@@ -853,7 +854,7 @@ class Component(AbjadObject):
                 if grow_spanners:
                     for component in reversed(components):
                         component._set_parent(parent)
-                        parent._music.insert(start, component)
+                        parent._components.insert(start, component)
                 else:
                     parent.__setitem__(slice(start, start), components)
             return components + [self]

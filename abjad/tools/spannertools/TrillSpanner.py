@@ -87,6 +87,10 @@ class TrillSpanner(Spanner):
             self,
             overrides=overrides,
             )
+        if interval is not None and pitch is not None:
+            message = 'only pitch or interval, not both: {!r} + {!r}.'
+            message = message.format(interval, pitch)
+            raise Exception(message)
         self._interval = interval
         if is_harmonic is not None:
             is_harmonic = bool(is_harmonic)

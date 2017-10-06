@@ -143,17 +143,17 @@ class Clef(AbjadValueObject):
 
     @property
     def _clef_name_to_staff_position_zero(self, clef_name):
-        from abjad.tools import pitchtools
+        import abjad
         return {
-            'treble': pitchtools.NamedPitch('B4'),
-            'alto': pitchtools.NamedPitch('C4'),
-            'tenor': pitchtools.NamedPitch('A3'),
-            'bass': pitchtools.NamedPitch('D3'),
-            'french': pitchtools.NamedPitch('D5'),
-            'soprano': pitchtools.NamedPitch('G4'),
-            'mezzosoprano': pitchtools.NamedPitch('E4'),
-            'baritone': pitchtools.NamedPitch('F3'),
-            'varbaritone': pitchtools.NamedPitch('F3'),
+            'treble': abjad.NamedPitch('B4'),
+            'alto': abjad.NamedPitch('C4'),
+            'tenor': abjad.NamedPitch('A3'),
+            'bass': abjad.NamedPitch('D3'),
+            'french': abjad.NamedPitch('D5'),
+            'soprano': abjad.NamedPitch('G4'),
+            'mezzosoprano': abjad.NamedPitch('E4'),
+            'baritone': abjad.NamedPitch('F3'),
+            'varbaritone': abjad.NamedPitch('F3'),
             'percussion': None,
             'tab': None,
             }[clef_name]
@@ -233,21 +233,20 @@ class Clef(AbjadValueObject):
 
         Returns new clef.
         '''
-        from abjad.tools import pitchtools
-        from abjad.tools.topleveltools import iterate
-        pitches = list(iterate(selection).by_pitch())
+        import abjad
+        pitches = list(abjad.iterate(selection).by_pitch())
         diatonic_pitch_numbers = [
             pitch._get_diatonic_pitch_number() for pitch in pitches
             ]
         max_diatonic_pitch_number = max(diatonic_pitch_numbers)
         min_diatonic_pitch_number = min(diatonic_pitch_numbers)
-        lowest_treble_line_pitch = pitchtools.NamedPitch('E4')
+        lowest_treble_line_pitch = abjad.NamedPitch('E4')
         lowest_treble_line_diatonic_pitch_number = \
             lowest_treble_line_pitch._get_diatonic_pitch_number()
         candidate_steps_below_treble = \
             lowest_treble_line_diatonic_pitch_number - \
             min_diatonic_pitch_number
-        highest_bass_line_pitch = pitchtools.NamedPitch('A3')
+        highest_bass_line_pitch = abjad.NamedPitch('A3')
         highest_bass_line_diatonic_pitch_number = \
             highest_bass_line_pitch._get_diatonic_pitch_number()
         candidate_steps_above_bass = \

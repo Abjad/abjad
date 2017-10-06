@@ -198,10 +198,10 @@ class TestManager(AbjadObject):
                 assert len(staff) == 2
                 voice_1 = staff[0]
                 abjad.override(voice_1).note_head.Y_offset = 0.5
-                abjad.override(voice_1).stem.direction = Up
+                abjad.override(voice_1).stem.direction = abjad.Up
                 voice_2 = staff[1]
                 abjad.override(voice_2).note_head.Y_offset = -0.5
-                abjad.override(voice_2).stem.direction = Down
+                abjad.override(voice_2).stem.direction = abjad.Down
                 vector = abjad.SpacingVector(0, 0, 6, 0)
                 manager = abjad.override(staff)
                 manager.vertical_axis_group.staff_staff_spacing = vector
@@ -312,7 +312,7 @@ class TestManager(AbjadObject):
         Returns true or false.
         '''
         from abjad.tools import systemtools
-        agent_one = systemtools.StorageFormatAgent(object_one)
+        agent_one = systemtools.StorageFormatManager(object_one)
         if agent_one.format_specification.coerce_for_equality:
             try:
                 object_two = type(object_one)(object_two)
@@ -323,7 +323,7 @@ class TestManager(AbjadObject):
                 return False
         elif not isinstance(object_two, type(object_one)):
             return False
-        agent_two = systemtools.StorageFormatAgent(object_two)
+        agent_two = systemtools.StorageFormatManager(object_two)
         template_1 = agent_one.get_template_dict()
         template_2 = agent_two.get_template_dict()
         return template_1 == template_2
@@ -465,7 +465,7 @@ class TestManager(AbjadObject):
 #            title_lines.append(parts.pop(0))
 #        lengths = [len(part) for part in parts]
 #        if 35 < sum(lengths):
-#            halves = baca.Sequence(halves)
+#            halves = baca.sequence(halves)
 #            halves = halves.partition_by_ratio_of_weights(ratio=[1, 1])
 #            left_count = len(halves[0])
 #            right_count = len(halves[-1])

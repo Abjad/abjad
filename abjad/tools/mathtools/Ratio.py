@@ -195,10 +195,10 @@ class Ratio(NonreducedRatio):
 
         Returns tuple of multipliers.
         '''
-        from abjad.tools import durationtools
+        import abjad
         weight = sum(self.numbers)
         multipliers = [
-            durationtools.Multiplier((_, weight))
+            abjad.Multiplier((_, weight))
             for _ in self.numbers
             ]
         multipliers = tuple(multipliers)

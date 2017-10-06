@@ -98,7 +98,7 @@ class TieSpecifier(AbjadValueObject):
         if not isinstance(tie_across_divisions, abjad.Pattern):
             tie_across_divisions = abjad.Pattern.from_vector(
                 tie_across_divisions)
-        pairs = abjad.Sequence(divisions).nwise()
+        pairs = abjad.sequence(divisions).nwise()
         rest_prototype = (abjad.Rest, abjad.MultimeasureRest)
         for i, pair in enumerate(pairs):
             if not tie_across_divisions.matches_index(i, length):
@@ -136,7 +136,7 @@ class TieSpecifier(AbjadValueObject):
         import abjad
         if not self.tie_consecutive_notes:
             return
-        leaves = abjad.select(divisions).by_leaf()
+        leaves = list(abjad.iterate(divisions).by_leaf())
         for leaf in leaves:
             abjad.detach(abjad.Tie, leaf)
         pairs = itertools.groupby(leaves, lambda _: _.__class__)

@@ -39,9 +39,9 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = abjad.Markup('Allegro assai', direction=Up)
+                >>> markup = abjad.Markup('Allegro assai', direction=abjad.Up)
                 >>> markup = markup.italic()
-                >>> markup = abjad.Markup(markup, direction=Down)
+                >>> markup = abjad.Markup(markup, direction=abjad.Down)
                 >>> f(markup)
                 _ \markup {
                     \italic
@@ -62,7 +62,7 @@ class Markup(AbjadValueObject):
 
                 >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
                 >>> string = r'\italic { "Allegro assai" }'
-                >>> markup = abjad.Markup(string, direction=Up)
+                >>> markup = abjad.Markup(string, direction=abjad.Up)
                 >>> f(markup)
                 ^ \markup {
                     \italic
@@ -233,7 +233,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup_1 = abjad.Markup('Allegro assai', direction=Up)
+                >>> markup_1 = abjad.Markup('Allegro assai', direction=abjad.Up)
                 >>> markup_2 = copy.copy(markup_1)
 
             ::
@@ -302,7 +302,7 @@ class Markup(AbjadValueObject):
             ::
 
                 >>> markup_1 = abjad.Markup('Allegro')
-                >>> markup_2 = abjad.Markup('Allegro', direction=Up)
+                >>> markup_2 = abjad.Markup('Allegro', direction=abjad.Up)
 
             ::
 
@@ -348,7 +348,7 @@ class Markup(AbjadValueObject):
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
         elif format_specification == 'storage':
-            return systemtools.StorageFormatAgent(self).get_storage_format()
+            return systemtools.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __hash__(self):
@@ -392,7 +392,7 @@ class Markup(AbjadValueObject):
             ::
 
                 >>> hash_1 = hash(abjad.Markup('Allegro'))
-                >>> hash_2 = hash(abjad.Markup('Allegro', direction=Up))
+                >>> hash_2 = hash(abjad.Markup('Allegro', direction=abjad.Up))
 
             ::
 
@@ -605,7 +605,7 @@ class Markup(AbjadValueObject):
         return tweaks + pieces
 
     def _get_format_specification(self):
-        agent = systemtools.StorageFormatAgent(self)
+        agent = systemtools.StorageFormatManager(self)
         names = list(agent.signature_keyword_names)
         names.remove('stack_priority')
         return systemtools.FormatSpecification(
@@ -679,7 +679,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> abjad.Markup('Allegro', direction=Up)
+                    >>> abjad.Markup('Allegro', direction=abjad.Up)
                     Markup(contents=['Allegro'], direction=Up)
 
         Defaults to none.
@@ -1077,7 +1077,7 @@ class Markup(AbjadValueObject):
                 >>> markup_one = abjad.Markup('Allegro assai')
                 >>> markup_two = abjad.Markup.draw_line(13, 0)
                 >>> markup_list = [markup_one, markup_two]
-                >>> markup = abjad.Markup.combine(markup_list, direction=Up)
+                >>> markup = abjad.Markup.combine(markup_list, direction=abjad.Up)
                 >>> f(markup)
                 ^ \markup {
                     \combine
@@ -1116,7 +1116,7 @@ class Markup(AbjadValueObject):
                     >>> hspace = abjad.Markup.hspace(1)
                     >>> upbow = abjad.Markup.musicglyph('scripts.upbow')
                     >>> markup_list = [downbow, hspace, upbow]
-                    >>> markup = abjad.Markup.concat(markup_list, direction=Up)
+                    >>> markup = abjad.Markup.concat(markup_list, direction=abjad.Up)
                     >>> f(markup)
                     ^ \markup {
                         \concat
@@ -1151,7 +1151,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = abjad.Markup.draw_circle(10, 1.5, direction=Up)
+                >>> markup = abjad.Markup.draw_circle(10, 1.5, direction=abjad.Up)
                 >>> f(markup)
                 ^ \markup {
                     \draw-circle
@@ -1177,7 +1177,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = abjad.Markup.draw_line(5, -2.5, direction=Up)
+                >>> markup = abjad.Markup.draw_line(5, -2.5, direction=abjad.Up)
                 >>> f(markup)
                 ^ \markup {
                     \draw-line
@@ -1229,7 +1229,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = abjad.Markup.filled_box((0, 10), (2, 5), 1.5, direction=Up)
+                >>> markup = abjad.Markup.filled_box((0, 10), (2, 5), 1.5, direction=abjad.Up)
                 >>> f(markup)
                 ^ \markup {
                     \filled-box
@@ -1285,7 +1285,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = abjad.Markup.flat(direction=Up)
+                >>> markup = abjad.Markup.flat(direction=abjad.Up)
                 >>> f(markup)
                 ^ \markup {
                     \flat
@@ -1339,7 +1339,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = abjad.Markup.fraction(1, 4, direction=Up)
+                >>> markup = abjad.Markup.fraction(1, 4, direction=abjad.Up)
                 >>> f(markup)
                 ^ \markup {
                     \fraction
@@ -1412,7 +1412,7 @@ class Markup(AbjadValueObject):
                 ::
 
                     >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.general_align('Y', Up)
+                    >>> markup = markup.general_align('Y', abjad.Up)
                     >>> f(markup)
                     \markup {
                         \general-align
@@ -1449,17 +1449,18 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
+        import abjad
         contents = self._parse_markup_command_argument(self)
-        axis = schemetools.Scheme(axis)
+        axis = abjad.Scheme(axis)
         # TODO: make schemetools.Scheme(Up) work
-        if direction == Up:
-            direction = schemetools.Scheme('UP')
-        elif direction == Down:
-            direction = schemetools.Scheme('DOWN')
-        elif direction == Center:
-            direction = schemetools.Scheme('CENTER')
+        if direction == abjad.Up:
+            direction = abjad.Scheme('UP')
+        elif direction == abjad.Down:
+            direction = abjad.Scheme('DOWN')
+        elif direction == abjad.Center:
+            direction = abjad.Scheme('CENTER')
         elif isinstance(direction, numbers.Number):
-            direction = schemetools.Scheme(str(direction))
+            direction = abjad.Scheme(str(direction))
         else:
             message = 'unknown direction: {!r}.'
             message = message.format(direction)
@@ -1531,7 +1532,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = abjad.Markup.hspace(0.75, direction=Up)
+                >>> markup = abjad.Markup.hspace(0.75, direction=abjad.Up)
                 >>> f(markup)
                 ^ \markup {
                     \hspace
@@ -1705,7 +1706,7 @@ class Markup(AbjadValueObject):
 
                 >>> markup = abjad.Markup.make_improper_fraction_markup(
                 ...     abjad.Fraction(6, 3),
-                ...     direction=Up,
+                ...     direction=abjad.Up,
                 ...     )
                 >>> f(markup)
                 ^ \markup { 2 }
@@ -1766,7 +1767,7 @@ class Markup(AbjadValueObject):
 
                 >>> markup = abjad.Markup.musicglyph(
                 ...     'accidentals.sharp',
-                ...     direction=Up,
+                ...     direction=abjad.Up,
                 ...     )
                 >>> f(markup)
                 ^ \markup {
@@ -1796,7 +1797,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = abjad.Markup.natural(direction=Up)
+                >>> markup = abjad.Markup.natural(direction=abjad.Up)
                 >>> f(markup)
                 ^ \markup {
                     \natural
@@ -1819,7 +1820,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = abjad.Markup.note_by_number(3, 2, 1, direction=Up)
+                >>> markup = abjad.Markup.note_by_number(3, 2, 1, direction=abjad.Up)
                 >>> f(markup)
                 ^ \markup {
                     \note-by-number
@@ -1875,7 +1876,7 @@ class Markup(AbjadValueObject):
 
                 >>> city = abjad.Markup('Los Angeles')
                 >>> date = abjad.Markup('May - August 2014')
-                >>> markup = abjad.Markup.overlay([city, date], direction=Up)
+                >>> markup = abjad.Markup.overlay([city, date], direction=abjad.Up)
                 >>> f(markup)
                 ^ \markup {
                     \overlay
@@ -2155,7 +2156,7 @@ class Markup(AbjadValueObject):
                 >>> postscript = postscript.setdash((2, 1))
                 >>> postscript = postscript.lineto(3, -4)
                 >>> postscript = postscript.stroke()
-                >>> markup = abjad.Markup.postscript(postscript, direction=Up)
+                >>> markup = abjad.Markup.postscript(postscript, direction=abjad.Up)
                 >>> f(markup)
                 ^ \markup {
                     \postscript
@@ -2220,7 +2221,7 @@ class Markup(AbjadValueObject):
                 >>> date = abjad.Markup('May - August 2014')
                 >>> markup = abjad.Markup.right_column(
                 ...     [city, date],
-                ...     direction=Up,
+                ...     direction=abjad.Up,
                 ...     )
                 >>> f(markup)
                 ^ \markup {
@@ -2335,7 +2336,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = abjad.Markup.sharp(direction=Up)
+                >>> markup = abjad.Markup.sharp(direction=abjad.Up)
                 >>> f(markup)
                 ^ \markup {
                     \sharp
@@ -2537,7 +2538,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = abjad.Markup.triangle(direction=Up)
+                >>> markup = abjad.Markup.triangle(direction=abjad.Up)
                 >>> f(markup)
                 ^ \markup {
                     \triangle
@@ -2615,7 +2616,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = abjad.Markup.vspace(0.75, direction=Up)
+                >>> markup = abjad.Markup.vspace(0.75, direction=abjad.Up)
                 >>> f(markup)
                 ^ \markup {
                     \vspace

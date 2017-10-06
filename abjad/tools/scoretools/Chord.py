@@ -1,11 +1,10 @@
 import copy
-from abjad.tools import durationtools
 from abjad.tools import indicatortools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
-from abjad.tools.scoretools.Leaf import Leaf
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import inspect
+from .Leaf import Leaf
 
 
 class Chord(Leaf):
@@ -36,13 +35,11 @@ class Chord(Leaf):
     ### INITIALIZER ###
 
     def __init__(self, *arguments):
+        import abjad
         from abjad.ly import drums
-        from abjad.tools import scoretools
         from abjad.tools.topleveltools import parse
         assert len(arguments) in (0, 1, 2)
-        self._note_heads = scoretools.NoteHeadList(
-            client=self,
-            )
+        self._note_heads = abjad.NoteHeadList(client=self)
         if len(arguments) == 1 and isinstance(arguments[0], str):
             string = '{{ {} }}'.format(arguments[0])
             parsed = parse(string)
@@ -78,7 +75,7 @@ class Chord(Leaf):
                 written_pitches = written_pitches.written_pitches
         elif len(arguments) == 0:
             written_pitches = [0, 4, 7]
-            written_duration = durationtools.Duration(1, 4)
+            written_duration = abjad.Duration(1, 4)
         else:
             message = 'can not initialize chord from {!r}.'
             message = message.format(arguments)
@@ -99,14 +96,14 @@ class Chord(Leaf):
             if not is_parenthesized:
                 is_parenthesized = None
             if written_pitch not in drums:
-                note_head = scoretools.NoteHead(
+                note_head = abjad.NoteHead(
                     written_pitch=written_pitch,
                     is_cautionary=is_cautionary,
                     is_forced=is_forced,
                     is_parenthesized=is_parenthesized,
                     )
             else:
-                note_head = scoretools.DrumNoteHead(
+                note_head = abjad.DrumNoteHead(
                     written_pitch=written_pitch,
                     is_cautionary=is_cautionary,
                     is_forced=is_forced,
@@ -149,21 +146,19 @@ class Chord(Leaf):
         return new
 
     def _divide(self, pitch=None):
-        from abjad.tools import scoretools
-        from abjad.tools import markuptools
-        from abjad.tools import pitchtools
-        pitch = pitch or pitchtools.NamedPitch('b', 3)
-        pitch = pitchtools.NamedPitch(pitch)
+        import abjad
+        pitch = pitch or abjad.NamedPitch('b', 3)
+        pitch = abjad.NamedPitch(pitch)
         treble = copy.copy(self)
         bass = copy.copy(self)
-        detach(markuptools.Markup, treble)
-        detach(markuptools.Markup, bass)
-        if isinstance(treble, scoretools.Note):
+        abjad.detach(abjad.Markup, treble)
+        abjad.detach(abjad.Markup, bass)
+        if isinstance(treble, abjad.Note):
             if treble.written_pitch < pitch:
-                treble = scoretools.Rest(treble)
-        elif isinstance(treble, scoretools.Rest):
+                treble = abjad.Rest(treble)
+        elif isinstance(treble, abjad.Rest):
             pass
-        elif isinstance(treble, scoretools.Chord):
+        elif isinstance(treble, abjad.Chord):
             for note_head in reversed(treble.note_heads):
                 if note_head.written_pitch < pitch:
                     treble.note_heads.remove(note_head)
@@ -171,12 +166,12 @@ class Chord(Leaf):
             message = 'invalid pitch carrier: {!r}.'
             message = message.format(treble)
             raise TypeError(message)
-        if isinstance(bass, scoretools.Note):
+        if isinstance(bass, abjad.Note):
             if pitch <= bass.written_pitch:
-                bass = scoretools.Rest(bass)
-        elif isinstance(bass, scoretools.Rest):
+                bass = abjad.Rest(bass)
+        elif isinstance(bass, abjad.Rest):
             pass
-        elif isinstance(bass, scoretools.Chord):
+        elif isinstance(bass, abjad.Chord):
             for note_head in reversed(bass.note_heads):
                 if pitch <= note_head.written_pitch:
                     bass.note_heads.remove(note_head)
@@ -186,9 +181,9 @@ class Chord(Leaf):
             raise TypeError(message)
         treble = self._cast_defective_chord(treble)
         bass = self._cast_defective_chord(bass)
-        up_markup = self._get_markup(direction=Up)
+        up_markup = self._get_markup(direction=abjad.Up)
         up_markup = [copy.copy(markup) for markup in up_markup]
-        down_markup = self._get_markup(direction=Down)
+        down_markup = self._get_markup(direction=abjad.Down)
         down_markup = [copy.copy(markup) for markup in down_markup]
         for markup in up_markup:
             markup(treble)
@@ -316,13 +311,14 @@ class Chord(Leaf):
         return ' '.join([str(x) for x in self.note_heads])
 
     def _get_tremolo_reattack_duration(self):
-        tremolos = inspect(self).get_indicators(indicatortools.Tremolo)
+        import abjad
+        tremolos = abjad.inspect(self).get_indicators(abjad.Tremolo)
         if not tremolos:
             return
         tremolo = tremolos[0]
         exponent = 2 + tremolo.beam_count
         denominator = 2 ** exponent
-        reattack_duration = durationtools.Duration(1, denominator)
+        reattack_duration = abjad.Duration(1, denominator)
         return reattack_duration
 
     ### PUBLIC PROPERTIES ###

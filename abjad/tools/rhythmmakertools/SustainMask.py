@@ -16,11 +16,138 @@ class SustainMask(AbjadValueObject):
 
             >>> f(mask)
             abjad.SustainMask(
+                pattern=abjad.index_every([0, 1, 7], 16),
+                )
+
+    ..  container:: example
+
+        With composite pattern:
+
+        ::
+
+            >>> pattern_1 = abjad.index_all()
+            >>> pattern_2 = abjad.index_first(1)
+            >>> pattern_3 = abjad.index_last(1)
+            >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
+            >>> mask = abjad.SustainMask(pattern=pattern)
+
+        ::
+
+            >>> f(mask)
+            abjad.SustainMask(
                 pattern=abjad.Pattern(
-                    indices=[0, 1, 7],
-                    period=16,
+                    operator='xor',
+                    patterns=(
+                        abjad.index_all(),
+                        abjad.index_first(1),
+                        abjad.index_last(1),
+                        ),
                     ),
                 )
+
+        ::
+
+            >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+            ...     division_masks=[
+            ...         abjad.silence_all(),
+            ...         mask,
+            ...         ],
+            ...     )
+            >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(lilypond_file[abjad.Staff])
+            \new RhythmicStaff {
+                {
+                    \time 7/16
+                    r4..
+                }
+                {
+                    \time 3/8
+                    c'4.
+                }
+                {
+                    \time 7/16
+                    c'4..
+                }
+                {
+                    \time 3/8
+                    r4.
+                }
+            }
+
+    ..  container:: example
+
+        Works inverted composite pattern:
+
+        ::
+
+            >>> pattern_1 = abjad.index_all()
+            >>> pattern_2 = abjad.index_first(1)
+            >>> pattern_3 = abjad.index_last(1)
+            >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
+            >>> pattern = ~pattern
+            >>> mask = abjad.SustainMask(pattern=pattern)
+
+        ::
+
+            >>> f(mask)
+            abjad.SustainMask(
+                pattern=abjad.Pattern(
+                    inverted=True,
+                    operator='xor',
+                    patterns=(
+                        abjad.index_all(),
+                        abjad.index_first(1),
+                        abjad.index_last(1),
+                        ),
+                    ),
+                )
+
+        ::
+
+            >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+            ...     division_masks=[
+            ...         abjad.silence_all(),
+            ...         mask,
+            ...         ],
+            ...     )
+            >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(lilypond_file[abjad.Staff])
+            \new RhythmicStaff {
+                {
+                    \time 7/16
+                    c'4..
+                }
+                {
+                    \time 3/8
+                    r4.
+                }
+                {
+                    \time 7/16
+                    r4..
+                }
+                {
+                    \time 3/8
+                    c'4.
+                }
+            }
 
     '''
 
@@ -74,9 +201,7 @@ class SustainMask(AbjadValueObject):
 
                 >>> f(mask)
                 abjad.SustainMask(
-                    pattern=abjad.Pattern(
-                        indices=[1, 2],
-                        ),
+                    pattern=abjad.index([1, 2]),
                     )
 
             ::
@@ -129,9 +254,7 @@ class SustainMask(AbjadValueObject):
 
                 >>> f(mask)
                 abjad.SustainMask(
-                    pattern=abjad.Pattern(
-                        indices=[-1, -2],
-                        ),
+                    pattern=abjad.index([-1, -2]),
                     )
 
             ::
@@ -172,161 +295,20 @@ class SustainMask(AbjadValueObject):
                     }
                 }
 
-        ..  container:: example
-
-            Works with pattern input:
-
-            ::
-
-                >>> pattern_1 = abjad.index_all()
-                >>> pattern_2 = abjad.index_first()
-                >>> pattern_3 = abjad.index_last()
-                >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
-                >>> mask = abjad.sustain(pattern)
-
-            ::
-
-                >>> f(mask)
-                abjad.SustainMask(
-                    pattern=abjad.Pattern(
-                        operator='xor',
-                        patterns=(
-                            abjad.Pattern(
-                                indices=[0],
-                                period=1,
-                                ),
-                            abjad.Pattern(
-                                indices=[0],
-                                ),
-                            abjad.Pattern(
-                                indices=[-1],
-                                ),
-                            ),
-                        ),
-                    )
-
-            ::
-
-                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     division_masks=[
-                ...         abjad.silence_all(),
-                ...         mask,
-                ...         ],
-                ...     )
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    {
-                        \time 7/16
-                        r4..
-                    }
-                    {
-                        \time 3/8
-                        c'4.
-                    }
-                    {
-                        \time 7/16
-                        c'4..
-                    }
-                    {
-                        \time 3/8
-                        r4.
-                    }
-                }
-
-        ..  container:: example
-
-            Works with pattern input and inverted flag:
-
-            ::
-
-                >>> pattern_1 = abjad.index_all()
-                >>> pattern_2 = abjad.index_first()
-                >>> pattern_3 = abjad.index_last()
-                >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
-                >>> mask = abjad.sustain(pattern, inverted=True)
-
-            ::
-
-                >>> f(mask)
-                abjad.SustainMask(
-                    pattern=abjad.Pattern(
-                        inverted=True,
-                        operator='xor',
-                        patterns=(
-                            abjad.Pattern(
-                                indices=[0],
-                                period=1,
-                                ),
-                            abjad.Pattern(
-                                indices=[0],
-                                ),
-                            abjad.Pattern(
-                                indices=[-1],
-                                ),
-                            ),
-                        ),
-                    )
-
-            ::
-
-                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     division_masks=[
-                ...         abjad.silence_all(),
-                ...         mask,
-                ...         ],
-                ...     )
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    {
-                        \time 7/16
-                        c'4..
-                    }
-                    {
-                        \time 3/8
-                        r4.
-                    }
-                    {
-                        \time 7/16
-                        r4..
-                    }
-                    {
-                        \time 3/8
-                        c'4.
-                    }
-                }
 
         Returns sustain mask.
         '''
         import abjad
-        if isinstance(indices, abjad.Pattern):
-            pattern = indices
-        else:
-            indices = indices or []
-            pattern = abjad.Pattern(
-                indices=indices,
-                inverted=inverted,
-                )
-        pattern = abjad.new(pattern, inverted=inverted)
+#        if isinstance(indices, abjad.Pattern):
+#            pattern = indices
+#        else:
+#            indices = indices or []
+#            pattern = abjad.Pattern(
+#                indices=indices,
+#                inverted=inverted,
+#                )
+#        pattern = abjad.new(pattern, inverted=inverted)
+        pattern = abjad.index(indices, inverted=inverted)
         return SustainMask(pattern=pattern)
 
     @staticmethod
@@ -401,10 +383,7 @@ class SustainMask(AbjadValueObject):
 
                 >>> f(mask)
                 abjad.SustainMask(
-                    pattern=abjad.Pattern(
-                        indices=[0],
-                        period=1,
-                        ),
+                    pattern=abjad.index_all(),
                     )
 
             ::
@@ -449,11 +428,12 @@ class SustainMask(AbjadValueObject):
         Returns sustain mask.
         '''
         import abjad
-        pattern = abjad.Pattern(
-            indices=[0],
-            inverted=inverted,
-            period=1,
-            )
+#        pattern = abjad.Pattern(
+#            indices=[0],
+#            inverted=inverted,
+#            period=1,
+#            )
+        pattern = abjad.index_all(inverted=inverted) 
         mask = SustainMask(pattern=pattern)
         return mask
 
@@ -467,16 +447,13 @@ class SustainMask(AbjadValueObject):
 
             ::
 
-                >>> mask = abjad.sustain_every(indices=[1], period=2)
+                >>> mask = abjad.sustain_every([1], 2)
 
             ::
 
                 >>> f(mask)
                 abjad.SustainMask(
-                    pattern=abjad.Pattern(
-                        indices=[1],
-                        period=2,
-                        ),
+                    pattern=abjad.index_every([1], 2),
                     )
 
             ::
@@ -520,16 +497,13 @@ class SustainMask(AbjadValueObject):
 
             ::
 
-                >>> mask = abjad.sustain_every(indices=[1, 2], period=3)
+                >>> mask = abjad.sustain_every([1, 2], 3)
 
             ::
 
                 >>> f(mask)
                 abjad.SustainMask(
-                    pattern=abjad.Pattern(
-                        indices=[1, 2],
-                        period=3,
-                        ),
+                    pattern=abjad.index_every([1, 2], 3),
                     )
 
             ::
@@ -570,12 +544,13 @@ class SustainMask(AbjadValueObject):
         Returns sustain mask.
         '''
         import abjad
-        indices = list(indices)
-        pattern = abjad.Pattern(
-            indices=indices,
-            inverted=inverted,
-            period=period,
-            )
+#        indices = list(indices)
+#        pattern = abjad.Pattern(
+#            indices=indices,
+#            inverted=inverted,
+#            period=period,
+#            )
+        pattern = abjad.index_every(indices, period, inverted=inverted)
         mask = SustainMask(pattern=pattern)
         return mask
 
@@ -595,9 +570,7 @@ class SustainMask(AbjadValueObject):
 
                 >>> f(mask)
                 abjad.SustainMask(
-                    pattern=abjad.Pattern(
-                        indices=[0],
-                        ),
+                    pattern=abjad.index_first(1),
                     )
 
             ::
@@ -670,9 +643,7 @@ class SustainMask(AbjadValueObject):
 
                 >>> f(mask)
                 abjad.SustainMask(
-                    pattern=abjad.Pattern(
-                        indices=[0, 1],
-                        ),
+                    pattern=abjad.index_first(2),
                     )
 
             ::
@@ -729,11 +700,12 @@ class SustainMask(AbjadValueObject):
         Returns sustain mask.
         '''
         import abjad
-        indices = list(range(n))
-        pattern = abjad.Pattern(
-            indices=indices,
-            inverted=inverted,
-            )
+#        indices = list(range(n))
+#        pattern = abjad.Pattern(
+#            indices=indices,
+#            inverted=inverted,
+#            )
+        pattern = abjad.index_first(n, inverted=inverted)
         mask = SustainMask(pattern=pattern)
         return mask
 
@@ -753,9 +725,7 @@ class SustainMask(AbjadValueObject):
 
                 >>> f(mask)
                 abjad.SustainMask(
-                    pattern=abjad.Pattern(
-                        indices=[-1],
-                        ),
+                    pattern=abjad.index_last(1),
                     )
 
             ::
@@ -802,15 +772,13 @@ class SustainMask(AbjadValueObject):
 
             ::
 
-                >>> mask = abjad.sustain_last(n=2)
+                >>> mask = abjad.sustain_last(2)
 
             ::
 
                 >>> f(mask)
                 abjad.SustainMask(
-                    pattern=abjad.Pattern(
-                        indices=[-2, -1],
-                        ),
+                    pattern=abjad.index_last(2),
                     )
 
             ::
@@ -857,13 +825,13 @@ class SustainMask(AbjadValueObject):
 
             ::
 
-                >>> mask = abjad.sustain_last(n=0)
+                >>> mask = abjad.sustain_last(0)
 
             ::
 
                 >>> f(mask)
                 abjad.SustainMask(
-                    pattern=abjad.Pattern(),
+                    pattern=abjad.index_last(0),
                     )
 
             ::
@@ -907,16 +875,17 @@ class SustainMask(AbjadValueObject):
         Returns sustain mask.
         '''
         import abjad
-        if 0 < n:
-            start = -1
-            stop = -n - 1
-            stride = -1
-            indices = list(reversed(range(start, stop, stride)))
-        else:
-            indices = None
-        pattern = abjad.Pattern(
-            indices=indices,
-            inverted=inverted,
-            )
+#        if 0 < n:
+#            start = -1
+#            stop = -n - 1
+#            stride = -1
+#            indices = list(reversed(range(start, stop, stride)))
+#        else:
+#            indices = None
+#        pattern = abjad.Pattern(
+#            indices=indices,
+#            inverted=inverted,
+#            )
+        pattern = abjad.index_last(n, inverted=inverted)
         mask = SustainMask(pattern=pattern)
         return mask

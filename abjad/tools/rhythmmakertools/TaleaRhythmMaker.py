@@ -1,8 +1,6 @@
 from abjad.tools import datastructuretools
-from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
-from abjad.tools import selectiontools
 from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
@@ -113,7 +111,7 @@ class TaleaRhythmMaker(RhythmMaker):
         if not talea:
             return talea
         voice_index, measure_index = rotation
-        talea = datastructuretools.Sequence(talea).rotate(n=-voice_index)
+        talea = abjad.sequence(talea).rotate(n=-voice_index)
         return talea
 
     # used in a piece with four voices:
@@ -128,7 +126,7 @@ class TaleaRhythmMaker(RhythmMaker):
         voice_index, measure_index = rotation
         index_of_rotation = -voice_index * (len(talea) // 4)
         index_of_rotation += -4 * measure_index
-        talea = datastructuretools.Sequence(talea).rotate(n=index_of_rotation)
+        talea = abjad.sequence(talea).rotate(n=index_of_rotation)
         return talea
     '''
 
@@ -409,30 +407,27 @@ class TaleaRhythmMaker(RhythmMaker):
         import abjad
         if not self.tie_split_notes:
             return
-        leaves = select(result).by_leaf()
+        leaves = list(abjad.iterate(result).by_leaf())
         written_durations = [leaf.written_duration for leaf in leaves]
         weights = []
         for numerator in unscaled_talea:
-            duration = durationtools.Duration(
-                numerator,
-                self.talea.denominator,
-                )
+            duration = abjad.Duration(numerator, self.talea.denominator)
             weight = abs(duration)
             weights.append(weight)
-        parts = datastructuretools.Sequence(written_durations).partition_by_weights(
+        parts = abjad.sequence(written_durations).partition_by_weights(
             weights=weights,
             allow_part_weights=abjad.More,
             cyclic=True,
             overhang=True,
             )
         counts = [len(part) for part in parts]
-        parts = datastructuretools.Sequence(leaves).partition_by_counts(counts)
-        prototype = (spannertools.Tie,)
+        parts = abjad.sequence(leaves).partition_by_counts(counts)
+        prototype = (abjad.Tie,)
         for part in parts:
-            if any(isinstance(_, scoretools.Rest) for _ in part):
+            if any(isinstance(_, abjad.Rest) for _ in part):
                 continue
-            part = selectiontools.Selection(part)
-            tie_spanner = spannertools.Tie()
+            part = abjad.select(part)
+            tie_spanner = abjad.Tie()
             # voodoo to temporarily neuter the contiguity constraint
             tie_spanner._unconstrain_contiguity()
             for component in part:
@@ -452,7 +447,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
     def _get_format_specification(self):
         from abjad.tools import systemtools
-        agent = systemtools.StorageFormatAgent(self)
+        agent = systemtools.StorageFormatManager(self)
         names = list(agent.signature_keyword_names)
         if self.tie_split_notes:
             names.remove('tie_split_notes')
@@ -552,7 +547,7 @@ class TaleaRhythmMaker(RhythmMaker):
                     )
                 attach(tie, leaves[:])
             result.extend(leaves)
-        result = abjad.Selection(result)
+        result = abjad.select(result)
         return result
 
     def _make_music(self, divisions, rotation):
@@ -594,7 +589,7 @@ class TaleaRhythmMaker(RhythmMaker):
             else:
                 tuplets = self._make_tuplets(secondary_divisions, leaf_lists)
                 result = tuplets
-            selections = [selectiontools.Selection(x) for x in result]
+            selections = [abjad.select(_) for _ in result]
         else:
             selections = []
             for division in secondary_divisions:
@@ -704,6 +699,7 @@ class TaleaRhythmMaker(RhythmMaker):
             }
 
     def _split_sequence_extended_to_weights(self, sequence, weights):
+        import abjad
         assert mathtools.all_are_positive_integers(weights), repr(weights)
         sequence_weight = mathtools.weight(sequence)
         weight = mathtools.weight(weights)
@@ -713,7 +709,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 message += '\n{!r} in {!r}.'
                 message = message.format(sequence, weights)
                 raise Exception(message)
-        sequence = datastructuretools.Sequence(sequence).repeat_to_weight(weight)
+        sequence = abjad.sequence(sequence).repeat_to_weight(weight)
         sequence = sequence.split(weights, cyclic=True)
         return sequence
 

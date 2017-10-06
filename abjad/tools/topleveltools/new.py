@@ -10,7 +10,7 @@ def new(argument, **keywords):
 
         ::
 
-            >>> markup = abjad.Markup('Andante assai', direction=Up).italic()
+            >>> markup = abjad.Markup('Andante assai', direction=abjad.Up).italic()
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(markup, staff[0])
             >>> show(staff) # doctest: +SKIP
@@ -31,7 +31,7 @@ def new(argument, **keywords):
 
         ::
 
-            >>> markup = abjad.new(markup, direction=Down)
+            >>> markup = abjad.new(markup, direction=abjad.Down)
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(markup, staff[0])
             >>> show(staff) # doctest: +SKIP
@@ -52,10 +52,10 @@ def new(argument, **keywords):
 
     Returns new object with type equal to that of `argument`.
     '''
-    from abjad.tools import systemtools
+    import abjad
     if argument is None:
         return argument
-    agent = systemtools.StorageFormatAgent(argument)
+    agent = abjad.StorageFormatManager(argument)
     template_dict = agent.get_template_dict()
     recursive_arguments = {}
     for key, value in keywords.items():
@@ -73,7 +73,7 @@ def new(argument, **keywords):
             result = method(value)
             if isinstance(result, type(argument)):
                 argument = result
-                template_dict.update(systemtools.StorageFormatAgent(
+                template_dict.update(abjad.StorageFormatManager(
                     argument).get_template_dict())
         else:
             message = '{} has no key {!r}'.format(type(argument), key)

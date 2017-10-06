@@ -1,4 +1,3 @@
-from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools.abctools import Parser
 
@@ -133,13 +132,14 @@ class RhythmTreeParser(Parser):
 
     def t_DURATION(self, t):
         r'-?[1-9]\d*(/[1-9]\d*)?'
+        import abjad
         parts = t.value.partition('/')
         if not parts[2]:
-            t.value = durationtools.Duration(int(parts[0]))
+            t.value = abjad.Duration(int(parts[0]))
         else:
             numerator, denominator = int(parts[0]), int(parts[2])
-            fraction = mathtools.NonreducedFraction(numerator, denominator)
-            preprolated_duration = durationtools.Duration(fraction)
+            fraction = abjad.NonreducedFraction(numerator, denominator)
+            preprolated_duration = abjad.Duration(fraction)
             if fraction.numerator == preprolated_duration.numerator:
                 t.value = preprolated_duration
             else:

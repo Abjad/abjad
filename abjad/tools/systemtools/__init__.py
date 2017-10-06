@@ -10,11 +10,12 @@ from .IndicatorWrapper import IndicatorWrapper
 from .LilyPondFormatBundle import LilyPondFormatBundle
 from .LilyPondFormatManager import LilyPondFormatManager
 from .NullContextManager import NullContextManager
+from .PersistenceManager import PersistenceManager
 from .ProgressIndicator import ProgressIndicator
 from .RedirectedStreams import RedirectedStreams
 from .Signature import Signature
 from .SlotContributions import SlotContributions
-from .StorageFormatAgent import StorageFormatAgent
+from .StorageFormatManager import StorageFormatManager
 from .StorageFormatSpecification import StorageFormatSpecification
 from .TemporaryDirectory import TemporaryDirectory
 from .TemporaryDirectoryChange import TemporaryDirectoryChange

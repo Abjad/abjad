@@ -1,5 +1,4 @@
 import collections
-from abjad.tools import durationtools
 from abjad.tools import markuptools
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
@@ -864,9 +863,10 @@ class MetricModulation(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_left_markup(self):
+        import abjad
         if self.left_markup is not None:
             return self.left_markup
-        markup = durationtools.Duration._to_score_markup(self.left_rhythm)
+        markup = abjad.Duration._to_score_markup(self.left_rhythm)
         return markup
 
     def _get_lilypond_format(self):
@@ -876,7 +876,7 @@ class MetricModulation(AbjadValueObject):
         import abjad
         bundle = abjad.LilyPondFormatBundle()
         markup = self._get_markup()
-        markup = abjad.new(markup, direction=Up)
+        markup = abjad.new(markup, direction=abjad.Up)
         markup_format_pieces = markup._get_format_pieces()
         bundle.right.markup.extend(markup_format_pieces)
         return bundle
@@ -897,23 +897,23 @@ class MetricModulation(AbjadValueObject):
         return markup
 
     def _get_right_markup(self):
+        import abjad
         if self.right_markup is not None:
             return self.right_markup
-        markup = durationtools.Duration._to_score_markup(self.right_rhythm)
+        markup = abjad.Duration._to_score_markup(self.right_rhythm)
         return markup
 
     def _initialize_rhythm(self, rhythm):
-        from abjad.tools import scoretools
-        from abjad.tools import selectiontools
-        if isinstance(rhythm, scoretools.Component):
-            selection = selectiontools.Selection([rhythm])
-        elif isinstance(rhythm, selectiontools.Selection):
+        import abjad
+        if isinstance(rhythm, abjad.Component):
+            selection = abjad.select([rhythm])
+        elif isinstance(rhythm, abjad.Selection):
             selection = rhythm
         else:
             message = 'rhythm must be duration, component or selection: {!r}.'
             message = message.format(rhythm)
             raise TypeError(message)
-        assert isinstance(selection, selectiontools.Selection)
+        assert isinstance(selection, abjad.Selection)
         return selection
 
     ### PUBLIC PROPERTIES ###

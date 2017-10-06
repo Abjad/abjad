@@ -28,7 +28,7 @@ class GraphvizMixin(AbjadObject):
     @staticmethod
     def _copy_with_memo(node):
         from abjad.tools import systemtools
-        agent = systemtools.StorageFormatAgent(node)
+        agent = systemtools.StorageFormatManager(node)
         edges = set(getattr(node, '_edges', ()))
         mapping = dict()
         arguments = agent.get_template_dict()

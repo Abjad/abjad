@@ -220,7 +220,7 @@ class Rotation(AbjadValueObject):
         if not self.period:
             return argument.rotate(self.n, stravinsky=self.stravinsky)
         result = abjad.new(argument, items=())
-        for shard in abjad.Sequence(argument).partition_by_counts(
+        for shard in abjad.sequence(argument).partition_by_counts(
             [self.period],
             cyclic=True,
             overhang=True,

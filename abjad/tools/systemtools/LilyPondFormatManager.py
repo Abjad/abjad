@@ -71,11 +71,11 @@ class LilyPondFormatManager(AbjadObject):
                 continue
             # store markup
             elif isinstance(wrapper.indicator, abjad.Markup):
-                if wrapper.indicator.direction == Up:
+                if wrapper.indicator.direction == abjad.Up:
                     up_markup.append(wrapper.indicator)
-                elif wrapper.indicator.direction == Down:
+                elif wrapper.indicator.direction == abjad.Down:
                     down_markup.append(wrapper.indicator)
-                elif wrapper.indicator.direction in (Center, None):
+                elif wrapper.indicator.direction in (abjad.Center, None):
                     neutral_markup.append(wrapper.indicator)
             # store scoped wrappers
             elif wrapper.scope is not None:
@@ -127,11 +127,10 @@ class LilyPondFormatManager(AbjadObject):
 
     @staticmethod
     def _populate_grob_override_format_contributions(component, bundle):
-        from abjad.tools import scoretools
-        from abjad.tools import topleveltools
+        import abjad
         result = []
-        is_once = isinstance(component, scoretools.Leaf)
-        grob = topleveltools.override(component)
+        is_once = isinstance(component, abjad.Leaf)
+        grob = abjad.override(component)
         contributions = grob._list_format_contributions(
             'override',
             is_once=is_once,
@@ -144,17 +143,16 @@ class LilyPondFormatManager(AbjadObject):
             arrow = written_pitch.arrow
         except AttributeError:
             arrow = None
-        if arrow in (Up, Down):
+        if arrow in (abjad.Up, abjad.Down):
             contributions_ = written_pitch._list_format_contributions()
             contributions.extend(contributions_)
         bundle.grob_overrides.extend(contributions)
 
     @staticmethod
     def _populate_grob_revert_format_contributions(component, bundle):
-        from abjad.tools import scoretools
-        from abjad.tools import topleveltools
-        if not isinstance(component, scoretools.Leaf):
-            manager = topleveltools.override(component)
+        import abjad
+        if not isinstance(component, abjad.Leaf):
+            manager = abjad.override(component)
             contributions = manager._list_format_contributions('revert')
             bundle.grob_reverts.extend(contributions)
 
@@ -350,27 +348,28 @@ class LilyPondFormatManager(AbjadObject):
 
         Returns string.
         '''
-        from abjad.tools import schemetools
+        import abjad
         if '_get_lilypond_format' in dir(argument) and not isinstance(argument, str):
             pass
         elif argument in (True, False):
-            argument = schemetools.Scheme(argument)
-        elif argument in (Up, Down, Left, Right, Center):
-            argument = schemetools.Scheme(repr(argument).lower())
+            argument = abjad.Scheme(argument)
+        elif argument in (
+            abjad.Up, abjad.Down, abjad.Left, abjad.Right, abjad.Center):
+            argument = abjad.Scheme(repr(argument).lower())
         elif isinstance(argument, int) or isinstance(argument, float):
-            argument = schemetools.Scheme(argument)
+            argument = abjad.Scheme(argument)
         elif argument in LilyPondFormatManager.lilypond_color_constants:
-            argument = schemetools.Scheme(argument)
+            argument = abjad.Scheme(argument)
         elif isinstance(argument, str) and '::' in argument:
-            argument = schemetools.Scheme(argument)
+            argument = abjad.Scheme(argument)
         elif isinstance(argument, tuple) and len(argument) == 2:
-            argument = schemetools.SchemePair(argument)
+            argument = abjad.SchemePair(argument)
         elif isinstance(argument, str) and ' ' not in argument:
-            argument = schemetools.Scheme(argument, quoting="'")
+            argument = abjad.Scheme(argument, quoting="'")
         elif isinstance(argument, str) and ' ' in argument:
-            argument = schemetools.Scheme(argument)
+            argument = abjad.Scheme(argument)
         else:
-            argument = schemetools.Scheme(argument, quoting="'")
+            argument = abjad.Scheme(argument, quoting="'")
         return format(argument, 'lilypond')
 
     @staticmethod

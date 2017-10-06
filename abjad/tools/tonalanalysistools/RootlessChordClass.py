@@ -223,21 +223,21 @@ class RootlessChordClass(IntervalSegment):
     def _invert_chord_quality(intervals, inversion):
         import abjad
         if isinstance(inversion, int):
-            intervals = abjad.Sequence(intervals).rotate(n=-inversion)
+            intervals = abjad.sequence(intervals).rotate(n=-inversion)
             rotation = -inversion
         elif inversion == 'root':
             rotation = 0
         elif inversion == 'first':
-            intervals = abjad.Sequence(intervals).rotate(n=-1)
+            intervals = abjad.sequence(intervals).rotate(n=-1)
             rotation = -1
         elif inversion == 'second':
-            intervals = abjad.Sequence(intervals).rotate(n=-2)
+            intervals = abjad.sequence(intervals).rotate(n=-2)
             rotation = -2
         elif inversion == 'third':
-            intervals = abjad.Sequence(intervals).rotate(n=-3)
+            intervals = abjad.sequence(intervals).rotate(n=-3)
             rotation = -3
         elif inversion == 'fourth':
-            intervals = abjad.Sequence(intervals).rotate(n=-4)
+            intervals = abjad.sequence(intervals).rotate(n=-4)
             rotation = -4
         else:
             message = 'unknown chord inversion: {!r}.'

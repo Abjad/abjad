@@ -1,5 +1,5 @@
 def persist(client):
-    r'''Makes persistence agent.
+    r'''Makes persistence manager.
 
     ..  container:: example
 
@@ -31,8 +31,8 @@ def persist(client):
         ::
 
             >>> abjad.persist(staff)
-            PersistenceAgent(client=Staff("c'4 e'4 d'4 f'4"))
+            PersistenceManager(client=Staff("c'4 e'4 d'4 f'4"))
 
     '''
-    from abjad.tools import agenttools
-    return agenttools.PersistenceAgent(client)
+    import abjad
+    return abjad.PersistenceManager(client)

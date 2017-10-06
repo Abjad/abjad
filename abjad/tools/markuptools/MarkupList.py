@@ -277,7 +277,7 @@ class MarkupList(TypedList):
 
     def _get_format_specification(self):
         import abjad
-        agent = abjad.StorageFormatAgent(self)
+        agent = abjad.StorageFormatManager(self)
         names = list(agent.signature_keyword_names)
         if self.item_class is abjad.Markup:
             names.remove('item_class')
@@ -456,7 +456,7 @@ class MarkupList(TypedList):
                     >>> date = abjad.Markup('May - August 2014')
                     >>> markups = [city, date]
                     >>> markup_list = abjad.MarkupList(markups)
-                    >>> markup = markup_list.center_column(direction=Up)
+                    >>> markup = markup_list.center_column(direction=abjad.Up)
                     >>> f(markup)
                     ^ \markup {
                         \center-column
@@ -528,7 +528,7 @@ class MarkupList(TypedList):
                     >>> markup_two = abjad.Markup.draw_line(13, 0)
                     >>> markup_list = [markup_one, markup_two]
                     >>> markup_list = abjad.MarkupList(markup_list)
-                    >>> markup = markup_list.combine(direction=Up)
+                    >>> markup = markup_list.combine(direction=abjad.Up)
                     >>> f(markup)
                     ^ \markup {
                         \combine
@@ -569,7 +569,7 @@ class MarkupList(TypedList):
                     >>> upbow = abjad.Markup.musicglyph('scripts.upbow')
                     >>> markups = [downbow, hspace, upbow]
                     >>> markup_list = abjad.MarkupList(markups)
-                    >>> markup = markup_list.concat(direction=Up)
+                    >>> markup = markup_list.concat(direction=abjad.Up)
                     >>> f(markup)
                     ^ \markup {
                         \concat
@@ -831,7 +831,7 @@ class MarkupList(TypedList):
                     >>> city = abjad.Markup('Los Angeles')
                     >>> date = abjad.Markup('May - August 2014')
                     >>> markup_list = abjad.MarkupList([city, date])
-                    >>> markup = markup_list.overlay(direction=Up)
+                    >>> markup = markup_list.overlay(direction=abjad.Up)
                     >>> f(markup)
                     ^ \markup {
                         \overlay

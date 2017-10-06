@@ -30,8 +30,8 @@ the core iteration functionality anyway.
 Trevor: Same with ``mutate()`` and ``inspect()``. Just those two functions
 offer up a tremendous amount of functionality.
 
-Josiah: We should highlight ``InspectionAgent``, ``IterationAgent``,
-``MutationAgent`` and ``PersistenceAgent``. I feel pretty good about all of
+Josiah: We should highlight ``Inspection``, ``Iteration``,
+``Mutation`` and ``PersistenceAgent``. I feel pretty good about all of
 these changes, actually. I feel like this is a release of the system is really
 solid.
 

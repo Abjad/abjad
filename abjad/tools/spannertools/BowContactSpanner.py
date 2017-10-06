@@ -36,7 +36,7 @@ class BowContactSpanner(Spanner):
             >>> abjad.override(staff).glissando.thickness = 2
             >>> abjad.override(staff).script.staff_padding = 3
             >>> abjad.override(staff).staff_symbol.transparent = True
-            >>> abjad.override(staff).stem.direction = Down
+            >>> abjad.override(staff).stem.direction = abjad.Down
             >>> abjad.override(staff).stem.length = 8
             >>> abjad.override(staff).stem.stem_begin_position = -9
             >>> abjad.override(staff).time_signature.stencil = False
@@ -147,7 +147,7 @@ class BowContactSpanner(Spanner):
             >>> abjad.override(staff).glissando.thickness = 2
             >>> abjad.override(staff).script.staff_padding = 3
             >>> abjad.override(staff).staff_symbol.transparent = True
-            >>> abjad.override(staff).stem.direction = Down
+            >>> abjad.override(staff).stem.direction = abjad.Down
             >>> abjad.override(staff).stem.length = 8
             >>> abjad.override(staff).stem.stem_begin_position = -9
             >>> abjad.override(staff).time_signature.stencil = False
@@ -319,38 +319,38 @@ class BowContactSpanner(Spanner):
             previous_contact_point.contact_point is None
             ):
             if this_contact_point < next_contact_point:
-                direction_change = Down
+                direction_change = abjad.Down
             elif next_contact_point < this_contact_point:
-                direction_change = Up
+                direction_change = abjad.Up
         else:
             previous_leaf = abjad.inspect(leaf).get_leaf(-1)
             agent = abjad.inspect(previous_leaf)
             previous_contact_point = agent.get_indicator(abjad.BowContactPoint)
             if (previous_contact_point < this_contact_point and
                 next_contact_point < this_contact_point):
-                direction_change = Up
+                direction_change = abjad.Up
             elif (this_contact_point < previous_contact_point and
                 this_contact_point < next_contact_point):
-                direction_change = Down
+                direction_change = abjad.Down
             elif (this_contact_point == previous_contact_point):
                 if this_contact_point < next_contact_point:
                     cautionary_change = True
-                    direction_change = Down
+                    direction_change = abjad.Down
                 elif next_contact_point < this_contact_point:
                     cautionary_change = True
-                    direction_change = Up
+                    direction_change = abjad.Up
         if direction_change is None:
             return
         if cautionary_change:
-            if direction_change == Up:
+            if direction_change == abjad.Up:
                 string = r'^ \parenthesize \upbow'
-            elif direction_change == Down:
+            elif direction_change == abjad.Down:
                 string = r'^ \parenthesize \downbow'
         else:
-            if direction_change == Up:
-                articulation = abjad.Articulation('upbow', Up)
-            elif direction_change == Down:
-                articulation = abjad.Articulation('downbow', Up)
+            if direction_change == abjad.Up:
+                articulation = abjad.Articulation('upbow', abjad.Up)
+            elif direction_change == abjad.Down:
+                articulation = abjad.Articulation('downbow', abjad.Up)
             string = str(articulation)
         bundle.right.articulations.append(string)
 

@@ -1,6 +1,5 @@
 import math
 from abjad.tools import datastructuretools
-from abjad.tools import durationtools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
@@ -500,13 +499,14 @@ class AccelerandoRhythmMaker(RhythmMaker):
         total_duration,
         interpolation_specifier,
         ):
+        import abjad
         selection_duration = selection.get_duration()
         if not selection_duration == total_duration:
             needed_duration = total_duration - selection[:-1].get_duration()
             multiplier = needed_duration / \
                 interpolation_specifier.written_duration
-            multiplier = durationtools.Multiplier(multiplier)
-            detach(durationtools.Multiplier, selection[-1])
+            multiplier = abjad.Multiplier(multiplier)
+            detach(abjad.Multiplier, selection[-1])
             attach(multiplier, selection[-1])
 
     def _get_interpolation_specifiers(self):
@@ -796,9 +796,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
         if not beam_specifier.use_feather_beams:
             pass
         elif class_._is_accelerando(selection):
-            override(selection[0]).beam.grow_direction = Right
+            override(selection[0]).beam.grow_direction = abjad.Right
         elif class_._is_ritardando(selection):
-            override(selection[0]).beam.grow_direction = Left
+            override(selection[0]).beam.grow_direction = abjad.Left
         tuplet = abjad.Tuplet((1, 1), selection)
         if tuplet_specifier.use_note_duration_bracket:
             tuplet.force_times_command = True
@@ -830,10 +830,11 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     @staticmethod
     def _round_durations(durations, denominator):
+        import abjad
         durations_ = []
         for duration in durations:
             numerator = int(round(duration * denominator))
-            duration_ = durationtools.Duration(numerator, denominator)
+            duration_ = abjad.Duration(numerator, denominator)
             durations_.append(duration_)
         return durations_
 
