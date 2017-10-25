@@ -10,7 +10,7 @@ def edit_cello_voice(score, durated_reservoir):
 
     logical_tie = abjad.inspect(voice[-1]).get_logical_tie()
     for leaf in logical_tie.leaves:
-        parent = leaf._get_parentage().parent
+        parent = abjad.inspect(leaf).get_parentage().parent
         index = parent.index(leaf)
         parent[index] = abjad.Chord(['e,', 'a,'], leaf.written_duration)
 

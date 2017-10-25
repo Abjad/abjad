@@ -263,7 +263,7 @@ def test_scoretools_Mutation_fuse_10():
     tuplet_1 = abjad.Tuplet((2, 3), "c'8")
     tuplet_2 = abjad.Tuplet((2, 3), "c'4")
     voice = abjad.Voice([tuplet_1, tuplet_2, abjad.Note("c'4")])
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     slur = abjad.Slur()
     abjad.attach(slur, leaves)
 
@@ -359,7 +359,7 @@ def test_scoretools_Mutation_fuse_12():
     '''
 
     voice = abjad.Voice("abj: | 1/8 c'16 d'16 || 2/16 e'16 f'16 |")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 
@@ -406,7 +406,7 @@ def test_scoretools_Mutation_fuse_13():
     '''
 
     voice = abjad.Voice("abj: | 1/8 c'16 d'16 || 2/16 e'16 f'16 |")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves[:2])
 
@@ -458,7 +458,7 @@ def test_scoretools_Mutation_fuse_14():
     measure_2 = abjad.Measure((1, 12), "d'8")
     measure_2.implicit_scaling = True
     voice = abjad.Voice([measure_1, measure_2])
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 
@@ -523,7 +523,7 @@ def test_scoretools_Mutation_fuse_17():
     '''
 
     voice = abjad.Voice("abj: | 1/8 c'16 d'16 || 1/8 e'16 f'16 || 1/8 g'16 a'16 |")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 

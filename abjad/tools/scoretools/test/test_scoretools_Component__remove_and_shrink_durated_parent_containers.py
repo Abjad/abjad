@@ -111,7 +111,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_05():
 
     tuplet = abjad.Tuplet(abjad.Multiplier(2, 3), [])
     tuplet.extend(r"c'2 cs'2 \times 2/3 { d'4 ef'4 e'4 }")
-    leaves = abjad.select(tuplet).by_leaf()
+    leaves = abjad.select(tuplet).leaves()
 
     assert format(tuplet) == abjad.String.normalize(
         r'''

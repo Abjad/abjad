@@ -164,24 +164,24 @@ class NamedPitchClass(PitchClass):
 
     # TODO: clean up
     def __init__(self, name='c'):
-        from abjad.tools import pitchtools
+        import abjad
         numbered_prototype = (
-            pitchtools.NumberedPitch,
-            pitchtools.NumberedPitchClass,
+            abjad.NumberedPitch,
+            abjad.NumberedPitchClass,
             )
         if isinstance(name, type(self)):
             self._initialize_by_named_pitch_class(name)
-        elif isinstance(name, pitchtools.NamedPitch):
+        elif isinstance(name, abjad.NamedPitch):
             self._initialize_by_named_pitch(name)
-        elif pitchtools.Pitch._is_pitch_class_octave_number_string(name):
+        elif abjad.Pitch._is_pitch_class_octave_number_string(name):
             self._initialize_by_pitch_class_octave_number_string(name)
-        elif pitchtools.Pitch._is_pitch_name(name):
+        elif abjad.Pitch._is_pitch_name(name):
             self._initialize_by_pitch_name(name)
         elif isinstance(name, numbers.Number):
             self._initialize_by_number(name)
         elif isinstance(name, numbered_prototype):
             self._initialize_by_number(name.number)
-        elif pitchtools.Pitch._is_pitch_carrier(name):
+        elif abjad.Pitch._is_pitch_carrier(name):
             self._initialize_by_pitch_carrier(name)
         else:
             message = 'can not instantiate {} from {!r}.'
@@ -195,20 +195,16 @@ class NamedPitchClass(PitchClass):
 
         ..  container:: example
 
-            ::
+            >>> abjad.NamedPitchClass('cs') + abjad.NamedInterval('+M9')
+            NamedPitchClass('ds')
 
-                >>> abjad.NamedPitchClass('cs') + abjad.NamedInterval('+M9')
-                NamedPitchClass('ds')
-
-            ::
-
-                >>> abjad.NamedPitchClass('cs') + abjad.NamedInterval('-M9')
-                NamedPitchClass('b')
+            >>> abjad.NamedPitchClass('cs') + abjad.NamedInterval('-M9')
+            NamedPitchClass('b')
 
         Returns new named pitch-class.
         '''
-        from abjad.tools import pitchtools
-        dummy_pitch = pitchtools.NamedPitch((self.name, 4))
+        import abjad
+        dummy_pitch = abjad.NamedPitch((self.name, 4))
         pitch = named_interval.transpose(dummy_pitch)
         return type(self)(pitch)
 
@@ -379,19 +375,16 @@ class NamedPitchClass(PitchClass):
 
         Returns named inversion-equivalent interval-class.
         '''
-        from abjad.tools import pitchtools
+        import abjad
         if not isinstance(argument, type(self)):
             message = 'must be named pitch-class: {!r}.'
             message = message.format(argument)
             raise TypeError(message)
-        #pitch_1 = pitchtools.NamedPitch((self, 4))
-        pitch_1 = pitchtools.NamedPitch((self.name, 4))
-        #pitch_2 = pitchtools.NamedPitch((argument, 4))
-        pitch_2 = pitchtools.NamedPitch((argument.name, 4))
-        mdi = pitchtools.NamedInterval.from_pitch_carriers(
-            pitch_1, pitch_2)
+        pitch_1 = abjad.NamedPitch((self.name, 4))
+        pitch_2 = abjad.NamedPitch((argument.name, 4))
+        mdi = abjad.NamedInterval.from_pitch_carriers(pitch_1, pitch_2)
         pair = (mdi.quality_string, mdi.number)
-        dic = pitchtools.NamedInversionEquivalentIntervalClass(pair)
+        dic = abjad.NamedInversionEquivalentIntervalClass(pair)
         return dic
 
     ### PRIVATE METHODS ###

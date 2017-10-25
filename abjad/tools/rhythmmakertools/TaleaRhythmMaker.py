@@ -407,7 +407,7 @@ class TaleaRhythmMaker(RhythmMaker):
         import abjad
         if not self.tie_split_notes:
             return
-        leaves = list(abjad.iterate(result).by_leaf())
+        leaves = list(abjad.iterate(result).leaves())
         written_durations = [leaf.written_duration for leaf in leaves]
         weights = []
         for numerator in unscaled_talea:
@@ -472,7 +472,7 @@ class TaleaRhythmMaker(RhythmMaker):
             container = scoretools.Container(selection)
             attach('temporary container', container)
             containers.append(container)
-        for logical_tie in iterate(selections).by_logical_tie():
+        for logical_tie in iterate(selections).logical_ties():
             if not logical_tie.is_trivial:
                 for note in logical_tie[1:]:
                     rest = scoretools.Rest(note)
@@ -2359,8 +2359,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
                 >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
                 ...     logical_tie_masks=[
-                ...         abjad.silence_first(),
-                ...         abjad.silence_last(),
+                ...         abjad.silence_first(1),
+                ...         abjad.silence_last(1),
                 ...         ],
                 ...     talea=abjad.rhythmmakertools.Talea(
                 ...         counts=[1, 2, 3, 4],

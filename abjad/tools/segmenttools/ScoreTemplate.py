@@ -35,7 +35,7 @@ class ScoreTemplate(abctools.AbjadValueObject):
         '''
         import abjad
         score = self()
-        for voice in abjad.iterate(score).by_class(abjad.Voice):
+        for voice in abjad.iterate(score).components(abjad.Voice):
             voice.append(abjad.Skip(1))
         self.attach_defaults(score)
         lilypond_file = score.__illustrate__()
@@ -57,7 +57,7 @@ class ScoreTemplate(abctools.AbjadValueObject):
         import abjad
         assert isinstance(score, abjad.Score), repr(score)
         prototype = (abjad.Staff, abjad.StaffGroup)
-        for context in abjad.iterate(score).by_class(prototype):
+        for context in abjad.iterate(score).components(prototype):
             leaf = abjad.inspect(context).get_leaf(0)
             if leaf is None:
                 continue
@@ -66,7 +66,7 @@ class ScoreTemplate(abctools.AbjadValueObject):
                 string = 'default_instrument'
                 instrument = abjad.inspect(context).get_annotation(string)
                 abjad.attach(instrument, leaf)
-        for staff in abjad.iterate(score).by_class(abjad.Staff):
+        for staff in abjad.iterate(score).components(abjad.Staff):
             leaf = abjad.inspect(staff).get_leaf(0)
             clef = abjad.inspect(leaf).get_indicator(abjad.Clef)
             if clef is not None:

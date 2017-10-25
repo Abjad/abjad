@@ -248,7 +248,7 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         import abjad
         staff = abjad.Staff(200 * abjad.Note("c'16"))
-        selector = abjad.select().by_leaf()
+        selector = abjad.select().leaves()
         for note in selector(staff):
             dynamic = abjad.Dynamic('f')
             abjad.attach(dynamic, note)

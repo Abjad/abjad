@@ -7,7 +7,7 @@ def test_scoretools_Container___setitem___01():
     '''
 
     voice = abjad.Voice("c'8 [ d'8 ] e'8 f'8")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     abjad.attach(abjad.Glissando(), leaves)
 
     assert format(voice) == abjad.String.normalize(
@@ -42,7 +42,7 @@ def test_scoretools_Container___setitem___02():
     '''
 
     voice = abjad.Voice("c'8 [ d'8 ] e'8 f'8")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     glissando = abjad.Glissando(allow_repeat_pitches=True)
     abjad.attach(glissando, leaves)
 
@@ -82,7 +82,7 @@ def test_scoretools_Container___setitem___03():
     '''
 
     voice = abjad.Voice("{ c'8 [ d'8 } { e'8 f'8 ] }")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     abjad.attach(abjad.Glissando(), leaves)
 
     assert format(voice) == abjad.String.normalize(
@@ -122,7 +122,7 @@ def test_scoretools_Container___setitem___04():
     '''
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 }")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     abjad.attach(abjad.Beam(), leaves)
     abjad.attach(abjad.Glissando(), leaves)
 
@@ -167,7 +167,7 @@ def test_scoretools_Container___setitem___05():
     '''
 
     voice = abjad.Voice("{ c'8 [ d'8 } { e'8 f'8 ] }")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     abjad.attach(abjad.Glissando(), leaves)
 
     assert format(voice) == abjad.String.normalize(
@@ -208,7 +208,7 @@ def test_scoretools_Container___setitem___06():
 
     voice = abjad.Voice(2 * abjad.Container("c'8 c'8 c'8 c'8"))
     voice = abjad.Voice("{ c'8 d'8 e'8 f'8 } { g'8 a'8 b'8 c''8 }")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     abjad.attach(abjad.Beam(), leaves[0:6])
 
     assert format(voice) == abjad.String.normalize(
@@ -333,9 +333,9 @@ def test_scoretools_Container___setitem___08():
 
     voice_2 = abjad.Voice(notes[3:])
     abjad.mutate(voice_2[1:3]).wrap(abjad.Container())
-    leaves = abjad.select(voice_2).by_leaf()
+    leaves = abjad.select(voice_2).leaves()
     abjad.attach(abjad.Glissando(), leaves)
-    leaves = abjad.select(voice_2[1]).by_leaf()
+    leaves = abjad.select(voice_2[1]).leaves()
     abjad.attach(abjad.Slur(), leaves)
 
     assert format(voice_2) == abjad.String.normalize(
@@ -862,23 +862,23 @@ def test_scoretools_Container___setitem___21():
     staff = abjad.Staff("c'8 [ { d'8 e'8 } f'8 ]")
     beam = abjad.inspect(staff[0]).get_spanner(abjad.Beam)
 
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     assert beam.leaves == leaves
 
     staff[1].append("g'8")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     assert beam.leaves == leaves
 
     staff[1].insert(0, "b'8")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     assert beam.leaves == leaves
 
     staff.insert(1, "a'8")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     assert beam.leaves == leaves
 
     staff.insert(3, "fs'8")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     assert beam.leaves == leaves
 
     assert format(staff) == abjad.String.normalize(

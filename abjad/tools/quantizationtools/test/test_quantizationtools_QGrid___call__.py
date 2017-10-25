@@ -60,7 +60,7 @@ def test_quantizationtools_QGrid___call___02():
         '''
         )
 
-    leaves = abjad.select(result[0]).by_leaf()
+    leaves = abjad.select(result[0]).leaves()
     leaf = leaves[0]
     annotation = abjad.inspect(leaf).get_indicator(dict)
     q_events = annotation['q_events']

@@ -69,7 +69,7 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
                 ):
                 score = self.score_template()
                 for i in range(self.measure_count):
-                    for voice in abjad.iterate(score).by_class(abjad.Voice):
+                    for voice in abjad.iterate(score).components(abjad.Voice):
                         measure = abjad.Measure((4, 4), "c'1")
                         voice.append(measure)
                 self.score_template.attach_defaults(score)
@@ -84,8 +84,8 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
                 segment_count = metadata.get('segment_count', 1)
                 if 1 < segment_number:
                     rehearsal_mark = abjad.RehearsalMark()
-                    for voice in abjad.iterate(score).by_class(abjad.Voice):
-                        for leaf in abjad.iterate(voice).by_leaf():
+                    for voice in abjad.iterate(score).components(abjad.Voice):
+                        for leaf in abjad.iterate(voice).leaves():
                             abjad.attach(rehearsal_mark, leaf)
                             break
                 if segment_count <= segment_number:

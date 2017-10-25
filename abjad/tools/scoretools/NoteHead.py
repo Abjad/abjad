@@ -10,11 +10,9 @@ class NoteHead(AbjadObject):
 
     ..  container:: example
 
-        ::
-
-            >>> note_head = abjad.NoteHead(13)
-            >>> note_head
-            NoteHead("cs''")
+        >>> note_head = abjad.NoteHead(13)
+        >>> note_head
+        NoteHead("cs''")
 
     Note heads are immutable.
     '''
@@ -68,12 +66,10 @@ class NoteHead(AbjadObject):
     def __copy__(self, *arguments):
         r'''Copies note-head.
 
-        ::
-
-            >>> import copy
-            >>> note_head = abjad.NoteHead(13)
-            >>> copy.copy(note_head)
-            NoteHead("cs''")
+        >>> import copy
+        >>> note_head = abjad.NoteHead(13)
+        >>> copy.copy(note_head)
+        NoteHead("cs''")
 
         Returns new note-head.
         '''
@@ -133,11 +129,9 @@ class NoteHead(AbjadObject):
     def __repr__(self):
         r'''Gets interpreter representation of note-head.
 
-        ::
-
-            >>> note_head = abjad.NoteHead(13)
-            >>> note_head
-            NoteHead("cs''")
+        >>> note_head = abjad.NoteHead(13)
+        >>> note_head
+        NoteHead("cs''")
 
         Returns string.
         '''
@@ -146,11 +140,9 @@ class NoteHead(AbjadObject):
     def __str__(self):
         r'''String representation of note-head.
 
-        ::
-
-            >>> note_head = abjad.NoteHead(13)
-            >>> str(note_head)
-            "cs''"
+        >>> note_head = abjad.NoteHead(13)
+        >>> str(note_head)
+        "cs''"
 
         Returns string.
         '''
@@ -231,11 +223,9 @@ class NoteHead(AbjadObject):
     def client(self):
         r'''Client of note-head.
 
-        ::
-
-            >>> note_head = abjad.NoteHead(13)
-            >>> note_head.client is None
-            True
+        >>> note_head = abjad.NoteHead(13)
+        >>> note_head.client is None
+        True
 
         Returns note, chord or none.
         '''
@@ -247,18 +237,14 @@ class NoteHead(AbjadObject):
 
         Gets cautionary accidental flag:
 
-        ::
-
-            >>> note_head = abjad.NoteHead("cs''")
-            >>> note_head.is_cautionary is None
-            True
+        >>> note_head = abjad.NoteHead("cs''")
+        >>> note_head.is_cautionary is None
+        True
 
         Sets cautionary accidental flag:
 
-        ::
-
-            >>> note_head = abjad.NoteHead("cs''")
-            >>> note_head.is_cautionary = True
+        >>> note_head = abjad.NoteHead("cs''")
+        >>> note_head.is_cautionary = True
 
         Returns true or false.
         '''
@@ -276,18 +262,14 @@ class NoteHead(AbjadObject):
 
         Gets forced accidental flag:
 
-        ::
-
-            >>> note_head = abjad.NoteHead("cs''")
-            >>> note_head.is_forced is None
-            True
+        >>> note_head = abjad.NoteHead("cs''")
+        >>> note_head.is_forced is None
+        True
 
         Sets forced accidental flag:
 
-        ::
-
-            >>> note_head = abjad.NoteHead("cs''")
-            >>> note_head.is_forced = True
+        >>> note_head = abjad.NoteHead("cs''")
+        >>> note_head.is_forced = True
 
         Returns true or false.
         '''
@@ -305,18 +287,14 @@ class NoteHead(AbjadObject):
 
         Gets forced accidental flag:
 
-        ::
-
-            >>> note_head = abjad.NoteHead("cs''")
-            >>> note_head.is_parenthesized is None
-            True
+        >>> note_head = abjad.NoteHead("cs''")
+        >>> note_head.is_parenthesized is None
+        True
 
         Sets forced accidental flag:
 
-        ::
-
-            >>> note_head = abjad.NoteHead("cs''")
-            >>> note_head.is_parenthesized = True
+        >>> note_head = abjad.NoteHead("cs''")
+        >>> note_head.is_parenthesized = True
 
         Returns true or false.
         '''
@@ -332,11 +310,9 @@ class NoteHead(AbjadObject):
     def named_pitch(self):
         r'''Named pitch of note-head.
 
-        ::
-
-            >>> note_head = abjad.NoteHead("cs''")
-            >>> note_head.named_pitch
-            NamedPitch("cs''")
+        >>> note_head = abjad.NoteHead("cs''")
+        >>> note_head.named_pitch
+        NamedPitch("cs''")
 
         Returns named pitch.
         '''
@@ -346,11 +322,9 @@ class NoteHead(AbjadObject):
     def tweak(self):
         r'''LilyPond tweak reservoir of note-head.
 
-        ::
-
-            >>> note_head = abjad.NoteHead("cs''")
-            >>> note_head.tweak
-            LilyPondNameManager()
+        >>> note_head = abjad.NoteHead("cs''")
+        >>> note_head.tweak
+        LilyPondNameManager()
 
         Returns LilyPond tweak reservoir.
         '''
@@ -365,20 +339,16 @@ class NoteHead(AbjadObject):
 
         Gets written pitch of note-head:
 
-        ::
-
-            >>> note_head = abjad.NoteHead("cs''")
-            >>> note_head.written_pitch
-            NamedPitch("cs''")
+        >>> note_head = abjad.NoteHead("cs''")
+        >>> note_head.written_pitch
+        NamedPitch("cs''")
 
         Sets written pitch of note-head:
 
-        ::
-
-            >>> note_head = abjad.NoteHead("cs''")
-            >>> note_head.written_pitch = "d''"
-            >>> note_head.written_pitch
-            NamedPitch("d''")
+        >>> note_head = abjad.NoteHead("cs''")
+        >>> note_head.written_pitch = "d''"
+        >>> note_head.written_pitch
+        NamedPitch("d''")
 
         Returns named pitch.
         '''

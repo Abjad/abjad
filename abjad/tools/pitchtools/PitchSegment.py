@@ -207,7 +207,7 @@ class PitchSegment(Segment):
         notes = maker(named_pitches, [1])
         result = abjad.Score.make_piano_score(leaves=notes, sketch=True)
         score, treble_staff, bass_staff = result
-        for leaf in abjad.iterate(score).by_leaf():
+        for leaf in abjad.iterate(score).leaves():
             abjad.attach(abjad.Multiplier(1, 8), leaf)
         abjad.override(score).rest.transparent = True
         lilypond_file = abjad.LilyPondFile.new(score)
@@ -531,7 +531,7 @@ class PitchSegment(Segment):
             selection = abjad.select(selection)
         named_pitches = []
         prototype = (abjad.Note, abjad.Chord)
-        for component in abjad.iterate(selection).by_class(prototype):
+        for component in abjad.iterate(selection).components(prototype):
             try:
                 named_pitches.extend(component.written_pitches)
             except AttributeError:
@@ -716,7 +716,7 @@ class PitchSegment(Segment):
         written_duration = written_duration or abjad.Duration(1, 8)
         maker = abjad.NoteMaker()
         result = maker([0] * n, [written_duration])
-        logical_ties = abjad.iterate(result).by_logical_tie()
+        logical_ties = abjad.iterate(result).logical_ties()
         for i, logical_tie in enumerate(logical_ties):
             pitch = self[i % len(self)]
             for note in logical_tie:

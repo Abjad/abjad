@@ -26,7 +26,7 @@ def test_spannertools_MeasuredComplexBeam_01():
         '''
         )
 
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam = abjad.MeasuredComplexBeam()
     abjad.attach(beam, leaves)
 

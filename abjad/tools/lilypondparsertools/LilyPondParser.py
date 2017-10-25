@@ -395,7 +395,7 @@ class LilyPondParser(abctools.Parser):
         all_spanners = {}
 
         # traverse all leaves
-        leaves = select(music).by_leaf()
+        leaves = select(music).leaves()
         first_leaf = None
         if leaves:
             first_leaf = leaves[0]
@@ -433,11 +433,11 @@ class LilyPondParser(abctools.Parser):
                             hasattr(spanner_class, 'direction')):
                             direction = span_event.direction
                             spanner = spanner_class(direction=direction)
-                            selection = abjad.select([leaf, next_leaf]).by_leaf()
+                            selection = abjad.select([leaf, next_leaf]).leaves()
                             attach(spanner, selection)
                         else:
                             spanner = spanner_class()
-                            selection = abjad.select([leaf, next_leaf]).by_leaf()
+                            selection = abjad.select([leaf, next_leaf]).leaves()
                             attach(spanner, selection)
 
                 # otherwise throw an error

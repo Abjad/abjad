@@ -1,9 +1,4 @@
-from abjad.tools import scoretools
-from abjad.tools import spannertools
 from abjad.tools.abctools import AbjadValueObject
-from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import iterate
 
 
 class BeamSpecifier(AbjadValueObject):
@@ -102,10 +97,7 @@ class BeamSpecifier(AbjadValueObject):
             else:
                 durations = []
                 for selection in selections:
-                    if isinstance(selection, abjad.Selection):
-                        duration = selection.get_duration()
-                    else:
-                        duration = selection._get_duration()
+                    duration = abjad.inspect(selection).get_duration()
                     durations.append(duration)
                 beam = abjad.DuratedComplexBeam(
                     beam_rests=self.beam_rests,
@@ -123,7 +115,7 @@ class BeamSpecifier(AbjadValueObject):
             if self.stemlet_length is not None:
                 grob_proxy = abjad.override(beam).staff.stem
                 grob_proxy.stemlet_length = self.stemlet_length
-            leaves = abjad.select(components).by_leaf(with_grace_notes=False)
+            leaves = abjad.select(components).leaves(grace_notes=False)
             abjad.attach(beam, leaves)
         elif self.beam_each_division:
             for selection in selections:
@@ -131,8 +123,7 @@ class BeamSpecifier(AbjadValueObject):
                 if self.stemlet_length is not None:
                     grob_proxy = abjad.override(beam).staff.stem
                     grob_proxy.stemlet_length = self.stemlet_length
-                leaves = abjad.Selection(selection).by_leaf(
-                    with_grace_notes=False)
+                leaves = abjad.select(selection).leaves(grace_notes=False)
                 abjad.attach(beam, leaves)
 
     def __format__(self, format_specification=''):
@@ -171,9 +162,10 @@ class BeamSpecifier(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
-    def _detach_all_beams(self, divisions, with_grace_notes=False):
-        for component in iterate(divisions).by_class(with_grace_notes=False):
-            detach(spannertools.Beam, component)
+    def _detach_all_beams(self, divisions, grace_notes=False):
+        import abjad
+        for leaf in abjad.iterate(divisions).leaves(grace_notes=grace_notes):
+            abjad.detach(abjad.Beam, leaf)
 
     ### PUBLIC PROPERTIES ###
 

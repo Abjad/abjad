@@ -45,7 +45,7 @@ Here's notation in a loop:
 
 \begin{comment}
 <abjad>
-for leaf in iterate(staff).by_leaf():
+for leaf in iterate(staff).leaves():
     duration = inspect(leaf).get_duration()
     print(duration)
     show(leaf)

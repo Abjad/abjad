@@ -84,7 +84,7 @@ class Scale(PitchClassSegment):
         length = len(dicg)
         octave_number = 4
         pitch = abjad.NamedPitch((self[0].name, octave_number))
-        for i, logical_tie in enumerate(abjad.iterate(argument).by_logical_tie()):
+        for i, logical_tie in enumerate(abjad.iterate(argument).logical_ties()):
             if isinstance(logical_tie[0], abjad.Note):
                 for note in logical_tie:
                     note.written_pitch = pitch

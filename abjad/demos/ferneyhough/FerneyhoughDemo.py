@@ -746,7 +746,7 @@ class FerneyhoughDemo(object):
             outer_tuplet_proportions,
             )
         inner_tuplet_proportions = inner_tuplet_subdivision_count * [1]
-        selector = abjad.select().by_leaf()
+        selector = abjad.select().leaves()
         last_leaf = selector(outer_tuplet)[-1]
         right_logical_tie = abjad.inspect(last_leaf).get_logical_tie()
         right_logical_tie.to_tuplet(inner_tuplet_proportions)

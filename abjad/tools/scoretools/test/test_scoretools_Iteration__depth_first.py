@@ -23,7 +23,7 @@ staff = abjad.Staff(
     )
 
 
-def test_scoretools_Iteration_depth_first_01():
+def test_scoretools_Iteration__depth_first_01():
     '''
     Default depth-first search:
         * capped iteration returns no elements above self._client
@@ -33,7 +33,7 @@ def test_scoretools_Iteration_depth_first_01():
 
     # LEFT-TO-RIGHT #
 
-    iterator = abjad.iterate(staff[2]).depth_first()
+    iterator = abjad.iterate(staff[2])._depth_first()
 
     assert next(iterator) is staff[2]
     assert next(iterator) is staff[2][0]
@@ -56,7 +56,7 @@ def test_scoretools_Iteration_depth_first_01():
 
     # RIGHT-TO-LEFT #
 
-    iterator = abjad.iterate(staff[2]).depth_first(
+    iterator = abjad.iterate(staff[2])._depth_first(
         direction=abjad.Right,
         )
 
@@ -80,14 +80,14 @@ def test_scoretools_Iteration_depth_first_01():
     '''
 
 
-def test_scoretools_Iteration_depth_first_02():
+def test_scoretools_Iteration__depth_first_02():
     r'''Uncapped depth-first search: uncapped iteration returns
     all elements above self._client
     '''
 
     # LEFT-TO-RIGHT #
 
-    iterator = abjad.iterate(staff[2]).depth_first(
+    iterator = abjad.iterate(staff[2])._depth_first(
         capped=False,
         )
 
@@ -118,7 +118,7 @@ def test_scoretools_Iteration_depth_first_02():
 
     # RIGHT-TO-LEFT #
 
-    iterator = abjad.iterate(staff[2]).depth_first(
+    iterator = abjad.iterate(staff[2])._depth_first(
         capped=False,
         direction=abjad.Right,
         )
@@ -149,13 +149,13 @@ def test_scoretools_Iteration_depth_first_02():
     '''
 
 
-def test_scoretools_Iteration_depth_first_03():
+def test_scoretools_Iteration__depth_first_03():
     r'''Duplicates-allowed depth-first search: nodes yield every time they are
     traversed.  '''
 
     # LEFT-TO-RIGHT #
 
-    iterator = abjad.iterate(staff[2]).depth_first(
+    iterator = abjad.iterate(staff[2])._depth_first(
         unique=False,
         )
 
@@ -192,7 +192,7 @@ def test_scoretools_Iteration_depth_first_03():
 
     # RIGHT-TO-LEFT #
 
-    iterator = abjad.iterate(staff[2]).depth_first(
+    iterator = abjad.iterate(staff[2])._depth_first(
         direction=abjad.Right,
         unique=False,
         )
@@ -229,14 +229,14 @@ def test_scoretools_Iteration_depth_first_03():
     '''
 
 
-def test_scoretools_Iteration_depth_first_04():
+def test_scoretools_Iteration__depth_first_04():
     r'''Restricted depth-first search: iteration will yield -- but will not
     enter -- forbidden classes.
     '''
 
     # LEFT-TO-RIGHT #
 
-    iterator = abjad.iterate(staff).depth_first(
+    iterator = abjad.iterate(staff)._depth_first(
         forbid='simultaneous',
         )
 
@@ -259,7 +259,7 @@ def test_scoretools_Iteration_depth_first_04():
 
     # RIGHT-TO-LEFT #
 
-    iterator = abjad.iterate(staff).depth_first(
+    iterator = abjad.iterate(staff)._depth_first(
         direction=abjad.Right,
         forbid='simultaneous',
         )
@@ -282,13 +282,13 @@ def test_scoretools_Iteration_depth_first_04():
     '''
 
 
-def test_scoretools_Iteration_depth_first_05():
+def test_scoretools_Iteration__depth_first_05():
     r'''Uncapped depth-first search with duplicates allowed.
     '''
 
     # LEFT-TO-RIGHT #
 
-    iterator = abjad.iterate(staff[2]).depth_first(
+    iterator = abjad.iterate(staff[2])._depth_first(
         capped=False,
         unique=False,
         )
@@ -336,7 +336,7 @@ def test_scoretools_Iteration_depth_first_05():
 
     # RIGHT-TO-LEFT #
 
-    iterator = abjad.iterate(staff[2]).depth_first(
+    iterator = abjad.iterate(staff[2])._depth_first(
         capped=False,
         direction=abjad.Right,
         unique=False,
@@ -384,13 +384,13 @@ def test_scoretools_Iteration_depth_first_05():
     '''
 
 
-def test_scoretools_Iteration_depth_first_06():
+def test_scoretools_Iteration__depth_first_06():
     r'''Uncapped and restricted depth-first search.
     '''
 
     # LEFT-TO-RIGHT #
 
-    iterator = abjad.iterate(staff[2]).depth_first(
+    iterator = abjad.iterate(staff[2])._depth_first(
         capped=False,
         forbid='simultaneous',
         )
@@ -409,7 +409,7 @@ def test_scoretools_Iteration_depth_first_06():
 
     # RIGHT-TO-LEFT #
 
-    iterator = abjad.iterate(staff[2]).depth_first(
+    iterator = abjad.iterate(staff[2])._depth_first(
         capped=False,
         direction=abjad.Right,
         forbid='simultaneous',
@@ -428,13 +428,13 @@ def test_scoretools_Iteration_depth_first_06():
     '''
 
 
-def test_scoretools_Iteration_depth_first_07():
+def test_scoretools_Iteration__depth_first_07():
     r'''Restricted depth-first search with duplicates allowed.
     '''
 
     # LEFT-TO-RIGHT
 
-    iterator = abjad.iterate(staff).depth_first(
+    iterator = abjad.iterate(staff)._depth_first(
         forbid='simultaneous',
         unique=False,
         )
@@ -468,7 +468,7 @@ def test_scoretools_Iteration_depth_first_07():
 
     # RIGHT-TO-LEFT #
 
-    iterator = abjad.iterate(staff).depth_first(
+    iterator = abjad.iterate(staff)._depth_first(
         direction=abjad.Right,
         forbid='simultaneous',
         unique=False,
@@ -502,13 +502,13 @@ def test_scoretools_Iteration_depth_first_07():
     '''
 
 
-def test_scoretools_Iteration_depth_first_08():
+def test_scoretools_Iteration__depth_first_08():
     r'''Uncapped but restricted depth-first serach with duplicates allowed.
     '''
 
     # LEFT-TO-RIGHT #
 
-    iterator = abjad.iterate(staff[2]).depth_first(
+    iterator = abjad.iterate(staff[2])._depth_first(
         capped=False,
         forbid='simultaneous',
         unique=False,
@@ -533,7 +533,7 @@ def test_scoretools_Iteration_depth_first_08():
 
     # RIGHT-TO-LEFT #
 
-    iterator = abjad.iterate(staff[2]).depth_first(
+    iterator = abjad.iterate(staff[2])._depth_first(
         capped=False,
         direction=abjad.Right,
         forbid='simultaneous',

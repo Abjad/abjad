@@ -4,7 +4,7 @@ import abjad
 def test_scoretools_Tuplet_get_timespan_01():
 
     staff = abjad.Staff(r"c'4 d'4 \times 2/3 { e'4 f'4 g'4 }")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     score = abjad.Score([staff])
     mark = abjad.MetronomeMark((1, 4), 60)
     abjad.attach(mark, leaves[0])

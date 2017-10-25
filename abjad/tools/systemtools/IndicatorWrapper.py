@@ -244,12 +244,12 @@ class IndicatorWrapper(AbjadValueObject):
                 scope = getattr(abjad, scope)
         if isinstance(scope, type):
             scope_type = scope
-            for component in self.component._get_parentage():
+            for component in abjad.inspect(self.component).get_parentage():
                 if isinstance(component, scope_type):
                     return component
         elif isinstance(scope, str):
             scope_name = scope
-            for component in self.component._get_parentage():
+            for component in abjad.inspect(self.component).get_parentage():
                 if getattr(component, 'context_name', None) == scope_name:
                     return component
         else:
@@ -457,9 +457,10 @@ class IndicatorWrapper(AbjadValueObject):
 
         Returns offset.
         '''
+        import abjad
         if self._synthetic_offset is not None:
             return self._synthetic_offset
-        return self._component._get_timespan().start_offset
+        return abjad.inspect(self._component).get_timespan().start_offset
 
     @property
     def synthetic_offset(self):

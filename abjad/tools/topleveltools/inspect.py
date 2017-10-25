@@ -31,15 +31,6 @@ def inspect(client):
 
     ..  container:: example
 
-        Gets lineage of first note in staff:
-
-        ::
-
-            >>> abjad.inspect(staff[0]).get_lineage()
-            Lineage([Staff("c'4 e'4 d'4 f'4"), Note("c'4")])
-
-    ..  container:: example
-
         Returns inspection agent:
 
         ::

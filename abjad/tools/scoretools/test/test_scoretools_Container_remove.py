@@ -57,7 +57,7 @@ def test_scoretools_Container_remove_02():
     '''
 
     staff = abjad.Staff("{ c'8 d'8 } { e'8 f'8 }")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     sequential = staff[0]
     beam = abjad.Beam()
     abjad.attach(beam, leaves)

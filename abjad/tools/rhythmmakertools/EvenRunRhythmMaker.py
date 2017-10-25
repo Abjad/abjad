@@ -190,12 +190,12 @@ class EvenRunRhythmMaker(RhythmMaker):
             components = []
             for selection in selections:
                 components.extend(selection)
-            leaves = abjad.select(components).by_leaf()
+            leaves = abjad.select(components).leaves()
             abjad.attach(beam, leaves)
         elif beam_specifier.beam_each_division:
             for selection in selections:
                 beam = abjad.MultipartBeam()
-                leaves = abjad.select(selection).by_leaf()
+                leaves = abjad.select(selection).leaves()
                 abjad.attach(beam, leaves)
         return selections
 

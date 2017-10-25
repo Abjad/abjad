@@ -58,6 +58,6 @@ def apply_expressive_marks(score):
     abjad.attach(markup, voice[99][1])
 
     strings_staff_group = score['Strings Staff Group']
-    for voice in abjad.iterate(strings_staff_group).by_class(abjad.Voice):
+    for voice in abjad.iterate(strings_staff_group).components(abjad.Voice):
         markup = abjad.Markup(r'\italic { (non dim.) }', Down)
         abjad.attach(markup, voice[102][0])

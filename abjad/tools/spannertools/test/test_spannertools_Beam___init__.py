@@ -54,7 +54,7 @@ def test_spannertools_Beam___init___03():
     '''
 
     staff = abjad.Staff("{ c'8 c'8 c'8 c'8 } { c'8 c'8 c'8 c'8 }")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 
@@ -85,7 +85,7 @@ def test_spannertools_Beam___init___04():
     '''
 
     staff = abjad.Staff("{ c'8 c'8 c'8 c'8 } c'8 c'8")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 
@@ -112,7 +112,7 @@ def test_spannertools_Beam___init___05():
     '''
 
     staff = abjad.Staff("{ c'8 c'8 c'8 c'8 } c'8 c'8")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 
@@ -140,7 +140,7 @@ def test_spannertools_Beam___init___06():
 
     staff = abjad.Staff(abjad.Container([]) * 2)
     staff.insert(1, abjad.Container(abjad.Note(0, (1, 8)) * 4))
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 
@@ -169,7 +169,7 @@ def test_spannertools_Beam___init___07():
     '''
 
     voice = abjad.Voice("{ { c'8 cs'8 d'8 ef'8 } } { { e'8 f'8 fs'8 g'8 } }")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 
@@ -204,7 +204,7 @@ def test_spannertools_Beam___init___08():
     '''
 
     voice = abjad.Voice("{ { { c'8 cs'8 d'8 ef'8 } } } { e'8 f'8 fs'8 g'8 }")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 
@@ -239,7 +239,7 @@ def test_spannertools_Beam___init___09():
     '''
 
     voice = abjad.Voice("{ c'8 cs'8 } d'8 { ef'8 e'8 }")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 
@@ -267,7 +267,7 @@ def test_spannertools_Beam___init___10():
     '''
 
     voice = abjad.Voice(r"\times 2/3 { c'8 cs' d' } ef'8 \times 2/3 { e'8 f' fs' }")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 
@@ -347,7 +347,7 @@ def test_spannertools_Beam___init___12():
         )
 
     beam = abjad.Beam()
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     statement = 'attach(beam, leavs)'
     assert pytest.raises(Exception, statement)
 
@@ -731,7 +731,7 @@ def test_spannertools_Beam___init___19():
         '''
         )
 
-    selector = abjad.select().by_leaf()
+    selector = abjad.select().leaves()
     leaves = selector(staff)
     beam = abjad.Beam()
     statement = 'attach(beam, leaves)'

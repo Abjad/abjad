@@ -18,7 +18,7 @@ class MeasuredComplexBeam(ComplexBeam):
         ::
 
             >>> beam = abjad.MeasuredComplexBeam()
-            >>> selector = abjad.select().by_leaf()
+            >>> selector = abjad.select().leaves()
             >>> leaves = selector(staff)
             >>> abjad.attach(beam, leaves)
             >>> show(staff) # doctest: +SKIP
@@ -82,15 +82,16 @@ class MeasuredComplexBeam(ComplexBeam):
     ### PRIVATE METHODS ###
 
     def _add_beam_counts(self, leaf, bundle):
+        import abjad
         left, right = None, None
         #if leaf.beam.beamable:
         if self._is_beamable(leaf):
             if self._is_exterior_leaf(leaf):
                 left, right = self._get_left_right_for_exterior_leaf(leaf)
-            elif leaf._get_parentage(include_self=False).get_first(
-                scoretools.Measure) is not None:
-                measure = leaf._get_parentage(include_self=False).get_first(
-                    scoretools.Measure)
+            elif abjad.inspect(leaf).get_parentage(
+                include_self=False).get_first(abjad.Measure) is not None:
+                measure = abjad.inspect(leaf).get_parentage(
+                    include_self=False).get_first(abjad.Measure)
                 # leaf at beginning of measure
                 if measure._is_one_of_my_first_leaves(leaf):
                     assert isinstance(self.span_beam_count, int)
@@ -129,7 +130,7 @@ class MeasuredComplexBeam(ComplexBeam):
                 >>> staff = abjad.Staff()
                 >>> staff.append(abjad.Measure((2, 32), "c'32 d'32"))
                 >>> staff.append(abjad.Measure((2, 32), "e'32 f'32"))
-                >>> selector = abjad.select().by_leaf()
+                >>> selector = abjad.select().leaves()
                 >>> leaves = selector(staff)
                 >>> beam = abjad.MeasuredComplexBeam(span_beam_count=1)
                 >>> abjad.attach(beam, leaves)
@@ -150,7 +151,7 @@ class MeasuredComplexBeam(ComplexBeam):
                 >>> staff.append(abjad.Measure((2, 32), "c'32 d'32"))
                 >>> staff.append(abjad.Measure((2, 32), "e'32 f'32"))
                 >>> beam = abjad.MeasuredComplexBeam(span_beam_count=2)
-                >>> selector = abjad.select().by_leaf()
+                >>> selector = abjad.select().leaves()
                 >>> leaves = selector(staff)
                 >>> abjad.attach(beam, leaves)
                 >>> show(staff) # doctest: +SKIP

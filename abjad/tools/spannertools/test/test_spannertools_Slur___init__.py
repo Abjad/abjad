@@ -116,7 +116,7 @@ def test_spannertools_Slur___init___03():
         )
 
     slur = abjad.Slur()
-    leaves = abjad.select(container).by_leaf()
+    leaves = abjad.select(container).leaves()
     abjad.attach(slur, leaves)
 
     assert format(container) == abjad.String.normalize(

@@ -244,7 +244,7 @@ def test_spannertools_Beam__fracture_09():
         '''
         )
 
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     original, left, right = beam._fracture(7, direction=abjad.Right)

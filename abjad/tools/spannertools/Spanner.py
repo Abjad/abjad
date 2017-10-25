@@ -131,7 +131,7 @@ class Spanner(AbjadObject):
         if self._contiguity_constraint == 'logical voice':
             leaves = self[-1:] + [leaf]
             leaves = abjad.select(leaves)
-            if not leaves.in_contiguous_logical_voice():
+            if not leaves.are_contiguous_logical_voice():
                 raise Exception(leaves)
         leaf._spanners.add(self)
         self._leaves.append(leaf)
@@ -140,7 +140,7 @@ class Spanner(AbjadObject):
         import abjad
         leaves = [leaf] + self[:1]
         leaves = abjad.select(leaves)
-        assert leaves.in_contiguous_logical_voice()
+        assert leaves.are_contiguous_logical_voice()
         leaf._spanners.add(self)
         self._leaves.insert(0, leaf)
 
@@ -158,7 +158,7 @@ class Spanner(AbjadObject):
 
     def _at_least_two_leaves(self, argument):
         import abjad
-        leaves = abjad.select(argument).by_leaf()
+        leaves = abjad.select(argument).leaves()
         return 1 < len(leaves)
 
     def _attach(self, argument):
@@ -238,7 +238,7 @@ class Spanner(AbjadObject):
         leaf_input.extend(leaves)
         leaf_input = abjad.select(leaf_input)
         if self._contiguity_constraint == 'logical voice':
-            if not leaf_input.in_contiguous_logical_voice():
+            if not leaf_input.are_contiguous_logical_voice():
                 message = 'must be contiguous leaves'
                 message += ' in same logical voice: {!r}.'
                 message = message.format(leaf_input)
@@ -250,7 +250,7 @@ class Spanner(AbjadObject):
         import abjad
         leaf_input = leaves + list(self[:1])
         leaf_input = abjad.select(leaf_input)
-        assert leaf_input.in_contiguous_logical_voice()
+        assert leaf_input.are_contiguous_logical_voice()
         for leaf in reversed(leaves):
             self._append_left(leaf)
 
@@ -568,8 +568,9 @@ class Spanner(AbjadObject):
         self._remove_leaf(leaf)
 
     def _start_offset_in_me(self, leaf):
-        leaf_start_offset = leaf._get_timespan().start_offset
-        self_start_offset = self._get_timespan().start_offset
+        import abjad
+        leaf_start_offset = abjad.inspect(leaf).get_timespan().start_offset
+        self_start_offset = abjad.inspect(self).get_timespan().start_offset
         return leaf_start_offset - self_start_offset
 
     def _stop_offset_in_me(self, leaf):

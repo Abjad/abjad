@@ -8,7 +8,7 @@ def test_scoretools_Mutation_swap_01():
     '''
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 
@@ -60,7 +60,7 @@ def test_scoretools_Mutation_swap_02():
     '''
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     voice.name = 'foo'
     glissando = abjad.Glissando()
     abjad.attach(glissando, leaves)
@@ -117,7 +117,7 @@ def test_scoretools_Mutation_swap_03():
     '''
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     glissando = abjad.Glissando()
     abjad.attach(glissando, leaves)
     beam = abjad.Beam()
@@ -175,7 +175,7 @@ def test_scoretools_Mutation_swap_04():
     '''
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 }")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 
@@ -189,7 +189,7 @@ def test_scoretools_Mutation_swap_05():
     '''
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 }")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 
@@ -203,7 +203,7 @@ def test_scoretools_Mutation_swap_06():
     '''
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 

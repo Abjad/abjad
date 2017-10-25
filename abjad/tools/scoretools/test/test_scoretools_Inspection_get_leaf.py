@@ -24,7 +24,7 @@ def test_scoretools_Inspection_get_leaf_01():
         '''
         )
 
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     assert abjad.inspect(leaves[0]).get_leaf(0) is leaves[0]
     assert abjad.inspect(leaves[0]).get_leaf(1) is leaves[1]
     assert abjad.inspect(leaves[0]).get_leaf(2) is leaves[2]

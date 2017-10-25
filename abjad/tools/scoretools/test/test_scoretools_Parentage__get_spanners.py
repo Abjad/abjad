@@ -24,9 +24,12 @@ def test_scoretools_Parentage__get_spanners_01():
         '''
         )
 
-    spanners = container[0]._get_parentage()._get_spanners()
+    parentage = abjad.inspect(container[0]).get_parentage()
+    spanners = abjad.inspect(parentage).get_spanners()
     spanners == set([beam, slur, trill])
-    spanners = container._get_parentage()._get_spanners()
+    
+    parentage = abjad.inspect(container).get_parentage()
+    spanners = abjad.inspect(parentage).get_spanners()
     spanners == set([trill])
 
 
@@ -53,5 +56,5 @@ def test_scoretools_Parentage__get_spanners_02():
         '''
         )
 
-    parentage = container._get_parentage(include_self=False)
-    assert parentage._get_spanners() == set([])
+    parentage = abjad.inspect(container).get_parentage(include_self=False)
+    assert abjad.inspect(parentage).get_spanners() == set([])

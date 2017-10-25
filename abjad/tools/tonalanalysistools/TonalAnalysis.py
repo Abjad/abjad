@@ -738,7 +738,7 @@ class TonalAnalysis(abctools.AbjadObject):
         '''
         import abjad
         direction_string = None
-        notes = abjad.iterate(self._client).by_class(abjad.Note)
+        notes = abjad.iterate(self._client).components(abjad.Note)
         for left, right in abjad.sequence(notes).nwise():
             try:
                 assert not (left.written_pitch == right.written_pitch)
@@ -799,7 +799,7 @@ class TonalAnalysis(abctools.AbjadObject):
         Returns true or false.
         '''
         import abjad
-        notes = abjad.iterate(self._client).by_class(abjad.Note)
+        notes = abjad.iterate(self._client).components(abjad.Note)
         for left, right in abjad.sequence(notes).nwise():
             try:
                 assert not (left.written_pitch == right.written_pitch)
@@ -857,7 +857,7 @@ class TonalAnalysis(abctools.AbjadObject):
         Returns true or false.
         '''
         import abjad
-        notes = abjad.iterate(self._client).by_class(abjad.Note)
+        notes = abjad.iterate(self._client).components(abjad.Note)
         for left, right in abjad.sequence(notes).nwise():
             try:
                 assert not (left.written_pitch == right.written_pitch)
@@ -914,7 +914,7 @@ class TonalAnalysis(abctools.AbjadObject):
         Returns true or false.
         '''
         import abjad
-        notes = abjad.iterate(self._client).by_class(abjad.Note)
+        notes = abjad.iterate(self._client).components(abjad.Note)
         for left, right in abjad.sequence(notes).nwise():
             try:
                 assert not (left.written_pitch == right.written_pitch)

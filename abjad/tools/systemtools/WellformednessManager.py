@@ -51,7 +51,7 @@ class WellformednessManager(AbjadObject):
     def _check_overlapping_spanners(self, argument=None, prototype=None):
         import abjad
         violators, spanners = [], set()
-        for leaf in abjad.iterate(argument).by_leaf():
+        for leaf in abjad.iterate(argument).leaves():
             spanners_ = list(abjad.inspect(leaf).get_spanners(prototype))
             spanners.update(spanners_)
             if 1 < len(spanners_):
@@ -111,7 +111,7 @@ class WellformednessManager(AbjadObject):
             abjad.DuratedComplexBeam,
             abjad.MultipartBeam,
             )
-        for leaf in abjad.iterate(argument).by_leaf():
+        for leaf in abjad.iterate(argument).leaves():
             if leaf.written_duration < abjad.Duration(1, 4):
                 continue
             total.add(leaf)
@@ -139,7 +139,7 @@ class WellformednessManager(AbjadObject):
         spanners = abjad.inspect(descendants).get_spanners()
         for spanner in spanners:
             if spanner._contiguity_constraint == 'logical voice':
-                if not spanner[:].in_contiguous_logical_voice():
+                if not spanner[:].are_contiguous_logical_voice():
                     violators.append(spanner)
         return violators, len(spanners)
 
@@ -150,7 +150,7 @@ class WellformednessManager(AbjadObject):
         '''
         import abjad
         violators = []
-        components = abjad.iterate(argument).by_class()
+        components = abjad.iterate(argument).components()
         total_ids = [id(_) for _ in components]
         unique_ids = abjad.sequence(total_ids).remove_repeats()
         if len(unique_ids) < len(total_ids):
@@ -194,7 +194,7 @@ class WellformednessManager(AbjadObject):
         '''
         import abjad
         violators, containers = [], set()
-        for container in abjad.iterate(argument).by_class(abjad.Container):
+        for container in abjad.iterate(argument).components(abjad.Container):
             containers.add(container)
             if len(container) == 0:
                 violators.append(container)
@@ -249,7 +249,7 @@ class WellformednessManager(AbjadObject):
         '''
         import abjad
         violators, total = [], set()
-        for measure in abjad.iterate(argument).by_class(abjad.Measure):
+        for measure in abjad.iterate(argument).components(abjad.Measure):
             total.add(measure)
             time_signature = measure.time_signature
             if time_signature is not None:
@@ -265,7 +265,7 @@ class WellformednessManager(AbjadObject):
         '''
         import abjad
         violators, total = [], set()
-        for measure in abjad.iterate(argument).by_class(abjad.Measure):
+        for measure in abjad.iterate(argument).components(abjad.Measure):
             total.add(measure)
             if measure.is_misfilled:
                 violators.append(measure)
@@ -317,7 +317,7 @@ class WellformednessManager(AbjadObject):
         '''
         import abjad
         violators, total = [], set()
-        for leaf in abjad.iterate(argument).by_leaf():
+        for leaf in abjad.iterate(argument).leaves():
             hairpins = abjad.inspect(leaf).get_spanners(abjad.Hairpin)
             hairpins = list(hairpins)
             total.update(hairpins)
@@ -429,7 +429,7 @@ class WellformednessManager(AbjadObject):
         '''
         import abjad
         violators, ties = [], set()
-        for leaf in abjad.iterate(argument).by_leaf(pitched=True):
+        for leaf in abjad.iterate(argument).leaves(pitched=True):
             ties_ = abjad.inspect(leaf).get_spanners(abjad.Tie)
             if not ties_:
                 continue
@@ -455,7 +455,7 @@ class WellformednessManager(AbjadObject):
         '''
         import abjad
         violators, total = [], set()
-        for leaf in abjad.iterate(argument).by_leaf():
+        for leaf in abjad.iterate(argument).leaves():
             total.add(leaf)
             flags = leaf.written_duration.flag_count
             left = getattr(abjad.setting(leaf), 'stem_left_beam_count', None)
@@ -479,7 +479,7 @@ class WellformednessManager(AbjadObject):
         '''
         import abjad
         violators, total = [], set()
-        components = abjad.iterate(argument).by_class()
+        components = abjad.iterate(argument).components()
         for i, component in enumerate(components):
             total.add(component)
             if 0 < i:
@@ -494,7 +494,7 @@ class WellformednessManager(AbjadObject):
         '''
         import abjad
         violators, total = [], set()
-        for measure in abjad.iterate(argument).by_class(abjad.Measure):
+        for measure in abjad.iterate(argument).components(abjad.Measure):
             total.add(measure)
             parentage = abjad.inspect(measure).get_parentage(
                 include_self=False,
@@ -649,7 +649,7 @@ class WellformednessManager(AbjadObject):
         '''
         import abjad
         violators, total = [], set()
-        for leaf in abjad.iterate(argument).by_leaf():
+        for leaf in abjad.iterate(argument).leaves():
             total.add(leaf)
             instrument = abjad.inspect(leaf).get_effective(abjad.Instrument)
             if instrument is None:
@@ -723,7 +723,7 @@ class WellformednessManager(AbjadObject):
         '''
         import abjad
         violators, total = [], set()
-        for leaf in abjad.iterate(argument).by_leaf(pitched=True):
+        for leaf in abjad.iterate(argument).leaves(pitched=True):
             total.add(leaf)
             instrument = abjad.inspect(leaf).get_effective(abjad.Instrument)
             if instrument is None:
@@ -772,7 +772,7 @@ class WellformednessManager(AbjadObject):
         '''
         import abjad
         violators, total = [], set()
-        for leaf in abjad.iterate(argument).by_leaf():
+        for leaf in abjad.iterate(argument).leaves():
             beams = abjad.inspect(leaf).get_spanners(abjad.Beam)
             total.update(beams)
             if 1 < len(beams):
@@ -850,7 +850,7 @@ class WellformednessManager(AbjadObject):
         import abjad
         violators, total = [], set()
         prototype = abjad.OctavationSpanner
-        for leaf in abjad.iterate(argument).by_leaf():
+        for leaf in abjad.iterate(argument).leaves():
             spanners = abjad.inspect(leaf).get_spanners(prototype)
             total.update(spanners)
             if 1 < len(spanners):
@@ -905,7 +905,7 @@ class WellformednessManager(AbjadObject):
         '''
         import abjad
         violators, total = [], set()
-        for leaf in abjad.iterate(argument).by_leaf():
+        for leaf in abjad.iterate(argument).leaves():
             spanners = abjad.inspect(leaf).get_spanners(abjad.Tie)
             total.update(spanners)
             if 1 < len(spanners):
@@ -1024,7 +1024,7 @@ class WellformednessManager(AbjadObject):
         '''
         import abjad
         violators, total = [], set()
-        for rest in abjad.iterate(argument).by_leaf(abjad.Rest):
+        for rest in abjad.iterate(argument).leaves(abjad.Rest):
             total.add(rest)
             if abjad.inspect(rest).has_spanner(abjad.Tie):
                 violators.append(rest)

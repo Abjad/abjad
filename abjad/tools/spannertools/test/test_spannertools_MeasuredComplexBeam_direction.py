@@ -28,7 +28,7 @@ def test_spannertools_MeasuredComplexBeam_direction_01():
         '''
         )
 
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam = abjad.MeasuredComplexBeam(direction=abjad.Down)
     abjad.attach(beam, leaves)
 

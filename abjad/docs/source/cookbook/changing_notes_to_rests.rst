@@ -32,7 +32,7 @@ Use ``iterate()`` to iterate the notes in any expression:
 
 ..  abjad::
 
-    for note in abjad.iterate(staff).by_leaf():
+    for note in abjad.iterate(staff).leaves():
         note
 
 
@@ -44,7 +44,7 @@ iterable:
 
 ..  abjad::
 
-    generator = abjad.iterate(staff).by_leaf()
+    generator = abjad.iterate(staff).leaves()
     for i, note in enumerate(generator):
         i, note
 
@@ -56,7 +56,7 @@ We can change every sixth note in a our score to a rest like this:
 
 ..  abjad::
 
-    generator = abjad.iterate(staff).by_leaf()
+    generator = abjad.iterate(staff).leaves()
     for i, note in enumerate(generator):
         if i % 6 == 5:
             rest = abjad.Rest('r8')
@@ -85,7 +85,7 @@ Now we can change every D4 to a rest like this:
 
 ..  abjad::
 
-    generator = abjad.iterate(staff).by_leaf()
+    generator = abjad.iterate(staff).leaves()
     for i, note in enumerate(generator):
         if abjad.inspect(note).get_sounding_pitch == "d'":
             rest = abjad.Rest('r8')

@@ -20,7 +20,7 @@ def test_scoretools_Container_reverse_02():
     '''
 
     container = abjad.Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    leaves = abjad.select(container).by_leaf()
+    leaves = abjad.select(container).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     reversed_leaves = reversed(leaves)
@@ -110,7 +110,7 @@ def test_scoretools_Container_reverse_07():
     notes = [abjad.Note("c'8"), abjad.Note("d'8")]
     measure = abjad.Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     staff = abjad.Staff([measure] + notes)
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     reversed_leaves = reversed(measure[:])
@@ -124,7 +124,7 @@ def test_scoretools_Container_reverse_08():
     notes = [abjad.Note("c'8"), abjad.Note("d'8")]
     measure = abjad.Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     staff = abjad.Staff([measure] + notes)
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 
@@ -181,7 +181,7 @@ def test_scoretools_Container_reverse_09():
     measure_1 = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
     measure_2 = abjad.Measure((3, 8), "c'8 d'8 e'8")
     container = abjad.Container([measure_1, measure_2])
-    leaves = abjad.select(container).by_leaf()
+    leaves = abjad.select(container).leaves()
     pedal = abjad.PianoPedalSpanner()
     abjad.attach(pedal, leaves)
     trill = abjad.TrillSpanner()
@@ -241,7 +241,7 @@ def test_scoretools_Container_reverse_09():
     assert container[1] is measure_1
     assert len(measure_2) == 3
     assert len(measure_1) == 4
-    leaves = tuple(abjad.iterate(container).by_leaf())
+    leaves = tuple(abjad.iterate(container).leaves())
     assert pedal.leaves == leaves
     assert gliss.leaves == leaves
     assert abjad.inspect(container).is_well_formed()

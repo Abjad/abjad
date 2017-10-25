@@ -69,7 +69,7 @@ class TieSpecifier(AbjadValueObject):
         if not self.use_messiaen_style_ties:
             return
         ties = set()
-        for leaf in abjad.iterate(divisions).by_leaf():
+        for leaf in abjad.iterate(divisions).leaves():
             ties_ = abjad.inspect(leaf).get_spanners(abjad.Tie)
             ties.update(ties_)
         for tie in ties:
@@ -80,7 +80,7 @@ class TieSpecifier(AbjadValueObject):
         if not self.strip_ties:
             return
         for division in divisions:
-            for leaf in abjad.iterate(division).by_leaf():
+            for leaf in abjad.iterate(division).leaves():
                 abjad.detach(abjad.Tie, leaf)
 
     def _tie_across_divisions_(self, divisions):
@@ -104,8 +104,8 @@ class TieSpecifier(AbjadValueObject):
             if not tie_across_divisions.matches_index(i, length):
                 continue
             division_one, division_two = pair
-            leaf_one = next(abjad.iterate(division_one).by_leaf(reverse=True))
-            leaf_two = next(abjad.iterate(division_two).by_leaf())
+            leaf_one = next(abjad.iterate(division_one).leaves(reverse=True))
+            leaf_two = next(abjad.iterate(division_two).leaves())
             leaves = [leaf_one, leaf_two]
             if isinstance(leaf_one, rest_prototype):
                 continue
@@ -136,7 +136,7 @@ class TieSpecifier(AbjadValueObject):
         import abjad
         if not self.tie_consecutive_notes:
             return
-        leaves = list(abjad.iterate(divisions).by_leaf())
+        leaves = list(abjad.iterate(divisions).leaves())
         for leaf in leaves:
             abjad.detach(abjad.Tie, leaf)
         pairs = itertools.groupby(leaves, lambda _: _.__class__)

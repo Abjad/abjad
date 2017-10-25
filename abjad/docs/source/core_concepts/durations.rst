@@ -149,7 +149,7 @@ Consider the measure below:
 ..  abjad::
 
     measure = abjad.Measure((5, 16), "c16 c c c c")
-    leaves = abjad.select(measure).by_leaf()
+    leaves = abjad.select(measure).leaves()
     beam = abjad.Beam()
     attach(beam, leaves)
     staff = abjad.Staff([measure], context_name='RhythmicStaff')
@@ -171,7 +171,7 @@ But now consider this measure:
 
     tuplet = abjad.Tuplet((4, 5), "c16 c c c c")
     measure = abjad.Measure((4, 16), [tuplet])
-    leaves = abjad.select(measure).by_leaf()
+    leaves = abjad.select(measure).leaves()
     beam = Beam()
     attach(beam, leaves)
     staff = abjad.Staff([measure], context_name='RhythmicStaff')

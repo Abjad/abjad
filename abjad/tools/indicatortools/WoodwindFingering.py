@@ -454,31 +454,6 @@ class WoodwindFingering(AbjadObject):
         return self._center_column
 
     @property
-    def name(self):
-        r'''String of valid woodwind instrument name:
-
-        ::
-
-            >>> center_column = ('one', 'two', 'three', 'five')
-            >>> left_hand = ('R', 'thumb')
-            >>> right_hand = ('e',)
-            >>> woodwind_fingering = abjad.WoodwindFingering(
-            ...     name='clarinet',
-            ...     center_column=center_column,
-            ...     left_hand=left_hand,
-            ...     right_hand=right_hand,
-            ...     )
-
-        ::
-
-            >>> woodwind_fingering.name
-            'clarinet'
-
-        Returns string.
-        '''
-        return self._name
-
-    @property
     def left_hand(self):
         r'''Tuple of contents of key strings in left
         hand key group:
@@ -503,6 +478,31 @@ class WoodwindFingering(AbjadObject):
         Returns tuple.
         '''
         return self._left_hand
+
+    @property
+    def name(self):
+        r'''String of valid woodwind instrument name:
+
+        ::
+
+            >>> center_column = ('one', 'two', 'three', 'five')
+            >>> left_hand = ('R', 'thumb')
+            >>> right_hand = ('e',)
+            >>> woodwind_fingering = abjad.WoodwindFingering(
+            ...     name='clarinet',
+            ...     center_column=center_column,
+            ...     left_hand=left_hand,
+            ...     right_hand=right_hand,
+            ...     )
+
+        ::
+
+            >>> woodwind_fingering.name
+            'clarinet'
+
+        Returns string.
+        '''
+        return self._name
 
     @property
     def right_hand(self):

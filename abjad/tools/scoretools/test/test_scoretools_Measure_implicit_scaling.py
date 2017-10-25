@@ -25,7 +25,7 @@ def test_scoretools_Measure_implicit_scaling_02():
         abjad.Note("c'4"),
         ]
     measure = abjad.Measure((4, 4), components)
-    leaves = abjad.select(measure).by_leaf()
+    leaves = abjad.select(measure).leaves()
 
     assert leaves[0].written_duration == abjad.Duration(1, 4)
     assert abjad.inspect(leaves[0]).get_duration() == abjad.Duration(1, 4)
@@ -44,7 +44,7 @@ def test_scoretools_Measure_implicit_scaling_03():
         abjad.Note("c'4"),
         ]
     measure = abjad.Measure((4, 4), components)
-    leaves = abjad.select(measure).by_leaf()
+    leaves = abjad.select(measure).leaves()
 
     assert leaves[0].written_duration == abjad.Duration(1, 4)
     assert abjad.inspect(leaves[0]).get_duration() == abjad.Duration(1, 4)
@@ -76,7 +76,7 @@ def test_scoretools_Measure_implicit_scaling_05():
         ]
     measure = abjad.Measure((4, 5), components)
     measure.implicit_scaling = True
-    leaves = abjad.select(measure).by_leaf()
+    leaves = abjad.select(measure).leaves()
 
     assert leaves[0].written_duration == abjad.Duration(1, 4)
     assert abjad.inspect(leaves[0]).get_duration() == abjad.Duration(1, 5)
@@ -96,7 +96,7 @@ def test_scoretools_Measure_implicit_scaling_06():
         ]
     measure = abjad.Measure((4, 5), components)
     measure.implicit_scaling = True
-    leaves = abjad.select(measure).by_leaf()
+    leaves = abjad.select(measure).leaves()
 
     assert leaves[0].written_duration == abjad.Duration(1, 4)
     assert abjad.inspect(leaves[0]).get_duration() == abjad.Duration(1, 5)

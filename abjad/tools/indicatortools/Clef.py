@@ -234,7 +234,7 @@ class Clef(AbjadValueObject):
         Returns new clef.
         '''
         import abjad
-        pitches = list(abjad.iterate(selection).by_pitch())
+        pitches = abjad.iterate(selection).pitches()
         diatonic_pitch_numbers = [
             pitch._get_diatonic_pitch_number() for pitch in pitches
             ]

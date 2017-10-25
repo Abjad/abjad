@@ -377,9 +377,9 @@ class PitchRange(AbjadValueObject):
         elif isinstance(argument, (abjad.Rest, abjad.Skip)):
             return True
         elif isinstance(argument, abjad.Container):
-            return all(x in self for x in abjad.iterate(argument).by_leaf())
+            return all(x in self for x in abjad.iterate(argument).leaves())
         else:
-            pitches = list(abjad.iterate(argument).by_pitch())
+            pitches = list(abjad.iterate(argument).pitches())
             if pitches:
                 return all(self._contains_pitch(x) for x in pitches)
             else:
@@ -502,14 +502,14 @@ class PitchRange(AbjadValueObject):
                 bass_staff = abjad.Staff()
                 abjad.attach(abjad.Clef('bass'), bass_staff)
                 bass_staff.extend([start_note, stop_note])
-                bass_leaves = abjad.select(bass_staff).by_leaf()
+                bass_leaves = abjad.select(bass_staff).leaves()
                 abjad.attach(glissando, bass_leaves)
                 score = abjad.Score([bass_staff])
             else:
                 treble_staff = abjad.Staff()
                 abjad.attach(abjad.Clef('treble'), treble_staff)
                 treble_staff.extend([start_note, stop_note])
-                treble_leaves = abjad.select(treble_staff).by_leaf()
+                treble_leaves = abjad.select(treble_staff).leaves()
                 abjad.attach(glissando, treble_leaves)
                 score = abjad.Score([treble_staff])
         else:
@@ -517,12 +517,12 @@ class PitchRange(AbjadValueObject):
             score, treble_staff, bass_staff = result
             bass_staff.extend([start_note, stop_note])
             treble_staff.extend(abjad.Skip(1) * 2)
-            bass_leaves = abjad.select(bass_staff).by_leaf()
+            bass_leaves = abjad.select(bass_staff).leaves()
             abjad.attach(glissando, bass_leaves)
             abjad.attach(abjad.StaffChange(treble_staff), bass_staff[1])
             abjad.attach(abjad.Clef('treble'), treble_staff[0])
             abjad.attach(abjad.Clef('bass'), bass_staff[0])
-        for leaf in abjad.iterate(score).by_leaf():
+        for leaf in abjad.iterate(score).leaves():
             abjad.attach(abjad.Multiplier(1, 4), leaf)
         abjad.override(score).bar_line.stencil = False
         abjad.override(score).span_bar.stencil = False

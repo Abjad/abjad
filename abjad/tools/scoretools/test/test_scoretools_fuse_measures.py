@@ -61,7 +61,7 @@ def test_scoretools_fuse_measures_02():
     '''
 
     voice = abjad.Voice("abj: | 1/8 c'16 d'16 || 2/16 e'16 f'16 |")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 
@@ -159,7 +159,7 @@ def test_scoretools_fuse_measures_04():
     measure_1 = abjad.Measure((1, 8), "c'8")
     measure_2 = abjad.Measure((1, 12), "d'8")
     voice = abjad.Voice([measure_1, measure_2])
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 
@@ -227,7 +227,7 @@ def test_scoretools_fuse_measures_07():
     '''
 
     voice = abjad.Voice("abj: | 1/8 c'16 d'16 || 1/8 e'16 f'16 || 1/8 g'16 a'16 |")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = beam = abjad.Beam()
     abjad.attach(beam, leaves)
 

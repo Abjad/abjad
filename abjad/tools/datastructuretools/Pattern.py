@@ -175,6 +175,7 @@ class Pattern(AbjadValueObject):
         patterns=None,
         payload=None,
         period=None,
+        template=None,
         ):
         import abjad
         if indices is not None:
@@ -195,7 +196,7 @@ class Pattern(AbjadValueObject):
         self._patterns = patterns
         self._payload = payload
         self._period = period
-        self._template = None
+        self._template = template
 
     ### SPECIAL METHODS ###
 
@@ -402,8 +403,7 @@ class Pattern(AbjadValueObject):
         '''
         import abjad
         inverted = not self.inverted
-        pattern = abjad.new(self, inverted=inverted)
-        return pattern
+        return abjad.new(self, inverted=inverted, template=None)
 
     def __len__(self):
         r'''Gets length of pattern.
@@ -727,14 +727,14 @@ class Pattern(AbjadValueObject):
 
     def _get_format_specification(self):
         import abjad
-        if self._template is None:
+        if self.template is None:
             return super(Pattern, self)._get_format_specification()
         return abjad.FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_is_indented=False,
-            storage_format_args_values=[self._template],
-            storage_format_forced_override=self._template,
+            storage_format_args_values=[self.template],
+            storage_format_forced_override=self.template,
             storage_format_kwargs_names=(),
             )
 
@@ -1157,6 +1157,16 @@ class Pattern(AbjadValueObject):
             periods = [_.period for _ in self.patterns]
             if None not in periods:
                 return abjad.mathtools.least_common_multiple(*periods)
+
+    @property
+    def template(self):
+        r'''Get pattern template.
+
+        Set to string or none.
+
+        Returns string or none.
+        '''
+        return self._template
 
     @property
     def weight(self):
@@ -1614,14 +1624,13 @@ class Pattern(AbjadValueObject):
         Returns pattern.
         '''
         assert all(isinstance(_, int) for _ in indices), repr(indices)
-        template = Pattern._get_template(inspect.currentframe())
         indices = indices or []
-        pattern = Pattern(
+        template = Pattern._get_template(inspect.currentframe())
+        return Pattern(
             indices=indices,
             inverted=inverted,
+            template=template,
             )
-        pattern._template = template
-        return pattern
 
     @staticmethod
     def index_all(inverted=None):
@@ -1643,13 +1652,12 @@ class Pattern(AbjadValueObject):
         Returns pattern.
         '''
         template = Pattern._get_template(inspect.currentframe())
-        pattern = Pattern(
+        return Pattern(
             indices=[0],
             inverted=inverted,
             period=1,
+            template=template,
             )
-        pattern._template = template
-        return pattern
 
     @staticmethod
     def index_every(indices, period, inverted=None):
@@ -1685,13 +1693,12 @@ class Pattern(AbjadValueObject):
         '''
         assert all(isinstance(_, int) for _ in indices), repr(indices)
         template = Pattern._get_template(inspect.currentframe())
-        pattern = Pattern(
+        return Pattern(
             indices=indices,
             inverted=inverted,
             period=period,
+            template=template,
             )
-        pattern._template = template
-        return pattern
 
     @staticmethod
     def index_first(n, inverted=None):
@@ -1739,17 +1746,16 @@ class Pattern(AbjadValueObject):
         Returns pattern.
         '''
         assert isinstance(n, int), repr(n)
-        template = Pattern._get_template(inspect.currentframe())
         if 0 < n:
             indices = list(range(n))
         else:
             indices = None
-        pattern = Pattern(
+        template = Pattern._get_template(inspect.currentframe())
+        return Pattern(
             indices=indices,
             inverted=inverted,
+            template=template,
             )
-        pattern._template = template
-        return pattern
 
     @staticmethod
     def index_last(n, inverted=None):
@@ -1784,7 +1790,6 @@ class Pattern(AbjadValueObject):
         Returns pattern.
         '''
         assert isinstance(n, int), repr(n)
-        template = Pattern._get_template(inspect.currentframe())
         if 0 < n:
             start = -1
             stop = -n - 1
@@ -1792,12 +1797,12 @@ class Pattern(AbjadValueObject):
             indices = list(reversed(range(start, stop, stride)))
         else:
             indices = None
-        pattern = Pattern(
+        template = Pattern._get_template(inspect.currentframe())
+        return Pattern(
             indices=indices,
             inverted=inverted,
+            template=template,
             )
-        pattern._template = template
-        return pattern
 
     def matches_index(self, index, total_length, rotation=None):
         r'''Is true when pattern matches `index` taken under `total_length`.

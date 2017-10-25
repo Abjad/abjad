@@ -19,7 +19,7 @@ def test_scoretools_Component__get_nth_component_in_time_order_from_01():
         '''
         )
 
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     tuplet = staff[1]
 
     assert leaves[0]._get_nth_component_in_time_order_from(-1) is None

@@ -6,24 +6,20 @@ class Cluster(Container):
 
     ..  container:: example
 
-        ::
-
-            >>> cluster = abjad.Cluster("c'8 <d' g'>8 b'8")
-            >>> show(cluster) # doctest: +SKIP
+        >>> cluster = abjad.Cluster("c'8 <d' g'>8 b'8")
+        >>> abjad.show(cluster) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(cluster)
+            >>> abjad.f(cluster)
             \makeClusters {
                 c'8
                 <d' g'>8
                 b'8
             }
 
-        ::
-
-            >>> cluster
-            Cluster("c'8 <d' g'>8 b'8")
+        >>> cluster
+        Cluster("c'8 <d' g'>8 b'8")
 
     '''
 

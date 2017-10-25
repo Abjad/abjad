@@ -1,9 +1,7 @@
 import abc
-#from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-#class TimeRelation(AbjadObject):
 class TimeRelation(AbjadValueObject):
     r'''Time relation.
 

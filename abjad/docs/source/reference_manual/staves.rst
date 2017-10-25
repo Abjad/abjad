@@ -66,11 +66,11 @@ Slice a staff to select its components:
 Selecting a staff's leaves
 --------------------------
 
-Use ``select(...).by_leaf()`` to select in the leaves in a staff:
+Use ``select(...).leaves()`` to select in the leaves in a staff:
 
 ..  abjad::
 
-    select(staff).by_leaf()
+    select(staff).leaves()
 
 
 Getting the length of a staff

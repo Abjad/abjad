@@ -37,7 +37,7 @@ def test_scoretools_Component__logical_measure_number_02():
     assert staff[2]._logical_measure_number == 3
     assert staff[3]._logical_measure_number == 4
 
-    leaves = abjad.iterate(staff).by_leaf()
+    leaves = abjad.iterate(staff).leaves()
     leaves = list(leaves)
     assert leaves[0]._logical_measure_number == 1
     assert leaves[1]._logical_measure_number == 1

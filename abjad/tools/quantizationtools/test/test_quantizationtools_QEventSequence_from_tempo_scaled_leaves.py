@@ -26,7 +26,7 @@ def test_quantizationtools_QEventSequence_from_tempo_scaled_leaves_01():
 
     tempo = abjad.MetronomeMark((1, 4), 55)
 
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     q_events = quantizationtools.QEventSequence.from_tempo_scaled_leaves(
         leaves, tempo)
 
@@ -98,7 +98,7 @@ def test_quantizationtools_QEventSequence_from_tempo_scaled_leaves_02():
     tempo = abjad.MetronomeMark((1, 4), 77)
     abjad.attach(tempo, staff[9], scope=abjad.Staff)
 
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     q_events = quantizationtools.QEventSequence.from_tempo_scaled_leaves(
         leaves)
 

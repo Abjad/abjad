@@ -13,7 +13,7 @@ class BowContactSpanner(Spanner):
 
         ::
 
-            >>> leaves = abjad.select(staff).by_leaf()
+            >>> leaves = abjad.select(staff).leaves()
             >>> spanner = abjad.BowContactSpanner()
             >>> abjad.attach(spanner, leaves)
             >>> spanner.attach(abjad.BowMotionTechnique('jete'), leaves[0])
@@ -128,7 +128,7 @@ class BowContactSpanner(Spanner):
 
         ::
 
-            >>> leaves = abjad.select(staff).by_leaf()
+            >>> leaves = abjad.select(staff).leaves()
             >>> spanner = abjad.BowContactSpanner()
             >>> abjad.attach(spanner, leaves)
             >>> spanner.attach(abjad.BowContactPoint(None), leaves[0])

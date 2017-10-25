@@ -519,6 +519,59 @@ class NonreducedFraction(AbjadObject, Fraction):
 
     ### PUBLIC METHODS ###
 
+    def multiply(self, multiplier, preserve_numerator=False):
+        r'''Multiplies nonreduced fraction by `multiplier` with numerator
+        preservation where possible.
+
+        ..  container:: example
+
+            ::
+
+                >>> fraction = abjad.NonreducedFraction(9, 16)
+
+            ::
+
+                >>> fraction.multiply((2, 3), preserve_numerator=True)
+                NonreducedFraction(9, 24)
+
+            ::
+
+                >>> fraction.multiply((1, 2), preserve_numerator=True)
+                NonreducedFraction(9, 32)
+
+            ::
+
+                >>> fraction.multiply((5, 6), preserve_numerator=True)
+                NonreducedFraction(45, 96)
+
+            ::
+
+                >>> fraction = abjad.NonreducedFraction(3, 8)
+
+            ::
+
+                >>> fraction.multiply((2, 3), preserve_numerator=True)
+                NonreducedFraction(3, 12)
+
+        Returns nonreduced fraction.
+        '''
+        import abjad
+        if preserve_numerator:
+            multiplier = abjad.Multiplier(multiplier)
+            self_denominator = self.denominator
+            candidate_result_denominator = self_denominator / multiplier
+            if candidate_result_denominator.denominator == 1:
+                pair = (self.numerator, candidate_result_denominator.numerator)
+                return self._from_pair(pair)
+            else:
+                denominator = candidate_result_denominator.denominator
+                result_numerator = self.numerator * denominator
+                result_denominator = candidate_result_denominator.numerator
+                pair = (result_numerator, result_denominator)
+                return self._from_pair(pair)
+        else:
+            return multiplier * self
+
     def multiply_with_cross_cancelation(self, multiplier):
         '''Multiplies nonreduced fraction by `argument` with cross-cancelation.
 
@@ -584,59 +637,6 @@ class NonreducedFraction(AbjadObject, Fraction):
             result_denominator *= factor
         pair = (result_numerator, result_denominator)
         return self._from_pair(pair)
-
-    def multiply(self, multiplier, preserve_numerator=False):
-        r'''Multiplies nonreduced fraction by `multiplier` with numerator
-        preservation where possible.
-
-        ..  container:: example
-
-            ::
-
-                >>> fraction = abjad.NonreducedFraction(9, 16)
-
-            ::
-
-                >>> fraction.multiply((2, 3), preserve_numerator=True)
-                NonreducedFraction(9, 24)
-
-            ::
-
-                >>> fraction.multiply((1, 2), preserve_numerator=True)
-                NonreducedFraction(9, 32)
-
-            ::
-
-                >>> fraction.multiply((5, 6), preserve_numerator=True)
-                NonreducedFraction(45, 96)
-
-            ::
-
-                >>> fraction = abjad.NonreducedFraction(3, 8)
-
-            ::
-
-                >>> fraction.multiply((2, 3), preserve_numerator=True)
-                NonreducedFraction(3, 12)
-
-        Returns nonreduced fraction.
-        '''
-        import abjad
-        if preserve_numerator:
-            multiplier = abjad.Multiplier(multiplier)
-            self_denominator = self.denominator
-            candidate_result_denominator = self_denominator / multiplier
-            if candidate_result_denominator.denominator == 1:
-                pair = (self.numerator, candidate_result_denominator.numerator)
-                return self._from_pair(pair)
-            else:
-                denominator = candidate_result_denominator.denominator
-                result_numerator = self.numerator * denominator
-                result_denominator = candidate_result_denominator.numerator
-                pair = (result_numerator, result_denominator)
-                return self._from_pair(pair)
-        else:
-            return multiplier * self
 
     def multiply_without_reducing(self, argument):
         r'''Multiplies nonreduced fraction by `argument` without reducing.

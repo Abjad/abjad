@@ -8,15 +8,13 @@ class Rest(Leaf):
 
     ..  container:: example
 
-        ::
-
-            >>> rest = abjad.Rest('r8.')
-            >>> measure = abjad.Measure((3, 16), [rest])
-            >>> show(measure) # doctest: +SKIP
+        >>> rest = abjad.Rest('r8.')
+        >>> measure = abjad.Measure((3, 16), [rest])
+        >>> abjad.show(measure) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(measure)
+            >>> abjad.f(measure)
             {
                 \time 3/16
                 r8.

@@ -291,7 +291,7 @@ class Instrument(AbjadValueObject):
         Returns none.
         '''
         import abjad
-        for leaf in abjad.iterate(argument).by_leaf(pitched=True):
+        for leaf in abjad.iterate(argument).leaves(pitched=True):
             instrument = abjad.inspect(leaf).get_effective(abjad.Instrument)
             if not instrument:
                 continue
@@ -355,7 +355,7 @@ class Instrument(AbjadValueObject):
         Returns none.
         '''
         import abjad
-        for leaf in abjad.iterate(argument).by_leaf(pitched=True):
+        for leaf in abjad.iterate(argument).leaves(pitched=True):
             instrument = abjad.inspect(leaf).get_effective(abjad.Instrument)
             if not instrument:
                 continue

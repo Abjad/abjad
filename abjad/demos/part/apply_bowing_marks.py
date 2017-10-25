@@ -9,7 +9,7 @@ def apply_bowing_marks(score):
     # apply alternating upbow and downbow for first two sounding bars
     # of the first violin
     for measure in score['First Violin Voice'][6:8]:
-        for i, chord in enumerate(abjad.iterate(measure).by_class(abjad.Chord)):
+        for i, chord in enumerate(abjad.iterate(measure).components(abjad.Chord)):
             if i % 2 == 0:
                 articulation = abjad.Articulation('downbow')
                 abjad.attach(articulation, chord)

@@ -3,12 +3,10 @@ def iterate(client=None):
 
     ..  container:: example
 
-        Example staff:
+        Iterates leaves:
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
+        >>> show(staff) # doctest: +SKIP
 
         ..  docs::
 
@@ -20,37 +18,13 @@ def iterate(client=None):
                 f'4
             }
 
-    ..  container:: example
-
-        Iterates staff by leaf pair:
-
-            >>> for pair in abjad.iterate(staff).by_leaf_pair():
-            ...     pair
-            ...
-            Selection([Note("c'4"), Note("e'4")])
-            Selection([Note("e'4"), Note("d'4")])
-            Selection([Note("d'4"), Note("f'4")])
-
-    ..  container:: example
-
-        Iterates staff by pitch:
-
-            >>> for pitch in abjad.iterate(staff).by_pitch():
-            ...     pitch
-            ...
-            NamedPitch("c'")
-            NamedPitch("e'")
-            NamedPitch("d'")
-            NamedPitch("f'")
-
-    ..  container:: example
-
-        Returns iteration agent:
-
-        ::
-
-            >>> abjad.iterate(staff)
-            Iteration(client=Staff("c'4 e'4 d'4 f'4"))
+        >>> for leaf in abjad.iterate(staff).leaves():
+        ...     leaf
+        ...
+        Note("c'4")
+        Note("e'4")
+        Note("d'4")
+        Note("f'4")
 
     '''
     import abjad

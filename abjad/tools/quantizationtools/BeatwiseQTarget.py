@@ -33,7 +33,7 @@ class BeatwiseQTarget(QTarget):
         components = beat.q_grid(beat.beatspan)
         if attach_tempos:
             attachment_target = components[0]
-            leaves = select(attachment_target).by_leaf()
+            leaves = select(attachment_target).leaves()
             if isinstance(attachment_target, abjad.Container):
                 attachment_target = leaves[0]
             tempo = copy.copy(beat.tempo)
@@ -45,7 +45,7 @@ class BeatwiseQTarget(QTarget):
             components = beat_two.q_grid(beat_two.beatspan)
             if (beat_two.tempo != beat_one.tempo) and attach_tempos:
                 attachment_target = components[0]
-                leaves = select(attachment_target).by_leaf()
+                leaves = select(attachment_target).leaves()
                 if isinstance(attachment_target, abjad.Container):
                     attachment_target = leaves[0]
                 tempo = copy.copy(beat_two.tempo)

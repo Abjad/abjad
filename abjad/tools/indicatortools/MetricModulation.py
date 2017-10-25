@@ -991,10 +991,11 @@ class MetricModulation(AbjadValueObject):
 
         Returns ratio.
         '''
-        left_duration = self.left_rhythm.get_duration()
-        right_duration = self.right_rhythm.get_duration()
+        import abjad
+        left_duration = abjad.inspect(self.left_rhythm).get_duration()
+        right_duration = abjad.inspect(self.right_rhythm).get_duration()
         duration = left_duration / right_duration
-        ratio = mathtools.Ratio(duration.pair)
+        ratio = abjad.Ratio(duration.pair)
         return ratio
 
     @property
