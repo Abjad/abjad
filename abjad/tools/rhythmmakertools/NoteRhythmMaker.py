@@ -211,7 +211,7 @@ class NoteRhythmMaker(RhythmMaker):
             decrease_monotonic=duration_specifier.decrease_monotonic,
             forbidden_duration=duration_specifier.forbidden_duration,
             is_diminution=tuplet_specifier.is_diminution,
-            use_messiaen_style_ties=tie_specifier.use_messiaen_style_ties,
+            repeat_ties=tie_specifier.repeat_ties,
             )
         for division in divisions:
             if (duration_specifier.spell_metrically is True or
@@ -230,7 +230,7 @@ class NoteRhythmMaker(RhythmMaker):
             if (1 < len(selection) and
                 not selection[0]._has_spanner(spannertools.Tie)):
                 tie = spannertools.Tie(
-                    use_messiaen_style_ties=tie_specifier.use_messiaen_style_ties,
+                    repeat_ties=tie_specifier.repeat_ties,
                     )
                 attach(tie, selection[:])
             selections.append(selection)
@@ -242,7 +242,7 @@ class NoteRhythmMaker(RhythmMaker):
             selections = duration_specifier._rewrite_meter_(
                 selections,
                 divisions,
-                use_messiaen_style_ties=tie_specifier.use_messiaen_style_ties,
+                repeat_ties=tie_specifier.repeat_ties,
                 )
         return selections
 
@@ -590,7 +590,7 @@ class NoteRhythmMaker(RhythmMaker):
             >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
             ...     division_masks=[
             ...         abjad.rhythmmakertools.SilenceMask(
-            ...             pattern=abjad.index_every([0], period=2),
+            ...             pattern=abjad.index([0], 2),
             ...             ),
             ...         ],
             ...     )
@@ -630,7 +630,7 @@ class NoteRhythmMaker(RhythmMaker):
             Silences every output division:
 
             >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-            ...     division_masks=[abjad.silence_all()],
+            ...     division_masks=[abjad.silence([0], 1)],
             ...     )
 
             >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
@@ -709,7 +709,7 @@ class NoteRhythmMaker(RhythmMaker):
 
             Silences every other output division except for the first and last:
 
-            >>> pattern_1 = abjad.index_every([0], period=2)
+            >>> pattern_1 = abjad.index([0], 2)
             >>> pattern_2 = abjad.index([0, -1])
             >>> pattern = pattern_1 & ~pattern_2
             >>> mask = abjad.rhythmmakertools.SilenceMask(
@@ -1040,7 +1040,7 @@ class NoteRhythmMaker(RhythmMaker):
             Silences every other logical tie:
 
             >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-            ...     logical_tie_masks=abjad.silence_every([0], period=2)
+            ...     logical_tie_masks=abjad.silence([0], 2),
             ...     )
 
             >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
@@ -1078,7 +1078,7 @@ class NoteRhythmMaker(RhythmMaker):
             Silences all logical ties:
 
             >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-            ...     logical_tie_masks=abjad.silence_all(),
+            ...     logical_tie_masks=abjad.silence([0], 1),
             ...     )
 
             >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
@@ -1251,7 +1251,7 @@ class NoteRhythmMaker(RhythmMaker):
             >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
             ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
             ...         tie_across_divisions=True,
-            ...         use_messiaen_style_ties=True,
+            ...         repeat_ties=True,
             ...         ),
             ...     )
 

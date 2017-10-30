@@ -19,7 +19,7 @@ def test_rhythmmakertools_DurationSpecifier_01():
         spell_metrically='unassignable',
         )
 
-    logical_tie_masks = [abjad.silence_every([0], period=2)]
+    logical_tie_masks = [abjad.silence([0], 2)]
 
     talea = rhythmmakertools.Talea(counts=[1, 2, 3, 4], denominator=16)
 

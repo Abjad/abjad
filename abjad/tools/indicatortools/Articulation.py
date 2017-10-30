@@ -1,6 +1,4 @@
 import copy
-from abjad.tools import datastructuretools
-from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -159,9 +157,9 @@ class Articulation(AbjadValueObject):
 
         Returns string.
         '''
-        from abjad.tools import systemtools
+        import abjad
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager(self).get_storage_format()
+            return abjad.StorageFormatManager(self).get_storage_format()
         elif format_specification == 'lilypond':
             return self._get_lilypond_format()
         return str(self)
@@ -184,6 +182,7 @@ class Articulation(AbjadValueObject):
 
         Returns string.
         '''
+        import abjad
         if self.name:
             string = self._shortcut_to_word.get(self.name)
             if not string:
@@ -191,7 +190,7 @@ class Articulation(AbjadValueObject):
             if self.direction is None:
                 direction = '-'
             else:
-                direction = datastructuretools.String.to_tridirectional_lilypond_symbol(
+                direction = abjad.String.to_tridirectional_lilypond_symbol(
                     self.direction)
             return '{}\{}'.format(direction, string)
         else:
@@ -209,10 +208,11 @@ class Articulation(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
+        import abjad
         values = [self.name]
         if self.direction is not None:
             values.append(self.direction)
-        return systemtools.FormatSpecification(
+        return abjad.FormatSpecification(
             client=self,
             storage_format_args_values=values,
             storage_format_is_indented=False,

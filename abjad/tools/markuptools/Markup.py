@@ -1647,6 +1647,30 @@ class Markup(AbjadValueObject):
         command = MarkupCommand('pad-around', padding, contents)
         return new(self, contents=command)
 
+    def pad_markup(self, padding):
+        r'''LilyPond ``\pad-markup`` markup command.
+
+        ..  container:: example
+
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.pad_markup(10)
+            >>> markup = markup.box()
+            >>> abjad.f(markup)
+            \markup {
+                \box
+                    \pad-markup
+                        #10
+                        "Allegro assai"
+                }
+
+            >>> abjad.show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        contents = self._parse_markup_command_argument(self)
+        command = MarkupCommand('pad-markup', padding, contents)
+        return new(self, contents=command)
+
     def pad_to_box(self, x_extent, y_extent):
         r'''LilyPond ``pad-to-box`` markup command.
 

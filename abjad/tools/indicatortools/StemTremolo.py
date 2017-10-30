@@ -1,5 +1,3 @@
-from abjad.tools import mathtools
-from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -47,10 +45,12 @@ class StemTremolo(AbjadValueObject):
     ### INITIALIZER ###
 
     def __init__(self, tremolo_flags=16):
+        import abjad
         if isinstance(tremolo_flags, type(self)):
             tremolo_flags = tremolo_flags.tremolo_flags
         tremolo_flags = int(tremolo_flags)
-        if not mathtools.is_nonnegative_integer_power_of_two(tremolo_flags):
+        if not abjad.mathtools.is_nonnegative_integer_power_of_two(
+            tremolo_flags):
             message = 'must be nonnegative integer power of 2: {!r}.'
             message = message.format(tremolo_flags)
             raise ValueError(message)
@@ -79,11 +79,11 @@ class StemTremolo(AbjadValueObject):
 
         Returns string.
         '''
-        from abjad.tools import systemtools
+        import abjad
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
         elif format_specification == 'storage':
-            return systemtools.StorageFormatManager(self).get_storage_format()
+            return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __str__(self):
@@ -112,7 +112,8 @@ class StemTremolo(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        return systemtools.FormatSpecification(
+        import abjad
+        return abjad.FormatSpecification(
             client=self,
             storage_format_is_indented=False,
             )

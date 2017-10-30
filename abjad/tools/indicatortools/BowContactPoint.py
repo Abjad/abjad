@@ -1,5 +1,4 @@
 import functools
-from abjad.tools import markuptools
 from abjad.tools.abctools import AbjadValueObject
 
 
@@ -152,7 +151,8 @@ class BowContactPoint(AbjadValueObject):
 
         Returns markup.
         '''
-        markup = markuptools.Markup.fraction(
+        import abjad
+        markup = abjad.Markup.fraction(
             self.contact_point.numerator,
             self.contact_point.denominator,
             )

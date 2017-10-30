@@ -333,7 +333,7 @@ class Leaf(Component):
         new_duration = multiplier * self._get_duration()
         self._set_duration(new_duration)
 
-    def _set_duration(self, new_duration, use_messiaen_style_ties=False):
+    def _set_duration(self, new_duration, repeat_ties=False):
         import abjad
         new_duration = abjad.Duration(new_duration)
         # change LilyPond multiplier if leaf already has LilyPond multiplier
@@ -350,7 +350,7 @@ class Leaf(Component):
             pass
         # make new notes or tuplets if new duration is nonassignable
         maker = abjad.NoteMaker(
-            use_messiaen_style_ties=use_messiaen_style_ties,
+            repeat_ties=repeat_ties,
             )
         components = maker(0, new_duration)
         if isinstance(components[0], abjad.Leaf):
@@ -365,7 +365,7 @@ class Leaf(Component):
                 tie = abjad.Tie()
                 if tie._attachment_test(self):
                     tie = abjad.Tie(
-                        use_messiaen_style_ties=use_messiaen_style_ties,
+                        repeat_ties=repeat_ties,
                         )
                     abjad.attach(tie, all_leaves)
             return abjad.select(all_leaves)
@@ -383,7 +383,7 @@ class Leaf(Component):
                 tie = abjad.Tie()
                 if tie._attachment_test(self):
                     tie = abjad.Tie(
-                        use_messiaen_style_ties=use_messiaen_style_ties,
+                        repeat_ties=repeat_ties,
                         )
                     abjad.attach(tie, all_leaves)
             multiplier = tuplet.multiplier
@@ -397,7 +397,7 @@ class Leaf(Component):
         cyclic=False,
         fracture_spanners=False,
         tie_split_notes=True,
-        use_messiaen_style_ties=False,
+        repeat_ties=False,
         ):
         import abjad
         durations = [abjad.Duration(_) for _ in durations]
@@ -421,10 +421,10 @@ class Leaf(Component):
             preprolated_duration = duration / leaf_prolation
             selection = new_leaf._set_duration(
                 preprolated_duration,
-                use_messiaen_style_ties=use_messiaen_style_ties,
+                repeat_ties=repeat_ties,
                 )
             result_selections.append(selection)
-        result_components = abjad.sequence(result_selections).flatten()
+        result_components = abjad.sequence(result_selections).flatten(depth=-1)
         result_components = abjad.select(result_components)
         result_leaves = abjad.select(result_components).leaves()
         assert all(isinstance(_, abjad.Selection) for _ in result_selections)
@@ -494,7 +494,7 @@ class Leaf(Component):
         # tie split notes
         if isinstance(self, (abjad.Note, abjad.Chord)) and tie_split_notes:
             result_leaves._attach_tie_spanner_to_leaves(
-                use_messiaen_style_ties=use_messiaen_style_ties,
+                repeat_ties=repeat_ties,
                 )
         assert isinstance(result_selections, list), repr(result_selections)
         assert all(isinstance(_, abjad.Selection) for _ in result_selections)

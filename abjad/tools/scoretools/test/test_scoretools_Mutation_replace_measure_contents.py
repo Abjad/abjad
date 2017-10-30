@@ -141,7 +141,7 @@ def test_scoretools_Mutation_replace_measure_contents_06():
     maker = abjad.NoteMaker()
     durations = [(5, 16), (3, 16)]
     leaf_lists = maker([0], durations)
-    leaves = abjad.sequence(leaf_lists).flatten()
+    leaves = abjad.sequence(leaf_lists).flatten(depth=-1)
 
     maker = abjad.MeasureMaker()
     measures = maker(durations)

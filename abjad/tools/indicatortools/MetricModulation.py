@@ -1,6 +1,4 @@
 import collections
-from abjad.tools import markuptools
-from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -522,21 +520,20 @@ class MetricModulation(AbjadValueObject):
         left_markup=None,
         right_markup=None,
         ):
-        from abjad.tools import markuptools
-        from abjad.tools import scoretools
-        self._default_scope = scoretools.Score
-        left_rhythm = left_rhythm or scoretools.Note('c4')
-        right_rhythm = right_rhythm or scoretools.Note('c4')
+        import abjad
+        self._default_scope = abjad.Score
+        left_rhythm = left_rhythm or abjad.Note('c4')
+        right_rhythm = right_rhythm or abjad.Note('c4')
         left_rhythm = self._initialize_rhythm(left_rhythm)
         self._left_rhythm = left_rhythm
         right_rhythm = self._initialize_rhythm(right_rhythm)
         self._right_rhythm = right_rhythm
         self._right_rhythm = right_rhythm
         if left_markup is not None:
-            assert isinstance(left_markup, markuptools.Markup)
+            assert isinstance(left_markup, abjad.Markup)
         self._left_markup = left_markup
         if right_markup is not None:
-            assert isinstance(right_markup, markuptools.Markup)
+            assert isinstance(right_markup, abjad.Markup)
         self._right_markup = right_markup
 
     ### SPECIAL METHODS ###
@@ -836,14 +833,15 @@ class MetricModulation(AbjadValueObject):
         return bundle
 
     def _get_markup(self, music_scale_pair=(0.75, 0.75)):
+        import abjad
         if music_scale_pair is not None:
             assert isinstance(music_scale_pair, collections.Iterable)
             music_scale_pair = tuple(music_scale_pair)
         left_markup = self._get_left_markup()
         if music_scale_pair:
             left_markup = left_markup.scale(music_scale_pair)
-        equal = markuptools.Markup('=')
-        right_space = markuptools.Markup.hspace(-0.5)
+        equal = abjad.Markup('=')
+        right_space = abjad.Markup.hspace(-0.5)
         right_markup = self._get_right_markup()
         if music_scale_pair:
             right_markup = right_markup.scale(music_scale_pair)

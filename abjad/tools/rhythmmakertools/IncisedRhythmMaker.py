@@ -395,7 +395,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 forbidden_duration=specifier.forbidden_duration,
                 decrease_monotonic=specifier.decrease_monotonic,
                 spell_metrically=specifier.spell_metrically,
-                use_messiaen_style_ties=tie_specifier.use_messiaen_style_ties,
+                repeat_ties=tie_specifier.repeat_ties,
                 )
             if self.replace_rests_with_skips:
                 new_components = []
@@ -1044,7 +1044,7 @@ class IncisedRhythmMaker(RhythmMaker):
             ...         talea_denominator=16,
             ...         ),
             ...     logical_tie_masks=[
-            ...         abjad.silence_every([1], period=2),
+            ...         abjad.silence([1], 2),
             ...         ],
             ...     )
 
@@ -1373,7 +1373,7 @@ class IncisedRhythmMaker(RhythmMaker):
             ...         ),
             ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
             ...         tie_across_divisions=True,
-            ...         use_messiaen_style_ties=True,
+            ...         repeat_ties=True,
             ...         ),
             ...     )
 

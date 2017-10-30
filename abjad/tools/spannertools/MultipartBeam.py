@@ -1,4 +1,4 @@
-from abjad.tools.spannertools.Beam import Beam
+from .Beam import Beam
 
 
 class MultipartBeam(Beam):

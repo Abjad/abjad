@@ -290,7 +290,8 @@ class Dynamic(AbjadValueObject):
 
         Returns string.
         '''
-        if dynamic_ordinal == mathtools.NegativeInfinity():
+        import abjad
+        if dynamic_ordinal == abjad.mathtools.NegativeInfinity():
             return 'niente'
         else:
             return Dynamic._dynamic_ordinal_to_dynamic_name[dynamic_ordinal]

@@ -1,5 +1,4 @@
-from abjad.tools import datastructuretools
-from abjad.tools.spannertools.Spanner import Spanner
+from .Spanner import Spanner
 
 
 class PhrasingSlur(Spanner):
@@ -53,12 +52,9 @@ class PhrasingSlur(Spanner):
         direction=None,
         overrides=None,
         ):
-        Spanner.__init__(
-            self,
-            overrides=overrides,
-            )
-        direction = datastructuretools.String.to_tridirectional_lilypond_symbol(
-            direction)
+        import abjad
+        Spanner.__init__(self, overrides=overrides)
+        direction = abjad.String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction
 
     ### PRIVATE METHODS ###

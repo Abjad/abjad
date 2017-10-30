@@ -640,7 +640,7 @@ class Mutation(abctools.AbjadObject):
         initial_offset=None,
         maximum_dot_count=None,
         rewrite_tuplets=True,
-        use_messiaen_style_ties=False,
+        repeat_ties=False,
         ):
         r'''Rewrites the contents of logical ties in an expression to match
         `meter`.
@@ -1392,7 +1392,7 @@ class Mutation(abctools.AbjadObject):
             >>> abjad.mutate(measure[:]).rewrite_meter(
             ...     meter,
             ...     boundary_depth=1,
-            ...     use_messiaen_style_ties=True,
+            ...     repeat_ties=True,
             ...     )
             >>> abjad.show(measure) # doctest: +SKIP
 
@@ -1555,7 +1555,7 @@ class Mutation(abctools.AbjadObject):
             initial_offset=initial_offset,
             maximum_dot_count=maximum_dot_count,
             rewrite_tuplets=rewrite_tuplets,
-            use_messiaen_style_ties=use_messiaen_style_ties,
+            repeat_ties=repeat_ties,
             )
         return result
 
@@ -1998,7 +1998,7 @@ class Mutation(abctools.AbjadObject):
         fracture_spanners=False,
         cyclic=False,
         tie_split_notes=True,
-        use_messiaen_style_ties=False,
+        repeat_ties=False,
         ):
         r'''Splits mutation client by `durations`.
 
@@ -2325,7 +2325,7 @@ class Mutation(abctools.AbjadObject):
             ...     cyclic=True,
             ...     fracture_spanners=False,
             ...     tie_split_notes=True,
-            ...     use_messiaen_style_ties=True,
+            ...     repeat_ties=True,
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2654,7 +2654,7 @@ class Mutation(abctools.AbjadObject):
                         cyclic=False,
                         fracture_spanners=fracture_spanners,
                         tie_split_notes=tie_split_notes,
-                        use_messiaen_style_ties=use_messiaen_style_ties,
+                        repeat_ties=repeat_ties,
                         )
                     shard.extend(leaf_shards)
                     result.append(shard)
@@ -2665,7 +2665,7 @@ class Mutation(abctools.AbjadObject):
                         local_split_duration,
                         fracture_spanners=fracture_spanners,
                         tie_split_notes=tie_split_notes,
-                        use_messiaen_style_ties=use_messiaen_style_ties,
+                        repeat_ties=repeat_ties,
                         )
                     left_list, right_list = pair
                     shard.extend(left_list)
@@ -2691,14 +2691,13 @@ class Mutation(abctools.AbjadObject):
         if len(remaining_components):
             result.append(remaining_components)
         # partition split components according to input durations
-        result = abjad.sequence(result).flatten()
+        result = abjad.sequence(result).flatten(depth=-1)
         result = abjad.select(result).partition_by_durations(
             durations_copy,
             fill=abjad.Exact,
             )
         # return list of shards
-        #return [abjad.select(_) for _ in result]
-        assert all(isinstance(_, abjad.Selection) for _ in result), repr(result)
+        assert all(isinstance(_, abjad.Selection) for _ in result)
         return result
 
     def swap(self, container):

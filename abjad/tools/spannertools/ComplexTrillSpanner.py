@@ -1,5 +1,4 @@
-from abjad.tools import pitchtools
-from abjad.tools.spannertools.Spanner import Spanner
+from .Spanner import Spanner
 
 
 class ComplexTrillSpanner(Spanner):
@@ -71,12 +70,10 @@ class ComplexTrillSpanner(Spanner):
         interval=None,
         overrides=None,
         ):
-        Spanner.__init__(
-            self,
-            overrides=overrides,
-            )
+        import abjad
+        Spanner.__init__(self, overrides=overrides)
         if interval is not None:
-            interval = pitchtools.NamedInterval(interval)
+            interval = abjad.NamedInterval(interval)
         self._interval = interval
 
     ### PRIVATE METHODS ###

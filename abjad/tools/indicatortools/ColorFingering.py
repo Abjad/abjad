@@ -1,6 +1,4 @@
 import functools
-from abjad.tools import markuptools
-from abjad.tools import mathtools
 from abjad.tools.abctools import AbjadValueObject
 
 
@@ -72,8 +70,9 @@ class ColorFingering(AbjadValueObject):
         self,
         number=None,
         ):
+        import abjad
         if number is not None:
-            assert mathtools.is_positive_integer(number)
+            assert abjad.mathtools.is_positive_integer(number)
         self._number = number
 
     ### SPECIAL METHODS ##
@@ -192,9 +191,10 @@ class ColorFingering(AbjadValueObject):
 
         Returns markup.
         '''
+        import abjad
         if self.number is None:
             return
-        markup = markuptools.Markup(str(self.number))
+        markup = abjad.Markup(str(self.number))
         markup = markup.finger()
         markup = markup.circle()
         markup = markup.override(('circle-padding', 0.25))

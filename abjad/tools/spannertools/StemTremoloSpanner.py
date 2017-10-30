@@ -1,4 +1,4 @@
-from abjad.tools.spannertools.Spanner import Spanner
+from .Spanner import Spanner
 
 
 class StemTremoloSpanner(Spanner):

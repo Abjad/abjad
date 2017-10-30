@@ -374,7 +374,7 @@ class LeafMaker(AbjadValueObject):
 
         Uses Messiaen-style ties:
 
-        >>> maker = abjad.LeafMaker(use_messiaen_style_ties=True)
+        >>> maker = abjad.LeafMaker(repeat_ties=True)
         >>> pitches = [0]
         >>> durations = [abjad.Duration(13, 16)]
         >>> leaves = maker(pitches, durations)
@@ -431,7 +431,7 @@ class LeafMaker(AbjadValueObject):
         '_is_diminution',
         '_metrical_hierarchy',
         '_skips_instead_of_rests',
-        '_use_messiaen_style_ties',
+        '_repeat_ties',
         '_use_multimeasure_rests',
         )
 
@@ -446,7 +446,7 @@ class LeafMaker(AbjadValueObject):
         is_diminution=True,
         metrical_hierarchy=None,
         skips_instead_of_rests=False,
-        use_messiaen_style_ties=False,
+        repeat_ties=False,
         use_multimeasure_rests=False,
         ):
         self._decrease_monotonic = decrease_monotonic
@@ -454,7 +454,7 @@ class LeafMaker(AbjadValueObject):
         self._is_diminution = is_diminution
         self._metrical_hierarchy = metrical_hierarchy
         self._skips_instead_of_rests = skips_instead_of_rests
-        self._use_messiaen_style_ties = use_messiaen_style_ties
+        self._repeat_ties = repeat_ties
         self._use_multimeasure_rests = use_multimeasure_rests
 
     ### SPECIAL METHODS ###
@@ -498,7 +498,7 @@ class LeafMaker(AbjadValueObject):
                         forbidden_duration=self.forbidden_duration,
                         skips_instead_of_rests=self.skips_instead_of_rests,
                         use_multimeasure_rests=self.use_multimeasure_rests,
-                        use_messiaen_style_ties=self.use_messiaen_style_ties,
+                        repeat_ties=self.repeat_ties,
                         )
                     result.extend(leaves)
             else:
@@ -521,7 +521,7 @@ class LeafMaker(AbjadValueObject):
                         decrease_monotonic=self.decrease_monotonic,
                         skips_instead_of_rests=self.skips_instead_of_rests,
                         use_multimeasure_rests=self.use_multimeasure_rests,
-                        use_messiaen_style_ties=self.use_messiaen_style_ties,
+                        repeat_ties=self.repeat_ties,
                         )
                     tuplet_leaves.extend(leaves)
                 tuplet = abjad.Tuplet(multiplier, tuplet_leaves)
@@ -542,7 +542,7 @@ class LeafMaker(AbjadValueObject):
         forbidden_duration=None,
         skips_instead_of_rests=False,
         use_multimeasure_rests=False,
-        use_messiaen_style_ties=False,
+        repeat_ties=False,
         ):
         import abjad
         note_prototype = (
@@ -561,7 +561,7 @@ class LeafMaker(AbjadValueObject):
                 decrease_monotonic=decrease_monotonic,
                 forbidden_duration=forbidden_duration,
                 pitches=pitch,
-                use_messiaen_style_ties=use_messiaen_style_ties,
+                repeat_ties=repeat_ties,
                 )
         elif isinstance(pitch, chord_prototype):
             leaves = LeafMaker._make_tied_leaf(
@@ -570,7 +570,7 @@ class LeafMaker(AbjadValueObject):
                 decrease_monotonic=decrease_monotonic,
                 forbidden_duration=forbidden_duration,
                 pitches=pitch,
-                use_messiaen_style_ties=use_messiaen_style_ties,
+                repeat_ties=repeat_ties,
                 )
         elif isinstance(pitch, rest_prototype) and skips_instead_of_rests:
             leaves = LeafMaker._make_tied_leaf(
@@ -579,7 +579,7 @@ class LeafMaker(AbjadValueObject):
                 decrease_monotonic=decrease_monotonic,
                 forbidden_duration=forbidden_duration,
                 pitches=None,
-                use_messiaen_style_ties=use_messiaen_style_ties,
+                repeat_ties=repeat_ties,
                 )
         elif isinstance(pitch, rest_prototype) and not use_multimeasure_rests:
             leaves = LeafMaker._make_tied_leaf(
@@ -588,7 +588,7 @@ class LeafMaker(AbjadValueObject):
                 decrease_monotonic=decrease_monotonic,
                 forbidden_duration=forbidden_duration,
                 pitches=None,
-                use_messiaen_style_ties=use_messiaen_style_ties,
+                repeat_ties=repeat_ties,
                 )
         elif isinstance(pitch, rest_prototype) and use_multimeasure_rests:
             multimeasure_rest = abjad.MultimeasureRest((1))
@@ -611,7 +611,7 @@ class LeafMaker(AbjadValueObject):
         forbidden_duration=None,
         pitches=None,
         tie_parts=True,
-        use_messiaen_style_ties=False,
+        repeat_ties=False,
         ):
         import abjad
         # check input
@@ -673,7 +673,7 @@ class LeafMaker(AbjadValueObject):
         if tie_parts and 1 < len(result):
             if not issubclass(class_, (abjad.Rest, abjad.Skip)):
                 tie = abjad.Tie(
-                    use_messiaen_style_ties=use_messiaen_style_ties,
+                    repeat_ties=repeat_ties,
                     )
                 abjad.attach(tie, result)
         # return result
@@ -737,12 +737,12 @@ class LeafMaker(AbjadValueObject):
         return self._skips_instead_of_rests
 
     @property
-    def use_messiaen_style_ties(self):
+    def repeat_ties(self):
         r'''Is true when ties are Messiaen-style. Otherwise false.
 
         Returns true, false or none.
         '''
-        return self._use_messiaen_style_ties
+        return self._repeat_ties
 
     @property
     def use_multimeasure_rests(self):

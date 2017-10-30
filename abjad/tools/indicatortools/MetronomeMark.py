@@ -2,11 +2,8 @@ import collections
 import functools
 import math
 import numbers
-from abjad import Fraction
 from abjad.tools import mathtools
-from abjad.tools import schemetools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.topleveltools import new
 
 
 @functools.total_ordering
@@ -217,7 +214,7 @@ class MetronomeMark(AbjadValueObject):
         prototype = (
             int,
             float,
-            Fraction,
+            abjad.Fraction,
             collections.Sequence,
             type(None),
             )
@@ -342,7 +339,7 @@ class MetronomeMark(AbjadValueObject):
             return abjad.Multiplier(result)
         elif isinstance(argument, numbers.Number):
             units_per_minute = self.units_per_minute / argument
-            result = new(self, units_per_minute=units_per_minute)
+            result = abjad.new(self, units_per_minute=units_per_minute)
             return result
         else:
             message = 'must be number or metronome mark: {!r}.'
@@ -604,20 +601,21 @@ class MetronomeMark(AbjadValueObject):
 
         Returns string.
         '''
+        import abjad
         #return self._equation or self.textual_indication
         if self.textual_indication is not None:
             string = self.textual_indication
         elif isinstance(self.units_per_minute, (int, float)):
             string = '{}={}'
             string = string.format(self._dotted, self.units_per_minute)
-        elif (isinstance(self.units_per_minute, Fraction) and
+        elif (isinstance(self.units_per_minute, abjad.Fraction) and
             not mathtools.is_integer_equivalent_number(self.units_per_minute)):
             integer_part = int(self.units_per_minute)
             remainder = self.units_per_minute - integer_part
-            remainder = Fraction(remainder)
+            remainder = abjad.Fraction(remainder)
             string = '{}={}+{}'
             string = string.format(self._dotted, integer_part, remainder)
-        elif (isinstance(self.units_per_minute, Fraction) and
+        elif (isinstance(self.units_per_minute, abjad.Fraction) and
             mathtools.is_integer_equivalent_number(self.units_per_minute)):
             string = '{}={}'
             integer = int(self.units_per_minute)
@@ -729,6 +727,7 @@ class MetronomeMark(AbjadValueObject):
 
     @property
     def _equation(self):
+        import abjad
         if self.reference_duration is None:
             return
         if isinstance(self.units_per_minute, tuple):
@@ -739,7 +738,7 @@ class MetronomeMark(AbjadValueObject):
                 self.units_per_minute[1],
                 )
             return string
-        elif isinstance(self.units_per_minute, (float, Fraction)):
+        elif isinstance(self.units_per_minute, (float, abjad.Fraction)):
             markup = MetronomeMark.make_tempo_equation_markup(
                 self.reference_duration,
                 self.units_per_minute,
@@ -753,10 +752,11 @@ class MetronomeMark(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format(self):
+        import abjad
         text, equation = None, None
         if self.textual_indication is not None:
             text = self.textual_indication
-            text = schemetools.Scheme.format_scheme_value(text)
+            text = abjad.Scheme.format_scheme_value(text)
         if (self.reference_duration is not None and
             self.units_per_minute is not None):
             equation = self._equation
@@ -994,7 +994,7 @@ class MetronomeMark(AbjadValueObject):
             return (low, high)
         result = abjad.Duration(1, 4) / self.reference_duration * \
             self.units_per_minute
-        return Fraction(result)
+        return abjad.Fraction(result)
 
     @property
     def reference_duration(self):
@@ -1194,7 +1194,7 @@ class MetronomeMark(AbjadValueObject):
         multipliers = [abjad.Multiplier(_) for _ in pairs]
         multipliers = [
             _ for _ in multipliers
-            if Fraction(1, 2) <= _ <= Fraction(2)
+            if abjad.Fraction(1, 2) <= _ <= abjad.Fraction(2)
             ]
         multipliers.sort()
         multipliers = abjad.sequence(multipliers).remove_repeats()

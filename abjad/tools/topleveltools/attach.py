@@ -87,6 +87,9 @@ def attach(
         message = message.format(indicator, argument)
         raise Exception(message)
 
+    if hasattr(indicator, '_before_attach'):
+        indicator._before_attach(argument)
+
     if hasattr(indicator, '_attachment_test_all'):
         if not indicator._attachment_test_all(argument):
             message = '{!r} attachment test fails for {!r}.'

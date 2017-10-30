@@ -434,7 +434,7 @@ class PitchSet(Set):
                 [_ for _ in self if _.number % 12 == pc]
                 for pc in [x % 12 for x in pitch_classes]
                 ]
-            result = abjad.sequence(result).flatten()
+            result = abjad.sequence(result).flatten(depth=-1)
         elif isinstance(pitch_classes, int):
             result = [p for p in pitch_classes if p % 12 == pitch_classes][0]
         else:

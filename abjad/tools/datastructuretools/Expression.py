@@ -2104,7 +2104,7 @@ class Expression(AbjadValueObject):
 
             >>> expression = abjad.sequence()
             >>> expression = expression.reverse()
-            >>> expression = expression.flatten()
+            >>> expression = expression.flatten(depth=-1)
 
             >>> expression([1, 2, 3, [4, 5, [6]]])
             Sequence([4, 5, 6, 3, 2, 1])

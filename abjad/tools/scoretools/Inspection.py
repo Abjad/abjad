@@ -1288,7 +1288,6 @@ class Inspection(abctools.AbjadObject):
         check_overlapping_octavation_spanners=True,
         check_overlapping_ties=True,
         check_overlapping_trill_spanners=True,
-        check_short_hairpins=True,
         check_tied_rests=True,
         ):
         r'''Is true when client is well-formed. Otherwise false.
@@ -1418,7 +1417,6 @@ class Inspection(abctools.AbjadObject):
         check_overlapping_octavation_spanners=True,
         check_overlapping_ties=True,
         check_overlapping_trill_spanners=True,
-        check_short_hairpins=True,
         check_tied_rests=True,
         ):
         r'''Tabulates well-formedness.
@@ -1463,8 +1461,7 @@ class Inspection(abctools.AbjadObject):
             0 /	0 overlapping hairpins
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping ties
-            0 /     0 overlapping trill spanners
-            0 /	0 short hairpins
+            0 / 0 overlapping trill spanners
             0 /	0 tied rests
 
             Beamed long notes are not well-formed.
@@ -1498,7 +1495,6 @@ class Inspection(abctools.AbjadObject):
             0 /	0 nested measures
             0 /	4 notes on wrong clef
             0 /	4 out of range notes
-            0 /	0 short hairpins
             0 /	0 tied rests
 
         Returns string.

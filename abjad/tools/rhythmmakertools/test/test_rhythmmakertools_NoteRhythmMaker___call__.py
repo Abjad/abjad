@@ -7,13 +7,12 @@ def test_rhythmmakertools_NoteRhythmMaker___call___01():
     maker = rhythmmakertools.NoteRhythmMaker()
 
     divisions = [(5, 16), (3, 8)]
-    leaf_lists = maker(divisions)
-    leaves = abjad.sequence(leaf_lists).flatten()
+    result = maker(divisions)
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    abjad.mutate(staff).replace_measure_contents(leaves)
+    abjad.mutate(staff).replace_measure_contents(result)
 
     assert format(staff) == abjad.String.normalize(
         r'''
@@ -42,13 +41,12 @@ def test_rhythmmakertools_NoteRhythmMaker___call___02():
         )
 
     divisions = [(5, 16), (3, 8)]
-    leaf_lists = maker(divisions)
-    leaves = abjad.sequence(leaf_lists).flatten()
+    result = maker(divisions)
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    abjad.mutate(staff).replace_measure_contents(leaves)
+    abjad.mutate(staff).replace_measure_contents(result)
 
     assert format(staff) == abjad.String.normalize(
         r'''

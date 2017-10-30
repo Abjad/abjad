@@ -151,9 +151,11 @@ class TupletRhythmMaker(RhythmMaker):
             tuplet_specifier=tuplet_specifier,
             )
         if tuplet_ratios is not None:
-            tuplet_ratios = tuple(mathtools.Ratio(x) for x in tuplet_ratios)
+            tuplet_ratios = tuple(abjad.Ratio(_) for _ in tuplet_ratios)
         self._tuplet_ratios = tuplet_ratios
         if preferred_denominator is not None:
+            if isinstance(preferred_denominator, tuple):
+                preferred_denominator = abjad.Duration(preferred_denominator)
             prototype = (abjad.Duration, int)
             assert (preferred_denominator == 'divisions' or
                 isinstance(preferred_denominator, prototype))
@@ -674,7 +676,7 @@ class TupletRhythmMaker(RhythmMaker):
             ...         beam_each_division=False,
             ...         ),
             ...     division_masks=[
-            ...         abjad.silence_every([1], period=2),
+            ...         abjad.silence([1], 2),
             ...         ],
             ...     )
 
