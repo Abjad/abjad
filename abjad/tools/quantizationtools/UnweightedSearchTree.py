@@ -7,41 +7,39 @@ class UnweightedSearchTree(SearchTree):
 
     ..  container:: example
 
-        ::
-
-            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree()
-            >>> f(search_tree)
-            abjad.quantizationtools.UnweightedSearchTree(
-                definition={
+        >>> search_tree = abjad.quantizationtools.UnweightedSearchTree()
+        >>> abjad.f(search_tree)
+        abjad.quantizationtools.UnweightedSearchTree(
+            definition={
+                2: {
                     2: {
-                        2: {
-                            2: {
-                                2: None,
-                                },
-                            3: None,
-                            },
-                        3: None,
-                        5: None,
-                        7: None,
-                        },
-                    3: {
                         2: {
                             2: None,
                             },
                         3: None,
-                        5: None,
                         },
-                    5: {
-                        2: None,
-                        3: None,
-                        },
-                    7: {
-                        2: None,
-                        },
-                    11: None,
-                    13: None,
+                    3: None,
+                    5: None,
+                    7: None,
                     },
-                )
+                3: {
+                    2: {
+                        2: None,
+                        },
+                    3: None,
+                    5: None,
+                    },
+                5: {
+                    2: None,
+                    3: None,
+                    },
+                7: {
+                    2: None,
+                    },
+                11: None,
+                13: None,
+                },
+            )
 
     ..  container:: example
 
@@ -65,26 +63,22 @@ class UnweightedSearchTree(SearchTree):
         generate all permissable subdivided ``QGrids``, according to the
         definition of the called search tree:
 
-        ::
+        >>> q_event_a = abjad.quantizationtools.PitchedQEvent(130, [0, 1, 4])
+        >>> q_event_b = abjad.quantizationtools.PitchedQEvent(150, [2, 3, 5])
+        >>> proxy_a = abjad.quantizationtools.QEventProxy(q_event_a, 0.5)
+        >>> proxy_b = abjad.quantizationtools.QEventProxy(q_event_b, 0.667)
+        >>> q_grid = abjad.quantizationtools.QGrid()
+        >>> q_grid.fit_q_events([proxy_a, proxy_b])
 
-            >>> q_event_a = abjad.quantizationtools.PitchedQEvent(130, [0, 1, 4])
-            >>> q_event_b = abjad.quantizationtools.PitchedQEvent(150, [2, 3, 5])
-            >>> proxy_a = abjad.quantizationtools.QEventProxy(q_event_a, 0.5)
-            >>> proxy_b = abjad.quantizationtools.QEventProxy(q_event_b, 0.667)
-            >>> q_grid = abjad.quantizationtools.QGrid()
-            >>> q_grid.fit_q_events([proxy_a, proxy_b])
-
-        ::
-
-            >>> q_grids = search_tree(q_grid)
-            >>> for grid in q_grids:
-            ...     print(grid.rtm_format)
-            (1 (1 1))
-            (1 (1 1 1))
-            (1 (1 1 1 1 1))
-            (1 (1 1 1 1 1 1 1))
-            (1 (1 1 1 1 1 1 1 1 1 1 1))
-            (1 (1 1 1 1 1 1 1 1 1 1 1 1 1))
+        >>> q_grids = search_tree(q_grid)
+        >>> for grid in q_grids:
+        ...     print(grid.rtm_format)
+        (1 (1 1))
+        (1 (1 1 1))
+        (1 (1 1 1 1 1))
+        (1 (1 1 1 1 1 1 1))
+        (1 (1 1 1 1 1 1 1 1 1 1 1))
+        (1 (1 1 1 1 1 1 1 1 1 1 1 1 1))
 
     ..  container:: example
 
@@ -93,18 +87,14 @@ class UnweightedSearchTree(SearchTree):
         divisions of the root node into ``2s`` and ``3s``, and if divided into
         ``2``, a node may be divided once more into ``2`` parts:
 
-        ::
+        >>> definition = {2: {2: None}, 3: None}
+        >>> search_tree = abjad.quantizationtools.UnweightedSearchTree(definition)
 
-            >>> definition = {2: {2: None}, 3: None}
-            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree(definition)
-
-        ::
-
-            >>> q_grids = search_tree(q_grid)
-            >>> for grid in q_grids:
-            ...     print(grid.rtm_format)
-            (1 (1 1))
-            (1 (1 1 1))
+        >>> q_grids = search_tree(q_grid)
+        >>> for grid in q_grids:
+        ...     print(grid.rtm_format)
+        (1 (1 1))
+        (1 (1 1 1))
 
     '''
 
@@ -155,17 +145,15 @@ class UnweightedSearchTree(SearchTree):
         r'''The default search tree definition, based on the search tree given
         by Paul Nauert:
 
-        ::
-
-            >>> import pprint
-            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree()
-            >>> pprint.pprint(search_tree.default_definition)
-            {2: {2: {2: {2: None}, 3: None}, 3: None, 5: None, 7: None},
-             3: {2: {2: None}, 3: None, 5: None},
-             5: {2: None, 3: None},
-             7: {2: None},
-             11: None,
-             13: None}
+        >>> import pprint
+        >>> search_tree = abjad.quantizationtools.UnweightedSearchTree()
+        >>> pprint.pprint(search_tree.default_definition)
+        {2: {2: {2: {2: None}, 3: None}, 3: None, 5: None, 7: None},
+            3: {2: {2: None}, 3: None, 5: None},
+            5: {2: None, 3: None},
+            7: {2: None},
+            11: None,
+            13: None}
 
         Returns dictionary.
         '''

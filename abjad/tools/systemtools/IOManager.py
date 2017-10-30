@@ -235,7 +235,7 @@ class IOManager(AbjadObject):
         ):
         r'''Executes `string`.
 
-        ::
+        ..  container:: example
 
             >>> string = 'foo = 23'
             >>> attribute_names = ('foo', 'bar')
@@ -271,10 +271,8 @@ class IOManager(AbjadObject):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.IOManager.find_executable('python2.7') # doctest: +SKIP
-                ['/usr/bin/python2.7']
+            >>> abjad.IOManager.find_executable('python2.7') # doctest: +SKIP
+            ['/usr/bin/python2.7']
 
         Returns list of zero or more full paths to `name`.
         '''
@@ -306,10 +304,8 @@ class IOManager(AbjadObject):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.IOManager.get_last_output_file_name() # doctest: +SKIP
-                '6222.ly'
+            >>> abjad.IOManager.get_last_output_file_name() # doctest: +SKIP
+            '6222.ly'
 
         Gets last output file name in Abjad output directory when
         `output_directory` is none.
@@ -348,10 +344,8 @@ class IOManager(AbjadObject):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.IOManager.get_next_output_file_name() # doctest: +SKIP
-                '6223.ly'
+            >>> abjad.IOManager.get_next_output_file_name() # doctest: +SKIP
+            '6223.ly'
 
         Gets next output file name with `file_extension` in Abjad output
         directory when `output_directory` is none.
@@ -384,23 +378,18 @@ class IOManager(AbjadObject):
 
         ..  container:: example
 
-            ::
+            >>> command = 'echo "hellow world"'
+            >>> abjad.IOManager.make_subprocess(command)
+            <subprocess.Popen object at 0x...>
 
-                >>> command = 'echo "hellow world"'
-                >>> abjad.IOManager.make_subprocess(command)
-                <subprocess.Popen object at 0x...>
+        Defined equal to:
 
-        Defined equal to
-
-            ::
-
-                process = subprocess.Popen(
-                    command,
-                    shell=True,
-                    stdout=subprocess.PIPE,
-                    stderr=subprocess.STDOUT,
-                    )
-
+            process = subprocess.Popen(
+                command,
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                )
 
         Redirects stderr to stdout.
         '''

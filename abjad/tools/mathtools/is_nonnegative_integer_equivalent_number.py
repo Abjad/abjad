@@ -4,11 +4,9 @@ def is_nonnegative_integer_equivalent_number(argument):
 
     ..  container:: example
 
-        ::
-
-            >>> duration = abjad.Duration(4, 2)
-            >>> abjad.mathtools.is_nonnegative_integer_equivalent_number(duration)
-            True
+        >>> duration = abjad.Duration(4, 2)
+        >>> abjad.mathtools.is_nonnegative_integer_equivalent_number(duration)
+        True
 
     Returns true or false.
     '''

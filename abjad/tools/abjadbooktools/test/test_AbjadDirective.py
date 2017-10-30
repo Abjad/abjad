@@ -83,7 +83,7 @@ class AbjadDirectiveTests(unittest.TestCase):
         ..  abjad::
             :stylesheet: non-proportional.ly
 
-            show(Note("c'4"))
+            abjad.show(Note("c'4"))
         ''')
         document = self.handler.parse_rst(source)
         result = abjad.String.normalize(document.pformat())
@@ -92,7 +92,7 @@ class AbjadDirectiveTests(unittest.TestCase):
             <document source="test">
                 <abjad_input_block stylesheet="non-proportional.ly">
                     <literal_block xml:space="preserve">
-                        show(Note("c'4"))
+                        abjad.show(Note("c'4"))
             ''')
         self.assertEqual(result, expected)
 
@@ -102,7 +102,7 @@ class AbjadDirectiveTests(unittest.TestCase):
             :no-stylesheet:
             :stylesheet: non-proportional.ly
 
-            show(Note("c'4"))
+            abjad.show(Note("c'4"))
         ''')
         document = self.handler.parse_rst(source)
         result = abjad.String.normalize(document.pformat())
@@ -111,7 +111,7 @@ class AbjadDirectiveTests(unittest.TestCase):
             <document source="test">
                 <abjad_input_block no-stylesheet="True">
                     <literal_block xml:space="preserve">
-                        show(Note("c'4"))
+                        abjad.show(Note("c'4"))
             ''')
         self.assertEqual(result, expected)
 
@@ -121,7 +121,7 @@ class AbjadDirectiveTests(unittest.TestCase):
             :text-width: 80
             :with-columns: 2
 
-            show(Note("c'4"))
+            abjad.show(Note("c'4"))
         ''')
         document = self.handler.parse_rst(source)
         result = abjad.String.normalize(document.pformat())
@@ -130,6 +130,6 @@ class AbjadDirectiveTests(unittest.TestCase):
             <document source="test">
                 <abjad_input_block text-width="80" with-columns="2">
                     <literal_block xml:space="preserve">
-                        show(Note("c'4"))
+                        abjad.show(Note("c'4"))
             ''')
         self.assertEqual(result, expected)

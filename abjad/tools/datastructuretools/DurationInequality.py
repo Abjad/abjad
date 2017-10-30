@@ -6,29 +6,21 @@ class DurationInequality(Inequality):
 
     ..  container:: example
 
-        ::
+        >>> inequality = abjad.DurationInequality('<', (3, 4))
+        >>> abjad.f(inequality)
+        abjad.DurationInequality(
+            operator_string='<',
+            duration=abjad.Duration(3, 4),
+            )
 
-            >>> inequality = abjad.DurationInequality('<', (3, 4))
-            >>> f(inequality)
-            abjad.DurationInequality(
-                operator_string='<',
-                duration=abjad.Duration(3, 4),
-                )
+        >>> inequality(abjad.Duration(1, 2))
+        True
 
-        ::
+        >>> inequality(abjad.Note("c'4"))
+        True
 
-            >>> inequality(abjad.Duration(1, 2))
-            True
-
-        ::
-
-            >>> inequality(abjad.Note("c'4"))
-            True
-
-        ::
-
-            >>> inequality(abjad.Container("c'1 d'1"))
-            False
+        >>> inequality(abjad.Container("c'1 d'1"))
+        False
 
     '''
 

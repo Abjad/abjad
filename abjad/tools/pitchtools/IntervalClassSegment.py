@@ -10,21 +10,17 @@ class IntervalClassSegment(Segment):
 
         An interval-class segment:
 
-        ::
-
-            >>> intervals = 'm2 M10 -aug4 P5'
-            >>> abjad.IntervalClassSegment(intervals)
-            IntervalClassSegment(['+m2', '+M3', '-aug4', '+P5'])
+        >>> intervals = 'm2 M10 -aug4 P5'
+        >>> abjad.IntervalClassSegment(intervals)
+        IntervalClassSegment(['+m2', '+M3', '-aug4', '+P5'])
 
     ..  container:: example
 
         Another interval-class segment:
 
-        ::
-
-            >>> intervals = 'P4 P5 P11 P12'
-            >>> abjad.IntervalClassSegment(intervals)
-            IntervalClassSegment(['+P4', '+P5', '+P4', '+P5'])
+        >>> intervals = 'P4 P5 P11 P12'
+        >>> abjad.IntervalClassSegment(intervals)
+        IntervalClassSegment(['+P4', '+P5', '+P4', '+P5'])
 
     Returns interval-class segment.
     '''
@@ -59,14 +55,12 @@ class IntervalClassSegment(Segment):
 
         ..  container:: example
 
-            ::
-
-                >>> interval_class_segment = abjad.IntervalClassSegment(
-                ...     items=[('major', 3), ('minor', 6), ('major', 6)],
-                ...     item_class=abjad.NamedIntervalClass,
-                ...     )
-                >>> interval_class_segment.is_tertian
-                True
+            >>> interval_class_segment = abjad.IntervalClassSegment(
+            ...     items=[('major', 3), ('minor', 6), ('major', 6)],
+            ...     item_class=abjad.NamedIntervalClass,
+            ...     )
+            >>> interval_class_segment.is_tertian
+            True
 
         Returns true or false.
         '''
@@ -88,13 +82,11 @@ class IntervalClassSegment(Segment):
 
         ..  container:: example
 
-            ::
-
-                >>> staff_1 = abjad.Staff("c'4 <d' fs' a'>4 b2")
-                >>> staff_2 = abjad.Staff("c4. r8 g2")
-                >>> selection = abjad.select((staff_1, staff_2))
-                >>> abjad.IntervalClassSegment.from_selection(selection)
-                IntervalClassSegment(['-M2', '-M3', '-m3', '+m7', '+M7', '-P5'])
+            >>> staff_1 = abjad.Staff("c'4 <d' fs' a'>4 b2")
+            >>> staff_2 = abjad.Staff("c4. r8 g2")
+            >>> selection = abjad.select((staff_1, staff_2))
+            >>> abjad.IntervalClassSegment.from_selection(selection)
+            IntervalClassSegment(['-M2', '-M3', '-m3', '+m7', '+M7', '-P5'])
 
         Returns interval-class segment.
         '''
@@ -112,19 +104,15 @@ class IntervalClassSegment(Segment):
 
         ..  container:: example
 
-            ::
+            >>> intervals = 'm2 M3 -aug4 m2 P5'
+            >>> segment = abjad.IntervalClassSegment(intervals)
+            >>> segment.has_duplicates()
+            True
 
-                >>> intervals = 'm2 M3 -aug4 m2 P5'
-                >>> segment = abjad.IntervalClassSegment(intervals)
-                >>> segment.has_duplicates()
-                True
-
-            ::
-
-                >>> intervals = 'M3 -aug4 m2 P5'
-                >>> segment = abjad.IntervalClassSegment(intervals)
-                >>> segment.has_duplicates()
-                False
+            >>> intervals = 'M3 -aug4 m2 P5'
+            >>> segment = abjad.IntervalClassSegment(intervals)
+            >>> segment.has_duplicates()
+            False
 
         Returns true or false.
         '''

@@ -9,71 +9,59 @@ class QTargetMeasure(AbjadObject):
 
     ..  container:: example
 
-        ::
+        >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({2: None})
+        >>> tempo = abjad.MetronomeMark((1, 4), 60)
+        >>> time_signature = abjad.TimeSignature((4, 4))
 
-            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({2: None})
-            >>> tempo = abjad.MetronomeMark((1, 4), 60)
-            >>> time_signature = abjad.TimeSignature((4, 4))
+        >>> q_target_measure = abjad.quantizationtools.QTargetMeasure(
+        ...     offset_in_ms=1000,
+        ...     search_tree=search_tree,
+        ...     tempo=tempo,
+        ...     time_signature=time_signature,
+        ...     )
 
-        ::
-
-            >>> q_target_measure = abjad.quantizationtools.QTargetMeasure(
-            ...     offset_in_ms=1000,
-            ...     search_tree=search_tree,
-            ...     tempo=tempo,
-            ...     time_signature=time_signature,
-            ...     )
-
-        ::
-
-            >>> f(q_target_measure)
-            abjad.quantizationtools.QTargetMeasure(
-                offset_in_ms=abjad.Offset(1000, 1),
-                search_tree=abjad.quantizationtools.UnweightedSearchTree(
-                    definition={   2: None,
-                        },
-                    ),
-                time_signature=abjad.TimeSignature((4, 4)),
-                tempo=abjad.MetronomeMark(
-                    reference_duration=abjad.Duration(1, 4),
-                    units_per_minute=60,
-                    ),
-                use_full_measure=False,
-                )
+        >>> abjad.f(q_target_measure)
+        abjad.quantizationtools.QTargetMeasure(
+            offset_in_ms=abjad.Offset(1000, 1),
+            search_tree=abjad.quantizationtools.UnweightedSearchTree(
+                definition={   2: None,
+                    },
+                ),
+            time_signature=abjad.TimeSignature((4, 4)),
+            tempo=abjad.MetronomeMark(
+                reference_duration=abjad.Duration(1, 4),
+                units_per_minute=60,
+                ),
+            use_full_measure=False,
+            )
 
     ..  container:: example
 
         ``QTargetMeasures`` group ``QTargetBeats``:
 
-        ::
-
-            >>> for q_target_beat in q_target_measure.beats:
-            ...     print(q_target_beat.offset_in_ms, q_target_beat.duration_in_ms)
-            1000 1000
-            2000 1000
-            3000 1000
-            4000 1000
+        >>> for q_target_beat in q_target_measure.beats:
+        ...     print(q_target_beat.offset_in_ms, q_target_beat.duration_in_ms)
+        1000 1000
+        2000 1000
+        3000 1000
+        4000 1000
 
     ..  container:: example
 
         If ``use_full_measure`` is set, the ``QTargetMeasure`` will only
         ever contain a single ``QTargetBeat`` instance:
 
-        ::
+        >>> another_q_target_measure = abjad.quantizationtools.QTargetMeasure(
+        ...     offset_in_ms=1000,
+        ...     search_tree=search_tree,
+        ...     tempo=tempo,
+        ...     time_signature=time_signature,
+        ...     use_full_measure=True,
+        ...     )
 
-            >>> another_q_target_measure = abjad.quantizationtools.QTargetMeasure(
-            ...     offset_in_ms=1000,
-            ...     search_tree=search_tree,
-            ...     tempo=tempo,
-            ...     time_signature=time_signature,
-            ...     use_full_measure=True,
-            ...     )
-
-        ::
-
-            >>> for q_target_beat in another_q_target_measure.beats:
-            ...     print(q_target_beat.offset_in_ms, q_target_beat.duration_in_ms)
-            1000 4000
+        >>> for q_target_beat in another_q_target_measure.beats:
+        ...     print(q_target_beat.offset_in_ms, q_target_beat.duration_in_ms)
+        1000 4000
 
     Not composer-safe.
 
@@ -178,74 +166,68 @@ class QTargetMeasure(AbjadObject):
 
         ..  container:: example
 
-            ::
+            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({2: None})
+            >>> tempo = abjad.MetronomeMark((1, 4), 60)
+            >>> time_signature = abjad.TimeSignature((4, 4))
 
-                >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({2: None})
-                >>> tempo = abjad.MetronomeMark((1, 4), 60)
-                >>> time_signature = abjad.TimeSignature((4, 4))
+            >>> q_target_measure = abjad.quantizationtools.QTargetMeasure(
+            ...     offset_in_ms=1000,
+            ...     search_tree=search_tree,
+            ...     tempo=tempo,
+            ...     time_signature=time_signature,
+            ...     )
 
-            ::
-
-                >>> q_target_measure = abjad.quantizationtools.QTargetMeasure(
-                ...     offset_in_ms=1000,
-                ...     search_tree=search_tree,
-                ...     tempo=tempo,
-                ...     time_signature=time_signature,
-                ...     )
-
-            ::
-
-                >>> for q_target_beat in q_target_measure.beats:
-                ...     f(q_target_beat)
-                ...
-                abjad.quantizationtools.QTargetBeat(
-                    beatspan=abjad.Duration(1, 4),
-                    offset_in_ms=abjad.Offset(1000, 1),
-                    search_tree=abjad.quantizationtools.UnweightedSearchTree(
-                        definition={   2: None,
-                            },
-                        ),
-                    tempo=abjad.MetronomeMark(
-                        reference_duration=abjad.Duration(1, 4),
-                        units_per_minute=60,
-                        ),
-                    )
-                abjad.quantizationtools.QTargetBeat(
-                    beatspan=abjad.Duration(1, 4),
-                    offset_in_ms=abjad.Offset(2000, 1),
-                    search_tree=abjad.quantizationtools.UnweightedSearchTree(
-                        definition={   2: None,
-                            },
-                        ),
-                    tempo=abjad.MetronomeMark(
-                        reference_duration=abjad.Duration(1, 4),
-                        units_per_minute=60,
-                        ),
-                    )
-                abjad.quantizationtools.QTargetBeat(
-                    beatspan=abjad.Duration(1, 4),
-                    offset_in_ms=abjad.Offset(3000, 1),
-                    search_tree=abjad.quantizationtools.UnweightedSearchTree(
-                        definition={   2: None,
-                            },
-                        ),
-                    tempo=abjad.MetronomeMark(
-                        reference_duration=abjad.Duration(1, 4),
-                        units_per_minute=60,
-                        ),
-                    )
-                abjad.quantizationtools.QTargetBeat(
-                    beatspan=abjad.Duration(1, 4),
-                    offset_in_ms=abjad.Offset(4000, 1),
-                    search_tree=abjad.quantizationtools.UnweightedSearchTree(
-                        definition={   2: None,
-                            },
-                        ),
-                    tempo=abjad.MetronomeMark(
-                        reference_duration=abjad.Duration(1, 4),
-                        units_per_minute=60,
-                        ),
-                    )
+            >>> for q_target_beat in q_target_measure.beats:
+            ...     abjad.f(q_target_beat)
+            ...
+            abjad.quantizationtools.QTargetBeat(
+                beatspan=abjad.Duration(1, 4),
+                offset_in_ms=abjad.Offset(1000, 1),
+                search_tree=abjad.quantizationtools.UnweightedSearchTree(
+                    definition={   2: None,
+                        },
+                    ),
+                tempo=abjad.MetronomeMark(
+                    reference_duration=abjad.Duration(1, 4),
+                    units_per_minute=60,
+                    ),
+                )
+            abjad.quantizationtools.QTargetBeat(
+                beatspan=abjad.Duration(1, 4),
+                offset_in_ms=abjad.Offset(2000, 1),
+                search_tree=abjad.quantizationtools.UnweightedSearchTree(
+                    definition={   2: None,
+                        },
+                    ),
+                tempo=abjad.MetronomeMark(
+                    reference_duration=abjad.Duration(1, 4),
+                    units_per_minute=60,
+                    ),
+                )
+            abjad.quantizationtools.QTargetBeat(
+                beatspan=abjad.Duration(1, 4),
+                offset_in_ms=abjad.Offset(3000, 1),
+                search_tree=abjad.quantizationtools.UnweightedSearchTree(
+                    definition={   2: None,
+                        },
+                    ),
+                tempo=abjad.MetronomeMark(
+                    reference_duration=abjad.Duration(1, 4),
+                    units_per_minute=60,
+                    ),
+                )
+            abjad.quantizationtools.QTargetBeat(
+                beatspan=abjad.Duration(1, 4),
+                offset_in_ms=abjad.Offset(4000, 1),
+                search_tree=abjad.quantizationtools.UnweightedSearchTree(
+                    definition={   2: None,
+                        },
+                    ),
+                tempo=abjad.MetronomeMark(
+                    reference_duration=abjad.Duration(1, 4),
+                    units_per_minute=60,
+                    ),
+                )
 
         Returns tuple.
         '''
@@ -257,25 +239,19 @@ class QTargetMeasure(AbjadObject):
 
         ..  container:: example
 
-            ::
+            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({2: None})
+            >>> tempo = abjad.MetronomeMark((1, 4), 60)
+            >>> time_signature = abjad.TimeSignature((4, 4))
 
-                >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({2: None})
-                >>> tempo = abjad.MetronomeMark((1, 4), 60)
-                >>> time_signature = abjad.TimeSignature((4, 4))
+            >>> q_target_measure = abjad.quantizationtools.QTargetMeasure(
+            ...     offset_in_ms=1000,
+            ...     search_tree=search_tree,
+            ...     tempo=tempo,
+            ...     time_signature=time_signature,
+            ...     )
 
-            ::
-
-                >>> q_target_measure = abjad.quantizationtools.QTargetMeasure(
-                ...     offset_in_ms=1000,
-                ...     search_tree=search_tree,
-                ...     tempo=tempo,
-                ...     time_signature=time_signature,
-                ...     )
-
-            ::
-
-                >>> q_target_measure.duration_in_ms
-                Duration(4000, 1)
+            >>> q_target_measure.duration_in_ms
+            Duration(4000, 1)
 
         Returns duration.
         '''
@@ -288,25 +264,19 @@ class QTargetMeasure(AbjadObject):
 
         ..  container:: example
 
-            ::
+            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({2: None})
+            >>> tempo = abjad.MetronomeMark((1, 4), 60)
+            >>> time_signature = abjad.TimeSignature((4, 4))
 
-                >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({2: None})
-                >>> tempo = abjad.MetronomeMark((1, 4), 60)
-                >>> time_signature = abjad.TimeSignature((4, 4))
+            >>> q_target_measure = abjad.quantizationtools.QTargetMeasure(
+            ...     offset_in_ms=1000,
+            ...     search_tree=search_tree,
+            ...     tempo=tempo,
+            ...     time_signature=time_signature,
+            ...     )
 
-            ::
-
-                >>> q_target_measure = abjad.quantizationtools.QTargetMeasure(
-                ...     offset_in_ms=1000,
-                ...     search_tree=search_tree,
-                ...     tempo=tempo,
-                ...     time_signature=time_signature,
-                ...     )
-
-            ::
-
-                >>> q_target_measure.offset_in_ms
-                Offset(1000, 1)
+            >>> q_target_measure.offset_in_ms
+            Offset(1000, 1)
 
         Returns offset.
         '''
@@ -318,25 +288,19 @@ class QTargetMeasure(AbjadObject):
 
         ..  container:: example
 
-            ::
+            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({2: None})
+            >>> tempo = abjad.MetronomeMark((1, 4), 60)
+            >>> time_signature = abjad.TimeSignature((4, 4))
 
-                >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({2: None})
-                >>> tempo = abjad.MetronomeMark((1, 4), 60)
-                >>> time_signature = abjad.TimeSignature((4, 4))
+            >>> q_target_measure = abjad.quantizationtools.QTargetMeasure(
+            ...     offset_in_ms=1000,
+            ...     search_tree=search_tree,
+            ...     tempo=tempo,
+            ...     time_signature=time_signature,
+            ...     )
 
-            ::
-
-                >>> q_target_measure = abjad.quantizationtools.QTargetMeasure(
-                ...     offset_in_ms=1000,
-                ...     search_tree=search_tree,
-                ...     tempo=tempo,
-                ...     time_signature=time_signature,
-                ...     )
-
-            ::
-
-                >>> q_target_measure.search_tree
-                UnweightedSearchTree(definition={2: None})
+            >>> q_target_measure.search_tree
+            UnweightedSearchTree(definition={2: None})
 
         Returns search tree.
         '''
@@ -348,25 +312,19 @@ class QTargetMeasure(AbjadObject):
 
         ..  container:: example
 
-            ::
+            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({2: None})
+            >>> tempo = abjad.MetronomeMark((1, 4), 60)
+            >>> time_signature = abjad.TimeSignature((4, 4))
 
-                >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({2: None})
-                >>> tempo = abjad.MetronomeMark((1, 4), 60)
-                >>> time_signature = abjad.TimeSignature((4, 4))
+            >>> q_target_measure = abjad.quantizationtools.QTargetMeasure(
+            ...     offset_in_ms=1000,
+            ...     search_tree=search_tree,
+            ...     tempo=tempo,
+            ...     time_signature=time_signature,
+            ...     )
 
-            ::
-
-                >>> q_target_measure = abjad.quantizationtools.QTargetMeasure(
-                ...     offset_in_ms=1000,
-                ...     search_tree=search_tree,
-                ...     tempo=tempo,
-                ...     time_signature=time_signature,
-                ...     )
-
-            ::
-
-                >>> q_target_measure.tempo
-                MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60)
+            >>> q_target_measure.tempo
+            MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=60)
 
         Returns metronome mark.
         '''
@@ -378,25 +336,19 @@ class QTargetMeasure(AbjadObject):
 
         ..  container:: example
 
-            ::
+            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({2: None})
+            >>> tempo = abjad.MetronomeMark((1, 4), 60)
+            >>> time_signature = abjad.TimeSignature((4, 4))
 
-                >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({2: None})
-                >>> tempo = abjad.MetronomeMark((1, 4), 60)
-                >>> time_signature = abjad.TimeSignature((4, 4))
+            >>> q_target_measure = abjad.quantizationtools.QTargetMeasure(
+            ...     offset_in_ms=1000,
+            ...     search_tree=search_tree,
+            ...     tempo=tempo,
+            ...     time_signature=time_signature,
+            ...     )
 
-            ::
-
-                >>> q_target_measure = abjad.quantizationtools.QTargetMeasure(
-                ...     offset_in_ms=1000,
-                ...     search_tree=search_tree,
-                ...     tempo=tempo,
-                ...     time_signature=time_signature,
-                ...     )
-
-            ::
-
-                >>> q_target_measure.time_signature
-                TimeSignature((4, 4))
+            >>> q_target_measure.time_signature
+            TimeSignature((4, 4))
 
         Returns time signature.
         '''
@@ -408,25 +360,19 @@ class QTargetMeasure(AbjadObject):
 
         ..  container:: example
 
-            ::
+            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({2: None})
+            >>> tempo = abjad.MetronomeMark((1, 4), 60)
+            >>> time_signature = abjad.TimeSignature((4, 4))
 
-                >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({2: None})
-                >>> tempo = abjad.MetronomeMark((1, 4), 60)
-                >>> time_signature = abjad.TimeSignature((4, 4))
+            >>> q_target_measure = abjad.quantizationtools.QTargetMeasure(
+            ...     offset_in_ms=1000,
+            ...     search_tree=search_tree,
+            ...     tempo=tempo,
+            ...     time_signature=time_signature,
+            ...     )
 
-            ::
-
-                >>> q_target_measure = abjad.quantizationtools.QTargetMeasure(
-                ...     offset_in_ms=1000,
-                ...     search_tree=search_tree,
-                ...     tempo=tempo,
-                ...     time_signature=time_signature,
-                ...     )
-
-            ::
-
-                >>> q_target_measure.use_full_measure
-                False
+            >>> q_target_measure.use_full_measure
+            False
 
         Returns true or false.
         '''

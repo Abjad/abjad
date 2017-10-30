@@ -201,11 +201,9 @@ class Configuration(AbjadObject):
 
         ..  container:: example
 
-            ::
-
-                >>> configuration = abjad.AbjadConfiguration()
-                >>> configuration.configuration_directory
-                PosixPath('...')
+            >>> configuration = abjad.AbjadConfiguration()
+            >>> configuration.configuration_directory
+            PosixPath('...')
 
         Defaults to $HOME/{directory_name}.
 
@@ -237,11 +235,9 @@ class Configuration(AbjadObject):
 
         ..  container:: example
 
-            ::
-
-                >>> configuration = abjad.AbjadConfiguration()
-                >>> configuration.configuration_file_path
-                PosixPath('...')
+            >>> configuration = abjad.AbjadConfiguration()
+            >>> configuration.configuration_file_path
+            PosixPath('...')
 
         Returns path object.
         '''
@@ -256,11 +252,9 @@ class Configuration(AbjadObject):
 
         ..  container:: example
 
-            ::
-
-                >>> configuration = abjad.AbjadConfiguration()
-                >>> configuration.home_directory
-                PosixPath('...')
+            >>> configuration = abjad.AbjadConfiguration()
+            >>> configuration.home_directory
+            PosixPath('...')
 
         Returns path object.
         '''
@@ -278,11 +272,9 @@ class Configuration(AbjadObject):
 
         ..  container:: example
 
-            ::
-
-                >>> configuration = abjad.AbjadConfiguration()
-                >>> configuration.temp_directory
-                PosixPath('...')
+            >>> configuration = abjad.AbjadConfiguration()
+            >>> configuration.temp_directory
+            PosixPath('...')
 
         Returns path object.
         '''

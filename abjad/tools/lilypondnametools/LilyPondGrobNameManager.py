@@ -9,11 +9,9 @@ class LilyPondGrobNameManager(LilyPondNameManager):
 
         Initializes with toplevel override function:
 
-        ::
-
-            >>> note = abjad.Note("c'4")
-            >>> abjad.override(note)
-            LilyPondGrobNameManager()
+        >>> note = abjad.Note("c'4")
+        >>> abjad.override(note)
+        LilyPondGrobNameManager()
 
     '''
 
@@ -24,15 +22,13 @@ class LilyPondGrobNameManager(LilyPondNameManager):
 
         ..  container:: example
 
-            ::
-
-                >>> staff = abjad.Staff("c'4 d' e' f'")
-                >>> abjad.override(staff).note_head.color = 'red'
-                >>> show(staff) # doctest: +SKIP
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.override(staff).note_head.color = 'red'
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(staff)
+                >>> abjad.f(staff)
                 \new Staff \with {
                     \override NoteHead.color = #red
                 } {
@@ -46,10 +42,8 @@ class LilyPondGrobNameManager(LilyPondNameManager):
 
             Returns LilyPond name manager:
 
-            ::
-
-                >>> abjad.override(staff).note_head
-                LilyPondNameManager(('color', 'red'))
+            >>> abjad.override(staff).note_head
+            LilyPondNameManager(('color', 'red'))
 
         '''
         import abjad

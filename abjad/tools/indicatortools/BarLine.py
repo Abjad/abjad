@@ -9,21 +9,17 @@ class BarLine(AbjadValueObject):
 
         Final bar line:
 
-        ::
+        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+        >>> bar_line = abjad.BarLine('|.')
+        >>> abjad.attach(bar_line, staff[-1])
+        >>> abjad.show(staff) # doctest: +SKIP
 
-            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-            >>> bar_line = abjad.BarLine('|.')
-            >>> abjad.attach(bar_line, staff[-1])
-            >>> show(staff) # doctest: +SKIP
-
-        ::
-
-            >>> bar_line
-            BarLine('|.')
+        >>> bar_line
+        BarLine('|.')
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 c'4
                 d'4
@@ -83,11 +79,9 @@ class BarLine(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> bar_line = abjad.BarLine('|.')
-                >>> bar_line.abbreviation
-                '|.'
+            >>> bar_line = abjad.BarLine('|.')
+            >>> bar_line.abbreviation
+            '|.'
 
         Returns string.
         '''
@@ -99,11 +93,9 @@ class BarLine(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> bar_line = abjad.BarLine('|.')
-                >>> bar_line.default_scope
-                <class 'abjad.tools.scoretools.Staff.Staff'>
+            >>> bar_line = abjad.BarLine('|.')
+            >>> bar_line.default_scope
+            <class 'abjad.tools.scoretools.Staff.Staff'>
 
         Returns staff.
         '''

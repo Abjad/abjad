@@ -11,49 +11,39 @@ class Articulation(AbjadValueObject):
 
         Initializes from name:
 
-        ::
-
-            >>> abjad.Articulation('staccato')
-            Articulation('staccato')
+        >>> abjad.Articulation('staccato')
+        Articulation('staccato')
 
     ..  container:: example
 
         Initializes from abbreviation:
 
-        ::
-
-            >>> abjad.Articulation('.')
-            Articulation('.')
+        >>> abjad.Articulation('.')
+        Articulation('.')
 
     ..  container:: example
 
         Initializes from other articulation:
 
-        ::
-
-            >>> articulation = abjad.Articulation('staccato')
-            >>> abjad.Articulation(articulation)
-            Articulation('staccato')
+        >>> articulation = abjad.Articulation('staccato')
+        >>> abjad.Articulation(articulation)
+        Articulation('staccato')
 
     ..  container:: example
 
         Initializes with direction:
 
-        ::
-
-            >>> abjad.Articulation('staccato', abjad.Up)
-            Articulation('staccato', Up)
+        >>> abjad.Articulation('staccato', abjad.Up)
+        Articulation('staccato', Up)
 
     .. container:: example
 
         Use `attach()` to attach articulations to notes, rests or chords:
 
-        ::
-
-            >>> note = abjad.Note("c'4")
-            >>> articulation = abjad.Articulation('staccato')
-            >>> abjad.attach(articulation, note)
-            >>> show(note) # doctest: +SKIP
+        >>> note = abjad.Note("c'4")
+        >>> articulation = abjad.Articulation('staccato')
+        >>> abjad.attach(articulation, note)
+        >>> abjad.show(note) # doctest: +SKIP
 
     ..  todo:: Simplify initializer. Allow only initialization from name.
         Implement new ``from_abbreviation()`` and ``from_articulation()``
@@ -63,10 +53,8 @@ class Articulation(AbjadValueObject):
 
         Works with new:
 
-        ::
-
-            >>> abjad.new(abjad.Articulation('.'))
-            Articulation('.')
+        >>> abjad.new(abjad.Articulation('.'))
+        Articulation('.')
 
     '''
 
@@ -273,21 +261,17 @@ class Articulation(AbjadValueObject):
 
             Staccato:
 
-            ::
-
-                >>> articulation = abjad.Articulation('staccato')
-                >>> articulation.name
-                'staccato'
+            >>> articulation = abjad.Articulation('staccato')
+            >>> articulation.name
+            'staccato'
 
         ..  container:: example
 
             Tenuto:
 
-            ::
-
-                >>> articulation = abjad.Articulation('tenuto')
-                >>> articulation.name
-                'tenuto'
+            >>> articulation = abjad.Articulation('tenuto')
+            >>> articulation.name
+            'tenuto'
 
         Returns string.
         '''

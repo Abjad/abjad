@@ -97,10 +97,8 @@ class String(str):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String('violin I').capitalize_start()
-                'Violin I'
+            >>> abjad.String('violin I').capitalize_start()
+            'Violin I'
 
         Function differs from built-in ``string.capitalize()``.
 
@@ -112,10 +110,8 @@ class String(str):
 
         ..  container:: example
 
-            ::
-
-                >>> 'violin I'.capitalize()
-                'Violin i'
+            >>> 'violin I'.capitalize()
+            'Violin i'
 
         Returns new string.
         '''
@@ -194,31 +190,23 @@ class String(str):
 
             Separates capital letters when keyword is true:
 
-            ::
+            >>> string = abjad.String('MRM')
+            >>> string.delimit_words()
+            ['MRM']
 
-                >>> string = abjad.String('MRM')
-                >>> string.delimit_words()
-                ['MRM']
-
-            ::
-
-                >>> string.delimit_words(separate_caps=True)
-                ['M', 'R', 'M']
+            >>> string.delimit_words(separate_caps=True)
+            ['M', 'R', 'M']
 
         ..  container:: example
 
             Separates capital letters when keyword is true:
 
-            ::
+            >>> string = abjad.String('MRhM')
+            >>> string.delimit_words()
+            ['MRh', 'M']
 
-                >>> string = abjad.String('MRhM')
-                >>> string.delimit_words()
-                ['MRh', 'M']
-
-            ::
-
-                >>> string.delimit_words(separate_caps=True)
-                ['M', 'Rh', 'M']
+            >>> string.delimit_words(separate_caps=True)
+            ['M', 'Rh', 'M']
 
         Returns list.
         '''
@@ -292,19 +280,15 @@ class String(str):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String('foo-bar').is_dash_case()
-                True
+            >>> abjad.String('foo-bar').is_dash_case()
+            True
 
         Otherwise false:
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String('foo bar').is_dash_case()
-                False
+            >>> abjad.String('foo bar').is_dash_case()
+            False
 
         Returns true or false.
         '''
@@ -316,19 +300,15 @@ class String(str):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String('foo-bar').is_dash_case_file_name()
-                True
+            >>> abjad.String('foo-bar').is_dash_case_file_name()
+            True
 
         Otherwise false:
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String('foo.bar.blah').is_dash_case_file_name()
-                False
+            >>> abjad.String('foo.bar.blah').is_dash_case_file_name()
+            False
 
         Returns true or false.
         '''
@@ -343,19 +323,15 @@ class String(str):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String('fooBar').is_lower_camel_case()
-                True
+            >>> abjad.String('fooBar').is_lower_camel_case()
+            True
 
         Otherwise false:
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String('FooBar').is_lower_camel_case()
-                False
+            >>> abjad.String('FooBar').is_lower_camel_case()
+            False
 
         Returns true or false.
         '''
@@ -418,41 +394,29 @@ class String(str):
 
         ..  container:: example
 
-            ::
+            >>> abjad.String('A').is_segment_name()
+            True
 
-                >>> abjad.String('A').is_segment_name()
-                True
+            >>> abjad.String('A1').is_segment_name()
+            True
 
-            ::
+            >>> abjad.String('A99').is_segment_name()
+            True
 
-                >>> abjad.String('A1').is_segment_name()
-                True
-
-            ::
-
-                >>> abjad.String('A99').is_segment_name()
-                True
-
-            ::
-
-                >>> abjad.String('segment_01').is_segment_name()
-                True
+            >>> abjad.String('segment_01').is_segment_name()
+            True
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String('_').is_segment_name()
-                True
+            >>> abjad.String('_').is_segment_name()
+            True
 
         Otherwise false:
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String('A_1').is_segment_name()
-                False
+            >>> abjad.String('A_1').is_segment_name()
+            False
 
         Returns true or false.
         '''
@@ -470,19 +434,15 @@ class String(str):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String('foo_bar').is_snake_case()
-                True
+            >>> abjad.String('foo_bar').is_snake_case()
+            True
 
         Otherwise false:
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String('foo bar').is_snake_case()
-                False
+            >>> abjad.String('foo bar').is_snake_case()
+            False
 
         Returns true or false.
         '''
@@ -493,19 +453,15 @@ class String(str):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String('foo_bar').is_snake_case_file_name()
-                True
+            >>> abjad.String('foo_bar').is_snake_case_file_name()
+            True
 
         Otherwise false:
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String('foo.bar.blah').is_snake_case_file_name()
-                False
+            >>> abjad.String('foo.bar.blah').is_snake_case_file_name()
+            False
 
         Returns true or false.
         '''
@@ -521,21 +477,17 @@ class String(str):
 
         ..  container:: example
 
-            ::
-
-                >>> string = abjad.String('foo_bar.blah')
-                >>> string.is_snake_case_file_name_with_extension()
-                True
+            >>> string = abjad.String('foo_bar.blah')
+            >>> string.is_snake_case_file_name_with_extension()
+            True
 
         Otherwise false:
 
         ..  container:: example
 
-            ::
-
-                >>> string = abjad.String('foo.bar.blah')
-                >>> string.is_snake_case_file_name_with_extension()
-                False
+            >>> string = abjad.String('foo.bar.blah')
+            >>> string.is_snake_case_file_name_with_extension()
+            False
 
         Returns true or false.
         '''
@@ -550,21 +502,17 @@ class String(str):
 
         ..  container:: example
 
-            ::
-
-                >>> string = abjad.String('foo.bar.blah_package')
-                >>> string.is_snake_case_package_name()
-                True
+            >>> string = abjad.String('foo.bar.blah_package')
+            >>> string.is_snake_case_package_name()
+            True
 
         Otherwise false:
 
         ..  container:: example
 
-            ::
-
-                >>> string = abjad.String('foo.bar.BlahPackage')
-                >>> string.is_snake_case_package_name()
-                False
+            >>> string = abjad.String('foo.bar.BlahPackage')
+            >>> string.is_snake_case_package_name()
+            False
 
         Returns true or false.
         '''
@@ -577,19 +525,15 @@ class String(str):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String('foo bar').is_space_delimited_lowercase()
-                True
+            >>> abjad.String('foo bar').is_space_delimited_lowercase()
+            True
 
         Otherwise false:
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String('foo_bar').is_space_delimited_lowercase()
-                False
+            >>> abjad.String('foo_bar').is_space_delimited_lowercase()
+            False
 
         Returns true or false.
         '''
@@ -635,19 +579,15 @@ class String(str):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String('FooBar').is_upper_camel_case()
-                True
+            >>> abjad.String('FooBar').is_upper_camel_case()
+            True
 
         Otherwise false:
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String('fooBar').is_upper_camel_case()
-                False
+            >>> abjad.String('fooBar').is_upper_camel_case()
+            False
 
         Returns true or false.
         '''
@@ -659,97 +599,71 @@ class String(str):
 
         ..  container:: example
 
-            ::
+            >>> strings = [
+            ...     'AcciaccaturaSpecifier.py',
+            ...     'AnchorCommand.py',
+            ...     'ArpeggiationSpacingSpecifier.py',
+            ...     'AttachCommand.py',
+            ...     'ChordalSpacingSpecifier.py',
+            ...     ]
 
-                >>> strings = [
-                ...     'AcciaccaturaSpecifier.py',
-                ...     'AnchorCommand.py',
-                ...     'ArpeggiationSpacingSpecifier.py',
-                ...     'AttachCommand.py',
-                ...     'ChordalSpacingSpecifier.py',
-                ...     ]
+            >>> abjad.String.match_strings(strings, 'A')
+            []
 
-            ::
+            >>> for i in abjad.String.match_strings(strings, 'At'):
+            ...     strings[i]
+            'AttachCommand.py'
 
-                >>> abjad.String.match_strings(strings, 'A')
-                []
+            >>> for i in abjad.String.match_strings(strings, 'AtC'):
+            ...     strings[i]
+            'AttachCommand.py'
 
-            ::
+            >>> for i in abjad.String.match_strings(strings, 'ASS'):
+            ...     strings[i]
+            'ArpeggiationSpacingSpecifier.py'
 
-                >>> for i in abjad.String.match_strings(strings, 'At'):
-                ...     strings[i]
-                'AttachCommand.py'
+            >>> for i in abjad.String.match_strings(strings, 'AC'):
+            ...     strings[i]
+            'AnchorCommand.py'
+            'AttachCommand.py'
 
-            ::
+            >>> for i in abjad.String.match_strings(strings, '.py'):
+            ...     strings[i]
+            'AcciaccaturaSpecifier.py'
+            'AnchorCommand.py'
+            'ArpeggiationSpacingSpecifier.py'
+            'AttachCommand.py'
+            'ChordalSpacingSpecifier.py'
 
-                >>> for i in abjad.String.match_strings(strings, 'AtC'):
-                ...     strings[i]
-                'AttachCommand.py'
-
-            ::
-
-                >>> for i in abjad.String.match_strings(strings, 'ASS'):
-                ...     strings[i]
-                'ArpeggiationSpacingSpecifier.py'
-
-            ::
-
-                >>> for i in abjad.String.match_strings(strings, 'AC'):
-                ...     strings[i]
-                'AnchorCommand.py'
-                'AttachCommand.py'
-
-            ::
-
-                >>> for i in abjad.String.match_strings(strings, '.py'):
-                ...     strings[i]
-                'AcciaccaturaSpecifier.py'
-                'AnchorCommand.py'
-                'ArpeggiationSpacingSpecifier.py'
-                'AttachCommand.py'
-                'ChordalSpacingSpecifier.py'
-
-            ::
-
-                >>> abjad.String.match_strings(strings, '@AC')
-                []
+            >>> abjad.String.match_strings(strings, '@AC')
+            []
 
         ..  container:: example
 
             Regressions:
 
-            ::
+            >>> abjad.String.match_strings(strings, '||')
+            []
 
-                >>> abjad.String.match_strings(strings, '||')
-                []
+            >>> strings = ['_allegro', '-allegro', '.allegro', 'allegro']
+            >>> for i in abjad.String.match_strings(strings, '_al'):
+            ...     strings[i]
+            '_allegro'
 
-            ::
+            >>> for i in abjad.String.match_strings(strings, '-al'):
+            ...     strings[i]
+            '-allegro'
 
-                >>> strings = ['_allegro', '-allegro', '.allegro', 'allegro']
-                >>> for i in abjad.String.match_strings(strings, '_al'):
-                ...     strings[i]
-                '_allegro'
+            >>> for i in abjad.String.match_strings(strings, '.al'):
+            ...     strings[i]
+            '.allegro'
 
-            ::
-
-                >>> for i in abjad.String.match_strings(strings, '-al'):
-                ...     strings[i]
-                '-allegro'
-
-            ::
-
-                >>> for i in abjad.String.match_strings(strings, '.al'):
-                ...     strings[i]
-                '.allegro'
-
-            ::
-
-                >>> for i in abjad.String.match_strings(strings, 'egro'):
-                ...     strings[i]
-                '_allegro'
-                '-allegro'
-                '.allegro'
-                'allegro'
+            >>> for i in abjad.String.match_strings(strings, 'egro'):
+            ...     strings[i]
+            '_allegro'
+            '-allegro'
+            '.allegro'
+            'allegro'
 
         Returns string or none.
         '''
@@ -812,67 +726,45 @@ class String(str):
 
         ..  container:: example
 
-            ::
+            >>> string = abjad.String('StringQuartetScoreTemplate')
 
-                >>> string = abjad.String('StringQuartetScoreTemplate')
+            >>> string.match_word_starts(['Str', 'Quar', 'Temp'])
+            True
 
-            ::
+            >>> string.match_word_starts(['S', 'Q', 'S', 'T'])
+            True
 
-                >>> string.match_word_starts(['Str', 'Quar', 'Temp'])
-                True
+            >>> string.match_word_starts(['Quartet'])
+            True
 
-            ::
-
-                >>> string.match_word_starts(['S', 'Q', 'S', 'T'])
-                True
-
-            ::
-
-                >>> string.match_word_starts(['Quartet'])
-                True
-
-            ::
-
-                >>> string.match_word_starts(['Q'])
-                True
+            >>> string.match_word_starts(['Q'])
+            True
 
         ..  container:: example
 
-            ::
+            >>> string = abjad.String('StringQuartetScoreTemplate')
 
-                >>> string = abjad.String('StringQuartetScoreTemplate')
+            >>> string.match_word_starts(['Quar', 'Str'])
+            False
 
-            ::
-
-                >>> string.match_word_starts(['Quar', 'Str'])
-                False
-
-            ::
-
-                >>> string.match_word_starts(['uartet'])
-                False
+            >>> string.match_word_starts(['uartet'])
+            False
 
         ..  container:: example
 
             Regressions:
 
-            ::
+            >>> string = abjad.String('IOManager')
+            >>> string.match_word_starts(['I', 'O'])
+            True
 
-                >>> string = abjad.String('IOManager')
-                >>> string.match_word_starts(['I', 'O'])
-                True
+            >>> string = abjad.String('StringQuartetScoreTemplate')
+            >>> string.match_word_starts(['S', 'Q', 'S', 'T', 'T'])
+            False
 
-            ::
-
-                >>> string = abjad.String('StringQuartetScoreTemplate')
-                >>> string.match_word_starts(['S', 'Q', 'S', 'T', 'T'])
-                False
-
-            ::
-
-                >>> string = abjad.String('AcciaccaturaSpecifier.py')
-                >>> string.match_word_starts(['A', 'S', 'S'])
-                False
+            >>> string = abjad.String('AcciaccaturaSpecifier.py')
+            >>> string.match_word_starts(['A', 'S', 'S'])
+            False
 
         Returns true or false.
         '''
@@ -897,35 +789,27 @@ class String(str):
 
         ..  container:: example
 
-            ::
+            >>> string = r'''
+            ...     foo
+            ...         bar
+            ... '''
+            >>> print(string)
+            <BLANKLINE>
+                foo
+                    bar
+            <BLANKLINE>
 
-                >>> string = r'''
-                ...     foo
-                ...         bar
-                ... '''
-                >>> print(string)
-                <BLANKLINE>
-                    foo
-                        bar
-                <BLANKLINE>
+            >>> print(abjad.String.normalize(string))
+            foo
+                bar
 
-            ::
-
-                >>> print(abjad.String.normalize(string))
+            >>> print(abjad.String.normalize(string, indent=4))
                 foo
                     bar
 
-            ::
-
-                >>> print(abjad.String.normalize(string, indent=4))
-                    foo
-                        bar
-
-            ::
-
-                >>> print(abjad.String.normalize(string, indent='* '))
-                * foo
-                *     bar
+            >>> print(abjad.String.normalize(string, indent='* '))
+            * foo
+            *     bar
 
         Returns new string.
         """
@@ -956,37 +840,29 @@ class String(str):
 
             Changes terminal `-y` to `-ies`:
 
-            ::
-
-                >>> abjad.String('catenary').pluralize()
-                'catenaries'
+            >>> abjad.String('catenary').pluralize()
+            'catenaries'
 
         ..  container:: example
 
             Adds `-es` to terminal `-s`, `-sh`, `-x` and `-z`:
 
-            ::
-
-                >>> abjad.String('brush').pluralize()
-                'brushes'
+            >>> abjad.String('brush').pluralize()
+            'brushes'
 
         ..  container:: example
 
             Adds `-s` to all other strings:
 
-            ::
-
-                >>> abjad.String('shape').pluralize()
-                'shapes'
+            >>> abjad.String('shape').pluralize()
+            'shapes'
 
         ..  container:: example
 
             Does not pluralize:
 
-            ::
-
-                >>> abjad.String('shape').pluralize(count=1)
-                'shape'
+            >>> abjad.String('shape').pluralize(count=1)
+            'shape'
 
         Returns string.
         '''
@@ -1005,19 +881,13 @@ class String(str):
 
         ..  container:: example
 
-            ::
+            >>> binary_string = abjad.String('Dvořák')
 
-                >>> binary_string = abjad.String('Dvořák')
+            >>> print(binary_string)
+            Dvořák
 
-            ::
-
-                >>> print(binary_string)
-                Dvořák
-
-            ::
-
-                >>> binary_string.strip_diacritics()
-                'Dvorak'
+            >>> binary_string.strip_diacritics()
+            'Dvorak'
 
         Returns ASCII string.
         '''
@@ -1030,10 +900,8 @@ class String(str):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String('Déja vu').to_accent_free_snake_case()
-                'deja_vu'
+            >>> abjad.String('Déja vu').to_accent_free_snake_case()
+            'deja_vu'
 
         Strips accents from accented characters.
 
@@ -1055,31 +923,23 @@ class String(str):
 
         ..  container:: example:
 
-            ::
-
-                >>> abjad.String.to_bidirectional_direction_string('^')
-                'up'
+            >>> abjad.String.to_bidirectional_direction_string('^')
+            'up'
 
         ..  container:: example:
 
-            ::
-
-                >>> abjad.String.to_bidirectional_direction_string('_')
-                'down'
+            >>> abjad.String.to_bidirectional_direction_string('_')
+            'down'
 
         ..  container:: example:
 
-            ::
-
-                >>> abjad.String.to_bidirectional_direction_string(1)
-                'up'
+            >>> abjad.String.to_bidirectional_direction_string(1)
+            'up'
 
         ..  container:: example:
 
-            ::
-
-                >>> abjad.String.to_bidirectional_direction_string(-1)
-                'down'
+            >>> abjad.String.to_bidirectional_direction_string(-1)
+            'down'
 
         Returns `argument` when `argument` is `'up'` or `'down'`.
 
@@ -1106,31 +966,23 @@ class String(str):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String.to_tridirectional_lilypond_symbol(abjad.Up)
-                '^'
+            >>> abjad.String.to_tridirectional_lilypond_symbol(abjad.Up)
+            '^'
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String.to_tridirectional_lilypond_symbol(abjad.Down)
-                '_'
+            >>> abjad.String.to_tridirectional_lilypond_symbol(abjad.Down)
+            '_'
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String.to_tridirectional_lilypond_symbol(1)
-                '^'
+            >>> abjad.String.to_tridirectional_lilypond_symbol(1)
+            '^'
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String.to_tridirectional_lilypond_symbol(-1)
-                '_'
+            >>> abjad.String.to_tridirectional_lilypond_symbol(-1)
+            '_'
 
         Returns `argument` when `argument` is `'^'` or `'_'`.
 
@@ -1157,37 +1009,29 @@ class String(str):
 
             Changes words to dash case:
 
-            ::
-
-                >>> abjad.String('scale degrees 4 and 5').to_dash_case()
-                'scale-degrees-4-and-5'
+            >>> abjad.String('scale degrees 4 and 5').to_dash_case()
+            'scale-degrees-4-and-5'
 
         ..  container:: example
 
             Changes snake case to dash case:
 
-            ::
-
-                >>> abjad.String('scale_degrees_4_and_5').to_dash_case()
-                'scale-degrees-4-and-5'
+            >>> abjad.String('scale_degrees_4_and_5').to_dash_case()
+            'scale-degrees-4-and-5'
 
         ..  container:: example
 
             Changes dash case to dash case:
 
-            ::
-
-                >>> abjad.String('scale-degrees-4-and-5').to_dash_case()
-                'scale-degrees-4-and-5'
+            >>> abjad.String('scale-degrees-4-and-5').to_dash_case()
+            'scale-degrees-4-and-5'
 
         ..  container:: example
 
             Changes upper camel case to dash case:
 
-            ::
-
-                >>> abjad.String('ScaleDegrees4And5').to_dash_case()
-                'scale-degrees-4-and-5'
+            >>> abjad.String('ScaleDegrees4And5').to_dash_case()
+            'scale-degrees-4-and-5'
 
         Returns string.
         '''
@@ -1203,37 +1047,29 @@ class String(str):
 
             Changes words to lower camel case:
 
-            ::
-
-                >>> abjad.String('scale degrees 4 and 5').to_lower_camel_case()
-                'scaleDegrees4And5'
+            >>> abjad.String('scale degrees 4 and 5').to_lower_camel_case()
+            'scaleDegrees4And5'
 
         ..  container:: example
 
             Changes snake case to lower camel case:
 
-            ::
-
-                >>> abjad.String('scale_degrees_4_and_5').to_lower_camel_case()
-                'scaleDegrees4And5'
+            >>> abjad.String('scale_degrees_4_and_5').to_lower_camel_case()
+            'scaleDegrees4And5'
 
         ..  container:: example
 
             Changes dash case to lower camel case:
 
-            ::
-
-                >>> abjad.String('scale-degrees-4-and-5').to_lower_camel_case()
-                'scaleDegrees4And5'
+            >>> abjad.String('scale-degrees-4-and-5').to_lower_camel_case()
+            'scaleDegrees4And5'
 
         ..  container:: example
 
             Changes upper camel case to lower camel case:
 
-            ::
-
-                >>> abjad.String('ScaleDegrees4And5').to_lower_camel_case()
-                'scaleDegrees4And5'
+            >>> abjad.String('ScaleDegrees4And5').to_lower_camel_case()
+            'scaleDegrees4And5'
 
         Returns string.
         '''
@@ -1251,37 +1087,29 @@ class String(str):
 
             Changes words to snake case:
 
-            ::
-
-                >>> abjad.String('scale degrees 4 and 5').to_snake_case()
-                'scale_degrees_4_and_5'
+            >>> abjad.String('scale degrees 4 and 5').to_snake_case()
+            'scale_degrees_4_and_5'
 
         ..  container:: example
 
             Changes snake case to snake case:
 
-            ::
-
-                >>> abjad.String('scale_degrees_4_and_5').to_snake_case()
-                'scale_degrees_4_and_5'
+            >>> abjad.String('scale_degrees_4_and_5').to_snake_case()
+            'scale_degrees_4_and_5'
 
         ..  container:: example
 
             Changes dash case to snake case:
 
-            ::
-
-                >>> abjad.String('scale-degrees-4-and-5').to_snake_case()
-                'scale_degrees_4_and_5'
+            >>> abjad.String('scale-degrees-4-and-5').to_snake_case()
+            'scale_degrees_4_and_5'
 
         ..  container:: example
 
             Changes upper camel case to snake case:
 
-            ::
-
-                >>> abjad.String('ScaleDegrees4And5').to_snake_case()
-                'scale_degrees_4_and_5'
+            >>> abjad.String('ScaleDegrees4And5').to_snake_case()
+            'scale_degrees_4_and_5'
 
         Returns string.
         '''
@@ -1297,37 +1125,29 @@ class String(str):
 
             Changes upper camel case `string` to space-delimited lowercase:
 
-            ::
-
-                >>> abjad.String('LogicalTie').to_space_delimited_lowercase()
-                'logical tie'
+            >>> abjad.String('LogicalTie').to_space_delimited_lowercase()
+            'logical tie'
 
         ..  container:: example
 
             Changes underscore-delimited `string` to space-delimited lowercase:
 
-            ::
-
-                >>> abjad.String('logical_tie').to_space_delimited_lowercase()
-                'logical tie'
+            >>> abjad.String('logical_tie').to_space_delimited_lowercase()
+            'logical tie'
 
         ..  container:: example
 
             Returns space-delimited string unchanged:
 
-            ::
-
-                >>> abjad.String('logical tie').to_space_delimited_lowercase()
-                'logical tie'
+            >>> abjad.String('logical tie').to_space_delimited_lowercase()
+            'logical tie'
 
         ..  container:: example
 
             Returns empty string unchanged:
 
-            ::
-
-                >>> abjad.String('').to_space_delimited_lowercase()
-                ''
+            >>> abjad.String('').to_space_delimited_lowercase()
+            ''
 
         Returns string.
         '''
@@ -1354,52 +1174,38 @@ class String(str):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String.to_tridirectional_direction_string('^')
-                'up'
+            >>> abjad.String.to_tridirectional_direction_string('^')
+            'up'
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String.to_tridirectional_direction_string('-')
-                'center'
+            >>> abjad.String.to_tridirectional_direction_string('-')
+            'center'
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String.to_tridirectional_direction_string('_')
-                'down'
+            >>> abjad.String.to_tridirectional_direction_string('_')
+            'down'
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String.to_tridirectional_direction_string(1)
-                'up'
+            >>> abjad.String.to_tridirectional_direction_string(1)
+            'up'
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String.to_tridirectional_direction_string(0)
-                'center'
+            >>> abjad.String.to_tridirectional_direction_string(0)
+            'center'
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String.to_tridirectional_direction_string(-1)
-                'down'
+            >>> abjad.String.to_tridirectional_direction_string(-1)
+            'down'
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String.to_tridirectional_direction_string('default')
-                'center'
+            >>> abjad.String.to_tridirectional_direction_string('default')
+            'center'
 
         Returns none when `argument` is none.
 
@@ -1434,52 +1240,38 @@ class String(str):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String.to_tridirectional_lilypond_symbol(abjad.Up)
-                '^'
+            >>> abjad.String.to_tridirectional_lilypond_symbol(abjad.Up)
+            '^'
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String.to_tridirectional_lilypond_symbol('neutral')
-                '-'
+            >>> abjad.String.to_tridirectional_lilypond_symbol('neutral')
+            '-'
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String.to_tridirectional_lilypond_symbol('default')
-                '-'
+            >>> abjad.String.to_tridirectional_lilypond_symbol('default')
+            '-'
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String.to_tridirectional_lilypond_symbol(abjad.Down)
-                '_'
+            >>> abjad.String.to_tridirectional_lilypond_symbol(abjad.Down)
+            '_'
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String.to_tridirectional_lilypond_symbol(1)
-                '^'
+            >>> abjad.String.to_tridirectional_lilypond_symbol(1)
+            '^'
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String.to_tridirectional_lilypond_symbol(0)
-                '-'
+            >>> abjad.String.to_tridirectional_lilypond_symbol(0)
+            '-'
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String.to_tridirectional_lilypond_symbol(-1)
-                '_'
+            >>> abjad.String.to_tridirectional_lilypond_symbol(-1)
+            '_'
 
         Returns none when `argument` is none.
 
@@ -1516,29 +1308,23 @@ class String(str):
 
         ..  container:: example
 
-                >>> abjad.String.to_tridirectional_ordinal_constant('^')
-                Up
+            >>> abjad.String.to_tridirectional_ordinal_constant('^')
+            Up
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String.to_tridirectional_ordinal_constant('_')
-                Down
+            >>> abjad.String.to_tridirectional_ordinal_constant('_')
+            Down
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String.to_tridirectional_ordinal_constant(1)
-                Up
+            >>> abjad.String.to_tridirectional_ordinal_constant(1)
+            Up
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.String.to_tridirectional_ordinal_constant(-1)
-                Down
+            >>> abjad.String.to_tridirectional_ordinal_constant(-1)
+            Down
 
         Returns `argument` when `argument` is `Up`', `Center` or `Down`.
 
@@ -1566,7 +1352,8 @@ class String(str):
         elif argument in lookup:
             return lookup[argument]
         message = 'unrecognized expression: {!r}.'
-        message = message.format(argument)
+        message = message.format(
+            argument)
         raise ValueError(message)
 
     def to_upper_camel_case(self):
@@ -1576,37 +1363,29 @@ class String(str):
 
             Changes words to upper camel case:
 
-            ::
-
-                >>> abjad.String('scale degrees 4 and 5').to_upper_camel_case()
-                'ScaleDegrees4And5'
+            >>> abjad.String('scale degrees 4 and 5').to_upper_camel_case()
+            'ScaleDegrees4And5'
 
         ..  container:: example
 
             Changes snake case to upper camel case:
 
-            ::
-
-                >>> abjad.String('scale_degrees_4_and_5').to_upper_camel_case()
-                'ScaleDegrees4And5'
+            >>> abjad.String('scale_degrees_4_and_5').to_upper_camel_case()
+            'ScaleDegrees4And5'
 
         ..  container:: example
 
             Changes dash case to upper camel case:
 
-            ::
-
-                >>> abjad.String('scale-degrees-4-and-5').to_upper_camel_case()
-                'ScaleDegrees4And5'
+            >>> abjad.String('scale-degrees-4-and-5').to_upper_camel_case()
+            'ScaleDegrees4And5'
 
         ..  container:: example
 
             Changes upper camel case to upper camel case:
 
-            ::
-
-                >>> abjad.String('ScaleDegrees4And5').to_upper_camel_case()
-                'ScaleDegrees4And5'
+            >>> abjad.String('ScaleDegrees4And5').to_upper_camel_case()
+            'ScaleDegrees4And5'
 
         Returns new string.
         '''

@@ -8,20 +8,16 @@ class ChordQuality(AbjadValueObject):
 
         Initializes from string:
 
-        ::
-
-            >>> abjad.tonalanalysistools.ChordQuality('major')
-            ChordQuality('major')
+        >>> abjad.tonalanalysistools.ChordQuality('major')
+        ChordQuality('major')
 
     ..  container:: example
 
         Initializes from other chord quality:
 
-        ::
-
-            >>> quality = abjad.tonalanalysistools.ChordQuality('major')
-            >>> abjad.tonalanalysistools.ChordQuality(quality)
-            ChordQuality('major')
+        >>> quality = abjad.tonalanalysistools.ChordQuality('major')
+        >>> abjad.tonalanalysistools.ChordQuality(quality)
+        ChordQuality('major')
 
     '''
 
@@ -64,38 +60,30 @@ class ChordQuality(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> quality_1 = abjad.tonalanalysistools.ChordQuality('major')
+            >>> quality_2 = abjad.tonalanalysistools.ChordQuality('major')
+            >>> quality_3 = abjad.tonalanalysistools.ChordQuality('dominant')
 
-                >>> quality_1 = abjad.tonalanalysistools.ChordQuality('major')
-                >>> quality_2 = abjad.tonalanalysistools.ChordQuality('major')
-                >>> quality_3 = abjad.tonalanalysistools.ChordQuality('dominant')
+            >>> quality_1 == quality_1
+            True
+            >>> quality_1 == quality_2
+            True
+            >>> quality_1 == quality_3
+            False
 
-            ::
+            >>> quality_2 == quality_1
+            True
+            >>> quality_2 == quality_2
+            True
+            >>> quality_2 == quality_3
+            False
 
-                >>> quality_1 == quality_1
-                True
-                >>> quality_1 == quality_2
-                True
-                >>> quality_1 == quality_3
-                False
-
-            ::
-
-                >>> quality_2 == quality_1
-                True
-                >>> quality_2 == quality_2
-                True
-                >>> quality_2 == quality_3
-                False
-
-            ::
-
-                >>> quality_3 == quality_1
-                False
-                >>> quality_3 == quality_2
-                False
-                >>> quality_3 == quality_3
-                True
+            >>> quality_3 == quality_1
+            False
+            >>> quality_3 == quality_2
+            False
+            >>> quality_3 == quality_3
+            True
 
         Returns true or false.
         '''
@@ -115,11 +103,9 @@ class ChordQuality(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> quality = abjad.tonalanalysistools.ChordQuality('major')
-                >>> str(quality)
-                'major'
+            >>> quality = abjad.tonalanalysistools.ChordQuality('major')
+            >>> str(quality)
+            'major'
 
         Returns string.
         '''
@@ -145,15 +131,11 @@ class ChordQuality(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> abjad.tonalanalysistools.ChordQuality('major').is_uppercase
+            True
 
-                >>> abjad.tonalanalysistools.ChordQuality('major').is_uppercase
-                True
-
-            ::
-
-                >>> abjad.tonalanalysistools.ChordQuality('minor').is_uppercase
-                False
+            >>> abjad.tonalanalysistools.ChordQuality('minor').is_uppercase
+            False
 
         Returns true or false.
         '''
@@ -165,15 +147,11 @@ class ChordQuality(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> abjad.tonalanalysistools.ChordQuality('major').quality_string
+            'major'
 
-                >>> abjad.tonalanalysistools.ChordQuality('major').quality_string
-                'major'
-
-            ::
-
-                >>> abjad.tonalanalysistools.ChordQuality('minor').quality_string
-                'minor'
+            >>> abjad.tonalanalysistools.ChordQuality('minor').quality_string
+            'minor'
 
         Returns string.
         '''

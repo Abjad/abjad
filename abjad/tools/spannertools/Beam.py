@@ -7,15 +7,13 @@ class Beam(Spanner):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'2")
-            >>> abjad.setting(staff).auto_beaming = False
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'2")
+        >>> abjad.setting(staff).auto_beaming = False
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff \with {
                 autoBeaming = ##f
             } {
@@ -26,17 +24,15 @@ class Beam(Spanner):
                 g'2
             }
 
-        ::
-
-            >>> beam = abjad.Beam()
-            >>> abjad.attach(beam, staff[:2])
-            >>> beam = abjad.Beam()
-            >>> abjad.attach(beam, staff[2:4])
-            >>> show(staff) # doctest: +SKIP
+        >>> beam = abjad.Beam()
+        >>> abjad.attach(beam, staff[:2])
+        >>> beam = abjad.Beam()
+        >>> abjad.attach(beam, staff[2:4])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff \with {
                 autoBeaming = ##f
             } {
@@ -102,86 +98,70 @@ class Beam(Spanner):
 
             Without allowing for beamed rests:
 
-            ::
+            >>> staff = abjad.Staff(r"r32 a'32 ( [ gs'32 fs''32 \staccato f''8 ) ]")
+            >>> staff.extend(r"r8 e''8 ( ef'2 )")
+            >>> abjad.show(staff) # doctest: +SKIP
 
-                >>> staff = abjad.Staff(r"r32 a'32 ( [ gs'32 fs''32 \staccato f''8 ) ]")
-                >>> staff.extend(r"r8 e''8 ( ef'2 )")
-                >>> show(staff) # doctest: +SKIP
-
-            ::
-
-                >>> for leaf in staff:
-                ...     result = abjad.Beam._is_beamable(leaf)
-                ...     print('{:<8}\t{}'.format(leaf, result))
-                ...
-                r32     False
-                a'32    True
-                gs'32   True
-                fs''32  True
-                f''8    True
-                r8      False
-                e''8    True
-                ef'2    False
+            >>> for leaf in staff:
+            ...     result = abjad.Beam._is_beamable(leaf)
+            ...     print('{:<8}\t{}'.format(leaf, result))
+            ...
+            r32     False
+            a'32    True
+            gs'32   True
+            fs''32  True
+            f''8    True
+            r8      False
+            e''8    True
+            ef'2    False
 
         ..  container:: example
 
             Allowing for beamed rests:
 
-            ::
+            >>> staff = abjad.Staff(r"r32 a'32 ( [ gs'32 fs''32 \staccato f''8 ) ]")
+            >>> staff.extend(r"r8 e''8 ( ef'2 )")
+            >>> abjad.show(staff) # doctest: +SKIP
 
-                >>> staff = abjad.Staff(r"r32 a'32 ( [ gs'32 fs''32 \staccato f''8 ) ]")
-                >>> staff.extend(r"r8 e''8 ( ef'2 )")
-                >>> show(staff) # doctest: +SKIP
-
-            ::
-
-                >>> for leaf in staff:
-                ...     result = abjad.Beam._is_beamable(
-                ...         leaf,
-                ...         beam_rests=True,
-                ...         )
-                ...     print('{:<8}\t{}'.format(leaf, result))
-                ...
-                r32	True
-                a'32	True
-                gs'32	True
-                fs''32	True
-                f''8	True
-                r8	True
-                e''8	True
-                ef'2	False
+            >>> for leaf in staff:
+            ...     result = abjad.Beam._is_beamable(
+            ...         leaf,
+            ...         beam_rests=True,
+            ...         )
+            ...     print('{:<8}\t{}'.format(leaf, result))
+            ...
+            r32	True
+            a'32	True
+            gs'32	True
+            fs''32	True
+            f''8	True
+            r8	True
+            e''8	True
+            ef'2	False
 
         ..  container:: example
 
             Is true for skips of any duration when `beam_rests` is true:
 
-            ::
+            >>> skip = abjad.Skip((1, 32))
+            >>> abjad.Beam._is_beamable(skip, beam_rests=True)
+            True
 
-                >>> skip = abjad.Skip((1, 32))
-                >>> abjad.Beam._is_beamable(skip, beam_rests=True)
-                True
-
-            ::
-
-                >>> skip = abjad.Skip((1))
-                >>> abjad.Beam._is_beamable(skip, beam_rests=True)
-                True
+            >>> skip = abjad.Skip((1))
+            >>> abjad.Beam._is_beamable(skip, beam_rests=True)
+            True
 
         ..  container:: example
 
             Is true for rests of any duration when `beam_rests` is true:
 
-            ::
+            >>> rest = abjad.Rest((1, 32))
+            >>> abjad.Beam._is_beamable(rest, beam_rests=True)
+            True
 
-                >>> rest = abjad.Rest((1, 32))
-                >>> abjad.Beam._is_beamable(rest, beam_rests=True)
-                True
-
-            ::
-
-                >>> rest = abjad.Rest((1))
-                >>> abjad.Beam._is_beamable(rest, beam_rests=True)
-                True
+            >>> rest = abjad.Rest((1))
+            >>> abjad.Beam._is_beamable(rest, beam_rests=True)
+            True
 
         Returns true or false.
         '''

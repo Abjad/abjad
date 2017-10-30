@@ -9,179 +9,165 @@ class SetClass(AbjadValueObject):
 
         Makes SG2 set-class from Forte rank:
 
-        ::
-
-            >>> set_class = abjad.SetClass(4, 29)
-            >>> print(set_class)
-            SC(4-29){0, 1, 3, 7}
+        >>> set_class = abjad.SetClass(4, 29)
+        >>> print(set_class)
+        SC(4-29){0, 1, 3, 7}
 
         Makes SG2 set-class from lex rank:
 
-        ::
-
-            >>> set_class = abjad.SetClass(4, 29, lex_rank=True)
-            >>> print(set_class)
-            SC(4-29){0, 3, 6, 9}
+        >>> set_class = abjad.SetClass(4, 29, lex_rank=True)
+        >>> print(set_class)
+        SC(4-29){0, 3, 6, 9}
 
         Makes SG1 set-class:
 
-        ::
-
-            >>> set_class = abjad.SetClass(4, 29, transposition_only=True)
-            >>> print(set_class)
-            SC(4-29){0, 2, 6, 7}
+        >>> set_class = abjad.SetClass(4, 29, transposition_only=True)
+        >>> print(set_class)
+        SC(4-29){0, 2, 6, 7}
 
     ..  container:: example
 
         Makes aggregate:
 
-        ::
-
-            >>> set_class = abjad.SetClass(12, 1, transposition_only=True)
-            >>> print(set_class)
-            SC(12-1){0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}
+        >>> set_class = abjad.SetClass(12, 1, transposition_only=True)
+        >>> print(set_class)
+        SC(12-1){0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}
 
     ..  container:: example
 
         Lists SG2 tetrachords, pentachords, hexachords by Forte rank:
 
-        ::
+        >>> set_classes = abjad.SetClass.list_set_classes(cardinality=4)
+        >>> for set_class in set_classes:
+        ...     print(set_class)
+        ...
+        SC(4-1){0, 1, 2, 3}
+        SC(4-2){0, 1, 2, 4}
+        SC(4-3){0, 1, 3, 4}
+        SC(4-4){0, 1, 2, 5}
+        SC(4-5){0, 1, 2, 6}
+        SC(4-6){0, 1, 2, 7}
+        SC(4-7){0, 1, 4, 5}
+        SC(4-8){0, 1, 5, 6}
+        SC(4-9){0, 1, 6, 7}
+        SC(4-10){0, 2, 3, 5}
+        SC(4-11){0, 1, 3, 5}
+        SC(4-12){0, 2, 3, 6}
+        SC(4-13){0, 1, 3, 6}
+        SC(4-14){0, 2, 3, 7}
+        SC(4-15){0, 1, 4, 6}
+        SC(4-16){0, 1, 5, 7}
+        SC(4-17){0, 3, 4, 7}
+        SC(4-18){0, 1, 4, 7}
+        SC(4-19){0, 1, 4, 8}
+        SC(4-20){0, 1, 5, 8}
+        SC(4-21){0, 2, 4, 6}
+        SC(4-22){0, 2, 4, 7}
+        SC(4-23){0, 2, 5, 7}
+        SC(4-24){0, 2, 4, 8}
+        SC(4-25){2, 6, 8, 9}
+        SC(4-26){0, 3, 5, 8}
+        SC(4-27){0, 2, 5, 8}
+        SC(4-28){0, 3, 6, 9}
+        SC(4-29){0, 1, 3, 7}
 
-            >>> set_classes = abjad.SetClass.list_set_classes(cardinality=4)
-            >>> for set_class in set_classes:
-            ...     print(set_class)
-            ...
-            SC(4-1){0, 1, 2, 3}
-            SC(4-2){0, 1, 2, 4}
-            SC(4-3){0, 1, 3, 4}
-            SC(4-4){0, 1, 2, 5}
-            SC(4-5){0, 1, 2, 6}
-            SC(4-6){0, 1, 2, 7}
-            SC(4-7){0, 1, 4, 5}
-            SC(4-8){0, 1, 5, 6}
-            SC(4-9){0, 1, 6, 7}
-            SC(4-10){0, 2, 3, 5}
-            SC(4-11){0, 1, 3, 5}
-            SC(4-12){0, 2, 3, 6}
-            SC(4-13){0, 1, 3, 6}
-            SC(4-14){0, 2, 3, 7}
-            SC(4-15){0, 1, 4, 6}
-            SC(4-16){0, 1, 5, 7}
-            SC(4-17){0, 3, 4, 7}
-            SC(4-18){0, 1, 4, 7}
-            SC(4-19){0, 1, 4, 8}
-            SC(4-20){0, 1, 5, 8}
-            SC(4-21){0, 2, 4, 6}
-            SC(4-22){0, 2, 4, 7}
-            SC(4-23){0, 2, 5, 7}
-            SC(4-24){0, 2, 4, 8}
-            SC(4-25){2, 6, 8, 9}
-            SC(4-26){0, 3, 5, 8}
-            SC(4-27){0, 2, 5, 8}
-            SC(4-28){0, 3, 6, 9}
-            SC(4-29){0, 1, 3, 7}
+        >>> set_classes = abjad.SetClass.list_set_classes(cardinality=5)
+        >>> for set_class in set_classes:
+        ...     print(set_class)
+        ...
+        SC(5-1){0, 1, 2, 3, 4}
+        SC(5-2){0, 1, 2, 3, 5}
+        SC(5-3){0, 1, 2, 4, 5}
+        SC(5-4){0, 1, 2, 3, 6}
+        SC(5-5){0, 1, 2, 3, 7}
+        SC(5-6){0, 1, 2, 5, 6}
+        SC(5-7){0, 1, 2, 6, 7}
+        SC(5-8){0, 2, 3, 4, 6}
+        SC(5-9){0, 1, 2, 4, 6}
+        SC(5-10){0, 1, 3, 4, 6}
+        SC(5-11){0, 2, 3, 4, 7}
+        SC(5-12){0, 1, 3, 5, 6}
+        SC(5-13){0, 1, 2, 4, 8}
+        SC(5-14){0, 1, 2, 5, 7}
+        SC(5-15){0, 1, 2, 6, 8}
+        SC(5-16){0, 1, 3, 4, 7}
+        SC(5-17){0, 1, 3, 4, 8}
+        SC(5-18){0, 1, 4, 5, 7}
+        SC(5-19){0, 1, 3, 6, 7}
+        SC(5-20){0, 1, 3, 7, 8}
+        SC(5-21){0, 1, 4, 5, 8}
+        SC(5-22){0, 1, 4, 7, 8}
+        SC(5-23){0, 2, 3, 5, 7}
+        SC(5-24){0, 1, 3, 5, 7}
+        SC(5-25){0, 2, 3, 5, 8}
+        SC(5-26){0, 2, 4, 5, 8}
+        SC(5-27){0, 1, 3, 5, 8}
+        SC(5-28){0, 2, 3, 6, 8}
+        SC(5-29){0, 1, 3, 6, 8}
+        SC(5-30){0, 1, 4, 6, 8}
+        SC(5-31){0, 1, 3, 6, 9}
+        SC(5-32){0, 1, 4, 6, 9}
+        SC(5-33){0, 2, 4, 6, 8}
+        SC(5-34){0, 2, 4, 6, 9}
+        SC(5-35){0, 2, 4, 7, 9}
+        SC(5-36){0, 1, 2, 4, 7}
+        SC(5-37){0, 3, 4, 5, 8}
+        SC(5-38){0, 1, 2, 5, 8}
 
-        ::
-
-            >>> set_classes = abjad.SetClass.list_set_classes(cardinality=5)
-            >>> for set_class in set_classes:
-            ...     print(set_class)
-            ...
-            SC(5-1){0, 1, 2, 3, 4}
-            SC(5-2){0, 1, 2, 3, 5}
-            SC(5-3){0, 1, 2, 4, 5}
-            SC(5-4){0, 1, 2, 3, 6}
-            SC(5-5){0, 1, 2, 3, 7}
-            SC(5-6){0, 1, 2, 5, 6}
-            SC(5-7){0, 1, 2, 6, 7}
-            SC(5-8){0, 2, 3, 4, 6}
-            SC(5-9){0, 1, 2, 4, 6}
-            SC(5-10){0, 1, 3, 4, 6}
-            SC(5-11){0, 2, 3, 4, 7}
-            SC(5-12){0, 1, 3, 5, 6}
-            SC(5-13){0, 1, 2, 4, 8}
-            SC(5-14){0, 1, 2, 5, 7}
-            SC(5-15){0, 1, 2, 6, 8}
-            SC(5-16){0, 1, 3, 4, 7}
-            SC(5-17){0, 1, 3, 4, 8}
-            SC(5-18){0, 1, 4, 5, 7}
-            SC(5-19){0, 1, 3, 6, 7}
-            SC(5-20){0, 1, 3, 7, 8}
-            SC(5-21){0, 1, 4, 5, 8}
-            SC(5-22){0, 1, 4, 7, 8}
-            SC(5-23){0, 2, 3, 5, 7}
-            SC(5-24){0, 1, 3, 5, 7}
-            SC(5-25){0, 2, 3, 5, 8}
-            SC(5-26){0, 2, 4, 5, 8}
-            SC(5-27){0, 1, 3, 5, 8}
-            SC(5-28){0, 2, 3, 6, 8}
-            SC(5-29){0, 1, 3, 6, 8}
-            SC(5-30){0, 1, 4, 6, 8}
-            SC(5-31){0, 1, 3, 6, 9}
-            SC(5-32){0, 1, 4, 6, 9}
-            SC(5-33){0, 2, 4, 6, 8}
-            SC(5-34){0, 2, 4, 6, 9}
-            SC(5-35){0, 2, 4, 7, 9}
-            SC(5-36){0, 1, 2, 4, 7}
-            SC(5-37){0, 3, 4, 5, 8}
-            SC(5-38){0, 1, 2, 5, 8}
-
-        ::
-
-            >>> set_classes = abjad.SetClass.list_set_classes(cardinality=6)
-            >>> for set_class in set_classes:
-            ...     print(set_class)
-            ...
-            SC(6-1){0, 1, 2, 3, 4, 5}
-            SC(6-2){0, 1, 2, 3, 4, 6}
-            SC(6-3){0, 1, 2, 3, 5, 6}
-            SC(6-4){0, 1, 2, 4, 5, 6}
-            SC(6-5){0, 1, 2, 3, 6, 7}
-            SC(6-6){0, 1, 2, 5, 6, 7}
-            SC(6-7){0, 1, 2, 6, 7, 8}
-            SC(6-8){0, 2, 3, 4, 5, 7}
-            SC(6-9){0, 1, 2, 3, 5, 7}
-            SC(6-10){0, 1, 3, 4, 5, 7}
-            SC(6-11){0, 1, 2, 4, 5, 7}
-            SC(6-12){0, 1, 2, 4, 6, 7}
-            SC(6-13){0, 1, 3, 4, 6, 7}
-            SC(6-14){0, 1, 3, 4, 5, 8}
-            SC(6-15){0, 1, 2, 4, 5, 8}
-            SC(6-16){0, 1, 4, 5, 6, 8}
-            SC(6-17){0, 1, 2, 4, 7, 8}
-            SC(6-18){0, 1, 2, 5, 7, 8}
-            SC(6-19){0, 1, 3, 4, 7, 8}
-            SC(6-20){0, 1, 4, 5, 8, 9}
-            SC(6-21){0, 2, 3, 4, 6, 8}
-            SC(6-22){0, 1, 2, 4, 6, 8}
-            SC(6-23){0, 2, 3, 5, 6, 8}
-            SC(6-24){0, 1, 3, 4, 6, 8}
-            SC(6-25){0, 1, 3, 5, 6, 8}
-            SC(6-26){0, 1, 3, 5, 7, 8}
-            SC(6-27){0, 1, 3, 4, 6, 9}
-            SC(6-28){0, 1, 3, 5, 6, 9}
-            SC(6-29){0, 1, 3, 6, 8, 9}
-            SC(6-30){0, 1, 3, 6, 7, 9}
-            SC(6-31){0, 1, 3, 5, 8, 9}
-            SC(6-32){0, 2, 4, 5, 7, 9}
-            SC(6-33){0, 2, 3, 5, 7, 9}
-            SC(6-34){0, 1, 3, 5, 7, 9}
-            SC(6-35){0, 2, 4, 6, 8, 10}
-            SC(6-36){0, 1, 2, 3, 4, 7}
-            SC(6-37){0, 1, 2, 3, 4, 8}
-            SC(6-38){0, 1, 2, 3, 7, 8}
-            SC(6-39){0, 2, 3, 4, 5, 8}
-            SC(6-40){0, 1, 2, 3, 5, 8}
-            SC(6-41){0, 1, 2, 3, 6, 8}
-            SC(6-42){0, 1, 2, 3, 6, 9}
-            SC(6-43){0, 1, 2, 5, 6, 8}
-            SC(6-44){0, 1, 2, 5, 6, 9}
-            SC(6-45){0, 2, 3, 4, 6, 9}
-            SC(6-46){0, 1, 2, 4, 6, 9}
-            SC(6-47){0, 1, 2, 4, 7, 9}
-            SC(6-48){0, 1, 2, 5, 7, 9}
-            SC(6-49){0, 1, 3, 4, 7, 9}
-            SC(6-50){0, 1, 4, 6, 7, 9}
+        >>> set_classes = abjad.SetClass.list_set_classes(cardinality=6)
+        >>> for set_class in set_classes:
+        ...     print(set_class)
+        ...
+        SC(6-1){0, 1, 2, 3, 4, 5}
+        SC(6-2){0, 1, 2, 3, 4, 6}
+        SC(6-3){0, 1, 2, 3, 5, 6}
+        SC(6-4){0, 1, 2, 4, 5, 6}
+        SC(6-5){0, 1, 2, 3, 6, 7}
+        SC(6-6){0, 1, 2, 5, 6, 7}
+        SC(6-7){0, 1, 2, 6, 7, 8}
+        SC(6-8){0, 2, 3, 4, 5, 7}
+        SC(6-9){0, 1, 2, 3, 5, 7}
+        SC(6-10){0, 1, 3, 4, 5, 7}
+        SC(6-11){0, 1, 2, 4, 5, 7}
+        SC(6-12){0, 1, 2, 4, 6, 7}
+        SC(6-13){0, 1, 3, 4, 6, 7}
+        SC(6-14){0, 1, 3, 4, 5, 8}
+        SC(6-15){0, 1, 2, 4, 5, 8}
+        SC(6-16){0, 1, 4, 5, 6, 8}
+        SC(6-17){0, 1, 2, 4, 7, 8}
+        SC(6-18){0, 1, 2, 5, 7, 8}
+        SC(6-19){0, 1, 3, 4, 7, 8}
+        SC(6-20){0, 1, 4, 5, 8, 9}
+        SC(6-21){0, 2, 3, 4, 6, 8}
+        SC(6-22){0, 1, 2, 4, 6, 8}
+        SC(6-23){0, 2, 3, 5, 6, 8}
+        SC(6-24){0, 1, 3, 4, 6, 8}
+        SC(6-25){0, 1, 3, 5, 6, 8}
+        SC(6-26){0, 1, 3, 5, 7, 8}
+        SC(6-27){0, 1, 3, 4, 6, 9}
+        SC(6-28){0, 1, 3, 5, 6, 9}
+        SC(6-29){0, 1, 3, 6, 8, 9}
+        SC(6-30){0, 1, 3, 6, 7, 9}
+        SC(6-31){0, 1, 3, 5, 8, 9}
+        SC(6-32){0, 2, 4, 5, 7, 9}
+        SC(6-33){0, 2, 3, 5, 7, 9}
+        SC(6-34){0, 1, 3, 5, 7, 9}
+        SC(6-35){0, 2, 4, 6, 8, 10}
+        SC(6-36){0, 1, 2, 3, 4, 7}
+        SC(6-37){0, 1, 2, 3, 4, 8}
+        SC(6-38){0, 1, 2, 3, 7, 8}
+        SC(6-39){0, 2, 3, 4, 5, 8}
+        SC(6-40){0, 1, 2, 3, 5, 8}
+        SC(6-41){0, 1, 2, 3, 6, 8}
+        SC(6-42){0, 1, 2, 3, 6, 9}
+        SC(6-43){0, 1, 2, 5, 6, 8}
+        SC(6-44){0, 1, 2, 5, 6, 9}
+        SC(6-45){0, 2, 3, 4, 6, 9}
+        SC(6-46){0, 1, 2, 4, 6, 9}
+        SC(6-47){0, 1, 2, 4, 7, 9}
+        SC(6-48){0, 1, 2, 5, 7, 9}
+        SC(6-49){0, 1, 3, 4, 7, 9}
+        SC(6-50){0, 1, 4, 6, 7, 9}
 
     There are 352 SG1 set-classes and 224 SG2 set-classes.
     '''
@@ -1012,37 +998,31 @@ class SetClass(AbjadValueObject):
 
             Gets string of SG2 set-class with Forte rank:
 
-            ::
-
-                >>> set_class = abjad.SetClass(4, 29)
-                >>> print(set_class)
-                SC(4-29){0, 1, 3, 7}
+            >>> set_class = abjad.SetClass(4, 29)
+            >>> print(set_class)
+            SC(4-29){0, 1, 3, 7}
 
         ..  container:: example
 
             Gets string of SG2 set-class with lex rank:
 
-            ::
-
-                >>> set_class = abjad.SetClass(
-                ...     4, 29,
-                ...     lex_rank=True,
-                ...     )
-                >>> print(set_class)
-                SC(4-29){0, 3, 6, 9}
+            >>> set_class = abjad.SetClass(
+            ...     4, 29,
+            ...     lex_rank=True,
+            ...     )
+            >>> print(set_class)
+            SC(4-29){0, 3, 6, 9}
 
         ..  container:: example
 
             Gets string of SG1 set-class:
 
-            ::
-
-                >>> set_class = abjad.SetClass(
-                ...     4, 29,
-                ...     transposition_only=True,
-                ...     )
-                >>> print(set_class)
-                SC(4-29){0, 2, 6, 7}
+            >>> set_class = abjad.SetClass(
+            ...     4, 29,
+            ...     transposition_only=True,
+            ...     )
+            >>> print(set_class)
+            SC(4-29){0, 2, 6, 7}
 
         Returns string.
         '''
@@ -1140,52 +1120,40 @@ class SetClass(AbjadValueObject):
 
             Gets cardinality of SG2 set-class with Forte rank:
 
-            ::
+            >>> set_class = abjad.SetClass(4, 29)
+            >>> print(set_class)
+            SC(4-29){0, 1, 3, 7}
 
-                >>> set_class = abjad.SetClass(4, 29)
-                >>> print(set_class)
-                SC(4-29){0, 1, 3, 7}
-
-            ::
-
-                >>> set_class.cardinality
-                4
+            >>> set_class.cardinality
+            4
 
         ..  container:: example
 
             Gets cardinality of SG2 set-class with lex rank:
 
-            ::
+            >>> set_class = abjad.SetClass(
+            ...     4, 29,
+            ...     lex_rank=True,
+            ...     )
+            >>> print(set_class)
+            SC(4-29){0, 3, 6, 9}
 
-                >>> set_class = abjad.SetClass(
-                ...     4, 29,
-                ...     lex_rank=True,
-                ...     )
-                >>> print(set_class)
-                SC(4-29){0, 3, 6, 9}
-
-            ::
-
-                >>> set_class.cardinality
-                4
+            >>> set_class.cardinality
+            4
 
         ..  container:: example
 
             Gets cardinality of SG1 set-class:
 
-            ::
+            >>> set_class = abjad.SetClass(
+            ...     4, 29,
+            ...     transposition_only=True,
+            ...     )
+            >>> print(set_class)
+            SC(4-29){0, 2, 6, 7}
 
-                >>> set_class = abjad.SetClass(
-                ...     4, 29,
-                ...     transposition_only=True,
-                ...     )
-                >>> print(set_class)
-                SC(4-29){0, 2, 6, 7}
-
-            ::
-
-                >>> set_class.cardinality
-                4
+            >>> set_class.cardinality
+            4
 
         Set to integer between 0 and 12, inclusive.
 
@@ -1201,84 +1169,66 @@ class SetClass(AbjadValueObject):
 
             Is inversion-equivalent:
 
-            ::
+            >>> set_class = abjad.SetClass(4, 29)
+            >>> print(set_class)
+            SC(4-29){0, 1, 3, 7}
 
-                >>> set_class = abjad.SetClass(4, 29)
-                >>> print(set_class)
-                SC(4-29){0, 1, 3, 7}
+            >>> pitch_class_set = set_class.prime_form
+            >>> inverted_pitch_class_set = pitch_class_set.invert()
+            >>> inverted_set_class = abjad.SetClass.from_pitch_class_set(
+            ...     inverted_pitch_class_set
+            ...     )
+            >>> print(inverted_set_class)
+            SC(4-29){0, 1, 3, 7}
 
-            ::
-
-                >>> pitch_class_set = set_class.prime_form
-                >>> inverted_pitch_class_set = pitch_class_set.invert()
-                >>> inverted_set_class = abjad.SetClass.from_pitch_class_set(
-                ...     inverted_pitch_class_set
-                ...     )
-                >>> print(inverted_set_class)
-                SC(4-29){0, 1, 3, 7}
-
-            ::
-
-                >>> set_class.is_inversion_equivalent
-                True
+            >>> set_class.is_inversion_equivalent
+            True
 
         ..  container:: example
 
             Is inversion-equivalent:
 
-            ::
+            >>> set_class = abjad.SetClass(
+            ...     4, 29,
+            ...     lex_rank=True,
+            ...     )
+            >>> print(set_class)
+            SC(4-29){0, 3, 6, 9}
 
-                >>> set_class = abjad.SetClass(
-                ...     4, 29,
-                ...     lex_rank=True,
-                ...     )
-                >>> print(set_class)
-                SC(4-29){0, 3, 6, 9}
+            >>> pitch_class_set = set_class.prime_form
+            >>> inverted_pitch_class_set = pitch_class_set.invert()
+            >>> inverted_set_class = abjad.SetClass.from_pitch_class_set(
+            ...     inverted_pitch_class_set,
+            ...     lex_rank=True,
+            ...     )
+            >>> print(inverted_set_class)
+            SC(4-29){0, 3, 6, 9}
 
-            ::
-
-                >>> pitch_class_set = set_class.prime_form
-                >>> inverted_pitch_class_set = pitch_class_set.invert()
-                >>> inverted_set_class = abjad.SetClass.from_pitch_class_set(
-                ...     inverted_pitch_class_set,
-                ...     lex_rank=True,
-                ...     )
-                >>> print(inverted_set_class)
-                SC(4-29){0, 3, 6, 9}
-
-            ::
-
-                >>> set_class.is_inversion_equivalent
-                True
+            >>> set_class.is_inversion_equivalent
+            True
 
         ..  container:: example
 
             Is not inversion-equivalent:
 
-            ::
+            >>> set_class = abjad.SetClass(
+            ...     4, 29,
+            ...     transposition_only=True,
+            ...     )
+            >>> print(set_class)
+            SC(4-29){0, 2, 6, 7}
 
-                >>> set_class = abjad.SetClass(
-                ...     4, 29,
-                ...     transposition_only=True,
-                ...     )
-                >>> print(set_class)
-                SC(4-29){0, 2, 6, 7}
+            >>> pitch_class_set = set_class.prime_form
+            >>> inverted_pitch_class_set = pitch_class_set.invert()
+            >>> inverted_set_class = abjad.SetClass.from_pitch_class_set(
+            ...     inverted_pitch_class_set,
+            ...     transposition_only=True,
+            ...     )
+            >>> print(inverted_set_class)
+            SC(4-15){0, 1, 5, 7}
 
-            ::
-
-                >>> pitch_class_set = set_class.prime_form
-                >>> inverted_pitch_class_set = pitch_class_set.invert()
-                >>> inverted_set_class = abjad.SetClass.from_pitch_class_set(
-                ...     inverted_pitch_class_set,
-                ...     transposition_only=True,
-                ...     )
-                >>> print(inverted_set_class)
-                SC(4-15){0, 1, 5, 7}
-
-            ::
-
-                >>> set_class.is_inversion_equivalent
-                False
+            >>> set_class.is_inversion_equivalent
+            False
 
         Returns true or false.
         '''
@@ -1299,52 +1249,40 @@ class SetClass(AbjadValueObject):
 
             Uses Forte rank:
 
-            ::
+            >>> set_class = abjad.SetClass(4, 29)
+            >>> set_class
+            SetClass(cardinality=4, rank=29)
 
-                >>> set_class = abjad.SetClass(4, 29)
-                >>> set_class
-                SetClass(cardinality=4, rank=29)
-
-            ::
-
-                >>> print(set_class)
-                SC(4-29){0, 1, 3, 7}
+            >>> print(set_class)
+            SC(4-29){0, 1, 3, 7}
 
         ..  container:: example
 
             Uses lex rank:
 
-            ::
+            >>> set_class = abjad.SetClass(
+            ...     4, 29,
+            ...     lex_rank=True,
+            ...     )
+            >>> set_class
+            SetClass(cardinality=4, rank=29, lex_rank=True)
 
-                >>> set_class = abjad.SetClass(
-                ...     4, 29,
-                ...     lex_rank=True,
-                ...     )
-                >>> set_class
-                SetClass(cardinality=4, rank=29, lex_rank=True)
-
-            ::
-
-                >>> print(set_class)
-                SC(4-29){0, 3, 6, 9}
+            >>> print(set_class)
+            SC(4-29){0, 3, 6, 9}
 
         ..  container:: example
 
             SG1 set-classes always use lex rank:
 
-            ::
+            >>> set_class = abjad.SetClass(
+            ...     4, 29,
+            ...     transposition_only=True,
+            ...     )
+            >>> set_class
+            SetClass(cardinality=4, rank=29, transposition_only=True)
 
-                >>> set_class = abjad.SetClass(
-                ...     4, 29,
-                ...     transposition_only=True,
-                ...     )
-                >>> set_class
-                SetClass(cardinality=4, rank=29, transposition_only=True)
-
-            ::
-
-                >>> print(set_class)
-                SC(4-29){0, 2, 6, 7}
+            >>> print(set_class)
+            SC(4-29){0, 2, 6, 7}
 
         Set to true, false or none.
 
@@ -1362,52 +1300,40 @@ class SetClass(AbjadValueObject):
 
             Gets prime form of SG2 set-class with Forte rank:
 
-            ::
+            >>> set_class = abjad.SetClass(4, 29)
+            >>> print(set_class)
+            SC(4-29){0, 1, 3, 7}
 
-                >>> set_class = abjad.SetClass(4, 29)
-                >>> print(set_class)
-                SC(4-29){0, 1, 3, 7}
-
-            ::
-
-                >>> set_class.prime_form
-                PitchClassSet([0, 1, 3, 7])
+            >>> set_class.prime_form
+            PitchClassSet([0, 1, 3, 7])
 
         ..  container:: example
 
             Gets prime form of SG2 set-class with lex rank:
 
-            ::
+            >>> set_class = abjad.SetClass(
+            ...     4, 29,
+            ...     lex_rank=True,
+            ...     )
+            >>> print(set_class)
+            SC(4-29){0, 3, 6, 9}
 
-                >>> set_class = abjad.SetClass(
-                ...     4, 29,
-                ...     lex_rank=True,
-                ...     )
-                >>> print(set_class)
-                SC(4-29){0, 3, 6, 9}
-
-            ::
-
-                >>> set_class.prime_form
-                PitchClassSet([0, 3, 6, 9])
+            >>> set_class.prime_form
+            PitchClassSet([0, 3, 6, 9])
 
         ..  container:: example
 
             Gets prime form of SG1 set-class:
 
-            ::
+            >>> set_class = abjad.SetClass(
+            ...     4, 29,
+            ...     transposition_only=True,
+            ...     )
+            >>> print(set_class)
+            SC(4-29){0, 2, 6, 7}
 
-                >>> set_class = abjad.SetClass(
-                ...     4, 29,
-                ...     transposition_only=True,
-                ...     )
-                >>> print(set_class)
-                SC(4-29){0, 2, 6, 7}
-
-            ::
-
-                >>> set_class.prime_form
-                PitchClassSet([0, 2, 6, 7])
+            >>> set_class.prime_form
+            PitchClassSet([0, 2, 6, 7])
 
         Returns numbered pitch-class set.
         '''
@@ -1421,52 +1347,40 @@ class SetClass(AbjadValueObject):
 
             Gets rank of SG2 set-class with Forte rank:
 
-            ::
+            >>> set_class = abjad.SetClass(4, 29)
+            >>> print(set_class)
+            SC(4-29){0, 1, 3, 7}
 
-                >>> set_class = abjad.SetClass(4, 29)
-                >>> print(set_class)
-                SC(4-29){0, 1, 3, 7}
-
-            ::
-
-                >>> set_class.rank
-                29
+            >>> set_class.rank
+            29
 
         ..  container:: example
 
             Gets rank of SG2 set-class with lex rank:
 
-            ::
+            >>> set_class = abjad.SetClass(
+            ...     4, 29,
+            ...     lex_rank=True,
+            ...     )
+            >>> print(set_class)
+            SC(4-29){0, 3, 6, 9}
 
-                >>> set_class = abjad.SetClass(
-                ...     4, 29,
-                ...     lex_rank=True,
-                ...     )
-                >>> print(set_class)
-                SC(4-29){0, 3, 6, 9}
-
-            ::
-
-                >>> set_class.rank
-                29
+            >>> set_class.rank
+            29
 
         ..  container:: example
 
             Gets rank of SG1 set-class:
 
-            ::
+            >>> set_class = abjad.SetClass(
+            ...     4, 29,
+            ...     transposition_only=True,
+            ...     )
+            >>> print(set_class)
+            SC(4-29){0, 2, 6, 7}
 
-                >>> set_class = abjad.SetClass(
-                ...     4, 29,
-                ...     transposition_only=True,
-                ...     )
-                >>> print(set_class)
-                SC(4-29){0, 2, 6, 7}
-
-            ::
-
-                >>> set_class.rank
-                29
+            >>> set_class.rank
+            29
 
         Set to positive integer.
 
@@ -1483,37 +1397,31 @@ class SetClass(AbjadValueObject):
 
             Initializes SG2 set-class with Forte rank:
 
-            ::
-
-                >>> set_class = abjad.SetClass(4, 29)
-                >>> print(set_class)
-                SC(4-29){0, 1, 3, 7}
+            >>> set_class = abjad.SetClass(4, 29)
+            >>> print(set_class)
+            SC(4-29){0, 1, 3, 7}
 
         ..  container:: example
 
             Initializes SG2 set-class with lex rank:
 
-            ::
-
-                >>> set_class = abjad.SetClass(
-                ...     4, 29,
-                ...     lex_rank=True,
-                ...     )
-                >>> print(set_class)
-                SC(4-29){0, 3, 6, 9}
+            >>> set_class = abjad.SetClass(
+            ...     4, 29,
+            ...     lex_rank=True,
+            ...     )
+            >>> print(set_class)
+            SC(4-29){0, 3, 6, 9}
 
         ..  container:: example
 
             Initializes SG1 set-class:
 
-            ::
-
-                >>> set_class = abjad.SetClass(
-                ...     4, 29,
-                ...     transposition_only=True,
-                ...     )
-                >>> print(set_class)
-                SC(4-29){0, 2, 6, 7}
+            >>> set_class = abjad.SetClass(
+            ...     4, 29,
+            ...     transposition_only=True,
+            ...     )
+            >>> print(set_class)
+            SC(4-29){0, 2, 6, 7}
 
         Set to true, false or none.
 
@@ -1536,119 +1444,95 @@ class SetClass(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> pc_set = abjad.PitchClassSet([9, 0, 3, 5, 6])
+            >>> set_class = abjad.SetClass.from_pitch_class_set(pc_set)
+            >>> print(set_class)
+            SC(5-31){0, 1, 3, 6, 9}
 
-                >>> pc_set = abjad.PitchClassSet([9, 0, 3, 5, 6])
-                >>> set_class = abjad.SetClass.from_pitch_class_set(pc_set)
-                >>> print(set_class)
-                SC(5-31){0, 1, 3, 6, 9}
+            >>> pc_set = abjad.PitchClassSet([9, 0, 3, 5, 6])
+            >>> set_class = abjad.SetClass.from_pitch_class_set(
+            ...     pc_set,
+            ...     lex_rank=True,
+            ...     )
+            >>> print(set_class)
+            SC(5-22){0, 1, 3, 6, 9}
 
-            ::
-
-                >>> pc_set = abjad.PitchClassSet([9, 0, 3, 5, 6])
-                >>> set_class = abjad.SetClass.from_pitch_class_set(
-                ...     pc_set,
-                ...     lex_rank=True,
-                ...     )
-                >>> print(set_class)
-                SC(5-22){0, 1, 3, 6, 9}
-
-            ::
-
-                >>> pc_set = abjad.PitchClassSet([9, 0, 3, 5, 6])
-                >>> set_class = abjad.SetClass.from_pitch_class_set(
-                ...     pc_set,
-                ...     transposition_only=True,
-                ...     )
-                >>> print(set_class)
-                SC(5-44){0, 2, 3, 6, 9}
+            >>> pc_set = abjad.PitchClassSet([9, 0, 3, 5, 6])
+            >>> set_class = abjad.SetClass.from_pitch_class_set(
+            ...     pc_set,
+            ...     transposition_only=True,
+            ...     )
+            >>> print(set_class)
+            SC(5-44){0, 2, 3, 6, 9}
 
         ..  container:: example
 
-            ::
+            >>> pc_set = abjad.PitchClassSet([9, 11, 1, 2, 4, 6])
+            >>> set_class = abjad.SetClass.from_pitch_class_set(pc_set)
+            >>> print(set_class)
+            SC(6-32){0, 2, 4, 5, 7, 9}
 
-                >>> pc_set = abjad.PitchClassSet([9, 11, 1, 2, 4, 6])
-                >>> set_class = abjad.SetClass.from_pitch_class_set(pc_set)
-                >>> print(set_class)
-                SC(6-32){0, 2, 4, 5, 7, 9}
+            >>> pc_set = abjad.PitchClassSet([9, 11, 1, 2, 4, 6])
+            >>> set_class = abjad.SetClass.from_pitch_class_set(
+            ...     pc_set,
+            ...     lex_rank=True,
+            ...     )
+            >>> print(set_class)
+            SC(6-49){0, 2, 4, 5, 7, 9}
 
-            ::
-
-                >>> pc_set = abjad.PitchClassSet([9, 11, 1, 2, 4, 6])
-                >>> set_class = abjad.SetClass.from_pitch_class_set(
-                ...     pc_set,
-                ...     lex_rank=True,
-                ...     )
-                >>> print(set_class)
-                SC(6-49){0, 2, 4, 5, 7, 9}
-
-            ::
-
-                >>> pc_set = abjad.PitchClassSet([9, 11, 1, 2, 4, 6])
-                >>> set_class = abjad.SetClass.from_pitch_class_set(
-                ...     pc_set,
-                ...     transposition_only=True,
-                ...     )
-                >>> print(set_class)
-                SC(6-70){0, 2, 4, 5, 7, 9}
+            >>> pc_set = abjad.PitchClassSet([9, 11, 1, 2, 4, 6])
+            >>> set_class = abjad.SetClass.from_pitch_class_set(
+            ...     pc_set,
+            ...     transposition_only=True,
+            ...     )
+            >>> print(set_class)
+            SC(6-70){0, 2, 4, 5, 7, 9}
 
         ..  container:: example
 
-            ::
+            >>> pc_set = abjad.PitchClassSet([11, 0, 5, 6])
+            >>> set_class = abjad.SetClass.from_pitch_class_set(pc_set)
+            >>> print(set_class)
+            SC(4-9){0, 1, 6, 7}
 
-                >>> pc_set = abjad.PitchClassSet([11, 0, 5, 6])
-                >>> set_class = abjad.SetClass.from_pitch_class_set(pc_set)
-                >>> print(set_class)
-                SC(4-9){0, 1, 6, 7}
+            >>> pc_set = abjad.PitchClassSet([11, 0, 5, 6])
+            >>> set_class = abjad.SetClass.from_pitch_class_set(
+            ...     pc_set,
+            ...     lex_rank=True,
+            ...     )
+            >>> print(set_class)
+            SC(4-17){0, 1, 6, 7}
 
-            ::
-
-                >>> pc_set = abjad.PitchClassSet([11, 0, 5, 6])
-                >>> set_class = abjad.SetClass.from_pitch_class_set(
-                ...     pc_set,
-                ...     lex_rank=True,
-                ...     )
-                >>> print(set_class)
-                SC(4-17){0, 1, 6, 7}
-
-            ::
-
-                >>> pc_set = abjad.PitchClassSet([11, 0, 5, 6])
-                >>> set_class = abjad.SetClass.from_pitch_class_set(
-                ...     pc_set,
-                ...     transposition_only=True,
-                ...     )
-                >>> print(set_class)
-                SC(4-17){0, 1, 6, 7}
+            >>> pc_set = abjad.PitchClassSet([11, 0, 5, 6])
+            >>> set_class = abjad.SetClass.from_pitch_class_set(
+            ...     pc_set,
+            ...     transposition_only=True,
+            ...     )
+            >>> print(set_class)
+            SC(4-17){0, 1, 6, 7}
 
         ..  container:: example
 
-            ::
+            >>> pc_set = abjad.PitchClassSet([0, 4, 7])
+            >>> set_class = abjad.SetClass.from_pitch_class_set(pc_set)
+            >>> print(set_class)
+            SC(3-11){0, 3, 7}
 
-                >>> pc_set = abjad.PitchClassSet([0, 4, 7])
-                >>> set_class = abjad.SetClass.from_pitch_class_set(pc_set)
-                >>> print(set_class)
-                SC(3-11){0, 3, 7}
+            >>> pc_set = abjad.PitchClassSet([0, 4, 7])
+            >>> set_class = abjad.SetClass.from_pitch_class_set(
+            ...     pc_set,
+            ...     lex_rank=True,
+            ...     )
+            >>> print(set_class)
+            SC(3-11){0, 3, 7}
 
-            ::
-
-                >>> pc_set = abjad.PitchClassSet([0, 4, 7])
-                >>> set_class = abjad.SetClass.from_pitch_class_set(
-                ...     pc_set,
-                ...     lex_rank=True,
-                ...     )
-                >>> print(set_class)
-                SC(3-11){0, 3, 7}
-
-            ::
-
-                >>> pc_set = abjad.PitchClassSet([0, 4, 7])
-                >>> set_class = abjad.SetClass.from_pitch_class_set(
-                ...     pc_set,
-                ...     transposition_only=True,
-                ...     )
-                >>> print(set_class)
-                SC(3-17){0, 4, 7}
+            >>> pc_set = abjad.PitchClassSet([0, 4, 7])
+            >>> set_class = abjad.SetClass.from_pitch_class_set(
+            ...     pc_set,
+            ...     transposition_only=True,
+            ...     )
+            >>> print(set_class)
+            SC(3-17){0, 4, 7}
 
         Returns set-class.
         '''
@@ -1689,140 +1573,134 @@ class SetClass(AbjadValueObject):
 
             Lists SG2 set-classes of cardinality 4 with Forte rank:
 
-            ::
-
-                >>> set_classes = abjad.SetClass.list_set_classes(
-                ...     cardinality=4,
-                ...     )
-                >>> for set_class in set_classes:
-                ...     print(set_class)
-                SC(4-1){0, 1, 2, 3}
-                SC(4-2){0, 1, 2, 4}
-                SC(4-3){0, 1, 3, 4}
-                SC(4-4){0, 1, 2, 5}
-                SC(4-5){0, 1, 2, 6}
-                SC(4-6){0, 1, 2, 7}
-                SC(4-7){0, 1, 4, 5}
-                SC(4-8){0, 1, 5, 6}
-                SC(4-9){0, 1, 6, 7}
-                SC(4-10){0, 2, 3, 5}
-                SC(4-11){0, 1, 3, 5}
-                SC(4-12){0, 2, 3, 6}
-                SC(4-13){0, 1, 3, 6}
-                SC(4-14){0, 2, 3, 7}
-                SC(4-15){0, 1, 4, 6}
-                SC(4-16){0, 1, 5, 7}
-                SC(4-17){0, 3, 4, 7}
-                SC(4-18){0, 1, 4, 7}
-                SC(4-19){0, 1, 4, 8}
-                SC(4-20){0, 1, 5, 8}
-                SC(4-21){0, 2, 4, 6}
-                SC(4-22){0, 2, 4, 7}
-                SC(4-23){0, 2, 5, 7}
-                SC(4-24){0, 2, 4, 8}
-                SC(4-25){2, 6, 8, 9}
-                SC(4-26){0, 3, 5, 8}
-                SC(4-27){0, 2, 5, 8}
-                SC(4-28){0, 3, 6, 9}
-                SC(4-29){0, 1, 3, 7}
+            >>> set_classes = abjad.SetClass.list_set_classes(
+            ...     cardinality=4,
+            ...     )
+            >>> for set_class in set_classes:
+            ...     print(set_class)
+            SC(4-1){0, 1, 2, 3}
+            SC(4-2){0, 1, 2, 4}
+            SC(4-3){0, 1, 3, 4}
+            SC(4-4){0, 1, 2, 5}
+            SC(4-5){0, 1, 2, 6}
+            SC(4-6){0, 1, 2, 7}
+            SC(4-7){0, 1, 4, 5}
+            SC(4-8){0, 1, 5, 6}
+            SC(4-9){0, 1, 6, 7}
+            SC(4-10){0, 2, 3, 5}
+            SC(4-11){0, 1, 3, 5}
+            SC(4-12){0, 2, 3, 6}
+            SC(4-13){0, 1, 3, 6}
+            SC(4-14){0, 2, 3, 7}
+            SC(4-15){0, 1, 4, 6}
+            SC(4-16){0, 1, 5, 7}
+            SC(4-17){0, 3, 4, 7}
+            SC(4-18){0, 1, 4, 7}
+            SC(4-19){0, 1, 4, 8}
+            SC(4-20){0, 1, 5, 8}
+            SC(4-21){0, 2, 4, 6}
+            SC(4-22){0, 2, 4, 7}
+            SC(4-23){0, 2, 5, 7}
+            SC(4-24){0, 2, 4, 8}
+            SC(4-25){2, 6, 8, 9}
+            SC(4-26){0, 3, 5, 8}
+            SC(4-27){0, 2, 5, 8}
+            SC(4-28){0, 3, 6, 9}
+            SC(4-29){0, 1, 3, 7}
 
         ..  container:: example
 
             Lists SG2 set-classes of cardinality 4 with lex rank:
 
-            ::
-
-                >>> set_classes = abjad.SetClass.list_set_classes(
-                ...     cardinality=4,
-                ...     lex_rank=True,
-                ...     )
-                >>> for set_class in set_classes:
-                ...     print(set_class)
-                SC(4-1){0, 1, 2, 3}
-                SC(4-2){0, 1, 2, 4}
-                SC(4-3){0, 1, 2, 5}
-                SC(4-4){0, 1, 2, 6}
-                SC(4-5){0, 1, 2, 7}
-                SC(4-6){0, 1, 3, 4}
-                SC(4-7){0, 1, 3, 5}
-                SC(4-8){0, 1, 3, 6}
-                SC(4-9){0, 1, 3, 7}
-                SC(4-10){0, 1, 4, 5}
-                SC(4-11){0, 1, 4, 6}
-                SC(4-12){0, 1, 4, 7}
-                SC(4-13){0, 1, 4, 8}
-                SC(4-14){0, 1, 5, 6}
-                SC(4-15){0, 1, 5, 7}
-                SC(4-16){0, 1, 5, 8}
-                SC(4-17){0, 1, 6, 7}
-                SC(4-18){0, 2, 3, 5}
-                SC(4-19){0, 2, 3, 6}
-                SC(4-20){0, 2, 3, 7}
-                SC(4-21){0, 2, 4, 6}
-                SC(4-22){0, 2, 4, 7}
-                SC(4-23){0, 2, 4, 8}
-                SC(4-24){0, 2, 5, 7}
-                SC(4-25){0, 2, 5, 8}
-                SC(4-26){0, 2, 6, 8}
-                SC(4-27){0, 3, 4, 7}
-                SC(4-28){0, 3, 5, 8}
-                SC(4-29){0, 3, 6, 9}
+            >>> set_classes = abjad.SetClass.list_set_classes(
+            ...     cardinality=4,
+            ...     lex_rank=True,
+            ...     )
+            >>> for set_class in set_classes:
+            ...     print(set_class)
+            SC(4-1){0, 1, 2, 3}
+            SC(4-2){0, 1, 2, 4}
+            SC(4-3){0, 1, 2, 5}
+            SC(4-4){0, 1, 2, 6}
+            SC(4-5){0, 1, 2, 7}
+            SC(4-6){0, 1, 3, 4}
+            SC(4-7){0, 1, 3, 5}
+            SC(4-8){0, 1, 3, 6}
+            SC(4-9){0, 1, 3, 7}
+            SC(4-10){0, 1, 4, 5}
+            SC(4-11){0, 1, 4, 6}
+            SC(4-12){0, 1, 4, 7}
+            SC(4-13){0, 1, 4, 8}
+            SC(4-14){0, 1, 5, 6}
+            SC(4-15){0, 1, 5, 7}
+            SC(4-16){0, 1, 5, 8}
+            SC(4-17){0, 1, 6, 7}
+            SC(4-18){0, 2, 3, 5}
+            SC(4-19){0, 2, 3, 6}
+            SC(4-20){0, 2, 3, 7}
+            SC(4-21){0, 2, 4, 6}
+            SC(4-22){0, 2, 4, 7}
+            SC(4-23){0, 2, 4, 8}
+            SC(4-24){0, 2, 5, 7}
+            SC(4-25){0, 2, 5, 8}
+            SC(4-26){0, 2, 6, 8}
+            SC(4-27){0, 3, 4, 7}
+            SC(4-28){0, 3, 5, 8}
+            SC(4-29){0, 3, 6, 9}
 
         ..  container:: example
 
             Lists SG1 set-classes of cardinality 4:
 
-            ::
-
-                >>> set_classes = abjad.SetClass.list_set_classes(
-                ...     cardinality=4,
-                ...     transposition_only=True,
-                ...     )
-                >>> for set_class in set_classes:
-                ...     print(set_class)
-                SC(4-1){0, 1, 2, 3}
-                SC(4-2){0, 1, 2, 4}
-                SC(4-3){0, 1, 2, 5}
-                SC(4-4){0, 1, 2, 6}
-                SC(4-5){0, 1, 2, 7}
-                SC(4-6){0, 1, 3, 4}
-                SC(4-7){0, 1, 3, 5}
-                SC(4-8){0, 1, 3, 6}
-                SC(4-9){0, 1, 3, 7}
-                SC(4-10){0, 1, 4, 5}
-                SC(4-11){0, 1, 4, 6}
-                SC(4-12){0, 1, 4, 7}
-                SC(4-13){0, 1, 4, 8}
-                SC(4-14){0, 1, 5, 6}
-                SC(4-15){0, 1, 5, 7}
-                SC(4-16){0, 1, 5, 8}
-                SC(4-17){0, 1, 6, 7}
-                SC(4-18){0, 2, 3, 4}
-                SC(4-19){0, 2, 3, 5}
-                SC(4-20){0, 2, 3, 6}
-                SC(4-21){0, 2, 3, 7}
-                SC(4-22){0, 2, 4, 5}
-                SC(4-23){0, 2, 4, 6}
-                SC(4-24){0, 2, 4, 7}
-                SC(4-25){0, 2, 4, 8}
-                SC(4-26){0, 2, 5, 6}
-                SC(4-27){0, 2, 5, 7}
-                SC(4-28){0, 2, 5, 8}
-                SC(4-29){0, 2, 6, 7}
-                SC(4-30){0, 2, 6, 8}
-                SC(4-31){0, 3, 4, 5}
-                SC(4-32){0, 3, 4, 6}
-                SC(4-33){0, 3, 4, 7}
-                SC(4-34){0, 3, 4, 8}
-                SC(4-35){0, 3, 5, 6}
-                SC(4-36){0, 3, 5, 7}
-                SC(4-37){0, 3, 5, 8}
-                SC(4-38){0, 3, 6, 7}
-                SC(4-39){0, 3, 6, 8}
-                SC(4-40){0, 3, 6, 9}
-                SC(4-41){0, 4, 5, 6}
-                SC(4-42){0, 4, 5, 7}
-                SC(4-43){0, 4, 6, 7}
+            >>> set_classes = abjad.SetClass.list_set_classes(
+            ...     cardinality=4,
+            ...     transposition_only=True,
+            ...     )
+            >>> for set_class in set_classes:
+            ...     print(set_class)
+            SC(4-1){0, 1, 2, 3}
+            SC(4-2){0, 1, 2, 4}
+            SC(4-3){0, 1, 2, 5}
+            SC(4-4){0, 1, 2, 6}
+            SC(4-5){0, 1, 2, 7}
+            SC(4-6){0, 1, 3, 4}
+            SC(4-7){0, 1, 3, 5}
+            SC(4-8){0, 1, 3, 6}
+            SC(4-9){0, 1, 3, 7}
+            SC(4-10){0, 1, 4, 5}
+            SC(4-11){0, 1, 4, 6}
+            SC(4-12){0, 1, 4, 7}
+            SC(4-13){0, 1, 4, 8}
+            SC(4-14){0, 1, 5, 6}
+            SC(4-15){0, 1, 5, 7}
+            SC(4-16){0, 1, 5, 8}
+            SC(4-17){0, 1, 6, 7}
+            SC(4-18){0, 2, 3, 4}
+            SC(4-19){0, 2, 3, 5}
+            SC(4-20){0, 2, 3, 6}
+            SC(4-21){0, 2, 3, 7}
+            SC(4-22){0, 2, 4, 5}
+            SC(4-23){0, 2, 4, 6}
+            SC(4-24){0, 2, 4, 7}
+            SC(4-25){0, 2, 4, 8}
+            SC(4-26){0, 2, 5, 6}
+            SC(4-27){0, 2, 5, 7}
+            SC(4-28){0, 2, 5, 8}
+            SC(4-29){0, 2, 6, 7}
+            SC(4-30){0, 2, 6, 8}
+            SC(4-31){0, 3, 4, 5}
+            SC(4-32){0, 3, 4, 6}
+            SC(4-33){0, 3, 4, 7}
+            SC(4-34){0, 3, 4, 8}
+            SC(4-35){0, 3, 5, 6}
+            SC(4-36){0, 3, 5, 7}
+            SC(4-37){0, 3, 5, 8}
+            SC(4-38){0, 3, 6, 7}
+            SC(4-39){0, 3, 6, 8}
+            SC(4-40){0, 3, 6, 9}
+            SC(4-41){0, 4, 5, 6}
+            SC(4-42){0, 4, 5, 7}
+            SC(4-43){0, 4, 6, 7}
 
         Returns list of set-classes.
         '''

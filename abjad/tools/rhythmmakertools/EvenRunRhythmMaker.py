@@ -14,23 +14,19 @@ class EvenRunRhythmMaker(RhythmMaker):
         with ``d`` equal to the denominator of each division on which
         the rhythm-maker is called:
 
-        ::
+        >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker()
 
-            >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker()
-
-        ::
-
-            >>> divisions = [(4, 8), (3, 4), (2, 4)]
-            >>> selections = rhythm_maker(divisions)
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(
-            ...     selections,
-            ...     divisions,
-            ...     )
-            >>> show(lilypond_file) # doctest: +SKIP
+        >>> divisions = [(4, 8), (3, 4), (2, 4)]
+        >>> selections = rhythm_maker(divisions)
+        >>> lilypond_file = abjad.LilyPondFile.rhythm(
+        ...     selections,
+        ...     divisions,
+        ...     )
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(lilypond_file[abjad.Staff])
+            >>> abjad.f(lilypond_file[abjad.Staff])
             \new RhythmicStaff {
                 {
                     \time 4/8
@@ -96,16 +92,14 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            ::
-
-                >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker()
-                >>> divisions = [(4, 8), (3, 4), (2, 4)]
-                >>> result = rhythm_maker(divisions)
-                >>> for selection in result:
-                ...     selection
-                Selection([Container("c'8 c'8 c'8 c'8")])
-                Selection([Container("c'4 c'4 c'4")])
-                Selection([Container("c'4 c'4")])
+            >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker()
+            >>> divisions = [(4, 8), (3, 4), (2, 4)]
+            >>> result = rhythm_maker(divisions)
+            >>> for selection in result:
+            ...     selection
+            Selection([Container("c'8 c'8 c'8 c'8")])
+            Selection([Container("c'4 c'4 c'4")])
+            Selection([Container("c'4 c'4")])
 
         Returns a list of selections. Each selection holds a single container
         filled with notes.
@@ -121,11 +115,9 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            ::
-
-                >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker()
-                >>> f(rhythm_maker)
-                abjad.rhythmmakertools.EvenRunRhythmMaker()
+            >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker()
+            >>> abjad.f(rhythm_maker)
+            abjad.rhythmmakertools.EvenRunRhythmMaker()
 
         Set `format_specification` to `''` or `'storage'`.
 
@@ -207,28 +199,24 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            ::
+            >>> specifier = abjad.rhythmmakertools.DurationSpecifier(
+            ...     forbidden_duration=(1, 4),
+            ...     )
+            >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker(
+            ...     duration_specifier=specifier,
+            ...     )
 
-                >>> specifier = abjad.rhythmmakertools.DurationSpecifier(
-                ...     forbidden_duration=(1, 4),
-                ...     )
-                >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker(
-                ...     duration_specifier=specifier,
-                ...     )
-
-            ::
-
-                >>> divisions = [(4, 8), (3, 4), (2, 4)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(4, 8), (3, 4), (2, 4)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -274,25 +262,21 @@ class EvenRunRhythmMaker(RhythmMaker):
             Makes even run of notes with durations equal to ``1/(2**0 * d)`` or
             ``1/d``:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker(
+            ...     exponent=0,
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker(
-                ...     exponent=0,
-                ...     )
-
-            ::
-
-                >>> divisions = [(4, 8), (3, 4), (2, 4)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(4, 8), (3, 4), (2, 4)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -330,25 +314,21 @@ class EvenRunRhythmMaker(RhythmMaker):
             Makes even run of notes with durations equal to ``1/(2**1 * d)`` or
             ``1/(2d)``:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker(
+            ...     exponent=1,
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker(
-                ...     exponent=1,
-                ...     )
-
-            ::
-
-                >>> divisions = [(4, 8), (3, 4), (2, 4)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(4, 8), (3, 4), (2, 4)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -395,25 +375,21 @@ class EvenRunRhythmMaker(RhythmMaker):
             Makes even run of notes with durations equal to ``1/(2**2 * d)`` or
             ``1/(4d)``:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker(
+            ...     exponent=2,
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker(
-                ...     exponent=2,
-                ...     )
-
-            ::
-
-                >>> divisions = [(4, 8), (3, 4), (2, 4)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(4, 8), (3, 4), (2, 4)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -489,28 +465,24 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             Do not tie across any divisions:
 
-            ::
+            >>> tie_specifier = abjad.rhythmmakertools.TieSpecifier(
+            ...     tie_across_divisions=False,
+            ...     )
+            >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker(
+            ...     tie_specifier=tie_specifier,
+            ...     )
 
-                >>> tie_specifier = abjad.rhythmmakertools.TieSpecifier(
-                ...     tie_across_divisions=False,
-                ...     )
-                >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker(
-                ...     tie_specifier=tie_specifier,
-                ...     )
-
-            ::
-
-                >>> divisions = [(5, 8), (3, 8), (4, 8), (2, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(5, 8), (3, 8), (4, 8), (2, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -552,28 +524,24 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             Ties across all divisions:
 
-            ::
+            >>> tie_specifier = abjad.rhythmmakertools.TieSpecifier(
+            ...     tie_across_divisions=True,
+            ...     )
+            >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker(
+            ...     tie_specifier=tie_specifier,
+            ...     )
 
-                >>> tie_specifier = abjad.rhythmmakertools.TieSpecifier(
-                ...     tie_across_divisions=True,
-                ...     )
-                >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker(
-                ...     tie_specifier=tie_specifier,
-                ...     )
-
-            ::
-
-                >>> divisions = [(5, 8), (3, 8), (4, 8), (2, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(5, 8), (3, 8), (4, 8), (2, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -616,28 +584,24 @@ class EvenRunRhythmMaker(RhythmMaker):
             Ties across every other pair of divisions (starting with the
             first):
 
-            ::
+            >>> tie_specifier = abjad.rhythmmakertools.TieSpecifier(
+            ...     tie_across_divisions=[1, 0],
+            ...     )
+            >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker(
+            ...     tie_specifier=tie_specifier,
+            ...     )
 
-                >>> tie_specifier = abjad.rhythmmakertools.TieSpecifier(
-                ...     tie_across_divisions=[1, 0],
-                ...     )
-                >>> rhythm_maker = abjad.rhythmmakertools.EvenRunRhythmMaker(
-                ...     tie_specifier=tie_specifier,
-                ...     )
-
-            ::
-
-                >>> divisions = [(5, 8), (3, 8), (4, 8), (2, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(5, 8), (3, 8), (4, 8), (2, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8

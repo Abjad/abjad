@@ -6,35 +6,29 @@ def divisors(n):
 
     ..  container:: example
 
-        ::
+        >>> abjad.mathtools.divisors(84)
+        [1, 2, 3, 4, 6, 7, 12, 14, 21, 28, 42, 84]
 
-            >>> abjad.mathtools.divisors(84)
-            [1, 2, 3, 4, 6, 7, 12, 14, 21, 28, 42, 84]
-
-        ::
-
-            >>> for x in range(10, 20):
-            ...     print(x, abjad.mathtools.divisors(x))
-            ...
-            10 [1, 2, 5, 10]
-            11 [1, 11]
-            12 [1, 2, 3, 4, 6, 12]
-            13 [1, 13]
-            14 [1, 2, 7, 14]
-            15 [1, 3, 5, 15]
-            16 [1, 2, 4, 8, 16]
-            17 [1, 17]
-            18 [1, 2, 3, 6, 9, 18]
-            19 [1, 19]
+        >>> for x in range(10, 20):
+        ...     print(x, abjad.mathtools.divisors(x))
+        ...
+        10 [1, 2, 5, 10]
+        11 [1, 11]
+        12 [1, 2, 3, 4, 6, 12]
+        13 [1, 13]
+        14 [1, 2, 7, 14]
+        15 [1, 3, 5, 15]
+        16 [1, 2, 4, 8, 16]
+        17 [1, 17]
+        18 [1, 2, 3, 6, 9, 18]
+        19 [1, 19]
 
     ..  container:: example
 
         Allows nonpositive `n`:
 
-        ::
-
-            >>> abjad.mathtools.divisors(-27)
-            [1, 3, 9, 27]
+        >>> abjad.mathtools.divisors(-27)
+        [1, 3, 9, 27]
 
     Raises not implemented error on ``0``.
 

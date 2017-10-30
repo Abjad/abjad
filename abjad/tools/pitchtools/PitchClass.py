@@ -233,20 +233,14 @@ class PitchClass(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> abjad.PitchClass.is_diatonic_pitch_class_name('g')
+            True
 
-                >>> abjad.PitchClass.is_diatonic_pitch_class_name('g')
-                True
+            >>> abjad.PitchClass.is_diatonic_pitch_class_name('G')
+            True
 
-            ::
-
-                >>> abjad.PitchClass.is_diatonic_pitch_class_name('G')
-                True
-
-            ::
-
-                >>> abjad.PitchClass.is_diatonic_pitch_class_name('Allegro')
-                False
+            >>> abjad.PitchClass.is_diatonic_pitch_class_name('Allegro')
+            False
 
         The regex ``^[a-g,A-G]$`` underlies this predicate.
 
@@ -264,15 +258,11 @@ class PitchClass(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> abjad.PitchClass.is_diatonic_pitch_class_number(0)
+            True
 
-                >>> abjad.PitchClass.is_diatonic_pitch_class_number(0)
-                True
-
-            ::
-
-                >>> abjad.PitchClass.is_diatonic_pitch_class_number(-5)
-                False
+            >>> abjad.PitchClass.is_diatonic_pitch_class_number(-5)
+            False
 
         The diatonic pitch-class numbers are equal to the set
         ``[0, 1, 2, 3, 4, 5, 6]``.
@@ -290,20 +280,14 @@ class PitchClass(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> abjad.PitchClass.is_pitch_class_name('fs')
+            True
 
-                >>> abjad.PitchClass.is_pitch_class_name('fs')
-                True
+            >>> abjad.PitchClass.is_pitch_class_name('fqs')
+            True
 
-            ::
-
-                >>> abjad.PitchClass.is_pitch_class_name('fqs')
-                True
-
-            ::
-
-                >>> abjad.PitchClass.is_pitch_class_name('f,,')
-                False
+            >>> abjad.PitchClass.is_pitch_class_name('f,,')
+            False
 
         The regex ``^([a-g,A-G])(([s]{1,2}|[f]{1,2}|t?q?[fs]|)!?)$`` underlies
         this predicate.
@@ -321,20 +305,14 @@ class PitchClass(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> abjad.PitchClass.is_pitch_class_number(1)
+            True
 
-                >>> abjad.PitchClass.is_pitch_class_number(1)
-                True
+            >>> abjad.PitchClass.is_pitch_class_number(1.5)
+            True
 
-            ::
-
-                >>> abjad.PitchClass.is_pitch_class_number(1.5)
-                True
-
-            ::
-
-                >>> abjad.PitchClass.is_pitch_class_number(12)
-                False
+            >>> abjad.PitchClass.is_pitch_class_number(12)
+            False
 
         The pitch-class numbers are equal to the set
         ``[0, 0.5, ..., 11, 11.5]``.

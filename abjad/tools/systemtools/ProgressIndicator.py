@@ -55,11 +55,9 @@ class ProgressIndicator(ContextManager):
 
         ..  container:: example
 
-            ::
-
-                >>> context_manager = abjad.ProgressIndicator()
-                >>> context_manager
-                <ProgressIndicator()>
+            >>> context_manager = abjad.ProgressIndicator()
+            >>> context_manager
+            <ProgressIndicator()>
 
         Returns string.
         '''

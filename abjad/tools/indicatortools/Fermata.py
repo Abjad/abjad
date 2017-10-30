@@ -8,16 +8,14 @@ class Fermata(AbjadValueObject):
 
         A short fermata:
 
-        ::
-
-            >>> score = abjad.Score([abjad.Staff([abjad.Note("c'4")])])
-            >>> fermata = abjad.Fermata(command='shortfermata')
-            >>> abjad.attach(fermata, score[0][0])
-            >>> show(score) # doctest: +SKIP
+        >>> score = abjad.Score([abjad.Staff([abjad.Note("c'4")])])
+        >>> fermata = abjad.Fermata(command='shortfermata')
+        >>> abjad.attach(fermata, score[0][0])
+        >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(score)
+            >>> abjad.f(score)
             \new Score <<
                 \new Staff {
                     c'4 \shortfermata
@@ -28,16 +26,14 @@ class Fermata(AbjadValueObject):
 
         A fermata:
 
-        ::
-
-            >>> score = abjad.Score([abjad.Staff([abjad.Note("c'4")])])
-            >>> fermata = abjad.Fermata()
-            >>> abjad.attach(fermata, score[0][0])
-            >>> show(score) # doctest: +SKIP
+        >>> score = abjad.Score([abjad.Staff([abjad.Note("c'4")])])
+        >>> fermata = abjad.Fermata()
+        >>> abjad.attach(fermata, score[0][0])
+        >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(score)
+            >>> abjad.f(score)
             \new Score <<
                 \new Staff {
                     c'4 \fermata
@@ -48,16 +44,14 @@ class Fermata(AbjadValueObject):
 
         A long fermata:
 
-        ::
-
-            >>> score = abjad.Score([abjad.Staff([abjad.Note("c'4")])])
-            >>> fermata = abjad.Fermata('longfermata')
-            >>> abjad.attach(fermata, score[0][0])
-            >>> show(score) # doctest: +SKIP
+        >>> score = abjad.Score([abjad.Staff([abjad.Note("c'4")])])
+        >>> fermata = abjad.Fermata('longfermata')
+        >>> abjad.attach(fermata, score[0][0])
+        >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(score)
+            >>> abjad.f(score)
             \new Score <<
                 \new Staff {
                     c'4 \longfermata
@@ -68,16 +62,14 @@ class Fermata(AbjadValueObject):
 
         A very long fermata:
 
-        ::
-
-            >>> score = abjad.Score([abjad.Staff([abjad.Note("c'4")])])
-            >>> fermata = abjad.Fermata('verylongfermata')
-            >>> abjad.attach(fermata, score[0][0])
-            >>> show(score) # doctest: +SKIP
+        >>> score = abjad.Score([abjad.Staff([abjad.Note("c'4")])])
+        >>> fermata = abjad.Fermata('verylongfermata')
+        >>> abjad.attach(fermata, score[0][0])
+        >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(score)
+            >>> abjad.f(score)
             \new Score <<
                 \new Staff {
                     c'4 \verylongfermata
@@ -119,19 +111,15 @@ class Fermata(AbjadValueObject):
 
             Fermata:
 
-            ::
-
-                >>> str(abjad.Fermata())
-                '\\fermata'
+            >>> str(abjad.Fermata())
+            '\\fermata'
 
         ..  container:: example
 
             Long fermata:
 
-            ::
-
-                >>> str(abjad.Fermata('longfermata'))
-                '\\longfermata'
+            >>> str(abjad.Fermata('longfermata'))
+            '\\longfermata'
 
         Returns string.
         '''
@@ -164,15 +152,13 @@ class Fermata(AbjadValueObject):
 
             All allowable commands:
 
-            ::
-
-                >>> commands = abjad.Fermata.list_allowable_commands()
-                >>> for command in commands:
-                ...     command
-                'fermata'
-                'longfermata'
-                'shortfermata'
-                'verylongfermata'
+            >>> commands = abjad.Fermata.list_allowable_commands()
+            >>> for command in commands:
+            ...     command
+            'fermata'
+            'longfermata'
+            'shortfermata'
+            'verylongfermata'
 
         Returns tuple of strings.
         '''
@@ -188,21 +174,17 @@ class Fermata(AbjadValueObject):
 
             Fermata:
 
-            ::
-
-                >>> fermata = abjad.Fermata()
-                >>> fermata.command
-                'fermata'
+            >>> fermata = abjad.Fermata()
+            >>> fermata.command
+            'fermata'
 
         ..  container:: example
 
             Long fermata:
 
-            ::
-
-                >>> fermata = abjad.Fermata('longfermata')
-                >>> fermata.command
-                'longfermata'
+            >>> fermata = abjad.Fermata('longfermata')
+            >>> fermata.command
+            'longfermata'
 
         Returns string.
         '''
@@ -216,21 +198,17 @@ class Fermata(AbjadValueObject):
 
             Fermata:
 
-            ::
-
-                >>> fermata = abjad.Fermata()
-                >>> fermata.default_scope
-                <class 'abjad.tools.scoretools.Score.Score'>
+            >>> fermata = abjad.Fermata()
+            >>> fermata.default_scope
+            <class 'abjad.tools.scoretools.Score.Score'>
 
         ..  container:: example
 
             Long fermata:
 
-            ::
-
-                >>> fermata = abjad.Fermata('longfermata')
-                >>> fermata.default_scope
-                <class 'abjad.tools.scoretools.Score.Score'>
+            >>> fermata = abjad.Fermata('longfermata')
+            >>> fermata.default_scope
+            <class 'abjad.tools.scoretools.Score.Score'>
 
         Returns score.
         '''

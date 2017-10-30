@@ -6,18 +6,16 @@ class Tuba(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> clef = abjad.Clef('bass')
-            >>> abjad.attach(clef, staff[0])
-            >>> tuba = abjad.Tuba()
-            >>> abjad.attach(tuba, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+        >>> clef = abjad.Clef('bass')
+        >>> abjad.attach(clef, staff[0])
+        >>> tuba = abjad.Tuba()
+        >>> abjad.attach(tuba, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { Tuba }
                 \set Staff.shortInstrumentName = \markup { Tb. }
@@ -68,11 +66,9 @@ class Tuba(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> tuba = abjad.Tuba()
-                >>> tuba.allowable_clefs
-                ('bass',)
+            >>> tuba = abjad.Tuba()
+            >>> tuba.allowable_clefs
+            ('bass',)
 
         Returns clef list.
         '''
@@ -84,15 +80,11 @@ class Tuba(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> tuba = abjad.Tuba()
+            >>> tuba.middle_c_sounding_pitch
+            NamedPitch("c'")
 
-                >>> tuba = abjad.Tuba()
-                >>> tuba.middle_c_sounding_pitch
-                NamedPitch("c'")
-
-            ::
-
-                >>> show(tuba.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(tuba.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -104,11 +96,9 @@ class Tuba(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> tuba = abjad.Tuba()
-                >>> tuba.name
-                'tuba'
+            >>> tuba = abjad.Tuba()
+            >>> tuba.name
+            'tuba'
 
         Returns string.
         '''
@@ -120,15 +110,11 @@ class Tuba(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> tuba = abjad.Tuba()
+            >>> tuba.name_markup
+            Markup(contents=['Tuba'])
 
-                >>> tuba = abjad.Tuba()
-                >>> tuba.name_markup
-                Markup(contents=['Tuba'])
-
-            ::
-
-                >>> show(tuba.name_markup) # doctest: +SKIP
+            >>> abjad.show(tuba.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -140,15 +126,11 @@ class Tuba(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> tuba = abjad.Tuba()
+            >>> tuba.pitch_range
+            PitchRange('[D1, F4]')
 
-                >>> tuba = abjad.Tuba()
-                >>> tuba.pitch_range
-                PitchRange('[D1, F4]')
-
-            ::
-
-                >>> show(tuba.pitch_range) # doctest: +SKIP
+            >>> abjad.show(tuba.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -160,11 +142,9 @@ class Tuba(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> tuba = abjad.Tuba()
-                >>> tuba.short_name
-                'tb.'
+            >>> tuba = abjad.Tuba()
+            >>> tuba.short_name
+            'tb.'
 
         Returns string.
         '''
@@ -176,15 +156,11 @@ class Tuba(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> tuba = abjad.Tuba()
+            >>> tuba.short_name_markup
+            Markup(contents=['Tb.'])
 
-                >>> tuba = abjad.Tuba()
-                >>> tuba.short_name_markup
-                Markup(contents=['Tb.'])
-
-            ::
-
-                >>> show(tuba.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(tuba.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

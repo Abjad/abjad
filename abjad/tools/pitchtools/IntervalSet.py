@@ -54,7 +54,7 @@ class IntervalSet(Set):
     def from_selection(class_, selection, item_class=None):
         r'''Initialize interval set from component selection:
 
-        ::
+        ..  container:: example
 
             >>> staff_1 = abjad.Staff("c'4 <d' fs' a'>4 b2")
             >>> staff_2 = abjad.Staff("c4. r8 g2")

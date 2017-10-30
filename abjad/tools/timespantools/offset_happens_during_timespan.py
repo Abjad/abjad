@@ -3,19 +3,17 @@ def offset_happens_during_timespan(timespan=None, offset=None, hold=False):
 
     ..  container:: example
 
-        ::
-
-            >>> relation = abjad.timespantools.offset_happens_during_timespan()
-            >>> f(relation)
-            abjad.timespantools.OffsetTimespanTimeRelation(
-                inequality=abjad.timespantools.CompoundInequality(
-                    [
-                        abjad.TimespanInequality('timespan.start <= offset'),
-                        abjad.TimespanInequality('offset < timespan.stop'),
-                        ],
-                    logical_operator='and',
-                    ),
-                )
+        >>> relation = abjad.timespantools.offset_happens_during_timespan()
+        >>> abjad.f(relation)
+        abjad.timespantools.OffsetTimespanTimeRelation(
+            inequality=abjad.timespantools.CompoundInequality(
+                [
+                    abjad.TimespanInequality('timespan.start <= offset'),
+                    abjad.TimespanInequality('offset < timespan.stop'),
+                    ],
+                logical_operator='and',
+                ),
+            )
 
     Returns time relation or boolean.
     '''

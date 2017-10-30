@@ -6,34 +6,30 @@ class AnnotatedTimespan(Timespan):
 
     ..  container:: example
 
-        ::
-
-            >>> annotated_timespan = abjad.AnnotatedTimespan(
-            ...    annotation=['a', 'b', 'c'],
-            ...    start_offset=(1, 4),
-            ...    stop_offset=(7, 8),
-            ...    )
-            >>> f(annotated_timespan)
-            abjad.AnnotatedTimespan(
-                start_offset=abjad.Offset(1, 4),
-                stop_offset=abjad.Offset(7, 8),
-                annotation=['a', 'b', 'c'],
-                )
+        >>> annotated_timespan = abjad.AnnotatedTimespan(
+        ...    annotation=['a', 'b', 'c'],
+        ...    start_offset=(1, 4),
+        ...    stop_offset=(7, 8),
+        ...    )
+        >>> abjad.f(annotated_timespan)
+        abjad.AnnotatedTimespan(
+            start_offset=abjad.Offset(1, 4),
+            stop_offset=abjad.Offset(7, 8),
+            annotation=['a', 'b', 'c'],
+            )
 
     Annotated timespans maintain their annotations duration mutation:
 
     ..  container:: example
 
-        ::
-
-            >>> left, right = annotated_timespan.split_at_offset((1, 2))
-            >>> left.annotation.append('foo')
-            >>> f(right)
-            abjad.AnnotatedTimespan(
-                start_offset=abjad.Offset(1, 2),
-                stop_offset=abjad.Offset(7, 8),
-                annotation=['a', 'b', 'c', 'foo'],
-                )
+        >>> left, right = annotated_timespan.split_at_offset((1, 2))
+        >>> left.annotation.append('foo')
+        >>> abjad.f(right)
+        abjad.AnnotatedTimespan(
+            start_offset=abjad.Offset(1, 2),
+            stop_offset=abjad.Offset(7, 8),
+            annotation=['a', 'b', 'c', 'foo'],
+            )
 
     '''
 
@@ -70,23 +66,19 @@ class AnnotatedTimespan(Timespan):
 
             Gets annotation:
 
-            ::
-
-                >>> annotated_timespan = abjad.AnnotatedTimespan(
-                ...    annotation=['a', 'b', 'c', 'foo'],
-                ...    start_offset=(1, 4),
-                ...    stop_offset=(7, 8),
-                ...    )
-                >>> annotated_timespan.annotation
-                ['a', 'b', 'c', 'foo']
+            >>> annotated_timespan = abjad.AnnotatedTimespan(
+            ...    annotation=['a', 'b', 'c', 'foo'],
+            ...    start_offset=(1, 4),
+            ...    stop_offset=(7, 8),
+            ...    )
+            >>> annotated_timespan.annotation
+            ['a', 'b', 'c', 'foo']
 
         ..  container:: example
 
             Sets annotation:
 
-            ::
-
-                >>> annotated_timespan.annotation = 'baz'
+            >>> annotated_timespan.annotation = 'baz'
 
         Returns arbitrary object.
         '''

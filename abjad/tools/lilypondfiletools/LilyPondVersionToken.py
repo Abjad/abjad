@@ -6,10 +6,8 @@ class LilyPondVersionToken(AbjadObject):
 
     ..  container:: example
 
-        ::
-
-            >>> abjad.LilyPondVersionToken() # doctest: +SKIP
-            LilyPondVersionToken('2.19.0')
+        >>> abjad.LilyPondVersionToken() # doctest: +SKIP
+        LilyPondVersionToken('2.19.0')
 
     '''
 
@@ -76,25 +74,21 @@ class LilyPondVersionToken(AbjadObject):
 
             Gets version string from install environment:
 
-            ::
-
-                >>> token = abjad.LilyPondVersionToken(
-                ...     version_string=None,
-                ...     )
-                >>> token.version_string # doctest: +SKIP
-                '2.19.0'
+            >>> token = abjad.LilyPondVersionToken(
+            ...     version_string=None,
+            ...     )
+            >>> token.version_string # doctest: +SKIP
+            '2.19.0'
 
         ..  container:: example
 
             Gets version string from explicit input:
 
-            ::
-
-                >>> token = abjad.LilyPondVersionToken(
-                ...     version_string='2.19.0',
-                ...     )
-                >>> token.version_string
-                '2.19.0'
+            >>> token = abjad.LilyPondVersionToken(
+            ...     version_string='2.19.0',
+            ...     )
+            >>> token.version_string
+            '2.19.0'
 
         Returns string.
         '''

@@ -12,86 +12,58 @@ class Expression(AbjadValueObject):
 
         Makes identity expression:
 
-        ::
+        >>> expression = abjad.Expression()
 
-            >>> expression = abjad.Expression()
+        >>> expression() is None
+        True
 
-        ::
+        >>> expression(99)
+        99
 
-            >>> expression() is None
-            True
-
-        ::
-
-            >>> expression(99)
-            99
-
-        ::
-
-            >>> expression([99, 99.25])
-            [99, 99.25]
+        >>> expression([99, 99.25])
+        [99, 99.25]
 
     ..  container:: example expression
 
         Makes integer initialization expression:
 
-        ::
+        >>> expression = abjad.Expression(evaluation_template='int({})')
 
-            >>> expression = abjad.Expression(evaluation_template='int({})')
+        >>> expression()
+        0
 
-        ::
+        >>> expression(99)
+        99
 
-            >>> expression()
-            0
-
-        ::
-
-            >>> expression(99)
-            99
-
-        ::
-
-            >>> expression(99.25)
-            99
+        >>> expression(99.25)
+        99
 
     ..  container:: example expression
 
         Makes binary integer initialization expression:
 
-        ::
+        >>> expression = abjad.Expression(evaluation_template='int({}, base=2)')
 
-            >>> expression = abjad.Expression(evaluation_template='int({}, base=2)')
+        >>> expression('1')
+        1
 
-        ::
+        >>> expression('11')
+        3
 
-            >>> expression('1')
-            1
-
-        ::
-
-            >>> expression('11')
-            3
-
-        ::
-
-            >>> expression('111')
-            7
+        >>> expression('111')
+        7
 
     ..  container:: example expression
 
         Makes three-integer addition expression:
 
-        ::
+        >>> expression = abjad.Expression(
+        ...     argument_count=3,
+        ...     evaluation_template='{} + {} + {}',
+        ...     )
 
-            >>> expression = abjad.Expression(
-            ...     argument_count=3,
-            ...     evaluation_template='{} + {} + {}',
-            ...     )
-
-        ::
-
-            >>> expression(1, 2, 3)
-            6
+        >>> expression(1, 2, 3)
+        6
 
     '''
 
@@ -238,41 +210,37 @@ class Expression(AbjadValueObject):
 
             Adds expressions:
 
-            ::
-
-                >>> expression_1 = abjad.Expression(
-                ...     argument_count=3,
-                ...     evaluation_template='{} + {} + {}',
-                ...     )
-                >>> expression_2 = abjad.Expression(
-                ...     argument_count=2,
-                ...     evaluation_template='{} + {}',
-                ...     )
-                >>> expression = expression_1 + expression_2
-                >>> f(expression)
-                abjad.Expression(
-                    argument_count=2,
-                    evaluation_template='{}.__add__({})',
-                    is_composite=True,
-                    markup_maker_callback='_make_add_expression_markup',
-                    qualified_method_name='abjad.Expression.__add__',
-                    string_template='{} + {}',
-                    subexpressions=(
-                        abjad.Expression(
-                            argument_count=3,
-                            evaluation_template='{} + {} + {}',
-                            ),
-                        abjad.Expression(
-                            argument_count=2,
-                            evaluation_template='{} + {}',
-                            ),
+            >>> expression_1 = abjad.Expression(
+            ...     argument_count=3,
+            ...     evaluation_template='{} + {} + {}',
+            ...     )
+            >>> expression_2 = abjad.Expression(
+            ...     argument_count=2,
+            ...     evaluation_template='{} + {}',
+            ...     )
+            >>> expression = expression_1 + expression_2
+            >>> abjad.f(expression)
+            abjad.Expression(
+                argument_count=2,
+                evaluation_template='{}.__add__({})',
+                is_composite=True,
+                markup_maker_callback='_make_add_expression_markup',
+                qualified_method_name='abjad.Expression.__add__',
+                string_template='{} + {}',
+                subexpressions=(
+                    abjad.Expression(
+                        argument_count=3,
+                        evaluation_template='{} + {} + {}',
                         ),
-                    )
+                    abjad.Expression(
+                        argument_count=2,
+                        evaluation_template='{} + {}',
+                        ),
+                    ),
+                )
 
-            ::
-
-                >>> expression(1, 2, 3, 4, 5)
-                15
+            >>> expression(1, 2, 3, 4, 5)
+            15
 
         '''
         if not isinstance(i, Expression):
@@ -305,14 +273,10 @@ class Expression(AbjadValueObject):
 
             Calls identity expression:
 
-            ::
+            >>> expression = abjad.Expression()
 
-                >>> expression = abjad.Expression()
-
-            ::
-
-                >>> expression() is None
-                True
+            >>> expression() is None
+            True
 
         Returns ouput of last callback.
         '''
@@ -376,34 +340,26 @@ class Expression(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> expression_1 = abjad.Expression().sequence()
+            >>> expression_2 = abjad.Expression().sequence()
+            >>> expression_1 == expression_2
+            True
 
-                >>> expression_1 = abjad.Expression().sequence()
-                >>> expression_2 = abjad.Expression().sequence()
-                >>> expression_1 == expression_2
-                True
-
-            ::
-
-                >>> expression_1 = abjad.Expression().sequence()
-                >>> expression_2 = abjad.new(expression_1)
-                >>> expression_1 == expression_2
-                True
+            >>> expression_1 = abjad.Expression().sequence()
+            >>> expression_2 = abjad.new(expression_1)
+            >>> expression_1 == expression_2
+            True
 
         ..  container:: example
 
-            ::
+            >>> expression_1 = abjad.Expression().sequence()
+            >>> expression_2 = abjad.Expression().sequence().reverse()
+            >>> expression_1 == expression_2
+            False
 
-                >>> expression_1 = abjad.Expression().sequence()
-                >>> expression_2 = abjad.Expression().sequence().reverse()
-                >>> expression_1 == expression_2
-                False
-
-            ::
-
-                >>> expression_1 = abjad.Expression().sequence()
-                >>> expression_1 == 'text'
-                False
+            >>> expression_1 = abjad.Expression().sequence()
+            >>> expression_1 == 'text'
+            False
 
         Returns true or false.
         '''
@@ -416,14 +372,10 @@ class Expression(AbjadValueObject):
 
             Formats identity expression:
 
-            ::
+            >>> expression = abjad.Expression()
 
-                >>> expression = abjad.Expression()
-
-            ::
-
-                >>> f(expression)
-                abjad.Expression()
+            >>> abjad.f(expression)
+            abjad.Expression()
 
         Returns string.
         '''
@@ -492,14 +444,10 @@ class Expression(AbjadValueObject):
 
             Gets interpreter representation of identity expression:
 
-            ::
+            >>> expression = abjad.Expression()
 
-                >>> expression = abjad.Expression()
-
-            ::
-
-                >>> expression
-                Expression()
+            >>> expression
+            Expression()
 
         Returns string.
         '''
@@ -518,14 +466,10 @@ class Expression(AbjadValueObject):
 
             Gets string representation of identity expression:
 
-            ::
+            >>> expression = abjad.Expression()
 
-                >>> expression = abjad.Expression()
-
-            ::
-
-                >>> str(expression)
-                'Expression()'
+            >>> str(expression)
+            'Expression()'
 
         Returns string.
         '''
@@ -1376,11 +1320,9 @@ class Expression(AbjadValueObject):
 
             Defaults to none:
 
-            ::
-
-                >>> expression = abjad.Expression()
-                >>> expression.callbacks is None
-                True
+            >>> expression = abjad.Expression()
+            >>> expression.callbacks is None
+            True
 
         Set to callbacks or none.
         '''
@@ -1528,17 +1470,13 @@ class Expression(AbjadValueObject):
 
             Preserves name after initializer callback:
 
-            ::
+            >>> expression = abjad.Expression(name='J')
+            >>> expression.name
+            'J'
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression.name
-                'J'
-
-            ::
-
-                >>> expression = expression.sequence()
-                >>> expression.name
-                'J'
+            >>> expression = expression.sequence()
+            >>> expression.name
+            'J'
 
         Defaults to none.
 
@@ -1647,29 +1585,22 @@ class Expression(AbjadValueObject):
 
         ..  container:: example expression
 
-            ::
+            >>> expression = abjad.Expression()
+            >>> expression.callbacks is None
+            True
 
-                >>> expression = abjad.Expression()
-                >>> expression.callbacks is None
-                True
+            >>> callback = abjad.Expression(evaluation_template='int({})')
+            >>> expression = expression.append_callback(callback)
+            >>> for callback in expression.callbacks:
+            ...     callback
+            Expression(evaluation_template='int({})')
 
-            ::
-
-
-                >>> callback = abjad.Expression(evaluation_template='int({})')
-                >>> expression = expression.append_callback(callback)
-                >>> for callback in expression.callbacks:
-                ...     callback
-                Expression(evaluation_template='int({})')
-
-            ::
-
-                >>> callback = abjad.Expression(evaluation_template='{}**2')
-                >>> expression = expression.append_callback(callback)
-                >>> for expression in expression.callbacks:
-                ...     expression
-                Expression(evaluation_template='int({})')
-                Expression(evaluation_template='{}**2')
+            >>> callback = abjad.Expression(evaluation_template='{}**2')
+            >>> expression = expression.append_callback(callback)
+            >>> for expression in expression.callbacks:
+            ...     expression
+            Expression(evaluation_template='int({})')
+            Expression(evaluation_template='{}**2')
 
         Returns new expression.
         '''
@@ -1700,32 +1631,24 @@ class Expression(AbjadValueObject):
 
         ..  container:: example expression
 
-            ::
+            >>> expression = abjad.Expression(name='J')
+            >>> expression = expression.pitch_class_segment()
+            >>> expression = expression.rotate(n=1)
+            >>> expression = expression.rotate(n=2)
+            >>> expression = expression.establish_equivalence(name='Q')
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.pitch_class_segment()
-                >>> expression = expression.rotate(n=1)
-                >>> expression = expression.rotate(n=2)
-                >>> expression = expression.establish_equivalence(name='Q')
+            >>> expression([-2, -1.5, 6, 7, -1.5, 7])
+            PitchClassSegment([7, 10.5, 7, 10, 10.5, 6])
 
-            ::
+            >>> expression.get_string()
+            'Q = r2(r1(J))'
 
-                >>> expression([-2, -1.5, 6, 7, -1.5, 7])
-                PitchClassSegment([7, 10.5, 7, 10, 10.5, 6])
-
-            ::
-
-                >>> expression.get_string()
-                'Q = r2(r1(J))'
-
-            ::
-
-                >>> markup = expression.get_markup()
-                >>> show(markup) # doctest: +SKIP
+            >>> markup = expression.get_markup()
+            >>> abjad.show(markup) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(markup)
+                >>> abjad.f(markup)
                 \markup {
                     \line
                         {
@@ -1817,49 +1740,35 @@ class Expression(AbjadValueObject):
 
                 Without name:
 
-                ::
+                >>> expression = abjad.sequence()
+                >>> expression = expression.reverse()
+                >>> expression = expression.rotate(n=2)
 
-                    >>> expression = abjad.sequence()
-                    >>> expression = expression.reverse()
-                    >>> expression = expression.rotate(n=2)
+                >>> expression([1, 2, 3, 4, 5, 6])
+                Sequence([2, 1, 6, 5, 4, 3])
 
-                ::
-
-                    >>> expression([1, 2, 3, 4, 5, 6])
-                    Sequence([2, 1, 6, 5, 4, 3])
-
-                ::
-
-                    >>> abjad.Expression.get_string(expression, name='J')
-                    'r2(R(J))'
+                >>> abjad.Expression.get_string(expression, name='J')
+                'r2(R(J))'
 
             ..  container:: example expression
 
                 With name:
 
-                ::
+                >>> expression = abjad.Expression(name='J')
+                >>> expression = expression.sequence()
+                >>> expression = expression.reverse()
+                >>> expression = expression.rotate(n=2)
 
-                    >>> expression = abjad.Expression(name='J')
-                    >>> expression = expression.sequence()
-                    >>> expression = expression.reverse()
-                    >>> expression = expression.rotate(n=2)
+                >>> expression([1, 2, 3, 4, 5, 6])
+                Sequence([2, 1, 6, 5, 4, 3])
 
-                ::
-
-                    >>> expression([1, 2, 3, 4, 5, 6])
-                    Sequence([2, 1, 6, 5, 4, 3])
-
-                ::
-
-                    >>> abjad.Expression.get_string(expression)
-                    'r2(R(J))'
+                >>> abjad.Expression.get_string(expression)
+                'r2(R(J))'
 
                 Overrides name:
 
-                ::
-
-                    >>> abjad.Expression.get_string(expression, name='K')
-                    'r2(R(K))'
+                >>> abjad.Expression.get_string(expression, name='K')
+                'r2(R(K))'
 
         ..  container:: example
 
@@ -1869,50 +1778,36 @@ class Expression(AbjadValueObject):
 
                 Without name:
 
-                ::
+                >>> expression = abjad.Expression()
+                >>> expression = expression.pitch_class_segment()
+                >>> expression = expression.invert()
+                >>> expression = expression.rotate(n=2)
 
-                    >>> expression = abjad.Expression()
-                    >>> expression = expression.pitch_class_segment()
-                    >>> expression = expression.invert()
-                    >>> expression = expression.rotate(n=2)
+                >>> expression([-2, -1.5, 6, 7, -1.5, 7])
+                PitchClassSegment([1.5, 5, 2, 1.5, 6, 5])
 
-                ::
-
-                    >>> expression([-2, -1.5, 6, 7, -1.5, 7])
-                    PitchClassSegment([1.5, 5, 2, 1.5, 6, 5])
-
-                ::
-
-                    >>> abjad.Expression.get_string(expression, name='J')
-                    'r2(I(J))'
+                >>> abjad.Expression.get_string(expression, name='J')
+                'r2(I(J))'
 
             ..  container:: example expression
 
                 With name:
 
-                ::
+                >>> expression = abjad.Expression(name='J')
+                >>> expression = expression.pitch_class_segment()
+                >>> expression = expression.invert()
+                >>> expression = expression.rotate(n=2)
 
-                    >>> expression = abjad.Expression(name='J')
-                    >>> expression = expression.pitch_class_segment()
-                    >>> expression = expression.invert()
-                    >>> expression = expression.rotate(n=2)
+                >>> expression([-2, -1.5, 6, 7, -1.5, 7])
+                PitchClassSegment([1.5, 5, 2, 1.5, 6, 5])
 
-                ::
-
-                    >>> expression([-2, -1.5, 6, 7, -1.5, 7])
-                    PitchClassSegment([1.5, 5, 2, 1.5, 6, 5])
-
-                ::
-
-                    >>> abjad.Expression.get_string(expression)
-                    'r2(I(J))'
+                >>> abjad.Expression.get_string(expression)
+                'r2(I(J))'
 
                 Overrides name:
 
-                ::
-
-                    >>> abjad.Expression.get_string(expression, name='K')
-                    'r2(I(K))'
+                >>> abjad.Expression.get_string(expression, name='K')
+                'r2(I(K))'
 
         Returns string or none.
         '''
@@ -1961,26 +1856,20 @@ class Expression(AbjadValueObject):
 
             ..  container:: example
 
-                ::
-
-                    >>> staff = abjad.Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
+                >>> staff = abjad.Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
 
             ..  container:: example expression
 
-                ::
+                >>> expression = abjad.Expression()
+                >>> expression = expression.label()
+                >>> expression = expression.with_durations()
 
-                    >>> expression = abjad.Expression()
-                    >>> expression = expression.label()
-                    >>> expression = expression.with_durations()
-
-                ::
-
-                    >>> expression(staff)
-                    >>> show(staff) # doctest: +SKIP
+                >>> expression(staff)
+                >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
 
-                    >>> f(staff)
+                    >>> abjad.f(staff)
                     \new Staff {
                         c'4.
                             ^ \markup {
@@ -2058,42 +1947,32 @@ class Expression(AbjadValueObject):
 
             Makes expression to transpose pitch-class segment:
 
-            ::
+            >>> items = [-2, -1.5, 6, 7, -1.5, 7]
+            >>> J = abjad.PitchClassSegment(items=items)
+            >>> J
+            PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
 
-                >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> J = abjad.PitchClassSegment(items=items)
-                >>> J
-                PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
-
-            ::
-
-                >>> show(J) # doctest: +SKIP
+            >>> abjad.show(J) # doctest: +SKIP
 
             ..  container:: example expression
 
-                ::
+                >>> expression = abjad.Expression(name='J')
+                >>> expression = expression.pitch_class_segment()
+                >>> expression = expression.transpose(n=13)
 
-                    >>> expression = abjad.Expression(name='J')
-                    >>> expression = expression.pitch_class_segment()
-                    >>> expression = expression.transpose(n=13)
+                >>> expression([-2, -1.5, 6, 7, -1.5, 7])
+                PitchClassSegment([11, 11.5, 7, 8, 11.5, 8])
 
-                ::
-
-                    >>> expression([-2, -1.5, 6, 7, -1.5, 7])
-                    PitchClassSegment([11, 11.5, 7, 8, 11.5, 8])
-
-                ::
-
-                    >>> segment = expression([-2, -1.5, 6, 7, -1.5, 7])
-                    >>> markup = expression.get_markup()
-                    >>> show(segment, figure_name=markup) # doctest: +SKIP
+                >>> segment = expression([-2, -1.5, 6, 7, -1.5, 7])
+                >>> markup = expression.get_markup()
+                >>> abjad.show(segment, figure_name=markup) # doctest: +SKIP
 
                 ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
                     ...     )
-                    >>> f(lilypond_file[abjad.Voice])
+                    >>> abjad.f(lilypond_file[abjad.Voice])
                     \new Voice {
                         b'8
                             ^ \markup {
@@ -2163,17 +2042,15 @@ class Expression(AbjadValueObject):
 
             ..  container:: example
 
-                ::
-
-                    >>> staff = abjad.Staff()
-                    >>> staff.append(abjad.Measure((2, 8), "<c' bf'>8 <g' a'>8"))
-                    >>> staff.append(abjad.Measure((2, 8), "af'8 r8"))
-                    >>> staff.append(abjad.Measure((2, 8), "r8 gf'8"))
-                    >>> show(staff) # doctest: +SKIP
+                >>> staff = abjad.Staff()
+                >>> staff.append(abjad.Measure((2, 8), "<c' bf'>8 <g' a'>8"))
+                >>> staff.append(abjad.Measure((2, 8), "af'8 r8"))
+                >>> staff.append(abjad.Measure((2, 8), "r8 gf'8"))
+                >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
 
-                    >>> f(staff)
+                    >>> abjad.f(staff)
                     \new Staff {
                         {
                             \time 2/8
@@ -2192,23 +2069,19 @@ class Expression(AbjadValueObject):
 
             ..  container:: example expression
 
-                ::
+                >>> expression = abjad.Expression()
+                >>> expression = expression.select()
+                >>> expression = expression.leaves()
 
-                    >>> expression = abjad.Expression()
-                    >>> expression = expression.select()
-                    >>> expression = expression.leaves()
-
-                ::
-
-                    >>> for leaf in expression(staff):
-                    ...     leaf
-                    ...
-                    Chord("<c' bf'>8")
-                    Chord("<g' a'>8")
-                    Note("af'8")
-                    Rest('r8')
-                    Rest('r8')
-                    Note("gf'8")
+                >>> for leaf in expression(staff):
+                ...     leaf
+                ...
+                Chord("<c' bf'>8")
+                Chord("<g' a'>8")
+                Note("af'8")
+                Rest('r8')
+                Rest('r8')
+                Note("gf'8")
 
         Returns expression.
         '''
@@ -2229,16 +2102,12 @@ class Expression(AbjadValueObject):
 
             Makes expression to initialize, flatten and reverse sequence:
 
-            ::
+            >>> expression = abjad.sequence()
+            >>> expression = expression.reverse()
+            >>> expression = expression.flatten()
 
-                >>> expression = abjad.sequence()
-                >>> expression = expression.reverse()
-                >>> expression = expression.flatten()
-
-            ::
-
-                >>> expression([1, 2, 3, [4, 5, [6]]])
-                Sequence([4, 5, 6, 3, 2, 1])
+            >>> expression([1, 2, 3, [4, 5, [6]]])
+            Sequence([4, 5, 6, 3, 2, 1])
 
         Returns expression.
         '''
@@ -2257,26 +2126,20 @@ class Expression(AbjadValueObject):
 
         ..  container:: example expression
 
-            ::
+            >>> expression = abjad.Expression()
+            >>> expression = expression.wrap_in_list()
 
-                >>> expression = abjad.Expression()
-                >>> expression = expression.wrap_in_list()
+            >>> expression(abjad.Markup('Allegro assai'))
+            [Markup(contents=['Allegro assai'])]
 
-            ::
-
-                >>> expression(abjad.Markup('Allegro assai'))
-                [Markup(contents=['Allegro assai'])]
-
-            ::
-
-                >>> f(expression)
-                abjad.Expression(
-                    callbacks=[
-                        abjad.Expression(
-                            evaluation_template='[{}]',
-                            ),
-                        ],
-                    )
+            >>> abjad.f(expression)
+            abjad.Expression(
+                callbacks=[
+                    abjad.Expression(
+                        evaluation_template='[{}]',
+                        ),
+                    ],
+                )
 
         Returns expression.
         '''

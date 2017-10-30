@@ -6,16 +6,14 @@ class AltoSaxophone(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> alto_saxophone = abjad.AltoSaxophone()
-            >>> abjad.attach(alto_saxophone, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+        >>> alto_saxophone = abjad.AltoSaxophone()
+        >>> abjad.attach(alto_saxophone, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { "Alto saxophone" }
                 \set Staff.shortInstrumentName = \markup { "Alt. sax." }
@@ -67,24 +65,22 @@ class AltoSaxophone(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> alto_sax = abjad.AltoSaxophone()
-                >>> f(alto_sax)
-                abjad.AltoSaxophone(
-                    name='alto saxophone',
-                    short_name='alt. sax.',
-                    name_markup=abjad.Markup(
-                        contents=['Alto saxophone'],
-                        ),
-                    short_name_markup=abjad.Markup(
-                        contents=['Alt. sax.'],
-                        ),
-                    allowable_clefs=('treble',),
-                    default_scope='Staff',
-                    middle_c_sounding_pitch=abjad.NamedPitch('ef'),
-                    pitch_range=abjad.PitchRange('[Db3, A5]'),
-                    )
+            >>> alto_sax = abjad.AltoSaxophone()
+            >>> abjad.f(alto_sax)
+            abjad.AltoSaxophone(
+                name='alto saxophone',
+                short_name='alt. sax.',
+                name_markup=abjad.Markup(
+                    contents=['Alto saxophone'],
+                    ),
+                short_name_markup=abjad.Markup(
+                    contents=['Alt. sax.'],
+                    ),
+                allowable_clefs=('treble',),
+                default_scope='Staff',
+                middle_c_sounding_pitch=abjad.NamedPitch('ef'),
+                pitch_range=abjad.PitchRange('[Db3, A5]'),
+                )
 
         Returns string.
         '''
@@ -99,11 +95,9 @@ class AltoSaxophone(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> alto_saxophone = abjad.AltoSaxophone()
-                >>> alto_saxophone.allowable_clefs
-                ('treble',)
+            >>> alto_saxophone = abjad.AltoSaxophone()
+            >>> alto_saxophone.allowable_clefs
+            ('treble',)
 
         Returns clef list.
         '''
@@ -115,15 +109,11 @@ class AltoSaxophone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> alto_saxophone = abjad.AltoSaxophone()
+            >>> alto_saxophone.middle_c_sounding_pitch
+            NamedPitch('ef')
 
-                >>> alto_saxophone = abjad.AltoSaxophone()
-                >>> alto_saxophone.middle_c_sounding_pitch
-                NamedPitch('ef')
-
-            ::
-
-                >>> show(alto_saxophone.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(alto_saxophone.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -135,11 +125,9 @@ class AltoSaxophone(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> alto_saxophone = abjad.AltoSaxophone()
-                >>> alto_saxophone.name
-                'alto saxophone'
+            >>> alto_saxophone = abjad.AltoSaxophone()
+            >>> alto_saxophone.name
+            'alto saxophone'
 
         Returns string.
         '''
@@ -151,15 +139,11 @@ class AltoSaxophone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> alto_saxophone = abjad.AltoSaxophone()
+            >>> alto_saxophone.name_markup
+            Markup(contents=['Alto saxophone'])
 
-                >>> alto_saxophone = abjad.AltoSaxophone()
-                >>> alto_saxophone.name_markup
-                Markup(contents=['Alto saxophone'])
-
-            ::
-
-                >>> show(alto_saxophone.name_markup) # doctest: +SKIP
+            >>> abjad.show(alto_saxophone.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -171,15 +155,11 @@ class AltoSaxophone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> alto_saxophone = abjad.AltoSaxophone()
+            >>> alto_saxophone.pitch_range
+            PitchRange('[Db3, A5]')
 
-                >>> alto_saxophone = abjad.AltoSaxophone()
-                >>> alto_saxophone.pitch_range
-                PitchRange('[Db3, A5]')
-
-            ::
-
-                >>> show(alto_saxophone.pitch_range) # doctest: +SKIP
+            >>> abjad.show(alto_saxophone.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -191,11 +171,9 @@ class AltoSaxophone(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> alto_saxophone = abjad.AltoSaxophone()
-                >>> alto_saxophone.short_name
-                'alt. sax.'
+            >>> alto_saxophone = abjad.AltoSaxophone()
+            >>> alto_saxophone.short_name
+            'alt. sax.'
 
         Returns string.
         '''
@@ -207,15 +185,11 @@ class AltoSaxophone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> alto_saxophone = abjad.AltoSaxophone()
+            >>> alto_saxophone.short_name_markup
+            Markup(contents=['Alt. sax.'])
 
-                >>> alto_saxophone = abjad.AltoSaxophone()
-                >>> alto_saxophone.short_name_markup
-                Markup(contents=['Alt. sax.'])
-
-            ::
-
-                >>> show(alto_saxophone.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(alto_saxophone.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

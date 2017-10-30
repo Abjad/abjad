@@ -4,15 +4,11 @@ def all_are_nonnegative_integers(argument):
 
     ..  container:: example
 
-        ::
+        >>> abjad.mathtools.all_are_nonnegative_integers([0, 1, 2, 99])
+        True
 
-            >>> abjad.mathtools.all_are_nonnegative_integers([0, 1, 2, 99])
-            True
-
-        ::
-
-            >>> abjad.mathtools.all_are_nonnegative_integers([0, 1, 2, -99])
-            False
+        >>> abjad.mathtools.all_are_nonnegative_integers([0, 1, 2, -99])
+        False
 
     Returns true or false.
     '''

@@ -6,20 +6,14 @@ def is_positive_integer(argument):
 
     ..  container:: example
 
-        ::
+        >>> abjad.mathtools.is_positive_integer(99)
+        True
 
-            >>> abjad.mathtools.is_positive_integer(99)
-            True
+        >>> abjad.mathtools.is_positive_integer(0)
+        False
 
-        ::
-
-            >>> abjad.mathtools.is_positive_integer(0)
-            False
-
-        ::
-
-            >>> abjad.mathtools.is_positive_integer(-1)
-            False
+        >>> abjad.mathtools.is_positive_integer(-1)
+        False
 
     Returns true or false.
     '''

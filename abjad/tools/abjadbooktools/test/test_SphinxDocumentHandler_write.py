@@ -62,7 +62,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             :hide:
             :no-stylesheet:
 
-            show(Staff("c'4 d'4 e'4 f'4"))
+            abjad.show(Staff("c'4 d'4 e'4 f'4"))
         '''
         source = abjad.String.normalize(source)
         handler = abjadbooktools.SphinxDocumentHandler()
@@ -97,7 +97,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             :no-stylesheet:
             :no-trim:
 
-            show(Staff("c'4 d'4 e'4 f'4"))
+            abjad.show(Staff("c'4 d'4 e'4 f'4"))
         '''
         source = abjad.String.normalize(source)
         handler = abjadbooktools.SphinxDocumentHandler()
@@ -133,7 +133,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             :no-stylesheet:
             :no-trim:
 
-            show(Staff("c'4 d'4 e'4 f'4"))
+            abjad.show(Staff("c'4 d'4 e'4 f'4"))
         '''
         source = abjad.String.normalize(source)
         handler = abjadbooktools.SphinxDocumentHandler()
@@ -170,7 +170,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             :no-trim:
             :with-thumbnail:
 
-            show(Staff("c'4 d'4 e'4 f'4"))
+            abjad.show(Staff("c'4 d'4 e'4 f'4"))
         '''
         source = abjad.String.normalize(source)
         handler = abjadbooktools.SphinxDocumentHandler()
@@ -208,7 +208,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             :stylesheet: non-proportional.ly
             :no-trim:
 
-            show(Staff("c'4 d'4 e'4 f'4"))
+            abjad.show(Staff("c'4 d'4 e'4 f'4"))
         '''
         source = abjad.String.normalize(source)
         handler = abjadbooktools.SphinxDocumentHandler()
@@ -251,7 +251,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             for note in staff[:-1]:
                 attach(indicatortools.PageBreak(), note)
 
-            show(staff)
+            abjad.show(staff)
         '''
         source = abjad.String.normalize(source)
         handler = abjadbooktools.SphinxDocumentHandler()
@@ -306,7 +306,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             for note in staff[:-1]:
                 attach(indicatortools.PageBreak(), note)
 
-            show(staff)
+            abjad.show(staff)
         '''
         source = abjad.String.normalize(source)
         handler = abjadbooktools.SphinxDocumentHandler()
@@ -356,7 +356,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             for note in staff[:-1]:
                 attach(indicatortools.PageBreak(), note)
 
-            show(staff)
+            abjad.show(staff)
         '''
         source = abjad.String.normalize(source)
         handler = abjadbooktools.SphinxDocumentHandler()
@@ -411,7 +411,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             for note in staff[:-1]:
                 attach(indicatortools.PageBreak(), note)
 
-            show(staff)
+            abjad.show(staff)
         '''
         source = abjad.String.normalize(source)
         handler = abjadbooktools.SphinxDocumentHandler()
@@ -465,7 +465,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             for note in staff[:-1]:
                 attach(indicatortools.PageBreak(), note)
 
-            show(staff)
+            abjad.show(staff)
         '''
         source = abjad.String.normalize(source)
         handler = abjadbooktools.SphinxDocumentHandler()
@@ -527,7 +527,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             for note in staff[:-1]:
                 attach(indicatortools.PageBreak(), note)
 
-            show(staff)
+            abjad.show(staff)
         '''
         source = abjad.String.normalize(source)
         handler = abjadbooktools.SphinxDocumentHandler()

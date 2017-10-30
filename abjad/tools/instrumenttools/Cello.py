@@ -7,18 +7,16 @@ class Cello(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> clef = abjad.Clef('bass')
-            >>> abjad.attach(clef, staff[0])
-            >>> cello = abjad.Cello()
-            >>> abjad.attach(cello, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+        >>> clef = abjad.Clef('bass')
+        >>> abjad.attach(clef, staff[0])
+        >>> cello = abjad.Cello()
+        >>> abjad.attach(cello, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { Cello }
                 \set Staff.shortInstrumentName = \markup { Vc. }
@@ -74,11 +72,9 @@ class Cello(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> cello = abjad.Cello()
-                >>> cello.allowable_clefs
-                ('bass', 'tenor', 'treble')
+            >>> cello = abjad.Cello()
+            >>> cello.allowable_clefs
+            ('bass', 'tenor', 'treble')
 
         Returns clef list.
         '''
@@ -90,11 +86,9 @@ class Cello(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> cello = abjad.Cello()
-                >>> cello.default_tuning
-                Tuning(pitches=PitchSegment(['c,', 'g,', 'd', 'a']))
+            >>> cello = abjad.Cello()
+            >>> cello.default_tuning
+            Tuning(pitches=PitchSegment(['c,', 'g,', 'd', 'a']))
 
         Returns tuning.
         '''
@@ -106,15 +100,11 @@ class Cello(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> cello = abjad.Cello()
+            >>> cello.middle_c_sounding_pitch
+            NamedPitch("c'")
 
-                >>> cello = abjad.Cello()
-                >>> cello.middle_c_sounding_pitch
-                NamedPitch("c'")
-
-            ::
-
-                >>> show(cello.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(cello.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -126,11 +116,9 @@ class Cello(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> cello = abjad.Cello()
-                >>> cello.name
-                'cello'
+            >>> cello = abjad.Cello()
+            >>> cello.name
+            'cello'
 
         Returns string.
         '''
@@ -142,15 +130,11 @@ class Cello(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> cello = abjad.Cello()
+            >>> cello.name_markup
+            Markup(contents=['Cello'])
 
-                >>> cello = abjad.Cello()
-                >>> cello.name_markup
-                Markup(contents=['Cello'])
-
-            ::
-
-                >>> show(cello.name_markup) # doctest: +SKIP
+            >>> abjad.show(cello.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -162,15 +146,11 @@ class Cello(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> cello = abjad.Cello()
+            >>> cello.pitch_range
+            PitchRange('[C2, G5]')
 
-                >>> cello = abjad.Cello()
-                >>> cello.pitch_range
-                PitchRange('[C2, G5]')
-
-            ::
-
-                >>> show(cello.pitch_range) # doctest: +SKIP
+            >>> abjad.show(cello.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -182,11 +162,9 @@ class Cello(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> cello = abjad.Cello()
-                >>> cello.short_name
-                'vc.'
+            >>> cello = abjad.Cello()
+            >>> cello.short_name
+            'vc.'
 
         Returns string.
         '''
@@ -198,15 +176,11 @@ class Cello(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> cello = abjad.Cello()
+            >>> cello.short_name_markup
+            Markup(contents=['Vc.'])
 
-                >>> cello = abjad.Cello()
-                >>> cello.short_name_markup
-                Markup(contents=['Vc.'])
-
-            ::
-
-                >>> show(cello.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(cello.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

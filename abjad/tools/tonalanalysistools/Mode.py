@@ -10,20 +10,16 @@ class Mode(AbjadValueObject):
 
         Initializes from string:
 
-        ::
-
-            >>> abjad.tonalanalysistools.Mode('major')
-            Mode('major')
+        >>> abjad.tonalanalysistools.Mode('major')
+        Mode('major')
 
     ..  container:: example
 
         Initializes from other mode:
 
-        ::
-
-            >>> mode = abjad.tonalanalysistools.Mode('dorian')
-            >>> abjad.tonalanalysistools.Mode(mode)
-            Mode('dorian')
+        >>> mode = abjad.tonalanalysistools.Mode('dorian')
+        >>> abjad.tonalanalysistools.Mode(mode)
+        Mode('dorian')
 
     '''
 
@@ -57,39 +53,30 @@ class Mode(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> mode_1 = abjad.tonalanalysistools.Mode('major')
+            >>> mode_2 = abjad.tonalanalysistools.Mode('major')
+            >>> mode_3 = abjad.tonalanalysistools.Mode('dorian')
 
-                >>> mode_1 = abjad.tonalanalysistools.Mode('major')
-                >>> mode_2 = abjad.tonalanalysistools.Mode('major')
-                >>> mode_3 = abjad.tonalanalysistools.Mode('dorian')
+            >>> mode_1 == mode_1
+            True
+            >>> mode_1 == mode_2
+            True
+            >>> mode_1 == mode_3
+            False
 
-            ::
+            >>> mode_2 == mode_1
+            True
+            >>> mode_2 == mode_2
+            True
+            >>> mode_2 == mode_3
+            False
 
-                >>> mode_1 == mode_1
-                True
-                >>> mode_1 == mode_2
-                True
-                >>> mode_1 == mode_3
-                False
-
-            ::
-
-                >>> mode_2 == mode_1
-                True
-                >>> mode_2 == mode_2
-                True
-                >>> mode_2 == mode_3
-                False
-
-
-            ::
-
-                >>> mode_3 == mode_1
-                False
-                >>> mode_3 == mode_2
-                False
-                >>> mode_3 == mode_3
-                True
+            >>> mode_3 == mode_1
+            False
+            >>> mode_3 == mode_2
+            False
+            >>> mode_3 == mode_3
+            True
 
         Returns true or false.
         '''
@@ -109,10 +96,8 @@ class Mode(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> len(abjad.tonalanalysistools.Mode('dorian'))
-                7
+            >>> len(abjad.tonalanalysistools.Mode('dorian'))
+            7
 
         Returns nonnegative integer.
         '''
@@ -123,10 +108,8 @@ class Mode(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> str(abjad.tonalanalysistools.Mode('dorian'))
-                'dorian'
+            >>> str(abjad.tonalanalysistools.Mode('dorian'))
+            'dorian'
 
         Returns string.
         '''
@@ -186,15 +169,11 @@ class Mode(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> abjad.tonalanalysistools.Mode('major').mode_name
+            'major'
 
-                >>> abjad.tonalanalysistools.Mode('major').mode_name
-                'major'
-
-            ::
-
-                >>> abjad.tonalanalysistools.Mode('dorian').mode_name
-                'dorian'
+            >>> abjad.tonalanalysistools.Mode('dorian').mode_name
+            'dorian'
 
         Returns string.
         '''
@@ -206,17 +185,13 @@ class Mode(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> mode = abjad.tonalanalysistools.Mode('major')
+            >>> str(mode.named_interval_segment)
+            '<+M2, +M2, +m2, +M2, +M2, +M2, +m2>'
 
-                >>> mode = abjad.tonalanalysistools.Mode('major')
-                >>> str(mode.named_interval_segment)
-                '<+M2, +M2, +m2, +M2, +M2, +M2, +m2>'
-
-            ::
-
-                >>> mode = abjad.tonalanalysistools.Mode('dorian')
-                >>> str(mode.named_interval_segment)
-                '<+M2, +m2, +M2, +M2, +M2, +m2, +M2>'
+            >>> mode = abjad.tonalanalysistools.Mode('dorian')
+            >>> str(mode.named_interval_segment)
+            '<+M2, +m2, +M2, +M2, +M2, +m2, +M2>'
 
         Returns named interval segment.
         '''

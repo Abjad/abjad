@@ -7,62 +7,52 @@ class SilenceMask(AbjadValueObject):
 
     ..  container:: example
 
-        ::
+        >>> pattern = abjad.index_every([0, 1, 7], period=16)
+        >>> mask = abjad.rhythmmakertools.SilenceMask(pattern)
 
-            >>> pattern = abjad.index_every([0, 1, 7], period=16)
-            >>> mask = abjad.rhythmmakertools.SilenceMask(pattern)
-
-        ::
-
-            >>> f(mask)
-            abjad.SilenceMask(
-                pattern=abjad.index_every([0, 1, 7], 16),
-                )
+        >>> abjad.f(mask)
+        abjad.SilenceMask(
+            pattern=abjad.index_every([0, 1, 7], 16),
+            )
 
     ..  container:: example
 
         With composite pattern:
 
-        ::
+        >>> pattern_1 = abjad.index_all()
+        >>> pattern_2 = abjad.index_first(1)
+        >>> pattern_3 = abjad.index_last(1)
+        >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
+        >>> mask = abjad.SilenceMask(pattern)
 
-            >>> pattern_1 = abjad.index_all()
-            >>> pattern_2 = abjad.index_first(1)
-            >>> pattern_3 = abjad.index_last(1)
-            >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
-            >>> mask = abjad.SilenceMask(pattern)
-
-        ::
-
-            >>> f(mask)
-            abjad.SilenceMask(
-                pattern=abjad.Pattern(
-                    operator='xor',
-                    patterns=(
-                        abjad.index_all(),
-                        abjad.index_first(1),
-                        abjad.index_last(1),
-                        ),
+        >>> abjad.f(mask)
+        abjad.SilenceMask(
+            pattern=abjad.Pattern(
+                operator='xor',
+                patterns=(
+                    abjad.index_all(),
+                    abjad.index_first(1),
+                    abjad.index_last(1),
                     ),
-                )
+                ),
+            )
 
-        ::
-
-            >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-            ...     division_masks=[
-            ...         mask,
-            ...         ],
-            ...     )
-            >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-            >>> selections = rhythm_maker(divisions)
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(
-            ...     selections,
-            ...     divisions,
-            ...     )
-            >>> show(lilypond_file) # doctest: +SKIP
+        >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+        ...     division_masks=[
+        ...         mask,
+        ...         ],
+        ...     )
+        >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+        >>> selections = rhythm_maker(divisions)
+        >>> lilypond_file = abjad.LilyPondFile.rhythm(
+        ...     selections,
+        ...     divisions,
+        ...     )
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(lilypond_file[abjad.Staff])
+            >>> abjad.f(lilypond_file[abjad.Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16
@@ -86,48 +76,42 @@ class SilenceMask(AbjadValueObject):
 
         With inverted composite pattern:
 
-        ::
+        >>> pattern_1 = abjad.index_all()
+        >>> pattern_2 = abjad.index_first(1)
+        >>> pattern_3 = abjad.index_last(1)
+        >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
+        >>> pattern = ~pattern
+        >>> mask = abjad.SilenceMask(pattern)
 
-            >>> pattern_1 = abjad.index_all()
-            >>> pattern_2 = abjad.index_first(1)
-            >>> pattern_3 = abjad.index_last(1)
-            >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
-            >>> pattern = ~pattern
-            >>> mask = abjad.SilenceMask(pattern)
-
-        ::
-
-            >>> f(mask)
-            abjad.SilenceMask(
-                pattern=abjad.Pattern(
-                    inverted=True,
-                    operator='xor',
-                    patterns=(
-                        abjad.index_all(),
-                        abjad.index_first(1),
-                        abjad.index_last(1),
-                        ),
+        >>> abjad.f(mask)
+        abjad.SilenceMask(
+            pattern=abjad.Pattern(
+                inverted=True,
+                operator='xor',
+                patterns=(
+                    abjad.index_all(),
+                    abjad.index_first(1),
+                    abjad.index_last(1),
                     ),
-                )
+                ),
+            )
 
-        ::
-
-            >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-            ...     division_masks=[
-            ...         mask,
-            ...         ],
-            ...     )
-            >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-            >>> selections = rhythm_maker(divisions)
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(
-            ...     selections,
-            ...     divisions,
-            ...     )
-            >>> show(lilypond_file) # doctest: +SKIP
+        >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+        ...     division_masks=[
+        ...         mask,
+        ...         ],
+        ...     )
+        >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+        >>> selections = rhythm_maker(divisions)
+        >>> lilypond_file = abjad.LilyPondFile.rhythm(
+        ...     selections,
+        ...     divisions,
+        ...     )
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(lilypond_file[abjad.Staff])
+            >>> abjad.f(lilypond_file[abjad.Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16
@@ -235,33 +219,25 @@ class SilenceMask(AbjadValueObject):
 
             Without multimeasure rests:
 
-            ::
+            >>> mask = abjad.rhythmmakertools.SilenceMask(
+            ...     abjad.index_every([0, 1, 7], period=16),
+            ...     use_multimeasure_rests=False,
+            ...     )
 
-                >>> mask = abjad.rhythmmakertools.SilenceMask(
-                ...     abjad.index_every([0, 1, 7], period=16),
-                ...     use_multimeasure_rests=False,
-                ...     )
-
-            ::
-
-                >>> mask.use_multimeasure_rests
-                False
+            >>> mask.use_multimeasure_rests
+            False
 
         ..  container:: example
 
             With multimeasure rests:
 
-            ::
+            >>> mask = abjad.rhythmmakertools.SilenceMask(
+            ...     abjad.index_every([0, 1, 7], period=16),
+            ...     use_multimeasure_rests=True,
+            ...     )
 
-                >>> mask = abjad.rhythmmakertools.SilenceMask(
-                ...     abjad.index_every([0, 1, 7], period=16),
-                ...     use_multimeasure_rests=True,
-                ...     )
-
-            ::
-
-                >>> mask.use_multimeasure_rests
-                True
+            >>> mask.use_multimeasure_rests
+            True
 
         Set to true, false or none.
         '''
@@ -277,31 +253,25 @@ class SilenceMask(AbjadValueObject):
 
             Silences divisions 1 and 2:
 
-            ::
+            >>> mask = abjad.silence([1, 2])
 
-                >>> mask = abjad.silence([1, 2])
+            >>> mask
+            abjad.silence([1, 2])
 
-            ::
-
-                >>> mask
-                abjad.silence([1, 2])
-
-            ::
-
-                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     division_masks=[mask],
-                ...     )
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+            ...     division_masks=[mask],
+            ...     )
+            >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -325,33 +295,27 @@ class SilenceMask(AbjadValueObject):
 
             Silences divisions -1 and -2:
 
-            ::
+            >>> mask = abjad.silence([-1, -2])
 
-                >>> mask = abjad.silence([-1, -2])
+            >>> mask
+            abjad.silence([-1, -2])
 
-            ::
-
-                >>> mask
-                abjad.silence([-1, -2])
-
-            ::
-
-                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     division_masks=[
-                ...         mask,
-                ...         ],
-                ...     )
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+            ...     division_masks=[
+            ...         mask,
+            ...         ],
+            ...     )
+            >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -387,31 +351,25 @@ class SilenceMask(AbjadValueObject):
 
             Silences all divisions:
 
-            ::
+            >>> mask = abjad.silence_all()
 
-                >>> mask = abjad.silence_all()
+            >>> mask
+            abjad.silence_all()
 
-            ::
-
-                >>> mask
-                abjad.silence_all()
-
-            ::
-
-                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     division_masks=[mask],
-                ...     )
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+            ...     division_masks=[mask],
+            ...     )
+            >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -435,26 +393,22 @@ class SilenceMask(AbjadValueObject):
 
             Silences all divisions with multimeasure rests:
 
-            ::
+            >>> mask = abjad.silence_all(use_multimeasure_rests=True)
+            >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+            ...     division_masks=[mask],
+            ...     )
 
-                >>> mask = abjad.silence_all(use_multimeasure_rests=True)
-                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     division_masks=[mask],
-                ...     )
-
-            ::
-
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -498,31 +452,25 @@ class SilenceMask(AbjadValueObject):
 
             Silences every second division:
 
-            ::
+            >>> mask = abjad.silence_every([1], 2)
 
-                >>> mask = abjad.silence_every([1], 2)
+            >>> mask
+            abjad.silence_every([1], 2)
 
-            ::
-
-                >>> mask
-                abjad.silence_every([1], 2)
-
-            ::
-
-                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     division_masks=[mask],
-                ...     )
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+            ...     division_masks=[mask],
+            ...     )
+            >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -546,31 +494,25 @@ class SilenceMask(AbjadValueObject):
 
             Silences every second and third division:
 
-            ::
+            >>> mask = abjad.silence_every([1, 2], 3)
 
-                >>> mask = abjad.silence_every([1, 2], 3)
+            >>> mask
+            abjad.silence_every([1, 2], 3)
 
-            ::
-
-                >>> mask
-                abjad.silence_every([1, 2], 3)
-
-            ::
-
-                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     division_masks=[mask],
-                ...     )
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+            ...     division_masks=[mask],
+            ...     )
+            >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -594,31 +536,25 @@ class SilenceMask(AbjadValueObject):
 
             Silences every division except the last:
 
-            ::
+            >>> mask = abjad.silence_except([-1])
 
-                >>> mask = abjad.silence_except([-1])
+            >>> mask
+            abjad.silence_except([-1])
 
-            ::
-
-                >>> mask
-                abjad.silence_except([-1])
-
-            ::
-
-                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     division_masks=[mask],
-                ...     )
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+            ...     division_masks=[mask],
+            ...     )
+            >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -657,32 +593,26 @@ class SilenceMask(AbjadValueObject):
 
             Silences divisions except 1 and 2:
 
-            ::
+            >>> mask = abjad.silence_except([1, 2])
 
-                >>> mask = abjad.silence_except([1, 2])
+            >>> mask
+            abjad.silence_except([1, 2])
 
-            ::
-
-                >>> mask
-                abjad.silence_except([1, 2])
-
-            ::
-
-                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     division_masks=[mask],
-                ...     )
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+            ...     division_masks=[mask],
+            ...     )
+            >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
                 >>> staff = lilypond_file[abjad.Staff]
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -706,33 +636,27 @@ class SilenceMask(AbjadValueObject):
 
             Silences divisions except -1 and -2:
 
-            ::
+            >>> mask = abjad.silence_except([-1, -2])
 
-                >>> mask = abjad.silence_except([-1, -2])
+            >>> mask
+            abjad.silence_except([-1, -2])
 
-            ::
-
-                >>> mask
-                abjad.silence_except([-1, -2])
-
-            ::
-
-                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     division_masks=[
-                ...         mask,
-                ...         ],
-                ...     )
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+            ...     division_masks=[
+            ...         mask,
+            ...         ],
+            ...     )
+            >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -769,31 +693,25 @@ class SilenceMask(AbjadValueObject):
 
             Silences first division:
 
-            ::
+            >>> mask = abjad.silence_first(1)
 
-                >>> mask = abjad.silence_first(1)
+            >>> mask
+            abjad.silence_first(1)
 
-            ::
-
-                >>> mask
-                abjad.silence_first(1)
-
-            ::
-
-                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     division_masks=[mask],
-                ...     )
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+            ...     division_masks=[mask],
+            ...     )
+            >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -817,31 +735,25 @@ class SilenceMask(AbjadValueObject):
 
             Silences first two divisions:
 
-            ::
+            >>> mask = abjad.silence_first(2)
 
-                >>> mask = abjad.silence_first(2)
+            >>> mask
+            abjad.silence_first(2)
 
-            ::
-
-                >>> mask
-                abjad.silence_first(2)
-
-            ::
-
-                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     division_masks=[mask],
-                ...     )
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+            ...     division_masks=[mask],
+            ...     )
+            >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -865,31 +777,25 @@ class SilenceMask(AbjadValueObject):
 
             Silences no first divisions:
 
-            ::
+            >>> mask = abjad.silence_first(0)
 
-                >>> mask = abjad.silence_first(0)
+            >>> mask
+            abjad.silence_first(0)
 
-            ::
-
-                >>> mask
-                abjad.silence_first(0)
-
-            ::
-
-                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     division_masks=[mask],
-                ...     )
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+            ...     division_masks=[mask],
+            ...     )
+            >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -928,31 +834,25 @@ class SilenceMask(AbjadValueObject):
 
             Silences last division:
 
-            ::
+            >>> mask = abjad.silence_last(1)
 
-                >>> mask = abjad.silence_last(1)
+            >>> mask
+            abjad.silence_last(1)
 
-            ::
-
-                >>> mask
-                abjad.silence_last(1)
-
-            ::
-
-                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     division_masks=[mask],
-                ...     )
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+            ...     division_masks=[mask],
+            ...     )
+            >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -976,31 +876,25 @@ class SilenceMask(AbjadValueObject):
 
             Silences last two divisions:
 
-            ::
+            >>> mask = abjad.silence_last(2)
 
-                >>> mask = abjad.silence_last(2)
+            >>> mask
+            abjad.silence_last(2)
 
-            ::
-
-                >>> mask
-                abjad.silence_last(2)
-
-            ::
-
-                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     division_masks=[mask],
-                ...     )
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+            ...     division_masks=[mask],
+            ...     )
+            >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -1024,31 +918,25 @@ class SilenceMask(AbjadValueObject):
 
             Silences no last divisions:
 
-            ::
+            >>> mask = abjad.silence_last(0)
 
-                >>> mask = abjad.silence_last(0)
+            >>> mask
+            abjad.silence_last(0)
 
-            ::
-
-                >>> mask
-                abjad.silence_last(0)
-
-            ::
-
-                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     division_masks=[mask],
-                ...     )
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+            ...     division_masks=[mask],
+            ...     )
+            >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16

@@ -8,19 +8,15 @@ class Ratio(NonreducedRatio):
 
         Ratio of two numbers:
 
-        ::
-
-            >>> abjad.Ratio((2, 4))
-            Ratio((1, 2))
+        >>> abjad.Ratio((2, 4))
+        Ratio((1, 2))
 
     ..  container:: example
 
         Ratio of three numbers:
 
-        ::
-
-            >>> abjad.Ratio((2, 4, 2))
-            Ratio((1, 2, 1))
+        >>> abjad.Ratio((2, 4, 2))
+        Ratio((1, 2, 1))
 
     '''
 
@@ -46,56 +42,36 @@ class Ratio(NonreducedRatio):
 
         ..  container:: example
 
-            ::
+            >>> ratio_1 = abjad.Ratio((1, 2, 1))
+            >>> ratio_2 = abjad.Ratio((1, 2, 1))
+            >>> ratio_3 = abjad.Ratio((2, 3, 3))
 
-                >>> ratio_1 = abjad.Ratio((1, 2, 1))
-                >>> ratio_2 = abjad.Ratio((1, 2, 1))
-                >>> ratio_3 = abjad.Ratio((2, 3, 3))
+            >>> ratio_1 == ratio_1
+            True
 
-            ::
+            >>> ratio_1 == ratio_2
+            True
 
-                >>> ratio_1 == ratio_1
-                True
+            >>> ratio_1 == ratio_3
+            False
 
-            ::
+            >>> ratio_2 == ratio_1
+            True
 
-                >>> ratio_1 == ratio_2
-                True
+            >>> ratio_2 == ratio_2
+            True
 
-            ::
+            >>> ratio_2 == ratio_3
+            False
 
-                >>> ratio_1 == ratio_3
-                False
+            >>> ratio_3 == ratio_1
+            False
 
-            ::
+            >>> ratio_3 == ratio_2
+            False
 
-                >>> ratio_2 == ratio_1
-                True
-
-            ::
-
-                >>> ratio_2 == ratio_2
-                True
-
-            ::
-
-                >>> ratio_2 == ratio_3
-                False
-
-            ::
-
-                >>> ratio_3 == ratio_1
-                False
-
-            ::
-
-                >>> ratio_3 == ratio_2
-                False
-
-            ::
-
-                >>> ratio_3 == ratio_3
-                True
+            >>> ratio_3 == ratio_3
+            True
 
         '''
         return super(Ratio, self).__eq__(argument)
@@ -105,11 +81,9 @@ class Ratio(NonreducedRatio):
 
         ..  container:: example
 
-            ::
-
-                >>> ratio = abjad.Ratio((2, 4, 2))
-                >>> ratio[1]
-                2
+            >>> ratio = abjad.Ratio((2, 4, 2))
+            >>> ratio[1]
+            2
 
         Returns integer or tuple.
         '''
@@ -131,11 +105,9 @@ class Ratio(NonreducedRatio):
 
         ..  container:: example
 
-            ::
-
-                >>> ratio = abjad.Ratio((2, 4, 2))
-                >>> len(ratio)
-                3
+            >>> ratio = abjad.Ratio((2, 4, 2))
+            >>> len(ratio)
+            3
 
         Returns integer.
         '''
@@ -148,19 +120,15 @@ class Ratio(NonreducedRatio):
 
             Ratio of two numbers:
 
-            ::
-
-                >>> str(abjad.Ratio((2, 4)))
-                '1:2'
+            >>> str(abjad.Ratio((2, 4)))
+            '1:2'
 
         ..  container:: example
 
             Ratio of three numbers:
 
-            ::
-
-                >>> str(abjad.Ratio((2, 4, 2)))
-                '1:2:1'
+            >>> str(abjad.Ratio((2, 4, 2)))
+            '1:2:1'
 
         Returns string.
         '''
@@ -177,21 +145,17 @@ class Ratio(NonreducedRatio):
 
             Ratio of two numbers:
 
-            ::
-
-                >>> ratio = abjad.Ratio((2, 4))
-                >>> ratio.multipliers
-                (Multiplier(1, 3), Multiplier(2, 3))
+            >>> ratio = abjad.Ratio((2, 4))
+            >>> ratio.multipliers
+            (Multiplier(1, 3), Multiplier(2, 3))
 
         ..  container:: example
 
             Ratio of three numbers:
 
-            ::
-
-                >>> ratio = abjad.Ratio((2, 4, 2))
-                >>> ratio.multipliers
-                (Multiplier(1, 4), Multiplier(1, 2), Multiplier(1, 4))
+            >>> ratio = abjad.Ratio((2, 4, 2))
+            >>> ratio.multipliers
+            (Multiplier(1, 4), Multiplier(1, 2), Multiplier(1, 4))
 
         Returns tuple of multipliers.
         '''
@@ -212,21 +176,17 @@ class Ratio(NonreducedRatio):
 
             Ratio of two numbers:
 
-            ::
-
-                >>> ratio = abjad.Ratio((2, 4))
-                >>> ratio.numbers
-                (1, 2)
+            >>> ratio = abjad.Ratio((2, 4))
+            >>> ratio.numbers
+            (1, 2)
 
         ..  container:: example
 
             Ratio of three numbers:
 
-            ::
-
-                >>> ratio = abjad.Ratio((2, 4, 2))
-                >>> ratio.numbers
-                (1, 2, 1)
+            >>> ratio = abjad.Ratio((2, 4, 2))
+            >>> ratio.numbers
+            (1, 2, 1)
 
         Set to tuple of two or more numbers.
 

@@ -8,49 +8,41 @@ class MeasurewiseQSchemaItem(QSchemaItem):
     Represents a change of state in the timeline of a metered quantization
     process.
 
-    ::
-
-        >>> q_schema_item = abjad.quantizationtools.MeasurewiseQSchemaItem()
+    >>> q_schema_item = abjad.quantizationtools.MeasurewiseQSchemaItem()
 
     ..  container:: example
 
         Defines a change in tempo:
 
-        ::
-
-            >>> q_schema_item = abjad.quantizationtools.MeasurewiseQSchemaItem(
-            ...     tempo=((1, 4), 60),
-            ...     )
-            >>> print(format(q_schema_item))
-            abjad.quantizationtools.MeasurewiseQSchemaItem(
-                tempo=abjad.MetronomeMark(
-                    reference_duration=abjad.Duration(1, 4),
-                    units_per_minute=60,
-                    ),
-                )
+        >>> q_schema_item = abjad.quantizationtools.MeasurewiseQSchemaItem(
+        ...     tempo=((1, 4), 60),
+        ...     )
+        >>> print(format(q_schema_item))
+        abjad.quantizationtools.MeasurewiseQSchemaItem(
+            tempo=abjad.MetronomeMark(
+                reference_duration=abjad.Duration(1, 4),
+                units_per_minute=60,
+                ),
+            )
 
     ..  container:: example
 
         Defines a change in time signature:
 
-        ::
-
-            >>> q_schema_item = abjad.quantizationtools.MeasurewiseQSchemaItem(
-            ...     time_signature=(6, 8),
-            ...     )
-            >>> print(format(q_schema_item))
-            abjad.quantizationtools.MeasurewiseQSchemaItem(
-                time_signature=abjad.TimeSignature((6, 8)),
-                )
+        >>> q_schema_item = abjad.quantizationtools.MeasurewiseQSchemaItem(
+        ...     time_signature=(6, 8),
+        ...     )
+        >>> print(format(q_schema_item))
+        abjad.quantizationtools.MeasurewiseQSchemaItem(
+            time_signature=abjad.TimeSignature((6, 8)),
+            )
 
     ..  container:: example
 
         Tests for beatspan given a defined time signature:
 
-        ::
-
-            >>> q_schema_item.beatspan
-            Duration(1, 8)
+        >>> q_schema_item.beatspan
+        Duration(1, 8)
 
     '''
 

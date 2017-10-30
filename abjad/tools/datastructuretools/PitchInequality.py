@@ -7,31 +7,23 @@ class PitchInequality(AbjadValueObject):
 
     ..  container:: example
 
-        ::
+        >>> inequality = abjad.PitchInequality('&', 'C4 E4')
+        >>> abjad.f(inequality)
+        abjad.PitchInequality(
+            operator_string='&',
+            pitches=abjad.PitchSet(
+                [0, 4]
+                ),
+            )
 
-            >>> inequality = abjad.PitchInequality('&', 'C4 E4')
-            >>> f(inequality)
-            abjad.PitchInequality(
-                operator_string='&',
-                pitches=abjad.PitchSet(
-                    [0, 4]
-                    ),
-                )
+        >>> inequality(abjad.Staff("d'8 e' f' g'"))
+        True
 
-        ::
+        >>> inequality(abjad.Staff("e'8 f' g' a'"))
+        True
 
-            >>> inequality(abjad.Staff("d'8 e' f' g'"))
-            True
-
-        ::
-
-            >>> inequality(abjad.Staff("e'8 f' g' a'"))
-            True
-
-        ::
-
-            >>> inequality(abjad.Staff("f'8 g' a' b'"))
-            False
+        >>> inequality(abjad.Staff("f'8 g' a' b'"))
+        False
 
     .. note:: only intersection currently implemented.
 

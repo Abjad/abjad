@@ -116,10 +116,8 @@ class Interval(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.Interval.is_named_interval_abbreviation('+M9')
-                True
+            >>> abjad.Interval.is_named_interval_abbreviation('+M9')
+            True
 
         The regex ``^([+,-]?)(M|m|P|aug|dim)(\d+)$`` underlies this predicate.
 
@@ -136,10 +134,8 @@ class Interval(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.Interval.is_named_interval_quality_abbreviation('aug')
-                True
+            >>> abjad.Interval.is_named_interval_quality_abbreviation('aug')
+            True
 
         The regex ``^M|m|P|aug|dim$`` underlies this predicate.
 

@@ -79,25 +79,17 @@ class RhythmTreeMixin(abctools.AbjadObject):
     def duration(self):
         r'''The preprolated_duration of the node:
 
-        ::
+        >>> rtm = '(1 ((1 (1 1)) (1 (1 1))))'
+        >>> tree = abjad.rhythmtreetools.RhythmTreeParser()(rtm)[0]
 
-            >>> rtm = '(1 ((1 (1 1)) (1 (1 1))))'
-            >>> tree = abjad.rhythmtreetools.RhythmTreeParser()(rtm)[0]
+        >>> tree.duration
+        Duration(1, 1)
 
-        ::
+        >>> tree[1].duration
+        Duration(1, 2)
 
-            >>> tree.duration
-            Duration(1, 1)
-
-        ::
-
-            >>> tree[1].duration
-            Duration(1, 2)
-
-        ::
-
-            >>> tree[1][1].duration
-            Duration(1, 4)
+        >>> tree[1][1].duration
+        Duration(1, 4)
 
         Return `Duration` instance.
         '''
@@ -114,43 +106,29 @@ class RhythmTreeMixin(abctools.AbjadObject):
         the total preprolated_duration of that node and its siblings:
 
 
-        ::
+        >>> a = abjad.rhythmtreetools.RhythmTreeContainer(preprolated_duration=1)
+        >>> b = abjad.rhythmtreetools.RhythmTreeContainer(preprolated_duration=2)
+        >>> c = abjad.rhythmtreetools.RhythmTreeLeaf(preprolated_duration=3)
+        >>> d = abjad.rhythmtreetools.RhythmTreeLeaf(preprolated_duration=4)
+        >>> e = abjad.rhythmtreetools.RhythmTreeLeaf(preprolated_duration=5)
 
-            >>> a = abjad.rhythmtreetools.RhythmTreeContainer(preprolated_duration=1)
-            >>> b = abjad.rhythmtreetools.RhythmTreeContainer(preprolated_duration=2)
-            >>> c = abjad.rhythmtreetools.RhythmTreeLeaf(preprolated_duration=3)
-            >>> d = abjad.rhythmtreetools.RhythmTreeLeaf(preprolated_duration=4)
-            >>> e = abjad.rhythmtreetools.RhythmTreeLeaf(preprolated_duration=5)
+        >>> a.extend([b, c])
+        >>> b.extend([d, e])
 
-        ::
+        >>> a.parentage_ratios
+        (Duration(1, 1),)
 
-            >>> a.extend([b, c])
-            >>> b.extend([d, e])
+        >>> b.parentage_ratios
+        (Duration(1, 1), (Duration(2, 1), Duration(5, 1)))
 
-        ::
+        >>> c.parentage_ratios
+        (Duration(1, 1), (Duration(3, 1), Duration(5, 1)))
 
-            >>> a.parentage_ratios
-            (Duration(1, 1),)
+        >>> d.parentage_ratios
+        (Duration(1, 1), (Duration(2, 1), Duration(5, 1)), (Duration(4, 1), Duration(9, 1)))
 
-        ::
-
-            >>> b.parentage_ratios
-            (Duration(1, 1), (Duration(2, 1), Duration(5, 1)))
-
-        ::
-
-            >>> c.parentage_ratios
-            (Duration(1, 1), (Duration(3, 1), Duration(5, 1)))
-
-        ::
-
-            >>> d.parentage_ratios
-            (Duration(1, 1), (Duration(2, 1), Duration(5, 1)), (Duration(4, 1), Duration(9, 1)))
-
-        ::
-
-            >>> e.parentage_ratios
-            (Duration(1, 1), (Duration(2, 1), Duration(5, 1)), (Duration(5, 1), Duration(9, 1)))
+        >>> e.parentage_ratios
+        (Duration(1, 1), (Duration(2, 1), Duration(5, 1)), (Duration(5, 1), Duration(9, 1)))
 
         Returns tuple.
         '''
@@ -169,18 +147,14 @@ class RhythmTreeMixin(abctools.AbjadObject):
     def preprolated_duration(self):
         r'''The node's preprolated_duration in pulses:
 
-        ::
+        >>> node = abjad.rhythmtreetools.RhythmTreeLeaf(
+        ...     preprolated_duration=1)
+        >>> node.preprolated_duration
+        Duration(1, 1)
 
-            >>> node = abjad.rhythmtreetools.RhythmTreeLeaf(
-            ...     preprolated_duration=1)
-            >>> node.preprolated_duration
-            Duration(1, 1)
-
-        ::
-
-            >>> node.preprolated_duration = 2
-            >>> node.preprolated_duration
-            Duration(2, 1)
+        >>> node.preprolated_duration = 2
+        >>> node.preprolated_duration
+        Duration(2, 1)
 
         Returns int.
         '''
@@ -199,18 +173,16 @@ class RhythmTreeMixin(abctools.AbjadObject):
     def pretty_rtm_format(self):
         r'''The node's pretty-printed RTM format:
 
-        ::
-
-            >>> rtm = '(1 ((1 (1 1)) (1 (1 1))))'
-            >>> tree = abjad.rhythmtreetools.RhythmTreeParser()(rtm)[0]
-            >>> print(tree.pretty_rtm_format)
+        >>> rtm = '(1 ((1 (1 1)) (1 (1 1))))'
+        >>> tree = abjad.rhythmtreetools.RhythmTreeParser()(rtm)[0]
+        >>> print(tree.pretty_rtm_format)
+        (1 (
             (1 (
-                (1 (
-                    1
-                    1))
-                (1 (
-                    1
-                    1))))
+                1
+                1))
+            (1 (
+                1
+                1))))
 
         Returns string.
         '''
@@ -243,12 +215,10 @@ class RhythmTreeMixin(abctools.AbjadObject):
     def rtm_format(self):
         r'''The node's RTM format:
 
-        ::
-
-            >>> rtm = '(1 ((1 (1 1)) (1 (1 1))))'
-            >>> tree = abjad.rhythmtreetools.RhythmTreeParser()(rtm)[0]
-            >>> tree.rtm_format
-            '(1 ((1 (1 1)) (1 (1 1))))'
+        >>> rtm = '(1 ((1 (1 1)) (1 (1 1))))'
+        >>> tree = abjad.rhythmtreetools.RhythmTreeParser()(rtm)[0]
+        >>> tree.rtm_format
+        '(1 ((1 (1 1)) (1 (1 1))))'
 
         Returns string.
         '''
@@ -258,25 +228,17 @@ class RhythmTreeMixin(abctools.AbjadObject):
     def start_offset(self):
         r'''The starting offset of a node in a rhythm-tree relative the root.
 
-        ::
+        >>> rtm = '(1 ((1 (1 1)) (1 (1 1))))'
+        >>> tree = abjad.rhythmtreetools.RhythmTreeParser()(rtm)[0]
 
-            >>> rtm = '(1 ((1 (1 1)) (1 (1 1))))'
-            >>> tree = abjad.rhythmtreetools.RhythmTreeParser()(rtm)[0]
+        >>> tree.start_offset
+        Offset(0, 1)
 
-        ::
+        >>> tree[1].start_offset
+        Offset(1, 2)
 
-            >>> tree.start_offset
-            Offset(0, 1)
-
-        ::
-
-            >>> tree[1].start_offset
-            Offset(1, 2)
-
-        ::
-
-            >>> tree[0][1].start_offset
-            Offset(1, 4)
+        >>> tree[0][1].start_offset
+        Offset(1, 4)
 
         Returns Offset instance.
         '''

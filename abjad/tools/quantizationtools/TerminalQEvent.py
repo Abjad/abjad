@@ -6,13 +6,11 @@ class TerminalQEvent(QEvent):
 
     ..  container:: example
 
-        ::
-
-            >>> q_event = abjad.quantizationtools.TerminalQEvent(1000)
-            >>> print(format(q_event))
-            abjad.quantizationtools.TerminalQEvent(
-                offset=abjad.Offset(1000, 1),
-                )
+        >>> q_event = abjad.quantizationtools.TerminalQEvent(1000)
+        >>> print(format(q_event))
+        abjad.quantizationtools.TerminalQEvent(
+            offset=abjad.Offset(1000, 1),
+            )
 
     Carries no significance outside the context of a ``QEventSequence``.
     '''

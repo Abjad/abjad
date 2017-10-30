@@ -8,17 +8,15 @@ class MultipartBeam(Beam):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c'8 d'8 e'4 f'8 g'8 r4")
-            >>> beam = abjad.MultipartBeam()
-            >>> abjad.attach(beam, staff[:])
-            >>> abjad.setting(staff).auto_beaming = False
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'8 d'8 e'4 f'8 g'8 r4")
+        >>> beam = abjad.MultipartBeam()
+        >>> abjad.attach(beam, staff[:])
+        >>> abjad.setting(staff).auto_beaming = False
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff \with {
                 autoBeaming = ##f
             } {
@@ -32,17 +30,15 @@ class MultipartBeam(Beam):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c'8 r8 d'8 r8 f'8 g'8 r4")
-            >>> beam = abjad.MultipartBeam()
-            >>> abjad.attach(beam, staff[:])
-            >>> abjad.setting(staff).auto_beaming = False
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'8 r8 d'8 r8 f'8 g'8 r4")
+        >>> beam = abjad.MultipartBeam()
+        >>> abjad.attach(beam, staff[:])
+        >>> abjad.setting(staff).auto_beaming = False
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff \with {
                 autoBeaming = ##f
             } {
@@ -162,27 +158,23 @@ class MultipartBeam(Beam):
 
             Without beamed rests:
 
-            ::
+            >>> staff = abjad.Staff("c'8 d'8 r8 f'8 g'8 r4.")
+            >>> abjad.setting(staff).auto_beaming = False
+            >>> beam = abjad.MultipartBeam()
+            >>> abjad.attach(beam, staff[:])
+            >>> abjad.show(staff) # doctest: +SKIP
 
-                >>> staff = abjad.Staff("c'8 d'8 r8 f'8 g'8 r4.")
-                >>> abjad.setting(staff).auto_beaming = False
-                >>> beam = abjad.MultipartBeam()
-                >>> abjad.attach(beam, staff[:])
-                >>> show(staff) # doctest: +SKIP
-
-            ::
-
-                >>> f(staff)
-                \new Staff \with {
-                    autoBeaming = ##f
-                } {
-                    c'8 [
-                    d'8 ]
-                    r8
-                    f'8 [
-                    g'8 ]
-                    r4.
-                }
+            >>> abjad.f(staff)
+            \new Staff \with {
+                autoBeaming = ##f
+            } {
+                c'8 [
+                d'8 ]
+                r8
+                f'8 [
+                g'8 ]
+                r4.
+            }
 
             Abjad beams no rests.
 
@@ -192,27 +184,23 @@ class MultipartBeam(Beam):
 
             With beamed rests:
 
-            ::
+            >>> staff = abjad.Staff("c'8 d'8 r8 f'8 g'8 r4.")
+            >>> abjad.setting(staff).auto_beaming = False
+            >>> beam = abjad.MultipartBeam(beam_rests=True)
+            >>> abjad.attach(beam, staff[:])
+            >>> abjad.show(staff) # doctest: +SKIP
 
-                >>> staff = abjad.Staff("c'8 d'8 r8 f'8 g'8 r4.")
-                >>> abjad.setting(staff).auto_beaming = False
-                >>> beam = abjad.MultipartBeam(beam_rests=True)
-                >>> abjad.attach(beam, staff[:])
-                >>> show(staff) # doctest: +SKIP
-
-            ::
-
-                >>> f(staff)
-                \new Staff \with {
-                    autoBeaming = ##f
-                } {
-                    c'8 [
-                    d'8
-                    r8
-                    f'8
-                    g'8
-                    r4. ]
-                }
+            >>> abjad.f(staff)
+            \new Staff \with {
+                autoBeaming = ##f
+            } {
+                c'8 [
+                d'8
+                r8
+                f'8
+                g'8
+                r4. ]
+            }
 
             Abjad beams all rests.
 
@@ -222,27 +210,23 @@ class MultipartBeam(Beam):
 
             With beamed rests:
 
-            ::
+            >>> staff = abjad.Staff("c'8 d'8 r4. f'8 g'8 r8")
+            >>> abjad.setting(staff).auto_beaming = False
+            >>> beam = abjad.MultipartBeam(beam_rests=True)
+            >>> abjad.attach(beam, staff[:])
+            >>> abjad.show(staff) # doctest: +SKIP
 
-                >>> staff = abjad.Staff("c'8 d'8 r4. f'8 g'8 r8")
-                >>> abjad.setting(staff).auto_beaming = False
-                >>> beam = abjad.MultipartBeam(beam_rests=True)
-                >>> abjad.attach(beam, staff[:])
-                >>> show(staff) # doctest: +SKIP
-
-            ::
-
-                >>> f(staff)
-                \new Staff \with {
-                    autoBeaming = ##f
-                } {
-                    c'8 [
-                    d'8
-                    r4.
-                    f'8
-                    g'8
-                    r8 ]
-                }
+            >>> abjad.f(staff)
+            \new Staff \with {
+                autoBeaming = ##f
+            } {
+                c'8 [
+                d'8
+                r4.
+                f'8
+                g'8
+                r8 ]
+            }
 
             Abjad beams all rests.
 
@@ -252,27 +236,23 @@ class MultipartBeam(Beam):
 
             With beamed skips:
 
-            ::
+            >>> staff = abjad.Staff("c'8 d'8 s4. f'8 g'8 s8")
+            >>> abjad.setting(staff).auto_beaming = False
+            >>> beam = abjad.MultipartBeam(beam_rests=True)
+            >>> abjad.attach(beam, staff[:])
+            >>> abjad.show(staff) # doctest: +SKIP
 
-                >>> staff = abjad.Staff("c'8 d'8 s4. f'8 g'8 s8")
-                >>> abjad.setting(staff).auto_beaming = False
-                >>> beam = abjad.MultipartBeam(beam_rests=True)
-                >>> abjad.attach(beam, staff[:])
-                >>> show(staff) # doctest: +SKIP
-
-            ::
-
-                >>> f(staff)
-                \new Staff \with {
-                    autoBeaming = ##f
-                } {
-                    c'8 [
-                    d'8
-                    s4.
-                    f'8
-                    g'8
-                    s8 ]
-                }
+            >>> abjad.f(staff)
+            \new Staff \with {
+                autoBeaming = ##f
+            } {
+                c'8 [
+                d'8
+                s4.
+                f'8
+                g'8
+                s8 ]
+            }
 
             Abjad beams all skips.
 

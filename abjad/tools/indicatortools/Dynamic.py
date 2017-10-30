@@ -9,15 +9,13 @@ class Dynamic(AbjadValueObject):
 
         Initializes from dynamic name:
 
-        ::
-
-            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-            >>> dynamic = abjad.Dynamic('f')
-            >>> abjad.attach(dynamic, staff[0])
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> dynamic = abjad.Dynamic('f')
+        >>> abjad.attach(dynamic, staff[0])
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 c'8 \f
                 d'8
@@ -25,38 +23,28 @@ class Dynamic(AbjadValueObject):
                 f'8
             }
 
-        ::
-
-            >>> show(staff) # doctest: +SKIP
+        >>> abjad.show(staff) # doctest: +SKIP
 
     ..  container:: example
 
         Initializes from other dynamic:
 
-        ::
+        >>> dynamic_1 = abjad.Dynamic('f')
+        >>> dynamic_2 = abjad.Dynamic(dynamic_1)
 
-            >>> dynamic_1 = abjad.Dynamic('f')
-            >>> dynamic_2 = abjad.Dynamic(dynamic_1)
+        >>> dynamic_1
+        Dynamic('f')
 
-        ::
-
-            >>> dynamic_1
-            Dynamic('f')
-
-        ::
-
-            >>> dynamic_2
-            Dynamic('f')
+        >>> dynamic_2
+        Dynamic('f')
 
     ..  container:: example
 
         Niente is possible, but provides no formatting.
 
-        ::
-
-            >>> dynamic = abjad.Dynamic('niente')
-            >>> format(dynamic, 'lilypond')
-            ''
+        >>> dynamic = abjad.Dynamic('niente')
+        >>> format(dynamic, 'lilypond')
+        ''
 
     '''
 
@@ -170,21 +158,17 @@ class Dynamic(AbjadValueObject):
 
             Gets storage format of forte:
 
-            ::
-
-                >>> dynamic = abjad.Dynamic('f')
-                >>> print(format(dynamic))
-                abjad.Dynamic('f')
+            >>> dynamic = abjad.Dynamic('f')
+            >>> print(format(dynamic))
+            abjad.Dynamic('f')
 
         ..  container:: example
 
             Gets LilyPond format of forte:
 
-            ::
-
-                >>> dynamic = abjad.Dynamic('f')
-                >>> print(format(dynamic, 'lilypond'))
-                \f
+            >>> dynamic = abjad.Dynamic('f')
+            >>> print(format(dynamic, 'lilypond'))
+            \f
 
         Returns string.
         '''
@@ -243,19 +227,15 @@ class Dynamic(AbjadValueObject):
 
             Steady state of sfp is piano:
 
-            ::
-
-                >>> abjad.Dynamic.composite_dynamic_name_to_steady_state_dynamic_name('sfp')
-                'p'
+            >>> abjad.Dynamic.composite_dynamic_name_to_steady_state_dynamic_name('sfp')
+            'p'
 
         ..  container:: example
 
             Steady state of rfz is forte:
 
-            ::
-
-                >>> abjad.Dynamic.composite_dynamic_name_to_steady_state_dynamic_name('rfz')
-                'f'
+            >>> abjad.Dynamic.composite_dynamic_name_to_steady_state_dynamic_name('rfz')
+            'f'
 
         Returns string.
         '''
@@ -270,19 +250,15 @@ class Dynamic(AbjadValueObject):
 
             Louder dynamics change to positive integers:
 
-            ::
-
-                >>> abjad.Dynamic.dynamic_name_to_dynamic_ordinal('fff')
-                4
+            >>> abjad.Dynamic.dynamic_name_to_dynamic_ordinal('fff')
+            4
 
         ..  container:: example
 
             Niente changes to negative infinity:
 
-            ::
-
-                >>> abjad.Dynamic.dynamic_name_to_dynamic_ordinal('niente')
-                NegativeInfinity
+            >>> abjad.Dynamic.dynamic_name_to_dynamic_ordinal('niente')
+            NegativeInfinity
 
         Returns integer or negative infinity.
         '''
@@ -301,20 +277,16 @@ class Dynamic(AbjadValueObject):
 
             Negative values change to quiet dynamics:
 
-            ::
-
-                >>> abjad.Dynamic.dynamic_ordinal_to_dynamic_name(-5)
-                'pppp'
+            >>> abjad.Dynamic.dynamic_ordinal_to_dynamic_name(-5)
+            'pppp'
 
         ..  container:: example
 
             Negative infinity changes to niente:
 
-            ::
-
-                >>> negative_infinity = abjad.mathtools.NegativeInfinity()
-                >>> abjad.Dynamic.dynamic_ordinal_to_dynamic_name(negative_infinity)
-                'niente'
+            >>> negative_infinity = abjad.mathtools.NegativeInfinity()
+            >>> abjad.Dynamic.dynamic_ordinal_to_dynamic_name(negative_infinity)
+            'niente'
 
         Returns string.
         '''
@@ -331,24 +303,18 @@ class Dynamic(AbjadValueObject):
 
             Some usual dynamic names:
 
-            ::
+            >>> abjad.Dynamic.is_dynamic_name('f')
+            True
 
-                >>> abjad.Dynamic.is_dynamic_name('f')
-                True
-
-            ::
-
-                >>> abjad.Dynamic.is_dynamic_name('sfz')
-                True
+            >>> abjad.Dynamic.is_dynamic_name('sfz')
+            True
 
         ..  container:: example
 
             Niente is also a dynamic name:
 
-            ::
-
-                >>> abjad.Dynamic.is_dynamic_name('niente')
-                True
+            >>> abjad.Dynamic.is_dynamic_name('niente')
+            True
 
         Returns true or false.
         '''
@@ -364,21 +330,17 @@ class Dynamic(AbjadValueObject):
 
             Forte:
 
-            ::
-
-                >>> dynamic = abjad.Dynamic('f')
-                >>> dynamic.default_scope
-                <class 'abjad.tools.scoretools.Staff.Staff'>
+            >>> dynamic = abjad.Dynamic('f')
+            >>> dynamic.default_scope
+            <class 'abjad.tools.scoretools.Staff.Staff'>
 
         ..  container:: example
 
             Piano:
 
-            ::
-
-                >>> dynamic = abjad.Dynamic('p')
-                >>> dynamic.default_scope
-                <class 'abjad.tools.scoretools.Staff.Staff'>
+            >>> dynamic = abjad.Dynamic('p')
+            >>> dynamic.default_scope
+            <class 'abjad.tools.scoretools.Staff.Staff'>
 
         Dynamics are staff-scoped by default.
 
@@ -394,37 +356,29 @@ class Dynamic(AbjadValueObject):
 
             Forte:
 
-            ::
-
-                >>> abjad.Dynamic('f').name
-                'f'
+            >>> abjad.Dynamic('f').name
+            'f'
 
         ..  container:: example
 
             Piano:
 
-            ::
-
-                >>> abjad.Dynamic('p').name
-                'p'
+            >>> abjad.Dynamic('p').name
+            'p'
 
         ..  container:: example
 
             Double sforzando:
 
-            ::
-
-                >>> abjad.Dynamic('sffz').name
-                'sffz'
+            >>> abjad.Dynamic('sffz').name
+            'sffz'
 
         ..  container:: example
 
             Double sforzando-piano:
 
-            ::
-
-                >>> abjad.Dynamic('sffp').name
-                'sffp'
+            >>> abjad.Dynamic('sffp').name
+            'sffp'
 
         Returns string.
         '''
@@ -438,19 +392,15 @@ class Dynamic(AbjadValueObject):
 
             Forte:
 
-            ::
-
-                >>> abjad.Dynamic('f').ordinal
-                2
+            >>> abjad.Dynamic('f').ordinal
+            2
 
         ..  container:: example
 
             Piano:
 
-            ::
-
-                >>> abjad.Dynamic('p').ordinal
-                -2
+            >>> abjad.Dynamic('p').ordinal
+            -2
 
         Returns integer.
         '''

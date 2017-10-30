@@ -9,19 +9,17 @@ class RehearsalMark(AbjadValueObject):
 
         Rehearsal A:
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> score = abjad.Score([staff])
-            >>> mark = abjad.RehearsalMark(number=1)
-            >>> abjad.attach(mark, staff[0])
-            >>> scheme = abjad.Scheme('format-mark-box-alphabet')
-            >>> abjad.setting(score).markFormatter = scheme
-            >>> show(score) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> score = abjad.Score([staff])
+        >>> mark = abjad.RehearsalMark(number=1)
+        >>> abjad.attach(mark, staff[0])
+        >>> scheme = abjad.Scheme('format-mark-box-alphabet')
+        >>> abjad.setting(score).markFormatter = scheme
+        >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(score)
+            >>> abjad.f(score)
             \new Score \with {
                 markFormatter = #format-mark-box-alphabet
             } <<
@@ -38,19 +36,17 @@ class RehearsalMark(AbjadValueObject):
 
         Rehearsal B:
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> score = abjad.Score([staff])
-            >>> mark = abjad.RehearsalMark(number=2)
-            >>> abjad.attach(mark, staff[0])
-            >>> scheme = abjad.Scheme('format-mark-box-alphabet')
-            >>> abjad.setting(score).markFormatter = scheme
-            >>> show(score) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> score = abjad.Score([staff])
+        >>> mark = abjad.RehearsalMark(number=2)
+        >>> abjad.attach(mark, staff[0])
+        >>> scheme = abjad.Scheme('format-mark-box-alphabet')
+        >>> abjad.setting(score).markFormatter = scheme
+        >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(score)
+            >>> abjad.f(score)
             \new Score \with {
                 markFormatter = #format-mark-box-alphabet
             } <<
@@ -95,21 +91,17 @@ class RehearsalMark(AbjadValueObject):
 
             Rehearsal A
 
-            ::
-
-                >>> mark = abjad.RehearsalMark(number=1)
-                >>> print(str(mark))
-                \mark #1
+            >>> mark = abjad.RehearsalMark(number=1)
+            >>> print(str(mark))
+            \mark #1
 
         ..  container:: example
 
             Rehearsal B
 
-            ::
-
-                >>> mark = abjad.RehearsalMark(number=2)
-                >>> print(str(mark))
-                \mark #2
+            >>> mark = abjad.RehearsalMark(number=2)
+            >>> print(str(mark))
+            \mark #2
 
         Returns string.
         '''
@@ -148,21 +140,17 @@ class RehearsalMark(AbjadValueObject):
 
             Rehearsal A:
 
-            ::
-
-                >>> mark = abjad.RehearsalMark(number=1)
-                >>> mark.default_scope
-                <class 'abjad.tools.scoretools.Score.Score'>
+            >>> mark = abjad.RehearsalMark(number=1)
+            >>> mark.default_scope
+            <class 'abjad.tools.scoretools.Score.Score'>
 
         ..  container:: example
 
             Rehearsal B:
 
-            ::
-
-                >>> mark = abjad.RehearsalMark(number=2)
-                >>> mark.default_scope
-                <class 'abjad.tools.scoretools.Score.Score'>
+            >>> mark = abjad.RehearsalMark(number=2)
+            >>> mark.default_scope
+            <class 'abjad.tools.scoretools.Score.Score'>
 
         Returns score.
         '''
@@ -176,11 +164,9 @@ class RehearsalMark(AbjadValueObject):
 
             Custom rehearsal A:
 
-            ::
-
-                >>> markup = abjad.Markup(r'\bold { \italic { A } }')
-                >>> mark = abjad.RehearsalMark(markup=markup)
-                >>> show(mark.markup) # doctest: +SKIP
+            >>> markup = abjad.Markup(r'\bold { \italic { A } }')
+            >>> mark = abjad.RehearsalMark(markup=markup)
+            >>> abjad.show(mark.markup) # doctest: +SKIP
 
             ..  docs::
 
@@ -199,11 +185,9 @@ class RehearsalMark(AbjadValueObject):
 
             Custom rehearsal B:
 
-            ::
-
-                >>> markup = abjad.Markup(r'\bold { \italic { B } }')
-                >>> mark = abjad.RehearsalMark(markup=markup)
-                >>> show(mark.markup) # doctest: +SKIP
+            >>> markup = abjad.Markup(r'\bold { \italic { B } }')
+            >>> mark = abjad.RehearsalMark(markup=markup)
+            >>> abjad.show(mark.markup) # doctest: +SKIP
 
             ..  docs::
 
@@ -230,21 +214,17 @@ class RehearsalMark(AbjadValueObject):
 
             Rehearsal A:
 
-            ::
-
-                >>> mark = abjad.RehearsalMark(number=1)
-                >>> mark.number
-                1
+            >>> mark = abjad.RehearsalMark(number=1)
+            >>> mark.number
+            1
 
         ..  container:: example
 
             Rehearsal B:
 
-            ::
-
-                >>> mark = abjad.RehearsalMark(number=2)
-                >>> mark.number
-                2
+            >>> mark = abjad.RehearsalMark(number=2)
+            >>> mark.number
+            2
 
         Returns positive integer or none.
         '''

@@ -11,28 +11,22 @@ class NumberedInterval(Interval):
 
         Initializes from number of semitones:
 
-        ::
-
-            >>> abjad.NumberedInterval(-14)
-            NumberedInterval(-14)
+        >>> abjad.NumberedInterval(-14)
+        NumberedInterval(-14)
 
     ..  container:: example
 
         Initializes from other numbered interval
 
-        ::
-
-            >>> abjad.NumberedInterval(abjad.NumberedInterval(-14))
-            NumberedInterval(-14)
+        >>> abjad.NumberedInterval(abjad.NumberedInterval(-14))
+        NumberedInterval(-14)
 
     ..  container:: example
 
         Initializes from named interval:
 
-        ::
-
-            >>> abjad.NumberedInterval(abjad.NamedInterval('-P4'))
-            NumberedInterval(-5)
+        >>> abjad.NumberedInterval(abjad.NamedInterval('-P4'))
+        NumberedInterval(-5)
 
     '''
 
@@ -67,10 +61,8 @@ class NumberedInterval(Interval):
 
         ..  container:: example
 
-            ::
-
-                >>> abs(abjad.NumberedInterval(-14))
-                NumberedInterval(14)
+            >>> abs(abjad.NumberedInterval(-14))
+            NumberedInterval(14)
 
         Returns new numbered interval.
         '''
@@ -81,15 +73,11 @@ class NumberedInterval(Interval):
 
         ..  container:: example
 
-            ::
+            >>> abjad.NumberedInterval(3) + abjad.NumberedInterval(14)
+            NumberedInterval(17)
 
-                >>> abjad.NumberedInterval(3) + abjad.NumberedInterval(14)
-                NumberedInterval(17)
-
-            ::
-
-                >>> abjad.NumberedInterval(3) + abjad.NumberedInterval(-14)
-                NumberedInterval(-11)
+            >>> abjad.NumberedInterval(3) + abjad.NumberedInterval(-14)
+            NumberedInterval(-11)
 
         Returns new numbered interval.
         '''
@@ -103,16 +91,12 @@ class NumberedInterval(Interval):
     def __copy__(self):
         r'''Copies numbered interval.
 
-        ::
-
-            >>> import copy
+        >>> import copy
 
         ..  container:: example
 
-            ::
-
-                >>> copy.copy(abjad.NumberedInterval(-14))
-                NumberedInterval(-14)
+            >>> copy.copy(abjad.NumberedInterval(-14))
+            NumberedInterval(-14)
 
         Returns new numbered interval.
         '''
@@ -124,38 +108,30 @@ class NumberedInterval(Interval):
 
         ..  container:: example
 
-            ::
+            >>> interval_1 = abjad.NumberedInterval(12)
+            >>> interval_2 = abjad.NumberedInterval(12)
+            >>> interval_3 = abjad.NumberedInterval(13)
 
-                >>> interval_1 = abjad.NumberedInterval(12)
-                >>> interval_2 = abjad.NumberedInterval(12)
-                >>> interval_3 = abjad.NumberedInterval(13)
+            >>> interval_1 == interval_1
+            True
+            >>> interval_1 == interval_2
+            True
+            >>> interval_1 == interval_3
+            False
 
-            ::
+            >>> interval_2 == interval_1
+            True
+            >>> interval_2 == interval_2
+            True
+            >>> interval_2 == interval_3
+            False
 
-                >>> interval_1 == interval_1
-                True
-                >>> interval_1 == interval_2
-                True
-                >>> interval_1 == interval_3
-                False
-
-            ::
-
-                >>> interval_2 == interval_1
-                True
-                >>> interval_2 == interval_2
-                True
-                >>> interval_2 == interval_3
-                False
-
-            ::
-
-                >>> interval_3 == interval_1
-                False
-                >>> interval_3 == interval_2
-                False
-                >>> interval_3 == interval_3
-                True
+            >>> interval_3 == interval_1
+            False
+            >>> interval_3 == interval_2
+            False
+            >>> interval_3 == interval_3
+            True
 
         Returns true or false.
         '''
@@ -182,56 +158,36 @@ class NumberedInterval(Interval):
 
         ..  container:: example
 
-            ::
+            >>> interval_1 = abjad.NumberedInterval(12)
+            >>> interval_2 = abjad.NumberedInterval(12)
+            >>> interval_3 = abjad.NumberedInterval(13)
 
-                >>> interval_1 = abjad.NumberedInterval(12)
-                >>> interval_2 = abjad.NumberedInterval(12)
-                >>> interval_3 = abjad.NumberedInterval(13)
+            >>> interval_1 < interval_1
+            False
 
-            ::
+            >>> interval_1 < interval_2
+            False
 
-                >>> interval_1 < interval_1
-                False
+            >>> interval_1 < interval_3
+            True
 
-            ::
+            >>> interval_2 < interval_1
+            False
 
-                >>> interval_1 < interval_2
-                False
+            >>> interval_2 < interval_2
+            False
 
-            ::
+            >>> interval_2 < interval_3
+            True
 
-                >>> interval_1 < interval_3
-                True
+            >>> interval_3 < interval_1
+            False
 
-            ::
+            >>> interval_3 < interval_2
+            False
 
-                >>> interval_2 < interval_1
-                False
-
-            ::
-
-                >>> interval_2 < interval_2
-                False
-
-            ::
-
-                >>> interval_2 < interval_3
-                True
-
-            ::
-
-                >>> interval_3 < interval_1
-                False
-
-            ::
-
-                >>> interval_3 < interval_2
-                False
-
-            ::
-
-                >>> interval_3 < interval_3
-                False
+            >>> interval_3 < interval_3
+            False
 
         Returns true or false.
         '''
@@ -249,10 +205,8 @@ class NumberedInterval(Interval):
 
         ..  container:: example
 
-            ::
-
-                >>> -abjad.NumberedInterval(-14)
-                NumberedInterval(14)
+            >>> -abjad.NumberedInterval(-14)
+            NumberedInterval(14)
 
         Returns new numbered interval.
         '''
@@ -263,17 +217,13 @@ class NumberedInterval(Interval):
 
         ..  container:: example
 
-            ::
+            >>> interval = abjad.NumberedInterval(14)
+            >>> abjad.NumberedInterval(3).__radd__(interval)
+            NumberedInterval(17)
 
-                >>> interval = abjad.NumberedInterval(14)
-                >>> abjad.NumberedInterval(3).__radd__(interval)
-                NumberedInterval(17)
-
-            ::
-
-                >>> interval = abjad.NumberedInterval(-14)
-                >>> abjad.NumberedInterval(3).__radd__(interval)
-                NumberedInterval(-11)
+            >>> interval = abjad.NumberedInterval(-14)
+            >>> abjad.NumberedInterval(3).__radd__(interval)
+            NumberedInterval(-11)
 
         Returns new numbered interval.
         '''
@@ -323,10 +273,8 @@ class NumberedInterval(Interval):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NumberedInterval(-14).direction_number
-                -1
+            >>> abjad.NumberedInterval(-14).direction_number
+            -1
 
         Returns integer.
         '''
@@ -338,10 +286,8 @@ class NumberedInterval(Interval):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NumberedInterval(-14).direction_string
-                'descending'
+            >>> abjad.NumberedInterval(-14).direction_string
+            'descending'
 
         Returns ``'ascending'``, ``'descending'`` or none.
         '''
@@ -358,20 +304,14 @@ class NumberedInterval(Interval):
 
         ..  container:: example
 
-            ::
+            >>> abjad.NumberedInterval(-14).number
+            -14
 
-                >>> abjad.NumberedInterval(-14).number
-                -14
+            >>> abjad.NumberedInterval(-2).number
+            -2
 
-            ::
-
-                >>> abjad.NumberedInterval(-2).number
-                -2
-
-            ::
-
-                >>> abjad.NumberedInterval(0).number
-                0
+            >>> abjad.NumberedInterval(0).number
+            0
 
         Returns number.
         '''
@@ -383,10 +323,8 @@ class NumberedInterval(Interval):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NumberedInterval(-14).semitones
-                -14
+            >>> abjad.NumberedInterval(-14).semitones
+            -14
 
         Returns nonnegative number.
         '''
@@ -401,45 +339,35 @@ class NumberedInterval(Interval):
 
         ..  container:: example
 
-            ::
+            >>> abjad.NumberedInterval.from_pitch_carriers(
+            ...     abjad.NamedPitch(-2),
+            ...     abjad.NamedPitch(12),
+            ...     )
+            NumberedInterval(14)
 
-                >>> abjad.NumberedInterval.from_pitch_carriers(
-                ...     abjad.NamedPitch(-2),
-                ...     abjad.NamedPitch(12),
-                ...     )
-                NumberedInterval(14)
+            >>> abjad.NumberedInterval.from_pitch_carriers(
+            ...     abjad.NamedPitch(12),
+            ...     abjad.NamedPitch(12),
+            ...     )
+            NumberedInterval(0)
 
-            ::
+            >>> abjad.NumberedInterval.from_pitch_carriers(
+            ...     abjad.NamedPitch(9),
+            ...     abjad.NamedPitch(12),
+            ...     )
+            NumberedInterval(3)
 
-                >>> abjad.NumberedInterval.from_pitch_carriers(
-                ...     abjad.NamedPitch(12),
-                ...     abjad.NamedPitch(12),
-                ...     )
-                NumberedInterval(0)
+            >>> abjad.NumberedInterval.from_pitch_carriers(
+            ...     abjad.NamedPitch(12),
+            ...     abjad.NamedPitch(9),
+            ...     )
+            NumberedInterval(-3)
 
-            ::
-
-                >>> abjad.NumberedInterval.from_pitch_carriers(
-                ...     abjad.NamedPitch(9),
-                ...     abjad.NamedPitch(12),
-                ...     )
-                NumberedInterval(3)
-
-            ::
-
-                >>> abjad.NumberedInterval.from_pitch_carriers(
-                ...     abjad.NamedPitch(12),
-                ...     abjad.NamedPitch(9),
-                ...     )
-                NumberedInterval(-3)
-
-            ::
-
-                >>> abjad.NumberedInterval.from_pitch_carriers(
-                ...     abjad.NamedPitch(12),
-                ...     abjad.NamedPitch(-2),
-                ...     )
-                NumberedInterval(-14)
+            >>> abjad.NumberedInterval.from_pitch_carriers(
+            ...     abjad.NamedPitch(12),
+            ...     abjad.NamedPitch(-2),
+            ...     )
+            NumberedInterval(-14)
 
         Returns numbered interval.
         '''
@@ -457,51 +385,35 @@ class NumberedInterval(Interval):
 
         ..  container:: example
 
-            ::
+            >>> abjad.NumberedInterval(0).to_named_interval(0)
+            NamedInterval('aug0')
 
-                >>> abjad.NumberedInterval(0).to_named_interval(0)
-                NamedInterval('aug0')
+            >>> abjad.NumberedInterval(0).to_named_interval(1)
+            NamedInterval('P1')
 
-            ::
-
-                >>> abjad.NumberedInterval(0).to_named_interval(1)
-                NamedInterval('P1')
-
-            ::
-
-                >>> abjad.NumberedInterval(0).to_named_interval(2)
-                NamedInterval('+dim2')
+            >>> abjad.NumberedInterval(0).to_named_interval(2)
+            NamedInterval('+dim2')
 
         ..  container:: example
 
-            ::
+            >>> abjad.NumberedInterval(1).to_named_interval(1)
+            NamedInterval('+aug1')
 
-                >>> abjad.NumberedInterval(1).to_named_interval(1)
-                NamedInterval('+aug1')
-
-            ::
-
-                >>> abjad.NumberedInterval(1).to_named_interval(2)
-                NamedInterval('+m2')
+            >>> abjad.NumberedInterval(1).to_named_interval(2)
+            NamedInterval('+m2')
 
         ..  container:: example
 
-            ::
+            >>> abjad.NumberedInterval(-1).to_named_interval(1)
+            NamedInterval('-aug1')
 
-                >>> abjad.NumberedInterval(-1).to_named_interval(1)
-                NamedInterval('-aug1')
-
-            ::
-
-                >>> abjad.NumberedInterval(-1).to_named_interval(2)
-                NamedInterval('-m2')
+            >>> abjad.NumberedInterval(-1).to_named_interval(2)
+            NamedInterval('-m2')
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NumberedInterval(2).to_named_interval(2)
-                NamedInterval('+M2')
+            >>> abjad.NumberedInterval(2).to_named_interval(2)
+            NamedInterval('+M2')
 
         Returns named interval.
         '''
@@ -622,15 +534,11 @@ class NumberedInterval(Interval):
 
             Transposes chord:
 
-            ::
+            >>> chord = abjad.Chord("<c' e' g'>4")
 
-                >>> chord = abjad.Chord("<c' e' g'>4")
-
-            ::
-
-                >>> interval = abjad.NumberedInterval(1)
-                >>> interval.transpose(chord)
-                Chord("<cs' f' af'>4")
+            >>> interval = abjad.NumberedInterval(1)
+            >>> interval.transpose(chord)
+            Chord("<cs' f' af'>4")
 
         Returns newly constructed object of `pitch_carrier` type.
         '''

@@ -10,19 +10,15 @@ class RootlessChordClass(IntervalSegment):
 
         Major triad in root position:
 
-        ::
-
-            >>> abjad.tonalanalysistools.RootlessChordClass('major')
-            MajorTriadInRootPosition('P1', '+M3', '+P5')
+        >>> abjad.tonalanalysistools.RootlessChordClass('major')
+        MajorTriadInRootPosition('P1', '+M3', '+P5')
 
     ..  container:: example
 
         Dominant seventh in root position:
 
-        ::
-
-            >>> abjad.tonalanalysistools.RootlessChordClass('dominant', 7)
-            DominantSeventhInRootPosition('P1', '+M3', '+P5', '+m7')
+        >>> abjad.tonalanalysistools.RootlessChordClass('dominant', 7)
+        DominantSeventhInRootPosition('P1', '+M3', '+P5', '+m7')
 
     ..  container:: example
 
@@ -252,15 +248,13 @@ class RootlessChordClass(IntervalSegment):
 
         ..  container:: example
 
-            ::
-
-                >>> segment = abjad.IntervalClassSegment([
-                ...     abjad.NamedInversionEquivalentIntervalClass('m3'),
-                ...     abjad.NamedInversionEquivalentIntervalClass('m3'),
-                ...     ])
-                >>> class_ = abjad.tonalanalysistools.RootlessChordClass
-                >>> class_.from_interval_class_segment(segment)
-                DiminishedTriadInRootPosition('P1', '+m3', '+dim5')
+            >>> segment = abjad.IntervalClassSegment([
+            ...     abjad.NamedInversionEquivalentIntervalClass('m3'),
+            ...     abjad.NamedInversionEquivalentIntervalClass('m3'),
+            ...     ])
+            >>> class_ = abjad.tonalanalysistools.RootlessChordClass
+            >>> class_.from_interval_class_segment(segment)
+            DiminishedTriadInRootPosition('P1', '+m3', '+dim5')
 
         ..  container:: example
 
@@ -341,10 +335,8 @@ class RootlessChordClass(IntervalSegment):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.tonalanalysistools.RootlessChordClass('dominant', 7).cardinality
-                4
+            >>> abjad.tonalanalysistools.RootlessChordClass('dominant', 7).cardinality
+            4
 
         Returns nonnegative integer.
         '''
@@ -356,10 +348,8 @@ class RootlessChordClass(IntervalSegment):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.tonalanalysistools.RootlessChordClass('dominant', 7).extent
-                7
+            >>> abjad.tonalanalysistools.RootlessChordClass('dominant', 7).extent
+            7
 
         Returns nonnegative integer.
         '''
@@ -372,10 +362,8 @@ class RootlessChordClass(IntervalSegment):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.tonalanalysistools.RootlessChordClass('dominant', 7).extent_name
-                'seventh'
+            >>> abjad.tonalanalysistools.RootlessChordClass('dominant', 7).extent_name
+            'seventh'
 
         '''
         from abjad.tools import tonalanalysistools
@@ -390,10 +378,8 @@ class RootlessChordClass(IntervalSegment):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.tonalanalysistools.RootlessChordClass('dominant', 7).inversion
-                0
+            >>> abjad.tonalanalysistools.RootlessChordClass('dominant', 7).inversion
+            0
 
         Returns nonnegative integer.
         '''
@@ -405,10 +391,8 @@ class RootlessChordClass(IntervalSegment):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.tonalanalysistools.RootlessChordClass('dominant', 7).position
-                'root position'
+            >>> abjad.tonalanalysistools.RootlessChordClass('dominant', 7).position
+            'root position'
 
         Returns string.
         '''
@@ -433,10 +417,8 @@ class RootlessChordClass(IntervalSegment):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.tonalanalysistools.RootlessChordClass('dominant', 7).quality_string
-                'dominant'
+            >>> abjad.tonalanalysistools.RootlessChordClass('dominant', 7).quality_string
+            'dominant'
 
         Returns string.
         '''
@@ -448,10 +430,8 @@ class RootlessChordClass(IntervalSegment):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.tonalanalysistools.RootlessChordClass('dominant', 7).rotation
-                0
+            >>> abjad.tonalanalysistools.RootlessChordClass('dominant', 7).rotation
+            0
 
         Returns nonnegative integer.
         '''

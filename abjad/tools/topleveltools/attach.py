@@ -13,15 +13,13 @@ def attach(
 
         Attaches clef to first note in staff:
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> abjad.attach(abjad.Clef('alto'), staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.attach(abjad.Clef('alto'), staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \clef "alto"
                 c'4
@@ -34,15 +32,13 @@ def attach(
 
         Attaches accent to last note in staff:
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> abjad.attach(abjad.Articulation('>'), staff[-1])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.attach(abjad.Articulation('>'), staff[-1])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 c'4
                 d'4

@@ -17,10 +17,8 @@ def graph(
 
         Graphs staff:
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> abjad.graph(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.graph(staff) # doctest: +SKIP
 
         ..  docs::
 
@@ -238,12 +236,10 @@ def graph(
 
         Graphs rhythm tree:
 
-        ::
-
-            >>> rtm_syntax = '(3 ((2 (2 1)) 2))'
-            >>> parser = abjad.rhythmtreetools.RhythmTreeParser()
-            >>> rhythm_tree = parser(rtm_syntax)[0]
-            >>> topleveltools.graph(rhythm_tree) # doctest: +SKIP
+        >>> rtm_syntax = '(3 ((2 (2 1)) 2))'
+        >>> parser = abjad.rhythmtreetools.RhythmTreeParser()
+        >>> rhythm_tree = parser(rtm_syntax)[0]
+        >>> topleveltools.graph(rhythm_tree) # doctest: +SKIP
 
         ..  docs::
 

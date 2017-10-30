@@ -6,16 +6,14 @@ class Percussion(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> percussion = abjad.Percussion()
-            >>> abjad.attach(percussion, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+        >>> percussion = abjad.Percussion()
+        >>> abjad.attach(percussion, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { Percussion }
                 \set Staff.shortInstrumentName = \markup { Perc. }
@@ -114,11 +112,9 @@ class Percussion(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> percussion = abjad.Percussion()
-                >>> percussion.allowable_clefs
-                ('percussion',)
+            >>> percussion = abjad.Percussion()
+            >>> percussion.allowable_clefs
+            ('percussion',)
 
         Returns clef list.
         '''
@@ -130,15 +126,11 @@ class Percussion(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> percussion = abjad.Percussion()
+            >>> percussion.middle_c_sounding_pitch
+            NamedPitch("c'")
 
-                >>> percussion = abjad.Percussion()
-                >>> percussion.middle_c_sounding_pitch
-                NamedPitch("c'")
-
-            ::
-
-                >>> show(percussion.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(percussion.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -150,11 +142,9 @@ class Percussion(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> percussion = abjad.Percussion()
-                >>> percussion.name
-                'percussion'
+            >>> percussion = abjad.Percussion()
+            >>> percussion.name
+            'percussion'
 
         Returns string.
         '''
@@ -166,15 +156,11 @@ class Percussion(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> percussion = abjad.Percussion()
+            >>> percussion.name_markup
+            Markup(contents=['Percussion'])
 
-                >>> percussion = abjad.Percussion()
-                >>> percussion.name_markup
-                Markup(contents=['Percussion'])
-
-            ::
-
-                >>> show(percussion.name_markup) # doctest: +SKIP
+            >>> abjad.show(percussion.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -186,15 +172,11 @@ class Percussion(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> percussion = abjad.Percussion()
+            >>> percussion.pitch_range
+            PitchRange('[A0, C8]')
 
-                >>> percussion = abjad.Percussion()
-                >>> percussion.pitch_range
-                PitchRange('[A0, C8]')
-
-            ::
-
-                >>> show(percussion.pitch_range) # doctest: +SKIP
+            >>> abjad.show(percussion.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -206,11 +188,9 @@ class Percussion(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> percussion = abjad.Percussion()
-                >>> percussion.short_name
-                'perc.'
+            >>> percussion = abjad.Percussion()
+            >>> percussion.short_name
+            'perc.'
 
         Returns string.
         '''
@@ -222,15 +202,11 @@ class Percussion(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> percussion = abjad.Percussion()
+            >>> percussion.short_name_markup
+            Markup(contents=['Perc.'])
 
-                >>> percussion = abjad.Percussion()
-                >>> percussion.short_name_markup
-                Markup(contents=['Perc.'])
-
-            ::
-
-                >>> show(percussion.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(percussion.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

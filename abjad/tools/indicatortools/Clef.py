@@ -8,44 +8,38 @@ class Clef(AbjadValueObject):
 
         At the beginning of a staff:
 
-        ::
+        >>> clef = abjad.Clef('treble')
+        >>> clef
+        Clef('treble')
 
-            >>> clef = abjad.Clef('treble')
-            >>> clef
-            Clef('treble')
-
-        ::
-
-            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+        >>> abjad.show(staff) # doctest: +SKIP
 
     ..  container:: example
 
         Some available clefs:
 
-        ::
-
-            >>> clef = abjad.Clef('treble')
-            >>> abjad.attach(clef, staff[0])
-            >>> clef = abjad.Clef('alto')
-            >>> abjad.attach(clef, staff[1])
-            >>> clef = abjad.Clef('bass')
-            >>> abjad.attach(clef, staff[2])
-            >>> clef = abjad.Clef('treble^8')
-            >>> abjad.attach(clef, staff[3])
-            >>> clef = abjad.Clef('bass_8')
-            >>> abjad.attach(clef, staff[4])
-            >>> clef = abjad.Clef('tenor')
-            >>> abjad.attach(clef, staff[5])
-            >>> clef = abjad.Clef('bass^15')
-            >>> abjad.attach(clef, staff[6])
-            >>> clef = abjad.Clef('percussion')
-            >>> abjad.attach(clef, staff[7])
-            >>> show(staff) # doctest: +SKIP
+        >>> clef = abjad.Clef('treble')
+        >>> abjad.attach(clef, staff[0])
+        >>> clef = abjad.Clef('alto')
+        >>> abjad.attach(clef, staff[1])
+        >>> clef = abjad.Clef('bass')
+        >>> abjad.attach(clef, staff[2])
+        >>> clef = abjad.Clef('treble^8')
+        >>> abjad.attach(clef, staff[3])
+        >>> clef = abjad.Clef('bass_8')
+        >>> abjad.attach(clef, staff[4])
+        >>> clef = abjad.Clef('tenor')
+        >>> abjad.attach(clef, staff[5])
+        >>> clef = abjad.Clef('bass^15')
+        >>> abjad.attach(clef, staff[6])
+        >>> clef = abjad.Clef('percussion')
+        >>> abjad.attach(clef, staff[7])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \clef "treble"
                 c'8
@@ -118,11 +112,9 @@ class Clef(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> clef = abjad.Clef('treble')
-                >>> print(format(clef))
-                abjad.Clef('treble')
+            >>> clef = abjad.Clef('treble')
+            >>> print(format(clef))
+            abjad.Clef('treble')
 
         ..  container:: example
 

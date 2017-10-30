@@ -9,35 +9,29 @@ class Scheme(AbjadValueObject):
 
         A Scheme boolean value:
 
-        ::
-
-            >>> scheme = abjad.Scheme(True)
-            >>> print(format(scheme))
-            ##t
+        >>> scheme = abjad.Scheme(True)
+        >>> print(format(scheme))
+        ##t
 
     ..  container:: example
 
         A nested Scheme expession:
 
-        ::
-
-            >>> scheme = abjad.Scheme([
-            ...     ('left', (1, 2, False)),
-            ...     ('right', (1, 2, 3.3)),
-            ...     ])
-            >>> print(format(scheme))
-            #((left (1 2 #f)) (right (1 2 3.3)))
+        >>> scheme = abjad.Scheme([
+        ...     ('left', (1, 2, False)),
+        ...     ('right', (1, 2, 3.3)),
+        ...     ])
+        >>> print(format(scheme))
+        #((left (1 2 #f)) (right (1 2 3.3)))
 
     ..  container:: example
 
         A list:
 
-        ::
-
-            >>> scheme_1 = abjad.Scheme([1, 2, 3])
-            >>> scheme_2 = abjad.Scheme((1, 2, 3))
-            >>> format(scheme_1) == format(scheme_2)
-            True
+        >>> scheme_1 = abjad.Scheme([1, 2, 3])
+        >>> scheme_2 = abjad.Scheme((1, 2, 3))
+        >>> format(scheme_1) == format(scheme_2)
+        True
 
         Scheme wraps nested variable-length arguments in a tuple.
 
@@ -45,11 +39,9 @@ class Scheme(AbjadValueObject):
 
         A quoted Scheme expression:
 
-        ::
-
-            >>> scheme = abjad.Scheme((1, 2, 3), quoting="'#")
-            >>> print(format(scheme))
-            #'#(1 2 3)
+        >>> scheme = abjad.Scheme((1, 2, 3), quoting="'#")
+        >>> print(format(scheme))
+        #'#(1 2 3)
 
         Use the `quoting` keyword to prepend Scheme's various quote, unquote,
         unquote-splicing characters to formatted output.
@@ -58,11 +50,9 @@ class Scheme(AbjadValueObject):
 
         A Scheme expression with forced quotes:
 
-        ::
-
-            >>> scheme = abjad.Scheme('nospaces', force_quotes=True)
-            >>> print(format(scheme))
-            #"nospaces"
+        >>> scheme = abjad.Scheme('nospaces', force_quotes=True)
+        >>> print(format(scheme))
+        #"nospaces"
 
         Use this in certain \override situations when LilyPond's Scheme
         interpreter treats unquoted strings as symbols instead of strings.
@@ -72,28 +62,24 @@ class Scheme(AbjadValueObject):
 
         A Scheme expression of LilyPond functions:
 
-        ::
+        >>> function_1 = 'tuplet-number::append-note-wrapper'
+        >>> function_2 = 'tuplet-number::calc-denominator-text'
+        >>> string = abjad.Scheme('4', force_quotes=True)
+        >>> scheme = abjad.Scheme([function_1, function_2, string])
+        >>> abjad.f(scheme)
+        abjad.Scheme(
+            [
+                'tuplet-number::append-note-wrapper',
+                'tuplet-number::calc-denominator-text',
+                abjad.Scheme(
+                    '4',
+                    force_quotes=True,
+                    ),
+                ]
+            )
 
-            >>> function_1 = 'tuplet-number::append-note-wrapper'
-            >>> function_2 = 'tuplet-number::calc-denominator-text'
-            >>> string = abjad.Scheme('4', force_quotes=True)
-            >>> scheme = abjad.Scheme([function_1, function_2, string])
-            >>> f(scheme)
-            abjad.Scheme(
-                [
-                    'tuplet-number::append-note-wrapper',
-                    'tuplet-number::calc-denominator-text',
-                    abjad.Scheme(
-                        '4',
-                        force_quotes=True,
-                        ),
-                    ]
-                )
-
-        ::
-
-            >>> print(format(scheme))
-            #(tuplet-number::append-note-wrapper tuplet-number::calc-denominator-text "4")
+        >>> print(format(scheme))
+        #(tuplet-number::append-note-wrapper tuplet-number::calc-denominator-text "4")
 
     ..  container:: example
 
@@ -102,50 +88,36 @@ class Scheme(AbjadValueObject):
         expression to format exactly as-is without modifying quotes or
         whitespace:
 
-        ::
+        >>> string = '(lambda (grob) (grob-interpret-markup grob'
+        >>> string += r' #{ \markup \musicglyph #"noteheads.s0harmonic" #}))'
+        >>> scheme = abjad.Scheme(string, verbatim=True)
+        >>> abjad.f(scheme)
+        abjad.Scheme(
+            '(lambda (grob) (grob-interpret-markup grob #{ \\markup \\musicglyph #"noteheads.s0harmonic" #}))',
+            verbatim=True,
+            )
 
-            >>> string = '(lambda (grob) (grob-interpret-markup grob'
-            >>> string += r' #{ \markup \musicglyph #"noteheads.s0harmonic" #}))'
-            >>> scheme = abjad.Scheme(string, verbatim=True)
-            >>> f(scheme)
-            abjad.Scheme(
-                '(lambda (grob) (grob-interpret-markup grob #{ \\markup \\musicglyph #"noteheads.s0harmonic" #}))',
-                verbatim=True,
-                )
-
-        ::
-
-            >>> print(format(scheme))
-            #(lambda (grob) (grob-interpret-markup grob #{ \markup \musicglyph #"noteheads.s0harmonic" #}))
+        >>> print(format(scheme))
+        #(lambda (grob) (grob-interpret-markup grob #{ \markup \musicglyph #"noteheads.s0harmonic" #}))
 
     ..  container:: example
 
         More examples:
 
-        ::
+        >>> abjad.Scheme(True)
+        Scheme(True)
 
-            >>> abjad.Scheme(True)
-            Scheme(True)
+        >>> abjad.Scheme(False)
+        Scheme(False)
 
-        ::
+        >>> abjad.Scheme(None)
+        Scheme(None)
 
-            >>> abjad.Scheme(False)
-            Scheme(False)
+        >>> abjad.Scheme('hello')
+        Scheme('hello')
 
-        ::
-
-            >>> abjad.Scheme(None)
-            Scheme(None)
-
-        ::
-
-            >>> abjad.Scheme('hello')
-            Scheme('hello')
-
-        ::
-
-            >>> abjad.Scheme('hello world')
-            Scheme('hello world')
+        >>> abjad.Scheme('hello world')
+        Scheme('hello world')
 
             >>> abjad.Scheme([abjad.Scheme('foo'), abjad.Scheme(3.14159)])
             Scheme([Scheme('foo'), Scheme(3.14159)])
@@ -170,56 +142,39 @@ class Scheme(AbjadValueObject):
         without the hash mark, while format(Scheme) returns the formatted value
         with the hash mark, allowing for nested abjad.Scheme expressions:
 
-        ::
+        >>> scheme = abjad.Scheme(['fus', 'ro', 'dah'], quoting = "'")
+        >>> str(scheme)
+        "'(fus ro dah)"
 
-            >>> scheme = abjad.Scheme(['fus', 'ro', 'dah'], quoting = "'")
-            >>> str(scheme)
-            "'(fus ro dah)"
-
-        ::
-
-            >>> format(scheme)
-            "#'(fus ro dah)"
+        >>> format(scheme)
+        "#'(fus ro dah)"
 
     ..  container:: example
 
         Scheme attempts to format Python values into abjad.Scheme equivalents:
 
-        ::
+        >>> format(abjad.Scheme(True))
+        '##t'
 
-            >>> format(abjad.Scheme(True))
-            '##t'
+        >>> format(abjad.Scheme(False))
+        '##f'
 
-        ::
+        >>> format(abjad.Scheme(None))
+        '##f'
 
-            >>> format(abjad.Scheme(False))
-            '##f'
+        >>> format(abjad.Scheme('hello world'))
+        '#"hello world"'
 
-        ::
+        >>> format(abjad.Scheme([1, 2, 3]))
+        '#(1 2 3)'
 
-            >>> format(abjad.Scheme(None))
-            '##f'
-
-        ::
-
-            >>> format(abjad.Scheme('hello world'))
-            '#"hello world"'
-
-        ::
-
-
-            >>> format(abjad.Scheme([1, 2, 3]))
-            '#(1 2 3)'
-
-        ::
-
-            >>> format(abjad.Scheme([
-            ...     abjad.SchemePair(('padding', 1)),
-            ...     abjad.SchemePair(('attach-dir', -1)),
-            ...     ],
-            ...     quoting="'",
-            ...     ))
-            "#'((padding . 1) (attach-dir . -1))"
+        >>> format(abjad.Scheme([
+        ...     abjad.SchemePair(('padding', 1)),
+        ...     abjad.SchemePair(('attach-dir', -1)),
+        ...     ],
+        ...     quoting="'",
+        ...     ))
+        "#'((padding . 1) (attach-dir . -1))"
 
     '''
 
@@ -274,22 +229,18 @@ class Scheme(AbjadValueObject):
 
             Scheme LilyPond format:
 
-            ::
-
-                >>> scheme = abjad.Scheme('foo')
-                >>> format(scheme)
-                '#foo'
+            >>> scheme = abjad.Scheme('foo')
+            >>> format(scheme)
+            '#foo'
 
         ..  container:: example
 
             Scheme storage format:
 
-            ::
-
-                >>> f(scheme)
-                abjad.Scheme(
-                    'foo'
-                    )
+            >>> abjad.f(scheme)
+            abjad.Scheme(
+                'foo'
+                )
 
         Returns string.
         '''
@@ -398,66 +349,50 @@ class Scheme(AbjadValueObject):
 
             Some basic values:
 
-            ::
+            >>> abjad.Scheme.format_scheme_value(1)
+            '1'
 
-                >>> abjad.Scheme.format_scheme_value(1)
-                '1'
+            >>> abjad.Scheme.format_scheme_value('foo')
+            'foo'
 
-            ::
+            >>> abjad.Scheme.format_scheme_value('bar baz')
+            '"bar baz"'
 
-                >>> abjad.Scheme.format_scheme_value('foo')
-                'foo'
-
-            ::
-
-                >>> abjad.Scheme.format_scheme_value('bar baz')
-                '"bar baz"'
-
-            ::
-
-                >>> abjad.Scheme.format_scheme_value([1.5, True, False])
-                '(1.5 #t #f)'
+            >>> abjad.Scheme.format_scheme_value([1.5, True, False])
+            '(1.5 #t #f)'
 
         ..  container:: example
 
             Strings without whitespace can be forcibly quoted via the
             `force_quotes` keyword:
 
-            ::
-
-                >>> abjad.Scheme.format_scheme_value(
-                ...     'foo',
-                ...     force_quotes=True,
-                ...     )
-                '"foo"'
+            >>> abjad.Scheme.format_scheme_value(
+            ...     'foo',
+            ...     force_quotes=True,
+            ...     )
+            '"foo"'
 
         ..  container:: example
 
             Set verbatim to true to format value exactly (with only hash
             preprended):
 
-            ::
-
-                >>> string = '(lambda (grob) (grob-interpret-markup grob'
-                >>> string += r' #{ \markup \musicglyph #"noteheads.s0harmonic" #}))'
-                >>> abjad.Scheme.format_scheme_value(string, verbatim=True)
-                '(lambda (grob) (grob-interpret-markup grob #{ \\markup \\musicglyph #"noteheads.s0harmonic" #}))'
+            >>> string = '(lambda (grob) (grob-interpret-markup grob'
+            >>> string += r' #{ \markup \musicglyph #"noteheads.s0harmonic" #}))'
+            >>> abjad.Scheme.format_scheme_value(string, verbatim=True)
+            '(lambda (grob) (grob-interpret-markup grob #{ \\markup \\musicglyph #"noteheads.s0harmonic" #}))'
 
         ..  container:: example
 
             Hash symbols in strings will result in quoted output unless
             `verbatim` is True, in order to prevent LilyPond parsing errors:
 
-            ::
+            >>> string = '#1-finger'
+            >>> abjad.Scheme.format_scheme_value(string)
+            '"#1-finger"'
 
-                >>> string = '#1-finger'
-                >>> abjad.Scheme.format_scheme_value(string)
-                '"#1-finger"'
-
-            ::
-
-                >>> abjad.Scheme.format_scheme_value(string, verbatim=True)
-                '#1-finger'
+            >>> abjad.Scheme.format_scheme_value(string, verbatim=True)
+            '#1-finger'
 
         Returns string.
         '''

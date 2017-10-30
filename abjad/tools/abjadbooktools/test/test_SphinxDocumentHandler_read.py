@@ -117,7 +117,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 
             staff = Staff("c'1 g'1")
             for note in staff:
-                show(note)
+                abjad.show(note)
 
             len(staff)
         '''
@@ -132,7 +132,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                 <literal_block xml:space="preserve">
                     >>> staff = Staff("c'1 g'1")
                     >>> for note in staff:
-                    ...     show(note)
+                    ...     abjad.show(note)
                     ...
                 <abjad_output_block image_layout_specifier="True" image_render_specifier="ImageRenderSpecifier(stylesheet='default.ly')" renderer="lilypond" xml:space="preserve">
                     \version "2.19.0"
@@ -185,7 +185,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 
             staff = Staff("c'1 g'1")
             for note in staff:
-                show(note)
+                abjad.show(note)
 
             len(staff)
         '''
@@ -200,7 +200,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                 <literal_block xml:space="preserve">
                     >>> staff = Staff("c'1 g'1")
                     >>> for note in staff:
-                    ...     show(note)
+                    ...     abjad.show(note)
                     ...
                 <abjad_output_block image_layout_specifier="True" image_render_specifier="ImageRenderSpecifier(no_stylesheet=True)" renderer="lilypond" xml:space="preserve">
                     \version "2.19.0"
@@ -514,7 +514,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             :pages: 1-4
             :with-columns: 2
 
-            show(Staff("c'4 d'4 e'4 f'4"))
+            abjad.show(Staff("c'4 d'4 e'4 f'4"))
         '''
         handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)

@@ -6,13 +6,11 @@ class QGridContainer(RhythmTreeContainer):
 
     ..  container:: example
 
-        ::
-
-            >>> container = abjad.quantizationtools.QGridContainer()
-            >>> f(container)
-            abjad.quantizationtools.QGridContainer(
-                preprolated_duration=abjad.Duration(1, 1),
-                )
+        >>> container = abjad.quantizationtools.QGridContainer()
+        >>> abjad.f(container)
+        abjad.quantizationtools.QGridContainer(
+            preprolated_duration=abjad.Duration(1, 1),
+            )
 
     Used internally by ``QGrid``.
     '''

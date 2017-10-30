@@ -9,28 +9,24 @@ class IntervalClassVector(Vector):
 
         An interval-class vector:
 
-        ::
+        >>> pitch_segment = abjad.PitchSegment(
+        ...     items=[0, 11, 7, 4, 2, 9, 3, 8, 10, 1, 5, 6],
+        ...     )
+        >>> numbered_interval_class_vector = abjad.IntervalClassVector(
+        ...     items=pitch_segment,
+        ...     item_class=abjad.NumberedInversionEquivalentIntervalClass,
+        ...     )
 
-            >>> pitch_segment = abjad.PitchSegment(
-            ...     items=[0, 11, 7, 4, 2, 9, 3, 8, 10, 1, 5, 6],
-            ...     )
-            >>> numbered_interval_class_vector = abjad.IntervalClassVector(
-            ...     items=pitch_segment,
-            ...     item_class=abjad.NumberedInversionEquivalentIntervalClass,
-            ...     )
-
-        ::
-
-            >>> items = sorted(numbered_interval_class_vector.items())
-            >>> for interval, count in items:
-            ...     print(interval, count)
-            ...
-            1 12
-            2 12
-            3 12
-            4 12
-            5 12
-            6 6
+        >>> items = sorted(numbered_interval_class_vector.items())
+        >>> for interval, count in items:
+        ...     print(interval, count)
+        ...
+        1 12
+        2 12
+        3 12
+        4 12
+        5 12
+        6 6
 
     '''
 
@@ -71,30 +67,24 @@ class IntervalClassVector(Vector):
 
             Gets interpreter representation of interval-class vector:
 
-            ::
+            >>> pitch_segment = abjad.PitchSegment(
+            ...     items=[0, 11, 7, 4, 2, 9, 3, 8, 10, 1, 5, 6],
+            ...     )
+            >>> vector = abjad.IntervalClassVector(
+            ...     items=pitch_segment,
+            ...     item_class=abjad.NumberedInversionEquivalentIntervalClass,
+            ...     )
 
-                >>> pitch_segment = abjad.PitchSegment(
-                ...     items=[0, 11, 7, 4, 2, 9, 3, 8, 10, 1, 5, 6],
-                ...     )
-                >>> vector = abjad.IntervalClassVector(
-                ...     items=pitch_segment,
-                ...     item_class=abjad.NumberedInversionEquivalentIntervalClass,
-                ...     )
-
-            ::
-
-                >>> vector
-                IntervalClassVector({1: 12, 2: 12, 3: 12, 4: 12, 5: 12, 6: 6}, item_class=NumberedInversionEquivalentIntervalClass)
+            >>> vector
+            IntervalClassVector({1: 12, 2: 12, 3: 12, 4: 12, 5: 12, 6: 6}, item_class=NumberedInversionEquivalentIntervalClass)
 
         ..  container:: example
 
             Initializes from interpreter representation of interval-class
             vector:
 
-            ::
-
-                >>> abjad.IntervalClassVector(vector)
-                IntervalClassVector({1: 12, 2: 12, 3: 12, 4: 12, 5: 12, 6: 6}, item_class=NumberedInversionEquivalentIntervalClass)
+            >>> abjad.IntervalClassVector(vector)
+            IntervalClassVector({1: 12, 2: 12, 3: 12, 4: 12, 5: 12, 6: 6}, item_class=NumberedInversionEquivalentIntervalClass)
 
         Returns string.
         '''
@@ -148,27 +138,23 @@ class IntervalClassVector(Vector):
             Makes numbered inversion-equivalent interval-class vector from
             selection:
 
-            ::
-
-                >>> vector = abjad.IntervalClassVector.from_selection(
-                ...     abjad.Chord("<c' d' b''>4"),
-                ...     item_class=abjad.NumberedInversionEquivalentIntervalClass,
-                ...     )
-                >>> vector
-                IntervalClassVector({1: 1, 2: 1, 3: 1}, item_class=NumberedInversionEquivalentIntervalClass)
+            >>> vector = abjad.IntervalClassVector.from_selection(
+            ...     abjad.Chord("<c' d' b''>4"),
+            ...     item_class=abjad.NumberedInversionEquivalentIntervalClass,
+            ...     )
+            >>> vector
+            IntervalClassVector({1: 1, 2: 1, 3: 1}, item_class=NumberedInversionEquivalentIntervalClass)
 
         ..  container:: example
 
             Makes numbered interval-class vector from selection:
 
-            ::
-
-                >>> vector = abjad.IntervalClassVector.from_selection(
-                ...     abjad.Chord("<c' d' b''>4"),
-                ...     item_class=abjad.NumberedIntervalClass,
-                ...     )
-                >>> vector
-                IntervalClassVector({-11: 1, -9: 1, -2: 1}, item_class=NumberedIntervalClass)
+            >>> vector = abjad.IntervalClassVector.from_selection(
+            ...     abjad.Chord("<c' d' b''>4"),
+            ...     item_class=abjad.NumberedIntervalClass,
+            ...     )
+            >>> vector
+            IntervalClassVector({-11: 1, -9: 1, -2: 1}, item_class=NumberedIntervalClass)
 
             .. todo:: This should probabaly be checked. Resulting values
                 should probabaly be positive (or signless) instead of negative.
@@ -177,14 +163,12 @@ class IntervalClassVector(Vector):
 
             Makes named interval-class vector from selection:
 
-            ::
-
-                >>> vector = abjad.IntervalClassVector.from_selection(
-                ...     abjad.Chord("<c' d' b''>4"),
-                ...     item_class=None,
-                ...     )
-                >>> vector
-                IntervalClassVector({'-M2': 1, '-M6': 1, '-M7': 1}, item_class=NamedIntervalClass)
+            >>> vector = abjad.IntervalClassVector.from_selection(
+            ...     abjad.Chord("<c' d' b''>4"),
+            ...     item_class=None,
+            ...     )
+            >>> vector
+            IntervalClassVector({'-M2': 1, '-M6': 1, '-M7': 1}, item_class=NamedIntervalClass)
 
             .. todo:: This should probabaly be checked. Resulting values
                 should probabaly be positive (or signless) instead of negative.

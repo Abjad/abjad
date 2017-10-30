@@ -10,13 +10,11 @@ class BowPressure(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> bow_pressure = abjad.BowPressure('overpressure')
-                >>> f(bow_pressure)
-                abjad.BowPressure(
-                    pressure='overpressure',
-                    )
+            >>> bow_pressure = abjad.BowPressure('overpressure')
+            >>> abjad.f(bow_pressure)
+            abjad.BowPressure(
+                pressure='overpressure',
+                )
 
     ..  container:: example
 
@@ -24,13 +22,11 @@ class BowPressure(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> bow_pressure = abjad.BowPressure('underpressure')
-                >>> f(bow_pressure)
-                abjad.BowPressure(
-                    pressure='underpressure',
-                    )
+            >>> bow_pressure = abjad.BowPressure('underpressure')
+            >>> abjad.f(bow_pressure)
+            abjad.BowPressure(
+                pressure='underpressure',
+                )
 
     '''
 
@@ -60,21 +56,17 @@ class BowPressure(AbjadValueObject):
 
             Overpressure:
 
-            ::
-
-                >>> bow_pressure = abjad.BowPressure('overpressure')
-                >>> bow_pressure.pressure
-                'overpressure'
+            >>> bow_pressure = abjad.BowPressure('overpressure')
+            >>> bow_pressure.pressure
+            'overpressure'
 
         ..  container:: example
 
             Underpressure:
 
-            ::
-
-                >>> bow_pressure = abjad.BowPressure('underpressure')
-                >>> bow_pressure.pressure
-                'underpressure'
+            >>> bow_pressure = abjad.BowPressure('underpressure')
+            >>> bow_pressure.pressure
+            'underpressure'
 
         Returns string.
         '''

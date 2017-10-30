@@ -8,34 +8,30 @@ def timespan_2_happens_during_timespan_1(
 
     ..  container:: example
 
-        ::
-
-            >>> relation = abjad.timespantools.timespan_2_happens_during_timespan_1()
-            >>> f(relation)
-            abjad.timespantools.TimespanTimespanTimeRelation(
-                inequality=abjad.timespantools.CompoundInequality(
-                    [
-                        abjad.TimespanInequality('timespan_1.start_offset <= timespan_2.start_offset'),
-                        abjad.TimespanInequality('timespan_2.stop_offset <= timespan_1.stop_offset'),
-                        ],
-                    logical_operator='and',
-                    ),
-                )
+        >>> relation = abjad.timespantools.timespan_2_happens_during_timespan_1()
+        >>> abjad.f(relation)
+        abjad.timespantools.TimespanTimespanTimeRelation(
+            inequality=abjad.timespantools.CompoundInequality(
+                [
+                    abjad.TimespanInequality('timespan_1.start_offset <= timespan_2.start_offset'),
+                    abjad.TimespanInequality('timespan_2.stop_offset <= timespan_1.stop_offset'),
+                    ],
+                logical_operator='and',
+                ),
+            )
 
     ..  container:: example
 
         Evaluates whether timespan ``[7/8, 8/8)`` happens during timespan
         ``[1/2, 3/2)``:
 
-        ::
-
-            >>> timespan_1 = abjad.Timespan((1, 2), (3, 2))
-            >>> timespan_2 = abjad.Timespan((7, 8), (8, 8))
-            >>> abjad.timespantools.timespan_2_happens_during_timespan_1(
-            ...     timespan_1=timespan_1,
-            ...     timespan_2=timespan_2,
-            ...     )
-            True
+        >>> timespan_1 = abjad.Timespan((1, 2), (3, 2))
+        >>> timespan_2 = abjad.Timespan((7, 8), (8, 8))
+        >>> abjad.timespantools.timespan_2_happens_during_timespan_1(
+        ...     timespan_1=timespan_1,
+        ...     timespan_2=timespan_2,
+        ...     )
+        True
 
     Returns time relation or boolean.
     '''

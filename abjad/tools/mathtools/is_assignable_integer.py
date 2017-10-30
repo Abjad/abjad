@@ -4,28 +4,26 @@ def is_assignable_integer(argument):
 
     ..  container:: example
 
-        ::
-
-            >>> for n in range(0, 16 + 1):
-            ...     print('%s\t%s' % (n, abjad.mathtools.is_assignable_integer(n)))
-            ...
-            0  False
-            1  True
-            2  True
-            3  True
-            4  True
-            5  False
-            6  True
-            7  True
-            8  True
-            9  False
-            10 False
-            11 False
-            12 True
-            13 False
-            14 True
-            15 True
-            16 True
+        >>> for n in range(0, 16 + 1):
+        ...     print('%s\t%s' % (n, abjad.mathtools.is_assignable_integer(n)))
+        ...
+        0  False
+        1  True
+        2  True
+        3  True
+        4  True
+        5  False
+        6  True
+        7  True
+        8  True
+        9  False
+        10 False
+        11 False
+        12 True
+        13 False
+        14 True
+        15 True
+        16 True
 
     Returns true or false.
     '''

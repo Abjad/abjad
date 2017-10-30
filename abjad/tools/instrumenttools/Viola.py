@@ -6,18 +6,16 @@ class Viola(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> clef = abjad.Clef('alto')
-            >>> abjad.attach(clef, staff[0])
-            >>> viola = abjad.Viola()
-            >>> abjad.attach(viola, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+        >>> clef = abjad.Clef('alto')
+        >>> abjad.attach(clef, staff[0])
+        >>> viola = abjad.Viola()
+        >>> abjad.attach(viola, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { Viola }
                 \set Staff.shortInstrumentName = \markup { Va. }
@@ -73,11 +71,9 @@ class Viola(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> viola = abjad.Viola()
-                >>> viola.allowable_clefs
-                ('alto', 'treble')
+            >>> viola = abjad.Viola()
+            >>> viola.allowable_clefs
+            ('alto', 'treble')
 
         Returns clef list.
         '''
@@ -89,11 +85,9 @@ class Viola(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> viola = abjad.Viola()
-                >>> viola.default_tuning
-                Tuning(pitches=PitchSegment(['c', 'g', "d'", "a'"]))
+            >>> viola = abjad.Viola()
+            >>> viola.default_tuning
+            Tuning(pitches=PitchSegment(['c', 'g', "d'", "a'"]))
 
         Returns tuning.
         '''
@@ -105,15 +99,11 @@ class Viola(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> viola = abjad.Viola()
+            >>> viola.middle_c_sounding_pitch
+            NamedPitch("c'")
 
-                >>> viola = abjad.Viola()
-                >>> viola.middle_c_sounding_pitch
-                NamedPitch("c'")
-
-            ::
-
-                >>> show(viola.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(viola.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -125,11 +115,9 @@ class Viola(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> viola = abjad.Viola()
-                >>> viola.name
-                'viola'
+            >>> viola = abjad.Viola()
+            >>> viola.name
+            'viola'
 
         Returns string.
         '''
@@ -141,15 +129,11 @@ class Viola(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> viola = abjad.Viola()
+            >>> viola.name_markup
+            Markup(contents=['Viola'])
 
-                >>> viola = abjad.Viola()
-                >>> viola.name_markup
-                Markup(contents=['Viola'])
-
-            ::
-
-                >>> show(viola.name_markup) # doctest: +SKIP
+            >>> abjad.show(viola.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -161,15 +145,11 @@ class Viola(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> viola = abjad.Viola()
+            >>> viola.pitch_range
+            PitchRange('[C3, D6]')
 
-                >>> viola = abjad.Viola()
-                >>> viola.pitch_range
-                PitchRange('[C3, D6]')
-
-            ::
-
-                >>> show(viola.pitch_range) # doctest: +SKIP
+            >>> abjad.show(viola.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -181,11 +161,9 @@ class Viola(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> viola = abjad.Viola()
-                >>> viola.short_name
-                'va.'
+            >>> viola = abjad.Viola()
+            >>> viola.short_name
+            'va.'
 
         Returns string.
         '''
@@ -197,15 +175,11 @@ class Viola(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> viola = abjad.Viola()
+            >>> viola.short_name_markup
+            Markup(contents=['Va.'])
 
-                >>> viola = abjad.Viola()
-                >>> viola.short_name_markup
-                Markup(contents=['Va.'])
-
-            ::
-
-                >>> show(viola.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(viola.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

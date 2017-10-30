@@ -5,16 +5,14 @@ def setting(argument):
 
         Sets instrument name:
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-            >>> abjad.setting(staff).instrument_name = abjad.Markup('Vn. I')
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
+        >>> abjad.setting(staff).instrument_name = abjad.Markup('Vn. I')
+        >>> abjad.show(staff) # doctest: +SKIP
 
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff \with {
                 instrumentName = \markup { "Vn. I" }
             } {
@@ -28,10 +26,8 @@ def setting(argument):
 
         Returns LilyPond setting name manager:
 
-        ::
-
-            >>> abjad.setting(staff)
-            LilyPondSettingNameManager(('instrument_name', Markup(contents=['Vn. I'])))
+        >>> abjad.setting(staff)
+        LilyPondSettingNameManager(('instrument_name', Markup(contents=['Vn. I'])))
 
     '''
     from abjad.tools import lilypondnametools

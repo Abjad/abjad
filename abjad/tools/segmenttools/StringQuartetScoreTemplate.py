@@ -7,54 +7,50 @@ class StringQuartetScoreTemplate(ScoreTemplate):
 
     ..  container:: example
 
-        ::
+        >>> template = abjad.StringQuartetScoreTemplate()
+        >>> abjad.show(template) # doctest: +SKIP
 
-            >>> template = abjad.StringQuartetScoreTemplate()
-            >>> show(template) # doctest: +SKIP
-
-        ::
-
-            >>> f(template.__illustrate__()[abjad.Score])
-            \context Score = "String Quartet Score" <<
-                \context StaffGroup = "String Quartet Staff Group" <<
-                    \tag #'first-violin
-                    \context Staff = "First Violin Staff" {
-                        \context Voice = "First Violin Voice" {
-                            \set Staff.instrumentName = \markup { Violin }
-                            \set Staff.shortInstrumentName = \markup { Vn. }
-                            \clef "treble"
-                            s1
-                        }
+        >>> abjad.f(template.__illustrate__()[abjad.Score])
+        \context Score = "String Quartet Score" <<
+            \context StaffGroup = "String Quartet Staff Group" <<
+                \tag #'first-violin
+                \context Staff = "First Violin Staff" {
+                    \context Voice = "First Violin Voice" {
+                        \set Staff.instrumentName = \markup { Violin }
+                        \set Staff.shortInstrumentName = \markup { Vn. }
+                        \clef "treble"
+                        s1
                     }
-                    \tag #'second-violin
-                    \context Staff = "Second Violin Staff" {
-                        \context Voice = "Second Violin Voice" {
-                            \set Staff.instrumentName = \markup { Violin }
-                            \set Staff.shortInstrumentName = \markup { Vn. }
-                            \clef "treble"
-                            s1
-                        }
+                }
+                \tag #'second-violin
+                \context Staff = "Second Violin Staff" {
+                    \context Voice = "Second Violin Voice" {
+                        \set Staff.instrumentName = \markup { Violin }
+                        \set Staff.shortInstrumentName = \markup { Vn. }
+                        \clef "treble"
+                        s1
                     }
-                    \tag #'viola
-                    \context Staff = "Viola Staff" {
-                        \context Voice = "Viola Voice" {
-                            \set Staff.instrumentName = \markup { Viola }
-                            \set Staff.shortInstrumentName = \markup { Va. }
-                            \clef "alto"
-                            s1
-                        }
+                }
+                \tag #'viola
+                \context Staff = "Viola Staff" {
+                    \context Voice = "Viola Voice" {
+                        \set Staff.instrumentName = \markup { Viola }
+                        \set Staff.shortInstrumentName = \markup { Va. }
+                        \clef "alto"
+                        s1
                     }
-                    \tag #'cello
-                    \context Staff = "Cello Staff" {
-                        \context Voice = "Cello Voice" {
-                            \set Staff.instrumentName = \markup { Cello }
-                            \set Staff.shortInstrumentName = \markup { Vc. }
-                            \clef "bass"
-                            s1
-                        }
+                }
+                \tag #'cello
+                \context Staff = "Cello Staff" {
+                    \context Voice = "Cello Voice" {
+                        \set Staff.instrumentName = \markup { Cello }
+                        \set Staff.shortInstrumentName = \markup { Vc. }
+                        \clef "bass"
+                        s1
                     }
-                >>
+                }
             >>
+        >>
 
     Returns score template.
     '''

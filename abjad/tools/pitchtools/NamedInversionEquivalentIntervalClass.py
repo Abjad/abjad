@@ -9,56 +9,40 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
 
         Initializes from string:
 
-        ::
-
-            >>> abjad.NamedInversionEquivalentIntervalClass('-m14')
-            NamedInversionEquivalentIntervalClass('+M2')
+        >>> abjad.NamedInversionEquivalentIntervalClass('-m14')
+        NamedInversionEquivalentIntervalClass('+M2')
 
     ..  container:: example
 
         Initializes from pair:
 
-        ::
+        >>> abjad.NamedInversionEquivalentIntervalClass(('perfect', 1))
+        NamedInversionEquivalentIntervalClass('P1')
 
-            >>> abjad.NamedInversionEquivalentIntervalClass(('perfect', 1))
-            NamedInversionEquivalentIntervalClass('P1')
+        >>> abjad.NamedInversionEquivalentIntervalClass(('perfect', -1))
+        NamedInversionEquivalentIntervalClass('P1')
 
-        ::
+        >>> abjad.NamedInversionEquivalentIntervalClass(('augmented', 4))
+        NamedInversionEquivalentIntervalClass('+aug4')
 
-            >>> abjad.NamedInversionEquivalentIntervalClass(('perfect', -1))
-            NamedInversionEquivalentIntervalClass('P1')
+        >>> abjad.NamedInversionEquivalentIntervalClass(('augmented', -4))
+        NamedInversionEquivalentIntervalClass('+aug4')
 
-        ::
+        >>> abjad.NamedInversionEquivalentIntervalClass(('augmented', 11))
+        NamedInversionEquivalentIntervalClass('+aug4')
 
-            >>> abjad.NamedInversionEquivalentIntervalClass(('augmented', 4))
-            NamedInversionEquivalentIntervalClass('+aug4')
-
-        ::
-
-            >>> abjad.NamedInversionEquivalentIntervalClass(('augmented', -4))
-            NamedInversionEquivalentIntervalClass('+aug4')
-
-        ::
-
-            >>> abjad.NamedInversionEquivalentIntervalClass(('augmented', 11))
-            NamedInversionEquivalentIntervalClass('+aug4')
-
-        ::
-
-            >>> abjad.NamedInversionEquivalentIntervalClass(('augmented', -11))
-            NamedInversionEquivalentIntervalClass('+aug4')
+        >>> abjad.NamedInversionEquivalentIntervalClass(('augmented', -11))
+        NamedInversionEquivalentIntervalClass('+aug4')
 
     ..  container:: example
 
         Initializes from other interval-class:
 
-        ::
-
-            >>> interval_class = abjad.NamedInversionEquivalentIntervalClass(
-            ...     'P1',
-            ...     )
-            >>> abjad.NamedInversionEquivalentIntervalClass(interval_class)
-            NamedInversionEquivalentIntervalClass('P1')
+        >>> interval_class = abjad.NamedInversionEquivalentIntervalClass(
+        ...     'P1',
+        ...     )
+        >>> abjad.NamedInversionEquivalentIntervalClass(interval_class)
+        NamedInversionEquivalentIntervalClass('P1')
 
     '''
 
@@ -111,39 +95,31 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
 
         ..  container:: example
 
-            ::
+            >>> class_ = abjad.NamedInversionEquivalentIntervalClass
+            >>> interval_class_1 = class_('P1')
+            >>> interval_class_2 = class_('P1')
+            >>> interval_class_3 = class_('m2')
 
-                >>> class_ = abjad.NamedInversionEquivalentIntervalClass
-                >>> interval_class_1 = class_('P1')
-                >>> interval_class_2 = class_('P1')
-                >>> interval_class_3 = class_('m2')
+            >>> interval_class_1 == interval_class_1
+            True
+            >>> interval_class_1 == interval_class_2
+            True
+            >>> interval_class_1 == interval_class_3
+            False
 
-            ::
+            >>> interval_class_2 == interval_class_1
+            True
+            >>> interval_class_2 == interval_class_2
+            True
+            >>> interval_class_2 == interval_class_3
+            False
 
-                >>> interval_class_1 == interval_class_1
-                True
-                >>> interval_class_1 == interval_class_2
-                True
-                >>> interval_class_1 == interval_class_3
-                False
-
-            ::
-
-                >>> interval_class_2 == interval_class_1
-                True
-                >>> interval_class_2 == interval_class_2
-                True
-                >>> interval_class_2 == interval_class_3
-                False
-
-            ::
-
-                >>> interval_class_3 == interval_class_1
-                False
-                >>> interval_class_3 == interval_class_2
-                False
-                >>> interval_class_3 == interval_class_3
-                True
+            >>> interval_class_3 == interval_class_1
+            False
+            >>> interval_class_3 == interval_class_2
+            False
+            >>> interval_class_3 == interval_class_3
+            True
 
         Returns true or false.
         '''
@@ -208,14 +184,12 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
 
         ..  container:: example
 
-            ::
-
-                >>> class_ = abjad.NamedInversionEquivalentIntervalClass
-                >>> class_.from_pitch_carriers(
-                ...     abjad.NamedPitch(-2),
-                ...     abjad.NamedPitch(12),
-                ...     )
-                NamedInversionEquivalentIntervalClass('+M2')
+            >>> class_ = abjad.NamedInversionEquivalentIntervalClass
+            >>> class_.from_pitch_carriers(
+            ...     abjad.NamedPitch(-2),
+            ...     abjad.NamedPitch(12),
+            ...     )
+            NamedInversionEquivalentIntervalClass('+M2')
 
         Returns new named inversion-equivalent interval-class.
         '''
@@ -234,11 +208,9 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
 
         ..  container:: example
 
-            ::
-
-                >>> class_ = abjad.NamedInversionEquivalentIntervalClass
-                >>> class_.from_quality_and_number('perfect', 1)
-                NamedInversionEquivalentIntervalClass('P1')
+            >>> class_ = abjad.NamedInversionEquivalentIntervalClass
+            >>> class_.from_quality_and_number('perfect', 1)
+            NamedInversionEquivalentIntervalClass('P1')
 
         Returns new named inversion-equivalent interval-class.
         '''

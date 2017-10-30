@@ -8,16 +8,14 @@ class SystemBreak(AbjadValueObject):
 
         Default system break:
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-            >>> break_ = abjad.SystemBreak()
-            >>> abjad.attach(break_, staff[-1])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+        >>> break_ = abjad.SystemBreak()
+        >>> abjad.attach(break_, staff[-1])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 c'4
                 d'4
@@ -65,11 +63,9 @@ class SystemBreak(AbjadValueObject):
 
             Default system break:
 
-            ::
-
-                >>> break_ = abjad.SystemBreak()
-                >>> break_.default_scope
-                <class 'abjad.tools.scoretools.Staff.Staff'>
+            >>> break_ = abjad.SystemBreak()
+            >>> break_.default_scope
+            <class 'abjad.tools.scoretools.Staff.Staff'>
 
         ..  todo:: Make system breaks score-scoped.
 

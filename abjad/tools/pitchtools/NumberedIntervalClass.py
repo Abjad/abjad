@@ -10,28 +10,22 @@ class NumberedIntervalClass(IntervalClass):
 
         Initializes from integer:
 
-        ::
-
-            >>> abjad.NumberedIntervalClass(-14)
-            NumberedIntervalClass(-2)
+        >>> abjad.NumberedIntervalClass(-14)
+        NumberedIntervalClass(-2)
 
     ..  container:: example
 
         Initializes from float:
 
-        ::
-
-            >>> abjad.NumberedIntervalClass(-14.5)
-            NumberedIntervalClass(-2.5)
+        >>> abjad.NumberedIntervalClass(-14.5)
+        NumberedIntervalClass(-2.5)
 
     ..  container:: example
 
         Initializes from string:
 
-        ::
-
-            >>> abjad.NumberedIntervalClass('-14.5')
-            NumberedIntervalClass(-2.5)
+        >>> abjad.NumberedIntervalClass('-14.5')
+        NumberedIntervalClass(-2.5)
 
     '''
 
@@ -103,38 +97,30 @@ class NumberedIntervalClass(IntervalClass):
 
         ..  container:: example
 
-            ::
+            >>> interval_class_1 = abjad.NumberedIntervalClass(0)
+            >>> interval_class_2 = abjad.NumberedIntervalClass(0)
+            >>> interval_class_3 = abjad.NumberedIntervalClass(1)
 
-                >>> interval_class_1 = abjad.NumberedIntervalClass(0)
-                >>> interval_class_2 = abjad.NumberedIntervalClass(0)
-                >>> interval_class_3 = abjad.NumberedIntervalClass(1)
+            >>> interval_class_1 == interval_class_1
+            True
+            >>> interval_class_1 == interval_class_2
+            True
+            >>> interval_class_1 == interval_class_3
+            False
 
-            ::
+            >>> interval_class_2 == interval_class_1
+            True
+            >>> interval_class_2 == interval_class_2
+            True
+            >>> interval_class_2 == interval_class_3
+            False
 
-                >>> interval_class_1 == interval_class_1
-                True
-                >>> interval_class_1 == interval_class_2
-                True
-                >>> interval_class_1 == interval_class_3
-                False
-
-            ::
-
-                >>> interval_class_2 == interval_class_1
-                True
-                >>> interval_class_2 == interval_class_2
-                True
-                >>> interval_class_2 == interval_class_3
-                False
-
-            ::
-
-                >>> interval_class_3 == interval_class_1
-                False
-                >>> interval_class_3 == interval_class_2
-                False
-                >>> interval_class_3 == interval_class_3
-                True
+            >>> interval_class_3 == interval_class_1
+            False
+            >>> interval_class_3 == interval_class_2
+            False
+            >>> interval_class_3 == interval_class_3
+            True
 
         Returns true or false.
         '''
@@ -152,38 +138,30 @@ class NumberedIntervalClass(IntervalClass):
 
         ..  container:: example
 
-            ::
+            >>> interval_class_1 = abjad.NumberedIntervalClass(0)
+            >>> interval_class_2 = abjad.NumberedIntervalClass(0)
+            >>> interval_class_3 = abjad.NumberedIntervalClass(1)
 
-                >>> interval_class_1 = abjad.NumberedIntervalClass(0)
-                >>> interval_class_2 = abjad.NumberedIntervalClass(0)
-                >>> interval_class_3 = abjad.NumberedIntervalClass(1)
+            >>> interval_class_1 < interval_class_1
+            False
+            >>> interval_class_1 < interval_class_2
+            False
+            >>> interval_class_1 < interval_class_3
+            True
 
-            ::
+            >>> interval_class_2 < interval_class_1
+            False
+            >>> interval_class_2 < interval_class_2
+            False
+            >>> interval_class_2 < interval_class_3
+            True
 
-                >>> interval_class_1 < interval_class_1
-                False
-                >>> interval_class_1 < interval_class_2
-                False
-                >>> interval_class_1 < interval_class_3
-                True
-
-            ::
-
-                >>> interval_class_2 < interval_class_1
-                False
-                >>> interval_class_2 < interval_class_2
-                False
-                >>> interval_class_2 < interval_class_3
-                True
-
-            ::
-
-                >>> interval_class_3 < interval_class_1
-                False
-                >>> interval_class_3 < interval_class_2
-                False
-                >>> interval_class_3 < interval_class_3
-                False
+            >>> interval_class_3 < interval_class_1
+            False
+            >>> interval_class_3 < interval_class_2
+            False
+            >>> interval_class_3 < interval_class_3
+            False
 
         Returns true or false.
         '''
@@ -198,20 +176,14 @@ class NumberedIntervalClass(IntervalClass):
 
         ..  container:: example
 
-            ::
+            >>> str(abjad.NumberedIntervalClass(-13))
+            '-1'
 
-                >>> str(abjad.NumberedIntervalClass(-13))
-                '-1'
+            >>> str(abjad.NumberedIntervalClass(0))
+            '0'
 
-            ::
-
-                >>> str(abjad.NumberedIntervalClass(0))
-                '0'
-
-            ::
-
-                >>> str(abjad.NumberedIntervalClass(13))
-                '+1'
+            >>> str(abjad.NumberedIntervalClass(13))
+            '+1'
 
         '''
         string = super(NumberedIntervalClass, self).__str__()
@@ -279,53 +251,41 @@ class NumberedIntervalClass(IntervalClass):
 
         ..  container:: example
 
-            ::
+            >>> abjad.NumberedIntervalClass.from_pitch_carriers(
+            ...     abjad.NamedPitch(-2),
+            ...     abjad.NamedPitch(12),
+            ...     )
+            NumberedIntervalClass(2)
 
-                >>> abjad.NumberedIntervalClass.from_pitch_carriers(
-                ...     abjad.NamedPitch(-2),
-                ...     abjad.NamedPitch(12),
-                ...     )
-                NumberedIntervalClass(2)
+            >>> abjad.NumberedIntervalClass.from_pitch_carriers(
+            ...     abjad.NamedPitch(0),
+            ...     abjad.NamedPitch(12),
+            ...     )
+            NumberedIntervalClass(12)
 
-            ::
+            >>> abjad.NumberedIntervalClass.from_pitch_carriers(
+            ...     abjad.NamedPitch(9),
+            ...     abjad.NamedPitch(12),
+            ...     )
+            NumberedIntervalClass(3)
 
-                >>> abjad.NumberedIntervalClass.from_pitch_carriers(
-                ...     abjad.NamedPitch(0),
-                ...     abjad.NamedPitch(12),
-                ...     )
-                NumberedIntervalClass(12)
+            >>> abjad.NumberedIntervalClass.from_pitch_carriers(
+            ...     abjad.NamedPitch(12),
+            ...     abjad.NamedPitch(9),
+            ...     )
+            NumberedIntervalClass(-3)
 
-            ::
+            >>> abjad.NumberedIntervalClass.from_pitch_carriers(
+            ...     abjad.NamedPitch(12),
+            ...     abjad.NamedPitch(12),
+            ...     )
+            NumberedIntervalClass(0)
 
-                >>> abjad.NumberedIntervalClass.from_pitch_carriers(
-                ...     abjad.NamedPitch(9),
-                ...     abjad.NamedPitch(12),
-                ...     )
-                NumberedIntervalClass(3)
-
-            ::
-
-                >>> abjad.NumberedIntervalClass.from_pitch_carriers(
-                ...     abjad.NamedPitch(12),
-                ...     abjad.NamedPitch(9),
-                ...     )
-                NumberedIntervalClass(-3)
-
-            ::
-
-                >>> abjad.NumberedIntervalClass.from_pitch_carriers(
-                ...     abjad.NamedPitch(12),
-                ...     abjad.NamedPitch(12),
-                ...     )
-                NumberedIntervalClass(0)
-
-            ::
-
-                >>> abjad.NumberedIntervalClass.from_pitch_carriers(
-                ...     abjad.NamedPitch(12),
-                ...     abjad.NamedPitch(-2),
-                ...     )
-                NumberedIntervalClass(-2)
+            >>> abjad.NumberedIntervalClass.from_pitch_carriers(
+            ...     abjad.NamedPitch(12),
+            ...     abjad.NamedPitch(-2),
+            ...     )
+            NumberedIntervalClass(-2)
 
         Returns numbered interval-class.
         '''

@@ -8,16 +8,14 @@ class OctavationSpanner(Spanner):
 
         Spans four notes:
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> spanner = abjad.OctavationSpanner(start=1)
-            >>> abjad.attach(spanner, staff[:])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> spanner = abjad.OctavationSpanner(start=1)
+        >>> abjad.attach(spanner, staff[:])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \ottava #1
                 c'4
@@ -31,16 +29,14 @@ class OctavationSpanner(Spanner):
 
         Spans one note:
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> octavation_spanner = abjad.OctavationSpanner(start=1)
-            >>> abjad.attach(octavation_spanner, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> octavation_spanner = abjad.OctavationSpanner(start=1)
+        >>> abjad.attach(octavation_spanner, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \ottava #1
                 c'4
@@ -108,21 +104,17 @@ class OctavationSpanner(Spanner):
 
         ..  container:: example
 
-            ::
+            >>> measure = abjad.Measure((4, 8), "c'''8 d'''8 ef'''8 f'''8")
+            >>> octavation = abjad.OctavationSpanner()
+            >>> abjad.attach(octavation, measure[:])
+            >>> abjad.show(measure) # doctest: +SKIP
 
-                >>> measure = abjad.Measure((4, 8), "c'''8 d'''8 ef'''8 f'''8")
-                >>> octavation = abjad.OctavationSpanner()
-                >>> abjad.attach(octavation, measure[:])
-                >>> show(measure) # doctest: +SKIP
-
-            ::
-
-                >>> octavation.adjust_automatically(ottava_breakpoint=14)
-                >>> show(measure) # doctest: +SKIP
+            >>> octavation.adjust_automatically(ottava_breakpoint=14)
+            >>> abjad.show(measure) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(measure)
+                >>> abjad.f(measure)
                     {
                         \time 4/8
                         \ottava #1
@@ -159,17 +151,13 @@ class OctavationSpanner(Spanner):
 
         ..  container:: example
 
-            ::
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = abjad.OctavationSpanner(start=1)
+            >>> abjad.attach(spanner, staff[:])
+            >>> abjad.show(staff) # doctest: +SKIP
 
-                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = abjad.OctavationSpanner(start=1)
-                >>> abjad.attach(spanner, staff[:])
-                >>> show(staff) # doctest: +SKIP
-
-            ::
-
-                >>> spanner.start
-                1
+            >>> spanner.start
+            1
 
         Returns integer or none.
         '''
@@ -179,17 +167,13 @@ class OctavationSpanner(Spanner):
     def stop(self):
         r'''Gets octavation stop.
 
-        ::
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> spanner = abjad.OctavationSpanner(start=2, stop=1)
+        >>> abjad.attach(spanner, staff[:])
+        >>> abjad.show(staff) # doctest: +SKIP
 
-            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-            >>> spanner = abjad.OctavationSpanner(start=2, stop=1)
-            >>> abjad.attach(spanner, staff[:])
-            >>> show(staff) # doctest: +SKIP
-
-        ::
-
-            >>> spanner.stop
-            1
+        >>> spanner.stop
+        1
 
         Returns integer or none.
         '''

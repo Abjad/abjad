@@ -4,16 +4,12 @@ def all_are_integer_equivalent(argument):
 
     ..  container:: example
 
-        ::
+        >>> items = [1, '2', 3.0, abjad.Fraction(4, 1)]
+        >>> abjad.mathtools.all_are_integer_equivalent(items)
+        True
 
-            >>> items = [1, '2', 3.0, abjad.Fraction(4, 1)]
-            >>> abjad.mathtools.all_are_integer_equivalent(items)
-            True
-
-        ::
-
-            >>> abjad.mathtools.all_are_integer_equivalent([1, '2', 3.5, 4])
-            False
+        >>> abjad.mathtools.all_are_integer_equivalent([1, '2', 3.5, 4])
+        False
 
     Returns true or false.
     '''

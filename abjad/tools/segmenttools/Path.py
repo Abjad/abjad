@@ -8,27 +8,19 @@ class Path(pathlib.PosixPath):
 
     ..  container:: example
 
-        ::
+        >>> path = abjad.Path(
+        ...     '/path/to/scores/my_score/my_score',
+        ...     scores='/path/to/scores',
+        ...     )
 
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
+        >>> path.materials
+        Path*('/path/to/scores/my_score/my_score/materials')
 
-        ::
+        >>> path.materials('instruments')
+        Path*('/path/to/scores/my_score/my_score/materials/instruments')
 
-            >>> path.materials
-            Path*('/path/to/scores/my_score/my_score/materials')
-
-        ::
-
-            >>> path.materials('instruments')
-            Path*('/path/to/scores/my_score/my_score/materials/instruments')
-
-        ::
-
-            >>> path.materials('instruments').is_material()
-            True
+        >>> path.materials('instruments').is_material()
+        True
 
     '''
 
@@ -328,16 +320,14 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
-
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> path.builds
-                Path*('/path/to/scores/my_score/my_score/builds')
-                >>> path.builds('letter')
-                Path*('/path/to/scores/my_score/my_score/builds/letter')
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path.builds
+            Path*('/path/to/scores/my_score/my_score/builds')
+            >>> path.builds('letter')
+            Path*('/path/to/scores/my_score/my_score/builds/letter')
 
         Returns path.
         '''
@@ -350,16 +340,14 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
-
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> path.contents
-                Path*('/path/to/scores/my_score/my_score')
-                >>> path.contents('etc', 'notes.txt')
-                Path*('/path/to/scores/my_score/my_score/etc/notes.txt')
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path.contents
+            Path*('/path/to/scores/my_score/my_score')
+            >>> path.contents('etc', 'notes.txt')
+            Path*('/path/to/scores/my_score/my_score/etc/notes.txt')
 
         Returns path.
         '''
@@ -379,16 +367,14 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
-
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> path.distribution
-                Path*('/path/to/scores/my_score/my_score/distribution')
-                >>> path.distribution('score.pdf')
-                Path*('/path/to/scores/my_score/my_score/distribution/score.pdf')
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path.distribution
+            Path*('/path/to/scores/my_score/my_score/distribution')
+            >>> path.distribution('score.pdf')
+            Path*('/path/to/scores/my_score/my_score/distribution/score.pdf')
 
         Returns path.
         '''
@@ -401,16 +387,14 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
-
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> path.etc
-                Path*('/path/to/scores/my_score/my_score/etc')
-                >>> path.etc('notes.txt')
-                Path*('/path/to/scores/my_score/my_score/etc/notes.txt')
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path.etc
+            Path*('/path/to/scores/my_score/my_score/etc')
+            >>> path.etc('notes.txt')
+            Path*('/path/to/scores/my_score/my_score/etc/notes.txt')
 
         Returns path.
         '''
@@ -423,16 +407,14 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
-
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> path.materials
-                Path*('/path/to/scores/my_score/my_score/materials')
-                >>> path.materials('instruments')
-                Path*('/path/to/scores/my_score/my_score/materials/instruments')
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path.materials
+            Path*('/path/to/scores/my_score/my_score/materials')
+            >>> path.materials('instruments')
+            Path*('/path/to/scores/my_score/my_score/materials/instruments')
 
         Returns path.
         '''
@@ -445,16 +427,14 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
-
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> path.scores
-                Path*('/path/to/scores')
-                >>> path.scores('red_score', 'red_score')
-                Path*('/path/to/scores/red_score/red_score')
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path.scores
+            Path*('/path/to/scores')
+            >>> path.scores('red_score', 'red_score')
+            Path*('/path/to/scores/red_score/red_score')
 
         Returns path or none.
         '''
@@ -474,16 +454,14 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
-
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> path.segments
-                Path*('/path/to/scores/my_score/my_score/segments')
-                >>> path.segments('segment_01')
-                Path*('/path/to/scores/my_score/my_score/segments/segment_01')
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path.segments
+            Path*('/path/to/scores/my_score/my_score/segments')
+            >>> path.segments('segment_01')
+            Path*('/path/to/scores/my_score/my_score/segments/segment_01')
 
         Returns path.
         '''
@@ -496,16 +474,14 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
-
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> path.stylesheets
-                Path*('/path/to/scores/my_score/my_score/stylesheets')
-                >>> path.stylesheets('stylesheet.ily')
-                Path*('/path/to/scores/my_score/my_score/stylesheets/stylesheet.ily')
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path.stylesheets
+            Path*('/path/to/scores/my_score/my_score/stylesheets')
+            >>> path.stylesheets('stylesheet.ily')
+            Path*('/path/to/scores/my_score/my_score/stylesheets/stylesheet.ily')
 
         Returns path.
         '''
@@ -518,16 +494,14 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
-
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> path.test
-                Path*('/path/to/scores/my_score/my_score/test')
-                >>> path.test('test_materials.py')
-                Path*('/path/to/scores/my_score/my_score/test/test_materials.py')
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path.test
+            Path*('/path/to/scores/my_score/my_score/test')
+            >>> path.test('test_materials.py')
+            Path*('/path/to/scores/my_score/my_score/test/test_materials.py')
 
         Returns path.
         '''
@@ -540,16 +514,14 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
-
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> path.tools
-                Path*('/path/to/scores/my_score/my_score/tools')
-                >>> path.tools('SegmentMaker.py')
-                Path*('/path/to/scores/my_score/my_score/tools/SegmentMaker.py')
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path.tools
+            Path*('/path/to/scores/my_score/my_score/tools')
+            >>> path.tools('SegmentMaker.py')
+            Path*('/path/to/scores/my_score/my_score/tools/SegmentMaker.py')
 
         Returns path.
         '''
@@ -562,16 +534,14 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
-
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> path.wrapper
-                Path*('/path/to/scores/my_score')
-                >>> path.wrapper('my_score', 'etc')
-                Path*('/path/to/scores/my_score/my_score/etc')
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path.wrapper
+            Path*('/path/to/scores/my_score')
+            >>> path.wrapper('my_score', 'etc')
+            Path*('/path/to/scores/my_score/my_score/etc')
 
         Returns path.
         '''
@@ -598,130 +568,108 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
-
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
 
         ..  container:: example
 
             In build directory:
 
-            ::
+            >>> path.builds('letter').coerce('back cover.tex')
+            'back-cover.tex'
+            >>> path.builds('letter').coerce('Back Cover.tex')
+            'back-cover.tex'
+            >>> path.builds('letter').coerce('BACK_COVER.tex')
+            'back-cover.tex'
 
-                >>> path.builds('letter').coerce('back cover.tex')
-                'back-cover.tex'
-                >>> path.builds('letter').coerce('Back Cover.tex')
-                'back-cover.tex'
-                >>> path.builds('letter').coerce('BACK_COVER.tex')
-                'back-cover.tex'
-
-            ::
-
-                >>> path.builds('letter').coerce('new music.ly')
-                'new-music.ly'
-                >>> path.builds('letter').coerce('New Music.ly')
-                'new-music.ly'
-                >>> path.builds('letter').coerce('NEW_MUSIC.ly')
-                'new-music.ly'
+            >>> path.builds('letter').coerce('new music.ly')
+            'new-music.ly'
+            >>> path.builds('letter').coerce('New Music.ly')
+            'new-music.ly'
+            >>> path.builds('letter').coerce('NEW_MUSIC.ly')
+            'new-music.ly'
 
         ..  container:: example
 
             In builds directory:
 
-            ::
-
-                >>> path.builds.coerce('letter_landscape')
-                'letter-landscape'
-                >>> path.builds.coerce('letter landscape')
-                'letter-landscape'
-                >>> path.builds.coerce('Letter Landscape')
-                'letter-landscape'
+            >>> path.builds.coerce('letter_landscape')
+            'letter-landscape'
+            >>> path.builds.coerce('letter landscape')
+            'letter-landscape'
+            >>> path.builds.coerce('Letter Landscape')
+            'letter-landscape'
 
         ..  container:: example
 
             In contents directory:
 
-            ::
-
-                >>> path.contents.coerce('ETC')
-                'etc'
+            >>> path.contents.coerce('ETC')
+            'etc'
 
         ..  container:: example
 
             In distribution directory:
 
-            ::
-
-                >>> path.distribution.coerce('program notes.txt')
-                'program-notes.txt'
-                >>> path.distribution.coerce('Program Notes.txt')
-                'program-notes.txt'
-                >>> path.distribution.coerce('PROGRAM_NOTES.txt')
-                'program-notes.txt'
+            >>> path.distribution.coerce('program notes.txt')
+            'program-notes.txt'
+            >>> path.distribution.coerce('Program Notes.txt')
+            'program-notes.txt'
+            >>> path.distribution.coerce('PROGRAM_NOTES.txt')
+            'program-notes.txt'
 
         ..  container:: example
 
             In etc directory:
 
-            ::
-
-                >>> path.etc.coerce('material sketches.md')
-                'material-sketches.md'
-                >>> path.etc.coerce('Material Sketches.md')
-                'material-sketches.md'
-                >>> path.etc.coerce('MATERIAL_SKETCHES.md')
-                'material-sketches.md'
+            >>> path.etc.coerce('material sketches.md')
+            'material-sketches.md'
+            >>> path.etc.coerce('Material Sketches.md')
+            'material-sketches.md'
+            >>> path.etc.coerce('MATERIAL_SKETCHES.md')
+            'material-sketches.md'
 
         ..  container:: example
 
             In scores directory:
 
-            ::
-
-                >>> path.scores.coerce('Green Score')
-                'green_score'
+            >>> path.scores.coerce('Green Score')
+            'green_score'
 
         ..  container:: example
 
             In segment directory:
 
-            ::
+            >>> path.segments.coerce('_')
+            '_'
+            >>> path.segments.coerce('A')
+            'A'
+            >>> path.segments.coerce('A1')
+            'A1'
+            >>> path.segments.coerce('A99')
+            'A99'
 
-                >>> path.segments.coerce('_')
-                '_'
-                >>> path.segments.coerce('A')
-                'A'
-                >>> path.segments.coerce('A1')
-                'A1'
-                >>> path.segments.coerce('A99')
-                'A99'
-
-            ::
-
-                >>> path.segments.coerce('segment_01')
-                'segment_01'
-                >>> path.segments.coerce('segment 01')
-                'segment_01'
-                >>> path.segments.coerce('Segment 01')
-                'segment_01'
-                >>> path.segments.coerce('SEGMENT 01')
-                'segment_01'
+            >>> path.segments.coerce('segment_01')
+            'segment_01'
+            >>> path.segments.coerce('segment 01')
+            'segment_01'
+            >>> path.segments.coerce('Segment 01')
+            'segment_01'
+            >>> path.segments.coerce('SEGMENT 01')
+            'segment_01'
 
         ..  container:: example
 
             In stylesheets directory:
 
-            ::
-
-                >>> path.stylesheets.coerce('segment stylesheet')
-                'segment-stylesheet.ily'
-                >>> path.stylesheets.coerce('Segment Stylesheet')
-                'segment-stylesheet.ily'
-                >>> path.stylesheets.coerce('SEGMENT_STYLESHEET')
-                'segment-stylesheet.ily'
+            >>> path.stylesheets.coerce('segment stylesheet')
+            'segment-stylesheet.ily'
+            >>> path.stylesheets.coerce('Segment Stylesheet')
+            'segment-stylesheet.ily'
+            >>> path.stylesheets.coerce('SEGMENT_STYLESHEET')
+            'segment-stylesheet.ily'
 
         Returns string.
         '''
@@ -776,76 +724,50 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
 
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
+            >>> path.builds.get_asset_type()
+            'directory'
 
-            ::
+            >>> path.contents.get_asset_type()
+            'directory'
 
-                >>> path.builds.get_asset_type()
-                'directory'
+            >>> path.distribution.get_asset_type()
+            'file'
 
-            ::
+            >>> path.etc.get_asset_type()
+            'file'
 
-                >>> path.contents.get_asset_type()
-                'directory'
+            >>> path.materials.get_asset_type()
+            'package'
 
-            ::
+            >>> path.scores.get_asset_type()
+            'package'
 
-                >>> path.distribution.get_asset_type()
-                'file'
+            >>> path.segments.get_asset_type()
+            'package'
 
-            ::
+            >>> path.stylesheets.get_asset_type()
+            'file'
 
-                >>> path.etc.get_asset_type()
-                'file'
+            >>> path.test.get_asset_type()
+            'file'
 
-            ::
+            >>> path.tools.get_asset_type()
+            'file'
 
-                >>> path.materials.get_asset_type()
-                'package'
-
-            ::
-
-                >>> path.scores.get_asset_type()
-                'package'
-
-            ::
-
-                >>> path.segments.get_asset_type()
-                'package'
-
-            ::
-
-                >>> path.stylesheets.get_asset_type()
-                'file'
-
-            ::
-
-                >>> path.test.get_asset_type()
-                'file'
-
-            ::
-
-                >>> path.tools.get_asset_type()
-                'file'
-
-            ::
-
-                >>> path.wrapper.get_asset_type()
-                'asset'
+            >>> path.wrapper.get_asset_type()
+            'asset'
 
         ..  container:: example
 
             With external path:
 
-            ::
-
-                >>> abjad.Path('/path/to/external').get_asset_type()
-                'asset'
+            >>> abjad.Path('/path/to/external').get_asset_type()
+            'asset'
 
         Returns string.
         '''
@@ -879,42 +801,28 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
 
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
+            >>> path.contents.get_identifier()
+            '(untitled score)'
 
-            ::
+            >>> path.materials('tempi').get_identifier()
+            'tempi'
 
-                >>> path.contents.get_identifier()
-                '(untitled score)'
+            >>> path.materials().get_identifier()
+            'materials'
 
-            ::
+            >>> path.segments('segment_01').get_identifier()
+            'segment_01'
 
-                >>> path.materials('tempi').get_identifier()
-                'tempi'
+            >>> path.segments().get_identifier()
+            'segments'
 
-            ::
-
-                >>> path.materials().get_identifier()
-                'materials'
-
-            ::
-
-                >>> path.segments('segment_01').get_identifier()
-                'segment_01'
-
-            ::
-
-                >>> path.segments().get_identifier()
-                'segments'
-
-            ::
-
-                >>> path.wrapper().get_identifier()
-                '(untitled score)'
+            >>> path.wrapper().get_identifier()
+            '(untitled score)'
 
         Returns title when path is contents directory.
 
@@ -938,17 +846,13 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
 
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-
-            ::
-
-                >>> path.contents.get_metadatum('foo') is None
-                True
+            >>> path.contents.get_metadatum('foo') is None
+            True
 
         Returns object.
         '''
@@ -963,57 +867,37 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
 
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
+            >>> path._segments.get_name_predicate() is None
+            True
 
-            ::
+            >>> path.builds.get_name_predicate()
+            <function String.is_build_directory_name at ...>
 
-                >>> path._segments.get_name_predicate() is None
-                True
+            >>> path.contents.get_name_predicate()
+            <function String.is_package_name at ...>
 
-            ::
+            >>> path.materials.get_name_predicate()
+            <function String.is_package_name at ...>
 
-                >>> path.builds.get_name_predicate()
-                <function String.is_build_directory_name at ...>
+            >>> path.materials('tempi').get_name_predicate()
+            <function String.is_lowercase_file_name at ...>
 
-            ::
+            >>> path.scores.get_name_predicate()
+            <function String.is_package_name at ...>
 
-                >>> path.contents.get_name_predicate()
-                <function String.is_package_name at ...>
+            >>> path.segments.get_name_predicate()
+            <function String.is_segment_name at ...>
 
-            ::
+            >>> path.segments('segment_01').get_name_predicate()
+            <function String.is_lowercase_file_name at ...>
 
-                >>> path.materials.get_name_predicate()
-                <function String.is_package_name at ...>
-
-            ::
-
-                >>> path.materials('tempi').get_name_predicate()
-                <function String.is_lowercase_file_name at ...>
-
-            ::
-
-                >>> path.scores.get_name_predicate()
-                <function String.is_package_name at ...>
-
-            ::
-
-                >>> path.segments.get_name_predicate()
-                <function String.is_segment_name at ...>
-
-            ::
-
-                >>> path.segments('segment_01').get_name_predicate()
-                <function String.is_lowercase_file_name at ...>
-
-            ::
-
-                >>> path.wrapper.get_name_predicate() is None
-                True
+            >>> path.wrapper.get_name_predicate() is None
+            True
 
         Returns function.
         '''
@@ -1067,10 +951,8 @@ class Path(pathlib.PosixPath):
                 ...     scores='/path/to/scores',
                 ...     )
 
-            ::
-
-                >>> path.get_next_package() is None
-                True
+            >>> path.get_next_package() is None
+            True
 
         Returns path or none.
         '''
@@ -1113,10 +995,8 @@ class Path(pathlib.PosixPath):
                 ...     scores='/path/to/scores',
                 ...     )
 
-            ::
-
-                >>> path.get_next_score() is None
-                True
+            >>> path.get_next_score() is None
+            True
 
         Returns path or none.
         '''
@@ -1144,17 +1024,13 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
 
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-
-            ::
-
-                >>> path.get_previous_package() is None
-                True
+            >>> path.get_previous_package() is None
+            True
 
         Returns path or none.
         '''
@@ -1197,10 +1073,8 @@ class Path(pathlib.PosixPath):
                 ...     scores='/path/to/scores',
                 ...     )
 
-            ::
-
-                >>> path.get_previous_score() is None
-                True
+            >>> path.get_previous_score() is None
+            True
 
         Returns path or none.
         '''
@@ -1228,17 +1102,13 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
 
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-
-            ::
-
-                >>> path.get_title()
-                '(untitled score)'
+            >>> path.get_title()
+            '(untitled score)'
         
         Returns string.
         '''
@@ -1257,14 +1127,12 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
-
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> path.builds('letter').is_build()
-                True
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path.builds('letter').is_build()
+            True
 
         Returns true or false.
         '''
@@ -1275,14 +1143,12 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
-
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> path.builds.is_builds()
-                True
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path.builds.is_builds()
+            True
 
         Returns true or false.
         '''
@@ -1293,14 +1159,12 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
-
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> path._segments.is_builds_segments()
-                True
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path._segments.is_builds_segments()
+            True
 
         '''
         if self.parent.is_builds() and self.name == '_segments':
@@ -1311,14 +1175,12 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
-
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> path.contents.is_contents()
-                True
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path.contents.is_contents()
+            True
 
         Returns true or false.
         '''
@@ -1329,14 +1191,12 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
- 
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> path.distribution.is_distribution()
-                True
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path.distribution.is_distribution()
+            True
 
         Returns true or false.
         '''
@@ -1347,14 +1207,12 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
-
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> path.etc.is_etc()
-                True
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path.etc.is_etc()
+            True
 
         Returns true or false.
         '''
@@ -1365,33 +1223,25 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
 
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
+            >>> path.builds.is_external()
+            False
+            >>> path.contents.is_external()
+            False
+            >>> path.wrapper.is_external()
+            False
 
-            ::
-
-                >>> path.builds.is_external()
-                False
-                >>> path.contents.is_external()
-                False
-                >>> path.wrapper.is_external()
-                False
-
-            ::
-
-                >>> path.scores.is_external()
-                True
+            >>> path.scores.is_external()
+            True
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.Path('/path/to/location').is_external()
-                True
+            >>> abjad.Path('/path/to/location').is_external()
+            True
 
         Returns true or false.
         '''
@@ -1429,14 +1279,12 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
-
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> path.materials('tempi').is_material()
-                True
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path.materials('tempi').is_material()
+            True
 
         Returns true or false.
         '''
@@ -1447,32 +1295,22 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
 
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
+            >>> path.materials.is_material_or_segment()
+            False
 
-            ::
+            >>> path.materials('tempi').is_material_or_segment()
+            True
 
-                >>> path.materials.is_material_or_segment()
-                False
+            >>> path.segments.is_material_or_segment()
+            False
 
-            ::
-
-                >>> path.materials('tempi').is_material_or_segment()
-                True
-
-            ::
-
-                >>> path.segments.is_material_or_segment()
-                False
-
-            ::
-
-                >>> path.segments('A').is_material_or_segment()
-                True
+            >>> path.segments('A').is_material_or_segment()
+            True
 
         Returns true or false.
         '''
@@ -1483,14 +1321,12 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
-
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> path.materials.is_materials()
-                True
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path.materials.is_materials()
+            True
 
         Returns true or false.
         '''
@@ -1501,32 +1337,22 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
 
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
+            >>> path.materials.is_materials_or_segments()
+            True
 
-            ::
+            >>> path.materials('tempi').is_materials_or_segments()
+            False
 
-                >>> path.materials.is_materials_or_segments()
-                True
+            >>> path.segments.is_materials_or_segments()
+            True
 
-            ::
-
-                >>> path.materials('tempi').is_materials_or_segments()
-                False
-
-            ::
-
-                >>> path.segments.is_materials_or_segments()
-                True
-
-            ::
-
-                >>> path.segments('A').is_materials_or_segments()
-                False
+            >>> path.segments('A').is_materials_or_segments()
+            False
 
         Returns true or false.
         '''
@@ -1539,57 +1365,41 @@ class Path(pathlib.PosixPath):
 
             External path returns false:
 
-            ::
-
-                >>> abjad.Path('/path/to/location').is_score_package_path()
-                False
+            >>> abjad.Path('/path/to/location').is_score_package_path()
+            False
 
         ..  container:: example
 
             Scores directory returns false:
 
-            ::
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
 
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-
-            ::
-
-                >>> path.scores.is_score_package_path()
-                False
+            >>> path.scores.is_score_package_path()
+            False
 
         ..  container:: example
 
             Package paths return true:
 
-            ::
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
 
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
+            >>> path.wrapper.is_score_package_path()
+            True
 
-            ::
+            >>> path.contents.is_score_package_path()
+            True
 
-                >>> path.wrapper.is_score_package_path()
-                True
+            >>> path.stylesheets.is_score_package_path()
+            True
 
-            ::
-
-                >>> path.contents.is_score_package_path()
-                True
-
-            ::
-
-                >>> path.stylesheets.is_score_package_path()
-                True
-
-            ::
-
-                >>> path._segments.is_score_package_path()
-                True
+            >>> path._segments.is_score_package_path()
+            True
 
         Returns true or false.
         '''
@@ -1629,14 +1439,12 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
-
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> path.scores.is_scores()
-                True
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path.scores.is_scores()
+            True
 
         Returns true or false.
         '''
@@ -1647,14 +1455,12 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
-
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> path.segments('segment_01').is_segment()
-                True
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path.segments('segment_01').is_segment()
+            True
 
         Returns true or false.
         '''
@@ -1665,14 +1471,12 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
-
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> path.segments.is_segments()
-                True
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path.segments.is_segments()
+            True
 
         Returns true or false.
         '''
@@ -1683,14 +1487,12 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
-
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> path.stylesheets.is_stylesheets()
-                True
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path.stylesheets.is_stylesheets()
+            True
 
         Returns true or false.
         '''
@@ -1701,14 +1503,12 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
-
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> path.test.is_test()
-                True
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path.test.is_test()
+            True
 
         Returns true or false.
         '''
@@ -1719,14 +1519,12 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
-
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> path.tools.is_tools()
-                True
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path.tools.is_tools()
+            True
 
         Returns true or false.
         '''
@@ -1737,14 +1535,12 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
-
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> path.wrapper.is_wrapper()
-                True
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path.wrapper.is_wrapper()
+            True
 
         Returns true or false.
         '''
@@ -1755,17 +1551,13 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
 
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-
-            ::
-
-                >>> path.list_paths()
-                []
+            >>> path.list_paths()
+            []
 
         Returns list.
         '''
@@ -1780,17 +1572,13 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
 
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-
-            ::
-
-                >>> path.list_secondary_paths()
-                []
+            >>> path.list_secondary_paths()
+            []
 
         Returns list.
         '''
@@ -1828,16 +1616,12 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
 
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-
-            ::
-
-                >>> path.segment_number_to_path(1)
+            >>> path.segment_number_to_path(1)
 
         Returns path.
         '''
@@ -1859,37 +1643,25 @@ class Path(pathlib.PosixPath):
 
         ..  container:: example
 
-            ::
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
 
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
+            >>> path.contents.trim()
+            '/path/to/scores/my_score/my_score'
 
-            ::
+            >>> path.segments.trim()
+            'my_score/segments'
 
-                >>> path.contents.trim()
-                '/path/to/scores/my_score/my_score'
+            >>> path.segments('segment_01').trim()
+            'my_score/segments/segment_01'
 
-            ::
+            >>> path.materials.trim()
+            'my_score/materials'
 
-                >>> path.segments.trim()
-                'my_score/segments'
-
-            ::
-
-                >>> path.segments('segment_01').trim()
-                'my_score/segments/segment_01'
-
-            ::
-
-                >>> path.materials.trim()
-                'my_score/materials'
-
-            ::
-
-                >>> path.materials('tempi').trim()
-                'my_score/materials/tempi'
+            >>> path.materials('tempi').trim()
+            'my_score/materials/tempi'
 
         Returns string.
         '''

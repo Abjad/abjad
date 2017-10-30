@@ -6,16 +6,14 @@ class LaissezVibrer(AbjadValueObject):
 
     ..  container:: example
 
-        ::
-
-            >>> chord = abjad.Chord("<c' e' g' c''>4")
-            >>> laissez_vibrer = abjad.LaissezVibrer()
-            >>> abjad.attach(laissez_vibrer, chord)
-            >>> show(chord) # doctest: +SKIP
+        >>> chord = abjad.Chord("<c' e' g' c''>4")
+        >>> laissez_vibrer = abjad.LaissezVibrer()
+        >>> abjad.attach(laissez_vibrer, chord)
+        >>> abjad.show(chord) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(chord)
+            >>> abjad.f(chord)
             <c' e' g' c''>4 \laissezVibrer
 
     '''
@@ -37,10 +35,8 @@ class LaissezVibrer(AbjadValueObject):
 
             Default:
 
-            ::
-
-                >>> str(abjad.LaissezVibrer())
-                '\\laissezVibrer'
+            >>> str(abjad.LaissezVibrer())
+            '\\laissezVibrer'
 
         Returns string.
         '''

@@ -8,18 +8,16 @@ def timespan_2_stops_when_timespan_1_stops(
 
     ..  container:: example
 
-        ::
-
-            >>> inequality = abjad.timespantools.timespan_2_stops_when_timespan_1_stops()
-            >>> f(inequality)
-            abjad.timespantools.TimespanTimespanTimeRelation(
-                inequality=abjad.timespantools.CompoundInequality(
-                    [
-                        abjad.TimespanInequality('timespan_2.stop_offset == timespan_1.stop_offset'),
-                        ],
-                    logical_operator='and',
-                    ),
-                )
+        >>> inequality = abjad.timespantools.timespan_2_stops_when_timespan_1_stops()
+        >>> abjad.f(inequality)
+        abjad.timespantools.TimespanTimespanTimeRelation(
+            inequality=abjad.timespantools.CompoundInequality(
+                [
+                    abjad.TimespanInequality('timespan_2.stop_offset == timespan_1.stop_offset'),
+                    ],
+                logical_operator='and',
+                ),
+            )
 
     Returns time relation or boolean.
     '''

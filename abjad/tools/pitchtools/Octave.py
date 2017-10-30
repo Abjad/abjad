@@ -13,37 +13,29 @@ class Octave(AbjadValueObject):
 
         Initializes octave from integer:
 
-        ::
-
-            >>> abjad.Octave(4)
-            Octave(4)
+        >>> abjad.Octave(4)
+        Octave(4)
 
     ..  container:: example
 
         Initializes octave from octave-tick string:
 
-        ::
-
-            >>> abjad.Octave(",,")
-            Octave(1)
+        >>> abjad.Octave(",,")
+        Octave(1)
 
     ..  container:: example
 
         Initializes octave from named pitch:
 
-        ::
-
-            >>> abjad.Octave(abjad.NamedPitch("cs''"))
-            Octave(5)
+        >>> abjad.Octave(abjad.NamedPitch("cs''"))
+        Octave(5)
 
     ..  container:: example
 
         Initializes octave from other octave:
 
-        ::
-
-            >>> abjad.Octave(abjad.Octave(2))
-            Octave(2)
+        >>> abjad.Octave(abjad.Octave(2))
+        Octave(2)
 
     '''
 
@@ -101,38 +93,30 @@ class Octave(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> octave_1 = abjad.Octave(4)
+            >>> octave_2 = abjad.Octave(4)
+            >>> octave_3 = abjad.Octave(5)
 
-                >>> octave_1 = abjad.Octave(4)
-                >>> octave_2 = abjad.Octave(4)
-                >>> octave_3 = abjad.Octave(5)
+            >>> octave_1 == octave_1
+            True
+            >>> octave_1 == octave_2
+            True
+            >>> octave_1 == octave_3
+            False
 
-            ::
+            >>> octave_2 == octave_1
+            True
+            >>> octave_2 == octave_2
+            True
+            >>> octave_2 == octave_3
+            False
 
-                >>> octave_1 == octave_1
-                True
-                >>> octave_1 == octave_2
-                True
-                >>> octave_1 == octave_3
-                False
-
-            ::
-
-                >>> octave_2 == octave_1
-                True
-                >>> octave_2 == octave_2
-                True
-                >>> octave_2 == octave_3
-                False
-
-            ::
-
-                >>> octave_3 == octave_1
-                False
-                >>> octave_3 == octave_2
-                False
-                >>> octave_3 == octave_3
-                True
+            >>> octave_3 == octave_1
+            False
+            >>> octave_3 == octave_2
+            False
+            >>> octave_3 == octave_3
+            True
 
         Returns true or false.
         '''
@@ -150,38 +134,30 @@ class Octave(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> octave_1 = abjad.Octave(4)
+            >>> octave_2 = abjad.Octave(4)
+            >>> octave_3 = abjad.Octave(5)
 
-                >>> octave_1 = abjad.Octave(4)
-                >>> octave_2 = abjad.Octave(4)
-                >>> octave_3 = abjad.Octave(5)
+            >>> octave_1 < octave_1
+            False
+            >>> octave_1 < octave_2
+            False
+            >>> octave_1 < octave_3
+            True
 
-            ::
+            >>> octave_2 < octave_1
+            False
+            >>> octave_2 < octave_2
+            False
+            >>> octave_2 < octave_3
+            True
 
-                >>> octave_1 < octave_1
-                False
-                >>> octave_1 < octave_2
-                False
-                >>> octave_1 < octave_3
-                True
-
-            ::
-
-                >>> octave_2 < octave_1
-                False
-                >>> octave_2 < octave_2
-                False
-                >>> octave_2 < octave_3
-                True
-
-            ::
-
-                >>> octave_3 < octave_1
-                False
-                >>> octave_3 < octave_2
-                False
-                >>> octave_3 < octave_3
-                False
+            >>> octave_3 < octave_1
+            False
+            >>> octave_3 < octave_2
+            False
+            >>> octave_3 < octave_3
+            False
 
         Returns true or false.
         '''
@@ -198,20 +174,14 @@ class Octave(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> str(abjad.Octave(4))
+            "'"
 
-                >>> str(abjad.Octave(4))
-                "'"
+            >>> str(abjad.Octave(1))
+            ',,'
 
-            ::
-
-                >>> str(abjad.Octave(1))
-                ',,'
-
-            ::
-
-                >>> str(abjad.Octave(3))
-                ''
+            >>> str(abjad.Octave(3))
+            ''
 
         Returns string.
         '''
@@ -243,10 +213,8 @@ class Octave(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.Octave(5).number
-                5
+            >>> abjad.Octave(5).number
+            5
 
         Returns integer.
         '''
@@ -258,20 +226,14 @@ class Octave(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> abjad.Octave(4).pitch_number
+            0
 
-                >>> abjad.Octave(4).pitch_number
-                0
+            >>> abjad.Octave(5).pitch_number
+            12
 
-            ::
-
-                >>> abjad.Octave(5).pitch_number
-                12
-
-            ::
-
-                >>> abjad.Octave(3).pitch_number
-                -12
+            >>> abjad.Octave(3).pitch_number
+            -12
 
         Returns integer.
         '''
@@ -283,10 +245,8 @@ class Octave(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.Octave(5).pitch_range
-                PitchRange('[C5, C6)')
+            >>> abjad.Octave(5).pitch_range
+            PitchRange('[C5, C6)')
 
         Returns pitch range.
         '''
@@ -303,20 +263,18 @@ class Octave(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> for i in range(-1, 9):
-                ...     print(i, abjad.Octave(i).ticks)
-                -1 ,,,,
-                0  ,,,
-                1  ,,
-                2  ,
-                3
-                4  '
-                5  ''
-                6  '''
-                7  ''''
-                8  '''''
+            >>> for i in range(-1, 9):
+            ...     print(i, abjad.Octave(i).ticks)
+            -1 ,,,,
+            0  ,,,
+            1  ,,
+            2  ,
+            3
+            4  '
+            5  ''
+            6  '''
+            7  ''''
+            8  '''''
 
         Returns string.
         """
@@ -334,25 +292,17 @@ class Octave(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> abjad.Octave.from_pitch('cs')
+            Octave(3)
 
-                >>> abjad.Octave.from_pitch('cs')
-                Octave(3)
+            >>> abjad.Octave.from_pitch("cs'")
+            Octave(4)
 
-            ::
+            >>> abjad.Octave.from_pitch(1)
+            Octave(4)
 
-                >>> abjad.Octave.from_pitch("cs'")
-                Octave(4)
-
-            ::
-
-                >>> abjad.Octave.from_pitch(1)
-                Octave(4)
-
-            ::
-
-                >>> abjad.Octave.from_pitch(13)
-                Octave(5)
+            >>> abjad.Octave.from_pitch(13)
+            Octave(5)
 
         Returns integer.
         '''

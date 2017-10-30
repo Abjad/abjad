@@ -8,22 +8,18 @@ def parse(string, language='english'):
 
         Parses LilyPond string with English note names:
 
-        ::
-
-            >>> container = abjad.parse("{c'4 d'4 e'4 f'4}")
-            >>> show(container) # doctest: +SKIP
+        >>> container = abjad.parse("{c'4 d'4 e'4 f'4}")
+        >>> abjad.show(container) # doctest: +SKIP
 
     ..  container:: example
 
         Parses LilyPond string with Dutch note names:
 
-        ::
-
-            >>> container = abjad.parse(
-            ...     "{c'8 des' e' fis'}",
-            ...     language='nederlands',
-            ...     )
-            >>> show(container) # doctest: +SKIP
+        >>> container = abjad.parse(
+        ...     "{c'8 des' e' fis'}",
+        ...     language='nederlands',
+        ...     )
+        >>> abjad.show(container) # doctest: +SKIP
 
     Returns Abjad component.
     '''

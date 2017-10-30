@@ -8,51 +8,47 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
     r"""
     A LaTeX document handler.
 
-    ::
+    >>> input_file_contents = '''Let's print something:
+    ...
+    ... \\begin{comment}
+    ... <abjad>
+    ... print("hello, world!")
+    ... </abjad>
+    ... \\end{comment}
+    ...
+    ... This is just a simple Python string:
+    ...
+    ... \\begin{comment}
+    ... <abjad>
+    ... just_a_string = \'\'\'
+    ... abjad.show(Nothing!)
+    ... \'\'\'
+    ... </abjad>
+    ... \\end{comment}
+    ...
+    ... And let's show some music too:
+    ...
+    ... \\begin{comment}
+    ... <abjad>
+    ... abjad.show(Note("c'4"))
+    ... </abjad>
+    ... \\end{comment}
+    ...
+    ... \\begin{comment}
+    ... <lilypond>
+    ... { c'4 d'4 e'4 f'4 }
+    ... </lilypond>
+    ... \\end{comment}
+    ...
+    ... That's it!
+    ... '''
 
-        >>> input_file_contents = '''Let's print something:
-        ...
-        ... \\begin{comment}
-        ... <abjad>
-        ... print("hello, world!")
-        ... </abjad>
-        ... \\end{comment}
-        ...
-        ... This is just a simple Python string:
-        ...
-        ... \\begin{comment}
-        ... <abjad>
-        ... just_a_string = \'\'\'
-        ... show(Nothing!)
-        ... \'\'\'
-        ... </abjad>
-        ... \\end{comment}
-        ...
-        ... And let's show some music too:
-        ...
-        ... \\begin{comment}
-        ... <abjad>
-        ... show(Note("c'4"))
-        ... </abjad>
-        ... \\end{comment}
-        ...
-        ... \\begin{comment}
-        ... <lilypond>
-        ... { c'4 d'4 e'4 f'4 }
-        ... </lilypond>
-        ... \\end{comment}
-        ...
-        ... That's it!
-        ... '''
-
-    ::
-
-        >>> from abjad.tools import abjadbooktools
-        >>> document_handler = abjadbooktools.LaTeXDocumentHandler(
-        ...     input_file_contents=input_file_contents,
-        ...     input_file_path='test.tex.raw',
-        ...     assets_directory='images',
-        ...     )
+    >>> from abjad.tools import abjadbooktools
+    >>> document_handler = abjadbooktools.LaTeXDocumentHandler(
+    ...     input_file_contents=input_file_contents,
+    ...     input_file_path='test.tex.raw',
+    ...     assets_directory='images',
+    ...     )
 
     """
 

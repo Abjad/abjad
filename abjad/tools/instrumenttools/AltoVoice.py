@@ -6,16 +6,14 @@ class AltoVoice(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> alto = abjad.AltoVoice()
-            >>> abjad.attach(alto, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+        >>> alto = abjad.AltoVoice()
+        >>> abjad.attach(alto, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { Alto }
                 \set Staff.shortInstrumentName = \markup { Alto }
@@ -66,11 +64,9 @@ class AltoVoice(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> alto = abjad.AltoVoice()
-                >>> alto.allowable_clefs
-                ('treble',)
+            >>> alto = abjad.AltoVoice()
+            >>> alto.allowable_clefs
+            ('treble',)
 
         Returns clef list.
         '''
@@ -82,15 +78,11 @@ class AltoVoice(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> alto = abjad.AltoVoice()
+            >>> alto.middle_c_sounding_pitch
+            NamedPitch("c'")
 
-                >>> alto = abjad.AltoVoice()
-                >>> alto.middle_c_sounding_pitch
-                NamedPitch("c'")
-
-            ::
-
-                >>> show(alto.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(alto.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -102,11 +94,9 @@ class AltoVoice(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> alto = abjad.AltoVoice()
-                >>> alto.name
-                'alto'
+            >>> alto = abjad.AltoVoice()
+            >>> alto.name
+            'alto'
 
         Returns string.
         '''
@@ -118,15 +108,11 @@ class AltoVoice(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> alto = abjad.AltoVoice()
+            >>> alto.name_markup
+            Markup(contents=['Alto'])
 
-                >>> alto = abjad.AltoVoice()
-                >>> alto.name_markup
-                Markup(contents=['Alto'])
-
-            ::
-
-                >>> show(alto.name_markup) # doctest: +SKIP
+            >>> abjad.show(alto.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -138,15 +124,11 @@ class AltoVoice(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> alto = abjad.AltoVoice()
+            >>> alto.pitch_range
+            PitchRange('[F3, G5]')
 
-                >>> alto = abjad.AltoVoice()
-                >>> alto.pitch_range
-                PitchRange('[F3, G5]')
-
-            ::
-
-                >>> show(alto.pitch_range) # doctest: +SKIP
+            >>> abjad.show(alto.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -158,11 +140,9 @@ class AltoVoice(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> alto = abjad.AltoVoice()
-                >>> alto.short_name
-                'alto'
+            >>> alto = abjad.AltoVoice()
+            >>> alto.short_name
+            'alto'
 
         Returns string.
         '''
@@ -174,15 +154,11 @@ class AltoVoice(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> alto = abjad.AltoVoice()
+            >>> alto.short_name_markup
+            Markup(contents=['Alto'])
 
-                >>> alto = abjad.AltoVoice()
-                >>> alto.short_name_markup
-                Markup(contents=['Alto'])
-
-            ::
-
-                >>> show(alto.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(alto.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

@@ -10,11 +10,9 @@ class LineSegment(AbjadValueObject):
 
         Default line segment:
 
-        ::
-
-            >>> line_segment = abjad.LineSegment()
-            >>> f(line_segment)
-            LineSegment()
+        >>> line_segment = abjad.LineSegment()
+        >>> abjad.f(line_segment)
+        LineSegment()
 
     .. todo:: Add examples.
 

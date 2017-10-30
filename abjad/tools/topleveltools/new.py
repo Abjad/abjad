@@ -8,16 +8,14 @@ def new(argument, **keywords):
 
         Makes markup with new direction:
 
-        ::
-
-            >>> markup = abjad.Markup('Andante assai', direction=abjad.Up).italic()
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> abjad.attach(markup, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> markup = abjad.Markup('Andante assai', direction=abjad.Up).italic()
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.attach(markup, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 c'4
                     ^ \markup {
@@ -29,16 +27,14 @@ def new(argument, **keywords):
                 f'4
             }
 
-        ::
-
-            >>> markup = abjad.new(markup, direction=abjad.Down)
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> abjad.attach(markup, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> markup = abjad.new(markup, direction=abjad.Down)
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.attach(markup, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 c'4
                     _ \markup {

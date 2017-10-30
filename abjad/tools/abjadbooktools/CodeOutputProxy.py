@@ -5,38 +5,34 @@ from docutils import nodes
 class CodeOutputProxy(abctools.AbjadValueObject):
     r'''A code output proxy.
 
-    ::
-
-        >>> from abjad.tools import abjadbooktools
-        >>> proxy = abjadbooktools.CodeOutputProxy([
-        ...     ">>> print('Hello, world!')",
-        ...     'Hello, world!',
-        ...     '>>> 1 + 1',
-        ...     '2',
-        ...     ])
-        >>> print(format(proxy))
-        abjad.abjadbooktools.CodeOutputProxy(
-            (
-                ">>> print('Hello, world!')",
-                'Hello, world!',
-                '>>> 1 + 1',
-                '2',
-                )
+    >>> from abjad.tools import abjadbooktools
+    >>> proxy = abjadbooktools.CodeOutputProxy([
+    ...     ">>> print('Hello, world!')",
+    ...     'Hello, world!',
+    ...     '>>> 1 + 1',
+    ...     '2',
+    ...     ])
+    >>> print(format(proxy))
+    abjad.abjadbooktools.CodeOutputProxy(
+        (
+            ">>> print('Hello, world!')",
+            'Hello, world!',
+            '>>> 1 + 1',
+            '2',
             )
+        )
 
-    ::
-
-        >>> for line in proxy.as_latex():
-        ...     line
-        ...
-        '\\begin{lstlisting}'
-        ">>> print('Hello, world!')"
-        'Hello, world!'
-        '\\end{lstlisting}'
-        '\\begin{lstlisting}'
-        '>>> 1 + 1'
-        '2'
-        '\\end{lstlisting}'
+    >>> for line in proxy.as_latex():
+    ...     line
+    ...
+    '\\begin{lstlisting}'
+    ">>> print('Hello, world!')"
+    'Hello, world!'
+    '\\end{lstlisting}'
+    '\\begin{lstlisting}'
+    '>>> 1 + 1'
+    '2'
+    '\\end{lstlisting}'
 
     '''
 

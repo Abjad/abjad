@@ -4,63 +4,59 @@ from abjad.tools import abctools
 class LilyPondContext(abctools.AbjadValueObject):
     r'''LilyPond context.
 
-    ::
+    >>> context = abjad.LilyPondContext('MensuralStaff')
+    >>> abjad.f(context)
+    abjad.LilyPondContext(
+        name='MensuralStaff',
+        )
 
-        >>> context = abjad.LilyPondContext('MensuralStaff')
-        >>> f(context)
-        abjad.LilyPondContext(
-            name='MensuralStaff',
-            )
-
-    ::
-
-        >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
-        ...     is_global_context = 'X' if lilypond_context.is_global_context else ' '
-        ...     is_score_context = 'X' if lilypond_context.is_score_context else ' '
-        ...     is_staff_group_context = 'X' if lilypond_context.is_staff_group_context else ' '
-        ...     is_staff_context = 'X' if lilypond_context.is_staff_context else ' '
-        ...     is_bottom_context = 'X' if lilypond_context.is_bottom_context else ' '
-        ...     print('[{}] [{}] [{}] [{}] [{}] {}'.format(
-        ...         is_global_context,
-        ...         is_score_context,
-        ...         is_staff_group_context,
-        ...         is_staff_context,
-        ...         is_bottom_context,
-        ...         lilypond_context.name,
-        ...         ))
-        ...
-        [ ] [ ] [X] [ ] [ ] ChoirStaff
-        [ ] [ ] [ ] [ ] [X] ChordNames
-        [ ] [ ] [ ] [ ] [X] CueVoice
-        [ ] [ ] [ ] [ ] [X] Devnull
-        [ ] [ ] [ ] [X] [ ] DrumStaff
-        [ ] [ ] [ ] [ ] [X] DrumVoice
-        [ ] [ ] [ ] [ ] [X] Dynamics
-        [ ] [ ] [ ] [ ] [X] FiguredBass
-        [ ] [ ] [ ] [ ] [X] FretBoards
-        [X] [ ] [ ] [ ] [ ] Global
-        [ ] [ ] [X] [ ] [ ] GrandStaff
-        [ ] [ ] [ ] [X] [ ] GregorianTranscriptionStaff
-        [ ] [ ] [ ] [ ] [X] GregorianTranscriptionVoice
-        [ ] [ ] [ ] [X] [ ] KievanStaff
-        [ ] [ ] [ ] [ ] [X] KievanVoice
-        [ ] [ ] [ ] [ ] [X] Lyrics
-        [ ] [ ] [ ] [X] [ ] MensuralStaff
-        [ ] [ ] [ ] [ ] [X] MensuralVoice
-        [ ] [ ] [ ] [ ] [X] NoteNames
-        [ ] [ ] [ ] [ ] [X] NullVoice
-        [ ] [ ] [ ] [X] [ ] PetrucciStaff
-        [ ] [ ] [ ] [ ] [X] PetrucciVoice
-        [ ] [ ] [X] [ ] [ ] PianoStaff
-        [ ] [ ] [ ] [X] [ ] RhythmicStaff
-        [ ] [X] [ ] [ ] [ ] Score
-        [ ] [ ] [ ] [X] [ ] Staff
-        [ ] [ ] [X] [ ] [ ] StaffGroup
-        [ ] [ ] [ ] [X] [ ] TabStaff
-        [ ] [ ] [ ] [ ] [X] TabVoice
-        [ ] [ ] [ ] [X] [ ] VaticanaStaff
-        [ ] [ ] [ ] [ ] [X] VaticanaVoice
-        [ ] [ ] [ ] [ ] [X] Voice
+    >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
+    ...     is_global_context = 'X' if lilypond_context.is_global_context else ' '
+    ...     is_score_context = 'X' if lilypond_context.is_score_context else ' '
+    ...     is_staff_group_context = 'X' if lilypond_context.is_staff_group_context else ' '
+    ...     is_staff_context = 'X' if lilypond_context.is_staff_context else ' '
+    ...     is_bottom_context = 'X' if lilypond_context.is_bottom_context else ' '
+    ...     print('[{}] [{}] [{}] [{}] [{}] {}'.format(
+    ...         is_global_context,
+    ...         is_score_context,
+    ...         is_staff_group_context,
+    ...         is_staff_context,
+    ...         is_bottom_context,
+    ...         lilypond_context.name,
+    ...         ))
+    ...
+    [ ] [ ] [X] [ ] [ ] ChoirStaff
+    [ ] [ ] [ ] [ ] [X] ChordNames
+    [ ] [ ] [ ] [ ] [X] CueVoice
+    [ ] [ ] [ ] [ ] [X] Devnull
+    [ ] [ ] [ ] [X] [ ] DrumStaff
+    [ ] [ ] [ ] [ ] [X] DrumVoice
+    [ ] [ ] [ ] [ ] [X] Dynamics
+    [ ] [ ] [ ] [ ] [X] FiguredBass
+    [ ] [ ] [ ] [ ] [X] FretBoards
+    [X] [ ] [ ] [ ] [ ] Global
+    [ ] [ ] [X] [ ] [ ] GrandStaff
+    [ ] [ ] [ ] [X] [ ] GregorianTranscriptionStaff
+    [ ] [ ] [ ] [ ] [X] GregorianTranscriptionVoice
+    [ ] [ ] [ ] [X] [ ] KievanStaff
+    [ ] [ ] [ ] [ ] [X] KievanVoice
+    [ ] [ ] [ ] [ ] [X] Lyrics
+    [ ] [ ] [ ] [X] [ ] MensuralStaff
+    [ ] [ ] [ ] [ ] [X] MensuralVoice
+    [ ] [ ] [ ] [ ] [X] NoteNames
+    [ ] [ ] [ ] [ ] [X] NullVoice
+    [ ] [ ] [ ] [X] [ ] PetrucciStaff
+    [ ] [ ] [ ] [ ] [X] PetrucciVoice
+    [ ] [ ] [X] [ ] [ ] PianoStaff
+    [ ] [ ] [ ] [X] [ ] RhythmicStaff
+    [ ] [X] [ ] [ ] [ ] Score
+    [ ] [ ] [ ] [X] [ ] Staff
+    [ ] [ ] [X] [ ] [ ] StaffGroup
+    [ ] [ ] [ ] [X] [ ] TabStaff
+    [ ] [ ] [ ] [ ] [X] TabVoice
+    [ ] [ ] [ ] [X] [ ] VaticanaStaff
+    [ ] [ ] [ ] [ ] [X] VaticanaVoice
+    [ ] [ ] [ ] [ ] [X] Voice
 
     '''
 
@@ -99,43 +95,41 @@ class LilyPondContext(abctools.AbjadValueObject):
     def list_all_contexts():
         r'''Lists all contexts.
 
-        ::
-
-            >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
-            ...     lilypond_context
-            ...
-            LilyPondContext(name='ChoirStaff')
-            LilyPondContext(name='ChordNames')
-            LilyPondContext(name='CueVoice')
-            LilyPondContext(name='Devnull')
-            LilyPondContext(name='DrumStaff')
-            LilyPondContext(name='DrumVoice')
-            LilyPondContext(name='Dynamics')
-            LilyPondContext(name='FiguredBass')
-            LilyPondContext(name='FretBoards')
-            LilyPondContext(name='Global')
-            LilyPondContext(name='GrandStaff')
-            LilyPondContext(name='GregorianTranscriptionStaff')
-            LilyPondContext(name='GregorianTranscriptionVoice')
-            LilyPondContext(name='KievanStaff')
-            LilyPondContext(name='KievanVoice')
-            LilyPondContext(name='Lyrics')
-            LilyPondContext(name='MensuralStaff')
-            LilyPondContext(name='MensuralVoice')
-            LilyPondContext(name='NoteNames')
-            LilyPondContext(name='NullVoice')
-            LilyPondContext(name='PetrucciStaff')
-            LilyPondContext(name='PetrucciVoice')
-            LilyPondContext(name='PianoStaff')
-            LilyPondContext(name='RhythmicStaff')
-            LilyPondContext(name='Score')
-            LilyPondContext(name='Staff')
-            LilyPondContext(name='StaffGroup')
-            LilyPondContext(name='TabStaff')
-            LilyPondContext(name='TabVoice')
-            LilyPondContext(name='VaticanaStaff')
-            LilyPondContext(name='VaticanaVoice')
-            LilyPondContext(name='Voice')
+        >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
+        ...     lilypond_context
+        ...
+        LilyPondContext(name='ChoirStaff')
+        LilyPondContext(name='ChordNames')
+        LilyPondContext(name='CueVoice')
+        LilyPondContext(name='Devnull')
+        LilyPondContext(name='DrumStaff')
+        LilyPondContext(name='DrumVoice')
+        LilyPondContext(name='Dynamics')
+        LilyPondContext(name='FiguredBass')
+        LilyPondContext(name='FretBoards')
+        LilyPondContext(name='Global')
+        LilyPondContext(name='GrandStaff')
+        LilyPondContext(name='GregorianTranscriptionStaff')
+        LilyPondContext(name='GregorianTranscriptionVoice')
+        LilyPondContext(name='KievanStaff')
+        LilyPondContext(name='KievanVoice')
+        LilyPondContext(name='Lyrics')
+        LilyPondContext(name='MensuralStaff')
+        LilyPondContext(name='MensuralVoice')
+        LilyPondContext(name='NoteNames')
+        LilyPondContext(name='NullVoice')
+        LilyPondContext(name='PetrucciStaff')
+        LilyPondContext(name='PetrucciVoice')
+        LilyPondContext(name='PianoStaff')
+        LilyPondContext(name='RhythmicStaff')
+        LilyPondContext(name='Score')
+        LilyPondContext(name='Staff')
+        LilyPondContext(name='StaffGroup')
+        LilyPondContext(name='TabStaff')
+        LilyPondContext(name='TabVoice')
+        LilyPondContext(name='VaticanaStaff')
+        LilyPondContext(name='VaticanaVoice')
+        LilyPondContext(name='Voice')
 
         Returns tuple.
         '''
@@ -156,65 +150,55 @@ class LilyPondContext(abctools.AbjadValueObject):
         ):
         r'''Registers a new context.
 
-        ::
+        >>> custom_context = abjad.LilyPondContext.register(
+        ...     accepted_by=['Score', 'StaffGroup'],
+        ...     alias='Staff',
+        ...     name='BowingStaff',
+        ...     removes=['Note_heads_engraver'],
+        ...     )
+        >>> print(format(custom_context))
+        abjad.LilyPondContext(
+            name='BowingStaff',
+            )
 
-            >>> custom_context = abjad.LilyPondContext.register(
-            ...     accepted_by=['Score', 'StaffGroup'],
-            ...     alias='Staff',
-            ...     name='BowingStaff',
-            ...     removes=['Note_heads_engraver'],
-            ...     )
-            >>> print(format(custom_context))
-            abjad.LilyPondContext(
-                name='BowingStaff',
-                )
+        >>> custom_context.is_custom
+        True
 
-        ::
+        >>> for engraver in custom_context.engravers:
+        ...     engraver
+        ...
+        LilyPondEngraver(name='Accidental_engraver')
+        LilyPondEngraver(name='Axis_group_engraver')
+        LilyPondEngraver(name='Bar_engraver')
+        LilyPondEngraver(name='Clef_engraver')
+        LilyPondEngraver(name='Collision_engraver')
+        LilyPondEngraver(name='Cue_clef_engraver')
+        LilyPondEngraver(name='Dot_column_engraver')
+        LilyPondEngraver(name='Figured_bass_engraver')
+        LilyPondEngraver(name='Figured_bass_position_engraver')
+        LilyPondEngraver(name='Fingering_column_engraver')
+        LilyPondEngraver(name='Font_size_engraver')
+        LilyPondEngraver(name='Grob_pq_engraver')
+        LilyPondEngraver(name='Instrument_name_engraver')
+        LilyPondEngraver(name='Key_engraver')
+        LilyPondEngraver(name='Ledger_line_engraver')
+        LilyPondEngraver(name='Ottava_spanner_engraver')
+        LilyPondEngraver(name='Output_property_engraver')
+        LilyPondEngraver(name='Piano_pedal_align_engraver')
+        LilyPondEngraver(name='Piano_pedal_engraver')
+        LilyPondEngraver(name='Pure_from_neighbor_engraver')
+        LilyPondEngraver(name='Rest_collision_engraver')
+        LilyPondEngraver(name='Script_row_engraver')
+        LilyPondEngraver(name='Separating_line_group_engraver')
+        LilyPondEngraver(name='Staff_collecting_engraver')
+        LilyPondEngraver(name='Staff_symbol_engraver')
+        LilyPondEngraver(name='Time_signature_engraver')
 
-            >>> custom_context.is_custom
-            True
+        >>> score_context = abjad.LilyPondContext('Score')
+        >>> custom_context in score_context.accepts
+        True
 
-        ::
-
-            >>> for engraver in custom_context.engravers:
-            ...     engraver
-            ...
-            LilyPondEngraver(name='Accidental_engraver')
-            LilyPondEngraver(name='Axis_group_engraver')
-            LilyPondEngraver(name='Bar_engraver')
-            LilyPondEngraver(name='Clef_engraver')
-            LilyPondEngraver(name='Collision_engraver')
-            LilyPondEngraver(name='Cue_clef_engraver')
-            LilyPondEngraver(name='Dot_column_engraver')
-            LilyPondEngraver(name='Figured_bass_engraver')
-            LilyPondEngraver(name='Figured_bass_position_engraver')
-            LilyPondEngraver(name='Fingering_column_engraver')
-            LilyPondEngraver(name='Font_size_engraver')
-            LilyPondEngraver(name='Grob_pq_engraver')
-            LilyPondEngraver(name='Instrument_name_engraver')
-            LilyPondEngraver(name='Key_engraver')
-            LilyPondEngraver(name='Ledger_line_engraver')
-            LilyPondEngraver(name='Ottava_spanner_engraver')
-            LilyPondEngraver(name='Output_property_engraver')
-            LilyPondEngraver(name='Piano_pedal_align_engraver')
-            LilyPondEngraver(name='Piano_pedal_engraver')
-            LilyPondEngraver(name='Pure_from_neighbor_engraver')
-            LilyPondEngraver(name='Rest_collision_engraver')
-            LilyPondEngraver(name='Script_row_engraver')
-            LilyPondEngraver(name='Separating_line_group_engraver')
-            LilyPondEngraver(name='Staff_collecting_engraver')
-            LilyPondEngraver(name='Staff_symbol_engraver')
-            LilyPondEngraver(name='Time_signature_engraver')
-
-        ::
-
-            >>> score_context = abjad.LilyPondContext('Score')
-            >>> custom_context in score_context.accepts
-            True
-
-        ::
-
-            >>> custom_context.unregister()
+        >>> custom_context.unregister()
 
         '''
         from abjad.ly import contexts
@@ -282,70 +266,62 @@ class LilyPondContext(abctools.AbjadValueObject):
         ):
         r'''Unregisters custom context.
 
-        ::
+        >>> custom_context = abjad.LilyPondContext.register(
+        ...     accepted_by=['Score', 'StaffGroup'],
+        ...     alias='Staff',
+        ...     name='FingeringStaff',
+        ...     )
 
-            >>> custom_context = abjad.LilyPondContext.register(
-            ...     accepted_by=['Score', 'StaffGroup'],
-            ...     alias='Staff',
-            ...     name='FingeringStaff',
-            ...     )
+        >>> score_context = abjad.LilyPondContext('Score')
+        >>> for accepted_context in score_context.accepts:
+        ...     accepted_context
+        ...
+        LilyPondContext(name='ChoirStaff')
+        LilyPondContext(name='ChordNames')
+        LilyPondContext(name='Devnull')
+        LilyPondContext(name='DrumStaff')
+        LilyPondContext(name='FiguredBass')
+        LilyPondContext(name='FingeringStaff')
+        LilyPondContext(name='FretBoards')
+        LilyPondContext(name='GrandStaff')
+        LilyPondContext(name='GregorianTranscriptionStaff')
+        LilyPondContext(name='KievanStaff')
+        LilyPondContext(name='Lyrics')
+        LilyPondContext(name='MensuralStaff')
+        LilyPondContext(name='NoteNames')
+        LilyPondContext(name='PetrucciStaff')
+        LilyPondContext(name='PianoStaff')
+        LilyPondContext(name='RhythmicStaff')
+        LilyPondContext(name='Staff')
+        LilyPondContext(name='StaffGroup')
+        LilyPondContext(name='TabStaff')
+        LilyPondContext(name='VaticanaStaff')
 
-        ::
+        >>> custom_context.unregister()
 
-            >>> score_context = abjad.LilyPondContext('Score')
-            >>> for accepted_context in score_context.accepts:
-            ...     accepted_context
-            ...
-            LilyPondContext(name='ChoirStaff')
-            LilyPondContext(name='ChordNames')
-            LilyPondContext(name='Devnull')
-            LilyPondContext(name='DrumStaff')
-            LilyPondContext(name='FiguredBass')
-            LilyPondContext(name='FingeringStaff')
-            LilyPondContext(name='FretBoards')
-            LilyPondContext(name='GrandStaff')
-            LilyPondContext(name='GregorianTranscriptionStaff')
-            LilyPondContext(name='KievanStaff')
-            LilyPondContext(name='Lyrics')
-            LilyPondContext(name='MensuralStaff')
-            LilyPondContext(name='NoteNames')
-            LilyPondContext(name='PetrucciStaff')
-            LilyPondContext(name='PianoStaff')
-            LilyPondContext(name='RhythmicStaff')
-            LilyPondContext(name='Staff')
-            LilyPondContext(name='StaffGroup')
-            LilyPondContext(name='TabStaff')
-            LilyPondContext(name='VaticanaStaff')
-
-        ::
-
-            >>> custom_context.unregister()
-
-        ::
-
-            >>> score_context = abjad.LilyPondContext('Score')
-            >>> for accepted_context in score_context.accepts:
-            ...     accepted_context
-            ...
-            LilyPondContext(name='ChoirStaff')
-            LilyPondContext(name='ChordNames')
-            LilyPondContext(name='Devnull')
-            LilyPondContext(name='DrumStaff')
-            LilyPondContext(name='FiguredBass')
-            LilyPondContext(name='FretBoards')
-            LilyPondContext(name='GrandStaff')
-            LilyPondContext(name='GregorianTranscriptionStaff')
-            LilyPondContext(name='KievanStaff')
-            LilyPondContext(name='Lyrics')
-            LilyPondContext(name='MensuralStaff')
-            LilyPondContext(name='NoteNames')
-            LilyPondContext(name='PetrucciStaff')
-            LilyPondContext(name='PianoStaff')
-            LilyPondContext(name='RhythmicStaff')
-            LilyPondContext(name='Staff')
-            LilyPondContext(name='StaffGroup')
-            LilyPondContext(name='TabStaff')
-            LilyPondContext(name='VaticanaStaff')
+        >>> score_context = abjad.LilyPondContext('Score')
+        >>> for accepted_context in score_context.accepts:
+        ...     accepted_context
+        ...
+        LilyPondContext(name='ChoirStaff')
+        LilyPondContext(name='ChordNames')
+        LilyPondContext(name='Devnull')
+        LilyPondContext(name='DrumStaff')
+        LilyPondContext(name='FiguredBass')
+        LilyPondContext(name='FretBoards')
+        LilyPondContext(name='GrandStaff')
+        LilyPondContext(name='GregorianTranscriptionStaff')
+        LilyPondContext(name='KievanStaff')
+        LilyPondContext(name='Lyrics')
+        LilyPondContext(name='MensuralStaff')
+        LilyPondContext(name='NoteNames')
+        LilyPondContext(name='PetrucciStaff')
+        LilyPondContext(name='PianoStaff')
+        LilyPondContext(name='RhythmicStaff')
+        LilyPondContext(name='Staff')
+        LilyPondContext(name='StaffGroup')
+        LilyPondContext(name='TabStaff')
+        LilyPondContext(name='VaticanaStaff')
 
         '''
         from abjad.ly import contexts
@@ -362,140 +338,136 @@ class LilyPondContext(abctools.AbjadValueObject):
     def accepted_by(self):
         r'''Gets contexts accepting LilyPond context.
 
-        ::
+        >>> context = abjad.LilyPondContext('MensuralStaff')
+        >>> for accepting_context in context.accepted_by:
+        ...     accepting_context
+        ...
+        LilyPondContext(name='Score')
 
-            >>> context = abjad.LilyPondContext('MensuralStaff')
-            >>> for accepting_context in context.accepted_by:
-            ...     accepting_context
-            ...
-            LilyPondContext(name='Score')
-
-        ::
-
-            >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
-            ...     print('{}:'.format(lilypond_context.name))
-            ...     accepted_by = lilypond_context.accepted_by
-            ...     if accepted_by:
-            ...         accepted_by = ',\n    '.join(_.name for _ in accepted_by)
-            ...         print('    {}'.format(accepted_by))
-            ...
-            ChoirStaff:
-                ChoirStaff,
-                Score,
-                StaffGroup
-            ChordNames:
-                ChoirStaff,
-                GrandStaff,
-                PianoStaff,
-                Score,
-                StaffGroup
-            CueVoice:
-                DrumStaff,
-                GregorianTranscriptionStaff,
-                KievanStaff,
-                MensuralStaff,
-                PetrucciStaff,
-                RhythmicStaff,
-                Staff,
-                TabStaff,
-                VaticanaStaff
-            Devnull:
-                Score
-            DrumStaff:
-                ChoirStaff,
-                GrandStaff,
-                PianoStaff,
-                Score,
-                StaffGroup
-            DrumVoice:
-                DrumStaff
-            Dynamics:
-                GrandStaff,
-                PianoStaff
-            FiguredBass:
-                ChoirStaff,
-                GrandStaff,
-                PianoStaff,
-                Score,
-                StaffGroup
-            FretBoards:
-                Score,
-                StaffGroup
-            Global:
-            GrandStaff:
-                ChoirStaff,
-                Score,
-                StaffGroup
-            GregorianTranscriptionStaff:
-                Score
-            GregorianTranscriptionVoice:
-                GregorianTranscriptionStaff
-            KievanStaff:
-                Score
-            KievanVoice:
-                KievanStaff
-            Lyrics:
-                ChoirStaff,
-                GrandStaff,
-                PianoStaff,
-                Score,
-                StaffGroup
-            MensuralStaff:
-                Score
-            MensuralVoice:
-                MensuralStaff
-            NoteNames:
-                Score
-            NullVoice:
-                DrumStaff,
-                GregorianTranscriptionStaff,
-                KievanStaff,
-                MensuralStaff,
-                PetrucciStaff,
-                RhythmicStaff,
-                Staff,
-                TabStaff,
-                VaticanaStaff
-            PetrucciStaff:
-                Score
-            PetrucciVoice:
-                PetrucciStaff
-            PianoStaff:
-                ChoirStaff,
-                Score,
-                StaffGroup
-            RhythmicStaff:
-                ChoirStaff,
-                GrandStaff,
-                PianoStaff,
-                Score,
-                StaffGroup
-            Score:
-                Global
-            Staff:
-                ChoirStaff,
-                GrandStaff,
-                PianoStaff,
-                Score,
-                StaffGroup
-            StaffGroup:
-                ChoirStaff,
-                Score,
-                StaffGroup
-            TabStaff:
-                GrandStaff,
-                PianoStaff,
-                Score,
-                StaffGroup
-            TabVoice:
-                TabStaff
-            VaticanaStaff:
-                Score
-            VaticanaVoice:
-                VaticanaStaff
-            Voice:
-                RhythmicStaff,
-                Staff
+        >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
+        ...     print('{}:'.format(lilypond_context.name))
+        ...     accepted_by = lilypond_context.accepted_by
+        ...     if accepted_by:
+        ...         accepted_by = ',\n    '.join(_.name for _ in accepted_by)
+        ...         print('    {}'.format(accepted_by))
+        ...
+        ChoirStaff:
+            ChoirStaff,
+            Score,
+            StaffGroup
+        ChordNames:
+            ChoirStaff,
+            GrandStaff,
+            PianoStaff,
+            Score,
+            StaffGroup
+        CueVoice:
+            DrumStaff,
+            GregorianTranscriptionStaff,
+            KievanStaff,
+            MensuralStaff,
+            PetrucciStaff,
+            RhythmicStaff,
+            Staff,
+            TabStaff,
+            VaticanaStaff
+        Devnull:
+            Score
+        DrumStaff:
+            ChoirStaff,
+            GrandStaff,
+            PianoStaff,
+            Score,
+            StaffGroup
+        DrumVoice:
+            DrumStaff
+        Dynamics:
+            GrandStaff,
+            PianoStaff
+        FiguredBass:
+            ChoirStaff,
+            GrandStaff,
+            PianoStaff,
+            Score,
+            StaffGroup
+        FretBoards:
+            Score,
+            StaffGroup
+        Global:
+        GrandStaff:
+            ChoirStaff,
+            Score,
+            StaffGroup
+        GregorianTranscriptionStaff:
+            Score
+        GregorianTranscriptionVoice:
+            GregorianTranscriptionStaff
+        KievanStaff:
+            Score
+        KievanVoice:
+            KievanStaff
+        Lyrics:
+            ChoirStaff,
+            GrandStaff,
+            PianoStaff,
+            Score,
+            StaffGroup
+        MensuralStaff:
+            Score
+        MensuralVoice:
+            MensuralStaff
+        NoteNames:
+            Score
+        NullVoice:
+            DrumStaff,
+            GregorianTranscriptionStaff,
+            KievanStaff,
+            MensuralStaff,
+            PetrucciStaff,
+            RhythmicStaff,
+            Staff,
+            TabStaff,
+            VaticanaStaff
+        PetrucciStaff:
+            Score
+        PetrucciVoice:
+            PetrucciStaff
+        PianoStaff:
+            ChoirStaff,
+            Score,
+            StaffGroup
+        RhythmicStaff:
+            ChoirStaff,
+            GrandStaff,
+            PianoStaff,
+            Score,
+            StaffGroup
+        Score:
+            Global
+        Staff:
+            ChoirStaff,
+            GrandStaff,
+            PianoStaff,
+            Score,
+            StaffGroup
+        StaffGroup:
+            ChoirStaff,
+            Score,
+            StaffGroup
+        TabStaff:
+            GrandStaff,
+            PianoStaff,
+            Score,
+            StaffGroup
+        TabVoice:
+            TabStaff
+        VaticanaStaff:
+            Score
+        VaticanaVoice:
+            VaticanaStaff
+        Voice:
+            RhythmicStaff,
+            Staff
 
         '''
         from abjad.ly import contexts
@@ -510,15 +482,13 @@ class LilyPondContext(abctools.AbjadValueObject):
     def accepts(self):
         r'''Gets contexts accepted by LilyPond context.
 
-        ::
-
-            >>> context = abjad.LilyPondContext('MensuralStaff')
-            >>> for accepted_context in context.accepts:
-            ...     accepted_context
-            ...
-            LilyPondContext(name='CueVoice')
-            LilyPondContext(name='MensuralVoice')
-            LilyPondContext(name='NullVoice')
+        >>> context = abjad.LilyPondContext('MensuralStaff')
+        >>> for accepted_context in context.accepts:
+        ...     accepted_context
+        ...
+        LilyPondContext(name='CueVoice')
+        LilyPondContext(name='MensuralVoice')
+        LilyPondContext(name='NullVoice')
 
         Returns tuple.
         '''
@@ -531,11 +501,9 @@ class LilyPondContext(abctools.AbjadValueObject):
     def alias(self):
         r'''Gets alias of LilyPond context.
 
-        ::
-
-            >>> context = abjad.LilyPondContext('MensuralStaff')
-            >>> context.alias
-            LilyPondContext(name='Staff')
+        >>> context = abjad.LilyPondContext('MensuralStaff')
+        >>> context.alias
+        LilyPondContext(name='Staff')
 
         Returns LilyPond context or none.
         '''
@@ -552,67 +520,63 @@ class LilyPondContext(abctools.AbjadValueObject):
     def default_child(self):
         r'''Gets default child of LilyPond context.
 
-        ::
+        >>> context = abjad.LilyPondContext('MensuralStaff')
+        >>> context.default_child
+        LilyPondContext(name='MensuralVoice')
 
-            >>> context = abjad.LilyPondContext('MensuralStaff')
-            >>> context.default_child
-            LilyPondContext(name='MensuralVoice')
-
-        ::
-
-            >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
-            ...     print('{}:'.format(lilypond_context.name))
-            ...     default_child = lilypond_context.default_child
-            ...     if default_child:
-            ...         print('    {}'.format(default_child.name))
-            ...
-            ChoirStaff:
-                Staff
-            ChordNames:
-            CueVoice:
-            Devnull:
-            DrumStaff:
-                DrumVoice
-            DrumVoice:
-            Dynamics:
-            FiguredBass:
-            FretBoards:
-            Global:
-                Score
-            GrandStaff:
-                Staff
-            GregorianTranscriptionStaff:
-                GregorianTranscriptionVoice
-            GregorianTranscriptionVoice:
-            KievanStaff:
-                KievanVoice
-            KievanVoice:
-            Lyrics:
-            MensuralStaff:
-                MensuralVoice
-            MensuralVoice:
-            NoteNames:
-            NullVoice:
-            PetrucciStaff:
-                PetrucciVoice
-            PetrucciVoice:
-            PianoStaff:
-                Staff
-            RhythmicStaff:
-                Voice
-            Score:
-                Staff
-            Staff:
-                Voice
-            StaffGroup:
-                Staff
-            TabStaff:
-                TabVoice
-            TabVoice:
-            VaticanaStaff:
-                VaticanaVoice
-            VaticanaVoice:
-            Voice:
+        >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
+        ...     print('{}:'.format(lilypond_context.name))
+        ...     default_child = lilypond_context.default_child
+        ...     if default_child:
+        ...         print('    {}'.format(default_child.name))
+        ...
+        ChoirStaff:
+            Staff
+        ChordNames:
+        CueVoice:
+        Devnull:
+        DrumStaff:
+            DrumVoice
+        DrumVoice:
+        Dynamics:
+        FiguredBass:
+        FretBoards:
+        Global:
+            Score
+        GrandStaff:
+            Staff
+        GregorianTranscriptionStaff:
+            GregorianTranscriptionVoice
+        GregorianTranscriptionVoice:
+        KievanStaff:
+            KievanVoice
+        KievanVoice:
+        Lyrics:
+        MensuralStaff:
+            MensuralVoice
+        MensuralVoice:
+        NoteNames:
+        NullVoice:
+        PetrucciStaff:
+            PetrucciVoice
+        PetrucciVoice:
+        PianoStaff:
+            Staff
+        RhythmicStaff:
+            Voice
+        Score:
+            Staff
+        Staff:
+            Voice
+        StaffGroup:
+            Staff
+        TabStaff:
+            TabVoice
+        TabVoice:
+        VaticanaStaff:
+            VaticanaVoice
+        VaticanaVoice:
+        Voice:
 
         Returns LilyPond context or none.
         '''
@@ -631,39 +595,37 @@ class LilyPondContext(abctools.AbjadValueObject):
     def engravers(self):
         r'''Gets engravers belonging to LilyPond context.
 
-        ::
-
-            >>> context = abjad.LilyPondContext('MensuralStaff')
-            >>> for engraver in context.engravers:
-            ...     engraver
-            ...
-            LilyPondEngraver(name='Accidental_engraver')
-            LilyPondEngraver(name='Axis_group_engraver')
-            LilyPondEngraver(name='Bar_engraver')
-            LilyPondEngraver(name='Clef_engraver')
-            LilyPondEngraver(name='Collision_engraver')
-            LilyPondEngraver(name='Cue_clef_engraver')
-            LilyPondEngraver(name='Custos_engraver')
-            LilyPondEngraver(name='Dot_column_engraver')
-            LilyPondEngraver(name='Figured_bass_engraver')
-            LilyPondEngraver(name='Figured_bass_position_engraver')
-            LilyPondEngraver(name='Fingering_column_engraver')
-            LilyPondEngraver(name='Font_size_engraver')
-            LilyPondEngraver(name='Grob_pq_engraver')
-            LilyPondEngraver(name='Instrument_name_engraver')
-            LilyPondEngraver(name='Key_engraver')
-            LilyPondEngraver(name='Ledger_line_engraver')
-            LilyPondEngraver(name='Ottava_spanner_engraver')
-            LilyPondEngraver(name='Output_property_engraver')
-            LilyPondEngraver(name='Piano_pedal_align_engraver')
-            LilyPondEngraver(name='Piano_pedal_engraver')
-            LilyPondEngraver(name='Pure_from_neighbor_engraver')
-            LilyPondEngraver(name='Rest_collision_engraver')
-            LilyPondEngraver(name='Script_row_engraver')
-            LilyPondEngraver(name='Separating_line_group_engraver')
-            LilyPondEngraver(name='Staff_collecting_engraver')
-            LilyPondEngraver(name='Staff_symbol_engraver')
-            LilyPondEngraver(name='Time_signature_engraver')
+        >>> context = abjad.LilyPondContext('MensuralStaff')
+        >>> for engraver in context.engravers:
+        ...     engraver
+        ...
+        LilyPondEngraver(name='Accidental_engraver')
+        LilyPondEngraver(name='Axis_group_engraver')
+        LilyPondEngraver(name='Bar_engraver')
+        LilyPondEngraver(name='Clef_engraver')
+        LilyPondEngraver(name='Collision_engraver')
+        LilyPondEngraver(name='Cue_clef_engraver')
+        LilyPondEngraver(name='Custos_engraver')
+        LilyPondEngraver(name='Dot_column_engraver')
+        LilyPondEngraver(name='Figured_bass_engraver')
+        LilyPondEngraver(name='Figured_bass_position_engraver')
+        LilyPondEngraver(name='Fingering_column_engraver')
+        LilyPondEngraver(name='Font_size_engraver')
+        LilyPondEngraver(name='Grob_pq_engraver')
+        LilyPondEngraver(name='Instrument_name_engraver')
+        LilyPondEngraver(name='Key_engraver')
+        LilyPondEngraver(name='Ledger_line_engraver')
+        LilyPondEngraver(name='Ottava_spanner_engraver')
+        LilyPondEngraver(name='Output_property_engraver')
+        LilyPondEngraver(name='Piano_pedal_align_engraver')
+        LilyPondEngraver(name='Piano_pedal_engraver')
+        LilyPondEngraver(name='Pure_from_neighbor_engraver')
+        LilyPondEngraver(name='Rest_collision_engraver')
+        LilyPondEngraver(name='Script_row_engraver')
+        LilyPondEngraver(name='Separating_line_group_engraver')
+        LilyPondEngraver(name='Staff_collecting_engraver')
+        LilyPondEngraver(name='Staff_symbol_engraver')
+        LilyPondEngraver(name='Time_signature_engraver')
 
         Returns tuple.
         '''
@@ -680,49 +642,47 @@ class LilyPondContext(abctools.AbjadValueObject):
     def grobs(self):
         r'''Gets grobs created by LilyPond context.
 
-        ::
-
-            >>> context = abjad.LilyPondContext('MensuralStaff')
-            >>> for grob in context.grobs:
-            ...     grob
-            ...
-            LilyPondGrob(name='Accidental')
-            LilyPondGrob(name='AccidentalCautionary')
-            LilyPondGrob(name='AccidentalPlacement')
-            LilyPondGrob(name='AccidentalSuggestion')
-            LilyPondGrob(name='BarLine')
-            LilyPondGrob(name='BassFigure')
-            LilyPondGrob(name='BassFigureAlignment')
-            LilyPondGrob(name='BassFigureAlignmentPositioning')
-            LilyPondGrob(name='BassFigureBracket')
-            LilyPondGrob(name='BassFigureContinuation')
-            LilyPondGrob(name='BassFigureLine')
-            LilyPondGrob(name='Clef')
-            LilyPondGrob(name='ClefModifier')
-            LilyPondGrob(name='CueClef')
-            LilyPondGrob(name='CueEndClef')
-            LilyPondGrob(name='Custos')
-            LilyPondGrob(name='DotColumn')
-            LilyPondGrob(name='FingeringColumn')
-            LilyPondGrob(name='InstrumentName')
-            LilyPondGrob(name='KeyCancellation')
-            LilyPondGrob(name='KeySignature')
-            LilyPondGrob(name='LedgerLineSpanner')
-            LilyPondGrob(name='NoteCollision')
-            LilyPondGrob(name='OttavaBracket')
-            LilyPondGrob(name='PianoPedalBracket')
-            LilyPondGrob(name='RestCollision')
-            LilyPondGrob(name='ScriptRow')
-            LilyPondGrob(name='SostenutoPedal')
-            LilyPondGrob(name='SostenutoPedalLineSpanner')
-            LilyPondGrob(name='StaffSpacing')
-            LilyPondGrob(name='StaffSymbol')
-            LilyPondGrob(name='SustainPedal')
-            LilyPondGrob(name='SustainPedalLineSpanner')
-            LilyPondGrob(name='TimeSignature')
-            LilyPondGrob(name='UnaCordaPedal')
-            LilyPondGrob(name='UnaCordaPedalLineSpanner')
-            LilyPondGrob(name='VerticalAxisGroup')
+        >>> context = abjad.LilyPondContext('MensuralStaff')
+        >>> for grob in context.grobs:
+        ...     grob
+        ...
+        LilyPondGrob(name='Accidental')
+        LilyPondGrob(name='AccidentalCautionary')
+        LilyPondGrob(name='AccidentalPlacement')
+        LilyPondGrob(name='AccidentalSuggestion')
+        LilyPondGrob(name='BarLine')
+        LilyPondGrob(name='BassFigure')
+        LilyPondGrob(name='BassFigureAlignment')
+        LilyPondGrob(name='BassFigureAlignmentPositioning')
+        LilyPondGrob(name='BassFigureBracket')
+        LilyPondGrob(name='BassFigureContinuation')
+        LilyPondGrob(name='BassFigureLine')
+        LilyPondGrob(name='Clef')
+        LilyPondGrob(name='ClefModifier')
+        LilyPondGrob(name='CueClef')
+        LilyPondGrob(name='CueEndClef')
+        LilyPondGrob(name='Custos')
+        LilyPondGrob(name='DotColumn')
+        LilyPondGrob(name='FingeringColumn')
+        LilyPondGrob(name='InstrumentName')
+        LilyPondGrob(name='KeyCancellation')
+        LilyPondGrob(name='KeySignature')
+        LilyPondGrob(name='LedgerLineSpanner')
+        LilyPondGrob(name='NoteCollision')
+        LilyPondGrob(name='OttavaBracket')
+        LilyPondGrob(name='PianoPedalBracket')
+        LilyPondGrob(name='RestCollision')
+        LilyPondGrob(name='ScriptRow')
+        LilyPondGrob(name='SostenutoPedal')
+        LilyPondGrob(name='SostenutoPedalLineSpanner')
+        LilyPondGrob(name='StaffSpacing')
+        LilyPondGrob(name='StaffSymbol')
+        LilyPondGrob(name='SustainPedal')
+        LilyPondGrob(name='SustainPedalLineSpanner')
+        LilyPondGrob(name='TimeSignature')
+        LilyPondGrob(name='UnaCordaPedal')
+        LilyPondGrob(name='UnaCordaPedalLineSpanner')
+        LilyPondGrob(name='VerticalAxisGroup')
 
         Returns tuple.
         '''
@@ -735,44 +695,42 @@ class LilyPondContext(abctools.AbjadValueObject):
     def is_bottom_context(self):
         r'''Is true if LilyPond context is a bottom context. Otherwise false.
 
-        ::
-
-            >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
-            ...     is_bottom_context = 'X' if lilypond_context.is_bottom_context else ' '
-            ...     print('[{}] {}'.format(is_bottom_context, lilypond_context.name))
-            ...
-            [ ] ChoirStaff
-            [X] ChordNames
-            [X] CueVoice
-            [X] Devnull
-            [ ] DrumStaff
-            [X] DrumVoice
-            [X] Dynamics
-            [X] FiguredBass
-            [X] FretBoards
-            [ ] Global
-            [ ] GrandStaff
-            [ ] GregorianTranscriptionStaff
-            [X] GregorianTranscriptionVoice
-            [ ] KievanStaff
-            [X] KievanVoice
-            [X] Lyrics
-            [ ] MensuralStaff
-            [X] MensuralVoice
-            [X] NoteNames
-            [X] NullVoice
-            [ ] PetrucciStaff
-            [X] PetrucciVoice
-            [ ] PianoStaff
-            [ ] RhythmicStaff
-            [ ] Score
-            [ ] Staff
-            [ ] StaffGroup
-            [ ] TabStaff
-            [X] TabVoice
-            [ ] VaticanaStaff
-            [X] VaticanaVoice
-            [X] Voice
+        >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
+        ...     is_bottom_context = 'X' if lilypond_context.is_bottom_context else ' '
+        ...     print('[{}] {}'.format(is_bottom_context, lilypond_context.name))
+        ...
+        [ ] ChoirStaff
+        [X] ChordNames
+        [X] CueVoice
+        [X] Devnull
+        [ ] DrumStaff
+        [X] DrumVoice
+        [X] Dynamics
+        [X] FiguredBass
+        [X] FretBoards
+        [ ] Global
+        [ ] GrandStaff
+        [ ] GregorianTranscriptionStaff
+        [X] GregorianTranscriptionVoice
+        [ ] KievanStaff
+        [X] KievanVoice
+        [X] Lyrics
+        [ ] MensuralStaff
+        [X] MensuralVoice
+        [X] NoteNames
+        [X] NullVoice
+        [ ] PetrucciStaff
+        [X] PetrucciVoice
+        [ ] PianoStaff
+        [ ] RhythmicStaff
+        [ ] Score
+        [ ] Staff
+        [ ] StaffGroup
+        [ ] TabStaff
+        [X] TabVoice
+        [ ] VaticanaStaff
+        [X] VaticanaVoice
+        [X] Voice
 
         Returns true or false.
         '''
@@ -784,11 +742,9 @@ class LilyPondContext(abctools.AbjadValueObject):
     def is_custom(self):
         r'''Is true if LilyPond context is user-created. Otherwise false.
 
-        ::
-
-            >>> context = abjad.LilyPondContext('MensuralStaff')
-            >>> context.is_custom
-            False
+        >>> context = abjad.LilyPondContext('MensuralStaff')
+        >>> context.is_custom
+        False
 
         Returns true or false.
         '''
@@ -799,44 +755,42 @@ class LilyPondContext(abctools.AbjadValueObject):
     def is_global_context(self):
         r'''Is true if LilyPond context is a global context. Otherwise false.
 
-        ::
-
-            >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
-            ...     is_global_context = 'X' if lilypond_context.is_global_context else ' '
-            ...     print('[{}] {}'.format(is_global_context, lilypond_context.name))
-            ...
-            [ ] ChoirStaff
-            [ ] ChordNames
-            [ ] CueVoice
-            [ ] Devnull
-            [ ] DrumStaff
-            [ ] DrumVoice
-            [ ] Dynamics
-            [ ] FiguredBass
-            [ ] FretBoards
-            [X] Global
-            [ ] GrandStaff
-            [ ] GregorianTranscriptionStaff
-            [ ] GregorianTranscriptionVoice
-            [ ] KievanStaff
-            [ ] KievanVoice
-            [ ] Lyrics
-            [ ] MensuralStaff
-            [ ] MensuralVoice
-            [ ] NoteNames
-            [ ] NullVoice
-            [ ] PetrucciStaff
-            [ ] PetrucciVoice
-            [ ] PianoStaff
-            [ ] RhythmicStaff
-            [ ] Score
-            [ ] Staff
-            [ ] StaffGroup
-            [ ] TabStaff
-            [ ] TabVoice
-            [ ] VaticanaStaff
-            [ ] VaticanaVoice
-            [ ] Voice
+        >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
+        ...     is_global_context = 'X' if lilypond_context.is_global_context else ' '
+        ...     print('[{}] {}'.format(is_global_context, lilypond_context.name))
+        ...
+        [ ] ChoirStaff
+        [ ] ChordNames
+        [ ] CueVoice
+        [ ] Devnull
+        [ ] DrumStaff
+        [ ] DrumVoice
+        [ ] Dynamics
+        [ ] FiguredBass
+        [ ] FretBoards
+        [X] Global
+        [ ] GrandStaff
+        [ ] GregorianTranscriptionStaff
+        [ ] GregorianTranscriptionVoice
+        [ ] KievanStaff
+        [ ] KievanVoice
+        [ ] Lyrics
+        [ ] MensuralStaff
+        [ ] MensuralVoice
+        [ ] NoteNames
+        [ ] NullVoice
+        [ ] PetrucciStaff
+        [ ] PetrucciVoice
+        [ ] PianoStaff
+        [ ] RhythmicStaff
+        [ ] Score
+        [ ] Staff
+        [ ] StaffGroup
+        [ ] TabStaff
+        [ ] TabVoice
+        [ ] VaticanaStaff
+        [ ] VaticanaVoice
+        [ ] Voice
 
         Returns true or false.
         '''
@@ -852,44 +806,42 @@ class LilyPondContext(abctools.AbjadValueObject):
     def is_score_context(self):
         r'''Is true if LilyPond context is a score context. Otherwise false.
 
-        ::
-
-            >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
-            ...     is_score_context = 'X' if lilypond_context.is_score_context else ' '
-            ...     print('[{}] {}'.format(is_score_context, lilypond_context.name))
-            ...
-            [ ] ChoirStaff
-            [ ] ChordNames
-            [ ] CueVoice
-            [ ] Devnull
-            [ ] DrumStaff
-            [ ] DrumVoice
-            [ ] Dynamics
-            [ ] FiguredBass
-            [ ] FretBoards
-            [ ] Global
-            [ ] GrandStaff
-            [ ] GregorianTranscriptionStaff
-            [ ] GregorianTranscriptionVoice
-            [ ] KievanStaff
-            [ ] KievanVoice
-            [ ] Lyrics
-            [ ] MensuralStaff
-            [ ] MensuralVoice
-            [ ] NoteNames
-            [ ] NullVoice
-            [ ] PetrucciStaff
-            [ ] PetrucciVoice
-            [ ] PianoStaff
-            [ ] RhythmicStaff
-            [X] Score
-            [ ] Staff
-            [ ] StaffGroup
-            [ ] TabStaff
-            [ ] TabVoice
-            [ ] VaticanaStaff
-            [ ] VaticanaVoice
-            [ ] Voice
+        >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
+        ...     is_score_context = 'X' if lilypond_context.is_score_context else ' '
+        ...     print('[{}] {}'.format(is_score_context, lilypond_context.name))
+        ...
+        [ ] ChoirStaff
+        [ ] ChordNames
+        [ ] CueVoice
+        [ ] Devnull
+        [ ] DrumStaff
+        [ ] DrumVoice
+        [ ] Dynamics
+        [ ] FiguredBass
+        [ ] FretBoards
+        [ ] Global
+        [ ] GrandStaff
+        [ ] GregorianTranscriptionStaff
+        [ ] GregorianTranscriptionVoice
+        [ ] KievanStaff
+        [ ] KievanVoice
+        [ ] Lyrics
+        [ ] MensuralStaff
+        [ ] MensuralVoice
+        [ ] NoteNames
+        [ ] NullVoice
+        [ ] PetrucciStaff
+        [ ] PetrucciVoice
+        [ ] PianoStaff
+        [ ] RhythmicStaff
+        [X] Score
+        [ ] Staff
+        [ ] StaffGroup
+        [ ] TabStaff
+        [ ] TabVoice
+        [ ] VaticanaStaff
+        [ ] VaticanaVoice
+        [ ] Voice
 
         Returns true or false.
         '''
@@ -905,44 +857,42 @@ class LilyPondContext(abctools.AbjadValueObject):
     def is_staff_context(self):
         r'''Is true if LilyPond context is a staff context. Otherwise false.
 
-        ::
-
-            >>> for lilypond_context in abjad.lilypondnametools.LilyPondContext.list_all_contexts():
-            ...     is_staff_context = 'X' if lilypond_context.is_staff_context else ' '
-            ...     print('[{}] {}'.format(is_staff_context, lilypond_context.name))
-            ...
-            [ ] ChoirStaff
-            [ ] ChordNames
-            [ ] CueVoice
-            [ ] Devnull
-            [X] DrumStaff
-            [ ] DrumVoice
-            [ ] Dynamics
-            [ ] FiguredBass
-            [ ] FretBoards
-            [ ] Global
-            [ ] GrandStaff
-            [X] GregorianTranscriptionStaff
-            [ ] GregorianTranscriptionVoice
-            [X] KievanStaff
-            [ ] KievanVoice
-            [ ] Lyrics
-            [X] MensuralStaff
-            [ ] MensuralVoice
-            [ ] NoteNames
-            [ ] NullVoice
-            [X] PetrucciStaff
-            [ ] PetrucciVoice
-            [ ] PianoStaff
-            [X] RhythmicStaff
-            [ ] Score
-            [X] Staff
-            [ ] StaffGroup
-            [X] TabStaff
-            [ ] TabVoice
-            [X] VaticanaStaff
-            [ ] VaticanaVoice
-            [ ] Voice
+        >>> for lilypond_context in abjad.lilypondnametools.LilyPondContext.list_all_contexts():
+        ...     is_staff_context = 'X' if lilypond_context.is_staff_context else ' '
+        ...     print('[{}] {}'.format(is_staff_context, lilypond_context.name))
+        ...
+        [ ] ChoirStaff
+        [ ] ChordNames
+        [ ] CueVoice
+        [ ] Devnull
+        [X] DrumStaff
+        [ ] DrumVoice
+        [ ] Dynamics
+        [ ] FiguredBass
+        [ ] FretBoards
+        [ ] Global
+        [ ] GrandStaff
+        [X] GregorianTranscriptionStaff
+        [ ] GregorianTranscriptionVoice
+        [X] KievanStaff
+        [ ] KievanVoice
+        [ ] Lyrics
+        [X] MensuralStaff
+        [ ] MensuralVoice
+        [ ] NoteNames
+        [ ] NullVoice
+        [X] PetrucciStaff
+        [ ] PetrucciVoice
+        [ ] PianoStaff
+        [X] RhythmicStaff
+        [ ] Score
+        [X] Staff
+        [ ] StaffGroup
+        [X] TabStaff
+        [ ] TabVoice
+        [X] VaticanaStaff
+        [ ] VaticanaVoice
+        [ ] Voice
 
         Returns true or false.
         '''
@@ -958,44 +908,42 @@ class LilyPondContext(abctools.AbjadValueObject):
     def is_staff_group_context(self):
         r'''Is true if LilyPond context is a staff group context. Otherwise false.
 
-        ::
-
-            >>> for lilypond_context in abjad.lilypondnametools.LilyPondContext.list_all_contexts():
-            ...     is_staff_group_context = 'X' if lilypond_context.is_staff_group_context else ' '
-            ...     print('[{}] {}'.format(is_staff_group_context, lilypond_context.name))
-            ...
-            [X] ChoirStaff
-            [ ] ChordNames
-            [ ] CueVoice
-            [ ] Devnull
-            [ ] DrumStaff
-            [ ] DrumVoice
-            [ ] Dynamics
-            [ ] FiguredBass
-            [ ] FretBoards
-            [ ] Global
-            [X] GrandStaff
-            [ ] GregorianTranscriptionStaff
-            [ ] GregorianTranscriptionVoice
-            [ ] KievanStaff
-            [ ] KievanVoice
-            [ ] Lyrics
-            [ ] MensuralStaff
-            [ ] MensuralVoice
-            [ ] NoteNames
-            [ ] NullVoice
-            [ ] PetrucciStaff
-            [ ] PetrucciVoice
-            [X] PianoStaff
-            [ ] RhythmicStaff
-            [ ] Score
-            [ ] Staff
-            [X] StaffGroup
-            [ ] TabStaff
-            [ ] TabVoice
-            [ ] VaticanaStaff
-            [ ] VaticanaVoice
-            [ ] Voice
+        >>> for lilypond_context in abjad.lilypondnametools.LilyPondContext.list_all_contexts():
+        ...     is_staff_group_context = 'X' if lilypond_context.is_staff_group_context else ' '
+        ...     print('[{}] {}'.format(is_staff_group_context, lilypond_context.name))
+        ...
+        [X] ChoirStaff
+        [ ] ChordNames
+        [ ] CueVoice
+        [ ] Devnull
+        [ ] DrumStaff
+        [ ] DrumVoice
+        [ ] Dynamics
+        [ ] FiguredBass
+        [ ] FretBoards
+        [ ] Global
+        [X] GrandStaff
+        [ ] GregorianTranscriptionStaff
+        [ ] GregorianTranscriptionVoice
+        [ ] KievanStaff
+        [ ] KievanVoice
+        [ ] Lyrics
+        [ ] MensuralStaff
+        [ ] MensuralVoice
+        [ ] NoteNames
+        [ ] NullVoice
+        [ ] PetrucciStaff
+        [ ] PetrucciVoice
+        [X] PianoStaff
+        [ ] RhythmicStaff
+        [ ] Score
+        [ ] Staff
+        [X] StaffGroup
+        [ ] TabStaff
+        [ ] TabVoice
+        [ ] VaticanaStaff
+        [ ] VaticanaVoice
+        [ ] Voice
 
         Returns true or false.
         '''
@@ -1010,11 +958,9 @@ class LilyPondContext(abctools.AbjadValueObject):
     def name(self):
         r'''Gets name of LilyPond context.
 
-        ::
-
-            >>> context = abjad.LilyPondContext('MensuralStaff')
-            >>> context.name
-            'MensuralStaff'
+        >>> context = abjad.LilyPondContext('MensuralStaff')
+        >>> context.name
+        'MensuralStaff'
 
         Returns string.
         '''

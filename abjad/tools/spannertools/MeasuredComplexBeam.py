@@ -7,25 +7,21 @@ class MeasuredComplexBeam(ComplexBeam):
 
     ..  container:: example
 
-        ::
+        >>> staff = abjad.Staff()
+        >>> staff.append(abjad.Measure((2, 16), "c'16 d'16"))
+        >>> staff.append(abjad.Measure((2, 16), "e'16 f'16"))
+        >>> abjad.setting(staff).auto_beaming = False
+        >>> abjad.show(staff) # doctest: +SKIP
 
-            >>> staff = abjad.Staff()
-            >>> staff.append(abjad.Measure((2, 16), "c'16 d'16"))
-            >>> staff.append(abjad.Measure((2, 16), "e'16 f'16"))
-            >>> abjad.setting(staff).auto_beaming = False
-            >>> show(staff) # doctest: +SKIP
-
-        ::
-
-            >>> beam = abjad.MeasuredComplexBeam()
-            >>> selector = abjad.select().leaves()
-            >>> leaves = selector(staff)
-            >>> abjad.attach(beam, leaves)
-            >>> show(staff) # doctest: +SKIP
+        >>> beam = abjad.MeasuredComplexBeam()
+        >>> selector = abjad.select().leaves()
+        >>> leaves = selector(staff)
+        >>> abjad.attach(beam, leaves)
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff \with {
                 autoBeaming = ##f
             } {
@@ -125,41 +121,33 @@ class MeasuredComplexBeam(ComplexBeam):
 
             Use one span beam between measures:
 
-            ::
+            >>> staff = abjad.Staff()
+            >>> staff.append(abjad.Measure((2, 32), "c'32 d'32"))
+            >>> staff.append(abjad.Measure((2, 32), "e'32 f'32"))
+            >>> selector = abjad.select().leaves()
+            >>> leaves = selector(staff)
+            >>> beam = abjad.MeasuredComplexBeam(span_beam_count=1)
+            >>> abjad.attach(beam, leaves)
+            >>> abjad.show(staff) # doctest: +SKIP
 
-                >>> staff = abjad.Staff()
-                >>> staff.append(abjad.Measure((2, 32), "c'32 d'32"))
-                >>> staff.append(abjad.Measure((2, 32), "e'32 f'32"))
-                >>> selector = abjad.select().leaves()
-                >>> leaves = selector(staff)
-                >>> beam = abjad.MeasuredComplexBeam(span_beam_count=1)
-                >>> abjad.attach(beam, leaves)
-                >>> show(staff) # doctest: +SKIP
-
-            ::
-
-                >>> beam.span_beam_count
-                1
+            >>> beam.span_beam_count
+            1
 
         ..  container:: example
 
             Use two span beams between measures:
 
-            ::
+            >>> staff = abjad.Staff()
+            >>> staff.append(abjad.Measure((2, 32), "c'32 d'32"))
+            >>> staff.append(abjad.Measure((2, 32), "e'32 f'32"))
+            >>> beam = abjad.MeasuredComplexBeam(span_beam_count=2)
+            >>> selector = abjad.select().leaves()
+            >>> leaves = selector(staff)
+            >>> abjad.attach(beam, leaves)
+            >>> abjad.show(staff) # doctest: +SKIP
 
-                >>> staff = abjad.Staff()
-                >>> staff.append(abjad.Measure((2, 32), "c'32 d'32"))
-                >>> staff.append(abjad.Measure((2, 32), "e'32 f'32"))
-                >>> beam = abjad.MeasuredComplexBeam(span_beam_count=2)
-                >>> selector = abjad.select().leaves()
-                >>> leaves = selector(staff)
-                >>> abjad.attach(beam, leaves)
-                >>> show(staff) # doctest: +SKIP
-
-            ::
-
-                >>> beam.span_beam_count
-                2
+            >>> beam.span_beam_count
+            2
 
         Returns nonnegative integer or none.
         '''

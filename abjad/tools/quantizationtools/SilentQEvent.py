@@ -6,11 +6,9 @@ class SilentQEvent(QEvent):
 
     ..  container:: example
 
-        ::
-
-            >>> q_event = abjad.quantizationtools.SilentQEvent(1000)
-            >>> q_event
-            SilentQEvent(offset=Offset(1000, 1))
+        >>> q_event = abjad.quantizationtools.SilentQEvent(1000)
+        >>> q_event
+        SilentQEvent(offset=Offset(1000, 1))
 
     '''
 

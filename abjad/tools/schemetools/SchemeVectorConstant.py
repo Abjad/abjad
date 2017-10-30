@@ -10,13 +10,11 @@ class SchemeVectorConstant(Scheme):
 
         Scheme vector constant of boolean values:
 
-        ::
-
-            >>> scheme = abjad.SchemeVectorConstant([True, True, False])
-            >>> scheme
-            SchemeVectorConstant(True, True, False)
-            >>> print(format(scheme))
-            #'#(#t #t #f)
+        >>> scheme = abjad.SchemeVectorConstant([True, True, False])
+        >>> scheme
+        SchemeVectorConstant(True, True, False)
+        >>> print(format(scheme))
+        #'#(#t #t #f)
 
     Scheme vectors and Scheme vector constants differ in only their LilyPond
     input format.

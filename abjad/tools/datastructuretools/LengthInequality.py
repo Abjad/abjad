@@ -6,29 +6,21 @@ class LengthInequality(Inequality):
 
     ..  container:: example
 
-        ::
+        >>> inequality = abjad.LengthInequality('<', 4)
+        >>> abjad.f(inequality)
+        abjad.LengthInequality(
+            operator_string='<',
+            length=4,
+            )
 
-            >>> inequality = abjad.LengthInequality('<', 4)
-            >>> f(inequality)
-            abjad.LengthInequality(
-                operator_string='<',
-                length=4,
-                )
+        >>> inequality([1, 2, 3])
+        True
 
-        ::
+        >>> inequality([1, 2, 3, 4])
+        False
 
-            >>> inequality([1, 2, 3])
-            True
-
-        ::
-
-            >>> inequality([1, 2, 3, 4])
-            False
-
-        ::
-
-            >>> inequality([1, 2, 3, 4, 5])
-            False
+        >>> inequality([1, 2, 3, 4, 5])
+        False
 
     '''
 

@@ -6,25 +6,19 @@ def all_are_pairs_of_types(argument, first_type, second_type):
 
     ..  container:: example
 
-        ::
+        >>> items = [(1., 'a'), (2.1, 'b'), (3.45, 'c')]
+        >>> abjad.mathtools.all_are_pairs_of_types(items, float, str)
+        True
 
-            >>> items = [(1., 'a'), (2.1, 'b'), (3.45, 'c')]
-            >>> abjad.mathtools.all_are_pairs_of_types(items, float, str)
-            True
-
-        ::
-
-            >>> abjad.mathtools.all_are_pairs_of_types('foo', float, str)
-            False
+        >>> abjad.mathtools.all_are_pairs_of_types('foo', float, str)
+        False
 
     ..  container:: example
 
         Is true when `argument` is empty:
 
-        ::
-
-            >>> abjad.mathtools.all_are_pairs_of_types([], float, str)
-            True
+        >>> abjad.mathtools.all_are_pairs_of_types([], float, str)
+        True
 
     Returns true or false.
     '''

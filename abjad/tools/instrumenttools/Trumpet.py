@@ -6,16 +6,14 @@ class Trumpet(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> trumpet = abjad.Trumpet()
-            >>> abjad.attach(trumpet, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+        >>> trumpet = abjad.Trumpet()
+        >>> abjad.attach(trumpet, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { Trumpet }
                 \set Staff.shortInstrumentName = \markup { Tp. }
@@ -65,11 +63,9 @@ class Trumpet(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> trumpet = abjad.Trumpet()
-                >>> trumpet.allowable_clefs
-                ('treble',)
+            >>> trumpet = abjad.Trumpet()
+            >>> trumpet.allowable_clefs
+            ('treble',)
 
         Returns clef list.
         '''
@@ -81,15 +77,11 @@ class Trumpet(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> trumpet = abjad.Trumpet()
+            >>> trumpet.middle_c_sounding_pitch
+            NamedPitch("c'")
 
-                >>> trumpet = abjad.Trumpet()
-                >>> trumpet.middle_c_sounding_pitch
-                NamedPitch("c'")
-
-            ::
-
-                >>> show(trumpet.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(trumpet.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -101,11 +93,9 @@ class Trumpet(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> trumpet = abjad.Trumpet()
-                >>> trumpet.name
-                'trumpet'
+            >>> trumpet = abjad.Trumpet()
+            >>> trumpet.name
+            'trumpet'
 
         Returns string.
         '''
@@ -117,15 +107,11 @@ class Trumpet(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> trumpet = abjad.Trumpet()
+            >>> trumpet.name_markup
+            Markup(contents=['Trumpet'])
 
-                >>> trumpet = abjad.Trumpet()
-                >>> trumpet.name_markup
-                Markup(contents=['Trumpet'])
-
-            ::
-
-                >>> show(trumpet.name_markup) # doctest: +SKIP
+            >>> abjad.show(trumpet.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -137,15 +123,11 @@ class Trumpet(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> trumpet = abjad.Trumpet()
+            >>> trumpet.pitch_range
+            PitchRange('[F#3, D6]')
 
-                >>> trumpet = abjad.Trumpet()
-                >>> trumpet.pitch_range
-                PitchRange('[F#3, D6]')
-
-            ::
-
-                >>> show(trumpet.pitch_range) # doctest: +SKIP
+            >>> abjad.show(trumpet.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -157,11 +139,9 @@ class Trumpet(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> trumpet = abjad.Trumpet()
-                >>> trumpet.short_name
-                'tp.'
+            >>> trumpet = abjad.Trumpet()
+            >>> trumpet.short_name
+            'tp.'
 
         Returns string.
         '''
@@ -173,15 +153,11 @@ class Trumpet(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> trumpet = abjad.Trumpet()
+            >>> trumpet.short_name_markup
+            Markup(contents=['Tp.'])
 
-                >>> trumpet = abjad.Trumpet()
-                >>> trumpet.short_name_markup
-                Markup(contents=['Tp.'])
-
-            ::
-
-                >>> show(trumpet.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(trumpet.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

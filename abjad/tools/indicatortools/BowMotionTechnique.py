@@ -8,25 +8,21 @@ class BowMotionTechnique(AbjadValueObject):
 
         Jété:
 
-        ::
-
-            >>> bow_motion_technique = abjad.BowMotionTechnique('jete')
-            >>> f(bow_motion_technique)
-            abjad.BowMotionTechnique(
-                technique_name='jete',
-                )
+        >>> bow_motion_technique = abjad.BowMotionTechnique('jete')
+        >>> abjad.f(bow_motion_technique)
+        abjad.BowMotionTechnique(
+            technique_name='jete',
+            )
 
     ..  container:: example
 
         Ordinario:
 
-        ::
-
-            >>> bow_motion_technique = abjad.BowMotionTechnique('ordinario')
-            >>> f(bow_motion_technique)
-            abjad.BowMotionTechnique(
-                technique_name='ordinario',
-                )
+        >>> bow_motion_technique = abjad.BowMotionTechnique('ordinario')
+        >>> abjad.f(bow_motion_technique)
+        abjad.BowMotionTechnique(
+            technique_name='ordinario',
+            )
 
     Valid technique names include 'ordinario', 'jeté' and 'circular'.
     '''

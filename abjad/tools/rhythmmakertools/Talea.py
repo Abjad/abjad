@@ -8,12 +8,10 @@ class Talea(AbjadValueObject):
 
     ..  container:: example
 
-        ::
-
-            >>> talea = abjad.rhythmmakertools.Talea(
-            ...    counts=[2, 1, 3, 2, 4, 1, 1],
-            ...    denominator=16,
-            ...    )
+        >>> talea = abjad.rhythmmakertools.Talea(
+        ...    counts=[2, 1, 3, 2, 4, 1, 1],
+        ...    denominator=16,
+        ...    )
 
     The medieval plural of 'talea' is 'talee'. Abjad documentation uses
     'taleas' instead.
@@ -53,33 +51,27 @@ class Talea(AbjadValueObject):
 
             Gets item at index:
 
-            ::
+            >>> talea = abjad.rhythmmakertools.Talea(
+            ...    counts=[2, 1, 3, 2, 4, 1, 1],
+            ...    denominator=16,
+            ...    )
 
-                >>> talea = abjad.rhythmmakertools.Talea(
-                ...    counts=[2, 1, 3, 2, 4, 1, 1],
-                ...    denominator=16,
-                ...    )
-
-            ::
-
-                >>> talea[2]
-                NonreducedFraction(3, 16)
+            >>> talea[2]
+            NonreducedFraction(3, 16)
 
         ..  container:: example
 
             Gets items in slice:
 
-            ::
-
-                >>> for nonreduced_fraction in talea[3:9]:
-                ...     nonreduced_fraction
-                ...
-                NonreducedFraction(2, 16)
-                NonreducedFraction(4, 16)
-                NonreducedFraction(1, 16)
-                NonreducedFraction(1, 16)
-                NonreducedFraction(2, 16)
-                NonreducedFraction(1, 16)
+            >>> for nonreduced_fraction in talea[3:9]:
+            ...     nonreduced_fraction
+            ...
+            NonreducedFraction(2, 16)
+            NonreducedFraction(4, 16)
+            NonreducedFraction(1, 16)
+            NonreducedFraction(1, 16)
+            NonreducedFraction(2, 16)
+            NonreducedFraction(1, 16)
 
         Returns nonreduced fraction or nonreduced fractions.
         '''
@@ -101,25 +93,21 @@ class Talea(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> talea = abjad.rhythmmakertools.Talea(
+            ...    counts=[2, 1, 3, 2, 4, 1, 1],
+            ...    denominator=16,
+            ...    )
 
-                >>> talea = abjad.rhythmmakertools.Talea(
-                ...    counts=[2, 1, 3, 2, 4, 1, 1],
-                ...    denominator=16,
-                ...    )
-
-            ::
-
-                >>> for duration in talea:
-                ...     duration
-                ...
-                Duration(1, 8)
-                Duration(1, 16)
-                Duration(3, 16)
-                Duration(1, 8)
-                Duration(1, 4)
-                Duration(1, 16)
-                Duration(1, 16)
+            >>> for duration in talea:
+            ...     duration
+            ...
+            Duration(1, 8)
+            Duration(1, 16)
+            Duration(3, 16)
+            Duration(1, 8)
+            Duration(1, 4)
+            Duration(1, 16)
+            Duration(1, 16)
 
         Yields durations.
         '''
@@ -133,17 +121,13 @@ class Talea(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> talea = abjad.rhythmmakertools.Talea(
+            ...    counts=[2, 1, 3, 2, 4, 1, 1],
+            ...    denominator=16,
+            ...    )
 
-                >>> talea = abjad.rhythmmakertools.Talea(
-                ...    counts=[2, 1, 3, 2, 4, 1, 1],
-                ...    denominator=16,
-                ...    )
-
-            ::
-
-                >>> len(talea)
-                7
+            >>> len(talea)
+            7
 
         Defined equal to length of counts.
 
@@ -159,17 +143,13 @@ class Talea(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> talea = abjad.rhythmmakertools.Talea(
+            ...    counts=[2, 1, 3, 2, 4, 1, 1],
+            ...    denominator=16,
+            ...    )
 
-                >>> talea = abjad.rhythmmakertools.Talea(
-                ...    counts=[2, 1, 3, 2, 4, 1, 1],
-                ...    denominator=16,
-                ...    )
-
-            ::
-
-                >>> talea.counts
-                [2, 1, 3, 2, 4, 1, 1]
+            >>> talea.counts
+            [2, 1, 3, 2, 4, 1, 1]
 
         Set to integers.
 
@@ -186,17 +166,13 @@ class Talea(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> talea = abjad.rhythmmakertools.Talea(
+            ...    counts=[2, 1, 3, 2, 4, 1, 1],
+            ...    denominator=16,
+            ...    )
 
-                >>> talea = abjad.rhythmmakertools.Talea(
-                ...    counts=[2, 1, 3, 2, 4, 1, 1],
-                ...    denominator=16,
-                ...    )
-
-            ::
-
-                >>> talea.denominator
-                16
+            >>> talea.denominator
+            16
 
         Set to nonnegative integer power of two.
 

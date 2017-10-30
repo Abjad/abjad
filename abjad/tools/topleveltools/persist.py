@@ -5,14 +5,12 @@ def persist(client):
 
         Persists staff as LilyPond file:
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 c'4
                 e'4
@@ -20,18 +18,14 @@ def persist(client):
                 f'4
             }
 
-        ::
-
-            >>> abjad.persist(staff).as_ly() # doctest: +SKIP
+        >>> abjad.persist(staff).as_ly() # doctest: +SKIP
 
     ..  container:: example
 
         Returns persistence agent:
 
-        ::
-
-            >>> abjad.persist(staff)
-            PersistenceManager(client=Staff("c'4 e'4 d'4 f'4"))
+        >>> abjad.persist(staff)
+        PersistenceManager(client=Staff("c'4 e'4 d'4 f'4"))
 
     '''
     import abjad

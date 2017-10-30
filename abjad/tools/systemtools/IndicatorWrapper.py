@@ -7,21 +7,17 @@ class IndicatorWrapper(AbjadValueObject):
 
     ..  container:: example
 
-        ::
+        >>> component = abjad.Note("c'4")
+        >>> articulation = abjad.Articulation('accent', abjad.Up)
+        >>> abjad.attach(articulation, component)
+        >>> agent = abjad.inspect(component)
+        >>> wrapper = agent.get_indicators(unwrap=False)[0]
 
-            >>> component = abjad.Note("c'4")
-            >>> articulation = abjad.Articulation('accent', abjad.Up)
-            >>> abjad.attach(articulation, component)
-            >>> agent = abjad.inspect(component)
-            >>> wrapper = agent.get_indicators(unwrap=False)[0]
-
-        ::
-
-            >>> f(wrapper)
-            abjad.IndicatorWrapper(
-                component=abjad.Note("c'4 ^\\accent"),
-                indicator=abjad.Articulation('accent', Up),
-                )
+        >>> abjad.f(wrapper)
+        abjad.IndicatorWrapper(
+            component=abjad.Note("c'4 ^\\accent"),
+            indicator=abjad.Articulation('accent', Up),
+            )
 
     '''
 
@@ -95,96 +91,80 @@ class IndicatorWrapper(AbjadValueObject):
 
             Preserves annotation flag:
 
-            ::
+            >>> old_staff = abjad.Staff("c'4 d'4 e'4 f'4")
+            >>> abjad.annotate(old_staff[0], 'bow_direction', abjad.Down)
+            >>> abjad.f(old_staff)
+            \new Staff {
+                c'4
+                d'4
+                e'4
+                f'4
+            }
 
-                >>> old_staff = abjad.Staff("c'4 d'4 e'4 f'4")
-                >>> abjad.annotate(old_staff[0], 'bow_direction', abjad.Down)
-                >>> f(old_staff)
-                \new Staff {
-                    c'4
-                    d'4
-                    e'4
-                    f'4
-                }
+            >>> leaf = old_staff[0]
+            >>> abjad.inspect(leaf).get_annotation('bow_direction')
+            Down
 
-            ::
+            >>> new_staff = abjad.mutate(old_staff).copy()
+            >>> abjad.f(new_staff)
+            \new Staff {
+                c'4
+                d'4
+                e'4
+                f'4
+            }
 
-                >>> leaf = old_staff[0]
-                >>> abjad.inspect(leaf).get_annotation('bow_direction')
-                Down
-
-            ::
-
-                >>> new_staff = abjad.mutate(old_staff).copy()
-                >>> f(new_staff)
-                \new Staff {
-                    c'4
-                    d'4
-                    e'4
-                    f'4
-                }
-
-            ::
-
-                >>> leaf = new_staff[0]
-                >>> abjad.inspect(leaf).get_annotation('bow_direction')
-                Down
+            >>> leaf = new_staff[0]
+            >>> abjad.inspect(leaf).get_annotation('bow_direction')
+            Down
 
         ..  container:: example
 
             Preserves piecewise flag:
 
-            ::
+            >>> old_staff = abjad.Staff("c'4 d'4 e'4 f'4")
+            >>> spanner = abjad.TextSpanner()
+            >>> abjad.attach(spanner, old_staff[:])
+            >>> spanner.attach(abjad.Markup('pont.'), old_staff[0])
+            >>> abjad.f(old_staff)
+            \new Staff {
+                c'4 ^ \markup { pont. }
+                d'4
+                e'4
+                f'4
+            }
 
-                >>> old_staff = abjad.Staff("c'4 d'4 e'4 f'4")
-                >>> spanner = abjad.TextSpanner()
-                >>> abjad.attach(spanner, old_staff[:])
-                >>> spanner.attach(abjad.Markup('pont.'), old_staff[0])
-                >>> f(old_staff)
-                \new Staff {
-                    c'4 ^ \markup { pont. }
-                    d'4
-                    e'4
-                    f'4
-                }
+            >>> leaf = old_staff[0]
+            >>> wrapper = abjad.inspect(leaf).get_indicator(unwrap=False)
+            >>> abjad.f(wrapper)
+            abjad.IndicatorWrapper(
+                component=abjad.Note("c'4 ^ \\markup { pont. }"),
+                indicator=abjad.Markup(
+                    contents=['pont.'],
+                    ),
+                is_piecewise=True,
+                piecewise_spanner=abjad.TextSpanner(),
+                )
 
-            ::
+            >>> new_staff = abjad.mutate(old_staff).copy()
+            >>> abjad.f(new_staff)
+            \new Staff {
+                c'4 ^ \markup { pont. }
+                d'4
+                e'4
+                f'4
+            }
 
-                >>> leaf = old_staff[0]
-                >>> wrapper = abjad.inspect(leaf).get_indicator(unwrap=False)
-                >>> f(wrapper)
-                abjad.IndicatorWrapper(
-                    component=abjad.Note("c'4 ^ \\markup { pont. }"),
-                    indicator=abjad.Markup(
-                        contents=['pont.'],
-                        ),
-                    is_piecewise=True,
-                    piecewise_spanner=abjad.TextSpanner(),
-                    )
-
-            ::
-
-                >>> new_staff = abjad.mutate(old_staff).copy()
-                >>> f(new_staff)
-                \new Staff {
-                    c'4 ^ \markup { pont. }
-                    d'4
-                    e'4
-                    f'4
-                }
-
-            ::
-
-                >>> leaf = new_staff[0]
-                >>> wrapper = abjad.inspect(leaf).get_indicator(unwrap=False)
-                >>> f(wrapper)
-                abjad.IndicatorWrapper(
-                    component=abjad.Note("c'4 ^ \\markup { pont. }"),
-                    indicator=abjad.Markup(
-                        contents=['pont.'],
-                        ),
-                    is_piecewise=True,
-                    )
+            >>> leaf = new_staff[0]
+            >>> wrapper = abjad.inspect(leaf).get_indicator(unwrap=False)
+            >>> abjad.f(wrapper)
+            abjad.IndicatorWrapper(
+                component=abjad.Note("c'4 ^ \\markup { pont. }"),
+                indicator=abjad.Markup(
+                    contents=['pont.'],
+                    ),
+                is_piecewise=True,
+                )
 
         Copies indicator and scope.
 
@@ -408,25 +388,21 @@ class IndicatorWrapper(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> note = abjad.Note("c'4")
-                >>> articulation = abjad.Articulation('accent', abjad.Up)
-                >>> abjad.attach(articulation, note)
-                >>> agent = abjad.inspect(note)
-                >>> wrapper = agent.get_indicators(unwrap=False)[0]
-                >>> wrapper.name is None
-                True
+            >>> note = abjad.Note("c'4")
+            >>> articulation = abjad.Articulation('accent', abjad.Up)
+            >>> abjad.attach(articulation, note)
+            >>> agent = abjad.inspect(note)
+            >>> wrapper = agent.get_indicators(unwrap=False)[0]
+            >>> wrapper.name is None
+            True
 
         ..  container:: example
 
-            ::
-
-                >>> note = abjad.Note("c'4")
-                >>> articulation = abjad.Articulation('accent', abjad.Up)
-                >>> abjad.annotate(note, 'foo', articulation)
-                >>> abjad.inspect(note).get_annotation('foo')
-                Articulation('accent', Up)
+            >>> note = abjad.Note("c'4")
+            >>> articulation = abjad.Articulation('accent', abjad.Up)
+            >>> abjad.annotate(note, 'foo', articulation)
+            >>> abjad.inspect(note).get_annotation('foo')
+            Articulation('accent', Up)
 
         Returns string or none.
         '''

@@ -5,14 +5,12 @@ def inspect(client):
 
         Example staff:
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 c'4
                 e'4
@@ -24,19 +22,15 @@ def inspect(client):
 
         Gets duration of first note in staff:
 
-        ::
-
-            >>> abjad.inspect(staff[0]).get_duration()
-            Duration(1, 4)
+        >>> abjad.inspect(staff[0]).get_duration()
+        Duration(1, 4)
 
     ..  container:: example
 
         Returns inspection agent:
 
-        ::
-
-            >>> abjad.inspect(staff)
-            Inspection(client=Staff("c'4 e'4 d'4 f'4"))
+        >>> abjad.inspect(staff)
+        Inspection(client=Staff("c'4 e'4 d'4 f'4"))
 
     '''
     import abjad

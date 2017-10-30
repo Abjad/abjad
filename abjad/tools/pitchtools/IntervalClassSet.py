@@ -58,11 +58,11 @@ class IntervalClassSet(Set):
             >>> staff_1 = abjad.Staff("c'4 <d' fs' a'>4 b2")
             >>> staff_2 = abjad.Staff("c4. r8 g2")
             >>> staff_group = abjad.StaffGroup([staff_1, staff_2])
-            >>> show(staff_group) # doctest: +SKIP
+            >>> abjad.show(staff_group) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff_group)
+            >>> abjad.f(staff_group)
             \new StaffGroup <<
                 \new Staff {
                     c'4

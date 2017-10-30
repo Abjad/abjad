@@ -6,28 +6,24 @@ class PitchVector(Vector):
 
     ..  container:: example
 
-        ::
+        >>> vector = abjad.PitchVector(
+        ...     items=[7, 6, -2, -3, -3, 0, 1, 14, 15, 16, 16],
+        ...     item_class=abjad.NumberedPitch,
+        ...     )
 
-            >>> vector = abjad.PitchVector(
-            ...     items=[7, 6, -2, -3, -3, 0, 1, 14, 15, 16, 16],
-            ...     item_class=abjad.NumberedPitch,
-            ...     )
-
-        ::
-
-            >>> items = list(vector.items())
-            >>> items.sort(key=lambda x: x[0].number)
-            >>> for pitch_class, count in items:
-            ...     print(pitch_class, count)
-            -3 2
-            -2 1
-            0 1
-            1 1
-            6 1
-            7 1
-            14 1
-            15 1
-            16 2
+        >>> items = list(vector.items())
+        >>> items.sort(key=lambda x: x[0].number)
+        >>> for pitch_class, count in items:
+        ...     print(pitch_class, count)
+        -3 2
+        -2 1
+        0 1
+        1 1
+        6 1
+        7 1
+        14 1
+        15 1
+        16 2
 
     '''
 
@@ -42,18 +38,14 @@ class PitchVector(Vector):
 
         ..  container:: example
 
-            Gets interpreter representation of pitch vector:
-            ::
+        Gets interpreter representation of pitch vector:
+            >>> vector = abjad.PitchVector(
+            ...     items=[7, 6, -2, -3, -3, 0, 1, 14, 15, 16, 16],
+            ...     item_class=abjad.NumberedPitch,
+            ...     )
 
-                >>> vector = abjad.PitchVector(
-                ...     items=[7, 6, -2, -3, -3, 0, 1, 14, 15, 16, 16],
-                ...     item_class=abjad.NumberedPitch,
-                ...     )
-
-            ::
-
-                >>> vector
-                PitchVector({-3: 2, -2: 1, 0: 1, 1: 1, 6: 1, 7: 1, 14: 1, 15: 1, 16: 2}, item_class=NumberedPitch)
+            >>> vector
+            PitchVector({-3: 2, -2: 1, 0: 1, 1: 1, 6: 1, 7: 1, 14: 1, 15: 1, 16: 2}, item_class=NumberedPitch)
 
         ..  container:: example
 

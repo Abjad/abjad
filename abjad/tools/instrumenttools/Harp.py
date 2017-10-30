@@ -6,19 +6,17 @@ class Harp(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff_group = abjad.StaffGroup(context_name='PianoStaff')
-            >>> staff_group.append(abjad.Staff("c'4 d'4 e'4 f'4"))
-            >>> staff_group.append(abjad.Staff("c'2 b2"))
-            >>> harp = abjad.Harp()
-            >>> abjad.attach(harp, staff_group[0][0])
-            >>> abjad.attach(abjad.Clef('bass'), staff_group[1][0])
-            >>> show(staff_group) # doctest: +SKIP
+        >>> staff_group = abjad.StaffGroup(context_name='PianoStaff')
+        >>> staff_group.append(abjad.Staff("c'4 d'4 e'4 f'4"))
+        >>> staff_group.append(abjad.Staff("c'2 b2"))
+        >>> harp = abjad.Harp()
+        >>> abjad.attach(harp, staff_group[0][0])
+        >>> abjad.attach(abjad.Clef('bass'), staff_group[1][0])
+        >>> abjad.show(staff_group) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff_group)
+            >>> abjad.f(staff_group)
             \new PianoStaff <<
                 \new Staff {
                     \set PianoStaff.instrumentName = \markup { Harp }
@@ -76,11 +74,9 @@ class Harp(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> harp = abjad.Harp()
-                >>> harp.allowable_clefs
-                ('treble', 'bass')
+            >>> harp = abjad.Harp()
+            >>> harp.allowable_clefs
+            ('treble', 'bass')
 
         Returns clef list.
         '''
@@ -92,11 +88,9 @@ class Harp(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> harp = abjad.Harp()
-                >>> harp.default_scope
-                'StaffGroup'
+            >>> harp = abjad.Harp()
+            >>> harp.default_scope
+            'StaffGroup'
 
         Returns piano staff.
         '''
@@ -108,15 +102,11 @@ class Harp(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> harp = abjad.Harp()
+            >>> harp.middle_c_sounding_pitch
+            NamedPitch("c'")
 
-                >>> harp = abjad.Harp()
-                >>> harp.middle_c_sounding_pitch
-                NamedPitch("c'")
-
-            ::
-
-                >>> show(harp.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(harp.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -128,11 +118,9 @@ class Harp(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> harp = abjad.Harp()
-                >>> harp.name
-                'harp'
+            >>> harp = abjad.Harp()
+            >>> harp.name
+            'harp'
 
         Returns string.
         '''
@@ -144,15 +132,11 @@ class Harp(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> harp = abjad.Harp()
+            >>> harp.name_markup
+            Markup(contents=['Harp'])
 
-                >>> harp = abjad.Harp()
-                >>> harp.name_markup
-                Markup(contents=['Harp'])
-
-            ::
-
-                >>> show(harp.name_markup) # doctest: +SKIP
+            >>> abjad.show(harp.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -164,15 +148,11 @@ class Harp(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> harp = abjad.Harp()
+            >>> harp.pitch_range
+            PitchRange('[B0, G#7]')
 
-                >>> harp = abjad.Harp()
-                >>> harp.pitch_range
-                PitchRange('[B0, G#7]')
-
-            ::
-
-                >>> show(harp.pitch_range) # doctest: +SKIP
+            >>> abjad.show(harp.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -184,11 +164,9 @@ class Harp(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> harp = abjad.Harp()
-                >>> harp.short_name
-                'hp.'
+            >>> harp = abjad.Harp()
+            >>> harp.short_name
+            'hp.'
 
         Returns string.
         '''
@@ -200,15 +178,11 @@ class Harp(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> harp = abjad.Harp()
+            >>> harp.short_name_markup
+            Markup(contents=['Hp.'])
 
-                >>> harp = abjad.Harp()
-                >>> harp.short_name_markup
-                Markup(contents=['Hp.'])
-
-            ::
-
-                >>> show(harp.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(harp.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

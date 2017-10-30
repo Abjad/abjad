@@ -10,54 +10,46 @@ class TypedList(TypedCollection):
 
         No item coercion:
 
-        ::
+        >>> list_ = abjad.TypedList()
+        >>> list_.append(23)
+        >>> list_.append('foo')
+        >>> list_.append(False)
+        >>> list_.append((1, 2, 3))
+        >>> list_.append(3.14159)
 
-            >>> list_ = abjad.TypedList()
-            >>> list_.append(23)
-            >>> list_.append('foo')
-            >>> list_.append(False)
-            >>> list_.append((1, 2, 3))
-            >>> list_.append(3.14159)
-
-        ::
-
-            >>> f(list_)
-            abjad.TypedList(
-                [
-                    23,
-                    'foo',
-                    False,
-                    (1, 2, 3),
-                    3.14159,
-                    ]
-                )
+        >>> abjad.f(list_)
+        abjad.TypedList(
+            [
+                23,
+                'foo',
+                False,
+                (1, 2, 3),
+                3.14159,
+                ]
+            )
 
     ..  container:: example
 
         Named pitch item coercion:
 
-        ::
+        >>> pitch_list = abjad.TypedList(
+        ...     item_class=abjad.NamedPitch,
+        ...     )
+        >>> pitch_list.append(0)
+        >>> pitch_list.append("d'")
+        >>> pitch_list.append(('e', 4))
+        >>> pitch_list.append(abjad.NamedPitch("f'"))
 
-            >>> pitch_list = abjad.TypedList(
-            ...     item_class=abjad.NamedPitch,
-            ...     )
-            >>> pitch_list.append(0)
-            >>> pitch_list.append("d'")
-            >>> pitch_list.append(('e', 4))
-            >>> pitch_list.append(abjad.NamedPitch("f'"))
-
-        ::
-
-            >>> f(pitch_list)
-            abjad.TypedList(
-                [
-                    abjad.NamedPitch("c'"),
-                    abjad.NamedPitch("d'"),
-                    abjad.NamedPitch("e'"),
-                    abjad.NamedPitch("f'"),
-                    ],
-                item_class=abjad.NamedPitch,
-                )
+        >>> abjad.f(pitch_list)
+        abjad.TypedList(
+            [
+                abjad.NamedPitch("c'"),
+                abjad.NamedPitch("d'"),
+                abjad.NamedPitch("e'"),
+                abjad.NamedPitch("f'"),
+                ],
+            item_class=abjad.NamedPitch,
+            )
 
     Ordered collection with optional item coercion.
 
@@ -115,25 +107,21 @@ class TypedList(TypedCollection):
 
         ..  container:: example
 
-            ::
+            >>> dynamic_list = abjad.TypedList(item_class=abjad.Dynamic)
+            >>> dynamic_list.append('ppp')
+            >>> dynamic_list += ['p', 'mp', 'mf', 'fff']
 
-                >>> dynamic_list = abjad.TypedList(item_class=abjad.Dynamic)
-                >>> dynamic_list.append('ppp')
-                >>> dynamic_list += ['p', 'mp', 'mf', 'fff']
-
-            ::
-
-                >>> f(dynamic_list)
-                abjad.TypedList(
-                    [
-                        abjad.Dynamic('ppp'),
-                        abjad.Dynamic('p'),
-                        abjad.Dynamic('mp'),
-                        abjad.Dynamic('mf'),
-                        abjad.Dynamic('fff'),
-                        ],
-                    item_class=abjad.Dynamic,
-                    )
+            >>> abjad.f(dynamic_list)
+            abjad.TypedList(
+                [
+                    abjad.Dynamic('ppp'),
+                    abjad.Dynamic('p'),
+                    abjad.Dynamic('mp'),
+                    abjad.Dynamic('mf'),
+                    abjad.Dynamic('fff'),
+                    ],
+                item_class=abjad.Dynamic,
+                )
 
         Returns typed list.
         '''
@@ -154,51 +142,45 @@ class TypedList(TypedCollection):
 
             Sets item:
 
-            ::
+            >>> pitch_list = abjad.TypedList(
+            ...     item_class=abjad.NamedPitch,
+            ...     )
+            >>> pitch_list.append(0)
+            >>> pitch_list.append("d'")
+            >>> pitch_list.append(('e', 4))
+            >>> pitch_list.append(abjad.NamedPitch("f'"))
 
-                >>> pitch_list = abjad.TypedList(
-                ...     item_class=abjad.NamedPitch,
-                ...     )
-                >>> pitch_list.append(0)
-                >>> pitch_list.append("d'")
-                >>> pitch_list.append(('e', 4))
-                >>> pitch_list.append(abjad.NamedPitch("f'"))
-
-            ::
-
-                >>> pitch_list[-1] = 'gqs,'
-                >>> f(pitch_list)
-                abjad.TypedList(
-                    [
-                        abjad.NamedPitch("c'"),
-                        abjad.NamedPitch("d'"),
-                        abjad.NamedPitch("e'"),
-                        abjad.NamedPitch('gqs,'),
-                        ],
-                    item_class=abjad.NamedPitch,
-                    )
+            >>> pitch_list[-1] = 'gqs,'
+            >>> abjad.f(pitch_list)
+            abjad.TypedList(
+                [
+                    abjad.NamedPitch("c'"),
+                    abjad.NamedPitch("d'"),
+                    abjad.NamedPitch("e'"),
+                    abjad.NamedPitch('gqs,'),
+                    ],
+                item_class=abjad.NamedPitch,
+                )
 
         ..  container:: example
 
             Sets slice:
 
-            ::
-
-                >>> pitch_list[-1:] = ["f'", "g'", "a'", "b'", "c''"]
-                >>> f(pitch_list)
-                abjad.TypedList(
-                    [
-                        abjad.NamedPitch("c'"),
-                        abjad.NamedPitch("d'"),
-                        abjad.NamedPitch("e'"),
-                        abjad.NamedPitch("f'"),
-                        abjad.NamedPitch("g'"),
-                        abjad.NamedPitch("a'"),
-                        abjad.NamedPitch("b'"),
-                        abjad.NamedPitch("c''"),
-                        ],
-                    item_class=abjad.NamedPitch,
-                    )
+            >>> pitch_list[-1:] = ["f'", "g'", "a'", "b'", "c''"]
+            >>> abjad.f(pitch_list)
+            abjad.TypedList(
+                [
+                    abjad.NamedPitch("c'"),
+                    abjad.NamedPitch("d'"),
+                    abjad.NamedPitch("e'"),
+                    abjad.NamedPitch("f'"),
+                    abjad.NamedPitch("g'"),
+                    abjad.NamedPitch("a'"),
+                    abjad.NamedPitch("b'"),
+                    abjad.NamedPitch("c''"),
+                    ],
+                item_class=abjad.NamedPitch,
+                )
 
         Returns none.
         '''
@@ -242,14 +224,12 @@ class TypedList(TypedCollection):
 
         ..  container:: example
 
-            ::
-
-                >>> integer_list = abjad.TypedList(item_class=int)
-                >>> integer_list.append('1')
-                >>> integer_list.append(2)
-                >>> integer_list.append(3.4)
-                >>> integer_list[:]
-                [1, 2, 3]
+            >>> integer_list = abjad.TypedList(item_class=int)
+            >>> integer_list.append('1')
+            >>> integer_list.append(2)
+            >>> integer_list.append(3.4)
+            >>> integer_list[:]
+            [1, 2, 3]
 
         Returns none.
         '''
@@ -264,19 +244,15 @@ class TypedList(TypedCollection):
 
         ..  container:: example
 
-            ::
+            >>> integer_list = abjad.TypedList(item_class=int)
+            >>> integer_list.extend([0, 0., '0', 99])
 
-                >>> integer_list = abjad.TypedList(item_class=int)
-                >>> integer_list.extend([0, 0., '0', 99])
-
-            ::
-
-                >>> integer_list.count(0)
-                3
-                >>> integer_list.count(1)
-                0
-                >>> integer_list.count(99)
-                1
+            >>> integer_list.count(0)
+            3
+            >>> integer_list.count(1)
+            0
+            >>> integer_list.count(99)
+            1
 
         Returns nonnegative integer.
         '''
@@ -288,12 +264,10 @@ class TypedList(TypedCollection):
 
         ..  container:: example
 
-            ::
-
-                >>> integer_list = abjad.TypedList(item_class=int)
-                >>> integer_list.extend(['0', 1.0, 2, 3.14159])
-                >>> integer_list
-                TypedList([0, 1, 2, 3], item_class=int)
+            >>> integer_list = abjad.TypedList(item_class=int)
+            >>> integer_list.extend(['0', 1.0, 2, 3.14159])
+            >>> integer_list
+            TypedList([0, 1, 2, 3], item_class=int)
 
         Returns none.
         '''
@@ -307,23 +281,19 @@ class TypedList(TypedCollection):
 
         ..  container:: example
 
-            ::
+            >>> pitch_list = abjad.TypedList(
+            ...     item_class=abjad.NamedPitch,
+            ...     )
+            >>> pitch_list.extend(['cqf', "as'", 'b,', 'dss'])
 
-                >>> pitch_list = abjad.TypedList(
-                ...     item_class=abjad.NamedPitch,
-                ...     )
-                >>> pitch_list.extend(['cqf', "as'", 'b,', 'dss'])
-
-            ::
-
-                >>> pitch_list.index(abjad.NamedPitch('cqf'))
-                0
-                >>> pitch_list.index(abjad.NamedPitch("as'"))
-                1
-                >>> pitch_list.index('b,')
-                2
-                >>> pitch_list.index('dss')
-                3
+            >>> pitch_list.index(abjad.NamedPitch('cqf'))
+            0
+            >>> pitch_list.index(abjad.NamedPitch("as'"))
+            1
+            >>> pitch_list.index('b,')
+            2
+            >>> pitch_list.index('dss')
+            3
 
         Returns nonnegative integer.
         '''
@@ -337,24 +307,18 @@ class TypedList(TypedCollection):
 
             Inserts into typed list.
 
-            ::
+            >>> integer_list = abjad.TypedList(item_class=int)
+            >>> integer_list.extend(['1', 2, 4.3])
+            >>> integer_list
+            TypedList([1, 2, 4], item_class=int)
 
-                >>> integer_list = abjad.TypedList(item_class=int)
-                >>> integer_list.extend(['1', 2, 4.3])
-                >>> integer_list
-                TypedList([1, 2, 4], item_class=int)
+            >>> integer_list.insert(0, '0')
+            >>> integer_list
+            TypedList([0, 1, 2, 4], item_class=int)
 
-            ::
-
-                >>> integer_list.insert(0, '0')
-                >>> integer_list
-                TypedList([0, 1, 2, 4], item_class=int)
-
-            ::
-
-                >>> integer_list.insert(1, '9')
-                >>> integer_list
-                TypedList([0, 9, 1, 2, 4], item_class=int)
+            >>> integer_list.insert(1, '9')
+            >>> integer_list
+            TypedList([0, 9, 1, 2, 4], item_class=int)
 
         Returns none.
         '''
@@ -381,18 +345,14 @@ class TypedList(TypedCollection):
 
         ..  container:: example
 
-            ::
+            >>> integer_list = abjad.TypedList(item_class=int)
+            >>> integer_list.extend(('0', 1.0, 2, 3.14159))
+            >>> integer_list[:]
+            [0, 1, 2, 3]
 
-                >>> integer_list = abjad.TypedList(item_class=int)
-                >>> integer_list.extend(('0', 1.0, 2, 3.14159))
-                >>> integer_list[:]
-                [0, 1, 2, 3]
-
-            ::
-
-                >>> integer_list.remove('1')
-                >>> integer_list[:]
-                [0, 2, 3]
+            >>> integer_list.remove('1')
+            >>> integer_list[:]
+            [0, 2, 3]
 
         Returns none.
         '''

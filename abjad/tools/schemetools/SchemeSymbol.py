@@ -7,16 +7,12 @@ class SchemeSymbol(Scheme):
 
     ..  container:: example
 
-        ::
+        >>> scheme = abjad.SchemeSymbol('cross')
+        >>> scheme
+        SchemeSymbol('cross')
 
-            >>> scheme = abjad.SchemeSymbol('cross')
-            >>> scheme
-            SchemeSymbol('cross')
-
-        ::
-
-            >>> print(format(scheme))
-            #'cross
+        >>> print(format(scheme))
+        #'cross
 
     '''
 

@@ -33,39 +33,27 @@ class Enumerator(abctools.AbjadValueObject):
 
             Is true when sequence is a restricted growth function:
 
-            ::
+            >>> abjad.Enumerator._is_restricted_growth_function([1, 1, 1, 1])
+            True
 
-                >>> abjad.Enumerator._is_restricted_growth_function([1, 1, 1, 1])
-                True
+            >>> abjad.Enumerator._is_restricted_growth_function([1, 1, 1, 2])
+            True
 
-            ::
+            >>> abjad.Enumerator._is_restricted_growth_function([1, 1, 2, 1])
+            True
 
-                >>> abjad.Enumerator._is_restricted_growth_function([1, 1, 1, 2])
-                True
-
-            ::
-
-                >>> abjad.Enumerator._is_restricted_growth_function([1, 1, 2, 1])
-                True
-
-            ::
-
-                >>> abjad.Enumerator._is_restricted_growth_function([1, 1, 2, 2])
-                True
+            >>> abjad.Enumerator._is_restricted_growth_function([1, 1, 2, 2])
+            True
 
         ..  container:: example
 
             Is false when sequence is not a restricted growth function:
 
-            ::
+            >>> abjad.Enumerator._is_restricted_growth_function([1, 1, 1, 3])
+            False
 
-                >>> abjad.Enumerator._is_restricted_growth_function([1, 1, 1, 3])
-                False
-
-            ::
-
-                >>> abjad.Enumerator._is_restricted_growth_function([17])
-                False
+            >>> abjad.Enumerator._is_restricted_growth_function([17])
+            False
 
         A restricted growth function is a sequence ``l`` such that
         ``l[0] == 1`` and such that ``l[i] <= max(l[:i]) + 1`` for
@@ -89,15 +77,11 @@ class Enumerator(abctools.AbjadValueObject):
     def _partition_by_rgf(sequence, rgf):
         '''Partitions `sequence` by restricted growth function `rgf`.
 
-        ::
+        >>> sequence = abjad.sequence(range(10))
+        >>> rgf = [1, 1, 2, 2, 1, 2, 3, 3, 2, 4]
 
-            >>> sequence = abjad.sequence(range(10))
-            >>> rgf = [1, 1, 2, 2, 1, 2, 3, 3, 2, 4]
-
-        ::
-
-            >>> abjad.Enumerator._partition_by_rgf(sequence, rgf)
-            Sequence([Sequence([0, 1, 4]), Sequence([2, 3, 5, 8]), Sequence([6, 7]), Sequence([9])])
+        >>> abjad.Enumerator._partition_by_rgf(sequence, rgf)
+        Sequence([Sequence([0, 1, 4]), Sequence([2, 3, 5, 8]), Sequence([6, 7]), Sequence([9])])
 
         Returns list of lists.
         '''
@@ -127,27 +111,25 @@ class Enumerator(abctools.AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> rgfs = abjad.Enumerator._yield_restricted_growth_functions(4)
-                >>> for rgf in rgfs:
-                ...     rgf
-                ...
-                (1, 1, 1, 1)
-                (1, 1, 1, 2)
-                (1, 1, 2, 1)
-                (1, 1, 2, 2)
-                (1, 1, 2, 3)
-                (1, 2, 1, 1)
-                (1, 2, 1, 2)
-                (1, 2, 1, 3)
-                (1, 2, 2, 1)
-                (1, 2, 2, 2)
-                (1, 2, 2, 3)
-                (1, 2, 3, 1)
-                (1, 2, 3, 2)
-                (1, 2, 3, 3)
-                (1, 2, 3, 4)
+            >>> rgfs = abjad.Enumerator._yield_restricted_growth_functions(4)
+            >>> for rgf in rgfs:
+            ...     rgf
+            ...
+            (1, 1, 1, 1)
+            (1, 1, 1, 2)
+            (1, 1, 2, 1)
+            (1, 1, 2, 2)
+            (1, 1, 2, 3)
+            (1, 2, 1, 1)
+            (1, 2, 1, 2)
+            (1, 2, 1, 3)
+            (1, 2, 2, 1)
+            (1, 2, 2, 2)
+            (1, 2, 2, 3)
+            (1, 2, 3, 1)
+            (1, 2, 3, 2)
+            (1, 2, 3, 3)
+            (1, 2, 3, 4)
 
         Returns restricted growth functions in lex order.
 
@@ -190,104 +172,94 @@ class Enumerator(abctools.AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> enumerator = abjad.Enumerator([1, 2, 3, 4])
-                >>> for combination in enumerator.yield_combinations():
-                ...     combination
-                Sequence([])
-                Sequence([1])
-                Sequence([2])
-                Sequence([1, 2])
-                Sequence([3])
-                Sequence([1, 3])
-                Sequence([2, 3])
-                Sequence([1, 2, 3])
-                Sequence([4])
-                Sequence([1, 4])
-                Sequence([2, 4])
-                Sequence([1, 2, 4])
-                Sequence([3, 4])
-                Sequence([1, 3, 4])
-                Sequence([2, 3, 4])
-                Sequence([1, 2, 3, 4])
+            >>> enumerator = abjad.Enumerator([1, 2, 3, 4])
+            >>> for combination in enumerator.yield_combinations():
+            ...     combination
+            Sequence([])
+            Sequence([1])
+            Sequence([2])
+            Sequence([1, 2])
+            Sequence([3])
+            Sequence([1, 3])
+            Sequence([2, 3])
+            Sequence([1, 2, 3])
+            Sequence([4])
+            Sequence([1, 4])
+            Sequence([2, 4])
+            Sequence([1, 2, 4])
+            Sequence([3, 4])
+            Sequence([1, 3, 4])
+            Sequence([2, 3, 4])
+            Sequence([1, 2, 3, 4])
 
         ..  container:: example
 
-            ::
-
-                >>> enumerator = abjad.Enumerator([1, 2, 3, 4])
-                >>> for combination in enumerator.yield_combinations(
-                ...     minimum_length=3,
-                ...     ):
-                ...     combination
-                Sequence([1, 2, 3])
-                Sequence([1, 2, 4])
-                Sequence([1, 3, 4])
-                Sequence([2, 3, 4])
-                Sequence([1, 2, 3, 4])
+            >>> enumerator = abjad.Enumerator([1, 2, 3, 4])
+            >>> for combination in enumerator.yield_combinations(
+            ...     minimum_length=3,
+            ...     ):
+            ...     combination
+            Sequence([1, 2, 3])
+            Sequence([1, 2, 4])
+            Sequence([1, 3, 4])
+            Sequence([2, 3, 4])
+            Sequence([1, 2, 3, 4])
 
         ..  container:: example
 
-            ::
-
-                >>> enumerator = abjad.Enumerator([1, 2, 3, 4])
-                >>> for combination in enumerator.yield_combinations(
-                ...     maximum_length=2,
-                ...     ):
-                ...     combination
-                Sequence([])
-                Sequence([1])
-                Sequence([2])
-                Sequence([1, 2])
-                Sequence([3])
-                Sequence([1, 3])
-                Sequence([2, 3])
-                Sequence([4])
-                Sequence([1, 4])
-                Sequence([2, 4])
-                Sequence([3, 4])
+            >>> enumerator = abjad.Enumerator([1, 2, 3, 4])
+            >>> for combination in enumerator.yield_combinations(
+            ...     maximum_length=2,
+            ...     ):
+            ...     combination
+            Sequence([])
+            Sequence([1])
+            Sequence([2])
+            Sequence([1, 2])
+            Sequence([3])
+            Sequence([1, 3])
+            Sequence([2, 3])
+            Sequence([4])
+            Sequence([1, 4])
+            Sequence([2, 4])
+            Sequence([3, 4])
 
         ..  container:: example
 
-            ::
-
-                >>> enumerator = abjad.Enumerator([1, 2, 3, 4])
-                >>> for combination in enumerator.yield_combinations(
-                ...     minimum_length=2,
-                ...     maximum_length=2,
-                ...     ):
-                ...     combination
-                Sequence([1, 2])
-                Sequence([1, 3])
-                Sequence([2, 3])
-                Sequence([1, 4])
-                Sequence([2, 4])
-                Sequence([3, 4])
+            >>> enumerator = abjad.Enumerator([1, 2, 3, 4])
+            >>> for combination in enumerator.yield_combinations(
+            ...     minimum_length=2,
+            ...     maximum_length=2,
+            ...     ):
+            ...     combination
+            Sequence([1, 2])
+            Sequence([1, 3])
+            Sequence([2, 3])
+            Sequence([1, 4])
+            Sequence([2, 4])
+            Sequence([3, 4])
 
         ..  container:: example
 
-            ::
-
-                >>> enumerator = abjad.Enumerator('text')
-                >>> for combination in enumerator.yield_combinations():
-                ...     ''.join([str(_) for _ in combination])
-                ''
-                't'
-                'e'
-                'te'
-                'x'
-                'tx'
-                'ex'
-                'tex'
-                't'
-                'tt'
-                'et'
-                'tet'
-                'xt'
-                'txt'
-                'ext'
-                'text'
+            >>> enumerator = abjad.Enumerator('text')
+            >>> for combination in enumerator.yield_combinations():
+            ...     ''.join([str(_) for _ in combination])
+            ''
+            't'
+            'e'
+            'te'
+            'x'
+            'tx'
+            'ex'
+            'tex'
+            't'
+            'tt'
+            'et'
+            'tet'
+            'xt'
+            'txt'
+            'ext'
+            'text'
 
         Yields combinations in binary string order.
 
@@ -320,69 +292,63 @@ class Enumerator(abctools.AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> sequences = [[1, 2, 3], ['a', 'b']]
-                >>> enumerator = abjad.Enumerator(sequences)
-                >>> for sequence_ in enumerator.yield_outer_product():
-                ...     sequence_
-                ...
-                Sequence([1, 'a'])
-                Sequence([1, 'b'])
-                Sequence([2, 'a'])
-                Sequence([2, 'b'])
-                Sequence([3, 'a'])
-                Sequence([3, 'b'])
+            >>> sequences = [[1, 2, 3], ['a', 'b']]
+            >>> enumerator = abjad.Enumerator(sequences)
+            >>> for sequence_ in enumerator.yield_outer_product():
+            ...     sequence_
+            ...
+            Sequence([1, 'a'])
+            Sequence([1, 'b'])
+            Sequence([2, 'a'])
+            Sequence([2, 'b'])
+            Sequence([3, 'a'])
+            Sequence([3, 'b'])
 
         ..  container:: example
 
-            ::
-
-                >>> sequences = [[1, 2, 3], ['a', 'b'], ['X', 'Y']]
-                >>> enumerator = abjad.Enumerator(sequences)
-                >>> for sequence_ in enumerator.yield_outer_product():
-                ...     sequence_
-                ...
-                Sequence([1, 'a', 'X'])
-                Sequence([1, 'a', 'Y'])
-                Sequence([1, 'b', 'X'])
-                Sequence([1, 'b', 'Y'])
-                Sequence([2, 'a', 'X'])
-                Sequence([2, 'a', 'Y'])
-                Sequence([2, 'b', 'X'])
-                Sequence([2, 'b', 'Y'])
-                Sequence([3, 'a', 'X'])
-                Sequence([3, 'a', 'Y'])
-                Sequence([3, 'b', 'X'])
-                Sequence([3, 'b', 'Y'])
+            >>> sequences = [[1, 2, 3], ['a', 'b'], ['X', 'Y']]
+            >>> enumerator = abjad.Enumerator(sequences)
+            >>> for sequence_ in enumerator.yield_outer_product():
+            ...     sequence_
+            ...
+            Sequence([1, 'a', 'X'])
+            Sequence([1, 'a', 'Y'])
+            Sequence([1, 'b', 'X'])
+            Sequence([1, 'b', 'Y'])
+            Sequence([2, 'a', 'X'])
+            Sequence([2, 'a', 'Y'])
+            Sequence([2, 'b', 'X'])
+            Sequence([2, 'b', 'Y'])
+            Sequence([3, 'a', 'X'])
+            Sequence([3, 'a', 'Y'])
+            Sequence([3, 'b', 'X'])
+            Sequence([3, 'b', 'Y'])
 
         ..  container:: example
 
-            ::
-
-                >>> sequences = [[1, 2, 3], [4, 5], [6, 7, 8]]
-                >>> enumerator = abjad.Enumerator(sequences)
-                >>> for sequence_ in enumerator.yield_outer_product():
-                ...     sequence_
-                ...
-                Sequence([1, 4, 6])
-                Sequence([1, 4, 7])
-                Sequence([1, 4, 8])
-                Sequence([1, 5, 6])
-                Sequence([1, 5, 7])
-                Sequence([1, 5, 8])
-                Sequence([2, 4, 6])
-                Sequence([2, 4, 7])
-                Sequence([2, 4, 8])
-                Sequence([2, 5, 6])
-                Sequence([2, 5, 7])
-                Sequence([2, 5, 8])
-                Sequence([3, 4, 6])
-                Sequence([3, 4, 7])
-                Sequence([3, 4, 8])
-                Sequence([3, 5, 6])
-                Sequence([3, 5, 7])
-                Sequence([3, 5, 8])
+            >>> sequences = [[1, 2, 3], [4, 5], [6, 7, 8]]
+            >>> enumerator = abjad.Enumerator(sequences)
+            >>> for sequence_ in enumerator.yield_outer_product():
+            ...     sequence_
+            ...
+            Sequence([1, 4, 6])
+            Sequence([1, 4, 7])
+            Sequence([1, 4, 8])
+            Sequence([1, 5, 6])
+            Sequence([1, 5, 7])
+            Sequence([1, 5, 8])
+            Sequence([2, 4, 6])
+            Sequence([2, 4, 7])
+            Sequence([2, 4, 8])
+            Sequence([2, 5, 6])
+            Sequence([2, 5, 7])
+            Sequence([2, 5, 8])
+            Sequence([3, 4, 6])
+            Sequence([3, 4, 7])
+            Sequence([3, 4, 8])
+            Sequence([3, 5, 6])
+            Sequence([3, 5, 7])
+            Sequence([3, 5, 8])
 
         Returns sequence generator.
         '''
@@ -406,54 +372,46 @@ class Enumerator(abctools.AbjadValueObject):
 
             Without duplicate items:
 
-            ::
-
-                >>> enumerator = abjad.Enumerator([1, 2, 3, 4])
-                >>> for pair in enumerator.yield_pairs():
-                ...     pair
-                ...
-                Sequence([1, 2])
-                Sequence([1, 3])
-                Sequence([1, 4])
-                Sequence([2, 3])
-                Sequence([2, 4])
-                Sequence([3, 4])
+            >>> enumerator = abjad.Enumerator([1, 2, 3, 4])
+            >>> for pair in enumerator.yield_pairs():
+            ...     pair
+            ...
+            Sequence([1, 2])
+            Sequence([1, 3])
+            Sequence([1, 4])
+            Sequence([2, 3])
+            Sequence([2, 4])
+            Sequence([3, 4])
 
         ..  container:: example
 
             With duplicate items:
 
-            ::
-
-                >>> enumerator = abjad.Enumerator([1, 1, 1])
-                >>> for pair in enumerator.yield_pairs():
-                ...     pair
-                ...
-                Sequence([1, 1])
-                Sequence([1, 1])
-                Sequence([1, 1])
+            >>> enumerator = abjad.Enumerator([1, 1, 1])
+            >>> for pair in enumerator.yield_pairs():
+            ...     pair
+            ...
+            Sequence([1, 1])
+            Sequence([1, 1])
+            Sequence([1, 1])
 
         ..  container:: example
 
             Length-1 sequence:
 
-            ::
-
-                >>> enumerator = abjad.Enumerator([1])
-                >>> for pair in enumerator.yield_pairs():
-                ...     pair
-                ...
+            >>> enumerator = abjad.Enumerator([1])
+            >>> for pair in enumerator.yield_pairs():
+            ...     pair
+            ...
 
         ..  container:: example
 
             Empty sequence:
 
-            ::
-
-                >>> enumerator = abjad.Enumerator([])
-                >>> for pair in enumerator.yield_pairs():
-                ...     pair
-                ...
+            >>> enumerator = abjad.Enumerator([])
+            >>> for pair in enumerator.yield_pairs():
+            ...     pair
+            ...
 
         Returns generator of length-2 sequences.
         '''
@@ -469,33 +427,29 @@ class Enumerator(abctools.AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> enumerator = abjad.Enumerator([0, 1, 2])
-                >>> for partition in enumerator.yield_partitions():
-                ...     partition
-                ...
-                Sequence([Sequence([0, 1, 2])])
-                Sequence([Sequence([0, 1]), Sequence([2])])
-                Sequence([Sequence([0]), Sequence([1, 2])])
-                Sequence([Sequence([0]), Sequence([1]), Sequence([2])])
+            >>> enumerator = abjad.Enumerator([0, 1, 2])
+            >>> for partition in enumerator.yield_partitions():
+            ...     partition
+            ...
+            Sequence([Sequence([0, 1, 2])])
+            Sequence([Sequence([0, 1]), Sequence([2])])
+            Sequence([Sequence([0]), Sequence([1, 2])])
+            Sequence([Sequence([0]), Sequence([1]), Sequence([2])])
 
         ..  container:: example
 
-            ::
-
-                >>> enumerator = abjad.Enumerator([0, 1, 2, 3])
-                >>> for partition in enumerator.yield_partitions():
-                ...     partition
-                ...
-                Sequence([Sequence([0, 1, 2, 3])])
-                Sequence([Sequence([0, 1, 2]), Sequence([3])])
-                Sequence([Sequence([0, 1]), Sequence([2, 3])])
-                Sequence([Sequence([0, 1]), Sequence([2]), Sequence([3])])
-                Sequence([Sequence([0]), Sequence([1, 2, 3])])
-                Sequence([Sequence([0]), Sequence([1, 2]), Sequence([3])])
-                Sequence([Sequence([0]), Sequence([1]), Sequence([2, 3])])
-                Sequence([Sequence([0]), Sequence([1]), Sequence([2]), Sequence([3])])
+            >>> enumerator = abjad.Enumerator([0, 1, 2, 3])
+            >>> for partition in enumerator.yield_partitions():
+            ...     partition
+            ...
+            Sequence([Sequence([0, 1, 2, 3])])
+            Sequence([Sequence([0, 1, 2]), Sequence([3])])
+            Sequence([Sequence([0, 1]), Sequence([2, 3])])
+            Sequence([Sequence([0, 1]), Sequence([2]), Sequence([3])])
+            Sequence([Sequence([0]), Sequence([1, 2, 3])])
+            Sequence([Sequence([0]), Sequence([1, 2]), Sequence([3])])
+            Sequence([Sequence([0]), Sequence([1]), Sequence([2, 3])])
+            Sequence([Sequence([0]), Sequence([1]), Sequence([2]), Sequence([3])])
 
         Returns generator of nested sequences.
         '''
@@ -521,18 +475,16 @@ class Enumerator(abctools.AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> enumerator = abjad.Enumerator([1, 2, 3])
-                >>> for permutation in enumerator.yield_permutations():
-                ...     permutation
-                ...
-                Sequence([1, 2, 3])
-                Sequence([1, 3, 2])
-                Sequence([2, 1, 3])
-                Sequence([2, 3, 1])
-                Sequence([3, 1, 2])
-                Sequence([3, 2, 1])
+            >>> enumerator = abjad.Enumerator([1, 2, 3])
+            >>> for permutation in enumerator.yield_permutations():
+            ...     permutation
+            ...
+            Sequence([1, 2, 3])
+            Sequence([1, 3, 2])
+            Sequence([2, 1, 3])
+            Sequence([2, 3, 1])
+            Sequence([3, 1, 2])
+            Sequence([3, 2, 1])
 
         Returns sequence generator.
         '''
@@ -547,27 +499,25 @@ class Enumerator(abctools.AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> enumerator = abjad.Enumerator([21, 22, 23, 24])
-                >>> for set_partition in enumerator.yield_set_partitions():
-                ...     set_partition
-                ...
-                Sequence([Sequence([21, 22, 23, 24])])
-                Sequence([Sequence([21, 22, 23]), Sequence([24])])
-                Sequence([Sequence([21, 22, 24]), Sequence([23])])
-                Sequence([Sequence([21, 22]), Sequence([23, 24])])
-                Sequence([Sequence([21, 22]), Sequence([23]), Sequence([24])])
-                Sequence([Sequence([21, 23, 24]), Sequence([22])])
-                Sequence([Sequence([21, 23]), Sequence([22, 24])])
-                Sequence([Sequence([21, 23]), Sequence([22]), Sequence([24])])
-                Sequence([Sequence([21, 24]), Sequence([22, 23])])
-                Sequence([Sequence([21]), Sequence([22, 23, 24])])
-                Sequence([Sequence([21]), Sequence([22, 23]), Sequence([24])])
-                Sequence([Sequence([21, 24]), Sequence([22]), Sequence([23])])
-                Sequence([Sequence([21]), Sequence([22, 24]), Sequence([23])])
-                Sequence([Sequence([21]), Sequence([22]), Sequence([23, 24])])
-                Sequence([Sequence([21]), Sequence([22]), Sequence([23]), Sequence([24])])
+            >>> enumerator = abjad.Enumerator([21, 22, 23, 24])
+            >>> for set_partition in enumerator.yield_set_partitions():
+            ...     set_partition
+            ...
+            Sequence([Sequence([21, 22, 23, 24])])
+            Sequence([Sequence([21, 22, 23]), Sequence([24])])
+            Sequence([Sequence([21, 22, 24]), Sequence([23])])
+            Sequence([Sequence([21, 22]), Sequence([23, 24])])
+            Sequence([Sequence([21, 22]), Sequence([23]), Sequence([24])])
+            Sequence([Sequence([21, 23, 24]), Sequence([22])])
+            Sequence([Sequence([21, 23]), Sequence([22, 24])])
+            Sequence([Sequence([21, 23]), Sequence([22]), Sequence([24])])
+            Sequence([Sequence([21, 24]), Sequence([22, 23])])
+            Sequence([Sequence([21]), Sequence([22, 23, 24])])
+            Sequence([Sequence([21]), Sequence([22, 23]), Sequence([24])])
+            Sequence([Sequence([21, 24]), Sequence([22]), Sequence([23])])
+            Sequence([Sequence([21]), Sequence([22, 24]), Sequence([23])])
+            Sequence([Sequence([21]), Sequence([22]), Sequence([23, 24])])
+            Sequence([Sequence([21]), Sequence([22]), Sequence([23]), Sequence([24])])
 
         Returns set partitions in order of restricted growth function.
 
@@ -583,75 +533,67 @@ class Enumerator(abctools.AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> enumerator = abjad.Enumerator([0, 1, 2])
-                >>> for subsequence in enumerator.yield_subsequences():
-                ...     subsequence
-                ...
-                Sequence([])
-                Sequence([0])
-                Sequence([0, 1])
-                Sequence([0, 1, 2])
-                Sequence([1])
-                Sequence([1, 2])
-                Sequence([2])
+            >>> enumerator = abjad.Enumerator([0, 1, 2])
+            >>> for subsequence in enumerator.yield_subsequences():
+            ...     subsequence
+            ...
+            Sequence([])
+            Sequence([0])
+            Sequence([0, 1])
+            Sequence([0, 1, 2])
+            Sequence([1])
+            Sequence([1, 2])
+            Sequence([2])
 
         ..  container:: example
 
-            ::
-
-                >>> enumerator = abjad.Enumerator([0, 1, 2, 3, 4])
-                >>> for subsequence in enumerator.yield_subsequences(
-                ...     minimum_length=3,
-                ...     ):
-                ...     subsequence
-                ...
-                Sequence([0, 1, 2])
-                Sequence([0, 1, 2, 3])
-                Sequence([0, 1, 2, 3, 4])
-                Sequence([1, 2, 3])
-                Sequence([1, 2, 3, 4])
-                Sequence([2, 3, 4])
+            >>> enumerator = abjad.Enumerator([0, 1, 2, 3, 4])
+            >>> for subsequence in enumerator.yield_subsequences(
+            ...     minimum_length=3,
+            ...     ):
+            ...     subsequence
+            ...
+            Sequence([0, 1, 2])
+            Sequence([0, 1, 2, 3])
+            Sequence([0, 1, 2, 3, 4])
+            Sequence([1, 2, 3])
+            Sequence([1, 2, 3, 4])
+            Sequence([2, 3, 4])
 
         ..  container:: example
 
-            ::
-
-                >>> enumerator = abjad.Enumerator([0, 1, 2, 3, 4])
-                >>> for subsequence in enumerator.yield_subsequences(
-                ...     maximum_length=3,
-                ...     ):
-                ...     subsequence
-                ...
-                Sequence([])
-                Sequence([0])
-                Sequence([0, 1])
-                Sequence([0, 1, 2])
-                Sequence([1])
-                Sequence([1, 2])
-                Sequence([1, 2, 3])
-                Sequence([2])
-                Sequence([2, 3])
-                Sequence([2, 3, 4])
-                Sequence([3])
-                Sequence([3, 4])
-                Sequence([4])
+            >>> enumerator = abjad.Enumerator([0, 1, 2, 3, 4])
+            >>> for subsequence in enumerator.yield_subsequences(
+            ...     maximum_length=3,
+            ...     ):
+            ...     subsequence
+            ...
+            Sequence([])
+            Sequence([0])
+            Sequence([0, 1])
+            Sequence([0, 1, 2])
+            Sequence([1])
+            Sequence([1, 2])
+            Sequence([1, 2, 3])
+            Sequence([2])
+            Sequence([2, 3])
+            Sequence([2, 3, 4])
+            Sequence([3])
+            Sequence([3, 4])
+            Sequence([4])
 
         ..  container:: example
 
-            ::
-
-                >>> enumerator = abjad.Enumerator([0, 1, 2, 3, 4])
-                >>> for subsequence in enumerator.yield_subsequences(
-                ...     minimum_length=3,
-                ...     maximum_length=3,
-                ...     ):
-                ...     subsequence
-                ...
-                Sequence([0, 1, 2])
-                Sequence([1, 2, 3])
-                Sequence([2, 3, 4])
+            >>> enumerator = abjad.Enumerator([0, 1, 2, 3, 4])
+            >>> for subsequence in enumerator.yield_subsequences(
+            ...     minimum_length=3,
+            ...     maximum_length=3,
+            ...     ):
+            ...     subsequence
+            ...
+            Sequence([0, 1, 2])
+            Sequence([1, 2, 3])
+            Sequence([2, 3, 4])
 
         Returns sequence generator.
         '''

@@ -8,19 +8,15 @@ class RootedChordClass(PitchClassSet):
 
         Initializes from pair:
 
-        ::
-
-            >>> abjad.tonalanalysistools.RootedChordClass('g', 'major')
-            GMajorTriadInRootPosition
+        >>> abjad.tonalanalysistools.RootedChordClass('g', 'major')
+        GMajorTriadInRootPosition
 
     ..  container:: example
 
         Initializes from triple:
 
-        ::
-
-            >>> abjad.tonalanalysistools.RootedChordClass('g', 'dominant', 7)
-            GDominantSeventhInRootPosition
+        >>> abjad.tonalanalysistools.RootedChordClass('g', 'dominant', 7)
+        GDominantSeventhInRootPosition
 
     G dominant seventh represents a class of chords because there are many
     different spacings of a G dominant seventh.
@@ -168,10 +164,8 @@ class RootedChordClass(PitchClassSet):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.tonalanalysistools.RootedChordClass('g', 'major').bass
-                NamedPitchClass('g')
+            >>> abjad.tonalanalysistools.RootedChordClass('g', 'major').bass
+            NamedPitchClass('g')
 
         Returns named pitch-class.
         '''
@@ -183,10 +177,8 @@ class RootedChordClass(PitchClassSet):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.tonalanalysistools.RootedChordClass('g', 'dominant', 7).cardinality
-                4
+            >>> abjad.tonalanalysistools.RootedChordClass('g', 'dominant', 7).cardinality
+            4
 
         Returns nonnegative integer.
         '''
@@ -198,10 +190,8 @@ class RootedChordClass(PitchClassSet):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.tonalanalysistools.RootedChordClass('g', 'dominant', 7).chord_quality
-                DominantSeventhInRootPosition('P1', '+M3', '+P5', '+m7')
+            >>> abjad.tonalanalysistools.RootedChordClass('g', 'dominant', 7).chord_quality
+            DominantSeventhInRootPosition('P1', '+M3', '+P5', '+m7')
 
         Returns chord quality.
         '''
@@ -213,10 +203,8 @@ class RootedChordClass(PitchClassSet):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.tonalanalysistools.RootedChordClass('g', 'dominant', 7).extent
-                ChordExtent(7)
+            >>> abjad.tonalanalysistools.RootedChordClass('g', 'dominant', 7).extent
+            ChordExtent(7)
 
         Returns chord extent.
         '''
@@ -230,10 +218,8 @@ class RootedChordClass(PitchClassSet):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.tonalanalysistools.RootedChordClass('g', 'dominant', 7).extent
-                ChordExtent(7)
+            >>> abjad.tonalanalysistools.RootedChordClass('g', 'dominant', 7).extent
+            ChordExtent(7)
 
         Returns string.
         '''
@@ -272,10 +258,8 @@ class RootedChordClass(PitchClassSet):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.tonalanalysistools.RootedChordClass('g', 'dominant', 7).inversion
-                0
+            >>> abjad.tonalanalysistools.RootedChordClass('g', 'dominant', 7).inversion
+            0
 
         Returns nonnegative integer.
         '''
@@ -287,14 +271,12 @@ class RootedChordClass(PitchClassSet):
 
         ..  container:: example
 
-            ::
-
-                >>> markup = abjad.tonalanalysistools.RootedChordClass('g', 'dominant', 7).markup
-                >>> show(markup) # doctest: +SKIP
+            >>> markup = abjad.tonalanalysistools.RootedChordClass('g', 'dominant', 7).markup
+            >>> abjad.show(markup) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(markup)
+                >>> abjad.f(markup)
                 _ \markup {
                     \fontsize
                         #1
@@ -341,27 +323,23 @@ class RootedChordClass(PitchClassSet):
 
         ..  container:: example
 
-            ::
+            >>> chord_class = abjad.tonalanalysistools.RootedChordClass(
+            ...     'c',
+            ...     'major',
+            ...     'triad',
+            ...     'root',
+            ...     )
+            >>> chord_class.quality_pair
+            ('major', 'triad')
 
-                >>> chord_class = abjad.tonalanalysistools.RootedChordClass(
-                ...     'c',
-                ...     'major',
-                ...     'triad',
-                ...     'root',
-                ...     )
-                >>> chord_class.quality_pair
-                ('major', 'triad')
-
-            ::
-
-                >>> chord_class = abjad.tonalanalysistools.RootedChordClass(
-                ...     'g',
-                ...     'dominant',
-                ...     7,
-                ...     'second',
-                ...     )
-                >>> chord_class.quality_pair
-                ('dominant', 'seventh')
+            >>> chord_class = abjad.tonalanalysistools.RootedChordClass(
+            ...     'g',
+            ...     'dominant',
+            ...     7,
+            ...     'second',
+            ...     )
+            >>> chord_class.quality_pair
+            ('dominant', 'seventh')
 
         Returns pair.
         '''
@@ -374,27 +352,23 @@ class RootedChordClass(PitchClassSet):
 
         ..  container:: example
 
-            ::
+            >>> chord_class = abjad.tonalanalysistools.RootedChordClass(
+            ...     'c',
+            ...     'major',
+            ...     'triad',
+            ...     'root',
+            ...     )
+            >>> chord_class.root
+            NamedPitchClass('c')
 
-                >>> chord_class = abjad.tonalanalysistools.RootedChordClass(
-                ...     'c',
-                ...     'major',
-                ...     'triad',
-                ...     'root',
-                ...     )
-                >>> chord_class.root
-                NamedPitchClass('c')
-
-            ::
-
-                >>> chord_class = abjad.tonalanalysistools.RootedChordClass(
-                ...     'g',
-                ...     'dominant',
-                ...     7,
-                ...     'second',
-                ...     )
-                >>> chord_class.root
-                NamedPitchClass('g')
+            >>> chord_class = abjad.tonalanalysistools.RootedChordClass(
+            ...     'g',
+            ...     'dominant',
+            ...     7,
+            ...     'second',
+            ...     )
+            >>> chord_class.root
+            NamedPitchClass('g')
 
         Returns named pitch-class.
         '''
@@ -406,27 +380,23 @@ class RootedChordClass(PitchClassSet):
 
         ..  container:: example
 
-            ::
+            >>> chord_class = abjad.tonalanalysistools.RootedChordClass(
+            ...     'c',
+            ...     'major',
+            ...     'triad',
+            ...     'root',
+            ...     )
+            >>> chord_class.root_string
+            'C'
 
-                >>> chord_class = abjad.tonalanalysistools.RootedChordClass(
-                ...     'c',
-                ...     'major',
-                ...     'triad',
-                ...     'root',
-                ...     )
-                >>> chord_class.root_string
-                'C'
-
-            ::
-
-                >>> chord_class = abjad.tonalanalysistools.RootedChordClass(
-                ...     'g',
-                ...     'dominant',
-                ...     7,
-                ...     'second',
-                ...     )
-                >>> chord_class.root_string
-                'G'
+            >>> chord_class = abjad.tonalanalysistools.RootedChordClass(
+            ...     'g',
+            ...     'dominant',
+            ...     7,
+            ...     'second',
+            ...     )
+            >>> chord_class.root_string
+            'G'
 
         Returns string.
         '''
@@ -447,18 +417,16 @@ class RootedChordClass(PitchClassSet):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.tonalanalysistools.RootedChordClass.cardinality_to_extent(3)
-                5
-                >>> abjad.tonalanalysistools.RootedChordClass.cardinality_to_extent(4)
-                7
-                >>> abjad.tonalanalysistools.RootedChordClass.cardinality_to_extent(5)
-                9
-                >>> abjad.tonalanalysistools.RootedChordClass.cardinality_to_extent(6)
-                11
-                >>> abjad.tonalanalysistools.RootedChordClass.cardinality_to_extent(7)
-                13
+            >>> abjad.tonalanalysistools.RootedChordClass.cardinality_to_extent(3)
+            5
+            >>> abjad.tonalanalysistools.RootedChordClass.cardinality_to_extent(4)
+            7
+            >>> abjad.tonalanalysistools.RootedChordClass.cardinality_to_extent(5)
+            9
+            >>> abjad.tonalanalysistools.RootedChordClass.cardinality_to_extent(6)
+            11
+            >>> abjad.tonalanalysistools.RootedChordClass.cardinality_to_extent(7)
+            13
 
         Returns integer.
         '''
@@ -470,18 +438,16 @@ class RootedChordClass(PitchClassSet):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.tonalanalysistools.RootedChordClass.extent_to_cardinality(5)
-                3
-                >>> abjad.tonalanalysistools.RootedChordClass.extent_to_cardinality(7)
-                4
-                >>> abjad.tonalanalysistools.RootedChordClass.extent_to_cardinality(9)
-                5
-                >>> abjad.tonalanalysistools.RootedChordClass.extent_to_cardinality(11)
-                6
-                >>> abjad.tonalanalysistools.RootedChordClass.extent_to_cardinality(13)
-                7
+            >>> abjad.tonalanalysistools.RootedChordClass.extent_to_cardinality(5)
+            3
+            >>> abjad.tonalanalysistools.RootedChordClass.extent_to_cardinality(7)
+            4
+            >>> abjad.tonalanalysistools.RootedChordClass.extent_to_cardinality(9)
+            5
+            >>> abjad.tonalanalysistools.RootedChordClass.extent_to_cardinality(11)
+            6
+            >>> abjad.tonalanalysistools.RootedChordClass.extent_to_cardinality(13)
+            7
 
         Returns integer.
         '''
@@ -493,18 +459,16 @@ class RootedChordClass(PitchClassSet):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.tonalanalysistools.RootedChordClass.extent_to_extent_name(5)
-                'triad'
-                >>> abjad.tonalanalysistools.RootedChordClass.extent_to_extent_name(7)
-                'seventh'
-                >>> abjad.tonalanalysistools.RootedChordClass.extent_to_extent_name(9)
-                'ninth'
-                >>> abjad.tonalanalysistools.RootedChordClass.extent_to_extent_name(11)
-                'eleventh'
-                >>> abjad.tonalanalysistools.RootedChordClass.extent_to_extent_name(13)
-                'thirteenth'
+            >>> abjad.tonalanalysistools.RootedChordClass.extent_to_extent_name(5)
+            'triad'
+            >>> abjad.tonalanalysistools.RootedChordClass.extent_to_extent_name(7)
+            'seventh'
+            >>> abjad.tonalanalysistools.RootedChordClass.extent_to_extent_name(9)
+            'ninth'
+            >>> abjad.tonalanalysistools.RootedChordClass.extent_to_extent_name(11)
+            'eleventh'
+            >>> abjad.tonalanalysistools.RootedChordClass.extent_to_extent_name(13)
+            'thirteenth'
 
         Returns string.
         '''

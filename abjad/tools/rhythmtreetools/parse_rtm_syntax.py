@@ -8,15 +8,13 @@ def parse_rtm_syntax(rtm):
 
         Parses tuplet:
 
-        ::
-
-            >>> rtm = '(1 (1 (1 (1 1)) 1))'
-            >>> tuplet = abjad.rhythmtreetools.parse_rtm_syntax(rtm)
-            >>> show(tuplet) # doctest: +SKIP
+        >>> rtm = '(1 (1 (1 (1 1)) 1))'
+        >>> tuplet = abjad.rhythmtreetools.parse_rtm_syntax(rtm)
+        >>> abjad.show(tuplet) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(tuplet)
+            >>> abjad.f(tuplet)
             \times 2/3 {
                 c'8
                 c'16
@@ -28,15 +26,13 @@ def parse_rtm_syntax(rtm):
 
         Also supports fractional durations:
 
-        ::
-
-            >>> rtm = '(3/4 (1 1/2 (4/3 (1 -1/2 1))))'
-            >>> tuplet = abjad.rhythmtreetools.parse_rtm_syntax(rtm)
-            >>> show(tuplet) # doctest: +SKIP
+        >>> rtm = '(3/4 (1 1/2 (4/3 (1 -1/2 1))))'
+        >>> tuplet = abjad.rhythmtreetools.parse_rtm_syntax(rtm)
+        >>> abjad.show(tuplet) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(tuplet)
+            >>> abjad.f(tuplet)
             \tweak text #tuplet-number::calc-fraction-text
             \times 9/17 {
                 c'8

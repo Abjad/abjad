@@ -10,10 +10,8 @@ class NonreducedRatio(AbjadValueObject):
 
         Nonreduced ratio of two numbers:
 
-        ::
-
-            >>> abjad.NonreducedRatio((2, 4))
-            NonreducedRatio((2, 4))
+        >>> abjad.NonreducedRatio((2, 4))
+        NonreducedRatio((2, 4))
 
     ..  container:: example
 
@@ -63,11 +61,9 @@ class NonreducedRatio(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> ratio = abjad.NonreducedRatio((2, 4, 2))
-                >>> print(format(ratio))
-                abjad.NonreducedRatio((2, 4, 2))
+            >>> ratio = abjad.NonreducedRatio((2, 4, 2))
+            >>> print(format(ratio))
+            abjad.NonreducedRatio((2, 4, 2))
 
         Returns string.
         '''
@@ -81,11 +77,9 @@ class NonreducedRatio(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> ratio = abjad.NonreducedRatio((2, 4, 2))
-                >>> ratio[1]
-                4
+            >>> ratio = abjad.NonreducedRatio((2, 4, 2))
+            >>> ratio[1]
+            4
 
         Returns integer or tuple.
         '''
@@ -114,11 +108,9 @@ class NonreducedRatio(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> ratio = abjad.NonreducedRatio((2, 4, 2))
-                >>> len(ratio)
-                3
+            >>> ratio = abjad.NonreducedRatio((2, 4, 2))
+            >>> len(ratio)
+            3
 
         Returns integer.
         '''
@@ -136,24 +128,18 @@ class NonreducedRatio(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> 1 / abjad.Ratio((1, 1, 3))
-                [Fraction(1, 5), Fraction(1, 5), Fraction(3, 5)]
+            >>> 1 / abjad.Ratio((1, 1, 3))
+            [Fraction(1, 5), Fraction(1, 5), Fraction(3, 5)]
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.Fraction(1) / abjad.Ratio((1, 1, 3))
-                [Fraction(1, 5), Fraction(1, 5), Fraction(3, 5)]
+            >>> abjad.Fraction(1) / abjad.Ratio((1, 1, 3))
+            [Fraction(1, 5), Fraction(1, 5), Fraction(3, 5)]
 
         ..  container:: example
 
-            ::
-
-                >>> 1.0 / abjad.Ratio((1, 1, 3))
-                [0.2, 0.2, 0.6]
+            >>> 1.0 / abjad.Ratio((1, 1, 3))
+            [0.2, 0.2, 0.6]
 
         Returns list of fractions or list of floats.
         '''
@@ -207,21 +193,17 @@ class NonreducedRatio(AbjadValueObject):
 
             Nonreduced ratio of two numbers:
 
-            ::
-
-                >>> ratio = abjad.NonreducedRatio((2, 4))
-                >>> ratio.multipliers
-                (Multiplier(1, 3), Multiplier(2, 3))
+            >>> ratio = abjad.NonreducedRatio((2, 4))
+            >>> ratio.multipliers
+            (Multiplier(1, 3), Multiplier(2, 3))
 
         ..  container:: example
 
             Nonreduced ratio of three numbers:
 
-            ::
-
-                >>> ratio = abjad.NonreducedRatio((2, 4, 2))
-                >>> ratio.multipliers
-                (Multiplier(1, 4), Multiplier(1, 2), Multiplier(1, 4))
+            >>> ratio = abjad.NonreducedRatio((2, 4, 2))
+            >>> ratio.multipliers
+            (Multiplier(1, 4), Multiplier(1, 2), Multiplier(1, 4))
 
         Returns tuple of multipliers.
         '''
@@ -242,21 +224,17 @@ class NonreducedRatio(AbjadValueObject):
 
             Nonreduced ratio of two numbers:
 
-            ::
-
-                >>> ratio = abjad.NonreducedRatio((2, 4))
-                >>> ratio.numbers
-                (2, 4)
+            >>> ratio = abjad.NonreducedRatio((2, 4))
+            >>> ratio.numbers
+            (2, 4)
 
         ..  container:: example
 
             Nonreduced ratio of three numbers:
 
-            ::
-
-                >>> ratio = abjad.NonreducedRatio((2, 4, 2))
-                >>> ratio.numbers
-                (2, 4, 2)
+            >>> ratio = abjad.NonreducedRatio((2, 4, 2))
+            >>> ratio.numbers
+            (2, 4, 2)
 
         Set to tuple of two or more numbers.
 

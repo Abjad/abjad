@@ -6,18 +6,16 @@ class Bassoon(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> clef = abjad.Clef('bass')
-            >>> abjad.attach(clef, staff[0])
-            >>> bassoon = abjad.Bassoon()
-            >>> abjad.attach(bassoon, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+        >>> clef = abjad.Clef('bass')
+        >>> abjad.attach(clef, staff[0])
+        >>> bassoon = abjad.Bassoon()
+        >>> abjad.attach(bassoon, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { Bassoon }
                 \set Staff.shortInstrumentName = \markup { Bsn. }
@@ -68,11 +66,9 @@ class Bassoon(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> bassoon = abjad.Bassoon()
-                >>> bassoon.allowable_clefs
-                ('bass', 'tenor')
+            >>> bassoon = abjad.Bassoon()
+            >>> bassoon.allowable_clefs
+            ('bass', 'tenor')
 
         Returns clef list.
         '''
@@ -84,15 +80,11 @@ class Bassoon(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> bassoon = abjad.Bassoon()
+            >>> bassoon.middle_c_sounding_pitch
+            NamedPitch("c'")
 
-                >>> bassoon = abjad.Bassoon()
-                >>> bassoon.middle_c_sounding_pitch
-                NamedPitch("c'")
-
-            ::
-
-                >>> show(bassoon.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(bassoon.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -104,11 +96,9 @@ class Bassoon(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> bassoon = abjad.Bassoon()
-                >>> bassoon.name
-                'bassoon'
+            >>> bassoon = abjad.Bassoon()
+            >>> bassoon.name
+            'bassoon'
 
         Returns string.
         '''
@@ -120,15 +110,11 @@ class Bassoon(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> bassoon = abjad.Bassoon()
+            >>> bassoon.name_markup
+            Markup(contents=['Bassoon'])
 
-                >>> bassoon = abjad.Bassoon()
-                >>> bassoon.name_markup
-                Markup(contents=['Bassoon'])
-
-            ::
-
-                >>> show(bassoon.name_markup) # doctest: +SKIP
+            >>> abjad.show(bassoon.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -140,15 +126,11 @@ class Bassoon(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> bassoon = abjad.Bassoon()
+            >>> bassoon.pitch_range
+            PitchRange('[Bb1, Eb5]')
 
-                >>> bassoon = abjad.Bassoon()
-                >>> bassoon.pitch_range
-                PitchRange('[Bb1, Eb5]')
-
-            ::
-
-                >>> show(bassoon.pitch_range) # doctest: +SKIP
+            >>> abjad.show(bassoon.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -160,11 +142,9 @@ class Bassoon(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> bassoon = abjad.Bassoon()
-                >>> bassoon.short_name
-                'bsn.'
+            >>> bassoon = abjad.Bassoon()
+            >>> bassoon.short_name
+            'bsn.'
 
         Returns string.
         '''
@@ -176,15 +156,11 @@ class Bassoon(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> bassoon = abjad.Bassoon()
+            >>> bassoon.short_name_markup
+            Markup(contents=['Bsn.'])
 
-                >>> bassoon = abjad.Bassoon()
-                >>> bassoon.short_name_markup
-                Markup(contents=['Bsn.'])
-
-            ::
-
-                >>> show(bassoon.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(bassoon.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

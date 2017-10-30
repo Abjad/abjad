@@ -8,21 +8,19 @@ class Tuning(AbjadValueObject):
 
         Violin tuning:
 
-        ::
-
-            >>> indicator = abjad.Tuning(pitches=('G3', 'D4', 'A4', 'E5'))
-            >>> f(indicator)
-            abjad.Tuning(
-                pitches=abjad.PitchSegment(
-                    (
-                        abjad.NamedPitch('g'),
-                        abjad.NamedPitch("d'"),
-                        abjad.NamedPitch("a'"),
-                        abjad.NamedPitch("e''"),
-                        ),
-                    item_class=abjad.NamedPitch,
+        >>> indicator = abjad.Tuning(pitches=('G3', 'D4', 'A4', 'E5'))
+        >>> abjad.f(indicator)
+        abjad.Tuning(
+            pitches=abjad.PitchSegment(
+                (
+                    abjad.NamedPitch('g'),
+                    abjad.NamedPitch("d'"),
+                    abjad.NamedPitch("a'"),
+                    abjad.NamedPitch("e''"),
                     ),
-                )
+                item_class=abjad.NamedPitch,
+                ),
+            )
 
     '''
 
@@ -60,12 +58,10 @@ class Tuning(AbjadValueObject):
 
             Violin tuning:
 
-            ::
-
-                >>> tuning = abjad.Tuning(('G3', 'D4', 'A4', 'E5'))
-                >>> string_number = abjad.StringNumber((2, 3))
-                >>> tuning.get_pitch_ranges_by_string_number(string_number)
-                (PitchRange('[A4, A6]'), PitchRange('[D4, D6]'))
+            >>> tuning = abjad.Tuning(('G3', 'D4', 'A4', 'E5'))
+            >>> string_number = abjad.StringNumber((2, 3))
+            >>> tuning.get_pitch_ranges_by_string_number(string_number)
+            (PitchRange('[A4, A6]'), PitchRange('[D4, D6]'))
 
         Returns pitch ranges.
         '''
@@ -86,12 +82,10 @@ class Tuning(AbjadValueObject):
 
             Violin tuning:
 
-            ::
-
-                >>> tuning = abjad.Tuning(('G3', 'D4', 'A4', 'E5'))
-                >>> string_number = abjad.StringNumber((2, 3))
-                >>> tuning.get_pitches_by_string_number(string_number)
-                (NamedPitch("a'"), NamedPitch("d'"))
+            >>> tuning = abjad.Tuning(('G3', 'D4', 'A4', 'E5'))
+            >>> string_number = abjad.StringNumber((2, 3))
+            >>> tuning.get_pitches_by_string_number(string_number)
+            (NamedPitch("a'"), NamedPitch("d'"))
 
         Returns named pitches.
         '''
@@ -113,80 +107,76 @@ class Tuning(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> tuning = abjad.Tuning(('G3', 'D4', 'A4', 'E5'))
+            >>> voicings = tuning.voice_pitch_classes(('a',))
+            >>> for voicing in voicings:
+            ...     voicing
+            ...
+            (None, None, None, NamedPitch("a''"))
+            (None, None, None, NamedPitch("a'''"))
+            (None, None, NamedPitch("a'"), None)
+            (None, None, NamedPitch("a''"), None)
+            (None, None, NamedPitch("a'''"), None)
+            (None, NamedPitch("a'"), None, None)
+            (None, NamedPitch("a''"), None, None)
+            (NamedPitch('a'), None, None, None)
+            (NamedPitch("a'"), None, None, None)
 
-                >>> tuning = abjad.Tuning(('G3', 'D4', 'A4', 'E5'))
-                >>> voicings = tuning.voice_pitch_classes(('a',))
-                >>> for voicing in voicings:
-                ...     voicing
-                ...
-                (None, None, None, NamedPitch("a''"))
-                (None, None, None, NamedPitch("a'''"))
-                (None, None, NamedPitch("a'"), None)
-                (None, None, NamedPitch("a''"), None)
-                (None, None, NamedPitch("a'''"), None)
-                (None, NamedPitch("a'"), None, None)
-                (None, NamedPitch("a''"), None, None)
-                (NamedPitch('a'), None, None, None)
-                (NamedPitch("a'"), None, None, None)
-
-            ::
-
-                >>> voicings = tuning.voice_pitch_classes(
-                ...     ('a', 'd'),
-                ...     allow_open_strings=False,
-                ...     )
-                >>> for voicing in voicings:
-                ...     voicing
-                ...
-                (None, None, NamedPitch("d''"), NamedPitch("a''"))
-                (None, None, NamedPitch("d''"), NamedPitch("a'''"))
-                (None, None, NamedPitch("a''"), NamedPitch("d'''"))
-                (None, None, NamedPitch("a''"), NamedPitch("d''''"))
-                (None, None, NamedPitch("d'''"), NamedPitch("a''"))
-                (None, None, NamedPitch("d'''"), NamedPitch("a'''"))
-                (None, None, NamedPitch("a'''"), NamedPitch("d'''"))
-                (None, None, NamedPitch("a'''"), NamedPitch("d''''"))
-                (None, NamedPitch("a'"), None, NamedPitch("d'''"))
-                (None, NamedPitch("a'"), None, NamedPitch("d''''"))
-                (None, NamedPitch("a'"), NamedPitch("d''"), None)
-                (None, NamedPitch("a'"), NamedPitch("d'''"), None)
-                (None, NamedPitch("d''"), None, NamedPitch("a''"))
-                (None, NamedPitch("d''"), None, NamedPitch("a'''"))
-                (None, NamedPitch("d''"), NamedPitch("a''"), None)
-                (None, NamedPitch("d''"), NamedPitch("a'''"), None)
-                (None, NamedPitch("a''"), None, NamedPitch("d'''"))
-                (None, NamedPitch("a''"), None, NamedPitch("d''''"))
-                (None, NamedPitch("a''"), NamedPitch("d''"), None)
-                (None, NamedPitch("a''"), NamedPitch("d'''"), None)
-                (None, NamedPitch("d'''"), None, NamedPitch("a''"))
-                (None, NamedPitch("d'''"), None, NamedPitch("a'''"))
-                (None, NamedPitch("d'''"), NamedPitch("a''"), None)
-                (None, NamedPitch("d'''"), NamedPitch("a'''"), None)
-                (NamedPitch('a'), None, None, NamedPitch("d'''"))
-                (NamedPitch('a'), None, None, NamedPitch("d''''"))
-                (NamedPitch('a'), None, NamedPitch("d''"), None)
-                (NamedPitch('a'), None, NamedPitch("d'''"), None)
-                (NamedPitch('a'), NamedPitch("d''"), None, None)
-                (NamedPitch('a'), NamedPitch("d'''"), None, None)
-                (NamedPitch("d'"), None, None, NamedPitch("a''"))
-                (NamedPitch("d'"), None, None, NamedPitch("a'''"))
-                (NamedPitch("d'"), None, NamedPitch("a''"), None)
-                (NamedPitch("d'"), None, NamedPitch("a'''"), None)
-                (NamedPitch("d'"), NamedPitch("a'"), None, None)
-                (NamedPitch("d'"), NamedPitch("a''"), None, None)
-                (NamedPitch("a'"), None, None, NamedPitch("d'''"))
-                (NamedPitch("a'"), None, None, NamedPitch("d''''"))
-                (NamedPitch("a'"), None, NamedPitch("d''"), None)
-                (NamedPitch("a'"), None, NamedPitch("d'''"), None)
-                (NamedPitch("a'"), NamedPitch("d''"), None, None)
-                (NamedPitch("a'"), NamedPitch("d'''"), None, None)
-                (NamedPitch("d''"), None, None, NamedPitch("a''"))
-                (NamedPitch("d''"), None, None, NamedPitch("a'''"))
-                (NamedPitch("d''"), None, NamedPitch("a''"), None)
-                (NamedPitch("d''"), None, NamedPitch("a'''"), None)
-                (NamedPitch("d''"), NamedPitch("a'"), None, None)
-                (NamedPitch("d''"), NamedPitch("a''"), None, None)
+            >>> voicings = tuning.voice_pitch_classes(
+            ...     ('a', 'd'),
+            ...     allow_open_strings=False,
+            ...     )
+            >>> for voicing in voicings:
+            ...     voicing
+            ...
+            (None, None, NamedPitch("d''"), NamedPitch("a''"))
+            (None, None, NamedPitch("d''"), NamedPitch("a'''"))
+            (None, None, NamedPitch("a''"), NamedPitch("d'''"))
+            (None, None, NamedPitch("a''"), NamedPitch("d''''"))
+            (None, None, NamedPitch("d'''"), NamedPitch("a''"))
+            (None, None, NamedPitch("d'''"), NamedPitch("a'''"))
+            (None, None, NamedPitch("a'''"), NamedPitch("d'''"))
+            (None, None, NamedPitch("a'''"), NamedPitch("d''''"))
+            (None, NamedPitch("a'"), None, NamedPitch("d'''"))
+            (None, NamedPitch("a'"), None, NamedPitch("d''''"))
+            (None, NamedPitch("a'"), NamedPitch("d''"), None)
+            (None, NamedPitch("a'"), NamedPitch("d'''"), None)
+            (None, NamedPitch("d''"), None, NamedPitch("a''"))
+            (None, NamedPitch("d''"), None, NamedPitch("a'''"))
+            (None, NamedPitch("d''"), NamedPitch("a''"), None)
+            (None, NamedPitch("d''"), NamedPitch("a'''"), None)
+            (None, NamedPitch("a''"), None, NamedPitch("d'''"))
+            (None, NamedPitch("a''"), None, NamedPitch("d''''"))
+            (None, NamedPitch("a''"), NamedPitch("d''"), None)
+            (None, NamedPitch("a''"), NamedPitch("d'''"), None)
+            (None, NamedPitch("d'''"), None, NamedPitch("a''"))
+            (None, NamedPitch("d'''"), None, NamedPitch("a'''"))
+            (None, NamedPitch("d'''"), NamedPitch("a''"), None)
+            (None, NamedPitch("d'''"), NamedPitch("a'''"), None)
+            (NamedPitch('a'), None, None, NamedPitch("d'''"))
+            (NamedPitch('a'), None, None, NamedPitch("d''''"))
+            (NamedPitch('a'), None, NamedPitch("d''"), None)
+            (NamedPitch('a'), None, NamedPitch("d'''"), None)
+            (NamedPitch('a'), NamedPitch("d''"), None, None)
+            (NamedPitch('a'), NamedPitch("d'''"), None, None)
+            (NamedPitch("d'"), None, None, NamedPitch("a''"))
+            (NamedPitch("d'"), None, None, NamedPitch("a'''"))
+            (NamedPitch("d'"), None, NamedPitch("a''"), None)
+            (NamedPitch("d'"), None, NamedPitch("a'''"), None)
+            (NamedPitch("d'"), NamedPitch("a'"), None, None)
+            (NamedPitch("d'"), NamedPitch("a''"), None, None)
+            (NamedPitch("a'"), None, None, NamedPitch("d'''"))
+            (NamedPitch("a'"), None, None, NamedPitch("d''''"))
+            (NamedPitch("a'"), None, NamedPitch("d''"), None)
+            (NamedPitch("a'"), None, NamedPitch("d'''"), None)
+            (NamedPitch("a'"), NamedPitch("d''"), None, None)
+            (NamedPitch("a'"), NamedPitch("d'''"), None, None)
+            (NamedPitch("d''"), None, None, NamedPitch("a''"))
+            (NamedPitch("d''"), None, None, NamedPitch("a'''"))
+            (NamedPitch("d''"), None, NamedPitch("a''"), None)
+            (NamedPitch("d''"), None, NamedPitch("a'''"), None)
+            (NamedPitch("d''"), NamedPitch("a'"), None, None)
+            (NamedPitch("d''"), NamedPitch("a''"), None, None)
 
         Returns tuple of sequences.
         """
@@ -228,15 +218,13 @@ class Tuning(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> indicator = abjad.Tuning(pitches=('G3', 'D4', 'A4', 'E5'))
-                >>> for range_ in indicator.pitch_ranges:
-                ...     range_
-                PitchRange('[G3, G5]')
-                PitchRange('[D4, D6]')
-                PitchRange('[A4, A6]')
-                PitchRange('[E5, E7]')
+            >>> indicator = abjad.Tuning(pitches=('G3', 'D4', 'A4', 'E5'))
+            >>> for range_ in indicator.pitch_ranges:
+            ...     range_
+            PitchRange('[G3, G5]')
+            PitchRange('[D4, D6]')
+            PitchRange('[A4, A6]')
+            PitchRange('[E5, E7]')
 
         Returns pitch-range list.
         '''
@@ -253,20 +241,18 @@ class Tuning(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> indicator = abjad.Tuning(pitches=('G3', 'D4', 'A4', 'E5'))
-                >>> pitches = indicator.pitches
-                >>> f(pitches)
-                abjad.PitchSegment(
-                    (
-                        abjad.NamedPitch('g'),
-                        abjad.NamedPitch("d'"),
-                        abjad.NamedPitch("a'"),
-                        abjad.NamedPitch("e''"),
-                        ),
-                    item_class=abjad.NamedPitch,
-                    )
+            >>> indicator = abjad.Tuning(pitches=('G3', 'D4', 'A4', 'E5'))
+            >>> pitches = indicator.pitches
+            >>> abjad.f(pitches)
+            abjad.PitchSegment(
+                (
+                    abjad.NamedPitch('g'),
+                    abjad.NamedPitch("d'"),
+                    abjad.NamedPitch("a'"),
+                    abjad.NamedPitch("e''"),
+                    ),
+                item_class=abjad.NamedPitch,
+                )
 
         Returns pitch segment.
         '''

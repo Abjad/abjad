@@ -8,34 +8,30 @@ class BreathMark(AbjadValueObject):
 
         Attached to a single note:
 
-        ::
-
-            >>> note = abjad.Note("c'4")
-            >>> breath_mark = abjad.BreathMark()
-            >>> abjad.attach(breath_mark, note)
-            >>> show(note) # doctest: +SKIP
+        >>> note = abjad.Note("c'4")
+        >>> breath_mark = abjad.BreathMark()
+        >>> abjad.attach(breath_mark, note)
+        >>> abjad.show(note) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(note)
+            >>> abjad.f(note)
             c'4 \breathe
 
     ..  container:: example
 
         Attached to notes in a staff:
 
-        ::
-
-            >>> staff = abjad.Staff("c'8 d' e' f' g' a' b' c''")
-            >>> abjad.attach(abjad.Beam(), staff[:4])
-            >>> abjad.attach(abjad.Beam(), staff[4:])
-            >>> abjad.attach(abjad.BreathMark(), staff[3])
-            >>> abjad.attach(abjad.BreathMark(), staff[7])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'8 d' e' f' g' a' b' c''")
+        >>> abjad.attach(abjad.Beam(), staff[:4])
+        >>> abjad.attach(abjad.Beam(), staff[4:])
+        >>> abjad.attach(abjad.BreathMark(), staff[3])
+        >>> abjad.attach(abjad.BreathMark(), staff[7])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 c'8 [
                 d'8
@@ -66,10 +62,8 @@ class BreathMark(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> str(abjad.BreathMark())
-                '\\breathe'
+            >>> str(abjad.BreathMark())
+            '\\breathe'
 
         Returns string.
         '''

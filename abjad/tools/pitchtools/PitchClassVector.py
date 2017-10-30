@@ -8,27 +8,23 @@ class PitchClassVector(Vector):
 
         Pitch-class vector:
 
-        ::
+        >>> vector = abjad.PitchClassVector(
+        ...     items=[7, 6, -2, -3, -3, 0, 1, 14, 15, 16, 16],
+        ...     item_class=abjad.NumberedPitchClass,
+        ...     )
 
-            >>> vector = abjad.PitchClassVector(
-            ...     items=[7, 6, -2, -3, -3, 0, 1, 14, 15, 16, 16],
-            ...     item_class=abjad.NumberedPitchClass,
-            ...     )
-
-        ::
-
-            >>> items = sorted(vector.items())
-            >>> for pitch_class, count in items:
-            ...     print(pitch_class, count)
-            0 1
-            1 1
-            2 1
-            3 1
-            4 2
-            6 1
-            7 1
-            9 2
-            10 1
+        >>> items = sorted(vector.items())
+        >>> for pitch_class, count in items:
+        ...     print(pitch_class, count)
+        0 1
+        1 1
+        2 1
+        3 1
+        4 2
+        6 1
+        7 1
+        9 2
+        10 1
 
     '''
 
@@ -43,30 +39,26 @@ class PitchClassVector(Vector):
 
         ..  container:: example
 
-            ::
+            >>> vector = abjad.PitchClassVector(
+            ...     items=[7, 6, -2, -3, -3, 0, 1, 14, 15, 16, 16],
+            ...     item_class=abjad.NumberedPitchClass,
+            ...     )
 
-                >>> vector = abjad.PitchClassVector(
-                ...     items=[7, 6, -2, -3, -3, 0, 1, 14, 15, 16, 16],
-                ...     item_class=abjad.NumberedPitchClass,
-                ...     )
-
-            ::
-
-                >>> f(vector)
-                abjad.PitchClassVector(
-                    {
-                        abjad.NumberedPitchClass(0): 1,
-                        abjad.NumberedPitchClass(1): 1,
-                        abjad.NumberedPitchClass(2): 1,
-                        abjad.NumberedPitchClass(3): 1,
-                        abjad.NumberedPitchClass(4): 2,
-                        abjad.NumberedPitchClass(6): 1,
-                        abjad.NumberedPitchClass(7): 1,
-                        abjad.NumberedPitchClass(9): 2,
-                        abjad.NumberedPitchClass(10): 1,
-                        },
-                    item_class=abjad.NumberedPitchClass,
-                    )
+            >>> abjad.f(vector)
+            abjad.PitchClassVector(
+                {
+                    abjad.NumberedPitchClass(0): 1,
+                    abjad.NumberedPitchClass(1): 1,
+                    abjad.NumberedPitchClass(2): 1,
+                    abjad.NumberedPitchClass(3): 1,
+                    abjad.NumberedPitchClass(4): 2,
+                    abjad.NumberedPitchClass(6): 1,
+                    abjad.NumberedPitchClass(7): 1,
+                    abjad.NumberedPitchClass(9): 2,
+                    abjad.NumberedPitchClass(10): 1,
+                    },
+                item_class=abjad.NumberedPitchClass,
+                )
 
         Returns string.
         '''
@@ -80,17 +72,13 @@ class PitchClassVector(Vector):
 
             Gets interpreter representation of pitch-class vector:
 
-            ::
+            >>> vector = abjad.PitchClassVector(
+            ...     items=[7, 6, -2, -3, -3, 0, 1, 14, 15, 16, 16],
+            ...     item_class=abjad.NumberedPitchClass,
+            ...     )
 
-                >>> vector = abjad.PitchClassVector(
-                ...     items=[7, 6, -2, -3, -3, 0, 1, 14, 15, 16, 16],
-                ...     item_class=abjad.NumberedPitchClass,
-                ...     )
-
-            ::
-
-                >>> vector
-                PitchClassVector({0: 1, 1: 1, 2: 1, 3: 1, 4: 2, 6: 1, 7: 1, 9: 2, 10: 1}, item_class=NumberedPitchClass)
+            >>> vector
+            PitchClassVector({0: 1, 1: 1, 2: 1, 3: 1, 4: 2, 6: 1, 7: 1, 9: 2, 10: 1}, item_class=NumberedPitchClass)
 
         ..  container:: example
 

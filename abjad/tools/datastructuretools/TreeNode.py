@@ -122,28 +122,20 @@ class TreeNode(AbjadObject):
     def depth(self):
         r'''The depth of a node in a rhythm-tree structure.
 
-        ::
+        >>> a = abjad.TreeContainer()
+        >>> b = abjad.TreeContainer()
+        >>> c = abjad.TreeNode()
+        >>> a.append(b)
+        >>> b.append(c)
 
-            >>> a = abjad.TreeContainer()
-            >>> b = abjad.TreeContainer()
-            >>> c = abjad.TreeNode()
-            >>> a.append(b)
-            >>> b.append(c)
+        >>> a.depth
+        0
 
-        ::
+        >>> a[0].depth
+        1
 
-            >>> a.depth
-            0
-
-        ::
-
-            >>> a[0].depth
-            1
-
-        ::
-
-            >>> a[0][0].depth
-            2
+        >>> a[0][0].depth
+        2
 
         Returns int.
         '''
@@ -159,40 +151,34 @@ class TreeNode(AbjadObject):
         r'''A dictionary of all nodes in a rhythm-tree, organized by their
         depth relative the root node.
 
-        ::
+        >>> a = abjad.TreeContainer(name='a')
+        >>> b = abjad.TreeContainer(name='b')
+        >>> c = abjad.TreeContainer(name='c')
+        >>> d = abjad.TreeContainer(name='d')
+        >>> e = abjad.TreeContainer(name='e')
+        >>> f = abjad.TreeContainer(name='f')
+        >>> g = abjad.TreeContainer(name='g')
 
-            >>> a = abjad.TreeContainer(name='a')
-            >>> b = abjad.TreeContainer(name='b')
-            >>> c = abjad.TreeContainer(name='c')
-            >>> d = abjad.TreeContainer(name='d')
-            >>> e = abjad.TreeContainer(name='e')
-            >>> f = abjad.TreeContainer(name='f')
-            >>> g = abjad.TreeContainer(name='g')
+        >>> a.extend([b, c])
+        >>> b.extend([d, e])
+        >>> c.extend([f, g])
 
-        ::
-
-            >>> a.extend([b, c])
-            >>> b.extend([d, e])
-            >>> c.extend([f, g])
-
-        ::
-
-            >>> inventory = a.depthwise_inventory
-            >>> for depth in sorted(inventory):
-            ...     print('DEPTH: {}'.format(depth))
-            ...     for node in inventory[depth]:
-            ...         print(node.name)
-            ...
-            DEPTH: 0
-            a
-            DEPTH: 1
-            b
-            c
-            DEPTH: 2
-            d
-            e
-            f
-            g
+        >>> inventory = a.depthwise_inventory
+        >>> for depth in sorted(inventory):
+        ...     print('DEPTH: {}'.format(depth))
+        ...     for node in inventory[depth]:
+        ...         print(node.name)
+        ...
+        DEPTH: 0
+        a
+        DEPTH: 1
+        b
+        c
+        DEPTH: 2
+        d
+        e
+        f
+        g
 
         Returns dictionary.
         '''
@@ -226,31 +212,21 @@ class TreeNode(AbjadObject):
         sequence of node beginning with itself and ending with the root node
         of the tree.
 
-        ::
+        >>> a = abjad.TreeContainer()
+        >>> b = abjad.TreeContainer()
+        >>> c = abjad.TreeNode()
 
-            >>> a = abjad.TreeContainer()
-            >>> b = abjad.TreeContainer()
-            >>> c = abjad.TreeNode()
+        >>> a.append(b)
+        >>> b.append(c)
 
-        ::
+        >>> a.improper_parentage == (a,)
+        True
 
-            >>> a.append(b)
-            >>> b.append(c)
+        >>> b.improper_parentage == (b, a)
+        True
 
-        ::
-
-            >>> a.improper_parentage == (a,)
-            True
-
-        ::
-
-            >>> b.improper_parentage == (b, a)
-            True
-
-        ::
-
-            >>> c.improper_parentage == (c, b, a)
-            True
+        >>> c.improper_parentage == (c, b, a)
+        True
 
         Returns tuple of tree nodes.
         '''
@@ -265,31 +241,21 @@ class TreeNode(AbjadObject):
     def parent(self):
         r'''Parent of tree node.
 
-        ::
+        >>> a = abjad.TreeContainer()
+        >>> b = abjad.TreeContainer()
+        >>> c = abjad.TreeNode()
 
-            >>> a = abjad.TreeContainer()
-            >>> b = abjad.TreeContainer()
-            >>> c = abjad.TreeNode()
+        >>> a.append(b)
+        >>> b.append(c)
 
-        ::
+        >>> a.parent is None
+        True
 
-            >>> a.append(b)
-            >>> b.append(c)
+        >>> b.parent is a
+        True
 
-        ::
-
-            >>> a.parent is None
-            True
-
-        ::
-
-            >>> b.parent is a
-            True
-
-        ::
-
-            >>> c.parent is b
-            True
+        >>> c.parent is b
+        True
 
         Returns tree node.
         '''
@@ -301,31 +267,21 @@ class TreeNode(AbjadObject):
         sequence of node beginning with the node's immediate parent and
         ending with the root node of the tree.
 
-        ::
+        >>> a = abjad.TreeContainer()
+        >>> b = abjad.TreeContainer()
+        >>> c = abjad.TreeNode()
 
-            >>> a = abjad.TreeContainer()
-            >>> b = abjad.TreeContainer()
-            >>> c = abjad.TreeNode()
+        >>> a.append(b)
+        >>> b.append(c)
 
-        ::
+        >>> a.proper_parentage == ()
+        True
 
-            >>> a.append(b)
-            >>> b.append(c)
+        >>> b.proper_parentage == (a,)
+        True
 
-        ::
-
-            >>> a.proper_parentage == ()
-            True
-
-        ::
-
-            >>> b.proper_parentage == (a,)
-            True
-
-        ::
-
-            >>> c.proper_parentage == (b, a)
-            True
+        >>> c.proper_parentage == (b, a)
+        True
 
         Returns tuple of tree nodes.
         '''
@@ -336,25 +292,19 @@ class TreeNode(AbjadObject):
         r'''The root node of the tree: that node in the tree which has
         no parent.
 
-        ::
+        >>> a = abjad.TreeContainer()
+        >>> b = abjad.TreeContainer()
+        >>> c = abjad.TreeNode()
 
-            >>> a = abjad.TreeContainer()
-            >>> b = abjad.TreeContainer()
-            >>> c = abjad.TreeNode()
+        >>> a.append(b)
+        >>> b.append(c)
 
-        ::
-
-            >>> a.append(b)
-            >>> b.append(c)
-
-        ::
-
-            >>> a.root is a
-            True
-            >>> b.root is a
-            True
-            >>> c.root is a
-            True
+        >>> a.root is a
+        True
+        >>> b.root is a
+        True
+        >>> c.root is a
+        True
 
         Returns tree node.
         '''

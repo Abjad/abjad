@@ -6,16 +6,14 @@ class Vibraphone(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> vibraphone = abjad.Vibraphone()
-            >>> abjad.attach(vibraphone, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+        >>> vibraphone = abjad.Vibraphone()
+        >>> abjad.attach(vibraphone, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { Vibraphone }
                 \set Staff.shortInstrumentName = \markup { Vibr. }
@@ -64,11 +62,9 @@ class Vibraphone(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> vibraphone = abjad.Vibraphone()
-                >>> vibraphone.allowable_clefs
-                ('treble',)
+            >>> vibraphone = abjad.Vibraphone()
+            >>> vibraphone.allowable_clefs
+            ('treble',)
 
         Returns clef list.
         '''
@@ -80,15 +76,11 @@ class Vibraphone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> vibraphone = abjad.Vibraphone()
+            >>> vibraphone.middle_c_sounding_pitch
+            NamedPitch("c'")
 
-                >>> vibraphone = abjad.Vibraphone()
-                >>> vibraphone.middle_c_sounding_pitch
-                NamedPitch("c'")
-
-            ::
-
-                >>> show(vibraphone.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(vibraphone.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -100,11 +92,9 @@ class Vibraphone(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> vibraphone = abjad.Vibraphone()
-                >>> vibraphone.name
-                'vibraphone'
+            >>> vibraphone = abjad.Vibraphone()
+            >>> vibraphone.name
+            'vibraphone'
 
         Returns string.
         '''
@@ -116,15 +106,11 @@ class Vibraphone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> vibraphone = abjad.Vibraphone()
+            >>> vibraphone.name_markup
+            Markup(contents=['Vibraphone'])
 
-                >>> vibraphone = abjad.Vibraphone()
-                >>> vibraphone.name_markup
-                Markup(contents=['Vibraphone'])
-
-            ::
-
-                >>> show(vibraphone.name_markup) # doctest: +SKIP
+            >>> abjad.show(vibraphone.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -136,15 +122,11 @@ class Vibraphone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> vibraphone = abjad.Vibraphone()
+            >>> vibraphone.pitch_range
+            PitchRange('[F3, F6]')
 
-                >>> vibraphone = abjad.Vibraphone()
-                >>> vibraphone.pitch_range
-                PitchRange('[F3, F6]')
-
-            ::
-
-                >>> show(vibraphone.pitch_range) # doctest: +SKIP
+            >>> abjad.show(vibraphone.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -156,11 +138,9 @@ class Vibraphone(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> vibraphone = abjad.Vibraphone()
-                >>> vibraphone.short_name
-                'vibr.'
+            >>> vibraphone = abjad.Vibraphone()
+            >>> vibraphone.short_name
+            'vibr.'
 
         Returns string.
         '''
@@ -172,15 +152,11 @@ class Vibraphone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> vibraphone = abjad.Vibraphone()
+            >>> vibraphone.short_name_markup
+            Markup(contents=['Vibr.'])
 
-                >>> vibraphone = abjad.Vibraphone()
-                >>> vibraphone.short_name_markup
-                Markup(contents=['Vibr.'])
-
-            ::
-
-                >>> show(vibraphone.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(vibraphone.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

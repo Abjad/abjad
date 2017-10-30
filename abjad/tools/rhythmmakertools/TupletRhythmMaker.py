@@ -12,25 +12,21 @@ class TupletRhythmMaker(RhythmMaker):
 
         Makes tuplets with ``3:2`` ratios:
 
-        ::
+        >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+        ...     tuplet_ratios=[(3, 2)],
+        ...     )
 
-            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-            ...     tuplet_ratios=[(3, 2)],
-            ...     )
-
-        ::
-
-            >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
-            >>> selections = rhythm_maker(divisions)
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(
-            ...     selections,
-            ...     divisions,
-            ...     )
-            >>> show(lilypond_file) # doctest: +SKIP
+        >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
+        >>> selections = rhythm_maker(divisions)
+        >>> lilypond_file = abjad.LilyPondFile.rhythm(
+        ...     selections,
+        ...     divisions,
+        ...     )
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(lilypond_file[abjad.Staff])
+            >>> abjad.f(lilypond_file[abjad.Staff])
             \new RhythmicStaff {
                 {
                     \time 1/2
@@ -66,25 +62,21 @@ class TupletRhythmMaker(RhythmMaker):
 
         Makes tuplets with alternating ``1:-1`` and ``3:1`` ratios:
 
-        ::
+        >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+        ...     tuplet_ratios=[(1, -1), (3, 1)],
+        ...     )
 
-            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-            ...     tuplet_ratios=[(1, -1), (3, 1)],
-            ...     )
-
-        ::
-
-            >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
-            >>> selections = rhythm_maker(divisions)
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(
-            ...     selections,
-            ...     divisions,
-            ...     )
-            >>> show(lilypond_file) # doctest: +SKIP
+        >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
+        >>> selections = rhythm_maker(divisions)
+        >>> lilypond_file = abjad.LilyPondFile.rhythm(
+        ...     selections,
+        ...     divisions,
+        ...     )
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(lilypond_file[abjad.Staff])
+            >>> abjad.f(lilypond_file[abjad.Staff])
             \new RhythmicStaff {
                 {
                     \time 1/2
@@ -176,25 +168,21 @@ class TupletRhythmMaker(RhythmMaker):
 
             Calls tuplet rhythm-maker with one ratio:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(3, 2)],
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(3, 2)],
-                ...     )
-
-            ::
-
-                >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/2
@@ -230,25 +218,21 @@ class TupletRhythmMaker(RhythmMaker):
 
             Calls tuplet rhythm-maker on two ratios:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(1, -1), (3, 1)],
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(1, -1), (3, 1)],
-                ...     )
-
-            ::
-
-                >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/2
@@ -298,40 +282,32 @@ class TupletRhythmMaker(RhythmMaker):
 
             Formats tuplet rhythm-maker with one ratio:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(3, 2)],
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(3, 2)],
-                ...     )
-
-            ::
-
-                >>> f(rhythm_maker)
-                abjad.rhythmmakertools.TupletRhythmMaker(
-                    tuplet_ratios=[
-                        abjad.Ratio((3, 2)),
-                        ],
-                    )
+            >>> abjad.f(rhythm_maker)
+            abjad.rhythmmakertools.TupletRhythmMaker(
+                tuplet_ratios=[
+                    abjad.Ratio((3, 2)),
+                    ],
+                )
 
         ..  container:: example
 
             Formats tuplet rhythm-maker with two ratios:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(1, -1), (3, 1)],
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(1, -1), (3, 1)],
-                ...     )
-
-            ::
-
-                >>> f(rhythm_maker)
-                abjad.rhythmmakertools.TupletRhythmMaker(
-                    tuplet_ratios=[
-                        abjad.Ratio((1, -1)),
-                        abjad.Ratio((3, 1)),
-                        ],
-                    )
+            >>> abjad.f(rhythm_maker)
+            abjad.rhythmmakertools.TupletRhythmMaker(
+                tuplet_ratios=[
+                    abjad.Ratio((1, -1)),
+                    abjad.Ratio((3, 1)),
+                    ],
+                )
 
         Set `format_specification` to `''` or `'storage'`.
 
@@ -410,28 +386,24 @@ class TupletRhythmMaker(RhythmMaker):
 
             Beams each division:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(1, 1, 2, 1, 1), (3, 1, 1)],
+            ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
+            ...         beam_each_division=True,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(1, 1, 2, 1, 1), (3, 1, 1)],
-                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
-                ...         beam_each_division=True,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(5, 8), (3, 8), (6, 8), (4, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file)  # doctest: +SKIP
+            >>> divisions = [(5, 8), (3, 8), (6, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file)  # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -477,28 +449,24 @@ class TupletRhythmMaker(RhythmMaker):
 
             Beams divisions together:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(1, 1, 2, 1, 1), (3, 1, 1)],
+            ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
+            ...         beam_divisions_together=True,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(1, 1, 2, 1, 1), (3, 1, 1)],
-                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
-                ...         beam_divisions_together=True,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(5, 8), (3, 8), (6, 8), (4, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file)  # doctest: +SKIP
+            >>> divisions = [(5, 8), (3, 8), (6, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file)  # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -568,29 +536,25 @@ class TupletRhythmMaker(RhythmMaker):
 
             Beams nothing:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(1, 1, 2, 1, 1), (3, 1, 1)],
+            ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
+            ...         beam_divisions_together=False,
+            ...         beam_each_division=False,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(1, 1, 2, 1, 1), (3, 1, 1)],
-                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
-                ...         beam_divisions_together=False,
-                ...         beam_each_division=False,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(5, 8), (3, 8), (6, 8), (4, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file)  # doctest: +SKIP
+            >>> divisions = [(5, 8), (3, 8), (6, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file)  # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -649,29 +613,25 @@ class TupletRhythmMaker(RhythmMaker):
 
             No division masks:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(4, 1)],
+            ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
+            ...         beam_divisions_together=False,
+            ...         beam_each_division=False,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(4, 1)],
-                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
-                ...         beam_divisions_together=False,
-                ...         beam_each_division=False,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -707,32 +667,28 @@ class TupletRhythmMaker(RhythmMaker):
 
             Masks every other output division:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(4, 1)],
+            ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
+            ...         beam_divisions_together=False,
+            ...         beam_each_division=False,
+            ...         ),
+            ...     division_masks=[
+            ...         abjad.silence_every([1], period=2),
+            ...         ],
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(4, 1)],
-                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
-                ...         beam_divisions_together=False,
-                ...         beam_each_division=False,
-                ...         ),
-                ...     division_masks=[
-                ...         abjad.silence_every([1], period=2),
-                ...         ],
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -775,29 +731,25 @@ class TupletRhythmMaker(RhythmMaker):
             relatively prime when `preferred_denominator` is set to none. This
             means that ratios like ``6:4`` and ``10:8`` do not arise:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(1, 4)],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         avoid_dots=True,
+            ...         preferred_denominator=None,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(1, 4)],
-                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-                ...         avoid_dots=True,
-                ...         preferred_denominator=None,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/16
@@ -838,29 +790,25 @@ class TupletRhythmMaker(RhythmMaker):
             numerator and denominator are not necessarily relatively prime.
             This also means that ratios like ``6:4`` and ``10:8`` may arise:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(1, 4)],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         avoid_dots=True,
+            ...         preferred_denominator='divisions',
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(1, 4)],
-                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-                ...         avoid_dots=True,
-                ...         preferred_denominator='divisions',
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/16
@@ -899,29 +847,25 @@ class TupletRhythmMaker(RhythmMaker):
             duration when `preferred_denominator` is set to a duration. The
             setting does not affect the first tuplet:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(1, 4)],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         avoid_dots=True,
+            ...         preferred_denominator=(1, 16),
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(1, 4)],
-                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-                ...         avoid_dots=True,
-                ...         preferred_denominator=(1, 16),
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/16
@@ -959,29 +903,25 @@ class TupletRhythmMaker(RhythmMaker):
             Sets the preferred denominator of each tuplet in terms 32nd notes.
             The setting affects all tuplets:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(1, 4)],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         avoid_dots=True,
+            ...         preferred_denominator=(1, 32),
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(1, 4)],
-                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-                ...         avoid_dots=True,
-                ...         preferred_denominator=(1, 32),
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/16
@@ -1019,29 +959,25 @@ class TupletRhythmMaker(RhythmMaker):
             Sets the preferred denominator each tuplet in terms 64th notes. The
             setting affects all tuplets:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(1, 4)],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         avoid_dots=True,
+            ...         preferred_denominator=(1, 64),
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(1, 4)],
-                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-                ...         avoid_dots=True,
-                ...         preferred_denominator=(1, 64),
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/16
@@ -1081,29 +1017,25 @@ class TupletRhythmMaker(RhythmMaker):
             sets the preferred denominator of each tuplet to ``8``. Setting
             does not affect the third tuplet:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(1, 4)],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         avoid_dots=True,
+            ...         preferred_denominator=8,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(1, 4)],
-                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-                ...         avoid_dots=True,
-                ...         preferred_denominator=8,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/16
@@ -1141,29 +1073,25 @@ class TupletRhythmMaker(RhythmMaker):
             Sets the preferred denominator of each tuplet to ``12``. Setting
             affects all tuplets:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(1, 4)],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         avoid_dots=True,
+            ...         preferred_denominator=12,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(1, 4)],
-                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-                ...         avoid_dots=True,
-                ...         preferred_denominator=12,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/16
@@ -1201,29 +1129,25 @@ class TupletRhythmMaker(RhythmMaker):
             Sets the preferred denominator of each tuplet to ``13``. Setting
             does not affect any tuplet:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(1, 4)],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         avoid_dots=True,
+            ...         preferred_denominator=13,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(1, 4)],
-                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-                ...         avoid_dots=True,
-                ...         preferred_denominator=13,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/16
@@ -1270,28 +1194,24 @@ class TupletRhythmMaker(RhythmMaker):
 
             Ties nothing:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(2, 3), (1, -2, 1)],
+            ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
+            ...         tie_across_divisions=False,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(2, 3), (1, -2, 1)],
-                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
-                ...         tie_across_divisions=False,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(1, 2), (3, 8), (5, 16)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(1, 2), (3, 8), (5, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/2
@@ -1321,28 +1241,24 @@ class TupletRhythmMaker(RhythmMaker):
 
             Ties across all divisions:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(2, 3), (1, -2, 1)],
+            ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
+            ...         tie_across_divisions=True,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(2, 3), (1, -2, 1)],
-                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
-                ...         tie_across_divisions=True,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(1, 2), (3, 8), (5, 16)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(1, 2), (3, 8), (5, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/2
@@ -1372,32 +1288,28 @@ class TupletRhythmMaker(RhythmMaker):
 
             Ties across every other division:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[0],
+            ...     period=2,
+            ...     )
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(2, 3), (1, -2, 1)],
+            ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
+            ...         tie_across_divisions=pattern,
+            ...         ),
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[0],
-                ...     period=2,
-                ...     )
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(2, 3), (1, -2, 1)],
-                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
-                ...         tie_across_divisions=pattern,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/2
@@ -1445,25 +1357,21 @@ class TupletRhythmMaker(RhythmMaker):
 
             Makes tuplets with ``3:2`` ratios:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(3, 2)],
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(3, 2)],
-                ...     )
-
-            ::
-
-                >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/2
@@ -1499,25 +1407,21 @@ class TupletRhythmMaker(RhythmMaker):
 
             Makes tuplets with alternating ``1:-1`` and ``3:1`` ratios:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(1, -1), (3, 1)],
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(1, -1), (3, 1)],
-                ...     )
-
-            ::
-
-                >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/2
@@ -1566,29 +1470,25 @@ class TupletRhythmMaker(RhythmMaker):
 
             Makes diminished tuplets and does not avoid dots:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(1, 1)],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         avoid_dots=False,
+            ...         is_diminution=True,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(1, 1)],
-                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-                ...         avoid_dots=False,
-                ...         is_diminution=True,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(2, 8), (3, 8), (7, 16)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(2, 8), (3, 8), (7, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/8
@@ -1617,29 +1517,25 @@ class TupletRhythmMaker(RhythmMaker):
 
             Makes diminished tuplets and avoids dots:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(1, 1)],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         avoid_dots=True,
+            ...         is_diminution=True,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(1, 1)],
-                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-                ...         avoid_dots=True,
-                ...         is_diminution=True,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(2, 8), (3, 8), (7, 16)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(2, 8), (3, 8), (7, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/8
@@ -1670,29 +1566,25 @@ class TupletRhythmMaker(RhythmMaker):
 
             Makes augmented tuplets and does not avoid dots:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(1, 1)],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         avoid_dots=False,
+            ...         is_diminution=False,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(1, 1)],
-                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-                ...         avoid_dots=False,
-                ...         is_diminution=False,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(2, 8), (3, 8), (7, 16)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(2, 8), (3, 8), (7, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/8
@@ -1721,29 +1613,25 @@ class TupletRhythmMaker(RhythmMaker):
 
             Makes augmented tuplets and avoids dots:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(1, 1)],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         avoid_dots=True,
+            ...         is_diminution=False,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(1, 1)],
-                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-                ...         avoid_dots=True,
-                ...         is_diminution=False,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(2, 8), (3, 8), (7, 16)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(2, 8), (3, 8), (7, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/8
@@ -1774,29 +1662,25 @@ class TupletRhythmMaker(RhythmMaker):
 
             Does not simplify tuplets:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(3, -2), (1,), (-2, 3), (1, 1)],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         avoid_dots=True,
+            ...         simplify_redundant_tuplets=False,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(3, -2), (1,), (-2, 3), (1, 1)],
-                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-                ...         avoid_dots=True,
-                ...         simplify_redundant_tuplets=False,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -1832,29 +1716,25 @@ class TupletRhythmMaker(RhythmMaker):
 
             Simplifies tuplets:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(3, -2), (1,), (-2, 3), (1, 1)],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         avoid_dots=True,
+            ...         simplify_redundant_tuplets=True,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(3, -2), (1,), (-2, 3), (1, 1)],
-                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-                ...         avoid_dots=True,
-                ...         simplify_redundant_tuplets=True,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -1888,63 +1768,57 @@ class TupletRhythmMaker(RhythmMaker):
 
             Leaves trivial tuplets enclosed in curly braces in LilyPond output:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
+            ...         tie_across_divisions=True,
+            ...         ),
+            ...     tuplet_ratios=[(2, 3), (1, 1)],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         flatten_trivial_tuplets=False,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
-                ...         tie_across_divisions=True,
-                ...         ),
-                ...     tuplet_ratios=[(2, 3), (1, 1)],
-                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-                ...         flatten_trivial_tuplets=False,
-                ...         ),
-                ...     )
+            >>> divisions = [(3, 8), (2, 8), (3, 8), (2, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-            ::
-
-                >>> divisions = [(3, 8), (2, 8), (3, 8), (2, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ::
-
-                >>> f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    {
-                        \time 3/8
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \times 3/5 {
-                            c'4
-                            c'4. ~
-                        }
-                    }
-                    {
-                        \time 2/8
-                        {
-                            c'8 [
-                            c'8 ~ ]
-                        }
-                    }
-                    {
-                        \time 3/8
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \times 3/5 {
-                            c'4
-                            c'4. ~
-                        }
-                    }
-                    {
-                        \time 2/8
-                        {
-                            c'8 [
-                            c'8 ]
-                        }
+            >>> abjad.f(lilypond_file[abjad.Staff])
+            \new RhythmicStaff {
+                {
+                    \time 3/8
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 3/5 {
+                        c'4
+                        c'4. ~
                     }
                 }
+                {
+                    \time 2/8
+                    {
+                        c'8 [
+                        c'8 ~ ]
+                    }
+                }
+                {
+                    \time 3/8
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 3/5 {
+                        c'4
+                        c'4. ~
+                    }
+                }
+                {
+                    \time 2/8
+                    {
+                        c'8 [
+                        c'8 ]
+                    }
+                }
+            }
 
             Runs of eighth notes are enclosed in a first set of curly braces
             (representing trivial tuplets) and a second set of curly braces
@@ -1954,59 +1828,53 @@ class TupletRhythmMaker(RhythmMaker):
 
             Flattens trivial tuplets:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
+            ...         tie_across_divisions=True,
+            ...         ),
+            ...     tuplet_ratios=[(2, 3), (1, 1)],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         flatten_trivial_tuplets=True,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
-                ...         tie_across_divisions=True,
-                ...         ),
-                ...     tuplet_ratios=[(2, 3), (1, 1)],
-                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-                ...         flatten_trivial_tuplets=True,
-                ...         ),
-                ...     )
+            >>> divisions = [(3, 8), (2, 8), (3, 8), (2, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-            ::
-
-                >>> divisions = [(3, 8), (2, 8), (3, 8), (2, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ::
-
-                >>> f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    {
-                        \time 3/8
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \times 3/5 {
-                            c'4
-                            c'4. ~
-                        }
-                    }
-                    {
-                        \time 2/8
-                        c'8 [
-                        c'8 ~ ]
-                    }
-                    {
-                        \time 3/8
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \times 3/5 {
-                            c'4
-                            c'4. ~
-                        }
-                    }
-                    {
-                        \time 2/8
-                        c'8 [
-                        c'8 ]
+            >>> abjad.f(lilypond_file[abjad.Staff])
+            \new RhythmicStaff {
+                {
+                    \time 3/8
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 3/5 {
+                        c'4
+                        c'4. ~
                     }
                 }
+                {
+                    \time 2/8
+                    c'8 [
+                    c'8 ~ ]
+                }
+                {
+                    \time 3/8
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 3/5 {
+                        c'4
+                        c'4. ~
+                    }
+                }
+                {
+                    \time 2/8
+                    c'8 [
+                    c'8 ]
+                }
+            }
 
             Runs of eighth notes are now enclosed in only one set of curly
             braces (representing measures). The graphic output of the two

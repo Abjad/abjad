@@ -4,12 +4,10 @@ def is_positive_integer_equivalent_number(argument):
 
     ..  container:: example
 
-        ::
-
-            >>> abjad.mathtools.is_positive_integer_equivalent_number(
-            ...     abjad.Duration(4, 2)
-            ...     )
-            True
+        >>> abjad.mathtools.is_positive_integer_equivalent_number(
+        ...     abjad.Duration(4, 2)
+        ...     )
+        True
 
     Returns true or false.
     '''

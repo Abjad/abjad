@@ -8,23 +8,19 @@ class TypedCounter(TypedCollection):
 
     ..  container:: example
 
-        ::
+        >>> counter = abjad.TypedCounter(
+        ...     [0, "c'", 1, True, "cs'", "df'"],
+        ...     item_class=abjad.NumberedPitch,
+        ...     )
 
-            >>> counter = abjad.TypedCounter(
-            ...     [0, "c'", 1, True, "cs'", "df'"],
-            ...     item_class=abjad.NumberedPitch,
-            ...     )
-
-        ::
-
-            >>> f(counter)
-            abjad.TypedCounter(
-                {
-                    abjad.NumberedPitch(0): 2,
-                    abjad.NumberedPitch(1): 4,
-                    },
-                item_class=abjad.NumberedPitch,
-                )
+        >>> abjad.f(counter)
+        abjad.TypedCounter(
+            {
+                abjad.NumberedPitch(0): 2,
+                abjad.NumberedPitch(1): 4,
+                },
+            item_class=abjad.NumberedPitch,
+            )
 
     '''
 

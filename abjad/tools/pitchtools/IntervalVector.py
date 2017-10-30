@@ -9,40 +9,38 @@ class IntervalVector(Vector):
 
         Initializes from pitch segment:
 
-        ::
-
-            >>> pitch_segment = abjad.PitchSegment(
-            ...     items=[0, 11, 7, 4, 2, 9, 3, 8, 10, 1, 5, 6],
-            ...     )
-            >>> numbered_interval_vector = abjad.IntervalVector(
-            ...     items=pitch_segment,
-            ...     item_class=abjad.NumberedInterval,
-            ...     )
-            >>> for interval, count in sorted(numbered_interval_vector.items(),
-            ...     key=lambda x: (x[0].direction_number, x[0].number)):
-            ...     print(interval, count)
-            ...
-            -11 1
-            -10 1
-            -9 1
-            -8 2
-            -7 3
-            -6 3
-            -5 4
-            -4 4
-            -3 4
-            -2 5
-            -1 6
-            +1 5
-            +2 5
-            +3 5
-            +4 4
-            +5 3
-            +6 3
-            +7 2
-            +8 2
-            +9 2
-            +10 1
+        >>> pitch_segment = abjad.PitchSegment(
+        ...     items=[0, 11, 7, 4, 2, 9, 3, 8, 10, 1, 5, 6],
+        ...     )
+        >>> numbered_interval_vector = abjad.IntervalVector(
+        ...     items=pitch_segment,
+        ...     item_class=abjad.NumberedInterval,
+        ...     )
+        >>> for interval, count in sorted(numbered_interval_vector.items(),
+        ...     key=lambda x: (x[0].direction_number, x[0].number)):
+        ...     print(interval, count)
+        ...
+        -11 1
+        -10 1
+        -9 1
+        -8 2
+        -7 3
+        -6 3
+        -5 4
+        -4 4
+        -3 4
+        -2 5
+        -1 6
+        +1 5
+        +2 5
+        +3 5
+        +4 4
+        +5 3
+        +6 3
+        +7 2
+        +8 2
+        +9 2
+        +10 1
 
     '''
 
@@ -81,27 +79,23 @@ class IntervalVector(Vector):
 
             Gets interpreter representation of interval vector:
 
-            ::
+            >>> pitch_segment = abjad.PitchSegment(
+            ...     items=[0, 11, 7, 4, 2, 9, 3, 8, 10, 1, 5, 6],
+            ...     )
+            >>> vector = abjad.IntervalVector(
+            ...     items=pitch_segment,
+            ...     item_class=abjad.NumberedInterval,
+            ...     )
 
-                >>> pitch_segment = abjad.PitchSegment(
-                ...     items=[0, 11, 7, 4, 2, 9, 3, 8, 10, 1, 5, 6],
-                ...     )
-                >>> vector = abjad.IntervalVector(
-                ...     items=pitch_segment,
-                ...     item_class=abjad.NumberedInterval,
-                ...     )
-
-            ::
-
-                >>> vector
-                IntervalVector({-11: 1, -10: 1, -9: 1, -8: 2, -7: 3, -6: 3, -5: 4, -4: 4, -3: 4, -2: 5, -1: 6, 1: 5, 2: 5, 3: 5, 4: 4, 5: 3, 6: 3, 7: 2, 8: 2, 9: 2, 10: 1}, item_class=NumberedInterval)
+            >>> vector
+            IntervalVector({-11: 1, -10: 1, -9: 1, -8: 2, -7: 3, -6: 3, -5: 4, -4: 4, -3: 4, -2: 5, -1: 6, 1: 5, 2: 5, 3: 5, 4: 4, 5: 3, 6: 3, 7: 2, 8: 2, 9: 2, 10: 1}, item_class=NumberedInterval)
 
         ..  container:: example
 
             Initializes from interpreter representation of interval vector:
 
-                >>> abjad.IntervalVector(vector)
-                IntervalVector({-11: 1, -10: 1, -9: 1, -8: 2, -7: 3, -6: 3, -5: 4, -4: 4, -3: 4, -2: 5, -1: 6, 1: 5, 2: 5, 3: 5, 4: 4, 5: 3, 6: 3, 7: 2, 8: 2, 9: 2, 10: 1}, item_class=NumberedInterval)
+            >>> abjad.IntervalVector(vector)
+            IntervalVector({-11: 1, -10: 1, -9: 1, -8: 2, -7: 3, -6: 3, -5: 4, -4: 4, -3: 4, -2: 5, -1: 6, 1: 5, 2: 5, 3: 5, 4: 4, 5: 3, 6: 3, 7: 2, 8: 2, 9: 2, 10: 1}, item_class=NumberedInterval)
 
         Returns string.
         '''

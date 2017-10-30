@@ -9,16 +9,14 @@ class TrillSpanner(Spanner):
 
         Attaches unpitched trill spanner to all notes in staff:
 
-        ::
-
-            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-            >>> trill = abjad.TrillSpanner()
-            >>> abjad.attach(trill, staff[:])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> trill = abjad.TrillSpanner()
+        >>> abjad.attach(trill, staff[:])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 c'8 \startTrillSpan
                 d'8
@@ -30,16 +28,14 @@ class TrillSpanner(Spanner):
 
         Attaches pitched trill spanner to all notes in staff:
 
-        ::
-
-            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-            >>> trill = abjad.TrillSpanner(pitch=abjad.NamedPitch("cs'"))
-            >>> abjad.attach(trill, staff[:])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> trill = abjad.TrillSpanner(pitch=abjad.NamedPitch("cs'"))
+        >>> abjad.attach(trill, staff[:])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \pitchedTrill
                 c'8 \startTrillSpan cs'
@@ -52,14 +48,12 @@ class TrillSpanner(Spanner):
 
         Requires at least two leaves:
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> trill = abjad.TrillSpanner()
-            >>> abjad.attach(trill, staff[:1])
-            Traceback (most recent call last):
-                ...
-            Exception: TrillSpanner() attachment test fails for Selection([Note("c'4")]).
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> trill = abjad.TrillSpanner()
+        >>> abjad.attach(trill, staff[:1])
+        Traceback (most recent call last):
+            ...
+        Exception: TrillSpanner() attachment test fails for Selection([Note("c'4")]).
 
     Formats LilyPond ``\startTrillSpan`` on first leaf in spanner.
 
@@ -152,18 +146,16 @@ class TrillSpanner(Spanner):
 
             Attaches semitone trill:
 
-            ::
-
-                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> trill = abjad.TrillSpanner(
-                ...     interval=abjad.NamedInterval('m2'),
-                ...     )
-                >>> abjad.attach(trill, staff[:])
-                >>> show(staff) # doctest: +SKIP
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> trill = abjad.TrillSpanner(
+            ...     interval=abjad.NamedInterval('m2'),
+            ...     )
+            >>> abjad.attach(trill, staff[:])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(staff)
+                >>> abjad.f(staff)
                 \new Staff {
                     \pitchedTrill
                     c'8 \startTrillSpan df'
@@ -176,18 +168,16 @@ class TrillSpanner(Spanner):
 
             Attaches whole tone trill:
 
-            ::
-
-                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> trill = abjad.TrillSpanner(
-                ...     interval=abjad.NamedInterval('M2'),
-                ...     )
-                >>> abjad.attach(trill, staff[:])
-                >>> show(staff) # doctest: +SKIP
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> trill = abjad.TrillSpanner(
+            ...     interval=abjad.NamedInterval('M2'),
+            ...     )
+            >>> abjad.attach(trill, staff[:])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(staff)
+                >>> abjad.f(staff)
                 \new Staff {
                     \pitchedTrill
                     c'8 \startTrillSpan d'
@@ -213,19 +203,17 @@ class TrillSpanner(Spanner):
 
             Attaches harmonic trill:
 
-            ::
-
-                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> trill = abjad.TrillSpanner(
-                ...     is_harmonic=True,
-                ...     pitch=abjad.NamedPitch("d'"),
-                ...     )
-                >>> abjad.attach(trill, staff[:])
-                >>> show(staff) # doctest: +SKIP
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> trill = abjad.TrillSpanner(
+            ...     is_harmonic=True,
+            ...     pitch=abjad.NamedPitch("d'"),
+            ...     )
+            >>> abjad.attach(trill, staff[:])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(staff)
+                >>> abjad.f(staff)
                 \new Staff {
                     \once \override TrillPitchHead.stencil = #(lambda (grob) (grob-interpret-markup grob #{ \markup \musicglyph #"noteheads.s0harmonic" #}))
                     \pitchedTrill
@@ -251,17 +239,15 @@ class TrillSpanner(Spanner):
 
             Returns pitch when trill spanner is pitched:
 
-            ::
-
-                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> pitch = abjad.NamedPitch('C#4')
-                >>> trill = abjad.TrillSpanner(pitch=pitch)
-                >>> abjad.attach(trill, staff[:2])
-                >>> show(staff) # doctest: +SKIP
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> pitch = abjad.NamedPitch('C#4')
+            >>> trill = abjad.TrillSpanner(pitch=pitch)
+            >>> abjad.attach(trill, staff[:2])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(staff)
+                >>> abjad.f(staff)
                 \new Staff {
                     \pitchedTrill c'8 \startTrillSpan cs'
                     d'8 \stopTrillSpan
@@ -269,25 +255,21 @@ class TrillSpanner(Spanner):
                     f'8
                 }
 
-            ::
-
-                >>> trill.pitch
-                NamedPitch("cs'")
+            >>> trill.pitch
+            NamedPitch("cs'")
 
         ..  container:: example
 
             Returns none when trill spanner is unpitched:
 
-            ::
-
-                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> trill = abjad.TrillSpanner()
-                >>> abjad.attach(trill, staff[:2])
-                >>> show(staff) # doctest: +SKIP
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> trill = abjad.TrillSpanner()
+            >>> abjad.attach(trill, staff[:2])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(staff)
+                >>> abjad.f(staff)
                 \new Staff {
                     c'8 \startTrillSpan
                     d'8 \stopTrillSpan
@@ -295,10 +277,8 @@ class TrillSpanner(Spanner):
                     f'8
                 }
 
-            ::
-
-                >>> trill.pitch is None
-                True
+            >>> trill.pitch is None
+            True
 
         Formats LilyPond ``\pitchedTrill`` command on first leaf in spanner.
 
@@ -318,17 +298,15 @@ class TrillSpanner(Spanner):
 
             Returns pitch when trill spanner is pitched:
 
-            ::
-
-                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> pitch = abjad.NamedPitch('C#4')
-                >>> trill = abjad.TrillSpanner(pitch=pitch)
-                >>> abjad.attach(trill, staff[:2])
-                >>> show(staff) # doctest: +SKIP
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> pitch = abjad.NamedPitch('C#4')
+            >>> trill = abjad.TrillSpanner(pitch=pitch)
+            >>> abjad.attach(trill, staff[:2])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(staff)
+                >>> abjad.f(staff)
                 \new Staff {
                     \pitchedTrill c'8 \startTrillSpan cs'
                     d'8 \stopTrillSpan
@@ -336,25 +314,21 @@ class TrillSpanner(Spanner):
                     f'8
                 }
 
-            ::
-
-                >>> trill.written_pitch
-                NamedPitch("cs'")
+            >>> trill.written_pitch
+            NamedPitch("cs'")
 
         ..  container:: example
 
             Returns none when trill spanner is unpitched:
 
-            ::
-
-                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> trill = abjad.TrillSpanner()
-                >>> abjad.attach(trill, staff[:2])
-                >>> show(staff) # doctest: +SKIP
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> trill = abjad.TrillSpanner()
+            >>> abjad.attach(trill, staff[:2])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(staff)
+                >>> abjad.f(staff)
                 \new Staff {
                     c'8 \startTrillSpan
                     d'8 \stopTrillSpan
@@ -362,10 +336,8 @@ class TrillSpanner(Spanner):
                     f'8
                 }
 
-            ::
-
-                >>> trill.written_pitch is None
-                True
+            >>> trill.written_pitch is None
+            True
 
         Alias defined equal to `pitch` of trill spanner.
 
