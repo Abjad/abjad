@@ -12,14 +12,14 @@ def test_scoretools_Measure_scale_and_adjust_time_signature_01():
 
     assert format(measure) == abjad.String.normalize(
         r'''
-        {
+        { % measure
             \time 3/12
             \scaleDurations #'(2 . 3) {
                 c'8
                 d'8
                 e'8
             }
-        }
+        } % measure
         '''
         )
 
@@ -37,12 +37,12 @@ def test_scoretools_Measure_scale_and_adjust_time_signature_02():
 
     assert format(measure) == abjad.String.normalize(
         r'''
-        {
+        { % measure
             \time 3/8
             c'8
             d'8
             e'8
-        }
+        } % measure
         '''
         )
 
@@ -59,12 +59,12 @@ def test_scoretools_Measure_scale_and_adjust_time_signature_03():
 
     assert format(measure) == abjad.String.normalize(
         r'''
-        {
+        { % measure
             \time 9/16
             c'8.
             d'8.
             e'8.
-        }
+        } % measure
         '''
         )
 
@@ -82,12 +82,12 @@ def test_scoretools_Measure_scale_and_adjust_time_signature_04():
     assert abjad.inspect(measure).is_well_formed()
     assert format(measure) == abjad.String.normalize(
         r'''
-        {
+        { % measure
             \time 3/8
             c'8
             d'8
             e'8
-        }
+        } % measure
         '''
         )
 
@@ -102,7 +102,7 @@ def test_scoretools_Measure_scale_and_adjust_time_signature_05():
 
     assert format(measure) == abjad.String.normalize(
         r'''
-        {
+        { % measure
             \time 9/24
             \scaleDurations #'(2 . 3) {
                 c'16
@@ -115,7 +115,7 @@ def test_scoretools_Measure_scale_and_adjust_time_signature_05():
                 c''16
                 d''16
             }
-        }
+        } % measure
         '''
         )
 
@@ -132,12 +132,12 @@ def test_scoretools_Measure_scale_and_adjust_time_signature_06():
 
     assert format(measure) == abjad.String.normalize(
         r'''
-        {
+        { % measure
             \time 3/4
             c'4
             d'4
             e'4
-        }
+        } % measure
         '''
         )
 
@@ -156,7 +156,7 @@ def test_scoretools_Measure_scale_and_adjust_time_signature_07():
     assert abjad.inspect(measure).is_well_formed()
     assert format(measure) == abjad.String.normalize(
         r'''
-        {
+        { % measure
             \time 6/32
             c'32
             d'32
@@ -164,7 +164,7 @@ def test_scoretools_Measure_scale_and_adjust_time_signature_07():
             f'32
             g'32
             a'32
-        }
+        } % measure
         '''
         )
 
@@ -181,7 +181,7 @@ def test_scoretools_Measure_scale_and_adjust_time_signature_08():
     assert abjad.inspect(measure).is_well_formed()
     assert format(measure) == abjad.String.normalize(
         r'''
-        {
+        { % measure
             \time 6/64
             c'64
             d'64
@@ -189,7 +189,7 @@ def test_scoretools_Measure_scale_and_adjust_time_signature_08():
             f'64
             g'64
             a'64
-        }
+        } % measure
         '''
         )
 
@@ -206,7 +206,7 @@ def test_scoretools_Measure_scale_and_adjust_time_signature_09():
     assert abjad.inspect(measure).is_well_formed()
     assert format(measure) == abjad.String.normalize(
         r'''
-        {
+        { % measure
             \time 6/8
             c'8
             d'8
@@ -214,7 +214,7 @@ def test_scoretools_Measure_scale_and_adjust_time_signature_09():
             f'8
             g'8
             a'8
-        }
+        } % measure
         '''
         )
 
@@ -231,7 +231,7 @@ def test_scoretools_Measure_scale_and_adjust_time_signature_10():
     assert abjad.inspect(measure).is_well_formed()
     assert format(measure) == abjad.String.normalize(
         r'''
-        {
+        { % measure
             \time 6/4
             c'4
             d'4
@@ -239,6 +239,6 @@ def test_scoretools_Measure_scale_and_adjust_time_signature_10():
             f'4
             g'4
             a'4
-        }
+        } % measure
         '''
         )

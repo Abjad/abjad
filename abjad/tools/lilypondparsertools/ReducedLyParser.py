@@ -120,19 +120,19 @@ class ReducedLyParser(abctools.Parser):
 
             >>> abjad.f(container)
             {
-                {
+                { % measure
                     \time 4/4
                     c'4
                     c'4
                     c'4
                     c'4
-                }
-                {
+                } % measure
+                { % measure
                     \time 3/8
                     c'8
                     c'8
                     c'8
-                }
+                } % measure
             }
 
     ..  container:: example

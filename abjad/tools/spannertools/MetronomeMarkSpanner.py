@@ -1644,7 +1644,7 @@ class MetronomeMarkSpanner(Spanner):
             markup = markup + markup.hspace(0.75)
         override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
-            is_once=True,
+            once=True,
             property_path=(
                 'bound-details',
                 'left-broken',
@@ -1693,7 +1693,7 @@ class MetronomeMarkSpanner(Spanner):
         import abjad
         override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
-            is_once=True,
+            once=True,
             property_path=(
                 'arrow-width',
                 ),
@@ -1704,7 +1704,7 @@ class MetronomeMarkSpanner(Spanner):
         #
         override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
-            is_once=True,
+            once=True,
             property_path=(
                 'dash-fraction',
                 ),
@@ -1715,7 +1715,7 @@ class MetronomeMarkSpanner(Spanner):
         #
         override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
-            is_once=True,
+            once=True,
             property_path=(
                 'dash-period',
                 ),
@@ -1726,7 +1726,7 @@ class MetronomeMarkSpanner(Spanner):
         #
         override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
-            is_once=True,
+            once=True,
             property_path=(
                 'bound-details',
                 'left',
@@ -1743,7 +1743,7 @@ class MetronomeMarkSpanner(Spanner):
             padding = -2
         override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
-            is_once=True,
+            once=True,
             property_path=(
                 'bound-details',
                 'left-broken',
@@ -1757,7 +1757,7 @@ class MetronomeMarkSpanner(Spanner):
         #
         override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
-            is_once=True,
+            once=True,
             property_path=(
                 'bound-details',
                 'right',
@@ -1770,7 +1770,7 @@ class MetronomeMarkSpanner(Spanner):
         #
         override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
-            is_once=True,
+            once=True,
             property_path=(
                 'bound-details',
                 'right',
@@ -1783,7 +1783,7 @@ class MetronomeMarkSpanner(Spanner):
         #
         override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
-            is_once=True,
+            once=True,
             property_path=(
                 'bound-details',
                 'right',
@@ -1796,7 +1796,7 @@ class MetronomeMarkSpanner(Spanner):
         #
         override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
-            is_once=True,
+            once=True,
             property_path=(
                 'bound-details',
                 'right-broken',
@@ -1809,7 +1809,7 @@ class MetronomeMarkSpanner(Spanner):
         #
         override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
-            is_once=True,
+            once=True,
             property_path=(
                 'bound-details',
                 'right-broken',
@@ -1822,7 +1822,7 @@ class MetronomeMarkSpanner(Spanner):
         #
         override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
-            is_once=True,
+            once=True,
             property_path=(
                 'bound-details',
                 'right-broken',
@@ -1850,7 +1850,7 @@ class MetronomeMarkSpanner(Spanner):
         markup = markup + markup.hspace(1.25)
         override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
-            is_once=True,
+            once=True,
             property_path=(
                 'bound-details',
                 'left',
@@ -1880,7 +1880,7 @@ class MetronomeMarkSpanner(Spanner):
             markup = markup + markup.hspace(0.75)
         override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
-            is_once=True,
+            once=True,
             property_path=(
                 'bound-details',
                 'left',

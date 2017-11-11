@@ -78,74 +78,74 @@ class LilyPondGrobNameManager(LilyPondNameManager):
                 message = message.format(type(self).__name__, name)
                 raise AttributeError(message)
 
-    def __setattr__(self, attribute_name, value):
-        r'''Sets attribute `attribute_name` of grob name manager to `value`.
+    def __setattr__(self, attribute, value):
+        r'''Sets attribute `attribute` of grob name manager to `value`.
 
         Returns none.
         '''
         # make sure attribute name is valid grob name before setting value
-        object.__setattr__(self, attribute_name, value)
+        object.__setattr__(self, attribute, value)
 
     ### PRIVATE METHODS ###
 
     def _get_attribute_tuples(self):
-        from abjad.tools import lilypondnametools
+        import abjad
         result = []
         for name, value in vars(self).items():
-            if type(value) is lilypondnametools.LilyPondNameManager:
-                grob_name, grob_proxy = name, value
+            if type(value) is abjad.LilyPondNameManager:
+                grob, grob_proxy = name, value
                 pairs = iter(vars(grob_proxy).items())
-                for attribute_name, attribute_value in pairs:
-                    triple = (grob_name, attribute_name, attribute_value)
+                for attribute, value in pairs:
+                    triple = (grob, attribute, value)
                     result.append(triple)
             else:
-                context_name, context_proxy = name.strip('_'), value
-                for grob_name, grob_proxy in vars(context_proxy).items():
+                context, context_proxy = name.strip('_'), value
+                for grob, grob_proxy in vars(context_proxy).items():
                     pairs = iter(vars(grob_proxy).items())
-                    for attribute_name, attribute_value in pairs:
+                    for attribute, value in pairs:
                         quadruple = (
-                            context_name,
-                            grob_name,
-                            attribute_name,
-                            attribute_value,
+                            context,
+                            grob,
+                            attribute,
+                            value,
                             )
                         result.append(quadruple)
         return tuple(result)
 
-    def _list_format_contributions(self, contribution_type, is_once=False):
+    def _list_format_contributions(self, contribution_type, once=False):
         from abjad.tools import systemtools
         manager = systemtools.LilyPondFormatManager
         assert contribution_type in ('override', 'revert')
         result = []
         for attribute_tuple in self._get_attribute_tuples():
             if len(attribute_tuple) == 3:
-                context_name = None
-                grob_name = attribute_tuple[0]
-                attribute_name = attribute_tuple[1]
-                attribute_value = attribute_tuple[2]
+                context = None
+                grob = attribute_tuple[0]
+                attribute = attribute_tuple[1]
+                value = attribute_tuple[2]
             elif len(attribute_tuple) == 4:
-                context_name = attribute_tuple[0]
-                grob_name = attribute_tuple[1]
-                attribute_name = attribute_tuple[2]
-                attribute_value = attribute_tuple[3]
+                context = attribute_tuple[0]
+                grob = attribute_tuple[1]
+                attribute = attribute_tuple[2]
+                value = attribute_tuple[3]
             else:
                 message = 'invalid attribute tuple: {!r}.'
                 message = message.format(attribute_tuple)
                 raise ValueError(message)
             if contribution_type == 'override':
                 override_string = manager.make_lilypond_override_string(
-                    grob_name,
-                    attribute_name,
-                    attribute_value,
-                    context_name=context_name,
-                    is_once=is_once,
+                    grob,
+                    attribute,
+                    value,
+                    context=context,
+                    once=once,
                     )
                 result.append(override_string)
             else:
                 revert_string = manager.make_lilypond_revert_string(
-                    grob_name,
-                    attribute_name,
-                    context_name=context_name,
+                    grob,
+                    attribute,
+                    context=context,
                     )
                 result.append(revert_string)
         result.sort()

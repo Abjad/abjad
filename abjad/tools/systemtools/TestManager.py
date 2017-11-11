@@ -215,7 +215,7 @@ class TestManager(AbjadObject):
         ?                    ^^^^^^
                 ),
             allowable_clefs=('treble',),
-            default_scope='Staff',
+            context='Staff',
         -     middle_c_sounding_pitch=abjad.NamedPitch("c'"),
         ?                                              ^  -
         +     middle_c_sounding_pitch=abjad.NamedPitch('c'),

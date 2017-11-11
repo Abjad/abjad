@@ -8,7 +8,7 @@ def test_scoretools_Measure_should_scale_contents_01():
 
     assert format(measure) == abjad.String.normalize(
         r'''
-        {
+        { % measure
             \time 5/12
             \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
@@ -18,6 +18,6 @@ def test_scoretools_Measure_should_scale_contents_01():
                 f'8
                 g'8
             }
-        }
+        } % measure
         '''
         )

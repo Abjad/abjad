@@ -48,7 +48,7 @@ class Accordion(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=('treble', 'bass'),
-        default_scope='StaffGroup',
+        context='StaffGroup',
         middle_c_sounding_pitch=None,
         pitch_range='[E1, C8]',
         ):
@@ -62,7 +62,7 @@ class Accordion(Instrument):
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
-        self._default_scope = default_scope
+        self._context = context
         self._is_primary_instrument = True
 
     ### SPECIAL METHODS ###
@@ -87,7 +87,7 @@ class Accordion(Instrument):
                     contents=['Acc.'],
                     ),
                 allowable_clefs=('treble', 'bass'),
-                default_scope='StaffGroup',
+                context='StaffGroup',
                 middle_c_sounding_pitch=abjad.NamedPitch("c'"),
                 pitch_range=abjad.PitchRange('[E1, C8]'),
                 )
@@ -114,18 +114,18 @@ class Accordion(Instrument):
         return Instrument.allowable_clefs.fget(self)
 
     @property
-    def default_scope(self):
-        r'''Gets default scope of accordion.
+    def context(self):
+        r'''Gets default context of accordion.
 
         ..  container:: example
 
             >>> accordion = abjad.Accordion()
-            >>> accordion.default_scope
+            >>> accordion.context
             'StaffGroup'
 
         Returns piano staff.
         '''
-        return self._default_scope
+        return self._context
 
     @property
     def middle_c_sounding_pitch(self):

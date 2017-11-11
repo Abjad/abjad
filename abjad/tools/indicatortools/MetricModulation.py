@@ -502,7 +502,7 @@ class MetricModulation(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_default_scope',
+        '_context',
         '_left_markup',
         '_left_rhythm',
         '_right_markup',
@@ -521,7 +521,7 @@ class MetricModulation(AbjadValueObject):
         right_markup=None,
         ):
         import abjad
-        self._default_scope = abjad.Score
+        self._context = 'Score'
         left_rhythm = left_rhythm or abjad.Note('c4')
         right_rhythm = right_rhythm or abjad.Note('c4')
         left_rhythm = self._initialize_rhythm(left_rhythm)
@@ -871,8 +871,8 @@ class MetricModulation(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def default_scope(self):
-        r'''Gets default scope of metric modulation.
+    def context(self):
+        r'''Gets default context of metric modulation.
 
         ..  container:: example
 
@@ -880,12 +880,12 @@ class MetricModulation(AbjadValueObject):
             ...     left_rhythm=abjad.Note("c'4"),
             ...     right_rhythm=abjad.Note("c'4."),
             ...     )
-            >>> metric_modulation.default_scope
-            <class 'abjad.tools.scoretools.Score.Score'>
+            >>> metric_modulation.context
+            'Score'
 
-        Returns score.
+        Returns context or string.
         '''
-        return self._default_scope
+        return self._context
 
     @property
     def left_markup(self):

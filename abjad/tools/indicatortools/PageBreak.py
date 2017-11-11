@@ -32,7 +32,7 @@ class PageBreak(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_default_scope',
+        '_context',
         )
 
     _format_slot = 'closing'
@@ -42,8 +42,7 @@ class PageBreak(AbjadValueObject):
     ### INITIALIZER ##
 
     def __init__(self):
-        from abjad.tools import scoretools
-        self._default_scope = scoretools.Score
+        self._context = 'Score'
 
     ### PRIVATE METHODS ###
 
@@ -59,17 +58,17 @@ class PageBreak(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def default_scope(self):
-        r'''Gets default scope of page break.
+    def context(self):
+        r'''Gets default context of page break.
 
         ..  container:: example
 
             Default page break:
 
             >>> page_break = abjad.PageBreak()
-            >>> page_break.default_scope
-            <class 'abjad.tools.scoretools.Score.Score'>
+            >>> page_break.context
+            'Score'
 
-        Returns score.
+        Returns context or string.
         '''
-        return self._default_scope
+        return self._context

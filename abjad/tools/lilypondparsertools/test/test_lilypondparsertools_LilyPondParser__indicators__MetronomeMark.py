@@ -6,7 +6,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_01():
 
     target = abjad.Score([abjad.Staff([abjad.Note(0, 1)])])
     mark = abjad.MetronomeMark(textual_indication="As fast as possible")
-    abjad.attach(mark, target[0][0], scope=abjad.Staff)
+    abjad.attach(mark, target[0][0], context='Staff')
 
     assert format(target) == abjad.String.normalize(
         r'''
@@ -33,7 +33,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_02():
     target = abjad.Score([abjad.Staff([abjad.Note(0, 1)])])
     leaves = abjad.select(target).leaves()
     mark = abjad.MetronomeMark((1, 4), 60)
-    abjad.attach(mark, leaves[0], scope=abjad.Staff)
+    abjad.attach(mark, leaves[0], context='Staff')
 
     assert format(target) == abjad.String.normalize(
         r'''
@@ -60,7 +60,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_03():
     target = abjad.Score([abjad.Staff([abjad.Note(0, 1)])])
     leaves = abjad.select(target).leaves()
     mark = abjad.MetronomeMark((1, 4), (59, 63))
-    abjad.attach(mark, leaves[0], scope=abjad.Staff)
+    abjad.attach(mark, leaves[0], context='Staff')
 
     assert format(target) == abjad.String.normalize(
         r'''
@@ -91,7 +91,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_04():
         textual_indication="Like a majestic swan, alive with youth and vigour!",
         )
     leaves = abjad.select(target).leaves()
-    abjad.attach(mark, leaves[0], scope=abjad.Staff)
+    abjad.attach(mark, leaves[0], context='Staff')
 
     assert format(target) == abjad.String.normalize(
         r'''
@@ -122,7 +122,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_05():
         textual_indication="Faster than a thousand suns",
         )
     leaves = abjad.select(target).leaves()
-    abjad.attach(mark, leaves[0], scope=abjad.Staff)
+    abjad.attach(mark, leaves[0], context='Staff')
 
     assert format(target) == abjad.String.normalize(
         r'''

@@ -17,10 +17,10 @@ class SegmentMaker(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        ):
+    def __init__(self):
         self._lilypond_file = None
+        self._metadata = None
+        self._previous_metadata = None
 
     ### SPECIAL METHODS ###
 
@@ -43,8 +43,18 @@ class SegmentMaker(AbjadObject):
 
         Returns LilyPond file.
         '''
-        lilypond_file, metadata = self(**kwargs)
+        lilypond_file = self(**kwargs)
         return lilypond_file
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def metadata(self):
+        r'''Gets segment metadata after run.
+
+        Returns typed ordered dictionary or none.
+        '''
+        return self._metadata
 
     ### PUBLIC METHODS ###
 
@@ -66,4 +76,4 @@ class SegmentMaker(AbjadObject):
         lilypond_file = self._make_lilypond_file(midi=midi)
         assert isinstance(lilypond_file, abjad.LilyPondFile)
         self._lilypond_file = lilypond_file
-        return self._lilypond_file, self._metadata
+        return self._lilypond_file

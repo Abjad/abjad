@@ -8,7 +8,7 @@ import traceback
 if __name__ == '__main__':
 
     try:
-        from definition import segment_maker
+        from definition import maker
     except ImportError:
         traceback.print_exc()
         sys.exit(1)
@@ -27,12 +27,11 @@ if __name__ == '__main__':
 
     try:
         with abjad.Timer() as timer:
-            result = segment_maker.run(
+            lilypond_file = maker.run(
                 metadata=metadata,
                 midi=True,
                 previous_metadata=previous_metadata,
                 )
-        lilypond_file, metadata = result
         count = int(timer.elapsed_time)
         counter = abjad.String('second').pluralize(count)
         message = f'Abjad runtime {{count}} {{counter}} ...'
@@ -43,7 +42,7 @@ if __name__ == '__main__':
 
     try:
         segment = ide.Path(__file__).parent
-        segment._write_metadata_py(metadata)
+        segment.write_metadata_py(maker.metadata)
     except:
         traceback.print_exc()
         sys.exit(1)

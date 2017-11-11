@@ -28,7 +28,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             >>> abjad.f(lilypond_file[abjad.Staff])
             \new RhythmicStaff {
-                {
+                { % measure
                     \time 4/8
                     {
                         c'8 [
@@ -36,22 +36,22 @@ class EvenRunRhythmMaker(RhythmMaker):
                         c'8
                         c'8 ]
                     }
-                }
-                {
+                } % measure
+                { % measure
                     \time 3/4
                     {
                         c'4
                         c'4
                         c'4
                     }
-                }
-                {
+                } % measure
+                { % measure
                     \time 2/4
                     {
                         c'4
                         c'4
                     }
-                }
+                } % measure
             }
 
     '''
@@ -218,7 +218,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 4/8
                         {
                             c'8 [
@@ -226,8 +226,8 @@ class EvenRunRhythmMaker(RhythmMaker):
                             c'8
                             c'8 ]
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/4
                         {
                             c'8 [
@@ -237,8 +237,8 @@ class EvenRunRhythmMaker(RhythmMaker):
                             c'8
                             c'8 ]
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 2/4
                         {
                             c'8 [
@@ -246,7 +246,7 @@ class EvenRunRhythmMaker(RhythmMaker):
                             c'8
                             c'8 ]
                         }
-                    }
+                    } % measure
                 }
 
         Returns duration spelling specifier or none.
@@ -278,7 +278,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 4/8
                         {
                             c'8 [
@@ -286,22 +286,22 @@ class EvenRunRhythmMaker(RhythmMaker):
                             c'8
                             c'8 ]
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/4
                         {
                             c'4
                             c'4
                             c'4
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 2/4
                         {
                             c'4
                             c'4
                         }
-                    }
+                    } % measure
                 }
 
             (``d`` equals the denominator of each input division.)
@@ -330,7 +330,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 4/8
                         {
                             c'16 [
@@ -342,8 +342,8 @@ class EvenRunRhythmMaker(RhythmMaker):
                             c'16
                             c'16 ]
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/4
                         {
                             c'8 [
@@ -353,8 +353,8 @@ class EvenRunRhythmMaker(RhythmMaker):
                             c'8
                             c'8 ]
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 2/4
                         {
                             c'8 [
@@ -362,7 +362,7 @@ class EvenRunRhythmMaker(RhythmMaker):
                             c'8
                             c'8 ]
                         }
-                    }
+                    } % measure
                 }
 
             (``d`` equals the denominator of each input division.)
@@ -391,7 +391,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 4/8
                         {
                             c'32 [
@@ -411,8 +411,8 @@ class EvenRunRhythmMaker(RhythmMaker):
                             c'32
                             c'32 ]
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/4
                         {
                             c'16 [
@@ -428,8 +428,8 @@ class EvenRunRhythmMaker(RhythmMaker):
                             c'16
                             c'16 ]
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 2/4
                         {
                             c'16 [
@@ -441,7 +441,7 @@ class EvenRunRhythmMaker(RhythmMaker):
                             c'16
                             c'16 ]
                         }
-                    }
+                    } % measure
                 }
 
             (``d`` equals the denominator of each input division.)
@@ -484,7 +484,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 5/8
                         {
                             c'8 [
@@ -493,16 +493,16 @@ class EvenRunRhythmMaker(RhythmMaker):
                             c'8
                             c'8 ]
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         {
                             c'8 [
                             c'8
                             c'8 ]
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 4/8
                         {
                             c'8 [
@@ -510,14 +510,14 @@ class EvenRunRhythmMaker(RhythmMaker):
                             c'8
                             c'8 ]
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 2/8
                         {
                             c'8 [
                             c'8 ]
                         }
-                    }
+                    } % measure
                 }
 
         ..  container:: example
@@ -543,7 +543,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 5/8
                         {
                             c'8 [
@@ -552,16 +552,16 @@ class EvenRunRhythmMaker(RhythmMaker):
                             c'8
                             c'8 ~ ]
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         {
                             c'8 [
                             c'8
                             c'8 ~ ]
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 4/8
                         {
                             c'8 [
@@ -569,14 +569,14 @@ class EvenRunRhythmMaker(RhythmMaker):
                             c'8
                             c'8 ~ ]
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 2/8
                         {
                             c'8 [
                             c'8 ]
                         }
-                    }
+                    } % measure
                 }
 
         ..  container:: example
@@ -603,7 +603,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 5/8
                         {
                             c'8 [
@@ -612,16 +612,16 @@ class EvenRunRhythmMaker(RhythmMaker):
                             c'8
                             c'8 ~ ]
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         {
                             c'8 [
                             c'8
                             c'8 ]
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 4/8
                         {
                             c'8 [
@@ -629,14 +629,14 @@ class EvenRunRhythmMaker(RhythmMaker):
                             c'8
                             c'8 ~ ]
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 2/8
                         {
                             c'8 [
                             c'8 ]
                         }
-                    }
+                    } % measure
                 }
 
         Returns true or false.

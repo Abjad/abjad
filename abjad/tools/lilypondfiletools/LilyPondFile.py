@@ -411,7 +411,7 @@ class LilyPondFile(AbjadObject):
         return '\n\n'.join(self._get_format_pieces())
 
     @staticmethod
-    def _make_time_signature_context_block(
+    def _make_global_context_block(
         font_size=3,
         minimum_distance=10,
         padding=4,
@@ -717,14 +717,14 @@ class LilyPondFile(AbjadObject):
         ..  container:: example
 
             >>> score = abjad.Score()
-            >>> time_signature_context = abjad.Context(
+            >>> global_context = abjad.Context(
             ...     context_name='GlobalContext',
             ...     )
             >>> durations = [(2, 8), (3, 8), (4, 8)]
             >>> maker = abjad.MeasureMaker()
             >>> measures = maker(durations)
-            >>> time_signature_context.extend(measures)
-            >>> score.append(time_signature_context)
+            >>> global_context.extend(measures)
+            >>> score.append(global_context)
             >>> staff = abjad.Staff()
             >>> staff.append(abjad.Measure((2, 8), "c'8 ( d'8 )"))
             >>> staff.append(abjad.Measure((3, 8), "e'8 ( f'8  g'8 )"))
@@ -802,37 +802,37 @@ class LilyPondFile(AbjadObject):
                 \score {
                     \new Score <<
                         \new GlobalContext {
-                            {
+                            { % measure
                                 \time 2/8
                                 s1 * 1/4
-                            }
-                            {
+                            } % measure
+                            { % measure
                                 \time 3/8
                                 s1 * 3/8
-                            }
-                            {
+                            } % measure
+                            { % measure
                                 \time 4/8
                                 s1 * 1/2
-                            }
+                            } % measure
                         }
                         \new Staff {
-                            {
+                            { % measure
                                 \time 2/8
                                 c'8 (
                                 d'8 )
-                            }
-                            {
+                            } % measure
+                            { % measure
                                 \time 3/8
                                 e'8 (
                                 f'8
                                 g'8 )
-                            }
-                            {
+                            } % measure
+                            { % measure
                                 \time 4/8
                                 fs'4 (
                                 e'8
                                 d'8 )
-                            }
+                            } % measure
                         }
                     >>
                 }
@@ -886,7 +886,7 @@ class LilyPondFile(AbjadObject):
         lilypond_file.layout_block.ragged_right = True
         command = abjad.LilyPondCommand('accidentalStyle forget')
         lilypond_file.layout_block.items.append(command)
-        block = LilyPondFile._make_time_signature_context_block(
+        block = LilyPondFile._make_global_context_block(
             font_size=1,
             padding=6,
             )
@@ -1047,21 +1047,21 @@ class LilyPondFile(AbjadObject):
                 >>> abjad.f(score)
                 \new Score <<
                     \new GlobalContext {
-                        {
+                        { % measure
                             \time 3/4
                             s1 * 3/4
-                        }
-                        {
+                        } % measure
+                        { % measure
                             \time 4/8
                             s1 * 1/2
-                        }
-                        {
+                        } % measure
+                        { % measure
                             \time 1/4
                             s1 * 1/4
-                        }
+                        } % measure
                     }
                     \new RhythmicStaff {
-                        {
+                        { % measure
                             \time 3/4
                             c'8 [
                             c'8
@@ -1069,8 +1069,8 @@ class LilyPondFile(AbjadObject):
                             c'8
                             c'8
                             c'8 ]
-                        }
-                        {
+                        } % measure
+                        { % measure
                             \time 4/8
                             c'16 [
                             c'16
@@ -1080,12 +1080,12 @@ class LilyPondFile(AbjadObject):
                             c'16
                             c'16
                             c'16 ]
-                        }
-                        {
+                        } % measure
+                        { % measure
                             \time 1/4
                             c'8 [
                             c'8 ]
-                        }
+                        } % measure
                     }
                 >>
 
@@ -1115,21 +1115,21 @@ class LilyPondFile(AbjadObject):
                 >>> abjad.f(score)
                 \new Score <<
                     \new GlobalContext {
-                        {
+                        { % measure
                             \time 6/8
                             s1 * 3/4
-                        }
-                        {
+                        } % measure
+                        { % measure
                             \time 4/8
                             s1 * 1/2
-                        }
-                        {
+                        } % measure
+                        { % measure
                             \time 2/8
                             s1 * 1/4
-                        }
+                        } % measure
                     }
                     \new RhythmicStaff {
-                        {
+                        { % measure
                             \time 6/8
                             c'8 [
                             c'8
@@ -1137,8 +1137,8 @@ class LilyPondFile(AbjadObject):
                             c'8
                             c'8
                             c'8 ]
-                        }
-                        {
+                        } % measure
+                        { % measure
                             \time 4/8
                             c'16 [
                             c'16
@@ -1148,12 +1148,12 @@ class LilyPondFile(AbjadObject):
                             c'16
                             c'16
                             c'16 ]
-                        }
-                        {
+                        } % measure
+                        { % measure
                             \time 2/8
                             c'8 [
                             c'8 ]
-                        }
+                        } % measure
                     }
                 >>
 
@@ -1183,21 +1183,21 @@ class LilyPondFile(AbjadObject):
                 >>> abjad.f(lilypond_file[abjad.Score])
                 \new Score <<
                     \new GlobalContext {
-                        {
+                        { % measure
                             \time 3/4
                             s1 * 3/4
-                        }
-                        {
+                        } % measure
+                        { % measure
                             \time 4/8
                             s1 * 1/2
-                        }
-                        {
+                        } % measure
+                        { % measure
                             \time 1/4
                             s1 * 1/4
-                        }
+                        } % measure
                     }
                     \new Staff {
-                        {
+                        { % measure
                             \time 3/4
                             c'8 [
                             c'8
@@ -1205,8 +1205,8 @@ class LilyPondFile(AbjadObject):
                             c'8
                             c'8
                             c'8 ]
-                        }
-                        {
+                        } % measure
+                        { % measure
                             \time 4/8
                             c'16 [
                             c'16
@@ -1216,12 +1216,12 @@ class LilyPondFile(AbjadObject):
                             c'16
                             c'16
                             c'16 ]
-                        }
-                        {
+                        } % measure
+                        { % measure
                             \time 1/4
                             c'8 [
                             c'8 ]
-                        }
+                        } % measure
                     }
                 >>
 
@@ -1271,18 +1271,18 @@ class LilyPondFile(AbjadObject):
                 >>> abjad.f(lilypond_file[abjad.Score])
                 \new Score <<
                     \new GlobalContext {
-                        {
+                        { % measure
                             \time 3/4
                             s1 * 3/4
-                        }
-                        {
+                        } % measure
+                        { % measure
                             \time 4/8
                             s1 * 1/2
-                        }
-                        {
+                        } % measure
+                        { % measure
                             \time 1/4
                             s1 * 1/4
-                        }
+                        } % measure
                     }
                     \new Staff <<
                         \context Voice = "Voice 1" {

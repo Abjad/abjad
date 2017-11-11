@@ -213,35 +213,35 @@ class TupletSpecifier(AbjadValueObject):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 2/16
                         \times 4/5 {
                             c'32 [
                             c'8 ]
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 4/16
                         \times 4/5 {
                             c'16
                             c'4
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 6/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
                             c'8
                             c'2
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 8/16
                         \times 4/5 {
                             c'8
                             c'2
                         }
-                    }
+                    } % measure
                 }
 
         ..  container:: example
@@ -272,35 +272,35 @@ class TupletSpecifier(AbjadValueObject):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 2/16
                         \times 4/5 {
                             c'32 [
                             c'8 ]
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 4/16
                         \times 4/5 {
                             c'16
                             c'4
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 6/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 6/10 {
                             c'8
                             c'2
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 8/16
                         \times 8/10 {
                             c'8
                             c'2
                         }
-                    }
+                    } % measure
                 }
 
         ..  container:: example
@@ -329,35 +329,35 @@ class TupletSpecifier(AbjadValueObject):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 2/16
                         \times 4/5 {
                             c'32 [
                             c'8 ]
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 4/16
                         \times 4/5 {
                             c'16
                             c'4
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 6/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 6/10 {
                             c'8
                             c'2
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 8/16
                         \times 8/10 {
                             c'8
                             c'2
                         }
-                    }
+                    } % measure
                 }
 
         ..  container:: example
@@ -385,35 +385,35 @@ class TupletSpecifier(AbjadValueObject):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 2/16
                         \times 4/5 {
                             c'32 [
                             c'8 ]
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 4/16
                         \times 8/10 {
                             c'16
                             c'4
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 6/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 12/20 {
                             c'8
                             c'2
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 8/16
                         \times 16/20 {
                             c'8
                             c'2
                         }
-                    }
+                    } % measure
                 }
 
         ..  container:: example
@@ -441,35 +441,35 @@ class TupletSpecifier(AbjadValueObject):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 2/16
                         \times 8/10 {
                             c'32 [
                             c'8 ]
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 4/16
                         \times 16/20 {
                             c'16
                             c'4
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 6/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 24/40 {
                             c'8
                             c'2
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 8/16
                         \times 32/40 {
                             c'8
                             c'2
                         }
-                    }
+                    } % measure
                 }
 
         ..  container:: example
@@ -499,35 +499,35 @@ class TupletSpecifier(AbjadValueObject):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 2/16
                         \times 8/10 {
                             c'32 [
                             c'8 ]
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 4/16
                         \times 8/10 {
                             c'16
                             c'4
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 6/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
                             c'8
                             c'2
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 8/16
                         \times 8/10 {
                             c'8
                             c'2
                         }
-                    }
+                    } % measure
                 }
 
         ..  container:: example
@@ -555,35 +555,35 @@ class TupletSpecifier(AbjadValueObject):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 2/16
                         \times 12/15 {
                             c'32 [
                             c'8 ]
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 4/16
                         \times 12/15 {
                             c'16
                             c'4
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 6/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 12/20 {
                             c'8
                             c'2
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 8/16
                         \times 12/15 {
                             c'8
                             c'2
                         }
-                    }
+                    } % measure
                 }
 
         ..  container:: example
@@ -611,35 +611,35 @@ class TupletSpecifier(AbjadValueObject):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 2/16
                         \times 4/5 {
                             c'32 [
                             c'8 ]
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 4/16
                         \times 4/5 {
                             c'16
                             c'4
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 6/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
                             c'8
                             c'2
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 8/16
                         \times 4/5 {
                             c'8
                             c'2
                         }
-                    }
+                    } % measure
                 }
 
         Defaults to none.

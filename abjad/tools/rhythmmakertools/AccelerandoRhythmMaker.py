@@ -40,7 +40,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             >>> abjad.f(lilypond_file[abjad.Staff])
             \new RhythmicStaff {
-                {
+                { % measure
                     \time 5/8
                     \override TupletNumber.text = \markup {
                         \scale
@@ -85,8 +85,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         c'16 * 25/32 ]
                     }
                     \revert TupletNumber.text
-                }
-                {
+                } % measure
+                { % measure
                     \time 3/8
                     \override TupletNumber.text = \markup {
                         \scale
@@ -127,8 +127,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         c'16 * 47/64 ]
                     }
                     \revert TupletNumber.text
-                }
-                {
+                } % measure
+                { % measure
                     \time 5/8
                     \override TupletNumber.text = \markup {
                         \scale
@@ -173,8 +173,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         c'16 * 25/32 ]
                     }
                     \revert TupletNumber.text
-                }
-                {
+                } % measure
+                { % measure
                     \time 3/8
                     \override TupletNumber.text = \markup {
                         \scale
@@ -215,7 +215,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         c'16 * 47/64 ]
                     }
                     \revert TupletNumber.text
-                }
+                } % measure
             }
 
     ..  container:: example
@@ -248,7 +248,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             >>> abjad.f(lilypond_file[abjad.Staff])
             \new RhythmicStaff {
-                {
+                { % measure
                     \time 5/8
                     \override TupletNumber.text = \markup {
                         \scale
@@ -294,8 +294,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         c'16 * 113/64 ]
                     }
                     \revert TupletNumber.text
-                }
-                {
+                } % measure
+                { % measure
                     \time 3/8
                     \override TupletNumber.text = \markup {
                         \scale
@@ -337,8 +337,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         c'16 * 25/16 ]
                     }
                     \revert TupletNumber.text
-                }
-                {
+                } % measure
+                { % measure
                     \time 5/8
                     \override TupletNumber.text = \markup {
                         \scale
@@ -384,8 +384,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         c'16 * 113/64 ]
                     }
                     \revert TupletNumber.text
-                }
-                {
+                } % measure
+                { % measure
                     \time 3/8
                     \override TupletNumber.text = \markup {
                         \scale
@@ -427,7 +427,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         c'16 * 25/16 ]
                     }
                     \revert TupletNumber.text
-                }
+                } % measure
             }
 
     Set `written_duration` to `1/16` or less for multiple beams.
@@ -854,7 +854,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 5/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -899,8 +899,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/32 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -941,8 +941,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 47/64 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 5/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -987,8 +987,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/32 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -1029,7 +1029,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 47/64 ]
                         }
                         \revert TupletNumber.text
-                    }
+                    } % measure
                 }
 
         ..  container:: example
@@ -1063,7 +1063,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 5/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -1123,8 +1123,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/32
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -1174,8 +1174,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 47/64
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 5/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -1235,8 +1235,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/32
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -1286,7 +1286,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 47/64 ]
                         }
                         \revert TupletNumber.text
-                    }
+                    } % measure
                 }
 
             It is important to leave feathering turned off here
@@ -1323,7 +1323,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 5/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -1367,8 +1367,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/32
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -1408,8 +1408,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 47/64
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 5/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -1453,8 +1453,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/32
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -1494,7 +1494,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 47/64
                         }
                         \revert TupletNumber.text
-                    }
+                    } % measure
                 }
 
         Returns beam specifier.
@@ -1537,7 +1537,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 5/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -1582,8 +1582,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/32 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -1624,8 +1624,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 47/64 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 5/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -1670,8 +1670,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/32 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -1712,7 +1712,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 47/64 ]
                         }
                         \revert TupletNumber.text
-                    }
+                    } % measure
                 }
 
         ..  container:: example
@@ -1750,7 +1750,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 5/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -1795,12 +1795,12 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/32 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         r4.
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 5/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -1845,11 +1845,11 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/32 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         r4.
-                    }
+                    } % measure
                 }
 
         '''
@@ -1890,7 +1890,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 5/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -1935,8 +1935,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/32 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -1977,8 +1977,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 47/64 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 5/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -2023,8 +2023,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/32 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -2065,7 +2065,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 47/64 ]
                         }
                         \revert TupletNumber.text
-                    }
+                    } % measure
                 }
 
         ..  container:: example
@@ -2105,7 +2105,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 5/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -2150,8 +2150,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/32 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -2193,8 +2193,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/16 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 5/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -2239,8 +2239,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/32 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -2282,7 +2282,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/16 ]
                         }
                         \revert TupletNumber.text
-                    }
+                    } % measure
                 }
 
         ..  container:: example
@@ -2316,7 +2316,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 5/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -2361,8 +2361,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/32 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -2403,13 +2403,13 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 47/64 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 1/8
                         {
                             c'8
                         }
-                    }
+                    } % measure
                 }
 
         Defaults to none.
@@ -2468,7 +2468,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 5/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -2514,8 +2514,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/32 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -2559,8 +2559,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/16 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 5/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -2607,8 +2607,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/32 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -2652,7 +2652,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             r16 * 25/16 ]
                         }
                         \revert TupletNumber.text
-                    }
+                    } % measure
                 }
 
         ..  container:: example
@@ -2698,7 +2698,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 5/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -2745,8 +2745,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/32 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -2789,8 +2789,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/16 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 5/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -2836,8 +2836,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/32 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -2881,7 +2881,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/16 ]
                         }
                         \revert TupletNumber.text
-                    }
+                    } % measure
                 }
 
         Defaults to none.
@@ -2930,7 +2930,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 5/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -2975,8 +2975,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/32 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -3017,8 +3017,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 47/64 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 5/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -3063,8 +3063,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/32 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -3105,7 +3105,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 47/64 ]
                         }
                         \revert TupletNumber.text
-                    }
+                    } % measure
                 }
 
         ..  container:: example
@@ -3141,7 +3141,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 5/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -3186,8 +3186,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/32 ~ ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -3228,8 +3228,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 47/64 ~ ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 5/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -3274,8 +3274,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/32 ~ ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -3316,7 +3316,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 47/64 ]
                         }
                         \revert TupletNumber.text
-                    }
+                    } % measure
                 }
 
         ..  container:: example
@@ -3356,7 +3356,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 5/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -3401,8 +3401,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/32 ~ ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -3443,8 +3443,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 47/64 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 5/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -3489,8 +3489,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/32 ~ ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -3531,7 +3531,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 47/64 ]
                         }
                         \revert TupletNumber.text
-                    }
+                    } % measure
                 }
 
         Returns tie specifier.
@@ -3576,7 +3576,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 5/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -3621,8 +3621,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/32 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -3663,8 +3663,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 47/64 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 5/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -3709,8 +3709,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/32 ]
                         }
                         \revert TupletNumber.text
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         \override TupletNumber.text = \markup {
                             \scale
@@ -3751,7 +3751,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 47/64 ]
                         }
                         \revert TupletNumber.text
-                    }
+                    } % measure
                 }
 
         ..  container:: example
@@ -3787,7 +3787,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
-                    {
+                    { % measure
                         \time 5/8
                         {
                             \once \override Beam.grow-direction = #right
@@ -3800,8 +3800,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             c'16 * 25/32 ]
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         {
                             \once \override Beam.grow-direction = #right
@@ -3811,8 +3811,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             c'16 * 47/64 ]
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 5/8
                         {
                             \once \override Beam.grow-direction = #right
@@ -3825,8 +3825,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             c'16 * 25/32 ]
                         }
-                    }
-                    {
+                    } % measure
+                    { % measure
                         \time 3/8
                         {
                             \once \override Beam.grow-direction = #right
@@ -3836,7 +3836,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             c'16 * 47/64 ]
                         }
-                    }
+                    } % measure
                 }
 
         Returns tuplet spelling specifier or none.

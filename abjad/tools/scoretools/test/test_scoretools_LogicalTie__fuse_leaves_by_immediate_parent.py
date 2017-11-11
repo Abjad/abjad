@@ -16,13 +16,13 @@ def test_scoretools_LogicalTie__fuse_leaves_by_immediate_parent_01():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/8
                 c'4 ~
-            }
-            {
+            } % measure
+            { % measure
                 c'4
-            }
+            } % measure
         }
         '''
         )

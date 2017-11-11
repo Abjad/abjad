@@ -29,7 +29,7 @@ def test_rhythmmakertools_BeamSpecifier_beam_each_division_01():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/16
                 \times 4/7 {
                     c'32 [
@@ -39,8 +39,8 @@ def test_rhythmmakertools_BeamSpecifier_beam_each_division_01():
                     c'16 [
                     c'32 ~ ]
                 }
-            }
-            {
+            } % measure
+            { % measure
                 \time 5/16
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 5/7 {
@@ -57,7 +57,7 @@ def test_rhythmmakertools_BeamSpecifier_beam_each_division_01():
                     r32
                     c'32
                 }
-            }
+            } % measure
         }
         '''
         )

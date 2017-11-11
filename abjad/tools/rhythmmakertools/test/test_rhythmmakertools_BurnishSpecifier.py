@@ -33,7 +33,7 @@ def test_rhythmmakertools_BurnishSpecifier_01():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 5/16
                 {
                     r32
@@ -43,8 +43,8 @@ def test_rhythmmakertools_BurnishSpecifier_01():
                     c'32 ]
                     r32
                 }
-            }
-            {
+            } % measure
+            { % measure
                 \time 6/16
                 {
                     r16
@@ -54,7 +54,7 @@ def test_rhythmmakertools_BurnishSpecifier_01():
                     c'16 ]
                     r16
                 }
-            }
+            } % measure
         }
         '''
         )
@@ -92,7 +92,7 @@ def test_rhythmmakertools_BurnishSpecifier_02():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 5/16
                 {
                     c'32 [
@@ -102,8 +102,8 @@ def test_rhythmmakertools_BurnishSpecifier_02():
                     r32
                     c'32
                 }
-            }
-            {
+            } % measure
+            { % measure
                 \time 6/16
                 {
                     c'16 [
@@ -113,7 +113,7 @@ def test_rhythmmakertools_BurnishSpecifier_02():
                     r16
                     c'16
                 }
-            }
+            } % measure
         }
         '''
         )
@@ -151,7 +151,7 @@ def test_rhythmmakertools_BurnishSpecifier_03():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 5/16
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 10/13 {
@@ -164,8 +164,8 @@ def test_rhythmmakertools_BurnishSpecifier_03():
                     r16
                     c'32 ~
                 }
-            }
-            {
+            } % measure
+            { % measure
                 \time 6/16
                 \times 4/5 {
                     c'16. [
@@ -177,7 +177,7 @@ def test_rhythmmakertools_BurnishSpecifier_03():
                     r32
                     c'16
                 }
-            }
+            } % measure
         }
         '''
         )
@@ -214,7 +214,7 @@ def test_rhythmmakertools_BurnishSpecifier_04():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 5/16
                 {
                     r32
@@ -224,8 +224,8 @@ def test_rhythmmakertools_BurnishSpecifier_04():
                     c'32 ]
                     r32
                 }
-            }
-            {
+            } % measure
+            { % measure
                 \time 6/16
                 \times 4/5 {
                     r16
@@ -236,7 +236,7 @@ def test_rhythmmakertools_BurnishSpecifier_04():
                     c'8 ]
                     r32
                 }
-            }
+            } % measure
         }
         '''
         )
@@ -274,7 +274,7 @@ def test_rhythmmakertools_BurnishSpecifier_05():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 5/16
                 {
                     r32
@@ -284,8 +284,8 @@ def test_rhythmmakertools_BurnishSpecifier_05():
                     c'32 ]
                     r32
                 }
-            }
-            {
+            } % measure
+            { % measure
                 \time 6/16
                 \times 4/7 {
                     r16
@@ -298,7 +298,7 @@ def test_rhythmmakertools_BurnishSpecifier_05():
                     c'8 ]
                     r32
                 }
-            }
+            } % measure
         }
         '''
         )

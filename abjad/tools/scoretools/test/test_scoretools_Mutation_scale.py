@@ -166,15 +166,15 @@ def test_scoretools_Mutation_scale_06():
     assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
-            {
+            { % measure
                 \time 2/8
                 c'8
                 d'8
-            }
-            {
+            } % measure
+            { % measure
                 e'8
                 f'8
-            }
+            } % measure
         }
         '''
         )
@@ -184,15 +184,15 @@ def test_scoretools_Mutation_scale_06():
     assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
-            {
+            { % measure
                 \time 2/4
                 c'4
                 d'4
-            }
-            {
+            } % measure
+            { % measure
                 e'4
                 f'4
-            }
+            } % measure
         }
         '''
         )
@@ -211,15 +211,15 @@ def test_scoretools_Mutation_scale_07():
     assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
-            {
+            { % measure
                 \time 2/8
                 c'8
                 d'8
-            }
-            {
+            } % measure
+            { % measure
                 e'8
                 f'8
-            }
+            } % measure
         }
         '''
         )
@@ -229,19 +229,19 @@ def test_scoretools_Mutation_scale_07():
     assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
-            {
+            { % measure
                 \time 20/64
                 c'8 ~
                 c'32
                 d'8 ~
                 d'32
-            }
-            {
+            } % measure
+            { % measure
                 e'8 ~
                 e'32
                 f'8 ~
                 f'32
-            }
+            } % measure
         }
         '''
         )

@@ -38,7 +38,7 @@ class BassClarinet(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=('treble', 'bass'),
-        default_scope=None,
+        context=None,
         middle_c_sounding_pitch='Bb2',
         pitch_range='[Bb1, G5]',
         ):
@@ -49,7 +49,7 @@ class BassClarinet(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
-            default_scope=default_scope,
+            context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )

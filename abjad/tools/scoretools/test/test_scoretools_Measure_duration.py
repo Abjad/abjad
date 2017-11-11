@@ -10,12 +10,12 @@ def test_scoretools_Measure_duration_01():
 
     assert format(measure) == abjad.String.normalize(
         r'''
-        {
+        { % measure
             \time 3/8
             c'8
             d'8
             e'8
-        }
+        } % measure
         '''
         )
 
@@ -33,14 +33,14 @@ def test_scoretools_Measure_duration_02():
 
     assert format(measure) == abjad.String.normalize(
         r'''
-        {
+        { % measure
             \time 3/10
             \scaleDurations #'(4 . 5) {
                 c'8
                 d'8
                 e'8
             }
-        }
+        } % measure
         '''
         )
 

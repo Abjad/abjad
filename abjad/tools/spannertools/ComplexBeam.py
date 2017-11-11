@@ -403,12 +403,12 @@ class ComplexBeam(Beam):
             ..  docs::
 
                 >>> abjad.f(measure)
-                {
+                { % measure
                     \time 1/16
                     \set stemLeftBeamCount = #2
                     \set stemRightBeamCount = #0
                     c'16 [ ]
-                }
+                } % measure
 
         ..  container:: example
 
@@ -422,12 +422,12 @@ class ComplexBeam(Beam):
             ..  docs::
 
                 >>> abjad.f(measure)
-                {
+                { % measure
                     \time 1/16
                     \set stemLeftBeamCount = #0
                     \set stemRightBeamCount = #2
                     c'16 [ ]
-                }
+                } % measure
 
         ..  container:: example
 
@@ -441,12 +441,12 @@ class ComplexBeam(Beam):
             ..  docs::
 
                 >>> abjad.f(measure)
-                {
+                { % measure
                     \time 1/16
                     \set stemLeftBeamCount = #2
                     \set stemRightBeamCount = #2
                     c'16 [ ]
-                }
+                } % measure
 
         ..  container:: example
 
@@ -460,10 +460,10 @@ class ComplexBeam(Beam):
             ..  docs::
 
                 >>> abjad.f(measure)
-                {
+                { % measure
                     \time 1/16
                     c'16
-                }
+                } % measure
 
         Set to left, right, true or false.
 

@@ -4,7 +4,7 @@ import shutil
 
 
 class Path(pathlib.PosixPath):
-    r'''Packge path.
+    r'''Path (of an Abjad score package).
 
     ..  container:: example
 
@@ -25,6 +25,8 @@ class Path(pathlib.PosixPath):
     '''
 
     ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Segment-makers'
 
     _known_directories = (
         '_segments',
@@ -291,27 +293,6 @@ class Path(pathlib.PosixPath):
         paths = [_[-1] for _ in pairs]
         return paths
 
-    def _write_metadata_py(self, metadata):
-        import abjad
-        metadata_py_path = self('__metadata__.py')
-        lines = []
-        lines.append('import abjad')
-        lines.append('')
-        lines.append('')
-        metadata = abjad.TypedOrderedDict(metadata)
-        items = list(metadata.items())
-        items.sort()
-        metadata = abjad.TypedOrderedDict(items)
-        if metadata:
-            line = format(metadata, 'storage')
-            line = 'metadata = {}'.format(line)
-            lines.append(line)
-        else:
-            lines.append('metadata = abjad.TypedOrderedDict()')
-        lines.append('')
-        text = '\n'.join(lines)
-        metadata_py_path.write_text(text)
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -561,7 +542,7 @@ class Path(pathlib.PosixPath):
         assert ' ' not in name, repr(name)
         metadata = self._get_metadata()
         metadata[name] = value
-        self._write_metadata_py(metadata)
+        self.write_metadata_py(metadata)
 
     def coerce(self, name, suffix=None):
         r'''Coerces asset `name`.
@@ -1609,7 +1590,7 @@ class Path(pathlib.PosixPath):
             metadata.pop(name)
         except KeyError:
             pass
-        self._write_metadata_py(metadata)
+        self.write_metadata_py(metadata)
 
     def segment_number_to_path(self, number):
         r'''Changes segment number to path.
@@ -1737,3 +1718,28 @@ class Path(pathlib.PosixPath):
         for part in self.parts[len(self.scores.parts) + 2:]:
             path /= part
         return path
+
+    def write_metadata_py(self, metadata):
+        r'''Writes `metadata` to `__metadata__.py` in current directory.
+
+        Returns none.
+        '''
+        import abjad
+        metadata_py_path = self('__metadata__.py')
+        lines = []
+        lines.append('import abjad')
+        lines.append('')
+        lines.append('')
+        metadata = abjad.TypedOrderedDict(metadata)
+        items = list(metadata.items())
+        items.sort()
+        metadata = abjad.TypedOrderedDict(items)
+        if metadata:
+            line = format(metadata, 'storage')
+            line = 'metadata = {}'.format(line)
+            lines.append(line)
+        else:
+            lines.append('metadata = abjad.TypedOrderedDict()')
+        lines.append('')
+        text = '\n'.join(lines)
+        metadata_py_path.write_text(text)

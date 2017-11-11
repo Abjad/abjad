@@ -44,7 +44,7 @@ class Cello(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=('bass', 'tenor', 'treble'),
-        default_scope=None,
+        context=None,
         default_tuning=('C2', 'G2', 'D3', 'A3'),
         middle_c_sounding_pitch=None,
         pitch_range='[C2, G5]',
@@ -57,7 +57,7 @@ class Cello(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
-            default_scope=default_scope,
+            context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )

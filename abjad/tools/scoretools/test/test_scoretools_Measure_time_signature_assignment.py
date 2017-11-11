@@ -13,11 +13,11 @@ def test_scoretools_Measure_time_signature_assignment_01():
 
     assert format(measure) == abjad.String.normalize(
         r'''
-        {
+        { % measure
             \time 3/8
             c'8
             d'8
             e'8
-        }
+        } % measure
         '''
         )

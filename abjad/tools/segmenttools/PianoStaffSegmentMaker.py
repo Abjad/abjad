@@ -70,26 +70,26 @@ class PianoStaffSegmentMaker(SegmentMaker):
 
     ### PRIVATE METHODS ###
 
-    def _add_time_signature_context(self, score):
+    def _add_global_context(self, score):
         import abjad
         time_signatures = self.time_signatures
         if not time_signatures:
             return
-        time_signature_context = abjad.Context(
+        global_context = abjad.Context(
             context_name='GlobalContext',
             name='Global Context',
             )
         maker = abjad.MeasureMaker()
         measures = maker(time_signatures)
-        time_signature_context.extend(measures)
-        score.insert(0, time_signature_context)
+        global_context.extend(measures)
+        score.insert(0, global_context)
 
     def _make_lilypond_file(self, midi=None):
         import abjad
         template = abjad.TwoStaffPianoScoreTemplate()
         score = template()
         self._score = score
-        self._add_time_signature_context(score)
+        self._add_global_context(score)
         rh_voice = score['RH Voice']
         lh_voice = score['LH Voice']
         self._populate_rhythms(rh_voice, self.rh_rhythm_maker)

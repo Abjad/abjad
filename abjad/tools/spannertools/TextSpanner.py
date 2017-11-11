@@ -267,7 +267,7 @@ class TextSpanner(Spanner):
                         markup = abjad.Markup.concat([markup, hspace])
                 override_ = abjad.LilyPondGrobOverride(
                     grob_name='TextSpanner',
-                    is_once=True,
+                    once=True,
                     property_path=(
                         'bound-details',
                         'left',

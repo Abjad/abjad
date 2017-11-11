@@ -668,19 +668,19 @@ class Iteration(abctools.AbjadObject):
 
                     >>> abjad.f(staff)
                     \new Staff {
-                        {
+                        { % measure
                             \time 2/8
                             c'8
                             d'8
-                        }
-                        {
+                        } % measure
+                        { % measure
                             e'8
                             f'8
-                        }
-                        {
+                        } % measure
+                        { % measure
                             g'8
                             a'8
-                        }
+                        } % measure
                     }
 
             ..  container:: example
@@ -966,19 +966,19 @@ class Iteration(abctools.AbjadObject):
 
                     >>> abjad.f(staff)
                     \new Staff {
-                        {
+                        { % measure
                             \time 2/8
                             <c' bf'>8
                             <g' a'>8
-                        }
-                        {
+                        } % measure
+                        { % measure
                             af'8
                             r8
-                        }
-                        {
+                        } % measure
+                        { % measure
                             r8
                             gf'8
-                        }
+                        } % measure
                     }
 
             ..  container:: example
@@ -1139,19 +1139,19 @@ class Iteration(abctools.AbjadObject):
 
                     >>> abjad.f(staff)
                     \new Staff {
-                        {
+                        { % measure
                             \time 2/8
                             <c' bf'>8
                             <g' a'>8
-                        }
-                        {
+                        } % measure
+                        { % measure
                             af'8
                             r8
-                        }
-                        {
+                        } % measure
+                        { % measure
                             r8
                             gf'8
-                        }
+                        } % measure
                     }
 
             ..  container:: example
@@ -1180,19 +1180,19 @@ class Iteration(abctools.AbjadObject):
 
                     >>> abjad.f(staff)
                     \new Staff {
-                        {
+                        { % measure
                             \time 2/8
                             <c' bf'>8
                             <g' a'>8
-                        }
-                        {
+                        } % measure
+                        { % measure
                             af'8
                             r8
-                        }
-                        {
+                        } % measure
+                        { % measure
                             r8
                             gf'8
-                        }
+                        } % measure
                     }
 
             ..  container:: example
@@ -1219,19 +1219,19 @@ class Iteration(abctools.AbjadObject):
 
                     >>> abjad.f(staff)
                     \new Staff {
-                        {
+                        { % measure
                             \time 2/8
                             <c' bf'>8
                             <g' a'>8
-                        }
-                        {
+                        } % measure
+                        { % measure
                             af'8
                             r8
-                        }
-                        {
+                        } % measure
+                        { % measure
                             r8
                             gf'8
-                        }
+                        } % measure
                     }
 
             ..  container:: example

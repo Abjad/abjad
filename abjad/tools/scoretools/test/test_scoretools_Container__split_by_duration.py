@@ -17,15 +17,15 @@ def test_scoretools_Container__split_by_duration_01():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -39,20 +39,20 @@ def test_scoretools_Container__split_by_duration_01():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 1/32
                 c'32 [ (
-            }
-            {
+            } % measure
+            { % measure
                 \time 7/32
                 c'16.
                 d'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 \time 2/8
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -78,15 +78,15 @@ def test_scoretools_Container__split_by_duration_02():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -100,10 +100,10 @@ def test_scoretools_Container__split_by_duration_02():
     assert format(halves[0][0]) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 1/32
                 c'32 [ (
-            }
+            } % measure
         }
         '''
         ), format(halves[0][0])
@@ -111,16 +111,16 @@ def test_scoretools_Container__split_by_duration_02():
     assert format(halves[1][0]) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 7/32
                 c'16.
                 d'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 \time 2/8
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(halves[1][0])
@@ -148,15 +148,15 @@ def test_scoretools_Container__split_by_duration_03():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -170,20 +170,20 @@ def test_scoretools_Container__split_by_duration_03():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 1/32
                 c'32 ~ [ (
-            }
-            {
+            } % measure
+            { % measure
                 \time 7/32
                 c'16.
                 d'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 \time 2/8
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -211,15 +211,15 @@ def test_scoretools_Container__split_by_duration_04():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -235,25 +235,25 @@ def test_scoretools_Container__split_by_duration_04():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 4/20
                 \scaleDurations #'(4 . 5) {
                     c'8 ~ [ (
                     c'32
                     d'16. ~
                 }
-            }
-            {
+            } % measure
+            { % measure
                 \time 1/20
                 \scaleDurations #'(4 . 5) {
                     d'16 ]
                 }
-            }
-            {
+            } % measure
+            { % measure
                 \time 2/8
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -281,15 +281,15 @@ def test_scoretools_Container__split_by_duration_05():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -303,25 +303,25 @@ def test_scoretools_Container__split_by_duration_05():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 4/20
                 \scaleDurations #'(4 . 5) {
                     c'8 ~ [ (
                     c'32
                     d'16. ~
                 }
-            }
-            {
+            } % measure
+            { % measure
                 \time 1/20
                 \scaleDurations #'(4 . 5) {
                     d'16 ]
                 }
-            }
-            {
+            } % measure
+            { % measure
                 \time 2/8
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -347,15 +347,15 @@ def test_scoretools_Container__split_by_duration_06():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -369,20 +369,20 @@ def test_scoretools_Container__split_by_duration_06():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 1/32
                 c'32 [ ]
-            }
-            {
+            } % measure
+            { % measure
                 \time 7/32
                 c'16. [ (
                 d'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 \time 2/8
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -408,15 +408,15 @@ def test_scoretools_Container__split_by_duration_07():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -430,10 +430,10 @@ def test_scoretools_Container__split_by_duration_07():
     assert format(halves[0][0]) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 1/32
                 c'32 [ ]
-            }
+            } % measure
         }
         '''
         ), format(halves[0][0])
@@ -441,16 +441,16 @@ def test_scoretools_Container__split_by_duration_07():
     assert format(halves[1][0]) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 7/32
                 c'16. [ (
                 d'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 \time 2/8
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(halves[1][0])
@@ -476,15 +476,15 @@ def test_scoretools_Container__split_by_duration_08():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -498,20 +498,20 @@ def test_scoretools_Container__split_by_duration_08():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 7/32
                 c'8 [ (
                 d'16. ] )
-            }
-            {
+            } % measure
+            { % measure
                 \time 1/32
                 d'32 [ ] (
-            }
-            {
+            } % measure
+            { % measure
                 \time 2/8
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -537,15 +537,15 @@ def test_scoretools_Container__split_by_duration_09():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -558,18 +558,18 @@ def test_scoretools_Container__split_by_duration_09():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 1/8
                 c'8 [ ]
-            }
-            {
+            } % measure
+            { % measure
                 d'8 [ ] (
-            }
-            {
+            } % measure
+            { % measure
                 \time 2/8
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -596,15 +596,15 @@ def test_scoretools_Container__split_by_duration_10():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -618,20 +618,20 @@ def test_scoretools_Container__split_by_duration_10():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 1/32
                 c'32 ~ [ ]
-            }
-            {
+            } % measure
+            { % measure
                 \time 7/32
                 c'16. [ (
                 d'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 \time 2/8
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -659,15 +659,15 @@ def test_scoretools_Container__split_by_duration_11():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -681,25 +681,25 @@ def test_scoretools_Container__split_by_duration_11():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 4/20
                 \scaleDurations #'(4 . 5) {
                     c'8 ~ [ (
                     c'32
                     d'16. ] )
                 }
-            }
-            {
+            } % measure
+            { % measure
                 \time 1/20
                 \scaleDurations #'(4 . 5) {
                     d'16 [ ] (
                 }
-            }
-            {
+            } % measure
+            { % measure
                 \time 2/8
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -727,15 +727,15 @@ def test_scoretools_Container__split_by_duration_12():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -749,25 +749,25 @@ def test_scoretools_Container__split_by_duration_12():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 4/20
                 \scaleDurations #'(4 . 5) {
                     c'8 ~ [ (
                     c'32
                     d'16. ~ ] )
                 }
-            }
-            {
+            } % measure
+            { % measure
                 \time 1/20
                 \scaleDurations #'(4 . 5) {
                     d'16 [ ] (
                 }
-            }
-            {
+            } % measure
+            { % measure
                 \time 2/8
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -797,17 +797,17 @@ def test_scoretools_Container__split_by_duration_13():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 3/8
                 c'8 [ (
                 d'8
                 e'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 c'8 [
                 d'8
                 e'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -820,7 +820,7 @@ def test_scoretools_Container__split_by_duration_13():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 14/40
                 \scaleDurations #'(4 . 5) {
                     c'8 ~ [ (
@@ -829,19 +829,19 @@ def test_scoretools_Container__split_by_duration_13():
                     d'32
                     e'8 ] )
                 }
-            }
-            {
+            } % measure
+            { % measure
                 \time 1/40
                 \scaleDurations #'(4 . 5) {
                     e'32 [ ] (
                 }
-            }
-            {
+            } % measure
+            { % measure
                 \time 3/8
                 c'8 [
                 d'8
                 e'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -871,15 +871,15 @@ def test_scoretools_Container__split_by_duration_14():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/16
                 c'8 * 1/2 [ (
                 d'8 * 1/2 ]
-            }
-            {
+            } % measure
+            { % measure
                 e'8 * 1/2 [
                 f'8 * 1/2 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -892,18 +892,18 @@ def test_scoretools_Container__split_by_duration_14():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 1/16
                 c'8 * 1/2 [ ]
-            }
-            {
+            } % measure
+            { % measure
                 d'8 * 1/2 [ ] (
-            }
-            {
+            } % measure
+            { % measure
                 \time 2/16
                 e'8 * 1/2 [
                 f'8 * 1/2 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -934,15 +934,15 @@ def test_scoretools_Container__split_by_duration_15():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/16
                 c'8 * 1/2 [ (
                 d'8 * 1/2 ]
-            }
-            {
+            } % measure
+            { % measure
                 e'8 * 1/2 [
                 f'8 * 1/2 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -956,20 +956,20 @@ def test_scoretools_Container__split_by_duration_15():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 3/32
                 c'8 * 1/2 [ (
                 d'8 * 1/4 ] )
-            }
-            {
+            } % measure
+            { % measure
                 \time 1/32
                 d'8 * 1/4 [ ] (
-            }
-            {
+            } % measure
+            { % measure
                 \time 2/16
                 e'8 * 1/2 [
                 f'8 * 1/2 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -1001,15 +1001,15 @@ def test_scoretools_Container__split_by_duration_16():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/16
                 c'8 * 1/2 [ (
                 d'8 * 1/2 ]
-            }
-            {
+            } % measure
+            { % measure
                 e'8 * 1/2 [
                 f'8 * 1/2 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -1023,24 +1023,24 @@ def test_scoretools_Container__split_by_duration_16():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/24
                 \scaleDurations #'(2 . 3) {
                     c'8. * 1/2 [ (
                     d'8. * 1/6 ] )
                 }
-            }
-            {
+            } % measure
+            { % measure
                 \time 1/24
                 \scaleDurations #'(2 . 3) {
                     d'8. * 1/3 [ ] (
                 }
-            }
-            {
+            } % measure
+            { % measure
                 \time 2/16
                 e'8 * 1/2 [
                 f'8 * 1/2 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -1060,10 +1060,10 @@ def test_scoretools_Container__split_by_duration_17():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 5/16
                 s1 * 5/16
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -1076,19 +1076,19 @@ def test_scoretools_Container__split_by_duration_17():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 16/80
                 \scaleDurations #'(4 . 5) {
                     s1 * 1/4
                 }
-            }
-            {
+            } % measure
+            { % measure
                 \time 9/80
                 \scaleDurations #'(4 . 5) {
                     s1 * 1/16
                     s4 * 5/16
                 }
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -1115,7 +1115,7 @@ def test_scoretools_Container__split_by_duration_18():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 15/80
                 \scaleDurations #'(4 . 5) {
                     c'32 [ (
@@ -1127,7 +1127,7 @@ def test_scoretools_Container__split_by_duration_18():
                     b'32
                     c''64 ] )
                 }
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -1140,7 +1140,7 @@ def test_scoretools_Container__split_by_duration_18():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 14/80
                 \scaleDurations #'(4 . 5) {
                     c'32 [ (
@@ -1151,13 +1151,13 @@ def test_scoretools_Container__split_by_duration_18():
                     a'32
                     b'32 ] )
                 }
-            }
-            {
+            } % measure
+            { % measure
                 \time 1/80
                 \scaleDurations #'(4 . 5) {
                     c''64 [ ]
                 }
-            }
+            } % measure
         }
         '''
         ), format(staff)

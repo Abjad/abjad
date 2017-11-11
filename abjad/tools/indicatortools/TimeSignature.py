@@ -50,7 +50,7 @@ class TimeSignature(AbjadValueObject):
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 c'8 d'8 e'8")
         >>> time_signature = abjad.TimeSignature((3, 8))
-        >>> abjad.attach(time_signature, staff[0], scope=abjad.Score)
+        >>> abjad.attach(time_signature, staff[0], context='Score')
 
         Formats behind comments when no score is present:
 
@@ -92,7 +92,7 @@ class TimeSignature(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_default_scope',
+        '_context',
         '_denominator',
         '_has_non_power_of_two_denominator',
         '_multiplier',
@@ -106,9 +106,15 @@ class TimeSignature(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, pair=(4, 4), partial=None, suppress=None):
+    def __init__(
+        self,
+        pair=(4, 4),
+        context='Staff',
+        partial=None,
+        suppress=None,
+        ):
         import abjad
-        self._default_scope = abjad.Staff
+        self._context = context
         pair = getattr(pair, 'pair', pair)
         assert isinstance(pair, collections.Iterable), repr(pair)
         assert len(pair) == 2, repr(pair)
@@ -366,26 +372,26 @@ class TimeSignature(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def default_scope(self):
-        r'''Gets default scope of time signature.
+    def context(self):
+        r'''Gets time signature context.
 
         ..  container:: example
 
             First time signature:
 
-            >>> abjad.TimeSignature((3, 8)).default_scope
-            <class 'abjad.tools.scoretools.Staff.Staff'>
+            >>> abjad.TimeSignature((3, 8)).context
+            'Staff'
 
         ..  container:: example
 
             Second time signature:
 
-            >>> abjad.TimeSignature((4, 4)).default_scope
-            <class 'abjad.tools.scoretools.Staff.Staff'>
+            >>> abjad.TimeSignature((4, 4)).context
+            'Staff'
 
-        Returns staff.
+        Returns context or string.
         '''
-        return self._default_scope
+        return self._context
 
     @property
     def denominator(self):

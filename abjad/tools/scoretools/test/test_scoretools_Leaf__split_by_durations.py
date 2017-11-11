@@ -455,15 +455,15 @@ def test_scoretools_Leaf__split_by_durations_18():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -477,16 +477,16 @@ def test_scoretools_Leaf__split_by_durations_18():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/8
                 c'32 [ (
                 c'16.
                 d'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -513,15 +513,15 @@ def test_scoretools_Leaf__split_by_durations_19():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -535,16 +535,16 @@ def test_scoretools_Leaf__split_by_durations_19():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/8
                 c'32 ~ [ (
                 c'16.
                 d'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -570,15 +570,15 @@ def test_scoretools_Leaf__split_by_durations_20():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -592,16 +592,16 @@ def test_scoretools_Leaf__split_by_durations_20():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/8
                 c'32 [ ]
                 c'16. [ (
                 d'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -629,15 +629,15 @@ def test_scoretools_Leaf__split_by_durations_21():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -651,16 +651,16 @@ def test_scoretools_Leaf__split_by_durations_21():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/8
                 c'8 [ (
                 d'32 ] )
                 d'16. [ ] (
-            }
-            {
+            } % measure
+            { % measure
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -709,15 +709,15 @@ def test_scoretools_Leaf__split_by_durations_23():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)
@@ -731,16 +731,16 @@ def test_scoretools_Leaf__split_by_durations_23():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/8
                 c'32 ~ [ ]
                 c'16. [ (
                 d'8 ]
-            }
-            {
+            } % measure
+            { % measure
                 e'8 [
                 f'8 ] )
-            }
+            } % measure
         }
         '''
         ), format(staff)

@@ -42,19 +42,19 @@ def test_scoretools_Measure_measure_number_03():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/8
                 e'8
                 f'8
-            }
-            {
+            } % measure
+            { % measure
                 g'8
                 a'8
-            }
-            {
+            } % measure
+            { % measure
                 c'8
                 d'8
-            }
+            } % measure
         }
         '''
         )

@@ -49,7 +49,7 @@ class Harp(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=('treble', 'bass'),
-        default_scope='StaffGroup',
+        context='StaffGroup',
         middle_c_sounding_pitch=None,
         pitch_range='[B0, G#7]',
         ):
@@ -60,7 +60,7 @@ class Harp(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
-            default_scope=default_scope,
+            context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
@@ -83,18 +83,18 @@ class Harp(Instrument):
         return Instrument.allowable_clefs.fget(self)
 
     @property
-    def default_scope(self):
-        r'''Gets default scope of harp.
+    def context(self):
+        r'''Gets default context of harp.
 
         ..  container:: example
 
             >>> harp = abjad.Harp()
-            >>> harp.default_scope
+            >>> harp.context
             'StaffGroup'
 
-        Returns piano staff.
+        Returns staff group.
         '''
-        return self._default_scope
+        return self._context
 
     @property
     def middle_c_sounding_pitch(self):

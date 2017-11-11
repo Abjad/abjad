@@ -179,13 +179,13 @@ class Spanner(AbjadObject):
             message = 'must be leaf in spanner: {!r}.'
             message = message.format(leaf)
             raise Exception(message)
-        scope = getattr(indicator, '_default_scope', None)
+        context = getattr(indicator, '_context', None)
         wrapper = abjad.IndicatorWrapper(
             component=leaf,
+            context=context,
             indicator=indicator,
             is_piecewise=True,
             piecewise_spanner=self,
-            scope=scope,
             )
         wrapper._bind_to_component(leaf)
 
@@ -324,7 +324,7 @@ class Spanner(AbjadObject):
         if self._is_my_first_leaf(leaf):
             contributions = abjad.override(self)._list_format_contributions(
                 'override',
-                is_once=False,
+                once=False,
                 )
             bundle.grob_overrides.extend(contributions)
         return bundle

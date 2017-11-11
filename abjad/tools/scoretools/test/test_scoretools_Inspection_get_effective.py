@@ -245,9 +245,9 @@ def test_scoretools_Inspection_get_effective_13():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     mark_1 = abjad.MetronomeMark(abjad.Duration(1, 8), 38)
-    abjad.attach(mark_1, staff[0], scope=abjad.Staff)
+    abjad.attach(mark_1, staff[0], context='Staff')
     mark_2 = abjad.MetronomeMark(abjad.Duration(1, 8), 42)
-    abjad.attach(mark_2, staff[2], scope=abjad.Staff)
+    abjad.attach(mark_2, staff[2], context='Staff')
 
     assert format(staff) == abjad.String.normalize(
         r'''
@@ -276,7 +276,7 @@ def test_scoretools_Inspection_get_effective_14():
 
     staff = abjad.Staff([abjad.Chord([2, 3, 4], (1, 4))])
     mark = abjad.MetronomeMark(abjad.Duration(1, 8), 38)
-    abjad.attach(mark, staff[0], scope=abjad.Staff)
+    abjad.attach(mark, staff[0], context='Staff')
 
     assert format(staff) == abjad.String.normalize(
         r'''
@@ -292,7 +292,7 @@ def test_scoretools_Inspection_get_effective_15():
 
     staff = abjad.Staff([abjad.Note("c'4")])
     mark = abjad.MetronomeMark(abjad.Duration(1, 8), 38)
-    abjad.attach(mark, staff[0], scope=abjad.Staff)
+    abjad.attach(mark, staff[0], context='Staff')
 
     assert format(staff) == abjad.String.normalize(
         r'''
@@ -310,7 +310,7 @@ def test_scoretools_Inspection_get_effective_16():
 
     staff = abjad.Staff([abjad.Note("c'4")])
     mark = abjad.MetronomeMark(abjad.Duration(1, 8), 38)
-    abjad.attach(mark, staff[0], scope=abjad.Staff)
+    abjad.attach(mark, staff[0], context='Staff')
     abjad.detach(mark, staff[0])
 
     assert format(staff) == abjad.String.normalize(
@@ -388,7 +388,7 @@ def test_scoretools_Inspection_get_effective_20():
     '''
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    abjad.attach('color', staff[1], scope=abjad.Staff)
+    abjad.attach('color', staff[1], context='Staff')
 
     assert abjad.inspect(staff).get_effective(str) is None
     assert abjad.inspect(staff[0]).get_effective(str) is None
@@ -399,9 +399,9 @@ def test_scoretools_Inspection_get_effective_20():
 
 def test_scoretools_Inspection_get_effective_21():
     staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8")
-    abjad.attach('red', staff[0], scope=abjad.Staff)
-    abjad.attach('blue', staff[2], scope=abjad.Staff)
-    abjad.attach('yellow', staff[4], scope=abjad.Staff)
+    abjad.attach('red', staff[0], context='Staff')
+    abjad.attach('blue', staff[2], context='Staff')
+    abjad.attach('yellow', staff[4], context='Staff')
 
     assert abjad.inspect(staff[0]).get_effective(str, n=-1) is None
     assert abjad.inspect(staff[0]).get_effective(str, n=0) == 'red'
@@ -426,7 +426,7 @@ def test_scoretools_Inspection_get_effective_21():
 
 def test_scoretools_Inspection_get_effective_22():
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    abjad.attach('red', staff[-1], scope=abjad.Staff, synthetic_offset=-1)
-    abjad.attach('blue', staff[0], scope=abjad.Staff)
+    abjad.attach('red', staff[-1], context='Staff', synthetic_offset=-1)
+    abjad.attach('blue', staff[0], context='Staff')
     assert abjad.inspect(staff).get_effective(str) == 'blue'
     assert abjad.inspect(staff).get_effective(str, n=-1) == 'red'
