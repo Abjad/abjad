@@ -116,28 +116,28 @@ class Instrument(AbjadValueObject):
                 name_markup,
                 direction=None,
                 )
-        if context is not None:
+        if isinstance(context, str):
+            pass
+        elif context is not None:
             context = context.context_name
         else:
             context = self._context_name
-        line = r'\set {!s}.instrumentName = {!s}'
-        line = line.format(
-            context,
-            name_markup,
-            )
-        result.append(line)
-        line = r'\set {!s}.shortInstrumentName = {!s}'
+        pieces = name_markup._get_format_pieces()
+        first_line = r'\set {!s}.instrumentName = {!s}'
+        first_line = first_line.format(context, pieces[0])
+        result.append(first_line)
+        result.extend(pieces[1:])
         short_name_markup = self.short_name_markup
         if short_name_markup.direction is not None:
             short_name_markup = abjad.new(
                 short_name_markup,
                 direction=None,
                 )
-        line = line.format(
-            context,
-            short_name_markup,
-            )
-        result.append(line)
+        pieces = short_name_markup._get_format_pieces()
+        first_line = r'\set {!s}.shortInstrumentName = {!s}'
+        first_line = first_line.format(context, pieces[0])
+        result.append(first_line)
+        result.extend(pieces[1:])
         return result
 
     def _initialize_default_name_markups(self):

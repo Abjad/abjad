@@ -39,7 +39,7 @@ class LilyPondComment(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_contents_string',
+        '_string',
         '_format_slot',
         )
 
@@ -57,15 +57,14 @@ class LilyPondComment(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, contents_string=None, format_slot=None):
-        if isinstance(contents_string, type(self)):
-            argument = contents_string
-            contents_string = argument.contents_string
+    def __init__(self, string=None, format_slot='before'):
+        if isinstance(string, type(self)):
+            argument = string
+            string = argument.string
             format_slot = format_slot or argument.format_slot
         else:
-            contents_string = str(contents_string)
-        self._contents_string = contents_string
-        format_slot = format_slot or 'before'
+            string = str(string)
+        self._string = string
         assert format_slot in self._allowable_format_slots, repr(format_slot)
         self._format_slot = format_slot
 
@@ -92,13 +91,13 @@ class LilyPondComment(AbjadValueObject):
 
         Returns string.
         '''
-        return r'% {}'.format(self.contents_string)
+        return r'% {}'.format(self.string)
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _contents_repr_string(self):
-        return repr(self._contents_string)
+        return repr(self._string)
 
     ### PRIVATE METHODS ###
 
@@ -115,15 +114,15 @@ class LilyPondComment(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def contents_string(self):
-        r'''Contents string of LilyPond comment.
+    def string(self):
+        r'''Gets string.
 
         ..  container:: example
 
             Two-word comment:
 
             >>> comment = abjad.LilyPondComment('a comment')
-            >>> comment.contents_string
+            >>> comment.string
             'a comment'
 
         ..  container:: example
@@ -131,12 +130,12 @@ class LilyPondComment(AbjadValueObject):
             Three-word comment:
 
             >>> comment = abjad.LilyPondComment('yet another comment')
-            >>> comment.contents_string
+            >>> comment.string
             'yet another comment'
 
         Returns string.
         '''
-        return self._contents_string
+        return self._string
 
     @property
     def format_slot(self):

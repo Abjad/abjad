@@ -33,7 +33,7 @@ Key points:
             if zigzag_width:
                 zigzag_width_override = abjad.LilyPondGrobOverride(
                     grob_name='Glissando',
-                    is_once=True,
+                    once=True,
                     property_path='zigzag-width',
                     value=zigzag_width,
                     )
@@ -41,7 +41,7 @@ Key points:
             else:
                 zigzag_off_override = abjad.LilyPondGrobOverride(
                     grob_name='Glissando',
-                    is_once=True,
+                    once=True,
                     property_path='style',
                     value=abjad.SchemeSymbol('line'),
                     )
@@ -221,7 +221,7 @@ Making object-oriented typographic overrides
 
     grob_override = abjad.LilyPondGrobOverride(
         grob_name='NoteHead',
-        is_once=True,
+        once=True,
         property_path='style',
         value=abjad.SchemeSymbol('cross'),
         )
@@ -357,7 +357,7 @@ Making the spanner annotation-aware
                 if zigzag_width:
                     zigzag_width_override = abjad.LilyPondGrobOverride(
                         grob_name='Glissando',
-                        is_once=True,
+                        once=True,
                         property_path='zigzag-width',
                         value=zigzag_width,
                         )
@@ -365,7 +365,7 @@ Making the spanner annotation-aware
                 else:
                     zigzag_off_override = abjad.LilyPondGrobOverride(
                         grob_name='Glissando',
-                        is_once=True,
+                        once=True,
                         property_path='style',
                         value=abjad.SchemeSymbol('line'),
                         )
@@ -398,7 +398,7 @@ Preparing for deployment
 
 ..  abjad::
 
-    selector = abjad.select().leaves().by_run(abjad.Note)[:-1]
+    selector = abjad.select().leaves(abjad.Note).run(n=-1)
 
 ..  abjad::
 
@@ -408,21 +408,17 @@ Preparing for deployment
 
 ..  abjad::
 
-    selector = selector.leaves()
+    selector = selector.leaves(abjad.Note)
     for x in selector(staff):
         x
 
 ..  abjad::
 
-    selector = selector.by_run(abjad.Note)
+    selector = selector.run(n=-1)
     for x in selector(staff):
         x
 
 ..  abjad::
-
-    selector = selector[:-1]
-    for x in selector(staff):
-        x
 
     selector = selector.flatten()
     for x in selector(staff):
@@ -533,7 +529,7 @@ via rotation:
         for i, logical_tie in enumerate(abjad.iterate(staff).logical_ties(pitched=True)):
             for note in logical_tie:
                 note.written_pitch = pitches[i]
-        selector = abjad.select().leaves().by_run(abjad.Note)[:-1].flatten()
+        selector = abjad.select().leaves(abjad.Note).run(n=-1).flatten()
         for i, leaf in enumerate(selector(staff)):
             abjad.attach(annotations[i], leaf)
         leaves = abjad.select(staff).leaves()

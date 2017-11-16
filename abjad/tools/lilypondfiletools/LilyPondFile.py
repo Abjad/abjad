@@ -171,13 +171,74 @@ class LilyPondFile(AbjadObject):
                 \midi {}
             }
 
+        ..  container:: example
+
+            Conventional (nonstrict) formatting:
+
+            >>> staff = abjad.Staff("c'8 d' e' f'")
+            >>> abjad.attach(abjad.Articulation('.'), staff[0])
+            >>> abjad.attach(abjad.Markup('Allegro'), staff[0])
+            >>> score = abjad.Score([staff])
+            >>> lilypond_file = abjad.LilyPondFile.new([score])
+            >>> lilypond_file._lilypond_version_token = None
+
+            >>> abjad.f(lilypond_file)
+            \language "english"
+            <BLANKLINE>
+            \header {}
+            <BLANKLINE>
+            \layout {}
+            <BLANKLINE>
+            \paper {}
+            <BLANKLINE>
+            \score {
+                {
+                    \new Score <<
+                        \new Staff {
+                            c'8 -\staccato - \markup { Allegro }
+                            d'8
+                            e'8
+                            f'8
+                        }
+                    >>
+                }
+            }
+
+            Strict formatting:
+
+            >>> abjad.f(lilypond_file, strict=True)
+            \language "english"
+            <BLANKLINE>
+            \header {}
+            <BLANKLINE>
+            \layout {}
+            <BLANKLINE>
+            \paper {}
+            <BLANKLINE>
+            \score {
+                {
+                    \new Score <<
+                        \new Staff {
+                            c'8
+                            -\staccato
+                            - \markup { Allegro }
+                            d'8
+                            e'8
+                            f'8
+                        }
+                    >>
+                }
+            }
+
         Returns string.
         '''
-        from abjad.tools import systemtools
+        import abjad
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
+        elif format_specification == 'lilypond:strict':
+            return self._get_lilypond_format(strict=True)
         elif format_specification == 'storage':
-            return systemtools.StorageFormatManager(self).get_storage_format()
+            return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __getitem__(self, name):
@@ -322,7 +383,7 @@ class LilyPondFile(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _get_format_pieces(self):
+    def _get_format_pieces(self, strict=False):
         result = []
         if self.date_time_token is not None:
             string = '% {}'.format(self.date_time_token)
@@ -343,20 +404,24 @@ class LilyPondFile(AbjadObject):
             result.append(string)
         result.extend(self._get_formatted_includes())
         result.extend(self._get_formatted_scheme_settings())
-        result.extend(self._get_formatted_blocks())
+        result.extend(self._get_formatted_blocks(strict=strict))
         return result
 
     ### PRIVATE METHODS ###
 
-    def _get_formatted_blocks(self):
+    def _get_formatted_blocks(self, strict=False):
         result = []
-        for x in self.items:
-            if '_get_lilypond_format' in dir(x) and not isinstance(x, str):
-                lilypond_format = format(x)
-                if lilypond_format:
-                    result.append(lilypond_format)
+        for item in self.items:
+            if ('_get_lilypond_format' in dir(item) and
+                not isinstance(item, str)):
+                try:
+                    string = item._get_lilypond_format(strict=strict)
+                except TypeError:
+                    string = item._get_lilypond_format()
+                if string:
+                    result.append(string)
             else:
-                result.append(str(x))
+                result.append(str(item))
         return result
 
     def _get_formatted_comments(self):
@@ -407,8 +472,8 @@ class LilyPondFile(AbjadObject):
             result = ['\n'.join(result)]
         return result
 
-    def _get_lilypond_format(self):
-        return '\n\n'.join(self._get_format_pieces())
+    def _get_lilypond_format(self, strict=False):
+        return '\n\n'.join(self._get_format_pieces(strict=strict))
 
     @staticmethod
     def _make_global_context_block(

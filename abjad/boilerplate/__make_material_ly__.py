@@ -38,7 +38,7 @@ if __name__ == '__main__':
     try:
         ly = directory('illustration.ly')
         with abjad.Timer() as timer:
-            abjad.persist(lilypond_file).as_ly(ly)
+            abjad.persist(lilypond_file).as_ly(ly, strict=True)
         count = int(timer.elapsed_time)
         counter = abjad.String('second').pluralize(count)
         message = f'LilyPond runtime {count} {counter} ...'

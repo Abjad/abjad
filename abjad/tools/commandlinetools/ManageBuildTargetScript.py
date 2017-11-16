@@ -209,7 +209,7 @@ class ManageBuildTargetScript(ScorePackageScript):
     def _handle_distribute(self, build_target_name):
         print('Distributing {!r}'.format(build_target_name))
         target_names = [
-            path.name for path in self._build_path.glob('*')
+            path.name for path in sorted(self._build_path.glob('*'))
             if path.is_dir() and path.name not in ('assets', 'segments')
             ]
         if build_target_name not in target_names:
@@ -229,7 +229,7 @@ class ManageBuildTargetScript(ScorePackageScript):
                 str(target_path.joinpath(target_name)),
                 )
             print('    {} --> {}'.format(source_name, target_name))
-        for parts_path in source_path.glob('part*.pdf'):
+        for parts_path in sorted(source_path.glob('part*.pdf')):
             source_name = parts_path.name
             target_name = '{}-{}'.format(build_target_name, source_name)
             shutil.copyfile(
@@ -243,7 +243,7 @@ class ManageBuildTargetScript(ScorePackageScript):
 
     def _handle_list(self):
         paths = sorted(
-            path for path in self._build_path.glob('*')
+            path for path in sorted(self._build_path.glob('*'))
             if path.is_dir() and path.name not in ('assets', 'segments')
             )
         print('Available build targets:')

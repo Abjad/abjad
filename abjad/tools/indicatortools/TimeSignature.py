@@ -87,6 +87,29 @@ class TimeSignature(AbjadValueObject):
 
         >>> abjad.show(score) # doctest: +SKIP
 
+    ..  container:: example
+
+        Time signatures can be tagged:
+
+        >>> staff = abjad.Staff("c'8 d'8 e'8 c'8 d'8 e'8")
+        >>> time_signature = abjad.TimeSignature((3, 8))
+        >>> abjad.attach(time_signature, staff[0], context='Score', tag='RED')
+        >>> score = abjad.Score([staff])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        >>> abjad.f(score)
+        \new Score <<
+            \new Staff {
+                \time 3/8 %! RED:1
+                c'8
+                d'8
+                e'8
+                c'8
+                d'8
+                e'8
+            }
+        >>
+
     '''
 
     ### CLASS VARIABLES ###
@@ -595,6 +618,24 @@ class TimeSignature(AbjadValueObject):
         self._suppress = bool(argument)
 
     ### PUBLIC METHODS ###
+
+    @staticmethod
+    def from_string(string):
+        r'''Makes new time signature from fraction `string`.
+
+        ..  container:: example
+
+            >>> abjad.TimeSignature.from_string('6/8')
+            TimeSignature((6, 8))
+
+        Returns new time signature.
+        '''
+        assert isinstance(string, str), repr(string)
+        parts = string.split('/')
+        assert len(parts) == 2, repr(parts)
+        parts = [int(_) for _ in parts]
+        numerator, denominator = parts
+        return TimeSignature((numerator, denominator))
 
     def with_power_of_two_denominator(self, contents_multiplier=1):
         r'''Makes new time signature equivalent to current

@@ -177,29 +177,9 @@ class Path(pathlib.PosixPath):
         if not self.is_dir():
             return
         glob = '*{}'.format(string)
-        for path in self.glob(glob):
+        for path in sorted(self.glob(glob)):
             if path.is_file():
                 return path
-
-    def _get_metadata(self):
-        import abjad
-        metadata_py_path = self('__metadata__.py')
-        metadata = None
-        if metadata_py_path.is_file():
-            file_contents_string = metadata_py_path.read_text()
-            try:
-                result = abjad.IOManager.execute_string(
-                    file_contents_string,
-                    attribute_names=('metadata',),
-                    )
-            except NameError as e:
-                raise Exception(repr(metadata_py_path), e)
-            if result:
-                metadata = result[0]
-            else:
-                metadata = None
-        metadata = metadata or abjad.TypedOrderedDict()
-        return metadata
 
     def _get_score_pdf(self):
         path = self.distribution._get_file_path_ending_with('score.pdf')
@@ -540,7 +520,7 @@ class Path(pathlib.PosixPath):
         Returns none.
         '''
         assert ' ' not in name, repr(name)
-        metadata = self._get_metadata()
+        metadata = self.get_metadata()
         metadata[name] = value
         self.write_metadata_py(metadata)
 
@@ -559,18 +539,25 @@ class Path(pathlib.PosixPath):
             In build directory:
 
             >>> path.builds('letter').coerce('back cover.tex')
-            'back-cover.tex'
+            'back cover.tex'
             >>> path.builds('letter').coerce('Back Cover.tex')
-            'back-cover.tex'
+            'Back Cover.tex'
             >>> path.builds('letter').coerce('BACK_COVER.tex')
-            'back-cover.tex'
+            'BACK_COVER.tex'
 
             >>> path.builds('letter').coerce('new music.ly')
-            'new-music.ly'
+            'new music.ly'
             >>> path.builds('letter').coerce('New Music.ly')
-            'new-music.ly'
+            'New Music.ly'
             >>> path.builds('letter').coerce('NEW_MUSIC.ly')
-            'new-music.ly'
+            'NEW_MUSIC.ly'
+
+            >>> path.builds('letter').coerce('page_layout.py')
+            'page_layout.py'
+            >>> path.builds('letter').coerce('Page Layout.py')
+            'Page Layout.py'
+            >>> path.builds('letter').coerce('PAGE_LAYOUT.py')
+            'PAGE_LAYOUT.py'
 
         ..  container:: example
 
@@ -663,8 +650,10 @@ class Path(pathlib.PosixPath):
             name = stem.to_snake_case()
         elif self.is_external():
             pass
+        elif self.is__segments():
+            pass
         elif self.is_build():
-            name = stem.to_dash_case() + suffix
+            pass
         elif self.is_builds():
             name = stem.to_dash_case()
         elif self.is_contents():
@@ -699,6 +688,52 @@ class Path(pathlib.PosixPath):
         else:
             raise ValueError(self)
         return name
+
+    def comment_out_tag(self, tag, greedy=False):
+        r'''Comments out `tag` in LilyPond file.
+
+        Returns text, count, skipped triple.
+
+        Text gives processed file contents ready to be written.
+
+        Count gives the number of tags commented out.
+
+        Skipped gives number of tags already commented out (and therefore
+        skipped).
+
+        Matches all of `tag` when `greedy` is false; matches `tag` anywhere in
+        tag when `greedy` is true.
+        '''
+        assert self.is_file()
+        lines, count, skipped = [], 0, 0
+        current_tag_number = None
+        tag_parts = tag.split(':')
+        with self.open() as file_pointer:
+            for line in file_pointer.readlines():
+                if ((greedy is True and tag not in line) or
+                    (greedy is not True and
+                    any(_ not in line for _ in tag_parts))):
+                    current_tag_number = None
+                    lines.append(line)
+                    continue
+                start = line.rfind(':') + 1
+                tag_number = int(line[start:])
+                first_nonwhitespace_index = len(line) - len(line.lstrip())
+                index = first_nonwhitespace_index
+                if line[index] != '%':
+                    line = list(line)
+                    line[index:index] = '%%% '
+                    line = ''.join(line)
+                    if tag_number != current_tag_number:
+                        current_tag_number = tag_number
+                        count += 1
+                else:
+                    if tag_number != current_tag_number:
+                        current_tag_number = tag_number
+                        skipped += 1
+                lines.append(line)
+        lines = ''.join(lines)
+        return lines, count, skipped
 
     def get_asset_type(self):
         r'''Gets asset identifier.
@@ -822,6 +857,29 @@ class Path(pathlib.PosixPath):
             result = self.name
         return abjad.String(result)
 
+    def get_metadata(self):
+        r'''Gets __metadata__.py file in path.
+
+        Returns ordered dictionary.
+        '''
+        import abjad
+        metadata_py_path = self('__metadata__.py')
+        metadata = None
+        if metadata_py_path.is_file():
+            file_contents_string = metadata_py_path.read_text()
+            try:
+                result = abjad.IOManager.execute_string(
+                    file_contents_string,
+                    attribute_names=('metadata',),
+                    )
+            except NameError as e:
+                raise Exception(repr(metadata_py_path), e)
+            if result:
+                metadata = result[0]
+            else:
+                metadata = None
+        return abjad.TypedOrderedDict(metadata)
+
     def get_metadatum(self, metadatum_name, default=None):
         r'''Gets metadatum.
 
@@ -837,7 +895,7 @@ class Path(pathlib.PosixPath):
 
         Returns object.
         '''
-        metadata = self._get_metadata()
+        metadata = self.get_metadata()
         metadatum = metadata.get(metadatum_name)
         if not metadatum:
             metadatum = default
@@ -890,7 +948,7 @@ class Path(pathlib.PosixPath):
         elif self.is_wrapper():
             return
         elif self.is_build():
-            return abjad.String.is_dash_case_file_name
+            return
         elif self.is_builds():
             return abjad.String.is_build_directory_name
         elif self.is_builds_segments():
@@ -1102,6 +1160,22 @@ class Path(pathlib.PosixPath):
             result = self.get_metadatum('title')
             result = result or '(untitled score)'
             return result
+
+    def is__segments(self):
+        r'''Is true when path is _segments directory.
+
+        ..  container:: example
+
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path._segments.is__segments()
+            True
+
+        Returns true or false.
+        '''
+        return self.name == '_segments'
 
     def is_build(self):
         '''Is true when path is build directory.
@@ -1564,7 +1638,7 @@ class Path(pathlib.PosixPath):
         Returns list.
         '''
         paths = []
-        for path in self.glob('*'):
+        for path in sorted(self.glob('*')):
             if path.name in sorted(self._secondary_names):
                 paths.append(path)
         return paths
@@ -1585,7 +1659,7 @@ class Path(pathlib.PosixPath):
         Returns none.
         '''
         assert ' ' not in name, repr(name)
-        metadata = self._get_metadata()
+        metadata = self.get_metadata()
         try:
             metadata.pop(name)
         except KeyError:
@@ -1606,7 +1680,7 @@ class Path(pathlib.PosixPath):
 
         Returns path.
         '''
-        for path in self.segments().glob('*'):
+        for path in sorted(self.segments().glob('*')):
             if not path.is_dir():
                 continue
             if not path.name.startswith('segment_'):
@@ -1660,6 +1734,52 @@ class Path(pathlib.PosixPath):
         if str(path) == '.':
             return str(self)
         return str(path)
+
+    def uncomment_tag(self, tag, greedy=False):
+        r'''Uncomments `tag` in LilyPond file.
+
+        Returns text, count, skipped triple.
+
+        Text gives the processed file.
+
+        Count gives the number of tags uncommented.
+
+        Skipped gives the number of tags already uncommented (and therefore
+        skipped).
+
+        Matches all of `tag` when `greedy` is false; matches `tag` anywhere in
+        tag when `greedy` is true.
+        '''
+        assert self.is_file()
+        lines, count, skipped = [], 0, 0
+        current_tag_number = None
+        tag_parts = tag.split(':')
+        with self.open() as file_pointer:
+            for line in file_pointer.readlines():
+                if ((greedy is True and tag not in line) or
+                    (greedy is not True and
+                    any(_ not in line for _ in tag_parts))):
+                    current_tag_number = None
+                    lines.append(line)
+                    continue
+                start = line.rfind(':') + 1
+                tag_number = int(line[start:])
+                first_nonwhitespace_index = len(line) - len(line.lstrip())
+                index = first_nonwhitespace_index
+                if line[index:index+4] == '%%% ':
+                    line = list(line)
+                    line[index:index+4] = []
+                    line = ''.join(line)
+                    if tag_number != current_tag_number:
+                        current_tag_number = tag_number
+                        count += 1
+                else:
+                    if tag_number != current_tag_number:
+                        current_tag_number = tag_number
+                        skipped += 1
+                lines.append(line)
+        text = ''.join(lines)
+        return text, count, skipped
 
     def update_order_dependent_segment_metadata(self):
         r'''Updates order-dependent segment metadata.

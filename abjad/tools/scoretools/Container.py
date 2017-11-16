@@ -117,6 +117,39 @@ class Container(Component):
         >>> isinstance(container, collections.Sequence)
         False
 
+    ..  container:: example
+
+        Conventional (nonstrict) formatting positions format contributions to
+        the right of leaves:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.attach(abjad.Articulation('^'), staff[0])
+        >>> abjad.attach(abjad.Markup('Allegro', direction=abjad.Up), staff[0])
+        >>> abjad.attach(abjad.StemTremolo(), staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        >>> abjad.f(staff)
+        \new Staff {
+            c'4 :16 -\marcato ^ \markup { Allegro }
+            d'4
+            e'4
+            f'4
+        }
+
+        Strict formatting positions contributions strictly one-per-line. Use to
+        comment-tag output line right ends:
+
+        >>> abjad.f(staff, strict=True)
+        \new Staff {
+            c'4
+            :16
+            -\marcato
+            ^ \markup { Allegro }
+            d'4
+            e'4
+            f'4
+        }
+
     '''
 
     ### CLASS VARIABLES ###
@@ -494,18 +527,29 @@ class Container(Component):
         result.append(('comments', bundle.closing.comments))
         return self._format_slot_contributions_with_indent(result)
 
-    def _format_content_pieces(self):
+    def _format_content_pieces(self, strict=False):
         import abjad
         indent = abjad.LilyPondFormatManager.indent
         result = []
+        format_specification = 'lilypond'
+        if strict:
+            format_specification += ':strict'
         for component in self.components:
-            result.extend(format(component).split('\n'))
+            string = component.__format__(
+                format_specification=format_specification
+                )
+            parts = string.split('\n')
+            result.extend(parts)
         result = [indent + _ for _ in result]
         return result
 
-    def _format_contents_slot(self, bundle):
+    def _format_contents_slot(self, bundle, strict=False):
         result = []
-        result.append([('contents', '_contents'), self._format_content_pieces()])
+        result.append(
+            [
+                ('contents', '_contents'),
+                self._format_content_pieces(strict=strict)
+                ])
         return tuple(result)
 
     def _format_open_brackets_slot(self, bundle):

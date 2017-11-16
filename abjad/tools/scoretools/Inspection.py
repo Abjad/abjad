@@ -114,22 +114,56 @@ class Inspection(abctools.AbjadObject):
 
         ..  container:: example
 
-            >>> note = abjad.Note("c'4")
-            >>> abjad.annotate(note, 'bow_direction', abjad.Down)
-            >>> abjad.inspect(note).get_annotation('bow_direction')
-            Down
+            >>> staff = abjad.Staff("c'4 e' e' f'")
+            >>> abjad.annotate(staff[0], 'default_instrument', abjad.Cello())
+            >>> abjad.show(staff) # doctest: +SKIP
 
-            Returns none when no annotation is found:
+            ..  docs::
 
-            >>> abjad.inspect(note).get_annotation('bow_fraction') is None
+                >>> abjad.f(staff)
+                \new Staff {
+                    c'4
+                    e'4
+                    e'4
+                    f'4
+                }
+
+            >>> string = 'default_instrument'
+            >>> abjad.inspect(staff[0]).get_annotation(string)
+            Cello()
+
+            >>> abjad.inspect(staff[1]).get_annotation(string) is None
+            True
+
+            >>> abjad.inspect(staff[2]).get_annotation(string) is None
+            True
+
+            >>> abjad.inspect(staff[3]).get_annotation(string) is None
             True
 
             Returns default when no annotation is found:
 
-            >>> abjad.inspect(note).get_annotation('bow_fraction', 2)
-            2
+            >>> abjad.inspect(staff[3]).get_annotation(string, abjad.Violin())
+            Violin()
 
-        Returns annotation or default.
+        ..  container:: example
+
+            Regression: annotation is not picked up as effective indicator:
+
+            >>> prototype = abjad.Instrument
+            >>> abjad.inspect(staff[0]).get_effective(prototype) is None
+            True
+
+            >>> abjad.inspect(staff[1]).get_effective(prototype) is None
+            True
+
+            >>> abjad.inspect(staff[2]).get_effective(prototype) is None
+            True
+
+            >>> abjad.inspect(staff[3]).get_effective(prototype) is None
+            True
+
+        Returns annotation (or default).
         '''
         if hasattr(self.client, '_get_annotation'):
             annotation = self.client._get_annotation(name)
@@ -321,11 +355,8 @@ class Inspection(abctools.AbjadObject):
             Gets effective clef:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> clef = abjad.Clef('alto')
-            >>> abjad.attach(clef, staff[0])
-            >>> note = abjad.Note("fs'16")
-            >>> container = abjad.AcciaccaturaContainer([note])
-            >>> abjad.attach(container, staff[-1])
+            >>> abjad.attach(abjad.Clef('alto'), staff[0])
+            >>> abjad.attach(abjad.AcciaccaturaContainer("fs'16"), staff[-1])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -343,8 +374,7 @@ class Inspection(abctools.AbjadObject):
                 }
 
             >>> for component in abjad.iterate(staff).components():
-            ...     agent = abjad.inspect(component)
-            ...     clef = agent.get_effective(abjad.Clef)
+            ...     clef = abjad.inspect(component).get_effective(abjad.Clef)
             ...     print(component, clef)
             ...
             Staff("c'4 d'4 e'4 f'4") Clef('alto')
@@ -353,6 +383,161 @@ class Inspection(abctools.AbjadObject):
             e'4 Clef('alto')
             fs'16 Clef('alto')
             f'4 Clef('alto')
+
+        ..  container:: example
+
+            Arbitrary objects (like strings) can be contexted:
+
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> abjad.attach('color', staff[1], context='Staff')
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff {
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+                }
+
+            >>> for component in abjad.iterate(staff).components():
+            ...     string = abjad.inspect(component).get_effective(str)
+            ...     print(component, repr(string))
+            ...
+            Staff("c'8 d'8 e'8 f'8") None
+            c'8 None
+            d'8 'color'
+            e'8 'color'
+            f'8 'color'
+
+        ..  container:: example
+
+            Scans forwards or backwards when `n` is set: 
+
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8")
+            >>> abjad.attach('red', staff[0], context='Staff')
+            >>> abjad.attach('blue', staff[2], context='Staff')
+            >>> abjad.attach('yellow', staff[4], context='Staff')
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff {
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+                    g'8
+                }
+                
+            >>> for n in (-1, 0, 1):
+            ...     color = abjad.inspect(staff[0]).get_effective(str, n=n)
+            ...     print(n, repr(color))
+            ...
+            -1 None
+            0 'red'
+            1 'blue'
+
+            >>> for n in (-1, 0, 1):
+            ...     color = abjad.inspect(staff[1]).get_effective(str, n=n)
+            ...     print(n, repr(color))
+            ...
+            -1 None
+            0 'red'
+            1 'blue'
+
+            >>> for n in (-1, 0, 1):
+            ...     color = abjad.inspect(staff[2]).get_effective(str, n=n)
+            ...     print(n, repr(color))
+            ...
+            -1 'red'
+            0 'blue'
+            1 'yellow'
+
+            >>> for n in (-1, 0, 1):
+            ...     color = abjad.inspect(staff[3]).get_effective(str, n=n)
+            ...     print(n, repr(color))
+            ...
+            -1 'red'
+            0 'blue'
+            1 'yellow'
+
+            >>> for n in (-1, 0, 1):
+            ...     color = abjad.inspect(staff[4]).get_effective(str, n=n)
+            ...     print(n, repr(color))
+            ...
+            -1 'blue'
+            0 'yellow'
+            1 None
+
+        ..  container:: example
+
+            Synthetic offsets works this way:
+
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> abjad.attach(
+            ...     'red',
+            ...     staff[-1],
+            ...     context='Staff',
+            ...     synthetic_offset=-1,
+            ...     )
+            >>> abjad.attach('blue', staff[0], context='Staff')
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff {
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+                }
+
+            Entire staff is effectively blue:
+
+            >>> abjad.inspect(staff).get_effective(str)
+            'blue'
+
+            The (synthetic) offset just prior to (start of) staff is red:
+
+            >>> abjad.inspect(staff).get_effective(str, n=-1)
+            'red'
+
+        ..  container:: example
+
+            Gets effective time signature:
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> leaves = abjad.select(staff).leaves()
+            >>> abjad.attach(abjad.TimeSignature((3, 8)), leaves[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff {
+                    \time 3/8
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+
+            >>> prototype = abjad.TimeSignature
+            >>> for component in abjad.iterate(staff).components():
+            ...     inspection = abjad.inspect(component)
+            ...     time_signature = inspection.get_effective(prototype)
+            ...     print(component, time_signature)
+            ...
+            Staff("c'4 d'4 e'4 f'4") 3/8
+            c'4 3/8
+            d'4 3/8
+            e'4 3/8
+            f'4 3/8
 
         Returns indicator or none.
         '''
@@ -691,7 +876,7 @@ class Inspection(abctools.AbjadObject):
             grace_notes=grace_notes,
             )
 
-    def get_piecewise(self, prototype=None, default=None):
+    def get_piecewise(self, prototype=None, default=None, unwrap=True):
         r'''Gets piecewise indicators.
 
         ..  container:: example
@@ -751,7 +936,10 @@ class Inspection(abctools.AbjadObject):
         if not wrappers:
             return default
         if len(wrappers) == 1:
-            return wrappers[0].indicator
+            if unwrap:
+                return wrappers[0].indicator
+            else:
+                return wrappers[0]
         if 1 < len(wrappers):
             message = 'multiple indicators attached to client.'
             raise Exception(message)
@@ -1342,6 +1530,8 @@ class Inspection(abctools.AbjadObject):
 
         ..  container:: example
 
+            Reports container modifications:
+
             >>> container = abjad.Container("c'8 d'8 e'8 f'8")
             >>> abjad.override(container).note_head.color = 'red'
             >>> abjad.override(container).note_head.style = 'harmonic'
@@ -1371,28 +1561,77 @@ class Inspection(abctools.AbjadObject):
                 \revert NoteHead.style
             }
 
+        ..  container:: example
+
+            Reports leaf modifications:
+
+            >>> container = abjad.Container("c'8 d'8 e'8 f'8")
+            >>> abjad.attach(abjad.Clef('alto'), container[0])
+            >>> abjad.override(container[0]).note_head.color = 'red'
+            >>> abjad.override(container[0]).stem.color = 'red'
+            >>> abjad.show(container) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(container)
+                {
+                    \once \override NoteHead.color = #red
+                    \once \override Stem.color = #red
+                    \clef "alto"
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+                }
+
+            >>> report = abjad.inspect(container[0]).report_modifications()
+            >>> print(report)
+            slot absolute before:
+            slot 1:
+                grob overrides:
+                    \once \override NoteHead.color = #red
+                    \once \override Stem.color = #red
+            slot 3:
+                commands:
+                    \clef "alto"
+            slot 4:
+                leaf body:
+                    c'8
+            slot 5:
+            slot 7:
+            slot absolute after:
+
         Returns string.
         '''
         import abjad
-        manager = abjad.LilyPondFormatManager
-        client = self.client
-        bundle = manager.bundle_format_contributions(client)
-        result = []
-        result.extend(client._get_format_contributions_for_slot(
-            'before', bundle))
-        result.extend(client._get_format_contributions_for_slot(
-            'open brackets', bundle))
-        result.extend(client._get_format_contributions_for_slot(
-            'opening', bundle))
-        result.append('    %%%%%% %s components omitted %%%%%%' % len(client))
-        result.extend(client._get_format_contributions_for_slot(
-            'closing', bundle))
-        result.extend(client._get_format_contributions_for_slot(
-            'close brackets', bundle))
-        result.extend(client._get_format_contributions_for_slot(
-            'after', bundle))
-        result = '\n'.join(result)
-        return result
+        if isinstance(self.client, abjad.Container):
+            bundle = abjad.LilyPondFormatManager.bundle_format_contributions(
+                self.client
+                )
+            result = []
+            for slot in ('before', 'open brackets', 'opening'):
+                lines = self.client._get_format_contributions_for_slot(
+                    slot,
+                    bundle,
+                    )
+                result.extend(lines)
+            line = '    %%% {} components omitted %%%'
+            line = line.format(len(self.client))
+            result.append(line)
+            for slot in ('closing', 'close brackets', 'after'):
+                lines = self.client._get_format_contributions_for_slot(
+                    slot,
+                    bundle,
+                    )
+                result.extend(lines)
+            result = '\n'.join(result)
+            return result
+        elif isinstance(self.client, abjad.Leaf):
+            return self.client._report_format_contributions()
+        else:
+            message = 'only defined for components: {}.'
+            message = message.format(self.client)
+            return message
 
     def tabulate_wellformedness(
         self,

@@ -1,5 +1,3 @@
-from abjad.tools import schemetools
-from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadValueObject
 
 
@@ -131,8 +129,10 @@ class MarkupCommand(AbjadValueObject):
 
     __slots__ = (
         '_arguments',
-        '_name',
+        '_deactivate',
         '_force_quotes',
+        '_name',
+        '_tag',
         )
 
     ### INITIALIZER ###
@@ -142,22 +142,24 @@ class MarkupCommand(AbjadValueObject):
             # TODO: Generalize these arbitrary default arguments away.
             name = 'draw-circle'
             assert len(arguments) == 0
+        self._arguments = tuple(arguments)
+        self._deactivate = None
+        self._force_quotes = False
         assert isinstance(name, str) and len(name) and name.find(' ') == -1
         self._name = name
-        self._arguments = tuple(arguments)
-        self._force_quotes = False
+        self._tag = None
 
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a markup command with command and
+        r'''Is true when `argument` is a markup command with name and
         arguments equal to those of this markup command. Otherwise false.
 
         ..  container:: example
 
-            >>> command_1 = abjad.MarkupCommand('box')
-            >>> command_2 = abjad.MarkupCommand('box')
-            >>> command_3 = abjad.MarkupCommand('line')
+            >>> command_1 = abjad.MarkupCommand('bold', 'foo')
+            >>> command_2 = abjad.MarkupCommand('bold', 'foo')
+            >>> command_3 = abjad.MarkupCommand('bold', 'bar')
 
             >>> command_1 == command_1
             True
@@ -180,7 +182,12 @@ class MarkupCommand(AbjadValueObject):
 
         Returns true or false.
         '''
-        return super(MarkupCommand, self).__eq__(argument)
+        # defined explicitly because of initializer *arguments
+        if isinstance(argument, type(self)):
+            if self.name == argument.name:
+                if self.arguments == argument.arguments:
+                    return True
+        return False
 
     def __format__(self, format_specification=''):
         r'''Formats markup command.
@@ -250,9 +257,9 @@ class MarkupCommand(AbjadValueObject):
 
         Returns string.
         '''
-        from abjad.tools import systemtools
+        import abjad
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager(self).get_storage_format()
+            return abjad.StorageFormatManager(self).get_storage_format()
         elif format_specification == 'lilypond':
             return self._get_lilypond_format()
         return str(self)
@@ -334,39 +341,45 @@ class MarkupCommand(AbjadValueObject):
         return string
 
     def _get_format_pieces(self):
-        from abjad.tools import systemtools
+        import abjad
         def recurse(iterable):
             result = []
-            for x in iterable:
-                if isinstance(x, (list, tuple)):
+            for item in iterable:
+                if isinstance(item, (list, tuple)):
                     result.append('{')
-                    result.extend(recurse(x))
+                    result.extend(recurse(item))
                     result.append('}')
-                elif isinstance(x, schemetools.Scheme):
-                    result.append(format(x))
-                elif hasattr(x, '_get_format_pieces'):
-                    result.extend(x._get_format_pieces())
-                elif isinstance(x, str) and '\n' in x:
+                elif isinstance(item, abjad.Scheme):
+                    result.append(format(item))
+                elif hasattr(item, '_get_format_pieces'):
+                    result.extend(item._get_format_pieces())
+                elif isinstance(item, str) and '\n' in item:
                     result.append('#"')
-                    result.extend(x.splitlines())
+                    result.extend(item.splitlines())
                     result.append('"')
                 else:
-                    formatted = schemetools.Scheme.format_scheme_value(
-                        x,
+                    formatted = abjad.Scheme.format_scheme_value(
+                        item,
                         force_quotes=self.force_quotes,
                         )
-                    if isinstance(x, str):
+                    if isinstance(item, str):
                         result.append(formatted)
                     else:
                         result.append('#{}'.format(formatted))
-            return ['{}{}'.format(indent, x) for x in result]
-        indent = systemtools.LilyPondFormatManager.indent
+            return ['{}{}'.format(indent, item) for item in result]
+        indent = abjad.LilyPondFormatManager.indent
         parts = [r'\{}'.format(self.name)]
         parts.extend(recurse(self.arguments))
+        if self.tag:
+            tag = ' %! ' + self.tag
+            parts = [_ + tag for _ in parts]
+            if self.deactivate:
+                parts = ['%%% ' + _ for _ in parts]
         return parts
 
     def _get_format_specification(self):
-        return systemtools.FormatSpecification(
+        import abjad
+        return abjad.FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_args_values=(self.name,) + self.arguments,
@@ -392,6 +405,20 @@ class MarkupCommand(AbjadValueObject):
         Returns tuple.
         '''
         return self._arguments
+
+    @property
+    def deactivate(self):
+        r'''Is true when markup command deactivates tag.
+
+        Returns true, false or none.
+        '''
+        return self._deactivate
+
+    @deactivate.setter
+    def deactivate(self, argument):
+        if argument is not None:
+            argument = bool(argument)
+        self._deactivate = argument
 
     @property
     def force_quotes(self):
@@ -468,6 +495,19 @@ class MarkupCommand(AbjadValueObject):
         Returns string.
         '''
         return self._name
+
+    @property
+    def tag(self):
+        r'''Gets tag.
+
+        Returns string or none.
+        '''
+        return self._tag
+
+    @tag.setter
+    def tag(self, argument):
+        assert isinstance(argument, (str, type(None))), repr(argument)
+        self._tag = argument
 
     ### PUBLIC METHODS ###
 

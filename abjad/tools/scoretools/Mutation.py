@@ -2980,6 +2980,44 @@ class Mutation(abctools.AbjadObject):
             >>> pytest.raises(Exception, statement)
             <ExceptionInfo Exception tblen=...>
 
+        ..  container:: example
+
+            REGRESSION. Contexted indicators (like time signature) survive
+            wrap:
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> leaves = abjad.select(staff).leaves()
+            >>> abjad.attach(abjad.TimeSignature((3, 8)), leaves[0])
+            >>> container = abjad.Container()
+            >>> abjad.mutate(leaves).wrap(container)
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff {
+                    {
+                        \time 3/8
+                        c'4
+                        d'4
+                        e'4
+                        f'4
+                    }
+                }
+
+            >>> prototype = abjad.TimeSignature
+            >>> for component in abjad.iterate(staff).components():
+            ...     inspection = abjad.inspect(component)
+            ...     time_signature = inspection.get_effective(prototype)
+            ...     print(component, time_signature)
+            ...
+            <Staff{1}> 3/8
+            Container("c'4 d'4 e'4 f'4") 3/8
+            c'4 3/8
+            d'4 3/8
+            e'4 3/8
+            f'4 3/8
+
         Returns none.
         '''
         import abjad
@@ -2989,10 +3027,10 @@ class Mutation(abctools.AbjadObject):
             message = 'must be empty container: {!r}.'
             message = message.format(container)
             raise Exception(message)
-        if isinstance(self._client, abjad.Component):
-            selection = abjad.select(self._client)
+        if isinstance(self.client, abjad.Component):
+            selection = abjad.select(self.client)
         else:
-            selection = self._client
+            selection = self.client
         assert isinstance(selection, abjad.Selection), repr(selection)
         parent, start, stop = selection._get_parent_and_start_stop_indices()
         if not selection.are_contiguous_logical_voice():
@@ -3005,3 +3043,7 @@ class Mutation(abctools.AbjadObject):
         if parent is not None:
             parent._components.insert(start, container)
             container._set_parent(parent)
+        for component in selection:
+            for wrapper in component._indicator_wrappers:
+                wrapper._effective_context = None
+                wrapper._update_effective_context()

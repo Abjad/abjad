@@ -1,5 +1,4 @@
 import copy
-from abjad.tools import systemtools
 from .Container import Container
 
 
@@ -107,7 +106,8 @@ class Context(Container):
         return string
 
     def _format_open_brackets_slot(context, bundle):
-        indent = systemtools.LilyPondFormatManager.indent
+        import abjad
+        indent = abjad.LilyPondFormatManager.indent
         result = []
         if context.is_simultaneous:
             brackets_open = ['<<']
@@ -165,12 +165,12 @@ class Context(Container):
             result.append(string)
         return result
 
-    def _get_format_pieces(self):
-        return self._format_component(pieces=True)
+    def _get_format_pieces(self, strict=False):
+        return self._format_component(pieces=True, strict=strict)
 
-    def _get_lilypond_format(self):
+    def _get_lilypond_format(self, strict=False):
         self._update_now(indicators=True)
-        return self._format_component()
+        return self._format_component(strict=strict)
 
     def _get_repr_kwargs_names(self):
         if self.context_name == type(self).__name__:

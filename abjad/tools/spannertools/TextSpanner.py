@@ -429,9 +429,10 @@ class TextSpanner(Spanner):
 
     ### PUBLIC METHODS ###
 
-    def attach(self, indicator, leaf):
+    def attach(self, indicator, leaf, tag=None):
         r'''Attaches `indicator` to `leaf` in spanner.
 
         Returns none.
         '''
-        super(TextSpanner, self)._attach_piecewise(indicator, leaf)
+        superclass = super(TextSpanner, self)
+        superclass._attach_piecewise(indicator, leaf, tag=tag)

@@ -681,6 +681,7 @@ class IOManager(AbjadObject):
         Returns none.
         '''
         import abjad
+        ly_path = str(ly_path)
         lilypond_path = abjad.abjad_configuration.get('lilypond_path')
         if not lilypond_path:
             lilypond_path = abjad.IOManager.find_executable('lilypond')
@@ -715,6 +716,7 @@ class IOManager(AbjadObject):
             os.remove(postscript_path)
         except OSError:
             pass
+        # TODO: maybe just 'return exit_code'?
         if exit_code:
             return False
         return True

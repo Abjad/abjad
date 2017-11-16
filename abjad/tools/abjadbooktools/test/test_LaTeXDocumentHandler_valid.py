@@ -27,16 +27,16 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
     expected_asset_names = (
         'graphviz-31410f5aefd17473e91ebc219ddff36e.dot',
         'graphviz-31410f5aefd17473e91ebc219ddff36e.pdf',
-        'lilypond-0b731cedacea34e85fbb92b66b42b40b.ly',
-        'lilypond-0b731cedacea34e85fbb92b66b42b40b.pdf',
-        'lilypond-0fa8f7f49d6d92ffcb7dd54b5b8e851c.ly',
-        'lilypond-0fa8f7f49d6d92ffcb7dd54b5b8e851c.pdf',
-        'lilypond-412bd86b762d452fb787992613b02ae1.ly',
-        'lilypond-412bd86b762d452fb787992613b02ae1.pdf',
-        'lilypond-6737d707e144fd1f0af98dd8007ebb4b.ly',
-        'lilypond-6737d707e144fd1f0af98dd8007ebb4b.pdf',
-        'lilypond-8812fc9449c0c47bf22dbf11bdfaeb7b.ly',
-        'lilypond-8812fc9449c0c47bf22dbf11bdfaeb7b.pdf',
+        'lilypond-159af81bc32aca4b263146c9052b99ec.ly',
+        'lilypond-159af81bc32aca4b263146c9052b99ec.pdf',
+        'lilypond-71f63c1f11f143bb0f7a2f7ddbc77d75.ly',
+        'lilypond-71f63c1f11f143bb0f7a2f7ddbc77d75.pdf',
+        'lilypond-9a3d90e80bc733e46a43d1ee30b68fa9.ly',
+        'lilypond-9a3d90e80bc733e46a43d1ee30b68fa9.pdf',
+        'lilypond-9e8d4612a88db8a2f31e974c78fc915d.ly',
+        'lilypond-9e8d4612a88db8a2f31e974c78fc915d.pdf',
+        'lilypond-fe5d1d78512d19b7f51b96c2ce9180f9.ly',
+        'lilypond-fe5d1d78512d19b7f51b96c2ce9180f9.pdf',
         )
 
     stylesheet_path = os.path.join(test_directory, 'stylesheet.ily')

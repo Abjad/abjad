@@ -10,6 +10,7 @@ class SegmentMaker(AbjadObject):
     __documentation_section__ = 'Segment-makers'
 
     __slots__ = (
+        '_builds_metadata',
         '_lilypond_file',
         '_previous_metadata',
         '_metadata',
@@ -18,6 +19,7 @@ class SegmentMaker(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self):
+        self._builds_metadata = None
         self._lilypond_file = None
         self._metadata = None
         self._previous_metadata = None
@@ -38,12 +40,12 @@ class SegmentMaker(AbjadObject):
         hash_values = abjad.StorageFormatManager(self).get_hash_values()
         return hash(hash_values)
 
-    def __illustrate__(self, **kwargs):
+    def __illustrate__(self, **keywords):
         r'''Illustrates segment-maker.
 
         Returns LilyPond file.
         '''
-        lilypond_file = self(**kwargs)
+        lilypond_file = self(**keywords)
         return lilypond_file
 
     ### PUBLIC PROPERTIES ###
@@ -60,6 +62,7 @@ class SegmentMaker(AbjadObject):
 
     def run(
         self,
+        builds_metadata=None,
         metadata=None,
         midi=None,
         previous_metadata=None,
@@ -69,10 +72,9 @@ class SegmentMaker(AbjadObject):
         Returns LilyPond file and segment metadata.
         '''
         import abjad
-        metadata = abjad.TypedOrderedDict(metadata)
-        previous_metadata = abjad.TypedOrderedDict(previous_metadata)
-        self._metadata = metadata
-        self._previous_metadata = previous_metadata
+        self._builds_metadata = abjad.TypedOrderedDict(builds_metadata)
+        self._metadata = abjad.TypedOrderedDict(metadata)
+        self._previous_metadata = abjad.TypedOrderedDict(previous_metadata)
         lilypond_file = self._make_lilypond_file(midi=midi)
         assert isinstance(lilypond_file, abjad.LilyPondFile)
         self._lilypond_file = lilypond_file

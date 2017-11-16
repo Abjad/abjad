@@ -173,7 +173,7 @@ class Spanner(AbjadObject):
         else:
             raise TypeError(argument)
 
-    def _attach_piecewise(self, indicator, leaf):
+    def _attach_piecewise(self, indicator, leaf, tag=None):
         import abjad
         if leaf not in self:
             message = 'must be leaf in spanner: {!r}.'
@@ -186,6 +186,7 @@ class Spanner(AbjadObject):
             indicator=indicator,
             is_piecewise=True,
             piecewise_spanner=self,
+            tag=tag,
             )
         wrapper._bind_to_component(leaf)
 

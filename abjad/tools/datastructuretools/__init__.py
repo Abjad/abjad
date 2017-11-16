@@ -22,6 +22,7 @@ builtins.Infinity = mathtools.Infinity()
 builtins.NegativeInfinity = mathtools.NegativeInfinity()
 del(builtins)
 del(six)
+del(mathtools)
 
 systemtools.ImportManager.import_structured_package(
     __path__[0],

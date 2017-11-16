@@ -453,6 +453,10 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             path = os.path.join(self.images_directory, 'abjadbook', name)
             assert os.path.exists(path)
 
+#    @unittest.skipIf(
+#        True,
+#        'macOS High Sierra introduces glob(*) alphabetization bug.',
+#        )
     def test_10(self):
         source = r'''
         ..  abjad::

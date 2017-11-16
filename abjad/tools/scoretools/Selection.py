@@ -363,11 +363,11 @@ class Selection(AbjadValueObject):
             >>> abjad.select().leaves()[:2]
             abjad.select().leaves()[:2]
 
-        Returns a single item when `argument` is an integer.
+        Returns a single item (or expression) when `argument` is an integer.
 
-        Returns new selection when `argument` is a slice.
+        Returns new selection (or expression) when `argument` is a slice.
 
-        Returns new selection when `argument` is a pattern.
+        Returns new selection (or expression) when `argument` is a pattern.
         '''
         import abjad
         if self._expression:
@@ -1769,7 +1769,7 @@ class Selection(AbjadValueObject):
                     g'8
                 }
 
-        Returns new selection.
+        Returns new selection (or expression).
         '''
         import abjad
         if self._expression:
@@ -1839,7 +1839,7 @@ class Selection(AbjadValueObject):
                     a'8
                 }
 
-        Returns new selection.
+        Returns new selection (or expression).
         '''
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -1969,7 +1969,7 @@ class Selection(AbjadValueObject):
                     a'8
                 }
 
-        Returns new selection.
+        Returns new selection (or expression).
         '''
         import abjad
         if self._expression:
@@ -2320,7 +2320,7 @@ class Selection(AbjadValueObject):
                     <c' e' g'>4
                 }
 
-        Returns new selection.
+        Returns new selection (or expression).
         '''
         import abjad
         if self._expression:
@@ -2449,7 +2449,7 @@ class Selection(AbjadValueObject):
                     a'8
                 }
 
-        Returns new selection.
+        Returns new selection (or expression).
         '''
         import abjad
         if self._expression:
@@ -2461,11 +2461,219 @@ class Selection(AbjadValueObject):
             )
         return self.filter(inequality)
 
-    # TODO: examples
     def flatten(self, depth=1):
         r'''Flattens selection to `depth`.
 
-        Returns new selection.
+        ..  container:: example
+
+            Selects first two leaves of each tuplet:
+
+            ..  container:: example
+
+                >>> tuplets = [
+                ...     "r16 bf'16 <a'' b''>16 c'16 <d' e'>4 ~ <d' e'>16",
+                ...     "r16 bf'16 <a'' b''>16 d'16 <e' fs'>4 ~ <e' fs'>16",
+                ...     "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 ~ <fs' gs'>16",
+                ...     ]
+                >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
+                >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
+                >>> tuplets = [abjad.select(tuplets)]
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(tuplets)
+                >>> staff = lilypond_file[abjad.Staff]
+                >>> abjad.override(staff).tuplet_bracket.direction = abjad.Up
+                >>> abjad.override(staff).tuplet_bracket.staff_padding = 3
+                >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+                >>> getter = abjad.select().leaves()[:2]
+                >>> result = abjad.select(staff).tuplets().map(getter)
+
+                >>> for item in result:
+                ...     item
+                Selection([Rest('r16'), Note("bf'16")])
+                Selection([Rest('r16'), Note("bf'16")])
+                Selection([Rest('r16'), Note("bf'16")])
+
+            ..  container:: example expression
+
+                >>> selector = abjad.select().tuplets().map(getter)
+                >>> result = selector(staff)
+
+                >>> selector.print(result)
+                Selection([Rest('r16'), Note("bf'16")])
+                Selection([Rest('r16'), Note("bf'16")])
+                Selection([Rest('r16'), Note("bf'16")])
+
+                >>> selector.color(result)
+                >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff \with {
+                    \override TupletBracket.direction = #up
+                    \override TupletBracket.staff-padding = #3
+                } {
+                    { % measure
+                        \time 7/4
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9 {
+                            \once \override Dots.color = #red
+                            \once \override Rest.color = #red
+                            r16
+                            \once \override Accidental.color = #red
+                            \once \override Beam.color = #red
+                            \once \override Dots.color = #red
+                            \once \override NoteHead.color = #red
+                            \once \override Stem.color = #red
+                            bf'16
+                            <a'' b''>16
+                            c'16
+                            <d' e'>4 ~
+                            <d' e'>16
+                        }
+                        \times 8/9 {
+                            \once \override Dots.color = #blue
+                            \once \override Rest.color = #blue
+                            r16
+                            \once \override Accidental.color = #blue
+                            \once \override Beam.color = #blue
+                            \once \override Dots.color = #blue
+                            \once \override NoteHead.color = #blue
+                            \once \override Stem.color = #blue
+                            bf'16
+                            <a'' b''>16
+                            d'16
+                            <e' fs'>4 ~
+                            <e' fs'>16
+                        }
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9 {
+                            \once \override Dots.color = #red
+                            \once \override Rest.color = #red
+                            r16
+                            \once \override Accidental.color = #red
+                            \once \override Beam.color = #red
+                            \once \override Dots.color = #red
+                            \once \override NoteHead.color = #red
+                            \once \override Stem.color = #red
+                            bf'16
+                            <a'' b''>16
+                            e'16
+                            <fs' gs'>4 ~
+                            <fs' gs'>16
+                        }
+                    } % measure
+                }
+
+        ..  container:: example
+
+            Selects first two leaves of all tuplets:
+
+            ..  container:: example
+
+                >>> tuplets = [
+                ...     "r16 bf'16 <a'' b''>16 c'16 <d' e'>4 ~ <d' e'>16",
+                ...     "r16 bf'16 <a'' b''>16 d'16 <e' fs'>4 ~ <e' fs'>16",
+                ...     "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 ~ <fs' gs'>16",
+                ...     ]
+                >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
+                >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
+                >>> tuplets = [abjad.select(tuplets)]
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(tuplets)
+                >>> staff = lilypond_file[abjad.Staff]
+                >>> abjad.override(staff).tuplet_bracket.direction = abjad.Up
+                >>> abjad.override(staff).tuplet_bracket.staff_padding = 3
+                >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+                >>> getter = abjad.select().leaves()[:2]
+                >>> result = abjad.select(staff).tuplets().map(getter)
+                >>> result = result.flatten()
+
+                >>> for item in result:
+                ...     item
+                Rest('r16')
+                Note("bf'16")
+                Rest('r16')
+                Note("bf'16")
+                Rest('r16')
+                Note("bf'16")
+
+            ..  container:: example expression
+
+                >>> selector = abjad.select().tuplets().map(getter).flatten()
+                >>> result = selector(staff)
+
+                >>> selector.print(result)
+                Rest('r16')
+                Note("bf'16")
+                Rest('r16')
+                Note("bf'16")
+                Rest('r16')
+                Note("bf'16")
+
+                >>> selector.color(result)
+                >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff \with {
+                    \override TupletBracket.direction = #up
+                    \override TupletBracket.staff-padding = #3
+                } {
+                    { % measure
+                        \time 7/4
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9 {
+                            \once \override Dots.color = #red
+                            \once \override Rest.color = #red
+                            r16
+                            \once \override Accidental.color = #blue
+                            \once \override Beam.color = #blue
+                            \once \override Dots.color = #blue
+                            \once \override NoteHead.color = #blue
+                            \once \override Stem.color = #blue
+                            bf'16
+                            <a'' b''>16
+                            c'16
+                            <d' e'>4 ~
+                            <d' e'>16
+                        }
+                        \times 8/9 {
+                            \once \override Dots.color = #red
+                            \once \override Rest.color = #red
+                            r16
+                            \once \override Accidental.color = #blue
+                            \once \override Beam.color = #blue
+                            \once \override Dots.color = #blue
+                            \once \override NoteHead.color = #blue
+                            \once \override Stem.color = #blue
+                            bf'16
+                            <a'' b''>16
+                            d'16
+                            <e' fs'>4 ~
+                            <e' fs'>16
+                        }
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9 {
+                            \once \override Dots.color = #red
+                            \once \override Rest.color = #red
+                            r16
+                            \once \override Accidental.color = #blue
+                            \once \override Beam.color = #blue
+                            \once \override Dots.color = #blue
+                            \once \override NoteHead.color = #blue
+                            \once \override Stem.color = #blue
+                            bf'16
+                            <a'' b''>16
+                            e'16
+                            <fs' gs'>4 ~
+                            <fs' gs'>16
+                        }
+                    } % measure
+                }
+
+        Returns new selection (or expression).
         '''
         import abjad
         if self._expression:
@@ -2577,7 +2785,7 @@ class Selection(AbjadValueObject):
                     d'16
                 }
 
-        Returns nested selection.
+        Returns nested selection (or expression).
         '''
         if self._expression:
             return self._update_expression(
@@ -3077,7 +3285,7 @@ class Selection(AbjadValueObject):
                     d'16
                 }
 
-        Returns new selection.
+        Returns new selection (or expression).
         '''
         import abjad
         if self._expression:
@@ -3207,7 +3415,7 @@ class Selection(AbjadValueObject):
                     f'16
                 }
 
-        Returns nested selection.
+        Returns nested selection (or expression).
         '''
         import abjad
         if self._expression:
@@ -3322,7 +3530,7 @@ class Selection(AbjadValueObject):
                     f'16
                 }
 
-        Returns nested selection.
+        Returns nested selection (or expression).
         '''
         import abjad
         if self._expression:
@@ -3684,7 +3892,7 @@ class Selection(AbjadValueObject):
                     c''4
                 }
 
-        Returns new selection.
+        Returns new selection (or expression).
         '''
         import abjad
         if self._expression:
@@ -3815,7 +4023,7 @@ class Selection(AbjadValueObject):
                     f'16
                 }
 
-        Returns nested selection.
+        Returns nested selection (or expression).
         '''
         import abjad
         if self._expression:
@@ -4754,7 +4962,7 @@ class Selection(AbjadValueObject):
                     }
                 }
 
-        Returns new selection.
+        Returns new selection (or expression).
         '''
         import abjad
         if self._expression:
@@ -5227,7 +5435,7 @@ class Selection(AbjadValueObject):
                     }
                 }
 
-        Returns new selection.
+        Returns new selection (or expression).
         '''
         import abjad
         if self._expression:
@@ -5493,7 +5701,7 @@ class Selection(AbjadValueObject):
                     a'4
                 }
 
-        Returns new selection.
+        Returns new selection (or expression).
         '''
         if self._expression:
             return self._update_expression(
@@ -6249,7 +6457,7 @@ class Selection(AbjadValueObject):
                     c''8
                 }
 
-        Returns nested selection:
+        Returns nested selection (or expression):
 
             >>> type(result).__name__
             'Selection'
@@ -7343,7 +7551,7 @@ class Selection(AbjadValueObject):
         Returns remaining components at end in final part when `overhang`
         is true.
 
-        Returns nested selection:
+        Returns nested selection (or expression):
 
             >>> type(result).__name__
             'Selection'
@@ -7614,7 +7822,7 @@ class Selection(AbjadValueObject):
                     r8
                 }
 
-        Returns nested selection:
+        Returns nested selection (or expression):
 
             >>> type(result).__name__
             'Selection'
@@ -8748,7 +8956,7 @@ class Selection(AbjadValueObject):
                     f'8 \sustainOn \sustainOff
                 }
 
-        Returns new selection.
+        Returns new selection (or expression).
         '''
         import abjad
         if self._expression:
@@ -8927,7 +9135,7 @@ class Selection(AbjadValueObject):
                     f'8
                 }
 
-        Returns new selection.
+        Returns new selection (or expression).
         '''
         import abjad
         if self._expression:

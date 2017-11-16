@@ -683,7 +683,7 @@ class Hairpin(Spanner):
 
     ### PUBLIC METHODS ###
 
-    def attach(self, indicator, leaf):
+    def attach(self, indicator, leaf, tag=None):
         r'''Attaches `indicator` to `leaf` in spanner.
 
         ..  container:: example
@@ -715,4 +715,5 @@ class Hairpin(Spanner):
 
         Returns none.
         '''
-        super(Hairpin, self)._attach_piecewise(indicator, leaf)
+        superclass = super(Hairpin, self)
+        superclass._attach_piecewise(indicator, leaf, tag=tag)

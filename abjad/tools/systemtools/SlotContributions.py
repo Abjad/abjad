@@ -163,6 +163,52 @@ class SlotContributions(AbjadObject):
         self._stem_tremolos = tuple(self.stem_tremolos)
         self._trill_pitches = tuple(self.trill_pitches)
 
+    def tag(self, tag, deactivate):
+        r'''Tags contributions.
+        '''
+        tag = ' %! ' + tag
+        deactivation = '%%% '
+        articulations = [_ + tag for _ in self.articulations]
+        if deactivate:
+            articulations = [deactivation + _ for _ in articulations]
+        self._articulations = articulations
+        commands = [_ + tag for _ in self.commands]
+        if deactivate:
+            commands = [deactivation + _ for _ in commands]
+        self._commands = commands
+        comments = [_ + tag for _ in self.comments]
+        if deactivate:
+            comments = [deactivation + _ for _ in comments]
+        self._comments = comments
+        indicators = [_ + tag for _ in self.indicators]
+        if deactivate:
+            indicators = [deactivation + _ for _ in indicators]
+        self._indicators = indicators
+        markup = [_ + tag for _ in self.markup]
+        if deactivate:
+            markup = [deactivation + _ for _ in markup]
+        self._markup = markup
+        spanners = [_ + tag for _ in self.spanners]
+        if deactivate:
+            spanners = [deactivation + _ for _ in spanners]
+        self._spanners = spanners
+        spanner_starts = [_ + tag for _ in self.spanner_starts]
+        if deactivate:
+            spanner_starts = [deactivation + _ for _ in spanner_starts]
+        self._spanner_starts = spanner_starts
+        spanner_stops = [_ + tag for _ in self.spanner_stops]
+        if deactivate:
+            spanner_stops = [deactivation + _ for _ in spanner_stops]
+        self._spanner_stops = spanner_stops
+        stem_tremolos = [_ + tag for _ in self.stem_tremolos]
+        if deactivate:
+            stem_tremolos = [deactivation + _ for _ in stem_tremolos]
+        self._stem_tremolos = stem_tremolos
+        trill_pitches = [_ + tag for _ in self.trill_pitches]
+        if deactivate:
+            trill_pitches = [deactivation + _ for _ in trill_pitches]
+        self._trill_pitches = trill_pitches
+
     def update(self, slot_contributions):
         r'''Updates contributions.
         '''

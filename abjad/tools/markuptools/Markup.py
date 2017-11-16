@@ -3,8 +3,6 @@ import numbers
 from abjad import Fraction
 from abjad.tools import mathtools
 from abjad.tools import schemetools
-from abjad.tools import datastructuretools
-from abjad.tools import systemtools
 from abjad.tools.topleveltools import new
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.markuptools.MarkupCommand import MarkupCommand
@@ -17,7 +15,6 @@ class Markup(AbjadValueObject):
     ..  container:: example
 
         Initializes from string:
-
 
         >>> string = r'\italic { "Allegro assai" }'
         >>> markup = abjad.Markup(string)
@@ -81,7 +78,146 @@ class Markup(AbjadValueObject):
     Set `direction` to ``Up``, ``Down``, ``'neutral'``, ``'^'``, ``'_'``,
     ``'-'`` or None.
 
-    Markup objects are immutable.
+    ..  container:: example
+
+        Markup can be tagged:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> markup = abjad.Markup('Allegro', abjad.Up).italic()
+        >>> abjad.attach(markup, staff[0], tag='RED')
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        >>> abjad.f(staff)
+        \new Staff {
+            c'4
+                ^ \markup { %! RED:1
+                    \italic %! RED:1
+                        Allegro %! RED:1
+                    } %! RED:1
+            d'4
+            e'4
+            f'4
+        }
+
+        Markup can even be tagged inside automatically generated markup
+        columns:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.attach(abjad.Markup('Allegro'), staff[0])
+        >>> abjad.attach(abjad.Markup('non troppo'), staff[0], tag='RED')
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        >>> abjad.f(staff)
+        \new Staff {
+            c'4
+                - \markup {
+                    \column
+                        {
+                            \line
+                                {
+                                    Allegro
+                                }
+                            \line %! RED:1
+                                { %! RED:1
+                                    "non troppo" %! RED:1
+                                } %! RED:1
+                        }
+                    }
+            d'4
+            e'4
+            f'4
+        }
+
+    ..  container:: example
+
+        Markup can be deactively tagged:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> markup = abjad.Markup('Allegro', abjad.Up).italic()
+        >>> abjad.attach(markup, staff[0], deactivate=True, tag='RED')
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        >>> abjad.f(staff)
+        \new Staff {
+            c'4
+                %%% ^ \markup { %! RED:1
+                %%%     \italic %! RED:1
+                %%%         Allegro %! RED:1
+                %%%     } %! RED:1
+            d'4
+            e'4
+            f'4
+        }
+
+        Markup can even be deactivately tagged inside automatically generated
+        markup columns:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.attach(abjad.Markup('Allegro'), staff[0])
+        >>> abjad.attach(
+        ...     abjad.Markup('non troppo'),
+        ...     staff[0],
+        ...     deactivate=True,
+        ...     tag='RED',
+        ...     )
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        >>> abjad.f(staff)
+        \new Staff {
+            c'4
+                - \markup {
+                    \column
+                        {
+                            \line
+                                {
+                                    Allegro
+                                }
+                            %%% \line %! RED:1
+                            %%%    { %! RED:1
+                            %%%        "non troppo" %! RED:1
+                            %%%    } %! RED:1
+                        }
+                    }
+            d'4
+            e'4
+            f'4
+        }
+
+    ..  container:: example
+
+        REGRESSION: make sure the first italic markup doesn't disappear after
+        the second italic markup is attached:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> markup_1 = abjad.Markup('Allegro', abjad.Up).italic()
+        >>> markup_2 = abjad.Markup('non troppo', abjad.Up).italic()
+        >>> abjad.attach(markup_1, staff[0])
+        >>> abjad.attach(markup_2, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        >>> abjad.f(staff)
+        \new Staff {
+            c'4
+                ^ \markup {
+                    \column
+                        {
+                            \line
+                                {
+                                    \italic
+                                        Allegro
+                                }
+                            \line
+                                {
+                                    \italic
+                                        "non troppo"
+                                }
+                        }
+                    }
+            d'4
+            e'4
+            f'4
+        }
+
     '''
 
     ### CLASS VARIABLES ###
@@ -108,18 +244,18 @@ class Markup(AbjadValueObject):
         literal=None,
         stack_priority=0,
         ):
-        from abjad.tools.topleveltools import parse
+        import abjad
         self._annotation = None
         if contents is None:
             new_contents = ('',)
         elif isinstance(contents, str):
             to_parse = r'\markup {{ {} }}'.format(contents)
-            parsed = parse(to_parse)
-            if all(isinstance(x, str) for x in parsed.contents):
+            parsed = abjad.parse(to_parse)
+            if all(isinstance(_, str) for _ in parsed.contents):
                 new_contents = (' '.join(parsed.contents),)
             else:
                 new_contents = tuple(parsed.contents)
-        elif isinstance(contents, MarkupCommand):
+        elif isinstance(contents, abjad.MarkupCommand):
             new_contents = (contents,)
         elif isinstance(contents, type(self)):
             direction = direction or contents._direction
@@ -138,8 +274,7 @@ class Markup(AbjadValueObject):
             new_contents = (str(contents),)
         self._contents = new_contents
         self._format_slot = 'right'
-        direction = datastructuretools.String.to_tridirectional_ordinal_constant(
-            direction)
+        direction = abjad.String.to_tridirectional_ordinal_constant(direction)
         self._direction = direction
         self._lilypond_tweak_manager = None
         assert isinstance(stack_priority, int), repr(stack_priority)
@@ -290,11 +425,11 @@ class Markup(AbjadValueObject):
 
         Returns string.
         '''
-        from abjad.tools import systemtools
+        import abjad
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
         elif format_specification == 'storage':
-            return systemtools.StorageFormatManager(self).get_storage_format()
+            return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __hash__(self):
@@ -480,19 +615,19 @@ class Markup(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_format_pieces(self):
-        from abjad.tools import systemtools
+        import abjad
         if self._lilypond_tweak_manager is None:
             tweaks = []
         else:
             tweaks = self._lilypond_tweak_manager._list_format_contributions()
-        indent = systemtools.LilyPondFormatManager.indent
+        indent = abjad.LilyPondFormatManager.indent
         direction = ''
         if self.direction is not None:
-            direction = datastructuretools.String.to_tridirectional_lilypond_symbol(
+            direction = abjad.String.to_tridirectional_lilypond_symbol(
                 self.direction)
         if len(self.contents) == 1 and isinstance(self.contents[0], str):
             content = self.contents[0]
-            content = schemetools.Scheme.format_scheme_value(content)
+            content = abjad.Scheme.format_scheme_value(content)
             if content:
                 content = '{{ {} }}'.format(content)
             else:
@@ -506,19 +641,20 @@ class Markup(AbjadValueObject):
             pieces = [r'\markup {']
         for content in self.contents:
             if isinstance(content, str):
-                content = schemetools.Scheme.format_scheme_value(content)
+                content = abjad.Scheme.format_scheme_value(content)
                 pieces.append('{}{}'.format(indent, content))
             else:
-                pieces.extend(['{}{}'.format(indent, x) for x in
-                    content._get_format_pieces()])
+                pieces_ = content._get_format_pieces()
+                pieces.extend(['{}{}'.format(indent, _) for _ in pieces_])
         pieces.append('{}}}'.format(indent))
         return tweaks + pieces
 
     def _get_format_specification(self):
-        agent = systemtools.StorageFormatManager(self)
+        import abjad
+        agent = abjad.StorageFormatManager(self)
         names = list(agent.signature_keyword_names)
         names.remove('stack_priority')
-        return systemtools.FormatSpecification(
+        return abjad.FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_kwargs_names=names,
@@ -1394,7 +1530,7 @@ class Markup(AbjadValueObject):
         return Markup(contents=command, direction=direction)
 
     @staticmethod
-    def line(markup_list, direction=None):
+    def line(markup_list, direction=None, deactivate=None, tag=None):
         r'''LilyPond ``\line`` markup command.
 
         ..  container:: example
@@ -1420,6 +1556,8 @@ class Markup(AbjadValueObject):
         for markup in markup_list:
             contents.extend(markup.contents)
         command = MarkupCommand('line', contents)
+        command.deactivate = deactivate
+        command.tag = tag
         return Markup(contents=command, direction=direction)
 
     @staticmethod
@@ -1458,7 +1596,6 @@ class Markup(AbjadValueObject):
             >>> abjad.show(markup) # doctest: +SKIP
 
         '''
-        from abjad.tools import mathtools
         if mathtools.is_integer_equivalent_number(rational):
             number = int(rational)
             markup = Markup(number, direction=direction)
@@ -2263,10 +2400,30 @@ class Markup(AbjadValueObject):
 
             >>> abjad.show(markup) # doctest: +SKIP
 
+        ..  container:: example
+
+            X-11 colors are supported:
+
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.with_color(abjad.SchemeColor('LimeGreen'))
+            >>> abjad.f(markup)
+            \markup {
+                \with-color
+                    #(x11-color 'LimeGreen)
+                    "Allegro assai"
+                }
+
+            >>> abjad.show(markup) # doctest: +SKIP
+
         Returns new markup.
         '''
         contents = self._parse_markup_command_argument(self)
-        color = schemetools.Scheme(color)
+        if isinstance(color, str):
+            color = schemetools.Scheme(color)
+        elif isinstance(color, schemetools.SchemeColor):
+            pass
+        else:
+            raise TypeError(color)
         command = MarkupCommand('with-color', color, contents)
         return new(self, contents=command)
 
