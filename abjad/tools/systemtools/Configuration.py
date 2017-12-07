@@ -41,7 +41,7 @@ class Configuration(AbjadObject):
         if not self._compare_configurations(old_contents, new_contents):
             try:
                 #self.configuration_file_path.write_text(new_contents)
-                with open(str(self.configuration_file_path)) as file_pointer:
+                with open(str(self.configuration_file_path), 'w') as file_pointer:
                     file_pointer.write(new_contents)
             except (IOError, OSError):
                 traceback.print_exc()
