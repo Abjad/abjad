@@ -34,7 +34,11 @@ class Configuration(AbjadObject):
                 traceback.print_exc()
         old_contents = ''
         if self.configuration_file_path.exists():
-            old_contents = self.configuration_file_path.read_text()
+            try:
+                old_contents = self.configuration_file_path.read_text()
+            except AttributeError:
+                with self.configuration_file_path.open(mode='r') as f:
+                    old_contents = f.read()
         configuration = self._configuration_from_string(old_contents)
         configuration = self._validate_configuration(configuration)
         new_contents = self._configuration_to_string(configuration)
