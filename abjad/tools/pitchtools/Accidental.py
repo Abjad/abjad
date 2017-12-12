@@ -812,7 +812,7 @@ class Accidental(AbjadValueObject):
         Returns none.
         '''
         import abjad
-        for leaf in abjad.iterate(selection).by_leaf():
+        for leaf in abjad.iterate(selection).leaves():
             if isinstance(leaf, abjad.Note):
                 leaf.written_pitch = leaf.written_pitch._respell_with_flats()
             elif isinstance(leaf, abjad.Chord):
@@ -865,7 +865,7 @@ class Accidental(AbjadValueObject):
         Returns none.
         '''
         import abjad
-        for leaf in abjad.iterate(selection).by_leaf():
+        for leaf in abjad.iterate(selection).leaves():
             if isinstance(leaf, abjad.Note):
                 leaf.written_pitch = leaf.written_pitch._respell_with_sharps()
             elif isinstance(leaf, abjad.Chord):

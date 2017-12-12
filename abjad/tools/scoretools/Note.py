@@ -9,15 +9,13 @@ class Note(Leaf):
 
     ..  container:: example
 
-        ::
-
-            >>> note = abjad.Note("cs''8.")
-            >>> measure = abjad.Measure((3, 16), [note])
-            >>> show(measure) # doctest: +SKIP
+        >>> note = abjad.Note("cs''8.")
+        >>> measure = abjad.Measure((3, 16), [note])
+        >>> abjad.show(measure) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(measure)
+            >>> abjad.f(measure)
             {
                 \time 3/16
                 cs''8.
@@ -175,22 +173,18 @@ class Note(Leaf):
 
             Gets note-head:
 
-            ::
-
-                >>> note = abjad.Note(13, (3, 16))
-                >>> note.note_head
-                NoteHead("cs''")
+            >>> note = abjad.Note(13, (3, 16))
+            >>> note.note_head
+            NoteHead("cs''")
 
         ..  container:: example
 
             Sets note-head:
 
-            ::
-
-                >>> note = abjad.Note(13, (3, 16))
-                >>> note.note_head = 14
-                >>> note
-                Note("d''8.")
+            >>> note = abjad.Note(13, (3, 16))
+            >>> note.note_head = 14
+            >>> note
+            Note("d''8.")
 
         Returns note-head.
         '''
@@ -215,21 +209,17 @@ class Note(Leaf):
 
             Gets written duration of note.
 
-            ::
-
-                >>> note = abjad.Note("c'4")
-                >>> note.written_duration
-                Duration(1, 4)
+            >>> note = abjad.Note("c'4")
+            >>> note.written_duration
+            Duration(1, 4)
 
         ..  container:: example
 
             Sets written duration of note:
 
-            ::
-
-                >>> note.written_duration = abjad.Duration(1, 16)
-                >>> note.written_duration
-                Duration(1, 16)
+            >>> note.written_duration = abjad.Duration(1, 16)
+            >>> note.written_duration
+            Duration(1, 16)
 
         Returns duration
         '''
@@ -247,22 +237,18 @@ class Note(Leaf):
 
             Gets written pitch of note.
 
-            ::
-
-                >>> note = abjad.Note(13, (3, 16))
-                >>> note.written_pitch
-                NamedPitch("cs''")
+            >>> note = abjad.Note(13, (3, 16))
+            >>> note.written_pitch
+            NamedPitch("cs''")
 
         ..  container:: example
 
             Sets written pitch of note:
 
-            ::
-
-                >>> note = abjad.Note(13, (3, 16))
-                >>> note.written_pitch = 14
-                >>> note
-                Note("d''8.")
+            >>> note = abjad.Note(13, (3, 16))
+            >>> note.written_pitch = 14
+            >>> note
+            Note("d''8.")
 
         Returns named pitch.
         '''

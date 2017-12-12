@@ -9,7 +9,7 @@ def test_scoretools_Mutation_copy_01():
     '''
 
     voice = abjad.Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     slur = abjad.Slur()
     abjad.attach(slur, leaves)
     trill = abjad.TrillSpanner()
@@ -57,7 +57,7 @@ def test_scoretools_Mutation_copy_02():
     '''
 
     voice = abjad.Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     slur = abjad.Slur()
     abjad.attach(slur, leaves)
     trill = abjad.TrillSpanner()
@@ -108,7 +108,7 @@ def test_scoretools_Mutation_copy_03():
     '''
 
     voice = abjad.Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     slur = abjad.Slur()
     abjad.attach(slur, leaves)
     trill = abjad.TrillSpanner()
@@ -157,7 +157,7 @@ def test_scoretools_Mutation_copy_04():
     '''
 
     voice = abjad.Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     slur = abjad.Slur()
     abjad.attach(slur, leaves)
     trill = abjad.TrillSpanner()
@@ -214,7 +214,7 @@ def test_scoretools_Mutation_copy_05():
 
     voice = abjad.Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     slur = abjad.Slur()
@@ -247,7 +247,7 @@ def test_scoretools_Mutation_copy_05():
     selection = abjad.select(voice)
     new_selection = abjad.mutate(selection).copy()
     new_voice = new_selection[0]
-    for component in abjad.iterate(new_voice).by_class():
+    for component in abjad.iterate(new_voice).components():
         abjad.detach(abjad.Spanner, component)
 
     assert format(new_voice) == abjad.String.normalize(
@@ -280,7 +280,7 @@ def test_scoretools_Mutation_copy_06():
 
     voice = abjad.Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     slur = abjad.Slur()
@@ -312,7 +312,7 @@ def test_scoretools_Mutation_copy_06():
 
     result = abjad.mutate(voice[1:]).copy()
     new_voice = abjad.Voice(result)
-    for component in abjad.iterate(new_voice).by_class():
+    for component in abjad.iterate(new_voice).components():
         abjad.detach(abjad.Spanner, component)
 
     assert format(new_voice) == abjad.String.normalize(
@@ -342,7 +342,7 @@ def test_scoretools_Mutation_copy_07():
 
     voice = abjad.Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     slur = abjad.Slur()
@@ -374,7 +374,7 @@ def test_scoretools_Mutation_copy_07():
 
     result = abjad.mutate(leaves[:6]).copy()
     new_voice = abjad.Voice(result)
-    for component in abjad.iterate(new_voice).by_class():
+    for component in abjad.iterate(new_voice).components():
         abjad.detach(abjad.Spanner, component)
 
     assert format(new_voice) == abjad.String.normalize(
@@ -397,7 +397,7 @@ def test_scoretools_Mutation_copy_08():
 
     voice = abjad.Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     slur = abjad.Slur()
@@ -429,7 +429,7 @@ def test_scoretools_Mutation_copy_08():
 
     result = abjad.mutate(voice[-2:]).copy()
     new_voice = abjad.Voice(result)
-    for component in abjad.iterate(new_voice).by_class():
+    for component in abjad.iterate(new_voice).components():
         abjad.detach(abjad.Spanner, component)
 
     assert format(new_voice) == abjad.String.normalize(
@@ -456,7 +456,7 @@ def test_scoretools_Mutation_copy_09():
 
     voice = abjad.Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     slur = abjad.Slur()
@@ -488,7 +488,7 @@ def test_scoretools_Mutation_copy_09():
 
     result = abjad.mutate(voice[-2:]).copy(n=3)
     new_voice = abjad.Voice(result)
-    for component in abjad.iterate(new_voice).by_class():
+    for component in abjad.iterate(new_voice).components():
         abjad.detach(abjad.Spanner, component)
 
     assert format(new_voice) == abjad.String.normalize(
@@ -578,7 +578,7 @@ def test_scoretools_Mutation_copy_11():
     '''
 
     staff = abjad.Staff(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 g'8 a'8 }")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
 
     assert format(staff) == abjad.String.normalize(
         r'''
@@ -629,7 +629,7 @@ def test_scoretools_Mutation_copy_12():
 
     voice = abjad.Voice(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 g'8 a'8 }")
     staff = abjad.Staff([voice])
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
 
     assert format(staff) == abjad.String.normalize(
         r'''
@@ -686,7 +686,7 @@ def test_scoretools_Mutation_copy_13():
     voice_2 = abjad.Voice("g'8 a'8 b'8 c''8")
     staff = abjad.Staff([voice_1, voice_2])
     staff.is_simultaneous = True
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
 
     assert format(staff) == abjad.String.normalize(
         r'''
@@ -777,7 +777,7 @@ def test_scoretools_Mutation_copy_16():
     measure_1 = abjad.Measure((3, 8), "c'8 d'8 e'8")
     measure_2 = abjad.Measure((3, 8), "f'8 g'8 a'8")
     staff = abjad.Staff([measure_1, measure_2])
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
 
     assert format(staff) == abjad.String.normalize(
         r'''

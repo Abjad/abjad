@@ -29,7 +29,7 @@ contained in an explicit voice always belong to the same logical voice:
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     staff = abjad.Staff([voice])
-    notes = abjad.select(staff).by_leaf()
+    notes = abjad.select(staff).leaves()
     slur = abjad.Slur()
     abjad.attach(slur, notes)
     show(staff)
@@ -41,7 +41,7 @@ logical voice even though no explicit voice is present:
 ..  abjad::
 
     staff = abjad.Staff("g'4 fs'8 e'8")
-    notes = abjad.select(staff).by_leaf()
+    notes = abjad.select(staff).leaves()
     slur = abjad.Slur()
     abjad.attach(slur, notes)
     show(staff)
@@ -74,7 +74,7 @@ You can slur together the notes in the first voice:
 
 ..  abjad::
 
-    notes = abjad.select(voice_1).by_leaf()
+    notes = abjad.select(voice_1).leaves()
     slur = abjad.Slur()
     abjad.attach(slur, notes)
     show(staff)
@@ -83,7 +83,7 @@ And you can slur together the notes in the second voice:
 
 ..  abjad::
 
-    notes = abjad.select(voice_2).by_leaf()
+    notes = abjad.select(voice_2).leaves()
     slur = abjad.Slur()
     abjad.attach(slur, notes)
     show(staff)
@@ -117,8 +117,8 @@ that this is the case because it's now possible to slur all six notes together:
 
 ..  abjad::
 
-    voice_1_notes = abjad.select(voice_1).by_leaf()
-    voice_2_notes = abjad.select(voice_2).by_leaf()
+    voice_1_notes = abjad.select(voice_1).leaves()
+    voice_2_notes = abjad.select(voice_2).leaves()
     all_notes = voice_1_notes + voice_2_notes
     slur = abjad.Slur()
     abjad.attach(slur, all_notes)
@@ -155,8 +155,8 @@ together all of the notes at once:
 
 ..  abjad::
 
-    voice_1_notes = abjad.select(voice_1).by_leaf()
-    voice_2_notes = abjad.select(voice_2).by_leaf()
+    voice_1_notes = abjad.select(voice_1).leaves()
+    voice_2_notes = abjad.select(voice_2).leaves()
     attach(abjad.Slur(), voice_1_notes)
     attach(abjad.Slur(), voice_2_notes)
     show(staff)

@@ -26,7 +26,7 @@ def test_scoretools_VerticalMoment_previous_vertical_moment_01():
         >>
         ''')
 
-    selector = abjad.select().by_leaf()
+    selector = abjad.select().leaves()
     leaves = selector(score)
     last_leaf = leaves[-1]
     vertical_moment = abjad.inspect(last_leaf).get_vertical_moment()

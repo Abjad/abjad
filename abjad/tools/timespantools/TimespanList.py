@@ -416,9 +416,9 @@ class TimespanList(TypedList):
         raise TypeError(argument)
 
     def _get_timespan(self, argument):
-        from abjad.tools import timespantools
+        import abjad
         start_offset, stop_offset = self._get_offsets(argument)
-        return timespantools.Timespan(start_offset, stop_offset)
+        return abjad.Timespan(start_offset, stop_offset)
 
     @staticmethod
     def _make_timespan_list_markup(

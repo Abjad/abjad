@@ -6,16 +6,14 @@ class MeasureMaker(AbjadValueObject):
 
     ..  container:: example
 
-        ::
-
-            >>> maker = abjad.MeasureMaker()
-            >>> measures = maker([(1, 8), (5, 16), (5, 16)])
-            >>> staff = abjad.Staff(measures)
-            >>> show(staff) # doctest: +SKIP
+        >>> maker = abjad.MeasureMaker()
+        >>> measures = maker([(1, 8), (5, 16), (5, 16)])
+        >>> staff = abjad.Staff(measures)
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 {
                     \time 1/8

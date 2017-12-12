@@ -75,11 +75,11 @@ Slice a score to select its components:
 Selecting a score's leaves
 --------------------------
 
-Use ``abjad.select().by_leaf())`` to select the leaves in a score:
+Use ``abjad.select().leaves())`` to select the leaves in a score:
 
 ..  abjad::
 
-    abjad.select(score).by_leaf()
+    abjad.select(score).leaves()
 
 
 Getting the length of a score

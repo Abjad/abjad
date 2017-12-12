@@ -6,15 +6,13 @@ class Skip(Leaf):
 
     ..  container:: example
 
-        ::
-
-            >>> skip = abjad.Skip((3, 16))
-            >>> skip
-            Skip('s8.')
+        >>> skip = abjad.Skip((3, 16))
+        >>> skip
+        Skip('s8.')
 
         ..  docs::
 
-            >>> f(skip)
+            >>> abjad.f(skip)
             s8.
 
     '''

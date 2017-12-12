@@ -280,7 +280,7 @@ class IncisedRhythmMaker(RhythmMaker):
         elif beam_specifier.beam_each_division:
             for x in result:
                 beam = abjad.MultipartBeam()
-                leaves = abjad.select(x).by_leaf()
+                leaves = abjad.select(x).leaves()
                 abjad.attach(beam, leaves)
         selections = [abjad.select(x) for x in result]
         selections = self._apply_division_masks(selections, rotation)

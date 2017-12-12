@@ -20,7 +20,7 @@ def test_scoretools_Selection__attach_tie_spanner_to_leaf_pair_01():
         '''
         )
 
-    selector = abjad.select().by_leaf()
+    selector = abjad.select().leaves()
     leaves = selector(voice)
     leaves[1:3]._attach_tie_spanner_to_leaf_pair()
 
@@ -59,7 +59,7 @@ def test_scoretools_Selection__attach_tie_spanner_to_leaf_pair_02():
         '''
         )
 
-    selector = abjad.select().by_leaf()
+    selector = abjad.select().leaves()
     leaves = selector(voice)
     leaves[1:3]._attach_tie_spanner_to_leaf_pair()
 
@@ -82,7 +82,7 @@ def test_scoretools_Selection__attach_tie_spanner_to_leaf_pair_03():
     '''
 
     voice = abjad.Voice("c'8 c'8 c'8 c'8")
-    selector = abjad.select().by_leaf()
+    selector = abjad.select().leaves()
     leaves = selector(voice)
     leaves[1:3]._attach_tie_spanner_to_leaf_pair()
 

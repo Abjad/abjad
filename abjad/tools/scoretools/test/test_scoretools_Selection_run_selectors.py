@@ -9,10 +9,10 @@ def test_scoretools_Selection_run_selectors_01():
     staff = abjad.Staff("c'4 d'8 e'8 f'4 g'8 a'4 b'8 c'8")
 
     selector = abjad.select()
-    logical_tie_selector = selector.by_logical_tie()
-    pitched_selector = logical_tie_selector.by_pitch('C4')
-    duration_selector = logical_tie_selector.by_duration('==', (1, 8))
-    contiguity_selector = duration_selector.by_contiguity()
+    logical_tie_selector = selector.logical_ties()
+    pitched_selector = logical_tie_selector.filter_pitches('&', 'C4')
+    duration_selector = logical_tie_selector.filter_duration('==', (1, 8))
+    contiguity_selector = duration_selector.contiguous()
 
     selectors = [
         selector,

@@ -8,21 +8,17 @@ class Context(Container):
 
     ..  container:: example
 
-        ::
+        >>> context = abjad.Context(
+        ...     name='MeterVoice',
+        ...     context_name='GlobalContext',
+        ...     )
 
-            >>> context = abjad.Context(
-            ...     name='MeterVoice',
-            ...     context_name='GlobalContext',
-            ...     )
-
-        ::
-
-            >>> context
-            Context(context_name='GlobalContext', name='MeterVoice')
+        >>> context
+        Context(context_name='GlobalContext', name='MeterVoice')
 
         ..  docs::
 
-            >>> f(context)
+            >>> abjad.f(context)
             \context GlobalContext = "MeterVoice" {
             }
 
@@ -64,14 +60,12 @@ class Context(Container):
     def __repr__(self):
         r'''Gets interpreter representation of context.
 
-        ::
-
-            >>> context = abjad.Context(
-            ...     name='MeterVoice',
-            ...     context_name='GlobalContext',
-            ...     )
-            >>> repr(context)
-            "Context(context_name='GlobalContext', name='MeterVoice')"
+        >>> context = abjad.Context(
+        ...     name='MeterVoice',
+        ...     context_name='GlobalContext',
+        ...     )
+        >>> repr(context)
+        "Context(context_name='GlobalContext', name='MeterVoice')"
 
         Returns string.
         '''
@@ -193,15 +187,13 @@ class Context(Container):
 
         Manage with add, update, other standard set commands:
 
-        ::
-
-            >>> staff = abjad.Staff([])
-            >>> staff.consists_commands.append('Horizontal_bracket_engraver')
-            >>> f(staff)
-            \new Staff \with {
-                \consists Horizontal_bracket_engraver
-            } {
-            }
+        >>> staff = abjad.Staff([])
+        >>> staff.consists_commands.append('Horizontal_bracket_engraver')
+        >>> abjad.f(staff)
+        \new Staff \with {
+            \consists Horizontal_bracket_engraver
+        } {
+        }
 
         '''
         return self._consists_commands
@@ -245,15 +237,13 @@ class Context(Container):
 
         Manage with add, update, other standard set commands:
 
-        ::
-
-            >>> staff = abjad.Staff([])
-            >>> staff.remove_commands.append('Time_signature_engraver')
-            >>> f(staff)
-            \new Staff \with {
-                \remove Time_signature_engraver
-            } {
-            }
+        >>> staff = abjad.Staff([])
+        >>> staff.remove_commands.append('Time_signature_engraver')
+        >>> abjad.f(staff)
+        \new Staff \with {
+            \remove Time_signature_engraver
+        } {
+        }
 
         '''
         return self._remove_commands

@@ -883,7 +883,7 @@ class Meter(AbjadValueObject):
                 )
             #print('DEPTH:', depth)
             logical_tie_duration = logical_tie._get_preprolated_duration()
-            logical_tie_timespan = logical_tie.get_timespan()
+            logical_tie_timespan = abjad.inspect(logical_tie).get_timespan()
             logical_tie_start_offset = logical_tie_timespan.start_offset
             logical_tie_stop_offset = logical_tie_timespan.stop_offset
             logical_tie_starts_in_offsets = logical_tie_start_offset in offsets
@@ -971,7 +971,7 @@ class Meter(AbjadValueObject):
                 #print()
                 logical_tie[:]._fuse()
         # Validate arguments.
-        assert abjad.select(components).in_contiguous_logical_voice()
+        assert abjad.select(components).are_contiguous_logical_voice()
         if not isinstance(meter, abjad.Meter):
             meter = abjad.Meter(meter)
         if boundary_depth is not None:
@@ -989,9 +989,10 @@ class Meter(AbjadValueObject):
         difference = last_start_offset - first_start_offset + initial_offset
         assert difference < meter.implied_time_signature.duration
         # Build offset inventory, adjusted for initial offset and prolation.
-        first_offset = components[0]._get_timespan().start_offset
+        first_offset = abjad.inspect(components[0]).get_timespan().start_offset
         first_offset -= initial_offset
-        prolation = components[0]._get_parentage(include_self=False).prolation
+        prolation = abjad.inspect(components[0]).get_parentage(
+            include_self=False).prolation
         offset_inventory = []
         for offsets in meter.depthwise_offset_inventory:
             offsets = [(x * prolation) + first_offset for x in offsets]

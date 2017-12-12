@@ -12,7 +12,7 @@ def test_scoretools_Selection__get_dominant_spanners_01():
     '''
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves[:4])
     glissando = abjad.Glissando()
@@ -51,7 +51,7 @@ def test_scoretools_Selection__get_dominant_spanners_02():
     '''
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves[:4])
     glissando = abjad.Glissando()
@@ -72,7 +72,7 @@ def test_scoretools_Selection__get_dominant_spanners_03():
     '''
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves[:4])
     glissando = abjad.Glissando()
@@ -92,7 +92,7 @@ def test_scoretools_Selection__get_dominant_spanners_04():
     '''
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves[:4])
     glissando = abjad.Glissando()
@@ -112,7 +112,7 @@ def test_scoretools_Selection__get_dominant_spanners_05():
     '''
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves[:4])
     glissando = abjad.Glissando()
@@ -132,7 +132,7 @@ def test_scoretools_Selection__get_dominant_spanners_06():
     '''
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves[:4])
     glissando = abjad.Glissando()
@@ -151,7 +151,7 @@ def test_scoretools_Selection__get_dominant_spanners_07():
     '''
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves[:4])
     glissando = abjad.Glissando()
@@ -172,7 +172,7 @@ def test_scoretools_Selection__get_dominant_spanners_08():
     '''
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves[:4])
     glissando = abjad.Glissando()

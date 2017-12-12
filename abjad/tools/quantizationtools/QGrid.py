@@ -122,7 +122,7 @@ class QGrid(AbjadObject):
         result_leaves = []
         for x in result:
             if isinstance(x, scoretools.Container):
-                leaves = select(x).by_leaf()
+                leaves = select(x).leaves()
                 result_leaves.extend(leaves)
             else:
                 result_leaves.append(x)

@@ -36,7 +36,7 @@ def test_spannertools_Spanner___len___02():
     '''
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 

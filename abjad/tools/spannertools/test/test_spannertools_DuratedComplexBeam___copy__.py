@@ -15,11 +15,11 @@ def test_spannertools_DuratedComplexBeam___copy___01():
         span_beam_count=2,
         direction=abjad.Down,
         )
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     abjad.attach(beam, leaves)
 
     new_staff = abjad.mutate(staff).copy()
-    new_leaves = abjad.select(new_staff).by_leaf()
+    new_leaves = abjad.select(new_staff).leaves()
     new_beam = abjad.inspect(new_leaves[0]).get_spanner(abjad.Beam)
 
     assert format(staff) == format(new_staff)

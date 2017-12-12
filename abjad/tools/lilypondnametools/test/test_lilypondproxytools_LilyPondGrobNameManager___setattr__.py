@@ -804,7 +804,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___36():
     '''
 
     staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     abjad.override(beam).score.spacing_spanner.strict_grace_spacing = True

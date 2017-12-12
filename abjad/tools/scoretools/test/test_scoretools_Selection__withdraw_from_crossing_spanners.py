@@ -136,7 +136,7 @@ def test_scoretools_Selection__withdraw_from_crossing_spanners_03():
         '''
         )
 
-    selector = abjad.select().by_leaf()
+    selector = abjad.select().leaves()
     leaves = selector(voice)
     leaves[2:3]._withdraw_from_crossing_spanners()
     assert not abjad.inspect(voice).is_well_formed()

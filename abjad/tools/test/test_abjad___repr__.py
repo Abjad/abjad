@@ -3,6 +3,7 @@ import pytest
 from abjad.tools import abjadbooktools
 from abjad.tools import datastructuretools
 from abjad.tools import documentationtools
+from abjad.tools import segmenttools
 from abjad.tools import systemtools
 
 
@@ -20,7 +21,7 @@ ignored_classes = (
     abjadbooktools.ShellDirective,
     abjadbooktools.ThumbnailDirective,
     datastructuretools.Enumeration,
-    datastructuretools.Path,
+    segmenttools.Path,
     systemtools.FormatSpecification,
     systemtools.StorageFormatManager,
     systemtools.TestCase,

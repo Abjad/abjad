@@ -95,7 +95,7 @@ def test_scoretools_Mutation_splice_04():
     '''
 
     voice = abjad.Voice(abjad.Container("c'8 c'8") * 2)
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     result = abjad.mutate(voice[0]).splice(
@@ -281,7 +281,7 @@ def test_scoretools_Mutation_splice_10():
     '''
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 }")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     result = abjad.mutate(voice[1]).splice(

@@ -86,7 +86,7 @@ def test_scoretools_Mutation_extract_03():
     staff = abjad.Staff()
     staff.append(abjad.Container("c'8 d'8"))
     staff.append(abjad.Container("e'8 f'8"))
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 
@@ -133,7 +133,7 @@ def test_scoretools_Mutation_extract_04():
     voice.append(abjad.Container("c'8 d'8"))
     voice.append(abjad.Container("e'8 f'8"))
     voice.append(abjad.Container("g'8 a'8"))
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     glissando = abjad.Glissando()

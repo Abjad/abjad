@@ -114,7 +114,7 @@ def attach(
                     if isinstance(x, abjad.Leaf):
                         leaves.append(x)
                     else:
-                        leaves.extend(abjad.iterate(x).by_leaf())
+                        leaves.extend(abjad.iterate(x).leaves())
             except TypeError:
                 leaves.append(argument)
             indicator._attach(leaves)

@@ -108,6 +108,7 @@ class Expression(AbjadValueObject):
         '_is_initializer',
         '_is_postfix',
         '_keywords',
+        '_lone',
         '_map_operand',
         '_markup_maker_callback',
         '_module_names',
@@ -119,6 +120,7 @@ class Expression(AbjadValueObject):
         '_string_template',
         '_subclass_hook',
         '_subexpressions',
+        '_template',
         )
 
     _private_attributes_to_copy = []
@@ -139,6 +141,7 @@ class Expression(AbjadValueObject):
         is_initializer=None,
         is_postfix=None,
         keywords=None,
+        lone=None,
         map_operand=None,
         markup_maker_callback=None,
         module_names=None,
@@ -150,6 +153,7 @@ class Expression(AbjadValueObject):
         string_template=None,
         subclass_hook=None,
         subexpressions=None,
+        template=None,
         ):
         if argument_count is not None:
             assert isinstance(argument_count, int) and 0 <= argument_count
@@ -186,6 +190,7 @@ class Expression(AbjadValueObject):
             message = 'must be expression, expression list or none: {!r}.'
             message = message.format(map_operand)
             raise TypeError(message)
+        self._lone = lone
         self._map_operand = map_operand
         if markup_maker_callback is not None:
             assert isinstance(markup_maker_callback, str)
@@ -219,6 +224,7 @@ class Expression(AbjadValueObject):
         if subexpressions is not None:
             subexpressions = tuple(subexpressions)
         self._subexpressions = subexpressions
+        self._template = template
 
     ### SPECIAL METHODS ###
 
@@ -793,6 +799,19 @@ class Expression(AbjadValueObject):
             del frame
         return template
 
+    def _get_format_specification(self):
+        import abjad
+        if self.template is None:
+            return super(Expression, self)._get_format_specification()
+        return abjad.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_is_indented=False,
+            storage_format_args_values=[self.template],
+            storage_format_forced_override=self.template,
+            storage_format_kwargs_names=(),
+            )
+
     @staticmethod
     def _get_method_name(
         function_name,
@@ -815,6 +834,8 @@ class Expression(AbjadValueObject):
         if not self.callbacks:
             return False
         callback = self.callbacks[-1]
+        if getattr(callback, '_lone', None):
+            return True
         if (callback.evaluation_template == 'group' and
             callback.map_operand is None):
             return True
@@ -1452,6 +1473,18 @@ class Expression(AbjadValueObject):
         return self._keywords
 
     @property
+    def lone(self):
+        r'''Is true when expression return a singular get-item.
+
+        Defaults to none.
+
+        Set to true, false or none.
+
+        Returns true, false or none.
+        '''
+        return self._lone
+
+    @property
     def map_operand(self):
         r'''Gets expression to map.
 
@@ -1598,6 +1631,14 @@ class Expression(AbjadValueObject):
         Returns list of expressions or none.
         '''
         return self._subexpressions
+
+    @property
+    def template(self):
+        r'''Gets template.
+
+        Returns string or none.
+        '''
+        return self._template
 
     ### PUBLIC METHODS ###
 
@@ -2155,7 +2196,7 @@ class Expression(AbjadValueObject):
 
                     >>> expression = abjad.Expression()
                     >>> expression = expression.select()
-                    >>> expression = expression.by_leaf()
+                    >>> expression = expression.leaves()
 
                 ::
 
@@ -2175,7 +2216,11 @@ class Expression(AbjadValueObject):
         class_ = abjad.Selection
         callback = self._make_initializer_callback(class_, **keywords)
         expression = self.append_callback(callback)
-        return abjad.new(expression, proxy_class=class_)
+        return abjad.new(
+            expression,
+            proxy_class=class_,
+            template='abjad.select()',
+            )
 
     def sequence(self, **keywords):
         r'''Makes sequence expression.

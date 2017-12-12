@@ -6,7 +6,7 @@ def test_scoretools_LogicalTie__fuse_leaves_by_immediate_parent_01():
     '''
 
     staff = abjad.Staff(2 * abjad.Measure((2, 8), "c'8 c'8"))
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     tie = abjad.Tie()
     abjad.attach(tie, leaves)
 

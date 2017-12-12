@@ -1,25 +1,23 @@
 import collections
-from .Selection import Selection
+from abjad.tools import abctools
 
 
-class VerticalMoment(Selection):
+class VerticalMoment(abctools.AbjadObject):
     r'''Vertical moment.
 
     ..  container:: example
 
-        ::
-
-            >>> score = abjad.Score()
-            >>> staff_group = abjad.StaffGroup()
-            >>> staff_group.context_name = 'PianoStaff'
-            >>> staff_group.append(abjad.Staff("c'4 e'4 d'4 f'4"))
-            >>> staff_group.append(abjad.Staff(r"""\clef "bass" g2 f2"""))
-            >>> score.append(staff_group)
-            >>> show(score) # doctest: +SKIP
+        >>> score = abjad.Score()
+        >>> staff_group = abjad.StaffGroup()
+        >>> staff_group.context_name = 'PianoStaff'
+        >>> staff_group.append(abjad.Staff("c'4 e'4 d'4 f'4"))
+        >>> staff_group.append(abjad.Staff(r"""\clef "bass" g2 f2"""))
+        >>> score.append(staff_group)
+        >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(score)
+            >>> abjad.f(score)
             \new Score <<
                 \new PianoStaff <<
                     \new Staff {
@@ -36,21 +34,22 @@ class VerticalMoment(Selection):
                 >>
             >>
 
-        ::
-
-            >>> for moment in abjad.iterate(score).by_vertical_moment():
-            ...     moment
-            ...
-            VerticalMoment(0, <<2>>)
-            VerticalMoment(1/4, <<2>>)
-            VerticalMoment(1/2, <<2>>)
-            VerticalMoment(3/4, <<2>>)
+        >>> for moment in abjad.iterate(score).vertical_moments():
+        ...     moment
+        ...
+        VerticalMoment(0, <<2>>)
+        VerticalMoment(1/4, <<2>>)
+        VerticalMoment(1/2, <<2>>)
+        VerticalMoment(3/4, <<2>>)
 
     '''
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Selections'
+
     __slots__ = (
+        '_components',
         '_governors',
         '_offset',
         )
@@ -61,7 +60,7 @@ class VerticalMoment(Selection):
         import abjad
         if components is None:
             self._offset = offset
-            self._items = ()
+            self._components = ()
             self._governors = ()
         else:
             governors, components = self._from_offset(components, offset)
@@ -72,8 +71,9 @@ class VerticalMoment(Selection):
             self._governors = governors
             assert isinstance(components, collections.Iterable)
             components = list(components)
-            components.sort(key=lambda _: _._get_parentage().score_index)
-        Selection.__init__(self, items=components)
+            components.sort(
+                key=lambda _: abjad.inspect(_).get_parentage().score_index)
+        self._components = components
 
     ### SPECIAL METHODS ###
 
@@ -98,7 +98,9 @@ class VerticalMoment(Selection):
 
         Returns integer.
         '''
-        return super(VerticalMoment, self).__hash__()
+        if self.components:
+            return hash(tuple([id(_) for _ in self.components]))
+        return 0
 
     def __len__(self):
         r'''Length of vertical moment.
@@ -130,12 +132,13 @@ class VerticalMoment(Selection):
     def _find_index(container, offset):
         r'''Based off of Python's bisect.bisect() function.
         '''
+        import abjad
         lo = 0
         hi = len(container)
         while lo < hi:
             mid = (lo + hi) // 2
-            start_offset = container[mid]._get_timespan().start_offset
-            stop_offset = container[mid]._get_timespan().stop_offset
+            start_offset = abjad.inspect(container[mid]).get_timespan().start_offset
+            stop_offset = abjad.inspect(container[mid]).get_timespan().stop_offset
             if start_offset <= offset < stop_offset:
                 lo = mid + 1
             # if container[mid] is of nonzero duration
@@ -164,12 +167,14 @@ class VerticalMoment(Selection):
                     raise TypeError(message)
         else:
             raise TypeError(message)
-        governors.sort(key=lambda x: x._get_parentage().score_index)
+        governors.sort(
+            key=lambda x: abjad.inspect(x).get_parentage().score_index)
         governors = tuple(governors)
         components = []
         for governor in governors:
             components.extend(VerticalMoment._recurse(governor, offset))
-        components.sort(key=lambda x: x._get_parentage().score_index)
+        components.sort(
+            key=lambda x: abjad.inspect(x).get_parentage().score_index)
         components = tuple(components)
         return governors, components
 
@@ -179,9 +184,10 @@ class VerticalMoment(Selection):
 
     @staticmethod
     def _recurse(component, offset):
+        import abjad
         result = []
-        if (component._get_timespan().start_offset <=
-            offset < component._get_timespan().stop_offset):
+        if (abjad.inspect(component).get_timespan().start_offset <=
+            offset < abjad.inspect(component).get_timespan().stop_offset):
             result.append(component)
             if hasattr(component, 'components'):
                 if component.is_simultaneous:
@@ -213,10 +219,8 @@ class VerticalMoment(Selection):
 
         It is always the case that ``self.components =
         self.overlap_components + self.start_components``.
-
-        Aliases items.
         '''
-        return self.items
+        return self._components
 
     @property
     def governors(self):
@@ -256,8 +260,8 @@ class VerticalMoment(Selection):
         import abjad
         candidate_shortest_leaf = self.leaves[0]
         for leaf in self.leaves[1:]:
-            if (leaf._get_timespan().stop_offset <
-                candidate_shortest_leaf._get_timespan().stop_offset):
+            if (abjad.inspect(leaf).get_timespan().stop_offset <
+                abjad.inspect(candidate_shortest_leaf).get_timespan().stop_offset):
                 candidate_shortest_leaf = leaf
         next_leaf = candidate_shortest_leaf._get_in_my_logical_voice(
             1, prototype=abjad.Leaf)
@@ -353,7 +357,7 @@ class VerticalMoment(Selection):
         for leaf in self.leaves:
             #print ''
             #print leaf
-            leaf_start = leaf._get_timespan().start_offset
+            leaf_start = abjad.inspect(leaf).get_timespan().start_offset
             if leaf_start < self.offset:
                 #print 'found leaf starting before this moment ...'
                 if most_recent_start_offset <= leaf_start:
@@ -364,7 +368,7 @@ class VerticalMoment(Selection):
                 try:
                     previous_leaf = leaf._get_in_my_logical_voice(
                         -1, prototype=abjad.Leaf)
-                    start = previous_leaf._get_timespan().start_offset
+                    start = abjad.inspect(previous_leaf).get_timespan().start_offset
                     #print previous_leaf, start
                     if most_recent_start_offset <= start:
                         most_recent_start_offset = start
@@ -383,9 +387,11 @@ class VerticalMoment(Selection):
         r'''Tuple of components in vertical moment starting with at vertical
         moment, ordered by score index.
         '''
+        import abjad
         result = []
         for component in self.components:
-            if component._get_timespan().start_offset == self.offset:
+            if abjad.inspect(
+                component).get_timespan().start_offset == self.offset:
                 result.append(component)
         result = tuple(result)
         return result
@@ -411,3 +417,6 @@ class VerticalMoment(Selection):
             if isinstance(x, abjad.Note)]
         result = tuple(result)
         return result
+
+
+collections.Sequence.register(VerticalMoment)

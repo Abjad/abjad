@@ -1,5 +1,3 @@
-from abjad.tools import indicatortools
-from abjad.tools.topleveltools import iterate
 from abjad.tools.quantizationtools.AttackPointOptimizer \
     import AttackPointOptimizer
 
@@ -26,14 +24,14 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
         Returns none.
         '''
         import abjad
-        for logical_tie in iterate(argument).by_logical_tie(
+        for logical_tie in abjad.iterate(argument).logical_ties(
+            grace_notes=False,
             reverse=True,
-            with_grace_notes=False,
             ):
             sub_logical_ties = []
             current_sub_logical_tie = []
             for leaf in logical_tie:
-                tempos = leaf._get_indicators(indicatortools.MetronomeMark)
+                tempos = leaf._get_indicators(abjad.MetronomeMark)
                 if tempos:
                     if current_sub_logical_tie:
                         current_sub_logical_tie = abjad.LogicalTie(

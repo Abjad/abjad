@@ -12,14 +12,12 @@ class Chord(Leaf):
 
     ..  container:: example
 
-        ::
-
-            >>> chord = abjad.Chord("<e' cs'' f''>4")
-            >>> show(chord) # doctest: +SKIP
+        >>> chord = abjad.Chord("<e' cs'' f''>4")
+        >>> abjad.show(chord) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(chord)
+            >>> abjad.f(chord)
             <e' cs'' f''>4
 
     '''
@@ -331,45 +329,37 @@ class Chord(Leaf):
 
             Gets note-heads in chord:
 
-            ::
+            >>> chord = abjad.Chord("<g' c'' e''>4")
+            >>> abjad.show(chord) # doctest: +SKIP
 
-                >>> chord = abjad.Chord("<g' c'' e''>4")
-                >>> show(chord) # doctest: +SKIP
-
-            ::
-
-                >>> f(chord.note_heads)
-                abjad.NoteHeadList(
-                    [
-                        abjad.NoteHead(
-                            written_pitch=abjad.NamedPitch("g'"),
-                            ),
-                        abjad.NoteHead(
-                            written_pitch=abjad.NamedPitch("c''"),
-                            ),
-                        abjad.NoteHead(
-                            written_pitch=abjad.NamedPitch("e''"),
-                            ),
-                        ]
-                    )
+            >>> abjad.f(chord.note_heads)
+            abjad.NoteHeadList(
+                [
+                    abjad.NoteHead(
+                        written_pitch=abjad.NamedPitch("g'"),
+                        ),
+                    abjad.NoteHead(
+                        written_pitch=abjad.NamedPitch("c''"),
+                        ),
+                    abjad.NoteHead(
+                        written_pitch=abjad.NamedPitch("e''"),
+                        ),
+                    ]
+                )
 
         ..  container:: example
 
             Sets note-heads with pitch names:
 
-            ::
+            >>> chord = abjad.Chord("<g' c'' e''>4")
+            >>> abjad.show(chord) # doctest: +SKIP
 
-                >>> chord = abjad.Chord("<g' c'' e''>4")
-                >>> show(chord) # doctest: +SKIP
-
-            ::
-
-                >>> chord.note_heads = "c' d' fs'"
-                >>> show(chord) # doctest: +SKIP
+            >>> chord.note_heads = "c' d' fs'"
+            >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(chord)
+                >>> abjad.f(chord)
                 <c' d' fs'>4
 
         ..  container:: example
@@ -377,16 +367,14 @@ class Chord(Leaf):
             Sets note-heads with pitch numbers:
 
                 >>> chord = abjad.Chord("<g' c'' e''>4")
-                >>> show(chord) # doctest: +SKIP
+                >>> abjad.show(chord) # doctest: +SKIP
 
-            ::
-
-                >>> chord.note_heads = [16, 17, 19]
-                >>> show(chord) # doctest: +SKIP
+            >>> chord.note_heads = [16, 17, 19]
+            >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(chord)
+                >>> abjad.f(chord)
                 <e'' f'' g''>4
 
         Set note-heads with any iterable.
@@ -410,29 +398,21 @@ class Chord(Leaf):
 
             Get written duration:
 
-            ::
+            >>> chord = abjad.Chord("<e' cs'' f''>4")
+            >>> abjad.show(chord) # doctest: +SKIP
 
-                >>> chord = abjad.Chord("<e' cs'' f''>4")
-                >>> show(chord) # doctest: +SKIP
-
-            ::
-
-                >>> chord.written_duration
-                Duration(1, 4)
+            >>> chord.written_duration
+            Duration(1, 4)
 
         ..  container:: example
 
             Set written duration:
 
-            ::
+            >>> chord = abjad.Chord("<e' cs'' f''>4")
+            >>> abjad.show(chord) # doctest: +SKIP
 
-                >>> chord = abjad.Chord("<e' cs'' f''>4")
-                >>> show(chord) # doctest: +SKIP
-
-            ::
-
-                >>> chord.written_duration = abjad.Duration(1, 16)
-                >>> show(chord) # doctest: +SKIP
+            >>> chord.written_duration = abjad.Duration(1, 16)
+            >>> abjad.show(chord) # doctest: +SKIP
 
         Set duration.
 
@@ -452,37 +432,29 @@ class Chord(Leaf):
 
             Get written pitches:
 
-                >>> chord = abjad.Chord("<g' c'' e''>4")
-                >>> show(chord) # doctest: +SKIP
+            >>> chord = abjad.Chord("<g' c'' e''>4")
+            >>> abjad.show(chord) # doctest: +SKIP
 
-            ::
-
-                >>> chord.written_pitches
-                PitchSegment("g' c'' e''")
+            >>> chord.written_pitches
+            PitchSegment("g' c'' e''")
 
         ..  container:: example
 
             Set written pitches with pitch names:
 
-            ::
+            >>> chord = abjad.Chord("<e' g' c''>4")
+            >>> abjad.show(chord) # doctest: +SKIP
 
-                >>> chord = abjad.Chord("<e' g' c''>4")
-                >>> show(chord) # doctest: +SKIP
-
-            ::
-
-                >>> chord.written_pitches = "f' b' d''"
-                >>> show(chord) # doctest: +SKIP
+            >>> chord.written_pitches = "f' b' d''"
+            >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(chord)
+                >>> abjad.f(chord)
                 <f' b' d''>4
 
-            ::
-
-                >>> chord.written_pitches
-                PitchSegment("f' b' d''")
+            >>> chord.written_pitches
+            PitchSegment("f' b' d''")
 
         Set written pitches with any iterable.
 

@@ -3,6 +3,7 @@ import pytest
 import types
 from abjad.tools import datastructuretools
 from abjad.tools import documentationtools
+from abjad.tools import segmenttools
 
 
 ignored_classes = (
@@ -10,7 +11,7 @@ ignored_classes = (
     datastructuretools.Enumeration,
     datastructuretools.Multiplier,
     datastructuretools.Offset,
-    datastructuretools.Path,
+    segmenttools.Path,
     )
 
 ignored_package_names = (

@@ -125,7 +125,7 @@ class PianoStaffSegmentMaker(SegmentMaker):
             ]
         pitch_numbers = abjad.sequence(pitch_numbers).remove_repeats()
         pitch_numbers = abjad.CyclicTuple(pitch_numbers)
-        logical_ties = abjad.iterate(voice).by_logical_tie(pitched=True)
+        logical_ties = abjad.iterate(voice).logical_ties(pitched=True)
         for i, logical_tie in enumerate(logical_ties):
             pitch_number = pitch_numbers[i]
             for note in logical_tie:

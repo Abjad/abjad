@@ -17,11 +17,11 @@ class Measure(Container):
     ..  container:: example
 
         >>> measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
-        >>> show(measure) # doctest: +SKIP
+        >>> abjad.show(measure) # doctest: +SKIP
 
     ..  docs::
 
-        >>> f(measure)
+        >>> abjad.f(measure)
         {
             \time 4/8
             c'8
@@ -73,16 +73,12 @@ class Measure(Container):
 
         ..  container:: example
 
-            ::
+            >>> measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
+            >>> measure.automatically_adjust_time_signature = True
+            >>> abjad.show(measure) # doctest: +SKIP
 
-                >>> measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
-                >>> measure.automatically_adjust_time_signature = True
-                >>> show(measure) # doctest: +SKIP
-
-            ::
-
-                >>> del(measure[1])
-                >>> show(measure) # doctest: +SKIP
+            >>> del(measure[1])
+            >>> abjad.show(measure) # doctest: +SKIP
 
             ..  docs::
 
@@ -113,15 +109,11 @@ class Measure(Container):
 
         ..  container:: example
 
-            ::
+            >>> measure = abjad.Measure((3, 8), "c'8 d'8 e'8")
+            >>> abjad.show(measure) # doctest: +SKIP
 
-                >>> measure = abjad.Measure((3, 8), "c'8 d'8 e'8")
-                >>> show(measure) # doctest: +SKIP
-
-            ::
-
-                >>> measure
-                Measure((3, 8), "c'8 d'8 e'8")
+            >>> measure
+            Measure((3, 8), "c'8 d'8 e'8")
 
         Returns string.
         '''
@@ -164,16 +156,12 @@ class Measure(Container):
 
         ..  container:: example
 
-            ::
+            >>> measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
+            >>> measure.automatically_adjust_time_signature = True
+            >>> abjad.show(measure) # doctest: +SKIP
 
-                >>> measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
-                >>> measure.automatically_adjust_time_signature = True
-                >>> show(measure) # doctest: +SKIP
-
-            ::
-
-                >>> measure[1] = abjad.Note("ds'8.")
-                >>> show(measure) # doctest: +SKIP
+            >>> measure[1] = abjad.Note("ds'8.")
+            >>> abjad.show(measure) # doctest: +SKIP
 
             ..  docs::
 
@@ -371,26 +359,6 @@ class Measure(Container):
             storage_format_kwargs_names=names,
             )
 
-    @staticmethod
-    def _get_likely_multiplier_of_components(components):
-        import abjad
-        assert all(isinstance(x, abjad.Component) for x in components)
-        logical_tie_duration_numerators = []
-        items = iterate(components).by_topmost_logical_ties_and_components()
-        for item in items:
-            if isinstance(item, abjad.LogicalTie):
-                logical_tie_duration = item._get_preprolated_duration()
-                numerator = logical_tie_duration.numerator
-                logical_tie_duration_numerators.append(numerator)
-        numerators = abjad.sequence(logical_tie_duration_numerators)
-        if len(numerators.remove_repeats()) == 1:
-            numerator = logical_tie_duration_numerators[0]
-            denominator = abjad.mathtools.greatest_power_of_two_less_equal(
-                numerator)
-            pair = (numerator, denominator)
-            likely_multiplier = abjad.Multiplier(*pair)
-            return likely_multiplier
-
     def _get_lilypond_format(self):
         self._check_duration()
         return self._format_component()
@@ -461,11 +429,9 @@ class Measure(Container):
 
         ..  container:: example
 
-            ::
-
-                >>> measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
-                >>> measure.always_format_time_signature
-                False
+            >>> measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
+            >>> measure.always_format_time_signature
+            False
 
         Set to true when necessary to print the same signature repeatedly.
 
@@ -487,16 +453,12 @@ class Measure(Container):
 
         ..  container:: example
 
-            ::
+            >>> measure = abjad.Measure((3, 4), "c' d' e'")
+            >>> abjad.show(measure) # doctest: +SKIP
 
-                >>> measure = abjad.Measure((3, 4), "c' d' e'")
-                >>> show(measure) # doctest: +SKIP
-
-            ::
-
-                >>> measure.automatically_adjust_time_signature = True
-                >>> measure.append('r')
-                >>> show(measure) # doctest: +SKIP
+            >>> measure.automatically_adjust_time_signature = True
+            >>> measure.append('r')
+            >>> abjad.show(measure) # doctest: +SKIP
 
         Defaults to false.
 
@@ -516,30 +478,22 @@ class Measure(Container):
 
         ..  container:: example
 
-            ::
+            >>> measure = abjad.Measure((5, 9), "c'8 d' e' f' g'")
+            >>> measure.implicit_scaling = True
+            >>> abjad.show(measure) # doctest: +SKIP
 
-                >>> measure = abjad.Measure((5, 9), "c'8 d' e' f' g'")
-                >>> measure.implicit_scaling = True
-                >>> show(measure) # doctest: +SKIP
-
-            ::
-
-                >>> measure.has_non_power_of_two_denominator
-                True
+            >>> measure.has_non_power_of_two_denominator
+            True
 
         Otherwise false:
 
         ..  container:: example
 
-            ::
+            >>> measure = abjad.Measure((5, 8), "c'8 d' e' f' g'")
+            >>> abjad.show(measure) # doctest: +SKIP
 
-                >>> measure = abjad.Measure((5, 8), "c'8 d' e' f' g'")
-                >>> show(measure) # doctest: +SKIP
-
-            ::
-
-                >>> measure.has_non_power_of_two_denominator
-                False
+            >>> measure.has_non_power_of_two_denominator
+            False
 
         Returns true or false.
         '''
@@ -553,30 +507,22 @@ class Measure(Container):
 
         ..  container:: example
 
-            ::
+            >>> measure = abjad.Measure((5, 8), "c'8 d' e' f' g'")
+            >>> abjad.show(measure) # doctest: +SKIP
 
-                >>> measure = abjad.Measure((5, 8), "c'8 d' e' f' g'")
-                >>> show(measure) # doctest: +SKIP
-
-            ::
-
-                >>> measure.has_power_of_two_denominator
-                True
+            >>> measure.has_power_of_two_denominator
+            True
 
         Otherwise false:
 
         ..  container:: example
 
-            ::
+            >>> measure = abjad.Measure((5, 9), "c'8 d' e' f' g'")
+            >>> measure.implicit_scaling = True
+            >>> abjad.show(measure) # doctest: +SKIP
 
-                >>> measure = abjad.Measure((5, 9), "c'8 d' e' f' g'")
-                >>> measure.implicit_scaling = True
-                >>> show(measure) # doctest: +SKIP
-
-            ::
-
-                >>> measure.has_power_of_two_denominator
-                False
+            >>> measure.has_power_of_two_denominator
+            False
 
         Returns true or false.
         '''
@@ -604,41 +550,31 @@ class Measure(Container):
             Measures with implicit scaling scale the duration of their
             contents:
 
-            ::
+            >>> measure = abjad.Measure((5, 12), "c'8 d'8 e'8 f'8 g'8")
+            >>> measure.implicit_scaling = True
+            >>> abjad.show(measure) # doctest: +SKIP
 
-                >>> measure = abjad.Measure((5, 12), "c'8 d'8 e'8 f'8 g'8")
-                >>> measure.implicit_scaling = True
-                >>> show(measure) # doctest: +SKIP
+            >>> measure.implied_prolation
+            Multiplier(2, 3)
 
-            ::
-
-                >>> measure.implied_prolation
-                Multiplier(2, 3)
-
-            ::
-
-                >>> for note in measure:
-                ...     note, abjad.inspect(note).get_duration()
-                (Note("c'8"), Duration(1, 12))
-                (Note("d'8"), Duration(1, 12))
-                (Note("e'8"), Duration(1, 12))
-                (Note("f'8"), Duration(1, 12))
-                (Note("g'8"), Duration(1, 12))
+            >>> for note in measure:
+            ...     note, abjad.inspect(note).get_duration()
+            (Note("c'8"), Duration(1, 12))
+            (Note("d'8"), Duration(1, 12))
+            (Note("e'8"), Duration(1, 12))
+            (Note("f'8"), Duration(1, 12))
+            (Note("g'8"), Duration(1, 12))
 
         ..  container:: example
 
             Measures without implicit scaling turned on do not
             scale the duration of their contents:
 
-            ::
+            >>> measure = abjad.Measure((5, 12), [])
+            >>> measure.implicit_scaling = False
 
-                >>> measure = abjad.Measure((5, 12), [])
-                >>> measure.implicit_scaling = False
-
-            ::
-
-                >>> measure.implied_prolation
-                Multiplier(1, 1)
+            >>> measure.implied_prolation
+            Multiplier(1, 1)
 
         Returns positive multiplier.
         '''
@@ -654,15 +590,11 @@ class Measure(Container):
 
         ..  container:: example
 
-            ::
+            >>> measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
+            >>> abjad.show(measure) # doctest: +SKIP
 
-                >>> measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
-                >>> show(measure) # doctest: +SKIP
-
-            ::
-
-                >>> measure.is_full
-                True
+            >>> measure.is_full
+            True
 
         Otherwise false.
 
@@ -676,25 +608,19 @@ class Measure(Container):
 
         ..  container:: example
 
-            ::
-
-                >>> measure = abjad.Measure((3, 4), "c'4 d'4 e'4 f'4")
-                >>> measure.is_misfilled
-                True
+            >>> measure = abjad.Measure((3, 4), "c'4 d'4 e'4 f'4")
+            >>> measure.is_misfilled
+            True
 
         Otherwise false:
 
         ..  container:: example
 
-            ::
+            >>> measure = abjad.Measure((3, 4), "c' d' e'")
+            >>> abjad.show(measure) # doctest: +SKIP
 
-                >>> measure = abjad.Measure((3, 4), "c' d' e'")
-                >>> show(measure) # doctest: +SKIP
-
-            ::
-
-                >>> measure.is_misfilled
-                False
+            >>> measure.is_misfilled
+            False
 
         Returns true or false.
         '''
@@ -707,14 +633,10 @@ class Measure(Container):
 
         ..  container:: example
 
-            ::
+            >>> measure = abjad.Measure((3, 4), "c'4 d' e' f'")
 
-                >>> measure = abjad.Measure((3, 4), "c'4 d' e' f'")
-
-            ::
-
-                >>> measure.is_overfull
-                True
+            >>> measure.is_overfull
+            True
 
         Otherwise false.
 
@@ -728,14 +650,10 @@ class Measure(Container):
 
         ..  container:: example
 
-            ::
+            >>> measure = abjad.Measure((3, 4), "c'4 d'")
 
-                >>> measure = abjad.Measure((3, 4), "c'4 d'")
-
-            ::
-
-                >>> measure.is_underfull
-                True
+            >>> measure.is_underfull
+            True
 
         Otherwise false.
 
@@ -749,16 +667,14 @@ class Measure(Container):
 
         ..  container:: example
 
-            ::
-
-                >>> staff = abjad.Staff()
-                >>> staff.append(abjad.Measure((3, 4), "c' d' e'"))
-                >>> staff.append(abjad.Measure((2, 4), "f' g'"))
-                >>> show(staff) # doctest: +SKIP
+            >>> staff = abjad.Staff()
+            >>> staff.append(abjad.Measure((3, 4), "c' d' e'"))
+            >>> staff.append(abjad.Measure((2, 4), "f' g'"))
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(staff)
+                >>> abjad.f(staff)
                 \new Staff {
                     {
                         \time 3/4
@@ -773,15 +689,11 @@ class Measure(Container):
                     }
                 }
 
-            ::
+            >>> staff[0].measure_number
+            1
 
-                >>> staff[0].measure_number
-                1
-
-            ::
-
-                >>> staff[1].measure_number
-                2
+            >>> staff[1].measure_number
+            2
 
         Returns positive integer.
         '''
@@ -797,11 +709,9 @@ class Measure(Container):
 
         ..  container:: example
 
-            ::
-
-                >>> measure = abjad.Measure((3, 4), "c'4 d'4 e'4")
-                >>> measure.target_duration
-                Duration(3, 4)
+            >>> measure = abjad.Measure((3, 4), "c'4 d'4 e'4")
+            >>> measure.target_duration
+            Duration(3, 4)
 
         Returns duration.
         '''
@@ -813,11 +723,9 @@ class Measure(Container):
 
         ..  container:: example
 
-            ::
-
-                >>> measure = abjad.Measure((3, 4), "c'4 d'4 e'4")
-                >>> measure.time_signature
-                TimeSignature((3, 4))
+            >>> measure = abjad.Measure((3, 4), "c'4 d'4 e'4")
+            >>> measure.time_signature
+            TimeSignature((3, 4))
 
         Returns time signature or none.
         '''
@@ -855,15 +763,13 @@ class Measure(Container):
 
             Scales measure by non-power-of-two multiplier:
 
-            ::
-
-                >>> measure = abjad.Measure((3, 8), "c'8 d'8 e'8")
-                >>> measure.implicit_scaling = True
-                >>> show(measure) # doctest: +SKIP
+            >>> measure = abjad.Measure((3, 8), "c'8 d'8 e'8")
+            >>> measure.implicit_scaling = True
+            >>> abjad.show(measure) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(measure)
+                >>> abjad.f(measure)
                 {
                     \time 3/8
                     c'8
@@ -871,14 +777,12 @@ class Measure(Container):
                     e'8
                 }
 
-            ::
-
-                >>> measure.scale_and_adjust_time_signature(abjad.Multiplier(2, 3))
-                >>> show(measure) # doctest: +SKIP
+            >>> measure.scale_and_adjust_time_signature(abjad.Multiplier(2, 3))
+            >>> abjad.show(measure) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(measure)
+                >>> abjad.f(measure)
                 {
                     \time 3/12
                     \scaleDurations #'(2 . 3) {

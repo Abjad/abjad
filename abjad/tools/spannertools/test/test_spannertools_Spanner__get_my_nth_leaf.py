@@ -7,7 +7,7 @@ def test_spannertools_Spanner__get_my_nth_leaf_01():
     staff = abjad.Staff()
     staff.append(abjad.Measure((2, 8), "c'8 d'8"))
     staff.append(abjad.Measure((2, 8), "e'8 f'8"))
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 
@@ -27,7 +27,7 @@ def test_spannertools_Spanner__get_my_nth_leaf_01():
         '''
         )
 
-    selector = abjad.select().by_leaf()
+    selector = abjad.select().leaves()
     leaves = selector(staff)
 
     assert beam._get_my_nth_leaf(0) is leaves[0]

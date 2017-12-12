@@ -8,20 +8,18 @@ class AfterGraceContainer(Container):
 
         After grace notes:
 
-        ::
-
-            >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
-            >>> string = '#(define afterGraceFraction (cons 15 16))'
-            >>> literal = abjad.LilyPondLiteral(string)
-            >>> abjad.attach(literal, voice[0])
-            >>> notes = [abjad.Note("c'16"), abjad.Note("d'16")]
-            >>> after_grace_container = abjad.AfterGraceContainer(notes)
-            >>> abjad.attach(after_grace_container, voice[1])
-            >>> show(voice) # doctest: +SKIP
+        >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
+        >>> string = '#(define afterGraceFraction (cons 15 16))'
+        >>> literal = abjad.LilyPondLiteral(string)
+        >>> abjad.attach(literal, voice[0])
+        >>> notes = [abjad.Note("c'16"), abjad.Note("d'16")]
+        >>> after_grace_container = abjad.AfterGraceContainer(notes)
+        >>> abjad.attach(after_grace_container, voice[1])
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(voice)
+            >>> abjad.f(voice)
             \new Voice {
                 #(define afterGraceFraction (cons 15 16))
                 c'4

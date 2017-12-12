@@ -500,9 +500,10 @@ class AccelerandoRhythmMaker(RhythmMaker):
         interpolation_specifier,
         ):
         import abjad
-        selection_duration = selection.get_duration()
+        selection_duration = abjad.inspect(selection).get_duration()
         if not selection_duration == total_duration:
-            needed_duration = total_duration - selection[:-1].get_duration()
+            needed_duration = total_duration - abjad.inspect(
+                selection[:-1]).get_duration()
             multiplier = needed_duration / \
                 interpolation_specifier.written_duration
             multiplier = abjad.Multiplier(multiplier)
@@ -791,7 +792,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
             total_duration,
             interpolation_specifier,
             )
-        pair = (selection.get_duration(), total_duration)
+        pair = (abjad.inspect(selection).get_duration(), total_duration)
         assert pair[0] == pair[1], repr(pair)
         if not beam_specifier.use_feather_beams:
             pass
@@ -2491,8 +2492,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         use_feather_beams=True,
                 ...         ),
                 ...     logical_tie_masks=[
-                ...         abjad.silence_first(),
-                ...         abjad.silence_last(),
+                ...         abjad.silence_first(1),
+                ...         abjad.silence_last(1),
                 ...         ],
                 ...     interpolation_specifiers=[
                 ...         abjad.rhythmmakertools.InterpolationSpecifier(

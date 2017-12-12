@@ -11,7 +11,7 @@ def test_scoretools_Mutation_split_01():
     staff = abjad.Staff()
     staff.append(abjad.Measure((2, 8), "c'8 d'8"))
     staff.append(abjad.Measure((2, 8), "e'8 f'8"))
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam_1 = abjad.Beam()
     beam_2 = abjad.Beam()
     abjad.attach(beam_1, leaves[:2])
@@ -71,7 +71,7 @@ def test_scoretools_Mutation_split_02():
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam_1 = abjad.Beam()
     beam_2 = abjad.Beam()
     abjad.attach(beam_1, leaves[:2])
@@ -132,7 +132,7 @@ def test_scoretools_Mutation_split_03():
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam_1 = abjad.Beam()
     beam_2 = abjad.Beam()
     abjad.attach(beam_1, leaves[:2])
@@ -199,7 +199,7 @@ def test_scoretools_Mutation_split_04():
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam_1 = abjad.Beam()
     beam_2 = abjad.Beam()
     abjad.attach(beam_1, leaves[:2])
@@ -279,7 +279,7 @@ def test_scoretools_Mutation_split_05():
         abjad.Measure((2, 8), "c'8 d'8"),
         abjad.Measure((2, 8), "e'8 f'8"),
         ]
-    leaves = abjad.select(measures).by_leaf()
+    leaves = abjad.select(measures).leaves()
     beam_1 = abjad.Beam()
     beam_2 = abjad.Beam()
     abjad.attach(beam_1, leaves[:2])
@@ -340,7 +340,7 @@ def test_scoretools_Mutation_split_06():
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam_1 = abjad.Beam()
     beam_2 = abjad.Beam()
     abjad.attach(beam_1, leaves[:2])
@@ -402,7 +402,7 @@ def test_scoretools_Mutation_split_07():
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam_1 = abjad.Beam()
     beam_2 = abjad.Beam()
     abjad.attach(beam_1, leaves[:2])
@@ -464,7 +464,7 @@ def test_scoretools_Mutation_split_08():
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam_1 = abjad.Beam()
     beam_2 = abjad.Beam()
     abjad.attach(beam_1, leaves[:2])
@@ -532,7 +532,7 @@ def test_scoretools_Mutation_split_09():
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam_1 = abjad.Beam()
     beam_2 = abjad.Beam()
     abjad.attach(beam_1, leaves[:2])
@@ -609,7 +609,7 @@ def test_scoretools_Mutation_split_10():
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam_1 = abjad.Beam()
     beam_2 = abjad.Beam()
     abjad.attach(beam_1, leaves[:2])
@@ -669,7 +669,7 @@ def test_scoretools_Mutation_split_11():
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam_1 = abjad.Beam()
     beam_2 = abjad.Beam()
     abjad.attach(beam_1, leaves[:2])
@@ -730,7 +730,7 @@ def test_scoretools_Mutation_split_12():
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam_1 = abjad.Beam()
     beam_2 = abjad.Beam()
     abjad.attach(beam_1, leaves[:2])
@@ -797,7 +797,7 @@ def test_scoretools_Mutation_split_13():
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam_1 = abjad.Beam()
     beam_2 = abjad.Beam()
     abjad.attach(beam_1, leaves[:2])
@@ -976,7 +976,7 @@ def test_scoretools_Mutation_split_16():
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam_1 = abjad.Beam()
     beam_2 = abjad.Beam()
     abjad.attach(beam_1, leaves[:2])
@@ -1038,7 +1038,7 @@ def test_scoretools_Mutation_split_17():
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam_1 = abjad.Beam()
     beam_2 = abjad.Beam()
     abjad.attach(beam_1, leaves[:2])
@@ -1100,7 +1100,7 @@ def test_scoretools_Mutation_split_18():
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam_1 = abjad.Beam()
     beam_2 = abjad.Beam()
     abjad.attach(beam_1, leaves[:2])
@@ -1168,7 +1168,7 @@ def test_scoretools_Mutation_split_19():
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam_1 = abjad.Beam()
     beam_2 = abjad.Beam()
     abjad.attach(beam_1, leaves[:2])
@@ -1245,7 +1245,7 @@ def test_scoretools_Mutation_split_20():
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam_1 = abjad.Beam()
     beam_2 = abjad.Beam()
     abjad.attach(beam_1, leaves[:2])
@@ -1312,7 +1312,7 @@ def test_scoretools_Mutation_split_21():
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam_1 = abjad.Beam()
     beam_2 = abjad.Beam()
     abjad.attach(beam_1, leaves[:2])
@@ -1383,7 +1383,7 @@ def test_scoretools_Mutation_split_22():
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam_1 = abjad.Beam()
     beam_2 = abjad.Beam()
     abjad.attach(beam_1, leaves[:2])
@@ -1450,7 +1450,7 @@ def test_scoretools_Mutation_split_23():
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam_1 = abjad.Beam()
     beam_2 = abjad.Beam()
     abjad.attach(beam_1, leaves[:2])
@@ -1593,7 +1593,7 @@ def test_scoretools_Mutation_split_26():
     voice = abjad.Voice()
     voice.append(abjad.Tuplet((2, 3), "c'8 d'8 e'8"))
     voice.append(abjad.Tuplet((2, 3), "f'8 g'8 a'8"))
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 
@@ -1636,7 +1636,7 @@ def test_scoretools_Mutation_split_27():
     voice = abjad.Voice()
     voice.append(abjad.Measure((3, 8), "c'8 d'8 e'8"))
     voice.append(abjad.Measure((3, 8), "f'8 g'8 a'8"))
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 
@@ -1680,7 +1680,7 @@ def test_scoretools_Mutation_split_28():
     voice = abjad.Voice()
     voice.append(abjad.Measure((3, 9), "c'8 d'8 e'8", implicit_scaling=True))
     voice.append(abjad.Measure((3, 9), "f'8 g'8 a'8", implicit_scaling=True))
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 
@@ -1826,7 +1826,7 @@ def test_scoretools_Mutation_split_31():
 
     staff = abjad.Staff([abjad.Container("c'8 d'8 e'8 f'8")])
     voice = staff[0]
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 
@@ -1994,7 +1994,7 @@ def test_scoretools_Mutation_split_33():
     voice = abjad.Voice()
     voice.append(abjad.Tuplet((2, 3), "c'8 d'8 e'8"))
     voice.append(abjad.Tuplet((2, 3), "f'8 g'8 a'8"))
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     tuplet = voice[1]
@@ -2078,7 +2078,7 @@ def test_scoretools_Mutation_split_34():
     voice = abjad.Voice()
     voice.append(abjad.Measure((3, 8), "c'8 d'8 e'8"))
     voice.append(abjad.Measure((3, 8), "f'8 g'8 a'8"))
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     measure = voice[1]
@@ -2166,7 +2166,7 @@ def test_scoretools_Mutation_split_35():
     voice.append(measure)
     measure = abjad.Measure((3, 9), "f'8 g'8 a'8", implicit_scaling=True)
     voice.append(measure)
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     measure = voice[1]
@@ -2321,7 +2321,7 @@ def test_scoretools_Mutation_split_37():
     staff = abjad.Staff()
     staff.append(abjad.Measure((2, 8), "c'8 d'8"))
     staff.append(abjad.Measure((2, 8), "e'8 f'8"))
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves[:2])
     beam = abjad.Beam()
@@ -2385,7 +2385,7 @@ def test_scoretools_Mutation_split_38():
     '''
 
     staff = abjad.Staff([abjad.Measure((3, 8), "c'8. d'8.")])
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     slur = abjad.Slur()
@@ -2434,7 +2434,7 @@ def test_scoretools_Mutation_split_39():
     '''
 
     voice = abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     slur = abjad.Slur()
@@ -2495,7 +2495,7 @@ def test_scoretools_Mutation_split_40():
     '''
 
     voice = abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8")])
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     slur = abjad.Slur()
@@ -2548,7 +2548,7 @@ def test_scoretools_Mutation_split_41():
     '''
 
     voice = abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8")])
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     slur = abjad.Slur()
@@ -2604,7 +2604,7 @@ def test_scoretools_Mutation_split_42():
     '''
 
     voice = abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8")])
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     slur = abjad.Slur()
@@ -2654,7 +2654,7 @@ def test_scoretools_Mutation_split_43():
     '''
 
     voice = abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8")])
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     slur = abjad.Slur()
@@ -2704,7 +2704,7 @@ def test_scoretools_Mutation_split_44():
     '''
 
     voice = abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8")])
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     slur = abjad.Slur()
@@ -2785,7 +2785,7 @@ def test_scoretools_Mutation_split_46():
 
     measure = abjad.Measure((3, 12), "c'8. d'8.", implicit_scaling=True)
     staff = abjad.Staff([measure])
-    leaves = abjad.select(staff).by_leaf()
+    leaves = abjad.select(staff).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
 

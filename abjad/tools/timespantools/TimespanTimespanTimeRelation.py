@@ -248,16 +248,16 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         Otherwise return boolean.
         '''
-        from abjad.tools import timespantools
+        import abjad
         timespan_1 = timespan_1 or self.timespan_1
         timespan_2 = timespan_2 or self.timespan_2
         if timespan_1 is None or timespan_2 is None:
             message = 'time relation is not fully loaded: {!r}.'
             raise ValueError(message.format(self))
-        if not isinstance(timespan_1, timespantools.Timespan):
-            timespan_1 = timespantools.Timespan()._get_timespan(timespan_1)
-        if not isinstance(timespan_2, timespantools.Timespan):
-            timespan_2 = timespantools.Timespan()._get_timespan(timespan_2)
+        if not isinstance(timespan_1, abjad.Timespan):
+            timespan_1 = abjad.Timespan()._get_timespan(timespan_1)
+        if not isinstance(timespan_2, abjad.Timespan):
+            timespan_2 = abjad.Timespan()._get_timespan(timespan_2)
         truth_value = self.inequality.evaluate(
             timespan_1.start_offset, timespan_1.stop_offset,
             timespan_2.start_offset, timespan_2.stop_offset)
@@ -330,7 +330,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ::
 
-            >>> result.get_timespan()
+            >>> abjad.inspect(result).get_timespan()
             Timespan(start_offset=Offset(20, 1), stop_offset=Offset(22, 1))
 
         `counttime_components` must belong to a single voice.
@@ -349,7 +349,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
         # iterate counttime components
         result = []
         for counttime_component in counttime_components:
-            if self(timespan_2=counttime_component._get_timespan()):
+            if self(timespan_2=abjad.inspect(counttime_component).get_timespan()):
                 result.append(counttime_component)
         # return result
         return abjad.select(result)

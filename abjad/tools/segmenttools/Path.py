@@ -440,28 +440,6 @@ class Path(pathlib.PosixPath):
             return self.contents('materials')
 
     @property
-    def segments(self):
-        r'''Gets segments directory.
-
-        ..  container:: example
-
-            ::
-
-                >>> path = abjad.Path(
-                ...     '/path/to/scores/my_score/my_score',
-                ...     scores='/path/to/scores',
-                ...     )
-                >>> path.segments
-                Path*('/path/to/scores/my_score/my_score/segments')
-                >>> path.segments('segment_01')
-                Path*('/path/to/scores/my_score/my_score/segments/segment_01')
-
-        Returns path.
-        '''
-        if self.contents:
-            return self.contents('segments')
-
-    @property
     def scores(self):
         r'''Gets scores directory.
 
@@ -489,6 +467,28 @@ class Path(pathlib.PosixPath):
         directory = configuration.composer_scores_directory
         if str(self).startswith(str(directory)):
             return type(self)(directory)
+
+    @property
+    def segments(self):
+        r'''Gets segments directory.
+
+        ..  container:: example
+
+            ::
+
+                >>> path = abjad.Path(
+                ...     '/path/to/scores/my_score/my_score',
+                ...     scores='/path/to/scores',
+                ...     )
+                >>> path.segments
+                Path*('/path/to/scores/my_score/my_score/segments')
+                >>> path.segments('segment_01')
+                Path*('/path/to/scores/my_score/my_score/segments/segment_01')
+
+        Returns path.
+        '''
+        if self.contents:
+            return self.contents('segments')
 
     @property
     def stylesheets(self):

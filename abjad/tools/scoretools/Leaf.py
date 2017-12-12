@@ -231,7 +231,7 @@ class Leaf(Component):
             storage_format_kwargs_names=[],
             )
 
-    def _get_leaf(self, n=0):
+    def _get_leaf(self, n):
         import abjad
 
         def next(component):
@@ -244,7 +244,7 @@ class Leaf(Component):
                 ]
             for candidate in candidates:
                 selection = abjad.select([component, candidate])
-                if selection.in_logical_voice():
+                if selection.are_logical_voice():
                     return candidate
 
         def previous(component):
@@ -257,7 +257,7 @@ class Leaf(Component):
                 ]
             for candidate in candidates:
                 selection = abjad.select([component, candidate])
-                if selection.in_logical_voice():
+                if selection.are_logical_voice():
                     return candidate
         current_leaf = self
         if n < 0:
@@ -360,8 +360,8 @@ class Leaf(Component):
             for leaf, component in zip(all_leaves, components):
                 leaf.written_duration = component.written_duration
             self._splice(tied_leaves, grow_spanners=True)
-            parentage = self._get_parentage()
-            if not parentage._get_spanners(abjad.Tie):
+            parentage = abjad.inspect(self).get_parentage()
+            if not abjad.inspect(parentage).get_spanners(abjad.Tie):
                 tie = abjad.Tie()
                 if tie._attachment_test(self):
                     tie = abjad.Tie(
@@ -426,7 +426,7 @@ class Leaf(Component):
             result_selections.append(selection)
         result_components = abjad.sequence(result_selections).flatten()
         result_components = abjad.select(result_components)
-        result_leaves = abjad.select(result_components).by_leaf()
+        result_leaves = abjad.select(result_components).leaves()
         assert all(isinstance(_, abjad.Selection) for _ in result_selections)
         assert all(isinstance(_, abjad.Component) for _ in result_components)
         assert result_leaves.are_leaves()
@@ -527,8 +527,7 @@ class Leaf(Component):
                 ]
             notes = maker(0, note_durations)
         # make tuplet
-        notes = abjad.select(notes)
-        contents_duration = notes.get_duration()
+        contents_duration = abjad.inspect(notes).get_duration()
         multiplier = target_duration / contents_duration
         tuplet = abjad.Tuplet(multiplier, notes)
         # fix tuplet contents if necessary

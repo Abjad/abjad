@@ -7,7 +7,7 @@ def test_scoretools_Container___delitem___01():
     '''
 
     voice = abjad.Voice("{ c'8 ( d'8 ) } { e'8 ( f'8 ) }")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     abjad.attach(abjad.Beam(), leaves)
 
     assert format(voice) == abjad.String.normalize(
@@ -174,7 +174,7 @@ def test_scoretools_Container___delitem___08():
     '''
 
     voice = abjad.Voice("c'8 [ { d'8 e'8 } f'8 ]")
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     abjad.attach(abjad.Glissando(), leaves)
 
     assert format(voice) == abjad.String.normalize(

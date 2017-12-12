@@ -55,8 +55,8 @@ class OffsetCounter(TypedCounter):
                     self[item.stop_offset] += 1
                 except:
                     if hasattr(item, '_get_timespan'):
-                        self[item._get_timespan().start_offset] += 1
-                        self[item._get_timespan().stop_offset] += 1
+                        self[abjad.inspect(item).get_timespan().start_offset] += 1
+                        self[abjad.inspect(item).get_timespan().stop_offset] += 1
                     else:
                         offset = abjad.Offset(item)
                         self[offset] += 1

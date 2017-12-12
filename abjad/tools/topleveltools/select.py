@@ -8,7 +8,7 @@ def select(items=None):
         ::
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> selection = abjad.select(staff[:2]).by_leaf(pitched=True)
+            >>> selection = abjad.select(staff[:2]).leaves(pitched=True)
             >>> for note in selection:
             ...     abjad.override(note).note_head.color = 'red'
 
@@ -39,16 +39,8 @@ def select(items=None):
 
         ::
 
-            >>> abjad.f(abjad.select())
-            abjad.Expression(
-                callbacks=[
-                    abjad.Expression(
-                        evaluation_template='abjad.Selection',
-                        is_initializer=True,
-                        ),
-                    ],
-                proxy_class=abjad.Selection,
-                )
+            >>> abjad.select()
+            abjad.select()
 
     '''
     import abjad

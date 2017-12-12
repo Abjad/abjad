@@ -38,7 +38,7 @@ def make_desordre_cell(pitches):
     container.is_simultaneous = True
 
     # make all 1/8 beats breakable
-    leaves = abjad.select(lower_voice).by_leaf()
+    leaves = abjad.select(lower_voice).leaves()
     for leaf in leaves[:-1]:
         bar_line = abjad.BarLine('')
         abjad.attach(bar_line, leaf)

@@ -6,10 +6,8 @@ class MultimeasureRest(Leaf):
 
     ..  container:: example
 
-        ::
-
-            >>> rest = abjad.MultimeasureRest((1, 4))
-            >>> show(rest) # doctest: +SKIP
+        >>> rest = abjad.MultimeasureRest((1, 4))
+        >>> abjad.show(rest) # doctest: +SKIP
 
     '''
 

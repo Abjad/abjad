@@ -6,11 +6,9 @@ class DrumNoteHead(NoteHead):
 
     ..  container:: example
 
-        ::
-
-            >>> note_head = abjad.DrumNoteHead('snare')
-            >>> note_head
-            DrumNoteHead('snare')
+        >>> note_head = abjad.DrumNoteHead('snare')
+        >>> note_head
+        DrumNoteHead('snare')
 
     '''
 

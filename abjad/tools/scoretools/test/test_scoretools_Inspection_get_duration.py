@@ -11,7 +11,7 @@ def test_scoretools_Inspection_get_duration_01():
         abjad.Measure((2, 12), "c'8 d'8", implicit_scaling=True),
         abjad.Measure((2, 8), "c'8 d'8")]
         )
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     mark = abjad.MetronomeMark(abjad.Duration(1, 8), 42)
     abjad.attach(mark, leaves[0], scope=abjad.Voice)
     beam = abjad.Beam()
@@ -53,7 +53,7 @@ def test_scoretools_Inspection_get_duration_02():
         [abjad.Measure((2, 12), "c'8 d'8", implicit_scaling=True),
         abjad.Measure((2, 8), "c'8 d'8")]
         )
-    leaves = abjad.select(voice).by_leaf()
+    leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     crescendo = abjad.Hairpin('<')

@@ -29,7 +29,7 @@ def test_scoretools_Component__get_in_my_logical_voice_03():
     '''
 
     container = abjad.Container([abjad.Voice("c'8 d'8"), abjad.Voice("e'8 f'8")])
-    leaves = abjad.select(container).by_leaf()
+    leaves = abjad.select(container).leaves()
 
     assert leaves[0]._get_in_my_logical_voice(1, abjad.Note) is leaves[1]
     assert leaves[1]._get_in_my_logical_voice(1, abjad.Note) is None
@@ -43,7 +43,7 @@ def test_scoretools_Component__get_in_my_logical_voice_04():
 
     container = abjad.Container([abjad.Voice("c'8 d'8"), abjad.Voice("e'8 f'8")])
     container[0].name = 'voice'
-    leaves = abjad.select(container).by_leaf()
+    leaves = abjad.select(container).leaves()
 
     assert container[0]._get_in_my_logical_voice(1, abjad.Voice) is None
     assert leaves[0]._get_in_my_logical_voice(1, abjad.Note) is leaves[1]
@@ -58,7 +58,7 @@ def test_scoretools_Component__get_in_my_logical_voice_05():
     container = abjad.Container([abjad.Voice("c'8 d'8"), abjad.Voice("e'8 f'8")])
     container[0].name = 'voice'
     container[1].name = 'voice'
-    leaves = abjad.select(container).by_leaf()
+    leaves = abjad.select(container).leaves()
 
     assert container[0]._get_in_my_logical_voice(1, abjad.Voice) is container[1]
     assert container[1]._get_in_my_logical_voice(1, abjad.Voice) is None
@@ -73,7 +73,7 @@ def test_scoretools_Component__get_in_my_logical_voice_06():
     container = abjad.Container([abjad.Voice("c'8 d'8"), abjad.Rest('r2'), abjad.Voice("e'8 f'8")])
     container[0].name = 'voice'
     container[-1].name = 'voice'
-    leaves = abjad.select(container).by_leaf()
+    leaves = abjad.select(container).leaves()
 
     assert container[0]._get_in_my_logical_voice(1, abjad.Voice) is container[2]
     assert leaves[1]._get_in_my_logical_voice(1, abjad.Note) is leaves[3]

@@ -251,8 +251,10 @@ class LilyPondFormatManager(AbjadObject):
         component,
         bundle,
         ):
+        import abjad
         pairs = []
-        for spanner in component._get_parentage()._get_spanners():
+        parentage = abjad.inspect(component).get_parentage()
+        for spanner in abjad.select(parentage)._get_spanners():
             spanner_bundle = spanner._get_lilypond_format_bundle(component)
             pair = (spanner, spanner_bundle)
             pairs.append(pair)

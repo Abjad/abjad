@@ -10,18 +10,16 @@ class LeafMaker(AbjadValueObject):
 
         Integer and string elements in `pitches` result in notes:
 
-        ::
-
-            >>> maker = abjad.LeafMaker()
-            >>> pitches = [2, 4, 'F#5', 'G#5']
-            >>> duration = abjad.Duration(1, 4)
-            >>> leaves = maker(pitches, duration)
-            >>> staff = abjad.Staff(leaves)
-            >>> show(staff) # doctest: +SKIP
+        >>> maker = abjad.LeafMaker()
+        >>> pitches = [2, 4, 'F#5', 'G#5']
+        >>> duration = abjad.Duration(1, 4)
+        >>> leaves = maker(pitches, duration)
+        >>> staff = abjad.Staff(leaves)
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 d'4
                 e'4
@@ -33,18 +31,16 @@ class LeafMaker(AbjadValueObject):
 
         Tuple elements in `pitches` result in chords:
 
-        ::
-
-            >>> maker = abjad.LeafMaker()
-            >>> pitches = [(0, 2, 4), ('F#5', 'G#5', 'A#5')]
-            >>> duration = abjad.Duration(1, 2)
-            >>> leaves = maker(pitches, duration)
-            >>> staff = abjad.Staff(leaves)
-            >>> show(staff) # doctest: +SKIP
+        >>> maker = abjad.LeafMaker()
+        >>> pitches = [(0, 2, 4), ('F#5', 'G#5', 'A#5')]
+        >>> duration = abjad.Duration(1, 2)
+        >>> leaves = maker(pitches, duration)
+        >>> staff = abjad.Staff(leaves)
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 <c' d' e'>2
                 <fs'' gs'' as''>2
@@ -54,19 +50,17 @@ class LeafMaker(AbjadValueObject):
 
         None-valued elements in `pitches` result in rests:
 
-        ::
-
-            >>> maker = abjad.LeafMaker()
-            >>> pitches = 4 * [None]
-            >>> durations = [abjad.Duration(1, 4)]
-            >>> leaves = maker(pitches, durations)
-            >>> staff = abjad.Staff(leaves)
-            >>> staff.context_name = 'RhythmicStaff'
-            >>> show(staff) # doctest: +SKIP
+        >>> maker = abjad.LeafMaker()
+        >>> pitches = 4 * [None]
+        >>> durations = [abjad.Duration(1, 4)]
+        >>> leaves = maker(pitches, durations)
+        >>> staff = abjad.Staff(leaves)
+        >>> staff.context_name = 'RhythmicStaff'
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new RhythmicStaff {
                 r4
                 r4
@@ -78,18 +72,16 @@ class LeafMaker(AbjadValueObject):
 
         You can mix and match values passed to `pitches`:
 
-        ::
-
-            >>> maker = abjad.LeafMaker()
-            >>> pitches = [(0, 2, 4), None, 'C#5', 'D#5']
-            >>> durations = [abjad.Duration(1, 4)]
-            >>> leaves = maker(pitches, durations)
-            >>> staff = abjad.Staff(leaves)
-            >>> show(staff) # doctest: +SKIP
+        >>> maker = abjad.LeafMaker()
+        >>> pitches = [(0, 2, 4), None, 'C#5', 'D#5']
+        >>> durations = [abjad.Duration(1, 4)]
+        >>> leaves = maker(pitches, durations)
+        >>> staff = abjad.Staff(leaves)
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 <c' d' e'>4
                 r4
@@ -101,18 +93,16 @@ class LeafMaker(AbjadValueObject):
 
         Works with segments:
 
-        ::
-
-            >>> maker = abjad.LeafMaker()
-            >>> pitches = abjad.PitchSegment("e'' ef'' d'' df'' c''")
-            >>> durations = [abjad.Duration(1, 4)]
-            >>> leaves = maker(pitches, durations)
-            >>> staff = abjad.Staff(leaves)
-            >>> show(staff) # doctest: +SKIP
+        >>> maker = abjad.LeafMaker()
+        >>> pitches = abjad.PitchSegment("e'' ef'' d'' df'' c''")
+        >>> durations = [abjad.Duration(1, 4)]
+        >>> leaves = maker(pitches, durations)
+        >>> staff = abjad.Staff(leaves)
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 e''4
                 ef''4
@@ -126,18 +116,16 @@ class LeafMaker(AbjadValueObject):
         Reads `pitches` cyclically when the length of `pitches` is less than
         the length of `durations`:
 
-        ::
-
-            >>> maker = abjad.LeafMaker()
-            >>> pitches = ['C5']
-            >>> durations = 2 * [abjad.Duration(3, 8), abjad.Duration(1, 8)]
-            >>> leaves = maker(pitches, durations)
-            >>> staff = abjad.Staff(leaves)
-            >>> show(staff) # doctest: +SKIP
+        >>> maker = abjad.LeafMaker()
+        >>> pitches = ['C5']
+        >>> durations = 2 * [abjad.Duration(3, 8), abjad.Duration(1, 8)]
+        >>> leaves = maker(pitches, durations)
+        >>> staff = abjad.Staff(leaves)
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 c''4.
                 c''8
@@ -150,18 +138,16 @@ class LeafMaker(AbjadValueObject):
         Reads `durations` cyclically when the length of `durations` is less
         than the length of `pitches`:
 
-        ::
-
-            >>> maker = abjad.LeafMaker()
-            >>> pitches = "c'' d'' e'' f''"
-            >>> durations = [abjad.Duration(1, 4)]
-            >>> leaves = maker(pitches, durations)
-            >>> staff = abjad.Staff(leaves)
-            >>> show(staff) # doctest: +SKIP
+        >>> maker = abjad.LeafMaker()
+        >>> pitches = "c'' d'' e'' f''"
+        >>> durations = [abjad.Duration(1, 4)]
+        >>> leaves = maker(pitches, durations)
+        >>> staff = abjad.Staff(leaves)
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 c''4
                 d''4
@@ -174,18 +160,16 @@ class LeafMaker(AbjadValueObject):
         Elements in `durations` with non-power-of-two denominators result in
         tuplet-nested leaves:
 
-        ::
-
-            >>> maker = abjad.LeafMaker()
-            >>> pitches = ['D5']
-            >>> durations = 3 * [abjad.Duration(1, 3)]
-            >>> leaves = maker(pitches, durations)
-            >>> staff = abjad.Staff(leaves)
-            >>> show(staff) # doctest: +SKIP
+        >>> maker = abjad.LeafMaker()
+        >>> pitches = ['D5']
+        >>> durations = 3 * [abjad.Duration(1, 3)]
+        >>> leaves = maker(pitches, durations)
+        >>> staff = abjad.Staff(leaves)
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \times 2/3 {
                     d''2
@@ -199,20 +183,18 @@ class LeafMaker(AbjadValueObject):
         Set `decrease_monotonic` to true to return nonassignable
         durations tied from greatest to least:
 
-        ::
-
-            >>> maker = abjad.LeafMaker()
-            >>> pitches = ['D#5']
-            >>> durations = [abjad.Duration(13, 16)]
-            >>> leaves = maker(pitches, durations)
-            >>> staff = abjad.Staff(leaves)
-            >>> time_signature = abjad.TimeSignature((13, 16))
-            >>> abjad.attach(time_signature, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> maker = abjad.LeafMaker()
+        >>> pitches = ['D#5']
+        >>> durations = [abjad.Duration(13, 16)]
+        >>> leaves = maker(pitches, durations)
+        >>> staff = abjad.Staff(leaves)
+        >>> time_signature = abjad.TimeSignature((13, 16))
+        >>> abjad.attach(time_signature, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \time 13/16
                 ds''2. ~
@@ -224,20 +206,18 @@ class LeafMaker(AbjadValueObject):
         Set `decrease_monotonic` to false to return nonassignable
         durations tied from least to greatest:
 
-        ::
-
-            >>> maker = abjad.LeafMaker(decrease_monotonic=False)
-            >>> pitches = ['E5']
-            >>> durations = [abjad.Duration(13, 16)]
-            >>> leaves = maker(pitches, durations)
-            >>> staff = abjad.Staff(leaves)
-            >>> time_signature = abjad.TimeSignature((13, 16))
-            >>> abjad.attach(time_signature, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> maker = abjad.LeafMaker(decrease_monotonic=False)
+        >>> pitches = ['E5']
+        >>> durations = [abjad.Duration(13, 16)]
+        >>> leaves = maker(pitches, durations)
+        >>> staff = abjad.Staff(leaves)
+        >>> time_signature = abjad.TimeSignature((13, 16))
+        >>> abjad.attach(time_signature, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \time 13/16
                 e''16 ~
@@ -249,22 +229,20 @@ class LeafMaker(AbjadValueObject):
         Set `forbidden_duration` to avoid notes greater than or equal
         to a certain written duration:
 
-        ::
-
-            >>> maker = abjad.LeafMaker(
-            ...     forbidden_duration=abjad.Duration(1, 2),
-            ...     )
-            >>> pitches = "f' g'"
-            >>> durations = [abjad.Duration(5, 8)]
-            >>> leaves = maker(pitches, durations)
-            >>> staff = abjad.Staff(leaves)
-            >>> time_signature = abjad.TimeSignature((5, 4))
-            >>> abjad.attach(time_signature, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> maker = abjad.LeafMaker(
+        ...     forbidden_duration=abjad.Duration(1, 2),
+        ...     )
+        >>> pitches = "f' g'"
+        >>> durations = [abjad.Duration(5, 8)]
+        >>> leaves = maker(pitches, durations)
+        >>> staff = abjad.Staff(leaves)
+        >>> time_signature = abjad.TimeSignature((5, 4))
+        >>> abjad.attach(time_signature, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \time 5/4
                 f'4 ~
@@ -279,23 +257,21 @@ class LeafMaker(AbjadValueObject):
 
         You may set `forbidden_duration` and `decrease_monotonic` together:
 
-        ::
-
-            >>> maker = abjad.LeafMaker(
-            ...     forbidden_duration=abjad.Duration(1, 2),
-            ...     decrease_monotonic=False,
-            ...     )
-            >>> pitches = "f' g'"
-            >>> durations = [abjad.Duration(5, 8)]
-            >>> leaves = maker(pitches, durations)
-            >>> staff = abjad.Staff(leaves)
-            >>> time_signature = abjad.TimeSignature((5, 4))
-            >>> abjad.attach(time_signature, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> maker = abjad.LeafMaker(
+        ...     forbidden_duration=abjad.Duration(1, 2),
+        ...     decrease_monotonic=False,
+        ...     )
+        >>> pitches = "f' g'"
+        >>> durations = [abjad.Duration(5, 8)]
+        >>> leaves = maker(pitches, durations)
+        >>> staff = abjad.Staff(leaves)
+        >>> time_signature = abjad.TimeSignature((5, 4))
+        >>> abjad.attach(time_signature, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \time 5/4
                 f'8 ~
@@ -310,21 +286,19 @@ class LeafMaker(AbjadValueObject):
 
         Set `is_diminution` to true to produce diminished tuplets:
 
-        ::
-
-            >>> maker = abjad.LeafMaker(is_diminution=True)
-            >>> pitches = "f'"
-            >>> durations = [abjad.Duration(5, 14)]
-            >>> leaves = maker(pitches, durations)
-            >>> staff = abjad.Staff(leaves)
-            >>> time_signature = abjad.TimeSignature((5, 14))
-            >>> leaf = abjad.inspect(staff).get_leaf(0)
-            >>> abjad.attach(time_signature, leaf)
-            >>> show(staff) # doctest: +SKIP
+        >>> maker = abjad.LeafMaker(is_diminution=True)
+        >>> pitches = "f'"
+        >>> durations = [abjad.Duration(5, 14)]
+        >>> leaves = maker(pitches, durations)
+        >>> staff = abjad.Staff(leaves)
+        >>> time_signature = abjad.TimeSignature((5, 14))
+        >>> leaf = abjad.inspect(staff).get_leaf(0)
+        >>> abjad.attach(time_signature, leaf)
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \tweak edge-height #'(0.7 . 0)
                 \times 4/7 {
@@ -340,21 +314,19 @@ class LeafMaker(AbjadValueObject):
 
         Set `is_diminution` to false to produce agumented tuplets:
 
-        ::
-
-            >>> maker = abjad.LeafMaker(is_diminution=False)
-            >>> pitches = "f'"
-            >>> durations = [abjad.Duration(5, 14)]
-            >>> leaves = maker(pitches, durations)
-            >>> staff = abjad.Staff(leaves)
-            >>> time_signature = abjad.TimeSignature((5, 14))
-            >>> leaf = abjad.inspect(staff).get_leaf(0)
-            >>> abjad.attach(time_signature, leaf)
-            >>> show(staff) # doctest: +SKIP
+        >>> maker = abjad.LeafMaker(is_diminution=False)
+        >>> pitches = "f'"
+        >>> durations = [abjad.Duration(5, 14)]
+        >>> leaves = maker(pitches, durations)
+        >>> staff = abjad.Staff(leaves)
+        >>> time_signature = abjad.TimeSignature((5, 14))
+        >>> leaf = abjad.inspect(staff).get_leaf(0)
+        >>> abjad.attach(time_signature, leaf)
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \tweak text #tuplet-number::calc-fraction-text
                 \tweak edge-height #'(0.7 . 0)
@@ -370,27 +342,23 @@ class LeafMaker(AbjadValueObject):
         None-valued elements in `pitches` result in multimeasure rests when the
         multimeasure rest keyword is set:
 
-        ::
+        >>> maker = abjad.LeafMaker(use_multimeasure_rests=True)
+        >>> pitches = [None]
+        >>> durations = [abjad.Duration(3, 8), abjad.Duration(5, 8)]
+        >>> leaves = maker(pitches, durations)
+        >>> leaves
+        Selection([MultimeasureRest('R1 * 3/8'), MultimeasureRest('R1 * 5/8')])
 
-            >>> maker = abjad.LeafMaker(use_multimeasure_rests=True)
-            >>> pitches = [None]
-            >>> durations = [abjad.Duration(3, 8), abjad.Duration(5, 8)]
-            >>> leaves = maker(pitches, durations)
-            >>> leaves
-            Selection([MultimeasureRest('R1 * 3/8'), MultimeasureRest('R1 * 5/8')])
-
-        ::
-
-            >>> staff = abjad.Staff([
-            ...     abjad.Measure((3, 8), [leaves[0]]),
-            ...     abjad.Measure((5, 8), [leaves[1]]),
-            ...     ])
-            >>> staff.context_name = 'RhythmicStaff'
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff([
+        ...     abjad.Measure((3, 8), [leaves[0]]),
+        ...     abjad.Measure((5, 8), [leaves[1]]),
+        ...     ])
+        >>> staff.context_name = 'RhythmicStaff'
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new RhythmicStaff {
                 {
                     \time 3/8
@@ -406,18 +374,16 @@ class LeafMaker(AbjadValueObject):
 
         Uses Messiaen-style ties:
 
-        ::
-
-            >>> maker = abjad.LeafMaker(use_messiaen_style_ties=True)
-            >>> pitches = [0]
-            >>> durations = [abjad.Duration(13, 16)]
-            >>> leaves = maker(pitches, durations)
-            >>> staff = abjad.Staff(leaves)
-            >>> show(staff) # doctest: +SKIP
+        >>> maker = abjad.LeafMaker(use_messiaen_style_ties=True)
+        >>> pitches = [0]
+        >>> durations = [abjad.Duration(13, 16)]
+        >>> leaves = maker(pitches, durations)
+        >>> staff = abjad.Staff(leaves)
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 c'2.
                 c'16 \repeatTie
@@ -427,18 +393,16 @@ class LeafMaker(AbjadValueObject):
 
         Works with numbered pitch-class:
 
-        ::
-
-            >>> maker = abjad.LeafMaker()
-            >>> pitches = [abjad.NumberedPitchClass(6)]
-            >>> durations = [abjad.Duration(13, 16)]
-            >>> leaves = maker(pitches, durations)
-            >>> staff = abjad.Staff(leaves)
-            >>> show(staff) # doctest: +SKIP
+        >>> maker = abjad.LeafMaker()
+        >>> pitches = [abjad.NumberedPitchClass(6)]
+        >>> durations = [abjad.Duration(13, 16)]
+        >>> leaves = maker(pitches, durations)
+        >>> staff = abjad.Staff(leaves)
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 fs'2. ~
                 fs'16
@@ -448,13 +412,11 @@ class LeafMaker(AbjadValueObject):
 
         Makes skips instead of rests:
 
-        ::
-
-            >>> maker = abjad.LeafMaker(skips_instead_of_rests=True)
-            >>> pitches = [None]
-            >>> durations = [abjad.Duration(13, 16)]
-            >>> maker(pitches, durations)
-            Selection([Skip('s2.'), Skip('s16')])
+        >>> maker = abjad.LeafMaker(skips_instead_of_rests=True)
+        >>> pitches = [None]
+        >>> durations = [abjad.Duration(13, 16)]
+        >>> maker(pitches, durations)
+        Selection([Skip('s2.'), Skip('s16')])
 
     Returns selection of leaves.
     '''

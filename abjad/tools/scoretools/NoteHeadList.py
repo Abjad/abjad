@@ -7,30 +7,26 @@ class NoteHeadList(TypedList):
 
     ..  container:: example
 
-        ::
+        >>> chord = abjad.Chord([0, 1, 4], (1, 4))
+        >>> note_heads = abjad.NoteHeadList(
+        ...     client=chord,
+        ...     items=[11, 10, 9],
+        ...     )
 
-            >>> chord = abjad.Chord([0, 1, 4], (1, 4))
-            >>> note_heads = abjad.NoteHeadList(
-            ...     client=chord,
-            ...     items=[11, 10, 9],
-            ...     )
-
-        ::
-
-            >>> f(note_heads)
-            abjad.NoteHeadList(
-                [
-                    abjad.NoteHead(
-                        written_pitch=abjad.NamedPitch("a'"),
-                        ),
-                    abjad.NoteHead(
-                        written_pitch=abjad.NamedPitch("bf'"),
-                        ),
-                    abjad.NoteHead(
-                        written_pitch=abjad.NamedPitch("b'"),
-                        ),
-                    ]
-                )
+        >>> abjad.f(note_heads)
+        abjad.NoteHeadList(
+            [
+                abjad.NoteHead(
+                    written_pitch=abjad.NamedPitch("a'"),
+                    ),
+                abjad.NoteHead(
+                    written_pitch=abjad.NamedPitch("bf'"),
+                    ),
+                abjad.NoteHead(
+                    written_pitch=abjad.NamedPitch("b'"),
+                    ),
+                ]
+            )
 
     '''
 
@@ -103,31 +99,27 @@ class NoteHeadList(TypedList):
 
         ..  container:: example
 
-            ::
-
-                >>> chord = abjad.Chord("<ef'>")
-                >>> show(chord) # doctest: +SKIP
+            >>> chord = abjad.Chord("<ef'>")
+            >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(chord)
+                >>> abjad.f(chord)
                 <ef'>4
 
-            ::
-
-                >>> note_heads = []
-                >>> note_head = abjad.NoteHead("cs''")
-                >>> note_head.tweak.color = 'blue'
-                >>> note_heads.append(note_head)
-                >>> note_head = abjad.NoteHead("f''")
-                >>> note_head.tweak.color = 'green'
-                >>> note_heads.append(note_head)
-                >>> chord.note_heads.extend(note_heads)
-                >>> show(chord) # doctest: +SKIP
+            >>> note_heads = []
+            >>> note_head = abjad.NoteHead("cs''")
+            >>> note_head.tweak.color = 'blue'
+            >>> note_heads.append(note_head)
+            >>> note_head = abjad.NoteHead("f''")
+            >>> note_head.tweak.color = 'green'
+            >>> note_heads.append(note_head)
+            >>> chord.note_heads.extend(note_heads)
+            >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(chord)
+                >>> abjad.f(chord)
                 <
                     ef'
                     \tweak color #blue
@@ -148,20 +140,16 @@ class NoteHeadList(TypedList):
 
             Gets note-head by pitch name:
 
-            ::
+            >>> chord = abjad.Chord("<e' cs'' f''>4")
+            >>> abjad.show(chord) # doctest: +SKIP
 
-                >>> chord = abjad.Chord("<e' cs'' f''>4")
-                >>> show(chord) # doctest: +SKIP
-
-            ::
-
-                >>> note_head = chord.note_heads.get("e'")
-                >>> note_head.tweak.color = 'red'
-                >>> show(chord) # doctest: +SKIP
+            >>> note_head = chord.note_heads.get("e'")
+            >>> note_head.tweak.color = 'red'
+            >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(chord)
+                >>> abjad.f(chord)
                 <
                     \tweak color #red
                     e'
@@ -173,20 +161,16 @@ class NoteHeadList(TypedList):
 
             Gets note-head by pitch number:
 
-            ::
+            >>> chord = abjad.Chord("<e' cs'' f''>4")
+            >>> abjad.show(chord) # doctest: +SKIP
 
-                >>> chord = abjad.Chord("<e' cs'' f''>4")
-                >>> show(chord) # doctest: +SKIP
-
-            ::
-
-                >>> note_head = chord.note_heads.get(4)
-                >>> note_head.tweak.color = 'red'
-                >>> show(chord) # doctest: +SKIP
+            >>> note_head = chord.note_heads.get(4)
+            >>> note_head.tweak.color = 'red'
+            >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(chord)
+                >>> abjad.f(chord)
                 <
                     \tweak color #red
                     e'
@@ -224,28 +208,22 @@ class NoteHeadList(TypedList):
 
         ..  container:: example
 
-            ::
-
-                >>> chord = abjad.Chord("<ef' c'' f''>4")
-                >>> show(chord) # doctest: +SKIP
+            >>> chord = abjad.Chord("<ef' c'' f''>4")
+            >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(chord)
+                >>> abjad.f(chord)
                 <ef' c'' f''>4
 
-            ::
+            >>> chord.note_heads.pop(1)
+            NoteHead("c''")
 
-                >>> chord.note_heads.pop(1)
-                NoteHead("c''")
-
-            ::
-
-                >>> show(chord) # doctest: +SKIP
+            >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(chord)
+                >>> abjad.f(chord)
                 <ef' f''>4
 
         Returns note-head.
@@ -258,25 +236,21 @@ class NoteHeadList(TypedList):
 
         ..  container:: example
 
-            ::
-
-                >>> chord = abjad.Chord("<ef' c'' f''>4")
-                >>> show(chord) # doctest: +SKIP
+            >>> chord = abjad.Chord("<ef' c'' f''>4")
+            >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(chord)
+                >>> abjad.f(chord)
                 <ef' c'' f''>4
 
-            ::
-
-                >>> note_head = chord.note_heads[1]
-                >>> chord.note_heads.remove(note_head)
-                >>> show(chord) # doctest: +SKIP
+            >>> note_head = chord.note_heads[1]
+            >>> chord.note_heads.remove(note_head)
+            >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(chord)
+                >>> abjad.f(chord)
                 <ef' f''>4
 
         '''

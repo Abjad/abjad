@@ -1685,7 +1685,7 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> predicate = abjad.select().by_leaf().pitch_set()
+                >>> predicate = abjad.select().leaves().pitch_set()
                 >>> expression = abjad.sequence().group(predicate)
 
             ::

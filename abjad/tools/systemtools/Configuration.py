@@ -150,13 +150,13 @@ class Configuration(AbjadObject):
         string = '\n'.join(result)
         return string
 
-    def _get_current_time(self):
-        return time.strftime("%d %B %Y %H:%M:%S")
-
     def _get_config_specification(self):
         specs = self._get_option_specification()
         return ['{} = {}'.format(key, value)
             for key, value in sorted(specs.items())]
+
+    def _get_current_time(self):
+        return time.strftime("%d %B %Y %H:%M:%S")
 
     @abc.abstractmethod
     def _get_initial_comment(self):

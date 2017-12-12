@@ -58,7 +58,7 @@ def test_spannertools_Spanner__is_my_first_leaf_02():
         '''
         )
 
-    leaves = abjad.select(container).by_leaf()
+    leaves = abjad.select(container).leaves()
     spanner = MockSpanner()
     abjad.attach(spanner, leaves[:4])
 

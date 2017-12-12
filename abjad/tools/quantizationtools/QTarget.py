@@ -135,7 +135,7 @@ class QTarget(AbjadObject):
         grace_handler=None,
         voice=None,
         ):
-        for leaf in iterate(voice).by_leaf():
+        for leaf in iterate(voice).leaves():
             if leaf._has_indicator(dict):
                 annotation = leaf._get_indicator(dict)
                 q_events = annotation['q_events']
