@@ -748,7 +748,7 @@ class Pattern(AbjadValueObject):
                 frame,
                 static_class=Pattern,
                 )
-            template = f'abjad.{function_name}({arguments})'
+            template = 'abjad.{}({})'.format(function_name, arguments)
         finally:
             del frame
         return template
