@@ -176,7 +176,7 @@ class Retrograde(AbjadValueObject):
         if not self.period:
             return type(argument)(reversed(argument))
         result = abjad.new(argument, items=())
-        for shard in abjad.Sequence(argument).partition_by_counts(
+        for shard in abjad.sequence(argument).partition_by_counts(
             [self.period],
             cyclic=True,
             overhang=True,

@@ -1,4 +1,3 @@
-from abjad.tools import durationtools
 from abjad.tools.timespantools.TimeRelation import TimeRelation
 
 
@@ -76,15 +75,15 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
         Otherwise returns boolean.
         '''
-        from abjad.tools import timespantools
+        import abjad
         timespan = timespan or self.timespan
         offset = offset or self.offset
         if timespan is None or offset is None:
             message = 'time relation is not fully loaded.'
             raise ValueError(message)
-        if not isinstance(timespan, timespantools.Timespan):
-            timespan = timespantools.Timespan()._get_timespan(timespan)
-        offset = durationtools.Offset(offset)
+        if not isinstance(timespan, abjad.Timespan):
+            timespan = abjad.Timespan()._get_timespan(timespan)
+        offset = abjad.Offset(offset)
         truth_value = self.inequality.evaluate_offset_inequality(
             timespan.start_offset, timespan.stop_offset, offset)
         return truth_value

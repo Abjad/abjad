@@ -1,5 +1,4 @@
 from abjad.tools import indicatortools
-from abjad.tools import durationtools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -104,11 +103,11 @@ class QTargetMeasure(AbjadObject):
         tempo=None,
         use_full_measure=False,
         ):
-
+        import abjad
         from abjad.tools import quantizationtools
 
         offset_in_ms = offset_in_ms or 0
-        offset_in_ms = durationtools.Offset(offset_in_ms)
+        offset_in_ms = abjad.Offset(offset_in_ms)
 
         if search_tree is None:
             search_tree = quantizationtools.UnweightedSearchTree()
@@ -134,7 +133,7 @@ class QTargetMeasure(AbjadObject):
                 )
             beats.append(beat)
         else:
-            beatspan = durationtools.Duration(1, time_signature.denominator)
+            beatspan = abjad.Duration(1, time_signature.denominator)
             current_offset_in_ms = offset_in_ms
             beatspan_duration_in_ms = \
                 tempo.duration_to_milliseconds(beatspan)
@@ -167,7 +166,7 @@ class QTargetMeasure(AbjadObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatAgent(self).get_storage_format()
+            return systemtools.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     ### PUBLIC PROPERTIES ###

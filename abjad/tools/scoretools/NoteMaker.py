@@ -205,9 +205,9 @@ class NoteMaker(AbjadValueObject):
             durations = [durations]
         nonreduced_fractions = [abjad.NonreducedFraction(_) for _ in durations]
         size = max(len(nonreduced_fractions), len(pitches))
-        nonreduced_fractions = abjad.Sequence(nonreduced_fractions)
+        nonreduced_fractions = abjad.sequence(nonreduced_fractions)
         nonreduced_fractions = nonreduced_fractions.repeat_to_length(size)
-        pitches = abjad.Sequence(pitches).repeat_to_length(size)
+        pitches = abjad.sequence(pitches).repeat_to_length(size)
         Duration = abjad.Duration
         durations = Duration._group_by_implied_prolation(
             nonreduced_fractions)

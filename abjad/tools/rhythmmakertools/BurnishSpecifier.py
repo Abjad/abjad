@@ -319,7 +319,7 @@ class BurnishSpecifier(AbjadValueObject):
             result = abjad.sequence(divisions[0]).partition_by_counts(
                 [left_count, middle_count, right_count],
                 cyclic=False,
-                overhang=Exact,
+                overhang=abjad.Exact,
                 )
             left_part, middle_part, right_part = result
             left_part = class_._burnish_division_part(left_part, left)
@@ -340,7 +340,7 @@ class BurnishSpecifier(AbjadValueObject):
             result = abjad.sequence(divisions[0]).partition_by_counts(
                 [left_count, middle_count],
                 cyclic=False,
-                overhang=Exact,
+                overhang=abjad.Exact,
                 )
             left_part, middle_part = result
             left_part = class_._burnish_division_part(left_part, left)
@@ -366,7 +366,7 @@ class BurnishSpecifier(AbjadValueObject):
             result = abjad.sequence(divisions[-1]).partition_by_counts(
                 [middle_count, right_count],
                 cyclic=False,
-                overhang=Exact,
+                overhang=abjad.Exact,
                 )
             middle_part, right_part = result
             middle_part = class_._burnish_division_part(middle_part, middle)
@@ -381,7 +381,7 @@ class BurnishSpecifier(AbjadValueObject):
 
     def _get_format_specification(self):
         import abjad
-        agent = abjad.StorageFormatAgent(self)
+        agent = abjad.StorageFormatManager(self)
         names = list(agent.signature_keyword_names)
         for name in names[:]:
             if not getattr(self, name):
@@ -437,8 +437,9 @@ class BurnishSpecifier(AbjadValueObject):
         return input_
 
     def _trivial_helper(self, sequence_, rotation):
+        import abjad
         if isinstance(rotation, int) and len(sequence_):
-            return datastructuretools.Sequence(sequence_).rotate(n=rotation)
+            return abjad.sequence(sequence_).rotate(n=rotation)
         return sequence_
 
     ### PUBLIC PROPERTIES ###

@@ -1,6 +1,6 @@
+import collections
 import copy
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.topleveltools import override
 
 
 class Spanner(AbjadObject):
@@ -65,7 +65,7 @@ class Spanner(AbjadObject):
         import abjad
         new = type(self)(*self.__getnewargs__())
         if getattr(self, '_lilypond_grob_name_manager', None) is not None:
-            new._lilypond_grob_name_manager = copy.copy(override(self))
+            new._lilypond_grob_name_manager = copy.copy(abjad.override(self))
         if getattr(self, '_lilypond_setting_name_manager', None) is not None:
             new._lilypond_setting_name_manager = copy.copy(abjad.setting(self))
         self._copy_keyword_args(new)
@@ -130,10 +130,8 @@ class Spanner(AbjadObject):
             raise Exception(message)
         if self._contiguity_constraint == 'logical voice':
             leaves = self[-1:] + [leaf]
-            if not abjad.Selection._all_in_same_logical_voice(
-                leaves,
-                contiguous=True,
-                ):
+            leaves = abjad.select(leaves)
+            if not leaves.in_contiguous_logical_voice():
                 raise Exception(leaves)
         leaf._spanners.add(self)
         self._leaves.append(leaf)
@@ -141,10 +139,8 @@ class Spanner(AbjadObject):
     def _append_left(self, leaf):
         import abjad
         leaves = [leaf] + self[:1]
-        assert abjad.Selection._all_in_same_logical_voice(
-            leaves,
-            contiguous=True,
-            )
+        leaves = abjad.select(leaves)
+        assert leaves.in_contiguous_logical_voice()
         leaf._spanners.add(self)
         self._leaves.insert(0, leaf)
 
@@ -240,11 +236,9 @@ class Spanner(AbjadObject):
         import abjad
         leaf_input = list(self[-1:])
         leaf_input.extend(leaves)
+        leaf_input = abjad.select(leaf_input)
         if self._contiguity_constraint == 'logical voice':
-            if not abjad.Selection._all_in_same_logical_voice(
-                leaf_input,
-                contiguous=True,
-                ):
+            if not leaf_input.in_contiguous_logical_voice():
                 message = 'must be contiguous leaves'
                 message += ' in same logical voice: {!r}.'
                 message = message.format(leaf_input)
@@ -255,10 +249,8 @@ class Spanner(AbjadObject):
     def _extend_left(self, leaves):
         import abjad
         leaf_input = leaves + list(self[:1])
-        assert abjad.Selection._all_in_same_logical_voice(
-            leaf_input,
-            contiguous=True,
-            )
+        leaf_input = abjad.select(leaf_input)
+        assert leaf_input.in_contiguous_logical_voice()
         for leaf in reversed(leaves):
             self._append_left(leaf)
 
@@ -357,7 +349,7 @@ class Spanner(AbjadObject):
 
     def _get_format_specification(self):
         import abjad
-        agent = abjad.StorageFormatAgent(self)
+        agent = abjad.StorageFormatManager(self)
         names = list(agent.signature_keyword_names)
         if self._get_compact_summary() == '':
             values = []
@@ -615,8 +607,7 @@ class Spanner(AbjadObject):
                 message = 'spanners attach only to leaves: {!s}.'
                 message = message.format(leaf)
                 raise Exception(message)
-        result = abjad.select(self._leaves)
-        return result
+        return abjad.select(self._leaves)
 
     @property
     def name(self):
@@ -632,10 +623,14 @@ class Spanner(AbjadObject):
 
         Returns dictionary.
         '''
-        manager = override(self)
+        import abjad
+        manager = abjad.override(self)
         overrides = {}
         for attribute_tuple in manager._get_attribute_tuples():
             attribute = '__'.join(attribute_tuple[:-1])
             value = attribute_tuple[-1]
             overrides[attribute] = value
         return overrides
+
+
+collections.Sequence.register(Spanner)

@@ -106,7 +106,7 @@ class NoteHead(AbjadObject):
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
         elif format_specification == 'storage':
-            return systemtools.StorageFormatAgent(self).get_storage_format()
+            return systemtools.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __hash__(self):
@@ -168,7 +168,7 @@ class NoteHead(AbjadObject):
     @property
     def _keyword_argument_names(self):
         from abjad.tools import systemtools
-        agent = systemtools.StorageFormatAgent(self)
+        agent = systemtools.StorageFormatManager(self)
         keyword_argument_names = list(agent.signature_keyword_names)
         if 'client' in keyword_argument_names:
             keyword_argument_names.remove('client')
@@ -184,7 +184,7 @@ class NoteHead(AbjadObject):
         arguments.extend(self.tweak._get_attribute_pairs())
         arguments = ', '.join([str(x) for x in arguments])
         repr_text = '{}({})'.format(type(self).__name__, arguments)
-        agent = systemtools.StorageFormatAgent(self)
+        agent = systemtools.StorageFormatManager(self)
         names = list(agent.signature_keyword_names)
         if 'client' in names:
             names.remove('client')

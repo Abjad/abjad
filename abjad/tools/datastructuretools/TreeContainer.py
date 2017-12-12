@@ -376,7 +376,7 @@ class TreeContainer(TreeNode):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        agent = systemtools.StorageFormatAgent(self)
+        agent = systemtools.StorageFormatManager(self)
         names = list(agent.signature_keyword_names)
         template_names = names[:]
         for name in ('children',):

@@ -58,7 +58,7 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
                 measure_count = int(measure_count)
                 assert 0 < measure_count
                 self.measure_count = measure_count
-                self.score_template = abjad.templatetools.StringQuartetScoreTemplate()
+                self.score_template = abjad.StringQuartetScoreTemplate()
 
             ### SPECIAL METHODS ###
 

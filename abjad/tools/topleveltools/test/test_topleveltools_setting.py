@@ -36,7 +36,7 @@ def test_topleveltools_setting_02():
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     score = abjad.Score([staff])
     moment = abjad.SchemeMoment(24)
-    leaves = abjad.select().by_leaf(flatten=True)(score)
+    leaves = abjad.select(score).by_leaf()
     abjad.setting(leaves[1]).score.tempo_wholes_per_minute = moment
 
     assert format(score) == abjad.String.normalize(

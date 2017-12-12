@@ -1,4 +1,4 @@
-from abjad.tools.scoretools.GraceContainer import GraceContainer
+from .GraceContainer import GraceContainer
 
 
 class AcciaccaturaContainer(GraceContainer):

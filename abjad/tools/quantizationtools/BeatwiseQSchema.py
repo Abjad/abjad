@@ -1,4 +1,3 @@
-from abjad.tools import durationtools
 from abjad.tools import indicatortools
 from abjad.tools import systemtools
 from abjad.tools.quantizationtools.QSchema import QSchema
@@ -290,10 +289,9 @@ class BeatwiseQSchema(QSchema):
     ### INITIALIZER ###
 
     def __init__(self, *arguments, **keywords):
+        import abjad
         from abjad.tools import quantizationtools
-        self._beatspan = durationtools.Duration(
-            keywords.get('beatspan',
-                (1, 4)))
+        self._beatspan = abjad.Duration(keywords.get('beatspan', (1, 4)))
         search_tree = keywords.get('search_tree',
             quantizationtools.UnweightedSearchTree())
         assert isinstance(search_tree, quantizationtools.SearchTree)

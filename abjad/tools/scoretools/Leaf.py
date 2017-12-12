@@ -1,13 +1,12 @@
 import abc
 import copy
-from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import systemtools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import setting
-from abjad.tools.scoretools.Component import Component
+from .Component import Component
 
 
 class Leaf(Component):
@@ -31,11 +30,12 @@ class Leaf(Component):
 
     @abc.abstractmethod
     def __init__(self, written_duration, name=None):
+        import abjad
         Component.__init__(self, name=name)
         self._after_grace_container = None
         self._grace_container = None
         self._leaf_index = None
-        self.written_duration = durationtools.Duration(written_duration)
+        self.written_duration = abjad.Duration(written_duration)
 
     ### SPECIAL METHODS ###
 
@@ -175,8 +175,8 @@ class Leaf(Component):
         return ['grace body', result]
 
     def _format_leaf_body(self, bundle):
-        from abjad.tools import systemtools
-        indent = systemtools.LilyPondFormatManager.indent
+        import abjad
+        indent = abjad.LilyPondFormatManager.indent
         result = self._format_leaf_nucleus()[1]
         result.extend(bundle.right.stem_tremolos)
         result.extend(bundle.right.articulations)
@@ -192,10 +192,10 @@ class Leaf(Component):
             if len(markup) == 1:
                 result[0] += ' {}'.format(markup[0])
             else:
-                result.extend(indent + '{}'.format(x) for x in markup)
+                result.extend(indent + '{}'.format(_) for _ in markup)
         trill_pitches = bundle.right.trill_pitches
         if trill_pitches:
-            assert len(trill_pitches) == 1
+            assert len(trill_pitches) == 1, repr(trill_pitches)
             result[-1] += ' {}'.format(trill_pitches[0])
         return ['self body', result]
 
@@ -243,8 +243,8 @@ class Leaf(Component):
                 x for x in candidates if isinstance(x, abjad.Leaf)
                 ]
             for candidate in candidates:
-                if abjad.Selection._all_in_same_logical_voice(
-                    [component, candidate]):
+                selection = abjad.select([component, candidate])
+                if selection.in_logical_voice():
                     return candidate
 
         def previous(component):
@@ -256,8 +256,8 @@ class Leaf(Component):
                 x for x in candidates if isinstance(x, abjad.Leaf)
                 ]
             for candidate in candidates:
-                if abjad.Selection._all_in_same_logical_voice(
-                    [component, candidate]):
+                selection = abjad.select([component, candidate])
+                if selection.in_logical_voice():
                     return candidate
         current_leaf = self
         if n < 0:
@@ -280,13 +280,13 @@ class Leaf(Component):
             tie_spanners = abjad.inspect(component).get_spanners(abjad.Tie)
             if len(tie_spanners) == 1:
                 tie_spanner = tie_spanners.pop()
-                return abjad.LogicalTie(music=tie_spanner.leaves)
+                return abjad.LogicalTie(items=tie_spanner.leaves)
             elif 1 < len(tie_spanners):
                 message = 'parentage of {!r} contains {} tie spanners.'
                 message = message.format(self, len(tie_spanners))
                 raise Exception(message)
         else:
-            return abjad.LogicalTie(music=self)
+            return abjad.LogicalTie(items=self)
 
     def _process_contribution_packet(self, contribution_packet):
         manager = systemtools.LilyPondFormatManager
@@ -401,7 +401,7 @@ class Leaf(Component):
         ):
         import abjad
         durations = [abjad.Duration(_) for _ in durations]
-        durations = abjad.Sequence(durations)
+        durations = abjad.sequence(durations)
         leaf_duration = abjad.inspect(self).get_duration()
         if cyclic:
             durations = durations.repeat_to_weight(leaf_duration)
@@ -429,7 +429,7 @@ class Leaf(Component):
         result_leaves = abjad.select(result_components).by_leaf()
         assert all(isinstance(_, abjad.Selection) for _ in result_selections)
         assert all(isinstance(_, abjad.Component) for _ in result_components)
-        assert all(isinstance(_, abjad.Leaf) for _ in result_leaves)
+        assert result_leaves.are_leaves()
         if abjad.inspect(self).has_spanner(abjad.Tie):
             for leaf in result_leaves:
                 abjad.detach(abjad.Tie, leaf)
@@ -451,20 +451,20 @@ class Leaf(Component):
             first_selection = result_selections[0]
             for spanner in abjad.inspect(first_selection[-1]).get_spanners():
                 index = spanner._index(first_selection[-1])
-                spanner._fracture(index, direction=Right)
+                spanner._fracture(index, direction=abjad.Right)
             last_selection = result_selections[-1]
             for spanner in abjad.inspect(last_selection[0]).get_spanners():
                 index = spanner._index(last_selection[0])
-                spanner._fracture(index, direction=Left)
+                spanner._fracture(index, direction=abjad.Left)
             for middle_selection in result_selections[1:-1]:
                 spanners = abjad.inspect(middle_selection[0]).get_spanners()
                 for spanner in spanners:
                     index = spanner._index(middle_selection[0])
-                    spanner._fracture(index, direction=Left)
+                    spanner._fracture(index, direction=abjad.Left)
                 spanners = abjad.inspect(middle_selection[-1]).get_spanners()
                 for spanner in spanners:
                     index = spanner._index(middle_selection[-1])
-                    spanner._fracture(index, direction=Right)
+                    spanner._fracture(index, direction=abjad.Right)
         # move indicators
         first_result_leaf = result_leaves[0]
         last_result_leaf = result_leaves[-1]
@@ -472,10 +472,10 @@ class Leaf(Component):
             if isinstance(indicator, abjad.Multiplier):
                 continue
             abjad.detach(indicator, self)
-            direction = getattr(indicator, '_time_orientation', Left)
-            if direction is Left:
+            direction = getattr(indicator, '_time_orientation', abjad.Left)
+            if direction == abjad.Left:
                 abjad.attach(indicator, first_result_leaf)
-            elif direction is Right:
+            elif direction == abjad.Right:
                 abjad.attach(indicator, last_result_leaf)
             else:
                 raise ValueError(direction)
@@ -547,24 +547,22 @@ class Leaf(Component):
     ### PRIVATE PROPERTIES ###
 
     def _get_duration_in_seconds(self):
-        from abjad.tools import indicatortools
-        mark = self._get_effective(indicatortools.MetronomeMark)
+        import abjad
+        mark = self._get_effective(abjad.MetronomeMark)
         if mark is not None and not mark.is_imprecise:
             result = (
                 self._get_duration() /
                 mark.reference_duration /
                 mark.units_per_minute * 60
                 )
-            return durationtools.Duration(result)
+            return abjad.Duration(result)
         raise MissingMetronomeMarkError
 
     def _get_formatted_duration(self):
+        import abjad
         duration_string = self.written_duration.lilypond_duration_string
         multiplier = None
-        multiplier_prototype = (
-            durationtools.Multiplier,
-            mathtools.NonreducedFraction,
-            )
+        multiplier_prototype = (abjad.Multiplier, abjad.NonreducedFraction)
         multipliers = self._get_indicators(multiplier_prototype)
         if not multipliers:
             pass
@@ -580,23 +578,21 @@ class Leaf(Component):
         return result
 
     def _get_multiplied_duration(self):
+        import abjad
         if self.written_duration:
-            multiplier_prototype = (
-                durationtools.Multiplier,
-                mathtools.NonreducedFraction,
-                )
+            multiplier_prototype = (abjad.Multiplier, abjad.NonreducedFraction)
             if self._get_indicators(multiplier_prototype):
                 multipliers = self._get_indicators(multiplier_prototype)
                 if 1 == len(multipliers):
                     multiplier = multipliers[0]
-                    multiplier = durationtools.Duration(multiplier)
+                    multiplier = abjad.Duration(multiplier)
                 elif 1 < len(multipliers):
                     message = 'more than one duration multiplier.'
                     raise ValueError(message)
                 multiplied_duration = multiplier * self.written_duration
                 return multiplied_duration
             else:
-                return durationtools.Duration(self.written_duration)
+                return abjad.Duration(self.written_duration)
         else:
             return None
 
@@ -617,7 +613,8 @@ class Leaf(Component):
 
     @written_duration.setter
     def written_duration(self, argument):
-        rational = durationtools.Duration(argument)
+        import abjad
+        rational = abjad.Duration(argument)
         if not rational.is_assignable:
             message = 'not assignable duration: {!r}.'
             message = message.format(rational)

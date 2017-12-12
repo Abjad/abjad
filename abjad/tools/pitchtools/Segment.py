@@ -98,7 +98,7 @@ class Segment(TypedTuple):
         abjad.override(score).time_signature.stencil = False
         string = 'override Score.BarLine.transparent = ##f'
         command = abjad.LilyPondCommand(string, format_slot='after')
-        last_leaf = abjad.select().by_leaf()(score)[-1][-1]
+        last_leaf = abjad.select(score).by_leaf()[-1]
         abjad.attach(command, last_leaf)
         moment = abjad.schemetools.SchemeMoment((1, 12))
         abjad.setting(score).proportional_notation_duration = moment

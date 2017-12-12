@@ -23,7 +23,7 @@ ignored_classes = (
     datastructuretools.Enumeration,
     datastructuretools.Path,
     systemtools.FormatSpecification,
-    systemtools.StorageFormatAgent,
+    systemtools.StorageFormatManager,
     systemtools.TestCase,
     )
 

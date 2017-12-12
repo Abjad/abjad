@@ -239,6 +239,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
     ### PRIVATE METHODS ###
 
     def _apply_burnish_specifier(self, selections, rotation):
+        import abjad
         if self.burnish_specifier is None:
             return selections
         left_classes = self.burnish_specifier.left_classes
@@ -247,23 +248,21 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         left_counts = self.burnish_specifier.left_counts
         right_counts = self.burnish_specifier.right_counts
         left_classes = left_classes or ()
-        left_classes = datastructuretools.Sequence(left_classes).rotate(n=rotation)
-        left_classes = datastructuretools.CyclicTuple(left_classes)
+        left_classes = abjad.sequence(left_classes).rotate(n=rotation)
+        left_classes = abjad.CyclicTuple(left_classes)
         if middle_classes == () or middle_classes is None:
             middle_classes = (0,)
-        middle_classes = datastructuretools.Sequence(
-            middle_classes).rotate(n=rotation)
-        middle_classes = datastructuretools.CyclicTuple(middle_classes)
+        middle_classes = abjad.sequence(middle_classes).rotate(n=rotation)
+        middle_classes = abjad.CyclicTuple(middle_classes)
         right_classes = right_classes or ()
-        right_classes = datastructuretools.Sequence(
-            right_classes).rotate(n=rotation)
-        right_classes = datastructuretools.CyclicTuple(right_classes)
+        right_classes = abjad.sequence(right_classes).rotate(n=rotation)
+        right_classes = abjad.CyclicTuple(right_classes)
         left_counts = left_counts or (0,)
-        left_counts = datastructuretools.Sequence(left_counts).rotate(n=rotation)
-        left_counts = datastructuretools.CyclicTuple(left_counts)
+        left_counts = abjad.sequence(left_counts).rotate(n=rotation)
+        left_counts = abjad.CyclicTuple(left_counts)
         right_counts = right_counts or (0,)
-        right_counts = datastructuretools.Sequence(right_counts).rotate(n=rotation)
-        right_counts = datastructuretools.CyclicTuple(right_counts)
+        right_counts = abjad.sequence(right_counts).rotate(n=rotation)
+        right_counts = abjad.CyclicTuple(right_counts)
         if self.burnish_specifier.outer_divisions_only:
             procedure = self._burnish_outer_selections
         else:
@@ -381,7 +380,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             middle_classes = [1]
         middle = [middle_classes[0]]
         middle = middle_length * middle
-        left_part, middle_part = abjad.Sequence(leaves).partition_by_counts(
+        left_part, middle_part = abjad.sequence(leaves).partition_by_counts(
             [left_length, middle_length],
             cyclic=False,
             overhang=False,
@@ -411,7 +410,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         middle_length = len(leaves) - right_length
         right = right[:right_length]
         middle = middle_length * [middle_classes[0]]
-        middle_part, right_part = abjad.Sequence(leaves).partition_by_counts(
+        middle_part, right_part = abjad.sequence(leaves).partition_by_counts(
             [middle_length, right_length],
             cyclic=False,
             overhang=False,
@@ -474,7 +473,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 tuplet.preferred_denominator = preferred_denominator
             elif isinstance(self.preferred_denominator, int):
                 tuplet.preferred_denominator = self.preferred_denominator
-            selection = abjad.select(tuplet)
+            selection = abjad.Selection(tuplet)
             selections.append(selection)
         selections = self._apply_burnish_specifier(selections, rotation)
         beam_specifier = self._get_beam_specifier()
@@ -1900,7 +1899,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 >>> pattern_2 = abjad.index_first(2)
                 >>> pattern_3 = abjad.index_last(2)
                 >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
-                >>> mask = abjad.silence(pattern)
+                >>> mask = abjad.SilenceMask(pattern)
                 >>> rhythm_maker = abjad.rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     logical_tie_masks=mask,
                 ...     )

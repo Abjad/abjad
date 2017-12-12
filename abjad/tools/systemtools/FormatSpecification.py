@@ -18,6 +18,7 @@ class FormatSpecification(AbjadValueObject):
         '_repr_kwargs_names',
         '_repr_text',
         '_storage_format_args_values',
+        '_storage_format_forced_override',
         '_storage_format_is_bracketed',
         '_storage_format_is_indented',
         '_storage_format_kwargs_names',
@@ -37,6 +38,7 @@ class FormatSpecification(AbjadValueObject):
         repr_kwargs_names=None,
         repr_text=None,
         storage_format_args_values=None,
+        storage_format_forced_override=None,
         storage_format_is_bracketed=None,
         storage_format_is_indented=True,
         storage_format_kwargs_names=None,
@@ -52,6 +54,7 @@ class FormatSpecification(AbjadValueObject):
         self._repr_text = self._coerce_string(repr_text)
         self._storage_format_args_values = self._coerce_tuple(
             storage_format_args_values)
+        self._storage_format_forced_override = storage_format_forced_override
         self._storage_format_is_bracketed = self._coerce_boolean(
             storage_format_is_bracketed)
         self._storage_format_is_indented = self._coerce_boolean(
@@ -108,6 +111,10 @@ class FormatSpecification(AbjadValueObject):
     @property
     def storage_format_args_values(self):
         return self._storage_format_args_values
+
+    @property
+    def storage_format_forced_override(self):
+        return self._storage_format_forced_override
 
     @property
     def storage_format_is_bracketed(self):

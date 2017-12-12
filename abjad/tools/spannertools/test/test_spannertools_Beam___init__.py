@@ -731,7 +731,7 @@ def test_spannertools_Beam___init___19():
         '''
         )
 
-    selector = abjad.select().by_leaf(flatten=True)
+    selector = abjad.select().by_leaf()
     leaves = selector(staff)
     beam = abjad.Beam()
     statement = 'attach(beam, leaves)'

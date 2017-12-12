@@ -1,4 +1,3 @@
-from abjad.tools import durationtools
 from abjad.tools import markuptools
 from abjad.tools.datastructuretools.TypedCounter import TypedCounter
 
@@ -47,7 +46,8 @@ class OffsetCounter(TypedCounter):
     ### INITIALIZER ###
 
     def __init__(self, items=None):
-        TypedCounter.__init__(self, item_class=durationtools.Offset)
+        import abjad
+        TypedCounter.__init__(self, item_class=abjad.Offset)
         if items:
             for item in items:
                 try:
@@ -58,7 +58,7 @@ class OffsetCounter(TypedCounter):
                         self[item._get_timespan().start_offset] += 1
                         self[item._get_timespan().stop_offset] += 1
                     else:
-                        offset = durationtools.Offset(item)
+                        offset = abjad.Offset(item)
                         self[offset] += 1
 
     ### SPECIAL METHODS ###
@@ -91,8 +91,8 @@ class OffsetCounter(TypedCounter):
             minimum, maximum = range_
         else:
             minimum, maximum = min(self), max(self)
-        minimum = float(durationtools.Offset(minimum))
-        maximum = float(durationtools.Offset(maximum))
+        minimum = float(abjad.Offset(minimum))
+        maximum = float(abjad.Offset(maximum))
         if scale is None:
             scale = 1.
         assert 0 < scale
@@ -111,20 +111,20 @@ class OffsetCounter(TypedCounter):
         markup = markuptools.Markup.postscript(ps)
         pieces = [markup]
         for offset in sorted(self):
-            offset = durationtools.Multiplier(offset)
+            offset = abjad.Multiplier(offset)
             numerator, denominator = offset.numerator, offset.denominator
-            fraction = markuptools.Markup.fraction(numerator, denominator)
+            fraction = abjad.Markup.fraction(numerator, denominator)
             fraction = fraction.center_align().fontsize(-3).sans()
             x_translation = (float(offset) * postscript_scale)
             x_translation -= postscript_x_offset
             fraction = fraction.translate((x_translation, 1))
             pieces.append(fraction)
-        markup = markuptools.Markup.overlay(pieces)
+        markup = abjad.Markup.overlay(pieces)
         return markup.__illustrate__()
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _item_coercer(self):
-        from abjad.tools import durationtools
-        return durationtools.Offset
+        import abjad
+        return abjad.Offset

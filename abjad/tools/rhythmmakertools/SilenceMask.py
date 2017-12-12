@@ -15,11 +15,136 @@ class SilenceMask(AbjadValueObject):
 
             >>> f(mask)
             abjad.SilenceMask(
+                pattern=abjad.index_every([0, 1, 7], 16),
+                )
+
+    ..  container:: example
+
+        With composite pattern:
+
+        ::
+
+            >>> pattern_1 = abjad.index_all()
+            >>> pattern_2 = abjad.index_first(1)
+            >>> pattern_3 = abjad.index_last(1)
+            >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
+            >>> mask = abjad.SilenceMask(pattern)
+
+        ::
+
+            >>> f(mask)
+            abjad.SilenceMask(
                 pattern=abjad.Pattern(
-                    indices=[0, 1, 7],
-                    period=16,
+                    operator='xor',
+                    patterns=(
+                        abjad.index_all(),
+                        abjad.index_first(1),
+                        abjad.index_last(1),
+                        ),
                     ),
                 )
+
+        ::
+
+            >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+            ...     division_masks=[
+            ...         mask,
+            ...         ],
+            ...     )
+            >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(lilypond_file[abjad.Staff])
+            \new RhythmicStaff {
+                {
+                    \time 7/16
+                    c'4..
+                }
+                {
+                    \time 3/8
+                    r4.
+                }
+                {
+                    \time 7/16
+                    r4..
+                }
+                {
+                    \time 3/8
+                    c'4.
+                }
+            }
+
+    ..  container:: example
+
+        With inverted composite pattern:
+
+        ::
+
+            >>> pattern_1 = abjad.index_all()
+            >>> pattern_2 = abjad.index_first(1)
+            >>> pattern_3 = abjad.index_last(1)
+            >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
+            >>> pattern = ~pattern
+            >>> mask = abjad.SilenceMask(pattern)
+
+        ::
+
+            >>> f(mask)
+            abjad.SilenceMask(
+                pattern=abjad.Pattern(
+                    inverted=True,
+                    operator='xor',
+                    patterns=(
+                        abjad.index_all(),
+                        abjad.index_first(1),
+                        abjad.index_last(1),
+                        ),
+                    ),
+                )
+
+        ::
+
+            >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
+            ...     division_masks=[
+            ...         mask,
+            ...         ],
+            ...     )
+            >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(lilypond_file[abjad.Staff])
+            \new RhythmicStaff {
+                {
+                    \time 7/16
+                    r4..
+                }
+                {
+                    \time 3/8
+                    c'4.
+                }
+                {
+                    \time 7/16
+                    c'4..
+                }
+                {
+                    \time 3/8
+                    r4.
+                }
+            }
 
     '''
 
@@ -103,7 +228,7 @@ class SilenceMask(AbjadValueObject):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def silence(indices=None, inverted=None):
+    def silence(indices, inverted=None):
         r'''Makes silence mask that matches `indices`.
 
         ..  container:: example
@@ -118,9 +243,7 @@ class SilenceMask(AbjadValueObject):
 
                 >>> f(mask)
                 abjad.SilenceMask(
-                    pattern=abjad.Pattern(
-                        indices=[1, 2],
-                        ),
+                    pattern=abjad.index([1, 2]),
                     )
 
             ::
@@ -170,9 +293,7 @@ class SilenceMask(AbjadValueObject):
 
                 >>> f(mask)
                 abjad.SilenceMask(
-                    pattern=abjad.Pattern(
-                        indices=[-1, -2],
-                        ),
+                    pattern=abjad.index([-1, -2]),
                     )
 
             ::
@@ -212,158 +333,19 @@ class SilenceMask(AbjadValueObject):
                     }
                 }
 
-        ..  container:: example
-
-            Works with pattern input:
-
-            ::
-
-                >>> pattern_1 = abjad.index_all()
-                >>> pattern_2 = abjad.index_first()
-                >>> pattern_3 = abjad.index_last()
-                >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
-                >>> mask = abjad.silence(pattern)
-
-            ::
-
-                >>> f(mask)
-                abjad.SilenceMask(
-                    pattern=abjad.Pattern(
-                        operator='xor',
-                        patterns=(
-                            abjad.Pattern(
-                                indices=[0],
-                                period=1,
-                                ),
-                            abjad.Pattern(
-                                indices=[0],
-                                ),
-                            abjad.Pattern(
-                                indices=[-1],
-                                ),
-                            ),
-                        ),
-                    )
-
-            ::
-
-                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     division_masks=[
-                ...         mask,
-                ...         ],
-                ...     )
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    {
-                        \time 7/16
-                        c'4..
-                    }
-                    {
-                        \time 3/8
-                        r4.
-                    }
-                    {
-                        \time 7/16
-                        r4..
-                    }
-                    {
-                        \time 3/8
-                        c'4.
-                    }
-                }
-
-        ..  container:: example
-
-            Works with pattern input and inverted flag:
-
-            ::
-
-                >>> pattern_1 = abjad.index_all()
-                >>> pattern_2 = abjad.index_first()
-                >>> pattern_3 = abjad.index_last()
-                >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
-                >>> mask = abjad.silence(pattern, inverted=True)
-
-            ::
-
-                >>> f(mask)
-                abjad.SilenceMask(
-                    pattern=abjad.Pattern(
-                        inverted=True,
-                        operator='xor',
-                        patterns=(
-                            abjad.Pattern(
-                                indices=[0],
-                                period=1,
-                                ),
-                            abjad.Pattern(
-                                indices=[0],
-                                ),
-                            abjad.Pattern(
-                                indices=[-1],
-                                ),
-                            ),
-                        ),
-                    )
-
-            ::
-
-                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     division_masks=[
-                ...         mask,
-                ...         ],
-                ...     )
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    {
-                        \time 7/16
-                        r4..
-                    }
-                    {
-                        \time 3/8
-                        c'4.
-                    }
-                    {
-                        \time 7/16
-                        c'4..
-                    }
-                    {
-                        \time 3/8
-                        r4.
-                    }
-                }
 
         Returns silence mask.
         '''
         import abjad
-        if isinstance(indices, abjad.Pattern):
-            pattern = indices
-        else:
-            pattern = abjad.Pattern(
-                indices=indices,
-                inverted=inverted,
-                )
-        pattern = abjad.new(pattern, inverted=inverted)
+#        if isinstance(indices, abjad.Pattern):
+#            pattern = indices
+#        else:
+#            pattern = abjad.Pattern(
+#                indices=indices,
+#                inverted=inverted,
+#                )
+#        pattern = abjad.new(pattern, inverted=inverted)
+        pattern = abjad.index(indices)
         return SilenceMask(pattern=pattern)
 
     @staticmethod
@@ -382,10 +364,7 @@ class SilenceMask(AbjadValueObject):
 
                 >>> f(mask)
                 abjad.SilenceMask(
-                    pattern=abjad.Pattern(
-                        indices=[0],
-                        period=1,
-                        ),
+                    pattern=abjad.index_all(),
                     )
 
             ::
@@ -429,9 +408,7 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-                >>> mask = abjad.silence_all(
-                ...     use_multimeasure_rests=True,
-                ...     )
+                >>> mask = abjad.silence_all(use_multimeasure_rests=True)
                 >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[mask],
                 ...     )
@@ -471,11 +448,12 @@ class SilenceMask(AbjadValueObject):
         Returns silence mask.
         '''
         import abjad
-        pattern = abjad.Pattern(
-            indices=[0],
-            inverted=inverted,
-            period=1,
-            )
+#        pattern = abjad.Pattern(
+#            indices=[0],
+#            inverted=inverted,
+#            period=1,
+#            )
+        pattern = abjad.index_all(inverted=inverted)
         mask = SilenceMask(
             pattern=pattern,
             use_multimeasure_rests=use_multimeasure_rests,
@@ -485,7 +463,7 @@ class SilenceMask(AbjadValueObject):
     @staticmethod
     def silence_every(
         indices,
-        period=None,
+        period,
         inverted=None,
         use_multimeasure_rests=None,
         ):
@@ -497,16 +475,13 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-                >>> mask = abjad.silence_every(indices=[1], period=2)
+                >>> mask = abjad.silence_every([1], 2)
 
             ::
 
                 >>> f(mask)
                 abjad.SilenceMask(
-                    pattern=abjad.Pattern(
-                        indices=[1],
-                        period=2,
-                        ),
+                    pattern=abjad.index_every([1], 2),
                     )
 
             ::
@@ -550,16 +525,13 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-                >>> mask = abjad.silence_every(indices=[1, 2], period=3)
+                >>> mask = abjad.silence_every([1, 2], 3)
 
             ::
 
                 >>> f(mask)
                 abjad.SilenceMask(
-                    pattern=abjad.Pattern(
-                        indices=[1, 2],
-                        period=3,
-                        ),
+                    pattern=abjad.index_every([1, 2], 3),
                     )
 
             ::
@@ -603,16 +575,13 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-                >>> mask = abjad.silence_every(indices=[-1], inverted=True)
+                >>> mask = abjad.silence_except([-1])
 
             ::
 
                 >>> f(mask)
                 abjad.SilenceMask(
-                    pattern=abjad.Pattern(
-                        indices=[-1],
-                        inverted=True,
-                        ),
+                    pattern=abjad.index([-1], inverted=True),
                     )
 
             ::
@@ -653,11 +622,12 @@ class SilenceMask(AbjadValueObject):
         Returns silence mask.
         '''
         import abjad
-        pattern = abjad.Pattern(
-            indices=indices,
-            inverted=inverted,
-            period=period,
-            )
+#        pattern = abjad.Pattern(
+#            indices=indices,
+#            inverted=inverted,
+#            period=period,
+#            )
+        pattern = abjad.index_every(indices, period)
         mask = SilenceMask(
             pattern=pattern,
             use_multimeasure_rests=use_multimeasure_rests,
@@ -665,7 +635,7 @@ class SilenceMask(AbjadValueObject):
         return mask
 
     @staticmethod
-    def silence_except(indices=None):
+    def silence_except(indices):
         r'''Makes silence mask that matches all indices except `indices`.
 
         ..  container:: example
@@ -680,10 +650,7 @@ class SilenceMask(AbjadValueObject):
 
                 >>> f(mask)
                 abjad.SilenceMask(
-                    pattern=abjad.Pattern(
-                        indices=[1, 2],
-                        inverted=True,
-                        ),
+                    pattern=abjad.index([1, 2], inverted=True),
                     )
 
             ::
@@ -734,10 +701,7 @@ class SilenceMask(AbjadValueObject):
 
                 >>> f(mask)
                 abjad.SilenceMask(
-                    pattern=abjad.Pattern(
-                        indices=[-1, -2],
-                        inverted=True,
-                        ),
+                    pattern=abjad.index([-1, -2], inverted=True),
                     )
 
             ::
@@ -774,77 +738,6 @@ class SilenceMask(AbjadValueObject):
                     {
                         \time 3/8
                         c'4.
-                    }
-                }
-
-        ..  container:: example
-
-            Works with pattern input:
-
-            ::
-
-                >>> pattern_1 = abjad.index_all()
-                >>> pattern_2 = abjad.index_first()
-                >>> pattern_3 = abjad.index_last()
-                >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
-                >>> mask = abjad.silence_except(pattern)
-
-            ::
-
-                >>> f(mask)
-                abjad.SilenceMask(
-                    pattern=abjad.Pattern(
-                        inverted=True,
-                        operator='xor',
-                        patterns=(
-                            abjad.Pattern(
-                                indices=[0],
-                                period=1,
-                                ),
-                            abjad.Pattern(
-                                indices=[0],
-                                ),
-                            abjad.Pattern(
-                                indices=[-1],
-                                ),
-                            ),
-                        ),
-                    )
-
-            ::
-
-                >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
-                ...     division_masks=[
-                ...         mask,
-                ...         ],
-                ...     )
-                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    {
-                        \time 7/16
-                        r4..
-                    }
-                    {
-                        \time 3/8
-                        c'4.
-                    }
-                    {
-                        \time 7/16
-                        c'4..
-                    }
-                    {
-                        \time 3/8
-                        r4.
                     }
                 }
 
@@ -853,13 +746,14 @@ class SilenceMask(AbjadValueObject):
         Returns silence mask.
         '''
         import abjad
-        if isinstance(indices, abjad.Pattern):
-            pattern = indices
-        else:
-            pattern = abjad.Pattern(
-                indices=indices,
-                )
-        pattern = abjad.new(pattern, inverted=True)
+#        if isinstance(indices, abjad.Pattern):
+#            pattern = indices
+#        else:
+#            pattern = abjad.Pattern(
+#                indices=indices,
+#                )
+#        pattern = abjad.new(pattern, inverted=True)
+        pattern = abjad.index(indices, inverted=True)
         return SilenceMask(pattern=pattern)
 
     @staticmethod
@@ -872,15 +766,13 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-                >>> mask = abjad.silence_first()
+                >>> mask = abjad.silence_first(1)
 
             ::
 
                 >>> f(mask)
                 abjad.SilenceMask(
-                    pattern=abjad.Pattern(
-                        indices=[0],
-                        ),
+                    pattern=abjad.index_first(1),
                     )
 
             ::
@@ -924,15 +816,13 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-                >>> mask = abjad.silence_first(n=2)
+                >>> mask = abjad.silence_first(2)
 
             ::
 
                 >>> f(mask)
                 abjad.SilenceMask(
-                    pattern=abjad.Pattern(
-                        indices=[0, 1],
-                        ),
+                    pattern=abjad.index_first(2),
                     )
 
             ::
@@ -976,13 +866,13 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-                >>> mask = abjad.silence_first(n=0)
+                >>> mask = abjad.silence_first(0)
 
             ::
 
                 >>> f(mask)
                 abjad.SilenceMask(
-                    pattern=abjad.Pattern(),
+                    pattern=abjad.index_first(0),
                     )
 
             ::
@@ -1023,14 +913,15 @@ class SilenceMask(AbjadValueObject):
         Returns silence mask.
         '''
         import abjad
-        if 0 < n:
-            indices = list(range(n))
-        else:
-            indices = None
-        pattern = abjad.Pattern(
-            indices=indices,
-            inverted=inverted,
-            )
+#        if 0 < n:
+#            indices = list(range(n))
+#        else:
+#            indices = None
+#        pattern = abjad.Pattern(
+#            indices=indices,
+#            inverted=inverted,
+#            )
+        pattern = abjad.index_first(n, inverted=inverted)
         mask = SilenceMask(
             pattern=pattern,
             use_multimeasure_rests=use_multimeasure_rests,
@@ -1047,15 +938,13 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-                >>> mask = abjad.silence_last()
+                >>> mask = abjad.silence_last(1)
 
             ::
 
                 >>> f(mask)
                 abjad.SilenceMask(
-                    pattern=abjad.Pattern(
-                        indices=[-1],
-                        ),
+                    pattern=abjad.index_last(1),
                     )
 
             ::
@@ -1099,15 +988,13 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-                >>> mask = abjad.silence_last(n=2)
+                >>> mask = abjad.silence_last(2)
 
             ::
 
                 >>> f(mask)
                 abjad.SilenceMask(
-                    pattern=abjad.Pattern(
-                        indices=[-2, -1],
-                        ),
+                    pattern=abjad.index_last(2),
                     )
 
             ::
@@ -1151,13 +1038,13 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-                >>> mask = abjad.silence_last(n=0)
+                >>> mask = abjad.silence_last(0)
 
             ::
 
                 >>> f(mask)
                 abjad.SilenceMask(
-                    pattern=abjad.Pattern(),
+                    pattern=abjad.index_last(0),
                     )
 
             ::
@@ -1198,17 +1085,18 @@ class SilenceMask(AbjadValueObject):
         Returns silence mask.
         '''
         import abjad
-        if 0 < n:
-            start = -1
-            stop = -n - 1
-            stride = -1
-            indices = list(reversed(range(start, stop, stride)))
-        else:
-            indices = None
-        pattern = abjad.Pattern(
-            indices=indices,
-            inverted=inverted,
-            )
+#        if 0 < n:
+#            start = -1
+#            stop = -n - 1
+#            stride = -1
+#            indices = list(reversed(range(start, stop, stride)))
+#        else:
+#            indices = None
+#        pattern = abjad.Pattern(
+#            indices=indices,
+#            inverted=inverted,
+#            )
+        pattern = abjad.index_last(n, inverted=inverted)
         mask = SilenceMask(
             pattern=pattern,
             use_multimeasure_rests=use_multimeasure_rests,

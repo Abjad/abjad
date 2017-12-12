@@ -1,4 +1,3 @@
-from abjad.tools import durationtools
 from abjad.tools.abctools import AbjadValueObject
 
 
@@ -22,13 +21,14 @@ class InterpolationSpecifier(AbjadValueObject):
 
     def __init__(
         self,
-        start_duration=durationtools.Duration(1, 8),
-        stop_duration=durationtools.Duration(1, 16),
-        written_duration=durationtools.Duration(1, 16),
+        start_duration=(1, 8),
+        stop_duration=(1, 16),
+        written_duration=(1, 16),
         ):
-        self._start_duration = durationtools.Duration(start_duration)
-        self._stop_duration = durationtools.Duration(stop_duration)
-        self._written_duration = durationtools.Duration(written_duration)
+        import abjad
+        self._start_duration = abjad.Duration(start_duration)
+        self._stop_duration = abjad.Duration(stop_duration)
+        self._written_duration = abjad.Duration(written_duration)
 
     ### PUBLIC METHODS ###
 

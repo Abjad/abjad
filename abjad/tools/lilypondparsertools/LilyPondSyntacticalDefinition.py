@@ -1,13 +1,12 @@
 from ply import lex
 from abjad import Fraction
+from abjad.tools import datastructuretools
 from abjad.tools import indicatortools
-from abjad.tools import durationtools
 from abjad.tools import lilypondfiletools
 from abjad.tools import markuptools
 from abjad.tools import scoretools
 from abjad.tools import pitchtools
 from abjad.tools import schemetools
-from abjad.tools import datastructuretools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import attach
 
@@ -1098,7 +1097,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         chord = scoretools.Chord(pitches, duration)
         self.client._chord_pitch_orders[chord] = pitches
         if p[2].multiplier is not None:
-            multiplier = durationtools.Multiplier(p[2].multiplier)
+            multiplier = datastructuretools.Multiplier(p[2].multiplier)
             attach(multiplier, chord)
         self.client._process_post_events(chord, p[3])
         annotation = {'UnrelativableMusic': True}
@@ -1112,7 +1111,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         'event_chord : MULTI_MEASURE_REST optional_notemode_duration post_events'
         rest = scoretools.MultimeasureRest(p[2].duration)
         if p[2].multiplier is not None:
-            multiplier = durationtools.Multiplier(p[2].multiplier)
+            multiplier = datastructuretools.Multiplier(p[2].multiplier)
             attach(multiplier, rest)
         self.client._process_post_events(rest, p[3])
         p[0] = rest
@@ -2372,7 +2371,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         post_events.extend(p[3])
         self.client._chord_pitch_orders[chord] = pitches
         if p[2].multiplier is not None:
-            multiplier = durationtools.Multiplier(p[2].multiplier)
+            multiplier = datastructuretools.Multiplier(p[2].multiplier)
             attach(multiplier, chord)
         self.client._process_post_events(chord, post_events)
         p[0] = chord
@@ -2988,7 +2987,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         else:
             rest = scoretools.Skip(p[2].duration)
         if p[2].multiplier is not None:
-            multiplier = durationtools.Multiplier(p[2].multiplier)
+            multiplier = datastructuretools.Multiplier(p[2].multiplier)
             attach(multiplier, rest)
         p[0] = rest
 
@@ -3001,7 +3000,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         else:
             leaf = scoretools.Rest(p[5].duration)
         if p[5].multiplier is not None:
-            multiplier = durationtools.Multiplier(p[5].multiplier)
+            multiplier = datastructuretools.Multiplier(p[5].multiplier)
             attach(multiplier, leaf)
         # TODO: handle exclamations, questions, octave_check
         p[0] = leaf
@@ -3130,25 +3129,22 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         if dots:
             duration = duration.lilypond_duration_string
             duration += '.' * dots
-            #duration = durationtools.Duration(duration)
-            duration = durationtools.Duration.from_lilypond_duration_string(duration)
+            duration = datastructuretools.Duration.from_lilypond_duration_string(duration)
         p[0] = lilypondparsertools.LilyPondDuration(duration, multiplier)
 
     def p_steno_duration__bare_unsigned__dots(self, p):
         'steno_duration : bare_unsigned dots'
         from abjad.tools import lilypondparsertools
-        assert durationtools.Duration.is_token(p[1])
+        assert datastructuretools.Duration.is_token(p[1])
         dots = p[2].value
         token = str(p[1]) + '.' * dots
-        #duration = durationtools.Duration(token)
-        duration = durationtools.Duration.from_lilypond_duration_string(token)
+        duration = datastructuretools.Duration.from_lilypond_duration_string(token)
         p[0] = lilypondparsertools.LilyPondDuration(duration, None)
 
     ### steno_pitch ###
 
     def p_steno_pitch__NOTENAME_PITCH(self, p):
         'steno_pitch : NOTENAME_PITCH'
-        #p[0] = pitchtools.NamedPitch(str(p[1]))
         from abjad.ly import drums
         if isinstance(p[1], pitchtools.NamedPitchClass):
             p[0] = pitchtools.NamedPitch(str(p[1]))

@@ -1,6 +1,5 @@
 import collections
 from abjad.tools import abctools
-from abjad.tools.topleveltools import new
 
 
 class Duplication(abctools.AbjadValueObject):
@@ -171,7 +170,6 @@ class Duplication(abctools.AbjadValueObject):
         Returns new object with type equal to that of `argument`.
         '''
         import abjad
-        from abjad.tools import datastructuretools
 
         if not isinstance(argument, collections.Sequence):
             argument = (argument,)
@@ -186,27 +184,27 @@ class Duplication(abctools.AbjadValueObject):
             if isinstance(counts, int):
                 return type(argument)(argument * counts)
             else:
-                counts = datastructuretools.CyclicTuple(counts)
+                counts = abjad.CyclicTuple(counts)
                 result = []
                 for i, x in enumerate(argument):
                     count = counts[i]
                     result.extend([x] * count)
-                if isinstance(argument, datastructuretools.TypedCollection):
-                    result = new(argument, items=result)
+                if isinstance(argument, abjad.TypedCollection):
+                    result = abjad.new(argument, items=result)
                 else:
                     result = type(argument)(result)
                 return result
 
         if isinstance(counts, int):
             counts = [counts]
-        counts = datastructuretools.CyclicTuple(counts)
+        counts = abjad.CyclicTuple(counts)
 
         if not self.indices:
-            if isinstance(argument, datastructuretools.TypedCollection):
-                result = new(argument, items=())
+            if isinstance(argument, abjad.TypedCollection):
+                result = abjad.new(argument, items=())
             else:
                 result = type(argument)()
-            iterator = datastructuretools.Sequence(argument).partition_by_counts(
+            iterator = abjad.sequence(argument).partition_by_counts(
                 [self.period],
                 cyclic=True,
                 overhang=True,
@@ -230,8 +228,8 @@ class Duplication(abctools.AbjadValueObject):
                 j += 1
             else:
                 result.append(x)
-        if isinstance(argument, datastructuretools.TypedCollection):
-            result = new(argument, items=result)
+        if isinstance(argument, abjad.TypedCollection):
+            result = abjad.new(argument, items=result)
         else:
             result = type(argument)(result)
         return result

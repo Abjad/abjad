@@ -38,7 +38,7 @@ class MeasurewiseQTarget(QTarget):
         voice.append(measure)
 
         # generate the rest pairwise, comparing tempi
-        pairs = abjad.Sequence(self.items).nwise()
+        pairs = abjad.sequence(self.items).nwise()
         for q_target_measure_one, q_target_measure_two in pairs:
             measure = abjad.Measure(q_target_measure_two.time_signature)
             for beat in q_target_measure_two.beats:

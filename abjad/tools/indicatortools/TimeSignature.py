@@ -1,5 +1,4 @@
 import collections
-from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
@@ -124,8 +123,8 @@ class TimeSignature(AbjadValueObject):
     ### INITIALIZER ###
 
     def __init__(self, pair=(4, 4), partial=None, suppress=None):
-        from abjad.tools import scoretools
-        self._default_scope = scoretools.Staff
+        import abjad
+        self._default_scope = abjad.Staff
         pair = getattr(pair, 'pair', pair)
         assert isinstance(pair, collections.Iterable), repr(pair)
         assert len(pair) == 2, repr(pair)
@@ -135,7 +134,7 @@ class TimeSignature(AbjadValueObject):
         self._numerator = numerator
         self._denominator = denominator
         if partial is not None:
-            partial = durationtools.Duration(partial)
+            partial = abjad.Duration(partial)
         self._partial = partial
         if partial is not None:
             self._partial_repr_string = ', partial=%r' % self._partial
@@ -242,7 +241,7 @@ class TimeSignature(AbjadValueObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatAgent(self).get_storage_format()
+            return systemtools.StorageFormatManager(self).get_storage_format()
         elif format_specification == 'lilypond':
             return self._get_lilypond_format()
         return str(self)
@@ -466,7 +465,8 @@ class TimeSignature(AbjadValueObject):
 
         Returns duration.
         '''
-        return durationtools.Duration(self.numerator, self.denominator)
+        import abjad
+        return abjad.Duration(self.numerator, self.denominator)
 
     @property
     def has_non_power_of_two_denominator(self):
@@ -522,7 +522,8 @@ class TimeSignature(AbjadValueObject):
 
         Returns multiplier.
         '''
-        dummy_duration = durationtools.Duration(1, self.denominator)
+        import abjad
+        dummy_duration = abjad.Duration(1, self.denominator)
         return dummy_duration.implied_prolation
 
     @property
@@ -647,10 +648,7 @@ class TimeSignature(AbjadValueObject):
 
     ### PUBLIC METHODS ###
 
-    def with_power_of_two_denominator(
-        self,
-        contents_multiplier=durationtools.Multiplier(1),
-        ):
+    def with_power_of_two_denominator(self, contents_multiplier=1):
         r'''Makes new time signature equivalent to current
         time signature with power-of-two denominator.
 
@@ -664,14 +662,16 @@ class TimeSignature(AbjadValueObject):
 
         Returns new time signature.
         '''
+        import abjad
+        contents_multiplier = abjad.Multiplier(contents_multiplier)
         # check input
-        contents_multiplier = durationtools.Multiplier(contents_multiplier)
+        contents_multiplier = abjad.Multiplier(contents_multiplier)
 
         # save non_power_of_two time_signature and denominator
         non_power_of_two_denominator = self.denominator
 
         # find power_of_two denominator
-        if contents_multiplier == durationtools.Multiplier(1):
+        if contents_multiplier == abjad.Multiplier(1):
             power_of_two_denominator = \
                 mathtools.greatest_power_of_two_less_equal(
                     non_power_of_two_denominator)
@@ -681,7 +681,7 @@ class TimeSignature(AbjadValueObject):
                     non_power_of_two_denominator, 1)
 
         # find power_of_two pair
-        non_power_of_two_pair = mathtools.NonreducedFraction(self.pair)
+        non_power_of_two_pair = abjad.NonreducedFraction(self.pair)
         power_of_two_fraction = non_power_of_two_pair.with_denominator(
             power_of_two_denominator)
         power_of_two_pair = power_of_two_fraction.pair

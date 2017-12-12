@@ -8,7 +8,7 @@ def edit_second_violin_voice(score, durated_reservoir):
     voice = score['Second Violin Voice']
     descents = durated_reservoir['Second Violin']
 
-    last_descent = abjad.select(descents[-1])
+    last_descent = abjad.Selection(descents[-1])
     copied_descent = abjad.mutate(last_descent).copy()
     copied_descent = list(copied_descent)
     copied_descent[-1].written_duration = abjad.Duration(1, 1)
@@ -24,7 +24,7 @@ def edit_second_violin_voice(score, durated_reservoir):
     for _ in range(32):
         final_sustain.append(abjad.Note('a1.'))
     final_sustain.append(abjad.Note('a2'))
-    final_sustain = abjad.select(final_sustain)
+    final_sustain = abjad.Selection(final_sustain)
     articulation = abjad.Articulation('accent')
     abjad.attach(articulation, final_sustain[0])
     articulation = abjad.Articulation('tenuto')

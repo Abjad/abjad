@@ -1,6 +1,5 @@
 import bisect
 import copy
-from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import attach
@@ -99,6 +98,7 @@ class QGrid(AbjadObject):
     ### INITIALIZATION ###
 
     def __init__(self, root_node=None, next_downbeat=None):
+        import abjad
         from abjad.tools import quantizationtools
         if root_node is None:
             root_node = quantizationtools.QGridLeaf(preprolated_duration=1)
@@ -110,7 +110,7 @@ class QGrid(AbjadObject):
         assert isinstance(next_downbeat, quantizationtools.QGridLeaf)
         self._root_node = root_node
         self._next_downbeat = next_downbeat
-        self._next_downbeat._offset = durationtools.Offset(1)
+        self._next_downbeat._offset = abjad.Offset(1)
         self._next_downbeat._offsets_are_current = True
 
     ### SPECIAL METHODS ###
@@ -166,7 +166,7 @@ class QGrid(AbjadObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatAgent(self).get_storage_format()
+            return systemtools.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __hash__(self):
@@ -243,6 +243,7 @@ class QGrid(AbjadObject):
         Returns the ``QEventProxies`` attached to thus subdivided
         ``QGridLeaf``.
         '''
+        import abjad
         pairs = sorted(dict(pairs).items())
         leaf_indices = [pair[0] for pair in pairs]
         subdivisions = [pair[1] for pair in pairs]
@@ -255,7 +256,7 @@ class QGrid(AbjadObject):
 
             next_leaf = all_leaves[all_leaves.index(leaf) + 1]
             if next_leaf is self.next_downbeat:
-                next_leaf_offset = durationtools.Offset(1)
+                next_leaf_offset = abjad.Offset(1)
             else:
                 next_leaf_offset = next_leaf.start_offset
 
@@ -314,8 +315,9 @@ class QGrid(AbjadObject):
 
         Returns tuple of ``Offset`` instances.
         '''
+        import abjad
         return tuple([x.start_offset
-            for x in self.leaves[:-1]] + [durationtools.Offset(1)])
+            for x in self.leaves[:-1]] + [abjad.Offset(1)])
 
     @property
     def pretty_rtm_format(self):

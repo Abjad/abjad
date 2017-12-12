@@ -1,5 +1,4 @@
 import copy
-from abjad.tools import durationtools
 from abjad.tools import graphtools
 from abjad.tools import indicatortools
 from abjad.tools import mathtools
@@ -9,7 +8,7 @@ from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import setting
-from abjad.tools.scoretools.Container import Container
+from .Container import Container
 
 
 class Measure(Container):
@@ -52,7 +51,7 @@ class Measure(Container):
     def __init__(
         self,
         time_signature=None,
-        music=None,
+        components=None,
         implicit_scaling=False,
         ):
         import abjad
@@ -61,7 +60,7 @@ class Measure(Container):
         time_signature = time_signature or abjad.TimeSignature((4, 4))
         time_signature = abjad.TimeSignature(time_signature)
         self.implicit_scaling = bool(implicit_scaling)
-        Container.__init__(self, music)
+        Container.__init__(self, components)
         self._always_format_time_signature = False
         self._measure_number = None
         time_signature = indicatortools.TimeSignature(time_signature)
@@ -196,10 +195,10 @@ class Measure(Container):
     ### PRIVATE METHODS ###
 
     def _all_contents_are_scalable_by_multiplier(self, multiplier):
-        from abjad.tools import scoretools
-        multiplier = durationtools.Multiplier(multiplier)
+        import abjad
+        multiplier = abjad.Multiplier(multiplier)
         for component in self:
-            if isinstance(component, scoretools.Leaf):
+            if isinstance(component, abjad.Leaf):
                 candidate_duration = multiplier * component.written_duration
                 if not candidate_duration.is_assignable:
                     return False
@@ -292,8 +291,8 @@ class Measure(Container):
         denominators=None,
         factor=None,
         ):
-        # check input
-        duration = durationtools.Duration(duration)
+        import abjad
+        duration = abjad.Duration(duration)
         if denominators is not None:
             if factor is not None:
                 denominators = [
@@ -383,7 +382,7 @@ class Measure(Container):
                 logical_tie_duration = item._get_preprolated_duration()
                 numerator = logical_tie_duration.numerator
                 logical_tie_duration_numerators.append(numerator)
-        numerators = abjad.Sequence(logical_tie_duration_numerators)
+        numerators = abjad.sequence(logical_tie_duration_numerators)
         if len(numerators.remove_repeats()) == 1:
             numerator = logical_tie_duration_numerators[0]
             denominator = abjad.mathtools.greatest_power_of_two_less_equal(
@@ -643,10 +642,11 @@ class Measure(Container):
 
         Returns positive multiplier.
         '''
+        import abjad
         if self.implicit_scaling:
             time_signature = self.time_signature
             return time_signature.implied_prolation
-        return durationtools.Multiplier(1)
+        return abjad.Multiplier(1)
 
     @property
     def is_full(self):

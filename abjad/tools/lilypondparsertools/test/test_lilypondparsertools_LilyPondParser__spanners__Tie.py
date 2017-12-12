@@ -29,7 +29,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Tie_04():
     '''
 
     target = abjad.Container([abjad.Note(0, 1), abjad.Note(0, 1)])
-    tie = abjad.Tie(direction=Up)
+    tie = abjad.Tie(direction=abjad.Up)
     abjad.attach(tie, target[:])
     parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(format(target))
@@ -41,7 +41,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Tie_05():
     '''
 
     target = abjad.Container([abjad.Note(0, 1), abjad.Note(0, 1)])
-    tie = abjad.Tie(direction=Down)
+    tie = abjad.Tie(direction=abjad.Down)
     abjad.attach(tie, target[:])
     parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(format(target))

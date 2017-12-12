@@ -1,6 +1,4 @@
 from abjad.tools.pitchtools.Segment import Segment
-from abjad.tools.topleveltools import iterate
-from abjad.tools.topleveltools import select
 
 
 class PitchSegment(Segment):
@@ -530,10 +528,10 @@ class PitchSegment(Segment):
         '''
         import abjad
         if not isinstance(selection, abjad.Selection):
-            selection = select(selection)
+            selection = abjad.select(selection)
         named_pitches = []
         prototype = (abjad.Note, abjad.Chord)
-        for component in iterate(selection).by_class(prototype):
+        for component in abjad.iterate(selection).by_class(prototype):
             try:
                 named_pitches.extend(component.written_pitches)
             except AttributeError:
@@ -967,7 +965,7 @@ class PitchSegment(Segment):
         Returns new pitch segment.
         '''
         import abjad
-        rotated_pitches = abjad.Sequence(self._collection).rotate(n=n)
+        rotated_pitches = abjad.sequence(self._collection).rotate(n=n)
         new_segment = abjad.new(self, items=rotated_pitches)
         if stravinsky:
             if self[0] != new_segment[0]:

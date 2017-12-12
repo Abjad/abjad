@@ -1,4 +1,4 @@
-from abjad.tools.scoretools.Container import Container
+from .Container import Container
 
 
 class Cluster(Container):

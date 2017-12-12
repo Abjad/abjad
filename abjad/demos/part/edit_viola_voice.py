@@ -13,7 +13,7 @@ def edit_viola_voice(score, durated_reservoir):
         abjad.attach(articulation, leaf)
         articulation = abjad.Articulation('tenuto')
         abjad.attach(articulation, leaf)
-    last_descent = abjad.select(descents[-1])
+    last_descent = abjad.Selection(descents[-1])
     copied_descent = abjad.mutate(last_descent).copy()
     for leaf in copied_descent:
         if leaf.written_duration == abjad.Duration(4, 4):

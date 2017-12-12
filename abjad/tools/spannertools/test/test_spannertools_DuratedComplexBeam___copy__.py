@@ -13,7 +13,7 @@ def test_spannertools_DuratedComplexBeam___copy___01():
     beam = abjad.DuratedComplexBeam(
         durations=durations,
         span_beam_count=2,
-        direction=Down,
+        direction=abjad.Down,
         )
     leaves = abjad.select(staff).by_leaf()
     abjad.attach(beam, leaves)

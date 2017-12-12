@@ -18,7 +18,7 @@ class MeasuredComplexBeam(ComplexBeam):
         ::
 
             >>> beam = abjad.MeasuredComplexBeam()
-            >>> selector = abjad.select().by_leaf(flatten=True)
+            >>> selector = abjad.select().by_leaf()
             >>> leaves = selector(staff)
             >>> abjad.attach(beam, leaves)
             >>> show(staff) # doctest: +SKIP
@@ -129,7 +129,7 @@ class MeasuredComplexBeam(ComplexBeam):
                 >>> staff = abjad.Staff()
                 >>> staff.append(abjad.Measure((2, 32), "c'32 d'32"))
                 >>> staff.append(abjad.Measure((2, 32), "e'32 f'32"))
-                >>> selector = abjad.select().by_leaf(flatten=True)
+                >>> selector = abjad.select().by_leaf()
                 >>> leaves = selector(staff)
                 >>> beam = abjad.MeasuredComplexBeam(span_beam_count=1)
                 >>> abjad.attach(beam, leaves)
@@ -150,7 +150,7 @@ class MeasuredComplexBeam(ComplexBeam):
                 >>> staff.append(abjad.Measure((2, 32), "c'32 d'32"))
                 >>> staff.append(abjad.Measure((2, 32), "e'32 f'32"))
                 >>> beam = abjad.MeasuredComplexBeam(span_beam_count=2)
-                >>> selector = abjad.select().by_leaf(flatten=True)
+                >>> selector = abjad.select().by_leaf()
                 >>> leaves = selector(staff)
                 >>> abjad.attach(beam, leaves)
                 >>> show(staff) # doctest: +SKIP

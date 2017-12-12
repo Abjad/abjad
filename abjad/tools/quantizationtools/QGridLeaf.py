@@ -81,7 +81,7 @@ class QGridLeaf(RhythmTreeMixin, TreeNode):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        agent = systemtools.StorageFormatAgent(self)
+        agent = systemtools.StorageFormatManager(self)
         names = agent.signature_names
         template_names = names[:]
         if 'q_event_proxies' in names and not self.q_event_proxies:

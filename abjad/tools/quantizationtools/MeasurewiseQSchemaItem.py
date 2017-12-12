@@ -1,5 +1,4 @@
 from abjad.tools import indicatortools
-from abjad.tools import durationtools
 from abjad.tools.quantizationtools.QSchemaItem import QSchemaItem
 
 
@@ -91,12 +90,12 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
         Returns duration or none.
         '''
+        import abjad
         if self.time_signature is not None:
             if self.use_full_measure:
                 return self.time_signature.duration
             else:
-                return durationtools.Duration(
-                    1, self.time_signature.denominator)
+                return abjad.Duration(1, self.time_signature.denominator)
         return None
 
     @property

@@ -12,7 +12,9 @@ class Set(TypedFrozenset):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        '_expression',
+        )
 
     ### INITIALIZER ###
 
@@ -45,6 +47,7 @@ class Set(TypedFrozenset):
             items=items,
             item_class=item_class,
             )
+        self._expression = None
 
     ### SPECIAL METHODS ###
 

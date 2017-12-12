@@ -95,7 +95,7 @@ def test_scoretools_Chord___copy___05():
     chord_1 = abjad.Chord("<ef' cs'' f''>4")
     articulation_1 = abjad.Articulation('staccato')
     abjad.attach(articulation_1, chord_1)
-    markup_1 = abjad.Markup('foo', Up)
+    markup_1 = abjad.Markup('foo', abjad.Up)
     abjad.attach(markup_1, chord_1)
 
     chord_2 = copy.copy(chord_1)

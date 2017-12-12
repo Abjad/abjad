@@ -1664,6 +1664,7 @@ class MetronomeMarkSpanner(Spanner):
         tempo,
         metric_modulation,
         ):
+        import abjad
         assert tempo is not None or metric_modulation is not None
         if tempo is None:
             return metric_modulation._get_markup(
@@ -1679,7 +1680,7 @@ class MetronomeMarkSpanner(Spanner):
         modulation_markup = modulation_markup.line([modulation_markup])
         modulation_markup = modulation_markup.parenthesize()
         modulation_markup = modulation_markup.override(('padding', 0.5))
-        modulation_markup = modulation_markup.general_align('Y', Down)
+        modulation_markup = modulation_markup.general_align('Y', abjad.Down)
         markup = tempo_markup + modulation_markup
         return markup
 
@@ -1705,7 +1706,7 @@ class MetronomeMarkSpanner(Spanner):
                 current_tempo,
                 current_metric_modulation,
                 )
-            markup = abjad.new(markup, direction=Up)
+            markup = abjad.new(markup, direction=abjad.Up)
             string = format(markup, 'lilypond')
             bundle.right.markup.append(string)
             return bundle

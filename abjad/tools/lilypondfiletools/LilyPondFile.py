@@ -187,7 +187,7 @@ class LilyPondFile(AbjadObject):
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
         elif format_specification == 'storage':
-            return systemtools.StorageFormatAgent(self).get_storage_format()
+            return systemtools.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __getitem__(self, name):
@@ -1462,8 +1462,14 @@ class LilyPondFile(AbjadObject):
         score = abjad.Score()
         lilypond_file = abjad.LilyPondFile.floating(score)
         if pitched_staff is None:
-            for note in abjad.iterate(selections).by_class(
-                abjad.Note,
+            if isinstance(selections, list):
+                selections_ = selections
+            elif isinstance(selections, dict):
+                selections_ = selections.values()
+            else:
+                raise TypeError(selections)
+            for note in abjad.iterate(selections_).by_class(
+                prototype=abjad.Note,
                 with_grace_notes=True,
                 ):
                 if note.written_pitch != abjad.NamedPitch("c'"):
@@ -1480,7 +1486,7 @@ class LilyPondFile(AbjadObject):
                 staff = abjad.Staff(measures)
             else:
                 staff = abjad.Staff(measures, context_name='RhythmicStaff')
-            selections = abjad.Sequence(selections).flatten()
+            selections = abjad.sequence(selections).flatten()
             selections_ = copy.deepcopy(selections)
             try:
                 agent = abjad.mutate(staff)
@@ -1497,7 +1503,7 @@ class LilyPondFile(AbjadObject):
             voices = []
             for voice_name in sorted(selections):
                 selections_ = selections[voice_name]
-                selections_ = abjad.Sequence(selections_).flatten()
+                selections_ = abjad.sequence(selections_).flatten()
                 selections_ = copy.deepcopy(selections_)
                 voice = abjad.Voice(selections_, name=voice_name)
                 if attach_lilypond_voice_commands:

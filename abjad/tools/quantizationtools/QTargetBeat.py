@@ -1,5 +1,4 @@
 from abjad.tools import indicatortools
-from abjad.tools import durationtools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -72,12 +71,13 @@ class QTargetBeat(AbjadObject):
         search_tree=None,
         tempo=None,
         ):
+        import abjad
         from abjad.tools import quantizationtools
 
-        beatspan = beatspan or durationtools.Duration(0)
-        beatspan = durationtools.Duration(beatspan)
-        offset_in_ms = offset_in_ms or durationtools.Duration(0)
-        offset_in_ms = durationtools.Offset(offset_in_ms)
+        beatspan = beatspan or abjad.Duration(0)
+        beatspan = abjad.Duration(beatspan)
+        offset_in_ms = offset_in_ms or abjad.Duration(0)
+        offset_in_ms = abjad.Offset(offset_in_ms)
 
         if search_tree is None:
             search_tree = quantizationtools.UnweightedSearchTree()
@@ -133,7 +133,7 @@ class QTargetBeat(AbjadObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatAgent(self).get_storage_format()
+            return systemtools.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     ### PUBLIC PROPERTIES ###

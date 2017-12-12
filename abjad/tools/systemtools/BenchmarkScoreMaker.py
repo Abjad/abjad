@@ -64,7 +64,7 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         import abjad
         voice = abjad.Voice(200 * abjad.Note("c'16"))
-        for part in abjad.Sequence(voice[:]).partition_by_counts(
+        for part in abjad.sequence(voice[:]).partition_by_counts(
             [20],
             cyclic=True,
             ):
@@ -89,7 +89,7 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         import abjad
         voice = abjad.Voice(200 * abjad.Note("c'16"))
-        for part in abjad.Sequence(voice[:]).partition_by_counts(
+        for part in abjad.sequence(voice[:]).partition_by_counts(
             [100],
             cyclic=True,
             ):
@@ -115,7 +115,7 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         import abjad
         voice = abjad.Voice(200 * abjad.Note("c'16"))
-        for part in abjad.Sequence(voice[:]).partition_by_counts(
+        for part in abjad.sequence(voice[:]).partition_by_counts(
             [4],
             cyclic=True,
             ):
@@ -137,7 +137,7 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         import abjad
         voice = abjad.Voice(200 * abjad.Note("c'16"))
-        for part in abjad.Sequence(voice[:]).partition_by_counts(
+        for part in abjad.sequence(voice[:]).partition_by_counts(
             [20],
             cyclic=True,
             ):
@@ -159,7 +159,7 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         import abjad
         voice = abjad.Voice(200 * abjad.Note("c'16"))
-        for part in abjad.Sequence(voice[:]).partition_by_counts(
+        for part in abjad.sequence(voice[:]).partition_by_counts(
             [100],
             cyclic=True,
             ):
@@ -200,7 +200,7 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         import abjad
         staff = abjad.Staff(200 * abjad.Note("c'16"))
-        for part in abjad.Sequence(staff[:]).partition_by_counts(
+        for part in abjad.sequence(staff[:]).partition_by_counts(
             [20],
             cyclic=True,
             ):
@@ -224,7 +224,7 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         import abjad
         staff = abjad.Staff(200 * abjad.Note("c'16"))
-        for part in abjad.Sequence(staff[:]).partition_by_counts(
+        for part in abjad.sequence(staff[:]).partition_by_counts(
             [4],
             cyclic=True,
             ):
@@ -248,7 +248,7 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         import abjad
         staff = abjad.Staff(200 * abjad.Note("c'16"))
-        selector = abjad.select().by_leaf(flatten=True)
+        selector = abjad.select().by_leaf()
         for note in selector(staff):
             dynamic = abjad.Dynamic('f')
             abjad.attach(dynamic, note)
@@ -270,7 +270,7 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         import abjad
         voice = abjad.Voice(200 * abjad.Note("c'16"))
-        for part in abjad.Sequence(voice[:]).partition_by_counts(
+        for part in abjad.sequence(voice[:]).partition_by_counts(
             [4],
             cyclic=True,
             ):
@@ -294,7 +294,7 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         import abjad
         voice = abjad.Voice(200 * abjad.Note("c'16"))
-        for part in abjad.Sequence(voice[:]).partition_by_counts(
+        for part in abjad.sequence(voice[:]).partition_by_counts(
             [20],
             cyclic=True,
             ):
@@ -318,7 +318,7 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         import abjad
         voice = abjad.Voice(200 * abjad.Note("c'16"))
-        for part in abjad.Sequence(voice[:]).partition_by_counts(
+        for part in abjad.sequence(voice[:]).partition_by_counts(
             [100],
             cyclic=True,
             ):
@@ -339,7 +339,7 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         import abjad
         voice = abjad.Voice(200 * abjad.Note("c'16"))
-        for part in abjad.Sequence(voice[:]).partition_by_counts(
+        for part in abjad.sequence(voice[:]).partition_by_counts(
             [4],
             cyclic=True,
             ):
@@ -360,7 +360,7 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         import abjad
         voice = abjad.Voice(200 * abjad.Note("c'16"))
-        for part in abjad.Sequence(voice[:]).partition_by_counts(
+        for part in abjad.sequence(voice[:]).partition_by_counts(
             [20],
             cyclic=True,
             ):
@@ -381,7 +381,7 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         import abjad
         voice = abjad.Voice(200 * abjad.Note("c'16"))
-        for part in abjad.Sequence(voice[:]).partition_by_counts(
+        for part in abjad.sequence(voice[:]).partition_by_counts(
             [100],
             cyclic=True,
             ):
@@ -402,7 +402,7 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         import abjad
         voice = abjad.Voice(200 * abjad.Note("c'16"))
-        for part in abjad.Sequence(voice[:]).partition_by_counts(
+        for part in abjad.sequence(voice[:]).partition_by_counts(
             [4],
             cyclic=True,
             ):
@@ -423,7 +423,7 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         import abjad
         voice = abjad.Voice(200 * abjad.Note("c'16"))
-        for part in abjad.Sequence(voice[:]).partition_by_counts(
+        for part in abjad.sequence(voice[:]).partition_by_counts(
             [20],
             cyclic=True,
             ):
@@ -444,7 +444,7 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         import abjad
         voice = abjad.Voice(200 * abjad.Note("c'16"))
-        for part in abjad.Sequence(voice[:]).partition_by_counts(
+        for part in abjad.sequence(voice[:]).partition_by_counts(
             [100],
             cyclic=True,
             ):

@@ -1,5 +1,4 @@
 from abjad.tools import datastructuretools
-from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools.abctools import AbjadValueObject
 
@@ -124,8 +123,9 @@ class Talea(AbjadValueObject):
 
         Yields durations.
         '''
+        import abjad
         for count in self.counts:
-            duration = durationtools.Duration(count, self.denominator)
+            duration = abjad.Duration(count, self.denominator)
             yield duration
 
     def __len__(self):

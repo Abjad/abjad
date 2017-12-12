@@ -1,13 +1,8 @@
 from abjad.tools import datastructuretools
-from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
-from abjad.tools import selectiontools
 from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
-from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import inspect
-from abjad.tools.topleveltools import select
 
 
 class IncisedRhythmMaker(RhythmMaker):
@@ -212,6 +207,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 raise Exception(message)
 
     def _make_music(self, divisions, rotation):
+        import abjad
         input_divisions = divisions[:]
         input_ = self._prepare_input(rotation)
         prefix_talea = input_[0]
@@ -279,15 +275,14 @@ class IncisedRhythmMaker(RhythmMaker):
             raise Exception(message)
         beam_specifier = self._get_beam_specifier()
         if beam_specifier.beam_divisions_together:
-            beam = spannertools.MultipartBeam()
-            attach(beam, result)
+            beam = abjad.MultipartBeam()
+            abjad.attach(beam, result)
         elif beam_specifier.beam_each_division:
             for x in result:
-                beam = spannertools.MultipartBeam()
-                #attach(beam, x)
-                leaves = select(x).by_leaf()
-                attach(beam, leaves)
-        selections = [selectiontools.Selection(x) for x in result]
+                beam = abjad.MultipartBeam()
+                leaves = abjad.select(x).by_leaf()
+                abjad.attach(beam, leaves)
+        selections = [abjad.select(x) for x in result]
         selections = self._apply_division_masks(selections, rotation)
         duration_specifier = self._get_duration_specifier()
         if duration_specifier.rewrite_meter:
@@ -304,12 +299,13 @@ class IncisedRhythmMaker(RhythmMaker):
         suffix,
         is_note_filled=True,
         ):
+        import abjad
         prefix_weight = mathtools.weight(prefix)
         suffix_weight = mathtools.weight(suffix)
         middle = numerator - prefix_weight - suffix_weight
         if numerator < prefix_weight:
             weights = [numerator]
-            prefix = datastructuretools.Sequence(prefix)
+            prefix = abjad.sequence(prefix)
             prefix = prefix.split(weights, cyclic=False, overhang=False)[0]
         middle = self._make_middle_of_numeric_map_part(middle)
         suffix_space = numerator - prefix_weight
@@ -317,10 +313,10 @@ class IncisedRhythmMaker(RhythmMaker):
             suffix = ()
         elif suffix_space < suffix_weight:
             weights = [suffix_space]
-            suffix = datastructuretools.Sequence(suffix)
+            suffix = abjad.sequence(suffix)
             suffix = suffix.split(weights, cyclic=False, overhang=False)[0]
         numeric_map_part = prefix + middle + suffix
-        return [durationtools.Duration(x) for x in numeric_map_part]
+        return [abjad.Duration(_) for _ in numeric_map_part]
 
     def _make_output_incised_numeric_map(
         self,
@@ -387,6 +383,7 @@ class IncisedRhythmMaker(RhythmMaker):
         return numeric_map
 
     def _numeric_map_to_leaf_selections(self, numeric_map, lcd):
+        import abjad
         from abjad.tools import rhythmmakertools
         selections = []
         specifier = self._get_duration_specifier()
@@ -394,7 +391,7 @@ class IncisedRhythmMaker(RhythmMaker):
         class_ = rhythmmakertools.TaleaRhythmMaker
         for numeric_map_part in numeric_map:
             numeric_map_part = [
-                _ for _ in numeric_map_part if _ != durationtools.Duration(0)
+                _ for _ in numeric_map_part if _ != abjad.Duration(0)
                 ]
             selection = class_._make_leaves_from_talea(
                 numeric_map_part,
@@ -407,13 +404,13 @@ class IncisedRhythmMaker(RhythmMaker):
             if self.replace_rests_with_skips:
                 new_components = []
                 for component in selection:
-                    if isinstance(component, scoretools.Rest):
-                        duration = inspect(component).get_duration()
-                        skip = scoretools.Skip(duration)
+                    if isinstance(component, abjad.Rest):
+                        duration = abjad.inspect(component).get_duration()
+                        skip = abjad.Skip(duration)
                         new_components.append(skip)
                     else:
                         new_components.append(component)
-                selection = selectiontools.Selection(new_components)
+                selection = abjad.select(new_components)
             selections.append(selection)
         return selections
 

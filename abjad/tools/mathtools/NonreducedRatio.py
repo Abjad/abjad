@@ -73,7 +73,7 @@ class NonreducedRatio(AbjadValueObject):
         '''
         import abjad
         if format_specification in ('', 'storage'):
-            return abjad.StorageFormatAgent(self).get_storage_format()
+            return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __getitem__(self, argument):
@@ -225,10 +225,10 @@ class NonreducedRatio(AbjadValueObject):
 
         Returns tuple of multipliers.
         '''
-        from abjad.tools import durationtools
+        import abjad
         weight = sum(self.numbers)
         multipliers = [
-            durationtools.Multiplier((_, weight))
+            abjad.Multiplier((_, weight))
             for _ in self.numbers
             ]
         multipliers = tuple(multipliers)

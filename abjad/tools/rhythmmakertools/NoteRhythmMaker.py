@@ -1,7 +1,6 @@
 from abjad.tools import datastructuretools
 from abjad.tools import mathtools
 from abjad.tools import metertools
-from abjad.tools import selectiontools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import attach
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
@@ -203,11 +202,12 @@ class NoteRhythmMaker(RhythmMaker):
         return new_selections
 
     def _cast_selection(self, selection, target_class):
+        import abjad
         new_selection = []
         for leaf in selection:
             new_leaf = target_class(leaf)
             new_selection.append(new_leaf)
-        new_selection = selectiontools.Selection(new_selection)
+        new_selection = abjad.select(new_selection)
         return new_selection
 
     def _make_music(self, divisions, rotation):

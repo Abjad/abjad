@@ -110,7 +110,7 @@ class Tie(Spanner):
                 written_pitches.append(set(component.written_pitches))
             else:
                 return False
-        for pair in abjad.Sequence(written_pitches).nwise():
+        for pair in abjad.sequence(written_pitches).nwise():
             if not set.intersection(*pair):
                 return False
         for component in component_expression:
@@ -168,7 +168,7 @@ class Tie(Spanner):
             ::
 
                 >>> staff = abjad.Staff("c'8 c'8 c'8 c'8")
-                >>> tie = abjad.Tie(direction=Up)
+                >>> tie = abjad.Tie(direction=abjad.Up)
                 >>> abjad.attach(tie, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
@@ -194,7 +194,7 @@ class Tie(Spanner):
             ::
 
                 >>> staff = abjad.Staff("c'8 c'8 c'8 c'8")
-                >>> tie = abjad.Tie(direction=Down)
+                >>> tie = abjad.Tie(direction=abjad.Down)
                 >>> abjad.attach(tie, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
@@ -259,7 +259,7 @@ class Tie(Spanner):
             ::
 
                 >>> staff = abjad.Staff("c'8 c'8 c'8 c'8")
-                >>> tie = abjad.Tie(direction=Up, use_messiaen_style_ties=True)
+                >>> tie = abjad.Tie(direction=abjad.Up, use_messiaen_style_ties=True)
                 >>> abjad.attach(tie, staff[:])
                 >>> show(staff) # doctest: +SKIP
 

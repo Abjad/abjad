@@ -1,4 +1,4 @@
-from abjad.tools.scoretools.Container import Container
+from .Container import Container
 
 
 class AfterGraceContainer(Container):
@@ -64,9 +64,9 @@ class AfterGraceContainer(Container):
 
     ### INITIALIZER ###
 
-    def __init__(self, music=None):
+    def __init__(self, components=None):
         self._carrier = None
-        Container.__init__(self, music)
+        Container.__init__(self, components)
 
     ### PRIVATE METHODS ###
 

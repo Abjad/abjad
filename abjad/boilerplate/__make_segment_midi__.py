@@ -27,7 +27,7 @@ if __name__ == '__main__':
 
     try:
         with abjad.Timer() as timer:
-            result = segment_maker(
+            result = segment_maker.run(
                 metadata=metadata,
                 midi=True,
                 previous_metadata=previous_metadata,

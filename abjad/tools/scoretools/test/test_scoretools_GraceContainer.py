@@ -3,8 +3,6 @@ import pytest
 
 
 def test_scoretools_GraceContainer_01():
-    r'''Grace music is a container.
-    '''
 
     notes = [abjad.Note(0, (1, 16)), abjad.Note(2, (1, 16)), abjad.Note(4, (1, 16))]
     grace_container = abjad.GraceContainer(notes)

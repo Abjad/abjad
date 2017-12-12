@@ -8,7 +8,7 @@ def label(client=None):
         ::
 
             >>> staff = abjad.Staff(r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4")
-            >>> abjad.label(staff).with_start_offsets(direction=Up)
+            >>> abjad.label(staff).with_start_offsets(direction=abjad.Up)
             >>> abjad.override(staff).text_script.staff_padding = 4
             >>> abjad.override(staff).tuplet_bracket.staff_padding = 0
             >>> show(staff) # doctest: +SKIP
@@ -29,7 +29,7 @@ def label(client=None):
                 ef'4 ^ \markup { 3/4 }
             }
 
-        See the ``LabelAgent`` API entry for many more examples.
+        See the ``Label`` API entry for many more examples.
 
     ..  container:: example expression
 
@@ -39,7 +39,7 @@ def label(client=None):
 
             >>> expression = abjad.label()
             >>> expression(staff)
-            LabelAgent(client=<Staff{3}>)
+            Label(client=<Staff{3}>)
 
         Initializes from keyword:
 
@@ -47,7 +47,7 @@ def label(client=None):
 
             >>> expression = abjad.label()
             >>> expression(client=staff)
-            LabelAgent(client=<Staff{3}>)
+            Label(client=<Staff{3}>)
 
         Makes label expression:
 
@@ -78,7 +78,7 @@ def label(client=None):
                 ef'4 ^ \markup { 3/4 }
             }
 
-        See the ``LabelAgent`` API entry for many more examples.
+        See the ``Label`` API entry for many more examples.
 
     Returns label agent when `client` is not none.
 
@@ -86,7 +86,7 @@ def label(client=None):
     '''
     import abjad
     if client is not None:
-        return abjad.LabelAgent(client=client)
+        return abjad.Label(client=client)
     expression = abjad.Expression()
     expression = expression.label()
     return expression

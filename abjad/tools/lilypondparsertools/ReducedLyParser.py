@@ -1,6 +1,5 @@
 from abjad.tools import abctools
 from abjad.tools import datastructuretools
-from abjad.tools import durationtools
 from abjad.tools import indicatortools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
@@ -8,7 +7,6 @@ from abjad.tools import scoretools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import select
 
 
 class ReducedLyParser(abctools.Parser):
@@ -183,7 +181,7 @@ class ReducedLyParser(abctools.Parser):
     ### INITIALIZER ###
 
     def __init__(self, debug=False):
-        self._default_duration = durationtools.Duration((1, 4))
+        self._default_duration = datastructuretools.Duration((1, 4))
         self._toplevel_component_count = None
         abctools.Parser.__init__(self, debug=debug)
 
@@ -277,12 +275,14 @@ class ReducedLyParser(abctools.Parser):
     def p_beam__BRACKET_L(self, p):
         r'''beam : BRACKET_L
         '''
-        p[0] = (spannertools.Beam, Left)
+        import abjad
+        p[0] = (abjad.Beam, abjad.Left)
 
     def p_beam__BRACKET_R(self, p):
         r'''beam : BRACKET_R
         '''
-        p[0] = (spannertools.Beam, Right)
+        import abjad
+        p[0] = (abjad.Beam, abjad.Right)
 
     def p_chord_body__chord_pitches(self, p):
         r'''chord_body : chord_pitches
@@ -403,7 +403,7 @@ class ReducedLyParser(abctools.Parser):
         '''
         duration_log = p[1]
         dots = '.' * p[2]
-        duration = durationtools.Duration.from_lilypond_duration_string(
+        duration = datastructuretools.Duration.from_lilypond_duration_string(
             '{}{}'.format(abs(duration_log), dots))
         self._default_duration = duration
         p[0] = duration
@@ -453,7 +453,7 @@ class ReducedLyParser(abctools.Parser):
         '''
         duration_log = p[1]
         dots = '.' * p[2]
-        duration = durationtools.Duration.from_lilypond_duration_string(
+        duration = datastructuretools.Duration.from_lilypond_duration_string(
             '{}{}'.format(abs(duration_log), dots))
         self._default_duration = duration
         p[0] = duration
@@ -506,12 +506,14 @@ class ReducedLyParser(abctools.Parser):
     def p_slur__PAREN_L(self, p):
         r'''slur : PAREN_L
         '''
-        p[0] = (spannertools.Slur, Left)
+        import abjad
+        p[0] = (abjad.Slur, abjad.Left)
 
     def p_slur__PAREN_R(self, p):
         r'''slur : PAREN_R
         '''
-        p[0] = (spannertools.Slur, Right)
+        import abjad
+        p[0] = (abjad.Slur, abjad.Right)
 
     def p_start__EMPTY(self, p):
         r'''start :
@@ -534,7 +536,8 @@ class ReducedLyParser(abctools.Parser):
     def p_tie__TILDE(self, p):
         r'''tie : TILDE
         '''
-        p[0] = (spannertools.Tie, Left)
+        import abjad
+        p[0] = (abjad.Tie, abjad.Left)
 
     def p_tuplet__FRACTION__container(self, p):
         r'''tuplet : FRACTION container
@@ -550,41 +553,41 @@ class ReducedLyParser(abctools.Parser):
         import abjad
 
         spanner_references = {
-            spannertools.Beam: None,
-            spannertools.Slur: None,
+            abjad.Beam: None,
+            abjad.Slur: None,
         }
 
         first_leaf = leaves[0]
-        pairs = datastructuretools.Sequence(leaves).nwise(wrapped=True)
+        pairs = abjad.sequence(leaves).nwise(wrapped=True)
         for leaf, next_leaf in pairs:
             span_events = self._get_span_events(leaf)
             for current_class, directions in span_events.items():
                 starting, stopping = [], []
                 for direction in directions:
-                    if direction == Left:
-                        starting.append(Left)
+                    if direction == abjad.Left:
+                        starting.append(abjad.Left)
                     else:
-                        stopping.append(Right)
+                        stopping.append(abjad.Right)
 
                 # apply undirected events immediately,
                 # and do not maintain a reference to them
-                if current_class is spannertools.Tie:
+                if current_class is abjad.Tie:
                     if next_leaf is first_leaf:
                         message = 'unterminated {} at {}.'
                         message = message.format(current_class.__name__, leaf)
                         raise Exception(message)
                     previous_tie = [
                         x for x in leaf._get_spanners()
-                        if isinstance(x, spannertools.Tie)
+                        if isinstance(x, abjad.Tie)
                         ]
                     if previous_tie:
                         previous_tie[0]._append(next_leaf)
                     else:
-                        tie = spannertools.Tie()
+                        tie = abjad.Tie()
                         selection = abjad.select([leaf, next_leaf])
                         attach(tie, selection)
 
-                elif current_class is spannertools.Beam:
+                elif current_class is abjad.Beam:
                     # A beam may begin and end on the same leaf
                     # but only one beam spanner may cover any given leaf,
                     # and starting events are processed before ending ones
@@ -632,11 +635,12 @@ class ReducedLyParser(abctools.Parser):
                 raise Exception(message)
 
     def _cleanup(self, parsed):
+        import abjad
         container = scoretools.Container()
         for x in parsed:
             container.append(x)
         parsed = container
-        leaves = select(parsed).by_leaf()
+        leaves = abjad.select(parsed).by_leaf()
         if leaves:
             self._apply_spanners(leaves)
         for leaf in leaves:
@@ -655,7 +659,7 @@ class ReducedLyParser(abctools.Parser):
 
     def _setup(self):
         self._toplevel_component_count = 0
-        self._default_duration = durationtools.Duration((1, 4))
+        self._default_duration = datastructuretools.Duration((1, 4))
 
     ### PUBLIC PROPERTIES ###
 

@@ -208,6 +208,7 @@ class Accidental(AbjadValueObject):
     ### INITIALIZER ##
 
     def __init__(self, name='', arrow=None):
+        import abjad
         if name is None:
             semitones = 0
         elif isinstance(name, str):
@@ -260,7 +261,7 @@ class Accidental(AbjadValueObject):
             raise ValueError(message)
         semitones = mathtools.integer_equivalent_number_to_integer(semitones)
         self._semitones = semitones
-        if arrow not in (None, Up, Down):
+        if arrow not in (None, abjad.Up, abjad.Down):
             message = 'arrow must be none, up or down: {!r}.'
             message = message.format(arrow)
             raise TypeError(message)
@@ -595,14 +596,14 @@ class Accidental(AbjadValueObject):
 
             ::
 
-                >>> abjad.Accidental('sharp', arrow=Up).arrow
+                >>> abjad.Accidental('sharp', arrow=abjad.Up).arrow
                 Up
 
             Sharp with down-arrow:
 
             ::
 
-                >>> abjad.Accidental('sharp', arrow=Down).arrow
+                >>> abjad.Accidental('sharp', arrow=abjad.Down).arrow
                 Down
 
         ArrowLineSegment property is currently a stub in the object model. You can set the

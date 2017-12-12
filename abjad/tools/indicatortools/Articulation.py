@@ -41,7 +41,7 @@ class Articulation(AbjadValueObject):
 
         ::
 
-            >>> abjad.Articulation('staccato', Up)
+            >>> abjad.Articulation('staccato', abjad.Up)
             Articulation('staccato', Up)
 
     .. container:: example
@@ -144,6 +144,7 @@ class Articulation(AbjadValueObject):
     ### INITIALIZER ###
 
     def __init__(self, name=None, direction=None):
+        import abjad
         if isinstance(name, type(self)):
             argument = name
             name = argument.name
@@ -153,9 +154,8 @@ class Articulation(AbjadValueObject):
             direction, name = name.split('\\')
             direction = direction.strip()
             name = name.strip()
-        direction = datastructuretools.String.to_tridirectional_ordinal_constant(
-            direction)
-        directions = (Up, Down, Center, None)
+        direction = abjad.String.to_tridirectional_ordinal_constant(direction)
+        directions = (abjad.Up, abjad.Down, abjad.Center, None)
         assert direction in directions, repr(direction)
         self._name = name
         self._direction = direction
@@ -173,7 +173,7 @@ class Articulation(AbjadValueObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatAgent(self).get_storage_format()
+            return systemtools.StorageFormatManager(self).get_storage_format()
         elif format_specification == 'lilypond':
             return self._get_lilypond_format()
         return str(self)
@@ -257,7 +257,7 @@ class Articulation(AbjadValueObject):
 
             With direction:
 
-            >>> articulation = abjad.Articulation('staccato', direction=Up)
+            >>> articulation = abjad.Articulation('staccato', direction=abjad.Up)
             >>> articulation.direction
             Up
 

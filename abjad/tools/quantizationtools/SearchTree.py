@@ -76,10 +76,11 @@ class SearchTree(AbjadObject):
         # including QEvents attached to the next leaf
         # It may be prudent to actually store QEvents in two lists:
         # before_offset and after_offset
+        import abjad
         indices, subdivisions = [], []
         leaves = list(q_grid.leaves)
         i = 0
-        for leaf_one, leaf_two in datastructuretools.Sequence(leaves).nwise():
+        for leaf_one, leaf_two in abjad.sequence(leaves).nwise():
             if leaf_one.is_divisible:
                 succeeding_proxies = leaf_one.succeeding_q_event_proxies
                 preceding_proxies = leaf_two.preceding_q_event_proxies

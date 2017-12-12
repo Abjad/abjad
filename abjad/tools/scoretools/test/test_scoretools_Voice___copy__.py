@@ -4,8 +4,8 @@ import copy
 
 def test_scoretools_Voice___copy___01():
     r'''Voices copy name, engraver removals, engraver consists,
-    grob abjad.overrides and context abjad.settings. Voices do not copy musical
-    content.
+    grob abjad.overrides and context abjad.settings. Voices do not copy
+    components.
     '''
 
     voice_1 = abjad.Voice("c'8 d'8 e'8 f'8")

@@ -55,10 +55,11 @@ class KeyCluster(AbjadValueObject):
         markup_direction=Up,
         suppress_markup=False,
         ):
+        import abjad
         assert include_black_keys or include_white_keys
         self._include_black_keys = bool(include_black_keys)
         self._include_white_keys = bool(include_white_keys)
-        assert markup_direction in (Up, Center, Down)
+        assert markup_direction in (abjad.Up, abjad.Center, abjad.Down)
         self._markup_direction = markup_direction
         self._suppress_markup = bool(suppress_markup)
 
@@ -253,7 +254,7 @@ class KeyCluster(AbjadValueObject):
 
                 >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
                 >>> key_cluster = abjad.KeyCluster(
-                ...     markup_direction=Up,
+                ...     markup_direction=abjad.Up,
                 ...     )
                 >>> abjad.attach(key_cluster, chord)
                 >>> show(chord) # doctest: +SKIP
@@ -288,7 +289,7 @@ class KeyCluster(AbjadValueObject):
 
                 >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
                 >>> key_cluster = abjad.KeyCluster(
-                ...     markup_direction=Down,
+                ...     markup_direction=abjad.Down,
                 ...     )
                 >>> abjad.attach(key_cluster, chord)
                 >>> show(chord) # doctest: +SKIP

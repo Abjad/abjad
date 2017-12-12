@@ -4,7 +4,7 @@ import copy
 
 def test_scoretools_Staff___copy___01():
     r'''Staves (shallow) copy grob abjad.overrides and context abjad.settings
-    but not musical content.
+    but not components.
     '''
 
     staff_1 = abjad.Staff("c'8 d'8 e'8 f'8")

@@ -15,7 +15,7 @@ def test_systemtools_LilyPondFormatManager_report_component_format_contributions
     abjad.attach(articulation, note)
     articulation = abjad.Articulation('tenuto')
     abjad.attach(articulation, note)
-    markup = abjad.Markup('some markup', Down)
+    markup = abjad.Markup('some markup', abjad.Down)
     abjad.attach(markup, note)
     comment = abjad.LilyPondComment('textual information before', 'before')
     abjad.attach(comment, note)

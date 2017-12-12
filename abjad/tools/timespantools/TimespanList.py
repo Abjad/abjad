@@ -1,6 +1,4 @@
 import collections
-from abjad.tools import datastructuretools
-from abjad.tools import durationtools
 from abjad.tools import markuptools
 from abjad.tools.datastructuretools.TypedList import TypedList
 from abjad.tools.topleveltools import new
@@ -430,6 +428,7 @@ class TimespanList(TypedList):
         draw_offsets=True,
         sortkey=None,
         ):
+        import abjad
         exploded_timespan_lists = []
         if not sortkey:
             exploded_timespan_lists.extend(timespans.explode())
@@ -442,7 +441,7 @@ class TimespanList(TypedList):
                 sorted_timespan_lists[value].append(timespan)
             for key, timespans in sorted(sorted_timespan_lists.items()):
                 exploded_timespan_lists.extend(timespans.explode())
-        ps = markuptools.Postscript()
+        ps = abjad.Postscript()
         ps = ps.setlinewidth(0.2)
         offset_mapping = {}
         height = ((len(exploded_timespan_lists) - 1) * 3) + 1
@@ -457,7 +456,7 @@ class TimespanList(TypedList):
                     postscript_scale,
                     )
         if not draw_offsets:
-            markup = markuptools.Markup.postscript(ps)
+            markup = abjad.Markup.postscript(ps)
             return markup
         ps = ps.setlinewidth(0.1)
         ps = ps.setdash([0.1, 0.2])
@@ -477,20 +476,20 @@ class TimespanList(TypedList):
         x_extent += postscript_x_offset
         x_extent = (0, x_extent)
         y_extent = (0, height + 1.5)
-        lines_markup = markuptools.Markup.postscript(ps)
+        lines_markup = abjad.Markup.postscript(ps)
         lines_markup = lines_markup.pad_to_box(x_extent, y_extent)
         fraction_markups = []
         for offset in sorted(offset_mapping):
-            offset = durationtools.Multiplier(offset)
+            offset = abjad.Multiplier(offset)
             numerator, denominator = offset.numerator, offset.denominator
-            fraction = markuptools.Markup.fraction(numerator, denominator)
+            fraction = abjad.Markup.fraction(numerator, denominator)
             fraction = fraction.center_align().fontsize(-3).sans()
             x_translation = (float(offset) * postscript_scale)
             x_translation -= postscript_x_offset
             fraction = fraction.translate((x_translation, 1))
             fraction_markups.append(fraction)
-        fraction_markup = markuptools.Markup.overlay(fraction_markups)
-        markup = markuptools.Markup.column([fraction_markup, lines_markup])
+        fraction_markup = abjad.Markup.overlay(fraction_markups)
+        markup = abjad.Markup.column([fraction_markup, lines_markup])
         return markup
 
     ### PUBLIC PROPERTIES ###
@@ -789,11 +788,12 @@ class TimespanList(TypedList):
 
         Returns duration.
         '''
+        import abjad
         if (self.stop_offset is not Infinity and
             self.start_offset is not NegativeInfinity):
             return self.stop_offset - self.start_offset
         else:
-            return durationtools.Duration(0)
+            return abjad.Duration(0)
 
     @property
     def is_sorted(self):
@@ -837,9 +837,10 @@ class TimespanList(TypedList):
 
         Returns true or false.
         '''
+        import abjad
         if len(self) < 2:
             return True
-        pairs = datastructuretools.Sequence(self).nwise()
+        pairs = abjad.sequence(self).nwise()
         for left_timespan, right_timespan in pairs:
             if right_timespan.start_offset < left_timespan.start_offset:
                 return False
@@ -1162,7 +1163,7 @@ class TimespanList(TypedList):
                 >>> result = timespans.clip_timespan_durations(
                 ...     minimum=3,
                 ...     maximum=7,
-                ...     anchor=Right,
+                ...     anchor=abjad.Right,
                 ...     )
                 >>> show(result, range_=(-2, 10), scale=0.5) # doctest: +SKIP
 
@@ -1184,31 +1185,32 @@ class TimespanList(TypedList):
 
         Returns new timespan list.
         '''
-        assert anchor in (Left, Right)
+        import abjad
+        assert anchor in (abjad.Left, abjad.Right)
         if minimum is not None:
-            minimum = durationtools.Duration(minimum)
+            minimum = abjad.Duration(minimum)
         if maximum is not None:
-            maximum = durationtools.Duration(maximum)
+            maximum = abjad.Duration(maximum)
         if minimum is not None and maximum is not None:
             assert minimum <= maximum
         timespans = type(self)()
         for timespan in self:
             if minimum is not None and timespan.duration < minimum:
-                if anchor == Left:
+                if anchor == abjad.Left:
                     new_timespan = timespan.set_duration(minimum)
                 else:
                     new_start_offset = timespan.stop_offset - minimum
-                    new_timespan = new(
+                    new_timespan = abjad.new(
                         timespan,
                         start_offset=new_start_offset,
                         stop_offset=timespan.stop_offset,
                         )
             elif maximum is not None and maximum < timespan.duration:
-                if anchor == Left:
+                if anchor == abjad.Left:
                     new_timespan = timespan.set_duration(maximum)
                 else:
                     new_start_offset = timespan.stop_offset - maximum
-                    new_timespan = new(
+                    new_timespan = abjad.new(
                         timespan,
                         start_offset=new_start_offset,
                         stop_offset=timespan.stop_offset,
@@ -1800,14 +1802,14 @@ class TimespanList(TypedList):
 
         Returns multiplier.
         '''
-        from abjad.tools import timespantools
+        import abjad
         if timespan is None:
             timespan = self.timespan
-        time_relation = timespantools.timespan_2_intersects_timespan_1(
+        time_relation = abjad.timespantools.timespan_2_intersects_timespan_1(
             timespan_1=timespan)
         timespans = self.get_timespans_that_satisfy_time_relation(
             time_relation)
-        total_overlap = durationtools.Duration(sum(
+        total_overlap = abjad.Duration(sum(
             x.get_overlap_with_timespan(timespan) for x in timespans))
         overlap_factor = total_overlap / timespan.duration
         return overlap_factor
@@ -1845,11 +1847,11 @@ class TimespanList(TypedList):
 
         Returns mapping.
         '''
-        from abjad.tools import timespantools
+        import abjad
         mapping = collections.OrderedDict()
-        offsets = datastructuretools.Sequence(sorted(self.count_offsets()))
+        offsets = abjad.sequence(sorted(self.count_offsets()))
         for start_offset, stop_offset in offsets.nwise():
-            timespan = timespantools.Timespan(start_offset, stop_offset)
+            timespan = abjad.Timespan(start_offset, stop_offset)
             overlap_factor = self.compute_overlap_factor(timespan=timespan)
             mapping[timespan] = overlap_factor
         return mapping
@@ -2859,8 +2861,9 @@ class TimespanList(TypedList):
 
         Operates in place and returns timespan list.
         '''
+        import abjad
         assert self.is_sorted
-        stop_offset = durationtools.Offset(stop_offset)
+        stop_offset = abjad.Offset(stop_offset)
         assert self.stop_offset <= stop_offset
         current_timespan_index = 0
         if self:
@@ -3076,7 +3079,7 @@ class TimespanList(TypedList):
 
                 >>> rounded_timespans = timespans.round_offsets(
                 ...     5,
-                ...     anchor=Right,
+                ...     anchor=abjad.Right,
                 ...     )
                 >>> show(rounded_timespans, range_=(-5, 10), scale=0.5) # doctest: +SKIP
 
@@ -3117,7 +3120,7 @@ class TimespanList(TypedList):
 
                 >>> rounded_timespans = timespans.round_offsets(
                 ...     5,
-                ...     anchor=Right,
+                ...     anchor=abjad.Right,
                 ...     must_be_well_formed=False,
                 ...     )
 
@@ -3210,7 +3213,7 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> _ = timespans.scale(2, anchor=Right)
+                >>> _ = timespans.scale(2, anchor=abjad.Right)
                 >>> show(timespans, range_=(-3, 10), scale=0.5) # doctest: +SKIP
 
             ::
@@ -3388,7 +3391,8 @@ class TimespanList(TypedList):
 
         Returns timespan_lists.
         '''
-        offset = durationtools.Offset(offset)
+        import abjad
+        offset = abjad.Offset(offset)
         before_list = type(self)()
         during_list = type(self)()
         after_list = type(self)()
@@ -3445,10 +3449,11 @@ class TimespanList(TypedList):
 
         Returns one or more timespan_lists.
         '''
+        import abjad
         timespan_lists = [self]
         if not self:
             return timespan_lists
-        offsets = sorted(set(durationtools.Offset(x) for x in offsets))
+        offsets = sorted(set(abjad.Offset(x) for x in offsets))
         offsets = [x for x in offsets
             if self.start_offset < x < self.stop_offset]
         for offset in offsets:

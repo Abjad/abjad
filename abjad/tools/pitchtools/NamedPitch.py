@@ -104,7 +104,7 @@ class NamedPitch(Pitch):
 
         ::
 
-            >>> pitch = abjad.NamedPitch('C#5', arrow=Up)
+            >>> pitch = abjad.NamedPitch('C#5', arrow=abjad.Up)
             >>> show(pitch) # doctest: +SKIP
 
         ..  docs::
@@ -151,13 +151,15 @@ class NamedPitch(Pitch):
             named_pitch_class = abjad.NamedPitchClass(number)
             octave = number // 12 + 4
             name = named_pitch_class.name + abjad.Octave(octave).ticks
+        elif isinstance(name, abjad.Note):
+            name = name.written_pitch.name
         else:
             message = 'can not initialize {} from {!r}.'
             message = message.format(type(self).__name__, name)
             raise ValueError(message)
         assert self._is_pitch_name(name)
         self._name = name
-        if arrow not in (Up, Down, None):
+        if arrow not in (abjad.Up, abjad.Down, None):
             message = 'arrow must be up, down or none: {!r}.'
             message = message.format(arrow)
             raise TypeError(message)
@@ -222,7 +224,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> pitch = abjad.NamedPitch("cs''", arrow=Up)
+                >>> pitch = abjad.NamedPitch("cs''", arrow=abjad.Up)
                 >>> copy.copy(pitch)
                 NamedPitch("cs''", arrow=Up)
 
@@ -553,12 +555,12 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> abjad.NamedPitch("cs''", arrow=Up).arrow
+                >>> abjad.NamedPitch("cs''", arrow=abjad.Up).arrow
                 Up
 
             ::
 
-                >>> abjad.NamedPitch("cs''", arrow=Down).arrow
+                >>> abjad.NamedPitch("cs''", arrow=abjad.Down).arrow
                 Down
 
         ..  container:: example
@@ -567,7 +569,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> abjad.NamedPitch("cs''", arrow=Down)
+                >>> abjad.NamedPitch("cs''", arrow=abjad.Down)
                 NamedPitch("cs''", arrow=Down)
 
         Returns up, down or none.

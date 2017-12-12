@@ -26,27 +26,27 @@ class BeatwiseQTarget(QTarget):
         attack_point_optimizer=None,
         grace_handler=None,
         ):
-        voice = scoretools.Voice()
-
+        import abjad
+        voice = abjad.Voice()
         # generate the first
         beat = self.items[0]
         components = beat.q_grid(beat.beatspan)
         if attach_tempos:
             attachment_target = components[0]
             leaves = select(attachment_target).by_leaf()
-            if isinstance(attachment_target, scoretools.Container):
+            if isinstance(attachment_target, abjad.Container):
                 attachment_target = leaves[0]
             tempo = copy.copy(beat.tempo)
             attach(tempo, attachment_target)
         voice.extend(components)
 
         # generate the rest pairwise, comparing tempi
-        for beat_one, beat_two in datastructuretools.Sequence(self.items).nwise():
+        for beat_one, beat_two in abjad.sequence(self.items).nwise():
             components = beat_two.q_grid(beat_two.beatspan)
             if (beat_two.tempo != beat_one.tempo) and attach_tempos:
                 attachment_target = components[0]
                 leaves = select(attachment_target).by_leaf()
-                if isinstance(attachment_target, scoretools.Container):
+                if isinstance(attachment_target, abjad.Container):
                     attachment_target = leaves[0]
                 tempo = copy.copy(beat_two.tempo)
                 attach(tempo, attachment_target)

@@ -1,5 +1,4 @@
 import functools
-from abjad.tools import durationtools
 from abjad.tools import systemtools
 from abjad.tools.schemetools.Scheme import Scheme
 
@@ -27,7 +26,8 @@ class SchemeMoment(Scheme):
     ### INITIALIZER ###
 
     def __init__(self, duration=(0, 1)):
-        duration = durationtools.Duration(duration)
+        import abjad
+        duration = abjad.Duration(duration)
         pair = duration.pair
         Scheme.__init__(self, pair)
 

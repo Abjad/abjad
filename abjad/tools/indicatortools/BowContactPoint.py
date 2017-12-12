@@ -1,5 +1,4 @@
 import functools
-from abjad.tools import durationtools
 from abjad.tools import markuptools
 from abjad.tools.abctools import AbjadValueObject
 
@@ -50,8 +49,9 @@ class BowContactPoint(AbjadValueObject):
         self,
         contact_point=None,
         ):
+        import abjad
         if contact_point is not None:
-            contact_point = durationtools.Multiplier(contact_point)
+            contact_point = abjad.Multiplier(contact_point)
             assert 0 <= contact_point <= 1
         self._contact_point = contact_point
 

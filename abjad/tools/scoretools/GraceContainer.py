@@ -1,4 +1,4 @@
-from abjad.tools.scoretools.Container import Container
+from .Container import Container
 
 
 class GraceContainer(Container):
@@ -153,9 +153,9 @@ class GraceContainer(Container):
 
     ### INITIALIZER ###
 
-    def __init__(self, music=None):
+    def __init__(self, components=None):
         self._carrier = None
-        Container.__init__(self, music)
+        Container.__init__(self, components)
 
     ### PRIVATE METHODS ###
 

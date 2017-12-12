@@ -1,4 +1,3 @@
-from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import datastructuretools
 from abjad.tools.spannertools.Spanner import Spanner
@@ -49,7 +48,7 @@ class GeneralizedBeam(Spanner):
         ::
 
             >>> beam = abjad.GeneralizedBeam(
-            ...     isolated_nib_direction=Right,
+            ...     isolated_nib_direction=abjad.Right,
             ...     )
             >>> abjad.attach(beam, staff[:])
             >>> show(staff) # doctest: +SKIP
@@ -131,22 +130,24 @@ class GeneralizedBeam(Spanner):
         use_stemlets=False,
         vertical_direction=None,
         ):
+        import abjad
         Spanner.__init__(
             self,
             )
         if durations:
-            durations = tuple(durationtools.Duration(x) for x in durations)
+            durations = tuple(abjad.Duration(x) for x in durations)
         self._durations = durations
         self._include_long_duration_notes = bool(include_long_duration_notes)
         self._include_long_duration_rests = bool(include_long_duration_rests)
-        assert isolated_nib_direction in (Left, Right, None)
+        assert isolated_nib_direction in (abjad.Left, abjad.Right, None)
         self._isolated_nib_direction = isolated_nib_direction
         if self._durations is not None:
-            self._span_points = mathtools.cumulative_sums(self.durations)[1:]
+            self._span_points = abjad.mathtools.cumulative_sums(
+                self.durations)[1:]
         else:
             self._span_points = [self._get_duration()]
         self._use_stemlets = bool(use_stemlets)
-        assert vertical_direction in (Up, Down, Center, None)
+        assert vertical_direction in (abjad.Up, abjad.Down, abjad.Center, None)
         self._vertical_direction = vertical_direction
 
     ### PRIVATE METHODS ###

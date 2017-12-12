@@ -1085,11 +1085,12 @@ class String(str):
 
         Returns string or none.
         '''
+        import abjad
         lookup = {
             1: 'up',
             -1: 'down',
-            Up: 'up',
-            Down: 'down',
+            abjad.Up: 'up',
+            abjad.Down: 'down',
             '^': 'up',
             '_': 'down',
             'up': 'up',
@@ -1107,14 +1108,14 @@ class String(str):
 
             ::
 
-                >>> abjad.String.to_tridirectional_lilypond_symbol(Up)
+                >>> abjad.String.to_tridirectional_lilypond_symbol(abjad.Up)
                 '^'
 
         ..  container:: example
 
             ::
 
-                >>> abjad.String.to_tridirectional_lilypond_symbol(Down)
+                >>> abjad.String.to_tridirectional_lilypond_symbol(abjad.Down)
                 '_'
 
         ..  container:: example
@@ -1138,8 +1139,8 @@ class String(str):
         lookup = {
             1: '^',
             -1: '_',
-            Up: '^',
-            Down: '_',
+            abjad.Up: '^',
+            abjad.Down: '_',
             'up': '^',
             'down': '_',
             '^': '^',
@@ -1404,16 +1405,17 @@ class String(str):
 
         Returns string or none.
         '''
+        import abjad
         lookup = {
-            Up: 'up',
+            abjad.Up: 'up',
             '^': 'up',
             'up': 'up',
             1: 'up',
-            Down: 'down',
+            abjad.Down: 'down',
             '_': 'down',
             'down': 'down',
             -1: 'down',
-            Center: 'center',
+            abjad.Center: 'center',
             '-': 'center',
             0: 'center',
             'center': 'center',
@@ -1434,7 +1436,7 @@ class String(str):
 
             ::
 
-                >>> abjad.String.to_tridirectional_lilypond_symbol(Up)
+                >>> abjad.String.to_tridirectional_lilypond_symbol(abjad.Up)
                 '^'
 
         ..  container:: example
@@ -1455,7 +1457,7 @@ class String(str):
 
             ::
 
-                >>> abjad.String.to_tridirectional_lilypond_symbol(Down)
+                >>> abjad.String.to_tridirectional_lilypond_symbol(abjad.Down)
                 '_'
 
         ..  container:: example
@@ -1485,16 +1487,17 @@ class String(str):
 
         Returns string or none.
         '''
+        import abjad
         lookup = {
-            Up: '^',
+            abjad.Up: '^',
             '^': '^',
             'up': '^',
             1: '^',
-            Down: '_',
+            abjad.Down: '_',
             '_': '_',
             'down': '_',
             -1: '_',
-            Center: '-',
+            abjad.Center: '-',
             '-': '-',
             0: '-',
             'center': '-',
@@ -1541,21 +1544,22 @@ class String(str):
 
         Returns ordinal constant or none.
         '''
+        import abjad
         lookup = {
-            Up: Up,
-            '^': Up,
-            'up': Up,
-            1: Up,
-            Down: Down,
-            '_': Down,
-            'down': Down,
-            -1: Down,
-            Center: Center,
-            '-': Center,
-            0: Center,
-            'center': Center,
-            'default': Center,
-            'neutral': Center,
+            abjad.Up: abjad.Up,
+            '^': abjad.Up,
+            'up': abjad.Up,
+            1: abjad.Up,
+            abjad.Down: abjad.Down,
+            '_': abjad.Down,
+            'down': abjad.Down,
+            -1: abjad.Down,
+            abjad.Center: abjad.Center,
+            '-': abjad.Center,
+            0: abjad.Center,
+            'center': abjad.Center,
+            'default': abjad.Center,
+            'neutral': abjad.Center,
             }
         if argument is None:
             return None

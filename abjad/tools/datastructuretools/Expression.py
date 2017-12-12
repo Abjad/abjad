@@ -1,4 +1,5 @@
 import inspect
+import itertools
 import numbers
 from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadValueObject
@@ -595,6 +596,8 @@ class Expression(AbjadValueObject):
         assert self.evaluation_template
         if self.evaluation_template == 'map':
             return self._evaluate_map(*arguments)
+        if self.evaluation_template == 'group':
+            return self._evaluate_group(*arguments)
         if self.subclass_hook:
             assert isinstance(self.subclass_hook, str)
             subclass_hook = getattr(self, self.subclass_hook)
@@ -661,6 +664,40 @@ class Expression(AbjadValueObject):
             result = __argument_0
         return result
 
+    def _evaluate_group(self, *arguments):
+        assert len(arguments) == 1, repr(arguments)
+        globals_ = self._make_globals()
+        assert '__argument_0' not in globals_
+        __argument_0 = arguments[0]
+        class_ = type(__argument_0)
+        map_operand = self.map_operand
+        if map_operand is None:
+            def map_operand(argument):
+                return True
+        globals_['__argument_0'] = __argument_0
+        globals_['class_'] = class_
+        globals_['map_operand'] = map_operand
+        globals_['itertools'] = itertools
+        statement = 'itertools.groupby(__argument_0, map_operand)'
+        try:
+            pairs = eval(statement, globals_)
+        except (NameError, SyntaxError, TypeError) as e:
+            message = '{!r} raises {!r}.'
+            message = message.format(statement, e)
+            raise Exception(message)
+        items = []
+        for count, group in pairs:
+            try:
+                item = class_(items=group)
+            except TypeError:
+                pass
+            items.append(item)
+        try:
+            result = class_(items)
+        except TypeError:
+            result = items
+        return result
+
     def _evaluate_map(self, *arguments):
         assert len(arguments) == 1, repr(arguments)
         assert self.map_operand is not None
@@ -672,13 +709,17 @@ class Expression(AbjadValueObject):
         globals_['__argument_0'] = __argument_0
         globals_['class_'] = class_
         globals_['map_operand'] = map_operand
-        statement = 'class_([map_operand(_) for _ in __argument_0])'
+        statement = '[map_operand(_) for _ in __argument_0]'
         try:
             result = eval(statement, globals_)
         except (NameError, SyntaxError, TypeError) as e:
             message = '{!r} raises {!r}.'
             message = message.format(statement, e)
             raise Exception(message)
+        try:
+            result = class_(result)
+        except TypeError:
+            pass
         return result
 
     @classmethod
@@ -769,6 +810,24 @@ class Expression(AbjadValueObject):
         if method_name_callback:
             return method_name_callback(**argument_values)
         return function_name
+
+    def _is_singular_get_item(self):
+        if not self.callbacks:
+            return False
+        callback = self.callbacks[-1]
+        if (callback.evaluation_template == 'group' and
+            callback.map_operand is None):
+            return True
+        if not callback.qualified_method_name.endswith('__getitem__'):
+            return False
+        template = callback.evaluation_template
+        if 'slice' in template:
+            return False
+        if 'Pattern' in template:
+            return False
+        if 'abjad.index' in template:
+            return False
+        return True
 
     @staticmethod
     def _make___add___markup(markup, argument):
@@ -1214,14 +1273,21 @@ class Expression(AbjadValueObject):
                 assert argument_info.args[0] == 'self'
                 self = argument_info.locals['self']
                 function = getattr(self, function_name)
-                #signature = inspect.signature(function)
                 signature = inspect.signature(function)
                 argument_names = argument_info.args[1:]
             argument_strings = []
             for argument_name in argument_names:
                 argument_value = argument_info.locals[argument_name]
                 parameter = signature.parameters[argument_name]
-                if argument_value != parameter.default:
+                # positional argument
+                if parameter.default == inspect.Parameter.empty:
+                    argument_value = Expression._to_evaluable_string(
+                        argument_value
+                        )
+                    argument_string = argument_value
+                    argument_strings.append(argument_string)
+                # keyword argument
+                elif argument_value != parameter.default:
                     argument_string = '{argument_name}={argument_value}'
                     argument_value = Expression._to_evaluable_string(
                         argument_value)
@@ -1571,6 +1637,23 @@ class Expression(AbjadValueObject):
         callbacks = callbacks + [callback]
         return abjad.new(self, callbacks=callbacks)
 
+    def color(self, argument, colors=None):
+        r'''Colors `argument`.
+
+        Returns none.
+        '''
+        import abjad
+        if self._is_singular_get_item():
+            colors = colors or ['green']
+            color = colors[0]
+            abjad.label(argument).color_leaves(color=color)
+        else:
+            colors = colors or ['red', 'blue']
+            colors = abjad.CyclicTuple(colors)
+            for i, item in enumerate(argument):
+                color = colors[i]
+                abjad.label(item).color_leaves(color=color)
+
     def establish_equivalence(self, name):
         r'''Makes new expression with `name`.
 
@@ -1828,70 +1911,6 @@ class Expression(AbjadValueObject):
                 raise Exception(message)
             return self._compile_callback_strings(string)
 
-    def iterate(self, **keywords):
-        r'''Makes iterate expression.
-
-        ..  container:: example
-
-            Makes expression to iterate leaves:
-
-            ..  container:: example
-
-                ::
-
-                    >>> staff = abjad.Staff()
-                    >>> staff.append(abjad.Measure((2, 8), "<c' bf'>8 <g' a'>8"))
-                    >>> staff.append(abjad.Measure((2, 8), "af'8 r8"))
-                    >>> staff.append(abjad.Measure((2, 8), "r8 gf'8"))
-                    >>> show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> f(staff)
-                    \new Staff {
-                        {
-                            \time 2/8
-                            <c' bf'>8
-                            <g' a'>8
-                        }
-                        {
-                            af'8
-                            r8
-                        }
-                        {
-                            r8
-                            gf'8
-                        }
-                    }
-
-            ..  container:: example expression
-
-                ::
-
-                    >>> expression = abjad.Expression()
-                    >>> expression = expression.iterate()
-                    >>> expression = expression.by_leaf()
-
-                ::
-
-                    >>> for leaf in expression(staff):
-                    ...     leaf
-                    ...
-                    Chord("<c' bf'>8")
-                    Chord("<g' a'>8")
-                    Note("af'8")
-                    Rest('r8')
-                    Rest('r8')
-                    Note("gf'8")
-
-        Returns expression.
-        '''
-        import abjad
-        class_ = abjad.agenttools.IterationAgent
-        callback = self._make_initializer_callback(class_, **keywords)
-        expression = self.append_callback(callback)
-        return abjad.new(expression, proxy_class=class_)
-
     def label(self, **keywords):
         r'''Makes label expression.
 
@@ -1948,7 +1967,7 @@ class Expression(AbjadValueObject):
         Returns expression.
         '''
         import abjad
-        class_ = abjad.agenttools.LabelAgent
+        class_ = abjad.Label
         callback = self._make_initializer_callback(class_, **keywords)
         expression = self.append_callback(callback)
         return abjad.new(expression, proxy_class=class_)
@@ -2064,6 +2083,97 @@ class Expression(AbjadValueObject):
             string_template='{}',
             **keywords
             )
+        expression = self.append_callback(callback)
+        return abjad.new(expression, proxy_class=class_)
+
+    # TODO: add examples
+    def pitch_set(self, **keywords):
+        r'''Makes pitch set expression.
+
+        Returns expression.
+        '''
+        import abjad
+        class_ = abjad.PitchSet
+        callback = self._make_initializer_callback(
+            class_,
+            string_template='{}',
+            **keywords
+            )
+        expression = self.append_callback(callback)
+        return abjad.new(expression, proxy_class=class_)
+
+    def print(self, argument):
+        r'''Prints `argument`.
+
+        Returns none.
+        '''
+        if self._is_singular_get_item():
+            print(repr(argument))
+        else:
+            for item in argument:
+                print(repr(item))
+
+    def select(self, **keywords):
+        r'''Makes select expression.
+
+        ..  container:: example
+
+            Makes expression to select leaves:
+
+            ..  container:: example
+
+                ::
+
+                    >>> staff = abjad.Staff()
+                    >>> staff.append(abjad.Measure((2, 8), "<c' bf'>8 <g' a'>8"))
+                    >>> staff.append(abjad.Measure((2, 8), "af'8 r8"))
+                    >>> staff.append(abjad.Measure((2, 8), "r8 gf'8"))
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  docs::
+
+                    >>> f(staff)
+                    \new Staff {
+                        {
+                            \time 2/8
+                            <c' bf'>8
+                            <g' a'>8
+                        }
+                        {
+                            af'8
+                            r8
+                        }
+                        {
+                            r8
+                            gf'8
+                        }
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = abjad.Expression()
+                    >>> expression = expression.select()
+                    >>> expression = expression.by_leaf()
+
+                ::
+
+                    >>> for leaf in expression(staff):
+                    ...     leaf
+                    ...
+                    Chord("<c' bf'>8")
+                    Chord("<g' a'>8")
+                    Note("af'8")
+                    Rest('r8')
+                    Rest('r8')
+                    Note("gf'8")
+
+        Returns expression.
+        '''
+        import abjad
+        class_ = abjad.Selection
+        callback = self._make_initializer_callback(class_, **keywords)
         expression = self.append_callback(callback)
         return abjad.new(expression, proxy_class=class_)
 

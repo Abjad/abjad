@@ -1,6 +1,6 @@
 import copy
 from abjad.tools import systemtools
-from abjad.tools.scoretools.Container import Container
+from .Container import Container
 
 
 class Context(Container):
@@ -44,7 +44,7 @@ class Context(Container):
 
     def __init__(
         self,
-        music=None,
+        components=None,
         context_name='Context',
         is_simultaneous=None,
         name=None,
@@ -52,7 +52,7 @@ class Context(Container):
         Container.__init__(
             self,
             is_simultaneous=is_simultaneous,
-            music=music,
+            components=components,
             name=name,
             )
         self.context_name = context_name
@@ -75,8 +75,7 @@ class Context(Container):
 
         Returns string.
         '''
-        from abjad.tools import scoretools
-        if all(isinstance(x, scoretools.Leaf) for x in self):
+        if self[:].are_leaves():
             return Container.__repr__(self)
         return self._get_abbreviated_string_format()
 

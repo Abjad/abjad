@@ -15,7 +15,7 @@ ignored_classes = (
     abjadbooktools.RawLilyPondOutputProxy,
     datastructuretools.Expression,
     systemtools.FormatSpecification,
-    systemtools.StorageFormatAgent,
+    systemtools.StorageFormatManager,
     )
 
 classes = documentationtools.list_all_abjad_classes(

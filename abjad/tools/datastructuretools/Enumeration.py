@@ -55,7 +55,7 @@ class Enumeration(enum.IntEnum):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatAgent(self).get_storage_format()
+            return systemtools.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __repr__(self):
@@ -64,13 +64,13 @@ class Enumeration(enum.IntEnum):
         Returns string.
         '''
         from abjad.tools import systemtools
-        return systemtools.StorageFormatAgent(self).get_repr_format()
+        return systemtools.StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
         from abjad.tools import systemtools
-        agent = systemtools.StorageFormatAgent(self)
+        agent = systemtools.StorageFormatManager(self)
         repr_text = '{}.{}'.format(type(self).__name__, self.name)
         storage_format_text = '{}.{}'.format(
             agent.get_tools_package_name(),

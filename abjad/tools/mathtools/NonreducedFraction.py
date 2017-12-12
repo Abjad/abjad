@@ -227,7 +227,7 @@ class NonreducedFraction(AbjadObject, Fraction):
         Returns string.
         '''
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatAgent(self).get_storage_format()
+            return systemtools.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __ge__(self, argument):
@@ -395,7 +395,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
         Returns string.
         '''
-        return systemtools.StorageFormatAgent(self).get_repr_format()
+        return systemtools.StorageFormatManager(self).get_repr_format()
 
     def __rmul__(self, argument):
         r'''Multiplies `argument` by nonreduced fraction.
@@ -556,18 +556,18 @@ class NonreducedFraction(AbjadObject, Fraction):
 
         Returns nonreduced fraction.
         '''
-        from abjad.tools import durationtools
-        from abjad.tools import mathtools
-        multiplier = durationtools.Multiplier(multiplier)
-        self_numerator_factors = mathtools.factors(self.numerator)
-        multiplier_denominator_factors = mathtools.factors(
+        import abjad
+        multiplier = abjad.Multiplier(multiplier)
+        self_numerator_factors = abjad.mathtools.factors(self.numerator)
+        multiplier_denominator_factors = abjad.mathtools.factors(
             multiplier.denominator)
         for factor in multiplier_denominator_factors[:]:
             if factor in self_numerator_factors:
                 self_numerator_factors.remove(factor)
                 multiplier_denominator_factors.remove(factor)
-        self_denominator_factors = mathtools.factors(self.denominator)
-        multiplier_numerator_factors = mathtools.factors(multiplier.numerator)
+        self_denominator_factors = abjad.mathtools.factors(self.denominator)
+        multiplier_numerator_factors = abjad.mathtools.factors(
+            multiplier.numerator)
         for factor in multiplier_numerator_factors[:]:
             if factor in self_denominator_factors:
                 self_denominator_factors.remove(factor)
@@ -621,9 +621,9 @@ class NonreducedFraction(AbjadObject, Fraction):
 
         Returns nonreduced fraction.
         '''
-        from abjad.tools import durationtools
+        import abjad
         if preserve_numerator:
-            multiplier = durationtools.Multiplier(multiplier)
+            multiplier = abjad.Multiplier(multiplier)
             self_denominator = self.denominator
             candidate_result_denominator = self_denominator / multiplier
             if candidate_result_denominator.denominator == 1:
@@ -763,9 +763,9 @@ class NonreducedFraction(AbjadObject, Fraction):
 
         Returns nonreduced fraction.
         '''
-        from abjad.tools import durationtools
+        import abjad
         current_numerator, current_denominator = self.pair
-        multiplier = durationtools.Multiplier(denominator, current_denominator)
+        multiplier = abjad.Multiplier(denominator, current_denominator)
         new_numerator = multiplier * current_numerator
         new_denominator = multiplier * current_denominator
         if (new_numerator.denominator == 1 and

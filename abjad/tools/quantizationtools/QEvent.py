@@ -1,5 +1,4 @@
 import abc
-from abjad.tools import durationtools
 from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadObject
 
@@ -25,7 +24,8 @@ class QEvent(AbjadObject):
 
     @abc.abstractmethod
     def __init__(self, offset=0, index=None):
-        offset = durationtools.Offset(offset)
+        import abjad
+        offset = abjad.Offset(offset)
         self._offset = offset
         self._index = index
 
@@ -45,7 +45,7 @@ class QEvent(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        agent = systemtools.StorageFormatAgent(self)
+        agent = systemtools.StorageFormatManager(self)
         names = agent.signature_keyword_names
         for name in ('attachments',):
             if not getattr(self, name, None) and name in names:

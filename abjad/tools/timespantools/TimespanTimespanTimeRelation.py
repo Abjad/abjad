@@ -341,10 +341,10 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         Returns selection.
         '''
-        from abjad.tools import selectiontools
+        import abjad
         # check input
         assert isinstance(counttime_components, (
-            list, selectiontools.Selection)), repr(counttime_components)
+            list, abjad.Selection)), repr(counttime_components)
         assert self.timespan_1 is not None
         # iterate counttime components
         result = []
@@ -352,7 +352,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
             if self(timespan_2=counttime_component._get_timespan()):
                 result.append(counttime_component)
         # return result
-        return selectiontools.Selection(result)
+        return abjad.select(result)
 
     def get_offset_indices(
         self, timespan_2_start_offsets, timespan_2_stop_offsets):

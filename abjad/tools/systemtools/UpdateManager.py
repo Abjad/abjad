@@ -38,12 +38,12 @@ class UpdateManager(AbjadObject):
 
     @staticmethod
     def _iterate_entire_score(score_root):
-        from abjad.tools.topleveltools import iterate
-        components = iterate(score_root).depth_first(
+        import abjad
+        components = abjad.iterate(score_root).depth_first(
             capped=True,
             unique=True,
             forbid=None,
-            direction=Left,
+            direction=abjad.Left,
             )
         return components
 
@@ -121,7 +121,7 @@ class UpdateManager(AbjadObject):
 
     @staticmethod
     def _update_component_offsets_in_seconds(component):
-        from abjad.tools import durationtools
+        import abjad
         try:
             current_duration_in_seconds = \
                 component._get_duration(in_seconds=True)
@@ -130,7 +130,7 @@ class UpdateManager(AbjadObject):
                 component._start_offset_in_seconds = \
                     previous._get_timespan(in_seconds=True)._stop_offset
             else:
-                component._start_offset_in_seconds = durationtools.Offset(0)
+                component._start_offset_in_seconds = abjad.Offset(0)
             # this one case is possible for containers only
             if component._start_offset_in_seconds is None:
                 raise MissingMetronomeMarkError
@@ -220,25 +220,22 @@ class UpdateManager(AbjadObject):
         return start_offset, stop_offset
 
     def _get_logical_measure_start_offsets(self, component):
-        from abjad.tools import datastructuretools
-        from abjad.tools import durationtools
-        from abjad.tools import indicatortools
-        from abjad.tools.topleveltools import inspect
+        import abjad
         wrappers = []
-        prototype = indicatortools.TimeSignature
+        prototype = abjad.TimeSignature
         score_root = component._get_parentage(include_self=True).root
         for component in self._iterate_entire_score(score_root):
             wrappers_ = component._get_indicators(prototype, unwrap=False)
             wrappers.extend(wrappers_)
         pairs = []
         for wrapper in wrappers:
-            inspector = inspect(wrapper.component)
+            inspector = abjad.inspect(wrapper.component)
             start_offset = inspector.get_timespan()._start_offset
             time_signature = wrapper.indicator
             pair = start_offset, time_signature
             pairs.append(pair)
-        offset_zero = durationtools.Offset(0)
-        default_time_signature = indicatortools.TimeSignature((4, 4))
+        offset_zero = abjad.Offset(0)
+        default_time_signature = abjad.TimeSignature((4, 4))
         default_pair = (offset_zero, default_time_signature)
         if pairs and not pairs[0] == offset_zero:
             pairs.insert(0, default_pair)
@@ -247,12 +244,12 @@ class UpdateManager(AbjadObject):
         pairs.sort(key=lambda x: x[0])
         parentage = component._get_parentage()
         score_root = parentage.root
-        inspector = inspect(score_root)
+        inspector = abjad.inspect(score_root)
         score_stop_offset = inspector.get_timespan()._stop_offset
         dummy_last_pair = (score_stop_offset, None)
         pairs.append(dummy_last_pair)
         measure_start_offsets = []
-        for current_pair, next_pair in datastructuretools.Sequence(pairs).nwise():
+        for current_pair, next_pair in abjad.sequence(pairs).nwise():
             current_start_offset, current_time_signature = current_pair
             next_start_offset, next_time_signature = next_pair
             measure_start_offset = current_start_offset
@@ -267,15 +264,13 @@ class UpdateManager(AbjadObject):
         component,
         logical_measure_number_start_offsets,
         ):
-        from abjad.tools import datastructuretools
-        from abjad.tools import mathtools
-        from abjad.tools.topleveltools import inspect
-        inspector = inspect(component)
+        import abjad
+        inspector = abjad.inspect(component)
         component_start_offset = inspector.get_timespan()._start_offset
         logical_measure_number_start_offsets = \
             logical_measure_number_start_offsets[:]
-        logical_measure_number_start_offsets.append(mathtools.Infinity())
-        pairs = datastructuretools.Sequence(logical_measure_number_start_offsets)
+        logical_measure_number_start_offsets.append(abjad.mathtools.Infinity())
+        pairs = abjad.sequence(logical_measure_number_start_offsets)
         pairs = pairs.nwise()
         for logical_measure_index, pair in enumerate(pairs):
             if pair[0] <= component_start_offset < pair[-1]:

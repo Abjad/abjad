@@ -1,8 +1,6 @@
 from abjad.tools import datastructuretools
-from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
-from abjad.tools import selectiontools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import inspect
 
@@ -151,6 +149,7 @@ class TupletRhythmMaker(RhythmMaker):
         tie_specifier=None,
         tuplet_specifier=None,
         ):
+        import abjad
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
@@ -163,7 +162,7 @@ class TupletRhythmMaker(RhythmMaker):
             tuplet_ratios = tuple(mathtools.Ratio(x) for x in tuplet_ratios)
         self._tuplet_ratios = tuplet_ratios
         if preferred_denominator is not None:
-            prototype = (durationtools.Duration, int)
+            prototype = (abjad.Duration, int)
             assert (preferred_denominator == 'divisions' or
                 isinstance(preferred_denominator, prototype))
         self._preferred_denominator = preferred_denominator
@@ -344,43 +343,43 @@ class TupletRhythmMaker(RhythmMaker):
     ### PRIVATE METHODS ###
 
     def _make_music(self, divisions, rotation):
+        import abjad
         tuplets = []
-        prototype = mathtools.NonreducedFraction
+        prototype = abjad.NonreducedFraction
         assert all(isinstance(_, prototype) for _ in divisions)
         if not isinstance(rotation, int):
             rotation = 0
-        tuplet_ratios = datastructuretools.CyclicTuple(
-            datastructuretools.Sequence(self.tuplet_ratios).rotate(n=rotation)
+        tuplet_ratios = abjad.CyclicTuple(
+            abjad.sequence(self.tuplet_ratios).rotate(n=rotation)
             )
         tuplet_specifier = self._get_tuplet_specifier()
         for duration_index, division in enumerate(divisions):
             ratio = tuplet_ratios[duration_index]
-            duration = durationtools.Duration(division)
+            duration = abjad.Duration(division)
             tuplet = self._make_tuplet(
                 duration,
                 ratio,
                 avoid_dots=tuplet_specifier.avoid_dots,
                 is_diminution=tuplet_specifier.is_diminution,
                 )
-            preferred_denominator = \
-                tuplet_specifier.preferred_denominator
+            preferred_denominator = tuplet_specifier.preferred_denominator
             if preferred_denominator is None:
                 pass
             elif preferred_denominator == 'divisions':
                 tuplet.preferred_denominator = division.numerator
-            elif isinstance(preferred_denominator, durationtools.Duration):
+            elif isinstance(preferred_denominator, abjad.Duration):
                 unit_duration = preferred_denominator
                 assert unit_duration.numerator == 1
-                duration = inspect(tuplet).get_duration()
+                duration = abjad.inspect(tuplet).get_duration()
                 denominator = unit_duration.denominator
                 nonreduced_fraction = duration.with_denominator(denominator)
                 tuplet.preferred_denominator = nonreduced_fraction.numerator
-            elif mathtools.is_positive_integer(preferred_denominator):
+            elif abjad.mathtools.is_positive_integer(preferred_denominator):
                 tuplet.preferred_denominator = preferred_denominator
             else:
                 raise ValueError(preferred_denominator)
             tuplets.append(tuplet)
-        selections = [selectiontools.Selection(x) for x in tuplets]
+        selections = [abjad.select(_) for _ in tuplets]
         beam_specifier = self._get_beam_specifier()
         beam_specifier(selections)
         selections = self._apply_division_masks(selections, rotation)

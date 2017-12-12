@@ -65,9 +65,9 @@ class Staccatissimo(AbjadValueObject):
     ### INITIALIZER ###
 
     def __init__(self, direction=None):
-        direction = datastructuretools.String.to_tridirectional_ordinal_constant(
-            direction)
-        directions = (Up, Down, Center, None)
+        import abjad
+        direction = abjad.String.to_tridirectional_ordinal_constant(direction)
+        directions = (abjad.Up, abjad.Down, abjad.Center, None)
         assert direction in directions, repr(direction)
         self._direction = direction
 

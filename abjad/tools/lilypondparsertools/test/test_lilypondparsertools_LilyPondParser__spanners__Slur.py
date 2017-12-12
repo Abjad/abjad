@@ -96,9 +96,9 @@ def test_lilypondparsertools_LilyPondParser__spanners__Slur_07():
 
     maker = abjad.NoteMaker()
     target = abjad.Container(maker([0] * 4, [(1, 4)]))
-    slur = abjad.Slur(direction=Down)
+    slur = abjad.Slur(direction=abjad.Down)
     abjad.attach(slur, target[:3])
-    slur = abjad.Slur(direction=Up)
+    slur = abjad.Slur(direction=abjad.Up)
     abjad.attach(slur, target[2:])
 
     assert format(target) == abjad.String.normalize(

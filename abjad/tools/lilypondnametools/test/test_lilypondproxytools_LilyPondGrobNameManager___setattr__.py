@@ -1216,7 +1216,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___53():
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     beam = abjad.Beam()
     abjad.attach(beam, voice[:])
-    abjad.override(voice).tuplet_bracket.direction = Down
+    abjad.override(voice).tuplet_bracket.direction = abjad.Down
 
     assert format(voice) == abjad.String.normalize(
         r'''
@@ -1241,7 +1241,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___54():
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     beam = abjad.Beam()
     abjad.attach(beam, voice[:])
-    abjad.override(voice[1]).tuplet_bracket.direction = Down
+    abjad.override(voice[1]).tuplet_bracket.direction = abjad.Down
 
     assert format(voice) == abjad.String.normalize(
         r'''

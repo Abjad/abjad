@@ -1,4 +1,4 @@
-from abjad.tools.scoretools.Context import Context
+from .Context import Context
 
 
 class StaffGroup(Context):
@@ -45,14 +45,14 @@ class StaffGroup(Context):
 
     def __init__(
         self,
-        music=None,
+        components=None,
         context_name='StaffGroup',
         is_simultaneous=True,
         name=None,
         ):
         Context.__init__(
             self,
-            music=music,
+            components=components,
             context_name=context_name,
             is_simultaneous=is_simultaneous,
             name=name,

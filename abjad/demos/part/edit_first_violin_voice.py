@@ -7,9 +7,9 @@ def edit_first_violin_voice(score, durated_reservoir):
 
     voice = score['First Violin Voice']
     descents = durated_reservoir['First Violin']
-    descents = abjad.select(descents)
+    #descents = abjad.Selection(descents)
 
-    last_descent = abjad.select(descents[-1])
+    last_descent = abjad.Selection(descents[-1])
     copied_descent = abjad.mutate(last_descent).copy()
     voice.extend(copied_descent)
 

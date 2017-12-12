@@ -65,7 +65,7 @@ class TupletSpecifier(AbjadValueObject):
         import abjad
         if not self.preferred_denominator:
             return
-        tuplets = abjad.select(selections).by_class(abjad.Tuplet)
+        tuplets = list(abjad.iterate(selections).by_class(abjad.Tuplet))
         if divisions is None:
             divisions = len(tuplets) * [None]
         assert len(selections) == len(divisions)

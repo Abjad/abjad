@@ -1,6 +1,5 @@
 import bisect
 import collections
-from abjad.tools import durationtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -37,22 +36,21 @@ class MeterFittingSession(AbjadValueObject):
         meters=None,
         offset_counter=None,
         ):
-        from abjad.tools import metertools
+        import abjad
         self._cached_offset_counters = {}
         if maximum_run_length is not None:
             maximum_run_length = int(maximum_run_length)
             assert 0 < maximum_run_length
         self._maximum_run_length = maximum_run_length
         if offset_counter:
-            self._offset_counter = \
-                metertools.MetricAccentKernel.count_offsets(
+            self._offset_counter = abjad.MetricAccentKernel.count_offsets(
                     offset_counter)
         else:
             self._offset_counter = {}
         self._ordered_offsets = tuple(sorted(self.offset_counter))
         meters = meters or ()
-        self._meters = tuple(metertools.Meter(_) for _ in meters)
-        self._kernel_denominator = durationtools.Duration(kernel_denominator)
+        self._meters = tuple(abjad.Meter(_) for _ in meters)
+        self._kernel_denominator = abjad.Duration(kernel_denominator)
         self._kernels = {}
         for meter in self._meters:
             kernel = meter.generate_offset_kernel_to_denominator(
@@ -73,9 +71,9 @@ class MeterFittingSession(AbjadValueObject):
 
         Returns meter list.
         '''
-        from abjad.tools import metertools
+        import abjad
         selected_kernels = []
-        current_offset = durationtools.Offset(0)
+        current_offset = abjad.Offset(0)
         while current_offset < self.ordered_offsets[-1]:
             kernel_scores = []
             kernels = self._get_kernels(selected_kernels)
@@ -111,7 +109,7 @@ class MeterFittingSession(AbjadValueObject):
             selected_kernels.append(winning_kernel)
             current_offset += winning_kernel.duration
         selected_meters = (self.kernels[_] for _ in selected_kernels)
-        selected_meters = metertools.MeterList(selected_meters)
+        selected_meters = abjad.MeterList(selected_meters)
         return selected_meters
 
     ### PRIVATE METHODS ###

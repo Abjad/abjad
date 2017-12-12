@@ -10,7 +10,7 @@ class IndicatorWrapper(AbjadValueObject):
         ::
 
             >>> component = abjad.Note("c'4")
-            >>> articulation = abjad.Articulation('accent', Up)
+            >>> articulation = abjad.Articulation('accent', abjad.Up)
             >>> abjad.attach(articulation, component)
             >>> agent = abjad.inspect(component)
             >>> wrapper = agent.get_indicators(unwrap=False)[0]
@@ -98,7 +98,7 @@ class IndicatorWrapper(AbjadValueObject):
             ::
 
                 >>> old_staff = abjad.Staff("c'4 d'4 e'4 f'4")
-                >>> abjad.annotate(old_staff[0], 'bow_direction', Down)
+                >>> abjad.annotate(old_staff[0], 'bow_direction', abjad.Down)
                 >>> f(old_staff)
                 \new Staff {
                     c'4
@@ -411,7 +411,7 @@ class IndicatorWrapper(AbjadValueObject):
             ::
 
                 >>> note = abjad.Note("c'4")
-                >>> articulation = abjad.Articulation('accent', Up)
+                >>> articulation = abjad.Articulation('accent', abjad.Up)
                 >>> abjad.attach(articulation, note)
                 >>> agent = abjad.inspect(note)
                 >>> wrapper = agent.get_indicators(unwrap=False)[0]
@@ -423,7 +423,7 @@ class IndicatorWrapper(AbjadValueObject):
             ::
 
                 >>> note = abjad.Note("c'4")
-                >>> articulation = abjad.Articulation('accent', Up)
+                >>> articulation = abjad.Articulation('accent', abjad.Up)
                 >>> abjad.annotate(note, 'foo', articulation)
                 >>> abjad.inspect(note).get_annotation('foo')
                 Articulation('accent', Up)
