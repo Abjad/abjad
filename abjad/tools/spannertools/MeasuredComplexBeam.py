@@ -1,5 +1,4 @@
-from abjad.tools import scoretools
-from abjad.tools.spannertools.ComplexBeam import ComplexBeam
+from .ComplexBeam import ComplexBeam
 
 
 class MeasuredComplexBeam(ComplexBeam):

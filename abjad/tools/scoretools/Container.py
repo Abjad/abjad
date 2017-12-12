@@ -981,7 +981,7 @@ class Container(Component):
         duration,
         fracture_spanners=False,
         tie_split_notes=True,
-        use_messiaen_style_ties=False,
+        repeat_ties=False,
         ):
         import abjad
         if self.is_simultaneous:
@@ -989,7 +989,7 @@ class Container(Component):
                 duration=duration,
                 fracture_spanners=fracture_spanners,
                 tie_split_notes=tie_split_notes,
-                use_messiaen_style_ties=use_messiaen_style_ties,
+                repeat_ties=repeat_ties,
                 )
         # check input
         duration = abjad.Duration(duration)
@@ -1063,7 +1063,7 @@ class Container(Component):
                 [split_point_in_bottom],
                 fracture_spanners=fracture_spanners,
                 tie_split_notes=tie_split_notes,
-                use_messiaen_style_ties=use_messiaen_style_ties,
+                repeat_ties=repeat_ties,
                 )
             right = right_list[0]
             leaf_right_of_split = right
@@ -1146,7 +1146,7 @@ class Container(Component):
                         )
                     selection = abjad.select(leaves_around_split)
                     selection._attach_tie_spanner_to_leaf_pair(
-                        use_messiaen_style_ties=use_messiaen_style_ties,
+                        repeat_ties=repeat_ties,
                         )
         # return list-wrapped halves of container
         return [left], [right]
@@ -1156,7 +1156,7 @@ class Container(Component):
         duration,
         fracture_spanners=False,
         tie_split_notes=True,
-        use_messiaen_style_ties=False,
+        repeat_ties=False,
         ):
         import abjad
         assert self.is_simultaneous
@@ -1166,7 +1166,7 @@ class Container(Component):
                 duration=duration,
                 fracture_spanners=fracture_spanners,
                 tie_split_notes=tie_split_notes,
-                use_messiaen_style_ties=use_messiaen_style_ties,
+                repeat_ties=repeat_ties,
                 )
             left_components_, right_components_ = halves
             left_components.extend(left_components_)

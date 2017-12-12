@@ -112,7 +112,7 @@ class NoteMaker(AbjadValueObject):
 
         Uses Messiaen-style ties:
 
-        >>> maker = abjad.NoteMaker(use_messiaen_style_ties=True)
+        >>> maker = abjad.NoteMaker(repeat_ties=True)
         >>> notes = maker([0], [(13, 16)])
         >>> staff = abjad.Staff(notes)
         >>> abjad.show(staff) # doctest: +SKIP
@@ -160,7 +160,7 @@ class NoteMaker(AbjadValueObject):
 
     __slots__ = (
         '_decrease_monotonic',
-        '_use_messiaen_style_ties',
+        '_repeat_ties',
         )
 
     _publish_storage_format = True
@@ -170,10 +170,10 @@ class NoteMaker(AbjadValueObject):
     def __init__(
         self,
         decrease_monotonic=True,
-        use_messiaen_style_ties=False,
+        repeat_ties=False,
         ):
         self._decrease_monotonic = decrease_monotonic
-        self._use_messiaen_style_ties = use_messiaen_style_ties
+        self._repeat_ties = repeat_ties
 
     ### SPECIAL METHODS ###
 
@@ -211,7 +211,7 @@ class NoteMaker(AbjadValueObject):
                         ps,
                         duration,
                         decrease_monotonic=self.decrease_monotonic,
-                        use_messiaen_style_ties=self.use_messiaen_style_ties,
+                        repeat_ties=self.repeat_ties,
                         )
                     )
             else:
@@ -226,7 +226,7 @@ class NoteMaker(AbjadValueObject):
                     ps,
                     duration,
                     decrease_monotonic=self.decrease_monotonic,
-                    use_messiaen_style_ties=self.use_messiaen_style_ties,
+                    repeat_ties=self.repeat_ties,
                     )
                 tuplet = abjad.Tuplet(multiplier, ns)
                 result.append(tuplet)
@@ -240,7 +240,7 @@ class NoteMaker(AbjadValueObject):
         pitches,
         durations,
         decrease_monotonic=True,
-        use_messiaen_style_ties=False,
+        repeat_ties=False,
         ):
         import abjad
         assert len(pitches) == len(durations)
@@ -252,7 +252,7 @@ class NoteMaker(AbjadValueObject):
                     duration,
                     pitches=pitch,
                     decrease_monotonic=decrease_monotonic,
-                    use_messiaen_style_ties=use_messiaen_style_ties,
+                    repeat_ties=repeat_ties,
                     )
                 )
         return result
@@ -268,9 +268,9 @@ class NoteMaker(AbjadValueObject):
         return self._decrease_monotonic
 
     @property
-    def use_messiaen_style_ties(self):
+    def repeat_ties(self):
         r'''Is true when ties are Messiaen-style. Otherwise false.
 
         Returns true, false or none.
         '''
-        return self._use_messiaen_style_ties
+        return self._repeat_ties

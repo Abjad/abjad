@@ -1,5 +1,4 @@
-from abjad.tools import pitchtools
-from abjad.tools.spannertools.Spanner import Spanner
+from .Spanner import Spanner
 
 
 class TrillSpanner(Spanner):
@@ -77,10 +76,8 @@ class TrillSpanner(Spanner):
         overrides=None,
         pitch=None,
         ):
-        Spanner.__init__(
-            self,
-            overrides=overrides,
-            )
+        import abjad
+        Spanner.__init__(self, overrides=overrides)
         if interval is not None and pitch is not None:
             message = 'only pitch or interval, not both: {!r} + {!r}.'
             message = message.format(interval, pitch)
@@ -90,7 +87,7 @@ class TrillSpanner(Spanner):
             is_harmonic = bool(is_harmonic)
         self._is_harmonic = is_harmonic
         if pitch is not None:
-            pitch = pitchtools.NamedPitch(pitch)
+            pitch = abjad.NamedPitch(pitch)
         self._pitch = pitch
 
     ### PRIVATE METHODS ###

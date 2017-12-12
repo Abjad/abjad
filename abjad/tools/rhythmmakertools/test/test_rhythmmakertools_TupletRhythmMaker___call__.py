@@ -10,11 +10,9 @@ def test_rhythmmakertools_TupletRhythmMaker___call___01():
     tuplet_ratios = [(1,)]
     maker = rhythmmakertools.TupletRhythmMaker(tuplet_ratios=tuplet_ratios)
 
-
     divisions = [(1, 5), (1, 4), (1, 6), (7, 9)]
-    tuplet_lists = maker(divisions)
-    tuplets = abjad.sequence(tuplet_lists).flatten()
-    staff = abjad.Staff(tuplets)
+    result = maker(divisions)
+    staff = abjad.Staff(result)
 
     assert format(staff) == abjad.String.normalize(
         r'''

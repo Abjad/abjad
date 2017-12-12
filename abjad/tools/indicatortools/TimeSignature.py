@@ -1,6 +1,4 @@
 import collections
-from abjad.tools import mathtools
-from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -130,7 +128,7 @@ class TimeSignature(AbjadValueObject):
         self._suppress = suppress
         self._multiplier = self.implied_prolation
         self._has_non_power_of_two_denominator = \
-            not mathtools.is_nonnegative_integer_power_of_two(
+            not abjad.mathtools.is_nonnegative_integer_power_of_two(
                 self.denominator)
 
     ### SPECIAL METHODS ###
@@ -156,15 +154,16 @@ class TimeSignature(AbjadValueObject):
 
         Returns new time signature.
         '''
+        import abjad
         if not isinstance(argument, type(self)):
             message = 'must be time signature: {!r}.'
             message = message.format(argument)
             raise Exception(message)
-        nonreduced_1 = mathtools.NonreducedFraction(
+        nonreduced_1 = abjad.NonreducedFraction(
             self.numerator,
             self.denominator,
             )
-        nonreduced_2 = mathtools.NonreducedFraction(
+        nonreduced_2 = abjad.NonreducedFraction(
             argument.numerator,
             argument.denominator,
             )
@@ -221,9 +220,9 @@ class TimeSignature(AbjadValueObject):
 
         Returns string.
         '''
-        from abjad.tools import systemtools
+        import abjad
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager(self).get_storage_format()
+            return abjad.StorageFormatManager(self).get_storage_format()
         elif format_specification == 'lilypond':
             return self._get_lilypond_format()
         return str(self)
@@ -332,10 +331,11 @@ class TimeSignature(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
+        import abjad
         storage_format_is_indented = False
         if self.partial is not None or self.suppress is not None:
             storage_format_is_indented = True
-        return systemtools.FormatSpecification(
+        return abjad.FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_args_values=[self.pair],
@@ -615,11 +615,11 @@ class TimeSignature(AbjadValueObject):
         # find power_of_two denominator
         if contents_multiplier == abjad.Multiplier(1):
             power_of_two_denominator = \
-                mathtools.greatest_power_of_two_less_equal(
+                abjad.mathtools.greatest_power_of_two_less_equal(
                     non_power_of_two_denominator)
         else:
             power_of_two_denominator = \
-                mathtools.greatest_power_of_two_less_equal(
+                abjad.mathtools.greatest_power_of_two_less_equal(
                     non_power_of_two_denominator, 1)
 
         # find power_of_two pair

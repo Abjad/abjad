@@ -72,8 +72,8 @@ def make_bartok_score():
     abjad.attach(slur, lower_leaves[1:6])
     crescendo = abjad.Hairpin('<')
     abjad.attach(crescendo, upper_leaves[-7:-2])
-    decrescendo = abjad.Hairpin('>')
-    abjad.attach(decrescendo, upper_leaves[-2:])
+    diminuendo = abjad.Hairpin('>')
+    abjad.attach(diminuendo, upper_leaves[-2:])
     markup = abjad.Markup('ritard.')
     text_spanner = abjad.TextSpanner()
     abjad.override(text_spanner).text_spanner.bound_details__left__text = markup

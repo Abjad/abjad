@@ -49,7 +49,6 @@ Bottom = OrdinalConstant('y', -1, 'Bottom')
 
 index = Pattern.index
 index_all = Pattern.index_all
-index_every = Pattern.index_every
 index_first = Pattern.index_first
 index_last = Pattern.index_last
 
@@ -93,16 +92,7 @@ from abjad.tools.timespantools import TimespanList
 from abjad.tools.rhythmmakertools import SilenceMask
 from abjad.tools.rhythmmakertools import SustainMask
 silence = SilenceMask.silence
-silence_all = SilenceMask.silence_all
-silence_except = SilenceMask.silence_except
-silence_every = SilenceMask.silence_every
-silence_first = SilenceMask.silence_first
-silence_last = SilenceMask.silence_last
 sustain = SustainMask.sustain
-sustain_all = SustainMask.sustain_all
-sustain_every = SustainMask.sustain_every
-sustain_first = SustainMask.sustain_first
-sustain_last = SustainMask.sustain_last
 
 # import custom exceptions into the builtins module
 import os

@@ -1730,7 +1730,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ...         ),
             ...     division_masks=[
             ...         abjad.rhythmmakertools.SilenceMask(
-            ...             pattern=abjad.index_every([1], period=2),
+            ...             pattern=abjad.index([1], 2),
             ...             ),
             ...         ],
             ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
@@ -2436,8 +2436,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ...         use_feather_beams=True,
             ...         ),
             ...     logical_tie_masks=[
-            ...         abjad.silence_first(1),
-            ...         abjad.silence_last(1),
+            ...         abjad.silence([0]),
+            ...         abjad.silence([-1]),
             ...         ],
             ...     interpolation_specifiers=[
             ...         abjad.rhythmmakertools.InterpolationSpecifier(
@@ -2667,7 +2667,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ...         use_feather_beams=True,
             ...         ),
             ...     logical_tie_masks=[
-            ...         abjad.silence_every([2], period=3),
+            ...         abjad.silence([2], 3),
             ...         ],
             ...     interpolation_specifiers=[
             ...         abjad.rhythmmakertools.InterpolationSpecifier(

@@ -19,7 +19,6 @@ def test_rhythmmakertools_BeamSpecifier_beam_each_division_01():
     divisions = [(2, 16), (5, 16)]
     selections = rhythm_maker(divisions)
 
-    selections = abjad.sequence(selections).flatten()
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)

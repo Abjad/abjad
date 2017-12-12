@@ -488,7 +488,7 @@ class TaleaRhythmMaker(RhythmMaker):
         decrease_monotonic=True,
         forbidden_duration=None,
         spell_metrically=None,
-        use_messiaen_style_ties=False,
+        repeat_ties=False,
         ):
         import abjad
         assert all(x != 0 for x in talea), repr(talea)
@@ -496,7 +496,7 @@ class TaleaRhythmMaker(RhythmMaker):
         leaf_maker = abjad.LeafMaker(
             decrease_monotonic=decrease_monotonic,
             forbidden_duration=forbidden_duration,
-            use_messiaen_style_ties=use_messiaen_style_ties,
+            repeat_ties=repeat_ties,
             )
         for note_value in talea:
             if 0 < note_value:
@@ -523,7 +523,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 not isinstance(leaves[0], abjad.Rest)
                 ):
                 tie = abjad.Tie(
-                    use_messiaen_style_ties=use_messiaen_style_ties,
+                    repeat_ties=repeat_ties,
                     )
                 attach(tie, leaves[:])
             result.extend(leaves)
@@ -1367,7 +1367,7 @@ class TaleaRhythmMaker(RhythmMaker):
             ...         ),
             ...     division_masks=[
             ...         abjad.rhythmmakertools.SilenceMask(
-            ...             pattern=abjad.index_every([1], period=2),
+            ...             pattern=abjad.index([1], 2),
             ...             ),
             ...         ],
             ...     )
@@ -1415,7 +1415,7 @@ class TaleaRhythmMaker(RhythmMaker):
             ...         denominator=16,
             ...         ),
             ...     division_masks=[
-            ...         abjad.sustain_every([1], period=2),
+            ...         abjad.sustain([1], 2),
             ...         ],
             ...     )
 
@@ -1464,7 +1464,7 @@ class TaleaRhythmMaker(RhythmMaker):
             ...     split_divisions_by_counts=[9],
             ...     division_masks=[
             ...         abjad.rhythmmakertools.SilenceMask(
-            ...             pattern=abjad.index_every([1], period=2),
+            ...             pattern=abjad.index([1], 2),
             ...             ),
             ...         ],
             ...     )
@@ -1523,7 +1523,7 @@ class TaleaRhythmMaker(RhythmMaker):
             ...         ),
             ...     split_divisions_by_counts=[9],
             ...     division_masks=[
-            ...         abjad.sustain_every([1], period=2),
+            ...         abjad.sustain([1], 2),
             ...         ],
             ...     )
 
@@ -2195,7 +2195,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
             ...     logical_tie_masks=[
-            ...         abjad.silence_every([2], period=3),
+            ...         abjad.silence([2], 3),
             ...         ],
             ...     talea=abjad.rhythmmakertools.Talea(
             ...         counts=[1, 2, 3, 4],
@@ -2245,8 +2245,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
             >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
             ...     logical_tie_masks=[
-            ...         abjad.silence_first(1),
-            ...         abjad.silence_last(1),
+            ...         abjad.silence([0]),
+            ...         abjad.silence([-1]),
             ...         ],
             ...     talea=abjad.rhythmmakertools.Talea(
             ...         counts=[1, 2, 3, 4],
@@ -2968,7 +2968,7 @@ class TaleaRhythmMaker(RhythmMaker):
             ...         ),
             ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
             ...         tie_across_divisions=True,
-            ...         use_messiaen_style_ties=True,
+            ...         repeat_ties=True,
             ...         ),
             ...     )
 

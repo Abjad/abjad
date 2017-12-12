@@ -269,6 +269,29 @@ class StaffPosition(AbjadValueObject):
             StaffPosition(4)	g'
             StaffPosition(5)	a'
 
+        ..  container:: example
+
+            Percussion clef:
+
+            >>> clef = abjad.Clef('percussion')
+            >>> for n in range(-6, 6):
+            ...     staff_position = abjad.StaffPosition(n)
+            ...     pitch = staff_position.to_pitch(clef=clef)
+            ...     message = '{!s}\t{}'.format(staff_position, pitch)
+            ...     print(message)
+            StaffPosition(-6)	d
+            StaffPosition(-5)	e
+            StaffPosition(-4)	f
+            StaffPosition(-3)	g
+            StaffPosition(-2)	a
+            StaffPosition(-1)	b
+            StaffPosition(0)	c'
+            StaffPosition(1)	d'
+            StaffPosition(2)	e'
+            StaffPosition(3)	f'
+            StaffPosition(4)	g'
+            StaffPosition(5)	a'
+
         Returns new named pitch.
         '''
         import abjad

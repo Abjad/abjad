@@ -1,4 +1,3 @@
-from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -65,9 +64,9 @@ class LilyPondLiteral(AbjadValueObject):
 
         Returns string.
         '''
-        from abjad.tools import systemtools
+        import abjad
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager(self).get_storage_format()
+            return abjad.StorageFormatManager(self).get_storage_format()
         elif format_specification == 'lilypond':
             return self._get_lilypond_format()
         return str(self)
@@ -81,10 +80,11 @@ class LilyPondLiteral(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
+        import abjad
         names = []
         if not self.format_slot == 'opening':
             names.append('format_slot')
-        return systemtools.FormatSpecification(
+        return abjad.FormatSpecification(
             client=self,
             storage_format_args_values=[self.name],
             storage_format_kwargs_names=names,

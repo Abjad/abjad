@@ -15,7 +15,7 @@ class TieSpecifier(AbjadValueObject):
         '_strip_ties',
         '_tie_across_divisions',
         '_tie_consecutive_notes',
-        '_use_messiaen_style_ties',
+        '_repeat_ties',
         )
 
     ### INITIALIZER ###
@@ -25,7 +25,7 @@ class TieSpecifier(AbjadValueObject):
         strip_ties=None,
         tie_across_divisions=None,
         tie_consecutive_notes=None,
-        use_messiaen_style_ties=None,
+        repeat_ties=None,
         ):
         import abjad
         if strip_ties is not None:
@@ -46,9 +46,9 @@ class TieSpecifier(AbjadValueObject):
         if self.tie_consecutive_notes and self.strip_ties:
             message = 'can not tie leaves and strip ties at same time.'
             raise Exception(message)
-        if use_messiaen_style_ties is not None:
-            use_messiaen_style_ties = bool(use_messiaen_style_ties)
-        self._use_messiaen_style_ties = use_messiaen_style_ties
+        if repeat_ties is not None:
+            repeat_ties = bool(repeat_ties)
+        self._repeat_ties = repeat_ties
 
     ### SPECIAL METHODS ###
 
@@ -66,14 +66,14 @@ class TieSpecifier(AbjadValueObject):
 
     def _configure_messiaen_style_ties(self, divisions):
         import abjad
-        if not self.use_messiaen_style_ties:
+        if not self.repeat_ties:
             return
         ties = set()
         for leaf in abjad.iterate(divisions).leaves():
             ties_ = abjad.inspect(leaf).get_spanners(abjad.Tie)
             ties.update(ties_)
         for tie in ties:
-            tie._use_messiaen_style_ties = True
+            tie._repeat_ties = True
 
     def _strip_ties_(self, divisions):
         import abjad
@@ -122,7 +122,7 @@ class TieSpecifier(AbjadValueObject):
             for leaf in combined_logical_tie:
                 abjad.detach(abjad.Tie, leaf)
             tie = abjad.Tie(
-                use_messiaen_style_ties=self.use_messiaen_style_ties,
+                repeat_ties=self.repeat_ties,
                 )
             tie._unconstrain_contiguity()
             if tie._attachment_test_all(combined_logical_tie):
@@ -192,10 +192,10 @@ class TieSpecifier(AbjadValueObject):
         return self._tie_consecutive_notes
 
     @property
-    def use_messiaen_style_ties(self):
+    def repeat_ties(self):
         r'''Is true when ties should be Messiaen-style with the LilyPond
         ``\repeatTie`` command. Otherwise false.
 
         Set to true, false or none.
         '''
-        return self._use_messiaen_style_ties
+        return self._repeat_ties

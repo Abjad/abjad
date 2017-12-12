@@ -18,8 +18,8 @@ def test_scoretools_Inspection_get_duration_01():
     abjad.attach(beam, leaves)
     crescendo = abjad.Hairpin('<')
     abjad.attach(crescendo, voice[0][:])
-    decrescendo = abjad.Hairpin('>')
-    abjad.attach(decrescendo, voice[1][:])
+    diminuendo = abjad.Hairpin('>')
+    abjad.attach(diminuendo, voice[1][:])
 
     assert format(voice) == abjad.String.normalize(
         r'''
@@ -43,7 +43,7 @@ def test_scoretools_Inspection_get_duration_01():
 
     assert abjad.inspect(beam).get_duration(in_seconds=True) == abjad.Duration(100, 21)
     assert abjad.inspect(crescendo).get_duration(in_seconds=True) == abjad.Duration(40, 21)
-    assert abjad.inspect(decrescendo).get_duration(in_seconds=True) == \
+    assert abjad.inspect(diminuendo).get_duration(in_seconds=True) == \
         abjad.Duration(20, 7)
 
 
@@ -58,8 +58,8 @@ def test_scoretools_Inspection_get_duration_02():
     abjad.attach(beam, leaves)
     crescendo = abjad.Hairpin('<')
     abjad.attach(crescendo, voice[0][:])
-    decrescendo = abjad.Hairpin('>')
-    abjad.attach(decrescendo, voice[1][:])
+    diminuendo = abjad.Hairpin('>')
+    abjad.attach(diminuendo, voice[1][:])
 
     assert format(voice) == abjad.String.normalize(
         r'''
@@ -82,7 +82,7 @@ def test_scoretools_Inspection_get_duration_02():
 
     assert abjad.inspect(beam).get_duration() == abjad.Duration(5, 12)
     assert abjad.inspect(crescendo).get_duration() == abjad.Duration(2, 12)
-    assert abjad.inspect(decrescendo).get_duration() == abjad.Duration(2, 8)
+    assert abjad.inspect(diminuendo).get_duration() == abjad.Duration(2, 8)
 
 
 def test_scoretools_Inspection_get_duration_03():

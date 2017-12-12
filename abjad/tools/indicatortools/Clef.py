@@ -118,11 +118,9 @@ class Clef(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> clef = abjad.Clef('treble')
-                >>> print(format(clef, 'lilypond'))
-                \clef "treble"
+            >>> clef = abjad.Clef('treble')
+            >>> print(format(clef, 'lilypond'))
+            \clef "treble"
 
         Returns string.
         '''
@@ -212,13 +210,11 @@ class Clef(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> maker = abjad.NoteMaker()
-                >>> notes = maker(range(-12, -6), [(1, 4)])
-                >>> staff = abjad.Staff(notes)
-                >>> abjad.Clef.from_selection(staff)
-                Clef('bass')
+            >>> maker = abjad.NoteMaker()
+            >>> notes = maker(range(-12, -6), [(1, 4)])
+            >>> staff = abjad.Staff(notes)
+            >>> abjad.Clef.from_selection(staff)
+            Clef('bass')
 
             Choses between treble and bass based on minimal number of ledger
             lines.
@@ -256,11 +252,9 @@ class Clef(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> clef = abjad.Clef('treble')
-                >>> clef.default_scope
-                <class 'abjad.tools.scoretools.Staff.Staff'>
+            >>> clef = abjad.Clef('treble')
+            >>> clef.default_scope
+            <class 'abjad.tools.scoretools.Staff.Staff'>
 
         Clefs are staff-scoped by default.
 
@@ -276,19 +270,15 @@ class Clef(AbjadValueObject):
 
             Gets staff position of middle C in treble clef:
 
-            ::
-
-                >>> abjad.Clef('treble').middle_c_position
-                StaffPosition(-6)
+            >>> abjad.Clef('treble').middle_c_position
+            StaffPosition(-6)
 
         ..  container:: example
 
             Gets staff position of middle C in alto clef:
 
-            ::
-
-                >>> abjad.Clef('alto').middle_c_position
-                StaffPosition(0)
+            >>> abjad.Clef('alto').middle_c_position
+            StaffPosition(0)
 
         Returns nonnegative integer staff position.
         '''
@@ -302,19 +292,15 @@ class Clef(AbjadValueObject):
 
             Gets name treble clef:
 
-            ::
-
-                >>> abjad.Clef('treble').name
-                'treble'
+            >>> abjad.Clef('treble').name
+            'treble'
 
         ..  container:: example
 
             Gets name of alto clef:
 
-            ::
-
-                >>> abjad.Clef('alto').name
-                'alto'
+            >>> abjad.Clef('alto').name
+            'alto'
 
         Returns string.
         '''

@@ -14,13 +14,12 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___01():
         )
 
     divisions = [(2, 8), (5, 8)]
-    selections = rhythm_maker(divisions)
+    result = rhythm_maker(divisions)
 
-    selections = abjad.sequence(selections).flatten()
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    abjad.mutate(staff).replace_measure_contents(selections)
+    abjad.mutate(staff).replace_measure_contents(result)
 
     assert format(staff) == abjad.String.normalize(
         r'''
@@ -63,13 +62,12 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___02():
         )
 
     divisions = [(2, 8), (5, 8)]
-    selections = rhythm_maker(divisions)
+    result = rhythm_maker(divisions)
 
-    selections = abjad.sequence(selections).flatten()
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    abjad.mutate(staff).replace_measure_contents(selections)
+    abjad.mutate(staff).replace_measure_contents(result)
 
     assert format(staff) == abjad.String.normalize(
         r'''

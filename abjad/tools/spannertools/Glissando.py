@@ -1,5 +1,4 @@
-from abjad.tools import scoretools
-from abjad.tools.spannertools.Spanner import Spanner
+from .Spanner import Spanner
 
 
 class Glissando(Spanner):
@@ -87,7 +86,7 @@ class Glissando(Spanner):
     def _get_lilypond_format_bundle(self, leaf):
         import abjad
         bundle = self._get_basic_lilypond_format_bundle(leaf)
-        prototype = (scoretools.Chord, scoretools.Note)
+        prototype = (abjad.Chord, abjad.Note)
         should_attach_glissando = False
         if not self._is_my_first_leaf(leaf):
             if self.parenthesize_repeated_pitches:
@@ -126,21 +125,22 @@ class Glissando(Spanner):
     def _next_leaf_changes_current_pitch(leaf):
         import abjad
         next_leaf = abjad.inspect(leaf).get_leaf(n=1)
-        if (isinstance(leaf, scoretools.Note) and
-            isinstance(next_leaf, scoretools.Note) and
+        if (isinstance(leaf, abjad.Note) and
+            isinstance(next_leaf, abjad.Note) and
             leaf.written_pitch == next_leaf.written_pitch):
             return False
-        elif (isinstance(leaf, scoretools.Chord) and
-            isinstance(next_leaf, scoretools.Chord) and
+        elif (isinstance(leaf, abjad.Chord) and
+            isinstance(next_leaf, abjad.Chord) and
             leaf.written_pitches == next_leaf.written_pitches):
             return False
         return True
 
     @staticmethod
     def _parenthesize_leaf(leaf):
-        if isinstance(leaf, scoretools.Note):
+        import abjad
+        if isinstance(leaf, abjad.Note):
             leaf.note_head.is_parenthesized = True
-        elif isinstance(leaf, scoretools.Chord):
+        elif isinstance(leaf, abjad.Chord):
             for note_head in leaf.note_heads:
                 note_head.is_parenthesized = True
 
@@ -148,12 +148,12 @@ class Glissando(Spanner):
     def _previous_leaf_changes_current_pitch(leaf):
         import abjad
         previous_leaf = abjad.inspect(leaf).get_leaf(n=-1)
-        if (isinstance(leaf, scoretools.Note) and
-            isinstance(previous_leaf, scoretools.Note) and
+        if (isinstance(leaf, abjad.Note) and
+            isinstance(previous_leaf, abjad.Note) and
             leaf.written_pitch == previous_leaf.written_pitch):
             return False
-        elif (isinstance(leaf, scoretools.Chord) and
-            isinstance(previous_leaf, scoretools.Chord) and
+        elif (isinstance(leaf, abjad.Chord) and
+            isinstance(previous_leaf, abjad.Chord) and
             leaf.written_pitches == previous_leaf.written_pitches):
             return False
         return True

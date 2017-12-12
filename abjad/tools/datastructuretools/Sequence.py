@@ -56,7 +56,7 @@ class Sequence(abctools.AbjadValueObject):
 
             >>> sequence = abjad.sequence([1, 2, 3, [4, 5, [6]]])
             >>> sequence = sequence.reverse()
-            >>> sequence = sequence.flatten()
+            >>> sequence = sequence.flatten(depth=-1)
             >>> sequence
             Sequence([4, 5, 6, 3, 2, 1])
 
@@ -64,7 +64,7 @@ class Sequence(abctools.AbjadValueObject):
 
             >>> expression = abjad.sequence()
             >>> expression = expression.reverse()
-            >>> expression = expression.flatten()
+            >>> expression = expression.flatten(depth=-1)
             >>> expression([1, 2, 3, [4, 5, [6]]])
             Sequence([4, 5, 6, 3, 2, 1])
 
@@ -506,7 +506,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 >>> sequence = abjad.sequence([1, 2, [3, [4]], 5])
                 >>> sequence = sequence[:-1]
-                >>> sequence = sequence.flatten()
+                >>> sequence = sequence.flatten(depth=-1)
 
                 >>> sequence
                 Sequence([1, 2, 3, 4])
@@ -516,13 +516,13 @@ class Sequence(abctools.AbjadValueObject):
                 >>> expression = abjad.Expression(name='J')
                 >>> expression = expression.sequence()
                 >>> expression = expression[:-1]
-                >>> expression = expression.flatten()
+                >>> expression = expression.flatten(depth=-1)
 
                 >>> expression([1, 2, [3, [4]], 5])
                 Sequence([1, 2, 3, 4])
 
                 >>> expression.get_string()
-                'flatten(J[:-1])'
+                'flatten(J[:-1], depth=-1)'
 
                 >>> markup = expression.get_markup()
                 >>> abjad.show(markup) # doctest: +SKIP
@@ -541,7 +541,7 @@ class Sequence(abctools.AbjadValueObject):
                                         \sub
                                             [:-1]
                                     }
-                                )
+                                ", depth=-1)"
                             }
                         }
 
@@ -805,7 +805,13 @@ class Sequence(abctools.AbjadValueObject):
             return 'unknown string template'
 
     @staticmethod
-    def _make_partition_indicator(counts, cyclic, overhang, reversed_):
+    def _make_partition_indicator(
+        counts,
+        cyclic,
+        enchain,
+        overhang,
+        reversed_,
+        ):
         import abjad
         indicator = [str(_) for _ in counts]
         indicator = ', '.join(indicator)
@@ -813,6 +819,8 @@ class Sequence(abctools.AbjadValueObject):
             indicator = '<{}>'.format(indicator)
         else:
             indicator = '[{}]'.format(indicator)
+        if enchain:
+            indicator = 'E' + indicator
         if reversed_:
             indicator = 'R' + indicator
         if overhang is True:
@@ -1129,7 +1137,7 @@ class Sequence(abctools.AbjadValueObject):
 
     # TODO: remove indices=None parameter
     @systemtools.Signature()
-    def flatten(self, classes=None, depth=-1, indices=None):
+    def flatten(self, classes=None, depth=1, indices=None):
         r'''Flattens sequence.
 
         ..  container:: example
@@ -1142,7 +1150,7 @@ class Sequence(abctools.AbjadValueObject):
                 >>> sequence = abjad.sequence(items=items)
 
                 >>> sequence.flatten()
-                Sequence([1, 2, 3, 4, 5, 6, 7, 8])
+                Sequence([1, 2, 3, [4], 5, 6, 7, [8]])
 
             ..  container:: example expression
 
@@ -1151,7 +1159,7 @@ class Sequence(abctools.AbjadValueObject):
                 >>> expression = expression.flatten()
 
                 >>> expression([1, [2, 3, [4]], 5, [6, 7, [8]]])
-                Sequence([1, 2, 3, 4, 5, 6, 7, 8])
+                Sequence([1, 2, 3, [4], 5, 6, 7, [8]])
 
                 >>> expression.get_string()
                 'flatten(J)'
@@ -1169,46 +1177,6 @@ class Sequence(abctools.AbjadValueObject):
                                 \bold
                                     J
                                 )
-                            }
-                        }
-
-        ..  container:: example
-
-            Flattens sequence to depth 1:
-
-            ..  container:: example
-
-                >>> items = [1, [2, 3, [4]], 5, [6, 7, [8]]]
-                >>> sequence = abjad.sequence(items)
-
-                >>> sequence.flatten(depth=1)
-                Sequence([1, 2, 3, [4], 5, 6, 7, [8]])
-
-            ..  container:: example expression
-
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
-                >>> expression = expression.flatten(depth=1)
-
-                >>> expression([1, [2, 3, [4]], 5, [6, 7, [8]]])
-                Sequence([1, 2, 3, [4], 5, 6, 7, [8]])
-
-                >>> expression.get_string()
-                'flatten(J, depth=1)'
-
-                >>> markup = expression.get_markup()
-                >>> abjad.show(markup) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> abjad.f(markup)
-                    \markup {
-                        \concat
-                            {
-                                flatten(
-                                \bold
-                                    J
-                                ", depth=1)"
                             }
                         }
 
@@ -1251,6 +1219,47 @@ class Sequence(abctools.AbjadValueObject):
                                 ", depth=2)"
                             }
                         }
+
+        ..  container:: example
+
+            Flattens sequence to depth -1:
+
+            ..  container:: example
+
+                >>> items = [1, [2, 3, [4]], 5, [6, 7, [8]]]
+                >>> sequence = abjad.sequence(items)
+
+                >>> sequence.flatten(depth=-1)
+                Sequence([1, 2, 3, 4, 5, 6, 7, 8])
+
+            ..  container:: example expression
+
+                >>> expression = abjad.Expression(name='J')
+                >>> expression = expression.sequence()
+                >>> expression = expression.flatten(depth=-1)
+
+                >>> expression([1, [2, 3, [4]], 5, [6, 7, [8]]])
+                Sequence([1, 2, 3, 4, 5, 6, 7, 8])
+
+                >>> expression.get_string()
+                'flatten(J, depth=-1)'
+
+                >>> markup = expression.get_markup()
+                >>> abjad.show(markup) # doctest: +SKIP
+
+                ..  docs::
+
+                    >>> abjad.f(markup)
+                    \markup {
+                        \concat
+                            {
+                                flatten(
+                                \bold
+                                    J
+                                ", depth=-1)"
+                            }
+                        }
+
 
         ..  container:: example
 
@@ -1976,6 +1985,7 @@ class Sequence(abctools.AbjadValueObject):
         self,
         counts,
         cyclic=False,
+        enchain=False,
         overhang=False,
         reversed_=False,
         ):
@@ -3047,52 +3057,273 @@ class Sequence(abctools.AbjadValueObject):
                             }
                         }
 
+        ..  container:: example
+
+            Partitions sequence cyclically into enchained parts by counts;
+            truncates overhang:
+
+            ..  container:: example
+
+                >>> sequence = abjad.sequence(range(16))
+                >>> parts = sequence.partition_by_counts(
+                ...     [2, 6],
+                ...     cyclic=True,
+                ...     enchain=True,
+                ...     overhang=False,
+                ...     )
+
+                >>> for part in parts:
+                ...     part
+                Sequence([0, 1])
+                Sequence([1, 2, 3, 4, 5, 6])
+                Sequence([6, 7])
+                Sequence([7, 8, 9, 10, 11, 12])
+                Sequence([12, 13])
+
+            ..  container:: example expression
+
+                >>> expression = abjad.Expression(name='J')
+                >>> expression = expression.sequence()
+                >>> expression = expression.partition_by_counts(
+                ...     [2, 6],
+                ...     cyclic=True,
+                ...     enchain=True,
+                ...     overhang=False,
+                ...     )
+
+                >>> for part in expression(range(16)):
+                ...     part
+                Sequence([0, 1])
+                Sequence([1, 2, 3, 4, 5, 6])
+                Sequence([6, 7])
+                Sequence([7, 8, 9, 10, 11, 12])
+                Sequence([12, 13])
+
+                >>> expression.get_string()
+                'partition(J, E<2, 6>)'
+
+                >>> markup = expression.get_markup()
+                >>> abjad.show(markup) # doctest: +SKIP
+
+                ..  docs::
+
+                    >>> abjad.f(markup)
+                    \markup {
+                        \concat
+                            {
+                                partition(
+                                \bold
+                                    J
+                                ", E<2, 6>)"
+                            }
+                        }
+
+        ..  container:: example
+
+            Partitions sequence cyclically into enchained parts by counts;
+            returns overhang at end:
+
+            ..  container:: example
+
+                >>> sequence = abjad.sequence(range(16))
+                >>> parts = sequence.partition_by_counts(
+                ...     [2, 6],
+                ...     cyclic=True,
+                ...     enchain=True,
+                ...     overhang=True,
+                ...     )
+
+                >>> for part in parts:
+                ...     part
+                Sequence([0, 1])
+                Sequence([1, 2, 3, 4, 5, 6])
+                Sequence([6, 7])
+                Sequence([7, 8, 9, 10, 11, 12])
+                Sequence([12, 13])
+                Sequence([13, 14, 15])
+
+            ..  container:: example expression
+
+                >>> expression = abjad.Expression(name='J')
+                >>> expression = expression.sequence()
+                >>> expression = expression.partition_by_counts(
+                ...     [2, 6],
+                ...     cyclic=True,
+                ...     enchain=True,
+                ...     overhang=True,
+                ...     )
+
+                >>> for part in expression(range(16)):
+                ...     part
+                Sequence([0, 1])
+                Sequence([1, 2, 3, 4, 5, 6])
+                Sequence([6, 7])
+                Sequence([7, 8, 9, 10, 11, 12])
+                Sequence([12, 13])
+                Sequence([13, 14, 15])
+
+                >>> expression.get_string()
+                'partition(J, E<2, 6>+)'
+
+                >>> markup = expression.get_markup()
+                >>> abjad.show(markup) # doctest: +SKIP
+
+                ..  docs::
+
+                    >>> abjad.f(markup)
+                    \markup {
+                        \concat
+                            {
+                                partition(
+                                \bold
+                                    J
+                                ", E<2, 6>+)"
+                            }
+                        }
+
+        ..  container:: example
+
+            Regression: partitions sequence cyclically into enchained parts by
+            counts; does not return false 1-element part at end:
+
+            ..  container:: example
+
+                >>> sequence = abjad.sequence(range(16))
+                >>> parts = sequence.partition_by_counts(
+                ...     [5],
+                ...     cyclic=True,
+                ...     enchain=True,
+                ...     overhang=True,
+                ...     )
+
+                >>> for part in parts:
+                ...     part
+                Sequence([0, 1, 2, 3, 4])
+                Sequence([4, 5, 6, 7, 8])
+                Sequence([8, 9, 10, 11, 12])
+                Sequence([12, 13, 14, 15])
+
+            ..  container:: example expression
+
+                >>> expression = abjad.Expression(name='J')
+                >>> expression = expression.sequence()
+                >>> expression = expression.partition_by_counts(
+                ...     [5],
+                ...     cyclic=True,
+                ...     enchain=True,
+                ...     overhang=True,
+                ...     )
+
+                >>> for part in expression(range(16)):
+                ...     part
+                Sequence([0, 1, 2, 3, 4])
+                Sequence([4, 5, 6, 7, 8])
+                Sequence([8, 9, 10, 11, 12])
+                Sequence([12, 13, 14, 15])
+
+                >>> expression.get_string()
+                'partition(J, E<5>+)'
+
+                >>> markup = expression.get_markup()
+                >>> abjad.show(markup) # doctest: +SKIP
+
+                ..  docs::
+
+                    >>> abjad.f(markup)
+                    \markup {
+                        \concat
+                            {
+                                partition(
+                                \bold
+                                    J
+                                ", E<5>+)"
+                            }
+                        }
+
+        ..  container:: example
+
+            Edge case: empty counts nests sequence and ignores keywords:
+
+            ..  container:: example
+
+                >>> sequence = abjad.sequence(range(16))
+                >>> parts = sequence.partition_by_counts([])
+
+                >>> for part in parts:
+                ...     part
+                Sequence([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
+
+            ..  container:: example expression
+
+                >>> expression = abjad.Expression(name='J')
+                >>> expression = expression.sequence()
+                >>> expression = expression.partition_by_counts([])
+
+                >>> for part in expression(range(16)):
+                ...     part
+                Sequence([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
+
+                >>> expression.get_string()
+                'partition(J, [])'
+
+                >>> markup = expression.get_markup()
+                >>> abjad.show(markup) # doctest: +SKIP
+
+                ..  docs::
+
+                    >>> abjad.f(markup)
+                    \markup {
+                        \concat
+                            {
+                                partition(
+                                \bold
+                                    J
+                                ", [])"
+                            }
+                        }
+
         Returns nested sequence.
         '''
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         if not all(isinstance(_, int) and 0 <= _ for _ in counts):
-            message = 'invalid counts: {!r}.'
+            message = 'must be nonnegative integers: {!r}.'
             message = message.format(counts)
             raise Exception(counts)
         sequence = self
         if reversed_:
             sequence = type(self)(reversed(sequence))
-        if overhang == abjad.Exact:
-            result_with_overhang = sequence.partition_by_counts(
-                counts,
-                cyclic=cyclic,
-                overhang=True,
-                )
-            result_without_overhang = sequence.partition_by_counts(
-                counts,
-                cyclic=cyclic,
-                overhang=False,
-                )
-            if result_with_overhang == result_without_overhang:
-                return result_without_overhang
-            else:
+        if counts:
+            counts = abjad.CyclicTuple(counts)
+        else:
+            return type(self)([sequence])
+        result = []
+        i, start = 0, 0
+        while True:
+            count = counts[i]
+            stop = start + count
+            part = sequence[start:stop]
+            if len(sequence) < stop:
+                if enchain and len(part) == 1:
+                    part = None
+                break
+            result.append(part)
+            start = stop
+            i += 1
+            if not cyclic and len(counts) <= i:
+                part = sequence[start:]
+                break
+            if enchain:
+                start -= 1
+        if part:
+            if overhang is True:
+                result.append(part)
+            elif overhang == abjad.Exact and len(part) == count:
+                result.append(part)
+            elif overhang == abjad.Exact and len(part) != count:
                 message = 'sequence does not partition exactly.'
                 raise Exception(message)
-        result = []
-        if cyclic:
-            if overhang:
-                counts = Sequence(counts).repeat_to_weight(len(sequence))
-            else:
-                counts = Sequence(counts).repeat_to_weight(
-                    len(sequence),
-                    allow_total=abjad.Less,
-                    )
-        elif overhang:
-            weight_counts = abjad.mathtools.weight(counts)
-            length = len(sequence)
-            if weight_counts < length:
-                counts = list(counts)
-                counts.append(len(sequence) - weight_counts)
-        for start, stop in abjad.mathtools.cumulative_sums_pairwise(counts):
-            part = sequence[start:stop]
-            result.append(part)
         if reversed_:
             result_ = []
             for part in reversed(result):
@@ -3371,7 +3602,7 @@ class Sequence(abctools.AbjadValueObject):
                 raise TypeError(message)
             sublist.append(item)
             while current_cumulative_weight <= abjad.mathtools.weight(
-                type(self)(items).flatten()):
+                type(self)(items).flatten(depth=-1)):
                 try:
                     current_cumulative_weight = cumulative_weights.pop(0)
                     sublist = []
@@ -3607,7 +3838,7 @@ class Sequence(abctools.AbjadValueObject):
                 cyclic=cyclic,
                 overhang=overhang,
                 )
-            flattened_candidate = candidate.flatten()
+            flattened_candidate = candidate.flatten(depth=-1)
             if flattened_candidate == self[:len(flattened_candidate)]:
                 return candidate
             else:
@@ -4238,12 +4469,12 @@ class Sequence(abctools.AbjadValueObject):
 
         ..  container:: example
 
-            >>> sequence.retain_pattern(abjad.index_every([2, 3], 4))
+            >>> sequence.retain_pattern(abjad.index([2, 3], 4))
             Sequence([2, 3, 6, 7])
 
         ..  container:: example
 
-            >>> sequence.retain_pattern(abjad.index_every([-2, -3], 4))
+            >>> sequence.retain_pattern(abjad.index([-2, -3], 4))
             Sequence([0, 3, 4, 7, 8])
 
         ..  container:: example

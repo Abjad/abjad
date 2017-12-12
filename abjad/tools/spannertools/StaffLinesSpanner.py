@@ -1,5 +1,4 @@
-from abjad.tools import schemetools
-from abjad.tools.spannertools.Spanner import Spanner
+from .Spanner import Spanner
 
 
 class StaffLinesSpanner(Spanner):
@@ -97,7 +96,7 @@ class StaffLinesSpanner(Spanner):
                     grob_name='StaffSymbol',
                     is_once=True,
                     property_path='line-positions',
-                    value=schemetools.SchemeVector(self.lines),
+                    value=abjad.SchemeVector(self.lines),
                     )
                 string = override.override_string
                 bundle.before.commands.append(string)

@@ -1,5 +1,4 @@
-from abjad.tools import markuptools
-from abjad.tools.spannertools.Spanner import Spanner
+from .Spanner import Spanner
 
 
 class HorizontalBracketSpanner(Spanner):
@@ -43,12 +42,10 @@ class HorizontalBracketSpanner(Spanner):
         overrides=None,
         markup=None,
         ):
-        Spanner.__init__(
-            self,
-            overrides=overrides,
-            )
+        import abjad
+        Spanner.__init__(self, overrides=overrides)
         if markup is not None:
-            markup = markuptools.Markup(markup)
+            markup = abjad.Markup(markup)
         self._markup = markup
 
     ### PRIVATE METHODS ###

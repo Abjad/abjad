@@ -28,7 +28,7 @@ def sequence(items=None, **keywords):
             >>> sequence_
             Sequence([1, 2, [3, [4]], 5])
 
-            >>> sequence_ = sequence_.flatten()
+            >>> sequence_ = sequence_.flatten(depth=-1)
             >>> sequence_
             Sequence([1, 2, 3, 4, 5])
 
@@ -43,7 +43,7 @@ def sequence(items=None, **keywords):
         ..  container:: example expression
 
             >>> expression = abjad.sequence()
-            >>> expression = expression.flatten()
+            >>> expression = expression.flatten(depth=-1)
             >>> expression = expression.reverse()
             >>> expression = expression[-3:]
             >>> expression([1, 2, [3, [4]], 5])

@@ -1,4 +1,3 @@
-from abjad.tools import datastructuretools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 

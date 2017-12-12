@@ -1,5 +1,4 @@
-from abjad.tools import markuptools
-from abjad.tools.spannertools.Spanner import Spanner
+from .Spanner import Spanner
 
 
 class MetronomeMarkSpanner(Spanner):
@@ -1555,13 +1554,11 @@ class MetronomeMarkSpanner(Spanner):
         start_with_parenthesized_tempo=False,
         overrides=None,
         ):
-        Spanner.__init__(
-            self,
-            overrides=overrides,
-            )
+        import abjad
+        Spanner.__init__(self, overrides=overrides)
         assert isinstance(left_broken_padding, (int, float, type(None)))
         self._left_broken_padding = left_broken_padding
-        prototype = (markuptools.Markup, type(None))
+        prototype = (abjad.Markup, type(None))
         assert isinstance(left_broken_text, prototype)
         self._left_broken_text = left_broken_text
         assert isinstance(start_with_parenthesized_tempo, (bool, type(None)))

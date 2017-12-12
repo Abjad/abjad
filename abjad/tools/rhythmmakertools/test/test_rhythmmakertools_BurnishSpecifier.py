@@ -25,7 +25,6 @@ def test_rhythmmakertools_BurnishSpecifier_01():
     divisions = [(5, 16), (6, 16)]
     selections = rhythm_maker(divisions)
 
-    selections = abjad.sequence(selections).flatten()
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
@@ -85,7 +84,6 @@ def test_rhythmmakertools_BurnishSpecifier_02():
     divisions = [(5, 16), (6, 16)]
     selections = rhythm_maker(divisions)
 
-    selections = abjad.sequence(selections).flatten()
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
@@ -145,7 +143,6 @@ def test_rhythmmakertools_BurnishSpecifier_03():
     divisions = [(5, 16), (6, 16)]
     selections = rhythm_maker(divisions)
 
-    selections = abjad.sequence(selections).flatten()
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
@@ -209,7 +206,6 @@ def test_rhythmmakertools_BurnishSpecifier_04():
     divisions = [(5, 16), (6, 16)]
     selections = rhythm_maker(divisions)
 
-    selections = abjad.sequence(selections).flatten()
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
@@ -270,7 +266,6 @@ def test_rhythmmakertools_BurnishSpecifier_05():
     divisions = [(5, 16), (6, 16)]
     selections = rhythm_maker(divisions)
 
-    selections = abjad.sequence(selections).flatten()
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)

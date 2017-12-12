@@ -899,7 +899,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             >>> rhythm_maker = abjad.rhythmmakertools.EvenDivisionRhythmMaker(
             ...     division_masks=[
-            ...         abjad.silence_every([0], period=2),
+            ...         abjad.silence([0], 2),
             ...         ],
             ...     )
 
@@ -947,7 +947,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             >>> rhythm_maker = abjad.rhythmmakertools.EvenDivisionRhythmMaker(
             ...     division_masks=[
-            ...         abjad.sustain_every([0], period=2),
+            ...         abjad.sustain([0], 2),
             ...         ],
             ...     )
 
@@ -994,7 +994,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             Silences every output division:
 
             >>> rhythm_maker = abjad.rhythmmakertools.EvenDivisionRhythmMaker(
-            ...     division_masks=abjad.silence_all(),
+            ...     division_masks=abjad.silence([0], 1),
             ...     )
 
             >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
@@ -1728,7 +1728,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             >>> rhythm_maker = abjad.rhythmmakertools.EvenDivisionRhythmMaker(
             ...     logical_tie_masks=[
-            ...         abjad.silence_every([0], period=3),
+            ...         abjad.silence([0], 3),
             ...         ],
             ...     )
 
@@ -1902,10 +1902,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             Silences every fourth logical tie:
 
             >>> rhythm_maker = abjad.rhythmmakertools.EvenDivisionRhythmMaker(
-            ...     logical_tie_masks=abjad.silence_every(
-            ...         indices=[3],
-            ...         period=4,
-            ...         ),
+            ...     logical_tie_masks=abjad.silence([3], 4),
             ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
             ...         tie_across_divisions=True,
             ...         ),

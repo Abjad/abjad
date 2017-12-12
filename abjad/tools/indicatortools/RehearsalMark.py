@@ -1,4 +1,3 @@
-from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -72,14 +71,13 @@ class RehearsalMark(AbjadValueObject):
     ### INITIALIZER ###
 
     def __init__(self, number=None, markup=None):
-        from abjad.tools import markuptools
-        from abjad.tools import scoretools
-        self._default_scope = scoretools.Score
+        import abjad
+        self._default_scope = abjad.Score
         if markup is not None:
-            assert isinstance(markup, markuptools.Markup)
+            assert isinstance(markup, abjad.Markup)
         self._markup = markup
         if number is not None:
-            assert mathtools.is_positive_integer(number)
+            assert abjad.mathtools.is_positive_integer(number)
         self._number = number
 
     ### SPECIAL METHODS ###

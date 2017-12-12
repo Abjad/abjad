@@ -1,4 +1,3 @@
-from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -56,7 +55,8 @@ class BarLine(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        return systemtools.FormatSpecification(
+        import abjad
+        return abjad.FormatSpecification(
             client=self,
             storage_format_is_indented=False,
             storage_format_args_values=[self.abbreviation],

@@ -1,6 +1,5 @@
 import collections
-from abjad.tools import datastructuretools
-from abjad.tools.spannertools.ComplexBeam import ComplexBeam
+from .ComplexBeam import ComplexBeam
 
 
 class DuratedComplexBeam(ComplexBeam):
