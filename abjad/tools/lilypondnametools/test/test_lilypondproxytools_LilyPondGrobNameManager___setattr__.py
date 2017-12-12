@@ -814,21 +814,21 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___36():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/8
                 \override Score.SpacingSpanner.strict-grace-spacing = ##t
                 \override Score.SpacingSpanner.strict-note-spacing = ##t
                 \override Score.SpacingSpanner.uniform-stretching = ##t
                 c'8 [
                 d'8
-            }
-            {
+            } % measure
+            { % measure
                 e'8
                 \revert Score.SpacingSpanner.strict-grace-spacing
                 \revert Score.SpacingSpanner.strict-note-spacing
                 \revert Score.SpacingSpanner.uniform-stretching
                 f'8 ]
-            }
+            } % measure
         }
         '''
         )
@@ -1128,7 +1128,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___49():
 
     assert format(measure) == abjad.String.normalize(
         r'''
-        {
+        { % measure
             \override TimeSignature.transparent = ##t
             \time 4/8
             c'8
@@ -1136,7 +1136,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___49():
             e'8
             f'8
             \revert TimeSignature.transparent
-        }
+        } % measure
         '''
         )
 
@@ -1150,7 +1150,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___50():
 
     assert format(measure) == abjad.String.normalize(
         r'''
-        {
+        { % measure
             \override Staff.TimeSignature.transparent = ##t
             \time 4/8
             c'8
@@ -1158,7 +1158,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___50():
             e'8
             f'8
             \revert Staff.TimeSignature.transparent
-        }
+        } % measure
         '''
         )
 

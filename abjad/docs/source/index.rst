@@ -35,80 +35,74 @@ Start your Python interpreter and import Abjad:
 
 ..  abjad::
 
-    from abjad import *
+    import abjad
 
-First make eight 1/4 notes, rising by half-step from C to G:
+Then use Abjad to create and show notation:
 
 ..  abjad::
 
-    duration = Duration(1, 4)
-    notes = [Note(pitch, duration) for pitch in range(8)]
-    staff = Staff(notes)
-    show(staff)
+    duration = abjad.Duration(1, 4)
+    notes = [abjad.Note(pitch, duration) for pitch in range(8)]
+    staff = abjad.Staff(notes)
+    abjad.show(staff)
 
-..  hint::
+Note that you can click on any music notation you find in Abjad's documentation
+to see its `LilyPond`_ source code.
 
-    Click on any music notation you find in Abjad's documentation to see its
-    `LilyPond`_ source code.
+You might notice that the music notation throughout Abjad's documentation
+doesn't quite look like what `LilyPond`_ produces out-of-the-box.
+There are a number of small differences. For example, all of the notes,
+chords and rests are spaced proportionally. There are no bar numbers. The
+glissandi are a little bit thicker than normal. Tuplet brackets show the
+tuplet ratio rather than a single number.
 
-..  note::
+How does this happen? Our notation examples are generated as part of
+Abjad's doc-building process via a custom `Sphinx`_ extension housed in
+Abjad's :py:mod:`abjadbooktools <abjad.tools.abjadbooktools>` subpackage.
+To get the look-and-feel we want for our examples, we include a default
+:download:`stylesheet <_stylesheets/default.ly>` in each generated file.
 
-    You might notice that the music notation throughout Abjad's documentation
-    doesn't quite look like what `LilyPond`_ produces out-of-the-box.
-    There are a number of small differences. For example, all of the notes,
-    chords and rests are spaced proportionally. There are no bar numbers. The
-    glissandi are a little bit thicker than normal. Tuplet brackets show the
-    tuplet ratio rather than a single number.
-
-    How does this happen? Our notation examples are generated as part of
-    Abjad's doc-building process via a custom `Sphinx`_ extension housed in
-    Abjad's :py:mod:`abjadbooktools <abjad.tools.abjadbooktools>` subpackage.
-    To get the look-and-feel we want for our examples, we include a default
-    :download:`stylesheet <_stylesheets/default.ly>` in each generated file.
-
-    Not all examples are styled the same. When demonstrating `LilyPond`_
-    overrides or page layout options we may replace Abjad's default
-    documentation stylesheet with another stylesheet or disable documentation
-    stylesheets entirely. If, while examining the `LilyPond`_ source files in
-    Abjad's documentation, you encounter ``\include "..."`` statements in those
-    files, you can find the corresponding stylesheets in Abjad's documentation
-    source directory: ``abjad/docs/source/_stylesheets/``.
+Not all examples are styled the same. When demonstrating `LilyPond`_
+overrides or page layout options we may replace Abjad's default
+documentation stylesheet with another stylesheet or disable documentation
+stylesheets entirely. If, while examining the `LilyPond`_ source files in
+Abjad's documentation, you encounter ``\include "..."`` statements in those
+files, you can find the corresponding stylesheets in Abjad's documentation
+source directory: ``abjad/docs/source/_stylesheets/``.
 
 Now, let's split the notes you just made every 5/16 duration, transpose every
-other split group up by a major-seventh, then slur every split group, and
+other split group up by a major-seventh, then slur every split group and
 finally attach an accent to the first note of each split group:
 
 
 ..  abjad::
 
-    shards = mutate(staff[:]).split(
-        durations=[Duration(5, 16)],
+    shards = abjad.mutate(staff[:]).split(
+        durations=[abjad.Duration(5, 16)],
         cyclic=True,
         tie_split_notes=False,
         )
     for index, shard in enumerate(shards):
         if index % 2:
-            mutate(shard).transpose('M7')
+            abjad.mutate(shard).transpose('M7')
         if 1 < len(shard):
-            attach(Slur(), shard)
-        attach(Articulation('accent'), shard[0])
+            abjad.attach(abjad.Slur(), shard)
+        abjad.attach(abjad.Articulation('accent'), shard[0])
 
-    show(staff)
-
-That looks a little more intriguing, doesn't it?
+    abjad.show(staff)
 
 Now let's create a second staff, copied from the first, invert all of the new
-staff's pitches around middle-G, and finally group both staves into a staff
+staff's pitches around middle-G and finally group both staves into a staff
 group:
 
 ..  abjad::
 
-    copied_staff = mutate(staff).copy()
-    staff_group = StaffGroup([staff, copied_staff])
-    for note in iterate(copied_staff).by_class(Note):
+    copied_staff = abjad.mutate(staff).copy()
+    staff_group = abjad.StaffGroup([staff, copied_staff])
+    for note in abjad.iterate(copied_staff).leaves(pitched=True):
         note.written_pitch = note.written_pitch.invert(axis='G4')
 
-    show(staff_group)
+    abjad.show(staff_group)
 
 Explore Abjad's documentation to find even more ways you can create and
 transform notation with `Python`_, `LilyPond`_ and Abjad.

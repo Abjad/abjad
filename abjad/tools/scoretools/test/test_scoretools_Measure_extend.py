@@ -24,13 +24,13 @@ def test_scoretools_Measure_extend_02():
     assert not measure.is_misfilled
     assert format(measure) == abjad.String.normalize(
         r'''
-        {
+        { % measure
             \time 5/4
             c'4
             d'4
             e'4
             f'4
             g'4
-        }
+        } % measure
         '''
         )

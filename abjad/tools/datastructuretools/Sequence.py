@@ -1398,14 +1398,14 @@ class Sequence(abctools.AbjadValueObject):
                 self._flatten_at_indices_helper(self, indices, classes, depth)
                 )
 
-    def group(self, predicate=None):
+    def group_by(self, predicate=None):
         '''Groups sequence items by value of items.
 
         ..  container:: example
 
             >>> items = [0, 0, -1, -1, 2, 3, -5, 1, 1, 5, -5]
             >>> sequence = abjad.sequence(items)
-            >>> for item in sequence.group():
+            >>> for item in sequence.group_by():
             ...     item
             ...
             Sequence([0, 0])
@@ -1421,7 +1421,7 @@ class Sequence(abctools.AbjadValueObject):
 
             >>> staff = abjad.Staff("c'8 d' d' e' e' e'")
             >>> predicate = abjad.PitchSet.from_selection
-            >>> for item in abjad.sequence(staff).group(predicate):
+            >>> for item in abjad.sequence(staff).group_by(predicate):
             ...     item
             ...
             Sequence([Note("c'8")])
@@ -1431,7 +1431,7 @@ class Sequence(abctools.AbjadValueObject):
         ..  container:: expression
 
             >>> predicate = abjad.select().leaves().pitch_set()
-            >>> expression = abjad.sequence().group(predicate)
+            >>> expression = abjad.sequence().group_by(predicate)
 
             >>> staff = abjad.Staff("c'8 d' d' e' e' e'")
             >>> for item in expression(staff):
@@ -1446,7 +1446,7 @@ class Sequence(abctools.AbjadValueObject):
         if self._expression:
             return self._update_expression(
                 inspect.currentframe(),
-                evaluation_template='group',
+                evaluation_template='group_by',
                 map_operand=predicate,
                 )
         items = []

@@ -792,7 +792,7 @@ class Meter(AbjadValueObject):
             rhythm_number)
         binary_representation = binary_representation.zfill(grid_length)
         # partition binary representation of rhythm
-        parts = abjad.sequence(binary_representation).group()
+        parts = abjad.sequence(binary_representation).group_by()
         # find durations
         durations = [
             abjad.Duration(len(part), denominator)

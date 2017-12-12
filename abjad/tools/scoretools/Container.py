@@ -131,6 +131,8 @@ class Container(Component):
         '_is_simultaneous',
         )
 
+    _bracket_comment = ''
+
     ### INITIALIZER ###
 
     def __init__(self, components=None, is_simultaneous=None, name=None):
@@ -479,9 +481,9 @@ class Container(Component):
     def _format_close_brackets_slot(self, bundle):
         result = []
         if self.is_simultaneous:
-            brackets_close = ['>>']
+            brackets_close = ['>>' + self._bracket_comment]
         else:
-            brackets_close = ['}']
+            brackets_close = ['}' + self._bracket_comment]
         result.append([('close brackets', ''), brackets_close])
         return tuple(result)
 
@@ -509,9 +511,9 @@ class Container(Component):
     def _format_open_brackets_slot(self, bundle):
         result = []
         if self.is_simultaneous:
-            brackets_open = ['<<']
+            brackets_open = ['<<' + self._bracket_comment]
         else:
-            brackets_open = ['{']
+            brackets_open = ['{' + self._bracket_comment]
         result.append([('open brackets', ''), brackets_open])
         return tuple(result)
 

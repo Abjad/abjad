@@ -20,19 +20,19 @@ def test_scoretools_Mutation_copy_01():
     assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
-            {
+            { % measure
                 \time 2/8
                 c'8 [ ( \startTrillSpan
                 d'8
-            }
-            {
+            } % measure
+            { % measure
                 e'8
                 f'8
-            }
-            {
+            } % measure
+            { % measure
                 g'8
                 a'8 ] ) \stopTrillSpan
-            }
+            } % measure
         }
         '''
         )
@@ -68,19 +68,19 @@ def test_scoretools_Mutation_copy_02():
     assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
-            {
+            { % measure
                 \time 2/8
                 c'8 [ ( \startTrillSpan
                 d'8
-            }
-            {
+            } % measure
+            { % measure
                 e'8
                 f'8
-            }
-            {
+            } % measure
+            { % measure
                 g'8
                 a'8 ] ) \stopTrillSpan
-            }
+            } % measure
         }
         '''
         )
@@ -91,11 +91,11 @@ def test_scoretools_Mutation_copy_02():
     assert format(new) == abjad.String.normalize(
         r'''
         \new Voice {
-            {
+            { % measure
                 \time 2/8
                 e'8 [ ( \startTrillSpan
                 f'8 ] ) \stopTrillSpan
-            }
+            } % measure
         }
         '''
         )
@@ -119,19 +119,19 @@ def test_scoretools_Mutation_copy_03():
     assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
-            {
+            { % measure
                 \time 2/8
                 c'8 [ ( \startTrillSpan
                 d'8
-            }
-            {
+            } % measure
+            { % measure
                 e'8
                 f'8
-            }
-            {
+            } % measure
+            { % measure
                 g'8
                 a'8 ] ) \stopTrillSpan
-            }
+            } % measure
         }
         '''
         )
@@ -168,19 +168,19 @@ def test_scoretools_Mutation_copy_04():
     assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
-            {
+            { % measure
                 \time 2/8
                 c'8 [ ( \startTrillSpan
                 d'8
-            }
-            {
+            } % measure
+            { % measure
                 e'8
                 f'8
-            }
-            {
+            } % measure
+            { % measure
                 g'8
                 a'8 ] ) \stopTrillSpan
-            }
+            } % measure
         }
         '''
         )
@@ -191,19 +191,19 @@ def test_scoretools_Mutation_copy_04():
     assert format(new) == abjad.String.normalize(
         r'''
         \new Voice {
-            {
+            { % measure
                 \time 2/8
                 e'8 [ ( \startTrillSpan
                 f'8 ] ) \stopTrillSpan
-            }
-            {
+            } % measure
+            { % measure
                 e'8 [ ( \startTrillSpan
                 f'8 ] ) \stopTrillSpan
-            }
-            {
+            } % measure
+            { % measure
                 e'8 [ ( \startTrillSpan
                 f'8 ] ) \stopTrillSpan
-            }
+            } % measure
         }
         '''
         )
@@ -223,23 +223,23 @@ def test_scoretools_Mutation_copy_05():
     assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
-            {
+            { % measure
                 \time 2/8
                 c'8 [ (
                 d'8
-            }
-            {
+            } % measure
+            { % measure
                 e'8
                 f'8
-            }
-            {
+            } % measure
+            { % measure
                 g'8
                 a'8
-            }
-            {
+            } % measure
+            { % measure
                 b'8
                 c''8 ] )
-            }
+            } % measure
         }
         '''
         )
@@ -253,23 +253,23 @@ def test_scoretools_Mutation_copy_05():
     assert format(new_voice) == abjad.String.normalize(
         r'''
         \new Voice {
-            {
+            { % measure
                 \time 2/8
                 c'8
                 d'8
-            }
-            {
+            } % measure
+            { % measure
                 e'8
                 f'8
-            }
-            {
+            } % measure
+            { % measure
                 g'8
                 a'8
-            }
-            {
+            } % measure
+            { % measure
                 b'8
                 c''8
-            }
+            } % measure
         }
         '''
         )
@@ -289,23 +289,23 @@ def test_scoretools_Mutation_copy_06():
     assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
-            {
+            { % measure
                 \time 2/8
                 c'8 [ (
                 d'8
-            }
-            {
+            } % measure
+            { % measure
                 e'8
                 f'8
-            }
-            {
+            } % measure
+            { % measure
                 g'8
                 a'8
-            }
-            {
+            } % measure
+            { % measure
                 b'8
                 c''8 ] )
-            }
+            } % measure
         }
         '''
         )
@@ -318,19 +318,19 @@ def test_scoretools_Mutation_copy_06():
     assert format(new_voice) == abjad.String.normalize(
         r'''
         \new Voice {
-            {
+            { % measure
                 \time 2/8
                 e'8
                 f'8
-            }
-            {
+            } % measure
+            { % measure
                 g'8
                 a'8
-            }
-            {
+            } % measure
+            { % measure
                 b'8
                 c''8
-            }
+            } % measure
         }
         '''
         )
@@ -351,23 +351,23 @@ def test_scoretools_Mutation_copy_07():
     assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
-            {
+            { % measure
                 \time 2/8
                 c'8 [ (
                 d'8
-            }
-            {
+            } % measure
+            { % measure
                 e'8
                 f'8
-            }
-            {
+            } % measure
+            { % measure
                 g'8
                 a'8
-            }
-            {
+            } % measure
+            { % measure
                 b'8
                 c''8 ] )
-            }
+            } % measure
         }
         '''
         )
@@ -406,23 +406,23 @@ def test_scoretools_Mutation_copy_08():
     assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
-            {
+            { % measure
                 \time 2/8
                 c'8 [ (
                 d'8
-            }
-            {
+            } % measure
+            { % measure
                 e'8
                 f'8
-            }
-            {
+            } % measure
+            { % measure
                 g'8
                 a'8
-            }
-            {
+            } % measure
+            { % measure
                 b'8
                 c''8 ] )
-            }
+            } % measure
         }
         '''
         )
@@ -435,15 +435,15 @@ def test_scoretools_Mutation_copy_08():
     assert format(new_voice) == abjad.String.normalize(
         r'''
         \new Voice {
-            {
+            { % measure
                 \time 2/8
                 g'8
                 a'8
-            }
-            {
+            } % measure
+            { % measure
                 b'8
                 c''8
-            }
+            } % measure
         }
         '''
         )
@@ -465,23 +465,23 @@ def test_scoretools_Mutation_copy_09():
     assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
-            {
+            { % measure
                 \time 2/8
                 c'8 [ (
                 d'8
-            }
-            {
+            } % measure
+            { % measure
                 e'8
                 f'8
-            }
-            {
+            } % measure
+            { % measure
                 g'8
                 a'8
-            }
-            {
+            } % measure
+            { % measure
                 b'8
                 c''8 ] )
-            }
+            } % measure
         }
         '''
         )
@@ -494,31 +494,31 @@ def test_scoretools_Mutation_copy_09():
     assert format(new_voice) == abjad.String.normalize(
         r'''
         \new Voice {
-            {
+            { % measure
                 \time 2/8
                 g'8
                 a'8
-            }
-            {
+            } % measure
+            { % measure
                 b'8
                 c''8
-            }
-            {
+            } % measure
+            { % measure
                 g'8
                 a'8
-            }
-            {
+            } % measure
+            { % measure
                 b'8
                 c''8
-            }
-            {
+            } % measure
+            { % measure
                 g'8
                 a'8
-            }
-            {
+            } % measure
+            { % measure
                 b'8
                 c''8
-            }
+            } % measure
         }
         '''
         )
@@ -735,11 +735,11 @@ def test_scoretools_Mutation_copy_14():
 
     assert format(new_measure) == abjad.String.normalize(
         r'''
-        {
+        { % measure
             \time 2/8
             d'8
             e'8
-        }
+        } % measure
         '''
         )
 
@@ -782,17 +782,17 @@ def test_scoretools_Mutation_copy_16():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 3/8
                 c'8
                 d'8
                 e'8
-            }
-            {
+            } % measure
+            { % measure
                 f'8
                 g'8
                 a'8
-            }
+            } % measure
         }
         '''
         )
@@ -804,13 +804,13 @@ def test_scoretools_Mutation_copy_16():
     assert format(new_staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 1/8
                 e'8
-            }
-            {
+            } % measure
+            { % measure
                 f'8
-            }
+            } % measure
         }
         '''
         )
@@ -832,17 +832,17 @@ def test_scoretools_Mutation_copy_17():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 3/8
                 c'8
                 d'8
                 e'8
-            }
-            {
+            } % measure
+            { % measure
                 f'8
                 g'8
                 a'8
-            }
+            } % measure
         }
         '''
         )
@@ -853,11 +853,11 @@ def test_scoretools_Mutation_copy_17():
     assert format(new_staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/8
                 g'8
                 a'8
-            }
+            } % measure
         }
         '''
         )
@@ -881,21 +881,21 @@ def test_scoretools_Mutation_copy_18():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 3/9
                 \scaleDurations #'(8 . 9) {
                     c'8
                     d'8
                     e'8
                 }
-            }
-            {
+            } % measure
+            { % measure
                 \scaleDurations #'(8 . 9) {
                     f'8
                     g'8
                     a'8
                 }
-            }
+            } % measure
         }
         '''
         )
@@ -906,13 +906,13 @@ def test_scoretools_Mutation_copy_18():
     assert format(new_staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 2/9
                 \scaleDurations #'(8 . 9) {
                     g'8
                     a'8
                 }
-            }
+            } % measure
         }
         '''
         )

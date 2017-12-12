@@ -15,10 +15,10 @@ class Rest(Leaf):
         ..  docs::
 
             >>> abjad.f(measure)
-            {
+            { % measure
                 \time 3/16
                 r8.
-            }
+            } % measure
 
     '''
 

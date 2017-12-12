@@ -38,7 +38,7 @@ class BaritoneSaxophone(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=None,
-        default_scope=None,
+        context=None,
         middle_c_sounding_pitch='Eb2',
         pitch_range='[C2, Ab4]',
         ):
@@ -49,7 +49,7 @@ class BaritoneSaxophone(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
-            default_scope=default_scope,
+            context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )

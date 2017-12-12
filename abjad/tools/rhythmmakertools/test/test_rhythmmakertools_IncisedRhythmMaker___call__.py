@@ -27,29 +27,29 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___01():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 5/8
                 c'2 ~
                 c'16.
                 r32
-            }
-            {
+            } % measure
+            { % measure
                 r4
                 c'4 ~
                 c'16.
                 r32
-            }
-            {
+            } % measure
+            { % measure
                 c'2 ~
                 c'16.
                 r32
-            }
-            {
+            } % measure
+            { % measure
                 r4
                 c'4 ~
                 c'16.
                 r32
-            }
+            } % measure
         }
         '''
         )
@@ -80,29 +80,29 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___02():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 5/8
                 r4
                 c'4 ~
                 c'16.
                 r32
-            }
-            {
+            } % measure
+            { % measure
                 r4
                 r4
                 c'16.
                 r32
-            }
-            {
+            } % measure
+            { % measure
                 r4
                 r4
                 r8
-            }
-            {
+            } % measure
+            { % measure
                 r4
                 r4
                 r8
-            }
+            } % measure
         }
         '''
         )
@@ -133,25 +133,25 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___03():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 5/8
                 r32
                 c'4 ~
                 c'16.
                 r4
-            }
-            {
+            } % measure
+            { % measure
                 r32
                 c'16.
                 r4
                 r4
-            }
-            {
+            } % measure
+            { % measure
                 r32
                 r4
                 r4
                 r16.
-            }
+            } % measure
         }
         '''
         )
@@ -176,19 +176,19 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___04():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 5/8
                 c'2 ~
                 c'8
-            }
-            {
+            } % measure
+            { % measure
                 c'2 ~
                 c'8
-            }
-            {
+            } % measure
+            { % measure
                 c'2 ~
                 c'8
-            }
+            } % measure
         }
         '''
         )
@@ -220,29 +220,29 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___05():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 4/8
                 \times 4/5 {
                     r8
                     c'4.
                     r8
                 }
-            }
-            {
+            } % measure
+            { % measure
                 {
                     r8
                     c'4
                     r8
                 }
-            }
-            {
+            } % measure
+            { % measure
                 \times 4/7 {
                     r8
                     c'2 ~
                     c'8
                     r8
                 }
-            }
+            } % measure
         }
         '''
         )
@@ -273,15 +273,15 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___06():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 4/8
                 \times 8/9 {
                     r32
                     c'2 ~
                     c'32
                 }
-            }
-            {
+            } % measure
+            { % measure
                 {
                     r32
                     c'16.
@@ -292,8 +292,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___06():
                     c'4. ~
                     c'32
                 }
-            }
-            {
+            } % measure
+            { % measure
                 {
                     r32
                     c'8..
@@ -303,7 +303,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___06():
                     c'4 ~
                     c'32
                 }
-            }
+            } % measure
         }
         '''
         )
@@ -335,29 +335,29 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___07():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 5/8
                 r2
                 r16.
                 c'32
-            }
-            {
+            } % measure
+            { % measure
                 c'4
                 r4
                 r16.
                 c'32
-            }
-            {
+            } % measure
+            { % measure
                 r2
                 r16.
                 c'32
-            }
-            {
+            } % measure
+            { % measure
                 c'4
                 r4
                 r16.
                 c'32
-            }
+            } % measure
         }
         '''
         )
@@ -389,29 +389,29 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___08():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 5/8
                 c'4
                 r4
                 r16.
                 c'32
-            }
-            {
+            } % measure
+            { % measure
                 c'4
                 c'4
                 r16.
                 c'32
-            }
-            {
+            } % measure
+            { % measure
                 c'4
                 c'4
                 c'8
-            }
-            {
+            } % measure
+            { % measure
                 c'4
                 c'4
                 c'8
-            }
+            } % measure
         }
         '''
         )
@@ -443,25 +443,25 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___09():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 5/8
                 c'32
                 r4
                 r16.
                 c'4
-            }
-            {
+            } % measure
+            { % measure
                 c'32
                 r16.
                 c'4
                 c'4
-            }
-            {
+            } % measure
+            { % measure
                 c'32
                 c'4
                 c'4
                 c'16.
-            }
+            } % measure
         }
         '''
         )
@@ -488,19 +488,19 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___10():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 5/8
                 r2
                 r8
-            }
-            {
+            } % measure
+            { % measure
                 r2
                 r8
-            }
-            {
+            } % measure
+            { % measure
                 r2
                 r8
-            }
+            } % measure
         }
         '''
         )
@@ -533,29 +533,29 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___11():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 4/8
                 \times 4/5 {
                     c'8
                     r4.
                     c'8
                 }
-            }
-            {
+            } % measure
+            { % measure
                 {
                     c'8
                     r4
                     c'8
                 }
-            }
-            {
+            } % measure
+            { % measure
                 \times 4/7 {
                     c'8
                     r2
                     r8
                     c'8
                 }
-            }
+            } % measure
         }
         '''
         )
@@ -589,15 +589,15 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___12():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 4/8
                 \times 8/9 {
                     c'32
                     r2
                     r32
                 }
-            }
-            {
+            } % measure
+            { % measure
                 {
                     c'32
                     r16.
@@ -608,8 +608,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___12():
                     r4.
                     r32
                 }
-            }
-            {
+            } % measure
+            { % measure
                 {
                     c'32
                     r8..
@@ -619,7 +619,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___12():
                     r4
                     r32
                 }
-            }
+            } % measure
         }
         '''
         )
@@ -653,23 +653,23 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___13():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 5/8
                 r4
                 r4
                 c'8
-            }
-            {
+            } % measure
+            { % measure
                 c'2 ~
                 c'8
-            }
-            {
+            } % measure
+            { % measure
                 c'4
                 r16.
                 r16.
                 r16.
                 r16.
-            }
+            } % measure
         }
         '''
         )
@@ -703,21 +703,21 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___14():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 5/8
                 r4
                 r4
                 r8
-            }
-            {
+            } % measure
+            { % measure
                 c'2 ~
                 c'8
-            }
-            {
+            } % measure
+            { % measure
                 c'8
                 r4
                 r4
-            }
+            } % measure
         }
         '''
         )
@@ -746,19 +746,19 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___15():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 5/8
                 c'2 ~
                 c'8
-            }
-            {
+            } % measure
+            { % measure
                 c'2 ~
                 c'8
-            }
-            {
+            } % measure
+            { % measure
                 c'2 ~
                 c'8
-            }
+            } % measure
         }
         '''
         )
@@ -793,24 +793,24 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___16():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 4/8
                 \times 4/5 {
                     r8
                     c'2
                 }
-            }
-            {
+            } % measure
+            { % measure
                 {
                     c'2
                 }
-            }
-            {
+            } % measure
+            { % measure
                 \times 4/7 {
                     c'2.
                     r8
                 }
-            }
+            } % measure
         }
         '''
         )
@@ -846,7 +846,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___17():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 4/8
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 3/4 {
@@ -856,13 +856,13 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___17():
                 {
                     c'8
                 }
-            }
-            {
+            } % measure
+            { % measure
                 {
                     c'2
                 }
-            }
-            {
+            } % measure
+            { % measure
                 {
                     c'8
                 }
@@ -871,7 +871,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___17():
                     c'2
                     r8
                 }
-            }
+            } % measure
         }
         '''
         )
@@ -906,23 +906,23 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___18():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 5/8
                 c'4
                 c'4
                 r8
-            }
-            {
+            } % measure
+            { % measure
                 r2
                 r8
-            }
-            {
+            } % measure
+            { % measure
                 r4
                 c'16. [
                 c'16.
                 c'16.
                 c'16. ]
-            }
+            } % measure
         }
         '''
         )
@@ -957,21 +957,21 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___19():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 5/8
                 c'4
                 c'4
                 c'8
-            }
-            {
+            } % measure
+            { % measure
                 r2
                 r8
-            }
-            {
+            } % measure
+            { % measure
                 r8
                 c'4
                 c'4
-            }
+            } % measure
         }
         '''
         )
@@ -1001,19 +1001,19 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___20():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 5/8
                 r2
                 r8
-            }
-            {
+            } % measure
+            { % measure
                 r2
                 r8
-            }
-            {
+            } % measure
+            { % measure
                 r2
                 r8
-            }
+            } % measure
         }
         '''
         )
@@ -1049,24 +1049,24 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___21():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 4/8
                 \times 4/5 {
                     c'8
                     r2
                 }
-            }
-            {
+            } % measure
+            { % measure
                 {
                     r2
                 }
-            }
-            {
+            } % measure
+            { % measure
                 \times 4/7 {
                     r2.
                     c'8
                 }
-            }
+            } % measure
         }
         '''
         )
@@ -1103,7 +1103,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___22():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 4/8
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 3/4 {
@@ -1113,13 +1113,13 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___22():
                 {
                     r8
                 }
-            }
-            {
+            } % measure
+            { % measure
                 {
                     r2
                 }
-            }
-            {
+            } % measure
+            { % measure
                 {
                     r8
                 }
@@ -1128,7 +1128,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___22():
                     r2
                     c'8
                 }
-            }
+            } % measure
         }
         '''
         )

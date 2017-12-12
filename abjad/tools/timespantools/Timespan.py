@@ -1,8 +1,4 @@
 import copy
-from abjad.tools import datastructuretools
-from abjad.tools import markuptools
-from abjad.tools import mathtools
-from abjad.tools.topleveltools import new
 from abjad.tools.mathtools.BoundedObject import BoundedObject
 
 
@@ -78,19 +74,18 @@ class Timespan(BoundedObject):
 
         Returns timespan list.
         '''
-        from abjad.tools import timespantools
-        from abjad.tools.topleveltools import new
+        import abjad
         argument = self._get_timespan(argument)
         if not self.intersects_timespan(argument):
-            return timespantools.TimespanList()
+            return abjad.TimespanList()
         new_start_offset = max(self._start_offset, argument.start_offset)
         new_stop_offset = min(self._stop_offset, argument.stop_offset)
-        timespan = new(
+        timespan = abjad.new(
             self,
             start_offset=new_start_offset,
             stop_offset=new_stop_offset,
             )
-        return timespantools.TimespanList([timespan])
+        return abjad.TimespanList([timespan])
 
     def __eq__(self, argument):
         r'''Is true when `argument` is a timespan with equal offsets.
@@ -125,9 +120,9 @@ class Timespan(BoundedObject):
 
         Returns string.
         '''
-        from abjad.tools import systemtools
+        import abjad
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager(self).get_storage_format()
+            return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __ge__(self, argument):
@@ -207,7 +202,7 @@ class Timespan(BoundedObject):
         Returns LilyPond file.
         '''
         import abjad
-        timespans = abjad.timespantools.TimespanList([self])
+        timespans = abjad.TimespanList([self])
         return timespans.__illustrate__(
             range_=range_,
             scale=scale,
@@ -375,21 +370,21 @@ class Timespan(BoundedObject):
 
         Returns timespan list.
         '''
-        from abjad.tools import timespantools
+        import abjad
         argument = self._get_timespan(argument)
         if (not self.intersects_timespan(argument) and
             not self.is_tangent_to_timespan(argument)):
-            result = timespantools.TimespanList([self, argument])
+            result = abjad.TimespanList([self, argument])
             result.sort()
             return result
         new_start_offset = min(self._start_offset, argument.start_offset)
         new_stop_offset = max(self._stop_offset, argument.stop_offset)
-        timespan = new(
+        timespan = abjad.new(
             self,
             start_offset=new_start_offset,
             stop_offset=new_stop_offset,
             )
-        return timespantools.TimespanList([timespan])
+        return abjad.TimespanList([timespan])
 
     def __sub__(self, argument):
         r'''Subtract `argument` from timespan.
@@ -451,15 +446,15 @@ class Timespan(BoundedObject):
 
         Returns timespan list.
         '''
-        from abjad.tools import timespantools
+        import abjad
         argument = self._get_timespan(argument)
-        timespans = timespantools.TimespanList()
+        timespans = abjad.TimespanList()
         if not self.intersects_timespan(argument):
             timespans.append(copy.deepcopy(self))
         elif argument.trisects_timespan(self):
             new_start_offset = self._start_offset
             new_stop_offset = argument.start_offset
-            timespan = new(
+            timespan = abjad.new(
                 self,
                 start_offset=new_start_offset,
                 stop_offset=new_stop_offset,
@@ -467,7 +462,7 @@ class Timespan(BoundedObject):
             timespans.append(timespan)
             new_start_offset = argument.stop_offset
             new_stop_offset = self._stop_offset
-            timespan = new(
+            timespan = abjad.new(
                 self,
                 start_offset=new_start_offset,
                 stop_offset=new_stop_offset,
@@ -478,7 +473,7 @@ class Timespan(BoundedObject):
         elif argument.overlaps_only_start_of_timespan(self):
             new_start_offset = argument.stop_offset
             new_stop_offset = self._stop_offset
-            timespan = new(
+            timespan = abjad.new(
                 self,
                 start_offset=new_start_offset,
                 stop_offset=new_stop_offset,
@@ -487,7 +482,7 @@ class Timespan(BoundedObject):
         elif argument.overlaps_only_stop_of_timespan(self):
             new_start_offset = self._start_offset
             new_stop_offset = argument.start_offset
-            timespan = new(
+            timespan = abjad.new(
                 self,
                 start_offset=new_start_offset,
                 stop_offset=new_stop_offset,
@@ -497,7 +492,7 @@ class Timespan(BoundedObject):
             argument.stops_before_timespan_stops(self)):
             new_start_offset = argument.stop_offset
             new_stop_offset = self._stop_offset
-            timespan = new(
+            timespan = abjad.new(
                 self,
                 start_offset=new_start_offset,
                 stop_offset=new_stop_offset,
@@ -507,7 +502,7 @@ class Timespan(BoundedObject):
             argument.starts_after_timespan_starts(self)):
             new_start_offset = self._start_offset
             new_stop_offset = argument.start_offset
-            timespan = new(
+            timespan = abjad.new(
                 self,
                 start_offset=new_start_offset,
                 stop_offset=new_stop_offset,
@@ -619,26 +614,26 @@ class Timespan(BoundedObject):
 
         Returns timespan list.
         '''
-        from abjad.tools import timespantools
+        import abjad
         argument = self._get_timespan(argument)
         if (not self.intersects_timespan(argument) or
             self.is_tangent_to_timespan(argument)):
-            result = timespantools.TimespanList()
+            result = abjad.TimespanList()
             result.append(copy.deepcopy(self))
             result.append(copy.deepcopy(argument))
             result.sort()
             return result
-        result = timespantools.TimespanList()
+        result = abjad.TimespanList()
         start_offsets = [self._start_offset, argument.start_offset]
         stop_offsets = [self._stop_offset, argument.stop_offset]
         start_offsets.sort()
         stop_offsets.sort()
-        timespan_1 = new(
+        timespan_1 = abjad.new(
             self,
             start_offset=start_offsets[0],
             stop_offset=start_offsets[1],
             )
-        timespan_2 = new(
+        timespan_2 = abjad.new(
             self,
             start_offset=stop_offsets[0],
             stop_offset=stop_offsets[1],
@@ -658,11 +653,12 @@ class Timespan(BoundedObject):
         postscript_y_offset,
         postscript_scale,
         ):
+        import abjad
         start = (float(self._start_offset) * postscript_scale)
         start -= postscript_x_offset
         stop = (float(self._stop_offset) * postscript_scale)
         stop -= postscript_x_offset
-        ps = markuptools.Postscript()
+        ps = abjad.Postscript()
         ps = ps.moveto(start, postscript_y_offset)
         ps = ps.lineto(stop, postscript_y_offset)
         ps = ps.stroke()
@@ -707,6 +703,7 @@ class Timespan(BoundedObject):
         return start_offset, stop_offset
 
     def _get_timespan(self, argument):
+        import abjad
         if isinstance(argument, Timespan):
             start_offset, stop_offset = argument.offsets
         elif hasattr(argument, 'timespan'):
@@ -718,7 +715,7 @@ class Timespan(BoundedObject):
         #    start_offset, stop_offset = argument.get_timespan().offsets
         else:
             raise ValueError(argument)
-        return new(
+        return abjad.new(
             self,
             start_offset=start_offset,
             stop_offset=stop_offset,
@@ -1383,7 +1380,7 @@ class Timespan(BoundedObject):
             result.append(left)
             result.append(right)
         else:
-            result.append(new(self))
+            result.append(abjad.new(self))
         return result
 
     def split_at_offsets(self, offsets):

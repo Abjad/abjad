@@ -41,7 +41,7 @@ class AltoTrombone(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=('bass', 'tenor'),
-        default_scope=None,
+        context=None,
         middle_c_sounding_pitch=None,
         pitch_range='[A2, Bb5]',
         ):
@@ -52,7 +52,7 @@ class AltoTrombone(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
-            default_scope=default_scope,
+            context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
             )
@@ -79,7 +79,7 @@ class AltoTrombone(Instrument):
                     contents=['Alt. trb.'],
                     ),
                 allowable_clefs=('bass', 'tenor'),
-                default_scope='Staff',
+                context='Staff',
                 middle_c_sounding_pitch=abjad.NamedPitch("c'"),
                 pitch_range=abjad.PitchRange('[A2, Bb5]'),
                 )

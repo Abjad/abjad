@@ -99,7 +99,7 @@ class ComplexTrillSpanner(Spanner):
                 abjad.inspect(previous_leaf).get_spanners(type(self))):
                 grob_override = abjad.LilyPondGrobOverride(
                     grob_name='TrillSpanner',
-                    is_once=True,
+                    once=True,
                     property_path=(
                         'bound-details',
                         'left',

@@ -27,13 +27,13 @@ class IndicatorWrapper(AbjadValueObject):
 
     __slots__ = (
         '_component',
+        '_context',
         '_effective_context',
         '_indicator',
         '_is_annotation',
         '_is_piecewise',
         '_name',
         '_piecewise_spanner',
-        '_scope',
         '_synthetic_offset',
         )
 
@@ -44,12 +44,12 @@ class IndicatorWrapper(AbjadValueObject):
     def __init__(
         self,
         component=None,
+        context=None,
         indicator=None,
         is_annotation=None,
         is_piecewise=None,
         name=None,
         piecewise_spanner=None,
-        scope=None,
         synthetic_offset=None,
         ):
         import abjad
@@ -72,12 +72,12 @@ class IndicatorWrapper(AbjadValueObject):
         if piecewise_spanner is not None:
             assert isinstance(piecewise_spanner, abjad.Spanner)
         self._piecewise_spanner = piecewise_spanner
-        if scope is not None:
-            if isinstance(scope, type):
-                assert issubclass(scope, abjad.Component)
+        if context is not None:
+            if isinstance(context, type):
+                assert issubclass(context, abjad.Component)
             else:
-                assert isinstance(scope, (abjad.Component, str))
-        self._scope = scope
+                assert isinstance(context, (abjad.Component, str))
+        self._context = context
         if synthetic_offset is not None:
             synthetic_offset = abjad.Offset(synthetic_offset)
         self._synthetic_offset = synthetic_offset
@@ -166,7 +166,7 @@ class IndicatorWrapper(AbjadValueObject):
                 is_piecewise=True,
                 )
 
-        Copies indicator and scope.
+        Copies indicator and context.
 
         Does not copy start component.
 
@@ -178,11 +178,11 @@ class IndicatorWrapper(AbjadValueObject):
         '''
         new = type(self)(
             component=None,
+            context=self.context,
             indicator=copy.copy(self.indicator),
             is_annotation=self.is_annotation,
             is_piecewise=self.is_piecewise,
             name=self.name,
-            scope=self.scope,
             synthetic_offset=self.synthetic_offset,
             )
         return new
@@ -216,25 +216,25 @@ class IndicatorWrapper(AbjadValueObject):
 
     def _find_correct_effective_context(self):
         import abjad
-        scope = self.scope
-        if scope is None:
+        context = self.context
+        if context is None:
             return None
-        if isinstance(scope, str):
-            if hasattr(abjad, scope):
-                scope = getattr(abjad, scope)
-        if isinstance(scope, type):
-            scope_type = scope
+        if isinstance(context, str):
+            if hasattr(abjad, context):
+                context = getattr(abjad, context)
+        if isinstance(context, type):
+            context_type = context
             for component in abjad.inspect(self.component).get_parentage():
-                if isinstance(component, scope_type):
+                if isinstance(component, context_type):
                     return component
-        elif isinstance(scope, str):
-            scope_name = scope
+        elif isinstance(context, str):
+            context_name = context
             for component in abjad.inspect(self.component).get_parentage():
-                if getattr(component, 'context_name', None) == scope_name:
+                if getattr(component, 'context_name', None) == context_name:
                     return component
         else:
             message = '{!r} must be context type, context name or none.'
-            message = message.format(scope)
+            message = message.format(context)
             raise TypeError(message)
 
     def _get_effective_context(self):
@@ -327,7 +327,7 @@ class IndicatorWrapper(AbjadValueObject):
         prototype = type(self.indicator)
         wrapper = component._get_effective(prototype, unwrap=False)
         if (wrapper is not None and
-            wrapper.scope is not None and
+            wrapper.context is not None and
             wrapper.indicator != self.indicator):
             if wrapper.start_offset == self.start_offset:
                 message = 'can not attach {} to ...\n\n{}'
@@ -357,6 +357,14 @@ class IndicatorWrapper(AbjadValueObject):
             else:
                 return
         return self._component
+
+    @property
+    def context(self):
+        r'''Gets context of indicator wrapper.
+
+        Returns context or string.
+        '''
+        return self._context
 
     @property
     def indicator(self):
@@ -415,14 +423,6 @@ class IndicatorWrapper(AbjadValueObject):
         Returns spanner or none.
         '''
         return self._piecewise_spanner
-
-    @property
-    def scope(self):
-        r'''Gets scope of indicator wrapper.
-
-        Returns context.
-        '''
-        return self._scope
 
     @property
     def start_offset(self):

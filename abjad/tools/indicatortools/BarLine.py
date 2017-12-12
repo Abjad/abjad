@@ -33,7 +33,7 @@ class BarLine(AbjadValueObject):
 
     __slots__ = (
         '_abbreviation',
-        '_default_scope',
+        '_context',
         )
 
     _format_slot = 'closing'
@@ -41,10 +41,9 @@ class BarLine(AbjadValueObject):
     ### INITIALIZER ##
 
     def __init__(self, abbreviation='|'):
-        from abjad.tools import scoretools
         assert isinstance(abbreviation, str), repr(abbreviation)
         self._abbreviation = abbreviation
-        self._default_scope = scoretools.Staff
+        self._context = 'Staff'
 
     ### PRIVATE PROPERTIES ###
 
@@ -88,15 +87,15 @@ class BarLine(AbjadValueObject):
         return self._abbreviation
 
     @property
-    def default_scope(self):
-        r'''Gets default scope of bar line.
+    def context(self):
+        r'''Gets default context of bar line.
 
         ..  container:: example
 
             >>> bar_line = abjad.BarLine('|.')
-            >>> bar_line.default_scope
-            <class 'abjad.tools.scoretools.Staff.Staff'>
+            >>> bar_line.context
+            'Staff'
 
-        Returns staff.
+        Returns context or string.
         '''
-        return self._default_scope
+        return self._context

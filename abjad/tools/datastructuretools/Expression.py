@@ -546,8 +546,8 @@ class Expression(AbjadValueObject):
         assert self.evaluation_template
         if self.evaluation_template == 'map':
             return self._evaluate_map(*arguments)
-        if self.evaluation_template == 'group':
-            return self._evaluate_group(*arguments)
+        if self.evaluation_template == 'group_by':
+            return self._evaluate_group_by(*arguments)
         if self.subclass_hook:
             assert isinstance(self.subclass_hook, str)
             subclass_hook = getattr(self, self.subclass_hook)
@@ -614,7 +614,7 @@ class Expression(AbjadValueObject):
             result = __argument_0
         return result
 
-    def _evaluate_group(self, *arguments):
+    def _evaluate_group_by(self, *arguments):
         assert len(arguments) == 1, repr(arguments)
         globals_ = self._make_globals()
         assert '__argument_0' not in globals_
@@ -780,7 +780,7 @@ class Expression(AbjadValueObject):
         callback = self.callbacks[-1]
         if getattr(callback, '_lone', None):
             return True
-        if (callback.evaluation_template == 'group' and
+        if (callback.evaluation_template == 'group_by' and
             callback.map_operand is None):
             return True
         if not callback.qualified_method_name.endswith('__getitem__'):
@@ -1066,7 +1066,8 @@ class Expression(AbjadValueObject):
 
     @staticmethod
     def _make_subscript_string(i, markup=False):
-        if isinstance(i, int):
+        import abjad
+        if isinstance(i, (int, abjad.Pattern)):
             if markup:
                 subscript_string = '{i}'
             else:
@@ -2052,19 +2053,19 @@ class Expression(AbjadValueObject):
 
                     >>> abjad.f(staff)
                     \new Staff {
-                        {
+                        { % measure
                             \time 2/8
                             <c' bf'>8
                             <g' a'>8
-                        }
-                        {
+                        } % measure
+                        { % measure
                             af'8
                             r8
-                        }
-                        {
+                        } % measure
+                        { % measure
                             r8
                             gf'8
-                        }
+                        } % measure
                     }
 
             ..  container:: example expression

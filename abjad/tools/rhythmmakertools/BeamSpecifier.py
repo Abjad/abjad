@@ -89,6 +89,7 @@ class BeamSpecifier(AbjadValueObject):
         Returns none.
         '''
         import abjad
+        self._detach_all_beams(selections)
         if self.beam_divisions_together:
             if self.hide_nibs:
                 beam = abjad.MultipartBeam(beam_rests=self.beam_rests)

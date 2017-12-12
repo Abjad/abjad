@@ -1,10 +1,10 @@
 def attach(
     indicator,
     argument,
+    context=None,
     is_piecewise=None,
     is_annotation=None,
     name=None,
-    scope=None,
     synthetic_offset=None,
     ):
     r'''Attaches `indicator` to component, selection or spanner `argument`.
@@ -46,7 +46,7 @@ def attach(
                 f'4 -\accent
             }
 
-    Derives scope from the default scope of `indicator` when `scope` is none.
+    Derives context from default `indicator` context when `context` is none.
 
     Returns none.
     '''
@@ -103,7 +103,7 @@ def attach(
             abjad.Spanner,
             )
         assert isinstance(indicator, prototype), repr(indicator)
-        assert scope is None
+        assert context is None
         if isinstance(indicator, abjad.Spanner):
             name = name or indicator.name
             indicator._name = name
@@ -132,21 +132,21 @@ def attach(
         is_annotation = is_annotation or indicator.is_annotation
         is_piecewise = indicator.is_piecewise
         name = name or indicator.name
-        scope = scope or indicator.scope
+        context = context or indicator.context
         synthetic_offset = synthetic_offset or indicator.synthetic_offset
         indicator._detach()
         indicator = indicator.indicator
 
-    if hasattr(indicator, '_default_scope'):
-        scope = scope or indicator._default_scope
+    if hasattr(indicator, 'context'):
+        context = context or indicator.context
 
     wrapper = abjad.IndicatorWrapper(
         component=component,
+        context=context,
         indicator=indicator,
         is_annotation=is_annotation,
         is_piecewise=is_piecewise,
         name=name,
-        scope=scope,
         synthetic_offset=synthetic_offset,
         )
     wrapper._bind_to_component(component)

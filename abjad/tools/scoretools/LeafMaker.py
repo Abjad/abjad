@@ -360,14 +360,14 @@ class LeafMaker(AbjadValueObject):
 
             >>> abjad.f(staff)
             \new RhythmicStaff {
-                {
+                { % measure
                     \time 3/8
                     R1 * 3/8
-                }
-                {
+                } % measure
+                { % measure
                     \time 5/8
                     R1 * 5/8
-                }
+                } % measure
             }
 
     ..  container:: example

@@ -131,7 +131,7 @@ def test_scoretools_Container_reverse_08():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 4/4
                 c'8 [
                 d'8
@@ -141,7 +141,7 @@ def test_scoretools_Container_reverse_08():
                 a'8
                 b'8
                 c''8
-            }
+            } % measure
             c'8
             d'8 ]
         }
@@ -155,7 +155,7 @@ def test_scoretools_Container_reverse_08():
         \new Staff {
             d'8 [
             c'8
-            {
+            { % measure
                 \time 4/4
                 c'8
                 d'8
@@ -165,7 +165,7 @@ def test_scoretools_Container_reverse_08():
                 a'8
                 b'8
                 c''8 ]
-            }
+            } % measure
         }
         '''
         )
@@ -196,20 +196,20 @@ def test_scoretools_Container_reverse_09():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            {
+            { % measure
                 \time 4/8
                 \set Staff.pedalSustainStyle = #'mixed
                 c'8 [ \glissando \sustainOn \startTrillSpan
                 d'8 \glissando
                 e'8 \glissando
                 f'8 ] \glissando
-            }
-            {
+            } % measure
+            { % measure
                 \time 3/8
                 c'8 [ \glissando
                 d'8 \glissando
                 e'8 ] \sustainOff \stopTrillSpan
-            }
+            } % measure
         }
         '''
         )
@@ -219,20 +219,20 @@ def test_scoretools_Container_reverse_09():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            {
+            { % measure
                 \time 3/8
                 \set Staff.pedalSustainStyle = #'mixed
                 c'8 [ \glissando \sustainOn \startTrillSpan
                 d'8 \glissando
                 e'8 ] \glissando
-            }
-            {
+            } % measure
+            { % measure
                 \time 4/8
                 c'8 [ \glissando
                 d'8 \glissando
                 e'8 \glissando
                 f'8 ] \sustainOff \stopTrillSpan
-            }
+            } % measure
         }
         '''
         )

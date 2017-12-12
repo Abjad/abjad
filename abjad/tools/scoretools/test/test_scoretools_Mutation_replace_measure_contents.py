@@ -16,17 +16,17 @@ def test_scoretools_Mutation_replace_measure_contents_01():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 1/8
                 c'16
                 d'16
-            }
-            {
+            } % measure
+            { % measure
                 \time 3/16
                 e'16
                 f'16
                 s1 * 1/16
-            }
+            } % measure
         }
         '''
         )
@@ -49,24 +49,24 @@ def test_scoretools_Mutation_replace_measure_contents_02():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 1/16
                 s1 * 1/16
-            }
-            {
+            } % measure
+            { % measure
                 \time 3/16
                 c'8
                 s1 * 1/16
-            }
-            {
+            } % measure
+            { % measure
                 \time 1/16
                 s1 * 1/16
-            }
-            {
+            } % measure
+            { % measure
                 \time 3/16
                 d'8
                 s1 * 1/16
-            }
+            } % measure
         }
         '''
         )
@@ -118,15 +118,15 @@ def test_scoretools_Mutation_replace_measure_contents_05():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 1/8
                 c'16
                 d'16
-            }
-            {
+            } % measure
+            { % measure
                 e'16
                 f'16
-            }
+            } % measure
         }
         '''
         )
@@ -151,15 +151,15 @@ def test_scoretools_Mutation_replace_measure_contents_06():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \time 5/16
                 c'4 ~
                 c'16
-            }
-            {
+            } % measure
+            { % measure
                 \time 3/16
                 c'8.
-            }
+            } % measure
         }
         '''
         )

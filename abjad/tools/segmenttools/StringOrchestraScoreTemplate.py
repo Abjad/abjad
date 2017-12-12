@@ -488,15 +488,15 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
 
         ### TIME SIGNATURE CONTEXT ###
 
-        time_signature_context = abjad.Context(
+        global_context = abjad.Context(
             name='GlobalContext',
             context_name='GlobalContext',
             )
         instrument_tags = ' '.join(tag_names)
         tag_string = "tag #'({})".format(instrument_tags)
         tag_command = abjad.LilyPondCommand(tag_string, 'before')
-        abjad.attach(tag_command, time_signature_context)
-        score.insert(0, time_signature_context)
+        abjad.attach(tag_command, global_context)
+        score.insert(0, global_context)
         return score
 
     ### PRIVATE METHODS ###

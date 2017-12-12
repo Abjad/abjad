@@ -41,7 +41,7 @@ class TenorTrombone(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=('tenor', 'bass'),
-        default_scope=None,
+        context=None,
         middle_c_sounding_pitch=None,
         pitch_range='[E2, Eb5]',
         ):
@@ -52,7 +52,7 @@ class TenorTrombone(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
-            default_scope=default_scope,
+            context=context,
             pitch_range=pitch_range,
             )
         self._is_primary_instrument = True

@@ -38,7 +38,7 @@ class StaffChange(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_default_scope',
+        '_context',
         '_staff',
         )
 
@@ -51,9 +51,9 @@ class StaffChange(AbjadValueObject):
     ### INITIALIZER ###
 
     def __init__(self, staff=None):
-        from abjad.tools import scoretools
-        self._default_scope = scoretools.Staff
-        if not isinstance(staff, (scoretools.Staff, type(None))):
+        import abjad
+        self._context = 'Staff'
+        if not isinstance(staff, (abjad.Staff, type(None))):
             message = 'staff change input value {!r}'
             message += ' must be staff instance.'
             message.format(staff)
@@ -111,16 +111,16 @@ class StaffChange(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def default_scope(self):
-        r'''Gets default scope of staff change.
+    def context(self):
+        r'''Gets default context of staff change.
 
         ..  container:: example
 
             Default staff change:
 
             >>> staff_change = abjad.StaffChange()
-            >>> staff_change.default_scope
-            <class 'abjad.tools.scoretools.Staff.Staff'>
+            >>> staff_change.context
+            'Staff'
 
         ..  container:: example
 
@@ -128,12 +128,12 @@ class StaffChange(AbjadValueObject):
 
             >>> lh_staff = abjad.Staff("s2", name='LHStaff')
             >>> staff_change = abjad.StaffChange(staff=lh_staff)
-            >>> staff_change.default_scope
-            <class 'abjad.tools.scoretools.Staff.Staff'>
+            >>> staff_change.context
+            'Staff'
 
-        Returns staff.
+        Returns context or string.
         '''
-        return self._default_scope
+        return self._context
 
     @property
     def staff(self):

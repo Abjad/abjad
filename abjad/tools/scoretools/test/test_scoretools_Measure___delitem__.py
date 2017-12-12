@@ -13,12 +13,12 @@ def test_scoretools_Measure___delitem___01():
 
     assert format(measure) == abjad.String.normalize(
         r'''
-        {
+        { % measure
             \time 3/8
             c'8
             c'8
             c'8
-        }
+        } % measure
         '''
         )
 
@@ -37,12 +37,12 @@ def test_scoretools_Measure___delitem___02():
 
     assert format(measure) == abjad.String.normalize(
         r'''
-        {
+        { % measure
             \time 3/8
             c'8
             c'8
             c'8
-        }
+        } % measure
         '''
         )
 
@@ -61,11 +61,11 @@ def test_scoretools_Measure___delitem___03():
 
     assert format(measure) == abjad.String.normalize(
         r'''
-        {
+        { % measure
             \time 2/8
             c'8
             c'8
-        }
+        } % measure
         '''
         )
 
@@ -84,13 +84,13 @@ def test_scoretools_Measure___delitem___04():
 
     assert format(measure) == abjad.String.normalize(
         r'''
-        {
+        { % measure
             \time 7/16
             c'16
             c'8
             c'8
             c'8
-        }
+        } % measure
         '''
         )
 
@@ -110,14 +110,14 @@ def test_scoretools_Measure___delitem___05():
 
     assert format(measure) == abjad.String.normalize(
         r'''
-        {
+        { % measure
             \time 3/9
             \scaleDurations #'(8 . 9) {
                 d'8
                 e'8
                 f'8
             }
-        }
+        } % measure
         '''
         )
 
@@ -136,7 +136,7 @@ def test_scoretools_Measure___delitem___06():
 
     assert format(measure) == abjad.String.normalize(
         r'''
-        {
+        { % measure
             \time 3/9
             \scaleDurations #'(8 . 9) {
                 c'16
@@ -144,7 +144,7 @@ def test_scoretools_Measure___delitem___06():
                 e'8
                 f'8
             }
-        }
+        } % measure
         '''
         )
 
@@ -152,14 +152,14 @@ def test_scoretools_Measure___delitem___06():
 
     assert format(measure) == abjad.String.normalize(
         r'''
-        {
+        { % measure
             \time 5/18
             \scaleDurations #'(8 . 9) {
                 d'16
                 e'8
                 f'8
             }
-        }
+        } % measure
         '''
         )
 

@@ -252,7 +252,7 @@ class BowContactSpanner(Spanner):
             return
         override_ = abjad.LilyPondGrobOverride(
             grob_name='NoteHead',
-            is_once=True,
+            once=True,
             property_path='stencil',
             value=abjad.Scheme('ly:text-interface::print'),
             )
@@ -260,7 +260,7 @@ class BowContactSpanner(Spanner):
         bundle.grob_overrides.append(string)
         override_ = abjad.LilyPondGrobOverride(
             grob_name='NoteHead',
-            is_once=True,
+            once=True,
             property_path='text',
             value=bow_contact_point.markup,
             )
@@ -269,7 +269,7 @@ class BowContactSpanner(Spanner):
         y_offset = float((4 * bow_contact_point.contact_point) - 2)
         override_ = abjad.LilyPondGrobOverride(
             grob_name='NoteHead',
-            is_once=True,
+            once=True,
             property_path='Y-offset',
             value=y_offset,
             )
@@ -352,7 +352,7 @@ class BowContactSpanner(Spanner):
             style = abjad.SchemeSymbol(bow_motion_technique.glissando_style)
             override_ = abjad.LilyPondGrobOverride(
                 grob_name='Glissando',
-                is_once=True,
+                once=True,
                 property_path='style',
                 value=style,
                 )
@@ -367,7 +367,7 @@ class BowContactSpanner(Spanner):
         style = abjad.SchemeSymbol('cross')
         override_ = abjad.LilyPondGrobOverride(
             grob_name='NoteHead',
-            is_once=True,
+            once=True,
             property_path='style',
             value=style,
             )

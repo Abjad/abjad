@@ -239,13 +239,13 @@ def test_scoretools_Mutation_swap_07():
 
     assert format(measure) == abjad.String.normalize(
         r'''
-        {
+        { % measure
             \time 4/8
             c'8
             d'8
             e'8
             f'8
-        }
+        } % measure
         '''
         )
 
@@ -254,13 +254,13 @@ def test_scoretools_Mutation_swap_07():
 
     assert format(new_measure) == abjad.String.normalize(
         r'''
-        {
+        { % measure
             \time 4/8
             c'8
             d'8
             e'8
             f'8
-        }
+        } % measure
         '''
         )
 

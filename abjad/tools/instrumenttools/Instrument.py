@@ -11,7 +11,7 @@ class Instrument(AbjadValueObject):
 
     __slots__ = (
         '_allowable_clefs',
-        '_default_scope',
+        '_context',
         '_do_not_format',
         '_middle_c_sounding_pitch',
         '_name',
@@ -38,7 +38,7 @@ class Instrument(AbjadValueObject):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=None,
-        default_scope=None,
+        context=None,
         middle_c_sounding_pitch=None,
         pitch_range=None,
         ):
@@ -72,7 +72,7 @@ class Instrument(AbjadValueObject):
         middle_c_sounding_pitch = abjad.NamedPitch(
             middle_c_sounding_pitch)
         self._middle_c_sounding_pitch = middle_c_sounding_pitch
-        self._default_scope = default_scope or 'Staff'
+        self._context = context or 'Staff'
         self._is_primary_instrument = False
         self._performer_names = ['instrumentalist']
         self._starting_clefs = copy.copy(allowable_clefs)
@@ -80,13 +80,13 @@ class Instrument(AbjadValueObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _scope_name(self):
-        if isinstance(self.default_scope, type):
-            return self.default_scope.__name__
-        elif isinstance(self.default_scope, str):
-            return self.default_scope
+    def _context_name(self):
+        if isinstance(self.context, type):
+            return self.context.__name__
+        elif isinstance(self.context, str):
+            return self.context
         else:
-            return type(self.default_scope).__name__
+            return type(self.context).__name__
 
     ### PRIVATE METHODS ###
 
@@ -119,7 +119,7 @@ class Instrument(AbjadValueObject):
         if context is not None:
             context = context.context_name
         else:
-            context = self._scope_name
+            context = self._context_name
         line = r'\set {!s}.instrumentName = {!s}'
         line = line.format(
             context,
@@ -172,14 +172,14 @@ class Instrument(AbjadValueObject):
         return self._allowable_clefs
 
     @property
-    def default_scope(self):
-        r'''Gets default scope.
+    def context(self):
+        r'''Gets default context of instrument.
 
         Defaults to staff.
 
         Returns context or context name.
         '''
-        return self._default_scope
+        return self._context
 
     @property
     def middle_c_sounding_pitch(self):

@@ -80,16 +80,16 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___04():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            { % measure
                 \set Score.currentBarNumber = #12
                 \time 2/8
                 c'8
                 d'8
-            }
-            {
+            } % measure
+            { % measure
                 e'8
                 f'8
-            }
+            } % measure
         }
         '''
         )

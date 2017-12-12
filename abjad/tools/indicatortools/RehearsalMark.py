@@ -63,7 +63,7 @@ class RehearsalMark(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_default_scope',
+        '_context',
         '_markup',
         '_number',
         )
@@ -72,7 +72,7 @@ class RehearsalMark(AbjadValueObject):
 
     def __init__(self, number=None, markup=None):
         import abjad
-        self._default_scope = abjad.Score
+        self._context = 'Score'
         if markup is not None:
             assert isinstance(markup, abjad.Markup)
         self._markup = markup
@@ -131,28 +131,28 @@ class RehearsalMark(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def default_scope(self):
-        r'''Gets default scope of rehearsal mark.
+    def context(self):
+        r'''Gets default context of rehearsal mark.
 
         ..  container:: example
 
             Rehearsal A:
 
             >>> mark = abjad.RehearsalMark(number=1)
-            >>> mark.default_scope
-            <class 'abjad.tools.scoretools.Score.Score'>
+            >>> mark.context
+            'Score'
 
         ..  container:: example
 
             Rehearsal B:
 
             >>> mark = abjad.RehearsalMark(number=2)
-            >>> mark.default_scope
-            <class 'abjad.tools.scoretools.Score.Score'>
+            >>> mark.context
+            'Score'
 
-        Returns score.
+        Returns context or string.
         '''
-        return self._default_scope
+        return self._context
 
     @property
     def markup(self):

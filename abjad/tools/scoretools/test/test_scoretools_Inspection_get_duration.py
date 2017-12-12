@@ -13,7 +13,7 @@ def test_scoretools_Inspection_get_duration_01():
         )
     leaves = abjad.select(voice).leaves()
     mark = abjad.MetronomeMark(abjad.Duration(1, 8), 42)
-    abjad.attach(mark, leaves[0], scope=abjad.Voice)
+    abjad.attach(mark, leaves[0], context='Voice')
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     crescendo = abjad.Hairpin('<')
@@ -24,19 +24,19 @@ def test_scoretools_Inspection_get_duration_01():
     assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
-            {
+            { % measure
                 \time 2/12
                 \scaleDurations #'(2 . 3) {
                     \tempo 8=42
                     c'8 [ \<
                     d'8 \!
                 }
-            }
-            {
+            } % measure
+            { % measure
                 \time 2/8
                 c'8 \>
                 d'8 ] \!
-            }
+            } % measure
         }
         '''
         )
@@ -64,18 +64,18 @@ def test_scoretools_Inspection_get_duration_02():
     assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
-            {
+            { % measure
                 \time 2/12
                 \scaleDurations #'(2 . 3) {
                     c'8 [ \<
                     d'8 \!
                 }
-            }
-            {
+            } % measure
+            { % measure
                 \time 2/8
                 c'8 \>
                 d'8 ] \!
-            }
+            } % measure
         }
         '''
         )

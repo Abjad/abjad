@@ -84,7 +84,7 @@ class StaffLinesSpanner(Spanner):
                 override = abjad.LilyPondGrobOverride(
                     context_name='Staff',
                     grob_name='StaffSymbol',
-                    is_once=True,
+                    once=True,
                     property_path='line-count',
                     value=self.lines,
                     )
@@ -94,7 +94,7 @@ class StaffLinesSpanner(Spanner):
                 override = abjad.LilyPondGrobOverride(
                     context_name='Staff',
                     grob_name='StaffSymbol',
-                    is_once=True,
+                    once=True,
                     property_path='line-positions',
                     value=abjad.SchemeVector(self.lines),
                     )

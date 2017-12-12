@@ -1,22 +1,11 @@
 import abc
 import bisect
 import copy
-from abjad.tools import mathtools
-from abjad.tools import timespantools
-from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import iterate
-from abjad.tools.topleveltools import mutate
-from abjad.tools.topleveltools import override
-from abjad.tools.topleveltools import setting
 from abjad.tools.abctools import AbjadObject
 
 
 class Component(AbjadObject):
-    r'''Abstract component.
-
-    Notes, rests, chords, tuplets, measures, voices, staves, staff groups and
-    scores are all components.
+    r'''Component baseclass.
     '''
 
     ### CLASS VARIABLES ###
@@ -28,7 +17,7 @@ class Component(AbjadObject):
         '_is_forbidden_to_update',
         '_lilypond_grob_name_manager',
         '_lilypond_setting_name_manager',
-        '_logical_measure_number',
+        '_measure_number',
         '_name',
         '_offsets_are_current',
         '_offsets_in_seconds_are_current',
@@ -47,11 +36,12 @@ class Component(AbjadObject):
 
     @abc.abstractmethod
     def __init__(self, name=None):
+        import abjad
         self._dependent_wrappers = []
         self._indicator_wrappers = []
         self._indicators_are_current = False
         self._is_forbidden_to_update = False
-        self._logical_measure_number = None
+        self._measure_number = None
         self._offsets_are_current = False
         self._offsets_in_seconds_are_current = False
         self._lilypond_grob_name_manager = None
@@ -62,7 +52,7 @@ class Component(AbjadObject):
         self._start_offset_in_seconds = None
         self._stop_offset = None
         self._stop_offset_in_seconds = None
-        self._timespan = timespantools.Timespan()
+        self._timespan = abjad.Timespan()
         self._name = None
         if name is not None:
             self.name = name  # name must be setup *after* parent
@@ -116,7 +106,7 @@ class Component(AbjadObject):
         import abjad
         result = abjad.mutate(self).copy(n=n)
         for component in abjad.iterate(result).components():
-            detach(abjad.Spanner, component)
+            abjad.detach(abjad.Spanner, component)
         if isinstance(result, type(self)):
             result = [result]
         else:
@@ -190,17 +180,18 @@ class Component(AbjadObject):
         return self._copy_with_indicators_but_without_children_or_spanners()
 
     def _copy_with_indicators_but_without_children_or_spanners(self):
+        import abjad
         new = type(self)(*self.__getnewargs__())
         if getattr(self, '_lilypond_grob_name_manager', None) is not None:
-            new._lilypond_grob_name_manager = copy.copy(override(self))
+            new._lilypond_grob_name_manager = copy.copy(abjad.override(self))
         if getattr(self, '_lilypond_setting_name_manager', None) is not None:
-            new._lilypond_setting_name_manager = copy.copy(setting(self))
+            new._lilypond_setting_name_manager = copy.copy(abjad.setting(self))
         for wrapper in self._get_annotation_wrappers():
             new_wrapper = copy.copy(wrapper)
-            attach(new_wrapper, new)
+            abjad.attach(new_wrapper, new)
         for wrapper in self._get_indicators(unwrap=False):
             new_wrapper = copy.copy(wrapper)
-            attach(new_wrapper, new)
+            abjad.attach(new_wrapper, new)
         return new
 
     def _detach_spanners(self, prototype=None):
@@ -315,7 +306,7 @@ class Component(AbjadObject):
 
     def _get_effective(self, prototype=None, unwrap=True, n=0):
         import abjad
-        # return time signature attached to measure regardless of scope
+        # return time signature attached to measure regardless of context
         if (prototype == abjad.TimeSignature or
             prototype == (abjad.TimeSignature,)):
             if isinstance(self, abjad.Measure):
@@ -335,7 +326,7 @@ class Component(AbjadObject):
                     offset = wrapper.start_offset
                     candidate_wrappers.setdefault(offset, []).append(wrapper)
             for wrapper in parent._indicator_wrappers:
-                if wrapper.scope is not None:
+                if wrapper.context is not None:
                     continue
                 if isinstance(wrapper.indicator, prototype):
                     offset = wrapper.start_offset
@@ -409,8 +400,9 @@ class Component(AbjadObject):
             )
 
     def _get_in_my_logical_voice(self, n, prototype=None):
+        import abjad
         if 0 <= n:
-            generator = iterate(self)._logical_voice(
+            generator = abjad.iterate(self)._logical_voice(
                 prototype=prototype,
                 reverse=False,
                 )
@@ -419,7 +411,7 @@ class Component(AbjadObject):
                     return component
         else:
             n = abs(n)
-            generator = iterate(self)._logical_voice(
+            generator = abjad.iterate(self)._logical_voice(
                 prototype=prototype,
                 reverse=True,
                 )
@@ -643,11 +635,12 @@ class Component(AbjadObject):
         return matching_spanners
 
     def _get_timespan(self, in_seconds=False):
+        import abjad
         if in_seconds:
             self._update_now(offsets_in_seconds=True)
             if self._start_offset_in_seconds is None:
                 raise MissingMetronomeMarkError
-            return timespantools.Timespan(
+            return abjad.Timespan(
                 start_offset=self._start_offset_in_seconds,
                 stop_offset=self._stop_offset_in_seconds,
                 )
@@ -692,9 +685,10 @@ class Component(AbjadObject):
         return component in temporal_successors
 
     def _move_indicators(self, recipient_component):
+        import abjad
         for indicator in self._get_indicators(unwrap=False):
-            detach(indicator, self)
-            attach(indicator, recipient_component)
+            abjad.detach(indicator, self)
+            abjad.attach(indicator, recipient_component)
 
     # TODO: eventually reimplement as a keyword option to remove()
     def _remove_and_shrink_durated_parent_containers(self):
@@ -706,26 +700,20 @@ class Component(AbjadObject):
         parent = self._parent
         while parent is not None and not parent.is_simultaneous:
             current_prolation *= prolations[i]
-            if isinstance(parent, abjad.Tuplet):
-                #candidate_new_parent_dur = (parent.target_duration -
-                #    current_prolation * self.written_duration)
-                #if abjad.Duration(0) < candidate_new_parent_dur:
-                #    parent.target_duration = candidate_new_parent_dur
-                pass
-            elif isinstance(parent, abjad.Measure):
+            if isinstance(parent, abjad.Measure):
                 indicator = parent._get_indicator(abjad.TimeSignature)
                 parent_time_signature = indicator
                 old_prolation = parent_time_signature.implied_prolation
                 naive_time_signature = (
                     parent_time_signature.duration - prolated_leaf_duration)
-                better_time_signature = mathtools.NonreducedFraction(
+                better_time_signature = abjad.NonreducedFraction(
                     naive_time_signature)
                 better_time_signature = better_time_signature.with_denominator(
                     parent_time_signature.denominator)
                 better_time_signature = abjad.TimeSignature(
                     better_time_signature)
-                detach(abjad.TimeSignature, parent)
-                attach(better_time_signature, parent)
+                abjad.detach(abjad.TimeSignature, parent)
+                abjad.attach(better_time_signature, parent)
                 indicator = parent._get_indicator(abjad.TimeSignature)
                 parent_time_signature = indicator
                 new_prolation = parent_time_signature.implied_prolation
@@ -876,10 +864,10 @@ class Component(AbjadObject):
             elif offsets_in_seconds:
                 component._offsets_in_seconds_are_current = False
 
-    def _update_logical_measure_numbers(self):
+    def _update_measure_numbers(self):
         import abjad
         update_manager = abjad.UpdateManager()
-        update_manager._update_logical_measure_numbers(self)
+        update_manager._update_measure_numbers(self)
 
     def _update_now(
         self,

@@ -56,7 +56,7 @@ class UpdateManager(AbjadObject):
         components = self._iterate_entire_score(score_root)
         for component in components:
             for indicator in component._get_indicators(unwrap=False):
-                if indicator.scope is not None:
+                if indicator.context is not None:
                     assert hasattr(indicator, '_update_effective_context')
                     indicator._update_effective_context()
             component._indicators_are_current = True
@@ -220,7 +220,7 @@ class UpdateManager(AbjadObject):
             )
         return start_offset, stop_offset
 
-    def _get_logical_measure_start_offsets(self, component):
+    def _get_measure_start_offsets(self, component):
         import abjad
         wrappers = []
         prototype = abjad.TimeSignature
@@ -261,41 +261,35 @@ class UpdateManager(AbjadObject):
         return measure_start_offsets
 
     # TODO: reimplement with some type of bisection
-    def _to_logical_measure_number(
+    def _to_measure_number(
         self,
         component,
-        logical_measure_number_start_offsets,
+        measure_number_start_offsets,
         ):
         import abjad
         inspector = abjad.inspect(component)
         component_start_offset = inspector.get_timespan().start_offset
-        logical_measure_number_start_offsets = \
-            logical_measure_number_start_offsets[:]
-        logical_measure_number_start_offsets.append(abjad.mathtools.Infinity())
-        pairs = abjad.sequence(logical_measure_number_start_offsets)
+        measure_number_start_offsets = measure_number_start_offsets[:]
+        measure_number_start_offsets.append(abjad.mathtools.Infinity())
+        pairs = abjad.sequence(measure_number_start_offsets)
         pairs = pairs.nwise()
-        for logical_measure_index, pair in enumerate(pairs):
+        for measure_index, pair in enumerate(pairs):
             if pair[0] <= component_start_offset < pair[-1]:
-                logical_measure_number = logical_measure_index + 1
-                return logical_measure_number
-        message = 'can not find logical measure number: {!r}, {!r}.'
-        message = message.format(
-            component,
-            logical_measure_number_start_offsets,
-            )
+                measure_number = measure_index + 1
+                return measure_number
+        message = 'can not find measure number: {!r}, {!r}.'
+        message = message.format(component, measure_number_start_offsets)
         raise ValueError(message)
 
-    def _update_logical_measure_numbers(self, component):
+    def _update_measure_numbers(self, component):
         import abjad
-        logical_measure_start_offsets = \
-            self._get_logical_measure_start_offsets(component)
-        assert logical_measure_start_offsets, repr(
-            logical_measure_start_offsets)
+        measure_start_offsets = self._get_measure_start_offsets(component)
+        assert measure_start_offsets, repr(measure_start_offsets)
         score_root = abjad.inspect(component).get_parentage(
             include_self=True).root
         for component in self._iterate_entire_score(score_root):
-            logical_measure_number = self._to_logical_measure_number(
+            measure_number = self._to_measure_number(
                 component,
-                logical_measure_start_offsets,
+                measure_start_offsets,
                 )
-            component._logical_measure_number = logical_measure_number
+            component._measure_number = measure_number

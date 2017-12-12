@@ -26,7 +26,7 @@ class InstrumentDictionary(TypedOrderedDict):
                             contents=['Fl.'],
                             ),
                         allowable_clefs=('treble',),
-                        default_scope='Staff',
+                        context='Staff',
                         middle_c_sounding_pitch=abjad.NamedPitch("c'"),
                         pitch_range=abjad.PitchRange('[C4, D7]'),
                         ),
@@ -43,7 +43,7 @@ class InstrumentDictionary(TypedOrderedDict):
                             contents=['Gt.'],
                             ),
                         allowable_clefs=('treble',),
-                        default_scope='Staff',
+                        context='Staff',
                         default_tuning=abjad.Tuning(
                             pitches=abjad.PitchSegment(
                                 (
