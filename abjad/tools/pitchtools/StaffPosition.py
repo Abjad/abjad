@@ -11,38 +11,30 @@ class StaffPosition(AbjadValueObject):
 
         Initializes staff position at middle line of staff:
 
-        ::
-
-            >>> abjad.StaffPosition(0)
-            StaffPosition(0)
+        >>> abjad.StaffPosition(0)
+        StaffPosition(0)
 
     ..  container:: example
 
         Initializes staff position one space below middle line of staff:
 
-        ::
-
-            >>> abjad.StaffPosition(-1)
-            StaffPosition(-1)
+        >>> abjad.StaffPosition(-1)
+        StaffPosition(-1)
 
     ..  container:: example
 
         Initializes staff position one line below middle line of staff:
 
-        ::
-
-            >>> abjad.StaffPosition(-2)
-            StaffPosition(-2)
+        >>> abjad.StaffPosition(-2)
+        StaffPosition(-2)
 
     ..  container:: example
 
         Initializes from other staff position:
 
-        ::
-
-            >>> staff_position = abjad.StaffPosition(-2)
-            >>> abjad.StaffPosition(staff_position)
-            StaffPosition(-2)
+        >>> staff_position = abjad.StaffPosition(-2)
+        >>> abjad.StaffPosition(staff_position)
+        StaffPosition(-2)
 
     '''
 
@@ -68,38 +60,30 @@ class StaffPosition(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> staff_position_1 = abjad.StaffPosition(-2)
+            >>> staff_position_2 = abjad.StaffPosition(-2)
+            >>> staff_position_3 = abjad.StaffPosition(0)
 
-                >>> staff_position_1 = abjad.StaffPosition(-2)
-                >>> staff_position_2 = abjad.StaffPosition(-2)
-                >>> staff_position_3 = abjad.StaffPosition(0)
+            >>> staff_position_1 == staff_position_1
+            True
+            >>> staff_position_1 == staff_position_2
+            True
+            >>> staff_position_1 == staff_position_3
+            False
 
-            ::
+            >>> staff_position_2 == staff_position_1
+            True
+            >>> staff_position_2 == staff_position_2
+            True
+            >>> staff_position_2 == staff_position_3
+            False
 
-                >>> staff_position_1 == staff_position_1
-                True
-                >>> staff_position_1 == staff_position_2
-                True
-                >>> staff_position_1 == staff_position_3
-                False
-
-            ::
-
-                >>> staff_position_2 == staff_position_1
-                True
-                >>> staff_position_2 == staff_position_2
-                True
-                >>> staff_position_2 == staff_position_3
-                False
-
-            ::
-
-                >>> staff_position_3 == staff_position_1
-                False
-                >>> staff_position_3 == staff_position_2
-                False
-                >>> staff_position_3 == staff_position_3
-                True
+            >>> staff_position_3 == staff_position_1
+            False
+            >>> staff_position_3 == staff_position_2
+            False
+            >>> staff_position_3 == staff_position_3
+            True
 
         Returns true or false.
         '''
@@ -117,38 +101,30 @@ class StaffPosition(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> staff_position_1 = abjad.StaffPosition(-2)
+            >>> staff_position_2 = abjad.StaffPosition(-2)
+            >>> staff_position_3 = abjad.StaffPosition(0)
 
-                >>> staff_position_1 = abjad.StaffPosition(-2)
-                >>> staff_position_2 = abjad.StaffPosition(-2)
-                >>> staff_position_3 = abjad.StaffPosition(0)
+            >>> staff_position_1 < staff_position_1
+            False
+            >>> staff_position_1 < staff_position_2
+            False
+            >>> staff_position_1 < staff_position_3
+            True
 
-            ::
+            >>> staff_position_2 < staff_position_1
+            False
+            >>> staff_position_2 < staff_position_2
+            False
+            >>> staff_position_2 < staff_position_3
+            True
 
-                >>> staff_position_1 < staff_position_1
-                False
-                >>> staff_position_1 < staff_position_2
-                False
-                >>> staff_position_1 < staff_position_3
-                True
-
-            ::
-
-                >>> staff_position_2 < staff_position_1
-                False
-                >>> staff_position_2 < staff_position_2
-                False
-                >>> staff_position_2 < staff_position_3
-                True
-
-            ::
-
-                >>> staff_position_3 < staff_position_1
-                False
-                >>> staff_position_3 < staff_position_2
-                False
-                >>> staff_position_3 < staff_position_3
-                False
+            >>> staff_position_3 < staff_position_1
+            False
+            >>> staff_position_3 < staff_position_2
+            False
+            >>> staff_position_3 < staff_position_3
+            False
 
         Returns true or false.
         '''
@@ -163,10 +139,8 @@ class StaffPosition(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> str(abjad.StaffPosition(-2))
-                'StaffPosition(-2)'
+            >>> str(abjad.StaffPosition(-2))
+            'StaffPosition(-2)'
 
         Returns string.
         '''
@@ -192,10 +166,8 @@ class StaffPosition(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.StaffPosition(-2).number
-                -2
+            >>> abjad.StaffPosition(-2).number
+            -2
 
         Returns number.
         '''
@@ -210,100 +182,92 @@ class StaffPosition(AbjadValueObject):
 
             From absolute staff position:
 
-            ::
-
-                >>> for n in range(-6, 6):
-                ...     staff_position = abjad.StaffPosition(n)
-                ...     pitch = staff_position.to_pitch()
-                ...     message = '{!s}\t{}'.format(staff_position, pitch)
-                ...     print(message)
-                StaffPosition(-6)	d
-                StaffPosition(-5)	e
-                StaffPosition(-4)	f
-                StaffPosition(-3)	g
-                StaffPosition(-2)	a
-                StaffPosition(-1)	b
-                StaffPosition(0)	c'
-                StaffPosition(1)	d'
-                StaffPosition(2)	e'
-                StaffPosition(3)	f'
-                StaffPosition(4)	g'
-                StaffPosition(5)	a'
+            >>> for n in range(-6, 6):
+            ...     staff_position = abjad.StaffPosition(n)
+            ...     pitch = staff_position.to_pitch()
+            ...     message = '{!s}\t{}'.format(staff_position, pitch)
+            ...     print(message)
+            StaffPosition(-6)	d
+            StaffPosition(-5)	e
+            StaffPosition(-4)	f
+            StaffPosition(-3)	g
+            StaffPosition(-2)	a
+            StaffPosition(-1)	b
+            StaffPosition(0)	c'
+            StaffPosition(1)	d'
+            StaffPosition(2)	e'
+            StaffPosition(3)	f'
+            StaffPosition(4)	g'
+            StaffPosition(5)	a'
 
         ..  container:: example
 
             Treble clef:
 
-            ::
-
-                >>> clef = abjad.Clef('treble')
-                >>> for n in range(-6, 6):
-                ...     staff_position = abjad.StaffPosition(n)
-                ...     pitch = staff_position.to_pitch(clef=clef)
-                ...     message = '{!s}\t{}'.format(staff_position, pitch)
-                ...     print(message)
-                StaffPosition(-6)	c'
-                StaffPosition(-5)	d'
-                StaffPosition(-4)	e'
-                StaffPosition(-3)	f'
-                StaffPosition(-2)	g'
-                StaffPosition(-1)	a'
-                StaffPosition(0)	b'
-                StaffPosition(1)	c''
-                StaffPosition(2)	d''
-                StaffPosition(3)	e''
-                StaffPosition(4)	f''
-                StaffPosition(5)	g''
+            >>> clef = abjad.Clef('treble')
+            >>> for n in range(-6, 6):
+            ...     staff_position = abjad.StaffPosition(n)
+            ...     pitch = staff_position.to_pitch(clef=clef)
+            ...     message = '{!s}\t{}'.format(staff_position, pitch)
+            ...     print(message)
+            StaffPosition(-6)	c'
+            StaffPosition(-5)	d'
+            StaffPosition(-4)	e'
+            StaffPosition(-3)	f'
+            StaffPosition(-2)	g'
+            StaffPosition(-1)	a'
+            StaffPosition(0)	b'
+            StaffPosition(1)	c''
+            StaffPosition(2)	d''
+            StaffPosition(3)	e''
+            StaffPosition(4)	f''
+            StaffPosition(5)	g''
 
         ..  container:: example
 
             Bass clef:
 
-            ::
-
-                >>> clef = abjad.Clef('bass')
-                >>> for n in range(-6, 6):
-                ...     staff_position = abjad.StaffPosition(n)
-                ...     pitch = staff_position.to_pitch(clef=clef)
-                ...     message = '{!s}\t{}'.format(staff_position, pitch)
-                ...     print(message)
-                StaffPosition(-6)	e,
-                StaffPosition(-5)	f,
-                StaffPosition(-4)	g,
-                StaffPosition(-3)	a,
-                StaffPosition(-2)	b,
-                StaffPosition(-1)	c
-                StaffPosition(0)	d
-                StaffPosition(1)	e
-                StaffPosition(2)	f
-                StaffPosition(3)	g
-                StaffPosition(4)	a
-                StaffPosition(5)	b
+            >>> clef = abjad.Clef('bass')
+            >>> for n in range(-6, 6):
+            ...     staff_position = abjad.StaffPosition(n)
+            ...     pitch = staff_position.to_pitch(clef=clef)
+            ...     message = '{!s}\t{}'.format(staff_position, pitch)
+            ...     print(message)
+            StaffPosition(-6)	e,
+            StaffPosition(-5)	f,
+            StaffPosition(-4)	g,
+            StaffPosition(-3)	a,
+            StaffPosition(-2)	b,
+            StaffPosition(-1)	c
+            StaffPosition(0)	d
+            StaffPosition(1)	e
+            StaffPosition(2)	f
+            StaffPosition(3)	g
+            StaffPosition(4)	a
+            StaffPosition(5)	b
 
         ..  container:: example
 
             Alto clef:
 
-            ::
-
-                >>> clef = abjad.Clef('alto')
-                >>> for n in range(-6, 6):
-                ...     staff_position = abjad.StaffPosition(n)
-                ...     pitch = staff_position.to_pitch(clef=clef)
-                ...     message = '{!s}\t{}'.format(staff_position, pitch)
-                ...     print(message)
-                StaffPosition(-6)	d
-                StaffPosition(-5)	e
-                StaffPosition(-4)	f
-                StaffPosition(-3)	g
-                StaffPosition(-2)	a
-                StaffPosition(-1)	b
-                StaffPosition(0)	c'
-                StaffPosition(1)	d'
-                StaffPosition(2)	e'
-                StaffPosition(3)	f'
-                StaffPosition(4)	g'
-                StaffPosition(5)	a'
+            >>> clef = abjad.Clef('alto')
+            >>> for n in range(-6, 6):
+            ...     staff_position = abjad.StaffPosition(n)
+            ...     pitch = staff_position.to_pitch(clef=clef)
+            ...     message = '{!s}\t{}'.format(staff_position, pitch)
+            ...     print(message)
+            StaffPosition(-6)	d
+            StaffPosition(-5)	e
+            StaffPosition(-4)	f
+            StaffPosition(-3)	g
+            StaffPosition(-2)	a
+            StaffPosition(-1)	b
+            StaffPosition(0)	c'
+            StaffPosition(1)	d'
+            StaffPosition(2)	e'
+            StaffPosition(3)	f'
+            StaffPosition(4)	g'
+            StaffPosition(5)	a'
 
         Returns new named pitch.
         '''

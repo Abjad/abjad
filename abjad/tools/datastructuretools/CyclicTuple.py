@@ -9,28 +9,22 @@ class CyclicTuple(AbjadObject):
 
         Initializes from string:
 
-        ::
+        >>> tuple_ = abjad.CyclicTuple('abcd')
 
-            >>> tuple_ = abjad.CyclicTuple('abcd')
+        >>> tuple_
+        CyclicTuple(['a', 'b', 'c', 'd'])
 
-        ::
-
-            >>> tuple_
-            CyclicTuple(['a', 'b', 'c', 'd'])
-
-        ::
-
-            >>> for x in range(8):
-            ...     print(x, tuple_[x])
-            ...
-            0 a
-            1 b
-            2 c
-            3 d
-            4 a
-            5 b
-            6 c
-            7 d
+        >>> for x in range(8):
+        ...     print(x, tuple_[x])
+        ...
+        0 a
+        1 b
+        2 c
+        3 d
+        4 a
+        5 b
+        6 c
+        7 d
 
     Cyclic tuples overload the item-getting method of built-in tuples.
 
@@ -80,23 +74,19 @@ class CyclicTuple(AbjadObject):
 
             Gets slice open at right:
 
-            ::
-
-                >>> items = [0, 1, 2, 3, 4, 5]
-                >>> tuple_ = abjad.CyclicTuple(items=items)
-                >>> tuple_[2:]
-                (2, 3, 4, 5)
+            >>> items = [0, 1, 2, 3, 4, 5]
+            >>> tuple_ = abjad.CyclicTuple(items=items)
+            >>> tuple_[2:]
+            (2, 3, 4, 5)
 
         ..  container:: example
 
             Gets slice closed at right:
 
-            ::
-
-                >>> items = [0, 1, 2, 3, 4, 5]
-                >>> tuple_ = abjad.CyclicTuple(items=items)
-                >>> tuple_[:15]
-                (0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2)
+            >>> items = [0, 1, 2, 3, 4, 5]
+            >>> tuple_ = abjad.CyclicTuple(items=items)
+            >>> tuple_[:15]
+            (0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2)
 
         Raises index error when `argument` can not be found in cyclic tuple.
 
@@ -148,19 +138,15 @@ class CyclicTuple(AbjadObject):
 
             Gets string:
 
-            ::
-
-                >>> str(abjad.CyclicTuple('abcd'))
-                '(a, b, c, d)'
+            >>> str(abjad.CyclicTuple('abcd'))
+            '(a, b, c, d)'
 
         ..  container:: example
 
             Gets string:
 
-            ::
-
-                >>> str(abjad.CyclicTuple([1, 2, 3, 4]))
-                '(1, 2, 3, 4)'
+            >>> str(abjad.CyclicTuple([1, 2, 3, 4]))
+            '(1, 2, 3, 4)'
 
         Returns string.
         '''
@@ -204,21 +190,17 @@ class CyclicTuple(AbjadObject):
 
             Gets items:
 
-            ::
-
-                >>> tuple_ = abjad.CyclicTuple('abcd')
-                >>> tuple_.items
-                ('a', 'b', 'c', 'd')
+            >>> tuple_ = abjad.CyclicTuple('abcd')
+            >>> tuple_.items
+            ('a', 'b', 'c', 'd')
 
         ..  container:: example
 
             Gets items:
 
-            ::
-
-                >>> tuple_ = abjad.CyclicTuple([1, 2, 3, 4])
-                >>> tuple_.items
-                (1, 2, 3, 4)
+            >>> tuple_ = abjad.CyclicTuple([1, 2, 3, 4])
+            >>> tuple_.items
+            (1, 2, 3, 4)
 
         Returns tuple.
         '''

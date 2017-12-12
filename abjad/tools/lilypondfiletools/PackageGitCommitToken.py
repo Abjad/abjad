@@ -10,16 +10,12 @@ class PackageGitCommitToken(AbjadValueObject):
 
     ..  container:: example
 
-        ::
+        >>> token = abjad.PackageGitCommitToken('abjad')
+        >>> token
+        PackageGitCommitToken(package_name='abjad')
 
-            >>> token = abjad.PackageGitCommitToken('abjad')
-            >>> token
-            PackageGitCommitToken(package_name='abjad')
-
-        ::
-
-            >>> print(format(token))  # doctest: +SKIP
-            package "abjad" @ b6a48a7 [implement-lpf-git-token] (2016-02-02 13:36:25)
+        >>> print(format(token))  # doctest: +SKIP
+        package "abjad" @ b6a48a7 [implement-lpf-git-token] (2016-02-02 13:36:25)
 
     '''
 
@@ -116,11 +112,9 @@ class PackageGitCommitToken(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> token = abjad.PackageGitCommitToken('abjad')
-                >>> token.package_name
-                'abjad'
+            >>> token = abjad.PackageGitCommitToken('abjad')
+            >>> token.package_name
+            'abjad'
 
         Returns string.
         '''

@@ -6,16 +6,14 @@ class ClarinetInBFlat(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> clarinet = abjad.ClarinetInBFlat()
-            >>> abjad.attach(clarinet, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+        >>> clarinet = abjad.ClarinetInBFlat()
+        >>> abjad.attach(clarinet, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { "Clarinet in B-flat" }
                 \set Staff.shortInstrumentName = \markup { "Cl. in B-flat" }
@@ -67,11 +65,9 @@ class ClarinetInBFlat(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> clarinet = abjad.ClarinetInBFlat()
-                >>> clarinet.allowable_clefs
-                ('treble',)
+            >>> clarinet = abjad.ClarinetInBFlat()
+            >>> clarinet.allowable_clefs
+            ('treble',)
 
         Returns clef list.
         '''
@@ -83,15 +79,11 @@ class ClarinetInBFlat(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> clarinet = abjad.ClarinetInBFlat()
+            >>> clarinet.middle_c_sounding_pitch
+            NamedPitch('bf')
 
-                >>> clarinet = abjad.ClarinetInBFlat()
-                >>> clarinet.middle_c_sounding_pitch
-                NamedPitch('bf')
-
-            ::
-
-                >>> show(clarinet.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(clarinet.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -103,11 +95,9 @@ class ClarinetInBFlat(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> clarinet = abjad.ClarinetInBFlat()
-                >>> clarinet.name
-                'clarinet in B-flat'
+            >>> clarinet = abjad.ClarinetInBFlat()
+            >>> clarinet.name
+            'clarinet in B-flat'
 
         Returns string.
         '''
@@ -119,15 +109,11 @@ class ClarinetInBFlat(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> clarinet = abjad.ClarinetInBFlat()
+            >>> clarinet.name_markup
+            Markup(contents=['Clarinet in B-flat'])
 
-                >>> clarinet = abjad.ClarinetInBFlat()
-                >>> clarinet.name_markup
-                Markup(contents=['Clarinet in B-flat'])
-
-            ::
-
-                >>> show(clarinet.name_markup) # doctest: +SKIP
+            >>> abjad.show(clarinet.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -139,15 +125,11 @@ class ClarinetInBFlat(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> clarinet = abjad.ClarinetInBFlat()
+            >>> clarinet.pitch_range
+            PitchRange('[D3, Bb6]')
 
-                >>> clarinet = abjad.ClarinetInBFlat()
-                >>> clarinet.pitch_range
-                PitchRange('[D3, Bb6]')
-
-            ::
-
-                >>> show(clarinet.pitch_range) # doctest: +SKIP
+            >>> abjad.show(clarinet.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -159,11 +141,9 @@ class ClarinetInBFlat(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> clarinet = abjad.ClarinetInBFlat()
-                >>> clarinet.short_name
-                'cl. in B-flat'
+            >>> clarinet = abjad.ClarinetInBFlat()
+            >>> clarinet.short_name
+            'cl. in B-flat'
 
         Returns string.
         '''
@@ -175,15 +155,11 @@ class ClarinetInBFlat(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> clarinet = abjad.ClarinetInBFlat()
+            >>> clarinet.short_name_markup
+            Markup(contents=['Cl. in B-flat'])
 
-                >>> clarinet = abjad.ClarinetInBFlat()
-                >>> clarinet.short_name_markup
-                Markup(contents=['Cl. in B-flat'])
-
-            ::
-
-                >>> show(clarinet.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(clarinet.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

@@ -7,15 +7,13 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
 
     ..  container:: example
 
-        ::
-
-            >>> class_ = abjad.GroupedStavesScoreTemplate
-            >>> template = class_(staff_count=4)
-            >>> show(template) # doctest: +SKIP
+        >>> class_ = abjad.GroupedStavesScoreTemplate
+        >>> template = class_(staff_count=4)
+        >>> abjad.show(template) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(template.__illustrate__()[abjad.Score])
+            >>> abjad.f(template.__illustrate__()[abjad.Score])
             \context Score = "Grouped Staves Score" <<
                 \context StaffGroup = "Grouped Staves Staff Group" <<
                     \context Staff = "Staff 1" {
@@ -41,30 +39,28 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
                 >>
             >>
 
-        ::
-
-            >>> score = template()
-            >>> f(score)
-            \context Score = "Grouped Staves Score" <<
-                \context StaffGroup = "Grouped Staves Staff Group" <<
-                    \context Staff = "Staff 1" {
-                        \context Voice = "Voice 1" {
-                        }
+        >>> score = template()
+        >>> abjad.f(score)
+        \context Score = "Grouped Staves Score" <<
+            \context StaffGroup = "Grouped Staves Staff Group" <<
+                \context Staff = "Staff 1" {
+                    \context Voice = "Voice 1" {
                     }
-                    \context Staff = "Staff 2" {
-                        \context Voice = "Voice 2" {
-                        }
+                }
+                \context Staff = "Staff 2" {
+                    \context Voice = "Voice 2" {
                     }
-                    \context Staff = "Staff 3" {
-                        \context Voice = "Voice 3" {
-                        }
+                }
+                \context Staff = "Staff 3" {
+                    \context Voice = "Voice 3" {
                     }
-                    \context Staff = "Staff 4" {
-                        \context Voice = "Voice 4" {
-                        }
+                }
+                \context Staff = "Staff 4" {
+                    \context Voice = "Voice 4" {
                     }
-                >>
+                }
             >>
+        >>
 
     '''
 
@@ -120,12 +116,10 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
 
         ..  container::
 
-            ::
-
-                >>> class_ = abjad.GroupedStavesScoreTemplate
-                >>> template = class_(staff_count=4)
-                >>> template.context_name_abbreviations
-                OrderedDict()
+            >>> class_ = abjad.GroupedStavesScoreTemplate
+            >>> template = class_(staff_count=4)
+            >>> template.context_name_abbreviations
+            OrderedDict()
 
         '''
         return self._context_name_abbreviations
@@ -136,12 +130,10 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
 
         ..  container::
 
-            ::
-
-                >>> class_ = abjad.GroupedStavesScoreTemplate
-                >>> template = class_(staff_count=4)
-                >>> template.staff_count
-                4
+            >>> class_ = abjad.GroupedStavesScoreTemplate
+            >>> template = class_(staff_count=4)
+            >>> template.staff_count
+            4
 
         '''
         return self._staff_count

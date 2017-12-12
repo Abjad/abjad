@@ -4,15 +4,11 @@ def all_are_positive_integers(argument):
 
     ..  container:: example
 
-        ::
+        >>> abjad.mathtools.all_are_positive_integers([1, 2, 3, 99])
+        True
 
-            >>> abjad.mathtools.all_are_positive_integers([1, 2, 3, 99])
-            True
-
-        ::
-
-            >>> abjad.mathtools.all_are_positive_integers(17)
-            False
+        >>> abjad.mathtools.all_are_positive_integers(17)
+        False
 
     Returns true or false.
     '''

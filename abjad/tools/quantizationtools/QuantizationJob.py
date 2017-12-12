@@ -9,24 +9,18 @@ class QuantizationJob(AbjadObject):
 
     ..  container:: example
 
-        ::
+        >>> q_event_a = abjad.quantizationtools.PitchedQEvent(250, [0, 1])
+        >>> q_event_b = abjad.quantizationtools.SilentQEvent(500)
+        >>> q_event_c = abjad.quantizationtools.PitchedQEvent(750, [3, 7])
+        >>> proxy_a = abjad.quantizationtools.QEventProxy(q_event_a, 0.25)
+        >>> proxy_b = abjad.quantizationtools.QEventProxy(q_event_b, 0.5)
+        >>> proxy_c = abjad.quantizationtools.QEventProxy(q_event_c, 0.75)
 
-            >>> q_event_a = abjad.quantizationtools.PitchedQEvent(250, [0, 1])
-            >>> q_event_b = abjad.quantizationtools.SilentQEvent(500)
-            >>> q_event_c = abjad.quantizationtools.PitchedQEvent(750, [3, 7])
-            >>> proxy_a = abjad.quantizationtools.QEventProxy(q_event_a, 0.25)
-            >>> proxy_b = abjad.quantizationtools.QEventProxy(q_event_b, 0.5)
-            >>> proxy_c = abjad.quantizationtools.QEventProxy(q_event_c, 0.75)
+        >>> definition = {2: {2: None}, 3: None, 5: None}
+        >>> search_tree = abjad.quantizationtools.UnweightedSearchTree(definition)
 
-        ::
-
-            >>> definition = {2: {2: None}, 3: None, 5: None}
-            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree(definition)
-
-        ::
-
-            >>> job = abjad.quantizationtools.QuantizationJob(
-            ...     1, search_tree, [proxy_a, proxy_b, proxy_c])
+        >>> job = abjad.quantizationtools.QuantizationJob(
+        ...     1, search_tree, [proxy_a, proxy_b, proxy_c])
 
     ..  container:: example
 
@@ -34,16 +28,14 @@ class QuantizationJob(AbjadObject):
         ``QGrids`` on its ``q_grids`` attribute, allowing them to be recalled
         later, even if pickled:
 
-        ::
-
-            >>> job()
-            >>> for q_grid in job.q_grids:
-            ...     print(q_grid.rtm_format)
-            1
-            (1 (1 1 1 1 1))
-            (1 (1 1 1))
-            (1 (1 1))
-            (1 ((1 (1 1)) (1 (1 1))))
+        >>> job()
+        >>> for q_grid in job.q_grids:
+        ...     print(q_grid.rtm_format)
+        1
+        (1 (1 1 1 1 1))
+        (1 (1 1 1))
+        (1 (1 1))
+        (1 ((1 (1 1)) (1 (1 1))))
 
     ``QuantizationJob`` is intended to be useful in multiprocessing-enabled
     environments.
@@ -163,57 +155,49 @@ class QuantizationJob(AbjadObject):
         r'''The ``QEventProxies`` the ``QuantizationJob`` was instantiated
         with.
 
-        ::
+        >>> q_event_a = abjad.quantizationtools.PitchedQEvent(250, [0, 1])
+        >>> q_event_b = abjad.quantizationtools.SilentQEvent(500)
+        >>> q_event_c = abjad.quantizationtools.PitchedQEvent(750, [3, 7])
+        >>> proxy_a = abjad.quantizationtools.QEventProxy(q_event_a, 0.25)
+        >>> proxy_b = abjad.quantizationtools.QEventProxy(q_event_b, 0.5)
+        >>> proxy_c = abjad.quantizationtools.QEventProxy(q_event_c, 0.75)
 
-            >>> q_event_a = abjad.quantizationtools.PitchedQEvent(250, [0, 1])
-            >>> q_event_b = abjad.quantizationtools.SilentQEvent(500)
-            >>> q_event_c = abjad.quantizationtools.PitchedQEvent(750, [3, 7])
-            >>> proxy_a = abjad.quantizationtools.QEventProxy(q_event_a, 0.25)
-            >>> proxy_b = abjad.quantizationtools.QEventProxy(q_event_b, 0.5)
-            >>> proxy_c = abjad.quantizationtools.QEventProxy(q_event_c, 0.75)
+        >>> definition = {2: {2: None}, 3: None, 5: None}
+        >>> search_tree = abjad.quantizationtools.UnweightedSearchTree(definition)
 
-        ::
+        >>> job = abjad.quantizationtools.QuantizationJob(
+        ...     1, search_tree, [proxy_a, proxy_b, proxy_c])
+        >>> job()
 
-            >>> definition = {2: {2: None}, 3: None, 5: None}
-            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree(definition)
-
-        ::
-
-            >>> job = abjad.quantizationtools.QuantizationJob(
-            ...     1, search_tree, [proxy_a, proxy_b, proxy_c])
-            >>> job()
-
-        ::
-
-            >>> for q_event_proxy in job.q_event_proxies:
-            ...     print(format(q_event_proxy, 'storage'))
-            ...
-            abjad.quantizationtools.QEventProxy(
-                abjad.quantizationtools.PitchedQEvent(
-                    offset=abjad.Offset(250, 1),
-                    pitches=(
-                        abjad.NamedPitch("c'"),
-                        abjad.NamedPitch("cs'"),
-                        ),
+        >>> for q_event_proxy in job.q_event_proxies:
+        ...     print(format(q_event_proxy, 'storage'))
+        ...
+        abjad.quantizationtools.QEventProxy(
+            abjad.quantizationtools.PitchedQEvent(
+                offset=abjad.Offset(250, 1),
+                pitches=(
+                    abjad.NamedPitch("c'"),
+                    abjad.NamedPitch("cs'"),
                     ),
-                abjad.Offset(1, 4)
-                )
-            abjad.quantizationtools.QEventProxy(
-                abjad.quantizationtools.SilentQEvent(
-                    offset=abjad.Offset(500, 1),
+                ),
+            abjad.Offset(1, 4)
+            )
+        abjad.quantizationtools.QEventProxy(
+            abjad.quantizationtools.SilentQEvent(
+                offset=abjad.Offset(500, 1),
+                ),
+            abjad.Offset(1, 2)
+            )
+        abjad.quantizationtools.QEventProxy(
+            abjad.quantizationtools.PitchedQEvent(
+                offset=abjad.Offset(750, 1),
+                pitches=(
+                    abjad.NamedPitch("ef'"),
+                    abjad.NamedPitch("g'"),
                     ),
-                abjad.Offset(1, 2)
-                )
-            abjad.quantizationtools.QEventProxy(
-                abjad.quantizationtools.PitchedQEvent(
-                    offset=abjad.Offset(750, 1),
-                    pitches=(
-                        abjad.NamedPitch("ef'"),
-                        abjad.NamedPitch("g'"),
-                        ),
-                    ),
-                abjad.Offset(3, 4)
-                )
+                ),
+            abjad.Offset(3, 4)
+            )
 
         Returns tuple.
         '''
@@ -223,35 +207,27 @@ class QuantizationJob(AbjadObject):
     def q_grids(self):
         r'''The generated ``QGrids``.
 
-        ::
+        >>> q_event_a = abjad.quantizationtools.PitchedQEvent(250, [0, 1])
+        >>> q_event_b = abjad.quantizationtools.SilentQEvent(500)
+        >>> q_event_c = abjad.quantizationtools.PitchedQEvent(750, [3, 7])
+        >>> proxy_a = abjad.quantizationtools.QEventProxy(q_event_a, 0.25)
+        >>> proxy_b = abjad.quantizationtools.QEventProxy(q_event_b, 0.5)
+        >>> proxy_c = abjad.quantizationtools.QEventProxy(q_event_c, 0.75)
 
-            >>> q_event_a = abjad.quantizationtools.PitchedQEvent(250, [0, 1])
-            >>> q_event_b = abjad.quantizationtools.SilentQEvent(500)
-            >>> q_event_c = abjad.quantizationtools.PitchedQEvent(750, [3, 7])
-            >>> proxy_a = abjad.quantizationtools.QEventProxy(q_event_a, 0.25)
-            >>> proxy_b = abjad.quantizationtools.QEventProxy(q_event_b, 0.5)
-            >>> proxy_c = abjad.quantizationtools.QEventProxy(q_event_c, 0.75)
+        >>> definition = {2: {2: None}, 3: None, 5: None}
+        >>> search_tree = abjad.quantizationtools.UnweightedSearchTree(definition)
 
-        ::
+        >>> job = abjad.quantizationtools.QuantizationJob(
+        ...     1, search_tree, [proxy_a, proxy_b, proxy_c])
+        >>> job()
 
-            >>> definition = {2: {2: None}, 3: None, 5: None}
-            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree(definition)
-
-        ::
-
-            >>> job = abjad.quantizationtools.QuantizationJob(
-            ...     1, search_tree, [proxy_a, proxy_b, proxy_c])
-            >>> job()
-
-        ::
-
-            >>> for q_grid in job.q_grids:
-            ...     print(q_grid.rtm_format)
-            1
-            (1 (1 1 1 1 1))
-            (1 (1 1 1))
-            (1 (1 1))
-            (1 ((1 (1 1)) (1 (1 1))))
+        >>> for q_grid in job.q_grids:
+        ...     print(q_grid.rtm_format)
+        1
+        (1 (1 1 1 1 1))
+        (1 (1 1 1))
+        (1 (1 1))
+        (1 ((1 (1 1)) (1 (1 1))))
 
         Returns tuple.
         '''

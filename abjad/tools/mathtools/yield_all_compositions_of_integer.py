@@ -6,27 +6,25 @@ def yield_all_compositions_of_integer(n):
 
     ..  container:: example
 
-        ::
-
-            >>> for tuple_ in abjad.mathtools.yield_all_compositions_of_integer(5):
-            ...     tuple_
-            ...
-            (5,)
-            (4, 1)
-            (3, 2)
-            (3, 1, 1)
-            (2, 3)
-            (2, 2, 1)
-            (2, 1, 2)
-            (2, 1, 1, 1)
-            (1, 4)
-            (1, 3, 1)
-            (1, 2, 2)
-            (1, 2, 1, 1)
-            (1, 1, 3)
-            (1, 1, 2, 1)
-            (1, 1, 1, 2)
-            (1, 1, 1, 1, 1)
+        >>> for tuple_ in abjad.mathtools.yield_all_compositions_of_integer(5):
+        ...     tuple_
+        ...
+        (5,)
+        (4, 1)
+        (3, 2)
+        (3, 1, 1)
+        (2, 3)
+        (2, 2, 1)
+        (2, 1, 2)
+        (2, 1, 1, 1)
+        (1, 4)
+        (1, 3, 1)
+        (1, 2, 2)
+        (1, 2, 1, 1)
+        (1, 1, 3)
+        (1, 1, 2, 1)
+        (1, 1, 1, 2)
+        (1, 1, 1, 1, 1)
 
     Lists parts in descending lex order.
 

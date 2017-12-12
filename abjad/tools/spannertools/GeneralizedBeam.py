@@ -8,21 +8,17 @@ class GeneralizedBeam(Spanner):
 
     ..  container:: example::
 
-        ::
+        >>> staff = abjad.Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
+        >>> abjad.setting(staff).auto_beaming = False
+        >>> abjad.show(staff) # doctest: +SKIP
 
-            >>> staff = abjad.Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
-            >>> abjad.setting(staff).auto_beaming = False
-            >>> show(staff) # doctest: +SKIP
-
-        ::
-
-            >>> beam = abjad.GeneralizedBeam()
-            >>> abjad.attach(beam, staff[:])
-            >>> show(staff) # doctest: +SKIP
+        >>> beam = abjad.GeneralizedBeam()
+        >>> abjad.attach(beam, staff[:])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff \with {
                 autoBeaming = ##f
             } {
@@ -39,23 +35,19 @@ class GeneralizedBeam(Spanner):
 
     ..  container:: example
 
-        ::
+        >>> staff = abjad.Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
+        >>> abjad.setting(staff).auto_beaming = False
+        >>> abjad.show(staff) # doctest: +SKIP
 
-            >>> staff = abjad.Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
-            >>> abjad.setting(staff).auto_beaming = False
-            >>> show(staff) # doctest: +SKIP
-
-        ::
-
-            >>> beam = abjad.GeneralizedBeam(
-            ...     isolated_nib_direction=abjad.Right,
-            ...     )
-            >>> abjad.attach(beam, staff[:])
-            >>> show(staff) # doctest: +SKIP
+        >>> beam = abjad.GeneralizedBeam(
+        ...     isolated_nib_direction=abjad.Right,
+        ...     )
+        >>> abjad.attach(beam, staff[:])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff \with {
                 autoBeaming = ##f
             } {
@@ -72,21 +64,17 @@ class GeneralizedBeam(Spanner):
 
     ..  container:: example::
 
-        ::
+        >>> staff = abjad.Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
+        >>> abjad.setting(staff).auto_beaming = False
+        >>> abjad.show(staff) # doctest: +SKIP
 
-            >>> staff = abjad.Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
-            >>> abjad.setting(staff).auto_beaming = False
-            >>> show(staff) # doctest: +SKIP
-
-        ::
-
-            >>> beam = abjad.GeneralizedBeam(use_stemlets=True)
-            >>> abjad.attach(beam, staff[:])
-            >>> show(staff) # doctest: +SKIP
+        >>> beam = abjad.GeneralizedBeam(use_stemlets=True)
+        >>> abjad.attach(beam, staff[:])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff \with {
                 autoBeaming = ##f
             } {

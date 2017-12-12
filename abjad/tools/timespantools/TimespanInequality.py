@@ -8,15 +8,11 @@ class TimespanInequality(AbjadObject):
 
     ..  container:: example
 
-        ::
+        >>> template = 'timespan_2.start_offset < timespan_1.start_offset'
+        >>> inequality = abjad.TimespanInequality(template)
 
-            >>> template = 'timespan_2.start_offset < timespan_1.start_offset'
-            >>> inequality = abjad.TimespanInequality(template)
-
-        ::
-
-            >>> inequality
-            TimespanInequality('timespan_2.start_offset < timespan_1.start_offset')
+        >>> inequality
+        TimespanInequality('timespan_2.start_offset < timespan_1.start_offset')
 
     '''
 
@@ -84,7 +80,7 @@ class TimespanInequality(AbjadObject):
 
             >>> template = 'timespan_2.start_offset < timespan_1.start_offset'
             >>> inequality = abjad.TimespanInequality(template)
-            >>> f(inequality)
+            >>> abjad.f(inequality)
             abjad.TimespanInequality('timespan_2.start_offset < timespan_1.start_offset')
 
         Returns string.

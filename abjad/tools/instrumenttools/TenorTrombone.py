@@ -6,18 +6,16 @@ class TenorTrombone(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> clef = abjad.Clef('bass')
-            >>> abjad.attach(clef, staff[0])
-            >>> tenor_trombone = abjad.TenorTrombone()
-            >>> abjad.attach(tenor_trombone, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+        >>> clef = abjad.Clef('bass')
+        >>> abjad.attach(clef, staff[0])
+        >>> tenor_trombone = abjad.TenorTrombone()
+        >>> abjad.attach(tenor_trombone, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { "Tenor trombone" }
                 \set Staff.shortInstrumentName = \markup { "Ten. trb." }
@@ -67,11 +65,9 @@ class TenorTrombone(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> tenor_trombone = abjad.TenorTrombone()
-                >>> tenor_trombone.allowable_clefs
-                ('tenor', 'bass')
+            >>> tenor_trombone = abjad.TenorTrombone()
+            >>> tenor_trombone.allowable_clefs
+            ('tenor', 'bass')
 
         Returns clef list.
         '''
@@ -83,15 +79,11 @@ class TenorTrombone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> tenor_trombone = abjad.TenorTrombone()
+            >>> tenor_trombone.middle_c_sounding_pitch
+            NamedPitch("c'")
 
-                >>> tenor_trombone = abjad.TenorTrombone()
-                >>> tenor_trombone.middle_c_sounding_pitch
-                NamedPitch("c'")
-
-            ::
-
-                >>> show(tenor_trombone.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(tenor_trombone.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -103,11 +95,9 @@ class TenorTrombone(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> tenor_trombone = abjad.TenorTrombone()
-                >>> tenor_trombone.name
-                'tenor trombone'
+            >>> tenor_trombone = abjad.TenorTrombone()
+            >>> tenor_trombone.name
+            'tenor trombone'
 
         Returns string.
         '''
@@ -119,15 +109,11 @@ class TenorTrombone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> tenor_trombone = abjad.TenorTrombone()
+            >>> tenor_trombone.name_markup
+            Markup(contents=['Tenor trombone'])
 
-                >>> tenor_trombone = abjad.TenorTrombone()
-                >>> tenor_trombone.name_markup
-                Markup(contents=['Tenor trombone'])
-
-            ::
-
-                >>> show(tenor_trombone.name_markup) # doctest: +SKIP
+            >>> abjad.show(tenor_trombone.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -139,15 +125,11 @@ class TenorTrombone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> tenor_trombone = abjad.TenorTrombone()
+            >>> tenor_trombone.pitch_range
+            PitchRange('[E2, Eb5]')
 
-                >>> tenor_trombone = abjad.TenorTrombone()
-                >>> tenor_trombone.pitch_range
-                PitchRange('[E2, Eb5]')
-
-            ::
-
-                >>> show(tenor_trombone.pitch_range) # doctest: +SKIP
+            >>> abjad.show(tenor_trombone.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -159,11 +141,9 @@ class TenorTrombone(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> tenor_trombone = abjad.TenorTrombone()
-                >>> tenor_trombone.short_name
-                'ten. trb.'
+            >>> tenor_trombone = abjad.TenorTrombone()
+            >>> tenor_trombone.short_name
+            'ten. trb.'
 
         Returns string.
         '''
@@ -175,15 +155,11 @@ class TenorTrombone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> tenor_trombone = abjad.TenorTrombone()
+            >>> tenor_trombone.short_name_markup
+            Markup(contents=['Ten. trb.'])
 
-                >>> tenor_trombone = abjad.TenorTrombone()
-                >>> tenor_trombone.short_name_markup
-                Markup(contents=['Ten. trb.'])
-
-            ::
-
-                >>> show(tenor_trombone.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(tenor_trombone.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

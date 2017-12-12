@@ -9,28 +9,24 @@ class ColorMap(AbjadValueObject):
 
         Maps pitch-classes to red, green and blue:
 
-        ::
+        >>> color_map = abjad.ColorMap(
+        ...     colors=['red', 'green', 'blue'],
+        ...     pitch_iterables=[
+        ...         [-8, 2, 10, 21],
+        ...         [0, 11, 32, 41],
+        ...         [15, 25, 42, 43],
+        ...         ],
+        ...     )
 
-            >>> color_map = abjad.ColorMap(
-            ...     colors=['red', 'green', 'blue'],
-            ...     pitch_iterables=[
-            ...         [-8, 2, 10, 21],
-            ...         [0, 11, 32, 41],
-            ...         [15, 25, 42, 43],
-            ...         ],
-            ...     )
-
-        ::
-
-            >>> f(color_map)
-            abjad.ColorMap(
-                colors=['red', 'green', 'blue'],
-                pitch_iterables=[
-                    [-8, 2, 10, 21],
-                    [0, 11, 32, 41],
-                    [15, 25, 42, 43],
-                    ],
-                )
+        >>> abjad.f(color_map)
+        abjad.ColorMap(
+            colors=['red', 'green', 'blue'],
+            pitch_iterables=[
+                [-8, 2, 10, 21],
+                [0, 11, 32, 41],
+                [15, 25, 42, 43],
+                ],
+            )
 
     Color maps are immutable.
     '''
@@ -63,28 +59,24 @@ class ColorMap(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> color_map = abjad.ColorMap(
+            ...     colors=['red', 'green', 'blue'],
+            ...     pitch_iterables=[
+            ...         [-8, 2, 10, 21],
+            ...         [0, 11, 32, 41],
+            ...         [15, 25, 42, 43],
+            ...         ],
+            ...     )
 
-                >>> color_map = abjad.ColorMap(
-                ...     colors=['red', 'green', 'blue'],
-                ...     pitch_iterables=[
-                ...         [-8, 2, 10, 21],
-                ...         [0, 11, 32, 41],
-                ...         [15, 25, 42, 43],
-                ...         ],
-                ...     )
-
-            ::
-
-                >>> f(color_map)
-                abjad.ColorMap(
-                    colors=['red', 'green', 'blue'],
-                    pitch_iterables=[
-                        [-8, 2, 10, 21],
-                        [0, 11, 32, 41],
-                        [15, 25, 42, 43],
-                        ],
-                    )
+            >>> abjad.f(color_map)
+            abjad.ColorMap(
+                colors=['red', 'green', 'blue'],
+                pitch_iterables=[
+                    [-8, 2, 10, 21],
+                    [0, 11, 32, 41],
+                    [15, 25, 42, 43],
+                    ],
+                )
 
         Returns string.
         '''
@@ -96,21 +88,17 @@ class ColorMap(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> color_map = abjad.ColorMap(
+            ...     colors=['red', 'green', 'blue'],
+            ...     pitch_iterables=[
+            ...         [-8, 2, 10, 21],
+            ...         [0, 11, 32, 41],
+            ...         [15, 25, 42, 43],
+            ...         ],
+            ...     )
 
-                >>> color_map = abjad.ColorMap(
-                ...     colors=['red', 'green', 'blue'],
-                ...     pitch_iterables=[
-                ...         [-8, 2, 10, 21],
-                ...         [0, 11, 32, 41],
-                ...         [15, 25, 42, 43],
-                ...         ],
-                ...     )
-
-            ::
-
-                >>> color_map[11]
-                'green'
+            >>> color_map[11]
+            'green'
 
         Returns string.
         '''
@@ -141,21 +129,17 @@ class ColorMap(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> color_map = abjad.ColorMap(
+            ...     colors=['red', 'green', 'blue'],
+            ...     pitch_iterables=[
+            ...         [-8, 2, 10, 21],
+            ...         [0, 11, 32, 41],
+            ...         [15, 25, 42, 43],
+            ...         ],
+            ...     )
 
-                >>> color_map = abjad.ColorMap(
-                ...     colors=['red', 'green', 'blue'],
-                ...     pitch_iterables=[
-                ...         [-8, 2, 10, 21],
-                ...         [0, 11, 32, 41],
-                ...         [15, 25, 42, 43],
-                ...         ],
-                ...     )
-
-            ::
-
-                >>> color_map.colors
-                ['red', 'green', 'blue']
+            >>> color_map.colors
+            ['red', 'green', 'blue']
 
         Returns list.
         '''
@@ -167,21 +151,17 @@ class ColorMap(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> color_map = abjad.ColorMap(
+            ...     colors=['red', 'green', 'blue'],
+            ...     pitch_iterables=[
+            ...         [-8, 2, 10, 21],
+            ...         [0, 11, 32, 41],
+            ...         [15, 25, 42, 43],
+            ...         ],
+            ...     )
 
-                >>> color_map = abjad.ColorMap(
-                ...     colors=['red', 'green', 'blue'],
-                ...     pitch_iterables=[
-                ...         [-8, 2, 10, 21],
-                ...         [0, 11, 32, 41],
-                ...         [15, 25, 42, 43],
-                ...         ],
-                ...     )
-
-            ::
-
-                >>> color_map.is_twelve_tone_complete
-                True
+            >>> color_map.is_twelve_tone_complete
+            True
 
         Return boolean.
         '''
@@ -194,21 +174,17 @@ class ColorMap(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> color_map = abjad.ColorMap(
+            ...     colors=['red', 'green', 'blue'],
+            ...     pitch_iterables=[
+            ...         [-8, 2, 10, 21],
+            ...         [0, 11, 32, 41],
+            ...         [15, 25, 42, 43],
+            ...         ],
+            ...     )
 
-                >>> color_map = abjad.ColorMap(
-                ...     colors=['red', 'green', 'blue'],
-                ...     pitch_iterables=[
-                ...         [-8, 2, 10, 21],
-                ...         [0, 11, 32, 41],
-                ...         [15, 25, 42, 43],
-                ...         ],
-                ...     )
-
-            ::
-
-                >>> color_map.is_twenty_four_tone_complete
-                False
+            >>> color_map.is_twenty_four_tone_complete
+            False
 
         Return boolean.
         '''
@@ -222,34 +198,30 @@ class ColorMap(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> color_map = abjad.ColorMap(
+            ...     colors=['red', 'green', 'blue'],
+            ...     pitch_iterables=[
+            ...         [-8, 2, 10, 21],
+            ...         [0, 11, 32, 41],
+            ...         [15, 25, 42, 43],
+            ...         ],
+            ...     )
 
-                >>> color_map = abjad.ColorMap(
-                ...     colors=['red', 'green', 'blue'],
-                ...     pitch_iterables=[
-                ...         [-8, 2, 10, 21],
-                ...         [0, 11, 32, 41],
-                ...         [15, 25, 42, 43],
-                ...         ],
-                ...     )
-
-            ::
-
-                >>> for pair in color_map.pairs:
-                ...     pair
-                ...
-                (0, 'green')
-                (1, 'blue')
-                (2, 'red')
-                (3, 'blue')
-                (4, 'red')
-                (5, 'green')
-                (6, 'blue')
-                (7, 'blue')
-                (8, 'green')
-                (9, 'red')
-                (10, 'red')
-                (11, 'green')
+            >>> for pair in color_map.pairs:
+            ...     pair
+            ...
+            (0, 'green')
+            (1, 'blue')
+            (2, 'red')
+            (3, 'blue')
+            (4, 'red')
+            (5, 'green')
+            (6, 'blue')
+            (7, 'blue')
+            (8, 'green')
+            (9, 'red')
+            (10, 'red')
+            (11, 'green')
 
         Returns list.
         '''
@@ -262,21 +234,17 @@ class ColorMap(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> color_map = abjad.ColorMap(
+            ...     colors=['red', 'green', 'blue'],
+            ...     pitch_iterables=[
+            ...         [-8, 2, 10, 21],
+            ...         [0, 11, 32, 41],
+            ...         [15, 25, 42, 43],
+            ...         ],
+            ...     )
 
-                >>> color_map = abjad.ColorMap(
-                ...     colors=['red', 'green', 'blue'],
-                ...     pitch_iterables=[
-                ...         [-8, 2, 10, 21],
-                ...         [0, 11, 32, 41],
-                ...         [15, 25, 42, 43],
-                ...         ],
-                ...     )
-
-            ::
-
-                >>> color_map.pitch_iterables
-                [[-8, 2, 10, 21], [0, 11, 32, 41], [15, 25, 42, 43]]
+            >>> color_map.pitch_iterables
+            [[-8, 2, 10, 21], [0, 11, 32, 41], [15, 25, 42, 43]]
 
         Returns list.
         '''
@@ -289,21 +257,17 @@ class ColorMap(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> color_map = abjad.ColorMap(
+            ...     colors=['red', 'green', 'blue'],
+            ...     pitch_iterables=[
+            ...         [-8, 2, 10, 21],
+            ...         [0, 11, 32, 41],
+            ...         [15, 25, 42, 43],
+            ...         ],
+            ...     )
 
-                >>> color_map = abjad.ColorMap(
-                ...     colors=['red', 'green', 'blue'],
-                ...     pitch_iterables=[
-                ...         [-8, 2, 10, 21],
-                ...         [0, 11, 32, 41],
-                ...         [15, 25, 42, 43],
-                ...         ],
-                ...     )
-
-            ::
-
-                >>> color_map.get(11)
-                'green'
+            >>> color_map.get(11)
+            'green'
 
         Returns `alternative` when `key` is not found.
 

@@ -6,19 +6,17 @@ class Accordion(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff_group = abjad.StaffGroup(context_name='PianoStaff')
-            >>> staff_group.append(abjad.Staff("c'4 d'4 e'4 f'4"))
-            >>> staff_group.append(abjad.Staff("c'2 b2"))
-            >>> accordion = abjad.Accordion()
-            >>> abjad.attach(accordion, staff_group[0][0])
-            >>> abjad.attach(abjad.Clef('bass'), staff_group[1][0])
-            >>> show(staff_group) # doctest: +SKIP
+        >>> staff_group = abjad.StaffGroup(context_name='PianoStaff')
+        >>> staff_group.append(abjad.Staff("c'4 d'4 e'4 f'4"))
+        >>> staff_group.append(abjad.Staff("c'2 b2"))
+        >>> accordion = abjad.Accordion()
+        >>> abjad.attach(accordion, staff_group[0][0])
+        >>> abjad.attach(abjad.Clef('bass'), staff_group[1][0])
+        >>> abjad.show(staff_group) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff_group)
+            >>> abjad.f(staff_group)
             \new PianoStaff <<
                 \new Staff {
                     \set PianoStaff.instrumentName = \markup { Accordion }
@@ -77,24 +75,22 @@ class Accordion(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> accordion = abjad.Accordion()
-                >>> f(accordion)
-                abjad.Accordion(
-                    name='accordion',
-                    short_name='acc.',
-                    name_markup=abjad.Markup(
-                        contents=['Accordion'],
-                        ),
-                    short_name_markup=abjad.Markup(
-                        contents=['Acc.'],
-                        ),
-                    allowable_clefs=('treble', 'bass'),
-                    default_scope='StaffGroup',
-                    middle_c_sounding_pitch=abjad.NamedPitch("c'"),
-                    pitch_range=abjad.PitchRange('[E1, C8]'),
-                    )
+            >>> accordion = abjad.Accordion()
+            >>> abjad.f(accordion)
+            abjad.Accordion(
+                name='accordion',
+                short_name='acc.',
+                name_markup=abjad.Markup(
+                    contents=['Accordion'],
+                    ),
+                short_name_markup=abjad.Markup(
+                    contents=['Acc.'],
+                    ),
+                allowable_clefs=('treble', 'bass'),
+                default_scope='StaffGroup',
+                middle_c_sounding_pitch=abjad.NamedPitch("c'"),
+                pitch_range=abjad.PitchRange('[E1, C8]'),
+                )
 
         Returns string.
         '''
@@ -109,11 +105,9 @@ class Accordion(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> accordion = abjad.Accordion()
-                >>> accordion.allowable_clefs
-                ('treble', 'bass')
+            >>> accordion = abjad.Accordion()
+            >>> accordion.allowable_clefs
+            ('treble', 'bass')
 
         Returns tuple.
         '''
@@ -125,11 +119,9 @@ class Accordion(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> accordion = abjad.Accordion()
-                >>> accordion.default_scope
-                'StaffGroup'
+            >>> accordion = abjad.Accordion()
+            >>> accordion.default_scope
+            'StaffGroup'
 
         Returns piano staff.
         '''
@@ -141,15 +133,11 @@ class Accordion(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> accordion = abjad.Accordion()
+            >>> accordion.middle_c_sounding_pitch
+            NamedPitch("c'")
 
-                >>> accordion = abjad.Accordion()
-                >>> accordion.middle_c_sounding_pitch
-                NamedPitch("c'")
-
-            ::
-
-                >>> show(accordion.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(accordion.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -161,11 +149,9 @@ class Accordion(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> accordion = abjad.Accordion()
-                >>> accordion.name
-                'accordion'
+            >>> accordion = abjad.Accordion()
+            >>> accordion.name
+            'accordion'
 
         Returns string.
         '''
@@ -177,15 +163,11 @@ class Accordion(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> accordion = abjad.Accordion()
+            >>> accordion.name_markup
+            Markup(contents=['Accordion'])
 
-                >>> accordion = abjad.Accordion()
-                >>> accordion.name_markup
-                Markup(contents=['Accordion'])
-
-            ::
-
-                >>> show(accordion.name_markup) # doctest: +SKIP
+            >>> abjad.show(accordion.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -197,15 +179,11 @@ class Accordion(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> accordion = abjad.Accordion()
+            >>> accordion.pitch_range
+            PitchRange('[E1, C8]')
 
-                >>> accordion = abjad.Accordion()
-                >>> accordion.pitch_range
-                PitchRange('[E1, C8]')
-
-            ::
-
-                >>> show(accordion.pitch_range) # doctest: +SKIP
+            >>> abjad.show(accordion.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -217,11 +195,9 @@ class Accordion(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> accordion = abjad.Accordion()
-                >>> accordion.short_name
-                'acc.'
+            >>> accordion = abjad.Accordion()
+            >>> accordion.short_name
+            'acc.'
 
         Returns string.
         '''
@@ -233,15 +209,11 @@ class Accordion(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> accordion = abjad.Accordion()
+            >>> accordion.short_name_markup
+            Markup(contents=['Acc.'])
 
-                >>> accordion = abjad.Accordion()
-                >>> accordion.short_name_markup
-                Markup(contents=['Acc.'])
-
-            ::
-
-                >>> show(accordion.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(accordion.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

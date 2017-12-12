@@ -7,17 +7,15 @@ class HorizontalBracketSpanner(Spanner):
 
     ..  container:: example
 
-        ::
-
-            >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
-            >>> voice.consists_commands.append('Horizontal_bracket_engraver')
-            >>> spanner = abjad.HorizontalBracketSpanner()
-            >>> abjad.attach(spanner, voice[:])
-            >>> show(voice) # doctest: +SKIP
+        >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
+        >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+        >>> spanner = abjad.HorizontalBracketSpanner()
+        >>> abjad.attach(spanner, voice[:])
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(voice)
+            >>> abjad.f(voice)
             \new Voice \with {
                 \consists Horizontal_bracket_engraver
             } {
@@ -73,25 +71,19 @@ class HorizontalBracketSpanner(Spanner):
 
             Gets markup:
 
-            ::
+            >>> markup = abjad.Markup('3-1[012]').smaller()
+            >>> spanner = abjad.HorizontalBracketSpanner(markup=markup)
 
-                >>> markup = abjad.Markup('3-1[012]').smaller()
-                >>> spanner = abjad.HorizontalBracketSpanner(markup=markup)
-
-            ::
-
-                >>> spanner.markup
-                Markup(contents=[MarkupCommand('smaller', '3-1[012]')])
+            >>> spanner.markup
+            Markup(contents=[MarkupCommand('smaller', '3-1[012]')])
 
         ..  container:: example
 
             Defaults to none:
 
-            ::
-
-                >>> spanner = abjad.HorizontalBracketSpanner()
-                >>> spanner.markup is None
-                True
+            >>> spanner = abjad.HorizontalBracketSpanner()
+            >>> spanner.markup is None
+            True
 
         Set to markup or none.
 

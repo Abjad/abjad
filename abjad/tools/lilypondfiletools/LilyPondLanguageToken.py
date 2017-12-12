@@ -6,10 +6,8 @@ class LilyPondLanguageToken(AbjadValueObject):
 
     ..  container:: example
 
-        ::
-
-            >>> abjad.LilyPondLanguageToken()
-            LilyPondLanguageToken()
+        >>> abjad.LilyPondLanguageToken()
+        LilyPondLanguageToken()
 
     '''
 
@@ -24,11 +22,9 @@ class LilyPondLanguageToken(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> token = abjad.LilyPondLanguageToken()
-                >>> print(format(token))
-                \language "english"
+            >>> token = abjad.LilyPondLanguageToken()
+            >>> print(format(token))
+            \language "english"
 
         Returns string.
         '''
@@ -44,11 +40,9 @@ class LilyPondLanguageToken(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> token = abjad.LilyPondLanguageToken()
-                >>> token
-                LilyPondLanguageToken()
+            >>> token = abjad.LilyPondLanguageToken()
+            >>> token
+            LilyPondLanguageToken()
 
         Returns string.
         '''

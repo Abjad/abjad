@@ -6,42 +6,38 @@ class CompoundInequality(TypedList):
 
     ..  container:: example
 
-        ::
+        >>> compound_inequality = abjad.timespantools.CompoundInequality([
+        ...    abjad.timespantools.CompoundInequality([
+        ...        'timespan_1.start_offset <= timespan_2.start_offset',
+        ...        'timespan_2.start_offset < timespan_1.stop_offset'],
+        ...         logical_operator='and'),
+        ...    abjad.timespantools.CompoundInequality([
+        ...        'timespan_2.start_offset <= timespan_1.start_offset',
+        ...        'timespan_1.start_offset < timespan_2.stop_offset'],
+        ...        logical_operator='and')],
+        ...    logical_operator='or',
+        ...    )
 
-            >>> compound_inequality = abjad.timespantools.CompoundInequality([
-            ...    abjad.timespantools.CompoundInequality([
-            ...        'timespan_1.start_offset <= timespan_2.start_offset',
-            ...        'timespan_2.start_offset < timespan_1.stop_offset'],
-            ...         logical_operator='and'),
-            ...    abjad.timespantools.CompoundInequality([
-            ...        'timespan_2.start_offset <= timespan_1.start_offset',
-            ...        'timespan_1.start_offset < timespan_2.stop_offset'],
-            ...        logical_operator='and')],
-            ...    logical_operator='or',
-            ...    )
-
-        ::
-
-            >>> f(compound_inequality)
-            abjad.timespantools.CompoundInequality(
-                [
-                    abjad.timespantools.CompoundInequality(
-                        [
-                            abjad.TimespanInequality('timespan_1.start_offset <= timespan_2.start_offset'),
-                            abjad.TimespanInequality('timespan_2.start_offset < timespan_1.stop_offset'),
-                            ],
-                        logical_operator='and',
-                        ),
-                    abjad.timespantools.CompoundInequality(
-                        [
-                            abjad.TimespanInequality('timespan_2.start_offset <= timespan_1.start_offset'),
-                            abjad.TimespanInequality('timespan_1.start_offset < timespan_2.stop_offset'),
-                            ],
-                        logical_operator='and',
-                        ),
-                    ],
-                logical_operator='or',
-                )
+        >>> abjad.f(compound_inequality)
+        abjad.timespantools.CompoundInequality(
+            [
+                abjad.timespantools.CompoundInequality(
+                    [
+                        abjad.TimespanInequality('timespan_1.start_offset <= timespan_2.start_offset'),
+                        abjad.TimespanInequality('timespan_2.start_offset < timespan_1.stop_offset'),
+                        ],
+                    logical_operator='and',
+                    ),
+                abjad.timespantools.CompoundInequality(
+                    [
+                        abjad.TimespanInequality('timespan_2.start_offset <= timespan_1.start_offset'),
+                        abjad.TimespanInequality('timespan_1.start_offset < timespan_2.stop_offset'),
+                        ],
+                    logical_operator='and',
+                    ),
+                ],
+            logical_operator='or',
+            )
 
     '''
 

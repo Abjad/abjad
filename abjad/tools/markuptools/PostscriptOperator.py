@@ -7,11 +7,9 @@ class PostscriptOperator(AbjadValueObject):
 
     ..  container:: example
 
-        ::
-
-            >>> operator = abjad.PostscriptOperator('rmoveto', 1, 1.5)
-            >>> print(format(operator))
-            abjad.PostscriptOperator('rmoveto', 1, 1.5)
+        >>> operator = abjad.PostscriptOperator('rmoveto', 1, 1.5)
+        >>> print(format(operator))
+        abjad.PostscriptOperator('rmoveto', 1, 1.5)
 
     '''
 
@@ -37,7 +35,7 @@ class PostscriptOperator(AbjadValueObject):
     def __str__(self):
         r'''Gets string representation of Postscript operator.
 
-        ::
+        ..  container:: example
 
             >>> operator = abjad.PostscriptOperator('rmoveto', 1, 1.5)
             >>> str(operator)

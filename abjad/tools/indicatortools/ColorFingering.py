@@ -12,19 +12,15 @@ class ColorFingering(AbjadValueObject):
 
         First color fingering:
 
-        ::
+        >>> fingering = abjad.ColorFingering(1)
+        >>> note = abjad.Note("c'4")
+        >>> abjad.attach(fingering, note)
 
-            >>> fingering = abjad.ColorFingering(1)
-            >>> note = abjad.Note("c'4")
-            >>> abjad.attach(fingering, note)
-
-        ::
-
-            >>> show(note) # doctest: +SKIP
+        >>> abjad.show(note) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(note)
+            >>> abjad.f(note)
             c'4
                 ^ \markup {
                     \override
@@ -38,19 +34,15 @@ class ColorFingering(AbjadValueObject):
 
         Second color fingering:
 
-        ::
+        >>> fingering = abjad.ColorFingering(2)
+        >>> note = abjad.Note("c'4")
+        >>> abjad.attach(fingering, note)
 
-            >>> fingering = abjad.ColorFingering(2)
-            >>> note = abjad.Note("c'4")
-            >>> abjad.attach(fingering, note)
-
-        ::
-
-            >>> show(note) # doctest: +SKIP
+        >>> abjad.show(note) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(note)
+            >>> abjad.f(note)
             c'4
                 ^ \markup {
                     \override
@@ -92,13 +84,11 @@ class ColorFingering(AbjadValueObject):
         Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
         Interprets `''` equal to `'storage'`.
 
-        ::
-
-            >>> fingering = abjad.ColorFingering(1)
-            >>> f(fingering)
-            abjad.ColorFingering(
-                number=1,
-                )
+        >>> fingering = abjad.ColorFingering(1)
+        >>> abjad.f(fingering)
+        abjad.ColorFingering(
+            number=1,
+            )
 
         Returns string.
         '''
@@ -113,38 +103,30 @@ class ColorFingering(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> fingering_1 = abjad.ColorFingering(1)
+            >>> fingering_2 = abjad.ColorFingering(1)
+            >>> fingering_3 = abjad.ColorFingering(2)
 
-                >>> fingering_1 = abjad.ColorFingering(1)
-                >>> fingering_2 = abjad.ColorFingering(1)
-                >>> fingering_3 = abjad.ColorFingering(2)
+            >>> fingering_1 < fingering_1
+            False
+            >>> fingering_1 < fingering_2
+            False
+            >>> fingering_1 < fingering_3
+            True
 
-            ::
+            >>> fingering_2 < fingering_1
+            False
+            >>> fingering_2 < fingering_2
+            False
+            >>> fingering_2 < fingering_3
+            True
 
-                >>> fingering_1 < fingering_1
-                False
-                >>> fingering_1 < fingering_2
-                False
-                >>> fingering_1 < fingering_3
-                True
-
-            ::
-
-                >>> fingering_2 < fingering_1
-                False
-                >>> fingering_2 < fingering_2
-                False
-                >>> fingering_2 < fingering_3
-                True
-
-            ::
-
-                >>> fingering_3 < fingering_1
-                False
-                >>> fingering_3 < fingering_2
-                False
-                >>> fingering_3 < fingering_3
-                False
+            >>> fingering_3 < fingering_1
+            False
+            >>> fingering_3 < fingering_2
+            False
+            >>> fingering_3 < fingering_3
+            False
 
         Returns true or false.
         '''
@@ -182,35 +164,31 @@ class ColorFingering(AbjadValueObject):
 
             First color fingering:
 
-            ::
-
-                >>> fingering = abjad.ColorFingering(1)
-                >>> print(format(fingering.markup, 'lilypond'))
-                \markup {
-                    \override
-                        #'(circle-padding . 0.25)
-                        \circle
-                            \finger
-                                1
-                    }
-                >>> show(fingering.markup) # doctest: +SKIP
+            >>> fingering = abjad.ColorFingering(1)
+            >>> print(format(fingering.markup, 'lilypond'))
+            \markup {
+                \override
+                    #'(circle-padding . 0.25)
+                    \circle
+                        \finger
+                            1
+                }
+            >>> abjad.show(fingering.markup) # doctest: +SKIP
 
         ..  container:: example
 
             Second color fingering:
 
-            ::
-
-                >>> fingering = abjad.ColorFingering(2)
-                >>> print(format(fingering.markup, 'lilypond'))
-                \markup {
-                    \override
-                        #'(circle-padding . 0.25)
-                        \circle
-                            \finger
-                                2
-                    }
-                >>> show(fingering.markup) # doctest: +SKIP
+            >>> fingering = abjad.ColorFingering(2)
+            >>> print(format(fingering.markup, 'lilypond'))
+            \markup {
+                \override
+                    #'(circle-padding . 0.25)
+                    \circle
+                        \finger
+                            2
+                }
+            >>> abjad.show(fingering.markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -230,21 +208,17 @@ class ColorFingering(AbjadValueObject):
 
             First color fingering:
 
-            ::
-
-                >>> fingering = abjad.ColorFingering(1)
-                >>> fingering.number
-                1
+            >>> fingering = abjad.ColorFingering(1)
+            >>> fingering.number
+            1
 
         ..  container:: example
 
             Second color fingering:
 
-            ::
-
-                >>> fingering = abjad.ColorFingering(2)
-                >>> fingering.number
-                2
+            >>> fingering = abjad.ColorFingering(2)
+            >>> fingering.number
+            2
 
         Returns positive integer.
         '''

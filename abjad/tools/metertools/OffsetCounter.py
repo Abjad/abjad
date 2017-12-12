@@ -7,35 +7,29 @@ class OffsetCounter(TypedCounter):
 
     ..  container:: example
 
-        ::
+        >>> timespans = abjad.TimespanList([
+        ...     abjad.Timespan(0, 16),
+        ...     abjad.Timespan(5, 12),
+        ...     abjad.Timespan(-2, 8),
+        ...     ])
+        >>> timespan_operand = abjad.Timespan(6, 10)
+        >>> timespans = timespans - timespan_operand
+        >>> offset_counter = abjad.OffsetCounter(timespans)
 
-            >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(0, 16),
-            ...     abjad.Timespan(5, 12),
-            ...     abjad.Timespan(-2, 8),
-            ...     ])
-            >>> timespan_operand = abjad.Timespan(6, 10)
-            >>> timespans = timespans - timespan_operand
-            >>> offset_counter = abjad.OffsetCounter(timespans)
+        >>> abjad.f(offset_counter)
+        abjad.OffsetCounter(
+            {
+                abjad.Offset(-2, 1): 1,
+                abjad.Offset(0, 1): 1,
+                abjad.Offset(5, 1): 1,
+                abjad.Offset(6, 1): 3,
+                abjad.Offset(10, 1): 2,
+                abjad.Offset(12, 1): 1,
+                abjad.Offset(16, 1): 1,
+                }
+            )
 
-        ::
-
-            >>> f(offset_counter)
-            abjad.OffsetCounter(
-                {
-                    abjad.Offset(-2, 1): 1,
-                    abjad.Offset(0, 1): 1,
-                    abjad.Offset(5, 1): 1,
-                    abjad.Offset(6, 1): 3,
-                    abjad.Offset(10, 1): 2,
-                    abjad.Offset(12, 1): 1,
-                    abjad.Offset(16, 1): 1,
-                    }
-                )
-
-        ::
-
-            >>> show(offset_counter, scale=0.5) # doctest: +SKIP
+        >>> abjad.show(offset_counter, scale=0.5) # doctest: +SKIP
 
     '''
 
@@ -68,17 +62,15 @@ class OffsetCounter(TypedCounter):
 
         ..  container:: example
 
-            ::
-
-                >>> timespans = abjad.TimespanList([
-                ...     abjad.Timespan(0, 16),
-                ...     abjad.Timespan(5, 12),
-                ...     abjad.Timespan(-2, 8),
-                ...     ])
-                >>> timespan_operand = abjad.Timespan(6, 10)
-                >>> timespans = timespans - timespan_operand
-                >>> offset_counter = abjad.OffsetCounter(timespans)
-                >>> show(offset_counter, scale=0.5) # doctest: +SKIP
+            >>> timespans = abjad.TimespanList([
+            ...     abjad.Timespan(0, 16),
+            ...     abjad.Timespan(5, 12),
+            ...     abjad.Timespan(-2, 8),
+            ...     ])
+            >>> timespan_operand = abjad.Timespan(6, 10)
+            >>> timespans = timespans - timespan_operand
+            >>> offset_counter = abjad.OffsetCounter(timespans)
+            >>> abjad.show(offset_counter, scale=0.5) # doctest: +SKIP
 
         Returns LilyPond file.
         '''

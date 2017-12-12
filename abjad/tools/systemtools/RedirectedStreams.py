@@ -7,17 +7,15 @@ class RedirectedStreams(ContextManager):
 
     ..  container:: example
 
-        ::
-
-            >>> from io import StringIO
-            >>> string_io = StringIO()
-            >>> with abjad.RedirectedStreams(stdout=string_io):
-            ...     print("hello, world!")
-            ...
-            >>> result = string_io.getvalue()
-            >>> string_io.close()
-            >>> print(result)
-            hello, world!
+        >>> from io import StringIO
+        >>> string_io = StringIO()
+        >>> with abjad.RedirectedStreams(stdout=string_io):
+        ...     print("hello, world!")
+        ...
+        >>> result = string_io.getvalue()
+        >>> string_io.close()
+        >>> print(result)
+        hello, world!
 
     Redirected streams context manager is immutable.
     '''
@@ -70,11 +68,9 @@ class RedirectedStreams(ContextManager):
 
         ..  container:: example
 
-            ::
-
-                >>> context_manager = abjad.RedirectedStreams()
-                >>> context_manager
-                <RedirectedStreams()>
+            >>> context_manager = abjad.RedirectedStreams()
+            >>> context_manager
+            <RedirectedStreams()>
 
         Returns string.
         '''

@@ -11,56 +11,40 @@ class OrdinalConstant(AbjadValueObject):
 
         Initializes with `dimension`, `value` and `representation`:
 
-        ::
+        >>> Left = abjad.OrdinalConstant('x', -1, 'Left')
+        >>> Left
+        Left
 
-            >>> Left = abjad.OrdinalConstant('x', -1, 'Left')
-            >>> Left
-            Left
+        >>> Right = abjad.OrdinalConstant('x', 1, 'Right')
+        >>> Right
+        Right
 
-        ::
-
-            >>> Right = abjad.OrdinalConstant('x', 1, 'Right')
-            >>> Right
-            Right
-
-        ::
-
-            >>> Left < Right
-            True
+        >>> Left < Right
+        True
 
     ..  container:: example
 
         Comparing like-dimensioned ordinal constants is allowed:
 
-        ::
+        >>> Up = abjad.OrdinalConstant('y', 1, 'Up')
+        >>> Up
+        Up
 
-            >>> Up = abjad.OrdinalConstant('y', 1, 'Up')
-            >>> Up
-            Up
+        >>> Down = abjad.OrdinalConstant('y', -1, 'Down')
+        >>> Down
+        Down
 
-        ::
-
-            >>> Down = abjad.OrdinalConstant('y', -1, 'Down')
-            >>> Down
-            Down
-
-        ::
-
-            >>> Down < Up
-            True
+        >>> Down < Up
+        True
 
     ..  container:: example
 
         Comparing differently dimensioned ordinal constants raises an exception:
 
-        ::
+        >>> import pytest
 
-            >>> import pytest
-
-        ::
-
-            >>> bool(pytest.raises(Exception, 'Left < Up'))
-            True
+        >>> bool(pytest.raises(Exception, 'Left < Up'))
+        True
 
     Abjad adds the following constants to Python's built-in namespace
     when Abjad is first imported:
@@ -87,31 +71,21 @@ class OrdinalConstant(AbjadValueObject):
 
         Copies constants:
 
-        ::
+        >>> import copy
+        >>> constant_1 = abjad.OrdinalConstant('x', -1, 'left')
+        >>> constant_2 = copy.deepcopy(constant_1)
 
-            >>> import copy
-            >>> constant_1 = abjad.OrdinalConstant('x', -1, 'left')
-            >>> constant_2 = copy.deepcopy(constant_1)
+        >>> isinstance(constant_1, abjad.OrdinalConstant)
+        True
 
-        ::
+        >>> isinstance(constant_2, abjad.OrdinalConstant)
+        True
 
-            >>> isinstance(constant_1, abjad.OrdinalConstant)
-            True
+        >>> constant_1 is not constant_2
+        True
 
-        ::
-
-            >>> isinstance(constant_2, abjad.OrdinalConstant)
-            True
-
-        ::
-
-            >>> constant_1 is not constant_2
-            True
-
-        ::
-
-            >>> constant_1 == constant_2
-            True
+        >>> constant_1 == constant_2
+        True
 
     '''
 

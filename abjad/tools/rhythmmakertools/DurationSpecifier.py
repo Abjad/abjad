@@ -54,13 +54,11 @@ class DurationSpecifier(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> specifier = abjad.rhythmmakertools.DurationSpecifier()
-                >>> f(specifier)
-                abjad.rhythmmakertools.DurationSpecifier(
-                    decrease_monotonic=True,
-                    )
+            >>> specifier = abjad.rhythmmakertools.DurationSpecifier()
+            >>> abjad.f(specifier)
+            abjad.rhythmmakertools.DurationSpecifier(
+                decrease_monotonic=True,
+                )
 
         Returns string.
         '''
@@ -74,10 +72,8 @@ class DurationSpecifier(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.rhythmmakertools.DurationSpecifier()
-                DurationSpecifier(decrease_monotonic=True)
+            >>> abjad.rhythmmakertools.DurationSpecifier()
+            DurationSpecifier(decrease_monotonic=True)
 
         Returns string.
         '''
@@ -176,11 +172,9 @@ class DurationSpecifier(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> specifier = abjad.rhythmmakertools.DurationSpecifier()
-                >>> specifier.decrease_monotonic
-                True
+            >>> specifier = abjad.rhythmmakertools.DurationSpecifier()
+            >>> specifier.decrease_monotonic
+            True
 
         Defaults to true.
 
@@ -194,11 +188,9 @@ class DurationSpecifier(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> specifier = abjad.rhythmmakertools.DurationSpecifier()
-                >>> specifier.forbid_meter_rewriting is None
-                True
+            >>> specifier = abjad.rhythmmakertools.DurationSpecifier()
+            >>> specifier.forbid_meter_rewriting is None
+            True
 
         Defaults to none.
 
@@ -212,11 +204,9 @@ class DurationSpecifier(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> specifier = abjad.rhythmmakertools.DurationSpecifier()
-                >>> specifier.forbidden_duration is None
-                True
+            >>> specifier = abjad.rhythmmakertools.DurationSpecifier()
+            >>> specifier.forbidden_duration is None
+            True
 
         Defaults to none.
 
@@ -231,11 +221,9 @@ class DurationSpecifier(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> specifier = abjad.rhythmmakertools.DurationSpecifier()
-                >>> specifier.rewrite_meter is None
-                True
+            >>> specifier = abjad.rhythmmakertools.DurationSpecifier()
+            >>> specifier.rewrite_meter is None
+            True
 
         Defaults to none.
 
@@ -252,11 +240,9 @@ class DurationSpecifier(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> specifier = abjad.rhythmmakertools.DurationSpecifier()
-                >>> specifier.spell_metrically is None
-                True
+            >>> specifier = abjad.rhythmmakertools.DurationSpecifier()
+            >>> specifier.spell_metrically is None
+            True
 
         Spells unassignable durations like ``5/16`` and ``9/4`` metrically when
         set to ``'unassignable'``. Leaves other durations unchanged.

@@ -12,40 +12,32 @@ class Block(AbjadObject):
         Here right margin precedes left margin even though left margin
         alphabetizes before right margin:
 
-        ::
+        >>> block = abjad.Block(name='paper')
+        >>> block.right_margin = abjad.LilyPondDimension(2, 'cm')
+        >>> block.left_margin = abjad.LilyPondDimension(2, 'cm')
+        >>> block
+        <Block(name='paper')>
 
-            >>> block = abjad.Block(name='paper')
-            >>> block.right_margin = abjad.LilyPondDimension(2, 'cm')
-            >>> block.left_margin = abjad.LilyPondDimension(2, 'cm')
-            >>> block
-            <Block(name='paper')>
-
-        ::
-
-            >>> f(block)
-            \paper {
-                right-margin = 2\cm
-                left-margin = 2\cm
-            }
+        >>> abjad.f(block)
+        \paper {
+            right-margin = 2\cm
+            left-margin = 2\cm
+        }
 
     ..  container:: example
 
-        ::
+        >>> block = abjad.Block(name='score')
+        >>> markup = abjad.Markup('foo')
+        >>> block.items.append(markup)
+        >>> block
+        <Block(name='score')>
 
-            >>> block = abjad.Block(name='score')
-            >>> markup = abjad.Markup('foo')
-            >>> block.items.append(markup)
-            >>> block
-            <Block(name='score')>
-
-        ::
-
-            >>> f(block)
-            \score {
-                {
-                    \markup { foo }
-                }
+        >>> abjad.f(block)
+        \score {
+            {
+                \markup { foo }
             }
+        }
 
     '''
 
@@ -80,16 +72,12 @@ class Block(AbjadObject):
 
             Gets score with name ``'Red Example Score'`` in score block:
 
-            ::
+            >>> block = abjad.Block(name='score')
+            >>> score = abjad.Score(name='Red Example Score')
+            >>> block.items.append(score)
 
-                >>> block = abjad.Block(name='score')
-                >>> score = abjad.Score(name='Red Example Score')
-                >>> block.items.append(score)
-
-            ::
-
-                >>> block['Red Example Score']
-                Score(is_simultaneous=True, name='Red Example Score')
+            >>> block['Red Example Score']
+            Score(is_simultaneous=True, name='Red Example Score')
 
         Returns item.
 
@@ -258,16 +246,12 @@ class Block(AbjadObject):
 
         ..  container:: example
 
-            ::
+            >>> block = abjad.Block(name='score')
+            >>> markup = abjad.Markup('foo')
+            >>> block.items.append(markup)
 
-                >>> block = abjad.Block(name='score')
-                >>> markup = abjad.Markup('foo')
-                >>> block.items.append(markup)
-
-            ::
-
-                >>> block.items
-                [Markup(contents=['foo'])]
+            >>> block.items
+            [Markup(contents=['foo'])]
 
         Returns list.
         '''
@@ -279,16 +263,12 @@ class Block(AbjadObject):
 
         ..  container:: example
 
-            ::
+            >>> block = abjad.Block(name='score')
+            >>> markup = abjad.Markup('foo')
+            >>> block.items.append(markup)
 
-                >>> block = abjad.Block(name='score')
-                >>> markup = abjad.Markup('foo')
-                >>> block.items.append(markup)
-
-            ::
-
-                >>> block.name
-                'score'
+            >>> block.name
+            'score'
 
         Returns string.
         '''

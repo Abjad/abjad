@@ -8,21 +8,17 @@ class PageBreak(AbjadValueObject):
 
         Default page break:
 
-        ::
+        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+        >>> page_break = abjad.PageBreak()
+        >>> abjad.attach(page_break, staff[-1])
+        >>> abjad.show(staff) # doctest: +SKIP
 
-            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-            >>> page_break = abjad.PageBreak()
-            >>> abjad.attach(page_break, staff[-1])
-            >>> show(staff) # doctest: +SKIP
-
-        ::
-
-            >>> page_break
-            PageBreak()
+        >>> page_break
+        PageBreak()
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 c'4
                 d'4
@@ -70,11 +66,9 @@ class PageBreak(AbjadValueObject):
 
             Default page break:
 
-            ::
-
-                >>> page_break = abjad.PageBreak()
-                >>> page_break.default_scope
-                <class 'abjad.tools.scoretools.Score.Score'>
+            >>> page_break = abjad.PageBreak()
+            >>> page_break.default_scope
+            <class 'abjad.tools.scoretools.Score.Score'>
 
         Returns score.
         '''

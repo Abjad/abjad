@@ -9,33 +9,25 @@ class Infinity(AbjadValueObject):
 
         All numbers compare less than infinity:
 
-        ::
+        >>> 9999999 < Infinity
+        True
 
-            >>> 9999999 < Infinity
-            True
-
-        ::
-
-            >>> 2**38 < Infinity
-            True
+        >>> 2**38 < Infinity
+        True
 
     ..  container:: example
 
         Infinity compares equal to itself:
 
-        ::
-
-            >>> Infinity == Infinity
-            True
+        >>> Infinity == Infinity
+        True
 
     ..  container:: example
 
         Negative infinity compares less than infinity:
 
-        ::
-
-            >>> NegativeInfinity < Infinity
-            True
+        >>> NegativeInfinity < Infinity
+        True
 
     Initializes as a system singleton at start-up.
 

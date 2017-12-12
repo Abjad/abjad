@@ -7,34 +7,30 @@ class MetricAccentKernel(AbjadValueObject):
 
     ..  container:: example
 
-        ::
-
-            >>> hierarchy = abjad.Meter((7, 8))
-            >>> kernel = hierarchy.generate_offset_kernel_to_denominator(8)
-            >>> kernel
-            MetricAccentKernel(
-                {
-                    Offset(0, 1): Multiplier(3, 14),
-                    Offset(1, 8): Multiplier(1, 14),
-                    Offset(1, 4): Multiplier(1, 14),
-                    Offset(3, 8): Multiplier(1, 7),
-                    Offset(1, 2): Multiplier(1, 14),
-                    Offset(5, 8): Multiplier(1, 7),
-                    Offset(3, 4): Multiplier(1, 14),
-                    Offset(7, 8): Multiplier(3, 14),
-                    }
-                )
+        >>> hierarchy = abjad.Meter((7, 8))
+        >>> kernel = hierarchy.generate_offset_kernel_to_denominator(8)
+        >>> kernel
+        MetricAccentKernel(
+            {
+                Offset(0, 1): Multiplier(3, 14),
+                Offset(1, 8): Multiplier(1, 14),
+                Offset(1, 4): Multiplier(1, 14),
+                Offset(3, 8): Multiplier(1, 7),
+                Offset(1, 2): Multiplier(1, 14),
+                Offset(5, 8): Multiplier(1, 7),
+                Offset(3, 4): Multiplier(1, 14),
+                Offset(7, 8): Multiplier(3, 14),
+                }
+            )
 
     Call the kernel against an expression from which offsets can be counted
     to receive an impulse-response:
 
     ..  container:: example
 
-        ::
-
-            >>> offsets = [(0, 8), (1, 8), (1, 8), (3, 8)]
-            >>> kernel(offsets)
-            Multiplier(1, 2)
+        >>> offsets = [(0, 8), (1, 8), (1, 8), (3, 8)]
+        >>> kernel(offsets)
+        Multiplier(1, 2)
 
     '''
 
@@ -63,17 +59,13 @@ class MetricAccentKernel(AbjadValueObject):
     def __call__(self, argument):
         r'''Calls metrical accent kernal on `argument`.
 
-        ::
+        >>> upper_staff = abjad.Staff("c'8 d'4. e'8 f'4.")
+        >>> lower_staff = abjad.Staff(r'\clef bass c4 b,4 a,2')
+        >>> score = abjad.Score([upper_staff, lower_staff])
 
-            >>> upper_staff = abjad.Staff("c'8 d'4. e'8 f'4.")
-            >>> lower_staff = abjad.Staff(r'\clef bass c4 b,4 a,2')
-            >>> score = abjad.Score([upper_staff, lower_staff])
-
-        ::
-
-            >>> kernel = abjad.MetricAccentKernel.from_meter((4, 4))
-            >>> kernel(score)
-            Multiplier(10, 33)
+        >>> kernel = abjad.MetricAccentKernel.from_meter((4, 4))
+        >>> kernel(score)
+        Multiplier(10, 33)
 
         Returns float.
         '''
@@ -122,15 +114,13 @@ class MetricAccentKernel(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> upper_staff = abjad.Staff("c'8 d'4. e'8 f'4.")
-                >>> lower_staff = abjad.Staff(r'\clef bass c4 b,4 a,2')
-                >>> score = abjad.Score([upper_staff, lower_staff])
+            >>> upper_staff = abjad.Staff("c'8 d'4. e'8 f'4.")
+            >>> lower_staff = abjad.Staff(r'\clef bass c4 b,4 a,2')
+            >>> score = abjad.Score([upper_staff, lower_staff])
 
             ..  docs::
 
-                >>> f(score)
+                >>> abjad.f(score)
                 \new Score <<
                     \new Staff {
                         c'8
@@ -146,44 +136,36 @@ class MetricAccentKernel(AbjadValueObject):
                     }
                 >>
 
-            ::
+            >>> abjad.show(score) # doctest: +SKIP
 
-                >>> show(score) # doctest: +SKIP
-
-            ::
-
-                >>> MetricAccentKernel = abjad.MetricAccentKernel
-                >>> leaves = abjad.select(score).leaves()
-                >>> counter = abjad.MetricAccentKernel.count_offsets(leaves)
-                >>> for offset, count in sorted(counter.items()):
-                ...     offset, count
-                ...
-                (Offset(0, 1), 2)
-                (Offset(1, 8), 2)
-                (Offset(1, 4), 2)
-                (Offset(1, 2), 4)
-                (Offset(5, 8), 2)
-                (Offset(1, 1), 2)
+            >>> MetricAccentKernel = abjad.MetricAccentKernel
+            >>> leaves = abjad.select(score).leaves()
+            >>> counter = abjad.MetricAccentKernel.count_offsets(leaves)
+            >>> for offset, count in sorted(counter.items()):
+            ...     offset, count
+            ...
+            (Offset(0, 1), 2)
+            (Offset(1, 8), 2)
+            (Offset(1, 4), 2)
+            (Offset(1, 2), 4)
+            (Offset(5, 8), 2)
+            (Offset(1, 1), 2)
 
         ..  container:: example
 
-            ::
+            >>> a = abjad.Timespan(0, 10)
+            >>> b = abjad.Timespan(5, 15)
+            >>> c = abjad.Timespan(15, 20)
 
-                >>> a = abjad.Timespan(0, 10)
-                >>> b = abjad.Timespan(5, 15)
-                >>> c = abjad.Timespan(15, 20)
-
-            ::
-
-                >>> counter = MetricAccentKernel.count_offsets((a, b, c))
-                >>> for offset, count in sorted(counter.items()):
-                ...     offset, count
-                ...
-                (Offset(0, 1), 1)
-                (Offset(5, 1), 1)
-                (Offset(10, 1), 1)
-                (Offset(15, 1), 2)
-                (Offset(20, 1), 1)
+            >>> counter = MetricAccentKernel.count_offsets((a, b, c))
+            >>> for offset, count in sorted(counter.items()):
+            ...     offset, count
+            ...
+            (Offset(0, 1), 1)
+            (Offset(5, 1), 1)
+            (Offset(10, 1), 1)
+            (Offset(15, 1), 2)
+            (Offset(20, 1), 1)
 
         Returns counter.
         '''

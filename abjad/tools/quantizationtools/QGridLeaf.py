@@ -8,14 +8,12 @@ class QGridLeaf(RhythmTreeMixin, TreeNode):
 
     ..  container:: example
 
-        ::
-
-            >>> leaf = abjad.quantizationtools.QGridLeaf()
-            >>> leaf
-            QGridLeaf(
-                preprolated_duration=Duration(1, 1),
-                is_divisible=True
-                )
+        >>> leaf = abjad.quantizationtools.QGridLeaf()
+        >>> leaf
+        QGridLeaf(
+            preprolated_duration=Duration(1, 1),
+            is_divisible=True
+            )
 
     Used internally by ``QGrid``.
     '''

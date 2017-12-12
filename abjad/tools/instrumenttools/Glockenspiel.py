@@ -6,16 +6,14 @@ class Glockenspiel(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> glockenspiel = abjad.Glockenspiel()
-            >>> abjad.attach(glockenspiel, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+        >>> glockenspiel = abjad.Glockenspiel()
+        >>> abjad.attach(glockenspiel, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { Glockenspiel }
                 \set Staff.shortInstrumentName = \markup { Gkspl. }
@@ -64,11 +62,9 @@ class Glockenspiel(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> glockenspiel = abjad.Glockenspiel()
-                >>> glockenspiel.allowable_clefs
-                ('treble',)
+            >>> glockenspiel = abjad.Glockenspiel()
+            >>> glockenspiel.allowable_clefs
+            ('treble',)
 
         Returns clef list.
         '''
@@ -80,15 +76,11 @@ class Glockenspiel(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> glockenspiel = abjad.Glockenspiel()
+            >>> glockenspiel.middle_c_sounding_pitch
+            NamedPitch("c'''")
 
-                >>> glockenspiel = abjad.Glockenspiel()
-                >>> glockenspiel.middle_c_sounding_pitch
-                NamedPitch("c'''")
-
-            ::
-
-                >>> show(glockenspiel.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(glockenspiel.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         """
@@ -100,11 +92,9 @@ class Glockenspiel(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> glockenspiel = abjad.Glockenspiel()
-                >>> glockenspiel.name
-                'glockenspiel'
+            >>> glockenspiel = abjad.Glockenspiel()
+            >>> glockenspiel.name
+            'glockenspiel'
 
         Returns string.
         '''
@@ -116,15 +106,11 @@ class Glockenspiel(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> glockenspiel = abjad.Glockenspiel()
+            >>> glockenspiel.name_markup
+            Markup(contents=['Glockenspiel'])
 
-                >>> glockenspiel = abjad.Glockenspiel()
-                >>> glockenspiel.name_markup
-                Markup(contents=['Glockenspiel'])
-
-            ::
-
-                >>> show(glockenspiel.name_markup) # doctest: +SKIP
+            >>> abjad.show(glockenspiel.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -136,15 +122,11 @@ class Glockenspiel(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> glockenspiel = abjad.Glockenspiel()
+            >>> glockenspiel.pitch_range
+            PitchRange('[G5, C8]')
 
-                >>> glockenspiel = abjad.Glockenspiel()
-                >>> glockenspiel.pitch_range
-                PitchRange('[G5, C8]')
-
-            ::
-
-                >>> show(glockenspiel.pitch_range) # doctest: +SKIP
+            >>> abjad.show(glockenspiel.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -156,11 +138,9 @@ class Glockenspiel(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> glockenspiel = abjad.Glockenspiel()
-                >>> glockenspiel.short_name
-                'gkspl.'
+            >>> glockenspiel = abjad.Glockenspiel()
+            >>> glockenspiel.short_name
+            'gkspl.'
 
         Returns string.
         '''
@@ -172,15 +152,11 @@ class Glockenspiel(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> glockenspiel = abjad.Glockenspiel()
+            >>> glockenspiel.short_name_markup
+            Markup(contents=['Gkspl.'])
 
-                >>> glockenspiel = abjad.Glockenspiel()
-                >>> glockenspiel.short_name_markup
-                Markup(contents=['Gkspl.'])
-
-            ::
-
-                >>> show(glockenspiel.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(glockenspiel.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

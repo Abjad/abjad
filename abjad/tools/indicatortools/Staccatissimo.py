@@ -9,34 +9,30 @@ class Staccatissimo(AbjadValueObject):
 
         Attached to a single note:
 
-        ::
-
-            >>> note = abjad.Note("c'4")
-            >>> staccatissimo = abjad.Staccatissimo()
-            >>> abjad.attach(staccatissimo, note)
-            >>> show(note) # doctest: +SKIP
+        >>> note = abjad.Note("c'4")
+        >>> staccatissimo = abjad.Staccatissimo()
+        >>> abjad.attach(staccatissimo, note)
+        >>> abjad.show(note) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(note)
+            >>> abjad.f(note)
             c'4 \staccatissimo
 
     ..  container:: example
 
         Attached to notes in a staff:
 
-        ::
-
-            >>> staff = abjad.Staff("c'8 d' e' f' g' a' b' c''")
-            >>> abjad.attach(abjad.Beam(), staff[:4])
-            >>> abjad.attach(abjad.Beam(), staff[4:])
-            >>> abjad.attach(abjad.Staccatissimo(), staff[3])
-            >>> abjad.attach(abjad.Staccatissimo(), staff[7])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'8 d' e' f' g' a' b' c''")
+        >>> abjad.attach(abjad.Beam(), staff[:4])
+        >>> abjad.attach(abjad.Beam(), staff[4:])
+        >>> abjad.attach(abjad.Staccatissimo(), staff[3])
+        >>> abjad.attach(abjad.Staccatissimo(), staff[7])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 c'8 [
                 d'8
@@ -78,10 +74,8 @@ class Staccatissimo(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> str(abjad.Staccatissimo())
-                '\\staccatissimo'
+            >>> str(abjad.Staccatissimo())
+            '\\staccatissimo'
 
         Returns string.
         '''

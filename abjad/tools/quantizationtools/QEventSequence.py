@@ -23,45 +23,41 @@ class QEventSequence(AbjadObject):
         A q-event sequence provides a number of convenience functions to assist
         with instantiating new sequences:
 
-        ::
+        >>> durations = (1000, -500, 1250, -500, 750)
+        >>> sequence = \
+        ...     abjad.quantizationtools.QEventSequence.from_millisecond_durations(
+        ...     durations)
 
-            >>> durations = (1000, -500, 1250, -500, 750)
-            >>> sequence = \
-            ...     abjad.quantizationtools.QEventSequence.from_millisecond_durations(
-            ...     durations)
-
-        ::
-
-            >>> for q_event in sequence:
-            ...     f(q_event)
-            ...
-            abjad.quantizationtools.PitchedQEvent(
-                offset=abjad.Offset(0, 1),
-                pitches=(
-                    abjad.NamedPitch("c'"),
-                    ),
-                )
-            abjad.quantizationtools.SilentQEvent(
-                offset=abjad.Offset(1000, 1),
-                )
-            abjad.quantizationtools.PitchedQEvent(
-                offset=abjad.Offset(1500, 1),
-                pitches=(
-                    abjad.NamedPitch("c'"),
-                    ),
-                )
-            abjad.quantizationtools.SilentQEvent(
-                offset=abjad.Offset(2750, 1),
-                )
-            abjad.quantizationtools.PitchedQEvent(
-                offset=abjad.Offset(3250, 1),
-                pitches=(
-                    abjad.NamedPitch("c'"),
-                    ),
-                )
-            abjad.quantizationtools.TerminalQEvent(
-                offset=abjad.Offset(4000, 1),
-                )
+        >>> for q_event in sequence:
+        ...     abjad.f(q_event)
+        ...
+        abjad.quantizationtools.PitchedQEvent(
+            offset=abjad.Offset(0, 1),
+            pitches=(
+                abjad.NamedPitch("c'"),
+                ),
+            )
+        abjad.quantizationtools.SilentQEvent(
+            offset=abjad.Offset(1000, 1),
+            )
+        abjad.quantizationtools.PitchedQEvent(
+            offset=abjad.Offset(1500, 1),
+            pitches=(
+                abjad.NamedPitch("c'"),
+                ),
+            )
+        abjad.quantizationtools.SilentQEvent(
+            offset=abjad.Offset(2750, 1),
+            )
+        abjad.quantizationtools.PitchedQEvent(
+            offset=abjad.Offset(3250, 1),
+            pitches=(
+                abjad.NamedPitch("c'"),
+                ),
+            )
+        abjad.quantizationtools.TerminalQEvent(
+            offset=abjad.Offset(4000, 1),
+            )
 
     '''
 
@@ -122,47 +118,43 @@ class QEventSequence(AbjadObject):
         Set `format_specification` to `''` or `'storage'`.
         Interprets `''` equal to `'storage'`.
 
-        ::
+        >>> durations = (1000, -500, 1250, -500, 750)
+        >>> sequence = \
+        ...     abjad.quantizationtools.QEventSequence.from_millisecond_durations(
+        ...     durations)
 
-            >>> durations = (1000, -500, 1250, -500, 750)
-            >>> sequence = \
-            ...     abjad.quantizationtools.QEventSequence.from_millisecond_durations(
-            ...     durations)
-
-        ::
-
-            >>> print(format(sequence))
-            abjad.quantizationtools.QEventSequence(
-                (
-                    abjad.quantizationtools.PitchedQEvent(
-                        offset=abjad.Offset(0, 1),
-                        pitches=(
-                            abjad.NamedPitch("c'"),
-                            ),
+        >>> print(format(sequence))
+        abjad.quantizationtools.QEventSequence(
+            (
+                abjad.quantizationtools.PitchedQEvent(
+                    offset=abjad.Offset(0, 1),
+                    pitches=(
+                        abjad.NamedPitch("c'"),
                         ),
-                    abjad.quantizationtools.SilentQEvent(
-                        offset=abjad.Offset(1000, 1),
+                    ),
+                abjad.quantizationtools.SilentQEvent(
+                    offset=abjad.Offset(1000, 1),
+                    ),
+                abjad.quantizationtools.PitchedQEvent(
+                    offset=abjad.Offset(1500, 1),
+                    pitches=(
+                        abjad.NamedPitch("c'"),
                         ),
-                    abjad.quantizationtools.PitchedQEvent(
-                        offset=abjad.Offset(1500, 1),
-                        pitches=(
-                            abjad.NamedPitch("c'"),
-                            ),
+                    ),
+                abjad.quantizationtools.SilentQEvent(
+                    offset=abjad.Offset(2750, 1),
+                    ),
+                abjad.quantizationtools.PitchedQEvent(
+                    offset=abjad.Offset(3250, 1),
+                    pitches=(
+                        abjad.NamedPitch("c'"),
                         ),
-                    abjad.quantizationtools.SilentQEvent(
-                        offset=abjad.Offset(2750, 1),
-                        ),
-                    abjad.quantizationtools.PitchedQEvent(
-                        offset=abjad.Offset(3250, 1),
-                        pitches=(
-                            abjad.NamedPitch("c'"),
-                            ),
-                        ),
-                    abjad.quantizationtools.TerminalQEvent(
-                        offset=abjad.Offset(4000, 1),
-                        ),
-                    )
+                    ),
+                abjad.quantizationtools.TerminalQEvent(
+                    offset=abjad.Offset(4000, 1),
+                    ),
                 )
+            )
 
         Returns string.
         '''
@@ -221,42 +213,38 @@ class QEventSequence(AbjadObject):
         r'''Convert a sequence of millisecond durations ``durations`` into
         a ``QEventSequence``:
 
-        ::
+        >>> durations = [-250, 500, -1000, 1250, -1000]
+        >>> sequence = \
+        ...     abjad.quantizationtools.QEventSequence.from_millisecond_durations(
+        ...     durations)
 
-            >>> durations = [-250, 500, -1000, 1250, -1000]
-            >>> sequence = \
-            ...     abjad.quantizationtools.QEventSequence.from_millisecond_durations(
-            ...     durations)
-
-        ::
-
-            >>> for q_event in sequence:
-            ...     print(format(q_event, 'storage'))
-            ...
-            abjad.quantizationtools.SilentQEvent(
-                offset=abjad.Offset(0, 1),
-                )
-            abjad.quantizationtools.PitchedQEvent(
-                offset=abjad.Offset(250, 1),
-                pitches=(
-                    abjad.NamedPitch("c'"),
-                    ),
-                )
-            abjad.quantizationtools.SilentQEvent(
-                offset=abjad.Offset(750, 1),
-                )
-            abjad.quantizationtools.PitchedQEvent(
-                offset=abjad.Offset(1750, 1),
-                pitches=(
-                    abjad.NamedPitch("c'"),
-                    ),
-                )
-            abjad.quantizationtools.SilentQEvent(
-                offset=abjad.Offset(3000, 1),
-                )
-            abjad.quantizationtools.TerminalQEvent(
-                offset=abjad.Offset(4000, 1),
-                )
+        >>> for q_event in sequence:
+        ...     print(format(q_event, 'storage'))
+        ...
+        abjad.quantizationtools.SilentQEvent(
+            offset=abjad.Offset(0, 1),
+            )
+        abjad.quantizationtools.PitchedQEvent(
+            offset=abjad.Offset(250, 1),
+            pitches=(
+                abjad.NamedPitch("c'"),
+                ),
+            )
+        abjad.quantizationtools.SilentQEvent(
+            offset=abjad.Offset(750, 1),
+            )
+        abjad.quantizationtools.PitchedQEvent(
+            offset=abjad.Offset(1750, 1),
+            pitches=(
+                abjad.NamedPitch("c'"),
+                ),
+            )
+        abjad.quantizationtools.SilentQEvent(
+            offset=abjad.Offset(3000, 1),
+            )
+        abjad.quantizationtools.TerminalQEvent(
+            offset=abjad.Offset(4000, 1),
+            )
 
         Returns ``QEventSequence`` instance.
         '''
@@ -289,51 +277,47 @@ class QEventSequence(AbjadObject):
     def from_millisecond_offsets(class_, offsets):
         r'''Convert millisecond offsets ``offsets`` into a ``QEventSequence``:
 
-        ::
+        >>> offsets = [0, 250, 750, 1750, 3000, 4000]
+        >>> sequence = \
+        ...     abjad.quantizationtools.QEventSequence.from_millisecond_offsets(
+        ...     offsets)
 
-            >>> offsets = [0, 250, 750, 1750, 3000, 4000]
-            >>> sequence = \
-            ...     abjad.quantizationtools.QEventSequence.from_millisecond_offsets(
-            ...     offsets)
-
-        ::
-
-            >>> for q_event in sequence:
-            ...     print(format(q_event, 'storage'))
-            ...
-            abjad.quantizationtools.PitchedQEvent(
-                offset=abjad.Offset(0, 1),
-                pitches=(
-                    abjad.NamedPitch("c'"),
-                    ),
-                )
-            abjad.quantizationtools.PitchedQEvent(
-                offset=abjad.Offset(250, 1),
-                pitches=(
-                    abjad.NamedPitch("c'"),
-                    ),
-                )
-            abjad.quantizationtools.PitchedQEvent(
-                offset=abjad.Offset(750, 1),
-                pitches=(
-                    abjad.NamedPitch("c'"),
-                    ),
-                )
-            abjad.quantizationtools.PitchedQEvent(
-                offset=abjad.Offset(1750, 1),
-                pitches=(
-                    abjad.NamedPitch("c'"),
-                    ),
-                )
-            abjad.quantizationtools.PitchedQEvent(
-                offset=abjad.Offset(3000, 1),
-                pitches=(
-                    abjad.NamedPitch("c'"),
-                    ),
-                )
-            abjad.quantizationtools.TerminalQEvent(
-                offset=abjad.Offset(4000, 1),
-                )
+        >>> for q_event in sequence:
+        ...     print(format(q_event, 'storage'))
+        ...
+        abjad.quantizationtools.PitchedQEvent(
+            offset=abjad.Offset(0, 1),
+            pitches=(
+                abjad.NamedPitch("c'"),
+                ),
+            )
+        abjad.quantizationtools.PitchedQEvent(
+            offset=abjad.Offset(250, 1),
+            pitches=(
+                abjad.NamedPitch("c'"),
+                ),
+            )
+        abjad.quantizationtools.PitchedQEvent(
+            offset=abjad.Offset(750, 1),
+            pitches=(
+                abjad.NamedPitch("c'"),
+                ),
+            )
+        abjad.quantizationtools.PitchedQEvent(
+            offset=abjad.Offset(1750, 1),
+            pitches=(
+                abjad.NamedPitch("c'"),
+                ),
+            )
+        abjad.quantizationtools.PitchedQEvent(
+            offset=abjad.Offset(3000, 1),
+            pitches=(
+                abjad.NamedPitch("c'"),
+                ),
+            )
+        abjad.quantizationtools.TerminalQEvent(
+            offset=abjad.Offset(4000, 1),
+            )
 
         Returns ``QEventSequence`` instance.
         '''
@@ -348,48 +332,44 @@ class QEventSequence(AbjadObject):
         r'''Convert millisecond-duration:pitch pairs ``pairs`` into a
         ``QEventSequence``:
 
-        ::
+        >>> durations = [250, 500, 1000, 1250, 1000]
+        >>> pitches = [(0,), None, (2, 3), None, (1,)]
+        >>> pairs = tuple(zip(durations, pitches))
+        >>> sequence = \
+        ...     abjad.quantizationtools.QEventSequence.from_millisecond_pitch_pairs(
+        ...     pairs)
 
-            >>> durations = [250, 500, 1000, 1250, 1000]
-            >>> pitches = [(0,), None, (2, 3), None, (1,)]
-            >>> pairs = tuple(zip(durations, pitches))
-            >>> sequence = \
-            ...     abjad.quantizationtools.QEventSequence.from_millisecond_pitch_pairs(
-            ...     pairs)
-
-        ::
-
-            >>> for q_event in sequence:
-            ...     print(format(q_event, 'storage'))
-            ...
-            abjad.quantizationtools.PitchedQEvent(
-                offset=abjad.Offset(0, 1),
-                pitches=(
-                    abjad.NamedPitch("c'"),
-                    ),
-                )
-            abjad.quantizationtools.SilentQEvent(
-                offset=abjad.Offset(250, 1),
-                )
-            abjad.quantizationtools.PitchedQEvent(
-                offset=abjad.Offset(750, 1),
-                pitches=(
-                    abjad.NamedPitch("d'"),
-                    abjad.NamedPitch("ef'"),
-                    ),
-                )
-            abjad.quantizationtools.SilentQEvent(
-                offset=abjad.Offset(1750, 1),
-                )
-            abjad.quantizationtools.PitchedQEvent(
-                offset=abjad.Offset(3000, 1),
-                pitches=(
-                    abjad.NamedPitch("cs'"),
-                    ),
-                )
-            abjad.quantizationtools.TerminalQEvent(
-                offset=abjad.Offset(4000, 1),
-                )
+        >>> for q_event in sequence:
+        ...     print(format(q_event, 'storage'))
+        ...
+        abjad.quantizationtools.PitchedQEvent(
+            offset=abjad.Offset(0, 1),
+            pitches=(
+                abjad.NamedPitch("c'"),
+                ),
+            )
+        abjad.quantizationtools.SilentQEvent(
+            offset=abjad.Offset(250, 1),
+            )
+        abjad.quantizationtools.PitchedQEvent(
+            offset=abjad.Offset(750, 1),
+            pitches=(
+                abjad.NamedPitch("d'"),
+                abjad.NamedPitch("ef'"),
+                ),
+            )
+        abjad.quantizationtools.SilentQEvent(
+            offset=abjad.Offset(1750, 1),
+            )
+        abjad.quantizationtools.PitchedQEvent(
+            offset=abjad.Offset(3000, 1),
+            pitches=(
+                abjad.NamedPitch("cs'"),
+                ),
+            )
+        abjad.quantizationtools.TerminalQEvent(
+            offset=abjad.Offset(4000, 1),
+            )
 
         Returns ``QEventSequence`` instance.
         '''
@@ -437,40 +417,36 @@ class QEventSequence(AbjadObject):
         r'''Convert ``durations``, scaled by ``tempo``
         into a ``QEventSequence``:
 
-        ::
+        >>> tempo = abjad.MetronomeMark((1, 4), 174)
+        >>> durations = [(1, 4), (-3, 16), (1, 16), (-1, 2)]
+        >>> sequence = \
+        ...     abjad.quantizationtools.QEventSequence.from_tempo_scaled_durations(
+        ...     durations, tempo=tempo)
 
-            >>> tempo = abjad.MetronomeMark((1, 4), 174)
-            >>> durations = [(1, 4), (-3, 16), (1, 16), (-1, 2)]
-            >>> sequence = \
-            ...     abjad.quantizationtools.QEventSequence.from_tempo_scaled_durations(
-            ...     durations, tempo=tempo)
-
-        ::
-
-            >>> for q_event in sequence:
-            ...     print(format(q_event, 'storage'))
-            ...
-            abjad.quantizationtools.PitchedQEvent(
-                offset=abjad.Offset(0, 1),
-                pitches=(
-                    abjad.NamedPitch("c'"),
-                    ),
-                )
-            abjad.quantizationtools.SilentQEvent(
-                offset=abjad.Offset(10000, 29),
-                )
-            abjad.quantizationtools.PitchedQEvent(
-                offset=abjad.Offset(17500, 29),
-                pitches=(
-                    abjad.NamedPitch("c'"),
-                    ),
-                )
-            abjad.quantizationtools.SilentQEvent(
-                offset=abjad.Offset(20000, 29),
-                )
-            abjad.quantizationtools.TerminalQEvent(
-                offset=abjad.Offset(40000, 29),
-                )
+        >>> for q_event in sequence:
+        ...     print(format(q_event, 'storage'))
+        ...
+        abjad.quantizationtools.PitchedQEvent(
+            offset=abjad.Offset(0, 1),
+            pitches=(
+                abjad.NamedPitch("c'"),
+                ),
+            )
+        abjad.quantizationtools.SilentQEvent(
+            offset=abjad.Offset(10000, 29),
+            )
+        abjad.quantizationtools.PitchedQEvent(
+            offset=abjad.Offset(17500, 29),
+            pitches=(
+                abjad.NamedPitch("c'"),
+                ),
+            )
+        abjad.quantizationtools.SilentQEvent(
+            offset=abjad.Offset(20000, 29),
+            )
+        abjad.quantizationtools.TerminalQEvent(
+            offset=abjad.Offset(40000, 29),
+            )
 
         Returns ``QEventSequence`` instance.
         '''
@@ -505,44 +481,40 @@ class QEventSequence(AbjadObject):
         r'''Convert ``leaves``, optionally with ``tempo`` into a
         ``QEventSequence``:
 
-        ::
+        >>> staff = abjad.Staff("c'4 <d' fs'>8. r16 gqs'2")
+        >>> tempo = abjad.MetronomeMark((1, 4), 72)
+        >>> sequence = \
+        ...     abjad.quantizationtools.QEventSequence.from_tempo_scaled_leaves(
+        ...     staff[:], tempo=tempo)
 
-            >>> staff = abjad.Staff("c'4 <d' fs'>8. r16 gqs'2")
-            >>> tempo = abjad.MetronomeMark((1, 4), 72)
-            >>> sequence = \
-            ...     abjad.quantizationtools.QEventSequence.from_tempo_scaled_leaves(
-            ...     staff[:], tempo=tempo)
-
-        ::
-
-            >>> for q_event in sequence:
-            ...     print(format(q_event, 'storage'))
-            ...
-            abjad.quantizationtools.PitchedQEvent(
-                offset=abjad.Offset(0, 1),
-                pitches=(
-                    abjad.NamedPitch("c'"),
-                    ),
-                )
-            abjad.quantizationtools.PitchedQEvent(
-                offset=abjad.Offset(2500, 3),
-                pitches=(
-                    abjad.NamedPitch("d'"),
-                    abjad.NamedPitch("fs'"),
-                    ),
-                )
-            abjad.quantizationtools.SilentQEvent(
-                offset=abjad.Offset(4375, 3),
-                )
-            abjad.quantizationtools.PitchedQEvent(
-                offset=abjad.Offset(5000, 3),
-                pitches=(
-                    abjad.NamedPitch("gqs'"),
-                    ),
-                )
-            abjad.quantizationtools.TerminalQEvent(
-                offset=abjad.Offset(10000, 3),
-                )
+        >>> for q_event in sequence:
+        ...     print(format(q_event, 'storage'))
+        ...
+        abjad.quantizationtools.PitchedQEvent(
+            offset=abjad.Offset(0, 1),
+            pitches=(
+                abjad.NamedPitch("c'"),
+                ),
+            )
+        abjad.quantizationtools.PitchedQEvent(
+            offset=abjad.Offset(2500, 3),
+            pitches=(
+                abjad.NamedPitch("d'"),
+                abjad.NamedPitch("fs'"),
+                ),
+            )
+        abjad.quantizationtools.SilentQEvent(
+            offset=abjad.Offset(4375, 3),
+            )
+        abjad.quantizationtools.PitchedQEvent(
+            offset=abjad.Offset(5000, 3),
+            pitches=(
+                abjad.NamedPitch("gqs'"),
+                ),
+            )
+        abjad.quantizationtools.TerminalQEvent(
+            offset=abjad.Offset(10000, 3),
+            )
 
         If ``tempo`` is ``None``, all leaves in ``leaves`` must
         have an effective, non-imprecise tempo.
@@ -608,17 +580,13 @@ class QEventSequence(AbjadObject):
     def duration_in_ms(self):
         r'''Duration in milliseconds of the ``QEventSequence``:
 
-        ::
+        >>> durations = (1000, -500, 1250, -500, 750)
+        >>> sequence = \
+        ...     abjad.quantizationtools.QEventSequence.from_millisecond_durations(
+        ...     durations)
 
-            >>> durations = (1000, -500, 1250, -500, 750)
-            >>> sequence = \
-            ...     abjad.quantizationtools.QEventSequence.from_millisecond_durations(
-            ...     durations)
-
-        ::
-
-            >>> sequence.duration_in_ms
-            Duration(4000, 1)
+        >>> sequence.duration_in_ms
+        Duration(4000, 1)
 
         Return ``Duration`` instance.
         '''
@@ -629,45 +597,41 @@ class QEventSequence(AbjadObject):
     def sequence(self):
         r'''Sequence of q-events.
 
-        ::
+        >>> durations = (1000, -500, 1250, -500, 750)
+        >>> sequence = \
+        ...     abjad.quantizationtools.QEventSequence.from_millisecond_durations(
+        ...     durations)
 
-            >>> durations = (1000, -500, 1250, -500, 750)
-            >>> sequence = \
-            ...     abjad.quantizationtools.QEventSequence.from_millisecond_durations(
-            ...     durations)
-
-        ::
-
-            >>> for q_event in sequence.sequence:
-            ...     print(format(q_event, 'storage'))
-            ...
-            abjad.quantizationtools.PitchedQEvent(
-                offset=abjad.Offset(0, 1),
-                pitches=(
-                    abjad.NamedPitch("c'"),
-                    ),
-                )
-            abjad.quantizationtools.SilentQEvent(
-                offset=abjad.Offset(1000, 1),
-                )
-            abjad.quantizationtools.PitchedQEvent(
-                offset=abjad.Offset(1500, 1),
-                pitches=(
-                    abjad.NamedPitch("c'"),
-                    ),
-                )
-            abjad.quantizationtools.SilentQEvent(
-                offset=abjad.Offset(2750, 1),
-                )
-            abjad.quantizationtools.PitchedQEvent(
-                offset=abjad.Offset(3250, 1),
-                pitches=(
-                    abjad.NamedPitch("c'"),
-                    ),
-                )
-            abjad.quantizationtools.TerminalQEvent(
-                offset=abjad.Offset(4000, 1),
-                )
+        >>> for q_event in sequence.sequence:
+        ...     print(format(q_event, 'storage'))
+        ...
+        abjad.quantizationtools.PitchedQEvent(
+            offset=abjad.Offset(0, 1),
+            pitches=(
+                abjad.NamedPitch("c'"),
+                ),
+            )
+        abjad.quantizationtools.SilentQEvent(
+            offset=abjad.Offset(1000, 1),
+            )
+        abjad.quantizationtools.PitchedQEvent(
+            offset=abjad.Offset(1500, 1),
+            pitches=(
+                abjad.NamedPitch("c'"),
+                ),
+            )
+        abjad.quantizationtools.SilentQEvent(
+            offset=abjad.Offset(2750, 1),
+            )
+        abjad.quantizationtools.PitchedQEvent(
+            offset=abjad.Offset(3250, 1),
+            pitches=(
+                abjad.NamedPitch("c'"),
+                ),
+            )
+        abjad.quantizationtools.TerminalQEvent(
+            offset=abjad.Offset(4000, 1),
+            )
 
         Returns tuple.
         '''

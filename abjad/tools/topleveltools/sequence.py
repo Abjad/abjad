@@ -7,20 +7,16 @@ def sequence(items=None, **keywords):
 
             Makes sequence:
 
-            ::
-
-                >>> abjad.sequence([1, 2, [3, [4]], 5])
-                Sequence([1, 2, [3, [4]], 5])
+            >>> abjad.sequence([1, 2, [3, [4]], 5])
+            Sequence([1, 2, [3, [4]], 5])
 
         ..  container:: example expression
 
             Makes sequence expression:
 
-            ::
-
-                >>> expression = abjad.sequence()
-                >>> expression([1, 2, [3, [4]], 5])
-                Sequence([1, 2, [3, [4]], 5])
+            >>> expression = abjad.sequence()
+            >>> expression([1, 2, [3, [4]], 5])
+            Sequence([1, 2, [3, [4]], 5])
 
     ..  container:: example
 
@@ -28,40 +24,30 @@ def sequence(items=None, **keywords):
 
         ..  container:: example
 
-            ::
+            >>> sequence_ = abjad.sequence([1, 2, [3, [4]], 5])
+            >>> sequence_
+            Sequence([1, 2, [3, [4]], 5])
 
-                >>> sequence_ = abjad.sequence([1, 2, [3, [4]], 5])
-                >>> sequence_
-                Sequence([1, 2, [3, [4]], 5])
+            >>> sequence_ = sequence_.flatten()
+            >>> sequence_
+            Sequence([1, 2, 3, 4, 5])
 
-            ::
+            >>> sequence_ = sequence_.reverse()
+            >>> sequence_
+            Sequence([5, 4, 3, 2, 1])
 
-                >>> sequence_ = sequence_.flatten()
-                >>> sequence_
-                Sequence([1, 2, 3, 4, 5])
-
-            ::
-
-                >>> sequence_ = sequence_.reverse()
-                >>> sequence_
-                Sequence([5, 4, 3, 2, 1])
-
-            ::
-
-                >>> sequence_ = sequence_[-3:]
-                >>> sequence_
-                Sequence([3, 2, 1])
+            >>> sequence_ = sequence_[-3:]
+            >>> sequence_
+            Sequence([3, 2, 1])
 
         ..  container:: example expression
 
-            ::
-
-                >>> expression = abjad.sequence()
-                >>> expression = expression.flatten()
-                >>> expression = expression.reverse()
-                >>> expression = expression[-3:]
-                >>> expression([1, 2, [3, [4]], 5])
-                Sequence([3, 2, 1])
+            >>> expression = abjad.sequence()
+            >>> expression = expression.flatten()
+            >>> expression = expression.reverse()
+            >>> expression = expression[-3:]
+            >>> expression([1, 2, [3, [4]], 5])
+            Sequence([3, 2, 1])
 
     Returns sequence when `items` is not none.
 

@@ -6,16 +6,14 @@ class FrenchHorn(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> french_horn = abjad.FrenchHorn()
-            >>> abjad.attach(french_horn, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+        >>> french_horn = abjad.FrenchHorn()
+        >>> abjad.attach(french_horn, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { Horn }
                 \set Staff.shortInstrumentName = \markup { Hn. }
@@ -65,11 +63,9 @@ class FrenchHorn(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> french_horn = abjad.FrenchHorn()
-                >>> french_horn.allowable_clefs
-                ('bass', 'treble')
+            >>> french_horn = abjad.FrenchHorn()
+            >>> french_horn.allowable_clefs
+            ('bass', 'treble')
 
         Returns clef list.
         '''
@@ -81,15 +77,11 @@ class FrenchHorn(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> french_horn = abjad.FrenchHorn()
+            >>> french_horn.middle_c_sounding_pitch
+            NamedPitch('f')
 
-                >>> french_horn = abjad.FrenchHorn()
-                >>> french_horn.middle_c_sounding_pitch
-                NamedPitch('f')
-
-            ::
-
-                >>> show(french_horn.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(french_horn.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -101,11 +93,9 @@ class FrenchHorn(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> french_horn = abjad.FrenchHorn()
-                >>> french_horn.name
-                'horn'
+            >>> french_horn = abjad.FrenchHorn()
+            >>> french_horn.name
+            'horn'
 
         Returns string.
         '''
@@ -117,15 +107,11 @@ class FrenchHorn(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> french_horn = abjad.FrenchHorn()
+            >>> french_horn.name_markup
+            Markup(contents=['Horn'])
 
-                >>> french_horn = abjad.FrenchHorn()
-                >>> french_horn.name_markup
-                Markup(contents=['Horn'])
-
-            ::
-
-                >>> show(french_horn.name_markup) # doctest: +SKIP
+            >>> abjad.show(french_horn.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -137,15 +123,11 @@ class FrenchHorn(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> french_horn = abjad.FrenchHorn()
+            >>> french_horn.pitch_range
+            PitchRange('[B1, F5]')
 
-                >>> french_horn = abjad.FrenchHorn()
-                >>> french_horn.pitch_range
-                PitchRange('[B1, F5]')
-
-            ::
-
-                >>> show(french_horn.pitch_range) # doctest: +SKIP
+            >>> abjad.show(french_horn.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -157,11 +139,9 @@ class FrenchHorn(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> french_horn = abjad.FrenchHorn()
-                >>> french_horn.short_name
-                'hn.'
+            >>> french_horn = abjad.FrenchHorn()
+            >>> french_horn.short_name
+            'hn.'
 
         Returns string.
         '''
@@ -173,15 +153,11 @@ class FrenchHorn(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> french_horn = abjad.FrenchHorn()
+            >>> french_horn.short_name_markup
+            Markup(contents=['Hn.'])
 
-                >>> french_horn = abjad.FrenchHorn()
-                >>> french_horn.short_name_markup
-                Markup(contents=['Hn.'])
-
-            ::
-
-                >>> show(french_horn.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(french_horn.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

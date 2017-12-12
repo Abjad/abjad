@@ -6,18 +6,16 @@ class BaritoneVoice(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c4 d4 e4 fs4")
-            >>> baritone = abjad.BaritoneVoice()
-            >>> abjad.attach(baritone, staff[0])
-            >>> clef = abjad.Clef('bass')
-            >>> abjad.attach(clef, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c4 d4 e4 fs4")
+        >>> baritone = abjad.BaritoneVoice()
+        >>> abjad.attach(baritone, staff[0])
+        >>> clef = abjad.Clef('bass')
+        >>> abjad.attach(clef, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { Baritone }
                 \set Staff.shortInstrumentName = \markup { Bar. }
@@ -69,11 +67,9 @@ class BaritoneVoice(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> baritone = abjad.BaritoneVoice()
-                >>> baritone.allowable_clefs
-                ('bass',)
+            >>> baritone = abjad.BaritoneVoice()
+            >>> baritone.allowable_clefs
+            ('bass',)
 
         Returns clef list.
         '''
@@ -85,15 +81,11 @@ class BaritoneVoice(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> baritone = abjad.BaritoneVoice()
+            >>> baritone.middle_c_sounding_pitch
+            NamedPitch("c'")
 
-                >>> baritone = abjad.BaritoneVoice()
-                >>> baritone.middle_c_sounding_pitch
-                NamedPitch("c'")
-
-            ::
-
-                >>> show(baritone.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(baritone.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -105,11 +97,9 @@ class BaritoneVoice(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> baritone = abjad.BaritoneVoice()
-                >>> baritone.name
-                'baritone'
+            >>> baritone = abjad.BaritoneVoice()
+            >>> baritone.name
+            'baritone'
 
         Returns string.
         '''
@@ -121,15 +111,11 @@ class BaritoneVoice(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> baritone = abjad.BaritoneVoice()
+            >>> baritone.name_markup
+            Markup(contents=['Baritone'])
 
-                >>> baritone = abjad.BaritoneVoice()
-                >>> baritone.name_markup
-                Markup(contents=['Baritone'])
-
-            ::
-
-                >>> show(baritone.name_markup) # doctest: +SKIP
+            >>> abjad.show(baritone.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -141,15 +127,11 @@ class BaritoneVoice(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> baritone = abjad.BaritoneVoice()
+            >>> baritone.pitch_range
+            PitchRange('[A2, A4]')
 
-                >>> baritone = abjad.BaritoneVoice()
-                >>> baritone.pitch_range
-                PitchRange('[A2, A4]')
-
-            ::
-
-                >>> show(baritone.pitch_range) # doctest: +SKIP
+            >>> abjad.show(baritone.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -161,11 +143,9 @@ class BaritoneVoice(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> baritone = abjad.BaritoneVoice()
-                >>> baritone.short_name
-                'bar.'
+            >>> baritone = abjad.BaritoneVoice()
+            >>> baritone.short_name
+            'bar.'
 
         Returns string.
         '''
@@ -177,15 +157,11 @@ class BaritoneVoice(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> baritone = abjad.BaritoneVoice()
+            >>> baritone.short_name_markup
+            Markup(contents=['Bar.'])
 
-                >>> baritone = abjad.BaritoneVoice()
-                >>> baritone.short_name_markup
-                Markup(contents=['Bar.'])
-
-            ::
-
-                >>> show(baritone.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(baritone.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

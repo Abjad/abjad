@@ -9,35 +9,29 @@ class RhythmTreeLeaf(RhythmTreeMixin, TreeNode):
 
     ..  container:: example
 
-        ::
-
-            >>> leaf = abjad.rhythmtreetools.RhythmTreeLeaf(
-            ...     preprolated_duration=5, is_pitched=True)
-            >>> leaf
-            RhythmTreeLeaf(
-                preprolated_duration=Duration(5, 1),
-                is_pitched=True
-                )
+        >>> leaf = abjad.rhythmtreetools.RhythmTreeLeaf(
+        ...     preprolated_duration=5, is_pitched=True)
+        >>> leaf
+        RhythmTreeLeaf(
+            preprolated_duration=Duration(5, 1),
+            is_pitched=True
+            )
 
     ..  container:: example
 
         Calls with a pulse preprolated duration to generate leaves:
 
-        ::
-
-            >>> result = leaf((1, 8))
-            >>> result
-            Selection([Note("c'2"), Note("c'8")])
+        >>> result = leaf((1, 8))
+        >>> result
+        Selection([Note("c'2"), Note("c'8")])
 
     ..  container:: example
 
         Generates rests when called if `is_pitched` is false:
 
-        ::
-
-            >>> abjad.rhythmtreetools.RhythmTreeLeaf(
-            ...     preprolated_duration=7, is_pitched=False)((1, 16))
-            Selection([Rest('r4..')])
+        >>> abjad.rhythmtreetools.RhythmTreeLeaf(
+        ...     preprolated_duration=7, is_pitched=False)((1, 16))
+        Selection([Rest('r4..')])
 
     '''
 
@@ -67,11 +61,9 @@ class RhythmTreeLeaf(RhythmTreeMixin, TreeNode):
     def __call__(self, pulse_duration):
         r'''Generate Abjad score components:
 
-        ::
-
-            >>> leaf = abjad.rhythmtreetools.RhythmTreeLeaf(5)
-            >>> leaf((1, 4))
-            Selection([Note("c'1"), Note("c'4")])
+        >>> leaf = abjad.rhythmtreetools.RhythmTreeLeaf(5)
+        >>> leaf((1, 4))
+        Selection([Note("c'1"), Note("c'4")])
 
         Returns sequence of components.
         '''
@@ -108,12 +100,10 @@ class RhythmTreeLeaf(RhythmTreeMixin, TreeNode):
     def rtm_format(self):
         r'''RTM format of rhythm tree leaf.
 
-        ::
-
-            >>> abjad.rhythmtreetools.RhythmTreeLeaf(1, is_pitched=True).rtm_format
-            '1'
-            >>> abjad.rhythmtreetools.RhythmTreeLeaf(5, is_pitched=False).rtm_format
-            '-5'
+        >>> abjad.rhythmtreetools.RhythmTreeLeaf(1, is_pitched=True).rtm_format
+        '1'
+        >>> abjad.rhythmtreetools.RhythmTreeLeaf(5, is_pitched=False).rtm_format
+        '-5'
 
         Returns string.
         '''
@@ -128,17 +118,13 @@ class RhythmTreeLeaf(RhythmTreeMixin, TreeNode):
         r'''Gets and sets boolean equal to  true if leaf is pitched.
         Otherwise false.
 
-        ::
+        >>> leaf = abjad.rhythmtreetools.RhythmTreeLeaf()
+        >>> leaf.is_pitched
+        True
 
-            >>> leaf = abjad.rhythmtreetools.RhythmTreeLeaf()
-            >>> leaf.is_pitched
-            True
-
-        ::
-
-            >>> leaf.is_pitched = False
-            >>> leaf.is_pitched
-            False
+        >>> leaf.is_pitched = False
+        >>> leaf.is_pitched
+        False
 
         Returns true or false.
         '''

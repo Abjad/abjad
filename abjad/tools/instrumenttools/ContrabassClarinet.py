@@ -6,16 +6,14 @@ class ContrabassClarinet(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> contrabass_clarinet = abjad.ContrabassClarinet()
-            >>> abjad.attach(contrabass_clarinet, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+        >>> contrabass_clarinet = abjad.ContrabassClarinet()
+        >>> abjad.attach(contrabass_clarinet, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { "Contrabass clarinet" }
                 \set Staff.shortInstrumentName = \markup { "Cbass. cl." }
@@ -64,11 +62,9 @@ class ContrabassClarinet(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> contrabass_clarinet = abjad.ContrabassClarinet()
-                >>> contrabass_clarinet.allowable_clefs
-                ('treble', 'bass')
+            >>> contrabass_clarinet = abjad.ContrabassClarinet()
+            >>> contrabass_clarinet.allowable_clefs
+            ('treble', 'bass')
 
         Returns clef list.
         '''
@@ -80,15 +76,11 @@ class ContrabassClarinet(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> contrabass_clarinet = abjad.ContrabassClarinet()
+            >>> contrabass_clarinet.middle_c_sounding_pitch
+            NamedPitch('bf,,')
 
-                >>> contrabass_clarinet = abjad.ContrabassClarinet()
-                >>> contrabass_clarinet.middle_c_sounding_pitch
-                NamedPitch('bf,,')
-
-            ::
-
-                >>> show(contrabass_clarinet.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(contrabass_clarinet.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -100,11 +92,9 @@ class ContrabassClarinet(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> contrabass_clarinet = abjad.ContrabassClarinet()
-                >>> contrabass_clarinet.name
-                'contrabass clarinet'
+            >>> contrabass_clarinet = abjad.ContrabassClarinet()
+            >>> contrabass_clarinet.name
+            'contrabass clarinet'
 
         Returns string.
         '''
@@ -116,15 +106,11 @@ class ContrabassClarinet(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> contrabass_clarinet = abjad.ContrabassClarinet()
+            >>> contrabass_clarinet.name_markup
+            Markup(contents=['Contrabass clarinet'])
 
-                >>> contrabass_clarinet = abjad.ContrabassClarinet()
-                >>> contrabass_clarinet.name_markup
-                Markup(contents=['Contrabass clarinet'])
-
-            ::
-
-                >>> show(contrabass_clarinet.name_markup) # doctest: +SKIP
+            >>> abjad.show(contrabass_clarinet.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -136,15 +122,11 @@ class ContrabassClarinet(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> contrabass_clarinet = abjad.ContrabassClarinet()
+            >>> contrabass_clarinet.pitch_range
+            PitchRange('[Bb0, G4]')
 
-                >>> contrabass_clarinet = abjad.ContrabassClarinet()
-                >>> contrabass_clarinet.pitch_range
-                PitchRange('[Bb0, G4]')
-
-            ::
-
-                >>> show(contrabass_clarinet.pitch_range) # doctest: +SKIP
+            >>> abjad.show(contrabass_clarinet.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -156,11 +138,9 @@ class ContrabassClarinet(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> contrabass_clarinet = abjad.ContrabassClarinet()
-                >>> contrabass_clarinet.short_name
-                'cbass. cl.'
+            >>> contrabass_clarinet = abjad.ContrabassClarinet()
+            >>> contrabass_clarinet.short_name
+            'cbass. cl.'
 
         Returns string.
         '''
@@ -172,15 +152,11 @@ class ContrabassClarinet(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> contrabass_clarinet = abjad.ContrabassClarinet()
+            >>> contrabass_clarinet.short_name_markup
+            Markup(contents=['Cbass. cl.'])
 
-                >>> contrabass_clarinet = abjad.ContrabassClarinet()
-                >>> contrabass_clarinet.short_name_markup
-                Markup(contents=['Cbass. cl.'])
-
-            ::
-
-                >>> show(contrabass_clarinet.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(contrabass_clarinet.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

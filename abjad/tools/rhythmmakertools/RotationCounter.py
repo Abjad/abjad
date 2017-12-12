@@ -7,20 +7,14 @@ class RotationCounter(TypedCounter):
 
     ..  container:: example
 
-        ::
+        >>> counter = abjad.rhythmmakertools.RotationCounter(default=3)
 
-            >>> counter = abjad.rhythmmakertools.RotationCounter(default=3)
+        >>> counter['talea__counts']
+        3
 
-        ::
-
-            >>> counter['talea__counts']
-            3
-
-        ::
-
-            >>> counter['talea__counts'] += 1
-            >>> counter['talea__counts']
-            4
+        >>> counter['talea__counts'] += 1
+        >>> counter['talea__counts']
+        4
 
     '''
 

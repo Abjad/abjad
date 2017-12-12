@@ -15,14 +15,12 @@ class PitchRange(AbjadValueObject):
 
         Pitches from C3 to C7, inclusive:
 
-        ::
-
-            >>> pitch_range = abjad.PitchRange('[C3, C7]')
-            >>> show(pitch_range) # doctest: +SKIP
+        >>> pitch_range = abjad.PitchRange('[C3, C7]')
+        >>> abjad.show(pitch_range) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(pitch_range)
+            >>> abjad.f(pitch_range)
             abjad.PitchRange('[C3, C7]')
 
     Initalizes from pitch numbers, pitch names, pitch instances,
@@ -95,265 +93,169 @@ class PitchRange(AbjadValueObject):
 
             Closed / closed range:
 
-            ::
+            >>> range_ = abjad.PitchRange('[A0, C8]')
 
-                >>> range_ = abjad.PitchRange('[A0, C8]')
+            >>> -99 in range_
+            False
 
-            ::
+            >>> -39 in range_
+            True
 
-                >>> -99 in range_
-                False
+            >>> 0 in range_
+            True
 
-            ::
+            >>> 48 in range_
+            True
 
-                >>> -39 in range_
-                True
-
-            ::
-
-                >>> 0 in range_
-                True
-
-            ::
-
-                >>> 48 in range_
-                True
-
-            ::
-
-                >>> 99 in range_
-                False
+            >>> 99 in range_
+            False
 
         ..  container:: example
 
             Closed / open range:
 
-            ::
+            >>> range_ = abjad.PitchRange('[A0, C8)')
 
-                >>> range_ = abjad.PitchRange('[A0, C8)')
+            >>> -99 in range_
+            False
 
-            ::
+            >>> -39 in range_
+            True
 
-                >>> -99 in range_
-                False
+            >>> 0 in range_
+            True
 
-            ::
+            >>> 48 in range_
+            False
 
-                >>> -39 in range_
-                True
-
-            ::
-
-                >>> 0 in range_
-                True
-
-            ::
-
-                >>> 48 in range_
-                False
-
-            ::
-
-                >>> 99 in range_
-                False
+            >>> 99 in range_
+            False
 
         ..  container:: example
 
             Closed / infinite range:
 
-            ::
+            >>> range_ = abjad.PitchRange('[-39, +inf]')
 
-                >>> range_ = abjad.PitchRange('[-39, +inf]')
+            >>> -99 in range_
+            False
 
-            ::
+            >>> -39 in range_
+            True
 
-                >>> -99 in range_
-                False
+            >>> 0 in range_
+            True
 
-            ::
+            >>> 48 in range_
+            True
 
-                >>> -39 in range_
-                True
-
-            ::
-
-                >>> 0 in range_
-                True
-
-            ::
-
-                >>> 48 in range_
-                True
-
-            ::
-
-                >>> 99 in range_
-                True
+            >>> 99 in range_
+            True
 
         ..  container:: example
 
             Open / closed range:
 
-            ::
+            >>> range_ = abjad.PitchRange('(A0, C8]')
 
-                >>> range_ = abjad.PitchRange('(A0, C8]')
+            >>> -99 in range_
+            False
 
-            ::
+            >>> -39 in range_
+            False
 
-                >>> -99 in range_
-                False
+            >>> 0 in range_
+            True
 
-            ::
+            >>> 48 in range_
+            True
 
-                >>> -39 in range_
-                False
-
-            ::
-
-                >>> 0 in range_
-                True
-
-            ::
-
-                >>> 48 in range_
-                True
-
-            ::
-
-                >>> 99 in range_
-                False
+            >>> 99 in range_
+            False
 
         ..  container:: example
 
             Open / open range:
 
-            ::
+            >>> range_ = abjad.PitchRange('(A0, C8)')
 
-                >>> range_ = abjad.PitchRange('(A0, C8)')
+            >>> -99 in range_
+            False
 
-            ::
+            >>> -39 in range_
+            False
 
-                >>> -99 in range_
-                False
+            >>> 0 in range_
+            True
 
-            ::
+            >>> 48 in range_
+            False
 
-                >>> -39 in range_
-                False
-
-            ::
-
-                >>> 0 in range_
-                True
-
-            ::
-
-                >>> 48 in range_
-                False
-
-            ::
-
-                >>> 99 in range_
-                False
+            >>> 99 in range_
+            False
 
         ..  container:: example
 
             Infinite / closed range:
 
-            ::
+            >>> range_ = abjad.PitchRange('[-inf, C8]')
 
-                >>> range_ = abjad.PitchRange('[-inf, C8]')
+            >>> -99 in range_
+            True
 
-            ::
+            >>> -39 in range_
+            True
 
-                >>> -99 in range_
-                True
+            >>> 0 in range_
+            True
 
-            ::
+            >>> 48 in range_
+            True
 
-                >>> -39 in range_
-                True
-
-            ::
-
-                >>> 0 in range_
-                True
-
-            ::
-
-                >>> 48 in range_
-                True
-
-            ::
-
-                >>> 99 in range_
-                False
+            >>> 99 in range_
+            False
 
         ..  container:: example
 
             Infinite / open range:
 
-            ::
+            >>> range_ = abjad.PitchRange('[-inf, C8)')
 
-                >>> range_ = abjad.PitchRange('[-inf, C8)')
+            >>> -99 in range_
+            True
 
-            ::
+            >>> -39 in range_
+            True
 
-                >>> -99 in range_
-                True
+            >>> 0 in range_
+            True
 
-            ::
+            >>> 48 in range_
+            False
 
-                >>> -39 in range_
-                True
-
-            ::
-
-                >>> 0 in range_
-                True
-
-            ::
-
-                >>> 48 in range_
-                False
-
-            ::
-
-                >>> 99 in range_
-                False
+            >>> 99 in range_
+            False
 
         ..  container:: example
 
             Infinite / infinite range:
 
-            ::
+            >>> range_ = abjad.PitchRange('[-inf, +inf]')
 
-                >>> range_ = abjad.PitchRange('[-inf, +inf]')
+            >>> -99 in range_
+            True
 
-            ::
+            >>> -39 in range_
+            True
 
-                >>> -99 in range_
-                True
+            >>> 0 in range_
+            True
 
-            ::
+            >>> 48 in range_
+            True
 
-                >>> -39 in range_
-                True
-
-            ::
-
-                >>> 0 in range_
-                True
-
-            ::
-
-                >>> 48 in range_
-                True
-
-            ::
-
-                >>> 99 in range_
-                True
+            >>> 99 in range_
+            True
 
         Returns true or false.
         '''
@@ -395,38 +297,30 @@ class PitchRange(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> range_1 = abjad.PitchRange.from_pitches(-39, 0)
+            >>> range_2 = abjad.PitchRange.from_pitches(-39, 0)
+            >>> range_3 = abjad.PitchRange.from_pitches(-39, 48)
 
-                >>> range_1 = abjad.PitchRange.from_pitches(-39, 0)
-                >>> range_2 = abjad.PitchRange.from_pitches(-39, 0)
-                >>> range_3 = abjad.PitchRange.from_pitches(-39, 48)
+            >>> range_1 == range_1
+            True
+            >>> range_1 == range_2
+            True
+            >>> range_1 == range_3
+            False
 
-            ::
+            >>> range_2 == range_1
+            True
+            >>> range_2 == range_2
+            True
+            >>> range_2 == range_3
+            False
 
-                >>> range_1 == range_1
-                True
-                >>> range_1 == range_2
-                True
-                >>> range_1 == range_3
-                False
-
-            ::
-
-                >>> range_2 == range_1
-                True
-                >>> range_2 == range_2
-                True
-                >>> range_2 == range_3
-                False
-
-            ::
-
-                >>> range_3 == range_1
-                False
-                >>> range_3 == range_2
-                False
-                >>> range_3 == range_3
-                True
+            >>> range_3 == range_1
+            False
+            >>> range_3 == range_2
+            False
+            >>> range_3 == range_3
+            True
 
         Returns true or false.
         '''
@@ -459,15 +353,13 @@ class PitchRange(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> pitch_range = abjad.PitchRange('[C3, C7]')
-                >>> show(pitch_range) # doctest: +SKIP
+            >>> pitch_range = abjad.PitchRange('[C3, C7]')
+            >>> abjad.show(pitch_range) # doctest: +SKIP
 
             ..  docs::
 
                 >>> lilypond_file = pitch_range.__illustrate__()
-                >>> f(lilypond_file[abjad.Score])
+                >>> abjad.f(lilypond_file[abjad.Score])
                 \new Score \with {
                     \override BarLine.stencil = ##f
                     \override Glissando.thickness = #2
@@ -538,38 +430,30 @@ class PitchRange(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> range_1 = abjad.PitchRange.from_pitches(-39, 0)
+            >>> range_2 = abjad.PitchRange.from_pitches(-39, 0)
+            >>> range_3 = abjad.PitchRange.from_pitches(-39, 48)
 
-                >>> range_1 = abjad.PitchRange.from_pitches(-39, 0)
-                >>> range_2 = abjad.PitchRange.from_pitches(-39, 0)
-                >>> range_3 = abjad.PitchRange.from_pitches(-39, 48)
+            >>> range_1 < range_1
+            False
+            >>> range_1 < range_2
+            False
+            >>> range_1 < range_3
+            True
 
-            ::
+            >>> range_2 < range_1
+            False
+            >>> range_2 < range_2
+            False
+            >>> range_2 < range_3
+            True
 
-                >>> range_1 < range_1
-                False
-                >>> range_1 < range_2
-                False
-                >>> range_1 < range_3
-                True
-
-            ::
-
-                >>> range_2 < range_1
-                False
-                >>> range_2 < range_2
-                False
-                >>> range_2 < range_3
-                True
-
-            ::
-
-                >>> range_3 < range_1
-                False
-                >>> range_3 < range_2
-                False
-                >>> range_3 < range_3
-                False
+            >>> range_3 < range_1
+            False
+            >>> range_3 < range_2
+            False
+            >>> range_3 < range_3
+            False
 
         Returns true or false.
         '''
@@ -730,11 +614,9 @@ class PitchRange(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> pitch_range = abjad.PitchRange('[C3, C7]')
-                >>> pitch_range.range_string
-                '[C3, C7]'
+            >>> pitch_range = abjad.PitchRange('[C3, C7]')
+            >>> pitch_range.range_string
+            '[C3, C7]'
 
         Returns string.
         '''
@@ -744,11 +626,9 @@ class PitchRange(AbjadValueObject):
     def start_pitch(self):
         r'''Start pitch of pitch range.
 
-        ::
-
-            >>> pitch_range = abjad.PitchRange('[C3, C7]')
-            >>> pitch_range.start_pitch
-            NamedPitch('c')
+        >>> pitch_range = abjad.PitchRange('[C3, C7]')
+        >>> pitch_range.start_pitch
+        NamedPitch('c')
 
         Returns pitch.
         '''
@@ -761,11 +641,9 @@ class PitchRange(AbjadValueObject):
         r'''Is true when start pitch is included in range.
         Otherwise false:
 
-        ::
-
-            >>> pitch_range = abjad.PitchRange('[C3, C7]')
-            >>> pitch_range.start_pitch_is_included_in_range
-            True
+        >>> pitch_range = abjad.PitchRange('[C3, C7]')
+        >>> pitch_range.start_pitch_is_included_in_range
+        True
 
         Returns true or false.
         '''
@@ -777,11 +655,9 @@ class PitchRange(AbjadValueObject):
     def stop_pitch(self):
         r"""Stop pitch of pitch range.
 
-        ::
-
-            >>> pitch_range = abjad.PitchRange('[C3, C7]')
-            >>> pitch_range.stop_pitch
-            NamedPitch("c''''")
+        >>> pitch_range = abjad.PitchRange('[C3, C7]')
+        >>> pitch_range.stop_pitch
+        NamedPitch("c''''")
 
         Returns pitch.
         """
@@ -794,11 +670,9 @@ class PitchRange(AbjadValueObject):
         r'''Is true when stop pitch is included in range.
         Otherwise false:
 
-        ::
-
-            >>> pitch_range = abjad.PitchRange('[C3, C7]')
-            >>> pitch_range.stop_pitch_is_included_in_range
-            True
+        >>> pitch_range = abjad.PitchRange('[C3, C7]')
+        >>> pitch_range.stop_pitch_is_included_in_range
+        True
 
         Returns true or false.
         '''
@@ -819,10 +693,8 @@ class PitchRange(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.PitchRange.from_pitches(-18, 19)
-                PitchRange('[F#2, G5]')
+            >>> abjad.PitchRange.from_pitches(-18, 19)
+            PitchRange('[F#2, G5]')
 
         Returns pitch range.
         '''
@@ -858,32 +730,22 @@ class PitchRange(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> abjad.PitchRange.is_range_string('[A0, C8]')
+            True
 
-                >>> abjad.PitchRange.is_range_string('[A0, C8]')
-                True
+            >>> abjad.PitchRange.is_range_string('[A#0, Cb~8]')
+            True
 
-            ::
+            >>> abjad.PitchRange.is_range_string('[A#+0, cs'')')
+            True
 
-                >>> abjad.PitchRange.is_range_string('[A#0, Cb~8]')
-                True
-
-            ::
-
-                >>> abjad.PitchRange.is_range_string('[A#+0, cs'')')
-                True
-
-            ::
-
-                >>> abjad.PitchRange.is_range_string('(b,,,, ctqs]')
-                True
+            >>> abjad.PitchRange.is_range_string('(b,,,, ctqs]')
+            True
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.PitchRange.is_range_string('text')
-                False
+            >>> abjad.PitchRange.is_range_string('text')
+            False
 
         The regex that underlies this predicate matches against two
         comma-separated pitches enclosed in some combination of square
@@ -902,21 +764,17 @@ class PitchRange(AbjadValueObject):
 
             Lists octave transpositions of three-pitch chord:
 
-            ::
+            >>> chord = abjad.Chord("<c' d' e'>4")
+            >>> pitch_range = abjad.PitchRange.from_pitches(0, 48)
+            >>> result = pitch_range.list_octave_transpositions(chord)
 
-                >>> chord = abjad.Chord("<c' d' e'>4")
-                >>> pitch_range = abjad.PitchRange.from_pitches(0, 48)
-                >>> result = pitch_range.list_octave_transpositions(chord)
-
-            ::
-
-                >>> for chord in result:
-                ...     chord
-                ...
-                Chord("<c' d' e'>4")
-                Chord("<c'' d'' e''>4")
-                Chord("<c''' d''' e'''>4")
-                Chord("<c'''' d'''' e''''>4")
+            >>> for chord in result:
+            ...     chord
+            ...
+            Chord("<c' d' e'>4")
+            Chord("<c'' d'' e''>4")
+            Chord("<c''' d''' e'''>4")
+            Chord("<c'''' d'''' e''''>4")
 
         Returns a list of `pitch_carrier` objects.
         """
@@ -959,31 +817,25 @@ class PitchRange(AbjadValueObject):
 
             Voices C three times:
 
-            ::
-
-                >>> pitch_range = abjad.PitchRange('[C4, C6]')
-                >>> pitch_range.voice_pitch_class('c')
-                (NamedPitch("c'"), NamedPitch("c''"), NamedPitch("c'''"))
+            >>> pitch_range = abjad.PitchRange('[C4, C6]')
+            >>> pitch_range.voice_pitch_class('c')
+            (NamedPitch("c'"), NamedPitch("c''"), NamedPitch("c'''"))
 
         ..  container:: example
 
             Voices B two times:
 
-            ::
-
-                >>> pitch_range = abjad.PitchRange('[C4, C6]')
-                >>> pitch_range.voice_pitch_class('b')
-                (NamedPitch("b'"), NamedPitch("b''"))
+            >>> pitch_range = abjad.PitchRange('[C4, C6]')
+            >>> pitch_range.voice_pitch_class('b')
+            (NamedPitch("b'"), NamedPitch("b''"))
 
         ..  container:: example
 
             Returns empty because B can not voice:
 
-            ::
-
-                >>> pitch_range = abjad.PitchRange('[C4, A4)')
-                >>> pitch_range.voice_pitch_class('b')
-                ()
+            >>> pitch_range = abjad.PitchRange('[C4, A4)')
+            >>> pitch_range.voice_pitch_class('b')
+            ()
 
         Returns tuple of zero or more named pitches.
         """

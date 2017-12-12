@@ -8,10 +8,8 @@ class SchemePair(Scheme):
 
         Initializes from two values:
 
-        ::
-
-            >>> abjad.SchemePair(('spacing', 4))
-            SchemePair(('spacing', 4))
+        >>> abjad.SchemePair(('spacing', 4))
+        SchemePair(('spacing', 4))
 
     ..  container:: example
 
@@ -19,19 +17,15 @@ class SchemePair(Scheme):
 
         Right-hand side string forces quotes:
 
-        ::
-
-            >>> scheme_pair = abjad.SchemePair(('font-name', 'Times'))
-            >>> format(scheme_pair)
-            '#\'(font-name . "Times")'
+        >>> scheme_pair = abjad.SchemePair(('font-name', 'Times'))
+        >>> format(scheme_pair)
+        '#\'(font-name . "Times")'
 
         Right-hand side nonstring does not force quotes:
 
-        ::
-
-            >>> scheme_pair = abjad.SchemePair(('spacing', 4))
-            >>> format(scheme_pair)
-            "#'(spacing . 4)"
+        >>> scheme_pair = abjad.SchemePair(('spacing', 4))
+        >>> format(scheme_pair)
+        "#'(spacing . 4)"
 
     '''
 
@@ -53,19 +47,13 @@ class SchemePair(Scheme):
 
         ..  container:: example
 
-            ::
+            >>> scheme_pair = abjad.SchemePair((-1, 1))
 
-                >>> scheme_pair = abjad.SchemePair((-1, 1))
+            >>> format(scheme_pair)
+            "#'(-1 . 1)"
 
-            ::
-
-                >>> format(scheme_pair)
-                "#'(-1 . 1)"
-
-            ::
-
-                >>> f(scheme_pair)
-                abjad.SchemePair((-1, 1))
+            >>> abjad.f(scheme_pair)
+            abjad.SchemePair((-1, 1))
 
         Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
         Interprets `''` equal to `'lilypond'`.

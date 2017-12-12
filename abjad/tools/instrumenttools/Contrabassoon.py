@@ -6,18 +6,16 @@ class Contrabassoon(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> clef = abjad.Clef('bass')
-            >>> abjad.attach(clef, staff[0])
-            >>> contrabassoon = abjad.Contrabassoon()
-            >>> abjad.attach(contrabassoon, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+        >>> clef = abjad.Clef('bass')
+        >>> abjad.attach(clef, staff[0])
+        >>> contrabassoon = abjad.Contrabassoon()
+        >>> abjad.attach(contrabassoon, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { Contrabassoon }
                 \set Staff.shortInstrumentName = \markup { Contrabsn. }
@@ -67,11 +65,9 @@ class Contrabassoon(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> contrabassoon = abjad.Contrabassoon()
-                >>> contrabassoon.allowable_clefs
-                ('bass',)
+            >>> contrabassoon = abjad.Contrabassoon()
+            >>> contrabassoon.allowable_clefs
+            ('bass',)
 
         Returns clef list.
         '''
@@ -83,15 +79,11 @@ class Contrabassoon(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> contrabassoon = abjad.Contrabassoon()
+            >>> contrabassoon.middle_c_sounding_pitch
+            NamedPitch('c')
 
-                >>> contrabassoon = abjad.Contrabassoon()
-                >>> contrabassoon.middle_c_sounding_pitch
-                NamedPitch('c')
-
-            ::
-
-                >>> show(contrabassoon.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(contrabassoon.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -103,11 +95,9 @@ class Contrabassoon(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> contrabassoon = abjad.Contrabassoon()
-                >>> contrabassoon.name
-                'contrabassoon'
+            >>> contrabassoon = abjad.Contrabassoon()
+            >>> contrabassoon.name
+            'contrabassoon'
 
         Returns string.
         '''
@@ -119,15 +109,11 @@ class Contrabassoon(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> contrabassoon = abjad.Contrabassoon()
+            >>> contrabassoon.name_markup
+            Markup(contents=['Contrabassoon'])
 
-                >>> contrabassoon = abjad.Contrabassoon()
-                >>> contrabassoon.name_markup
-                Markup(contents=['Contrabassoon'])
-
-            ::
-
-                >>> show(contrabassoon.name_markup) # doctest: +SKIP
+            >>> abjad.show(contrabassoon.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -139,15 +125,11 @@ class Contrabassoon(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> contrabassoon = abjad.Contrabassoon()
+            >>> contrabassoon.pitch_range
+            PitchRange('[Bb0, Bb4]')
 
-                >>> contrabassoon = abjad.Contrabassoon()
-                >>> contrabassoon.pitch_range
-                PitchRange('[Bb0, Bb4]')
-
-            ::
-
-                >>> show(contrabassoon.pitch_range) # doctest: +SKIP
+            >>> abjad.show(contrabassoon.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -159,11 +141,9 @@ class Contrabassoon(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> contrabassoon = abjad.Contrabassoon()
-                >>> contrabassoon.short_name
-                'contrabsn.'
+            >>> contrabassoon = abjad.Contrabassoon()
+            >>> contrabassoon.short_name
+            'contrabsn.'
 
         Returns string.
         '''
@@ -175,15 +155,11 @@ class Contrabassoon(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> contrabassoon = abjad.Contrabassoon()
+            >>> contrabassoon.short_name_markup
+            Markup(contents=['Contrabsn.'])
 
-                >>> contrabassoon = abjad.Contrabassoon()
-                >>> contrabassoon.short_name_markup
-                Markup(contents=['Contrabsn.'])
-
-            ::
-
-                >>> show(contrabassoon.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(contrabassoon.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

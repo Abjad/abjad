@@ -9,19 +9,17 @@ class PitchedQEvent(QEvent):
 
     ..  container:: example
 
-        ::
-
-            >>> pitches = [0, 1, 4]
-            >>> q_event = abjad.quantizationtools.PitchedQEvent(1000, pitches)
-            >>> f(q_event)
-            abjad.quantizationtools.PitchedQEvent(
-                offset=abjad.Offset(1000, 1),
-                pitches=(
-                    abjad.NamedPitch("c'"),
-                    abjad.NamedPitch("cs'"),
-                    abjad.NamedPitch("e'"),
-                    ),
-                )
+        >>> pitches = [0, 1, 4]
+        >>> q_event = abjad.quantizationtools.PitchedQEvent(1000, pitches)
+        >>> abjad.f(q_event)
+        abjad.quantizationtools.PitchedQEvent(
+            offset=abjad.Offset(1000, 1),
+            pitches=(
+                abjad.NamedPitch("c'"),
+                abjad.NamedPitch("cs'"),
+                abjad.NamedPitch("e'"),
+                ),
+            )
 
     '''
 

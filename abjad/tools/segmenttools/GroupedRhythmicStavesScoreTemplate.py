@@ -9,15 +9,13 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
 
         One voice per staff:
 
-        ::
-
-            >>> class_ = abjad.GroupedRhythmicStavesScoreTemplate
-            >>> template_1 = class_(staff_count=4)
-            >>> show(template_1) # doctest: +SKIP
+        >>> class_ = abjad.GroupedRhythmicStavesScoreTemplate
+        >>> template_1 = class_(staff_count=4)
+        >>> abjad.show(template_1) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(template_1.__illustrate__()[abjad.Score])
+            >>> abjad.f(template_1.__illustrate__()[abjad.Score])
             \context Score = "Grouped Rhythmic Staves Score" <<
                 \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
                     \context RhythmicStaff = "Staff 1" {
@@ -47,47 +45,41 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
                 >>
             >>
 
-        ::
+        >>> score = template_1()
+        >>> abjad.show(score) # doctest: +SKIP
 
-            >>> score = template_1()
-            >>> show(score) # doctest: +SKIP
-
-        ::
-
-            >>> f(score)
-            \context Score = "Grouped Rhythmic Staves Score" <<
-                \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
-                    \context RhythmicStaff = "Staff 1" {
-                        \context Voice = "Voice 1" {
-                        }
+        >>> abjad.f(score)
+        \context Score = "Grouped Rhythmic Staves Score" <<
+            \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
+                \context RhythmicStaff = "Staff 1" {
+                    \context Voice = "Voice 1" {
                     }
-                    \context RhythmicStaff = "Staff 2" {
-                        \context Voice = "Voice 2" {
-                        }
+                }
+                \context RhythmicStaff = "Staff 2" {
+                    \context Voice = "Voice 2" {
                     }
-                    \context RhythmicStaff = "Staff 3" {
-                        \context Voice = "Voice 3" {
-                        }
+                }
+                \context RhythmicStaff = "Staff 3" {
+                    \context Voice = "Voice 3" {
                     }
-                    \context RhythmicStaff = "Staff 4" {
-                        \context Voice = "Voice 4" {
-                        }
+                }
+                \context RhythmicStaff = "Staff 4" {
+                    \context Voice = "Voice 4" {
                     }
-                >>
+                }
             >>
+        >>
 
     ..  container:: example
 
         More than one voice per staff:
 
-        ::
-
-            >>> template_2 = class_(staff_count=[2, 1, 2])
-            >>> show(template_2) # doctest: +SKIP
+        >>> template_2 = class_(staff_count=[2, 1, 2])
+        >>> abjad.show(template_2) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(template_2.__illustrate__()[abjad.Score])
+            >>> abjad.f(template_2.__illustrate__()[abjad.Score])
             \context Score = "Grouped Rhythmic Staves Score" <<
                 \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
                     \context RhythmicStaff = "Staff 1" <<
@@ -114,34 +106,30 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
                 >>
             >>
 
-        ::
+        >>> score = template_2()
+        >>> abjad.show(score) # doctest: +SKIP
 
-            >>> score = template_2()
-            >>> show(score) # doctest: +SKIP
-
-        ::
-
-            >>> f(score)
-            \context Score = "Grouped Rhythmic Staves Score" <<
-                \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
-                    \context RhythmicStaff = "Staff 1" <<
-                        \context Voice = "Voice 1-1" {
-                        }
-                        \context Voice = "Voice 1-2" {
-                        }
-                    >>
-                    \context RhythmicStaff = "Staff 2" {
-                        \context Voice = "Voice 2" {
-                        }
+        >>> abjad.f(score)
+        \context Score = "Grouped Rhythmic Staves Score" <<
+            \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
+                \context RhythmicStaff = "Staff 1" <<
+                    \context Voice = "Voice 1-1" {
                     }
-                    \context RhythmicStaff = "Staff 3" <<
-                        \context Voice = "Voice 3-1" {
-                        }
-                        \context Voice = "Voice 3-2" {
-                        }
-                    >>
+                    \context Voice = "Voice 1-2" {
+                    }
+                >>
+                \context RhythmicStaff = "Staff 2" {
+                    \context Voice = "Voice 2" {
+                    }
+                }
+                \context RhythmicStaff = "Staff 3" <<
+                    \context Voice = "Voice 3-1" {
+                    }
+                    \context Voice = "Voice 3-2" {
+                    }
                 >>
             >>
+        >>
 
     '''
 
@@ -221,12 +209,10 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
 
         ..  container:: example
 
-            ::
-
-                >>> class_ = abjad.GroupedRhythmicStavesScoreTemplate
-                >>> template = class_(staff_count=4)
-                >>> template.context_name_abbreviations
-                OrderedDict()
+            >>> class_ = abjad.GroupedRhythmicStavesScoreTemplate
+            >>> template = class_(staff_count=4)
+            >>> template.context_name_abbreviations
+            OrderedDict()
 
         '''
         return self._context_name_abbreviations
@@ -237,12 +223,10 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
 
         ..  container:: example
 
-            ::
-
-                >>> class_ = abjad.GroupedRhythmicStavesScoreTemplate
-                >>> template = class_(staff_count=4)
-                >>> template.staff_count
-                4
+            >>> class_ = abjad.GroupedRhythmicStavesScoreTemplate
+            >>> template = class_(staff_count=4)
+            >>> template.staff_count
+            4
 
         Returns nonnegative integer.
         '''

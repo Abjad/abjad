@@ -10,33 +10,25 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
 
         Initializes from integer:
 
-        ::
+        >>> abjad.NumberedInversionEquivalentIntervalClass(0)
+        NumberedInversionEquivalentIntervalClass(0)
 
-            >>> abjad.NumberedInversionEquivalentIntervalClass(0)
-            NumberedInversionEquivalentIntervalClass(0)
-
-        ::
-
-            >>> abjad.NumberedInversionEquivalentIntervalClass(1)
-            NumberedInversionEquivalentIntervalClass(1)
+        >>> abjad.NumberedInversionEquivalentIntervalClass(1)
+        NumberedInversionEquivalentIntervalClass(1)
 
     ..  container:: example
 
         Initializes from float:
 
-        ::
-
-            >>> abjad.NumberedInversionEquivalentIntervalClass(1.5)
-            NumberedInversionEquivalentIntervalClass(1.5)
+        >>> abjad.NumberedInversionEquivalentIntervalClass(1.5)
+        NumberedInversionEquivalentIntervalClass(1.5)
 
     ..  container:: example
 
         Initializes from string:
 
-        ::
-
-            >>> abjad.NumberedInversionEquivalentIntervalClass('1')
-            NumberedInversionEquivalentIntervalClass(1)
+        >>> abjad.NumberedInversionEquivalentIntervalClass('1')
+        NumberedInversionEquivalentIntervalClass(1)
 
     '''
 
@@ -79,15 +71,11 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
 
         ..  container:: example
 
-            ::
+            >>> abs(abjad.NumberedInversionEquivalentIntervalClass(0))
+            NumberedInversionEquivalentIntervalClass(0)
 
-                >>> abs(abjad.NumberedInversionEquivalentIntervalClass(0))
-                NumberedInversionEquivalentIntervalClass(0)
-
-            ::
-
-                >>> abs(abjad.NumberedInversionEquivalentIntervalClass(1.5))
-                NumberedInversionEquivalentIntervalClass(1.5)
+            >>> abs(abjad.NumberedInversionEquivalentIntervalClass(1.5))
+            NumberedInversionEquivalentIntervalClass(1.5)
 
         Returns new numbered inversion-equivalent interval-class.
         '''
@@ -107,15 +95,11 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
 
         ..  container:: example
 
-            ::
+            >>> -abjad.NumberedInversionEquivalentIntervalClass(0)
+            NumberedInversionEquivalentIntervalClass(0)
 
-                >>> -abjad.NumberedInversionEquivalentIntervalClass(0)
-                NumberedInversionEquivalentIntervalClass(0)
-
-            ::
-
-                >>> -abjad.NumberedInversionEquivalentIntervalClass(1.5)
-                NumberedInversionEquivalentIntervalClass(1.5)
+            >>> -abjad.NumberedInversionEquivalentIntervalClass(1.5)
+            NumberedInversionEquivalentIntervalClass(1.5)
 
         Returns new numbered inversion-equivalent interval-class.
         '''
@@ -127,15 +111,11 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
 
         ..  container:: example
 
-            ::
+            >>> str(abjad.NumberedInversionEquivalentIntervalClass(0))
+            '0'
 
-                >>> str(abjad.NumberedInversionEquivalentIntervalClass(0))
-                '0'
-
-            ::
-
-                >>> str(abjad.NumberedInversionEquivalentIntervalClass(1.5))
-                '1.5'
+            >>> str(abjad.NumberedInversionEquivalentIntervalClass(1.5))
+            '1.5'
 
         Returns string.
         '''

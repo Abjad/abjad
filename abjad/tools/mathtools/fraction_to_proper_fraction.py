@@ -6,10 +6,8 @@ def fraction_to_proper_fraction(rational):
 
     ..  container:: example
 
-        ::
-
-            >>> abjad.mathtools.fraction_to_proper_fraction(abjad.Fraction(116, 8))
-            (14, Fraction(1, 2))
+        >>> abjad.mathtools.fraction_to_proper_fraction(abjad.Fraction(116, 8))
+        (14, Fraction(1, 2))
 
     Returns pair.
     '''

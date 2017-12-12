@@ -8,19 +8,15 @@ def integer_to_base_k_tuple(n, k):
 
         Gets base-10 digits of 1066:
 
-        ::
-
-            >>> abjad.mathtools.integer_to_base_k_tuple(1066, 10)
-            (1, 0, 6, 6)
+        >>> abjad.mathtools.integer_to_base_k_tuple(1066, 10)
+        (1, 0, 6, 6)
 
     ..  container:: example
 
         Gets base-2 digits of 1066:
 
-        ::
-
-            >>> abjad.mathtools.integer_to_base_k_tuple(1066, 2)
-            (1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0)
+        >>> abjad.mathtools.integer_to_base_k_tuple(1066, 2)
+        (1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0)
 
     Returns tuple of positive integers.
     '''

@@ -18,85 +18,68 @@ class Markup(AbjadValueObject):
 
         Initializes from string:
 
-        ..  container:: example
 
-            ::
+        >>> string = r'\italic { "Allegro assai" }'
+        >>> markup = abjad.Markup(string)
+        >>> abjad.f(markup)
+        \markup { \italic { "Allegro assai" } }
 
-                >>> string = r'\italic { "Allegro assai" }'
-                >>> markup = abjad.Markup(string)
-                >>> f(markup)
-                \markup { \italic { "Allegro assai" } }
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+        >>> abjad.show(markup) # doctest: +SKIP
 
     ..  container:: example
 
         Initializes from other markup:
 
-        ..  container:: example
+        >>> markup = abjad.Markup('Allegro assai', direction=abjad.Up)
+        >>> markup = markup.italic()
+        >>> markup = abjad.Markup(markup, direction=abjad.Down)
+        >>> abjad.f(markup)
+        _ \markup {
+            \italic
+                "Allegro assai"
+            }
 
-            ::
-
-                >>> markup = abjad.Markup('Allegro assai', direction=abjad.Up)
-                >>> markup = markup.italic()
-                >>> markup = abjad.Markup(markup, direction=abjad.Down)
-                >>> f(markup)
-                _ \markup {
-                    \italic
-                        "Allegro assai"
-                    }
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+        >>> abjad.show(markup) # doctest: +SKIP
 
     ..  container:: example
 
         Attaches markup to score components:
 
-        ..  container:: example
-
-            ::
-
-                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> string = r'\italic { "Allegro assai" }'
-                >>> markup = abjad.Markup(string, direction=abjad.Up)
-                >>> f(markup)
-                ^ \markup {
-                    \italic
-                        {
-                            "Allegro assai"
-                        }
-                    }
-
-            ::
-
-                >>> abjad.attach(markup, staff[0])
-                >>> show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> f(staff)
-                \new Staff {
-                    c'8
-                        ^ \markup {
-                            \italic
-                                {
-                                    "Allegro assai"
-                                }
-                            }
-                    d'8
-                    e'8
-                    f'8
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> string = r'\italic { "Allegro assai" }'
+        >>> markup = abjad.Markup(string, direction=abjad.Up)
+        >>> abjad.f(markup)
+        ^ \markup {
+            \italic
+                {
+                    "Allegro assai"
                 }
+            }
+
+        >>> abjad.attach(markup, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff {
+                c'8
+                    ^ \markup {
+                        \italic
+                            {
+                                "Allegro assai"
+                            }
+                        }
+                d'8
+                e'8
+                f'8
+            }
 
     ..  note:: Make sure all static markup methods implement a direction
         keyword when extending this class.
 
-    Set `direction` to ``Up``, ``Down``, ``'neutral'``,
-    ``'^'``, ``'_'``, ``'-'`` or None.
+    Set `direction` to ``Up``, ``Down``, ``'neutral'``, ``'^'``, ``'_'``,
+    ``'-'`` or None.
 
     Markup objects are immutable.
     '''
@@ -171,42 +154,30 @@ class Markup(AbjadValueObject):
 
             Adds markup to markup:
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro') + abjad.Markup('assai')
+            >>> abjad.f(markup)
+            \markup {
+                Allegro
+                assai
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro') + abjad.Markup('assai')
-                    >>> f(markup)
-                    \markup {
-                        Allegro
-                        assai
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         ..  container:: example
 
             Adds markup command to markup:
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro') + abjad.Markup.hspace(0.75)
+            >>> markup = markup + abjad.Markup('assai')
+            >>> abjad.f(markup)
+            \markup {
+                Allegro
+                \hspace
+                    #0.75
+                assai
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro') + abjad.Markup.hspace(0.75)
-                    >>> markup = markup + abjad.Markup('assai')
-                    >>> f(markup)
-                    \markup {
-                        Allegro
-                        \hspace
-                            #0.75
-                        assai
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -225,36 +196,24 @@ class Markup(AbjadValueObject):
     def __copy__(self, *arguments):
         r'''Copies markup.
 
-        ::
-
-            >>> import copy
+        >>> import copy
 
         ..  container:: example
 
-            ::
+            >>> markup_1 = abjad.Markup('Allegro assai', direction=abjad.Up)
+            >>> markup_2 = copy.copy(markup_1)
 
-                >>> markup_1 = abjad.Markup('Allegro assai', direction=abjad.Up)
-                >>> markup_2 = copy.copy(markup_1)
+            >>> markup_1
+            Markup(contents=['Allegro assai'], direction=Up)
 
-            ::
+            >>> markup_2
+            Markup(contents=['Allegro assai'], direction=Up)
 
-                >>> markup_1
-                Markup(contents=['Allegro assai'], direction=Up)
+            >>> markup_1 == markup_2
+            True
 
-            ::
-
-                >>> markup_2
-                Markup(contents=['Allegro assai'], direction=Up)
-
-            ::
-
-                >>> markup_1 == markup_2
-                True
-
-            ::
-
-                >>> markup_1 is markup_2
-                False
+            >>> markup_1 is markup_2
+            False
 
         Returns new markup.
         '''
@@ -268,52 +227,44 @@ class Markup(AbjadValueObject):
 
             Without keywords:
 
-            ::
+            >>> markup_1 = abjad.Markup('Allegro')
+            >>> markup_2 = abjad.Markup('Allegro')
+            >>> markup_3 = abjad.Markup('Allegro assai')
 
-                >>> markup_1 = abjad.Markup('Allegro')
-                >>> markup_2 = abjad.Markup('Allegro')
-                >>> markup_3 = abjad.Markup('Allegro assai')
-
-            ::
-
-                >>> markup_1 == markup_1
-                True
-                >>> markup_1 == markup_2
-                True
-                >>> markup_1 == markup_3
-                False
-                >>> markup_2 == markup_1
-                True
-                >>> markup_2 == markup_2
-                True
-                >>> markup_2 == markup_3
-                False
-                >>> markup_3 == markup_1
-                False
-                >>> markup_3 == markup_2
-                False
-                >>> markup_3 == markup_3
-                True
+            >>> markup_1 == markup_1
+            True
+            >>> markup_1 == markup_2
+            True
+            >>> markup_1 == markup_3
+            False
+            >>> markup_2 == markup_1
+            True
+            >>> markup_2 == markup_2
+            True
+            >>> markup_2 == markup_3
+            False
+            >>> markup_3 == markup_1
+            False
+            >>> markup_3 == markup_2
+            False
+            >>> markup_3 == markup_3
+            True
 
         ..  container:: example
 
             With keywords:
 
-            ::
+            >>> markup_1 = abjad.Markup('Allegro')
+            >>> markup_2 = abjad.Markup('Allegro', direction=abjad.Up)
 
-                >>> markup_1 = abjad.Markup('Allegro')
-                >>> markup_2 = abjad.Markup('Allegro', direction=abjad.Up)
-
-            ::
-
-                >>> markup_1 == markup_1
-                True
-                >>> markup_1 == markup_2
-                False
-                >>> markup_2 == markup_1
-                False
-                >>> markup_2 == markup_2
-                True
+            >>> markup_1 == markup_1
+            True
+            >>> markup_1 == markup_2
+            False
+            >>> markup_2 == markup_1
+            False
+            >>> markup_2 == markup_2
+            True
 
         Returns new markup.
         '''
@@ -324,23 +275,18 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            Formats markup:
 
-                Formats markup:
-
-                ::
-
-                    >>> string = r'\italic { Allegro assai }'
-                    >>> markup = abjad.Markup(string)
-                    >>> f(markup)
-                    \markup {
-                        \italic
-                            {
-                                Allegro
-                                assai
-                            }
-                        }
-
+            >>> string = r'\italic { Allegro assai }'
+            >>> markup = abjad.Markup(string)
+            >>> abjad.f(markup)
+            \markup {
+                \italic
+                    {
+                        Allegro
+                        assai
+                    }
+                }
 
         Returns string.
         '''
@@ -358,52 +304,44 @@ class Markup(AbjadValueObject):
 
             Without keywords:
 
-            ::
+            >>> hash_1 = hash(abjad.Markup('Allegro'))
+            >>> hash_2 = hash(abjad.Markup('Allegro'))
+            >>> hash_3 = hash(abjad.Markup('Allegro assai'))
 
-                >>> hash_1 = hash(abjad.Markup('Allegro'))
-                >>> hash_2 = hash(abjad.Markup('Allegro'))
-                >>> hash_3 = hash(abjad.Markup('Allegro assai'))
-
-            ::
-
-                >>> hash_1 == hash_1
-                True
-                >>> hash_1 == hash_2
-                True
-                >>> hash_1 == hash_3
-                False
-                >>> hash_2 == hash_1
-                True
-                >>> hash_2 == hash_2
-                True
-                >>> hash_2 == hash_3
-                False
-                >>> hash_3 == hash_1
-                False
-                >>> hash_3 == hash_2
-                False
-                >>> hash_3 == hash_3
-                True
+            >>> hash_1 == hash_1
+            True
+            >>> hash_1 == hash_2
+            True
+            >>> hash_1 == hash_3
+            False
+            >>> hash_2 == hash_1
+            True
+            >>> hash_2 == hash_2
+            True
+            >>> hash_2 == hash_3
+            False
+            >>> hash_3 == hash_1
+            False
+            >>> hash_3 == hash_2
+            False
+            >>> hash_3 == hash_3
+            True
 
         ..  container:: example
 
             With keywords:
 
-            ::
+            >>> hash_1 = hash(abjad.Markup('Allegro'))
+            >>> hash_2 = hash(abjad.Markup('Allegro', direction=abjad.Up))
 
-                >>> hash_1 = hash(abjad.Markup('Allegro'))
-                >>> hash_2 = hash(abjad.Markup('Allegro', direction=abjad.Up))
-
-            ::
-
-                >>> hash_1 == hash_1
-                True
-                >>> hash_1 == hash_2
-                False
-                >>> hash_2 == hash_1
-                False
-                >>> hash_2 == hash_2
-                True
+            >>> hash_1 == hash_1
+            True
+            >>> hash_1 == hash_2
+            False
+            >>> hash_2 == hash_1
+            False
+            >>> hash_2 == hash_2
+            True
 
         '''
         return super(Markup, self).__hash__()
@@ -413,36 +351,30 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> string = r'\italic { Allegro assai }'
+            >>> markup = abjad.Markup(string)
+            >>> abjad.f(markup)
+            \markup {
+                \italic
+                    {
+                        Allegro
+                        assai
+                    }
+                }
 
-                ::
+            >>> abjad.show(markup) # doctest: +SKIP
 
-                    >>> string = r'\italic { Allegro assai }'
-                    >>> markup = abjad.Markup(string)
-                    >>> f(markup)
-                    \markup {
-                        \italic
-                            {
-                                Allegro
-                                assai
-                            }
+            ..  docs::
+
+                >>> lilypond_file = markup.__illustrate__()
+                >>> abjad.f(lilypond_file.items[-1])
+                \markup {
+                    \italic
+                        {
+                            Allegro
+                            assai
                         }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> lilypond_file = markup.__illustrate__()
-                    >>> f(lilypond_file.items[-1])
-                    \markup {
-                        \italic
-                            {
-                                Allegro
-                                assai
-                            }
-                        }
+                    }
 
         Returns LilyPond file.
         '''
@@ -458,17 +390,13 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> markup_1 = abjad.Markup('Allegro')
+            >>> markup_2 = abjad.Markup('assai')
 
-                >>> markup_1 = abjad.Markup('Allegro')
-                >>> markup_2 = abjad.Markup('assai')
-
-            ::
-
-                >>> markup_1 < markup_2
-                True
-                >>> markup_2 < markup_1
-                False
+            >>> markup_1 < markup_2
+            True
+            >>> markup_2 < markup_1
+            False
 
         Raises type error when `argument` is not markup.
 
@@ -487,42 +415,30 @@ class Markup(AbjadValueObject):
 
             Adds markup to markup:
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro') + abjad.Markup('assai')
+            >>> abjad.f(markup)
+            \markup {
+                Allegro
+                assai
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro') + abjad.Markup('assai')
-                    >>> f(markup)
-                    \markup {
-                        Allegro
-                        assai
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         ..  container:: example
 
             Adds markup to markup command:
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro') + abjad.Markup.hspace(0.75)
+            >>> markup = markup + abjad.Markup('assai')
+            >>> abjad.f(markup)
+            \markup {
+                Allegro
+                \hspace
+                    #0.75
+                assai
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro') + abjad.Markup.hspace(0.75)
-                    >>> markup = markup + abjad.Markup('assai')
-                    >>> f(markup)
-                    \markup {
-                        Allegro
-                        \hspace
-                            #0.75
-                        assai
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -544,24 +460,18 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> string = r'\italic { Allegro assai }'
+            >>> markup = abjad.Markup(string)
+            >>> print(str(markup))
+            \markup {
+                \italic
+                    {
+                        Allegro
+                        assai
+                    }
+                }
 
-                ::
-
-                    >>> string = r'\italic { Allegro assai }'
-                    >>> markup = abjad.Markup(string)
-                    >>> print(str(markup))
-                    \markup {
-                        \italic
-                            {
-                                Allegro
-                                assai
-                            }
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns string.
         '''
@@ -640,21 +550,15 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            Initializes contents positionally:
 
-                Initializes contents positionally:
+            >>> abjad.Markup('Allegro assai')
+            Markup(contents=['Allegro assai'])
 
-                ::
+            Initializes contents from keyword:
 
-                    >>> abjad.Markup('Allegro assai')
-                    Markup(contents=['Allegro assai'])
-
-                Initializes contents from keyword:
-
-                ::
-
-                    >>> abjad.Markup(contents='Allegro assai')
-                    Markup(contents=['Allegro assai'])
+            >>> abjad.Markup(contents='Allegro assai')
+            Markup(contents=['Allegro assai'])
 
         Returns tuple.
         '''
@@ -666,21 +570,15 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            Initializes without direction:
 
-                Initializes without direction:
+            >>> abjad.Markup('Allegro')
+            Markup(contents=['Allegro'])
 
-                ::
+            Initializes with direction:
 
-                    >>> abjad.Markup('Allegro')
-                    Markup(contents=['Allegro'])
-
-                Initializes with direction:
-
-                ::
-
-                    >>> abjad.Markup('Allegro', direction=abjad.Up)
-                    Markup(contents=['Allegro'], direction=Up)
+            >>> abjad.Markup('Allegro', direction=abjad.Up)
+            Markup(contents=['Allegro'], direction=Up)
 
         Defaults to none.
 
@@ -696,19 +594,15 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> abjad.attach(abjad.Markup(('Non',  'troppo'), stack_priority=1000), staff[1])
+            >>> abjad.attach(abjad.Markup('allegro', stack_priority=0), staff[1])
 
-                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> abjad.attach(abjad.Markup(('Non',  'troppo'), stack_priority=1000), staff[1])
-                >>> abjad.attach(abjad.Markup('allegro', stack_priority=0), staff[1])
-
-            ::
-
-                >>> show(staff) # doctest: +SKIP
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  doctest:
 
-                >>> f(staff)
+                >>> abjad.f(staff)
                 \new Staff {
                     c'8
                     d'8
@@ -732,19 +626,15 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> abjad.attach(abjad.Markup(('non',  'troppo'), stack_priority=0), staff[1])
+            >>> abjad.attach(abjad.Markup('Allegro', stack_priority=1000), staff[1])
 
-                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> abjad.attach(abjad.Markup(('non',  'troppo'), stack_priority=0), staff[1])
-                >>> abjad.attach(abjad.Markup('Allegro', stack_priority=1000), staff[1])
-
-            ::
-
-                >>> show(staff) # doctest: +SKIP
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  doctest:
 
-                >>> f(staff)
+                >>> abjad.f(staff)
                 \new Staff {
                     c'8
                     d'8
@@ -783,21 +673,15 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.bold()
+            >>> abjad.f(markup)
+            \markup {
+                \bold
+                    "Allegro assai"
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.bold()
-                    >>> f(markup)
-                    \markup {
-                        \bold
-                            "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -815,44 +699,32 @@ class Markup(AbjadValueObject):
 
             Default box:
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.box()
+            >>> abjad.f(markup)
+            \markup {
+                \box
+                    "Allegro assai"
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.box()
-                    >>> f(markup)
-                    \markup {
-                        \box
-                            "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         ..  container:: example
 
             Customized box:
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.box()
+            >>> markup = markup.override(('box-padding', 0.5))
+            >>> abjad.f(markup)
+            \markup {
+                \override
+                    #'(box-padding . 0.5)
+                    \box
+                        "Allegro assai"
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.box()
-                    >>> markup = markup.override(('box-padding', 0.5))
-                    >>> f(markup)
-                    \markup {
-                        \override
-                            #'(box-padding . 0.5)
-                            \box
-                                "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -867,19 +739,15 @@ class Markup(AbjadValueObject):
 
             ..  container:: example
 
-                ::
+                >>> markup = abjad.Markup('Allegro assai')
+                >>> markup = markup.bracket()
+                >>> abjad.f(markup)
+                \markup {
+                    \bracket
+                        "Allegro assai"
+                    }
 
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.bracket()
-                    >>> f(markup)
-                    \markup {
-                        \bracket
-                            "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+                >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -892,21 +760,15 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.caps()
+            >>> abjad.f(markup)
+            \markup {
+                \caps
+                    "Allegro assai"
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.caps()
-                    >>> f(markup)
-                    \markup {
-                        \caps
-                            "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -919,28 +781,22 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup_a = abjad.Markup('allegro')
+            >>> markup_b = abjad.Markup('non').center_align()
+            >>> markup_c = abjad.Markup('troppo')
+            >>> markup = abjad.Markup.column([markup_a, markup_b, markup_c])
+            >>> abjad.f(markup)
+            \markup {
+                \column
+                    {
+                        allegro
+                        \center-align
+                            non
+                        troppo
+                    }
+                }
 
-                ::
-
-                    >>> markup_a = abjad.Markup('allegro')
-                    >>> markup_b = abjad.Markup('non').center_align()
-                    >>> markup_c = abjad.Markup('troppo')
-                    >>> markup = abjad.Markup.column([markup_a, markup_b, markup_c])
-                    >>> f(markup)
-                    \markup {
-                        \column
-                            {
-                                allegro
-                                \center-align
-                                    non
-                                troppo
-                            }
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup
         '''
@@ -954,45 +810,37 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> city = abjad.Markup('Los Angeles')
-                >>> date = abjad.Markup('May - August 2014')
-                >>> markup = abjad.Markup.center_column([city, date])
-                >>> f(markup)
-                \markup {
-                    \center-column
-                        {
-                            "Los Angeles"
-                            "May - August 2014"
-                        }
+            >>> city = abjad.Markup('Los Angeles')
+            >>> date = abjad.Markup('May - August 2014')
+            >>> markup = abjad.Markup.center_column([city, date])
+            >>> abjad.f(markup)
+            \markup {
+                \center-column
+                    {
+                        "Los Angeles"
+                        "May - August 2014"
                     }
+                }
 
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         ..  container:: example
 
             Also works with a list of strings:
 
-            ::
-
-                >>> city = 'Los Angeles'
-                >>> date = 'May - August 2014'
-                >>> markup = abjad.Markup.center_column([city, date])
-                >>> f(markup)
-                \markup {
-                    \center-column
-                        {
-                            "Los Angeles"
-                            "May - August 2014"
-                        }
+            >>> city = 'Los Angeles'
+            >>> date = 'May - August 2014'
+            >>> markup = abjad.Markup.center_column([city, date])
+            >>> abjad.f(markup)
+            \markup {
+                \center-column
+                    {
+                        "Los Angeles"
+                        "May - August 2014"
                     }
+                }
 
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -1007,26 +855,20 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup = abjad.Markup.fraction(3, 5)
+            >>> markup = markup.circle()
+            >>> markup = markup.override(('circle-padding', 0.45))
+            >>> abjad.f(markup)
+            \markup {
+                \override
+                    #'(circle-padding . 0.45)
+                    \circle
+                        \fraction
+                            3
+                            5
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup.fraction(3, 5)
-                    >>> markup = markup.circle()
-                    >>> markup = markup.override(('circle-padding', 0.45))
-                    >>> f(markup)
-                    \markup {
-                        \override
-                            #'(circle-padding . 0.45)
-                            \circle
-                                \fraction
-                                    3
-                                    5
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup
         '''
@@ -1040,23 +882,19 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> city = abjad.Markup('Los Angeles')
-                >>> date = abjad.Markup('May - August 2014')
-                >>> markup = abjad.Markup.column([city, date])
-                >>> f(markup)
-                \markup {
-                    \column
-                        {
-                            "Los Angeles"
-                            "May - August 2014"
-                        }
+            >>> city = abjad.Markup('Los Angeles')
+            >>> date = abjad.Markup('May - August 2014')
+            >>> markup = abjad.Markup.column([city, date])
+            >>> abjad.f(markup)
+            \markup {
+                \column
+                    {
+                        "Los Angeles"
+                        "May - August 2014"
                     }
+                }
 
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -1072,23 +910,19 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> markup_one = abjad.Markup('Allegro assai')
+            >>> markup_two = abjad.Markup.draw_line(13, 0)
+            >>> markup_list = [markup_one, markup_two]
+            >>> markup = abjad.Markup.combine(markup_list, direction=abjad.Up)
+            >>> abjad.f(markup)
+            ^ \markup {
+                \combine
+                    "Allegro assai"
+                    \draw-line
+                        #'(13 . 0)
+                }
 
-                >>> markup_one = abjad.Markup('Allegro assai')
-                >>> markup_two = abjad.Markup.draw_line(13, 0)
-                >>> markup_list = [markup_one, markup_two]
-                >>> markup = abjad.Markup.combine(markup_list, direction=abjad.Up)
-                >>> f(markup)
-                ^ \markup {
-                    \combine
-                        "Allegro assai"
-                        \draw-line
-                            #'(13 . 0)
-                    }
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -1108,31 +942,25 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> downbow = abjad.Markup.musicglyph('scripts.downbow')
+            >>> hspace = abjad.Markup.hspace(1)
+            >>> upbow = abjad.Markup.musicglyph('scripts.upbow')
+            >>> markup_list = [downbow, hspace, upbow]
+            >>> markup = abjad.Markup.concat(markup_list, direction=abjad.Up)
+            >>> abjad.f(markup)
+            ^ \markup {
+                \concat
+                    {
+                        \musicglyph
+                            #"scripts.downbow"
+                        \hspace
+                            #1
+                        \musicglyph
+                            #"scripts.upbow"
+                    }
+                }
 
-                ::
-
-                    >>> downbow = abjad.Markup.musicglyph('scripts.downbow')
-                    >>> hspace = abjad.Markup.hspace(1)
-                    >>> upbow = abjad.Markup.musicglyph('scripts.upbow')
-                    >>> markup_list = [downbow, hspace, upbow]
-                    >>> markup = abjad.Markup.concat(markup_list, direction=abjad.Up)
-                    >>> f(markup)
-                    ^ \markup {
-                        \concat
-                            {
-                                \musicglyph
-                                    #"scripts.downbow"
-                                \hspace
-                                    #1
-                                \musicglyph
-                                    #"scripts.upbow"
-                            }
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -1149,20 +977,16 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> markup = abjad.Markup.draw_circle(10, 1.5, direction=abjad.Up)
+            >>> abjad.f(markup)
+            ^ \markup {
+                \draw-circle
+                    #10
+                    #1.5
+                    ##f
+                }
 
-                >>> markup = abjad.Markup.draw_circle(10, 1.5, direction=abjad.Up)
-                >>> f(markup)
-                ^ \markup {
-                    \draw-circle
-                        #10
-                        #1.5
-                        ##f
-                    }
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup
         '''
@@ -1175,18 +999,14 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> markup = abjad.Markup.draw_line(5, -2.5, direction=abjad.Up)
+            >>> abjad.f(markup)
+            ^ \markup {
+                \draw-line
+                    #'(5 . -2.5)
+                }
 
-                >>> markup = abjad.Markup.draw_line(5, -2.5, direction=abjad.Up)
-                >>> f(markup)
-                ^ \markup {
-                    \draw-line
-                        #'(5 . -2.5)
-                    }
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup
         '''
@@ -1199,21 +1019,15 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup = abjad.Markup('sffz')
+            >>> markup = markup.dynamic()
+            >>> abjad.f(markup)
+            \markup {
+                \dynamic
+                    sffz
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('sffz')
-                    >>> markup = markup.dynamic()
-                    >>> f(markup)
-                    \markup {
-                        \dynamic
-                            sffz
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -1227,20 +1041,16 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> markup = abjad.Markup.filled_box((0, 10), (2, 5), 1.5, direction=abjad.Up)
+            >>> abjad.f(markup)
+            ^ \markup {
+                \filled-box
+                    #'(0 . 10)
+                    #'(2 . 5)
+                    #1.5
+                }
 
-                >>> markup = abjad.Markup.filled_box((0, 10), (2, 5), 1.5, direction=abjad.Up)
-                >>> f(markup)
-                ^ \markup {
-                    \filled-box
-                        #'(0 . 10)
-                        #'(2 . 5)
-                        #1.5
-                    }
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -1255,21 +1065,15 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup = abjad.Markup(1)
+            >>> markup = markup.finger()
+            >>> abjad.f(markup)
+            \markup {
+                \finger
+                    1
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup(1)
-                    >>> markup = markup.finger()
-                    >>> f(markup)
-                    \markup {
-                        \finger
-                            1
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup
         '''
@@ -1283,17 +1087,13 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> markup = abjad.Markup.flat(direction=abjad.Up)
+            >>> abjad.f(markup)
+            ^ \markup {
+                \flat
+                }
 
-                >>> markup = abjad.Markup.flat(direction=abjad.Up)
-                >>> f(markup)
-                ^ \markup {
-                    \flat
-                    }
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -1305,21 +1105,15 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.fontsize(-3)
+            >>> abjad.f(markup)
+            \markup {
+                \fontsize #-3
+                    "Allegro assai"
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.fontsize(-3)
-                    >>> f(markup)
-                    \markup {
-                        \fontsize #-3
-                            "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup
         '''
@@ -1337,37 +1131,29 @@ class Markup(AbjadValueObject):
 
             Fraction with integer numerator and denominator:
 
-            ::
+            >>> markup = abjad.Markup.fraction(1, 4, direction=abjad.Up)
+            >>> abjad.f(markup)
+            ^ \markup {
+                \fraction
+                    1
+                    4
+                }
 
-                >>> markup = abjad.Markup.fraction(1, 4, direction=abjad.Up)
-                >>> f(markup)
-                ^ \markup {
-                    \fraction
-                        1
-                        4
-                    }
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         ..  container:: example
 
             Fraction with string numerator and integer denominator:
 
-            ::
+            >>> markup = abjad.Markup.fraction('π', 4)
+            >>> abjad.f(markup)
+            \markup {
+                \fraction
+                    π
+                    4
+                }
 
-                >>> markup = abjad.Markup.fraction('π', 4)
-                >>> f(markup)
-                \markup {
-                    \fraction
-                        π
-                        4
-                    }
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup
         '''
@@ -1380,15 +1166,11 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> markup = abjad.Markup.from_literal('F#4')
+            >>> abjad.f(markup)
+            \markup { "F#4" }
 
-                >>> markup = abjad.Markup.from_literal('F#4')
-                >>> f(markup)
-                \markup { "F#4" }
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -1407,45 +1189,33 @@ class Markup(AbjadValueObject):
 
             With Abjad direction constant:
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.general_align('Y', abjad.Up)
+            >>> abjad.f(markup)
+            \markup {
+                \general-align
+                    #Y
+                    #UP
+                    "Allegro assai"
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.general_align('Y', abjad.Up)
-                    >>> f(markup)
-                    \markup {
-                        \general-align
-                            #Y
-                            #UP
-                            "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         ..  container:: example
 
             With numeric direction value:
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.general_align('Y', 0.75)
+            >>> abjad.f(markup)
+            \markup {
+                \general-align
+                    #Y
+                    #0.75
+                    "Allegro assai"
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.general_align('Y', 0.75)
-                    >>> f(markup)
-                    \markup {
-                        \general-align
-                            #Y
-                            #0.75
-                            "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -1473,22 +1243,16 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.halign(0)
+            >>> abjad.f(markup)
+            \markup {
+                \halign
+                    #0
+                    "Allegro assai"
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.halign(0)
-                    >>> f(markup)
-                    \markup {
-                        \halign
-                            #0
-                            "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -1501,22 +1265,16 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.hcenter_in(12)
+            >>> abjad.f(markup)
+            \markup {
+                \hcenter-in
+                    #12
+                    "Allegro assai"
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.hcenter_in(12)
-                    >>> f(markup)
-                    \markup {
-                        \hcenter-in
-                            #12
-                            "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -1530,18 +1288,14 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> markup = abjad.Markup.hspace(0.75, direction=abjad.Up)
+            >>> abjad.f(markup)
+            ^ \markup {
+                \hspace
+                    #0.75
+                }
 
-                >>> markup = abjad.Markup.hspace(0.75, direction=abjad.Up)
-                >>> f(markup)
-                ^ \markup {
-                    \hspace
-                        #0.75
-                    }
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -1553,21 +1307,15 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.huge()
+            >>> abjad.f(markup)
+            \markup {
+                \huge
+                    "Allegro assai"
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.huge()
-                    >>> f(markup)
-                    \markup {
-                        \huge
-                            "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -1580,21 +1328,15 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.italic()
+            >>> abjad.f(markup)
+            \markup {
+                \italic
+                    "Allegro assai"
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.italic()
-                    >>> f(markup)
-                    \markup {
-                        \italic
-                            "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -1607,21 +1349,15 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.larger()
+            >>> abjad.f(markup)
+            \markup {
+                \larger
+                    "Allegro assai"
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.larger()
-                    >>> f(markup)
-                    \markup {
-                        \larger
-                            "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -1635,23 +1371,19 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> city = abjad.Markup('Los Angeles')
-                >>> date = abjad.Markup('May - August 2014')
-                >>> markup = abjad.Markup.left_column([city, date])
-                >>> f(markup)
-                \markup {
-                    \left-column
-                        {
-                            "Los Angeles"
-                            "May - August 2014"
-                        }
+            >>> city = abjad.Markup('Los Angeles')
+            >>> date = abjad.Markup('May - August 2014')
+            >>> markup = abjad.Markup.left_column([city, date])
+            >>> abjad.f(markup)
+            \markup {
+                \left-column
+                    {
+                        "Los Angeles"
+                        "May - August 2014"
                     }
+                }
 
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -1667,24 +1399,20 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> markups = ['Allegro', 'assai']
-                >>> markups = [abjad.Markup(_) for _ in markups]
-                >>> markup = abjad.Markup.line(markups)
-                >>> f(markup)
-                \markup {
-                    \line
-                        {
-                            Allegro
-                            assai
-                        }
+            >>> markups = ['Allegro', 'assai']
+            >>> markups = [abjad.Markup(_) for _ in markups]
+            >>> markup = abjad.Markup.line(markups)
+            >>> abjad.f(markup)
+            \markup {
+                \line
+                    {
+                        Allegro
+                        assai
                     }
+                }
 
 
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -1702,40 +1430,32 @@ class Markup(AbjadValueObject):
 
             With integer-equivalent number:
 
-            ::
+            >>> markup = abjad.Markup.make_improper_fraction_markup(
+            ...     abjad.Fraction(6, 3),
+            ...     direction=abjad.Up,
+            ...     )
+            >>> abjad.f(markup)
+            ^ \markup { 2 }
 
-                >>> markup = abjad.Markup.make_improper_fraction_markup(
-                ...     abjad.Fraction(6, 3),
-                ...     direction=abjad.Up,
-                ...     )
-                >>> f(markup)
-                ^ \markup { 2 }
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         ..  container:: example
 
             With non-integer-equivalent number:
 
-            ::
+            >>> markup = abjad.Markup.make_improper_fraction_markup(
+            ...     abjad.Fraction(7, 3),
+            ...     )
+            >>> abjad.f(markup)
+            \markup {
+                2
+                \tiny
+                    \fraction
+                        1
+                        3
+                }
 
-                >>> markup = abjad.Markup.make_improper_fraction_markup(
-                ...     abjad.Fraction(7, 3),
-                ...     )
-                >>> f(markup)
-                \markup {
-                    2
-                    \tiny
-                        \fraction
-                            1
-                            3
-                    }
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         '''
         from abjad.tools import mathtools
@@ -1763,21 +1483,17 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> markup = abjad.Markup.musicglyph(
+            ...     'accidentals.sharp',
+            ...     direction=abjad.Up,
+            ...     )
+            >>> abjad.f(markup)
+            ^ \markup {
+                \musicglyph
+                    #"accidentals.sharp"
+                }
 
-                >>> markup = abjad.Markup.musicglyph(
-                ...     'accidentals.sharp',
-                ...     direction=abjad.Up,
-                ...     )
-                >>> f(markup)
-                ^ \markup {
-                    \musicglyph
-                        #"accidentals.sharp"
-                    }
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -1795,17 +1511,13 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> markup = abjad.Markup.natural(direction=abjad.Up)
+            >>> abjad.f(markup)
+            ^ \markup {
+                \natural
+                }
 
-                >>> markup = abjad.Markup.natural(direction=abjad.Up)
-                >>> f(markup)
-                ^ \markup {
-                    \natural
-                    }
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -1818,20 +1530,16 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> markup = abjad.Markup.note_by_number(3, 2, 1, direction=abjad.Up)
+            >>> abjad.f(markup)
+            ^ \markup {
+                \note-by-number
+                    #3
+                    #2
+                    #1
+                }
 
-                >>> markup = abjad.Markup.note_by_number(3, 2, 1, direction=abjad.Up)
-                >>> f(markup)
-                ^ \markup {
-                    \note-by-number
-                        #3
-                        #2
-                        #1
-                    }
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -1849,17 +1557,13 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> markup = abjad.Markup.null()
+            >>> abjad.f(markup)
+            \markup {
+                \null
+                }
 
-                >>> markup = abjad.Markup.null()
-                >>> f(markup)
-                \markup {
-                    \null
-                    }
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -1872,23 +1576,19 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> city = abjad.Markup('Los Angeles')
-                >>> date = abjad.Markup('May - August 2014')
-                >>> markup = abjad.Markup.overlay([city, date], direction=abjad.Up)
-                >>> f(markup)
-                ^ \markup {
-                    \overlay
-                        {
-                            "Los Angeles"
-                            "May - August 2014"
-                        }
+            >>> city = abjad.Markup('Los Angeles')
+            >>> date = abjad.Markup('May - August 2014')
+            >>> markup = abjad.Markup.overlay([city, date], direction=abjad.Up)
+            >>> abjad.f(markup)
+            ^ \markup {
+                \overlay
+                    {
+                        "Los Angeles"
+                        "May - August 2014"
                     }
+                }
 
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -1903,24 +1603,18 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.parenthesize()
+            >>> markup = markup.override(('padding', 0.75))
+            >>> abjad.f(markup)
+            \markup {
+                \override
+                    #'(padding . 0.75)
+                    \parenthesize
+                        "Allegro assai"
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.parenthesize()
-                    >>> markup = markup.override(('padding', 0.75))
-                    >>> f(markup)
-                    \markup {
-                        \override
-                            #'(padding . 0.75)
-                            \parenthesize
-                                "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -1934,24 +1628,18 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.pad_around(10)
+            >>> markup = markup.box()
+            >>> abjad.f(markup)
+            \markup {
+                \box
+                    \pad-around
+                        #10
+                        "Allegro assai"
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.pad_around(10)
-                    >>> markup = markup.box()
-                    >>> f(markup)
-                    \markup {
-                        \box
-                            \pad-around
-                                #10
-                                "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -1970,63 +1658,53 @@ class Markup(AbjadValueObject):
             x-coordinates of 0 and 10 and the y-coordinates of 0 and 10.
             Normally, this would be drawn off the edge of the page.
 
-            ::
-
-                >>> up_postscript = abjad.Postscript()
-                >>> up_postscript = up_postscript.newpath()
-                >>> up_postscript = up_postscript.moveto(0, 0)
-                >>> up_postscript = up_postscript.rlineto(10, 0)
-                >>> up_postscript = up_postscript.rlineto(0, 10)
-                >>> up_postscript = up_postscript.rlineto(-10, 0)
-                >>> up_postscript = up_postscript.closepath()
-                >>> up_postscript = up_postscript.setgray(0.75)
-                >>> up_postscript = up_postscript.fill()
-                >>> up_postscript_markup = up_postscript.as_markup()
-                >>> f(up_postscript_markup)
-                \markup {
-                    \postscript
-                        #"
-                        newpath
-                        0 0 moveto
-                        10 0 rlineto
-                        0 10 rlineto
-                        -10 0 rlineto
-                        closepath
-                        0.75 setgray
-                        fill
-                        "
-                    }
+            >>> up_postscript = abjad.Postscript()
+            >>> up_postscript = up_postscript.newpath()
+            >>> up_postscript = up_postscript.moveto(0, 0)
+            >>> up_postscript = up_postscript.rlineto(10, 0)
+            >>> up_postscript = up_postscript.rlineto(0, 10)
+            >>> up_postscript = up_postscript.rlineto(-10, 0)
+            >>> up_postscript = up_postscript.closepath()
+            >>> up_postscript = up_postscript.setgray(0.75)
+            >>> up_postscript = up_postscript.fill()
+            >>> up_postscript_markup = up_postscript.as_markup()
+            >>> abjad.f(up_postscript_markup)
+            \markup {
+                \postscript
+                    #"
+                    newpath
+                    0 0 moveto
+                    10 0 rlineto
+                    0 10 rlineto
+                    -10 0 rlineto
+                    closepath
+                    0.75 setgray
+                    fill
+                    "
+                }
 
             Notice how the top half of the square is cut off. The coordinates
             of the postscript put most of the drawing off the edge of the page.
             LilyPond does not know what the size of the postscript is, so it
             does not attempt to reposition it:
 
-            ::
-
-                >>> show(up_postscript_markup) # doctest: +SKIP
+            >>> abjad.show(up_postscript_markup) # doctest: +SKIP
 
             Wrapping the postscript in a box shows that LilyPond believes the
             postscript has effectively no x or y extent:
 
-            ::
-
-                >>> show(up_postscript_markup.box()) # doctest: +SKIP
+            >>> abjad.show(up_postscript_markup.box()) # doctest: +SKIP
 
             By giving the postscript markup explicit extents, we can instruct
             LilyPond to position it properly:
 
-            ::
-
-                >>> up_postscript_markup = up_postscript_markup.pad_to_box(
-                ...     (0, 10), (0, 10))
-                >>> show(up_postscript_markup) # doctest: +SKIP
+            >>> up_postscript_markup = up_postscript_markup.pad_to_box(
+            ...     (0, 10), (0, 10))
+            >>> abjad.show(up_postscript_markup) # doctest: +SKIP
 
             Boxing also shows that extents have been applied correctly:
 
-            ::
-
-                >>> show(up_postscript_markup.box()) # doctest: +SKIP
+            >>> abjad.show(up_postscript_markup.box()) # doctest: +SKIP
 
         ..  container:: example
 
@@ -2039,39 +1717,35 @@ class Markup(AbjadValueObject):
             the previous example. However, this box's x- and y-coordinates
             range between 0 and 10 and 0 and -10 respectively.
 
-            ::
-
-                >>> down_postscript = abjad.Postscript()
-                >>> down_postscript = down_postscript.newpath()
-                >>> down_postscript = down_postscript.moveto(0, 0)
-                >>> down_postscript = down_postscript.rlineto(10, 0)
-                >>> down_postscript = down_postscript.rlineto(0, -10)
-                >>> down_postscript = down_postscript.rlineto(-10, 0)
-                >>> down_postscript = down_postscript.closepath()
-                >>> down_postscript = down_postscript.setgray(0.75)
-                >>> down_postscript = down_postscript.fill()
-                >>> down_postscript_markup = down_postscript.as_markup()
-                >>> f(down_postscript_markup)
-                \markup {
-                    \postscript
-                        #"
-                        newpath
-                        0 0 moveto
-                        10 0 rlineto
-                        0 -10 rlineto
-                        -10 0 rlineto
-                        closepath
-                        0.75 setgray
-                        fill
-                        "
-                    }
+            >>> down_postscript = abjad.Postscript()
+            >>> down_postscript = down_postscript.newpath()
+            >>> down_postscript = down_postscript.moveto(0, 0)
+            >>> down_postscript = down_postscript.rlineto(10, 0)
+            >>> down_postscript = down_postscript.rlineto(0, -10)
+            >>> down_postscript = down_postscript.rlineto(-10, 0)
+            >>> down_postscript = down_postscript.closepath()
+            >>> down_postscript = down_postscript.setgray(0.75)
+            >>> down_postscript = down_postscript.fill()
+            >>> down_postscript_markup = down_postscript.as_markup()
+            >>> abjad.f(down_postscript_markup)
+            \markup {
+                \postscript
+                    #"
+                    newpath
+                    0 0 moveto
+                    10 0 rlineto
+                    0 -10 rlineto
+                    -10 0 rlineto
+                    closepath
+                    0.75 setgray
+                    fill
+                    "
+                }
 
             This time, the entire markup appears to display, without being cut
             off:
 
-            ::
-
-                >>> show(down_postscript_markup) # doctest: +SKIP
+            >>> abjad.show(down_postscript_markup) # doctest: +SKIP
 
             However, boxing the markup shows that LilyPond still believes it to
             be of 0-height and 0-width. Notice that the box appears in a
@@ -2080,27 +1754,21 @@ class Markup(AbjadValueObject):
             *descends* from the origin, while the grey box in example 1
             *ascends* from it.
 
-            ::
-
-                >>> show(down_postscript_markup.box()) # doctest: +SKIP
+            >>> abjad.show(down_postscript_markup.box()) # doctest: +SKIP
 
             Giving the postscript markup positive extents does not work:
 
-            ::
-
-                >>> markup = down_postscript_markup.pad_to_box(
-                ...     (0, 10), (0, 10))
-                >>> show(markup.box()) # doctest: +SKIP
+            >>> markup = down_postscript_markup.pad_to_box(
+            ...     (0, 10), (0, 10))
+            >>> abjad.show(markup.box()) # doctest: +SKIP
 
             Likewise, giving the postscript markup negative extents also
             does not work. The negative extents are treated as 0. In this case,
             the postscript markup is treated as though it had a height of 0:
 
-            ::
-
-                >>> markup = down_postscript_markup.pad_to_box(
-                ...     (0, 10), (0, -10))
-                >>> show(markup.box()) # doctest: +SKIP
+            >>> markup = down_postscript_markup.pad_to_box(
+            ...     (0, 10), (0, -10))
+            >>> abjad.show(markup.box()) # doctest: +SKIP
 
             Unfortunately, this means that any part of a postscript-created
             markup that uses negative coordinates cannot be treated properly by
@@ -2120,21 +1788,15 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.parenthesize()
+            >>> abjad.f(markup)
+            \markup {
+                \parenthesize
+                    "Allegro assai"
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.parenthesize()
-                    >>> f(markup)
-                    \markup {
-                        \parenthesize
-                            "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -2148,30 +1810,26 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.moveto(1, 1)
+            >>> postscript = postscript.setlinewidth(2.5)
+            >>> postscript = postscript.setdash((2, 1))
+            >>> postscript = postscript.lineto(3, -4)
+            >>> postscript = postscript.stroke()
+            >>> markup = abjad.Markup.postscript(postscript, direction=abjad.Up)
+            >>> abjad.f(markup)
+            ^ \markup {
+                \postscript
+                    #"
+                    1 1 moveto
+                    2.5 setlinewidth
+                    [ 2 1 ] 0 setdash
+                    3 -4 lineto
+                    stroke
+                    "
+                }
 
-                >>> postscript = abjad.Postscript()
-                >>> postscript = postscript.moveto(1, 1)
-                >>> postscript = postscript.setlinewidth(2.5)
-                >>> postscript = postscript.setdash((2, 1))
-                >>> postscript = postscript.lineto(3, -4)
-                >>> postscript = postscript.stroke()
-                >>> markup = abjad.Markup.postscript(postscript, direction=abjad.Up)
-                >>> f(markup)
-                ^ \markup {
-                    \postscript
-                        #"
-                        1 1 moveto
-                        2.5 setlinewidth
-                        [ 2 1 ] 0 setdash
-                        3 -4 lineto
-                        stroke
-                        "
-                    }
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -2186,22 +1844,16 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.raise_(0.35)
+            >>> abjad.f(markup)
+            \markup {
+                \raise
+                    #0.35
+                    "Allegro assai"
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.raise_(0.35)
-                    >>> f(markup)
-                    \markup {
-                        \raise
-                            #0.35
-                            "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -2215,26 +1867,22 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> city = abjad.Markup('Los Angeles')
-                >>> date = abjad.Markup('May - August 2014')
-                >>> markup = abjad.Markup.right_column(
-                ...     [city, date],
-                ...     direction=abjad.Up,
-                ...     )
-                >>> f(markup)
-                ^ \markup {
-                    \right-column
-                        {
-                            "Los Angeles"
-                            "May - August 2014"
-                        }
+            >>> city = abjad.Markup('Los Angeles')
+            >>> date = abjad.Markup('May - August 2014')
+            >>> markup = abjad.Markup.right_column(
+            ...     [city, date],
+            ...     direction=abjad.Up,
+            ...     )
+            >>> abjad.f(markup)
+            ^ \markup {
+                \right-column
+                    {
+                        "Los Angeles"
+                        "May - August 2014"
                     }
+                }
 
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -2249,22 +1897,16 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.rotate(45)
+            >>> abjad.f(markup)
+            \markup {
+                \rotate
+                    #45
+                    "Allegro assai"
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.rotate(45)
-                    >>> f(markup)
-                    \markup {
-                        \rotate
-                            #45
-                            "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -2277,21 +1919,15 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.sans()
+            >>> abjad.f(markup)
+            \markup {
+                \sans
+                    "Allegro assai"
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.sans()
-                    >>> f(markup)
-                    \markup {
-                        \sans
-                            "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -2304,22 +1940,16 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.scale((0.75, 0.75))
+            >>> abjad.f(markup)
+            \markup {
+                \scale
+                    #'(0.75 . 0.75)
+                    "Allegro assai"
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.scale((0.75, 0.75))
-                    >>> f(markup)
-                    \markup {
-                        \scale
-                            #'(0.75 . 0.75)
-                            "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -2334,17 +1964,13 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> markup = abjad.Markup.sharp(direction=abjad.Up)
+            >>> abjad.f(markup)
+            ^ \markup {
+                \sharp
+                }
 
-                >>> markup = abjad.Markup.sharp(direction=abjad.Up)
-                >>> f(markup)
-                ^ \markup {
-                    \sharp
-                    }
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -2356,21 +1982,15 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.small()
+            >>> abjad.f(markup)
+            \markup {
+                \small
+                    "Allegro assai"
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.small()
-                    >>> f(markup)
-                    \markup {
-                        \small
-                            "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -2383,21 +2003,15 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.smaller()
+            >>> abjad.f(markup)
+            \markup {
+                \smaller
+                    "Allegro assai"
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.smaller()
-                    >>> f(markup)
-                    \markup {
-                        \smaller
-                            "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -2410,28 +2024,22 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup_list = [
+            ...     abjad.Markup('A'),
+            ...     abjad.Markup('j').sub(),
+            ...     ]
+            >>> markup = abjad.Markup.concat(markup_list)
+            >>> abjad.f(markup)
+            \markup {
+                \concat
+                    {
+                        A
+                        \sub
+                            j
+                    }
+                }
 
-                ::
-
-                    >>> markup_list = [
-                    ...     abjad.Markup('A'),
-                    ...     abjad.Markup('j').sub(),
-                    ...     ]
-                    >>> markup = abjad.Markup.concat(markup_list)
-                    >>> f(markup)
-                    \markup {
-                        \concat
-                            {
-                                A
-                                \sub
-                                    j
-                            }
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -2444,29 +2052,23 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markups = [
+            ...     abjad.Markup('1'),
+            ...     abjad.Markup('st').super(),
+            ...     ]
+            >>> markup_list = abjad.MarkupList(markups)
+            >>> markup = markup_list.concat()
+            >>> abjad.f(markup)
+            \markup {
+                \concat
+                    {
+                        1
+                        \super
+                            st
+                    }
+                }
 
-                ::
-
-                    >>> markups = [
-                    ...     abjad.Markup('1'),
-                    ...     abjad.Markup('st').super(),
-                    ...     ]
-                    >>> markup_list = abjad.MarkupList(markups)
-                    >>> markup = markup_list.concat()
-                    >>> f(markup)
-                    \markup {
-                        \concat
-                            {
-                                1
-                                \super
-                                    st
-                            }
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -2479,21 +2081,15 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.tiny()
+            >>> abjad.f(markup)
+            \markup {
+                \tiny
+                    "Allegro assai"
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.tiny()
-                    >>> f(markup)
-                    \markup {
-                        \tiny
-                            "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -2506,22 +2102,16 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.translate((2, 1))
+            >>> abjad.f(markup)
+            \markup {
+                \translate
+                    #'(2 . 1)
+                    "Allegro assai"
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.translate((2, 1))
-                    >>> f(markup)
-                    \markup {
-                        \translate
-                            #'(2 . 1)
-                            "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -2536,18 +2126,14 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> markup = abjad.Markup.triangle(direction=abjad.Up)
+            >>> abjad.f(markup)
+            ^ \markup {
+                \triangle
+                    ##t
+                }
 
-                >>> markup = abjad.Markup.triangle(direction=abjad.Up)
-                >>> f(markup)
-                ^ \markup {
-                    \triangle
-                        ##t
-                    }
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup
         '''
@@ -2559,21 +2145,15 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.upright()
+            >>> abjad.f(markup)
+            \markup {
+                \upright
+                    "Allegro assai"
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.upright()
-                    >>> f(markup)
-                    \markup {
-                        \upright
-                            "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -2586,21 +2166,15 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.vcenter()
+            >>> abjad.f(markup)
+            \markup {
+                \vcenter
+                    "Allegro assai"
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.vcenter()
-                    >>> f(markup)
-                    \markup {
-                        \vcenter
-                            "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -2614,18 +2188,14 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> markup = abjad.Markup.vspace(0.75, direction=abjad.Up)
+            >>> abjad.f(markup)
+            ^ \markup {
+                \vspace
+                    #0.75
+                }
 
-                >>> markup = abjad.Markup.vspace(0.75, direction=abjad.Up)
-                >>> f(markup)
-                ^ \markup {
-                    \vspace
-                        #0.75
-                    }
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -2637,21 +2207,15 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.whiteout()
+            >>> abjad.f(markup)
+            \markup {
+                \whiteout
+                    "Allegro assai"
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.whiteout()
-                    >>> f(markup)
-                    \markup {
-                        \whiteout
-                            "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -2664,22 +2228,16 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ..  container:: example
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.with_color('blue')
+            >>> abjad.f(markup)
+            \markup {
+                \with-color
+                    #blue
+                    "Allegro assai"
+                }
 
-                ::
-
-                    >>> markup = abjad.Markup('Allegro assai')
-                    >>> markup = markup.with_color('blue')
-                    >>> f(markup)
-                    \markup {
-                        \with-color
-                            #blue
-                            "Allegro assai"
-                        }
-
-                ::
-
-                    >>> show(markup) # doctest: +SKIP
+            >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -2698,83 +2256,63 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> up_postscript = abjad.Postscript()
+            >>> up_postscript = up_postscript.newpath()
+            >>> up_postscript = up_postscript.moveto(0, 0)
+            >>> up_postscript = up_postscript.rlineto(10, 0)
+            >>> up_postscript = up_postscript.rlineto(0, 10)
+            >>> up_postscript = up_postscript.rlineto(-10, 0)
+            >>> up_postscript = up_postscript.closepath()
+            >>> up_postscript = up_postscript.setgray(0.75)
+            >>> up_postscript = up_postscript.fill()
+            >>> up_markup = up_postscript.as_markup()
 
-                >>> up_postscript = abjad.Postscript()
-                >>> up_postscript = up_postscript.newpath()
-                >>> up_postscript = up_postscript.moveto(0, 0)
-                >>> up_postscript = up_postscript.rlineto(10, 0)
-                >>> up_postscript = up_postscript.rlineto(0, 10)
-                >>> up_postscript = up_postscript.rlineto(-10, 0)
-                >>> up_postscript = up_postscript.closepath()
-                >>> up_postscript = up_postscript.setgray(0.75)
-                >>> up_postscript = up_postscript.fill()
-                >>> up_markup = up_postscript.as_markup()
+            >>> abjad.show(up_markup.box()) # doctest: +SKIP
 
-            ::
+            >>> up_markup = up_markup.with_dimensions((0, 10), (0, 10))
+            >>> up_markup = up_markup.box()
+            >>> abjad.show(up_markup) # doctest: +SKIP
 
-                >>> show(up_markup.box()) # doctest: +SKIP
+            >>> up_markup = up_postscript.as_markup()
+            >>> up_markup = up_markup.with_dimensions((0, 20), (0, 20))
+            >>> up_markup = up_markup.box()
+            >>> abjad.show(up_markup) # doctest: +SKIP
 
-            ::
-
-                >>> up_markup = up_markup.with_dimensions((0, 10), (0, 10))
-                >>> up_markup = up_markup.box()
-                >>> show(up_markup) # doctest: +SKIP
-
-            ::
-
-                >>> up_markup = up_postscript.as_markup()
-                >>> up_markup = up_markup.with_dimensions((0, 20), (0, 20))
-                >>> up_markup = up_markup.box()
-                >>> show(up_markup) # doctest: +SKIP
-
-            ::
-
-                >>> up_markup = up_postscript.as_markup()
-                >>> up_markup = up_markup.with_dimensions((0, 20), (0, -20))
-                >>> up_markup = up_markup.box()
-                >>> show(up_markup) # doctest: +SKIP
+            >>> up_markup = up_postscript.as_markup()
+            >>> up_markup = up_markup.with_dimensions((0, 20), (0, -20))
+            >>> up_markup = up_markup.box()
+            >>> abjad.show(up_markup) # doctest: +SKIP
 
         ..  container:: example
 
-            ::
+            >>> down_postscript = abjad.Postscript()
+            >>> down_postscript = down_postscript.newpath()
+            >>> down_postscript = down_postscript.moveto(0, 0)
+            >>> down_postscript = down_postscript.rlineto(10, 0)
+            >>> down_postscript = down_postscript.rlineto(0, -10)
+            >>> down_postscript = down_postscript.rlineto(-10, 0)
+            >>> down_postscript = down_postscript.closepath()
+            >>> down_postscript = down_postscript.setgray(0.75)
+            >>> down_postscript = down_postscript.fill()
+            >>> down_markup = down_postscript.as_markup()
 
-                >>> down_postscript = abjad.Postscript()
-                >>> down_postscript = down_postscript.newpath()
-                >>> down_postscript = down_postscript.moveto(0, 0)
-                >>> down_postscript = down_postscript.rlineto(10, 0)
-                >>> down_postscript = down_postscript.rlineto(0, -10)
-                >>> down_postscript = down_postscript.rlineto(-10, 0)
-                >>> down_postscript = down_postscript.closepath()
-                >>> down_postscript = down_postscript.setgray(0.75)
-                >>> down_postscript = down_postscript.fill()
-                >>> down_markup = down_postscript.as_markup()
+            >>> abjad.show(down_markup.box()) # doctest: +SKIP
 
-            ::
+            >>> down_markup = down_markup.with_dimensions((0, 10), (0, 10))
+            >>> down_markup = down_markup.box()
+            >>> abjad.show(down_markup) # doctest: +SKIP
 
-                >>> show(down_markup.box()) # doctest: +SKIP
+            >>> down_markup = down_postscript.as_markup()
+            >>> down_markup = down_markup.with_dimensions(
+            ...     (0, 10), (0, -10))
+            >>> down_markup = down_markup.box()
+            >>> abjad.show(down_markup) # doctest: +SKIP
 
-            ::
-
-                >>> down_markup = down_markup.with_dimensions((0, 10), (0, 10))
-                >>> down_markup = down_markup.box()
-                >>> show(down_markup) # doctest: +SKIP
-
-            ::
-
-                >>> down_markup = down_postscript.as_markup()
-                >>> down_markup = down_markup.with_dimensions(
-                ...     (0, 10), (0, -10))
-                >>> down_markup = down_markup.box()
-                >>> show(down_markup) # doctest: +SKIP
-
-            ::
-
-                >>> down_markup = down_postscript.as_markup()
-                >>> down_markup = down_markup.with_dimensions(
-                ...     (-5, 15), (5, -15))
-                >>> down_markup = down_markup.box()
-                >>> show(down_markup) # doctest: +SKIP
+            >>> down_markup = down_postscript.as_markup()
+            >>> down_markup = down_markup.with_dimensions(
+            ...     (-5, 15), (5, -15))
+            >>> down_markup = down_markup.box()
+            >>> abjad.show(down_markup) # doctest: +SKIP
 
         Returns new markup.
         '''

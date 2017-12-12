@@ -6,17 +6,15 @@ class Accelerando(AbjadValueObject):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> score = abjad.Score([staff])
-            >>> accelerando = abjad.Accelerando()
-            >>> abjad.attach(accelerando, staff[0])
-            >>> show(score) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> score = abjad.Score([staff])
+        >>> accelerando = abjad.Accelerando()
+        >>> abjad.attach(accelerando, staff[0])
+        >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(score)
+            >>> abjad.f(score)
             \new Score <<
                 \new Staff {
                     c'4
@@ -67,33 +65,29 @@ class Accelerando(AbjadValueObject):
 
             String representation of accelerando with default markup:
 
-            ::
-
-                >>> print(str(abjad.Accelerando()))
-                \markup {
-                    \large
-                        \upright
-                            accel.
-                    }
+            >>> print(str(abjad.Accelerando()))
+            \markup {
+                \large
+                    \upright
+                        accel.
+                }
 
         ..  container:: example
 
             String representation of accelerando with custom markup:
 
-            ::
-
-                >>> markup = abjad.Markup(r'\bold { \italic { accelerando } }')
-                >>> accelerando = abjad.Accelerando(markup=markup)
-                >>> print(str(accelerando))
-                \markup {
-                    \bold
-                        {
-                            \italic
-                                {
-                                    accelerando
-                                }
-                        }
+            >>> markup = abjad.Markup(r'\bold { \italic { accelerando } }')
+            >>> accelerando = abjad.Accelerando(markup=markup)
+            >>> print(str(accelerando))
+            \markup {
+                \bold
+                    {
+                        \italic
+                            {
+                                accelerando
+                            }
                     }
+                }
 
         Returns string.
         '''
@@ -138,11 +132,9 @@ class Accelerando(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> accelerando = abjad.Accelerando()
-                >>> accelerando.default_scope
-                <class 'abjad.tools.scoretools.Score.Score'>
+            >>> accelerando = abjad.Accelerando()
+            >>> accelerando.default_scope
+            <class 'abjad.tools.scoretools.Score.Score'>
 
         Returns score.
         '''
@@ -154,20 +146,18 @@ class Accelerando(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> markup = abjad.Markup(r'\bold { \italic { accel. } }')
-                >>> accelerando = abjad.Accelerando(markup=markup)
-                >>> print(str(accelerando.markup))
-                \markup {
-                    \bold
-                        {
-                            \italic
-                                {
-                                    accel.
-                                }
-                        }
+            >>> markup = abjad.Markup(r'\bold { \italic { accel. } }')
+            >>> accelerando = abjad.Accelerando(markup=markup)
+            >>> print(str(accelerando.markup))
+            \markup {
+                \bold
+                    {
+                        \italic
+                            {
+                                accel.
+                            }
                     }
+                }
 
         Returns markup or none.
         '''

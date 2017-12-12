@@ -1,23 +1,17 @@
-#from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-#class LilyPondContextSetting(AbjadObject):
 class LilyPondContextSetting(AbjadValueObject):
     r'''LilyPond context setting.
 
-    ::
+    >>> context_setting = abjad.lilypondnametools.LilyPondContextSetting(
+    ...    context_name='Score',
+    ...    context_property='autoBeaming',
+    ...    value=False,
+    ...    )
 
-        >>> context_setting = abjad.lilypondnametools.LilyPondContextSetting(
-        ...    context_name='Score',
-        ...    context_property='autoBeaming',
-        ...    value=False,
-        ...    )
-
-    ::
-
-        >>> print('\n'.join(context_setting.format_pieces))
-        \set Score.autoBeaming = ##f
+    >>> print('\n'.join(context_setting.format_pieces))
+    \set Score.autoBeaming = ##f
 
     '''
 

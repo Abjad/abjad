@@ -186,51 +186,45 @@ class TestManager(AbjadObject):
     def diff(object_a, object_b, title=None):
         r'''Gets diff of `object_a` and `object_b` formats.
 
-        ::
+        >>> one = abjad.instrumenttools.Flute()
 
-            >>> one = abjad.instrumenttools.Flute()
+        >>> two = abjad.instrumenttools.BassFlute()
 
-        ::
-
-            >>> two = abjad.instrumenttools.BassFlute()
-
-        ::
-
-            >>> diff = abjad.TestManager.diff(one, two, 'Diff:')
-            >>> print(diff)
-            Diff:
-            - abjad.Flute(
-            + abjad.BassFlute(
-            ?       ++++
-            -     name='flute',
-            +     name='bass flute',
-            ?           +++++
-            -     short_name='fl.',
-            +     short_name='bass fl.',
-            ?                 +++++
-                name_markup=abjad.Markup(
-            -         contents=['Flute'],
-            ?                    ^
-            +         contents=['Bass flute'],
-            ?                    ^^^^^^
-                    ),
-                short_name_markup=abjad.Markup(
-            -         contents=['Fl.'],
-            ?                    ^
-            +         contents=['Bass fl.'],
-            ?                    ^^^^^^
-                    ),
-                allowable_clefs=('treble',),
-                default_scope='Staff',
-            -     middle_c_sounding_pitch=abjad.NamedPitch("c'"),
-            ?                                              ^  -
-            +     middle_c_sounding_pitch=abjad.NamedPitch('c'),
-            ?                                              ^
-            -     pitch_range=abjad.PitchRange('[C4, D7]'),
-            ?                                     ^  ^^
-            +     pitch_range=abjad.PitchRange('[C3, C6]'),
-            ?                                     ^  ^^
-                )
+        >>> diff = abjad.TestManager.diff(one, two, 'Diff:')
+        >>> print(diff)
+        Diff:
+        - abjad.Flute(
+        + abjad.BassFlute(
+        ?       ++++
+        -     name='flute',
+        +     name='bass flute',
+        ?           +++++
+        -     short_name='fl.',
+        +     short_name='bass fl.',
+        ?                 +++++
+            name_markup=abjad.Markup(
+        -         contents=['Flute'],
+        ?                    ^
+        +         contents=['Bass flute'],
+        ?                    ^^^^^^
+                ),
+            short_name_markup=abjad.Markup(
+        -         contents=['Fl.'],
+        ?                    ^
+        +         contents=['Bass fl.'],
+        ?                    ^^^^^^
+                ),
+            allowable_clefs=('treble',),
+            default_scope='Staff',
+        -     middle_c_sounding_pitch=abjad.NamedPitch("c'"),
+        ?                                              ^  -
+        +     middle_c_sounding_pitch=abjad.NamedPitch('c'),
+        ?                                              ^
+        -     pitch_range=abjad.PitchRange('[C4, D7]'),
+        ?                                     ^  ^^
+        +     pitch_range=abjad.PitchRange('[C3, C6]'),
+        ?                                     ^  ^^
+            )
 
         Returns string.
         '''

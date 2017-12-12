@@ -6,17 +6,13 @@ class Rotation(AbjadValueObject):
 
     ..  container:: example:
 
-        ::
-
-            >>> abjad.Rotation()
-            Rotation(n=0)
+        >>> abjad.Rotation()
+        Rotation(n=0)
 
     ..  container:: example
 
-        ::
-
-            >>> abjad.Rotation(n=1)
-            Rotation(n=1)
+        >>> abjad.Rotation(n=1)
+        Rotation(n=1)
 
     Object model of the twelve-tone rotation operator.
     '''
@@ -49,38 +45,30 @@ class Rotation(AbjadValueObject):
 
             Example segment:
 
-            ::
-
-                >>> items = [0, 2, 4, 5]
-                >>> segment = abjad.PitchClassSegment(items=items)
-                >>> show(segment) # doctest: +SKIP
+            >>> items = [0, 2, 4, 5]
+            >>> segment = abjad.PitchClassSegment(items=items)
+            >>> abjad.show(segment) # doctest: +SKIP
 
             Example operators:
 
-            ::
-
-                >>> rotation = abjad.Rotation(n=-1)
-                >>> transposition = abjad.Transposition(n=3)
+            >>> rotation = abjad.Rotation(n=-1)
+            >>> transposition = abjad.Transposition(n=3)
 
         ..  container:: example
 
             Transposition followed by rotation:
 
-            ::
+            >>> operator = rotation + transposition
+            >>> str(operator)
+            'r-1T3'
 
-                >>> operator = rotation + transposition
-                >>> str(operator)
-                'r-1T3'
-
-            ::
-
-                >>> segment_ = operator(segment)
-                >>> show(segment_) # doctest: +SKIP
+            >>> segment_ = operator(segment)
+            >>> abjad.show(segment_) # doctest: +SKIP
 
             ..  docs::
 
                 >>> lilypond_file = segment_.__illustrate__()
-                >>> f(lilypond_file[abjad.Voice])
+                >>> abjad.f(lilypond_file[abjad.Voice])
                 \new Voice {
                     f'8
                     g'8
@@ -94,21 +82,17 @@ class Rotation(AbjadValueObject):
 
             Same as above because rotation and transposition commute:
 
-            ::
+            >>> operator = transposition + rotation
+            >>> str(operator)
+            'T3r-1'
 
-                >>> operator = transposition + rotation
-                >>> str(operator)
-                'T3r-1'
-
-            ::
-
-                >>> segment_ = operator(segment)
-                >>> show(segment_) # doctest: +SKIP
+            >>> segment_ = operator(segment)
+            >>> abjad.show(segment_) # doctest: +SKIP
 
             ..  docs::
 
                 >>> lilypond_file = segment_.__illustrate__()
-                >>> f(lilypond_file[abjad.Voice])
+                >>> abjad.f(lilypond_file[abjad.Voice])
                 \new Voice {
                     f'8
                     g'8
@@ -122,19 +106,17 @@ class Rotation(AbjadValueObject):
 
             Returns compound operator:
 
-            ::
-
-                >>> f(operator)
-                abjad.CompoundOperator(
-                    operators=[
-                        abjad.Rotation(
-                            n=-1,
-                            ),
-                        abjad.Transposition(
-                            n=3,
-                            ),
-                        ],
-                    )
+            >>> abjad.f(operator)
+            abjad.CompoundOperator(
+                operators=[
+                    abjad.Rotation(
+                        n=-1,
+                        ),
+                    abjad.Transposition(
+                        n=3,
+                        ),
+                    ],
+                )
 
         '''
         from abjad.tools import pitchtools
@@ -147,35 +129,29 @@ class Rotation(AbjadValueObject):
 
             Rotates pitch classes:
 
-            ::
-
-                >>> rotation = abjad.Rotation(n=1)
-                >>> pitch_classes = abjad.PitchClassSegment([0, 1, 4, 7])
-                >>> rotation(pitch_classes)
-                PitchClassSegment([7, 0, 1, 4])
+            >>> rotation = abjad.Rotation(n=1)
+            >>> pitch_classes = abjad.PitchClassSegment([0, 1, 4, 7])
+            >>> rotation(pitch_classes)
+            PitchClassSegment([7, 0, 1, 4])
 
         ..  container:: example
 
             Rotates pitch classes with Stravinsky-style back-transposition to
             zero:
 
-            ::
-
-                >>> rotation = abjad.Rotation(n=1, stravinsky=True)
-                >>> pitch_classes = abjad.PitchClassSegment([0, 1, 4, 7])
-                >>> rotation(pitch_classes)
-                PitchClassSegment([0, 5, 6, 9])
+            >>> rotation = abjad.Rotation(n=1, stravinsky=True)
+            >>> pitch_classes = abjad.PitchClassSegment([0, 1, 4, 7])
+            >>> rotation(pitch_classes)
+            PitchClassSegment([0, 5, 6, 9])
 
         ..  container:: example
 
             Does not rotate single pitches or pitch-classes:
 
-            ::
-
-                >>> rotation = abjad.Rotation(n=1)
-                >>> pitch_class = abjad.NumberedPitchClass(6)
-                >>> rotation(pitch_class)
-                NumberedPitchClass(6)
+            >>> rotation = abjad.Rotation(n=1)
+            >>> pitch_class = abjad.NumberedPitchClass(6)
+            >>> rotation(pitch_class)
+            NumberedPitchClass(6)
 
         ..  container:: example
 
@@ -183,12 +159,10 @@ class Rotation(AbjadValueObject):
 
             ..  todo:: Deprecated.
 
-            ::
-
-                >>> rotation = abjad.Rotation(n=1, period=3)
-                >>> pitches = abjad.PitchSegment("c' d' e' f' g' a' b' c''")
-                >>> rotation(pitches)
-                PitchSegment("e' c' d' a' f' g' c'' b'")
+            >>> rotation = abjad.Rotation(n=1, period=3)
+            >>> pitches = abjad.PitchSegment("c' d' e' f' g' a' b' c''")
+            >>> rotation(pitches)
+            PitchSegment("e' c' d' a' f' g' c'' b'")
 
         ..  container:: example
 
@@ -196,16 +170,14 @@ class Rotation(AbjadValueObject):
 
             ..  todo:: Deprecated.
 
-            ::
-
-                >>> rotation = abjad.Rotation(
-                ...     n=1,
-                ...     period=3,
-                ...     stravinsky=True,
-                ...     )
-                >>> pitches = abjad.PitchSegment("c' d' e' f' g' a' b' c''")
-                >>> rotation(pitches)
-                PitchSegment("c' af bf f' df' ef' b' as'")
+            >>> rotation = abjad.Rotation(
+            ...     n=1,
+            ...     period=3,
+            ...     stravinsky=True,
+            ...     )
+            >>> pitches = abjad.PitchSegment("c' d' e' f' g' a' b' c''")
+            >>> rotation(pitches)
+            PitchSegment("c' af bf f' df' ef' b' as'")
 
         Returns new object with type equal to that of `argument`.
         '''
@@ -235,12 +207,10 @@ class Rotation(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.Rotation().__radd__(abjad.Rotation())
-                Traceback (most recent call last):
-                ...
-                NotImplementedError: right-addition not defined on Rotation.
+            >>> abjad.Rotation().__radd__(abjad.Rotation())
+            Traceback (most recent call last):
+            ...
+            NotImplementedError: right-addition not defined on Rotation.
 
         Raises not implemented error.
         '''
@@ -253,31 +223,23 @@ class Rotation(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> str(abjad.Rotation())
-                'r0'
+            >>> str(abjad.Rotation())
+            'r0'
 
         ..  container:: example
 
-            ::
-
-                >>> str(abjad.Rotation(n=1))
-                'r1'
+            >>> str(abjad.Rotation(n=1))
+            'r1'
 
         ..  container:: example
 
-            ::
-
-                >>> str(abjad.Rotation(stravinsky=True))
-                'rs0'
+            >>> str(abjad.Rotation(stravinsky=True))
+            'rs0'
 
         ..  container:: example
 
-            ::
-
-                >>> str(abjad.Rotation(n=1, stravinsky=True))
-                'rs1'
+            >>> str(abjad.Rotation(n=1, stravinsky=True))
+            'rs1'
 
         '''
         string = 'r{}'
@@ -309,19 +271,15 @@ class Rotation(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> rotation = abjad.Rotation()
-                >>> rotation.n
-                0
+            >>> rotation = abjad.Rotation()
+            >>> rotation.n
+            0
 
         ..  container:: example
 
-            ::
-
-                >>> rotation = abjad.Rotation(n=2)
-                >>> rotation.n
-                2
+            >>> rotation = abjad.Rotation(n=2)
+            >>> rotation.n
+            2
 
         Returns integer.
         '''
@@ -335,11 +293,9 @@ class Rotation(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> rotation = abjad.Rotation(n=2, period=3)
-                >>> rotation.period
-                3
+            >>> rotation = abjad.Rotation(n=2, period=3)
+            >>> rotation.period
+            3
 
         Returns integer or none.
         '''
@@ -352,11 +308,9 @@ class Rotation(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> rotation = abjad.Rotation(n=2, stravinsky=False)
-                >>> rotation.stravinsky
-                False
+            >>> rotation = abjad.Rotation(n=2, stravinsky=False)
+            >>> rotation.stravinsky
+            False
 
         Returns true or false.
         '''

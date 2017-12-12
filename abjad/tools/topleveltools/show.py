@@ -5,28 +5,24 @@ def show(argument, return_timing=False, **keywords):
 
         Shows note:
 
-        ::
-
-            >>> note = abjad.Note("c'4")
-            >>> show(note) # doctest: +SKIP
+        >>> note = abjad.Note("c'4")
+        >>> abjad.show(note) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(note)
+            >>> abjad.f(note)
             c'4
 
     ..  container:: example
 
         Shows staff:
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 c'4
                 d'4

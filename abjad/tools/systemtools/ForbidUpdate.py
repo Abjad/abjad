@@ -6,30 +6,24 @@ class ForbidUpdate(ContextManager):
 
     ..  container:: example
 
-        ::
+        >>> staff = abjad.Staff("c'8 d'8 ~ d'2 e'4")
+        >>> with abjad.ForbidUpdate(component=staff):
+        ...     for note in staff[:]:
+        ...         pitch_1 = note.written_pitch
+        ...         pitch_2 = pitch_1 + abjad.NamedInterval('M3')
+        ...         pitches = [pitch_1, pitch_2]
+        ...         chord = abjad.Chord(pitches, note.written_duration)
+        ...         abjad.mutate(note).replace(chord)
+        ...
 
-            >>> staff = abjad.Staff("c'8 d'8 ~ d'2 e'4")
-            >>> with abjad.ForbidUpdate(component=staff):
-            ...     for note in staff[:]:
-            ...         pitch_1 = note.written_pitch
-            ...         pitch_2 = pitch_1 + abjad.NamedInterval('M3')
-            ...         pitches = [pitch_1, pitch_2]
-            ...         chord = abjad.Chord(pitches, note.written_duration)
-            ...         abjad.mutate(note).replace(chord)
-            ...
+        >>> abjad.inspect(staff).is_well_formed()
+        True
 
-        ::
-
-            >>> abjad.inspect(staff).is_well_formed()
-            True
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 <c' e'>8
                 <d' fs'>8 ~

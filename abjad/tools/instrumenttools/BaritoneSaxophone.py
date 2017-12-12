@@ -6,16 +6,14 @@ class BaritoneSaxophone(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> baritone_saxophone = abjad.BaritoneSaxophone()
-            >>> abjad.attach(baritone_saxophone, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+        >>> baritone_saxophone = abjad.BaritoneSaxophone()
+        >>> abjad.attach(baritone_saxophone, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { "Baritone saxophone" }
                 \set Staff.shortInstrumentName = \markup { "Bar. sax." }
@@ -64,11 +62,9 @@ class BaritoneSaxophone(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> baritone_saxophone = abjad.BaritoneSaxophone()
-                >>> baritone_saxophone.allowable_clefs
-                ('treble',)
+            >>> baritone_saxophone = abjad.BaritoneSaxophone()
+            >>> baritone_saxophone.allowable_clefs
+            ('treble',)
 
         Returns clef list.
         '''
@@ -80,15 +76,11 @@ class BaritoneSaxophone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> baritone_saxophone = abjad.BaritoneSaxophone()
+            >>> baritone_saxophone.middle_c_sounding_pitch
+            NamedPitch('ef,')
 
-                >>> baritone_saxophone = abjad.BaritoneSaxophone()
-                >>> baritone_saxophone.middle_c_sounding_pitch
-                NamedPitch('ef,')
-
-            ::
-
-                >>> show(baritone_saxophone.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(baritone_saxophone.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -100,11 +92,9 @@ class BaritoneSaxophone(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> baritone_saxophone = abjad.BaritoneSaxophone()
-                >>> baritone_saxophone.name
-                'baritone saxophone'
+            >>> baritone_saxophone = abjad.BaritoneSaxophone()
+            >>> baritone_saxophone.name
+            'baritone saxophone'
 
         Returns string.
         '''
@@ -116,15 +106,11 @@ class BaritoneSaxophone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> baritone_saxophone = abjad.BaritoneSaxophone()
+            >>> baritone_saxophone.name_markup
+            Markup(contents=['Baritone saxophone'])
 
-                >>> baritone_saxophone = abjad.BaritoneSaxophone()
-                >>> baritone_saxophone.name_markup
-                Markup(contents=['Baritone saxophone'])
-
-            ::
-
-                >>> show(baritone_saxophone.name_markup) # doctest: +SKIP
+            >>> abjad.show(baritone_saxophone.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -136,15 +122,11 @@ class BaritoneSaxophone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> baritone_saxophone = abjad.BaritoneSaxophone()
+            >>> baritone_saxophone.pitch_range
+            PitchRange('[C2, Ab4]')
 
-                >>> baritone_saxophone = abjad.BaritoneSaxophone()
-                >>> baritone_saxophone.pitch_range
-                PitchRange('[C2, Ab4]')
-
-            ::
-
-                >>> show(baritone_saxophone.pitch_range) # doctest: +SKIP
+            >>> abjad.show(baritone_saxophone.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -156,11 +138,9 @@ class BaritoneSaxophone(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> baritone_saxophone = abjad.BaritoneSaxophone()
-                >>> baritone_saxophone.short_name
-                'bar. sax.'
+            >>> baritone_saxophone = abjad.BaritoneSaxophone()
+            >>> baritone_saxophone.short_name
+            'bar. sax.'
 
         Returns string.
         '''
@@ -172,15 +152,11 @@ class BaritoneSaxophone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> baritone_saxophone = abjad.BaritoneSaxophone()
+            >>> baritone_saxophone.short_name_markup
+            Markup(contents=['Bar. sax.'])
 
-                >>> baritone_saxophone = abjad.BaritoneSaxophone()
-                >>> baritone_saxophone.short_name_markup
-                Markup(contents=['Bar. sax.'])
-
-            ::
-
-                >>> show(baritone_saxophone.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(baritone_saxophone.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

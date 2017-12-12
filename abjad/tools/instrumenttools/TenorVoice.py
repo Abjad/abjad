@@ -6,16 +6,14 @@ class TenorVoice(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> tenor = abjad.TenorVoice()
-            >>> abjad.attach(tenor, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+        >>> tenor = abjad.TenorVoice()
+        >>> abjad.attach(tenor, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { Tenor }
                 \set Staff.shortInstrumentName = \markup { Ten. }
@@ -67,11 +65,9 @@ class TenorVoice(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> tenor = abjad.TenorVoice()
-                >>> tenor.allowable_clefs
-                ('treble',)
+            >>> tenor = abjad.TenorVoice()
+            >>> tenor.allowable_clefs
+            ('treble',)
 
         Returns clef list.
         '''
@@ -83,15 +79,11 @@ class TenorVoice(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> tenor = abjad.TenorVoice()
+            >>> tenor.middle_c_sounding_pitch
+            NamedPitch("c'")
 
-                >>> tenor = abjad.TenorVoice()
-                >>> tenor.middle_c_sounding_pitch
-                NamedPitch("c'")
-
-            ::
-
-                >>> show(tenor.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(tenor.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -103,11 +95,9 @@ class TenorVoice(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> tenor = abjad.TenorVoice()
-                >>> tenor.name
-                'tenor'
+            >>> tenor = abjad.TenorVoice()
+            >>> tenor.name
+            'tenor'
 
         Returns string.
         '''
@@ -119,15 +109,11 @@ class TenorVoice(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> tenor = abjad.TenorVoice()
+            >>> tenor.name_markup
+            Markup(contents=['Tenor'])
 
-                >>> tenor = abjad.TenorVoice()
-                >>> tenor.name_markup
-                Markup(contents=['Tenor'])
-
-            ::
-
-                >>> show(tenor.name_markup) # doctest: +SKIP
+            >>> abjad.show(tenor.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -139,15 +125,11 @@ class TenorVoice(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> tenor = abjad.TenorVoice()
+            >>> tenor.pitch_range
+            PitchRange('[C3, D5]')
 
-                >>> tenor = abjad.TenorVoice()
-                >>> tenor.pitch_range
-                PitchRange('[C3, D5]')
-
-            ::
-
-                >>> show(tenor.pitch_range) # doctest: +SKIP
+            >>> abjad.show(tenor.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -159,11 +141,9 @@ class TenorVoice(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> tenor = abjad.TenorVoice()
-                >>> tenor.short_name
-                'ten.'
+            >>> tenor = abjad.TenorVoice()
+            >>> tenor.short_name
+            'ten.'
 
         Returns string.
         '''
@@ -175,15 +155,11 @@ class TenorVoice(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> tenor = abjad.TenorVoice()
+            >>> tenor.short_name_markup
+            Markup(contents=['Ten.'])
 
-                >>> tenor = abjad.TenorVoice()
-                >>> tenor.short_name_markup
-                Markup(contents=['Ten.'])
-
-            ::
-
-                >>> show(tenor.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(tenor.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

@@ -6,16 +6,14 @@ class AltoFlute(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> alto_flute = abjad.AltoFlute()
-            >>> abjad.attach(alto_flute, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+        >>> alto_flute = abjad.AltoFlute()
+        >>> abjad.attach(alto_flute, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { "Alto flute" }
                 \set Staff.shortInstrumentName = \markup { "Alt. fl." }
@@ -66,24 +64,22 @@ class AltoFlute(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> alto_flute = abjad.AltoFlute()
-                >>> f(alto_flute)
-                abjad.AltoFlute(
-                    name='alto flute',
-                    short_name='alt. fl.',
-                    name_markup=abjad.Markup(
-                        contents=['Alto flute'],
-                        ),
-                    short_name_markup=abjad.Markup(
-                        contents=['Alt. fl.'],
-                        ),
-                    allowable_clefs=('treble',),
-                    default_scope='Staff',
-                    middle_c_sounding_pitch=abjad.NamedPitch('g'),
-                    pitch_range=abjad.PitchRange('[G3, G6]'),
-                    )
+            >>> alto_flute = abjad.AltoFlute()
+            >>> abjad.f(alto_flute)
+            abjad.AltoFlute(
+                name='alto flute',
+                short_name='alt. fl.',
+                name_markup=abjad.Markup(
+                    contents=['Alto flute'],
+                    ),
+                short_name_markup=abjad.Markup(
+                    contents=['Alt. fl.'],
+                    ),
+                allowable_clefs=('treble',),
+                default_scope='Staff',
+                middle_c_sounding_pitch=abjad.NamedPitch('g'),
+                pitch_range=abjad.PitchRange('[G3, G6]'),
+                )
 
         Returns string.
         '''
@@ -98,11 +94,9 @@ class AltoFlute(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> alto_flute = abjad.AltoFlute()
-                >>> alto_flute.allowable_clefs
-                ('treble',)
+            >>> alto_flute = abjad.AltoFlute()
+            >>> alto_flute.allowable_clefs
+            ('treble',)
 
         Returns clef list.
         '''
@@ -114,15 +108,11 @@ class AltoFlute(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> alto_flute = abjad.AltoFlute()
+            >>> alto_flute.middle_c_sounding_pitch
+            NamedPitch('g')
 
-                >>> alto_flute = abjad.AltoFlute()
-                >>> alto_flute.middle_c_sounding_pitch
-                NamedPitch('g')
-
-            ::
-
-                >>> show(alto_flute.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(alto_flute.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -134,11 +124,9 @@ class AltoFlute(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> alto_flute = abjad.AltoFlute()
-                >>> alto_flute.name
-                'alto flute'
+            >>> alto_flute = abjad.AltoFlute()
+            >>> alto_flute.name
+            'alto flute'
 
         Returns string.
         '''
@@ -150,15 +138,11 @@ class AltoFlute(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> alto_flute = abjad.AltoFlute()
+            >>> alto_flute.name_markup
+            Markup(contents=['Alto flute'])
 
-                >>> alto_flute = abjad.AltoFlute()
-                >>> alto_flute.name_markup
-                Markup(contents=['Alto flute'])
-
-            ::
-
-                >>> show(alto_flute.name_markup) # doctest: +SKIP
+            >>> abjad.show(alto_flute.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -170,15 +154,11 @@ class AltoFlute(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> alto_flute = abjad.AltoFlute()
+            >>> alto_flute.pitch_range
+            PitchRange('[G3, G6]')
 
-                >>> alto_flute = abjad.AltoFlute()
-                >>> alto_flute.pitch_range
-                PitchRange('[G3, G6]')
-
-            ::
-
-                >>> show(alto_flute.pitch_range) # doctest: +SKIP
+            >>> abjad.show(alto_flute.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -190,11 +170,9 @@ class AltoFlute(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> alto_flute = abjad.AltoFlute()
-                >>> alto_flute.short_name
-                'alt. fl.'
+            >>> alto_flute = abjad.AltoFlute()
+            >>> alto_flute.short_name
+            'alt. fl.'
 
         Returns string.
         '''
@@ -206,15 +184,11 @@ class AltoFlute(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> alto_flute = abjad.AltoFlute()
+            >>> alto_flute.short_name_markup
+            Markup(contents=['Alt. fl.'])
 
-                >>> alto_flute = abjad.AltoFlute()
-                >>> alto_flute.short_name_markup
-                Markup(contents=['Alt. fl.'])
-
-            ::
-
-                >>> show(alto_flute.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(alto_flute.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

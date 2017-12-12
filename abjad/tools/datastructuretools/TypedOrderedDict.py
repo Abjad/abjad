@@ -10,100 +10,88 @@ class TypedOrderedDict(TypedCollection):
 
         Initializes from list of pairs:
 
-        ::
+        >>> dictionary = abjad.TypedOrderedDict([
+        ...     ('color', 'red'),
+        ...     ('directive', abjad.Markup(r'\italic Allegretto')),
+        ...     ])
 
-            >>> dictionary = abjad.TypedOrderedDict([
-            ...     ('color', 'red'),
-            ...     ('directive', abjad.Markup(r'\italic Allegretto')),
-            ...     ])
-
-        ::
-
-            >>> f(dictionary)
-            abjad.TypedOrderedDict(
-                [
-                    ('color', 'red'),
-                    (
-                        'directive',
-                        abjad.Markup(
-                            contents=[
-                                abjad.MarkupCommand(
-                                    'italic',
-                                    'Allegretto'
-                                    ),
-                                ],
-                            ),
+        >>> abjad.f(dictionary)
+        abjad.TypedOrderedDict(
+            [
+                ('color', 'red'),
+                (
+                    'directive',
+                    abjad.Markup(
+                        contents=[
+                            abjad.MarkupCommand(
+                                'italic',
+                                'Allegretto'
+                                ),
+                            ],
                         ),
-                    ]
-                )
+                    ),
+                ]
+            )
 
     ..  container:: example
 
         Initializes from built-in dictionary:
 
-        ::
+        >>> dictionary = {
+        ...     'color': 'red',
+        ...     'directive': abjad.Markup(r'\italic Allegretto'),
+        ...     }
+        >>> dictionary = abjad.TypedOrderedDict(
+        ...     dictionary
+        ...     )
 
-            >>> dictionary = {
-            ...     'color': 'red',
-            ...     'directive': abjad.Markup(r'\italic Allegretto'),
-            ...     }
-            >>> dictionary = abjad.TypedOrderedDict(
-            ...     dictionary
-            ...     )
-
-        ::
-
-            >>> f(dictionary)
-            abjad.TypedOrderedDict(
-                [
-                    ('color', 'red'),
-                    (
-                        'directive',
-                        abjad.Markup(
-                            contents=[
-                                abjad.MarkupCommand(
-                                    'italic',
-                                    'Allegretto'
-                                    ),
-                                ],
-                            ),
+        >>> abjad.f(dictionary)
+        abjad.TypedOrderedDict(
+            [
+                ('color', 'red'),
+                (
+                    'directive',
+                    abjad.Markup(
+                        contents=[
+                            abjad.MarkupCommand(
+                                'italic',
+                                'Allegretto'
+                                ),
+                            ],
                         ),
-                    ]
-                )
+                    ),
+                ]
+            )
 
     ..  container:: example
 
         Initializes from other typed ordered dictionary:
 
-        ::
+        >>> dictionary_1 = abjad.TypedOrderedDict([
+        ...     ('color', 'red'),
+        ...     ('directive', abjad.Markup(r'\italic Allegretto')),
+        ...     ])
+        >>> dictionary_2 = abjad.TypedOrderedDict(
+        ...     dictionary_1
+        ...     )
 
-            >>> dictionary_1 = abjad.TypedOrderedDict([
-            ...     ('color', 'red'),
-            ...     ('directive', abjad.Markup(r'\italic Allegretto')),
-            ...     ])
-            >>> dictionary_2 = abjad.TypedOrderedDict(
-            ...     dictionary_1
-            ...     )
-
-        ::
-
-            >>> f(dictionary_2)
-            abjad.TypedOrderedDict(
-                [
-                    ('color', 'red'),
-                    (
-                        'directive',
-                        abjad.Markup(
-                            contents=[
-                                abjad.MarkupCommand(
-                                    'italic',
-                                    'Allegretto'
-                                    ),
-                                ],
-                            ),
+        >>> abjad.f(dictionary_2)
+        abjad.TypedOrderedDict(
+            [
+                ('color', 'red'),
+                (
+                    'directive',
+                    abjad.Markup(
+                        contents=[
+                            abjad.MarkupCommand(
+                                'italic',
+                                'Allegretto'
+                                ),
+                            ],
                         ),
-                    ]
-                )
+                    ),
+                ]
+            )
 
     '''
 

@@ -8,28 +8,22 @@ class NegativeInfinity(Infinity):
 
         All numbers compare greater than negative infinity:
 
-        ::
-
-            >>> NegativeInfinity < -9999999
-            True
+        >>> NegativeInfinity < -9999999
+        True
 
     ..  container:: example
 
         Negative infinity compares equal to itself:
 
-        ::
-
-            >>> NegativeInfinity == NegativeInfinity
-            True
+        >>> NegativeInfinity == NegativeInfinity
+        True
 
     ..  container:: example
 
         Negative infinity compares less than infinity:
 
-        ::
-
-            >>> NegativeInfinity < Infinity
-            True
+        >>> NegativeInfinity < Infinity
+        True
 
     Initializes as a system singleton at start-up.
 

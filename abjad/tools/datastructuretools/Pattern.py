@@ -11,137 +11,121 @@ class Pattern(AbjadValueObject):
 
         Matches three indices out of every eight:
 
-        ::
+        >>> pattern = abjad.Pattern(
+        ...     indices=[0, 1, 7],
+        ...     period=8,
+        ...     )
 
-            >>> pattern = abjad.Pattern(
-            ...     indices=[0, 1, 7],
-            ...     period=8,
-            ...     )
-
-        ::
-
-            >>> total_length = 16
-            >>> for index in range(16):
-            ...     match = pattern.matches_index(index, total_length)
-            ...     match = match or ''
-            ...     print(index, match)
-            0 True
-            1 True
-            2
-            3
-            4
-            5
-            6
-            7 True
-            8 True
-            9 True
-            10
-            11
-            12
-            13
-            14
-            15 True
+        >>> total_length = 16
+        >>> for index in range(16):
+        ...     match = pattern.matches_index(index, total_length)
+        ...     match = match or ''
+        ...     print(index, match)
+        0 True
+        1 True
+        2
+        3
+        4
+        5
+        6
+        7 True
+        8 True
+        9 True
+        10
+        11
+        12
+        13
+        14
+        15 True
 
     ..  container:: example
 
         Matches three indices out of every sixteen:
 
-        ::
+        >>> pattern = abjad.Pattern(
+        ...     indices=[0, 1, 7],
+        ...     period=16,
+        ...     )
 
-            >>> pattern = abjad.Pattern(
-            ...     indices=[0, 1, 7],
-            ...     period=16,
-            ...     )
-
-        ::
-
-            >>> total_length = 16
-            >>> for index in range(16):
-            ...     match = pattern.matches_index(index, total_length)
-            ...     match = match or ''
-            ...     print(index, match)
-            0 True
-            1 True
-            2
-            3
-            4
-            5
-            6
-            7 True
-            8
-            9
-            10
-            11
-            12
-            13
-            14
-            15
+        >>> total_length = 16
+        >>> for index in range(16):
+        ...     match = pattern.matches_index(index, total_length)
+        ...     match = match or ''
+        ...     print(index, match)
+        0 True
+        1 True
+        2
+        3
+        4
+        5
+        6
+        7 True
+        8
+        9
+        10
+        11
+        12
+        13
+        14
+        15
 
     ..  container:: example
 
         Works with improper indices:
 
-        ::
+        >>> pattern = abjad.Pattern(
+        ...     indices=[16, 17, 23],
+        ...     period=16,
+        ...     )
 
-            >>> pattern = abjad.Pattern(
-            ...     indices=[16, 17, 23],
-            ...     period=16,
-            ...     )
-
-        ::
-
-            >>> total_length = 16
-            >>> for index in range(16):
-            ...     match = pattern.matches_index(index, total_length)
-            ...     match = match or ''
-            ...     print(index, match)
-            0 True
-            1 True
-            2
-            3
-            4
-            5
-            6
-            7 True
-            8
-            9
-            10
-            11
-            12
-            13
-            14
-            15
+        >>> total_length = 16
+        >>> for index in range(16):
+        ...     match = pattern.matches_index(index, total_length)
+        ...     match = match or ''
+        ...     print(index, match)
+        0 True
+        1 True
+        2
+        3
+        4
+        5
+        6
+        7 True
+        8
+        9
+        10
+        11
+        12
+        13
+        14
+        15
 
     ..  container:: example
 
         Sieve from opening of Xenakis's Psappha:
 
-        ::
+        >>> sieve_1a = abjad.index_every([0, 1, 7], period=8)
+        >>> sieve_1b = abjad.index_every([1, 3], period=5)
+        >>> sieve_1 = sieve_1a & sieve_1b
+        >>> sieve_2a = abjad.index_every([0, 1, 2], period=8)
+        >>> sieve_2b = abjad.index_every([0], period=5)
+        >>> sieve_2 = sieve_2a & sieve_2b
+        >>> sieve_3 = abjad.index_every([3], period=8)
+        >>> sieve_4 = abjad.index_every([4], period=8)
+        >>> sieve_5a = abjad.index_every([5, 6], period=8)
+        >>> sieve_5b = abjad.index_every([2, 3, 4], period=5)
+        >>> sieve_5 = sieve_5a & sieve_5b
+        >>> sieve_6a = abjad.index_every([1], period=8)
+        >>> sieve_6b = abjad.index_every([2], period=5)
+        >>> sieve_6 = sieve_6a & sieve_6b
+        >>> sieve_7a = abjad.index_every([6], period=8)
+        >>> sieve_7b = abjad.index_every([1], period=5)
+        >>> sieve_7 = sieve_7a & sieve_7b
+        >>> sieve = sieve_1 | sieve_2 | sieve_3 | sieve_4 | sieve_5 | sieve_6 | sieve_7
 
-            >>> sieve_1a = abjad.index_every([0, 1, 7], period=8)
-            >>> sieve_1b = abjad.index_every([1, 3], period=5)
-            >>> sieve_1 = sieve_1a & sieve_1b
-            >>> sieve_2a = abjad.index_every([0, 1, 2], period=8)
-            >>> sieve_2b = abjad.index_every([0], period=5)
-            >>> sieve_2 = sieve_2a & sieve_2b
-            >>> sieve_3 = abjad.index_every([3], period=8)
-            >>> sieve_4 = abjad.index_every([4], period=8)
-            >>> sieve_5a = abjad.index_every([5, 6], period=8)
-            >>> sieve_5b = abjad.index_every([2, 3, 4], period=5)
-            >>> sieve_5 = sieve_5a & sieve_5b
-            >>> sieve_6a = abjad.index_every([1], period=8)
-            >>> sieve_6b = abjad.index_every([2], period=5)
-            >>> sieve_6 = sieve_6a & sieve_6b
-            >>> sieve_7a = abjad.index_every([6], period=8)
-            >>> sieve_7b = abjad.index_every([1], period=5)
-            >>> sieve_7 = sieve_7a & sieve_7b
-            >>> sieve = sieve_1 | sieve_2 | sieve_3 | sieve_4 | sieve_5 | sieve_6 | sieve_7
-
-        ::
-
-            >>> sieve.get_boolean_vector(total_length=40)
-            [1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1,
-            1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0]
+        >>> sieve.get_boolean_vector(total_length=40)
+        [1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1,
+        1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0]
 
     '''
 
@@ -207,103 +191,83 @@ class Pattern(AbjadValueObject):
 
             Flat grouping of two patterns:
 
-            ::
+            >>> pattern_1 = abjad.index_first(3)
+            >>> pattern_2 = abjad.index_last(3)
+            >>> pattern = pattern_1 & pattern_2
 
-                >>> pattern_1 = abjad.index_first(3)
-                >>> pattern_2 = abjad.index_last(3)
-                >>> pattern = pattern_1 & pattern_2
-
-            ::
-
-                >>> f(pattern)
-                abjad.Pattern(
-                    operator='and',
-                    patterns=(
-                        abjad.index_first(3),
-                        abjad.index_last(3),
-                        ),
-                    )
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                operator='and',
+                patterns=(
+                    abjad.index_first(3),
+                    abjad.index_last(3),
+                    ),
+                )
 
         ..  container:: example
 
             Flat grouping of three patterns:
 
-            ::
+            >>> pattern_1 = abjad.index_first(3)
+            >>> pattern_2 = abjad.index_last(3)
+            >>> pattern_3 = abjad.index_every([0], period=2)
+            >>> pattern = pattern_1 & pattern_2 & pattern_3
 
-                >>> pattern_1 = abjad.index_first(3)
-                >>> pattern_2 = abjad.index_last(3)
-                >>> pattern_3 = abjad.index_every([0], period=2)
-                >>> pattern = pattern_1 & pattern_2 & pattern_3
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                operator='and',
+                patterns=(
+                    abjad.index_first(3),
+                    abjad.index_last(3),
+                    abjad.index_every([0], 2),
+                    ),
+                )
 
-            ::
-
-                >>> f(pattern)
-                abjad.Pattern(
-                    operator='and',
-                    patterns=(
-                        abjad.index_first(3),
-                        abjad.index_last(3),
-                        abjad.index_every([0], 2),
-                        ),
-                    )
-
-            ::
-
-                >>> pattern.get_boolean_vector(total_length=16)
-                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            >>> pattern.get_boolean_vector(total_length=16)
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
         ..  container:: example
 
             Nested grouping of three patterns:
 
-            ::
+            >>> pattern_1 = abjad.index_first(3)
+            >>> pattern_2 = abjad.index_last(3)
+            >>> pattern_3 = abjad.index_every([0], period=2)
+            >>> pattern = pattern_1 & pattern_2 | pattern_3
 
-                >>> pattern_1 = abjad.index_first(3)
-                >>> pattern_2 = abjad.index_last(3)
-                >>> pattern_3 = abjad.index_every([0], period=2)
-                >>> pattern = pattern_1 & pattern_2 | pattern_3
-
-            ::
-
-                >>> f(pattern)
-                abjad.Pattern(
-                    operator='or',
-                    patterns=(
-                        abjad.Pattern(
-                            operator='and',
-                            patterns=(
-                                abjad.index_first(3),
-                                abjad.index_last(3),
-                                ),
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                operator='or',
+                patterns=(
+                    abjad.Pattern(
+                        operator='and',
+                        patterns=(
+                            abjad.index_first(3),
+                            abjad.index_last(3),
                             ),
-                        abjad.index_every([0], 2),
                         ),
-                    )
+                    abjad.index_every([0], 2),
+                    ),
+                )
 
-            ::
-
-                >>> pattern.get_boolean_vector(total_length=16)
-                [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
+            >>> pattern.get_boolean_vector(total_length=16)
+            [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
 
         ..  container:: example
 
             In-place AND is allowed:
 
-            ::
+            >>> pattern = abjad.index_first(3)
+            >>> pattern &= abjad.index_last(3)
 
-                >>> pattern = abjad.index_first(3)
-                >>> pattern &= abjad.index_last(3)
-
-            ::
-
-                >>> f(pattern)
-                abjad.Pattern(
-                    operator='and',
-                    patterns=(
-                        abjad.index_first(3),
-                        abjad.index_last(3),
-                        ),
-                    )
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                operator='and',
+                patterns=(
+                    abjad.index_first(3),
+                    abjad.index_last(3),
+                    ),
+                )
 
         Returns new pattern.
         '''
@@ -323,29 +287,23 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> pattern = abjad.index_first(3)
+            >>> abjad.f(pattern)
+            abjad.index_first(3)
 
-                >>> pattern = abjad.index_first(3)
-                >>> f(pattern)
-                abjad.index_first(3)
+            >>> pattern = ~pattern
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                indices=[0, 1, 2],
+                inverted=True,
+                )
 
-            ::
-
-                >>> pattern = ~pattern
-                >>> f(pattern)
-                abjad.Pattern(
-                    indices=[0, 1, 2],
-                    inverted=True,
-                    )
-
-            ::
-
-                >>> pattern = ~pattern
-                >>> f(pattern)
-                abjad.Pattern(
-                    indices=[0, 1, 2],
-                    inverted=False,
-                    )
+            >>> pattern = ~pattern
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                indices=[0, 1, 2],
+                inverted=False,
+                )
 
             Negation defined equal to inversion.
 
@@ -354,50 +312,40 @@ class Pattern(AbjadValueObject):
             Matches every index that is (one of the first three indices) or
             (one of the last three indices):
 
-            ::
+            >>> pattern_1 = abjad.index_first(3)
+            >>> pattern_2 = abjad.index_last(3)
+            >>> pattern = pattern_1 | pattern_2
 
-                >>> pattern_1 = abjad.index_first(3)
-                >>> pattern_2 = abjad.index_last(3)
-                >>> pattern = pattern_1 | pattern_2
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                operator='or',
+                patterns=(
+                    abjad.index_first(3),
+                    abjad.index_last(3),
+                    ),
+                )
 
-            ::
-
-                >>> f(pattern)
-                abjad.Pattern(
-                    operator='or',
-                    patterns=(
-                        abjad.index_first(3),
-                        abjad.index_last(3),
-                        ),
-                    )
-
-            ::
-
-                >>> pattern.get_boolean_vector(total_length=16)
-                [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1]
+            >>> pattern.get_boolean_vector(total_length=16)
+            [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1]
 
         ..  container:: example
 
             Matches every index that is NOT (one of the first three indices) or
             (one of the last three indices):
 
-            ::
+            >>> pattern = ~pattern
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                inverted=True,
+                operator='or',
+                patterns=(
+                    abjad.index_first(3),
+                    abjad.index_last(3),
+                    ),
+                )
 
-                >>> pattern = ~pattern
-                >>> f(pattern)
-                abjad.Pattern(
-                    inverted=True,
-                    operator='or',
-                    patterns=(
-                        abjad.index_first(3),
-                        abjad.index_last(3),
-                        ),
-                    )
-
-            ::
-
-                >>> pattern.get_boolean_vector(total_length=16)
-                [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0]
+            >>> pattern.get_boolean_vector(total_length=16)
+            [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0]
 
         Returns new pattern.
         '''
@@ -412,17 +360,13 @@ class Pattern(AbjadValueObject):
 
             Gets length of cyclic pattern:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[0, 1, 7],
+            ...     period=8,
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[0, 1, 7],
-                ...     period=8,
-                ...     )
-
-            ::
-
-                >>> len(pattern)
-                8
+            >>> len(pattern)
+            8
 
             Length of cyclic pattern defined equal to period of the pattern.
 
@@ -430,16 +374,12 @@ class Pattern(AbjadValueObject):
 
             Gets length of acyclic pattern:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[0, 2, 3],
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[0, 2, 3],
-                ...     )
-
-            ::
-
-                >>> len(pattern)
-                4
+            >>> len(pattern)
+            4
 
             Length of acyclic pattern defined equal to greatest index in
             pattern, plus 1.
@@ -448,16 +388,12 @@ class Pattern(AbjadValueObject):
 
             Gets length of pattern with negative indices:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[-3],
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[-3],
-                ...     )
-
-            ::
-
-                >>> len(pattern)
-                3
+            >>> len(pattern)
+            3
 
             Length of pattern with negative indices defined equal to absolute
             value of least index.
@@ -485,103 +421,83 @@ class Pattern(AbjadValueObject):
 
             Flat grouping of two patterns:
 
-            ::
+            >>> pattern_1 = abjad.index_first(3)
+            >>> pattern_2 = abjad.index_last(3)
+            >>> pattern = pattern_1 | pattern_2
 
-                >>> pattern_1 = abjad.index_first(3)
-                >>> pattern_2 = abjad.index_last(3)
-                >>> pattern = pattern_1 | pattern_2
-
-            ::
-
-                >>> f(pattern)
-                abjad.Pattern(
-                    operator='or',
-                    patterns=(
-                        abjad.index_first(3),
-                        abjad.index_last(3),
-                        ),
-                    )
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                operator='or',
+                patterns=(
+                    abjad.index_first(3),
+                    abjad.index_last(3),
+                    ),
+                )
 
         ..  container:: example
 
             Flat grouping:
 
-            ::
+            >>> pattern_1 = abjad.index_first(3)
+            >>> pattern_2 = abjad.index_last(3)
+            >>> pattern_3 = abjad.index_every([0], period=2)
+            >>> pattern = pattern_1 | pattern_2 | pattern_3
 
-                >>> pattern_1 = abjad.index_first(3)
-                >>> pattern_2 = abjad.index_last(3)
-                >>> pattern_3 = abjad.index_every([0], period=2)
-                >>> pattern = pattern_1 | pattern_2 | pattern_3
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                operator='or',
+                patterns=(
+                    abjad.index_first(3),
+                    abjad.index_last(3),
+                    abjad.index_every([0], 2),
+                    ),
+                )
 
-            ::
-
-                >>> f(pattern)
-                abjad.Pattern(
-                    operator='or',
-                    patterns=(
-                        abjad.index_first(3),
-                        abjad.index_last(3),
-                        abjad.index_every([0], 2),
-                        ),
-                    )
-
-            ::
-
-                >>> pattern.get_boolean_vector(total_length=16)
-                [1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1]
+            >>> pattern.get_boolean_vector(total_length=16)
+            [1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1]
 
         ..  container:: example
 
             Nested grouping:
 
-            ::
+            >>> pattern_1 = abjad.index_first(3)
+            >>> pattern_2 = abjad.index_last(3)
+            >>> pattern_3 = abjad.index_every([0], period=2)
+            >>> pattern = pattern_1 | pattern_2 & pattern_3
 
-                >>> pattern_1 = abjad.index_first(3)
-                >>> pattern_2 = abjad.index_last(3)
-                >>> pattern_3 = abjad.index_every([0], period=2)
-                >>> pattern = pattern_1 | pattern_2 & pattern_3
-
-            ::
-
-                >>> f(pattern)
-                abjad.Pattern(
-                    operator='or',
-                    patterns=(
-                        abjad.index_first(3),
-                        abjad.Pattern(
-                            operator='and',
-                            patterns=(
-                                abjad.index_last(3),
-                                abjad.index_every([0], 2),
-                                ),
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                operator='or',
+                patterns=(
+                    abjad.index_first(3),
+                    abjad.Pattern(
+                        operator='and',
+                        patterns=(
+                            abjad.index_last(3),
+                            abjad.index_every([0], 2),
                             ),
                         ),
-                    )
+                    ),
+                )
 
-            ::
-
-                >>> pattern.get_boolean_vector(total_length=16)
-                [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]
+            >>> pattern.get_boolean_vector(total_length=16)
+            [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]
 
         ..  container:: example
 
             In-place OR is allowed:
 
-            ::
+            >>> pattern = abjad.index_first(3)
+            >>> pattern |= abjad.index_last(3)
 
-                >>> pattern = abjad.index_first(3)
-                >>> pattern |= abjad.index_last(3)
-
-            ::
-
-                >>> f(pattern)
-                abjad.Pattern(
-                    operator='or',
-                    patterns=(
-                        abjad.index_first(3),
-                        abjad.index_last(3),
-                        ),
-                    )
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                operator='or',
+                patterns=(
+                    abjad.index_first(3),
+                    abjad.index_last(3),
+                    ),
+                )
 
         Returns new pattern.
         '''
@@ -601,103 +517,83 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> pattern_1 = abjad.index_first(3)
+            >>> pattern_2 = abjad.index_last(3)
+            >>> pattern = pattern_1 ^ pattern_2
 
-                >>> pattern_1 = abjad.index_first(3)
-                >>> pattern_2 = abjad.index_last(3)
-                >>> pattern = pattern_1 ^ pattern_2
-
-            ::
-
-                >>> f(pattern)
-                abjad.Pattern(
-                    operator='xor',
-                    patterns=(
-                        abjad.index_first(3),
-                        abjad.index_last(3),
-                        ),
-                    )
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                operator='xor',
+                patterns=(
+                    abjad.index_first(3),
+                    abjad.index_last(3),
+                    ),
+                )
 
         ..  container:: example
 
             Flat grouping:
 
-            ::
+            >>> pattern_1 = abjad.index_first(3)
+            >>> pattern_2 = abjad.index_last(3)
+            >>> pattern_3 = abjad.index_every([0], period=2)
+            >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
 
-                >>> pattern_1 = abjad.index_first(3)
-                >>> pattern_2 = abjad.index_last(3)
-                >>> pattern_3 = abjad.index_every([0], period=2)
-                >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                operator='xor',
+                patterns=(
+                    abjad.index_first(3),
+                    abjad.index_last(3),
+                    abjad.index_every([0], 2),
+                    ),
+                )
 
-            ::
-
-                >>> f(pattern)
-                abjad.Pattern(
-                    operator='xor',
-                    patterns=(
-                        abjad.index_first(3),
-                        abjad.index_last(3),
-                        abjad.index_every([0], 2),
-                        ),
-                    )
-
-            ::
-
-                >>> pattern.get_boolean_vector(total_length=16)
-                [0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1]
+            >>> pattern.get_boolean_vector(total_length=16)
+            [0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1]
 
         ..  container:: example
 
             Nested grouping:
 
-            ::
+            >>> pattern_1 = abjad.index_first(3)
+            >>> pattern_2 = abjad.index_last(3)
+            >>> pattern_3 = abjad.index_every([0], period=2)
+            >>> pattern = pattern_1 ^ pattern_2 & pattern_3
 
-                >>> pattern_1 = abjad.index_first(3)
-                >>> pattern_2 = abjad.index_last(3)
-                >>> pattern_3 = abjad.index_every([0], period=2)
-                >>> pattern = pattern_1 ^ pattern_2 & pattern_3
-
-            ::
-
-                >>> f(pattern)
-                abjad.Pattern(
-                    operator='xor',
-                    patterns=(
-                        abjad.index_first(3),
-                        abjad.Pattern(
-                            operator='and',
-                            patterns=(
-                                abjad.index_last(3),
-                                abjad.index_every([0], 2),
-                                ),
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                operator='xor',
+                patterns=(
+                    abjad.index_first(3),
+                    abjad.Pattern(
+                        operator='and',
+                        patterns=(
+                            abjad.index_last(3),
+                            abjad.index_every([0], 2),
                             ),
                         ),
-                    )
+                    ),
+                )
 
-            ::
-
-                >>> pattern.get_boolean_vector(total_length=16)
-                [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]
+            >>> pattern.get_boolean_vector(total_length=16)
+            [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]
 
         ..  container:: example
 
             In-place XOR is allowed:
 
-            ::
+            >>> pattern = abjad.index_first(3)
+            >>> pattern ^= abjad.index_last(3)
 
-                >>> pattern = abjad.index_first(3)
-                >>> pattern ^= abjad.index_last(3)
-
-            ::
-
-                >>> f(pattern)
-                abjad.Pattern(
-                    operator='xor',
-                    patterns=(
-                        abjad.index_first(3),
-                        abjad.index_last(3),
-                        ),
-                    )
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                operator='xor',
+                patterns=(
+                    abjad.index_first(3),
+                    abjad.index_last(3),
+                    ),
+                )
 
         Returns new pattern.
         '''
@@ -763,33 +659,25 @@ class Pattern(AbjadValueObject):
 
             Matches three indices out of every eight:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[0, 1, 7],
+            ...     period=8,
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[0, 1, 7],
-                ...     period=8,
-                ...     )
-
-            ::
-
-                >>> pattern.indices
-                [0, 1, 7]
+            >>> pattern.indices
+            [0, 1, 7]
 
         ..  container:: example
 
             Matches three indices out of every sixteen:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[0, 1, 7],
+            ...     period=16,
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[0, 1, 7],
-                ...     period=16,
-                ...     )
-
-            ::
-
-                >>> pattern.indices
-                [0, 1, 7]
+            >>> pattern.indices
+            [0, 1, 7]
 
         Defaults to none.
 
@@ -808,101 +696,85 @@ class Pattern(AbjadValueObject):
 
             Matches three indices out of every eight:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[0, 1, 7],
+            ...     period=8,
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[0, 1, 7],
-                ...     period=8,
-                ...     )
+            >>> pattern.inverted is None
+            True
 
-            ::
-
-                >>> pattern.inverted is None
-                True
-
-            ::
-
-                >>> total_length = 16
-                >>> for index in range(16):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1 True
-                2
-                3
-                4
-                5
-                6
-                7 True
-                8 True
-                9 True
-                10
-                11
-                12
-                13
-                14
-                15 True
+            >>> total_length = 16
+            >>> for index in range(16):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1 True
+            2
+            3
+            4
+            5
+            6
+            7 True
+            8 True
+            9 True
+            10
+            11
+            12
+            13
+            14
+            15 True
 
         ..  container:: example
 
             Pattern that rejects three indices from every eight; equivalently,
             pattern matches ``8-3=5`` indices out of every eight:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[0, 1, 7],
+            ...     period=8,
+            ...     inverted=True
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[0, 1, 7],
-                ...     period=8,
-                ...     inverted=True
-                ...     )
+            >>> pattern.inverted
+            True
 
-            ::
-
-                >>> pattern.inverted
-                True
-
-            ::
-
-                >>> total_length = 16
-                >>> for index in range(16):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0
-                1
-                2 True
-                3 True
-                4 True
-                5 True
-                6 True
-                7
-                8
-                9
-                10 True
-                11 True
-                12 True
-                13 True
-                14 True
-                15
+            >>> total_length = 16
+            >>> for index in range(16):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0
+            1
+            2 True
+            3 True
+            4 True
+            5 True
+            6 True
+            7
+            8
+            9
+            10 True
+            11 True
+            12 True
+            13 True
+            14 True
+            15
 
         ..  container:: example
 
             Matches every index that is (one of the first three indices) OR
             (one of the last three indices):
 
-            ::
+            >>> pattern_1 = abjad.index_first(3)
+            >>> pattern_2 = abjad.index_last(3)
+            >>> pattern = pattern_1 | pattern_2
+            >>> pattern.inverted is None
+            True
 
-                >>> pattern_1 = abjad.index_first(3)
-                >>> pattern_2 = abjad.index_last(3)
-                >>> pattern = pattern_1 | pattern_2
-                >>> pattern.inverted is None
-                True
-
-            ::
-
-                >>> pattern.get_boolean_vector(total_length=16)
-                [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1]
+            >>> pattern.get_boolean_vector(total_length=16)
+            [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1]
 
 
         ..  container:: example
@@ -910,16 +782,12 @@ class Pattern(AbjadValueObject):
             Matches every index that is NOT (one of the first three indices) OR
             (one of the last three indices):
 
-            ::
+            >>> pattern = abjad.new(pattern, inverted=True)
+            >>> pattern.inverted
+            True
 
-                >>> pattern = abjad.new(pattern, inverted=True)
-                >>> pattern.inverted
-                True
-
-            ::
-
-                >>> pattern.get_boolean_vector(total_length=16)
-                [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0]
+            >>> pattern.get_boolean_vector(total_length=16)
+            [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0]
 
         Defaults to none.
 
@@ -958,35 +826,31 @@ class Pattern(AbjadValueObject):
             Pattern with string payload assigned to three of every eight
             indices:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[0, 1, 7],
+            ...     payload='Allegro non troppo',
+            ...     period=8,
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[0, 1, 7],
-                ...     payload='Allegro non troppo',
-                ...     period=8,
-                ...     )
-
-            ::
-
-                >>> total_length = 10
-                >>> for index in range(10):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     if match:
-                ...         payload = pattern.payload
-                ...     else:
-                ...         payload = ''
-                ...     print(index, repr(payload))
-                ...
-                0 'Allegro non troppo'
-                1 'Allegro non troppo'
-                2 ''
-                3 ''
-                4 ''
-                5 ''
-                6 ''
-                7 'Allegro non troppo'
-                8 'Allegro non troppo'
-                9 'Allegro non troppo'
+            >>> total_length = 10
+            >>> for index in range(10):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     if match:
+            ...         payload = pattern.payload
+            ...     else:
+            ...         payload = ''
+            ...     print(index, repr(payload))
+            ...
+            0 'Allegro non troppo'
+            1 'Allegro non troppo'
+            2 ''
+            3 ''
+            4 ''
+            5 ''
+            6 ''
+            7 'Allegro non troppo'
+            8 'Allegro non troppo'
+            9 'Allegro non troppo'
 
         Defaults to none.
 
@@ -1004,145 +868,121 @@ class Pattern(AbjadValueObject):
 
             Pattern with a period of eight:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[0, 1, 7],
+            ...     period=8,
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[0, 1, 7],
-                ...     period=8,
-                ...     )
+            >>> pattern.period
+            8
 
-            ::
-
-                >>> pattern.period
-                8
-
-            ::
-
-                >>> total_length = 16
-                >>> for index in range(16):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1 True
-                2
-                3
-                4
-                5
-                6
-                7 True
-                8 True
-                9 True
-                10
-                11
-                12
-                13
-                14
-                15 True
+            >>> total_length = 16
+            >>> for index in range(16):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1 True
+            2
+            3
+            4
+            5
+            6
+            7 True
+            8 True
+            9 True
+            10
+            11
+            12
+            13
+            14
+            15 True
 
         ..  container:: example
 
             Same pattern with a period of sixteen:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[0, 1, 7],
+            ...     period=16,
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[0, 1, 7],
-                ...     period=16,
-                ...     )
+            >>> pattern.period
+            16
 
-            ::
-
-                >>> pattern.period
-                16
-
-            ::
-
-                >>> total_length = 16
-                >>> for index in range(16):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1 True
-                2
-                3
-                4
-                5
-                6
-                7 True
-                8
-                9
-                10
-                11
-                12
-                13
-                14
-                15
+            >>> total_length = 16
+            >>> for index in range(16):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1 True
+            2
+            3
+            4
+            5
+            6
+            7 True
+            8
+            9
+            10
+            11
+            12
+            13
+            14
+            15
 
         ..  container:: example
 
             Gets period of pattern that indexs every fourth and fifth element:
 
-            ::
+            >>> pattern_1 = abjad.Pattern([0], period=4)
+            >>> pattern_2 = abjad.Pattern([0], period=5)
+            >>> pattern = pattern_1 | pattern_2
 
-                >>> pattern_1 = abjad.Pattern([0], period=4)
-                >>> pattern_2 = abjad.Pattern([0], period=5)
-                >>> pattern = pattern_1 | pattern_2
-
-            ::
-
-                >>> f(pattern)
-                abjad.Pattern(
-                    operator='or',
-                    patterns=(
-                        abjad.Pattern(
-                            indices=[0],
-                            period=4,
-                            ),
-                        abjad.Pattern(
-                            indices=[0],
-                            period=5,
-                            ),
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                operator='or',
+                patterns=(
+                    abjad.Pattern(
+                        indices=[0],
+                        period=4,
                         ),
-                    period=20,
-                    )
+                    abjad.Pattern(
+                        indices=[0],
+                        period=5,
+                        ),
+                    ),
+                period=20,
+                )
 
-            ::
-
-                >>> pattern.period
-                20
+            >>> pattern.period
+            20
 
         ..  container:: example
 
             Returns none when pattern contains acyclic parts:
 
-            ::
+            >>> pattern_1 = abjad.Pattern([0], period=4)
+            >>> pattern_2 = abjad.Pattern([0])
+            >>> pattern = pattern_1 | pattern_2
 
-                >>> pattern_1 = abjad.Pattern([0], period=4)
-                >>> pattern_2 = abjad.Pattern([0])
-                >>> pattern = pattern_1 | pattern_2
-
-            ::
-
-                >>> f(pattern)
-                abjad.Pattern(
-                    operator='or',
-                    patterns=(
-                        abjad.Pattern(
-                            indices=[0],
-                            period=4,
-                            ),
-                        abjad.Pattern(
-                            indices=[0],
-                            ),
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                operator='or',
+                patterns=(
+                    abjad.Pattern(
+                        indices=[0],
+                        period=4,
                         ),
-                    )
+                    abjad.Pattern(
+                        indices=[0],
+                        ),
+                    ),
+                )
 
-            ::
-
-                >>> pattern.period is None
-                True
+            >>> pattern.period is None
+            True
 
         Defaults to none.
 
@@ -1176,32 +1016,24 @@ class Pattern(AbjadValueObject):
 
             Gets weight of cyclic pattern:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[0, 1, 7],
+            ...     period=8,
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[0, 1, 7],
-                ...     period=8,
-                ...     )
-
-            ::
-
-                >>> pattern.weight
-                3
+            >>> pattern.weight
+            3
 
         ..  container:: example
 
             Gets weight of acyclic pattern:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[0, 2, 3],
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[0, 2, 3],
-                ...     )
-
-            ::
-
-                >>> pattern.weight
-                3
+            >>> pattern.weight
+            3
 
         Weight defined equal to number of indices in pattern.
 
@@ -1219,67 +1051,59 @@ class Pattern(AbjadValueObject):
 
             Matches three indices out of every five:
 
-            ::
+            >>> pattern = [1, 0, 0, 1, 1]
+            >>> pattern = abjad.Pattern.from_vector(pattern)
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                indices=[0, 3, 4],
+                period=5,
+                )
 
-                >>> pattern = [1, 0, 0, 1, 1]
-                >>> pattern = abjad.Pattern.from_vector(pattern)
-                >>> f(pattern)
-                abjad.Pattern(
-                    indices=[0, 3, 4],
-                    period=5,
-                    )
-
-            ::
-
-                >>> total_length = 10
-                >>> for index in range(10):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1
-                2
-                3 True
-                4 True
-                5 True
-                6
-                7
-                8 True
-                9 True
+            >>> total_length = 10
+            >>> for index in range(10):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1
+            2
+            3 True
+            4 True
+            5 True
+            6
+            7
+            8 True
+            9 True
 
         ..  container:: example
 
             Matches three indices out of every six:
 
-            ::
+            >>> pattern = [1, 0, 0, 1, 1, 0]
+            >>> pattern = abjad.Pattern.from_vector(pattern)
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                indices=[0, 3, 4],
+                period=6,
+                )
 
-                >>> pattern = [1, 0, 0, 1, 1, 0]
-                >>> pattern = abjad.Pattern.from_vector(pattern)
-                >>> f(pattern)
-                abjad.Pattern(
-                    indices=[0, 3, 4],
-                    period=6,
-                    )
-
-            ::
-
-                >>> total_length = 12
-                >>> for index in range(12):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1
-                2
-                3 True
-                4 True
-                5
-                6 True
-                7
-                8
-                9 True
-                10 True
-                11
+            >>> total_length = 12
+            >>> for index in range(12):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1
+            2
+            3 True
+            4 True
+            5
+            6 True
+            7
+            8
+            9 True
+            10 True
+            11
 
         Returns pattern.
         '''
@@ -1299,134 +1123,95 @@ class Pattern(AbjadValueObject):
 
             Gets boolean vector of acyclic pattern:
 
-            ::
-
-                >>> pattern = abjad.Pattern(
-                ...     indices=[4, 5, 6, 7],
-                ...     )
+            >>> pattern = abjad.Pattern(
+            ...     indices=[4, 5, 6, 7],
+            ...     )
 
 
-            ::
+            >>> pattern.get_boolean_vector(4)
+            [0, 0, 0, 0]
 
-                >>> pattern.get_boolean_vector(4)
-                [0, 0, 0, 0]
+            >>> pattern.get_boolean_vector(8)
+            [0, 0, 0, 0, 1, 1, 1, 1]
 
-            ::
-
-                >>> pattern.get_boolean_vector(8)
-                [0, 0, 0, 0, 1, 1, 1, 1]
-
-            ::
-
-                >>> pattern.get_boolean_vector(16)
-                [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+            >>> pattern.get_boolean_vector(16)
+            [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
 
             Sets total length to length of pattern when `total_length` is none:
 
-            ::
-
-                >>> pattern.get_boolean_vector()
-                [0, 0, 0, 0, 1, 1, 1, 1]
+            >>> pattern.get_boolean_vector()
+            [0, 0, 0, 0, 1, 1, 1, 1]
 
         ..  container:: example
 
             Gets vector of cyclic pattern:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[4, 5, 6, 7],
+            ...     period=20,
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[4, 5, 6, 7],
-                ...     period=20,
-                ...     )
+            >>> pattern.get_boolean_vector(4)
+            [0, 0, 0, 0]
 
-            ::
+            >>> pattern.get_boolean_vector(8)
+            [0, 0, 0, 0, 1, 1, 1, 1]
 
-                >>> pattern.get_boolean_vector(4)
-                [0, 0, 0, 0]
-
-            ::
-
-                >>> pattern.get_boolean_vector(8)
-                [0, 0, 0, 0, 1, 1, 1, 1]
-
-            ::
-
-                >>> pattern.get_boolean_vector(16)
-                [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+            >>> pattern.get_boolean_vector(16)
+            [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
 
             Sets total length to length of pattern when `total_length` is none:
 
-            ::
-
-                >>> pattern.get_boolean_vector()
-                [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            >>> pattern.get_boolean_vector()
+            [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
         ..  container:: example
 
             Gets vector of inverted pattern:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[4, 5, 6, 7],
+            ...     period=20,
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[4, 5, 6, 7],
-                ...     period=20,
-                ...     )
+            >>> pattern.get_boolean_vector(4)
+            [0, 0, 0, 0]
 
-            ::
+            >>> pattern.get_boolean_vector(8)
+            [0, 0, 0, 0, 1, 1, 1, 1]
 
-                >>> pattern.get_boolean_vector(4)
-                [0, 0, 0, 0]
-
-            ::
-
-                >>> pattern.get_boolean_vector(8)
-                [0, 0, 0, 0, 1, 1, 1, 1]
-
-            ::
-
-                >>> pattern.get_boolean_vector(16)
-                [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+            >>> pattern.get_boolean_vector(16)
+            [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
 
             Sets total length to length of pattern when `total_length` is none:
 
-            ::
-
-                >>> pattern.get_boolean_vector()
-                [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            >>> pattern.get_boolean_vector()
+            [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
         ..  container:: example
 
             Two-part pattern with logical OR:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     operator='or',
+            ...     patterns=[
+            ...         abjad.Pattern(
+            ...             indices=[0, 1, 2],
+            ...             ),
+            ...         abjad.Pattern(
+            ...             indices=[-3, -2, -1],
+            ...             ),
+            ...         ],
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     operator='or',
-                ...     patterns=[
-                ...         abjad.Pattern(
-                ...             indices=[0, 1, 2],
-                ...             ),
-                ...         abjad.Pattern(
-                ...             indices=[-3, -2, -1],
-                ...             ),
-                ...         ],
-                ...     )
+            >>> pattern.get_boolean_vector(4)
+            [1, 1, 1, 1]
 
-            ::
+            >>> pattern.get_boolean_vector(8)
+            [1, 1, 1, 0, 0, 1, 1, 1]
 
-                >>> pattern.get_boolean_vector(4)
-                [1, 1, 1, 1]
-
-            ::
-
-                >>> pattern.get_boolean_vector(8)
-                [1, 1, 1, 0, 0, 1, 1, 1]
-
-
-            ::
-
-                >>> pattern.get_boolean_vector(16)
-                [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1]
+            >>> pattern.get_boolean_vector(16)
+            [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1]
 
             Matches every index that is (one of the first three indices) OR
             (one of the last three indices).
@@ -1435,36 +1220,28 @@ class Pattern(AbjadValueObject):
 
             Two-part pattern with mixed periodic and inverted parts:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     operator='and',
+            ...     patterns=[
+            ...         abjad.Pattern(
+            ...             indices=[0],
+            ...             period=2,
+            ...             ),
+            ...         abjad.Pattern(
+            ...             indices=[-3, -2, -1],
+            ...             inverted=True,
+            ...             ),
+            ...         ],
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     operator='and',
-                ...     patterns=[
-                ...         abjad.Pattern(
-                ...             indices=[0],
-                ...             period=2,
-                ...             ),
-                ...         abjad.Pattern(
-                ...             indices=[-3, -2, -1],
-                ...             inverted=True,
-                ...             ),
-                ...         ],
-                ...     )
+            >>> pattern.get_boolean_vector(4)
+            [1, 0, 0, 0]
 
-            ::
+            >>> pattern.get_boolean_vector(8)
+            [1, 0, 1, 0, 1, 0, 0, 0]
 
-                >>> pattern.get_boolean_vector(4)
-                [1, 0, 0, 0]
-
-            ::
-
-                >>> pattern.get_boolean_vector(8)
-                [1, 0, 1, 0, 1, 0, 0, 0]
-
-            ::
-
-                >>> pattern.get_boolean_vector(16)
-                [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0]
+            >>> pattern.get_boolean_vector(16)
+            [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0]
 
             Matches every index that is (equal to 0 % 2) AND (not one of the
             last three indices).
@@ -1473,61 +1250,45 @@ class Pattern(AbjadValueObject):
 
             Cyclic pattern that indexes every fourth and fifth item:
 
-            ::
+            >>> pattern_1 = abjad.Pattern([0], period=4)
+            >>> pattern_2 = abjad.Pattern([0], period=5)
+            >>> pattern = pattern_1 | pattern_2
 
-                >>> pattern_1 = abjad.Pattern([0], period=4)
-                >>> pattern_2 = abjad.Pattern([0], period=5)
-                >>> pattern = pattern_1 | pattern_2
-
-            ::
-
-                >>> f(pattern)
-                abjad.Pattern(
-                    operator='or',
-                    patterns=(
-                        abjad.Pattern(
-                            indices=[0],
-                            period=4,
-                            ),
-                        abjad.Pattern(
-                            indices=[0],
-                            period=5,
-                            ),
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                operator='or',
+                patterns=(
+                    abjad.Pattern(
+                        indices=[0],
+                        period=4,
                         ),
-                    period=20,
-                    )
+                    abjad.Pattern(
+                        indices=[0],
+                        period=5,
+                        ),
+                    ),
+                period=20,
+                )
 
-            ::
+            >>> pattern.get_boolean_vector(4)
+            [1, 0, 0, 0]
 
-                >>> pattern.get_boolean_vector(4)
-                [1, 0, 0, 0]
+            >>> pattern.get_boolean_vector(8)
+            [1, 0, 0, 0, 1, 1, 0, 0]
 
-            ::
-
-                >>> pattern.get_boolean_vector(8)
-                [1, 0, 0, 0, 1, 1, 0, 0]
-
-            ::
-
-                >>> pattern.get_boolean_vector(16)
-                [1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1]
+            >>> pattern.get_boolean_vector(16)
+            [1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1]
 
             Sets total length to period of pattern when `total_length` is none:
 
-            ::
+            >>> pattern.period
+            20
 
-                >>> pattern.period
-                20
+            >>> pattern.get_boolean_vector()
+            [1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0]
 
-            ::
-
-                >>> pattern.get_boolean_vector()
-                [1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0]
-
-            ::
-
-                >>> pattern.period == len(pattern.get_boolean_vector())
-                True
+            >>> pattern.period == len(pattern.get_boolean_vector())
+            True
 
         Returns list of ones and zeroes.
         '''
@@ -1543,41 +1304,29 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[4, 5, 6, 7],
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[4, 5, 6, 7],
-                ...     )
-
-            ::
-
-                >>> pattern.get_matching_items('abcdefghijklmnopqrstuvwxyz')
-                Sequence(['e', 'f', 'g', 'h'])
+            >>> pattern.get_matching_items('abcdefghijklmnopqrstuvwxyz')
+            Sequence(['e', 'f', 'g', 'h'])
 
         ..  container:: example
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[8, 9],
+            ...     period=10,
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[8, 9],
-                ...     period=10,
-                ...     )
-
-            ::
-
-                >>> pattern.get_matching_items('abcdefghijklmnopqrstuvwxyz')
-                Sequence(['i', 'j', 's', 't'])
+            >>> pattern.get_matching_items('abcdefghijklmnopqrstuvwxyz')
+            Sequence(['i', 'j', 's', 't'])
 
         ..  container:: example
 
-            ::
+            >>> pattern = abjad.index_first(1) | abjad.index_last(2)
 
-                >>> pattern = abjad.index_first(1) | abjad.index_last(2)
-
-            ::
-
-                >>> pattern.get_matching_items('abcdefghijklmnopqrstuvwxyz')
-                Sequence(['a', 'y', 'z'])
+            >>> pattern.get_matching_items('abcdefghijklmnopqrstuvwxyz')
+            Sequence(['a', 'y', 'z'])
 
         Returns new sequence.
         '''
@@ -1599,27 +1348,19 @@ class Pattern(AbjadValueObject):
 
             Indexes item 2:
 
-            ::
+            >>> pattern = abjad.index([2])
 
-                >>> pattern = abjad.index([2])
-
-            ::
-
-                >>> f(pattern)
-                abjad.index([2])
+            >>> abjad.f(pattern)
+            abjad.index([2])
 
         ..  container:: example
 
             Indexes items 2, 3 and 5:
 
-            ::
+            >>> pattern = abjad.index([2, 3, 5])
 
-                >>> pattern = abjad.index([2, 3, 5])
-
-            ::
-
-                >>> f(pattern)
-                abjad.index([2, 3, 5])
+            >>> abjad.f(pattern)
+            abjad.index([2, 3, 5])
 
         Returns pattern.
         '''
@@ -1640,14 +1381,10 @@ class Pattern(AbjadValueObject):
 
             Indexes all divisions for tie creation:
 
-            ::
+            >>> pattern = abjad.index_all()
 
-                >>> pattern = abjad.index_all()
-
-            ::
-
-                >>> f(pattern)
-                abjad.index_all()
+            >>> abjad.f(pattern)
+            abjad.index_all()
 
         Returns pattern.
         '''
@@ -1667,27 +1404,19 @@ class Pattern(AbjadValueObject):
 
             Indexes every second division:
 
-            ::
+            >>> pattern = abjad.index_every([1], 2)
 
-                >>> pattern = abjad.index_every([1], 2)
-
-            ::
-
-                >>> print(format(pattern))
-                abjad.index_every([1], 2)
+            >>> print(format(pattern))
+            abjad.index_every([1], 2)
 
         ..  container:: example
 
             Indexes every second and third division:
 
-            ::
+            >>> pattern = abjad.index_every([1, 2], 3)
 
-                >>> pattern = abjad.index_every([1, 2], 3)
-
-            ::
-
-                >>> print(format(pattern))
-                abjad.index_every([1, 2], 3)
+            >>> print(format(pattern))
+            abjad.index_every([1, 2], 3)
 
         Returns pattern.
         '''
@@ -1708,40 +1437,28 @@ class Pattern(AbjadValueObject):
 
             Indexes first division for tie creation:
 
-            ::
+            >>> pattern = abjad.index_first(1)
 
-                >>> pattern = abjad.index_first(1)
-
-            ::
-
-                >>> f(pattern)
-                abjad.index_first(1)
+            >>> abjad.f(pattern)
+            abjad.index_first(1)
 
         ..  container:: example
 
             Indexes first two items:
 
-            ::
+            >>> pattern = abjad.index_first(2)
 
-                >>> pattern = abjad.index_first(2)
-
-            ::
-
-                >>> f(pattern)
-                abjad.index_first(2)
+            >>> abjad.f(pattern)
+            abjad.index_first(2)
 
         ..  container:: example
 
             Indexes nothing:
 
-            ::
+            >>> pattern = abjad.index_first(0)
 
-                >>> pattern = abjad.index_first(0)
-
-            ::
-
-                >>> f(pattern)
-                abjad.index_first(0)
+            >>> abjad.f(pattern)
+            abjad.index_first(0)
 
         Returns pattern.
         '''
@@ -1765,27 +1482,19 @@ class Pattern(AbjadValueObject):
 
             Indexes last two items:
 
-            ::
+            >>> pattern = abjad.index_last(2)
 
-                >>> pattern = abjad.index_last(2)
-
-            ::
-
-                >>> f(pattern)
-                abjad.index_last(2)
+            >>> abjad.f(pattern)
+            abjad.index_last(2)
 
         ..  container:: example
 
             Indexes nothing:
 
-            ::
+            >>> pattern = abjad.index_last(0)
 
-                >>> pattern = abjad.index_last(0)
-
-            ::
-
-                >>> f(pattern)
-                abjad.index_last(0)
+            >>> abjad.f(pattern)
+            abjad.index_last(0)
 
         Returns pattern.
         '''
@@ -1812,288 +1521,256 @@ class Pattern(AbjadValueObject):
 
             Matches three indices out of every eight:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[0, 1, 7],
+            ...     period=8,
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[0, 1, 7],
-                ...     period=8,
-                ...     )
-
-            ::
-
-                >>> total_length = 16
-                >>> for index in range(16):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1 True
-                2
-                3
-                4
-                5
-                6
-                7 True
-                8 True
-                9 True
-                10
-                11
-                12
-                13
-                14
-                15 True
+            >>> total_length = 16
+            >>> for index in range(16):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1 True
+            2
+            3
+            4
+            5
+            6
+            7 True
+            8 True
+            9 True
+            10
+            11
+            12
+            13
+            14
+            15 True
 
             Matches three indices out of every eight, offset ``1`` to the left:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[0, 1, 7],
+            ...     period=8,
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[0, 1, 7],
-                ...     period=8,
-                ...     )
+            >>> total_length = 16
+            >>> for index in range(16):
+            ...     match = pattern.matches_index(
+            ...         index,
+            ...         total_length,
+            ...         rotation=1,
+            ...         )
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1
+            2
+            3
+            4
+            5
+            6 True
+            7 True
+            8 True
+            9
+            10
+            11
+            12
+            13
+            14 True
+            15 True
 
-            ::
+            Matches three indices out of every eight, offset ``2`` to the
+            left:
 
-                >>> total_length = 16
-                >>> for index in range(16):
-                ...     match = pattern.matches_index(
-                ...         index,
-                ...         total_length,
-                ...         rotation=1,
-                ...         )
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1
-                2
-                3
-                4
-                5
-                6 True
-                7 True
-                8 True
-                9
-                10
-                11
-                12
-                13
-                14 True
-                15 True
+            >>> pattern = abjad.Pattern(
+            ...     indices=[0, 1, 7],
+            ...     period=8,
+            ...     )
 
-             Matches three indices out of every eight, offset ``2`` to the
-             left:
-
-            ::
-
-                >>> pattern = abjad.Pattern(
-                ...     indices=[0, 1, 7],
-                ...     period=8,
-                ...     )
-
-            ::
-
-                >>> total_length = 16
-                >>> for index in range(16):
-                ...     match = pattern.matches_index(
-                ...         index,
-                ...         total_length,
-                ...         rotation=2,
-                ...         )
-                ...     match = match or ''
-                ...     print(index, match)
-                0
-                1
-                2
-                3
-                4
-                5 True
-                6 True
-                7 True
-                8
-                9
-                10
-                11
-                12
-                13 True
-                14 True
-                15 True
+            >>> total_length = 16
+            >>> for index in range(16):
+            ...     match = pattern.matches_index(
+            ...         index,
+            ...         total_length,
+            ...         rotation=2,
+            ...         )
+            ...     match = match or ''
+            ...     print(index, match)
+            0
+            1
+            2
+            3
+            4
+            5 True
+            6 True
+            7 True
+            8
+            9
+            10
+            11
+            12
+            13 True
+            14 True
+            15 True
 
         ..  container:: example
 
             Matches three indices out of every sixteen:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[0, 1, 7],
+            ...     period=16,
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[0, 1, 7],
-                ...     period=16,
-                ...     )
-
-            ::
-
-                >>> total_length = 16
-                >>> for index in range(16):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1 True
-                2
-                3
-                4
-                5
-                6
-                7 True
-                8
-                9
-                10
-                11
-                12
-                13
-                14
-                15
+            >>> total_length = 16
+            >>> for index in range(16):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1 True
+            2
+            3
+            4
+            5
+            6
+            7 True
+            8
+            9
+            10
+            11
+            12
+            13
+            14
+            15
 
             Matches three indices out of every sixteen, offset ``1`` to the
             left:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[0, 1, 7],
+            ...     period=16,
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[0, 1, 7],
-                ...     period=16,
-                ...     )
-
-            ::
-
-                >>> total_length = 16
-                >>> for index in range(16):
-                ...     match = pattern.matches_index(
-                ...         index,
-                ...         total_length,
-                ...         rotation=1,
-                ...         )
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1
-                2
-                3
-                4
-                5
-                6 True
-                7
-                8
-                9
-                10
-                11
-                12
-                13
-                14
-                15 True
+            >>> total_length = 16
+            >>> for index in range(16):
+            ...     match = pattern.matches_index(
+            ...         index,
+            ...         total_length,
+            ...         rotation=1,
+            ...         )
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1
+            2
+            3
+            4
+            5
+            6 True
+            7
+            8
+            9
+            10
+            11
+            12
+            13
+            14
+            15 True
 
             Matches three indices out of every sixteen, offset ``2`` to the
             left:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[0, 1, 7],
+            ...     period=16,
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[0, 1, 7],
-                ...     period=16,
-                ...     )
-
-            ::
-
-                >>> total_length = 16
-                >>> for index in range(16):
-                ...     match = pattern.matches_index(
-                ...         index,
-                ...         total_length,
-                ...         rotation=2,
-                ...         )
-                ...     match = match or ''
-                ...     print(index, match)
-                0
-                1
-                2
-                3
-                4
-                5 True
-                6
-                7
-                8
-                9
-                10
-                11
-                12
-                13
-                14 True
-                15 True
+            >>> total_length = 16
+            >>> for index in range(16):
+            ...     match = pattern.matches_index(
+            ...         index,
+            ...         total_length,
+            ...         rotation=2,
+            ...         )
+            ...     match = match or ''
+            ...     print(index, match)
+            0
+            1
+            2
+            3
+            4
+            5 True
+            6
+            7
+            8
+            9
+            10
+            11
+            12
+            13
+            14 True
+            15 True
 
         ..  container:: example
 
             Empty pattern:
 
-            ::
-
-                >>> pattern = abjad.Pattern()
+            >>> pattern = abjad.Pattern()
 
             Total length 16:
 
-            ::
-
-                >>> total_length = 16
-                >>> for index in range(total_length):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0
-                1
-                2
-                3
-                4
-                5
-                6
-                7
-                8
-                9
-                10
-                11
-                12
-                13
-                14
-                15
+            >>> total_length = 16
+            >>> for index in range(total_length):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0
+            1
+            2
+            3
+            4
+            5
+            6
+            7
+            8
+            9
+            10
+            11
+            12
+            13
+            14
+            15
 
             Total length 8:
 
-            ::
-
-                >>> total_length = 8
-                >>> for index in range(total_length):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0
-                1
-                2
-                3
-                4
-                5
-                6
-                7
+            >>> total_length = 8
+            >>> for index in range(total_length):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0
+            1
+            2
+            3
+            4
+            5
+            6
+            7
 
             Total length 4:
 
-            ::
-
-                >>> total_length = 4
-                >>> for index in range(total_length):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0
-                1
-                2
-                3
+            >>> total_length = 4
+            >>> for index in range(total_length):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0
+            1
+            2
+            3
 
             Matches nothing.
 
@@ -2103,105 +1780,99 @@ class Pattern(AbjadValueObject):
 
             Logical OR:
 
-            ::
-
-                >>> pattern = abjad.Pattern(
-                ...     operator='or',
-                ...     patterns=[
-                ...         abjad.Pattern(
-                ...             indices=[0, 1, 2],
-                ...             ),
-                ...         ],
-                ...     )
-                >>> total_length = 16
-                >>> for index in range(total_length):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1 True
-                2 True
-                3
-                4
-                5
-                6
-                7
-                8
-                9
-                10
-                11
-                12
-                13
-                14
-                15
+            >>> pattern = abjad.Pattern(
+            ...     operator='or',
+            ...     patterns=[
+            ...         abjad.Pattern(
+            ...             indices=[0, 1, 2],
+            ...             ),
+            ...         ],
+            ...     )
+            >>> total_length = 16
+            >>> for index in range(total_length):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1 True
+            2 True
+            3
+            4
+            5
+            6
+            7
+            8
+            9
+            10
+            11
+            12
+            13
+            14
+            15
 
             Logical AND:
 
-            ::
-
-                >>> pattern = abjad.Pattern(
-                ...     operator='and',
-                ...     patterns=[
-                ...         abjad.Pattern(
-                ...             indices=[0, 1, 2],
-                ...             ),
-                ...         ],
-                ...     )
-                >>> total_length = 16
-                >>> for index in range(total_length):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1 True
-                2 True
-                3
-                4
-                5
-                6
-                7
-                8
-                9
-                10
-                11
-                12
-                13
-                14
-                15
+            >>> pattern = abjad.Pattern(
+            ...     operator='and',
+            ...     patterns=[
+            ...         abjad.Pattern(
+            ...             indices=[0, 1, 2],
+            ...             ),
+            ...         ],
+            ...     )
+            >>> total_length = 16
+            >>> for index in range(total_length):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1 True
+            2 True
+            3
+            4
+            5
+            6
+            7
+            8
+            9
+            10
+            11
+            12
+            13
+            14
+            15
 
             Logical XOR:
 
-            ::
-
-                >>> pattern = abjad.Pattern(
-                ...     operator='xor',
-                ...     patterns=[
-                ...         abjad.Pattern(
-                ...             indices=[0, 1, 2],
-                ...             ),
-                ...         ],
-                ...     )
-                >>> total_length = 16
-                >>> for index in range(total_length):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1 True
-                2 True
-                3
-                4
-                5
-                6
-                7
-                8
-                9
-                10
-                11
-                12
-                13
-                14
-                15
+            >>> pattern = abjad.Pattern(
+            ...     operator='xor',
+            ...     patterns=[
+            ...         abjad.Pattern(
+            ...             indices=[0, 1, 2],
+            ...             ),
+            ...         ],
+            ...     )
+            >>> total_length = 16
+            >>> for index in range(total_length):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1 True
+            2 True
+            3
+            4
+            5
+            6
+            7
+            8
+            9
+            10
+            11
+            12
+            13
+            14
+            15
 
             Matches every index that is (one of the first three indices).
 
@@ -2211,77 +1882,69 @@ class Pattern(AbjadValueObject):
 
             Two-part pattern with logical OR:
 
-            ::
-
-                >>> pattern = abjad.Pattern(
-                ...     operator='or',
-                ...     patterns=[
-                ...         abjad.Pattern(
-                ...             indices=[0, 1, 2],
-                ...             ),
-                ...         abjad.Pattern(
-                ...             indices=[-3, -2, -1],
-                ...             ),
-                ...         ],
-                ...     )
+            >>> pattern = abjad.Pattern(
+            ...     operator='or',
+            ...     patterns=[
+            ...         abjad.Pattern(
+            ...             indices=[0, 1, 2],
+            ...             ),
+            ...         abjad.Pattern(
+            ...             indices=[-3, -2, -1],
+            ...             ),
+            ...         ],
+            ...     )
 
             Total length 16:
 
-            ::
-
-                >>> total_length = 16
-                >>> for index in range(total_length):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1 True
-                2 True
-                3
-                4
-                5
-                6
-                7
-                8
-                9
-                10
-                11
-                12
-                13 True
-                14 True
-                15 True
+            >>> total_length = 16
+            >>> for index in range(total_length):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1 True
+            2 True
+            3
+            4
+            5
+            6
+            7
+            8
+            9
+            10
+            11
+            12
+            13 True
+            14 True
+            15 True
 
             Total length 8:
 
-            ::
-
-                >>> total_length = 8
-                >>> for index in range(total_length):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1 True
-                2 True
-                3
-                4
-                5 True
-                6 True
-                7 True
+            >>> total_length = 8
+            >>> for index in range(total_length):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1 True
+            2 True
+            3
+            4
+            5 True
+            6 True
+            7 True
 
             Total length 4:
 
-            ::
-
-                >>> total_length = 4
-                >>> for index in range(total_length):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1 True
-                2 True
-                3 True
+            >>> total_length = 4
+            >>> for index in range(total_length):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1 True
+            2 True
+            3 True
 
             Matches every index that is (one of the first three indices) OR
             (one of the last three indices).
@@ -2290,77 +1953,69 @@ class Pattern(AbjadValueObject):
 
             Two-part pattern with logical AND:
 
-            ::
-
-                >>> pattern = abjad.Pattern(
-                ...     operator='and',
-                ...     patterns=[
-                ...         abjad.Pattern(
-                ...             indices=[0, 1, 2],
-                ...             ),
-                ...         abjad.Pattern(
-                ...             indices=[-3, -2, -1],
-                ...             ),
-                ...         ],
-                ...     )
+            >>> pattern = abjad.Pattern(
+            ...     operator='and',
+            ...     patterns=[
+            ...         abjad.Pattern(
+            ...             indices=[0, 1, 2],
+            ...             ),
+            ...         abjad.Pattern(
+            ...             indices=[-3, -2, -1],
+            ...             ),
+            ...         ],
+            ...     )
 
             Total length 16:
 
-            ::
-
-                >>> total_length = 16
-                >>> for index in range(total_length):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0
-                1
-                2
-                3
-                4
-                5
-                6
-                7
-                8
-                9
-                10
-                11
-                12
-                13
-                14
-                15
+            >>> total_length = 16
+            >>> for index in range(total_length):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0
+            1
+            2
+            3
+            4
+            5
+            6
+            7
+            8
+            9
+            10
+            11
+            12
+            13
+            14
+            15
 
             Total length 8:
 
-            ::
-
-                >>> total_length = 8
-                >>> for index in range(total_length):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0
-                1
-                2
-                3
-                4
-                5
-                6
-                7
+            >>> total_length = 8
+            >>> for index in range(total_length):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0
+            1
+            2
+            3
+            4
+            5
+            6
+            7
 
             Total length 4:
 
-            ::
-
-                >>> total_length = 4
-                >>> for index in range(total_length):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0
-                1 True
-                2 True
-                3
+            >>> total_length = 4
+            >>> for index in range(total_length):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0
+            1 True
+            2 True
+            3
 
             Matches every index that is (one of the first three indices) AND
             (one of the last three indices).
@@ -2369,77 +2024,69 @@ class Pattern(AbjadValueObject):
 
             Two-part pattern with logical XOR:
 
-            ::
-
-                >>> pattern = abjad.Pattern(
-                ...     operator='xor',
-                ...     patterns=[
-                ...         abjad.Pattern(
-                ...             indices=[0, 1, 2],
-                ...             ),
-                ...         abjad.Pattern(
-                ...             indices=[-3, -2, -1],
-                ...             ),
-                ...         ],
-                ...     )
+            >>> pattern = abjad.Pattern(
+            ...     operator='xor',
+            ...     patterns=[
+            ...         abjad.Pattern(
+            ...             indices=[0, 1, 2],
+            ...             ),
+            ...         abjad.Pattern(
+            ...             indices=[-3, -2, -1],
+            ...             ),
+            ...         ],
+            ...     )
 
             Total length 16:
 
-            ::
-
-                >>> total_length = 16
-                >>> for index in range(total_length):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1 True
-                2 True
-                3
-                4
-                5
-                6
-                7
-                8
-                9
-                10
-                11
-                12
-                13 True
-                14 True
-                15 True
+            >>> total_length = 16
+            >>> for index in range(total_length):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1 True
+            2 True
+            3
+            4
+            5
+            6
+            7
+            8
+            9
+            10
+            11
+            12
+            13 True
+            14 True
+            15 True
 
             Total length 8:
 
-            ::
-
-                >>> total_length = 8
-                >>> for index in range(total_length):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1 True
-                2 True
-                3
-                4
-                5 True
-                6 True
-                7 True
+            >>> total_length = 8
+            >>> for index in range(total_length):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1 True
+            2 True
+            3
+            4
+            5 True
+            6 True
+            7 True
 
             Total length 4:
 
-            ::
-
-                >>> total_length = 4
-                >>> for index in range(total_length):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1
-                2
-                3 True
+            >>> total_length = 4
+            >>> for index in range(total_length):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1
+            2
+            3 True
 
             Matches every index that is (one of the first three indices) XOR
             (one of the last three indices).
@@ -2448,79 +2095,71 @@ class Pattern(AbjadValueObject):
 
             Two-part pattern with mixed periodic and inverted parts:
 
-            ::
-
-                >>> pattern = abjad.Pattern(
-                ...     operator='and',
-                ...     patterns=[
-                ...         abjad.Pattern(
-                ...             indices=[0],
-                ...             period=2,
-                ...             ),
-                ...         abjad.Pattern(
-                ...             indices=[-3, -2, -1],
-                ...             inverted=True,
-                ...             ),
-                ...         ],
-                ...     )
+            >>> pattern = abjad.Pattern(
+            ...     operator='and',
+            ...     patterns=[
+            ...         abjad.Pattern(
+            ...             indices=[0],
+            ...             period=2,
+            ...             ),
+            ...         abjad.Pattern(
+            ...             indices=[-3, -2, -1],
+            ...             inverted=True,
+            ...             ),
+            ...         ],
+            ...     )
 
             Total length 16:
 
-            ::
-
-                >>> total_length = 16
-                >>> for index in range(total_length):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1
-                2 True
-                3
-                4 True
-                5
-                6 True
-                7
-                8 True
-                9
-                10 True
-                11
-                12 True
-                13
-                14
-                15
+            >>> total_length = 16
+            >>> for index in range(total_length):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1
+            2 True
+            3
+            4 True
+            5
+            6 True
+            7
+            8 True
+            9
+            10 True
+            11
+            12 True
+            13
+            14
+            15
 
             Total length 8:
 
-            ::
-
-                >>> total_length = 8
-                >>> for index in range(total_length):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1
-                2 True
-                3
-                4 True
-                5
-                6
-                7
+            >>> total_length = 8
+            >>> for index in range(total_length):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1
+            2 True
+            3
+            4 True
+            5
+            6
+            7
 
             Total length 4:
 
-            ::
-
-                >>> total_length = 4
-                >>> for index in range(total_length):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1
-                2
-                3
+            >>> total_length = 4
+            >>> for index in range(total_length):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1
+            2
+            3
 
             Matches every index that is (equal to 0 % 2) AND (not one of the
             last three indices).
@@ -2529,113 +2168,103 @@ class Pattern(AbjadValueObject):
 
             Complex pattern with compound and simple parts:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     operator='and',
+            ...     patterns=[
+            ...         abjad.Pattern(
+            ...             indices=[0],
+            ...             period=2,
+            ...             ),
+            ...         abjad.Pattern(
+            ...             indices=[-3, -2, -1],
+            ...             inverted=True,
+            ...             ),
+            ...         ],
+            ...     )
+            >>> pattern = abjad.Pattern(
+            ...     operator='or',
+            ...     patterns=[
+            ...         pattern,
+            ...         abjad.Pattern(
+            ...             indices=[0, 1, 2],
+            ...             ),
+            ...         ],
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     operator='and',
-                ...     patterns=[
-                ...         abjad.Pattern(
-                ...             indices=[0],
-                ...             period=2,
-                ...             ),
-                ...         abjad.Pattern(
-                ...             indices=[-3, -2, -1],
-                ...             inverted=True,
-                ...             ),
-                ...         ],
-                ...     )
-                >>> pattern = abjad.Pattern(
-                ...     operator='or',
-                ...     patterns=[
-                ...         pattern,
-                ...         abjad.Pattern(
-                ...             indices=[0, 1, 2],
-                ...             ),
-                ...         ],
-                ...     )
-
-            ::
-
-                >>> f(pattern)
-                abjad.Pattern(
-                    operator='or',
-                    patterns=(
-                        abjad.Pattern(
-                            operator='and',
-                            patterns=(
-                                abjad.Pattern(
-                                    indices=[0],
-                                    period=2,
-                                    ),
-                                abjad.Pattern(
-                                    indices=[-3, -2, -1],
-                                    inverted=True,
-                                    ),
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                operator='or',
+                patterns=(
+                    abjad.Pattern(
+                        operator='and',
+                        patterns=(
+                            abjad.Pattern(
+                                indices=[0],
+                                period=2,
+                                ),
+                            abjad.Pattern(
+                                indices=[-3, -2, -1],
+                                inverted=True,
                                 ),
                             ),
-                        abjad.Pattern(
-                            indices=[0, 1, 2],
-                            ),
                         ),
-                    )
+                    abjad.Pattern(
+                        indices=[0, 1, 2],
+                        ),
+                    ),
+                )
 
             Total length 16:
 
-            ::
-
-                >>> total_length = 16
-                >>> for index in range(total_length):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1 True
-                2 True
-                3
-                4 True
-                5
-                6 True
-                7
-                8 True
-                9
-                10 True
-                11
-                12 True
-                13
-                14
-                15
+            >>> total_length = 16
+            >>> for index in range(total_length):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1 True
+            2 True
+            3
+            4 True
+            5
+            6 True
+            7
+            8 True
+            9
+            10 True
+            11
+            12 True
+            13
+            14
+            15
 
             Total length 8:
 
-            ::
-
-                >>> total_length = 8
-                >>> for index in range(total_length):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1 True
-                2 True
-                3
-                4 True
-                5
-                6
-                7
+            >>> total_length = 8
+            >>> for index in range(total_length):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1 True
+            2 True
+            3
+            4 True
+            5
+            6
+            7
 
             Total length 4:
 
-            ::
-
-                >>> total_length = 4
-                >>> for index in range(total_length):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1 True
-                2 True
-                3
+            >>> total_length = 4
+            >>> for index in range(total_length):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1 True
+            2 True
+            3
 
             Matches every index that is ((equal to 0 % 2) AND (not one of the
             last three indices)) OR is (one of the first three indices).
@@ -2704,138 +2333,122 @@ class Pattern(AbjadValueObject):
 
             Matches three indices out of every eight:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[0, 1, 7],
+            ...     period=8,
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[0, 1, 7],
-                ...     period=8,
-                ...     )
-
-            ::
-
-                >>> total_length = 16
-                >>> for index in range(16):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1 True
-                2
-                3
-                4
-                5
-                6
-                7 True
-                8 True
-                9 True
-                10
-                11
-                12
-                13
-                14
-                15 True
+            >>> total_length = 16
+            >>> for index in range(16):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1 True
+            2
+            3
+            4
+            5
+            6
+            7 True
+            8 True
+            9 True
+            10
+            11
+            12
+            13
+            14
+            15 True
 
         ..  container:: example
 
             Reverses pattern:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[0, 1, 7],
+            ...     period=8,
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[0, 1, 7],
-                ...     period=8,
-                ...     )
+            >>> pattern = pattern.reverse()
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                indices=[-1, -2, -8],
+                period=8,
+                )
 
-            ::
-
-                >>> pattern = pattern.reverse()
-                >>> f(pattern)
-                abjad.Pattern(
-                    indices=[-1, -2, -8],
-                    period=8,
-                    )
-
-            ::
-
-                >>> total_length = 16
-                >>> for index in range(16):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1
-                2
-                3
-                4
-                5
-                6 True
-                7 True
-                8 True
-                9
-                10
-                11
-                12
-                13
-                14 True
-                15 True
+            >>> total_length = 16
+            >>> for index in range(16):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1
+            2
+            3
+            4
+            5
+            6 True
+            7 True
+            8 True
+            9
+            10
+            11
+            12
+            13
+            14 True
+            15 True
 
         ..  container:: example
 
             Matches every index that is (equal to 0 % 2) AND (not one of the
             last three indices):
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     operator='and',
+            ...     patterns=[
+            ...         abjad.Pattern(
+            ...             indices=[0],
+            ...             period=2,
+            ...             ),
+            ...         abjad.Pattern(
+            ...             indices=[-3, -2, -1],
+            ...             inverted=True,
+            ...             ),
+            ...         ],
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     operator='and',
-                ...     patterns=[
-                ...         abjad.Pattern(
-                ...             indices=[0],
-                ...             period=2,
-                ...             ),
-                ...         abjad.Pattern(
-                ...             indices=[-3, -2, -1],
-                ...             inverted=True,
-                ...             ),
-                ...         ],
-                ...     )
-
-            ::
-
-                >>> f(pattern)
-                abjad.Pattern(
-                    operator='and',
-                    patterns=(
-                        abjad.Pattern(
-                            indices=[0],
-                            period=2,
-                            ),
-                        abjad.Pattern(
-                            indices=[-3, -2, -1],
-                            inverted=True,
-                            ),
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                operator='and',
+                patterns=(
+                    abjad.Pattern(
+                        indices=[0],
+                        period=2,
                         ),
-                    )
+                    abjad.Pattern(
+                        indices=[-3, -2, -1],
+                        inverted=True,
+                        ),
+                    ),
+                )
 
             Reverses pattern:
 
-            ::
-
-                >>> pattern = pattern.reverse()
-                >>> f(pattern)
-                abjad.Pattern(
-                    operator='and',
-                    patterns=(
-                        abjad.Pattern(
-                            indices=[-1],
-                            period=2,
-                            ),
-                        abjad.Pattern(
-                            indices=[2, 1, 0],
-                            inverted=True,
-                            ),
+            >>> pattern = pattern.reverse()
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                operator='and',
+                patterns=(
+                    abjad.Pattern(
+                        indices=[-1],
+                        period=2,
                         ),
-                    )
+                    abjad.Pattern(
+                        indices=[2, 1, 0],
+                        inverted=True,
+                        ),
+                    ),
+                )
 
             New pattern matches every index that is (equal to -1 % 2) AND
             (not one of the first three indices).
@@ -2856,213 +2469,187 @@ class Pattern(AbjadValueObject):
 
             Matches three indices out of every eight:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[0, 1, 7],
+            ...     period=8,
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[0, 1, 7],
-                ...     period=8,
-                ...     )
-
-            ::
-
-                >>> total_length = 16
-                >>> for index in range(16):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1 True
-                2
-                3
-                4
-                5
-                6
-                7 True
-                8 True
-                9 True
-                10
-                11
-                12
-                13
-                14
-                15 True
+            >>> total_length = 16
+            >>> for index in range(16):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1 True
+            2
+            3
+            4
+            5
+            6
+            7 True
+            8 True
+            9 True
+            10
+            11
+            12
+            13
+            14
+            15 True
 
             Rotates pattern two elements to the right:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[0, 1, 7],
+            ...     period=8,
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[0, 1, 7],
-                ...     period=8,
-                ...     )
+            >>> pattern = pattern.rotate(n=2)
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                indices=[2, 3, 9],
+                period=8,
+                )
 
-            ::
-
-                >>> pattern = pattern.rotate(n=2)
-                >>> f(pattern)
-                abjad.Pattern(
-                    indices=[2, 3, 9],
-                    period=8,
-                    )
-
-            ::
-
-                >>> total_length = 16
-                >>> for index in range(16):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0
-                1 True
-                2 True
-                3 True
-                4
-                5
-                6
-                7
-                8
-                9 True
-                10 True
-                11 True
-                12
-                13
-                14
-                15
+            >>> total_length = 16
+            >>> for index in range(16):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0
+            1 True
+            2 True
+            3 True
+            4
+            5
+            6
+            7
+            8
+            9 True
+            10 True
+            11 True
+            12
+            13
+            14
+            15
 
         ..  container:: example
 
             Matches three indices out of every eight with negative indices:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[-3, -2, -1],
+            ...     period=8,
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[-3, -2, -1],
-                ...     period=8,
-                ...     )
-
-            ::
-
-                >>> total_length = 16
-                >>> for index in range(16):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0
-                1
-                2
-                3
-                4
-                5 True
-                6 True
-                7 True
-                8
-                9
-                10
-                11
-                12
-                13 True
-                14 True
-                15 True
+            >>> total_length = 16
+            >>> for index in range(16):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0
+            1
+            2
+            3
+            4
+            5 True
+            6 True
+            7 True
+            8
+            9
+            10
+            11
+            12
+            13 True
+            14 True
+            15 True
 
             Rotates pattern two elements to the right:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[-3, -2, -1],
+            ...     period=8,
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[-3, -2, -1],
-                ...     period=8,
-                ...     )
+            >>> pattern = pattern.rotate(n=2)
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                indices=[-1, 0, 1],
+                period=8,
+                )
 
-            ::
-
-                >>> pattern = pattern.rotate(n=2)
-                >>> f(pattern)
-                abjad.Pattern(
-                    indices=[-1, 0, 1],
-                    period=8,
-                    )
-
-            ::
-
-                >>> total_length = 16
-                >>> for index in range(16):
-                ...     match = pattern.matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1 True
-                2
-                3
-                4
-                5
-                6
-                7 True
-                8 True
-                9 True
-                10
-                11
-                12
-                13
-                14
-                15 True
+            >>> total_length = 16
+            >>> for index in range(16):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1 True
+            2
+            3
+            4
+            5
+            6
+            7 True
+            8 True
+            9 True
+            10
+            11
+            12
+            13
+            14
+            15 True
 
         ..  container:: example
 
             Matches every index that is (equal to 0 % 2) AND (not one of the
             last three indices):
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     operator='and',
+            ...     patterns=[
+            ...         abjad.Pattern(
+            ...             indices=[0],
+            ...             period=2,
+            ...             ),
+            ...         abjad.Pattern(
+            ...             indices=[-3, -2, -1],
+            ...             inverted=True,
+            ...             ),
+            ...         ],
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     operator='and',
-                ...     patterns=[
-                ...         abjad.Pattern(
-                ...             indices=[0],
-                ...             period=2,
-                ...             ),
-                ...         abjad.Pattern(
-                ...             indices=[-3, -2, -1],
-                ...             inverted=True,
-                ...             ),
-                ...         ],
-                ...     )
-
-            ::
-
-                >>> f(pattern)
-                abjad.Pattern(
-                    operator='and',
-                    patterns=(
-                        abjad.Pattern(
-                            indices=[0],
-                            period=2,
-                            ),
-                        abjad.Pattern(
-                            indices=[-3, -2, -1],
-                            inverted=True,
-                            ),
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                operator='and',
+                patterns=(
+                    abjad.Pattern(
+                        indices=[0],
+                        period=2,
                         ),
-                    )
+                    abjad.Pattern(
+                        indices=[-3, -2, -1],
+                        inverted=True,
+                        ),
+                    ),
+                )
 
             Rotates pattern two elements to the right:
 
-            ::
-
-                >>> pattern = pattern.rotate(n=2)
-                >>> f(pattern)
-                abjad.Pattern(
-                    operator='and',
-                    patterns=(
-                        abjad.Pattern(
-                            indices=[2],
-                            period=2,
-                            ),
-                        abjad.Pattern(
-                            indices=[-1, 0, 1],
-                            inverted=True,
-                            ),
+            >>> pattern = pattern.rotate(n=2)
+            >>> abjad.f(pattern)
+            abjad.Pattern(
+                operator='and',
+                patterns=(
+                    abjad.Pattern(
+                        indices=[2],
+                        period=2,
                         ),
-                    )
+                    abjad.Pattern(
+                        indices=[-1, 0, 1],
+                        inverted=True,
+                        ),
+                    ),
+                )
 
             New pattern matches every index that is (equal to 2 % 2) AND (not
             the first, second or last index in the pattern).

@@ -6,17 +6,13 @@ class Inversion(AbjadValueObject):
 
     ..  container:: example
 
-        ::
-
-            >>> abjad.Inversion()
-            Inversion()
+        >>> abjad.Inversion()
+        Inversion()
 
     ..  container:: example
 
-        ::
-
-            >>> abjad.Inversion(axis=15)
-            Inversion(axis=NamedPitch("ef''"))
+        >>> abjad.Inversion(axis=15)
+        Inversion(axis=NamedPitch("ef''"))
 
     Object model of twelve-tone inversion operator.
     '''
@@ -44,38 +40,30 @@ class Inversion(AbjadValueObject):
 
             Example segment:
 
-            ::
-
-                >>> items = [0, 2, 4, 5]
-                >>> segment = abjad.PitchClassSegment(items=items)
-                >>> show(segment) # doctest: +SKIP
+            >>> items = [0, 2, 4, 5]
+            >>> segment = abjad.PitchClassSegment(items=items)
+            >>> abjad.show(segment) # doctest: +SKIP
 
             Example operators:
 
-            ::
-
-                >>> inversion = abjad.Inversion()
-                >>> transposition = abjad.Transposition(n=3)
+            >>> inversion = abjad.Inversion()
+            >>> transposition = abjad.Transposition(n=3)
 
         ..  container:: example
 
             Transposition followed by inversion:
 
-            ::
+            >>> operator = inversion + transposition
+            >>> str(operator)
+            'IT3'
 
-                >>> operator = inversion + transposition
-                >>> str(operator)
-                'IT3'
-
-            ::
-
-                >>> segment_ = operator(segment)
-                >>> show(segment_) # doctest: +SKIP
+            >>> segment_ = operator(segment)
+            >>> abjad.show(segment_) # doctest: +SKIP
 
             ..  docs::
 
                 >>> lilypond_file = segment_.__illustrate__()
-                >>> f(lilypond_file[abjad.Voice])
+                >>> abjad.f(lilypond_file[abjad.Voice])
                 \new Voice {
                     a'8
                     g'8
@@ -89,21 +77,17 @@ class Inversion(AbjadValueObject):
 
             Inversion followed by transposition:
 
-            ::
+            >>> operator = transposition + inversion
+            >>> str(operator)
+            'T3I'
 
-                >>> operator = transposition + inversion
-                >>> str(operator)
-                'T3I'
-
-            ::
-
-                >>> segment_ = operator(segment)
-                >>> show(segment_) # doctest: +SKIP
+            >>> segment_ = operator(segment)
+            >>> abjad.show(segment_) # doctest: +SKIP
 
             ..  docs::
 
                 >>> lilypond_file = segment_.__illustrate__()
-                >>> f(lilypond_file[abjad.Voice])
+                >>> abjad.f(lilypond_file[abjad.Voice])
                 \new Voice {
                     ef'8
                     cs'8
@@ -117,17 +101,15 @@ class Inversion(AbjadValueObject):
 
             Returns compound operator:
 
-            ::
-
-                >>> f(operator)
-                abjad.CompoundOperator(
-                    operators=[
-                        abjad.Inversion(),
-                        abjad.Transposition(
-                            n=3,
-                            ),
-                        ],
-                    )
+            >>> abjad.f(operator)
+            abjad.CompoundOperator(
+                operators=[
+                    abjad.Inversion(),
+                    abjad.Transposition(
+                        n=3,
+                        ),
+                    ],
+                )
 
         '''
         from abjad.tools import pitchtools
@@ -140,78 +122,64 @@ class Inversion(AbjadValueObject):
 
             Inverts numbered pitch-class:
 
-            ::
-
-                >>> inversion = abjad.Inversion()
-                >>> pitch_class = abjad.NumberedPitchClass(1)
-                >>> inversion(pitch_class)
-                NumberedPitchClass(11)
+            >>> inversion = abjad.Inversion()
+            >>> pitch_class = abjad.NumberedPitchClass(1)
+            >>> inversion(pitch_class)
+            NumberedPitchClass(11)
 
         ..  container:: example
 
             Inverts numbered pitch:
 
-            ::
-
-                >>> inversion = abjad.Inversion()
-                >>> pitch = abjad.NumberedPitch(15)
-                >>> inversion(pitch)
-                NumberedPitch(-15)
+            >>> inversion = abjad.Inversion()
+            >>> pitch = abjad.NumberedPitch(15)
+            >>> inversion(pitch)
+            NumberedPitch(-15)
 
         ..  container:: example
 
             Inverts named pitch:
 
-            ::
-
-                >>> inversion = abjad.Inversion()
-                >>> pitch = abjad.NamedPitch("d'")
-                >>> inversion(pitch)
-                NamedPitch('bf')
+            >>> inversion = abjad.Inversion()
+            >>> pitch = abjad.NamedPitch("d'")
+            >>> inversion(pitch)
+            NamedPitch('bf')
 
         ..  container:: example
 
             Inverts named pitch class:
 
-            ::
-
-                >>> inversion = abjad.Inversion()
-                >>> pitch_class = abjad.NamedPitchClass('d')
-                >>> inversion(pitch_class)
-                NamedPitchClass('bf')
+            >>> inversion = abjad.Inversion()
+            >>> pitch_class = abjad.NamedPitchClass('d')
+            >>> inversion(pitch_class)
+            NamedPitchClass('bf')
 
         ..  container:: example
 
             Inverts pitch segment:
 
-            ::
-
-                >>> inversion = abjad.Inversion()
-                >>> segment = abjad.PitchSegment("c' d' e'")
-                >>> inversion(segment)
-                PitchSegment("c' bf af")
+            >>> inversion = abjad.Inversion()
+            >>> segment = abjad.PitchSegment("c' d' e'")
+            >>> inversion(segment)
+            PitchSegment("c' bf af")
 
         ..  container:: example
 
             Inverts pitch class segment:
 
-            ::
-
-                >>> inversion = abjad.Inversion()
-                >>> segment = abjad.PitchClassSegment("c d e")
-                >>> inversion(segment)
-                PitchClassSegment("c bf af")
+            >>> inversion = abjad.Inversion()
+            >>> segment = abjad.PitchClassSegment("c d e")
+            >>> inversion(segment)
+            PitchClassSegment("c bf af")
 
         ..  container:: example
 
             Inverts pitch class set:
 
-            ::
-
-                >>> inversion = abjad.Inversion()
-                >>> setting = abjad.PitchClassSet("c d e")
-                >>> inversion(setting)
-                PitchClassSet(['c', 'af', 'bf'])
+            >>> inversion = abjad.Inversion()
+            >>> setting = abjad.PitchClassSet("c d e")
+            >>> inversion(setting)
+            PitchClassSet(['c', 'af', 'bf'])
 
         Returns new object with type equal to that of `argument`.
         '''
@@ -228,12 +196,10 @@ class Inversion(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.Inversion().__radd__(abjad.Inversion())
-                Traceback (most recent call last):
-                ...
-                NotImplementedError: right-addition not defined on Inversion.
+            >>> abjad.Inversion().__radd__(abjad.Inversion())
+            Traceback (most recent call last):
+            ...
+            NotImplementedError: right-addition not defined on Inversion.
 
         Raises not implemented error.
         '''
@@ -246,17 +212,13 @@ class Inversion(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> str(abjad.Inversion())
-                'I'
+            >>> str(abjad.Inversion())
+            'I'
 
         ..  container:: example
 
-            ::
-
-                >>> str(abjad.Inversion(axis=15))
-                'I(Eb5)'
+            >>> str(abjad.Inversion(axis=15))
+            'I(Eb5)'
 
         '''
         if self.axis is None:
@@ -287,19 +249,15 @@ class Inversion(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> inversion = abjad.Inversion()
-                >>> inversion.axis is None
-                True
+            >>> inversion = abjad.Inversion()
+            >>> inversion.axis is None
+            True
 
         ..  container:: example
 
-            ::
-
-                >>> inversion = abjad.Inversion(axis=15)
-                >>> inversion.axis
-                NamedPitch("ef''")
+            >>> inversion = abjad.Inversion(axis=15)
+            >>> inversion.axis
+            NamedPitch("ef''")
 
         Returns named pitch or none.
         '''

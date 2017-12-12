@@ -83,19 +83,17 @@ class MeterManager(abctools.AbjadObject):
         r'''Iterates topmost masked logical ties, rest groups and containers
         in `argument`, masked by `argument`.
 
-        ::
-
-            >>> string = "abj: ! 2/4 c'4 d'4 ~ !"
-            >>> string += "! 4/4 d'8. r16 r8. e'16 ~ "
-            >>> string += "2/3 { e'8 ~ e'8 f'8 ~ } f'4 ~ !"
-            >>> string += "! 4/4 f'8 g'8 ~ g'4 a'4 ~ a'8 b'8 ~ !"
-            >>> string += "! 2/4 b'4 c''4 !"
-            >>> string = string.replace('!', '|')
-            >>> staff = abjad.Staff(string)
+        >>> string = "abj: ! 2/4 c'4 d'4 ~ !"
+        >>> string += "! 4/4 d'8. r16 r8. e'16 ~ "
+        >>> string += "2/3 { e'8 ~ e'8 f'8 ~ } f'4 ~ !"
+        >>> string += "! 4/4 f'8 g'8 ~ g'4 a'4 ~ a'8 b'8 ~ !"
+        >>> string += "! 2/4 b'4 c''4 !"
+        >>> string = string.replace('!', '|')
+        >>> staff = abjad.Staff(string)
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 {
                     \time 2/4
@@ -130,42 +128,34 @@ class MeterManager(abctools.AbjadObject):
                 }
             }
 
-        ::
+        >>> for x in abjad.MeterManager.iterate_rewrite_inputs(
+        ...     staff[0]): x
+        ...
+        LogicalTie([Note("c'4")])
+        LogicalTie([Note("d'4")])
 
-            >>> for x in abjad.MeterManager.iterate_rewrite_inputs(
-            ...     staff[0]): x
-            ...
-            LogicalTie([Note("c'4")])
-            LogicalTie([Note("d'4")])
+        >>> for x in abjad.MeterManager.iterate_rewrite_inputs(
+        ...     staff[1]): x
+        ...
+        LogicalTie([Note("d'8.")])
+        LogicalTie([Rest('r16'), Rest('r8.')])
+        LogicalTie([Note("e'16")])
+        Tuplet(Multiplier(2, 3), "e'8 ~ e'8 f'8 ~")
+        LogicalTie([Note("f'4")])
 
-        ::
+        >>> for x in abjad.MeterManager.iterate_rewrite_inputs(
+        ...     staff[2]): x
+        ...
+        LogicalTie([Note("f'8")])
+        LogicalTie([Note("g'8"), Note("g'4")])
+        LogicalTie([Note("a'4"), Note("a'8")])
+        LogicalTie([Note("b'8")])
 
-            >>> for x in abjad.MeterManager.iterate_rewrite_inputs(
-            ...     staff[1]): x
-            ...
-            LogicalTie([Note("d'8.")])
-            LogicalTie([Rest('r16'), Rest('r8.')])
-            LogicalTie([Note("e'16")])
-            Tuplet(Multiplier(2, 3), "e'8 ~ e'8 f'8 ~")
-            LogicalTie([Note("f'4")])
-
-        ::
-
-            >>> for x in abjad.MeterManager.iterate_rewrite_inputs(
-            ...     staff[2]): x
-            ...
-            LogicalTie([Note("f'8")])
-            LogicalTie([Note("g'8"), Note("g'4")])
-            LogicalTie([Note("a'4"), Note("a'8")])
-            LogicalTie([Note("b'8")])
-
-        ::
-
-            >>> for x in abjad.MeterManager.iterate_rewrite_inputs(
-            ...     staff[3]): x
-            ...
-            LogicalTie([Note("b'4")])
-            LogicalTie([Note("c''4")])
+        >>> for x in abjad.MeterManager.iterate_rewrite_inputs(
+        ...     staff[3]): x
+        ...
+        LogicalTie([Note("b'4")])
+        LogicalTie([Note("c''4")])
 
         Returns generator.
         '''

@@ -8,18 +8,16 @@ class Repeat(AbjadValueObject):
 
         Volta repeat:
 
-        ::
-
-            >>> container = abjad.Container("c'4 d'4 e'4 f'4")
-            >>> repeat = abjad.Repeat()
-            >>> abjad.attach(repeat, container)
-            >>> staff = abjad.Staff([container])
-            >>> score = abjad.Score([staff])
-            >>> show(score)  # doctest: +SKIP
+        >>> container = abjad.Container("c'4 d'4 e'4 f'4")
+        >>> repeat = abjad.Repeat()
+        >>> abjad.attach(repeat, container)
+        >>> staff = abjad.Staff([container])
+        >>> score = abjad.Score([staff])
+        >>> abjad.show(score)  # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(score)
+            >>> abjad.f(score)
             \new Score <<
                 \new Staff {
                     \repeat volta 2
@@ -36,18 +34,16 @@ class Repeat(AbjadValueObject):
 
         Unfold repeat:
 
-        ::
-
-            >>> container = abjad.Container("c'4 d'4 e'4 f'4")
-            >>> repeat = abjad.Repeat(repeat_type='unfold')
-            >>> abjad.attach(repeat, container)
-            >>> staff = abjad.Staff([container])
-            >>> score = abjad.Score([staff])
-            >>> show(score)  # doctest: +SKIP
+        >>> container = abjad.Container("c'4 d'4 e'4 f'4")
+        >>> repeat = abjad.Repeat(repeat_type='unfold')
+        >>> abjad.attach(repeat, container)
+        >>> staff = abjad.Staff([container])
+        >>> score = abjad.Score([staff])
+        >>> abjad.show(score)  # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(score)
+            >>> abjad.f(score)
             \new Score <<
                 \new Staff {
                     \repeat unfold 2
@@ -96,19 +92,15 @@ class Repeat(AbjadValueObject):
 
             Volta repeat:
 
-            ::
-
-                >>> str(abjad.Repeat())
-                '\\repeat volta 2'
+            >>> str(abjad.Repeat())
+            '\\repeat volta 2'
 
         ..  container:: example
 
             Unfold repeat:
 
-            ::
-
-                >>> str(abjad.Repeat(repeat_type='unfold'))
-                '\\repeat unfold 2'
+            >>> str(abjad.Repeat(repeat_type='unfold'))
+            '\\repeat unfold 2'
 
         Returns string.
         '''
@@ -138,21 +130,17 @@ class Repeat(AbjadValueObject):
 
             Volta repeat:
 
-            ::
-
-                >>> repeat = abjad.Repeat()
-                >>> repeat.default_scope
-                <class 'abjad.tools.scoretools.Score.Score'>
+            >>> repeat = abjad.Repeat()
+            >>> repeat.default_scope
+            <class 'abjad.tools.scoretools.Score.Score'>
 
         ..  container:: example
 
             Unfold repeat:
 
-            ::
-
-                >>> repeat = abjad.Repeat(repeat_type='unfold')
-                >>> repeat.default_scope
-                <class 'abjad.tools.scoretools.Score.Score'>
+            >>> repeat = abjad.Repeat(repeat_type='unfold')
+            >>> repeat.default_scope
+            <class 'abjad.tools.scoretools.Score.Score'>
 
         Returns score.
         '''
@@ -166,21 +154,17 @@ class Repeat(AbjadValueObject):
 
             Volta repeat:
 
-            ::
-
-                >>> repeat = abjad.Repeat()
-                >>> repeat.repeat_count
-                2
+            >>> repeat = abjad.Repeat()
+            >>> repeat.repeat_count
+            2
 
         ..  container:: example
 
             Unfold repeat:
 
-            ::
-
-                >>> repeat = abjad.Repeat(repeat_type='unfold')
-                >>> repeat.repeat_count
-                2
+            >>> repeat = abjad.Repeat(repeat_type='unfold')
+            >>> repeat.repeat_count
+            2
 
         Defaults to 2.
 
@@ -198,21 +182,17 @@ class Repeat(AbjadValueObject):
 
             Volta repeat:
 
-            ::
-
-                >>> repeat = abjad.Repeat()
-                >>> repeat.repeat_type
-                'volta'
+            >>> repeat = abjad.Repeat()
+            >>> repeat.repeat_type
+            'volta'
 
         ..  container:: example
 
             Unfold repeat:
 
-            ::
-
-                >>> repeat = abjad.Repeat(repeat_type='unfold')
-                >>> repeat.repeat_type
-                'unfold'
+            >>> repeat = abjad.Repeat(repeat_type='unfold')
+            >>> repeat.repeat_type
+            'unfold'
 
         Defaults to ``'volta'``.
 

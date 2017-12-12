@@ -27,52 +27,46 @@ class Postscript(AbjadValueObject):
 
     ..  container:: example
 
-        ::
+        >>> postscript = abjad.Postscript()
+        >>> postscript = postscript.moveto(1, 1)
+        >>> postscript = postscript.setlinewidth(2.5)
+        >>> postscript = postscript.setdash((2, 1))
+        >>> postscript = postscript.lineto(3, -4)
+        >>> postscript = postscript.stroke()
+        >>> print(format(postscript))
+        abjad.Postscript(
+            operators=(
+                abjad.PostscriptOperator('moveto', 1.0, 1.0),
+                abjad.PostscriptOperator('setlinewidth', 2.5),
+                abjad.PostscriptOperator('setdash', (2.0, 1.0), 0.0),
+                abjad.PostscriptOperator('lineto', 3.0, -4.0),
+                abjad.PostscriptOperator('stroke'),
+                ),
+            )
 
-            >>> postscript = abjad.Postscript()
-            >>> postscript = postscript.moveto(1, 1)
-            >>> postscript = postscript.setlinewidth(2.5)
-            >>> postscript = postscript.setdash((2, 1))
-            >>> postscript = postscript.lineto(3, -4)
-            >>> postscript = postscript.stroke()
-            >>> print(format(postscript))
-            abjad.Postscript(
-                operators=(
-                    abjad.PostscriptOperator('moveto', 1.0, 1.0),
-                    abjad.PostscriptOperator('setlinewidth', 2.5),
-                    abjad.PostscriptOperator('setdash', (2.0, 1.0), 0.0),
-                    abjad.PostscriptOperator('lineto', 3.0, -4.0),
-                    abjad.PostscriptOperator('stroke'),
-                    ),
-                )
+        >>> print(str(postscript))
+        1 1 moveto
+        2.5 setlinewidth
+        [ 2 1 ] 0 setdash
+        3 -4 lineto
+        stroke
 
-        ::
-
-            >>> print(str(postscript))
-            1 1 moveto
-            2.5 setlinewidth
-            [ 2 1 ] 0 setdash
-            3 -4 lineto
-            stroke
-
-        ::
-
-            >>> postscript = abjad.Postscript()
-            >>> postscript = postscript.newpath()
-            >>> postscript = postscript.moveto(0, 0)
-            >>> postscript = postscript.rlineto(0, -10)
-            >>> postscript = postscript.rlineto(10, 0)
-            >>> postscript = postscript.rlineto(0, 10)
-            >>> postscript = postscript.rlineto(-10, 0)
-            >>> postscript = postscript.closepath()
-            >>> postscript = postscript.gsave()
-            >>> postscript = postscript.setrgbcolor(0.5, 1, 0.5)
-            >>> postscript = postscript.fill()
-            >>> postscript = postscript.grestore()
-            >>> postscript = postscript.setrgbcolor(1, 0, 0)
-            >>> postscript = postscript.setlinewidth(1)
-            >>> postscript = postscript.stroke()
-            >>> show(postscript) # doctest: +SKIP
+        >>> postscript = abjad.Postscript()
+        >>> postscript = postscript.newpath()
+        >>> postscript = postscript.moveto(0, 0)
+        >>> postscript = postscript.rlineto(0, -10)
+        >>> postscript = postscript.rlineto(10, 0)
+        >>> postscript = postscript.rlineto(0, 10)
+        >>> postscript = postscript.rlineto(-10, 0)
+        >>> postscript = postscript.closepath()
+        >>> postscript = postscript.gsave()
+        >>> postscript = postscript.setrgbcolor(0.5, 1, 0.5)
+        >>> postscript = postscript.fill()
+        >>> postscript = postscript.grestore()
+        >>> postscript = postscript.setrgbcolor(1, 0, 0)
+        >>> postscript = postscript.setlinewidth(1)
+        >>> postscript = postscript.stroke()
+        >>> abjad.show(postscript) # doctest: +SKIP
 
     '''
 
@@ -170,43 +164,39 @@ class Postscript(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(100, 200)
+            >>> postscript = postscript.lineto(200, 250)
+            >>> postscript = postscript.lineto(100, 300)
+            >>> postscript = postscript.closepath()
+            >>> postscript = postscript.gsave()
+            >>> postscript = postscript.setgray(0.5)
+            >>> postscript = postscript.fill()
+            >>> postscript = postscript.grestore()
+            >>> postscript = postscript.setlinewidth(4)
+            >>> postscript = postscript.setgray(0.75)
+            >>> postscript = postscript.stroke()
 
-                >>> postscript = abjad.Postscript()
-                >>> postscript = postscript.newpath()
-                >>> postscript = postscript.moveto(100, 200)
-                >>> postscript = postscript.lineto(200, 250)
-                >>> postscript = postscript.lineto(100, 300)
-                >>> postscript = postscript.closepath()
-                >>> postscript = postscript.gsave()
-                >>> postscript = postscript.setgray(0.5)
-                >>> postscript = postscript.fill()
-                >>> postscript = postscript.grestore()
-                >>> postscript = postscript.setlinewidth(4)
-                >>> postscript = postscript.setgray(0.75)
-                >>> postscript = postscript.stroke()
-
-            ::
-
-                >>> markup = postscript.as_markup()
-                >>> print(format(markup))
-                \markup {
-                    \postscript
-                        #"
-                        newpath
-                        100 200 moveto
-                        200 250 lineto
-                        100 300 lineto
-                        closepath
-                        gsave
-                        0.5 setgray
-                        fill
-                        grestore
-                        4 setlinewidth
-                        0.75 setgray
-                        stroke
-                        "
-                    }
+            >>> markup = postscript.as_markup()
+            >>> print(format(markup))
+            \markup {
+                \postscript
+                    #"
+                    newpath
+                    100 200 moveto
+                    200 250 lineto
+                    100 300 lineto
+                    closepath
+                    gsave
+                    0.5 setgray
+                    fill
+                    grestore
+                    4 setlinewidth
+                    0.75 setgray
+                    stroke
+                    "
+                }
 
         Returns new markup.
         '''
@@ -218,34 +208,32 @@ class Postscript(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> postscript = abjad.Postscript()
-                >>> postscript = postscript.findfont('Times Roman')
-                >>> postscript = postscript.scalefont(32)
-                >>> postscript = postscript.setfont()
-                >>> postscript = postscript.translate(100, 200)
-                >>> postscript = postscript.rotate(45)
-                >>> postscript = postscript.scale(2, 1)
-                >>> postscript = postscript.newpath()
-                >>> postscript = postscript.moveto(0, 0)
-                >>> postscript = postscript.charpath('This is text.', True)
-                >>> postscript = postscript.setlinewidth(0.5)
-                >>> postscript = postscript.setgray(0.25)
-                >>> postscript = postscript.stroke()
-                >>> print(str(postscript))
-                /Times-Roman findfont
-                32 scalefont
-                setfont
-                100 200 translate
-                45 rotate
-                2 1 scale
-                newpath
-                0 0 moveto
-                (This is text.) true charpath
-                0.5 setlinewidth
-                0.25 setgray
-                stroke
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.findfont('Times Roman')
+            >>> postscript = postscript.scalefont(32)
+            >>> postscript = postscript.setfont()
+            >>> postscript = postscript.translate(100, 200)
+            >>> postscript = postscript.rotate(45)
+            >>> postscript = postscript.scale(2, 1)
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(0, 0)
+            >>> postscript = postscript.charpath('This is text.', True)
+            >>> postscript = postscript.setlinewidth(0.5)
+            >>> postscript = postscript.setgray(0.25)
+            >>> postscript = postscript.stroke()
+            >>> print(str(postscript))
+            /Times-Roman findfont
+            32 scalefont
+            setfont
+            100 200 translate
+            45 rotate
+            2 1 scale
+            newpath
+            0 0 moveto
+            (This is text.) true charpath
+            0.5 setlinewidth
+            0.25 setgray
+            stroke
 
         Returns new Postscript.
         '''
@@ -264,34 +252,32 @@ class Postscript(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> postscript = abjad.Postscript()
-                >>> postscript = postscript.newpath()
-                >>> postscript = postscript.moveto(100, 200)
-                >>> postscript = postscript.lineto(200, 250)
-                >>> postscript = postscript.lineto(100, 300)
-                >>> postscript = postscript.closepath()
-                >>> postscript = postscript.gsave()
-                >>> postscript = postscript.setgray(0.5)
-                >>> postscript = postscript.fill()
-                >>> postscript = postscript.grestore()
-                >>> postscript = postscript.setlinewidth(4)
-                >>> postscript = postscript.setgray(0.75)
-                >>> postscript = postscript.stroke()
-                >>> print(str(postscript))
-                newpath
-                100 200 moveto
-                200 250 lineto
-                100 300 lineto
-                closepath
-                gsave
-                0.5 setgray
-                fill
-                grestore
-                4 setlinewidth
-                0.75 setgray
-                stroke
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(100, 200)
+            >>> postscript = postscript.lineto(200, 250)
+            >>> postscript = postscript.lineto(100, 300)
+            >>> postscript = postscript.closepath()
+            >>> postscript = postscript.gsave()
+            >>> postscript = postscript.setgray(0.5)
+            >>> postscript = postscript.fill()
+            >>> postscript = postscript.grestore()
+            >>> postscript = postscript.setlinewidth(4)
+            >>> postscript = postscript.setgray(0.75)
+            >>> postscript = postscript.stroke()
+            >>> print(str(postscript))
+            newpath
+            100 200 moveto
+            200 250 lineto
+            100 300 lineto
+            closepath
+            gsave
+            0.5 setgray
+            fill
+            grestore
+            4 setlinewidth
+            0.75 setgray
+            stroke
 
         Returns new Postscript.
         '''
@@ -304,12 +290,10 @@ class Postscript(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> postscript = abjad.Postscript()
-                >>> postscript = postscript.curveto(0, 1, 1.5, 2, 3, 6)
-                >>> print(str(postscript))
-                0 1 1.5 2 3 6 curveto
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.curveto(0, 1, 1.5, 2, 3, 6)
+            >>> print(str(postscript))
+            0 1 1.5 2 3 6 curveto
 
         Returns new Postscript.
         '''
@@ -333,34 +317,32 @@ class Postscript(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> postscript = abjad.Postscript()
-                >>> postscript = postscript.newpath()
-                >>> postscript = postscript.moveto(100, 200)
-                >>> postscript = postscript.lineto(200, 250)
-                >>> postscript = postscript.lineto(100, 300)
-                >>> postscript = postscript.closepath()
-                >>> postscript = postscript.gsave()
-                >>> postscript = postscript.setgray(0.5)
-                >>> postscript = postscript.fill()
-                >>> postscript = postscript.grestore()
-                >>> postscript = postscript.setlinewidth(4)
-                >>> postscript = postscript.setgray(0.75)
-                >>> postscript = postscript.stroke()
-                >>> print(str(postscript))
-                newpath
-                100 200 moveto
-                200 250 lineto
-                100 300 lineto
-                closepath
-                gsave
-                0.5 setgray
-                fill
-                grestore
-                4 setlinewidth
-                0.75 setgray
-                stroke
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(100, 200)
+            >>> postscript = postscript.lineto(200, 250)
+            >>> postscript = postscript.lineto(100, 300)
+            >>> postscript = postscript.closepath()
+            >>> postscript = postscript.gsave()
+            >>> postscript = postscript.setgray(0.5)
+            >>> postscript = postscript.fill()
+            >>> postscript = postscript.grestore()
+            >>> postscript = postscript.setlinewidth(4)
+            >>> postscript = postscript.setgray(0.75)
+            >>> postscript = postscript.stroke()
+            >>> print(str(postscript))
+            newpath
+            100 200 moveto
+            200 250 lineto
+            100 300 lineto
+            closepath
+            gsave
+            0.5 setgray
+            fill
+            grestore
+            4 setlinewidth
+            0.75 setgray
+            stroke
 
         Returns new Postscript.
         '''
@@ -373,22 +355,20 @@ class Postscript(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> postscript = abjad.Postscript()
-                >>> postscript = postscript.findfont('Times Roman')
-                >>> postscript = postscript.scalefont(12)
-                >>> postscript = postscript.setfont()
-                >>> postscript = postscript.newpath()
-                >>> postscript = postscript.moveto(100, 200)
-                >>> postscript = postscript.show('This is text.')
-                >>> print(str(postscript))
-                /Times-Roman findfont
-                12 scalefont
-                setfont
-                newpath
-                100 200 moveto
-                (This is text.) show
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.findfont('Times Roman')
+            >>> postscript = postscript.scalefont(12)
+            >>> postscript = postscript.setfont()
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(100, 200)
+            >>> postscript = postscript.show('This is text.')
+            >>> print(str(postscript))
+            /Times-Roman findfont
+            12 scalefont
+            setfont
+            newpath
+            100 200 moveto
+            (This is text.) show
 
         Returns new Postscript.
         '''
@@ -404,34 +384,32 @@ class Postscript(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> postscript = abjad.Postscript()
-                >>> postscript = postscript.newpath()
-                >>> postscript = postscript.moveto(100, 200)
-                >>> postscript = postscript.lineto(200, 250)
-                >>> postscript = postscript.lineto(100, 300)
-                >>> postscript = postscript.closepath()
-                >>> postscript = postscript.gsave()
-                >>> postscript = postscript.setgray(0.5)
-                >>> postscript = postscript.fill()
-                >>> postscript = postscript.grestore()
-                >>> postscript = postscript.setlinewidth(4)
-                >>> postscript = postscript.setgray(0.75)
-                >>> postscript = postscript.stroke()
-                >>> print(str(postscript))
-                newpath
-                100 200 moveto
-                200 250 lineto
-                100 300 lineto
-                closepath
-                gsave
-                0.5 setgray
-                fill
-                grestore
-                4 setlinewidth
-                0.75 setgray
-                stroke
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(100, 200)
+            >>> postscript = postscript.lineto(200, 250)
+            >>> postscript = postscript.lineto(100, 300)
+            >>> postscript = postscript.closepath()
+            >>> postscript = postscript.gsave()
+            >>> postscript = postscript.setgray(0.5)
+            >>> postscript = postscript.fill()
+            >>> postscript = postscript.grestore()
+            >>> postscript = postscript.setlinewidth(4)
+            >>> postscript = postscript.setgray(0.75)
+            >>> postscript = postscript.stroke()
+            >>> print(str(postscript))
+            newpath
+            100 200 moveto
+            200 250 lineto
+            100 300 lineto
+            closepath
+            gsave
+            0.5 setgray
+            fill
+            grestore
+            4 setlinewidth
+            0.75 setgray
+            stroke
 
         Returns new Postscript.
         '''
@@ -444,34 +422,32 @@ class Postscript(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> postscript = abjad.Postscript()
-                >>> postscript = postscript.newpath()
-                >>> postscript = postscript.moveto(100, 200)
-                >>> postscript = postscript.lineto(200, 250)
-                >>> postscript = postscript.lineto(100, 300)
-                >>> postscript = postscript.closepath()
-                >>> postscript = postscript.gsave()
-                >>> postscript = postscript.setgray(0.5)
-                >>> postscript = postscript.fill()
-                >>> postscript = postscript.grestore()
-                >>> postscript = postscript.setlinewidth(4)
-                >>> postscript = postscript.setgray(0.75)
-                >>> postscript = postscript.stroke()
-                >>> print(str(postscript))
-                newpath
-                100 200 moveto
-                200 250 lineto
-                100 300 lineto
-                closepath
-                gsave
-                0.5 setgray
-                fill
-                grestore
-                4 setlinewidth
-                0.75 setgray
-                stroke
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(100, 200)
+            >>> postscript = postscript.lineto(200, 250)
+            >>> postscript = postscript.lineto(100, 300)
+            >>> postscript = postscript.closepath()
+            >>> postscript = postscript.gsave()
+            >>> postscript = postscript.setgray(0.5)
+            >>> postscript = postscript.fill()
+            >>> postscript = postscript.grestore()
+            >>> postscript = postscript.setlinewidth(4)
+            >>> postscript = postscript.setgray(0.75)
+            >>> postscript = postscript.stroke()
+            >>> print(str(postscript))
+            newpath
+            100 200 moveto
+            200 250 lineto
+            100 300 lineto
+            closepath
+            gsave
+            0.5 setgray
+            fill
+            grestore
+            4 setlinewidth
+            0.75 setgray
+            stroke
 
         Returns new Postscript.
         '''
@@ -484,16 +460,14 @@ class Postscript(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> postscript = abjad.Postscript()
-                >>> postscript = postscript.moveto(1, 1)
-                >>> postscript = postscript.lineto(3, -4)
-                >>> postscript = postscript.stroke()
-                >>> print(str(postscript))
-                1 1 moveto
-                3 -4 lineto
-                stroke
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.moveto(1, 1)
+            >>> postscript = postscript.lineto(3, -4)
+            >>> postscript = postscript.stroke()
+            >>> print(str(postscript))
+            1 1 moveto
+            3 -4 lineto
+            stroke
 
         Returns new Postscript.
         '''
@@ -508,27 +482,23 @@ class Postscript(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.moveto(1, 1)
+            >>> postscript = postscript.lineto(3, -4)
+            >>> postscript = postscript.stroke()
+            >>> print(format(postscript))
+            abjad.Postscript(
+                operators=(
+                    abjad.PostscriptOperator('moveto', 1.0, 1.0),
+                    abjad.PostscriptOperator('lineto', 3.0, -4.0),
+                    abjad.PostscriptOperator('stroke'),
+                    ),
+                )
 
-                >>> postscript = abjad.Postscript()
-                >>> postscript = postscript.moveto(1, 1)
-                >>> postscript = postscript.lineto(3, -4)
-                >>> postscript = postscript.stroke()
-                >>> print(format(postscript))
-                abjad.Postscript(
-                    operators=(
-                        abjad.PostscriptOperator('moveto', 1.0, 1.0),
-                        abjad.PostscriptOperator('lineto', 3.0, -4.0),
-                        abjad.PostscriptOperator('stroke'),
-                        ),
-                    )
-
-            ::
-
-                >>> print(str(postscript))
-                1 1 moveto
-                3 -4 lineto
-                stroke
+            >>> print(str(postscript))
+            1 1 moveto
+            3 -4 lineto
+            stroke
 
         Returns new Postscript.
         '''
@@ -543,34 +513,32 @@ class Postscript(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> postscript = abjad.Postscript()
-                >>> postscript = postscript.newpath()
-                >>> postscript = postscript.moveto(100, 200)
-                >>> postscript = postscript.lineto(200, 250)
-                >>> postscript = postscript.lineto(100, 300)
-                >>> postscript = postscript.closepath()
-                >>> postscript = postscript.gsave()
-                >>> postscript = postscript.setgray(0.5)
-                >>> postscript = postscript.fill()
-                >>> postscript = postscript.grestore()
-                >>> postscript = postscript.setlinewidth(4)
-                >>> postscript = postscript.setgray(0.75)
-                >>> postscript = postscript.stroke()
-                >>> print(str(postscript))
-                newpath
-                100 200 moveto
-                200 250 lineto
-                100 300 lineto
-                closepath
-                gsave
-                0.5 setgray
-                fill
-                grestore
-                4 setlinewidth
-                0.75 setgray
-                stroke
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(100, 200)
+            >>> postscript = postscript.lineto(200, 250)
+            >>> postscript = postscript.lineto(100, 300)
+            >>> postscript = postscript.closepath()
+            >>> postscript = postscript.gsave()
+            >>> postscript = postscript.setgray(0.5)
+            >>> postscript = postscript.fill()
+            >>> postscript = postscript.grestore()
+            >>> postscript = postscript.setlinewidth(4)
+            >>> postscript = postscript.setgray(0.75)
+            >>> postscript = postscript.stroke()
+            >>> print(str(postscript))
+            newpath
+            100 200 moveto
+            200 250 lineto
+            100 300 lineto
+            closepath
+            gsave
+            0.5 setgray
+            fill
+            grestore
+            4 setlinewidth
+            0.75 setgray
+            stroke
 
         Returns new Postscript.
         '''
@@ -583,12 +551,10 @@ class Postscript(AbjadValueObject):
 
         ..  container:: edxample
 
-            ::
-
-                >>> postscript = abjad.Postscript()
-                >>> postscript = postscript.rcurveto(0, 1, 1.5, 2, 3, 6)
-                >>> print(str(postscript))
-                0 1 1.5 2 3 6 rcurveto
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.rcurveto(0, 1, 1.5, 2, 3, 6)
+            >>> print(str(postscript))
+            0 1 1.5 2 3 6 rcurveto
 
         Returns new Postscript.
         '''
@@ -612,27 +578,23 @@ class Postscript(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.rmoveto(1, 1)
+            >>> postscript = postscript.rlineto(3, -4)
+            >>> postscript = postscript.stroke()
+            >>> print(format(postscript))
+            abjad.Postscript(
+                operators=(
+                    abjad.PostscriptOperator('rmoveto', 1.0, 1.0),
+                    abjad.PostscriptOperator('rlineto', 3.0, -4.0),
+                    abjad.PostscriptOperator('stroke'),
+                    ),
+                )
 
-                >>> postscript = abjad.Postscript()
-                >>> postscript = postscript.rmoveto(1, 1)
-                >>> postscript = postscript.rlineto(3, -4)
-                >>> postscript = postscript.stroke()
-                >>> print(format(postscript))
-                abjad.Postscript(
-                    operators=(
-                        abjad.PostscriptOperator('rmoveto', 1.0, 1.0),
-                        abjad.PostscriptOperator('rlineto', 3.0, -4.0),
-                        abjad.PostscriptOperator('stroke'),
-                        ),
-                    )
-
-            ::
-
-                >>> print(str(postscript))
-                1 1 rmoveto
-                3 -4 rlineto
-                stroke
+            >>> print(str(postscript))
+            1 1 rmoveto
+            3 -4 rlineto
+            stroke
 
         Returns new Postscript.
         '''
@@ -647,27 +609,23 @@ class Postscript(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.rmoveto(1, 1)
+            >>> postscript = postscript.rlineto(3, -4)
+            >>> postscript = postscript.stroke()
+            >>> print(format(postscript))
+            abjad.Postscript(
+                operators=(
+                    abjad.PostscriptOperator('rmoveto', 1.0, 1.0),
+                    abjad.PostscriptOperator('rlineto', 3.0, -4.0),
+                    abjad.PostscriptOperator('stroke'),
+                    ),
+                )
 
-                >>> postscript = abjad.Postscript()
-                >>> postscript = postscript.rmoveto(1, 1)
-                >>> postscript = postscript.rlineto(3, -4)
-                >>> postscript = postscript.stroke()
-                >>> print(format(postscript))
-                abjad.Postscript(
-                    operators=(
-                        abjad.PostscriptOperator('rmoveto', 1.0, 1.0),
-                        abjad.PostscriptOperator('rlineto', 3.0, -4.0),
-                        abjad.PostscriptOperator('stroke'),
-                        ),
-                    )
-
-            ::
-
-                >>> print(str(postscript))
-                1 1 rmoveto
-                3 -4 rlineto
-                stroke
+            >>> print(str(postscript))
+            1 1 rmoveto
+            3 -4 rlineto
+            stroke
 
         Returns new Postscript.
         '''
@@ -682,34 +640,32 @@ class Postscript(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> postscript = abjad.Postscript()
-                >>> postscript = postscript.findfont('Times Roman')
-                >>> postscript = postscript.scalefont(32)
-                >>> postscript = postscript.setfont()
-                >>> postscript = postscript.translate(100, 200)
-                >>> postscript = postscript.rotate(45)
-                >>> postscript = postscript.scale(2, 1)
-                >>> postscript = postscript.newpath()
-                >>> postscript = postscript.moveto(0, 0)
-                >>> postscript = postscript.charpath('This is text.', True)
-                >>> postscript = postscript.setlinewidth(0.5)
-                >>> postscript = postscript.setgray(0.25)
-                >>> postscript = postscript.stroke()
-                >>> print(str(postscript))
-                /Times-Roman findfont
-                32 scalefont
-                setfont
-                100 200 translate
-                45 rotate
-                2 1 scale
-                newpath
-                0 0 moveto
-                (This is text.) true charpath
-                0.5 setlinewidth
-                0.25 setgray
-                stroke
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.findfont('Times Roman')
+            >>> postscript = postscript.scalefont(32)
+            >>> postscript = postscript.setfont()
+            >>> postscript = postscript.translate(100, 200)
+            >>> postscript = postscript.rotate(45)
+            >>> postscript = postscript.scale(2, 1)
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(0, 0)
+            >>> postscript = postscript.charpath('This is text.', True)
+            >>> postscript = postscript.setlinewidth(0.5)
+            >>> postscript = postscript.setgray(0.25)
+            >>> postscript = postscript.stroke()
+            >>> print(str(postscript))
+            /Times-Roman findfont
+            32 scalefont
+            setfont
+            100 200 translate
+            45 rotate
+            2 1 scale
+            newpath
+            0 0 moveto
+            (This is text.) true charpath
+            0.5 setlinewidth
+            0.25 setgray
+            stroke
 
         Returns new Postscript.
         '''
@@ -723,34 +679,32 @@ class Postscript(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> postscript = abjad.Postscript()
-                >>> postscript = postscript.findfont('Times Roman')
-                >>> postscript = postscript.scalefont(32)
-                >>> postscript = postscript.setfont()
-                >>> postscript = postscript.translate(100, 200)
-                >>> postscript = postscript.rotate(45)
-                >>> postscript = postscript.scale(2, 1)
-                >>> postscript = postscript.newpath()
-                >>> postscript = postscript.moveto(0, 0)
-                >>> postscript = postscript.charpath('This is text.', True)
-                >>> postscript = postscript.setlinewidth(0.5)
-                >>> postscript = postscript.setgray(0.25)
-                >>> postscript = postscript.stroke()
-                >>> print(str(postscript))
-                /Times-Roman findfont
-                32 scalefont
-                setfont
-                100 200 translate
-                45 rotate
-                2 1 scale
-                newpath
-                0 0 moveto
-                (This is text.) true charpath
-                0.5 setlinewidth
-                0.25 setgray
-                stroke
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.findfont('Times Roman')
+            >>> postscript = postscript.scalefont(32)
+            >>> postscript = postscript.setfont()
+            >>> postscript = postscript.translate(100, 200)
+            >>> postscript = postscript.rotate(45)
+            >>> postscript = postscript.scale(2, 1)
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(0, 0)
+            >>> postscript = postscript.charpath('This is text.', True)
+            >>> postscript = postscript.setlinewidth(0.5)
+            >>> postscript = postscript.setgray(0.25)
+            >>> postscript = postscript.stroke()
+            >>> print(str(postscript))
+            /Times-Roman findfont
+            32 scalefont
+            setfont
+            100 200 translate
+            45 rotate
+            2 1 scale
+            newpath
+            0 0 moveto
+            (This is text.) true charpath
+            0.5 setlinewidth
+            0.25 setgray
+            stroke
 
         Returns new Postscript.
         '''
@@ -765,22 +719,20 @@ class Postscript(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> postscript = abjad.Postscript()
-                >>> postscript = postscript.findfont('Times Roman')
-                >>> postscript = postscript.scalefont(12)
-                >>> postscript = postscript.setfont()
-                >>> postscript = postscript.newpath()
-                >>> postscript = postscript.moveto(100, 200)
-                >>> postscript = postscript.show('This is text.')
-                >>> print(str(postscript))
-                /Times-Roman findfont
-                12 scalefont
-                setfont
-                newpath
-                100 200 moveto
-                (This is text.) show
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.findfont('Times Roman')
+            >>> postscript = postscript.scalefont(12)
+            >>> postscript = postscript.setfont()
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(100, 200)
+            >>> postscript = postscript.show('This is text.')
+            >>> print(str(postscript))
+            /Times-Roman findfont
+            12 scalefont
+            setfont
+            newpath
+            100 200 moveto
+            (This is text.) show
 
         Returns new Postscript.
         '''
@@ -794,37 +746,29 @@ class Postscript(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> postscript = abjad.Postscript().setdash([2, 1], 3)
+            >>> print(format(postscript))
+            abjad.Postscript(
+                operators=(
+                    abjad.PostscriptOperator('setdash', (2.0, 1.0), 3.0),
+                    ),
+                )
 
-                >>> postscript = abjad.Postscript().setdash([2, 1], 3)
-                >>> print(format(postscript))
-                abjad.Postscript(
-                    operators=(
-                        abjad.PostscriptOperator('setdash', (2.0, 1.0), 3.0),
-                        ),
-                    )
-
-            ::
-
-                >>> print(str(postscript))
-                [ 2 1 ] 3 setdash
+            >>> print(str(postscript))
+            [ 2 1 ] 3 setdash
 
         ..  container:: example
 
-            ::
+            >>> postscript = abjad.Postscript().setdash()
+            >>> print(format(postscript))
+            abjad.Postscript(
+                operators=(
+                    abjad.PostscriptOperator('setdash', (), 0.0),
+                    ),
+                )
 
-                >>> postscript = abjad.Postscript().setdash()
-                >>> print(format(postscript))
-                abjad.Postscript(
-                    operators=(
-                        abjad.PostscriptOperator('setdash', (), 0.0),
-                        ),
-                    )
-
-            ::
-
-                >>> print(str(postscript))
-                [ ] 0 setdash
+            >>> print(str(postscript))
+            [ ] 0 setdash
 
         Returns new Postscript.
         '''
@@ -842,22 +786,20 @@ class Postscript(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> postscript = abjad.Postscript()
-                >>> postscript = postscript.findfont('Times Roman')
-                >>> postscript = postscript.scalefont(12)
-                >>> postscript = postscript.setfont()
-                >>> postscript = postscript.newpath()
-                >>> postscript = postscript.moveto(100, 200)
-                >>> postscript = postscript.show('This is text.')
-                >>> print(str(postscript))
-                /Times-Roman findfont
-                12 scalefont
-                setfont
-                newpath
-                100 200 moveto
-                (This is text.) show
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.findfont('Times Roman')
+            >>> postscript = postscript.scalefont(12)
+            >>> postscript = postscript.setfont()
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(100, 200)
+            >>> postscript = postscript.show('This is text.')
+            >>> print(str(postscript))
+            /Times-Roman findfont
+            12 scalefont
+            setfont
+            newpath
+            100 200 moveto
+            (This is text.) show
 
         Returns new Postscript.
         '''
@@ -870,34 +812,32 @@ class Postscript(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> postscript = abjad.Postscript()
-                >>> postscript = postscript.newpath()
-                >>> postscript = postscript.moveto(100, 200)
-                >>> postscript = postscript.lineto(200, 250)
-                >>> postscript = postscript.lineto(100, 300)
-                >>> postscript = postscript.closepath()
-                >>> postscript = postscript.gsave()
-                >>> postscript = postscript.setgray(0.5)
-                >>> postscript = postscript.fill()
-                >>> postscript = postscript.grestore()
-                >>> postscript = postscript.setlinewidth(4)
-                >>> postscript = postscript.setgray(0.75)
-                >>> postscript = postscript.stroke()
-                >>> print(str(postscript))
-                newpath
-                100 200 moveto
-                200 250 lineto
-                100 300 lineto
-                closepath
-                gsave
-                0.5 setgray
-                fill
-                grestore
-                4 setlinewidth
-                0.75 setgray
-                stroke
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(100, 200)
+            >>> postscript = postscript.lineto(200, 250)
+            >>> postscript = postscript.lineto(100, 300)
+            >>> postscript = postscript.closepath()
+            >>> postscript = postscript.gsave()
+            >>> postscript = postscript.setgray(0.5)
+            >>> postscript = postscript.fill()
+            >>> postscript = postscript.grestore()
+            >>> postscript = postscript.setlinewidth(4)
+            >>> postscript = postscript.setgray(0.75)
+            >>> postscript = postscript.stroke()
+            >>> print(str(postscript))
+            newpath
+            100 200 moveto
+            200 250 lineto
+            100 300 lineto
+            closepath
+            gsave
+            0.5 setgray
+            fill
+            grestore
+            4 setlinewidth
+            0.75 setgray
+            stroke
 
         Returns new Postscript.
         '''
@@ -912,30 +852,26 @@ class Postscript(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.moveto(1, 1)
+            >>> postscript = postscript.setlinewidth(2.5)
+            >>> postscript = postscript.lineto(3, -4)
+            >>> postscript = postscript.stroke()
+            >>> print(format(postscript))
+            abjad.Postscript(
+                operators=(
+                    abjad.PostscriptOperator('moveto', 1.0, 1.0),
+                    abjad.PostscriptOperator('setlinewidth', 2.5),
+                    abjad.PostscriptOperator('lineto', 3.0, -4.0),
+                    abjad.PostscriptOperator('stroke'),
+                    ),
+                )
 
-                >>> postscript = abjad.Postscript()
-                >>> postscript = postscript.moveto(1, 1)
-                >>> postscript = postscript.setlinewidth(2.5)
-                >>> postscript = postscript.lineto(3, -4)
-                >>> postscript = postscript.stroke()
-                >>> print(format(postscript))
-                abjad.Postscript(
-                    operators=(
-                        abjad.PostscriptOperator('moveto', 1.0, 1.0),
-                        abjad.PostscriptOperator('setlinewidth', 2.5),
-                        abjad.PostscriptOperator('lineto', 3.0, -4.0),
-                        abjad.PostscriptOperator('stroke'),
-                        ),
-                    )
-
-            ::
-
-                >>> print(str(postscript))
-                1 1 moveto
-                2.5 setlinewidth
-                3 -4 lineto
-                stroke
+            >>> print(str(postscript))
+            1 1 moveto
+            2.5 setlinewidth
+            3 -4 lineto
+            stroke
 
         Returns new Postscript.
         '''
@@ -949,41 +885,37 @@ class Postscript(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(100, 100)
+            >>> postscript = postscript.rlineto(0, 100)
+            >>> postscript = postscript.rlineto(100, 0)
+            >>> postscript = postscript.rlineto(0, -100)
+            >>> postscript = postscript.rlineto(-100, 0)
+            >>> postscript = postscript.closepath()
+            >>> postscript = postscript.gsave()
+            >>> postscript = postscript.setrgbcolor(0.5, 1, 0.5)
+            >>> postscript = postscript.fill()
+            >>> postscript = postscript.grestore()
+            >>> postscript = postscript.setrgbcolor(1, 0, 0)
+            >>> postscript = postscript.setlinewidth(4)
+            >>> postscript = postscript.stroke()
 
-                >>> postscript = abjad.Postscript()
-                >>> postscript = postscript.newpath()
-                >>> postscript = postscript.moveto(100, 100)
-                >>> postscript = postscript.rlineto(0, 100)
-                >>> postscript = postscript.rlineto(100, 0)
-                >>> postscript = postscript.rlineto(0, -100)
-                >>> postscript = postscript.rlineto(-100, 0)
-                >>> postscript = postscript.closepath()
-                >>> postscript = postscript.gsave()
-                >>> postscript = postscript.setrgbcolor(0.5, 1, 0.5)
-                >>> postscript = postscript.fill()
-                >>> postscript = postscript.grestore()
-                >>> postscript = postscript.setrgbcolor(1, 0, 0)
-                >>> postscript = postscript.setlinewidth(4)
-                >>> postscript = postscript.stroke()
-
-            ::
-
-                >>> print(str(postscript))
-                newpath
-                100 100 moveto
-                0 100 rlineto
-                100 0 rlineto
-                0 -100 rlineto
-                -100 0 rlineto
-                closepath
-                gsave
-                0.5 1 0.5 setrgbcolor
-                fill
-                grestore
-                1 0 0 setrgbcolor
-                4 setlinewidth
-                stroke
+            >>> print(str(postscript))
+            newpath
+            100 100 moveto
+            0 100 rlineto
+            100 0 rlineto
+            0 -100 rlineto
+            -100 0 rlineto
+            closepath
+            gsave
+            0.5 1 0.5 setrgbcolor
+            fill
+            grestore
+            1 0 0 setrgbcolor
+            4 setlinewidth
+            stroke
 
         Returns new Postscript.
         '''
@@ -1007,22 +939,20 @@ class Postscript(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> postscript = abjad.Postscript()
-                >>> postscript = postscript.findfont('Times Roman')
-                >>> postscript = postscript.scalefont(12)
-                >>> postscript = postscript.setfont()
-                >>> postscript = postscript.newpath()
-                >>> postscript = postscript.moveto(100, 200)
-                >>> postscript = postscript.show('This is text.')
-                >>> print(str(postscript))
-                /Times-Roman findfont
-                12 scalefont
-                setfont
-                newpath
-                100 200 moveto
-                (This is text.) show
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.findfont('Times Roman')
+            >>> postscript = postscript.scalefont(12)
+            >>> postscript = postscript.setfont()
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(100, 200)
+            >>> postscript = postscript.show('This is text.')
+            >>> print(str(postscript))
+            /Times-Roman findfont
+            12 scalefont
+            setfont
+            newpath
+            100 200 moveto
+            (This is text.) show
 
         Returns new Postscript.
         '''
@@ -1036,24 +966,20 @@ class Postscript(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.lineto(3, -4)
+            >>> postscript = postscript.stroke()
+            >>> print(format(postscript))
+            abjad.Postscript(
+                operators=(
+                    abjad.PostscriptOperator('lineto', 3.0, -4.0),
+                    abjad.PostscriptOperator('stroke'),
+                    ),
+                )
 
-                >>> postscript = abjad.Postscript()
-                >>> postscript = postscript.lineto(3, -4)
-                >>> postscript = postscript.stroke()
-                >>> print(format(postscript))
-                abjad.Postscript(
-                    operators=(
-                        abjad.PostscriptOperator('lineto', 3.0, -4.0),
-                        abjad.PostscriptOperator('stroke'),
-                        ),
-                    )
-
-            ::
-
-                >>> print(str(postscript))
-                3 -4 lineto
-                stroke
+            >>> print(str(postscript))
+            3 -4 lineto
+            stroke
 
         Returns new Postscript.
         '''
@@ -1066,34 +992,32 @@ class Postscript(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> postscript = abjad.Postscript()
-                >>> postscript = postscript.findfont('Times Roman')
-                >>> postscript = postscript.scalefont(32)
-                >>> postscript = postscript.setfont()
-                >>> postscript = postscript.translate(100, 200)
-                >>> postscript = postscript.rotate(45)
-                >>> postscript = postscript.scale(2, 1)
-                >>> postscript = postscript.newpath()
-                >>> postscript = postscript.moveto(0, 0)
-                >>> postscript = postscript.charpath('This is text.', True)
-                >>> postscript = postscript.setlinewidth(0.5)
-                >>> postscript = postscript.setgray(0.25)
-                >>> postscript = postscript.stroke()
-                >>> print(str(postscript))
-                /Times-Roman findfont
-                32 scalefont
-                setfont
-                100 200 translate
-                45 rotate
-                2 1 scale
-                newpath
-                0 0 moveto
-                (This is text.) true charpath
-                0.5 setlinewidth
-                0.25 setgray
-                stroke
+            >>> postscript = abjad.Postscript()
+            >>> postscript = postscript.findfont('Times Roman')
+            >>> postscript = postscript.scalefont(32)
+            >>> postscript = postscript.setfont()
+            >>> postscript = postscript.translate(100, 200)
+            >>> postscript = postscript.rotate(45)
+            >>> postscript = postscript.scale(2, 1)
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(0, 0)
+            >>> postscript = postscript.charpath('This is text.', True)
+            >>> postscript = postscript.setlinewidth(0.5)
+            >>> postscript = postscript.setgray(0.25)
+            >>> postscript = postscript.stroke()
+            >>> print(str(postscript))
+            /Times-Roman findfont
+            32 scalefont
+            setfont
+            100 200 translate
+            45 rotate
+            2 1 scale
+            newpath
+            0 0 moveto
+            (This is text.) true charpath
+            0.5 setlinewidth
+            0.25 setgray
+            stroke
 
         Returns new Postscript.
         '''

@@ -10,20 +10,16 @@ class ChordSuspension(AbjadValueObject):
 
         Initializes from numbers:
 
-        ::
-
-            >>> abjad.tonalanalysistools.ChordSuspension('4-b3')
-            ChordSuspension('4-b3')
+        >>> abjad.tonalanalysistools.ChordSuspension('4-b3')
+        ChordSuspension('4-b3')
 
     ..  container:: example
 
         Initializes from other suspension:
 
-        ::
-
-            >>> suspension = abjad.tonalanalysistools.ChordSuspension('4-3')
-            >>> abjad.tonalanalysistools.ChordSuspension(suspension)
-            ChordSuspension('4-3')
+        >>> suspension = abjad.tonalanalysistools.ChordSuspension('4-3')
+        >>> abjad.tonalanalysistools.ChordSuspension(suspension)
+        ChordSuspension('4-3')
 
     9-8, 7-6, 4-3, 2-1 and other types of suspension typical of, for example,
     the Bach chorales.
@@ -55,40 +51,32 @@ class ChordSuspension(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> suspension_1 = abjad.tonalanalysistools.ChordSuspension('4-3')
+            >>> suspension_2 = abjad.tonalanalysistools.ChordSuspension('4-3')
+            >>> suspension_3 = abjad.tonalanalysistools.ChordSuspension('2-1')
 
-                >>> suspension_1 = abjad.tonalanalysistools.ChordSuspension('4-3')
-                >>> suspension_2 = abjad.tonalanalysistools.ChordSuspension('4-3')
-                >>> suspension_3 = abjad.tonalanalysistools.ChordSuspension('2-1')
-
-            ::
-
-                >>> suspension_1 == suspension_1
-                True
-                >>> suspension_1 == suspension_2
-                True
-                >>> suspension_1 == suspension_3
-                False
+            >>> suspension_1 == suspension_1
+            True
+            >>> suspension_1 == suspension_2
+            True
+            >>> suspension_1 == suspension_3
+            False
 
 
-            ::
-
-                >>> suspension_2 == suspension_1
-                True
-                >>> suspension_2 == suspension_2
-                True
-                >>> suspension_2 == suspension_3
-                False
+            >>> suspension_2 == suspension_1
+            True
+            >>> suspension_2 == suspension_2
+            True
+            >>> suspension_2 == suspension_3
+            False
 
 
-            ::
-
-                >>> suspension_3 == suspension_1
-                False
-                >>> suspension_3 == suspension_2
-                False
-                >>> suspension_3 == suspension_3
-                True
+            >>> suspension_3 == suspension_1
+            False
+            >>> suspension_3 == suspension_2
+            False
+            >>> suspension_3 == suspension_3
+            True
 
         Returns true or false.
         '''
@@ -157,15 +145,11 @@ class ChordSuspension(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> abjad.tonalanalysistools.ChordSuspension('4-b3').chord_name
+            'sus4'
 
-                >>> abjad.tonalanalysistools.ChordSuspension('4-b3').chord_name
-                'sus4'
-
-            ::
-
-                >>> abjad.tonalanalysistools.ChordSuspension('b2-1').chord_name
-                'susb2'
+            >>> abjad.tonalanalysistools.ChordSuspension('b2-1').chord_name
+            'susb2'
 
         Returns string.
         '''
@@ -177,15 +161,11 @@ class ChordSuspension(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> abjad.tonalanalysistools.ChordSuspension('4-b3').figured_bass_pair
+            ('4', 'b3')
 
-                >>> abjad.tonalanalysistools.ChordSuspension('4-b3').figured_bass_pair
-                ('4', 'b3')
-
-            ::
-
-                >>> abjad.tonalanalysistools.ChordSuspension('b2-1').figured_bass_pair
-                ('b2', '1')
+            >>> abjad.tonalanalysistools.ChordSuspension('b2-1').figured_bass_pair
+            ('b2', '1')
 
         Returns integer pair.
         '''
@@ -197,15 +177,11 @@ class ChordSuspension(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> abjad.tonalanalysistools.ChordSuspension('4-b3').figured_bass_string
+            '4-b3'
 
-                >>> abjad.tonalanalysistools.ChordSuspension('4-b3').figured_bass_string
-                '4-b3'
-
-            ::
-
-                >>> abjad.tonalanalysistools.ChordSuspension('b2-1').figured_bass_string
-                'b2-1'
+            >>> abjad.tonalanalysistools.ChordSuspension('b2-1').figured_bass_string
+            'b2-1'
 
         Returns string.
         '''
@@ -215,18 +191,12 @@ class ChordSuspension(AbjadValueObject):
     def start(self):
         r'''Gets start.
 
-        ::
-        ..  container:: example
 
-            ::
+            >>> abjad.tonalanalysistools.ChordSuspension('4-b3').start
+            ScaleDegree('4')
 
-                >>> abjad.tonalanalysistools.ChordSuspension('4-b3').start
-                ScaleDegree('4')
-
-            ::
-
-                >>> abjad.tonalanalysistools.ChordSuspension('b2-1').start
-                ScaleDegree('b2')
+            >>> abjad.tonalanalysistools.ChordSuspension('b2-1').start
+            ScaleDegree('b2')
 
         Returns scale degree.
         '''
@@ -238,15 +208,11 @@ class ChordSuspension(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> abjad.tonalanalysistools.ChordSuspension('4-b3').stop
+            ScaleDegree('b3')
 
-                >>> abjad.tonalanalysistools.ChordSuspension('4-b3').stop
-                ScaleDegree('b3')
-
-            ::
-
-                >>> abjad.tonalanalysistools.ChordSuspension('b2-1').stop
-                ScaleDegree('1')
+            >>> abjad.tonalanalysistools.ChordSuspension('b2-1').stop
+            ScaleDegree('1')
 
         Returns scale degree.
         '''
@@ -258,15 +224,11 @@ class ChordSuspension(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> abjad.tonalanalysistools.ChordSuspension('4-b3').title_string
+            'FourFlatThreeSuspension'
 
-                >>> abjad.tonalanalysistools.ChordSuspension('4-b3').title_string
-                'FourFlatThreeSuspension'
-
-            ::
-
-                >>> abjad.tonalanalysistools.ChordSuspension('b2-1').title_string
-                'FlatTwoOneSuspension'
+            >>> abjad.tonalanalysistools.ChordSuspension('b2-1').title_string
+            'FlatTwoOneSuspension'
 
         Returns string.
         '''

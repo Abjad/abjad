@@ -8,38 +8,36 @@ from abjad.tools import commandlinetools
 class AbjadBookScript(commandlinetools.CommandlineScript):
     r'''Entry point script for abjad-book.
 
-    ::
-
-        >>> from abjad.tools import abjadbooktools
-        >>> script = abjadbooktools.AbjadBookScript()
-        >>> print(script.formatted_help)
-        usage: abjad-book [-h] [--version] [-c] [-o OUTPUT_FILE_PATH] [-s] [-v]
-                          [-y STYLESHEET] [-a ASSETS_DIRECTORY]
-                          [-l LATEX_ROOT_DIRECTORY] [-g CONFIG]
-                          input_file_path [input_file_path ...]
-        <BLANKLINE>
-        Preprocess LaTeX files with Abjad.
-        <BLANKLINE>
-        positional arguments:
-          input_file_path       LaTeX file to process
-        <BLANKLINE>
-        optional arguments:
-          -h, --help            show this help message and exit
-          --version             show program's version number and exit
-          -c, --clean           remove all output blocks
-          -o OUTPUT_FILE_PATH, --output-file-path OUTPUT_FILE_PATH
-                                optional output file path
-          -s, --skip-rendering  skip all image rendering and simply execute the code
-          -v, --verbose         verbose output
-          -y STYLESHEET, --stylesheet STYLESHEET
-                                optional LilyPond stylesheet
-          -a ASSETS_DIRECTORY, --assets-directory ASSETS_DIRECTORY
-                                optional assets directory
-          -l LATEX_ROOT_DIRECTORY, --latex-root-directory LATEX_ROOT_DIRECTORY
-                                optional LaTeX root directory
-          -g CONFIG, --config CONFIG
-                                path to config file
-        <BLANKLINE>
+    >>> from abjad.tools import abjadbooktools
+    >>> script = abjadbooktools.AbjadBookScript()
+    >>> print(script.formatted_help)
+    usage: abjad-book [-h] [--version] [-c] [-o OUTPUT_FILE_PATH] [-s] [-v]
+                        [-y STYLESHEET] [-a ASSETS_DIRECTORY]
+                        [-l LATEX_ROOT_DIRECTORY] [-g CONFIG]
+                        input_file_path [input_file_path ...]
+    <BLANKLINE>
+    Preprocess LaTeX files with Abjad.
+    <BLANKLINE>
+    positional arguments:
+        input_file_path       LaTeX file to process
+    <BLANKLINE>
+    optional arguments:
+        -h, --help            show this help message and exit
+        --version             show program's version number and exit
+        -c, --clean           remove all output blocks
+        -o OUTPUT_FILE_PATH, --output-file-path OUTPUT_FILE_PATH
+                            optional output file path
+        -s, --skip-rendering  skip all image rendering and simply execute the code
+        -v, --verbose         verbose output
+        -y STYLESHEET, --stylesheet STYLESHEET
+                            optional LilyPond stylesheet
+        -a ASSETS_DIRECTORY, --assets-directory ASSETS_DIRECTORY
+                            optional assets directory
+        -l LATEX_ROOT_DIRECTORY, --latex-root-directory LATEX_ROOT_DIRECTORY
+                            optional LaTeX root directory
+        -g CONFIG, --config CONFIG
+                            path to config file
+    <BLANKLINE>
 
     '''
 

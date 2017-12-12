@@ -6,18 +6,16 @@ class BassTrombone(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> clef = abjad.Clef('bass')
-            >>> abjad.attach(clef, staff[0])
-            >>> bass_trombone = abjad.BassTrombone()
-            >>> abjad.attach(bass_trombone, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+        >>> clef = abjad.Clef('bass')
+        >>> abjad.attach(clef, staff[0])
+        >>> bass_trombone = abjad.BassTrombone()
+        >>> abjad.attach(bass_trombone, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { "Bass trombone" }
                 \set Staff.shortInstrumentName = \markup { "Bass trb." }
@@ -67,11 +65,9 @@ class BassTrombone(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> bass_trombone = abjad.BassTrombone()
-                >>> bass_trombone.allowable_clefs
-                ('bass',)
+            >>> bass_trombone = abjad.BassTrombone()
+            >>> bass_trombone.allowable_clefs
+            ('bass',)
 
         Returns clef list.
         '''
@@ -83,15 +79,11 @@ class BassTrombone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> bass_trombone = abjad.BassTrombone()
+            >>> bass_trombone.middle_c_sounding_pitch
+            NamedPitch("c'")
 
-                >>> bass_trombone = abjad.BassTrombone()
-                >>> bass_trombone.middle_c_sounding_pitch
-                NamedPitch("c'")
-
-            ::
-
-                >>> show(bass_trombone.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(bass_trombone.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -103,11 +95,9 @@ class BassTrombone(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> bass_trombone = abjad.BassTrombone()
-                >>> bass_trombone.name
-                'bass trombone'
+            >>> bass_trombone = abjad.BassTrombone()
+            >>> bass_trombone.name
+            'bass trombone'
 
         Returns string.
         '''
@@ -119,15 +109,11 @@ class BassTrombone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> bass_trombone = abjad.BassTrombone()
+            >>> bass_trombone.name_markup
+            Markup(contents=['Bass trombone'])
 
-                >>> bass_trombone = abjad.BassTrombone()
-                >>> bass_trombone.name_markup
-                Markup(contents=['Bass trombone'])
-
-            ::
-
-                >>> show(bass_trombone.name_markup) # doctest: +SKIP
+            >>> abjad.show(bass_trombone.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -139,15 +125,11 @@ class BassTrombone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> bass_trombone = abjad.BassTrombone()
+            >>> bass_trombone.pitch_range
+            PitchRange('[C2, F4]')
 
-                >>> bass_trombone = abjad.BassTrombone()
-                >>> bass_trombone.pitch_range
-                PitchRange('[C2, F4]')
-
-            ::
-
-                >>> show(bass_trombone.pitch_range) # doctest: +SKIP
+            >>> abjad.show(bass_trombone.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -159,11 +141,9 @@ class BassTrombone(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> bass_trombone = abjad.BassTrombone()
-                >>> bass_trombone.short_name
-                'bass trb.'
+            >>> bass_trombone = abjad.BassTrombone()
+            >>> bass_trombone.short_name
+            'bass trb.'
 
         Returns string.
         '''
@@ -175,15 +155,11 @@ class BassTrombone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> bass_trombone = abjad.BassTrombone()
+            >>> bass_trombone.short_name_markup
+            Markup(contents=['Bass trb.'])
 
-                >>> bass_trombone = abjad.BassTrombone()
-                >>> bass_trombone.short_name_markup
-                Markup(contents=['Bass trb.'])
-
-            ::
-
-                >>> show(bass_trombone.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(bass_trombone.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

@@ -6,16 +6,14 @@ class TenorSaxophone(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> tenor_saxophone = abjad.TenorSaxophone()
-            >>> abjad.attach(tenor_saxophone, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+        >>> tenor_saxophone = abjad.TenorSaxophone()
+        >>> abjad.attach(tenor_saxophone, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { "Tenor saxophone" }
                 \set Staff.shortInstrumentName = \markup { "Ten. sax." }
@@ -64,11 +62,9 @@ class TenorSaxophone(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> tenor_saxophone = abjad.TenorSaxophone()
-                >>> tenor_saxophone.allowable_clefs
-                ('treble',)
+            >>> tenor_saxophone = abjad.TenorSaxophone()
+            >>> tenor_saxophone.allowable_clefs
+            ('treble',)
 
         Returns clef list.
         '''
@@ -80,15 +76,11 @@ class TenorSaxophone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> tenor_saxophone = abjad.TenorSaxophone()
+            >>> tenor_saxophone.middle_c_sounding_pitch
+            NamedPitch('bf,')
 
-                >>> tenor_saxophone = abjad.TenorSaxophone()
-                >>> tenor_saxophone.middle_c_sounding_pitch
-                NamedPitch('bf,')
-
-            ::
-
-                >>> show(tenor_saxophone.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(tenor_saxophone.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -100,11 +92,9 @@ class TenorSaxophone(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> tenor_saxophone = abjad.TenorSaxophone()
-                >>> tenor_saxophone.name
-                'tenor saxophone'
+            >>> tenor_saxophone = abjad.TenorSaxophone()
+            >>> tenor_saxophone.name
+            'tenor saxophone'
 
         Returns string.
         '''
@@ -116,15 +106,11 @@ class TenorSaxophone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> tenor_saxophone = abjad.TenorSaxophone()
+            >>> tenor_saxophone.name_markup
+            Markup(contents=['Tenor saxophone'])
 
-                >>> tenor_saxophone = abjad.TenorSaxophone()
-                >>> tenor_saxophone.name_markup
-                Markup(contents=['Tenor saxophone'])
-
-            ::
-
-                >>> show(tenor_saxophone.name_markup) # doctest: +SKIP
+            >>> abjad.show(tenor_saxophone.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -136,15 +122,11 @@ class TenorSaxophone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> tenor_saxophone = abjad.TenorSaxophone()
+            >>> tenor_saxophone.pitch_range
+            PitchRange('[Ab2, E5]')
 
-                >>> tenor_saxophone = abjad.TenorSaxophone()
-                >>> tenor_saxophone.pitch_range
-                PitchRange('[Ab2, E5]')
-
-            ::
-
-                >>> show(tenor_saxophone.pitch_range) # doctest: +SKIP
+            >>> abjad.show(tenor_saxophone.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -156,11 +138,9 @@ class TenorSaxophone(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> tenor_saxophone = abjad.TenorSaxophone()
-                >>> tenor_saxophone.short_name
-                'ten. sax.'
+            >>> tenor_saxophone = abjad.TenorSaxophone()
+            >>> tenor_saxophone.short_name
+            'ten. sax.'
 
         Returns string.
         '''
@@ -172,15 +152,11 @@ class TenorSaxophone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> tenor_saxophone = abjad.TenorSaxophone()
+            >>> tenor_saxophone.short_name_markup
+            Markup(contents=['Ten. sax.'])
 
-                >>> tenor_saxophone = abjad.TenorSaxophone()
-                >>> tenor_saxophone.short_name_markup
-                Markup(contents=['Ten. sax.'])
-
-            ::
-
-                >>> show(tenor_saxophone.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(tenor_saxophone.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

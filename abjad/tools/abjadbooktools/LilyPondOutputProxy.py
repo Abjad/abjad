@@ -11,39 +11,35 @@ class LilyPondOutputProxy(ImageOutputProxy):
     r"""
     A LilyPond output proxy.
 
-    ::
-
-        >>> from abjad.tools import abjadbooktools
-        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-        >>> proxy = abjadbooktools.LilyPondOutputProxy(staff)
-        >>> print(format(proxy))
-        abjad.abjadbooktools.LilyPondOutputProxy(
-            abjad.LilyPondFile(
-                comments=[],
-                global_staff_size=12,
-                includes=[],
-                items=[
-                    abjad.Block(
-                        name='header',
-                        ),
-                    abjad.Block(
-                        name='layout',
-                        ),
-                    abjad.Block(
-                        name='score',
-                        ),
-                    ],
-                lilypond_language_token=abjad.LilyPondLanguageToken(),
-                lilypond_version_token=abjad.LilyPondVersionToken(
-                    version_string='2.19.0',
+    >>> from abjad.tools import abjadbooktools
+    >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+    >>> proxy = abjadbooktools.LilyPondOutputProxy(staff)
+    >>> print(format(proxy))
+    abjad.abjadbooktools.LilyPondOutputProxy(
+        abjad.LilyPondFile(
+            comments=[],
+            global_staff_size=12,
+            includes=[],
+            items=[
+                abjad.Block(
+                    name='header',
                     ),
-                )
+                abjad.Block(
+                    name='layout',
+                    ),
+                abjad.Block(
+                    name='score',
+                    ),
+                ],
+            lilypond_language_token=abjad.LilyPondLanguageToken(),
+            lilypond_version_token=abjad.LilyPondVersionToken(
+                version_string='2.19.0',
+                ),
             )
+        )
 
-    ::
-
-        >>> proxy.as_latex(relative_output_directory='assets')
-        ['\\noindent\\includegraphics{assets/lilypond-0b731cedacea34e85fbb92b66b42b40b.pdf}']
+    >>> proxy.as_latex(relative_output_directory='assets')
+    ['\\noindent\\includegraphics{assets/lilypond-0b731cedacea34e85fbb92b66b42b40b.pdf}']
 
     """
 
@@ -145,52 +141,50 @@ class LilyPondOutputProxy(ImageOutputProxy):
         r"""
         Creates a docutils node representation of the output proxy.
 
-        ::
-
-            >>> from abjad.tools import abjadbooktools
-            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-            >>> proxy = abjadbooktools.LilyPondOutputProxy(staff)
-            >>> for node in proxy.as_docutils():
-            ...     print(node.pformat())
-            ...
-            <abjad_output_block image_layout_specifier... image_render_specifier... renderer="lilypond" xml:space="preserve">
-                \version "2.19.0"
-                \language "english"
-            <BLANKLINE>
-                #(set-global-staff-size 12)
-            <BLANKLINE>
-                \header {
-                    tagline = ##f
+        >>> from abjad.tools import abjadbooktools
+        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+        >>> proxy = abjadbooktools.LilyPondOutputProxy(staff)
+        >>> for node in proxy.as_docutils():
+        ...     print(node.pformat())
+        ...
+        <abjad_output_block image_layout_specifier... image_render_specifier... renderer="lilypond" xml:space="preserve">
+            \version "2.19.0"
+            \language "english"
+        <BLANKLINE>
+            #(set-global-staff-size 12)
+        <BLANKLINE>
+            \header {
+                tagline = ##f
+            }
+        <BLANKLINE>
+            \layout {
+                indent = #0
+                ragged-right = ##t
+                \context {
+                    \Score
+                    \remove Bar_number_engraver
+                    \override SpacingSpanner.strict-grace-spacing = ##t
+                    \override SpacingSpanner.strict-note-spacing = ##t
+                    \override SpacingSpanner.uniform-stretching = ##t
+                    \override TupletBracket.bracket-visibility = ##t
+                    \override TupletBracket.minimum-length = #3
+                    \override TupletBracket.padding = #2
+                    \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
+                    \override TupletNumber.text = #tuplet-number::calc-fraction-text
+                    proportionalNotationDuration = #(ly:make-moment 1 24)
+                    tupletFullLength = ##t
                 }
-            <BLANKLINE>
-                \layout {
-                    indent = #0
-                    ragged-right = ##t
-                    \context {
-                        \Score
-                        \remove Bar_number_engraver
-                        \override SpacingSpanner.strict-grace-spacing = ##t
-                        \override SpacingSpanner.strict-note-spacing = ##t
-                        \override SpacingSpanner.uniform-stretching = ##t
-                        \override TupletBracket.bracket-visibility = ##t
-                        \override TupletBracket.minimum-length = #3
-                        \override TupletBracket.padding = #2
-                        \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                        \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                        proportionalNotationDuration = #(ly:make-moment 1 24)
-                        tupletFullLength = ##t
-                    }
+            }
+        <BLANKLINE>
+            \score {
+                \new Staff {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
                 }
-            <BLANKLINE>
-                \score {
-                    \new Staff {
-                        c'4
-                        d'4
-                        e'4
-                        f'4
-                    }
-                }
-            <BLANKLINE>
+            }
+        <BLANKLINE>
 
         Returns list of docutils nodes.
         """

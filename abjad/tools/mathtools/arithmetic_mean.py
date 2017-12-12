@@ -7,20 +7,14 @@ def arithmetic_mean(argument):
 
     ..  container:: example
 
-        ::
+        >>> abjad.mathtools.arithmetic_mean([1, 2, 2, 20, 30])
+        11
 
-            >>> abjad.mathtools.arithmetic_mean([1, 2, 2, 20, 30])
-            11
+        >>> abjad.mathtools.arithmetic_mean([1, 2, 20])
+        Fraction(23, 3)
 
-        ::
-
-            >>> abjad.mathtools.arithmetic_mean([1, 2, 20])
-            Fraction(23, 3)
-
-        ::
-
-            >>> abjad.mathtools.arithmetic_mean([2, 2, 20.0])
-            8.0
+        >>> abjad.mathtools.arithmetic_mean([2, 2, 20.0])
+        8.0
 
     Raises exception when `argument` is not iterable.
 

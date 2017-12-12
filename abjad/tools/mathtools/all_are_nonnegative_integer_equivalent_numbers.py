@@ -4,17 +4,13 @@ def all_are_nonnegative_integer_equivalent_numbers(argument):
 
     ..  container:: example
 
-        ::
+        >>> items = [0, 0.0, abjad.Fraction(0), 2, 2.0, abjad.Fraction(2)]
+        >>> abjad.mathtools.all_are_nonnegative_integer_equivalent_numbers(items)
+        True
 
-            >>> items = [0, 0.0, abjad.Fraction(0), 2, 2.0, abjad.Fraction(2)]
-            >>> abjad.mathtools.all_are_nonnegative_integer_equivalent_numbers(items)
-            True
-
-        ::
-
-            >>> items = [0, 0.0, abjad.Fraction(0), -2, 2.0, abjad.Fraction(2)]
-            >>> abjad.mathtools.all_are_nonnegative_integer_equivalent_numbers(items)
-            False
+        >>> items = [0, 0.0, abjad.Fraction(0), -2, 2.0, abjad.Fraction(2)]
+        >>> abjad.mathtools.all_are_nonnegative_integer_equivalent_numbers(items)
+        False
 
     Returns true or false.
     '''

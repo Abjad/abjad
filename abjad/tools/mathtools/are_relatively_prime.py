@@ -8,29 +8,21 @@ def are_relatively_prime(argument):
 
     ..  container:: example
 
-        ::
+        >>> abjad.mathtools.are_relatively_prime([13, 14, 15])
+        True
 
-            >>> abjad.mathtools.are_relatively_prime([13, 14, 15])
-            True
+        >>> abjad.mathtools.are_relatively_prime([13, 14, 15, 16])
+        False
 
-        ::
-
-            >>> abjad.mathtools.are_relatively_prime([13, 14, 15, 16])
-            False
-
-        ::
-
-            >>> abjad.mathtools.are_relatively_prime('text')
-            False
+        >>> abjad.mathtools.are_relatively_prime('text')
+        False
 
     ..  container:: example
 
         Returns true when `argument` is empty:
 
-        ::
-
-            >>> abjad.mathtools.are_relatively_prime([])
-            True
+        >>> abjad.mathtools.are_relatively_prime([])
+        True
 
     Returns true or false.
     '''

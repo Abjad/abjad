@@ -10,11 +10,9 @@ class LilyPondSettingNameManager(LilyPondNameManager):
 
         Initializes with toplevel function:
 
-        ::
-
-            >>> note = abjad.Note("c'4")
-            >>> abjad.setting(note)
-            LilyPondSettingNameManager()
+        >>> note = abjad.Note("c'4")
+        >>> abjad.setting(note)
+        LilyPondSettingNameManager()
 
     '''
 
@@ -25,15 +23,13 @@ class LilyPondSettingNameManager(LilyPondNameManager):
 
         ..  container:: example
 
-            ::
-
-                >>> staff = abjad.Staff("c'4 d' e' f'")
-                >>> abjad.setting(staff).instrument_name = abjad.Markup('Vn. I')
-                >>> show(staff) # doctest: +SKIP
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.setting(staff).instrument_name = abjad.Markup('Vn. I')
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(staff)
+                >>> abjad.f(staff)
                 \new Staff \with {
                     instrumentName = \markup { "Vn. I" }
                 } {
@@ -47,10 +43,8 @@ class LilyPondSettingNameManager(LilyPondNameManager):
 
             Returns arbitrary object keyed to `name`:
 
-            ::
-
-                >>> abjad.setting(staff).instrument_name
-                Markup(contents=['Vn. I'])
+            >>> abjad.setting(staff).instrument_name
+            Markup(contents=['Vn. I'])
 
         '''
         from abjad import ly

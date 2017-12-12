@@ -8,20 +8,16 @@ class RawLilyPondOutputProxy(ImageOutputProxy):
     r"""
     A raw LilyPond output proxy.
 
-    ::
+    >>> from abjad.tools import abjadbooktools
+    >>> raw_lilypond = '{ c d e f }'
+    >>> proxy = abjadbooktools.RawLilyPondOutputProxy(raw_lilypond)
+    >>> print(format(proxy))
+    abjad.abjadbooktools.RawLilyPondOutputProxy(
+        '\\version "2.19.0"\n\n{ c d e f }'
+        )
 
-        >>> from abjad.tools import abjadbooktools
-        >>> raw_lilypond = '{ c d e f }'
-        >>> proxy = abjadbooktools.RawLilyPondOutputProxy(raw_lilypond)
-        >>> print(format(proxy))
-        abjad.abjadbooktools.RawLilyPondOutputProxy(
-            '\\version "2.19.0"\n\n{ c d e f }'
-            )
-
-    ::
-
-        >>> proxy.as_latex(relative_output_directory='assets')
-        ['\\noindent\\includegraphics{assets/lilypond-678fb46ce202b3d770361f814e6e1946.pdf}']
+    >>> proxy.as_latex(relative_output_directory='assets')
+    ['\\noindent\\includegraphics{assets/lilypond-678fb46ce202b3d770361f814e6e1946.pdf}']
 
     """
 

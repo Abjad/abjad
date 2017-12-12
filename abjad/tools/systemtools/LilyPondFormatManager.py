@@ -469,24 +469,20 @@ class LilyPondFormatManager(AbjadObject):
 
         ..  container:: example
 
-            ::
+            >>> staff = abjad.Staff("c'4 [ ( d'4 e'4 f'4 ] )")
+            >>> abjad.override(staff[0]).note_head.color = 'red'
 
-                >>> staff = abjad.Staff("c'4 [ ( d'4 e'4 f'4 ] )")
-                >>> abjad.override(staff[0]).note_head.color = 'red'
-
-            ::
-
-                >>> manager = abjad.LilyPondFormatManager
-                >>> print(manager.report_component_format_contributions(staff[0]))
-                slot 1:
-                    grob overrides:
-                        \once \override NoteHead.color = #red
-                slot 3:
-                slot 4:
-                    leaf body:
-                        c'4 [ (
-                slot 5:
-                slot 7:
+            >>> manager = abjad.LilyPondFormatManager
+            >>> print(manager.report_component_format_contributions(staff[0]))
+            slot 1:
+                grob overrides:
+                    \once \override NoteHead.color = #red
+            slot 3:
+            slot 4:
+                leaf body:
+                    c'4 [ (
+            slot 5:
+            slot 7:
 
         Returns string.
         '''
@@ -498,28 +494,24 @@ class LilyPondFormatManager(AbjadObject):
 
         ..  container:: example
 
-            ::
+            >>> staff = abjad.Staff("c8 d e f")
+            >>> spanner = abjad.Beam()
+            >>> abjad.attach(spanner, staff[:])
 
-                >>> staff = abjad.Staff("c8 d e f")
-                >>> spanner = abjad.Beam()
-                >>> abjad.attach(spanner, staff[:])
-
-            ::
-
-                >>> manager = abjad.LilyPondFormatManager
-                >>> print(manager.report_spanner_format_contributions(spanner))
-                c8	abjad.LilyPondFormatBundle(
-                        right=abjad.SlotContributions(
-                            spanner_starts=['['],
-                            ),
-                        )
-                d8	abjad.LilyPondFormatBundle()
-                e8	abjad.LilyPondFormatBundle()
-                f8	abjad.LilyPondFormatBundle(
-                        right=abjad.SlotContributions(
-                            spanner_stops=[']'],
-                            ),
-                        )
+            >>> manager = abjad.LilyPondFormatManager
+            >>> print(manager.report_spanner_format_contributions(spanner))
+            c8	abjad.LilyPondFormatBundle(
+                    right=abjad.SlotContributions(
+                        spanner_starts=['['],
+                        ),
+                    )
+            d8	abjad.LilyPondFormatBundle()
+            e8	abjad.LilyPondFormatBundle()
+            f8	abjad.LilyPondFormatBundle(
+                    right=abjad.SlotContributions(
+                        spanner_stops=[']'],
+                        ),
+                    )
 
         Returns string or none.
         '''

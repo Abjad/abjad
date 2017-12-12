@@ -13,49 +13,33 @@ class Accidental(AbjadValueObject):
             >>> abjad.Accidental('ff')
             Accidental('double flat')
 
-        ::
+        >>> abjad.Accidental('tqf')
+        Accidental('three-quarters flat')
 
-            >>> abjad.Accidental('tqf')
-            Accidental('three-quarters flat')
+        >>> abjad.Accidental('f')
+        Accidental('flat')
 
-        ::
+        >>> abjad.Accidental('')
+        Accidental('natural')
 
-            >>> abjad.Accidental('f')
-            Accidental('flat')
+        >>> abjad.Accidental('qs')
+        Accidental('quarter sharp')
 
-        ::
+        >>> abjad.Accidental('s')
+        Accidental('sharp')
 
-            >>> abjad.Accidental('')
-            Accidental('natural')
+        >>> abjad.Accidental('tqs')
+        Accidental('three-quarters sharp')
 
-        ::
-
-            >>> abjad.Accidental('qs')
-            Accidental('quarter sharp')
-
-        ::
-
-            >>> abjad.Accidental('s')
-            Accidental('sharp')
-
-        ::
-
-            >>> abjad.Accidental('tqs')
-            Accidental('three-quarters sharp')
-
-        ::
-
-            >>> abjad.Accidental('ss')
-            Accidental('double sharp')
+        >>> abjad.Accidental('ss')
+        Accidental('double sharp')
 
     ..  container:: example
 
         Generalized accidentals are allowed:
 
-        ::
-
-            >>> abjad.Accidental('ssss')
-            Accidental('ssss')
+        >>> abjad.Accidental('ssss')
+        Accidental('ssss')
 
     '''
 
@@ -274,19 +258,13 @@ class Accidental(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> accidental = abjad.Accidental('qs')
 
-                >>> accidental = abjad.Accidental('qs')
+            >>> accidental + accidental
+            Accidental('sharp')
 
-            ::
-
-                >>> accidental + accidental
-                Accidental('sharp')
-
-            ::
-
-                >>> accidental + accidental + accidental
-                Accidental('three-quarters sharp')
+            >>> accidental + accidental + accidental
+            Accidental('three-quarters sharp')
 
         Returns new accidental.
         '''
@@ -299,55 +277,39 @@ class Accidental(AbjadValueObject):
     def __call__(self, argument):
         r'''Calls accidental on `argument`.
 
-        ::
-
-            >>> accidental = abjad.Accidental('s')
+        >>> accidental = abjad.Accidental('s')
 
         ..  container:: example
 
             Calls accidental on pitches:
 
-            ::
+            >>> accidental(abjad.NamedPitch("c''"))
+            NamedPitch("cs''")
 
-                >>> accidental(abjad.NamedPitch("c''"))
-                NamedPitch("cs''")
+            >>> accidental(abjad.NamedPitch("cqs''"))
+            NamedPitch("ctqs''")
 
-            ::
+            >>> accidental(abjad.NumberedPitch(12))
+            NumberedPitch(13)
 
-                >>> accidental(abjad.NamedPitch("cqs''"))
-                NamedPitch("ctqs''")
-
-            ::
-
-                >>> accidental(abjad.NumberedPitch(12))
-                NumberedPitch(13)
-
-            ::
-
-                >>> accidental(abjad.NumberedPitch(12.5))
-                NumberedPitch(13.5)
+            >>> accidental(abjad.NumberedPitch(12.5))
+            NumberedPitch(13.5)
 
         ..  container:: example
 
             Calls accidental on pitch-classes:
 
-                >>> accidental(abjad.NamedPitchClass('c'))
-                NamedPitchClass('cs')
+            >>> accidental(abjad.NamedPitchClass('c'))
+            NamedPitchClass('cs')
 
-            ::
+            >>> accidental(abjad.NamedPitchClass('cqs'))
+            NamedPitchClass('ctqs')
 
-                >>> accidental(abjad.NamedPitchClass('cqs'))
-                NamedPitchClass('ctqs')
+            >>> accidental(abjad.NumberedPitchClass(0))
+            NumberedPitchClass(1)
 
-            ::
-
-                >>> accidental(abjad.NumberedPitchClass(0))
-                NumberedPitchClass(1)
-
-            ::
-
-                >>> accidental(abjad.NumberedPitchClass(0.5))
-                NumberedPitchClass(1.5)
+            >>> accidental(abjad.NumberedPitchClass(0.5))
+            NumberedPitchClass(1.5)
 
         Returns new object of `argument` type.
         '''
@@ -363,38 +325,30 @@ class Accidental(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> accidental_1 = abjad.Accidental('f')
+            >>> accidental_2 = abjad.Accidental('f')
+            >>> accidental_3 = abjad.Accidental('s')
 
-                >>> accidental_1 = abjad.Accidental('f')
-                >>> accidental_2 = abjad.Accidental('f')
-                >>> accidental_3 = abjad.Accidental('s')
+            >>> accidental_1 < accidental_1
+            False
+            >>> accidental_1 < accidental_2
+            False
+            >>> accidental_1 < accidental_3
+            True
 
-            ::
+            >>> accidental_2 < accidental_1
+            False
+            >>> accidental_2 < accidental_2
+            False
+            >>> accidental_2 < accidental_3
+            True
 
-                >>> accidental_1 < accidental_1
-                False
-                >>> accidental_1 < accidental_2
-                False
-                >>> accidental_1 < accidental_3
-                True
-
-            ::
-
-                >>> accidental_2 < accidental_1
-                False
-                >>> accidental_2 < accidental_2
-                False
-                >>> accidental_2 < accidental_3
-                True
-
-            ::
-
-                >>> accidental_3 < accidental_1
-                False
-                >>> accidental_3 < accidental_2
-                False
-                >>> accidental_3 < accidental_3
-                False
+            >>> accidental_3 < accidental_1
+            False
+            >>> accidental_3 < accidental_2
+            False
+            >>> accidental_3 < accidental_3
+            False
 
         Returns true or false.
         '''
@@ -405,43 +359,29 @@ class Accidental(AbjadValueObject):
 
         ..  container:: example
 
-                >>> -abjad.Accidental('ff')
-                Accidental('double sharp')
+            >>> -abjad.Accidental('ff')
+            Accidental('double sharp')
 
-            ::
+            >>> -abjad.Accidental('tqf')
+            Accidental('three-quarters sharp')
 
-                >>> -abjad.Accidental('tqf')
-                Accidental('three-quarters sharp')
+            >>> -abjad.Accidental('f')
+            Accidental('sharp')
 
-            ::
+            >>> -abjad.Accidental('')
+            Accidental('natural')
 
-                >>> -abjad.Accidental('f')
-                Accidental('sharp')
+            >>> -abjad.Accidental('qs')
+            Accidental('quarter flat')
 
-            ::
+            >>> -abjad.Accidental('s')
+            Accidental('flat')
 
-                >>> -abjad.Accidental('')
-                Accidental('natural')
+            >>> -abjad.Accidental('tqs')
+            Accidental('three-quarters flat')
 
-            ::
-
-                >>> -abjad.Accidental('qs')
-                Accidental('quarter flat')
-
-            ::
-
-                >>> -abjad.Accidental('s')
-                Accidental('flat')
-
-            ::
-
-                >>> -abjad.Accidental('tqs')
-                Accidental('three-quarters flat')
-
-            ::
-
-                >>> -abjad.Accidental('ss')
-                Accidental('double flat')
+            >>> -abjad.Accidental('ss')
+            Accidental('double flat')
 
         Returns new accidental.
         '''
@@ -457,43 +397,29 @@ class Accidental(AbjadValueObject):
 
         ..  container:: example
 
-                >>> str(abjad.Accidental('ff'))
-                'ff'
+            >>> str(abjad.Accidental('ff'))
+            'ff'
 
-            ::
+            >>> str(abjad.Accidental('tqf'))
+            'tqf'
 
-                >>> str(abjad.Accidental('tqf'))
-                'tqf'
+            >>> str(abjad.Accidental('f'))
+            'f'
 
-            ::
+            >>> str(abjad.Accidental(''))
+            ''
 
-                >>> str(abjad.Accidental('f'))
-                'f'
+            >>> str(abjad.Accidental('qs'))
+            'qs'
 
-            ::
+            >>> str(abjad.Accidental('s'))
+            's'
 
-                >>> str(abjad.Accidental(''))
-                ''
+            >>> str(abjad.Accidental('tqs'))
+            'tqs'
 
-            ::
-
-                >>> str(abjad.Accidental('qs'))
-                'qs'
-
-            ::
-
-                >>> str(abjad.Accidental('s'))
-                's'
-
-            ::
-
-                >>> str(abjad.Accidental('tqs'))
-                'tqs'
-
-            ::
-
-                >>> str(abjad.Accidental('ss'))
-                'ss'
+            >>> str(abjad.Accidental('ss'))
+            'ss'
 
         Returns string.
         '''
@@ -514,19 +440,13 @@ class Accidental(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> accidental = abjad.Accidental('qs')
 
-                >>> accidental = abjad.Accidental('qs')
+            >>> accidental - accidental
+            Accidental('natural')
 
-            ::
-
-                >>> accidental - accidental
-                Accidental('natural')
-
-            ::
-
-                >>> accidental - accidental - accidental
-                Accidental('quarter flat')
+            >>> accidental - accidental - accidental
+            Accidental('quarter flat')
 
         Returns new accidental.
         '''
@@ -585,26 +505,20 @@ class Accidental(AbjadValueObject):
 
             Most accidentals carry no arrow:
 
-            ::
-
-                >>> abjad.Accidental('sharp').arrow is None
-                True
+            >>> abjad.Accidental('sharp').arrow is None
+            True
 
         ..  container:: example
 
             Sharp with up-arrow:
 
-            ::
-
-                >>> abjad.Accidental('sharp', arrow=abjad.Up).arrow
-                Up
+            >>> abjad.Accidental('sharp', arrow=abjad.Up).arrow
+            Up
 
             Sharp with down-arrow:
 
-            ::
-
-                >>> abjad.Accidental('sharp', arrow=abjad.Down).arrow
-                Down
+            >>> abjad.Accidental('sharp', arrow=abjad.Down).arrow
+            Down
 
         ArrowLineSegment property is currently a stub in the object model. You can set the
         property but accidental math and formatting currently ignore the
@@ -620,43 +534,29 @@ class Accidental(AbjadValueObject):
 
         ..  container:: example
 
-                >>> abjad.Accidental('ff').name
-                'double flat'
+            >>> abjad.Accidental('ff').name
+            'double flat'
 
-            ::
+            >>> abjad.Accidental('tqf').name
+            'three-quarters flat'
 
-                >>> abjad.Accidental('tqf').name
-                'three-quarters flat'
+            >>> abjad.Accidental('f').name
+            'flat'
 
-            ::
+            >>> abjad.Accidental('').name
+            'natural'
 
-                >>> abjad.Accidental('f').name
-                'flat'
+            >>> abjad.Accidental('qs').name
+            'quarter sharp'
 
-            ::
+            >>> abjad.Accidental('s').name
+            'sharp'
 
-                >>> abjad.Accidental('').name
-                'natural'
+            >>> abjad.Accidental('tqs').name
+            'three-quarters sharp'
 
-            ::
-
-                >>> abjad.Accidental('qs').name
-                'quarter sharp'
-
-            ::
-
-                >>> abjad.Accidental('s').name
-                'sharp'
-
-            ::
-
-                >>> abjad.Accidental('tqs').name
-                'three-quarters sharp'
-
-            ::
-
-                >>> abjad.Accidental('ss').name
-                'double sharp'
+            >>> abjad.Accidental('ss').name
+            'double sharp'
 
         Returns string.
         '''
@@ -673,43 +573,29 @@ class Accidental(AbjadValueObject):
 
         ..  container:: example
 
-                >>> abjad.Accidental('ff').semitones
-                -2
+            >>> abjad.Accidental('ff').semitones
+            -2
 
-            ::
+            >>> abjad.Accidental('tqf').semitones
+            -1.5
 
-                >>> abjad.Accidental('tqf').semitones
-                -1.5
+            >>> abjad.Accidental('f').semitones
+            -1
 
-            ::
+            >>> abjad.Accidental('').semitones
+            0
 
-                >>> abjad.Accidental('f').semitones
-                -1
+            >>> abjad.Accidental('qs').semitones
+            0.5
 
-            ::
+            >>> abjad.Accidental('s').semitones
+            1
 
-                >>> abjad.Accidental('').semitones
-                0
+            >>> abjad.Accidental('tqs').semitones
+            1.5
 
-            ::
-
-                >>> abjad.Accidental('qs').semitones
-                0.5
-
-            ::
-
-                >>> abjad.Accidental('s').semitones
-                1
-
-            ::
-
-                >>> abjad.Accidental('tqs').semitones
-                1.5
-
-            ::
-
-                >>> abjad.Accidental('ss').semitones
-                2
+            >>> abjad.Accidental('ss').semitones
+            2
 
         Returns number.
         '''
@@ -721,43 +607,29 @@ class Accidental(AbjadValueObject):
 
         ..  container:: example
 
-                >>> abjad.Accidental('ff').symbol
-                'bb'
+            >>> abjad.Accidental('ff').symbol
+            'bb'
 
-            ::
+            >>> abjad.Accidental('tqf').symbol
+            'b~'
 
-                >>> abjad.Accidental('tqf').symbol
-                'b~'
+            >>> abjad.Accidental('f').symbol
+            'b'
 
-            ::
+            >>> abjad.Accidental('').symbol
+            ''
 
-                >>> abjad.Accidental('f').symbol
-                'b'
+            >>> abjad.Accidental('qs').symbol
+            '+'
 
-            ::
+            >>> abjad.Accidental('s').symbol
+            '#'
 
-                >>> abjad.Accidental('').symbol
-                ''
+            >>> abjad.Accidental('tqs').symbol
+            '#+'
 
-            ::
-
-                >>> abjad.Accidental('qs').symbol
-                '+'
-
-            ::
-
-                >>> abjad.Accidental('s').symbol
-                '#'
-
-            ::
-
-                >>> abjad.Accidental('tqs').symbol
-                '#+'
-
-            ::
-
-                >>> abjad.Accidental('ss').symbol
-                '##'
+            >>> abjad.Accidental('ss').symbol
+            '##'
 
         Returns string.
         '''
@@ -775,14 +647,12 @@ class Accidental(AbjadValueObject):
 
             Respells notes in staff:
 
-            ::
-
-                >>> staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8")
-                >>> show(staff) # doctest: +SKIP
+            >>> staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8")
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(staff)
+                >>> abjad.f(staff)
                 \new Staff {
                     c'8
                     cs'8
@@ -792,14 +662,12 @@ class Accidental(AbjadValueObject):
                     f'8
                 }
 
-            ::
-
-                >>> abjad.Accidental.respell_with_flats(staff)
-                >>> show(staff) # doctest: +SKIP
+            >>> abjad.Accidental.respell_with_flats(staff)
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(staff)
+                >>> abjad.f(staff)
                 \new Staff {
                     c'8
                     df'8
@@ -828,14 +696,12 @@ class Accidental(AbjadValueObject):
 
             Respells notes in staff:
 
-            ::
-
-                >>> staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8")
-                >>> show(staff) # doctest: +SKIP
+            >>> staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8")
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(staff)
+                >>> abjad.f(staff)
                 \new Staff {
                     c'8
                     cs'8
@@ -845,14 +711,12 @@ class Accidental(AbjadValueObject):
                     f'8
                 }
 
-            ::
-
-                >>> abjad.Accidental.respell_with_sharps(staff)
-                >>> show(staff) # doctest: +SKIP
+            >>> abjad.Accidental.respell_with_sharps(staff)
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(staff)
+                >>> abjad.f(staff)
                 \new Staff {
                     c'8
                     cs'8

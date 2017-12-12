@@ -6,24 +6,20 @@ class SchemeColor(Scheme):
 
     ..  container:: example
 
-        ::
-
-            >>> abjad.SchemeColor('ForestGreen')
-            SchemeColor('ForestGreen')
+        >>> abjad.SchemeColor('ForestGreen')
+        SchemeColor('ForestGreen')
 
 
     ..  container:: example
 
-        ::
-
-            >>> note = abjad.Note("c'4")
-            >>> scheme_color = abjad.SchemeColor('ForestGreen')
-            >>> abjad.override(note).note_head.color = scheme_color
-            >>> show(note) # doctest: +SKIP
+        >>> note = abjad.Note("c'4")
+        >>> scheme_color = abjad.SchemeColor('ForestGreen')
+        >>> abjad.override(note).note_head.color = scheme_color
+        >>> abjad.show(note) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(note)
+            >>> abjad.f(note)
             \once \override NoteHead.color = #(x11-color 'ForestGreen)
             c'4
 

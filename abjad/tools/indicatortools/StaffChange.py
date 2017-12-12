@@ -8,20 +8,18 @@ class StaffChange(AbjadValueObject):
 
         Explicit staff change:
 
-        ::
-
-            >>> staff_group = abjad.StaffGroup()
-            >>> staff_group.context_name = 'PianoStaff'
-            >>> rh_staff = abjad.Staff("c'8 d'8 e'8 f'8", name='RHStaff')
-            >>> lh_staff = abjad.Staff("s2", name='LHStaff')
-            >>> staff_group.extend([rh_staff, lh_staff])
-            >>> staff_change = abjad.StaffChange(lh_staff)
-            >>> abjad.attach(staff_change, rh_staff[2])
-            >>> show(staff_group) # doctest: +SKIP
+        >>> staff_group = abjad.StaffGroup()
+        >>> staff_group.context_name = 'PianoStaff'
+        >>> rh_staff = abjad.Staff("c'8 d'8 e'8 f'8", name='RHStaff')
+        >>> lh_staff = abjad.Staff("s2", name='LHStaff')
+        >>> staff_group.extend([rh_staff, lh_staff])
+        >>> staff_change = abjad.StaffChange(lh_staff)
+        >>> abjad.attach(staff_change, rh_staff[2])
+        >>> abjad.show(staff_group) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff_group)
+            >>> abjad.f(staff_group)
             \new PianoStaff <<
                 \context Staff = "RHStaff" {
                     c'8
@@ -71,22 +69,18 @@ class StaffChange(AbjadValueObject):
 
             Default staff change:
 
-            ::
-
-                >>> staff_change = abjad.StaffChange()
-                >>> print(str(staff_change))
-                \change Staff = ##f
+            >>> staff_change = abjad.StaffChange()
+            >>> print(str(staff_change))
+            \change Staff = ##f
 
         ..  container:: example
 
             Explicit staff change:
 
-            ::
-
-                >>> lh_staff = abjad.Staff("s2", name='LHStaff')
-                >>> staff_change = abjad.StaffChange(staff=lh_staff)
-                >>> print(str(staff_change))
-                \change Staff = LHStaff
+            >>> lh_staff = abjad.Staff("s2", name='LHStaff')
+            >>> staff_change = abjad.StaffChange(staff=lh_staff)
+            >>> print(str(staff_change))
+            \change Staff = LHStaff
 
         Returns string.
         '''
@@ -124,22 +118,18 @@ class StaffChange(AbjadValueObject):
 
             Default staff change:
 
-            ::
-
-                >>> staff_change = abjad.StaffChange()
-                >>> staff_change.default_scope
-                <class 'abjad.tools.scoretools.Staff.Staff'>
+            >>> staff_change = abjad.StaffChange()
+            >>> staff_change.default_scope
+            <class 'abjad.tools.scoretools.Staff.Staff'>
 
         ..  container:: example
 
             Explicit staff change:
 
-            ::
-
-                >>> lh_staff = abjad.Staff("s2", name='LHStaff')
-                >>> staff_change = abjad.StaffChange(staff=lh_staff)
-                >>> staff_change.default_scope
-                <class 'abjad.tools.scoretools.Staff.Staff'>
+            >>> lh_staff = abjad.Staff("s2", name='LHStaff')
+            >>> staff_change = abjad.StaffChange(staff=lh_staff)
+            >>> staff_change.default_scope
+            <class 'abjad.tools.scoretools.Staff.Staff'>
 
         Returns staff.
         '''
@@ -153,22 +143,18 @@ class StaffChange(AbjadValueObject):
 
             Default staff change:
 
-            ::
-
-                >>> staff_change = abjad.StaffChange()
-                >>> staff_change.staff is None
-                True
+            >>> staff_change = abjad.StaffChange()
+            >>> staff_change.staff is None
+            True
 
         ..  container:: example
 
             Explicit staff change:
 
-            ::
-
-                >>> lh_staff = abjad.Staff("s2", name='LHStaff')
-                >>> staff_change = abjad.StaffChange(staff=lh_staff)
-                >>> staff_change.staff
-                Staff('s2', name='LHStaff')
+            >>> lh_staff = abjad.Staff("s2", name='LHStaff')
+            >>> staff_change = abjad.StaffChange(staff=lh_staff)
+            >>> staff_change.staff
+            Staff('s2', name='LHStaff')
 
         Set to staff or none.
 

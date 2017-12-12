@@ -6,19 +6,17 @@ class Piano(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff_group = abjad.StaffGroup(context_name='PianoStaff')
-            >>> staff_group.append(abjad.Staff("c'4 d'4 e'4 f'4"))
-            >>> staff_group.append(abjad.Staff("c'2 b2"))
-            >>> piano = abjad.Piano()
-            >>> abjad.attach(piano, staff_group[0][0])
-            >>> abjad.attach(abjad.Clef('bass'), staff_group[1][0])
-            >>> show(staff_group) # doctest: +SKIP
+        >>> staff_group = abjad.StaffGroup(context_name='PianoStaff')
+        >>> staff_group.append(abjad.Staff("c'4 d'4 e'4 f'4"))
+        >>> staff_group.append(abjad.Staff("c'2 b2"))
+        >>> piano = abjad.Piano()
+        >>> abjad.attach(piano, staff_group[0][0])
+        >>> abjad.attach(abjad.Clef('bass'), staff_group[1][0])
+        >>> abjad.show(staff_group) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff_group)
+            >>> abjad.f(staff_group)
             \new PianoStaff <<
                 \new Staff {
                     \set PianoStaff.instrumentName = \markup { Piano }
@@ -76,11 +74,9 @@ class Piano(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> piano = abjad.Piano()
-                >>> piano.allowable_clefs
-                ('treble', 'bass')
+            >>> piano = abjad.Piano()
+            >>> piano.allowable_clefs
+            ('treble', 'bass')
 
         Returns clef list.
         '''
@@ -92,11 +88,9 @@ class Piano(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> piano = abjad.Piano()
-                >>> piano.default_scope
-                'StaffGroup'
+            >>> piano = abjad.Piano()
+            >>> piano.default_scope
+            'StaffGroup'
 
         Returns piano staff.
         '''
@@ -108,15 +102,11 @@ class Piano(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> piano = abjad.Piano()
+            >>> piano.middle_c_sounding_pitch
+            NamedPitch("c'")
 
-                >>> piano = abjad.Piano()
-                >>> piano.middle_c_sounding_pitch
-                NamedPitch("c'")
-
-            ::
-
-                >>> show(piano.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(piano.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -128,11 +118,9 @@ class Piano(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> piano = abjad.Piano()
-                >>> piano.name
-                'piano'
+            >>> piano = abjad.Piano()
+            >>> piano.name
+            'piano'
 
         Returns string.
         '''
@@ -144,15 +132,11 @@ class Piano(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> piano = abjad.Piano()
+            >>> piano.name_markup
+            Markup(contents=['Piano'])
 
-                >>> piano = abjad.Piano()
-                >>> piano.name_markup
-                Markup(contents=['Piano'])
-
-            ::
-
-                >>> show(piano.name_markup) # doctest: +SKIP
+            >>> abjad.show(piano.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -164,15 +148,11 @@ class Piano(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> piano = abjad.Piano()
+            >>> piano.pitch_range
+            PitchRange('[A0, C8]')
 
-                >>> piano = abjad.Piano()
-                >>> piano.pitch_range
-                PitchRange('[A0, C8]')
-
-            ::
-
-                >>> show(piano.pitch_range) # doctest: +SKIP
+            >>> abjad.show(piano.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -184,11 +164,9 @@ class Piano(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> piano = abjad.Piano()
-                >>> piano.short_name
-                'pf.'
+            >>> piano = abjad.Piano()
+            >>> piano.short_name
+            'pf.'
 
         Returns string.
         '''
@@ -200,15 +178,11 @@ class Piano(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> piano = abjad.Piano()
+            >>> piano.short_name_markup
+            Markup(contents=['Pf.'])
 
-                >>> piano = abjad.Piano()
-                >>> piano.short_name_markup
-                Markup(contents=['Pf.'])
-
-            ::
-
-                >>> show(piano.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(piano.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

@@ -9,10 +9,8 @@ class NamedIntervalClass(IntervalClass):
 
         Initializes from name:
 
-        ::
-
-            >>> abjad.NamedIntervalClass('-M9')
-            NamedIntervalClass('-M2')
+        >>> abjad.NamedIntervalClass('-M9')
+        NamedIntervalClass('-M2')
 
 
     '''
@@ -114,10 +112,8 @@ class NamedIntervalClass(IntervalClass):
 
         ..  container:: example
 
-            ::
-
-                >>> abs(abjad.NamedIntervalClass('-M9'))
-                NamedIntervalClass('+M2')
+            >>> abs(abjad.NamedIntervalClass('-M9'))
+            NamedIntervalClass('+M2')
 
         Returns new named interval-class.
         '''
@@ -133,38 +129,30 @@ class NamedIntervalClass(IntervalClass):
 
         ..  container:: example
 
-            ::
+            >>> interval_class_1 = abjad.NamedIntervalClass('P1')
+            >>> interval_class_2 = abjad.NamedIntervalClass('P1')
+            >>> interval_class_3 = abjad.NamedIntervalClass('m2')
 
-                >>> interval_class_1 = abjad.NamedIntervalClass('P1')
-                >>> interval_class_2 = abjad.NamedIntervalClass('P1')
-                >>> interval_class_3 = abjad.NamedIntervalClass('m2')
+            >>> interval_class_1 == interval_class_1
+            True
+            >>> interval_class_1 == interval_class_2
+            True
+            >>> interval_class_1 == interval_class_3
+            False
 
-            ::
+            >>> interval_class_2 == interval_class_1
+            True
+            >>> interval_class_2 == interval_class_2
+            True
+            >>> interval_class_2 == interval_class_3
+            False
 
-                >>> interval_class_1 == interval_class_1
-                True
-                >>> interval_class_1 == interval_class_2
-                True
-                >>> interval_class_1 == interval_class_3
-                False
-
-            ::
-
-                >>> interval_class_2 == interval_class_1
-                True
-                >>> interval_class_2 == interval_class_2
-                True
-                >>> interval_class_2 == interval_class_3
-                False
-
-            ::
-
-                >>> interval_class_3 == interval_class_1
-                False
-                >>> interval_class_3 == interval_class_2
-                False
-                >>> interval_class_3 == interval_class_3
-                True
+            >>> interval_class_3 == interval_class_1
+            False
+            >>> interval_class_3 == interval_class_2
+            False
+            >>> interval_class_3 == interval_class_3
+            True
 
         Returns true or false.
         '''
@@ -190,38 +178,30 @@ class NamedIntervalClass(IntervalClass):
 
         ..  container:: example
 
-            ::
+            >>> interval_class_1 = abjad.NamedIntervalClass('P1')
+            >>> interval_class_2 = abjad.NamedIntervalClass('P1')
+            >>> interval_class_3 = abjad.NamedIntervalClass('m2')
 
-                >>> interval_class_1 = abjad.NamedIntervalClass('P1')
-                >>> interval_class_2 = abjad.NamedIntervalClass('P1')
-                >>> interval_class_3 = abjad.NamedIntervalClass('m2')
+            >>> interval_class_1 < interval_class_1
+            False
+            >>> interval_class_1 < interval_class_2
+            False
+            >>> interval_class_1 < interval_class_3
+            True
 
-            ::
+            >>> interval_class_2 < interval_class_1
+            False
+            >>> interval_class_2 < interval_class_2
+            False
+            >>> interval_class_2 < interval_class_3
+            True
 
-                >>> interval_class_1 < interval_class_1
-                False
-                >>> interval_class_1 < interval_class_2
-                False
-                >>> interval_class_1 < interval_class_3
-                True
-
-            ::
-
-                >>> interval_class_2 < interval_class_1
-                False
-                >>> interval_class_2 < interval_class_2
-                False
-                >>> interval_class_2 < interval_class_3
-                True
-
-            ::
-
-                >>> interval_class_3 < interval_class_1
-                False
-                >>> interval_class_3 < interval_class_2
-                False
-                >>> interval_class_3 < interval_class_3
-                False
+            >>> interval_class_3 < interval_class_1
+            False
+            >>> interval_class_3 < interval_class_2
+            False
+            >>> interval_class_3 < interval_class_3
+            False
 
         Returns true or false.
         '''
@@ -241,10 +221,8 @@ class NamedIntervalClass(IntervalClass):
 
         ..  container:: example
 
-            ::
-
-                >>> str(abjad.NamedIntervalClass('-M9'))
-                '-M2'
+            >>> str(abjad.NamedIntervalClass('-M9'))
+            '-M2'
 
         Returns string.
         '''
@@ -290,20 +268,14 @@ class NamedIntervalClass(IntervalClass):
 
         ..  container:: example
 
-            ::
+            >>> abjad.NamedIntervalClass('P1').direction_number
+            0
 
-                >>> abjad.NamedIntervalClass('P1').direction_number
-                0
+            >>> abjad.NamedIntervalClass('+M2').direction_number
+            1
 
-            ::
-
-                >>> abjad.NamedIntervalClass('+M2').direction_number
-                1
-
-            ::
-
-                >>> abjad.NamedIntervalClass('-M2').direction_number
-                -1
+            >>> abjad.NamedIntervalClass('-M2').direction_number
+            -1
 
         Returns -1, 0 or 1.
         '''
@@ -320,20 +292,14 @@ class NamedIntervalClass(IntervalClass):
 
         ..  container:: example
 
-            ::
+            >>> abjad.NamedIntervalClass('P1').direction_string is None
+            True
 
-                >>> abjad.NamedIntervalClass('P1').direction_string is None
-                True
+            >>> abjad.NamedIntervalClass('+M2').direction_string
+            'ascending'
 
-            ::
-
-                >>> abjad.NamedIntervalClass('+M2').direction_string
-                'ascending'
-
-            ::
-
-                >>> abjad.NamedIntervalClass('-M2').direction_string
-                'descending'
+            >>> abjad.NamedIntervalClass('-M2').direction_string
+            'descending'
 
         Returns string.
         '''
@@ -350,20 +316,14 @@ class NamedIntervalClass(IntervalClass):
 
         ..  container:: example
 
-            ::
+            >>> abjad.NamedIntervalClass('P1').direction_symbol
+            ''
 
-                >>> abjad.NamedIntervalClass('P1').direction_symbol
-                ''
+            >>> abjad.NamedIntervalClass('+M2').direction_symbol
+            '+'
 
-            ::
-
-                >>> abjad.NamedIntervalClass('+M2').direction_symbol
-                '+'
-
-            ::
-
-                >>> abjad.NamedIntervalClass('-M2').direction_symbol
-                '-'
+            >>> abjad.NamedIntervalClass('-M2').direction_symbol
+            '-'
 
         Returns string.
         '''
@@ -380,10 +340,8 @@ class NamedIntervalClass(IntervalClass):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NamedIntervalClass('-M9').name
-                '-M2'
+            >>> abjad.NamedIntervalClass('-M9').name
+            '-M2'
 
         Returns string.
         '''
@@ -399,20 +357,14 @@ class NamedIntervalClass(IntervalClass):
 
         ..  container:: example
 
-            ::
+            >>> abjad.NamedIntervalClass('P1').quality_string
+            'perfect'
 
-                >>> abjad.NamedIntervalClass('P1').quality_string
-                'perfect'
+            >>> abjad.NamedIntervalClass('+M2').quality_string
+            'major'
 
-            ::
-
-                >>> abjad.NamedIntervalClass('+M2').quality_string
-                'major'
-
-            ::
-
-                >>> abjad.NamedIntervalClass('-M2').quality_string
-                'major'
+            >>> abjad.NamedIntervalClass('-M2').quality_string
+            'major'
 
         Returns string.
         '''
@@ -427,53 +379,43 @@ class NamedIntervalClass(IntervalClass):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NamedIntervalClass.from_pitch_carriers(
-                ...     abjad.NamedPitch(-2),
-                ...     abjad.NamedPitch(12),
-                ...     )
-                NamedIntervalClass('+M2')
+            >>> abjad.NamedIntervalClass.from_pitch_carriers(
+            ...     abjad.NamedPitch(-2),
+            ...     abjad.NamedPitch(12),
+            ...     )
+            NamedIntervalClass('+M2')
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NamedIntervalClass.from_pitch_carriers(
-                ...     abjad.NamedPitch(0),
-                ...     abjad.NamedPitch(12),
-                ...     )
-                NamedIntervalClass('+P8')
+            >>> abjad.NamedIntervalClass.from_pitch_carriers(
+            ...     abjad.NamedPitch(0),
+            ...     abjad.NamedPitch(12),
+            ...     )
+            NamedIntervalClass('+P8')
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NamedIntervalClass.from_pitch_carriers(
-                ...     abjad.NamedPitch(12),
-                ...     abjad.NamedPitch(12),
-                ...     )
-                NamedIntervalClass('P1')
+            >>> abjad.NamedIntervalClass.from_pitch_carriers(
+            ...     abjad.NamedPitch(12),
+            ...     abjad.NamedPitch(12),
+            ...     )
+            NamedIntervalClass('P1')
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NamedIntervalClass.from_pitch_carriers(
-                ...     abjad.NamedPitch(12),
-                ...     abjad.NamedPitch(-3),
-                ...     )
-                NamedIntervalClass('-m3')
+            >>> abjad.NamedIntervalClass.from_pitch_carriers(
+            ...     abjad.NamedPitch(12),
+            ...     abjad.NamedPitch(-3),
+            ...     )
+            NamedIntervalClass('-m3')
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NamedIntervalClass.from_pitch_carriers(
-                ...     abjad.NamedPitch(12),
-                ...     abjad.NamedPitch(9),
-                ...     )
-                NamedIntervalClass('-m3')
+            >>> abjad.NamedIntervalClass.from_pitch_carriers(
+            ...     abjad.NamedPitch(12),
+            ...     abjad.NamedPitch(9),
+            ...     )
+            NamedIntervalClass('-m3')
 
         Returns newly constructed named interval-class.
         '''
@@ -490,13 +432,11 @@ class NamedIntervalClass(IntervalClass):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NamedIntervalClass.from_quality_and_number(
-                ...     'major',
-                ...     -9,
-                ...     )
-                NamedIntervalClass('-M2')
+            >>> abjad.NamedIntervalClass.from_quality_and_number(
+            ...     'major',
+            ...     -9,
+            ...     )
+            NamedIntervalClass('-M2')
 
         Returns newly constructed named interval-class.
         '''
@@ -510,17 +450,15 @@ class NamedIntervalClass(IntervalClass):
 
         ..  container:: example
 
-            ::
-
-                >>> class_ = abjad.NamedIntervalClass
-                >>> class_.quality_and_number_to_name('minor', 2)
-                '+m2'
-                >>> class_.quality_and_number_to_name('major', 2)
-                '+M2'
-                >>> class_.quality_and_number_to_name('minor', 3)
-                '+m3'
-                >>> class_.quality_and_number_to_name('major', 3)
-                '+M3'
+            >>> class_ = abjad.NamedIntervalClass
+            >>> class_.quality_and_number_to_name('minor', 2)
+            '+m2'
+            >>> class_.quality_and_number_to_name('major', 2)
+            '+M2'
+            >>> class_.quality_and_number_to_name('minor', 3)
+            '+m3'
+            >>> class_.quality_and_number_to_name('major', 3)
+            '+M3'
 
         Returns string.
         '''

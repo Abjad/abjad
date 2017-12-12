@@ -7,22 +7,18 @@ class TreeContainer(TreeNode):
 
     Inner node in a generalized tree data structure.
 
-    ::
+    >>> a = abjad.TreeContainer()
+    >>> a
+    TreeContainer()
 
-        >>> a = abjad.TreeContainer()
-        >>> a
-        TreeContainer()
-
-    ::
-
-        >>> b = abjad.TreeNode()
-        >>> a.append(b)
-        >>> a
-        TreeContainer(
-            children=(
-                TreeNode(),
-                )
+    >>> b = abjad.TreeNode()
+    >>> a.append(b)
+    >>> a
+    TreeContainer(
+        children=(
+            TreeNode(),
             )
+        )
 
     '''
 
@@ -53,22 +49,16 @@ class TreeContainer(TreeNode):
     def __contains__(self, argument):
         r'''True if argument is in container. Otherwise false:
 
-        ::
+        >>> container = abjad.TreeContainer()
+        >>> a = abjad.TreeNode()
+        >>> b = abjad.TreeNode()
+        >>> container.append(a)
 
-            >>> container = abjad.TreeContainer()
-            >>> a = abjad.TreeNode()
-            >>> b = abjad.TreeNode()
-            >>> container.append(a)
+        >>> a in container
+        True
 
-        ::
-
-            >>> a in container
-            True
-
-        ::
-
-            >>> b in container
-            False
+        >>> b in container
+        False
 
         Returns true or false.
         '''
@@ -80,35 +70,23 @@ class TreeContainer(TreeNode):
     def __delitem__(self, i):
         r'''Deletes node `i` in tree container.
 
-        ::
+        >>> container = abjad.TreeContainer()
+        >>> leaf = abjad.TreeNode()
 
-            >>> container = abjad.TreeContainer()
-            >>> leaf = abjad.TreeNode()
+        >>> container.append(leaf)
+        >>> container.children == (leaf,)
+        True
 
-        ::
+        >>> leaf.parent is container
+        True
 
-            >>> container.append(leaf)
-            >>> container.children == (leaf,)
-            True
+        >>> del(container[0])
 
-        ::
+        >>> container.children == ()
+        True
 
-            >>> leaf.parent is container
-            True
-
-        ::
-
-            >>> del(container[0])
-
-        ::
-
-            >>> container.children == ()
-            True
-
-        ::
-
-            >>> leaf.parent is None
-            True
+        >>> leaf.parent is None
+        True
 
         Return `None`.
         '''
@@ -127,12 +105,8 @@ class TreeContainer(TreeNode):
             >>> tree_container_1 = abjad.TreeContainer([])
             >>> tree_container_2 = abjad.TreeContainer([])
 
-        ::
-
             >>> format(tree_container_1) == format(tree_container_2)
             True
-
-        ::
 
             >>> tree_container_1 != tree_container_2
             True
@@ -142,12 +116,8 @@ class TreeContainer(TreeNode):
             >>> tree_container_1 = abjad.TreeContainer([abjad.TreeNode()])
             >>> tree_container_2 = abjad.TreeContainer([abjad.TreeNode()])
 
-        ::
-
             >>> format(tree_container_1) == format(tree_container_2)
             True
-
-        ::
 
             >>> tree_container_1 != tree_container_2
             True
@@ -161,22 +131,14 @@ class TreeContainer(TreeNode):
             ...    abjad.TreeNode()
             ...    ])
 
-        ::
-
             >>> format(tree_container_1) != format(tree_container_2)
             True
-
-        ::
 
             >>> tree_container_1 != tree_container_2
             True
 
-        ::
-
             >>> tree_container_1 != tree_container_3
             True
-
-        ::
 
             >>> tree_container_2 != tree_container_3
             True
@@ -188,65 +150,45 @@ class TreeContainer(TreeNode):
     def __getitem__(self, argument):
         r'''Gets item or slice identified by `argument`.
 
-        ::
+        >>> a = abjad.TreeContainer()
+        >>> b = abjad.TreeNode()
+        >>> c = abjad.TreeContainer()
+        >>> d = abjad.TreeNode()
+        >>> e = abjad.TreeNode()
+        >>> f = abjad.TreeNode()
 
-            >>> a = abjad.TreeContainer()
-            >>> b = abjad.TreeNode()
-            >>> c = abjad.TreeContainer()
-            >>> d = abjad.TreeNode()
-            >>> e = abjad.TreeNode()
-            >>> f = abjad.TreeNode()
+        >>> a.extend([b, c, f])
+        >>> c.extend([d, e])
 
-        ::
+        >>> a[0] is b
+        True
 
-            >>> a.extend([b, c, f])
-            >>> c.extend([d, e])
+        >>> a[1] is c
+        True
 
-        ::
-
-            >>> a[0] is b
-            True
-
-        ::
-
-            >>> a[1] is c
-            True
-
-        ::
-
-            >>> a[2] is f
-            True
+        >>> a[2] is f
+        True
 
         If `i` is a string, the container will attempt to
         return the single child node, at any depth, whose
         `name` matches `i`:
 
-        ::
+        >>> foo = abjad.TreeContainer(name='foo')
+        >>> bar = abjad.TreeContainer(name='bar')
+        >>> baz = abjad.TreeNode(name='baz')
+        >>> quux = abjad.TreeNode(name='quux')
 
-            >>> foo = abjad.TreeContainer(name='foo')
-            >>> bar = abjad.TreeContainer(name='bar')
-            >>> baz = abjad.TreeNode(name='baz')
-            >>> quux = abjad.TreeNode(name='quux')
+        >>> foo.append(bar)
+        >>> bar.extend([baz, quux])
 
-        ::
+        >>> foo['bar'] is bar
+        True
 
-            >>> foo.append(bar)
-            >>> bar.extend([baz, quux])
+        >>> foo['baz'] is baz
+        True
 
-        ::
-
-            >>> foo['bar'] is bar
-            True
-
-        ::
-
-            >>> foo['baz'] is baz
-            True
-
-        ::
-
-            >>> foo['quux'] is quux
-            True
+        >>> foo['quux'] is quux
+        True
 
         Return `TreeNode` instance.
         '''
@@ -278,23 +220,19 @@ class TreeContainer(TreeNode):
 
         ..  container:: example
 
-            ::
+            >>> leaf_a = abjad.TreeNode()
+            >>> leaf_b = abjad.TreeNode()
+            >>> leaf_c = abjad.TreeNode()
+            >>> subcontainer = abjad.TreeContainer([leaf_b, leaf_c])
+            >>> leaf_d = abjad.TreeNode()
+            >>> container = abjad.TreeContainer([
+            ...     leaf_a,
+            ...     subcontainer,
+            ...     leaf_d,
+            ...     ])
 
-                >>> leaf_a = abjad.TreeNode()
-                >>> leaf_b = abjad.TreeNode()
-                >>> leaf_c = abjad.TreeNode()
-                >>> subcontainer = abjad.TreeContainer([leaf_b, leaf_c])
-                >>> leaf_d = abjad.TreeNode()
-                >>> container = abjad.TreeContainer([
-                ...     leaf_a,
-                ...     subcontainer,
-                ...     leaf_d,
-                ...     ])
-
-            ::
-
-                >>> len(container)
-                3
+            >>> len(container)
+            3
 
         '''
         return len(self._children)
@@ -305,42 +243,27 @@ class TreeContainer(TreeNode):
         Attach parentage to contents of `argument`, and detach parentage
         of any replaced nodes:
 
-        ::
+        >>> a = abjad.TreeContainer()
+        >>> b = abjad.TreeNode()
+        >>> c = abjad.TreeNode()
 
-            >>> a = abjad.TreeContainer()
-            >>> b = abjad.TreeNode()
-            >>> c = abjad.TreeNode()
+        >>> a.append(b)
+        >>> b.parent is a
+        True
 
-        ::
+        >>> a.children == (b,)
+        True
 
-            >>> a.append(b)
-            >>> b.parent is a
-            True
+        >>> a[0] = c
 
-        ::
+        >>> c.parent is a
+        True
 
-            >>> a.children == (b,)
-            True
+        >>> b.parent is None
+        True
 
-        ::
-
-            >>> a[0] = c
-
-        ::
-
-            >>> c.parent is a
-            True
-
-
-        ::
-
-            >>> b.parent is None
-            True
-
-        ::
-
-            >>> a.children == (c,)
-            True
+        >>> a.children == (c,)
+        True
 
         Returns none.
         '''
@@ -394,37 +317,29 @@ class TreeContainer(TreeNode):
     def append(self, node):
         r'''Appends `node` to tree container.
 
-        ::
+        >>> a = abjad.TreeContainer()
+        >>> b = abjad.TreeNode()
+        >>> c = abjad.TreeNode()
 
-            >>> a = abjad.TreeContainer()
-            >>> b = abjad.TreeNode()
-            >>> c = abjad.TreeNode()
+        >>> a
+        TreeContainer()
 
-        ::
-
-            >>> a
-            TreeContainer()
-
-        ::
-
-            >>> a.append(b)
-            >>> a
-            TreeContainer(
-                children=(
-                    TreeNode(),
-                    )
+        >>> a.append(b)
+        >>> a
+        TreeContainer(
+            children=(
+                TreeNode(),
                 )
+            )
 
-        ::
-
-            >>> a.append(c)
-            >>> a
-            TreeContainer(
-                children=(
-                    TreeNode(),
-                    TreeNode(),
-                    )
+        >>> a.append(c)
+        >>> a
+        TreeContainer(
+            children=(
+                TreeNode(),
+                TreeNode(),
                 )
+            )
 
         Returns none.
         '''
@@ -436,27 +351,21 @@ class TreeContainer(TreeNode):
     def extend(self, argument):
         r'''Extendes `argument` against tree container.
 
-        ::
+        >>> a = abjad.TreeContainer()
+        >>> b = abjad.TreeNode()
+        >>> c = abjad.TreeNode()
 
-            >>> a = abjad.TreeContainer()
-            >>> b = abjad.TreeNode()
-            >>> c = abjad.TreeNode()
+        >>> a
+        TreeContainer()
 
-        ::
-
-            >>> a
-            TreeContainer()
-
-        ::
-
-            >>> a.extend([b, c])
-            >>> a
-            TreeContainer(
-                children=(
-                    TreeNode(),
-                    TreeNode(),
-                    )
+        >>> a.extend([b, c])
+        >>> a
+        TreeContainer(
+            children=(
+                TreeNode(),
+                TreeNode(),
                 )
+            )
 
         Returns none.
         '''
@@ -468,25 +377,17 @@ class TreeContainer(TreeNode):
     def index(self, node):
         r'''Indexes `node` in tree container.
 
-        ::
+        >>> a = abjad.TreeContainer()
+        >>> b = abjad.TreeNode()
+        >>> c = abjad.TreeNode()
 
-            >>> a = abjad.TreeContainer()
-            >>> b = abjad.TreeNode()
-            >>> c = abjad.TreeNode()
+        >>> a.extend([b, c])
 
-        ::
+        >>> a.index(b)
+        0
 
-            >>> a.extend([b, c])
-
-        ::
-
-            >>> a.index(b)
-            0
-
-        ::
-
-            >>> a.index(c)
-            1
+        >>> a.index(c)
+        1
 
         Returns nonnegative integer.
         '''
@@ -501,41 +402,31 @@ class TreeContainer(TreeNode):
     def insert(self, i, node):
         r'''Insert `node` in tree container at index `i`.
 
-        ::
+        >>> a = abjad.TreeContainer()
+        >>> b = abjad.TreeNode()
+        >>> c = abjad.TreeNode()
+        >>> d = abjad.TreeNode()
 
-            >>> a = abjad.TreeContainer()
-            >>> b = abjad.TreeNode()
-            >>> c = abjad.TreeNode()
-            >>> d = abjad.TreeNode()
+        >>> a.extend([b, c])
 
-        ::
-
-            >>> a.extend([b, c])
-
-        ::
-
-            >>> a
-            TreeContainer(
-                children=(
-                    TreeNode(),
-                    TreeNode(),
-                    )
+        >>> a
+        TreeContainer(
+            children=(
+                TreeNode(),
+                TreeNode(),
                 )
+            )
 
-        ::
+        >>> a.insert(1, d)
 
-            >>> a.insert(1, d)
-
-        ::
-
-            >>> a
-            TreeContainer(
-                children=(
-                    TreeNode(),
-                    TreeNode(),
-                    TreeNode(),
-                    )
+        >>> a
+        TreeContainer(
+            children=(
+                TreeNode(),
+                TreeNode(),
+                TreeNode(),
                 )
+            )
 
 
         Return `None`.
@@ -548,43 +439,31 @@ class TreeContainer(TreeNode):
     def pop(self, i=-1):
         r'''Pops node `i` from tree container.
 
-        ::
+        >>> a = abjad.TreeContainer()
+        >>> b = abjad.TreeNode()
+        >>> c = abjad.TreeNode()
 
-            >>> a = abjad.TreeContainer()
-            >>> b = abjad.TreeNode()
-            >>> c = abjad.TreeNode()
+        >>> a.extend([b, c])
 
-        ::
-
-            >>> a.extend([b, c])
-
-        ::
-
-            >>> a
-            TreeContainer(
-                children=(
-                    TreeNode(),
-                    TreeNode(),
-                    )
+        >>> a
+        TreeContainer(
+            children=(
+                TreeNode(),
+                TreeNode(),
                 )
+            )
 
-        ::
+        >>> node = a.pop()
 
-            >>> node = a.pop()
+        >>> node == c
+        True
 
-        ::
-
-            >>> node == c
-            True
-
-        ::
-
-            >>> a
-            TreeContainer(
-                children=(
-                    TreeNode(),
-                    )
+        >>> a
+        TreeContainer(
+            children=(
+                TreeNode(),
                 )
+            )
 
         Returns node.
         '''
@@ -595,38 +474,28 @@ class TreeContainer(TreeNode):
     def remove(self, node):
         r'''Remove `node` from tree container.
 
-        ::
+        >>> a = abjad.TreeContainer()
+        >>> b = abjad.TreeNode()
+        >>> c = abjad.TreeNode()
 
-            >>> a = abjad.TreeContainer()
-            >>> b = abjad.TreeNode()
-            >>> c = abjad.TreeNode()
+        >>> a.extend([b, c])
 
-        ::
-
-            >>> a.extend([b, c])
-
-        ::
-
-            >>> a
-            TreeContainer(
-                children=(
-                    TreeNode(),
-                    TreeNode(),
-                    )
+        >>> a
+        TreeContainer(
+            children=(
+                TreeNode(),
+                TreeNode(),
                 )
+            )
 
-        ::
+        >>> a.remove(b)
 
-            >>> a.remove(b)
-
-        ::
-
-            >>> a
-            TreeContainer(
-                children=(
-                    TreeNode(),
-                    )
+        >>> a
+        TreeContainer(
+            children=(
+                TreeNode(),
                 )
+            )
 
         Returns none.
         '''
@@ -649,33 +518,23 @@ class TreeContainer(TreeNode):
     def children(self):
         r'''Children of tree container.
 
-        ::
+        >>> a = abjad.TreeContainer()
+        >>> b = abjad.TreeContainer()
+        >>> c = abjad.TreeNode()
+        >>> d = abjad.TreeNode()
+        >>> e = abjad.TreeContainer()
 
-            >>> a = abjad.TreeContainer()
-            >>> b = abjad.TreeContainer()
-            >>> c = abjad.TreeNode()
-            >>> d = abjad.TreeNode()
-            >>> e = abjad.TreeContainer()
+        >>> a.extend([b, c])
+        >>> b.extend([d, e])
 
-        ::
+        >>> a.children == (b, c)
+        True
 
-            >>> a.extend([b, c])
-            >>> b.extend([d, e])
+        >>> b.children == (d, e)
+        True
 
-        ::
-
-            >>> a.children == (b, c)
-            True
-
-        ::
-
-            >>> b.children == (d, e)
-            True
-
-        ::
-
-            >>> e.children == ()
-            True
+        >>> e.children == ()
+        True
 
         Returns tuple of tree nodes.
         '''
@@ -685,27 +544,21 @@ class TreeContainer(TreeNode):
     def leaves(self):
         r'''Leaves of tree container.
 
-        ::
+        >>> a = abjad.TreeContainer(name='a')
+        >>> b = abjad.TreeContainer(name='b')
+        >>> c = abjad.TreeNode(name='c')
+        >>> d = abjad.TreeNode(name='d')
+        >>> e = abjad.TreeContainer(name='e')
 
-            >>> a = abjad.TreeContainer(name='a')
-            >>> b = abjad.TreeContainer(name='b')
-            >>> c = abjad.TreeNode(name='c')
-            >>> d = abjad.TreeNode(name='d')
-            >>> e = abjad.TreeContainer(name='e')
+        >>> a.extend([b, c])
+        >>> b.extend([d, e])
 
-        ::
-
-            >>> a.extend([b, c])
-            >>> b.extend([d, e])
-
-        ::
-
-            >>> for leaf in a.leaves:
-            ...     print(leaf.name)
-            ...
-            d
-            e
-            c
+        >>> for leaf in a.leaves:
+        ...     print(leaf.name)
+        ...
+        d
+        e
+        c
 
         Returns tuple.
         '''
@@ -733,49 +586,33 @@ class TreeContainer(TreeNode):
         r'''The collection of tree nodes produced by iterating tree container
         depth-first.
 
-        ::
+        >>> a = abjad.TreeContainer()
+        >>> b = abjad.TreeContainer()
+        >>> c = abjad.TreeNode()
+        >>> d = abjad.TreeNode()
+        >>> e = abjad.TreeContainer()
 
-            >>> a = abjad.TreeContainer()
-            >>> b = abjad.TreeContainer()
-            >>> c = abjad.TreeNode()
-            >>> d = abjad.TreeNode()
-            >>> e = abjad.TreeContainer()
+        >>> a.extend([b, c])
+        >>> b.extend([d, e])
 
-        ::
+        >>> nodes = a.nodes
+        >>> len(nodes)
+        5
 
-            >>> a.extend([b, c])
-            >>> b.extend([d, e])
+        >>> nodes[0] is a
+        True
 
-        ::
+        >>> nodes[1] is b
+        True
 
-            >>> nodes = a.nodes
-            >>> len(nodes)
-            5
+        >>> nodes[2] is d
+        True
 
-        ::
+        >>> nodes[3] is e
+        True
 
-            >>> nodes[0] is a
-            True
-
-        ::
-
-            >>> nodes[1] is b
-            True
-
-        ::
-
-            >>> nodes[2] is d
-            True
-
-        ::
-
-            >>> nodes[3] is e
-            True
-
-        ::
-
-            >>> nodes[4] is c
-            True
+        >>> nodes[4] is c
+        True
 
         Returns tuple.
         '''

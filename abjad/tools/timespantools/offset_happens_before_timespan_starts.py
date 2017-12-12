@@ -11,121 +11,101 @@ def offset_happens_before_timespan_starts(
         Makes time relation indicating that `offset` happens before `timespan`
         starts:
 
-        ::
-
-            >>> relation = abjad.timespantools.offset_happens_before_timespan_starts()
-            >>> f(relation)
-            abjad.timespantools.OffsetTimespanTimeRelation(
-                inequality=abjad.timespantools.CompoundInequality(
-                    [
-                        abjad.TimespanInequality('offset < timespan.start'),
-                        ],
-                    logical_operator='and',
-                    ),
-                )
+        >>> relation = abjad.timespantools.offset_happens_before_timespan_starts()
+        >>> abjad.f(relation)
+        abjad.timespantools.OffsetTimespanTimeRelation(
+            inequality=abjad.timespantools.CompoundInequality(
+                [
+                    abjad.TimespanInequality('offset < timespan.start'),
+                    ],
+                logical_operator='and',
+                ),
+            )
 
     ..  container:: example
 
         Makes time relation indicating that offset ``1/2`` happens before
         `timespan` starts:
 
-        ::
+        >>> offset = abjad.Offset(1, 2)
 
-            >>> offset = abjad.Offset(1, 2)
+        >>> relation = \
+        ...     abjad.timespantools.offset_happens_before_timespan_starts(
+        ...     offset=offset)
 
-        ::
-
-            >>> relation = \
-            ...     abjad.timespantools.offset_happens_before_timespan_starts(
-            ...     offset=offset)
-
-        ::
-
-            >>> f(relation)
-            abjad.timespantools.OffsetTimespanTimeRelation(
-                inequality=abjad.timespantools.CompoundInequality(
-                    [
-                        abjad.TimespanInequality('offset < timespan.start'),
-                        ],
-                    logical_operator='and',
-                    ),
-                offset=abjad.Offset(1, 2),
-                )
+        >>> abjad.f(relation)
+        abjad.timespantools.OffsetTimespanTimeRelation(
+            inequality=abjad.timespantools.CompoundInequality(
+                [
+                    abjad.TimespanInequality('offset < timespan.start'),
+                    ],
+                logical_operator='and',
+                ),
+            offset=abjad.Offset(1, 2),
+            )
 
     ..  container:: example
 
         Makes time relation indicating that `offset` happens before timespan
         ``[2, 8)`` starts:
 
-        ::
+        >>> timespan = abjad.Timespan(2, 8)
 
-            >>> timespan = abjad.Timespan(2, 8)
+        >>> relation = \
+        ...     abjad.timespantools.offset_happens_before_timespan_starts(
+        ...     timespan=timespan)
 
-        ::
-
-            >>> relation = \
-            ...     abjad.timespantools.offset_happens_before_timespan_starts(
-            ...     timespan=timespan)
-
-        ::
-
-            >>> f(relation)
-            abjad.timespantools.OffsetTimespanTimeRelation(
-                inequality=abjad.timespantools.CompoundInequality(
-                    [
-                        abjad.TimespanInequality('offset < timespan.start'),
-                        ],
-                    logical_operator='and',
-                    ),
-                timespan=abjad.Timespan(
-                    start_offset=abjad.Offset(2, 1),
-                    stop_offset=abjad.Offset(8, 1),
-                    ),
-                )
+        >>> abjad.f(relation)
+        abjad.timespantools.OffsetTimespanTimeRelation(
+            inequality=abjad.timespantools.CompoundInequality(
+                [
+                    abjad.TimespanInequality('offset < timespan.start'),
+                    ],
+                logical_operator='and',
+                ),
+            timespan=abjad.Timespan(
+                start_offset=abjad.Offset(2, 1),
+                stop_offset=abjad.Offset(8, 1),
+                ),
+            )
 
     ..  container:: example
 
         Makes time relation indicating that offset ``1/2`` happens before
         timespan ``[2, 8)`` starts:
 
-        ::
+        >>> relation = abjad.timespantools.offset_happens_before_timespan_starts(
+        ...     timespan=timespan,
+        ...     offset=offset,
+        ...     hold=True,
+        ...     )
 
-            >>> relation = abjad.timespantools.offset_happens_before_timespan_starts(
-            ...     timespan=timespan,
-            ...     offset=offset,
-            ...     hold=True,
-            ...     )
-
-        ::
-
-            >>> f(relation)
-            abjad.timespantools.OffsetTimespanTimeRelation(
-                inequality=abjad.timespantools.CompoundInequality(
-                    [
-                        abjad.TimespanInequality('offset < timespan.start'),
-                        ],
-                    logical_operator='and',
-                    ),
-                timespan=abjad.Timespan(
-                    start_offset=abjad.Offset(2, 1),
-                    stop_offset=abjad.Offset(8, 1),
-                    ),
-                offset=abjad.Offset(1, 2),
-                )
+        >>> abjad.f(relation)
+        abjad.timespantools.OffsetTimespanTimeRelation(
+            inequality=abjad.timespantools.CompoundInequality(
+                [
+                    abjad.TimespanInequality('offset < timespan.start'),
+                    ],
+                logical_operator='and',
+                ),
+            timespan=abjad.Timespan(
+                start_offset=abjad.Offset(2, 1),
+                stop_offset=abjad.Offset(8, 1),
+                ),
+            offset=abjad.Offset(1, 2),
+            )
 
     ..  container:: example
 
         Evaluates time relation indicating that offset ``1/2`` happens before
         timespan ``[2, 8)`` starts:
 
-        ::
-
-            >>> abjad.timespantools.offset_happens_before_timespan_starts(
-            ...     timespan=timespan,
-            ...     offset=offset,
-            ...     hold=False,
-            ...     )
-            True
+        >>> abjad.timespantools.offset_happens_before_timespan_starts(
+        ...     timespan=timespan,
+        ...     offset=offset,
+        ...     hold=False,
+        ...     )
+        True
 
     Returns time relation or boolean.
     '''

@@ -10,25 +10,21 @@ class SchemeVector(Scheme):
 
         Scheme vector of boolean values:
 
-        ::
-
-            >>> scheme = abjad.SchemeVector([True, True, False])
-            >>> scheme
-            SchemeVector(True, True, False)
-            >>> print(format(scheme))
-            #'(#t #t #f)
+        >>> scheme = abjad.SchemeVector([True, True, False])
+        >>> scheme
+        SchemeVector(True, True, False)
+        >>> print(format(scheme))
+        #'(#t #t #f)
 
     ..  container:: example
 
         Scheme vector of symbols:
 
-        ::
-
-            >>> scheme = abjad.SchemeVector(['foo', 'bar', 'blah'])
-            >>> scheme
-            SchemeVector('foo', 'bar', 'blah')
-            >>> print(format(scheme))
-            #'(foo bar blah)
+        >>> scheme = abjad.SchemeVector(['foo', 'bar', 'blah'])
+        >>> scheme
+        SchemeVector('foo', 'bar', 'blah')
+        >>> print(format(scheme))
+        #'(foo bar blah)
 
     Scheme vectors and Scheme vector constants differ in only their LilyPond
     input format.

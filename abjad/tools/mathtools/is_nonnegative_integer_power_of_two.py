@@ -7,21 +7,19 @@ def is_nonnegative_integer_power_of_two(argument):
 
     ..  container:: example
 
-        ::
-
-            >>> for n in range(10):
-            ...     print(n, abjad.mathtools.is_nonnegative_integer_power_of_two(n))
-            ...
-            0 True
-            1 True
-            2 True
-            3 False
-            4 True
-            5 False
-            6 False
-            7 False
-            8 True
-            9 False
+        >>> for n in range(10):
+        ...     print(n, abjad.mathtools.is_nonnegative_integer_power_of_two(n))
+        ...
+        0 True
+        1 True
+        2 True
+        3 False
+        4 True
+        5 False
+        6 False
+        7 False
+        8 True
+        9 False
 
     Returns true or false.
     '''

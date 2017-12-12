@@ -9,20 +9,16 @@ class WeightedSearchTree(SearchTree):
 
         Allows for dividing nodes in a q-grid into parts with unequal weights.
 
-        ::
+        >>> search_tree = abjad.quantizationtools.WeightedSearchTree()
 
-            >>> search_tree = abjad.quantizationtools.WeightedSearchTree()
-
-        ::
-
-            >>> f(search_tree)
-            abjad.quantizationtools.WeightedSearchTree(
-                definition={
-                    'divisors': (2, 3, 5, 7),
-                    'max_depth': 3,
-                    'max_divisions': 2,
-                    },
-                )
+        >>> abjad.f(search_tree)
+        abjad.quantizationtools.WeightedSearchTree(
+            definition={
+                'divisors': (2, 3, 5, 7),
+                'max_depth': 3,
+                'max_divisions': 2,
+                },
+            )
 
     ..  container:: example
 
@@ -37,24 +33,22 @@ class WeightedSearchTree(SearchTree):
 
         Thus, the default ``WeightedSearchTree`` permits the following ratios:
 
-        ::
-
-            >>> for composition in search_tree.all_compositions:
-            ...     composition
-            ...
-            (1, 1)
-            (2, 1)
-            (1, 2)
-            (4, 1)
-            (3, 2)
-            (2, 3)
-            (1, 4)
-            (6, 1)
-            (5, 2)
-            (4, 3)
-            (3, 4)
-            (2, 5)
-            (1, 6)
+        >>> for composition in search_tree.all_compositions:
+        ...     composition
+        ...
+        (1, 1)
+        (2, 1)
+        (1, 2)
+        (4, 1)
+        (3, 2)
+        (2, 3)
+        (1, 4)
+        (6, 1)
+        (5, 2)
+        (4, 3)
+        (3, 4)
+        (2, 5)
+        (1, 6)
 
     '''
 

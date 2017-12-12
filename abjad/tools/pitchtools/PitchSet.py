@@ -10,41 +10,33 @@ class PitchSet(Set):
 
         Numbered pitch set:
 
-        ::
+        >>> set_ = abjad.PitchSet(
+        ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+        ...     item_class=abjad.NumberedPitch,
+        ...     )
+        >>> set_
+        PitchSet([-2, -1.5, 6, 7])
 
-            >>> set_ = abjad.PitchSet(
-            ...     items=[-2, -1.5, 6, 7, -1.5, 7],
-            ...     item_class=abjad.NumberedPitch,
-            ...     )
-            >>> set_
-            PitchSet([-2, -1.5, 6, 7])
-
-        ::
-
-            >>> f(set_)
-            abjad.PitchSet(
-                [-2, -1.5, 6, 7]
-                )
+        >>> abjad.f(set_)
+        abjad.PitchSet(
+            [-2, -1.5, 6, 7]
+            )
 
     ..  container:: example
 
         Named pitch set:
 
-        ::
+        >>> set_ = abjad.PitchSet(
+        ...     ['bf,', 'aqs', "fs'", "g'", 'bqf', "g'"],
+        ...     item_class=abjad.NamedPitch,
+        ...     )
+        >>> set_
+        PitchSet(['bf,', 'aqs', 'bqf', "fs'", "g'"])
 
-            >>> set_ = abjad.PitchSet(
-            ...     ['bf,', 'aqs', "fs'", "g'", 'bqf', "g'"],
-            ...     item_class=abjad.NamedPitch,
-            ...     )
-            >>> set_
-            PitchSet(['bf,', 'aqs', 'bqf', "fs'", "g'"])
-
-        ::
-
-            >>> f(set_)
-            abjad.PitchSet(
-                ['bf,', 'aqs', 'bqf', "fs'", "g'"]
-                )
+        >>> abjad.f(set_)
+        abjad.PitchSet(
+            ['bf,', 'aqs', 'bqf', "fs'", "g'"]
+            )
 
     '''
 
@@ -62,47 +54,39 @@ class PitchSet(Set):
 
         ..  container:: example
 
-            ::
+            >>> set_1 = abjad.PitchSet(
+            ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+            ...     item_class=abjad.NumberedPitch,
+            ...     )
+            >>> set_2 = abjad.PitchSet(
+            ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+            ...     item_class=abjad.NumberedPitch,
+            ...     )
+            >>> set_3 = abjad.PitchSet(
+            ...     items=[11, 12, 12.5],
+            ...     item_class=abjad.NumberedPitch,
+            ...     )
 
-                >>> set_1 = abjad.PitchSet(
-                ...     items=[-2, -1.5, 6, 7, -1.5, 7],
-                ...     item_class=abjad.NumberedPitch,
-                ...     )
-                >>> set_2 = abjad.PitchSet(
-                ...     items=[-2, -1.5, 6, 7, -1.5, 7],
-                ...     item_class=abjad.NumberedPitch,
-                ...     )
-                >>> set_3 = abjad.PitchSet(
-                ...     items=[11, 12, 12.5],
-                ...     item_class=abjad.NumberedPitch,
-                ...     )
+            >>> set_1 == set_1
+            True
+            >>> set_1 == set_2
+            True
+            >>> set_1 == set_3
+            False
 
-            ::
+            >>> set_2 == set_1
+            True
+            >>> set_2 == set_2
+            True
+            >>> set_2 == set_3
+            False
 
-                >>> set_1 == set_1
-                True
-                >>> set_1 == set_2
-                True
-                >>> set_1 == set_3
-                False
-
-            ::
-
-                >>> set_2 == set_1
-                True
-                >>> set_2 == set_2
-                True
-                >>> set_2 == set_3
-                False
-
-            ::
-
-                >>> set_3 == set_1
-                False
-                >>> set_3 == set_2
-                False
-                >>> set_3 == set_3
-                True
+            >>> set_3 == set_1
+            False
+            >>> set_3 == set_2
+            False
+            >>> set_3 == set_3
+            True
 
         Return true or false.
         '''
@@ -122,21 +106,17 @@ class PitchSet(Set):
 
             Treble and bass pitches:
 
-            ::
+            >>> set_ = abjad.PitchSet(
+            ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+            ...     item_class=abjad.NumberedPitch,
+            ...     )
 
-                >>> set_ = abjad.PitchSet(
-                ...     items=[-2, -1.5, 6, 7, -1.5, 7],
-                ...     item_class=abjad.NumberedPitch,
-                ...     )
-
-            ::
-
-                >>> show(set_) # doctest: +SKIP
+            >>> abjad.show(set_) # doctest: +SKIP
 
             ..  docs::
 
                 >>> lilypond_file = set_.__illustrate__()
-                >>> f(lilypond_file[abjad.Score])
+                >>> abjad.f(lilypond_file[abjad.Score])
                 \new Score <<
                     \new PianoStaff <<
                         \new Staff {
@@ -156,21 +136,17 @@ class PitchSet(Set):
 
             Treble pitches only:
 
-            ::
+            >>> set_ = abjad.PitchSet(
+            ...     items=[6, 7, 7],
+            ...     item_class=abjad.NumberedPitch,
+            ...     )
 
-                >>> set_ = abjad.PitchSet(
-                ...     items=[6, 7, 7],
-                ...     item_class=abjad.NumberedPitch,
-                ...     )
-
-            ::
-
-                >>> show(set_) # doctest: +SKIP
+            >>> abjad.show(set_) # doctest: +SKIP
 
             ..  docs::
 
                 >>> lilypond_file = set_.__illustrate__()
-                >>> f(lilypond_file[abjad.Score])
+                >>> abjad.f(lilypond_file[abjad.Score])
                 \new Score <<
                     \new PianoStaff <<
                         \new Staff {
@@ -266,23 +242,19 @@ class PitchSet(Set):
 
         ..  container:: example
 
-            ::
+            >>> set_ = abjad.PitchSet(
+            ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+            ...     item_class=abjad.NumberedPitch,
+            ...     )
+            >>> set_.duplicate_pitch_classes
+            PitchClassSet([])
 
-                >>> set_ = abjad.PitchSet(
-                ...     items=[-2, -1.5, 6, 7, -1.5, 7],
-                ...     item_class=abjad.NumberedPitch,
-                ...     )
-                >>> set_.duplicate_pitch_classes
-                PitchClassSet([])
-
-            ::
-
-                >>> set_ = abjad.PitchSet(
-                ...     items=[-2, -1.5, 6, 7, 10.5, 7],
-                ...     item_class=abjad.NumberedPitch,
-                ...     )
-                >>> set_.duplicate_pitch_classes
-                PitchClassSet([10.5])
+            >>> set_ = abjad.PitchSet(
+            ...     items=[-2, -1.5, 6, 7, 10.5, 7],
+            ...     item_class=abjad.NumberedPitch,
+            ...     )
+            >>> set_.duplicate_pitch_classes
+            PitchClassSet([10.5])
 
         Returns pitch-class set.
         '''
@@ -305,11 +277,9 @@ class PitchSet(Set):
 
         ..  container:: example
 
-            ::
-
-                >>> pitch_set = abjad.PitchSet('c e g b')
-                >>> sorted(pitch_set.hertz)
-                [130.81..., 164.81..., 195.99..., 246.94...]
+            >>> pitch_set = abjad.PitchSet('c e g b')
+            >>> sorted(pitch_set.hertz)
+            [130.81..., 164.81..., 195.99..., 246.94...]
 
         Returns set.
         '''
@@ -321,31 +291,23 @@ class PitchSet(Set):
 
         ..  container:: example
 
-            ::
+            >>> set_ = abjad.PitchSet(
+            ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+            ...     item_class=abjad.NumberedPitch,
+            ...     )
 
-                >>> set_ = abjad.PitchSet(
-                ...     items=[-2, -1.5, 6, 7, -1.5, 7],
-                ...     item_class=abjad.NumberedPitch,
-                ...     )
-
-            ::
-
-                >>> set_.is_pitch_class_unique
-                True
+            >>> set_.is_pitch_class_unique
+            True
 
         ..  container:: example
 
-            ::
+            >>> set_ = abjad.PitchSet(
+            ...     items=[-2, -1.5, 6, 7, 10.5, 7],
+            ...     item_class=abjad.NumberedPitch,
+            ...     )
 
-                >>> set_ = abjad.PitchSet(
-                ...     items=[-2, -1.5, 6, 7, 10.5, 7],
-                ...     item_class=abjad.NumberedPitch,
-                ...     )
-
-            ::
-
-                >>> set_.is_pitch_class_unique
-                False
+            >>> set_.is_pitch_class_unique
+            False
 
         Returns true or false.
         '''
@@ -366,13 +328,11 @@ class PitchSet(Set):
 
         ..  container:: example
 
-            ::
-
-                >>> staff_1 = abjad.Staff("c'4 <d' fs' a'>4 b2")
-                >>> staff_2 = abjad.Staff("c4. r8 g2")
-                >>> selection = abjad.select((staff_1, staff_2))
-                >>> abjad.PitchSet.from_selection(selection)
-                PitchSet(['c', 'g', 'b', "c'", "d'", "fs'", "a'"])
+            >>> staff_1 = abjad.Staff("c'4 <d' fs' a'>4 b2")
+            >>> staff_2 = abjad.Staff("c4. r8 g2")
+            >>> selection = abjad.select((staff_1, staff_2))
+            >>> abjad.PitchSet.from_selection(selection)
+            PitchSet(['c', 'g', 'b', "c'", "d'", "fs'", "a'"])
 
         Returns pitch set.
         '''
@@ -397,26 +357,20 @@ class PitchSet(Set):
 
         ..  container:: example
 
-            ::
+            >>> set_1 = abjad.PitchSet(
+            ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+            ...     item_class=abjad.NumberedPitch,
+            ...     )
+            >>> set_2 = abjad.PitchSet(
+            ...     items=[-1.5, 6],
+            ...     item_class=abjad.NumberedPitch,
+            ...     )
 
-                >>> set_1 = abjad.PitchSet(
-                ...     items=[-2, -1.5, 6, 7, -1.5, 7],
-                ...     item_class=abjad.NumberedPitch,
-                ...     )
-                >>> set_2 = abjad.PitchSet(
-                ...     items=[-1.5, 6],
-                ...     item_class=abjad.NumberedPitch,
-                ...     )
+            >>> set_1.issubset(set_2)
+            False
 
-            ::
-
-                >>> set_1.issubset(set_2)
-                False
-
-            ::
-
-                >>> set_2.issubset(set_1)
-                True
+            >>> set_2.issubset(set_1)
+            True
 
         Returns true or false.
         '''
@@ -427,26 +381,20 @@ class PitchSet(Set):
 
         ..  container:: example
 
-            ::
+            >>> set_1 = abjad.PitchSet(
+            ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+            ...     item_class=abjad.NumberedPitch,
+            ...     )
+            >>> set_2 = abjad.PitchSet(
+            ...     items=[-1.5, 6],
+            ...     item_class=abjad.NumberedPitch,
+            ...     )
 
-                >>> set_1 = abjad.PitchSet(
-                ...     items=[-2, -1.5, 6, 7, -1.5, 7],
-                ...     item_class=abjad.NumberedPitch,
-                ...     )
-                >>> set_2 = abjad.PitchSet(
-                ...     items=[-1.5, 6],
-                ...     item_class=abjad.NumberedPitch,
-                ...     )
+            >>> set_1.issuperset(set_2)
+            False
 
-            ::
-
-                >>> set_1.issuperset(set_2)
-                False
-
-            ::
-
-                >>> set_2.issuperset(set_1)
-                True
+            >>> set_2.issuperset(set_1)
+            True
 
         Returns true or false.
         '''
@@ -457,28 +405,26 @@ class PitchSet(Set):
 
         ..  container:: example
 
-            ::
-
-                >>> pitch_set = abjad.PitchSet(
-                ...     items=[10, 19, 20, 23, 24, 26, 27, 29, 30, 33, 37, 40],
-                ...     item_class=abjad.NumberedPitch,
-                ...     )
-                >>> pitch_classes = [10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11]
-                >>> pitches = pitch_set.register(pitch_classes)
-                >>> for pitch in pitches:
-                ...     pitch
-                NumberedPitch(10)
-                NumberedPitch(24)
-                NumberedPitch(26)
-                NumberedPitch(30)
-                NumberedPitch(20)
-                NumberedPitch(19)
-                NumberedPitch(29)
-                NumberedPitch(27)
-                NumberedPitch(37)
-                NumberedPitch(33)
-                NumberedPitch(40)
-                NumberedPitch(23)
+            >>> pitch_set = abjad.PitchSet(
+            ...     items=[10, 19, 20, 23, 24, 26, 27, 29, 30, 33, 37, 40],
+            ...     item_class=abjad.NumberedPitch,
+            ...     )
+            >>> pitch_classes = [10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11]
+            >>> pitches = pitch_set.register(pitch_classes)
+            >>> for pitch in pitches:
+            ...     pitch
+            NumberedPitch(10)
+            NumberedPitch(24)
+            NumberedPitch(26)
+            NumberedPitch(30)
+            NumberedPitch(20)
+            NumberedPitch(19)
+            NumberedPitch(29)
+            NumberedPitch(27)
+            NumberedPitch(37)
+            NumberedPitch(33)
+            NumberedPitch(40)
+            NumberedPitch(23)
 
         Returns list of zero or more numbered pitches.
         '''

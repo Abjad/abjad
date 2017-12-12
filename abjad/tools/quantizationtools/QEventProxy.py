@@ -9,22 +9,20 @@ class QEventProxy(AbjadObject):
 
     ..  container:: example
 
-        ::
-
-            >>> q_event = abjad.quantizationtools.PitchedQEvent(130, [0, 1, 4])
-            >>> proxy = abjad.quantizationtools.QEventProxy(q_event, 0.5)
-            >>> f(proxy)
-            abjad.quantizationtools.QEventProxy(
-                abjad.quantizationtools.PitchedQEvent(
-                    offset=abjad.Offset(130, 1),
-                    pitches=(
-                        abjad.NamedPitch("c'"),
-                        abjad.NamedPitch("cs'"),
-                        abjad.NamedPitch("e'"),
-                        ),
+        >>> q_event = abjad.quantizationtools.PitchedQEvent(130, [0, 1, 4])
+        >>> proxy = abjad.quantizationtools.QEventProxy(q_event, 0.5)
+        >>> abjad.f(proxy)
+        abjad.quantizationtools.QEventProxy(
+            abjad.quantizationtools.PitchedQEvent(
+                offset=abjad.Offset(130, 1),
+                pitches=(
+                    abjad.NamedPitch("c'"),
+                    abjad.NamedPitch("cs'"),
+                    abjad.NamedPitch("e'"),
                     ),
-                abjad.Offset(1, 2)
-                )
+                ),
+            abjad.Offset(1, 2)
+            )
 
     Not composer-safe.
 

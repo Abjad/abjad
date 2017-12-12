@@ -9,18 +9,16 @@ class LilyPondCommand(AbjadValueObject):
 
         Dotted slur:
 
-        ::
-
-            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-            >>> slur = abjad.Slur()
-            >>> abjad.attach(slur, staff[:])
-            >>> command = abjad.LilyPondCommand('slurDotted')
-            >>> abjad.attach(command, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> slur = abjad.Slur()
+        >>> abjad.attach(slur, staff[:])
+        >>> command = abjad.LilyPondCommand('slurDotted')
+        >>> abjad.attach(command, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \slurDotted
                 c'8 (
@@ -149,11 +147,9 @@ class LilyPondCommand(AbjadValueObject):
 
             Dotted slur:
 
-            ::
-
-                >>> command = abjad.LilyPondCommand('slurDotted')
-                >>> command.format_slot
-                'opening'
+            >>> command = abjad.LilyPondCommand('slurDotted')
+            >>> command.format_slot
+            'opening'
 
         Defaults to `'opening'`.
 
@@ -169,11 +165,9 @@ class LilyPondCommand(AbjadValueObject):
 
             Dotted slur:
 
-            ::
-
-                >>> command = abjad.LilyPondCommand('slurDotted')
-                >>> command.name
-                'slurDotted'
+            >>> command = abjad.LilyPondCommand('slurDotted')
+            >>> command.name
+            'slurDotted'
 
         Returns string.
         '''

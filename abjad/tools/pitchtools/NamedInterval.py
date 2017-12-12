@@ -11,28 +11,22 @@ class NamedInterval(Interval):
 
         Initializes ascending major ninth from string:
 
-        ::
-
-            >>> abjad.NamedInterval('+M9')
-            NamedInterval('+M9')
+        >>> abjad.NamedInterval('+M9')
+        NamedInterval('+M9')
 
     ..  container:: example
 
         Initializes descending major third from number of semitones:
 
-        ::
-
-            >>> abjad.NamedInterval(-4)
-            NamedInterval('-M3')
+        >>> abjad.NamedInterval(-4)
+        NamedInterval('-M3')
 
     ..  container:: example
 
         Initializes from other named interval:
 
-        ::
-
-            >>> abjad.NamedInterval(abjad.NamedInterval(-4))
-            NamedInterval('-M3')
+        >>> abjad.NamedInterval(abjad.NamedInterval(-4))
+        NamedInterval('-M3')
 
     '''
 
@@ -122,15 +116,11 @@ class NamedInterval(Interval):
 
         ..  container:: example
 
-            ::
+            >>> abs(abjad.NamedInterval('+M9'))
+            NamedInterval('+M9')
 
-                >>> abs(abjad.NamedInterval('+M9'))
-                NamedInterval('+M9')
-
-            ::
-
-                >>> abs(abjad.NamedInterval('-M9'))
-                NamedInterval('+M9')
+            >>> abs(abjad.NamedInterval('-M9'))
+            NamedInterval('+M9')
 
         Returns named interval.
         '''
@@ -144,10 +134,8 @@ class NamedInterval(Interval):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NamedInterval('M9') + abjad.NamedInterval('M2')
-                NamedInterval('+M10')
+            >>> abjad.NamedInterval('M9') + abjad.NamedInterval('M2')
+            NamedInterval('+M10')
 
         Returns new named interval.
         '''
@@ -163,16 +151,12 @@ class NamedInterval(Interval):
     def __copy__(self, *arguments):
         r'''Copies named interval.
 
-        ::
-
-            >>> import copy
+        >>> import copy
 
         ..  container:: example
 
-            ::
-
-                >>> copy.copy(abjad.NamedInterval('+M9'))
-                NamedInterval('+M9')
+            >>> copy.copy(abjad.NamedInterval('+M9'))
+            NamedInterval('+M9')
 
         Returns new named interval.
         '''
@@ -187,38 +171,30 @@ class NamedInterval(Interval):
 
         ..  container:: example
 
-            ::
+            >>> interval_1 = abjad.NamedInterval('m2')
+            >>> interval_2 = abjad.NamedInterval('m2')
+            >>> interval_3 = abjad.NamedInterval('m9')
 
-                >>> interval_1 = abjad.NamedInterval('m2')
-                >>> interval_2 = abjad.NamedInterval('m2')
-                >>> interval_3 = abjad.NamedInterval('m9')
+            >>> interval_1 == interval_1
+            True
+            >>> interval_1 == interval_2
+            True
+            >>> interval_1 == interval_3
+            False
 
-            ::
+            >>> interval_2 == interval_1
+            True
+            >>> interval_2 == interval_2
+            True
+            >>> interval_2 == interval_3
+            False
 
-                >>> interval_1 == interval_1
-                True
-                >>> interval_1 == interval_2
-                True
-                >>> interval_1 == interval_3
-                False
-
-            ::
-
-                >>> interval_2 == interval_1
-                True
-                >>> interval_2 == interval_2
-                True
-                >>> interval_2 == interval_3
-                False
-
-            ::
-
-                >>> interval_3 == interval_1
-                False
-                >>> interval_3 == interval_2
-                False
-                >>> interval_3 == interval_3
-                True
+            >>> interval_3 == interval_1
+            False
+            >>> interval_3 == interval_2
+            False
+            >>> interval_3 == interval_3
+            True
 
         '''
         return super(NamedInterval, self).__eq__(argument)
@@ -236,10 +212,8 @@ class NamedInterval(Interval):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NamedInterval('+M9') < abjad.NamedInterval('+M10')
-                True
+            >>> abjad.NamedInterval('+M9') < abjad.NamedInterval('+M10')
+            True
 
         ..  container:: example
 
@@ -247,19 +221,15 @@ class NamedInterval(Interval):
             number equal to this named interval and with semitones greater than
             this named interval:
 
-            ::
-
-                >>> abjad.NamedInterval('+m9') < abjad.NamedInterval('+M9')
-                True
+            >>> abjad.NamedInterval('+m9') < abjad.NamedInterval('+M9')
+            True
 
         ..  container:: example
 
             Otherwise false:
 
-            ::
-
-                >>> abjad.NamedInterval('+M9') < abjad.NamedInterval('+M2')
-                False
+            >>> abjad.NamedInterval('+M9') < abjad.NamedInterval('+M2')
+            False
 
         Returns true or false.
         '''
@@ -274,10 +244,8 @@ class NamedInterval(Interval):
 
         ..  container:: example
 
-            ::
-
-                >>> 3 * abjad.NamedInterval('+M9')
-                NamedInterval('+aug25')
+            >>> 3 * abjad.NamedInterval('+M9')
+            NamedInterval('+aug25')
 
         Returns new named interval.
         '''
@@ -302,17 +270,13 @@ class NamedInterval(Interval):
 
         ..  container:: example
 
-            ::
-
-                >>> -abjad.NamedInterval('+M9')
-                NamedInterval('-M9')
+            >>> -abjad.NamedInterval('+M9')
+            NamedInterval('-M9')
 
         ..  container:: example
 
-            ::
-
-                >>> -abjad.NamedInterval('-M9')
-                NamedInterval('+M9')
+            >>> -abjad.NamedInterval('-M9')
+            NamedInterval('+M9')
 
         Returns new named interval.
         '''
@@ -326,10 +290,8 @@ class NamedInterval(Interval):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NamedInterval('M9') + abjad.NamedInterval('M2')
-                NamedInterval('+M10')
+            >>> abjad.NamedInterval('M9') + abjad.NamedInterval('M2')
+            NamedInterval('+M10')
 
         Returns new named interval.
         '''
@@ -344,10 +306,8 @@ class NamedInterval(Interval):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NamedInterval('+M9') * 3
-                NamedInterval('+aug25')
+            >>> abjad.NamedInterval('+M9') * 3
+            NamedInterval('+aug25')
 
         Returns new named interval.
         '''
@@ -358,10 +318,8 @@ class NamedInterval(Interval):
 
         ..  container:: example
 
-            ::
-
-                >>> str(abjad.NamedInterval('+M9'))
-                '+M9'
+            >>> str(abjad.NamedInterval('+M9'))
+            '+M9'
 
         Returns string.
         '''
@@ -372,15 +330,11 @@ class NamedInterval(Interval):
 
         ..  container:: example
 
-            ::
+            >>> abjad.NamedInterval('+M9') - abjad.NamedInterval('+M2')
+            NamedInterval('+P8')
 
-                >>> abjad.NamedInterval('+M9') - abjad.NamedInterval('+M2')
-                NamedInterval('+P8')
-
-            ::
-
-                >>> abjad.NamedInterval('+M2') - abjad.NamedInterval('+M9')
-                NamedInterval('-P8')
+            >>> abjad.NamedInterval('+M2') - abjad.NamedInterval('+M9')
+            NamedInterval('-P8')
 
         Returns new named interval.
         '''
@@ -473,10 +427,8 @@ class NamedInterval(Interval):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NamedInterval('+M9').direction_number
-                1
+            >>> abjad.NamedInterval('+M9').direction_number
+            1
 
         Returns ``-1``, ``0`` or ``1``.
         '''
@@ -491,24 +443,18 @@ class NamedInterval(Interval):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NamedInterval('+M9').direction_string
-                'ascending'
+            >>> abjad.NamedInterval('+M9').direction_string
+            'ascending'
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NamedInterval('-M9').direction_string
-                'descending'
+            >>> abjad.NamedInterval('-M9').direction_string
+            'descending'
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NamedInterval('P1').direction_string is None
-                True
+            >>> abjad.NamedInterval('P1').direction_string is None
+            True
 
         Returns ``'ascending'``, ``'descending'`` or none.
         '''
@@ -525,25 +471,17 @@ class NamedInterval(Interval):
 
         ..  container:: example
 
-            ::
+            >>> abjad.NamedInterval('+M9').interval_class
+            NamedIntervalClass('+M2')
 
-                >>> abjad.NamedInterval('+M9').interval_class
-                NamedIntervalClass('+M2')
+            >>> abjad.NamedInterval('-M9').interval_class
+            NamedIntervalClass('-M2')
 
-            ::
+            >>> abjad.NamedInterval('P1').interval_class
+            NamedIntervalClass('P1')
 
-                >>> abjad.NamedInterval('-M9').interval_class
-                NamedIntervalClass('-M2')
-
-            ::
-
-                >>> abjad.NamedInterval('P1').interval_class
-                NamedIntervalClass('P1')
-
-            ::
-
-                >>> abjad.NamedInterval('+P8').interval_class
-                NamedIntervalClass('+P8')
+            >>> abjad.NamedInterval('+P8').interval_class
+            NamedIntervalClass('+P8')
 
         Returns named interval-class.
         '''
@@ -560,10 +498,8 @@ class NamedInterval(Interval):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NamedInterval('+M9').interval_string
-                'ninth'
+            >>> abjad.NamedInterval('+M9').interval_string
+            'ninth'
 
         Returns string.
         '''
@@ -575,10 +511,8 @@ class NamedInterval(Interval):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NamedInterval('+M9').name
-                '+M9'
+            >>> abjad.NamedInterval('+M9').name
+            '+M9'
 
         Returns string.
         '''
@@ -594,10 +528,8 @@ class NamedInterval(Interval):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NamedInterval('+M9').number
-                9
+            >>> abjad.NamedInterval('+M9').number
+            9
 
         Returns nonnegative number.
         '''
@@ -609,9 +541,7 @@ class NamedInterval(Interval):
 
         ..  container:: example
 
-            ::
-                >>> abjad.NamedInterval('+M9').octaves
-                1
+            1
 
         Returns nonnegative number.
         '''
@@ -623,25 +553,17 @@ class NamedInterval(Interval):
 
         ..  container:: example
 
-            ::
+            >>> abjad.NamedInterval('+M9').quality_string
+            'major'
 
-                >>> abjad.NamedInterval('+M9').quality_string
-                'major'
+            >>> abjad.NamedInterval('+m9').quality_string
+            'minor'
 
-            ::
+            >>> abjad.NamedInterval('+P8').quality_string
+            'perfect'
 
-                >>> abjad.NamedInterval('+m9').quality_string
-                'minor'
-
-            ::
-
-                >>> abjad.NamedInterval('+P8').quality_string
-                'perfect'
-
-            ::
-
-                >>> abjad.NamedInterval('+aug4').quality_string
-                'augmented'
+            >>> abjad.NamedInterval('+aug4').quality_string
+            'augmented'
 
         Returns string.
         '''
@@ -653,30 +575,20 @@ class NamedInterval(Interval):
 
         ..  container:: example
 
-            ::
+            >>> abjad.NamedInterval('+M9').semitones
+            14
 
-                >>> abjad.NamedInterval('+M9').semitones
-                14
+            >>> abjad.NamedInterval('-M9').semitones
+            -14
 
-            ::
+            >>> abjad.NamedInterval('P1').semitones
+            0
 
-                >>> abjad.NamedInterval('-M9').semitones
-                -14
+            >>> abjad.NamedInterval('+P8').semitones
+            12
 
-            ::
-
-                >>> abjad.NamedInterval('P1').semitones
-                0
-
-            ::
-
-                >>> abjad.NamedInterval('+P8').semitones
-                12
-
-            ::
-
-                >>> abjad.NamedInterval('-P8').semitones
-                -12
+            >>> abjad.NamedInterval('-P8').semitones
+            -12
 
         Returns number.
         '''
@@ -723,30 +635,20 @@ class NamedInterval(Interval):
 
         ..  container:: example
 
-            ::
+            >>> abjad.NamedInterval('+M9').staff_spaces
+            8
 
-                >>> abjad.NamedInterval('+M9').staff_spaces
-                8
+            >>> abjad.NamedInterval('-M9').staff_spaces
+            -8
 
-            ::
+            >>> abjad.NamedInterval('P1').staff_spaces
+            0
 
-                >>> abjad.NamedInterval('-M9').staff_spaces
-                -8
+            >>> abjad.NamedInterval('+P8').staff_spaces
+            7
 
-            ::
-
-                >>> abjad.NamedInterval('P1').staff_spaces
-                0
-
-            ::
-
-                >>> abjad.NamedInterval('+P8').staff_spaces
-                7
-
-            ::
-
-                >>> abjad.NamedInterval('-P8').staff_spaces
-                -7
+            >>> abjad.NamedInterval('-P8').staff_spaces
+            -7
 
         Returns nonnegative integer.
         '''
@@ -766,17 +668,13 @@ class NamedInterval(Interval):
 
         ..  container:: example
 
-            ::
+            >>> abjad.NamedInterval.from_pitch_carriers(
+            ...     abjad.NamedPitch(-2),
+            ...     abjad.NamedPitch(12),
+            ...     )
+            NamedInterval('+M9')
 
-                >>> abjad.NamedInterval.from_pitch_carriers(
-                ...     abjad.NamedPitch(-2),
-                ...     abjad.NamedPitch(12),
-                ...     )
-                NamedInterval('+M9')
-
-            ::
-
-                ..  todo:: Improve this behavior.
+            ..  todo:: Improve this behavior.
 
                 >>> abjad.NamedInterval.from_pitch_carriers(
                 ...     abjad.NamedPitch("cs'"),
@@ -812,13 +710,11 @@ class NamedInterval(Interval):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NamedInterval.from_quality_and_number(
-                ...     'major',
-                ...     -3,
-                ...     )
-                NamedInterval('-M3')
+            >>> abjad.NamedInterval.from_quality_and_number(
+            ...     'major',
+            ...     -3,
+            ...     )
+            NamedInterval('-M3')
 
         Returns newly constructed named interval.
         '''
@@ -836,15 +732,11 @@ class NamedInterval(Interval):
 
             Transposes chord:
 
-            ::
+            >>> chord = abjad.Chord("<c' e' g'>4")
 
-                >>> chord = abjad.Chord("<c' e' g'>4")
-
-            ::
-
-                >>> interval = abjad.NamedInterval('+m2')
-                >>> interval.transpose(chord)
-                Chord("<df' f' af'>4")
+            >>> interval = abjad.NamedInterval('+m2')
+            >>> interval.transpose(chord)
+            Chord("<df' f' af'>4")
 
         Returns new (copied) object of `pitch_carrier` type.
         '''

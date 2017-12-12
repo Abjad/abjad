@@ -5,20 +5,16 @@ def select(items=None):
 
         Selects first two notes in staff:
 
-        ::
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> selection = abjad.select(staff[:2]).leaves(pitched=True)
+        >>> for note in selection:
+        ...     abjad.override(note).note_head.color = 'red'
 
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> selection = abjad.select(staff[:2]).leaves(pitched=True)
-            >>> for note in selection:
-            ...     abjad.override(note).note_head.color = 'red'
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \once \override NoteHead.color = #red
                 c'4
@@ -32,15 +28,11 @@ def select(items=None):
 
         Returns selection agent:
 
-        ::
+        >>> abjad.select(staff)
+        Selection([Staff("c'4 d'4 e'4 f'4")])
 
-            >>> abjad.select(staff)
-            Selection([Staff("c'4 d'4 e'4 f'4")])
-
-        ::
-
-            >>> abjad.select()
-            abjad.select()
+        >>> abjad.select()
+        abjad.select()
 
     '''
     import abjad

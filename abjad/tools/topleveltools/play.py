@@ -3,10 +3,8 @@ def play(argument):
 
     ..  container:: example
 
-        ::
-
-            >>> note = abjad.Note("c'4")
-            >>> abjad.play(note) # doctest: +SKIP
+        >>> note = abjad.Note("c'4")
+        >>> abjad.play(note) # doctest: +SKIP
 
     Makes MIDI file.
 

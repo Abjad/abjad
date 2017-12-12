@@ -11,10 +11,8 @@ class SchemeMoment(Scheme):
 
         Initializes with two integers:
 
-        ::
-
-            >>> abjad.SchemeMoment((1, 68))
-            SchemeMoment((1, 68))
+        >>> abjad.SchemeMoment((1, 68))
+        SchemeMoment((1, 68))
 
     Scheme moments are immutable.
     '''
@@ -39,10 +37,8 @@ class SchemeMoment(Scheme):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.SchemeMoment((1, 68)) == abjad.SchemeMoment((1, 68))
-                True
+            >>> abjad.SchemeMoment((1, 68)) == abjad.SchemeMoment((1, 68))
+            True
 
         ..  container:: example
 
@@ -68,19 +64,15 @@ class SchemeMoment(Scheme):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.SchemeMoment((1, 68)) < abjad.SchemeMoment((1, 32))
-                True
+            >>> abjad.SchemeMoment((1, 68)) < abjad.SchemeMoment((1, 32))
+            True
 
         ..  container:: example
 
             Otherwise false:
 
-            ::
-
-                >>> abjad.SchemeMoment((1, 68)) < abjad.SchemeMoment((1, 78))
-                False
+            >>> abjad.SchemeMoment((1, 68)) < abjad.SchemeMoment((1, 78))
+            False
 
         Returns true or false.
         '''
@@ -116,10 +108,8 @@ class SchemeMoment(Scheme):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.SchemeMoment((1, 68)).duration
-                Duration(1, 68)
+            >>> abjad.SchemeMoment((1, 68)).duration
+            Duration(1, 68)
 
         Returns duration.
         '''

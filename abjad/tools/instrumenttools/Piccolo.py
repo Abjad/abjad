@@ -6,16 +6,14 @@ class Piccolo(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> piccolo = abjad.Piccolo()
-            >>> abjad.attach(piccolo, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+        >>> piccolo = abjad.Piccolo()
+        >>> abjad.attach(piccolo, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { Piccolo }
                 \set Staff.shortInstrumentName = \markup { Picc. }
@@ -64,11 +62,9 @@ class Piccolo(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> piccolo = abjad.Piccolo()
-                >>> piccolo.allowable_clefs
-                ('treble',)
+            >>> piccolo = abjad.Piccolo()
+            >>> piccolo.allowable_clefs
+            ('treble',)
 
         Returns clef list.
         '''
@@ -80,15 +76,11 @@ class Piccolo(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> piccolo = abjad.Piccolo()
+            >>> piccolo.middle_c_sounding_pitch
+            NamedPitch("c''")
 
-                >>> piccolo = abjad.Piccolo()
-                >>> piccolo.middle_c_sounding_pitch
-                NamedPitch("c''")
-
-            ::
-
-                >>> show(piccolo.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(piccolo.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -100,11 +92,9 @@ class Piccolo(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> piccolo = abjad.Piccolo()
-                >>> piccolo.name
-                'piccolo'
+            >>> piccolo = abjad.Piccolo()
+            >>> piccolo.name
+            'piccolo'
 
         Returns string.
         '''
@@ -116,15 +106,11 @@ class Piccolo(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> piccolo = abjad.Piccolo()
+            >>> piccolo.name_markup
+            Markup(contents=['Piccolo'])
 
-                >>> piccolo = abjad.Piccolo()
-                >>> piccolo.name_markup
-                Markup(contents=['Piccolo'])
-
-            ::
-
-                >>> show(piccolo.name_markup) # doctest: +SKIP
+            >>> abjad.show(piccolo.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -136,15 +122,11 @@ class Piccolo(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> piccolo = abjad.Piccolo()
+            >>> piccolo.pitch_range
+            PitchRange('[D5, C8]')
 
-                >>> piccolo = abjad.Piccolo()
-                >>> piccolo.pitch_range
-                PitchRange('[D5, C8]')
-
-            ::
-
-                >>> show(piccolo.pitch_range) # doctest: +SKIP
+            >>> abjad.show(piccolo.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -156,11 +138,9 @@ class Piccolo(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> piccolo = abjad.Piccolo()
-                >>> piccolo.short_name
-                'picc.'
+            >>> piccolo = abjad.Piccolo()
+            >>> piccolo.short_name
+            'picc.'
 
         Returns string.
         '''
@@ -172,15 +152,11 @@ class Piccolo(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> piccolo = abjad.Piccolo()
+            >>> piccolo.short_name_markup
+            Markup(contents=['Picc.'])
 
-                >>> piccolo = abjad.Piccolo()
-                >>> piccolo.short_name_markup
-                Markup(contents=['Picc.'])
-
-            ::
-
-                >>> show(piccolo.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(piccolo.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

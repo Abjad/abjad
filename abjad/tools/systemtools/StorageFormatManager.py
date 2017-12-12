@@ -350,37 +350,29 @@ class StorageFormatManager(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> flute = abjad.instrumenttools.Flute()
 
-                >>> flute = abjad.instrumenttools.Flute()
-
-            ::
-
-                >>> types = abjad.StorageFormatManager._get_types(flute)
-                >>> for type_ in types:
-                ...     type_
-                ...
-                <class 'abjad.tools.instrumenttools.Flute.Flute'>
-                <class 'abjad.tools.markuptools.Markup.Markup'>
-                <class 'abjad.tools.pitchtools.NamedPitch.NamedPitch'>
-                <class 'abjad.tools.pitchtools.PitchRange.PitchRange'>
+            >>> types = abjad.StorageFormatManager._get_types(flute)
+            >>> for type_ in types:
+            ...     type_
+            ...
+            <class 'abjad.tools.instrumenttools.Flute.Flute'>
+            <class 'abjad.tools.markuptools.Markup.Markup'>
+            <class 'abjad.tools.pitchtools.NamedPitch.NamedPitch'>
+            <class 'abjad.tools.pitchtools.PitchRange.PitchRange'>
 
         ..  container:: example
 
-            ::
+            >>> dictionary = abjad.TypedOrderedDict(
+            ...     item_class=abjad.NamedPitch,
+            ...     )
 
-                >>> dictionary = abjad.TypedOrderedDict(
-                ...     item_class=abjad.NamedPitch,
-                ...     )
-
-            ::
-
-                >>> types = abjad.StorageFormatManager._get_types(dictionary)
-                >>> for _ in types:
-                ...     _
-                ...
-                <class 'abjad.tools.datastructuretools.TypedOrderedDict.TypedOrderedDict'>
-                <class 'abjad.tools.pitchtools.NamedPitch.NamedPitch'>
+            >>> types = abjad.StorageFormatManager._get_types(dictionary)
+            >>> for _ in types:
+            ...     _
+            ...
+            <class 'abjad.tools.datastructuretools.TypedOrderedDict.TypedOrderedDict'>
+            <class 'abjad.tools.pitchtools.NamedPitch.NamedPitch'>
 
         Returns tuple of types.
         '''
@@ -541,34 +533,30 @@ class StorageFormatManager(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> flute = abjad.Flute()
+            >>> abjad.f(flute)
+            abjad.Flute(
+                name='flute',
+                short_name='fl.',
+                name_markup=abjad.Markup(
+                    contents=['Flute'],
+                    ),
+                short_name_markup=abjad.Markup(
+                    contents=['Fl.'],
+                    ),
+                allowable_clefs=('treble',),
+                default_scope='Staff',
+                middle_c_sounding_pitch=abjad.NamedPitch("c'"),
+                pitch_range=abjad.PitchRange('[C4, D7]'),
+                )
 
-                >>> flute = abjad.Flute()
-                >>> f(flute)
-                abjad.Flute(
-                    name='flute',
-                    short_name='fl.',
-                    name_markup=abjad.Markup(
-                        contents=['Flute'],
-                        ),
-                    short_name_markup=abjad.Markup(
-                        contents=['Fl.'],
-                        ),
-                    allowable_clefs=('treble',),
-                    default_scope='Staff',
-                    middle_c_sounding_pitch=abjad.NamedPitch("c'"),
-                    pitch_range=abjad.PitchRange('[C4, D7]'),
-                    )
-
-            ::
-
-                >>> agent = abjad.StorageFormatManager(flute)
-                >>> for line in agent.get_import_statements():
-                ...     line
-                ...
-                'from abjad.tools import instrumenttools'
-                'from abjad.tools import markuptools'
-                'from abjad.tools import pitchtools'
+            >>> agent = abjad.StorageFormatManager(flute)
+            >>> for line in agent.get_import_statements():
+            ...     line
+            ...
+            'from abjad.tools import instrumenttools'
+            'from abjad.tools import markuptools'
+            'from abjad.tools import pitchtools'
 
         Returns tuple of strings.
         '''

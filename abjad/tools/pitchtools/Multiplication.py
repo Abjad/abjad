@@ -6,17 +6,13 @@ class Multiplication(AbjadValueObject):
 
     ..  container:: example
 
-        ::
-
-            >>> abjad.Multiplication()
-            Multiplication(n=1)
+        >>> abjad.Multiplication()
+        Multiplication(n=1)
 
     ..  container:: example
 
-        ::
-
-            >>> abjad.Multiplication(n=5)
-            Multiplication(n=5)
+        >>> abjad.Multiplication(n=5)
+        Multiplication(n=5)
 
     Object model of twelve-tone multiplication operator.
     '''
@@ -41,39 +37,31 @@ class Multiplication(AbjadValueObject):
 
             Example segment:
 
-            ::
-
-                >>> items = [0, 2, 4, 5]
-                >>> segment = abjad.PitchClassSegment(items=items)
-                >>> show(segment) # doctest: +SKIP
+            >>> items = [0, 2, 4, 5]
+            >>> segment = abjad.PitchClassSegment(items=items)
+            >>> abjad.show(segment) # doctest: +SKIP
 
             Example operators:
 
-            ::
-
-                >>> multiplication = abjad.Multiplication(n=5)
-                >>> transposition = abjad.Transposition(n=3)
+            >>> multiplication = abjad.Multiplication(n=5)
+            >>> transposition = abjad.Transposition(n=3)
 
         ..  container:: example
 
 
             Transposition followed by multiplication:
 
-            ::
+            >>> operator = multiplication + transposition
+            >>> str(operator)
+            'M5T3'
 
-                >>> operator = multiplication + transposition
-                >>> str(operator)
-                'M5T3'
-
-            ::
-
-                >>> segment_ = operator(segment)
-                >>> show(segment_) # doctest: +SKIP
+            >>> segment_ = operator(segment)
+            >>> abjad.show(segment_) # doctest: +SKIP
 
             ..  docs::
 
                 >>> lilypond_file = segment_.__illustrate__()
-                >>> f(lilypond_file[abjad.Voice])
+                >>> abjad.f(lilypond_file[abjad.Voice])
                 \new Voice {
                     ef'8
                     cs'8
@@ -87,21 +75,17 @@ class Multiplication(AbjadValueObject):
 
             Same as above because multiplication and transposition commute:
 
-            ::
+            >>> operator = transposition + multiplication
+            >>> str(operator)
+            'T3M5'
 
-                >>> operator = transposition + multiplication
-                >>> str(operator)
-                'T3M5'
-
-            ::
-
-                >>> segment_ = operator(segment)
-                >>> show(segment_) # doctest: +SKIP
+            >>> segment_ = operator(segment)
+            >>> abjad.show(segment_) # doctest: +SKIP
 
             ..  docs::
 
                 >>> lilypond_file = segment_.__illustrate__()
-                >>> f(lilypond_file[abjad.Voice])
+                >>> abjad.f(lilypond_file[abjad.Voice])
                 \new Voice {
                     ef'8
                     cs'8
@@ -123,23 +107,19 @@ class Multiplication(AbjadValueObject):
 
             Multiplies pitch-class:
 
-            ::
-
-                >>> multiplication = abjad.Multiplication(n=5)
-                >>> pitch_class = abjad.NumberedPitchClass(4)
-                >>> multiplication(pitch_class)
-                NumberedPitchClass(8)
+            >>> multiplication = abjad.Multiplication(n=5)
+            >>> pitch_class = abjad.NumberedPitchClass(4)
+            >>> multiplication(pitch_class)
+            NumberedPitchClass(8)
 
         ..  container:: example
 
             Multiplies pitch:
 
-            ::
-
-                >>> multiplication = abjad.Multiplication(n=7)
-                >>> pitch = abjad.NamedPitch("f'")
-                >>> multiplication(pitch)
-                NamedPitch("b'''")
+            >>> multiplication = abjad.Multiplication(n=7)
+            >>> pitch = abjad.NamedPitch("f'")
+            >>> multiplication(pitch)
+            NamedPitch("b'''")
 
         Returns new object with type equal to that of `argument`.
         """
@@ -156,12 +136,10 @@ class Multiplication(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.Multiplication().__radd__(abjad.Multiplication())
-                Traceback (most recent call last):
-                ...
-                NotImplementedError: right-addition not defined on Multiplication.
+            >>> abjad.Multiplication().__radd__(abjad.Multiplication())
+            Traceback (most recent call last):
+            ...
+            NotImplementedError: right-addition not defined on Multiplication.
 
         Raises not implemented error.
         '''
@@ -174,17 +152,13 @@ class Multiplication(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> str(abjad.Multiplication())
-                'M1'
+            >>> str(abjad.Multiplication())
+            'M1'
 
         ..  container:: example
 
-            ::
-
-                >>> str(abjad.Multiplication(n=5))
-                'M5'
+            >>> str(abjad.Multiplication(n=5))
+            'M5'
 
         '''
         string = 'M{}'
@@ -213,19 +187,15 @@ class Multiplication(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> multiplication = abjad.Multiplication()
-                >>> multiplication.n
-                1
+            >>> multiplication = abjad.Multiplication()
+            >>> multiplication.n
+            1
 
         ..  container:: example
 
-            ::
-
-                >>> multiplication = abjad.Multiplication(n=5)
-                >>> multiplication.n
-                5
+            >>> multiplication = abjad.Multiplication(n=5)
+            >>> multiplication.n
+            5
 
         Set to integer or none.
         '''

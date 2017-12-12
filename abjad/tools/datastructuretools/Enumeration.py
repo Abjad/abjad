@@ -6,24 +6,18 @@ class Enumeration(enum.IntEnum):
 
     ..  container:: example
 
-        ::
+        >>> class Colors(abjad.Enumeration):
+        ...     RED = 1
+        ...     BLUE = 2
+        ...     LIGHT_GREEN = 3
+        ...
 
-            >>> class Colors(abjad.Enumeration):
-            ...     RED = 1
-            ...     BLUE = 2
-            ...     LIGHT_GREEN = 3
-            ...
+        >>> color = Colors.RED
+        >>> print(repr(color))
+        Colors.RED
 
-        ::
-
-            >>> color = Colors.RED
-            >>> print(repr(color))
-            Colors.RED
-
-        ::
-
-            >>> Colors.from_expr('light green')
-            Colors.LIGHT_GREEN
+        >>> Colors.from_expr('light green')
+        Colors.LIGHT_GREEN
 
     '''
 

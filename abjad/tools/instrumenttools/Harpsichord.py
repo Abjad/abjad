@@ -6,22 +6,20 @@ class Harpsichord(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> upper_staff = abjad.Staff("c'4 d'4 e'4 f'4")
-            >>> lower_staff = abjad.Staff("c'2 b2")
-            >>> staff_group = abjad.StaffGroup(
-            ...     [upper_staff, lower_staff],
-            ...     context_name='PianoStaff',
-            ...     )
-            >>> harpsichord = abjad.Harpsichord()
-            >>> abjad.attach(harpsichord, staff_group[0][0])
-            >>> abjad.attach(abjad.Clef('bass'), lower_staff[0])
-            >>> show(staff_group) # doctest: +SKIP
+        >>> upper_staff = abjad.Staff("c'4 d'4 e'4 f'4")
+        >>> lower_staff = abjad.Staff("c'2 b2")
+        >>> staff_group = abjad.StaffGroup(
+        ...     [upper_staff, lower_staff],
+        ...     context_name='PianoStaff',
+        ...     )
+        >>> harpsichord = abjad.Harpsichord()
+        >>> abjad.attach(harpsichord, staff_group[0][0])
+        >>> abjad.attach(abjad.Clef('bass'), lower_staff[0])
+        >>> abjad.show(staff_group) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff_group)
+            >>> abjad.f(staff_group)
             \new PianoStaff <<
                 \new Staff {
                     \set PianoStaff.instrumentName = \markup { Harpsichord }
@@ -79,11 +77,9 @@ class Harpsichord(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> harpsichord = abjad.Harpsichord()
-                >>> harpsichord.allowable_clefs
-                ('treble', 'bass')
+            >>> harpsichord = abjad.Harpsichord()
+            >>> harpsichord.allowable_clefs
+            ('treble', 'bass')
 
         Returns clef list.
         '''
@@ -95,11 +91,9 @@ class Harpsichord(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> harpsichord = abjad.Harpsichord()
-                >>> harpsichord.default_scope
-                'StaffGroup'
+            >>> harpsichord = abjad.Harpsichord()
+            >>> harpsichord.default_scope
+            'StaffGroup'
 
         Returns piano staff.
         '''
@@ -111,15 +105,11 @@ class Harpsichord(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> harpsichord = abjad.Harpsichord()
+            >>> harpsichord.middle_c_sounding_pitch
+            NamedPitch("c'")
 
-                >>> harpsichord = abjad.Harpsichord()
-                >>> harpsichord.middle_c_sounding_pitch
-                NamedPitch("c'")
-
-            ::
-
-                >>> show(harpsichord.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(harpsichord.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -131,11 +121,9 @@ class Harpsichord(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> harpsichord = abjad.Harpsichord()
-                >>> harpsichord.name
-                'harpsichord'
+            >>> harpsichord = abjad.Harpsichord()
+            >>> harpsichord.name
+            'harpsichord'
 
         Returns string.
         '''
@@ -147,15 +135,11 @@ class Harpsichord(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> harpsichord = abjad.Harpsichord()
+            >>> harpsichord.name_markup
+            Markup(contents=['Harpsichord'])
 
-                >>> harpsichord = abjad.Harpsichord()
-                >>> harpsichord.name_markup
-                Markup(contents=['Harpsichord'])
-
-            ::
-
-                >>> show(harpsichord.name_markup) # doctest: +SKIP
+            >>> abjad.show(harpsichord.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -167,15 +151,11 @@ class Harpsichord(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> harpsichord = abjad.Harpsichord()
+            >>> harpsichord.pitch_range
+            PitchRange('[C2, C7]')
 
-                >>> harpsichord = abjad.Harpsichord()
-                >>> harpsichord.pitch_range
-                PitchRange('[C2, C7]')
-
-            ::
-
-                >>> show(harpsichord.pitch_range) # doctest: +SKIP
+            >>> abjad.show(harpsichord.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -187,11 +167,9 @@ class Harpsichord(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> harpsichord = abjad.Harpsichord()
-                >>> harpsichord.short_name
-                'hpschd.'
+            >>> harpsichord = abjad.Harpsichord()
+            >>> harpsichord.short_name
+            'hpschd.'
 
         Returns string.
         '''
@@ -203,15 +181,11 @@ class Harpsichord(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> harpsichord = abjad.Harpsichord()
+            >>> harpsichord.short_name_markup
+            Markup(contents=['Hpschd.'])
 
-                >>> harpsichord = abjad.Harpsichord()
-                >>> harpsichord.short_name_markup
-                Markup(contents=['Hpschd.'])
-
-            ::
-
-                >>> show(harpsichord.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(harpsichord.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

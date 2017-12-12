@@ -11,14 +11,10 @@ class AbjadConfiguration(Configuration):
 
     ..  container:: example
 
-        ::
+        >>> abjad_configuration = abjad.AbjadConfiguration()
 
-            >>> abjad_configuration = abjad.AbjadConfiguration()
-
-        ::
-
-            >>> abjad_configuration['accidental_spelling']
-            'mixed'
+        >>> abjad_configuration['accidental_spelling']
+        'mixed'
 
     ..  container:: example
 
@@ -298,10 +294,8 @@ class AbjadConfiguration(Configuration):
 
         ..  container:: example
 
-            ::
-
-                >>> configuration.composer_uppercase_name # doctest: +SKIP
-                'TREVOR BAČA'
+            >>> configuration.composer_uppercase_name # doctest: +SKIP
+            'TREVOR BAČA'
 
         Returns string.
         '''
@@ -313,10 +307,8 @@ class AbjadConfiguration(Configuration):
 
         ..  container:: example
 
-            ::
-
-                >>> configuration.composer_website  # doctest: +SKIP
-                'www.trevobaca.com'
+            >>> configuration.composer_website  # doctest: +SKIP
+            'www.trevobaca.com'
 
         Returns string.
         '''
@@ -338,11 +330,9 @@ class AbjadConfiguration(Configuration):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad_configuration = abjad.AbjadConfiguration()
-                >>> abjad_configuration.get_abjad_startup_string()
-                'Abjad 3.0 (development)'
+            >>> abjad_configuration = abjad.AbjadConfiguration()
+            >>> abjad_configuration.get_abjad_startup_string()
+            'Abjad 3.0 (development)'
 
         Returns string.
         '''
@@ -359,11 +349,9 @@ class AbjadConfiguration(Configuration):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad_configuration = abjad.AbjadConfiguration()
-                >>> abjad_configuration.get_abjad_version_string()
-                '3.0'
+            >>> abjad_configuration = abjad.AbjadConfiguration()
+            >>> abjad_configuration.get_abjad_version_string()
+            '3.0'
 
         Returns string.
         '''
@@ -376,11 +364,9 @@ class AbjadConfiguration(Configuration):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad_configuration = abjad.AbjadConfiguration()
-                >>> abjad_configuration.get_lilypond_minimum_version_string() # doctest: +SKIP
-                '2.17.0'
+            >>> abjad_configuration = abjad.AbjadConfiguration()
+            >>> abjad_configuration.get_lilypond_minimum_version_string() # doctest: +SKIP
+            '2.17.0'
 
         Returns string.
         '''
@@ -395,11 +381,9 @@ class AbjadConfiguration(Configuration):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad_configuration = abjad.AbjadConfiguration()
-                >>> abjad_configuration.get_lilypond_version_string() # doctest: +SKIP
-                '2.19.1'
+            >>> abjad_configuration = abjad.AbjadConfiguration()
+            >>> abjad_configuration.get_lilypond_version_string() # doctest: +SKIP
+            '2.19.1'
 
         Returns string.
         '''
@@ -428,11 +412,9 @@ class AbjadConfiguration(Configuration):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad_configuration = abjad.AbjadConfiguration()
-                >>> abjad_configuration.get_python_version_string() # doctest: +SKIP
-                '2.7.5'
+            >>> abjad_configuration = abjad.AbjadConfiguration()
+            >>> abjad_configuration.get_python_version_string() # doctest: +SKIP
+            '2.7.5'
 
         Returns string.
         '''
@@ -444,11 +426,9 @@ class AbjadConfiguration(Configuration):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad_configuration = abjad.AbjadConfiguration()
-                >>> abjad_configuration.get_tab_width()
-                4
+            >>> abjad_configuration = abjad.AbjadConfiguration()
+            >>> abjad_configuration.get_tab_width()
+            4
 
         Used by code generation functions.
 
@@ -462,11 +442,9 @@ class AbjadConfiguration(Configuration):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad_configuration = abjad.AbjadConfiguration()
-                >>> abjad_configuration.get_text_editor() # doctest: +SKIP
-                'vi'
+            >>> abjad_configuration = abjad.AbjadConfiguration()
+            >>> abjad_configuration.get_text_editor() # doctest: +SKIP
+            'vi'
 
         Returns string.
         '''
@@ -485,11 +463,9 @@ class AbjadConfiguration(Configuration):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad_configuration = abjad.AbjadConfiguration()
-                >>> abjad_configuration.list_package_dependency_versions() # doctest: +SKIP
-                {'sphinx': '1.1.2', 'pytest': '2.1.2'}
+            >>> abjad_configuration = abjad.AbjadConfiguration()
+            >>> abjad_configuration.list_package_dependency_versions() # doctest: +SKIP
+            {'sphinx': '1.1.2', 'pytest': '2.1.2'}
 
         Returns dictionary.
         '''
@@ -528,43 +504,31 @@ class AbjadConfiguration(Configuration):
 
             Sets default accidental spelling to sharps:
 
-            ::
+            >>> abjad_configuration = abjad.AbjadConfiguration()
+            >>> abjad_configuration.set_default_accidental_spelling('sharps')
 
-                >>> abjad_configuration = abjad.AbjadConfiguration()
-                >>> abjad_configuration.set_default_accidental_spelling('sharps')
-
-            ::
-
-                >>> [abjad.Note(13, (1, 4)), abjad.Note(15, (1, 4))]
-                [Note("cs''4"), Note("ds''4")]
+            >>> [abjad.Note(13, (1, 4)), abjad.Note(15, (1, 4))]
+            [Note("cs''4"), Note("ds''4")]
 
         ..  container:: example
 
             Sets default accidental spelling to flats:
 
-            ::
+            >>> abjad_configuration = abjad.AbjadConfiguration()
+            >>> abjad_configuration.set_default_accidental_spelling('flats')
 
-                >>> abjad_configuration = abjad.AbjadConfiguration()
-                >>> abjad_configuration.set_default_accidental_spelling('flats')
-
-            ::
-
-                >>> [abjad.Note(13, (1, 4)), abjad.Note(15, (1, 4))]
-                [Note("df''4"), Note("ef''4")]
+            >>> [abjad.Note(13, (1, 4)), abjad.Note(15, (1, 4))]
+            [Note("df''4"), Note("ef''4")]
 
         ..  container:: example
 
             Sets default accidental spelling to mixed:
 
-            ::
+            >>> abjad_configuration = abjad.AbjadConfiguration()
+            >>> abjad_configuration.set_default_accidental_spelling()
 
-                >>> abjad_configuration = abjad.AbjadConfiguration()
-                >>> abjad_configuration.set_default_accidental_spelling()
-
-            ::
-
-                >>> [abjad.Note(13, (1, 4)), abjad.Note(15, (1, 4))]
-                [Note("cs''4"), Note("ef''4")]
+            >>> [abjad.Note(13, (1, 4)), abjad.Note(15, (1, 4))]
+            [Note("cs''4"), Note("ef''4")]
 
         Defaults to ``'mixed'``.
 

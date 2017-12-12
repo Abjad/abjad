@@ -19,28 +19,24 @@ class TaleaRhythmMaker(RhythmMaker):
 
         Repeats talea of 1/16, 2/16, 3/16, 4/16:
 
-        ::
+        >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+        ...     talea=abjad.rhythmmakertools.Talea(
+        ...         counts=[1, 2, 3, 4],
+        ...         denominator=16,
+        ...         ),
+        ...     )
 
-            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-            ...     talea=abjad.rhythmmakertools.Talea(
-            ...         counts=[1, 2, 3, 4],
-            ...         denominator=16,
-            ...         ),
-            ...     )
-
-        ::
-
-            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-            >>> selections = rhythm_maker(divisions)
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(
-            ...     selections,
-            ...     divisions,
-            ...     )
-            >>> show(lilypond_file) # doctest: +SKIP
+        >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+        >>> selections = rhythm_maker(divisions)
+        >>> lilypond_file = abjad.LilyPondFile.rhythm(
+        ...     selections,
+        ...     divisions,
+        ...     )
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(lilypond_file[abjad.Staff])
+            >>> abjad.f(lilypond_file[abjad.Staff])
             \new RhythmicStaff {
                 {
                     \time 3/8
@@ -73,24 +69,20 @@ class TaleaRhythmMaker(RhythmMaker):
 
         Formats rhythm-maker:
 
-        ::
+        >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+        ...     talea=abjad.rhythmmakertools.Talea(
+        ...         counts=[1, 2, 3, 4],
+        ...         denominator=16,
+        ...         ),
+        ...     )
 
-            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-            ...     talea=abjad.rhythmmakertools.Talea(
-            ...         counts=[1, 2, 3, 4],
-            ...         denominator=16,
-            ...         ),
-            ...     )
-
-        ::
-
-            >>> f(rhythm_maker)
-            abjad.rhythmmakertools.TaleaRhythmMaker(
-                talea=abjad.rhythmmakertools.Talea(
-                    counts=[1, 2, 3, 4],
-                    denominator=16,
-                    ),
-                )
+        >>> abjad.f(rhythm_maker)
+        abjad.rhythmmakertools.TaleaRhythmMaker(
+            talea=abjad.rhythmmakertools.Talea(
+                counts=[1, 2, 3, 4],
+                denominator=16,
+                ),
+            )
 
     Follows the two-step configure-once / call-repeatedly pattern shown here.
 
@@ -247,19 +239,15 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         ),
                 ...     )
 
-            ::
+            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
 
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> selections = rhythm_maker(divisions)
-
-            ::
-
-                >>> for selection in selections:
-                ...     selection
-                Selection([Note("c'16"), Note("c'8"), Note("c'8.")])
-                Selection([Note("c'4"), Note("c'16"), Note("c'8"), Note("c'16")])
-                Selection([Note("c'8"), Note("c'4")])
-                Selection([Note("c'16"), Note("c'8"), Note("c'8."), Note("c'8")])
+            >>> for selection in selections:
+            ...     selection
+            Selection([Note("c'16"), Note("c'8"), Note("c'8.")])
+            Selection([Note("c'4"), Note("c'16"), Note("c'8"), Note("c'16")])
+            Selection([Note("c'8"), Note("c'4")])
+            Selection([Note("c'16"), Note("c'8"), Note("c'8."), Note("c'8")])
 
         ..  todo:: Add rotation examples.
 
@@ -287,15 +275,13 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         ),
                 ...     )
 
-            ::
-
-                >>> f(rhythm_maker)
-                abjad.rhythmmakertools.TaleaRhythmMaker(
-                    talea=abjad.rhythmmakertools.Talea(
-                        counts=[1, 2, 3, 4],
-                        denominator=16,
-                        ),
-                    )
+            >>> abjad.f(rhythm_maker)
+            abjad.rhythmmakertools.TaleaRhythmMaker(
+                talea=abjad.rhythmmakertools.Talea(
+                    counts=[1, 2, 3, 4],
+                    denominator=16,
+                    ),
+                )
 
         ..  container:: example
 
@@ -308,15 +294,13 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         ),
                 ...     )
 
-            ::
-
-                >>> f(rhythm_maker)
-                abjad.rhythmmakertools.TaleaRhythmMaker(
-                    talea=abjad.rhythmmakertools.Talea(
-                        counts=[1, 2, 3, 4],
-                        denominator=16,
-                        ),
-                    )
+            >>> abjad.f(rhythm_maker)
+            abjad.rhythmmakertools.TaleaRhythmMaker(
+                talea=abjad.rhythmmakertools.Talea(
+                    counts=[1, 2, 3, 4],
+                    denominator=16,
+                    ),
+                )
 
         Returns string.
         '''
@@ -328,20 +312,18 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            ::
-
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[1, 2, 3, 4],
-                ...         denominator=16,
-                ...         ),
-                ...     )
-                >>> show(rhythm_maker) # doctest: +SKIP
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[1, 2, 3, 4],
+            ...         denominator=16,
+            ...         ),
+            ...     )
+            >>> abjad.show(rhythm_maker) # doctest: +SKIP
 
             ..  docs::
 
                 >>> lilypond_file = rhythm_maker.__illustrate__()
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -379,15 +361,13 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[1, 2, 3, 4],
-                ...         denominator=16,
-                ...         ),
-                ...     )
-                TaleaRhythmMaker(talea=Talea(counts=[1, 2, 3, 4], denominator=16))
+            >>> abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[1, 2, 3, 4],
+            ...         denominator=16,
+            ...         ),
+            ...     )
+            TaleaRhythmMaker(talea=Talea(counts=[1, 2, 3, 4], denominator=16))
 
         Returns string.
         '''
@@ -723,31 +703,27 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Beams each division:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[1],
+            ...         denominator=16,
+            ...         ),
+            ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
+            ...         beam_each_division=True,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[1],
-                ...         denominator=16,
-                ...         ),
-                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
-                ...         beam_each_division=True,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -795,31 +771,27 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Beams divisions together:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[1],
+            ...         denominator=16,
+            ...         ),
+            ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
+            ...         beam_divisions_together=True,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[1],
-                ...         denominator=16,
-                ...         ),
-                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
-                ...         beam_divisions_together=True,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -923,32 +895,28 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Beams nothing:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[1],
+            ...         denominator=16,
+            ...         ),
+            ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
+            ...         beam_each_division=False,
+            ...         beam_divisions_together=False,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[1],
-                ...         denominator=16,
-                ...         ),
-                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
-                ...         beam_each_division=False,
-                ...         beam_divisions_together=False,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -996,31 +964,27 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Does not beam rests:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[1, 1, 1, -1],
+            ...         denominator=16,
+            ...         ),
+            ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
+            ...         beam_each_division=True,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[1, 1, 1, -1],
-                ...         denominator=16,
-                ...         ),
-                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
-                ...         beam_each_division=True,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -1068,32 +1032,28 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Does beam rests:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[1, 1, 1, -1],
+            ...         denominator=16,
+            ...         ),
+            ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
+            ...         beam_each_division=True,
+            ...         beam_rests=True,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[1, 1, 1, -1],
-                ...         denominator=16,
-                ...         ),
-                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
-                ...         beam_each_division=True,
-                ...         beam_rests=True,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -1141,33 +1101,29 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Beams rests with stemlets:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[1, 1, 1, -1],
+            ...         denominator=16,
+            ...         ),
+            ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
+            ...         beam_each_division=True,
+            ...         beam_rests=True,
+            ...         stemlet_length=0.75,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[1, 1, 1, -1],
-                ...         denominator=16,
-                ...         ),
-                ...     beam_specifier=abjad.rhythmmakertools.BeamSpecifier(
-                ...         beam_each_division=True,
-                ...         beam_rests=True,
-                ...         stemlet_length=0.75,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -1233,35 +1189,31 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Forces the first leaf and the last two leaves to be rests:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[1, 2, 3, 4],
+            ...         denominator=16,
+            ...         ),
+            ...     burnish_specifier=abjad.rhythmmakertools.BurnishSpecifier(
+            ...         left_classes=[abjad.Rest],
+            ...         left_counts=[1],
+            ...         right_classes=[abjad.Rest],
+            ...         right_counts=[2],
+            ...         outer_divisions_only=True,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[1, 2, 3, 4],
-                ...         denominator=16,
-                ...         ),
-                ...     burnish_specifier=abjad.rhythmmakertools.BurnishSpecifier(
-                ...         left_classes=[abjad.Rest],
-                ...         left_counts=[1],
-                ...         right_classes=[abjad.Rest],
-                ...         right_counts=[2],
-                ...         outer_divisions_only=True,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff]) # doctest: +SKIP
+                >>> abjad.f(lilypond_file[abjad.Staff]) # doctest: +SKIP
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -1294,32 +1246,28 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Forces the first leaf of every division to be a rest:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[1, 2, 3, 4],
+            ...         denominator=16,
+            ...         ),
+            ...     burnish_specifier=abjad.rhythmmakertools.BurnishSpecifier(
+            ...         left_classes=[abjad.Rest],
+            ...         left_counts=[1],
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[1, 2, 3, 4],
-                ...         denominator=16,
-                ...         ),
-                ...     burnish_specifier=abjad.rhythmmakertools.BurnishSpecifier(
-                ...         left_classes=[abjad.Rest],
-                ...         left_counts=[1],
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -1362,28 +1310,24 @@ class TaleaRhythmMaker(RhythmMaker):
 
             No division masks:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[1, 2, 3, 4],
+            ...         denominator=16,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[1, 2, 3, 4],
-                ...         denominator=16,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -1416,33 +1360,29 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Silences every other output division:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[1, 2, 3, 4],
+            ...         denominator=16,
+            ...         ),
+            ...     division_masks=[
+            ...         abjad.rhythmmakertools.SilenceMask(
+            ...             pattern=abjad.index_every([1], period=2),
+            ...             ),
+            ...         ],
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[1, 2, 3, 4],
-                ...         denominator=16,
-                ...         ),
-                ...     division_masks=[
-                ...         abjad.rhythmmakertools.SilenceMask(
-                ...             pattern=abjad.index_every([1], period=2),
-                ...             ),
-                ...         ],
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -1469,31 +1409,27 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Sustains every other output division:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[1, 2, 3, 4],
+            ...         denominator=16,
+            ...         ),
+            ...     division_masks=[
+            ...         abjad.sustain_every([1], period=2),
+            ...         ],
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[1, 2, 3, 4],
-                ...         denominator=16,
-                ...         ),
-                ...     division_masks=[
-                ...         abjad.sustain_every([1], period=2),
-                ...         ],
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -1520,34 +1456,30 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Silences every other secondary output division:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[1],
+            ...         denominator=16,
+            ...         ),
+            ...     split_divisions_by_counts=[9],
+            ...     division_masks=[
+            ...         abjad.rhythmmakertools.SilenceMask(
+            ...             pattern=abjad.index_every([1], period=2),
+            ...             ),
+            ...         ],
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[1],
-                ...         denominator=16,
-                ...         ),
-                ...     split_divisions_by_counts=[9],
-                ...     division_masks=[
-                ...         abjad.rhythmmakertools.SilenceMask(
-                ...             pattern=abjad.index_every([1], period=2),
-                ...             ),
-                ...         ],
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -1584,32 +1516,28 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Sustains every other secondary output division:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[1],
+            ...         denominator=16,
+            ...         ),
+            ...     split_divisions_by_counts=[9],
+            ...     division_masks=[
+            ...         abjad.sustain_every([1], period=2),
+            ...         ],
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[1],
-                ...         denominator=16,
-                ...         ),
-                ...     split_divisions_by_counts=[9],
-                ...     division_masks=[
-                ...         abjad.sustain_every([1], period=2),
-                ...         ],
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -1660,31 +1588,27 @@ class TaleaRhythmMaker(RhythmMaker):
             Spells nonassignable durations with monontonically decreasing
             durations:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[5],
+            ...         denominator=16,
+            ...         ),
+            ...     duration_specifier=abjad.rhythmmakertools.DurationSpecifier(
+            ...         decrease_monotonic=True,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[5],
-                ...         denominator=16,
-                ...         ),
-                ...     duration_specifier=abjad.rhythmmakertools.DurationSpecifier(
-                ...         decrease_monotonic=True,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(5, 8), (5, 8), (5, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(5, 8), (5, 8), (5, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -1712,31 +1636,27 @@ class TaleaRhythmMaker(RhythmMaker):
             Spells nonassignable durations with monontonically increasing
             durations:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[5],
+            ...         denominator=16,
+            ...         ),
+            ...     duration_specifier=abjad.rhythmmakertools.DurationSpecifier(
+            ...         decrease_monotonic=False,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[5],
-                ...         denominator=16,
-                ...         ),
-                ...     duration_specifier=abjad.rhythmmakertools.DurationSpecifier(
-                ...         decrease_monotonic=False,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(5, 8), (5, 8), (5, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(5, 8), (5, 8), (5, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -1763,31 +1683,27 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Forbids no durations:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[1, 1, 1, 1, 4, 4],
+            ...         denominator=16,
+            ...         ),
+            ...     duration_specifier=abjad.rhythmmakertools.DurationSpecifier(
+            ...         forbidden_duration=None,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[1, 1, 1, 1, 4, 4],
-                ...         denominator=16,
-                ...         ),
-                ...     duration_specifier=abjad.rhythmmakertools.DurationSpecifier(
-                ...         forbidden_duration=None,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 4), (3, 4)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 4), (3, 4)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/4
@@ -1822,19 +1738,17 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         ),
                 ...     )
 
-            ::
-
-                >>> divisions = [(3, 4), (3, 4)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 4), (3, 4)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/4
@@ -1875,19 +1789,17 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         ),
                 ...     )
 
-            ::
-
-                >>> divisions = [(3, 4), (3, 4), (3, 4)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 4), (3, 4), (3, 4)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/4
@@ -1929,19 +1841,17 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         ),
                 ...     )
 
-            ::
-
-                >>> divisions = [(3, 4), (3, 4), (3, 4)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 4), (3, 4), (3, 4)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/4
@@ -1979,19 +1889,17 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         ),
                 ...     )
 
-            ::
-
-                >>> divisions = [(3, 4), (3, 4), (3, 4)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 4), (3, 4), (3, 4)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/4
@@ -2031,28 +1939,24 @@ class TaleaRhythmMaker(RhythmMaker):
 
             No extra counts per division:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[1, 2, 3, 4],
+            ...         denominator=16,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[1, 2, 3, 4],
-                ...         denominator=16,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2085,29 +1989,25 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Adds one extra count to every other division:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[1, 2, 3, 4],
+            ...         denominator=16,
+            ...         ),
+            ...     extra_counts_per_division=[0, 1],
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[1, 2, 3, 4],
-                ...         denominator=16,
-                ...         ),
-                ...     extra_counts_per_division=[0, 1],
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2148,29 +2048,25 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Adds two extra counts to every other division:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[1, 2, 3, 4],
+            ...         denominator=16,
+            ...         ),
+            ...     extra_counts_per_division=[0, 2],
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[1, 2, 3, 4],
-                ...         denominator=16,
-                ...         ),
-                ...     extra_counts_per_division=[0, 2],
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2216,29 +2112,25 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Removes one count from every other division:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[1, 2, 3, 4],
+            ...         denominator=16,
+            ...         ),
+            ...     extra_counts_per_division=[0, -1],
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[1, 2, 3, 4],
-                ...         denominator=16,
-                ...         ),
-                ...     extra_counts_per_division=[0, -1],
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2301,31 +2193,27 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Silences every third logical tie:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     logical_tie_masks=[
+            ...         abjad.silence_every([2], period=3),
+            ...         ],
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[1, 2, 3, 4],
+            ...         denominator=16,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     logical_tie_masks=[
-                ...         abjad.silence_every([2], period=3),
-                ...         ],
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[1, 2, 3, 4],
-                ...         denominator=16,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2355,32 +2243,28 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Silences the first and last logical ties:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     logical_tie_masks=[
+            ...         abjad.silence_first(1),
+            ...         abjad.silence_last(1),
+            ...         ],
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[1, 2, 3, 4],
+            ...         denominator=16,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     logical_tie_masks=[
-                ...         abjad.silence_first(1),
-                ...         abjad.silence_last(1),
-                ...         ],
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[1, 2, 3, 4],
-                ...         denominator=16,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2419,28 +2303,24 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Reads talea cyclically:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[1, 2, 3, 4],
+            ...         denominator=16,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[1, 2, 3, 4],
-                ...         denominator=16,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2470,27 +2350,23 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Reads talea once only:
 
-            ::
-
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     read_talea_once_only=True,
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[1, 2, 3, 4],
-                ...         denominator=16,
-                ...         ),
-                ...     )
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     read_talea_once_only=True,
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[1, 2, 3, 4],
+            ...         denominator=16,
+            ...         ),
+            ...     )
 
             Calling rhythm_maker on these divisions raises an exception because talea
             is too short to read once only:
 
-            ::
-
-                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> rhythm_maker(divisions)
-                Traceback (most recent call last):
-                    ...
-                Exception: talea is too short to read once only:
-                CyclicTuple([1, 2, 3, 4]) in [6, 6, 6, 6].
+            >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
+            >>> rhythm_maker(divisions)
+            Traceback (most recent call last):
+                ...
+            Exception: talea is too short to read once only:
+            CyclicTuple([1, 2, 3, 4]) in [6, 6, 6, 6].
 
         Set to true to ensure talea is long enough to cover all divisions
         without repeating.
@@ -2515,28 +2391,24 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Does not rest tied notes:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[1, 2, 3, 4],
+            ...         denominator=16,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[1, 2, 3, 4],
-                ...         denominator=16,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2566,29 +2438,25 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Rests tied notes:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     rest_tied_notes=True,
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[1, 2, 3, 4],
+            ...         denominator=16,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     rest_tied_notes=True,
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[1, 2, 3, 4],
-                ...         denominator=16,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2634,28 +2502,24 @@ class TaleaRhythmMaker(RhythmMaker):
             indefinitely. Output equals four divisions of 12 thirty-second
             notes each:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[2],
+            ...         denominator=32,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[2],
-                ...         denominator=32,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2701,29 +2565,25 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Note that ``12 + 5 = 17`` and ``7 + 10 = 17``:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[2],
+            ...         denominator=32,
+            ...         ),
+            ...     split_divisions_by_counts=[17],
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[2],
-                ...         denominator=32,
-                ...         ),
-                ...     split_divisions_by_counts=[17],
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2771,30 +2631,26 @@ class TaleaRhythmMaker(RhythmMaker):
             division. The durations of the divisions remain the same as in the
             previous example. But now every other division is tupletted:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[2],
+            ...         denominator=32,
+            ...         ),
+            ...     split_divisions_by_counts=[17],
+            ...     extra_counts_per_division=[0, 1],
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[2],
-                ...         denominator=32,
-                ...         ),
-                ...     split_divisions_by_counts=[17],
-                ...     extra_counts_per_division=[0, 1],
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2863,23 +2719,19 @@ class TaleaRhythmMaker(RhythmMaker):
 
             No talea:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker()
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker()
-
-            ::
-
-                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2901,28 +2753,24 @@ class TaleaRhythmMaker(RhythmMaker):
             Talea equal to durations ``1/16``, ``2/16``, ``3/16``, ``4/16``
             repeating indefinitely:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[1, 2, 3, 4],
+            ...         denominator=16,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[1, 2, 3, 4],
-                ...         denominator=16,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2962,28 +2810,24 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Does not tie across divisions:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[5, 3, 3, 3],
+            ...         denominator=16,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[5, 3, 3, 3],
-                ...         denominator=16,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -3013,31 +2857,27 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Ties across divisions:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[5, 3, 3, 3],
+            ...         denominator=16,
+            ...         ),
+            ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
+            ...         tie_across_divisions=True,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[5, 3, 3, 3],
-                ...         denominator=16,
-                ...         ),
-                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
-                ...         tie_across_divisions=True,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -3067,35 +2907,31 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Patterns ties across divisions:
 
-            ::
+            >>> pattern = abjad.Pattern(
+            ...     indices=[0],
+            ...     period=2,
+            ...     )
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[5, 3, 3, 3],
+            ...         denominator=16,
+            ...         ),
+            ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
+            ...         tie_across_divisions=pattern,
+            ...         ),
+            ...     )
 
-                >>> pattern = abjad.Pattern(
-                ...     indices=[0],
-                ...     period=2,
-                ...     )
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[5, 3, 3, 3],
-                ...         denominator=16,
-                ...         ),
-                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
-                ...         tie_across_divisions=pattern,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -3125,32 +2961,28 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Uses Messiaen-style ties:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[5, 3, 3, 3],
+            ...         denominator=16,
+            ...         ),
+            ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
+            ...         tie_across_divisions=True,
+            ...         use_messiaen_style_ties=True,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[5, 3, 3, 3],
-                ...         denominator=16,
-                ...         ),
-                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
-                ...         tie_across_divisions=True,
-                ...         use_messiaen_style_ties=True,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -3180,31 +3012,27 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Ties consecutive notes:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[5, -3, 3, 3],
+            ...         denominator=16,
+            ...         ),
+            ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
+            ...         tie_consecutive_notes=True,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[5, -3, 3, 3],
-                ...         denominator=16,
-                ...         ),
-                ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
-                ...         tie_consecutive_notes=True,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -3258,29 +3086,25 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Redudant tuplets with no tuplet spelling specifier:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     extra_counts_per_division=[0, 4],
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[3, 3, 6, 6],
+            ...         denominator=16,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     extra_counts_per_division=[0, 4],
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[3, 3, 6, 6],
-                ...         denominator=16,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -3316,32 +3140,28 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Simplifies redundant tuplets:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     extra_counts_per_division=[0, 4],
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[3, 3, 6, 6],
+            ...         denominator=16,
+            ...         ),
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         simplify_redundant_tuplets=True,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     extra_counts_per_division=[0, 4],
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[3, 3, 6, 6],
-                ...         denominator=16,
-                ...         ),
-                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-                ...         simplify_redundant_tuplets=True,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -3377,29 +3197,25 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Rest-filled tuplets with no tuplet spelling specifier:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     extra_counts_per_division=[1, 0],
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[3, 3, -6, -6],
+            ...         denominator=16,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     extra_counts_per_division=[1, 0],
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[3, 3, -6, -6],
-                ...         denominator=16,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -3440,32 +3256,28 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Rewrites rest-filled tuplets:
 
-            ::
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     extra_counts_per_division=[1, 0],
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[3, 3, -6, -6],
+            ...         denominator=16,
+            ...         ),
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         rewrite_rest_filled_tuplets=True,
+            ...         ),
+            ...     )
 
-                >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
-                ...     extra_counts_per_division=[1, 0],
-                ...     talea=abjad.rhythmmakertools.Talea(
-                ...         counts=[3, 3, -6, -6],
-                ...         denominator=16,
-                ...         ),
-                ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-                ...         rewrite_rest_filled_tuplets=True,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8

@@ -10,28 +10,24 @@ class InciseSpecifier(AbjadValueObject):
         Specifies one sixteenth rest cut out of the beginning of every
         division:
 
-        ::
-
-            >>> specifier = abjad.rhythmmakertools.InciseSpecifier(
-            ...     prefix_talea=[-1],
-            ...     prefix_counts=[1],
-            ...     talea_denominator=16,
-            ...     )
+        >>> specifier = abjad.rhythmmakertools.InciseSpecifier(
+        ...     prefix_talea=[-1],
+        ...     prefix_counts=[1],
+        ...     talea_denominator=16,
+        ...     )
 
     ..  container:: example
 
         Specifies sixteenth rests cut out of the beginning and end of each
         division:
 
-        ::
-
-            >>> specifier = abjad.rhythmmakertools.InciseSpecifier(
-            ...     prefix_talea=[-1],
-            ...     prefix_counts=[1],
-            ...     suffix_talea=[-1],
-            ...     suffix_counts=[1],
-            ...     talea_denominator=16,
-            ...     )
+        >>> specifier = abjad.rhythmmakertools.InciseSpecifier(
+        ...     prefix_talea=[-1],
+        ...     prefix_counts=[1],
+        ...     suffix_talea=[-1],
+        ...     suffix_counts=[1],
+        ...     talea_denominator=16,
+        ...     )
 
     '''
 
@@ -116,47 +112,39 @@ class InciseSpecifier(AbjadValueObject):
 
             Formats incise specifier:
 
-            ::
+            >>> specifier = abjad.rhythmmakertools.InciseSpecifier(
+            ...     prefix_talea=[-1],
+            ...     prefix_counts=[1],
+            ...     talea_denominator=16,
+            ...     )
 
-                >>> specifier = abjad.rhythmmakertools.InciseSpecifier(
-                ...     prefix_talea=[-1],
-                ...     prefix_counts=[1],
-                ...     talea_denominator=16,
-                ...     )
-
-            ::
-
-                >>> f(specifier)
-                abjad.rhythmmakertools.InciseSpecifier(
-                    prefix_talea=[-1],
-                    prefix_counts=[1],
-                    talea_denominator=16,
-                    )
+            >>> abjad.f(specifier)
+            abjad.rhythmmakertools.InciseSpecifier(
+                prefix_talea=[-1],
+                prefix_counts=[1],
+                talea_denominator=16,
+                )
 
         ..  container:: example
 
             Formats incise specifier:
 
-            ::
+            >>> specifier = abjad.rhythmmakertools.InciseSpecifier(
+            ...     prefix_talea=[-1],
+            ...     prefix_counts=[0, 1],
+            ...     suffix_talea=[-1],
+            ...     suffix_counts=[1],
+            ...     talea_denominator=16,
+            ...     )
 
-                >>> specifier = abjad.rhythmmakertools.InciseSpecifier(
-                ...     prefix_talea=[-1],
-                ...     prefix_counts=[0, 1],
-                ...     suffix_talea=[-1],
-                ...     suffix_counts=[1],
-                ...     talea_denominator=16,
-                ...     )
-
-            ::
-
-                >>> f(specifier)
-                abjad.rhythmmakertools.InciseSpecifier(
-                    prefix_talea=[-1],
-                    prefix_counts=[0, 1],
-                    suffix_talea=[-1],
-                    suffix_counts=[1],
-                    talea_denominator=16,
-                    )
+            >>> abjad.f(specifier)
+            abjad.rhythmmakertools.InciseSpecifier(
+                prefix_talea=[-1],
+                prefix_counts=[0, 1],
+                suffix_talea=[-1],
+                suffix_counts=[1],
+                talea_denominator=16,
+                )
 
         Returns string.
         '''
@@ -220,33 +208,29 @@ class InciseSpecifier(AbjadValueObject):
 
             Divides middle part of every division ``1:1``:
 
-            ::
+            >>> specifier = abjad.rhythmmakertools.InciseSpecifier(
+            ...     prefix_talea=[-1],
+            ...     prefix_counts=[0, 1],
+            ...     suffix_talea=[-1],
+            ...     suffix_counts=[1],
+            ...     talea_denominator=16,
+            ...     body_ratio=abjad.Ratio((1, 1)),
+            ...     )
+            >>> rhythm_maker = abjad.rhythmmakertools.IncisedRhythmMaker(
+            ...     incise_specifier=specifier,
+            ...     )
 
-                >>> specifier = abjad.rhythmmakertools.InciseSpecifier(
-                ...     prefix_talea=[-1],
-                ...     prefix_counts=[0, 1],
-                ...     suffix_talea=[-1],
-                ...     suffix_counts=[1],
-                ...     talea_denominator=16,
-                ...     body_ratio=abjad.Ratio((1, 1)),
-                ...     )
-                >>> rhythm_maker = abjad.rhythmmakertools.IncisedRhythmMaker(
-                ...     incise_specifier=specifier,
-                ...     )
-
-            ::
-
-                >>> divisions = 4 * [(5, 16)]
-                >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = 4 * [(5, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Staff])
+                >>> abjad.f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/16

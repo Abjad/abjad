@@ -7,17 +7,13 @@ class Transposition(AbjadValueObject):
 
     ..  container:: example
 
-        ::
-
-            >>> abjad.Transposition()
-            Transposition(n=0)
+        >>> abjad.Transposition()
+        Transposition(n=0)
 
     ..  container:: example
 
-        ::
-
-            >>> abjad.Transposition(n=2)
-            Transposition(n=2)
+        >>> abjad.Transposition(n=2)
+        Transposition(n=2)
 
     Object model of twelve-tone transposition operator.
     '''
@@ -42,38 +38,30 @@ class Transposition(AbjadValueObject):
 
             Example segment:
 
-            ::
-
-                >>> items = [0, 2, 4, 5]
-                >>> segment = abjad.PitchClassSegment(items=items)
-                >>> show(segment) # doctest: +SKIP
+            >>> items = [0, 2, 4, 5]
+            >>> segment = abjad.PitchClassSegment(items=items)
+            >>> abjad.show(segment) # doctest: +SKIP
 
             Example operators:
 
-            ::
-
-                >>> T_1 = abjad.Transposition(n=1)
-                >>> T_3 = abjad.Transposition(n=3)
+            >>> T_1 = abjad.Transposition(n=1)
+            >>> T_3 = abjad.Transposition(n=3)
 
         ..  container:: example
 
             Successive transposition:
 
-            ::
+            >>> operator = T_1 + T_3
+            >>> str(operator)
+            'T1T3'
 
-                >>> operator = T_1 + T_3
-                >>> str(operator)
-                'T1T3'
-
-            ::
-
-                >>> segment_ = operator(segment)
-                >>> show(segment_) # doctest: +SKIP
+            >>> segment_ = operator(segment)
+            >>> abjad.show(segment_) # doctest: +SKIP
 
             ..  docs::
 
                 >>> lilypond_file = segment_.__illustrate__()
-                >>> f(lilypond_file[abjad.Voice])
+                >>> abjad.f(lilypond_file[abjad.Voice])
                 \new Voice {
                     e'8
                     fs'8
@@ -87,21 +75,17 @@ class Transposition(AbjadValueObject):
 
             Same as above because transposition commutes:
 
-            ::
+            >>> operator = T_3 + T_1
+            >>> str(operator)
+            'T3T1'
 
-                >>> operator = T_3 + T_1
-                >>> str(operator)
-                'T3T1'
-
-            ::
-
-                >>> segment_ = operator(segment)
-                >>> show(segment_) # doctest: +SKIP
+            >>> segment_ = operator(segment)
+            >>> abjad.show(segment_) # doctest: +SKIP
 
             ..  docs::
 
                 >>> lilypond_file = segment_.__illustrate__()
-                >>> f(lilypond_file[abjad.Voice])
+                >>> abjad.f(lilypond_file[abjad.Voice])
                 \new Voice {
                     e'8
                     fs'8
@@ -123,34 +107,28 @@ class Transposition(AbjadValueObject):
 
             Transposes pitch-class:
 
-            ::
-
-                >>> transposition = abjad.Transposition(n=2)
-                >>> pitch_class = abjad.NumberedPitchClass(1)
-                >>> transposition(pitch_class)
-                NumberedPitchClass(3)
+            >>> transposition = abjad.Transposition(n=2)
+            >>> pitch_class = abjad.NumberedPitchClass(1)
+            >>> transposition(pitch_class)
+            NumberedPitchClass(3)
 
         ..  container:: example
 
             Transposes pitch:
 
-            ::
-
-                >>> transposition = abjad.Transposition(n=2)
-                >>> pitch = abjad.NumberedPitch(15)
-                >>> transposition(pitch)
-                NumberedPitch(17)
+            >>> transposition = abjad.Transposition(n=2)
+            >>> pitch = abjad.NumberedPitch(15)
+            >>> transposition(pitch)
+            NumberedPitch(17)
 
         ..  container:: example
 
             Transposes list of pitches:
 
-            ::
-
-                >>> transposition = abjad.Transposition(n=2)
-                >>> pitches = [abjad.NumberedPitch(_) for _ in [15, 16]]
-                >>> transposition(pitches)
-                [NumberedPitch(17), NumberedPitch(18)]
+            >>> transposition = abjad.Transposition(n=2)
+            >>> pitches = [abjad.NumberedPitch(_) for _ in [15, 16]]
+            >>> transposition(pitches)
+            [NumberedPitch(17), NumberedPitch(18)]
 
         Returns new object with type equal to that of `argument`.
         '''
@@ -173,12 +151,10 @@ class Transposition(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.Transposition().__radd__(abjad.Transposition())
-                Traceback (most recent call last):
-                ...
-                NotImplementedError: right-addition not defined on Transposition.
+            >>> abjad.Transposition().__radd__(abjad.Transposition())
+            Traceback (most recent call last):
+            ...
+            NotImplementedError: right-addition not defined on Transposition.
 
         Raises not implemented error.
         '''
@@ -191,17 +167,13 @@ class Transposition(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> str(abjad.Transposition())
-                'T0'
+            >>> str(abjad.Transposition())
+            'T0'
 
         ..  container:: example
 
-            ::
-
-                >>> str(abjad.Transposition(n=2))
-                'T2'
+            >>> str(abjad.Transposition(n=2))
+            'T2'
 
         '''
         string = 'T{}'
@@ -230,19 +202,15 @@ class Transposition(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> transposition = abjad.Transposition()
-                >>> transposition.n
-                0
+            >>> transposition = abjad.Transposition()
+            >>> transposition.n
+            0
 
         ..  container:: example
 
-            ::
-
-                >>> transposition = abjad.Transposition(n=2)
-                >>> transposition.n
-                2
+            >>> transposition = abjad.Transposition(n=2)
+            >>> transposition.n
+            2
 
         Set to integer, interval or none.
         '''

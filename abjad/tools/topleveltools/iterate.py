@@ -6,11 +6,11 @@ def iterate(client=None):
         Iterates leaves:
 
         >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-        >>> show(staff) # doctest: +SKIP
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 c'4
                 e'4

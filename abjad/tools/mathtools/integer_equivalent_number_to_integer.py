@@ -8,19 +8,15 @@ def integer_equivalent_number_to_integer(number):
 
         Returns integer-equivalent number as integer:
 
-        ::
-
-            >>> abjad.mathtools.integer_equivalent_number_to_integer(17.0)
-            17
+        >>> abjad.mathtools.integer_equivalent_number_to_integer(17.0)
+        17
 
     ..  container:: example
 
         Returns noninteger-equivalent number unchanged:
 
-        ::
-
-            >>> abjad.mathtools.integer_equivalent_number_to_integer(17.5)
-            17.5
+        >>> abjad.mathtools.integer_equivalent_number_to_integer(17.5)
+        17.5
 
     Returns number.
     '''

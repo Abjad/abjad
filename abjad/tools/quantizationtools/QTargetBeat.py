@@ -9,37 +9,31 @@ class QTargetBeat(AbjadObject):
 
     ..  container:: example
 
-        ::
+        >>> beatspan = (1, 8)
+        >>> offset_in_ms = 1500
+        >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({3: None})
+        >>> tempo = abjad.MetronomeMark((1, 4), 56)
 
-            >>> beatspan = (1, 8)
-            >>> offset_in_ms = 1500
-            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({3: None})
-            >>> tempo = abjad.MetronomeMark((1, 4), 56)
+        >>> q_target_beat = abjad.quantizationtools.QTargetBeat(
+        ...     beatspan=beatspan,
+        ...     offset_in_ms=offset_in_ms,
+        ...     search_tree=search_tree,
+        ...     tempo=tempo,
+        ...     )
 
-        ::
-
-            >>> q_target_beat = abjad.quantizationtools.QTargetBeat(
-            ...     beatspan=beatspan,
-            ...     offset_in_ms=offset_in_ms,
-            ...     search_tree=search_tree,
-            ...     tempo=tempo,
-            ...     )
-
-        ::
-
-            >>> f(q_target_beat)
-            abjad.quantizationtools.QTargetBeat(
-                beatspan=abjad.Duration(1, 8),
-                offset_in_ms=abjad.Offset(1500, 1),
-                search_tree=abjad.quantizationtools.UnweightedSearchTree(
-                    definition={   3: None,
-                        },
-                    ),
-                tempo=abjad.MetronomeMark(
-                    reference_duration=abjad.Duration(1, 4),
-                    units_per_minute=56,
-                    ),
-                )
+        >>> abjad.f(q_target_beat)
+        abjad.quantizationtools.QTargetBeat(
+            beatspan=abjad.Duration(1, 8),
+            offset_in_ms=abjad.Offset(1500, 1),
+            search_tree=abjad.quantizationtools.UnweightedSearchTree(
+                definition={   3: None,
+                    },
+                ),
+            tempo=abjad.MetronomeMark(
+                reference_duration=abjad.Duration(1, 4),
+                units_per_minute=56,
+                ),
+            )
 
     Not composer-safe.
 
@@ -142,26 +136,20 @@ class QTargetBeat(AbjadObject):
     def beatspan(self):
         r'''Beatspan of q-target beat.
 
-        ::
+        >>> beatspan = (1, 8)
+        >>> offset_in_ms = 1500
+        >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({3: None})
+        >>> tempo = abjad.MetronomeMark((1, 4), 56)
 
-            >>> beatspan = (1, 8)
-            >>> offset_in_ms = 1500
-            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({3: None})
-            >>> tempo = abjad.MetronomeMark((1, 4), 56)
+        >>> q_target_beat = abjad.quantizationtools.QTargetBeat(
+        ...     beatspan=beatspan,
+        ...     offset_in_ms=offset_in_ms,
+        ...     search_tree=search_tree,
+        ...     tempo=tempo,
+        ...     )
 
-        ::
-
-            >>> q_target_beat = abjad.quantizationtools.QTargetBeat(
-            ...     beatspan=beatspan,
-            ...     offset_in_ms=offset_in_ms,
-            ...     search_tree=search_tree,
-            ...     tempo=tempo,
-            ...     )
-
-        ::
-
-            >>> q_target_beat.beatspan
-            Duration(1, 8)
+        >>> q_target_beat.beatspan
+        Duration(1, 8)
 
         Returns duration.
         '''
@@ -183,26 +171,20 @@ class QTargetBeat(AbjadObject):
     def duration_in_ms(self):
         r'''Duration in milliseconds of the q-targeg beat.
 
-        ::
+        >>> beatspan = (1, 8)
+        >>> offset_in_ms = 1500
+        >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({3: None})
+        >>> tempo = abjad.MetronomeMark((1, 4), 56)
 
-            >>> beatspan = (1, 8)
-            >>> offset_in_ms = 1500
-            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({3: None})
-            >>> tempo = abjad.MetronomeMark((1, 4), 56)
+        >>> q_target_beat = abjad.quantizationtools.QTargetBeat(
+        ...     beatspan=beatspan,
+        ...     offset_in_ms=offset_in_ms,
+        ...     search_tree=search_tree,
+        ...     tempo=tempo,
+        ...     )
 
-        ::
-
-            >>> q_target_beat = abjad.quantizationtools.QTargetBeat(
-            ...     beatspan=beatspan,
-            ...     offset_in_ms=offset_in_ms,
-            ...     search_tree=search_tree,
-            ...     tempo=tempo,
-            ...     )
-
-        ::
-
-            >>> q_target_beat.duration_in_ms
-            Duration(3750, 7)
+        >>> q_target_beat.duration_in_ms
+        Duration(3750, 7)
 
         Returns duration.
         '''
@@ -212,26 +194,20 @@ class QTargetBeat(AbjadObject):
     def offset_in_ms(self):
         r'''Offset in milliseconds of q-target beat.
 
-        ::
+        >>> beatspan = (1, 8)
+        >>> offset_in_ms = 1500
+        >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({3: None})
+        >>> tempo = abjad.MetronomeMark((1, 4), 56)
 
-            >>> beatspan = (1, 8)
-            >>> offset_in_ms = 1500
-            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({3: None})
-            >>> tempo = abjad.MetronomeMark((1, 4), 56)
+        >>> q_target_beat = abjad.quantizationtools.QTargetBeat(
+        ...     beatspan=beatspan,
+        ...     offset_in_ms=offset_in_ms,
+        ...     search_tree=search_tree,
+        ...     tempo=tempo,
+        ...     )
 
-        ::
-
-            >>> q_target_beat = abjad.quantizationtools.QTargetBeat(
-            ...     beatspan=beatspan,
-            ...     offset_in_ms=offset_in_ms,
-            ...     search_tree=search_tree,
-            ...     tempo=tempo,
-            ...     )
-
-        ::
-
-            >>> q_target_beat.offset_in_ms
-            Offset(1500, 1)
+        >>> q_target_beat.offset_in_ms
+        Offset(1500, 1)
 
         Returns offset.
         '''
@@ -271,26 +247,20 @@ class QTargetBeat(AbjadObject):
     def search_tree(self):
         r'''Search tree of q-target beat.
 
-        ::
+        >>> beatspan = (1, 8)
+        >>> offset_in_ms = 1500
+        >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({3: None})
+        >>> tempo = abjad.MetronomeMark((1, 4), 56)
 
-            >>> beatspan = (1, 8)
-            >>> offset_in_ms = 1500
-            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({3: None})
-            >>> tempo = abjad.MetronomeMark((1, 4), 56)
+        >>> q_target_beat = abjad.quantizationtools.QTargetBeat(
+        ...     beatspan=beatspan,
+        ...     offset_in_ms=offset_in_ms,
+        ...     search_tree=search_tree,
+        ...     tempo=tempo,
+        ...     )
 
-        ::
-
-            >>> q_target_beat = abjad.quantizationtools.QTargetBeat(
-            ...     beatspan=beatspan,
-            ...     offset_in_ms=offset_in_ms,
-            ...     search_tree=search_tree,
-            ...     tempo=tempo,
-            ...     )
-
-        ::
-
-            >>> q_target_beat.search_tree
-            UnweightedSearchTree(definition={3: None})
+        >>> q_target_beat.search_tree
+        UnweightedSearchTree(definition={3: None})
 
         Returns search tree.
         '''
@@ -300,26 +270,20 @@ class QTargetBeat(AbjadObject):
     def tempo(self):
         r'''MetronomeMark of q-target beat.
 
-        ::
+        >>> beatspan = (1, 8)
+        >>> offset_in_ms = 1500
+        >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({3: None})
+        >>> tempo = abjad.MetronomeMark((1, 4), 56)
 
-            >>> beatspan = (1, 8)
-            >>> offset_in_ms = 1500
-            >>> search_tree = abjad.quantizationtools.UnweightedSearchTree({3: None})
-            >>> tempo = abjad.MetronomeMark((1, 4), 56)
+        >>> q_target_beat = abjad.quantizationtools.QTargetBeat(
+        ...     beatspan=beatspan,
+        ...     offset_in_ms=offset_in_ms,
+        ...     search_tree=search_tree,
+        ...     tempo=tempo,
+        ...     )
 
-        ::
-
-            >>> q_target_beat = abjad.quantizationtools.QTargetBeat(
-            ...     beatspan=beatspan,
-            ...     offset_in_ms=offset_in_ms,
-            ...     search_tree=search_tree,
-            ...     tempo=tempo,
-            ...     )
-
-        ::
-
-            >>> q_target_beat.tempo
-            MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=56)
+        >>> q_target_beat.tempo
+        MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=56)
 
         Returns tempo.
         '''

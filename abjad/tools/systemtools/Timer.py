@@ -9,31 +9,27 @@ class Timer(ContextManager):
 
     ..  container:: example
 
-        ::
-
-            >>> timer = abjad.Timer()
-            >>> with timer:
-            ...     for _ in range(1000000):
-            ...         x = 1 + 1
-            ...
-            >>> timer.elapsed_time # doctest: +SKIP
-            0.092742919921875
+        >>> timer = abjad.Timer()
+        >>> with timer:
+        ...     for _ in range(1000000):
+        ...         x = 1 + 1
+        ...
+        >>> timer.elapsed_time # doctest: +SKIP
+        0.092742919921875
 
         The timer can also be accessed from within the `with` block:
 
-        ::
-
-            >>> with abjad.Timer() as timer: # doctest: +SKIP
-            ...     for _ in range(5):
-            ...         for _ in range(1000000):
-            ...             x = 1 + 1
-            ...         print(timer.elapsed_time)
-            ...
-            0.101150989532
-            0.203935861588
-            0.304930925369
-            0.4057970047
-            0.50649189949
+        >>> with abjad.Timer() as timer: # doctest: +SKIP
+        ...     for _ in range(5):
+        ...         for _ in range(1000000):
+        ...             x = 1 + 1
+        ...         print(timer.elapsed_time)
+        ...
+        0.101150989532
+        0.203935861588
+        0.304930925369
+        0.4057970047
+        0.50649189949
 
     Timers can be reused between `with` blocks. They will reset their clock on
     entering any `with` block.

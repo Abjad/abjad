@@ -11,25 +11,21 @@ class BowContactPoint(AbjadValueObject):
 
         Contact point exactly halfway from frog to tip of bow:
 
-        ::
-
-            >>> point = abjad.BowContactPoint((1, 2))
-            >>> f(point)
-            abjad.BowContactPoint(
-                contact_point=abjad.Multiplier(1, 2),
-                )
+        >>> point = abjad.BowContactPoint((1, 2))
+        >>> abjad.f(point)
+        abjad.BowContactPoint(
+            contact_point=abjad.Multiplier(1, 2),
+            )
 
     ..  container:: example
 
         Contact point 3/5 of the way from frog to tip of bow:
 
-        ::
-
-            >>> point = abjad.BowContactPoint((3, 5))
-            >>> f(point)
-            abjad.BowContactPoint(
-                contact_point=abjad.Multiplier(3, 5),
-                )
+        >>> point = abjad.BowContactPoint((3, 5))
+        >>> abjad.f(point)
+        abjad.BowContactPoint(
+            contact_point=abjad.Multiplier(3, 5),
+            )
 
     Contact points are measured from frog to tip as a fraction between ``0``
     and ``1``.
@@ -63,38 +59,30 @@ class BowContactPoint(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> point_1 = abjad.BowContactPoint((1, 2))
+            >>> point_2 = abjad.BowContactPoint((1, 2))
+            >>> point_3 = abjad.BowContactPoint((2, 3))
 
-                >>> point_1 = abjad.BowContactPoint((1, 2))
-                >>> point_2 = abjad.BowContactPoint((1, 2))
-                >>> point_3 = abjad.BowContactPoint((2, 3))
+            >>> point_1 < point_1
+            False
+            >>> point_1 < point_2
+            False
+            >>> point_1 < point_3
+            True
 
-            ::
+            >>> point_2 < point_1
+            False
+            >>> point_2 < point_2
+            False
+            >>> point_2 < point_3
+            True
 
-                >>> point_1 < point_1
-                False
-                >>> point_1 < point_2
-                False
-                >>> point_1 < point_3
-                True
-
-            ::
-
-                >>> point_2 < point_1
-                False
-                >>> point_2 < point_2
-                False
-                >>> point_2 < point_3
-                True
-
-            ::
-
-                >>> point_3 < point_1
-                False
-                >>> point_3 < point_2
-                False
-                >>> point_3 < point_3
-                False
+            >>> point_3 < point_1
+            False
+            >>> point_3 < point_2
+            False
+            >>> point_3 < point_3
+            False
 
         Returns true or false.
         '''
@@ -112,21 +100,17 @@ class BowContactPoint(AbjadValueObject):
 
             One quarter of the way from frog to point:
 
-            ::
-
-                >>> point = abjad.BowContactPoint((1, 4))
-                >>> point.contact_point
-                Multiplier(1, 4)
+            >>> point = abjad.BowContactPoint((1, 4))
+            >>> point.contact_point
+            Multiplier(1, 4)
 
         ..  container:: example
 
             Three fifths of the way from frog to point:
 
-            ::
-
-                >>> point = abjad.BowContactPoint((3, 5))
-                >>> point.contact_point
-                Multiplier(3, 5)
+            >>> point = abjad.BowContactPoint((3, 5))
+            >>> point.contact_point
+            Multiplier(3, 5)
 
         Returns multiplier.
         '''
@@ -140,35 +124,31 @@ class BowContactPoint(AbjadValueObject):
 
             One quarter of the way from frog to point:
 
-            ::
-
-                >>> indicator = abjad.BowContactPoint((1, 4))
-                >>> print(format(indicator.markup, 'lilypond'))
-                \markup {
-                    \center-align
-                        \vcenter
-                            \fraction
-                                1
-                                4
-                    }
-                >>> show(indicator.markup) # doctest: +SKIP
+            >>> indicator = abjad.BowContactPoint((1, 4))
+            >>> print(format(indicator.markup, 'lilypond'))
+            \markup {
+                \center-align
+                    \vcenter
+                        \fraction
+                            1
+                            4
+                }
+            >>> abjad.show(indicator.markup) # doctest: +SKIP
 
         ..  container:: example
 
             Three fifths of the way from frog to point:
 
-            ::
-
-                >>> indicator = abjad.BowContactPoint((3, 5))
-                >>> print(format(indicator.markup, 'lilypond'))
-                \markup {
-                    \center-align
-                        \vcenter
-                            \fraction
-                                3
-                                5
-                    }
-                >>> show(indicator.markup) # doctest: +SKIP
+            >>> indicator = abjad.BowContactPoint((3, 5))
+            >>> print(format(indicator.markup, 'lilypond'))
+            \markup {
+                \center-align
+                    \vcenter
+                        \fraction
+                            3
+                            5
+                }
+            >>> abjad.show(indicator.markup) # doctest: +SKIP
 
         Returns markup.
         '''

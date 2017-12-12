@@ -8,20 +8,16 @@ class ChordExtent(AbjadValueObject):
 
         Initializes from number:
 
-        ::
-
-            >>> abjad.tonalanalysistools.ChordExtent(7)
-            ChordExtent(7)
+        >>> abjad.tonalanalysistools.ChordExtent(7)
+        ChordExtent(7)
 
     ..  container:: example
 
         Initializes from other chord extent:
 
-        ::
-
-            >>> extent = abjad.tonalanalysistools.ChordExtent(7)
-            >>> abjad.tonalanalysistools.ChordExtent(extent)
-            ChordExtent(7)
+        >>> extent = abjad.tonalanalysistools.ChordExtent(7)
+        >>> abjad.tonalanalysistools.ChordExtent(extent)
+        ChordExtent(7)
 
     Defined equal to outer interval of any root-position chord.
     '''
@@ -64,38 +60,30 @@ class ChordExtent(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> extent_1 = abjad.tonalanalysistools.ChordExtent(5)
+            >>> extent_2 = abjad.tonalanalysistools.ChordExtent(5)
+            >>> extent_3 = abjad.tonalanalysistools.ChordExtent(7)
 
-                >>> extent_1 = abjad.tonalanalysistools.ChordExtent(5)
-                >>> extent_2 = abjad.tonalanalysistools.ChordExtent(5)
-                >>> extent_3 = abjad.tonalanalysistools.ChordExtent(7)
+            >>> extent_1 == extent_1
+            True
+            >>> extent_1 == extent_2
+            True
+            >>> extent_1 == extent_3
+            False
 
-            ::
+            >>> extent_2 == extent_1
+            True
+            >>> extent_2 == extent_2
+            True
+            >>> extent_2 == extent_3
+            False
 
-                >>> extent_1 == extent_1
-                True
-                >>> extent_1 == extent_2
-                True
-                >>> extent_1 == extent_3
-                False
-
-            ::
-
-                >>> extent_2 == extent_1
-                True
-                >>> extent_2 == extent_2
-                True
-                >>> extent_2 == extent_3
-                False
-
-            ::
-
-                >>> extent_3 == extent_1
-                False
-                >>> extent_3 == extent_2
-                False
-                >>> extent_3 == extent_3
-                True
+            >>> extent_3 == extent_1
+            False
+            >>> extent_3 == extent_2
+            False
+            >>> extent_3 == extent_3
+            True
 
         Returns true or false.
         '''
@@ -128,15 +116,11 @@ class ChordExtent(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> abjad.tonalanalysistools.ChordExtent(5).name
+            'triad'
 
-                >>> abjad.tonalanalysistools.ChordExtent(5).name
-                'triad'
-
-            ::
-
-                >>> abjad.tonalanalysistools.ChordExtent(7).name
-                'seventh'
+            >>> abjad.tonalanalysistools.ChordExtent(7).name
+            'seventh'
 
         Returns string.
         '''
@@ -148,10 +132,8 @@ class ChordExtent(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.tonalanalysistools.ChordExtent(7).number
-                7
+            >>> abjad.tonalanalysistools.ChordExtent(7).number
+            7
 
         Returns nonnegative integer.
         '''

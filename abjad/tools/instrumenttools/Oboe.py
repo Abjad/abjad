@@ -6,16 +6,14 @@ class Oboe(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> oboe = abjad.Oboe()
-            >>> abjad.attach(oboe, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+        >>> oboe = abjad.Oboe()
+        >>> abjad.attach(oboe, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { Oboe }
                 \set Staff.shortInstrumentName = \markup { Ob. }
@@ -65,11 +63,9 @@ class Oboe(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> oboe = abjad.Oboe()
-                >>> oboe.allowable_clefs
-                ('treble',)
+            >>> oboe = abjad.Oboe()
+            >>> oboe.allowable_clefs
+            ('treble',)
 
         Returns clef list.
         '''
@@ -81,15 +77,11 @@ class Oboe(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> oboe = abjad.Oboe()
+            >>> oboe.middle_c_sounding_pitch
+            NamedPitch("c'")
 
-                >>> oboe = abjad.Oboe()
-                >>> oboe.middle_c_sounding_pitch
-                NamedPitch("c'")
-
-            ::
-
-                >>> show(oboe.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(oboe.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -101,11 +93,9 @@ class Oboe(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> oboe = abjad.Oboe()
-                >>> oboe.name
-                'oboe'
+            >>> oboe = abjad.Oboe()
+            >>> oboe.name
+            'oboe'
 
         Returns string.
         '''
@@ -117,15 +107,11 @@ class Oboe(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> oboe = abjad.Oboe()
+            >>> oboe.name_markup
+            Markup(contents=['Oboe'])
 
-                >>> oboe = abjad.Oboe()
-                >>> oboe.name_markup
-                Markup(contents=['Oboe'])
-
-            ::
-
-                >>> show(oboe.name_markup) # doctest: +SKIP
+            >>> abjad.show(oboe.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -137,15 +123,11 @@ class Oboe(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> oboe = abjad.Oboe()
+            >>> oboe.pitch_range
+            PitchRange('[Bb3, A6]')
 
-                >>> oboe = abjad.Oboe()
-                >>> oboe.pitch_range
-                PitchRange('[Bb3, A6]')
-
-            ::
-
-                >>> show(oboe.pitch_range) # doctest: +SKIP
+            >>> abjad.show(oboe.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -157,11 +139,9 @@ class Oboe(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> oboe = abjad.Oboe()
-                >>> oboe.short_name
-                'ob.'
+            >>> oboe = abjad.Oboe()
+            >>> oboe.short_name
+            'ob.'
 
         Returns string.
         '''
@@ -173,15 +153,11 @@ class Oboe(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> oboe = abjad.Oboe()
+            >>> oboe.short_name_markup
+            Markup(contents=['Ob.'])
 
-                >>> oboe = abjad.Oboe()
-                >>> oboe.short_name_markup
-                Markup(contents=['Ob.'])
-
-            ::
-
-                >>> show(oboe.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(oboe.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

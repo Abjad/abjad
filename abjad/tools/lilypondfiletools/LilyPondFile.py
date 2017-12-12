@@ -9,32 +9,28 @@ class LilyPondFile(AbjadObject):
 
     ..  container:: example
 
-        ::
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> comments = [
+        ...     'File construct as an example.',
+        ...     'Parts shown here for positioning.',
+        ...     ]
+        >>> includes = [
+        ...     'external-settings-file-1.ly',
+        ...     'external-settings-file-2.ly',
+        ...     ]
+        >>> lilypond_file = abjad.LilyPondFile.new(
+        ...     music=staff,
+        ...     default_paper_size=('a5', 'portrait'),
+        ...     comments=comments,
+        ...     includes=includes,
+        ...     global_staff_size=16,
+        ...     )
 
-            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-            >>> comments = [
-            ...     'File construct as an example.',
-            ...     'Parts shown here for positioning.',
-            ...     ]
-            >>> includes = [
-            ...     'external-settings-file-1.ly',
-            ...     'external-settings-file-2.ly',
-            ...     ]
-            >>> lilypond_file = abjad.LilyPondFile.new(
-            ...     music=staff,
-            ...     default_paper_size=('a5', 'portrait'),
-            ...     comments=comments,
-            ...     includes=includes,
-            ...     global_staff_size=16,
-            ...     )
-
-        ::
-
-            >>> lilypond_file.header_block.composer = abjad.Markup('Josquin')
-            >>> lilypond_file.header_block.title = abjad.Markup('Missa sexti tonus')
-            >>> lilypond_file.layout_block.indent = 0
-            >>> lilypond_file.layout_block.left_margin = 15
-            >>> show(lilypond_file) # doctest: +SKIP
+        >>> lilypond_file.header_block.composer = abjad.Markup('Josquin')
+        >>> lilypond_file.header_block.title = abjad.Markup('Missa sexti tonus')
+        >>> lilypond_file.layout_block.indent = 0
+        >>> lilypond_file.layout_block.left_margin = 15
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ::
 
@@ -135,51 +131,45 @@ class LilyPondFile(AbjadObject):
 
             Gets format:
 
-                >>> lilypond_file = abjad.LilyPondFile.new()
+            >>> lilypond_file = abjad.LilyPondFile.new()
 
-            ::
-
-                >>> print(format(lilypond_file)) # doctest: +SKIP
-                % 2016-01-31 20:29
-                <BLANKLINE>
-                \version "2.19.35"
-                \language "english"
-                <BLANKLINE>
-                \header {}
-                <BLANKLINE>
-                \layout {}
-                <BLANKLINE>
-                \paper {}
+            >>> print(format(lilypond_file)) # doctest: +SKIP
+            % 2016-01-31 20:29
+            <BLANKLINE>
+            \version "2.19.35"
+            \language "english"
+            <BLANKLINE>
+            \header {}
+            <BLANKLINE>
+            \layout {}
+            <BLANKLINE>
+            \paper {}
 
         ..  container:: example
 
             Works with empty layout and MIDI blocks:
 
-            ::
+            >>> score = abjad.Score([abjad.Staff("c'8 d'8 e'8 f'8")])
+            >>> score_block = abjad.Block(name='score')
+            >>> layout_block = abjad.Block(name='layout')
+            >>> midi_block = abjad.Block(name='midi')
+            >>> score_block.items.append(score)
+            >>> score_block.items.append(layout_block)
+            >>> score_block.items.append(midi_block)
 
-                >>> score = abjad.Score([abjad.Staff("c'8 d'8 e'8 f'8")])
-                >>> score_block = abjad.Block(name='score')
-                >>> layout_block = abjad.Block(name='layout')
-                >>> midi_block = abjad.Block(name='midi')
-                >>> score_block.items.append(score)
-                >>> score_block.items.append(layout_block)
-                >>> score_block.items.append(midi_block)
-
-            ::
-
-                >>> f(score_block)
-                \score {
-                    \new Score <<
-                        \new Staff {
-                            c'8
-                            d'8
-                            e'8
-                            f'8
-                        }
-                    >>
-                    \layout {}
-                    \midi {}
-                }
+            >>> abjad.f(score_block)
+            \score {
+                \new Score <<
+                    \new Staff {
+                        c'8
+                        d'8
+                        e'8
+                        f'8
+                    }
+                >>
+                \layout {}
+                \midi {}
+            }
 
         Returns string.
         '''
@@ -197,35 +187,31 @@ class LilyPondFile(AbjadObject):
 
             Gets header block:
 
-                >>> lilypond_file = abjad.LilyPondFile.new()
+            >>> lilypond_file = abjad.LilyPondFile.new()
 
-            ::
-
-                >>> lilypond_file['header']
-                <Block(name='header')>
+            >>> lilypond_file['header']
+            <Block(name='header')>
 
         ..  container:: example
 
             Searches score:
 
-            ::
-
-                >>> voice_1 = abjad.Voice("c''4 b' a' g'", name='Custom Voice 1')
-                >>> abjad.attach(abjad.LilyPondCommand('voiceOne'), voice_1)
-                >>> voice_2 = abjad.Voice("c'4 d' e' f'", name='Custom Voice 2')
-                >>> abjad.attach(abjad.LilyPondCommand('voiceTwo'), voice_2)
-                >>> staff = abjad.Staff(
-                ...     [voice_1, voice_2],
-                ...     is_simultaneous=True,
-                ...     name='Custom Staff',
-                ...     )
-                >>> score = abjad.Score([staff], name='Custom Score')
-                >>> lilypond_file = abjad.LilyPondFile.new(score)
-                >>> show(score) # doctest: +SKIP
+            >>> voice_1 = abjad.Voice("c''4 b' a' g'", name='Custom Voice 1')
+            >>> abjad.attach(abjad.LilyPondCommand('voiceOne'), voice_1)
+            >>> voice_2 = abjad.Voice("c'4 d' e' f'", name='Custom Voice 2')
+            >>> abjad.attach(abjad.LilyPondCommand('voiceTwo'), voice_2)
+            >>> staff = abjad.Staff(
+            ...     [voice_1, voice_2],
+            ...     is_simultaneous=True,
+            ...     name='Custom Staff',
+            ...     )
+            >>> score = abjad.Score([staff], name='Custom Score')
+            >>> lilypond_file = abjad.LilyPondFile.new(score)
+            >>> abjad.show(score) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(score)
+                >>> abjad.f(score)
                 \context Score = "Custom Score" <<
                     \context Staff = "Custom Staff" <<
                         \context Voice = "Custom Voice 1" {
@@ -245,45 +231,29 @@ class LilyPondFile(AbjadObject):
                     >>
                 >>
 
-            ::
+            >>> lilypond_file['score']
+            <Block(name='score')>
 
-                >>> lilypond_file['score']
-                <Block(name='score')>
+            >>> lilypond_file['Custom Score']
+            <Score-"Custom Score"<<1>>>
 
-            ::
+            >>> lilypond_file[abjad.Score]
+            <Score-"Custom Score"<<1>>>
 
-                >>> lilypond_file['Custom Score']
-                <Score-"Custom Score"<<1>>>
+            >>> lilypond_file['Custom Staff']
+            <Staff-"Custom Staff"<<2>>>
 
-            ::
+            >>> lilypond_file[abjad.Staff]
+            <Staff-"Custom Staff"<<2>>>
 
-                >>> lilypond_file[abjad.Score]
-                <Score-"Custom Score"<<1>>>
+            >>> lilypond_file['Custom Voice 1']
+            Voice("c''4 b'4 a'4 g'4", name='Custom Voice 1')
 
-            ::
+            >>> lilypond_file['Custom Voice 2']
+            Voice("c'4 d'4 e'4 f'4", name='Custom Voice 2')
 
-                >>> lilypond_file['Custom Staff']
-                <Staff-"Custom Staff"<<2>>>
-
-            ::
-
-                >>> lilypond_file[abjad.Staff]
-                <Staff-"Custom Staff"<<2>>>
-
-            ::
-
-                >>> lilypond_file['Custom Voice 1']
-                Voice("c''4 b'4 a'4 g'4", name='Custom Voice 1')
-
-            ::
-
-                >>> lilypond_file['Custom Voice 2']
-                Voice("c'4 d'4 e'4 f'4", name='Custom Voice 2')
-
-            ::
-
-                >>> lilypond_file[abjad.Voice]
-                Voice("c''4 b'4 a'4 g'4", name='Custom Voice 1')
+            >>> lilypond_file[abjad.Voice]
+            Voice("c''4 b'4 a'4 g'4", name='Custom Voice 1')
 
         Returns item.
 
@@ -335,17 +305,15 @@ class LilyPondFile(AbjadObject):
 
             Gets interpreter representation:
 
-                >>> lilypond_file = abjad.LilyPondFile.new()
+            >>> lilypond_file = abjad.LilyPondFile.new()
 
-            ::
-
-                >>> lilypond_file
-                LilyPondFile(comments=[],
-                includes=[],
-                items=[<Block(name='header')>, <Block(name='layout')>,
-                <Block(name='paper')>, <Block(name='score')>],
-                lilypond_language_token=LilyPondLanguageToken(),
-                lilypond_version_token=LilyPondVersionToken(version_string='...'))
+            >>> lilypond_file
+            LilyPondFile(comments=[],
+            includes=[],
+            items=[<Block(name='header')>, <Block(name='layout')>,
+            <Block(name='paper')>, <Block(name='score')>],
+            lilypond_language_token=LilyPondLanguageToken(),
+            lilypond_version_token=LilyPondVersionToken(version_string='...'))
 
         Returns string.
         '''
@@ -489,14 +457,10 @@ class LilyPondFile(AbjadObject):
 
             Gets comments:
 
-            ::
+            >>> lilypond_file = abjad.LilyPondFile.new()
 
-                >>> lilypond_file = abjad.LilyPondFile.new()
-
-            ::
-
-                >>> lilypond_file.comments
-                []
+            >>> lilypond_file.comments
+            []
 
         Returns list.
         '''
@@ -510,14 +474,10 @@ class LilyPondFile(AbjadObject):
 
             Gets date-time token:
 
-            ::
+            >>> lilypond_file = abjad.LilyPondFile.new(date_time_token=True)
 
-                >>> lilypond_file = abjad.LilyPondFile.new(date_time_token=True)
-
-            ::
-
-                >>> lilypond_file.date_time_token
-                DateTimeToken()
+            >>> lilypond_file.date_time_token
+            DateTimeToken()
 
         Returns date-time token or none.
         '''
@@ -531,14 +491,10 @@ class LilyPondFile(AbjadObject):
 
             Gets default paper size:
 
-            ::
+            >>> lilypond_file = abjad.LilyPondFile.new()
 
-                >>> lilypond_file = abjad.LilyPondFile.new()
-
-            ::
-
-                >>> lilypond_file.default_paper_size is None
-                True
+            >>> lilypond_file.default_paper_size is None
+            True
 
         Set to pair or none.
 
@@ -556,14 +512,10 @@ class LilyPondFile(AbjadObject):
 
             Gets global staff size:
 
-            ::
+            >>> lilypond_file = abjad.LilyPondFile.new()
 
-                >>> lilypond_file = abjad.LilyPondFile.new()
-
-            ::
-
-                >>> lilypond_file.global_staff_size is None
-                True
+            >>> lilypond_file.global_staff_size is None
+            True
 
         Set to number or none.
 
@@ -581,14 +533,10 @@ class LilyPondFile(AbjadObject):
 
             Gets header block:
 
-            ::
+            >>> lilypond_file = abjad.LilyPondFile.new()
 
-                >>> lilypond_file = abjad.LilyPondFile.new()
-
-            ::
-
-                >>> lilypond_file.header_block
-                <Block(name='header')>
+            >>> lilypond_file.header_block
+            <Block(name='header')>
 
         Returns block or none.
         '''
@@ -606,14 +554,10 @@ class LilyPondFile(AbjadObject):
 
             Gets includes:
 
-            ::
+            >>> lilypond_file = abjad.LilyPondFile.new()
 
-                >>> lilypond_file = abjad.LilyPondFile.new()
-
-            ::
-
-                >>> lilypond_file.includes
-                []
+            >>> lilypond_file.includes
+            []
 
         Return list
         '''
@@ -627,19 +571,15 @@ class LilyPondFile(AbjadObject):
 
             Gets items:
 
-            ::
+            >>> lilypond_file = abjad.LilyPondFile.new()
 
-                >>> lilypond_file = abjad.LilyPondFile.new()
-
-            ::
-
-                >>> for item in lilypond_file.items:
-                ...     item
-                ...
-                <Block(name='header')>
-                <Block(name='layout')>
-                <Block(name='paper')>
-                <Block(name='score')>
+            >>> for item in lilypond_file.items:
+            ...     item
+            ...
+            <Block(name='header')>
+            <Block(name='layout')>
+            <Block(name='paper')>
+            <Block(name='score')>
 
         ..  container:: example
 
@@ -660,14 +600,10 @@ class LilyPondFile(AbjadObject):
 
             Gets layout block:
 
-            ::
+            >>> lilypond_file = abjad.LilyPondFile.new()
 
-                >>> lilypond_file = abjad.LilyPondFile.new()
-
-            ::
-
-                >>> lilypond_file.layout_block
-                <Block(name='layout')>
+            >>> lilypond_file.layout_block
+            <Block(name='layout')>
 
         Returns block or none.
         '''
@@ -685,14 +621,10 @@ class LilyPondFile(AbjadObject):
 
             Gets LilyPond language token:
 
-            ::
+            >>> lilypond_file = abjad.LilyPondFile.new()
 
-                >>> lilypond_file = abjad.LilyPondFile.new()
-
-            ::
-
-                >>> lilypond_file.lilypond_language_token
-                LilyPondLanguageToken()
+            >>> lilypond_file.lilypond_language_token
+            LilyPondLanguageToken()
 
         Returns LilyPond language token or none.
         '''
@@ -706,14 +638,10 @@ class LilyPondFile(AbjadObject):
 
             Gets LilyPond version token:
 
-            ::
+            >>> lilypond_file = abjad.LilyPondFile.new()
 
-                >>> lilypond_file = abjad.LilyPondFile.new()
-
-            ::
-
-                >>> lilypond_file.lilypond_version_token # doctest: +SKIP
-                LilyPondVersionToken('2.19.35')
+            >>> lilypond_file.lilypond_version_token # doctest: +SKIP
+            LilyPondVersionToken('2.19.35')
 
         Returns LilyPond version token or none.
         '''
@@ -727,14 +655,10 @@ class LilyPondFile(AbjadObject):
 
             Gets paper block:
 
-            ::
+            >>> lilypond_file = abjad.LilyPondFile.new()
 
-                >>> lilypond_file = abjad.LilyPondFile.new()
-
-            ::
-
-                >>> lilypond_file.paper_block
-                <Block(name='paper')>
+            >>> lilypond_file.paper_block
+            <Block(name='paper')>
 
         Returns block or none.
         '''
@@ -752,14 +676,10 @@ class LilyPondFile(AbjadObject):
 
             Gets score block:
 
-            ::
+            >>> lilypond_file = abjad.LilyPondFile.new()
 
-                >>> lilypond_file = abjad.LilyPondFile.new()
-
-            ::
-
-                >>> lilypond_file.score_block
-                <Block(name='score')>
+            >>> lilypond_file.score_block
+            <Block(name='score')>
 
         Returns block or none.
         '''
@@ -777,14 +697,10 @@ class LilyPondFile(AbjadObject):
 
             Gets relative include flag:
 
-            ::
+            >>> lilypond_file = abjad.LilyPondFile.new()
 
-                >>> lilypond_file = abjad.LilyPondFile.new()
-
-            ::
-
-                >>> lilypond_file.use_relative_includes is None
-                True
+            >>> lilypond_file.use_relative_includes is None
+            True
 
         Set to true, false or none.
 
@@ -800,28 +716,26 @@ class LilyPondFile(AbjadObject):
 
         ..  container:: example
 
-            ::
-
-                >>> score = abjad.Score()
-                >>> time_signature_context = abjad.Context(
-                ...     context_name='GlobalContext',
-                ...     )
-                >>> durations = [(2, 8), (3, 8), (4, 8)]
-                >>> maker = abjad.MeasureMaker()
-                >>> measures = maker(durations)
-                >>> time_signature_context.extend(measures)
-                >>> score.append(time_signature_context)
-                >>> staff = abjad.Staff()
-                >>> staff.append(abjad.Measure((2, 8), "c'8 ( d'8 )"))
-                >>> staff.append(abjad.Measure((3, 8), "e'8 ( f'8  g'8 )"))
-                >>> staff.append(abjad.Measure((4, 8), "fs'4 ( e'8 d'8 )"))
-                >>> score.append(staff)
-                >>> lilypond_file = abjad.LilyPondFile.floating(score)
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> score = abjad.Score()
+            >>> time_signature_context = abjad.Context(
+            ...     context_name='GlobalContext',
+            ...     )
+            >>> durations = [(2, 8), (3, 8), (4, 8)]
+            >>> maker = abjad.MeasureMaker()
+            >>> measures = maker(durations)
+            >>> time_signature_context.extend(measures)
+            >>> score.append(time_signature_context)
+            >>> staff = abjad.Staff()
+            >>> staff.append(abjad.Measure((2, 8), "c'8 ( d'8 )"))
+            >>> staff.append(abjad.Measure((3, 8), "e'8 ( f'8  g'8 )"))
+            >>> staff.append(abjad.Measure((4, 8), "fs'4 ( e'8 d'8 )"))
+            >>> score.append(staff)
+            >>> lilypond_file = abjad.LilyPondFile.floating(score)
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ::
 
-                >>> f(lilypond_file) # doctest: +SKIP
+                >>> abjad.f(lilypond_file) # doctest: +SKIP
                 % 2014-01-07 18:22
 
                 \version "2.19.0"
@@ -926,7 +840,7 @@ class LilyPondFile(AbjadObject):
             ..  docs::
 
                 >>> block = lilypond_file.layout_block.items[1]
-                >>> f(block)
+                >>> abjad.f(block)
                 \context {
                     \name GlobalContext
                     \type Engraver_group
@@ -1026,19 +940,17 @@ class LilyPondFile(AbjadObject):
 
             Makes basic LilyPond file:
 
-            ::
-
-                >>> score = abjad.Score([abjad.Staff("c'8 d'8 e'8 f'8")])
-                >>> lilypond_file = abjad.LilyPondFile.new(score)
-                >>> lilypond_file.header_block.title = abjad.Markup('Missa sexti tonus')
-                >>> lilypond_file.header_block.composer = abjad.Markup('Josquin')
-                >>> lilypond_file.layout_block.indent = 0
-                >>> lilypond_file.paper_block.top_margin = 15
-                >>> lilypond_file.paper_block.left_margin = 15
+            >>> score = abjad.Score([abjad.Staff("c'8 d'8 e'8 f'8")])
+            >>> lilypond_file = abjad.LilyPondFile.new(score)
+            >>> lilypond_file.header_block.title = abjad.Markup('Missa sexti tonus')
+            >>> lilypond_file.header_block.composer = abjad.Markup('Josquin')
+            >>> lilypond_file.layout_block.indent = 0
+            >>> lilypond_file.paper_block.top_margin = 15
+            >>> lilypond_file.paper_block.left_margin = 15
 
             ::
 
-                >>> f(lilypond_file) # doctest: +SKIP
+                >>> abjad.f(lilypond_file) # doctest: +SKIP
                 \header {
                     composer = \markup { Josquin }
                     title = \markup { Missa sexti tonus }
@@ -1064,9 +976,7 @@ class LilyPondFile(AbjadObject):
                     >>
                 }
 
-            ::
-
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         Wraps `music` in LilyPond ``\score`` block.
 
@@ -1115,28 +1025,26 @@ class LilyPondFile(AbjadObject):
 
             Makes rhythmic staff:
 
-            ::
-
-                >>> divisions = [(3, 4), (4, 8), (1, 4)]
-                >>> maker = abjad.NoteMaker()
-                >>> selections = [
-                ...     maker(6 * [0], [(1, 8)]),
-                ...     maker(8 * [0], [(1, 16)]),
-                ...     maker(2 * [0], [(1, 8)]),
-                ...     ]
-                >>> for selection in selections:
-                ...     abjad.attach(abjad.Beam(), selection[:])
-                ...
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 4), (4, 8), (1, 4)]
+            >>> maker = abjad.NoteMaker()
+            >>> selections = [
+            ...     maker(6 * [0], [(1, 8)]),
+            ...     maker(8 * [0], [(1, 16)]),
+            ...     maker(2 * [0], [(1, 8)]),
+            ...     ]
+            >>> for selection in selections:
+            ...     abjad.attach(abjad.Beam(), selection[:])
+            ...
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
                 >>> score = lilypond_file[abjad.Score]
-                >>> f(score)
+                >>> abjad.f(score)
                 \new Score <<
                     \new GlobalContext {
                         {
@@ -1185,28 +1093,26 @@ class LilyPondFile(AbjadObject):
 
             Set time signatures explicitly:
 
-            ::
-
-                >>> divisions = [(3, 4), (4, 8), (1, 4)]
-                >>> maker = abjad.NoteMaker()
-                >>> selections = [
-                ...     maker(6 * [0], [(1, 8)]),
-                ...     maker(8 * [0], [(1, 16)]),
-                ...     maker(2 * [0], [(1, 8)]),
-                ...     ]
-                >>> for selection in selections:
-                ...     abjad.attach(abjad.Beam(), selection[:])
-                ...
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     [(6, 8), (4, 8), (2, 8)],
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 4), (4, 8), (1, 4)]
+            >>> maker = abjad.NoteMaker()
+            >>> selections = [
+            ...     maker(6 * [0], [(1, 8)]),
+            ...     maker(8 * [0], [(1, 16)]),
+            ...     maker(2 * [0], [(1, 8)]),
+            ...     ]
+            >>> for selection in selections:
+            ...     abjad.attach(abjad.Beam(), selection[:])
+            ...
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     [(6, 8), (4, 8), (2, 8)],
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
                 >>> score = lilypond_file[abjad.Score]
-                >>> f(score)
+                >>> abjad.f(score)
                 \new Score <<
                     \new GlobalContext {
                         {
@@ -1255,28 +1161,26 @@ class LilyPondFile(AbjadObject):
 
             Makes pitched staff:
 
-            ::
-
-                >>> divisions = [(3, 4), (4, 8), (1, 4)]
-                >>> maker = abjad.NoteMaker()
-                >>> selections = [
-                ...     maker(6 * [0], [(1, 8)]),
-                ...     maker(8 * [0], [(1, 16)]),
-                ...     maker(2 * [0], [(1, 8)]),
-                ...     ]
-                >>> for selection in selections:
-                ...     abjad.attach(abjad.Beam(), selection[:])
-                ...
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     pitched_staff=True,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 4), (4, 8), (1, 4)]
+            >>> maker = abjad.NoteMaker()
+            >>> selections = [
+            ...     maker(6 * [0], [(1, 8)]),
+            ...     maker(8 * [0], [(1, 16)]),
+            ...     maker(2 * [0], [(1, 8)]),
+            ...     ]
+            >>> for selection in selections:
+            ...     abjad.attach(abjad.Beam(), selection[:])
+            ...
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     pitched_staff=True,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Score])
+                >>> abjad.f(lilypond_file[abjad.Score])
                 \new Score <<
                     \new GlobalContext {
                         {
@@ -1325,48 +1229,46 @@ class LilyPondFile(AbjadObject):
 
             Makes simultaneous voices:
 
-            ::
-
-                >>> divisions = [(3, 4), (4, 8), (1, 4)]
-                >>> maker = abjad.NoteMaker()
-                >>> selections = [
-                ...     maker(6 * [0], [(1, 8)]),
-                ...     maker(8 * [0], [(1, 16)]),
-                ...     maker(2 * [0], [(1, 8)]),
-                ...     ]
-                >>> for selection in selections:
-                ...     abjad.attach(abjad.Beam(), selection[:])
-                ...
-                >>> for note in abjad.iterate(selections).components(abjad.Note):
-                ...     note.written_pitch = abjad.NamedPitch("e'")
-                ...
-                >>> selection_1 = selections[0] + selections[1] + selections[2]
-                >>> selections = [
-                ...     maker(12 * [0], [(1, 16)]),
-                ...     maker(16 * [0], [(1, 32)]),
-                ...     maker(4 * [0], [(1, 16)]),
-                ...     ]
-                >>> for selection in selections:
-                ...     abjad.attach(abjad.Beam(), selection[:])
-                ...
-                >>> selection_2 = selections[0] + selections[1] + selections[2]
-                >>> selections = {
-                ...     'Voice 1': selection_1,
-                ...     'Voice 2': selection_2,
-                ... }
-                >>> lilypond_file = abjad.LilyPondFile.rhythm(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> voice_1 = lilypond_file['Voice 1']
-                >>> abjad.attach(abjad.LilyPondCommand('voiceOne'), voice_1)
-                >>> voice_2 = lilypond_file['Voice 2']
-                >>> abjad.attach(abjad.LilyPondCommand('voiceTwo'), voice_2)
-                >>> show(lilypond_file) # doctest: +SKIP
+            >>> divisions = [(3, 4), (4, 8), (1, 4)]
+            >>> maker = abjad.NoteMaker()
+            >>> selections = [
+            ...     maker(6 * [0], [(1, 8)]),
+            ...     maker(8 * [0], [(1, 16)]),
+            ...     maker(2 * [0], [(1, 8)]),
+            ...     ]
+            >>> for selection in selections:
+            ...     abjad.attach(abjad.Beam(), selection[:])
+            ...
+            >>> for note in abjad.iterate(selections).components(abjad.Note):
+            ...     note.written_pitch = abjad.NamedPitch("e'")
+            ...
+            >>> selection_1 = selections[0] + selections[1] + selections[2]
+            >>> selections = [
+            ...     maker(12 * [0], [(1, 16)]),
+            ...     maker(16 * [0], [(1, 32)]),
+            ...     maker(4 * [0], [(1, 16)]),
+            ...     ]
+            >>> for selection in selections:
+            ...     abjad.attach(abjad.Beam(), selection[:])
+            ...
+            >>> selection_2 = selections[0] + selections[1] + selections[2]
+            >>> selections = {
+            ...     'Voice 1': selection_1,
+            ...     'Voice 2': selection_2,
+            ... }
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> voice_1 = lilypond_file['Voice 1']
+            >>> abjad.attach(abjad.LilyPondCommand('voiceOne'), voice_1)
+            >>> voice_2 = lilypond_file['Voice 2']
+            >>> abjad.attach(abjad.LilyPondCommand('voiceTwo'), voice_2)
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(lilypond_file[abjad.Score])
+                >>> abjad.f(lilypond_file[abjad.Score])
                 \new Score <<
                     \new GlobalContext {
                         {

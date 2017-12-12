@@ -6,10 +6,8 @@ class WellformednessManager(AbjadObject):
 
     ..  container:: example
 
-        ::
-
-            >>> abjad.WellformednessManager()
-            WellformednessManager()
+        >>> abjad.WellformednessManager()
+        WellformednessManager()
 
     '''
 
@@ -87,17 +85,13 @@ class WellformednessManager(AbjadObject):
 
         ..  container:: example
 
-            ::
+            >>> staff = abjad.Staff("c'8 d' e' f'4.")
+            >>> abjad.attach(abjad.Beam(), staff[:])
 
-                >>> staff = abjad.Staff("c'8 d' e' f'4.")
-                >>> abjad.attach(abjad.Beam(), staff[:])
-
-            ::
-
-                >>> manager = abjad.WellformednessManager()
-                >>> violators, total = manager.check_beamed_long_notes(staff)
-                >>> violators
-                [Note("f'4.")]
+            >>> manager = abjad.WellformednessManager()
+            >>> violators, total = manager.check_beamed_long_notes(staff)
+            >>> violators
+            [Note("f'4.")]
 
         Returns pair.
 
@@ -165,29 +159,23 @@ class WellformednessManager(AbjadObject):
 
         ..  container:: example
 
-            ::
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> staff.append(abjad.Container())
 
-                >>> staff = abjad.Staff("c'4 d' e' f'")
-                >>> staff.append(abjad.Container())
-
-            ::
-
-                >>> f(staff)
-                \new Staff {
-                    c'4
-                    d'4
-                    e'4
-                    f'4
-                    {
-                    }
+            >>> abjad.f(staff)
+            \new Staff {
+                c'4
+                d'4
+                e'4
+                f'4
+                {
                 }
+            }
 
-            ::
-
-                >>> manager = abjad.WellformednessManager()
-                >>> violators, total = manager.check_empty_containers(staff)
-                >>> violators
-                [Container()]
+            >>> manager = abjad.WellformednessManager()
+            >>> violators, total = manager.check_empty_containers(staff)
+            >>> violators
+            [Container()]
 
         Returns list of empty containers and count of all containers in
         `argument`.
@@ -205,28 +193,22 @@ class WellformednessManager(AbjadObject):
 
         ..  container:: example
 
-            ::
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.attach(abjad.Hairpin('<'), staff[:])
+            >>> abjad.attach(abjad.Dynamic('f'), staff[2])
 
-                >>> staff = abjad.Staff("c'4 d' e' f'")
-                >>> abjad.attach(abjad.Hairpin('<'), staff[:])
-                >>> abjad.attach(abjad.Dynamic('f'), staff[2])
+            >>> abjad.f(staff)
+            \new Staff {
+                c'4 \<
+                d'4
+                e'4 \f
+                f'4 \!
+            }
 
-            ::
-
-                >>> f(staff)
-                \new Staff {
-                    c'4 \<
-                    d'4
-                    e'4 \f
-                    f'4 \!
-                }
-
-            ::
-
-                >>> manager = abjad.WellformednessManager()
-                >>> violators, total = manager.check_intermarked_hairpins(staff)
-                >>> violators
-                [Hairpin("c'4, d'4, e'4, f'4")]
+            >>> manager = abjad.WellformednessManager()
+            >>> violators, total = manager.check_intermarked_hairpins(staff)
+            >>> violators
+            [Hairpin("c'4, d'4, e'4, f'4")]
 
         Returns violators and total.
         '''
@@ -278,38 +260,34 @@ class WellformednessManager(AbjadObject):
 
             Checks mismatched enchained hairpins:
 
-            ::
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.attach(abjad.Hairpin('p < f'), staff[:2])
+            >>> abjad.attach(abjad.Hairpin('p > pp'), staff[1:])
 
-                >>> staff = abjad.Staff("c'4 d' e' f'")
-                >>> abjad.attach(abjad.Hairpin('p < f'), staff[:2])
-                >>> abjad.attach(abjad.Hairpin('p > pp'), staff[1:])
-
-            ::
-
-                >>> agent = abjad.inspect(staff)
-                >>> print(agent.tabulate_wellformedness())
-                0 /	4 beamed long notes
-                0 /	2 discontiguous spanners
-                0 /	5 duplicate ids
-                0 /     1 empty containers
-                0 /	2 intermarked hairpins
-                0 /	0 misdurated measures
-                0 /	0 misfilled measures
-                2 /	2 mismatched enchained hairpins
-                0 /	0 mispitched ties
-                0 /	4 misrepresented flags
-                0 /	5 missing parents
-                0 /	0 nested measures
-                0 /     4 notes on wrong clef
-                0 /     4 out of range notes
-                0 /	0 overlapping beams
-                0 /	0 overlapping glissandi
-                0 /	2 overlapping hairpins
-                0 /	0 overlapping octavation spanners
-                0 /	0 overlapping ties
-                0 /     0 overlapping trill spanners 
-                0 /	2 short hairpins
-                0 /	0 tied rests
+            >>> agent = abjad.inspect(staff)
+            >>> print(agent.tabulate_wellformedness())
+            0 /	4 beamed long notes
+            0 /	2 discontiguous spanners
+            0 /	5 duplicate ids
+            0 /     1 empty containers
+            0 /	2 intermarked hairpins
+            0 /	0 misdurated measures
+            0 /	0 misfilled measures
+            2 /	2 mismatched enchained hairpins
+            0 /	0 mispitched ties
+            0 /	4 misrepresented flags
+            0 /	5 missing parents
+            0 /	0 nested measures
+            0 /     4 notes on wrong clef
+            0 /     4 out of range notes
+            0 /	0 overlapping beams
+            0 /	0 overlapping glissandi
+            0 /	2 overlapping hairpins
+            0 /	0 overlapping octavation spanners
+            0 /	0 overlapping ties
+            0 /     0 overlapping trill spanners 
+            0 /	2 short hairpins
+            0 /	0 tied rests
 
         Enchained hairpins are fine so long as hairpin ends match.
 
@@ -355,73 +333,65 @@ class WellformednessManager(AbjadObject):
 
             Checks for mispitched ties attached to notes:
 
-            ::
+            >>> staff = abjad.Staff("c'4 ~ c'")
+            >>> staff[1].written_pitch = abjad.NamedPitch("d'")
 
-                >>> staff = abjad.Staff("c'4 ~ c'")
-                >>> staff[1].written_pitch = abjad.NamedPitch("d'")
-
-            ::
-
-                >>> agent = abjad.inspect(staff)
-                >>> print(agent.tabulate_wellformedness())
-                0 /	2 beamed long notes
-                0 /	1 discontiguous spanners
-                0 /	3 duplicate ids
-                0 /     1 empty containers
-                0 /	0 intermarked hairpins
-                0 /	0 misdurated measures
-                0 /	0 misfilled measures
-                0 /	0 mismatched enchained hairpins
-                1 /	1 mispitched ties
-                0 /	2 misrepresented flags
-                0 /	3 missing parents
-                0 /	0 nested measures
-                0 /     2 notes on wrong clef
-                0 /     2 out of range notes
-                0 /	0 overlapping beams
-                0 /	0 overlapping glissandi
-                0 /	0 overlapping hairpins
-                0 /	0 overlapping octavation spanners
-                0 /	1 overlapping ties
-                0 /     0 overlapping trill spanners
-                0 /	0 short hairpins
-                0 /	0 tied rests
+            >>> agent = abjad.inspect(staff)
+            >>> print(agent.tabulate_wellformedness())
+            0 /	2 beamed long notes
+            0 /	1 discontiguous spanners
+            0 /	3 duplicate ids
+            0 /     1 empty containers
+            0 /	0 intermarked hairpins
+            0 /	0 misdurated measures
+            0 /	0 misfilled measures
+            0 /	0 mismatched enchained hairpins
+            1 /	1 mispitched ties
+            0 /	2 misrepresented flags
+            0 /	3 missing parents
+            0 /	0 nested measures
+            0 /     2 notes on wrong clef
+            0 /     2 out of range notes
+            0 /	0 overlapping beams
+            0 /	0 overlapping glissandi
+            0 /	0 overlapping hairpins
+            0 /	0 overlapping octavation spanners
+            0 /	1 overlapping ties
+            0 /     0 overlapping trill spanners
+            0 /	0 short hairpins
+            0 /	0 tied rests
 
         ..  container:: example
 
             Checks for mispitched ties attached to chords:
 
-            ::
+            >>> staff = abjad.Staff("<c' d' bf'>4 ~ <c' d' bf'>")
+            >>> staff[1].written_pitches = [6, 9, 10]
 
-                >>> staff = abjad.Staff("<c' d' bf'>4 ~ <c' d' bf'>")
-                >>> staff[1].written_pitches = [6, 9, 10]
-
-            ::
-
-                >>> agent = abjad.inspect(staff)
-                >>> print(agent.tabulate_wellformedness())
-                0 /	2 beamed long notes
-                0 /	1 discontiguous spanners
-                0 /	3 duplicate ids
-                0 /     1 empty containers
-                0 /	0 intermarked hairpins
-                0 /	0 misdurated measures
-                0 /	0 misfilled measures
-                0 /	0 mismatched enchained hairpins
-                1 /	1 mispitched ties
-                0 /	2 misrepresented flags
-                0 /	3 missing parents
-                0 /	0 nested measures
-                0 /     2 notes on wrong clef
-                0 /     2 out of range notes
-                0 /	0 overlapping beams
-                0 /	0 overlapping glissandi
-                0 /	0 overlapping hairpins
-                0 /	0 overlapping octavation spanners
-                0 /	1 overlapping ties
-                0 /     0 overlapping trill spanners
-                0 /	0 short hairpins
-                0 /	0 tied rests
+            >>> agent = abjad.inspect(staff)
+            >>> print(agent.tabulate_wellformedness())
+            0 /	2 beamed long notes
+            0 /	1 discontiguous spanners
+            0 /	3 duplicate ids
+            0 /     1 empty containers
+            0 /	0 intermarked hairpins
+            0 /	0 misdurated measures
+            0 /	0 misfilled measures
+            0 /	0 mismatched enchained hairpins
+            1 /	1 mispitched ties
+            0 /	2 misrepresented flags
+            0 /	3 missing parents
+            0 /	0 nested measures
+            0 /     2 notes on wrong clef
+            0 /     2 out of range notes
+            0 /	0 overlapping beams
+            0 /	0 overlapping glissandi
+            0 /	0 overlapping hairpins
+            0 /	0 overlapping octavation spanners
+            0 /	1 overlapping ties
+            0 /     0 overlapping trill spanners
+            0 /	0 short hairpins
+            0 /	0 tied rests
 
         Does not check tied rests, chords or skips.
 
@@ -508,18 +478,16 @@ class WellformednessManager(AbjadObject):
 
         ..  container:: example
 
-            ::
-
-                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> clef = abjad.Clef('alto')
-                >>> abjad.attach(clef, staff[0])
-                >>> violin = abjad.instrumenttools.Violin()
-                >>> abjad.attach(violin, staff[0])
-                >>> show(staff) # doctest: +SKIP
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> clef = abjad.Clef('alto')
+            >>> abjad.attach(clef, staff[0])
+            >>> violin = abjad.instrumenttools.Violin()
+            >>> abjad.attach(violin, staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(staff)
+                >>> abjad.f(staff)
                 \new Staff {
                     \set Staff.instrumentName = \markup { Violin }
                     \set Staff.shortInstrumentName = \markup { Vn. }
@@ -530,49 +498,45 @@ class WellformednessManager(AbjadObject):
                     f'8
                 }
 
-            ::
-
-                >>> agent = abjad.inspect(staff)
-                >>> print(agent.tabulate_wellformedness())
-                0 /	0 beamed long notes
-                0 /	0 discontiguous spanners
-                0 /	5 duplicate ids
-                0 /	1 empty containers
-                0 /	0 intermarked hairpins
-                0 /	0 misdurated measures
-                0 /	0 misfilled measures
-                0 /	0 mismatched enchained hairpins
-                0 /	0 mispitched ties
-                0 /	4 misrepresented flags
-                0 /	5 missing parents
-                0 /	0 nested measures
-                4 /	4 notes on wrong clef
-                0 /	4 out of range notes
-                0 /	0 overlapping beams
-                0 /	0 overlapping glissandi
-                0 /	0 overlapping hairpins
-                0 /	0 overlapping octavation spanners
-                0 /	0 overlapping ties
-                0 /     0 overlapping trill spanners
-                0 /	0 short hairpins
-                0 /	0 tied rests
+            >>> agent = abjad.inspect(staff)
+            >>> print(agent.tabulate_wellformedness())
+            0 /	0 beamed long notes
+            0 /	0 discontiguous spanners
+            0 /	5 duplicate ids
+            0 /	1 empty containers
+            0 /	0 intermarked hairpins
+            0 /	0 misdurated measures
+            0 /	0 misfilled measures
+            0 /	0 mismatched enchained hairpins
+            0 /	0 mispitched ties
+            0 /	4 misrepresented flags
+            0 /	5 missing parents
+            0 /	0 nested measures
+            4 /	4 notes on wrong clef
+            0 /	4 out of range notes
+            0 /	0 overlapping beams
+            0 /	0 overlapping glissandi
+            0 /	0 overlapping hairpins
+            0 /	0 overlapping octavation spanners
+            0 /	0 overlapping ties
+            0 /     0 overlapping trill spanners
+            0 /	0 short hairpins
+            0 /	0 tied rests
 
         ..  container:: example
 
             Allows percussion clef:
 
-            ::
-
-                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> clef = abjad.Clef('percussion')
-                >>> abjad.attach(clef, staff[0])
-                >>> violin = abjad.instrumenttools.Violin()
-                >>> abjad.attach(violin, staff[0])
-                >>> show(staff) # doctest: +SKIP
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> clef = abjad.Clef('percussion')
+            >>> abjad.attach(clef, staff[0])
+            >>> violin = abjad.instrumenttools.Violin()
+            >>> abjad.attach(violin, staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(staff)
+                >>> abjad.f(staff)
                 \new Staff {
                     \set Staff.instrumentName = \markup { Violin }
                     \set Staff.shortInstrumentName = \markup { Vn. }
@@ -583,67 +547,63 @@ class WellformednessManager(AbjadObject):
                     f'8
                 }
 
-            ::
-
-                >>> agent = abjad.inspect(staff)
-                >>> print(agent.tabulate_wellformedness(
-                ...     allow_percussion_clef=True,
-                ...     ))
-                0 /	0 beamed long notes
-                0 /	0 discontiguous spanners
-                0 /	5 duplicate ids
-                0 /	1 empty containers
-                0 /	0 intermarked hairpins
-                0 /	0 misdurated measures
-                0 /	0 misfilled measures
-                0 /	0 mismatched enchained hairpins
-                0 /	0 mispitched ties
-                0 /	4 misrepresented flags
-                0 /	5 missing parents
-                0 /	0 nested measures
-                0 /	4 notes on wrong clef
-                0 /	4 out of range notes
-                0 /	0 overlapping beams
-                0 /	0 overlapping glissandi
-                0 /	0 overlapping hairpins
-                0 /	0 overlapping octavation spanners
-                0 /	0 overlapping ties
-                0 /     0 overlapping trill spanners
-                0 /	0 short hairpins
-                0 /	0 tied rests
+            >>> agent = abjad.inspect(staff)
+            >>> print(agent.tabulate_wellformedness(
+            ...     allow_percussion_clef=True,
+            ...     ))
+            0 /	0 beamed long notes
+            0 /	0 discontiguous spanners
+            0 /	5 duplicate ids
+            0 /	1 empty containers
+            0 /	0 intermarked hairpins
+            0 /	0 misdurated measures
+            0 /	0 misfilled measures
+            0 /	0 mismatched enchained hairpins
+            0 /	0 mispitched ties
+            0 /	4 misrepresented flags
+            0 /	5 missing parents
+            0 /	0 nested measures
+            0 /	4 notes on wrong clef
+            0 /	4 out of range notes
+            0 /	0 overlapping beams
+            0 /	0 overlapping glissandi
+            0 /	0 overlapping hairpins
+            0 /	0 overlapping octavation spanners
+            0 /	0 overlapping ties
+            0 /     0 overlapping trill spanners
+            0 /	0 short hairpins
+            0 /	0 tied rests
 
         ..  container:: example
 
             Forbids percussion clef:
 
-            ::
-
-                >>> agent = abjad.inspect(staff)
-                >>> print(agent.tabulate_wellformedness(
-                ...     allow_percussion_clef=False,
-                ...     ))
-                0 /	0 beamed long notes
-                0 /	0 discontiguous spanners
-                0 /	5 duplicate ids
-                0 /	1 empty containers
-                0 /	0 intermarked hairpins
-                0 /	0 misdurated measures
-                0 /	0 misfilled measures
-                0 /	0 mismatched enchained hairpins
-                0 /	0 mispitched ties
-                0 /	4 misrepresented flags
-                0 /	5 missing parents
-                0 /	0 nested measures
-                4 /	4 notes on wrong clef
-                0 /	4 out of range notes
-                0 /	0 overlapping beams
-                0 /	0 overlapping glissandi
-                0 /	0 overlapping hairpins
-                0 /	0 overlapping octavation spanners
-                0 /	0 overlapping ties
-                0 /     0 overlapping trill spanners
-                0 /	0 short hairpins
-                0 /	0 tied rests
+            >>> agent = abjad.inspect(staff)
+            >>> print(agent.tabulate_wellformedness(
+            ...     allow_percussion_clef=False,
+            ...     ))
+            0 /	0 beamed long notes
+            0 /	0 discontiguous spanners
+            0 /	5 duplicate ids
+            0 /	1 empty containers
+            0 /	0 intermarked hairpins
+            0 /	0 misdurated measures
+            0 /	0 misfilled measures
+            0 /	0 mismatched enchained hairpins
+            0 /	0 mispitched ties
+            0 /	4 misrepresented flags
+            0 /	5 missing parents
+            0 /	0 nested measures
+            4 /	4 notes on wrong clef
+            0 /	4 out of range notes
+            0 /	0 overlapping beams
+            0 /	0 overlapping glissandi
+            0 /	0 overlapping hairpins
+            0 /	0 overlapping octavation spanners
+            0 /	0 overlapping ties
+            0 /     0 overlapping trill spanners
+            0 /	0 short hairpins
+            0 /	0 tied rests
 
         Returns true or false.
         '''
@@ -673,16 +633,14 @@ class WellformednessManager(AbjadObject):
 
             Out of range:
 
-            ::
-
-                >>> staff = abjad.Staff("c'8 r8 <d fs>8 r8")
-                >>> violin = abjad.instrumenttools.Violin()
-                >>> abjad.attach(violin, staff[0])
-                >>> show(staff) # doctest: +SKIP
+            >>> staff = abjad.Staff("c'8 r8 <d fs>8 r8")
+            >>> violin = abjad.instrumenttools.Violin()
+            >>> abjad.attach(violin, staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(staff)
+                >>> abjad.f(staff)
                 \new Staff {
                     \set Staff.instrumentName = \markup { Violin }
                     \set Staff.shortInstrumentName = \markup { Vn. }
@@ -692,32 +650,30 @@ class WellformednessManager(AbjadObject):
                     r8
                 }
 
-            ::
-
-                >>> agent = abjad.inspect(staff)
-                >>> print(agent.tabulate_wellformedness())
-                0 /	0 beamed long notes
-                0 /	0 discontiguous spanners
-                0 /	5 duplicate ids
-                0 /	1 empty containers
-                0 /	0 intermarked hairpins
-                0 /	0 misdurated measures
-                0 /	0 misfilled measures
-                0 /	0 mismatched enchained hairpins
-                0 /	0 mispitched ties
-                0 /	4 misrepresented flags
-                0 /	5 missing parents
-                0 /	0 nested measures
-                0 /	4 notes on wrong clef
-                1 /	2 out of range notes
-                0 /	0 overlapping beams
-                0 /	0 overlapping glissandi
-                0 /	0 overlapping hairpins
-                0 /	0 overlapping octavation spanners
-                0 /	0 overlapping ties
-                0 /     0 overlapping trill spanners
-                0 /	0 short hairpins
-                0 /	2 tied rests
+            >>> agent = abjad.inspect(staff)
+            >>> print(agent.tabulate_wellformedness())
+            0 /	0 beamed long notes
+            0 /	0 discontiguous spanners
+            0 /	5 duplicate ids
+            0 /	1 empty containers
+            0 /	0 intermarked hairpins
+            0 /	0 misdurated measures
+            0 /	0 misfilled measures
+            0 /	0 mismatched enchained hairpins
+            0 /	0 mispitched ties
+            0 /	4 misrepresented flags
+            0 /	5 missing parents
+            0 /	0 nested measures
+            0 /	4 notes on wrong clef
+            1 /	2 out of range notes
+            0 /	0 overlapping beams
+            0 /	0 overlapping glissandi
+            0 /	0 overlapping hairpins
+            0 /	0 overlapping octavation spanners
+            0 /	0 overlapping ties
+            0 /     0 overlapping trill spanners
+            0 /	0 short hairpins
+            0 /	2 tied rests
 
         Returns true or false.
         '''
@@ -739,31 +695,25 @@ class WellformednessManager(AbjadObject):
 
             Overlapping beams are well-formed:
 
-            ::
+            >>> staff = abjad.Staff("c'8 d' e' f'")
+            >>> abjad.attach(abjad.Beam(), staff[:3])
+            >>> abjad.attach(abjad.Beam(), staff[2:])
 
-                >>> staff = abjad.Staff("c'8 d' e' f'")
-                >>> abjad.attach(abjad.Beam(), staff[:3])
-                >>> abjad.attach(abjad.Beam(), staff[2:])
+            >>> abjad.f(staff)
+            \new Staff {
+                c'8 [
+                d'8
+                e'8 ] [
+                f'8 ]
+            }
 
-            ::
-
-                >>> f(staff)
-                \new Staff {
-                    c'8 [
-                    d'8
-                    e'8 ] [
-                    f'8 ]
-                }
-
-            ::
-
-                >>> manager = abjad.WellformednessManager()
-                >>> violators, total = manager.check_overlapping_beams(staff)
-                >>> for beam in sorted(violators):
-                ...     beam
-                ...
-                Beam("c'8, d'8, e'8")
-                Beam("e'8, f'8")
+            >>> manager = abjad.WellformednessManager()
+            >>> violators, total = manager.check_overlapping_beams(staff)
+            >>> for beam in sorted(violators):
+            ...     beam
+            ...
+            Beam("c'8, d'8, e'8")
+            Beam("e'8, f'8")
 
             (Enchained beams are not well-formed either.)
 
@@ -799,38 +749,34 @@ class WellformednessManager(AbjadObject):
 
             Checks overlapping hairpins:
 
-            ::
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.attach(abjad.Hairpin('<'), staff[:])
+            >>> abjad.attach(abjad.Hairpin('>'), staff[:])
 
-                >>> staff = abjad.Staff("c'4 d' e' f'")
-                >>> abjad.attach(abjad.Hairpin('<'), staff[:])
-                >>> abjad.attach(abjad.Hairpin('>'), staff[:])
-
-            ::
-
-                >>> agent = abjad.inspect(staff)
-                >>> print(agent.tabulate_wellformedness())
-                0 /	4 beamed long notes
-                0 /	2 discontiguous spanners
-                0 /	5 duplicate ids
-                0 /     1 empty containers
-                0 /	2 intermarked hairpins
-                0 /	0 misdurated measures
-                0 /	0 misfilled measures
-                0 /	2 mismatched enchained hairpins
-                0 /	0 mispitched ties
-                0 /	4 misrepresented flags
-                0 /	5 missing parents
-                0 /	0 nested measures
-                0 /	4 notes on wrong clef
-                0 /	4 out of range notes
-                0 /	0 overlapping beams
-                0 /	0 overlapping glissandi
-                2 /	2 overlapping hairpins
-                0 /	0 overlapping octavation spanners
-                0 /	0 overlapping ties
-                0 /     0 overlapping trill spanners
-                0 /	2 short hairpins
-                0 /	0 tied rests
+            >>> agent = abjad.inspect(staff)
+            >>> print(agent.tabulate_wellformedness())
+            0 /	4 beamed long notes
+            0 /	2 discontiguous spanners
+            0 /	5 duplicate ids
+            0 /     1 empty containers
+            0 /	2 intermarked hairpins
+            0 /	0 misdurated measures
+            0 /	0 misfilled measures
+            0 /	2 mismatched enchained hairpins
+            0 /	0 mispitched ties
+            0 /	4 misrepresented flags
+            0 /	5 missing parents
+            0 /	0 nested measures
+            0 /	4 notes on wrong clef
+            0 /	4 out of range notes
+            0 /	0 overlapping beams
+            0 /	0 overlapping glissandi
+            2 /	2 overlapping hairpins
+            0 /	0 overlapping octavation spanners
+            0 /	0 overlapping ties
+            0 /     0 overlapping trill spanners
+            0 /	2 short hairpins
+            0 /	0 tied rests
 
         Enchained hairpins are fine so long as hairpin ends match.
 
@@ -866,40 +812,36 @@ class WellformednessManager(AbjadObject):
 
             Checks overlapping ties:
 
-            ::
+            >>> staff = abjad.Staff("c'4 c' c' c''")
+            >>> abjad.attach(abjad.Tie(), staff[:2])
+            >>> tie = abjad.Tie()
+            >>> tie._ignore_attachment_test = True
+            >>> abjad.attach(tie, staff[1:3])
 
-                >>> staff = abjad.Staff("c'4 c' c' c''")
-                >>> abjad.attach(abjad.Tie(), staff[:2])
-                >>> tie = abjad.Tie()
-                >>> tie._ignore_attachment_test = True
-                >>> abjad.attach(tie, staff[1:3])
-
-            ::
-
-                >>> agent = abjad.inspect(staff)
-                >>> print(agent.tabulate_wellformedness())
-                0 /	4 beamed long notes
-                0 /	2 discontiguous spanners
-                0 /	5 duplicate ids
-                0 /     1 empty containers
-                0 /	0 intermarked hairpins
-                0 /	0 misdurated measures
-                0 /	0 misfilled measures
-                0 /	0 mismatched enchained hairpins
-                0 /	2 mispitched ties
-                0 /	4 misrepresented flags
-                0 /	5 missing parents
-                0 /	0 nested measures
-                0 /	4 notes on wrong clef
-                0 /	4 out of range notes
-                0 /	0 overlapping beams
-                0 /	0 overlapping glissandi
-                0 /	0 overlapping hairpins
-                0 /	0 overlapping octavation spanners
-                2 /	2 overlapping ties
-                0 /     0 overlapping trill spanners
-                0 /	0 short hairpins
-                0 /	0 tied rests
+            >>> agent = abjad.inspect(staff)
+            >>> print(agent.tabulate_wellformedness())
+            0 /	4 beamed long notes
+            0 /	2 discontiguous spanners
+            0 /	5 duplicate ids
+            0 /     1 empty containers
+            0 /	0 intermarked hairpins
+            0 /	0 misdurated measures
+            0 /	0 misfilled measures
+            0 /	0 mismatched enchained hairpins
+            0 /	2 mispitched ties
+            0 /	4 misrepresented flags
+            0 /	5 missing parents
+            0 /	0 nested measures
+            0 /	4 notes on wrong clef
+            0 /	4 out of range notes
+            0 /	0 overlapping beams
+            0 /	0 overlapping glissandi
+            0 /	0 overlapping hairpins
+            0 /	0 overlapping octavation spanners
+            2 /	2 overlapping ties
+            0 /     0 overlapping trill spanners
+            0 /	0 short hairpins
+            0 /	0 tied rests
 
         Returns violators and count of total ties.
         '''
@@ -921,16 +863,14 @@ class WellformednessManager(AbjadObject):
 
             Enchained trill spanners are ok:
 
-            ::
-
-                >>> staff = abjad.Staff("c'4 d' e' f'")
-                >>> abjad.attach(abjad.TrillSpanner(), staff[:3])
-                >>> abjad.attach(abjad.TrillSpanner(), staff[2:])
-                >>> show(staff) # doctest: +SKIP
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.attach(abjad.TrillSpanner(), staff[:3])
+            >>> abjad.attach(abjad.TrillSpanner(), staff[2:])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(staff)
+                >>> abjad.f(staff)
                 \new Staff {
                     c'4 \startTrillSpan
                     d'4
@@ -938,25 +878,21 @@ class WellformednessManager(AbjadObject):
                     f'4 \stopTrillSpan
                 }
 
-            ::
-
-                >>> abjad.inspect(staff).is_well_formed()
-                True
+            >>> abjad.inspect(staff).is_well_formed()
+            True
 
         ..  container:: example
 
             Overlapping trill spanners are not well-formed:
 
-            ::
-
-                >>> staff = abjad.Staff("c'4 d' e' f'")
-                >>> abjad.attach(abjad.TrillSpanner(), staff[:])
-                >>> abjad.attach(abjad.TrillSpanner(), staff[:])
-                >>> show(staff) # doctest: +SKIP
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.attach(abjad.TrillSpanner(), staff[:])
+            >>> abjad.attach(abjad.TrillSpanner(), staff[:])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(staff)
+                >>> abjad.f(staff)
                 \new Staff {
                     c'4 \startTrillSpan \startTrillSpan
                     d'4
@@ -964,32 +900,30 @@ class WellformednessManager(AbjadObject):
                     f'4 \stopTrillSpan \stopTrillSpan
                 }
 
-            ::
-
-                >>> agent = abjad.inspect(staff)
-                >>> print(agent.tabulate_wellformedness())
-                0 /	4 beamed long notes
-                0 /	2 discontiguous spanners
-                0 /	5 duplicate ids
-                0 /	1 empty containers
-                0 /	0 intermarked hairpins
-                0 /	0 misdurated measures
-                0 /	0 misfilled measures
-                0 /	0 mismatched enchained hairpins
-                0 /	0 mispitched ties
-                0 /	4 misrepresented flags
-                0 /	5 missing parents
-                0 /	0 nested measures
-                0 /	4 notes on wrong clef
-                0 /	4 out of range notes
-                0 /	0 overlapping beams
-                0 /	0 overlapping glissandi
-                0 /	0 overlapping hairpins
-                0 /	0 overlapping octavation spanners
-                0 /	0 overlapping ties
-                2 /	2 overlapping trill spanners
-                0 /	0 short hairpins
-                0 /	0 tied rests
+            >>> agent = abjad.inspect(staff)
+            >>> print(agent.tabulate_wellformedness())
+            0 /	4 beamed long notes
+            0 /	2 discontiguous spanners
+            0 /	5 duplicate ids
+            0 /	1 empty containers
+            0 /	0 intermarked hairpins
+            0 /	0 misdurated measures
+            0 /	0 misfilled measures
+            0 /	0 mismatched enchained hairpins
+            0 /	0 mispitched ties
+            0 /	4 misrepresented flags
+            0 /	5 missing parents
+            0 /	0 nested measures
+            0 /	4 notes on wrong clef
+            0 /	4 out of range notes
+            0 /	0 overlapping beams
+            0 /	0 overlapping glissandi
+            0 /	0 overlapping hairpins
+            0 /	0 overlapping octavation spanners
+            0 /	0 overlapping ties
+            2 /	2 overlapping trill spanners
+            0 /	0 short hairpins
+            0 /	0 tied rests
 
         Enchained hairpins are fine so long as hairpin ends match.
 

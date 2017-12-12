@@ -3,26 +3,22 @@ def factors(n):
 
     ..  container:: example
 
-        ::
+        >>> abjad.mathtools.factors(84)
+        [2, 2, 3, 7]
 
-            >>> abjad.mathtools.factors(84)
-            [2, 2, 3, 7]
-
-        ::
-
-            >>> for n in range(10, 20):
-            ...   print(n, abjad.mathtools.factors(n))
-            ...
-            10 [2, 5]
-            11 [11]
-            12 [2, 2, 3]
-            13 [13]
-            14 [2, 7]
-            15 [3, 5]
-            16 [2, 2, 2, 2]
-            17 [17]
-            18 [2, 3, 3]
-            19 [19]
+        >>> for n in range(10, 20):
+        ...   print(n, abjad.mathtools.factors(n))
+        ...
+        10 [2, 5]
+        11 [11]
+        12 [2, 2, 3]
+        13 [13]
+        14 [2, 7]
+        15 [3, 5]
+        16 [2, 2, 2, 2]
+        17 [17]
+        18 [2, 3, 3]
+        19 [19]
 
     `n` must be a positive integer.
 

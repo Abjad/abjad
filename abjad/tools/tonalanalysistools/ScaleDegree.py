@@ -7,10 +7,8 @@ class ScaleDegree(AbjadValueObject):
 
     ..  container:: example
 
-        ::
-
-            >>> abjad.tonalanalysistools.ScaleDegree('#4')
-            ScaleDegree('#4')
+        >>> abjad.tonalanalysistools.ScaleDegree('#4')
+        ScaleDegree('#4')
 
     '''
 
@@ -104,38 +102,30 @@ class ScaleDegree(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> degree_1 = abjad.tonalanalysistools.ScaleDegree('#4')
+            >>> degree_2 = abjad.tonalanalysistools.ScaleDegree('#4')
+            >>> degree_3 = abjad.tonalanalysistools.ScaleDegree(5)
 
-                >>> degree_1 = abjad.tonalanalysistools.ScaleDegree('#4')
-                >>> degree_2 = abjad.tonalanalysistools.ScaleDegree('#4')
-                >>> degree_3 = abjad.tonalanalysistools.ScaleDegree(5)
+            >>> degree_1 == degree_1
+            True
+            >>> degree_1 == degree_2
+            True
+            >>> degree_1 == degree_3
+            False
 
-            ::
+            >>> degree_2 == degree_1
+            True
+            >>> degree_2 == degree_2
+            True
+            >>> degree_2 == degree_3
+            False
 
-                >>> degree_1 == degree_1
-                True
-                >>> degree_1 == degree_2
-                True
-                >>> degree_1 == degree_3
-                False
-
-            ::
-
-                >>> degree_2 == degree_1
-                True
-                >>> degree_2 == degree_2
-                True
-                >>> degree_2 == degree_3
-                False
-
-            ::
-
-                >>> degree_3 == degree_1
-                False
-                >>> degree_3 == degree_2
-                False
-                >>> degree_3 == degree_3
-                True
+            >>> degree_3 == degree_1
+            False
+            >>> degree_3 == degree_2
+            False
+            >>> degree_3 == degree_3
+            True
 
         Returns true or false.
         '''
@@ -153,10 +143,8 @@ class ScaleDegree(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> str(abjad.tonalanalysistools.ScaleDegree('#4'))
-                '#4'
+            >>> str(abjad.tonalanalysistools.ScaleDegree('#4'))
+            '#4'
 
         Returns string.
         '''
@@ -182,11 +170,9 @@ class ScaleDegree(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> class_ = abjad.tonalanalysistools.ScaleDegree
-                >>> class_.from_accidental_and_number('sharp', 4)
-                ScaleDegree('#4')
+            >>> class_ = abjad.tonalanalysistools.ScaleDegree
+            >>> class_.from_accidental_and_number('sharp', 4)
+            ScaleDegree('#4')
 
         Returns new scale degree.
         '''
@@ -203,10 +189,8 @@ class ScaleDegree(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.tonalanalysistools.ScaleDegree('#4').accidental
-                Accidental('sharp')
+            >>> abjad.tonalanalysistools.ScaleDegree('#4').accidental
+            Accidental('sharp')
 
         Returns accidental.
         '''
@@ -218,22 +202,20 @@ class ScaleDegree(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.tonalanalysistools.ScaleDegree(1).name
-                'tonic'
-                >>> abjad.tonalanalysistools.ScaleDegree(2).name
-                'superdominant'
-                >>> abjad.tonalanalysistools.ScaleDegree(3).name
-                'mediant'
-                >>> abjad.tonalanalysistools.ScaleDegree(4).name
-                'subdominant'
-                >>> abjad.tonalanalysistools.ScaleDegree(5).name
-                'dominant'
-                >>> abjad.tonalanalysistools.ScaleDegree(6).name
-                'submediant'
-                >>> abjad.tonalanalysistools.ScaleDegree(7).name
-                'leading tone'
+            >>> abjad.tonalanalysistools.ScaleDegree(1).name
+            'tonic'
+            >>> abjad.tonalanalysistools.ScaleDegree(2).name
+            'superdominant'
+            >>> abjad.tonalanalysistools.ScaleDegree(3).name
+            'mediant'
+            >>> abjad.tonalanalysistools.ScaleDegree(4).name
+            'subdominant'
+            >>> abjad.tonalanalysistools.ScaleDegree(5).name
+            'dominant'
+            >>> abjad.tonalanalysistools.ScaleDegree(6).name
+            'submediant'
+            >>> abjad.tonalanalysistools.ScaleDegree(7).name
+            'leading tone'
 
         Returns string.
         '''
@@ -248,10 +230,8 @@ class ScaleDegree(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.tonalanalysistools.ScaleDegree('#4').number
-                4
+            >>> abjad.tonalanalysistools.ScaleDegree('#4').number
+            4
 
         Returns integer from 1 to 7, inclusive.
         '''
@@ -263,11 +243,9 @@ class ScaleDegree(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> degree = abjad.tonalanalysistools.ScaleDegree('#4')
-                >>> degree.roman_numeral_string
-                'IV'
+            >>> degree = abjad.tonalanalysistools.ScaleDegree('#4')
+            >>> degree.roman_numeral_string
+            'IV'
 
         Returns string.
         '''
@@ -280,20 +258,14 @@ class ScaleDegree(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> abjad.tonalanalysistools.ScaleDegree('b4').string
+            'b4'
 
-                >>> abjad.tonalanalysistools.ScaleDegree('b4').string
-                'b4'
+            >>> abjad.tonalanalysistools.ScaleDegree('4').string
+            '4'
 
-            ::
-
-                >>> abjad.tonalanalysistools.ScaleDegree('4').string
-                '4'
-
-            ::
-
-                >>> abjad.tonalanalysistools.ScaleDegree('#4').string
-                '#4'
+            >>> abjad.tonalanalysistools.ScaleDegree('#4').string
+            '#4'
 
         Returns string.
         '''
@@ -308,20 +280,14 @@ class ScaleDegree(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> abjad.tonalanalysistools.ScaleDegree('b4').title_string
+            'FlatFour'
 
-                >>> abjad.tonalanalysistools.ScaleDegree('b4').title_string
-                'FlatFour'
+            >>> abjad.tonalanalysistools.ScaleDegree('4').title_string
+            'Four'
 
-            ::
-
-                >>> abjad.tonalanalysistools.ScaleDegree('4').title_string
-                'Four'
-
-            ::
-
-                >>> abjad.tonalanalysistools.ScaleDegree('#4').title_string
-                'SharpFour'
+            >>> abjad.tonalanalysistools.ScaleDegree('#4').title_string
+            'SharpFour'
 
         Returns string.
         '''

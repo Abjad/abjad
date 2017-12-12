@@ -6,18 +6,16 @@ class AltoTrombone(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c4 d4 e4 fs4")
-            >>> clef = abjad.Clef('bass')
-            >>> abjad.attach(clef, staff[0])
-            >>> alto_trombone = abjad.AltoTrombone()
-            >>> abjad.attach(alto_trombone, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c4 d4 e4 fs4")
+        >>> clef = abjad.Clef('bass')
+        >>> abjad.attach(clef, staff[0])
+        >>> alto_trombone = abjad.AltoTrombone()
+        >>> abjad.attach(alto_trombone, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { "Alto trombone" }
                 \set Staff.shortInstrumentName = \markup { "Alt. trb." }
@@ -69,24 +67,22 @@ class AltoTrombone(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> alto_trombone = abjad.AltoTrombone()
-                >>> f(alto_trombone)
-                abjad.AltoTrombone(
-                    name='alto trombone',
-                    short_name='alt. trb.',
-                    name_markup=abjad.Markup(
-                        contents=['Alto trombone'],
-                        ),
-                    short_name_markup=abjad.Markup(
-                        contents=['Alt. trb.'],
-                        ),
-                    allowable_clefs=('bass', 'tenor'),
-                    default_scope='Staff',
-                    middle_c_sounding_pitch=abjad.NamedPitch("c'"),
-                    pitch_range=abjad.PitchRange('[A2, Bb5]'),
-                    )
+            >>> alto_trombone = abjad.AltoTrombone()
+            >>> abjad.f(alto_trombone)
+            abjad.AltoTrombone(
+                name='alto trombone',
+                short_name='alt. trb.',
+                name_markup=abjad.Markup(
+                    contents=['Alto trombone'],
+                    ),
+                short_name_markup=abjad.Markup(
+                    contents=['Alt. trb.'],
+                    ),
+                allowable_clefs=('bass', 'tenor'),
+                default_scope='Staff',
+                middle_c_sounding_pitch=abjad.NamedPitch("c'"),
+                pitch_range=abjad.PitchRange('[A2, Bb5]'),
+                )
 
         Returns string.
         '''
@@ -101,11 +97,9 @@ class AltoTrombone(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> alto_trombone = abjad.AltoTrombone()
-                >>> alto_trombone.allowable_clefs
-                ('bass', 'tenor')
+            >>> alto_trombone = abjad.AltoTrombone()
+            >>> alto_trombone.allowable_clefs
+            ('bass', 'tenor')
 
         Returns clef list.
         '''
@@ -117,15 +111,11 @@ class AltoTrombone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> alto_trombone = abjad.AltoTrombone()
+            >>> alto_trombone.middle_c_sounding_pitch
+            NamedPitch("c'")
 
-                >>> alto_trombone = abjad.AltoTrombone()
-                >>> alto_trombone.middle_c_sounding_pitch
-                NamedPitch("c'")
-
-            ::
-
-                >>> show(alto_trombone.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(alto_trombone.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -137,11 +127,9 @@ class AltoTrombone(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> alto_trombone = abjad.AltoTrombone()
-                >>> alto_trombone.name
-                'alto trombone'
+            >>> alto_trombone = abjad.AltoTrombone()
+            >>> alto_trombone.name
+            'alto trombone'
 
         Returns string.
         '''
@@ -153,15 +141,11 @@ class AltoTrombone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> alto_trombone = abjad.AltoTrombone()
+            >>> alto_trombone.name_markup
+            Markup(contents=['Alto trombone'])
 
-                >>> alto_trombone = abjad.AltoTrombone()
-                >>> alto_trombone.name_markup
-                Markup(contents=['Alto trombone'])
-
-            ::
-
-                >>> show(alto_trombone.name_markup) # doctest: +SKIP
+            >>> abjad.show(alto_trombone.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -173,15 +157,11 @@ class AltoTrombone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> alto_trombone = abjad.AltoTrombone()
+            >>> alto_trombone.pitch_range
+            PitchRange('[A2, Bb5]')
 
-                >>> alto_trombone = abjad.AltoTrombone()
-                >>> alto_trombone.pitch_range
-                PitchRange('[A2, Bb5]')
-
-            ::
-
-                >>> show(alto_trombone.pitch_range) # doctest: +SKIP
+            >>> abjad.show(alto_trombone.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -193,11 +173,9 @@ class AltoTrombone(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> alto_trombone = abjad.AltoTrombone()
-                >>> alto_trombone.short_name
-                'alt. trb.'
+            >>> alto_trombone = abjad.AltoTrombone()
+            >>> alto_trombone.short_name
+            'alt. trb.'
 
         Returns string.
         '''
@@ -209,15 +187,11 @@ class AltoTrombone(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> alto_trombone = abjad.AltoTrombone()
+            >>> alto_trombone.short_name_markup
+            Markup(contents=['Alt. trb.'])
 
-                >>> alto_trombone = abjad.AltoTrombone()
-                >>> alto_trombone.short_name_markup
-                Markup(contents=['Alt. trb.'])
-
-            ::
-
-                >>> show(alto_trombone.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(alto_trombone.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

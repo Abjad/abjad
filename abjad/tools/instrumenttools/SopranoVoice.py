@@ -6,16 +6,14 @@ class SopranoVoice(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c''4 d''4 e''4 fs''4")
-            >>> soprano = abjad.SopranoVoice()
-            >>> abjad.attach(soprano, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c''4 d''4 e''4 fs''4")
+        >>> soprano = abjad.SopranoVoice()
+        >>> abjad.attach(soprano, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { Soprano }
                 \set Staff.shortInstrumentName = \markup { Sop. }
@@ -67,11 +65,9 @@ class SopranoVoice(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> soprano = abjad.SopranoVoice()
-                >>> soprano.allowable_clefs
-                ('treble',)
+            >>> soprano = abjad.SopranoVoice()
+            >>> soprano.allowable_clefs
+            ('treble',)
 
         Returns clef list.
         '''
@@ -83,15 +79,11 @@ class SopranoVoice(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> soprano = abjad.SopranoVoice()
+            >>> soprano.middle_c_sounding_pitch
+            NamedPitch("c'")
 
-                >>> soprano = abjad.SopranoVoice()
-                >>> soprano.middle_c_sounding_pitch
-                NamedPitch("c'")
-
-            ::
-
-                >>> show(soprano.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(soprano.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -103,11 +95,9 @@ class SopranoVoice(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> soprano = abjad.SopranoVoice()
-                >>> soprano.name
-                'soprano'
+            >>> soprano = abjad.SopranoVoice()
+            >>> soprano.name
+            'soprano'
 
         Returns string.
         '''
@@ -119,15 +109,11 @@ class SopranoVoice(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> soprano = abjad.SopranoVoice()
+            >>> soprano.name_markup
+            Markup(contents=['Soprano'])
 
-                >>> soprano = abjad.SopranoVoice()
-                >>> soprano.name_markup
-                Markup(contents=['Soprano'])
-
-            ::
-
-                >>> show(soprano.name_markup) # doctest: +SKIP
+            >>> abjad.show(soprano.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -139,15 +125,11 @@ class SopranoVoice(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> soprano = abjad.SopranoVoice()
+            >>> soprano.pitch_range
+            PitchRange('[C4, E6]')
 
-                >>> soprano = abjad.SopranoVoice()
-                >>> soprano.pitch_range
-                PitchRange('[C4, E6]')
-
-            ::
-
-                >>> show(soprano.pitch_range) # doctest: +SKIP
+            >>> abjad.show(soprano.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -159,11 +141,9 @@ class SopranoVoice(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> soprano = abjad.SopranoVoice()
-                >>> soprano.short_name
-                'sop.'
+            >>> soprano = abjad.SopranoVoice()
+            >>> soprano.short_name
+            'sop.'
 
         Returns string.
         '''
@@ -175,15 +155,11 @@ class SopranoVoice(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> soprano = abjad.SopranoVoice()
+            >>> soprano.short_name_markup
+            Markup(contents=['Sop.'])
 
-                >>> soprano = abjad.SopranoVoice()
-                >>> soprano.short_name_markup
-                Markup(contents=['Sop.'])
-
-            ::
-
-                >>> show(soprano.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(soprano.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

@@ -63,11 +63,8 @@ class DoctestScript(CommandlineScript):
     def _get_namespace(self, abjad_only=False, external_modules=''):
         globs = {}
         globs['abjad'] = importlib.import_module('abjad')
-        # TODO: remove lone f(); use abjad.f() instead
-        globs['f'] = getattr(globs['abjad'], 'f')
-        # TODO: remove lone show(); use abjad.show() instead
-        globs['f'] = getattr(globs['abjad'], 'f')
-        globs['show'] = getattr(globs['abjad'], 'show')
+        #globs['f'] = getattr(globs['abjad'], 'f')
+        #globs['show'] = getattr(globs['abjad'], 'show')
         if not abjad_only:
             for module_name in self._module_names_for_globs:
                 try:

@@ -62,7 +62,7 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
             '\\begin{comment}',
             '<abjad>',
             'note = Note(0, (1, 4))',
-            'show(note)',
+            'abjad.show(note)',
             '</abjad>',
             '\\end{comment}',
             ]
@@ -81,14 +81,14 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
             \\begin{comment}
             <abjad>
             note = Note(0, (1, 4))
-            show(note)
+            abjad.show(note)
             </abjad>
             \\end{comment}
 
             %%% ABJADBOOK START %%%
             \\begin{lstlisting}
             >>> note = Note(0, (1, 4))
-            >>> show(note)
+            >>> abjad.show(note)
             \\end{lstlisting}
             \\noindent\\includegraphics{assets/lilypond-6737d707e144fd1f0af98dd8007ebb4b.pdf}
             %%% ABJADBOOK END %%%

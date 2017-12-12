@@ -14,21 +14,17 @@ class ReducedLyParser(abctools.Parser):
 
     ..  container:: example
 
-        ::
-
-            >>> parser = abjad.lilypondparsertools.ReducedLyParser()
+        >>> parser = abjad.lilypondparsertools.ReducedLyParser()
 
         Understands LilyPond-like representation of notes, chords and rests:
 
-        ::
-
-            >>> string = "c'4 r8. <b d' fs'>16"
-            >>> container = parser(string)
-            >>> show(container) # doctest: +SKIP
+        >>> string = "c'4 r8. <b d' fs'>16"
+        >>> container = parser(string)
+        >>> abjad.show(container) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(container)
+            >>> abjad.f(container)
             {
                 c'4
                 r8.
@@ -38,15 +34,13 @@ class ReducedLyParser(abctools.Parser):
         Also parses bare duration as notes on middle-C, and negative bare
         durations as rests:
 
-        ::
-
-            >>> string = '4 -8 16. -32'
-            >>> container = parser(string)
-            >>> show(container) # doctest: +SKIP
+        >>> string = '4 -8 16. -32'
+        >>> container = parser(string)
+        >>> abjad.show(container) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(container)
+            >>> abjad.f(container)
             {
                 c'4
                 r8
@@ -60,15 +54,13 @@ class ReducedLyParser(abctools.Parser):
         following pitch specifiers will be treated as part of the same
         expression. The following produces 2 leaves, rather than 3:
 
-        ::
-
-            >>> string = "4 d' 4"
-            >>> container = parser(string)
-            >>> show(container) # doctest: +SKIP
+        >>> string = "4 d' 4"
+        >>> container = parser(string)
+        >>> abjad.show(container) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(container)
+            >>> abjad.f(container)
             {
                 c'4
                 d'4
@@ -76,15 +68,13 @@ class ReducedLyParser(abctools.Parser):
 
         Understands LilyPond-like default durations:
 
-        ::
-
-            >>> string = "c'4 d' e' f'"
-            >>> container = parser(string)
-            >>> show(container) # doctest: +SKIP
+        >>> string = "c'4 d' e' f'"
+        >>> container = parser(string)
+        >>> abjad.show(container) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(container)
+            >>> abjad.f(container)
             {
                 c'4
                 d'4
@@ -98,15 +88,13 @@ class ReducedLyParser(abctools.Parser):
 
         Can create arbitrarily nested tuplets:
 
-        ::
-
-            >>> string = "2/3 { 4 4 3/5 { 8 8 8 } }"
-            >>> tuplet = parser(string)
-            >>> show(tuplet) # doctest: +SKIP
+        >>> string = "2/3 { 4 4 3/5 { 8 8 8 } }"
+        >>> tuplet = parser(string)
+        >>> abjad.show(tuplet) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(tuplet)
+            >>> abjad.f(tuplet)
             \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'4
@@ -124,15 +112,13 @@ class ReducedLyParser(abctools.Parser):
 
         Can create measures too:
 
-        ::
-
-            >>> string = '| 4/4 4 4 4 4 || 3/8 8 8 8 |'
-            >>> container = parser(string)
-            >>> show(container) # doctest: +SKIP
+        >>> string = '| 4/4 4 4 4 4 || 3/8 8 8 8 |'
+        >>> container = parser(string)
+        >>> abjad.show(container) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(container)
+            >>> abjad.f(container)
             {
                 {
                     \time 4/4
@@ -153,15 +139,13 @@ class ReducedLyParser(abctools.Parser):
 
         Finally, understands ties, slurs and beams:
 
-        ::
-
-            >>> string = 'c16 [ ( d ~ d ) f ]'
-            >>> container = parser(string)
-            >>> show(container) # doctest: +SKIP
+        >>> string = 'c16 [ ( d ~ d ) f ]'
+        >>> container = parser(string)
+        >>> abjad.show(container) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(container)
+            >>> abjad.f(container)
             {
                 c16 [ (
                 d16 ~

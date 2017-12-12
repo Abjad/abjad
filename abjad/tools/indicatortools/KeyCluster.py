@@ -8,16 +8,14 @@ class KeyCluster(AbjadValueObject):
 
         Default values:
 
-        ::
-
-            >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
-            >>> key_cluster = abjad.KeyCluster()
-            >>> abjad.attach(key_cluster, chord)
-            >>> show(chord) # doctest: +SKIP
+        >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+        >>> key_cluster = abjad.KeyCluster()
+        >>> abjad.attach(key_cluster, chord)
+        >>> abjad.show(chord) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(chord)
+            >>> abjad.f(chord)
             \once \override Accidental.stencil = ##f
             \once \override AccidentalCautionary.stencil = ##f
             \once \override Arpeggio.X-offset = #-2
@@ -102,18 +100,16 @@ class KeyCluster(AbjadValueObject):
 
             Includes flat markup:
 
-            ::
-
-                >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
-                >>> key_cluster = abjad.KeyCluster(
-                ...     include_black_keys=True,
-                ...     )
-                >>> abjad.attach(key_cluster, chord)
-                >>> show(chord) # doctest: +SKIP
+            >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+            >>> key_cluster = abjad.KeyCluster(
+            ...     include_black_keys=True,
+            ...     )
+            >>> abjad.attach(key_cluster, chord)
+            >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(chord)
+                >>> abjad.f(chord)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -137,18 +133,16 @@ class KeyCluster(AbjadValueObject):
 
             Does not include flat markup:
 
-            ::
-
-                >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
-                >>> key_cluster = abjad.KeyCluster(
-                ...     include_black_keys=False,
-                ...     )
-                >>> abjad.attach(key_cluster, chord)
-                >>> show(chord) # doctest: +SKIP
+            >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+            >>> key_cluster = abjad.KeyCluster(
+            ...     include_black_keys=False,
+            ...     )
+            >>> abjad.attach(key_cluster, chord)
+            >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(chord)
+                >>> abjad.f(chord)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -176,18 +170,16 @@ class KeyCluster(AbjadValueObject):
 
             Includes natural markup:
 
-            ::
-
-                >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
-                >>> key_cluster = abjad.KeyCluster(
-                ...     include_white_keys=True,
-                ...     )
-                >>> abjad.attach(key_cluster, chord)
-                >>> show(chord) # doctest: +SKIP
+            >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+            >>> key_cluster = abjad.KeyCluster(
+            ...     include_white_keys=True,
+            ...     )
+            >>> abjad.attach(key_cluster, chord)
+            >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(chord)
+                >>> abjad.f(chord)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -211,18 +203,16 @@ class KeyCluster(AbjadValueObject):
 
             Does not include natural markup:
 
-            ::
-
-                >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
-                >>> key_cluster = abjad.KeyCluster(
-                ...     include_white_keys=False,
-                ...     )
-                >>> abjad.attach(key_cluster, chord)
-                >>> show(chord) # doctest: +SKIP
+            >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+            >>> key_cluster = abjad.KeyCluster(
+            ...     include_white_keys=False,
+            ...     )
+            >>> abjad.attach(key_cluster, chord)
+            >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(chord)
+                >>> abjad.f(chord)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -250,18 +240,16 @@ class KeyCluster(AbjadValueObject):
 
             Positions markup up:
 
-            ::
-
-                >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
-                >>> key_cluster = abjad.KeyCluster(
-                ...     markup_direction=abjad.Up,
-                ...     )
-                >>> abjad.attach(key_cluster, chord)
-                >>> show(chord) # doctest: +SKIP
+            >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+            >>> key_cluster = abjad.KeyCluster(
+            ...     markup_direction=abjad.Up,
+            ...     )
+            >>> abjad.attach(key_cluster, chord)
+            >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(chord)
+                >>> abjad.f(chord)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -285,18 +273,16 @@ class KeyCluster(AbjadValueObject):
 
             Positions markup down:
 
-            ::
-
-                >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
-                >>> key_cluster = abjad.KeyCluster(
-                ...     markup_direction=abjad.Down,
-                ...     )
-                >>> abjad.attach(key_cluster, chord)
-                >>> show(chord) # doctest: +SKIP
+            >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+            >>> key_cluster = abjad.KeyCluster(
+            ...     markup_direction=abjad.Down,
+            ...     )
+            >>> abjad.attach(key_cluster, chord)
+            >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(chord)
+                >>> abjad.f(chord)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -326,16 +312,14 @@ class KeyCluster(AbjadValueObject):
 
             Does not suppress markup:
 
-            ::
-
-                >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
-                >>> key_cluster = abjad.KeyCluster(suppress_markup=False)
-                >>> abjad.attach(key_cluster, chord)
-                >>> show(chord) # doctest: +SKIP
+            >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+            >>> key_cluster = abjad.KeyCluster(suppress_markup=False)
+            >>> abjad.attach(key_cluster, chord)
+            >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(chord)
+                >>> abjad.f(chord)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -359,16 +343,14 @@ class KeyCluster(AbjadValueObject):
 
             Does not suppress markup:
 
-            ::
-
-                >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
-                >>> key_cluster = abjad.KeyCluster(suppress_markup=True)
-                >>> abjad.attach(key_cluster, chord)
-                >>> show(chord) # doctest: +SKIP
+            >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+            >>> key_cluster = abjad.KeyCluster(suppress_markup=True)
+            >>> abjad.attach(key_cluster, chord)
+            >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(chord)
+                >>> abjad.f(chord)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2

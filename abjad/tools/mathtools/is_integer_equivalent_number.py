@@ -7,15 +7,11 @@ def is_integer_equivalent_number(argument):
 
     ..  container:: example
 
-        ::
+        >>> abjad.mathtools.is_integer_equivalent_number(12.0)
+        True
 
-            >>> abjad.mathtools.is_integer_equivalent_number(12.0)
-            True
-
-        ::
-
-            >>> abjad.mathtools.is_integer_equivalent_number(abjad.Duration(1, 2))
-            False
+        >>> abjad.mathtools.is_integer_equivalent_number(abjad.Duration(1, 2))
+        False
 
     Returns true or false.
     '''

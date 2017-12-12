@@ -10,14 +10,12 @@ class NumberedPitch(Pitch):
 
         Initializes from number:
 
-        ::
-
-            >>> numbered_pitch = abjad.NumberedPitch(13)
-            >>> show(numbered_pitch) # doctest: +SKIP
+        >>> numbered_pitch = abjad.NumberedPitch(13)
+        >>> abjad.show(numbered_pitch) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(numbered_pitch.__illustrate__()[abjad.Staff])
+            >>> abjad.f(numbered_pitch.__illustrate__()[abjad.Staff])
             \new Staff \with {
                 \override TimeSignature.stencil = ##f
             } {
@@ -29,14 +27,12 @@ class NumberedPitch(Pitch):
 
         Initializes from other numbered pitch
 
-        ::
-
-            >>> numbered_pitch = abjad.NumberedPitch(abjad.NumberedPitch(13))
-            >>> show(numbered_pitch) # doctest: +SKIP
+        >>> numbered_pitch = abjad.NumberedPitch(abjad.NumberedPitch(13))
+        >>> abjad.show(numbered_pitch) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(numbered_pitch.__illustrate__()[abjad.Staff])
+            >>> abjad.f(numbered_pitch.__illustrate__()[abjad.Staff])
             \new Staff \with {
                 \override TimeSignature.stencil = ##f
             } {
@@ -48,14 +44,12 @@ class NumberedPitch(Pitch):
 
         Initializes from pitch-class / octave pair:
 
-        ::
-
-            >>> numbered_pitch = abjad.NumberedPitch((1, 5))
-            >>> show(numbered_pitch) # doctest: +SKIP
+        >>> numbered_pitch = abjad.NumberedPitch((1, 5))
+        >>> abjad.show(numbered_pitch) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(numbered_pitch.__illustrate__()[abjad.Staff])
+            >>> abjad.f(numbered_pitch.__illustrate__()[abjad.Staff])
             \new Staff \with {
                 \override TimeSignature.stencil = ##f
             } {
@@ -107,15 +101,11 @@ class NumberedPitch(Pitch):
 
         ..  container:: example
 
-            ::
+            >>> abjad.NumberedPitch(12) + abjad.NumberedPitch(13)
+            NumberedPitch(25)
 
-                >>> abjad.NumberedPitch(12) + abjad.NumberedPitch(13)
-                NumberedPitch(25)
-
-            ::
-
-                >>> abjad.NumberedPitch(13) + abjad.NumberedPitch(12)
-                NumberedPitch(25)
+            >>> abjad.NumberedPitch(13) + abjad.NumberedPitch(12)
+            NumberedPitch(25)
 
         Returns new numbered pitch.
         '''
@@ -129,38 +119,30 @@ class NumberedPitch(Pitch):
 
         ..  container:: example
 
-            ::
+            >>> pitch_1 = abjad.NumberedPitch(12)
+            >>> pitch_2 = abjad.NumberedPitch(12)
+            >>> pitch_3 = abjad.NumberedPitch(13)
 
-                >>> pitch_1 = abjad.NumberedPitch(12)
-                >>> pitch_2 = abjad.NumberedPitch(12)
-                >>> pitch_3 = abjad.NumberedPitch(13)
+            >>> pitch_1 < pitch_1
+            False
+            >>> pitch_1 < pitch_2
+            False
+            >>> pitch_1 < pitch_3
+            True
 
-            ::
+            >>> pitch_2 < pitch_1
+            False
+            >>> pitch_2 < pitch_2
+            False
+            >>> pitch_2 < pitch_3
+            True
 
-                >>> pitch_1 < pitch_1
-                False
-                >>> pitch_1 < pitch_2
-                False
-                >>> pitch_1 < pitch_3
-                True
-
-            ::
-
-                >>> pitch_2 < pitch_1
-                False
-                >>> pitch_2 < pitch_2
-                False
-                >>> pitch_2 < pitch_3
-                True
-
-            ::
-
-                >>> pitch_3 < pitch_1
-                False
-                >>> pitch_3 < pitch_2
-                False
-                >>> pitch_3 < pitch_3
-                False
+            >>> pitch_3 < pitch_1
+            False
+            >>> pitch_3 < pitch_2
+            False
+            >>> pitch_3 < pitch_3
+            False
 
         Returns true or false.
         '''
@@ -175,15 +157,11 @@ class NumberedPitch(Pitch):
 
         ..  container:: example
 
-            ::
+            >>> -abjad.NumberedPitch(13.5)
+            NumberedPitch(-13.5)
 
-                >>> -abjad.NumberedPitch(13.5)
-                NumberedPitch(-13.5)
-
-            ::
-
-                >>> -abjad.NumberedPitch(-13.5)
-                NumberedPitch(13.5)
+            >>> -abjad.NumberedPitch(-13.5)
+            NumberedPitch(13.5)
 
         Returns new numbered pitch.
         '''
@@ -194,17 +172,13 @@ class NumberedPitch(Pitch):
 
         ..  container:: example
 
-            ::
+            >>> pitch = abjad.NumberedPitch(13)
+            >>> abjad.NumberedPitch(12).__radd__(pitch)
+            NumberedPitch(25)
 
-                >>> pitch = abjad.NumberedPitch(13)
-                >>> abjad.NumberedPitch(12).__radd__(pitch)
-                NumberedPitch(25)
-
-            ::
-
-                >>> pitch = abjad.NumberedPitch(12)
-                >>> abjad.NumberedPitch(13).__radd__(pitch)
-                NumberedPitch(25)
+            >>> pitch = abjad.NumberedPitch(12)
+            >>> abjad.NumberedPitch(13).__radd__(pitch)
+            NumberedPitch(25)
 
         Returns new numbered pitch.
         '''
@@ -223,20 +197,14 @@ class NumberedPitch(Pitch):
 
         ..  container:: example
 
-            ::
+            >>> abjad.NumberedPitch(12) - abjad.NumberedPitch(12)
+            NumberedInterval(0)
 
-                >>> abjad.NumberedPitch(12) - abjad.NumberedPitch(12)
-                NumberedInterval(0)
+            >>> abjad.NumberedPitch(12) - abjad.NumberedPitch(13)
+            NumberedInterval(1)
 
-            ::
-
-                >>> abjad.NumberedPitch(12) - abjad.NumberedPitch(13)
-                NumberedInterval(1)
-
-            ::
-
-                >>> abjad.NumberedPitch(13) - abjad.NumberedPitch(12)
-                NumberedInterval(-1)
+            >>> abjad.NumberedPitch(13) - abjad.NumberedPitch(12)
+            NumberedInterval(-1)
 
         Returns numbered interval.
         '''
@@ -303,10 +271,8 @@ class NumberedPitch(Pitch):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NumberedPitchClass(13).accidental
-                Accidental('sharp')
+            >>> abjad.NumberedPitchClass(13).accidental
+            Accidental('sharp')
 
         Returns accidental.
         '''
@@ -321,28 +287,22 @@ class NumberedPitch(Pitch):
 
             Gets no arrow:
 
-            ::
-
-                >>> abjad.NumberedPitch(13).arrow is None
-                True
+            >>> abjad.NumberedPitch(13).arrow is None
+            True
 
         ..  container:: example
 
             Gets up-arrow:
 
-            ::
-
-                >>> abjad.NumberedPitch(13, arrow=abjad.Up).arrow
-                Up
+            >>> abjad.NumberedPitch(13, arrow=abjad.Up).arrow
+            Up
 
         ..  container:: example
 
             Gets down-arrow:
 
-            ::
-
-                >>> abjad.NumberedPitch(13, arrow=abjad.Down).arrow
-                Down
+            >>> abjad.NumberedPitch(13, arrow=abjad.Down).arrow
+            Down
 
         Returns up, down or none.
         '''
@@ -354,20 +314,14 @@ class NumberedPitch(Pitch):
 
         ..  container:: example
 
-            ::
+            >>> abjad.NumberedPitch(9).hertz
+            440.0
 
-                >>> abjad.NumberedPitch(9).hertz
-                440.0
+            >>> abjad.NumberedPitch(0).hertz
+            261.62...
 
-            ::
-
-                >>> abjad.NumberedPitch(0).hertz
-                261.62...
-
-            ::
-
-                >>> abjad.NumberedPitch(12).hertz
-                523.25...
+            >>> abjad.NumberedPitch(12).hertz
+            523.25...
 
         Returns float.
         '''
@@ -379,10 +333,8 @@ class NumberedPitch(Pitch):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NumberedPitch(13).name
-                "cs''"
+            >>> abjad.NumberedPitch(13).name
+            "cs''"
 
         Returns string
         '''
@@ -397,10 +349,8 @@ class NumberedPitch(Pitch):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NumberedPitch(13).number
-                13
+            >>> abjad.NumberedPitch(13).number
+            13
 
         Returns number.
         '''
@@ -412,10 +362,8 @@ class NumberedPitch(Pitch):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NumberedPitch(13).octave
-                Octave(5)
+            >>> abjad.NumberedPitch(13).octave
+            Octave(5)
 
         Returns octave.
         '''
@@ -429,10 +377,8 @@ class NumberedPitch(Pitch):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NumberedPitch(13).pitch_class
-                NumberedPitchClass(1)
+            >>> abjad.NumberedPitch(13).pitch_class
+            NumberedPitchClass(1)
 
         Returns numbered pitch-class.
         '''
@@ -447,15 +393,11 @@ class NumberedPitch(Pitch):
 
         ..  container:: example
 
-            ::
+            >>> abjad.NumberedPitch.from_hertz(440)
+            NumberedPitch(9)
 
-                >>> abjad.NumberedPitch.from_hertz(440)
-                NumberedPitch(9)
-
-            ::
-
-                >>> abjad.NumberedPitch.from_hertz(519)
-                NumberedPitch(0)
+            >>> abjad.NumberedPitch.from_hertz(519)
+            NumberedPitch(0)
 
         Returns newly constructed numbered pitch.
         '''
@@ -469,60 +411,48 @@ class NumberedPitch(Pitch):
 
             Makes numbered pitch from named pitch:
 
-            ::
-
-                >>> pitch = abjad.NamedPitch(('df', 5))
-                >>> abjad.NumberedPitch.from_pitch_carrier(pitch)
-                NumberedPitch(13)
+            >>> pitch = abjad.NamedPitch(('df', 5))
+            >>> abjad.NumberedPitch.from_pitch_carrier(pitch)
+            NumberedPitch(13)
 
         ..  container:: example
 
             Makes numbered pitch from note:
 
-            ::
-
-                >>> note = abjad.Note("df''4")
-                >>> abjad.NumberedPitch.from_pitch_carrier(note)
-                NumberedPitch(13)
+            >>> note = abjad.Note("df''4")
+            >>> abjad.NumberedPitch.from_pitch_carrier(note)
+            NumberedPitch(13)
 
         ..  container:: example
 
             Makes numbered pitch from note-head:
 
-            ::
-
-                >>> note = abjad.Note("df''4")
-                >>> abjad.NumberedPitch.from_pitch_carrier(note.note_head)
-                NumberedPitch(13)
+            >>> note = abjad.Note("df''4")
+            >>> abjad.NumberedPitch.from_pitch_carrier(note.note_head)
+            NumberedPitch(13)
 
         ..  container:: example
 
             Makes numbered pitch from chord:
 
-            ::
-
-                >>> chord = abjad.Chord("<df''>4")
-                >>> abjad.NumberedPitch.from_pitch_carrier(chord)
-                NumberedPitch(13)
+            >>> chord = abjad.Chord("<df''>4")
+            >>> abjad.NumberedPitch.from_pitch_carrier(chord)
+            NumberedPitch(13)
 
         ..  container:: example
 
             Makes numbered pitch from integer:
 
-            ::
-
-                >>> abjad.NumberedPitch.from_pitch_carrier(13)
-                NumberedPitch(13)
+            >>> abjad.NumberedPitch.from_pitch_carrier(13)
+            NumberedPitch(13)
 
         ..  container:: example
 
             Makes numbered pitch from numbered pitch-class:
 
-            ::
-
-                >>> pitch_class = abjad.NumberedPitchClass(13)
-                >>> abjad.NumberedPitch.from_pitch_carrier(pitch_class)
-                NumberedPitch(1)
+            >>> pitch_class = abjad.NumberedPitchClass(13)
+            >>> abjad.NumberedPitch.from_pitch_carrier(pitch_class)
+            NumberedPitch(1)
 
         Raises value error when `pitch_carrier` carries no pitch.
 
@@ -537,15 +467,11 @@ class NumberedPitch(Pitch):
 
         ..  container:: example
 
-            ::
+            >>> abjad.NumberedPitch(13).get_name()
+            "cs''"
 
-                >>> abjad.NumberedPitch(13).get_name()
-                "cs''"
-
-            ::
-
-                >>> abjad.NumberedPitch(13).get_name(locale='us')
-                'C#5'
+            >>> abjad.NumberedPitch(13).get_name(locale='us')
+            'C#5'
 
         Set `locale` to `'us'` or none.
 
@@ -561,45 +487,37 @@ class NumberedPitch(Pitch):
 
             Interpolates from C4 to C5:
 
-            ::
+            >>> start_pitch = abjad.NumberedPitch(0)
+            >>> stop_pitch = abjad.NumberedPitch(12)
 
-                >>> start_pitch = abjad.NumberedPitch(0)
-                >>> stop_pitch = abjad.NumberedPitch(12)
-
-            ::
-
-                >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(0))
-                NumberedPitch(0)
-                >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(1, 4))
-                NumberedPitch(3)
-                >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(1, 2))
-                NumberedPitch(6)
-                >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(3, 4))
-                NumberedPitch(9)
-                >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(1))
-                NumberedPitch(12)
+            >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(0))
+            NumberedPitch(0)
+            >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(1, 4))
+            NumberedPitch(3)
+            >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(1, 2))
+            NumberedPitch(6)
+            >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(3, 4))
+            NumberedPitch(9)
+            >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(1))
+            NumberedPitch(12)
 
         ..  container:: example
 
             Interpolates from C5 to C4:
 
-            ::
+            >>> start_pitch = abjad.NumberedPitch(12)
+            >>> stop_pitch = abjad.NumberedPitch(0)
 
-                >>> start_pitch = abjad.NumberedPitch(12)
-                >>> stop_pitch = abjad.NumberedPitch(0)
-
-            ::
-
-                >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(0))
-                NumberedPitch(12)
-                >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(1, 4))
-                NumberedPitch(9)
-                >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(1, 2))
-                NumberedPitch(6)
-                >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(3, 4))
-                NumberedPitch(3)
-                >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(1))
-                NumberedPitch(0)
+            >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(0))
+            NumberedPitch(12)
+            >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(1, 4))
+            NumberedPitch(9)
+            >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(1, 2))
+            NumberedPitch(6)
+            >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(3, 4))
+            NumberedPitch(3)
+            >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(1))
+            NumberedPitch(0)
 
         Returns new numbered pitch.
         '''
@@ -630,38 +548,28 @@ class NumberedPitch(Pitch):
 
             Inverts pitch-class about pitch-class 0 explicitly:
 
-            ::
+            >>> abjad.NumberedPitch(2).invert(0)
+            NumberedPitch(-2)
 
-                >>> abjad.NumberedPitch(2).invert(0)
-                NumberedPitch(-2)
-
-            ::
-
-                >>> abjad.NumberedPitch(-2).invert(0)
-                NumberedPitch(2)
+            >>> abjad.NumberedPitch(-2).invert(0)
+            NumberedPitch(2)
 
         ..  container:: example
 
             Inverts pitch-class about pitch-class 0 implicitly:
 
-            ::
+            >>> abjad.NumberedPitch(2).invert()
+            NumberedPitch(-2)
 
-                >>> abjad.NumberedPitch(2).invert()
-                NumberedPitch(-2)
-
-            ::
-
-                >>> abjad.NumberedPitch(-2).invert()
-                NumberedPitch(2)
+            >>> abjad.NumberedPitch(-2).invert()
+            NumberedPitch(2)
 
         ..  container:: example
 
             Inverts pitch-class about pitch-class -3:
 
-            ::
-
-                >>> abjad.NumberedPitch(2).invert(-3)
-                NumberedPitch(-8)
+            >>> abjad.NumberedPitch(2).invert(-3)
+            NumberedPitch(-8)
 
         Returns new numbered pitch.
         '''
@@ -672,10 +580,8 @@ class NumberedPitch(Pitch):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NumberedPitch(14).multiply(3)
-                NumberedPitch(42)
+            >>> abjad.NumberedPitch(14).multiply(3)
+            NumberedPitch(42)
 
         Returns new numbered pitch.
         '''
@@ -686,10 +592,8 @@ class NumberedPitch(Pitch):
 
         ..  container:: example
 
-            ::
-
-                >>> abjad.NumberedPitch(13).transpose(1)
-                NumberedPitch(14)
+            >>> abjad.NumberedPitch(13).transpose(1)
+            NumberedPitch(14)
 
         Returns new numbered pitch.
         '''

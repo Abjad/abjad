@@ -9,18 +9,16 @@ class LilyPondLiteral(AbjadValueObject):
 
         Dotted slur:
 
-        ::
-
-            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-            >>> slur = abjad.Slur()
-            >>> abjad.attach(slur, staff[:])
-            >>> literal = abjad.LilyPondLiteral(r'\slurDotted')
-            >>> abjad.attach(literal, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> slur = abjad.Slur()
+        >>> abjad.attach(slur, staff[:])
+        >>> literal = abjad.LilyPondLiteral(r'\slurDotted')
+        >>> abjad.attach(literal, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \slurDotted
                 c'8 (
@@ -132,11 +130,9 @@ class LilyPondLiteral(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> literal = abjad.LilyPondLiteral(r'\slurDotted')
-                >>> literal.format_slot
-                'opening'
+            >>> literal = abjad.LilyPondLiteral(r'\slurDotted')
+            >>> literal.format_slot
+            'opening'
 
         Defaults to `'opening'`.
 
@@ -150,11 +146,9 @@ class LilyPondLiteral(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> literal = abjad.LilyPondLiteral(r'\slurDotted')
-                >>> literal.name
-                '\\slurDotted'
+            >>> literal = abjad.LilyPondLiteral(r'\slurDotted')
+            >>> literal.name
+            '\\slurDotted'
 
         Returns string.
         '''

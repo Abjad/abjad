@@ -34,7 +34,7 @@ Here's some notation:
 \begin{comment}
 <abjad>
 staff = Staff("c'4 d'4 e'4 f'4")
-show(staff)
+abjad.show(staff)
 </abjad>
 \end{comment}
 
@@ -45,7 +45,7 @@ Here's notation in a loop:
 for leaf in iterate(staff).leaves():
     duration = inspect(leaf).get_duration()
     print(duration)
-    show(leaf)
+    abjad.show(leaf)
 
 </abjad>
 \end{comment}

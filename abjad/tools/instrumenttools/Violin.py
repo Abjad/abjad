@@ -6,16 +6,14 @@ class Violin(Instrument):
 
     ..  container:: example
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> violin = abjad.Violin()
-            >>> abjad.attach(violin, staff[0])
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+        >>> violin = abjad.Violin()
+        >>> abjad.attach(violin, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { Violin }
                 \set Staff.shortInstrumentName = \markup { Vn. }
@@ -70,11 +68,9 @@ class Violin(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> violin = abjad.Violin()
-                >>> violin.allowable_clefs
-                ('treble',)
+            >>> violin = abjad.Violin()
+            >>> violin.allowable_clefs
+            ('treble',)
 
         Returns clef list.
         '''
@@ -86,11 +82,9 @@ class Violin(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> violin = abjad.Violin()
-                >>> violin.default_tuning
-                Tuning(pitches=PitchSegment(['g', "d'", "a'", "e''"]))
+            >>> violin = abjad.Violin()
+            >>> violin.default_tuning
+            Tuning(pitches=PitchSegment(['g', "d'", "a'", "e''"]))
 
         Returns tuning.
         '''
@@ -102,15 +96,11 @@ class Violin(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> violin = abjad.Violin()
+            >>> violin.middle_c_sounding_pitch
+            NamedPitch("c'")
 
-                >>> violin = abjad.Violin()
-                >>> violin.middle_c_sounding_pitch
-                NamedPitch("c'")
-
-            ::
-
-                >>> show(violin.middle_c_sounding_pitch) # doctest: +SKIP
+            >>> abjad.show(violin.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
@@ -122,11 +112,9 @@ class Violin(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> violin = abjad.Violin()
-                >>> violin.name
-                'violin'
+            >>> violin = abjad.Violin()
+            >>> violin.name
+            'violin'
 
         Returns string.
         '''
@@ -138,51 +126,41 @@ class Violin(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> violin = abjad.Violin()
+            >>> violin.name_markup
+            Markup(contents=['Violin'])
 
-                >>> violin = abjad.Violin()
-                >>> violin.name_markup
-                Markup(contents=['Violin'])
-
-            ::
-
-                >>> show(violin.name_markup) # doctest: +SKIP
+            >>> abjad.show(violin.name_markup) # doctest: +SKIP
 
         ..  container:: example
 
             Regression: markup is preserved under new-duplication:
 
-            ::
+            >>> markup = abjad.Markup('Violin').italic().hcenter_in(12)
+            >>> violin_1 = abjad.Violin(
+            ...     name_markup=markup,
+            ...     )
+            >>> abjad.f(violin_1.name_markup)
+            \markup {
+                \hcenter-in
+                    #12
+                    \italic
+                        Violin
+                }
 
-                >>> markup = abjad.Markup('Violin').italic().hcenter_in(12)
-                >>> violin_1 = abjad.Violin(
-                ...     name_markup=markup,
-                ...     )
-                >>> f(violin_1.name_markup)
-                \markup {
-                    \hcenter-in
-                        #12
-                        \italic
-                            Violin
-                    }
+            >>> violin_2 = abjad.new(violin_1)
+            >>> abjad.f(violin_2.name_markup)
+            \markup {
+                \hcenter-in
+                    #12
+                    \italic
+                        Violin
+                }
 
-            ::
-
-                >>> violin_2 = abjad.new(violin_1)
-                >>> f(violin_2.name_markup)
-                \markup {
-                    \hcenter-in
-                        #12
-                        \italic
-                            Violin
-                    }
-
-            ::
-
-                >>> markup_1 = violin_1.name_markup
-                >>> markup_2 = violin_2.name_markup
-                >>> markup_1 == markup_2
-                True
+            >>> markup_1 = violin_1.name_markup
+            >>> markup_2 = violin_2.name_markup
+            >>> markup_1 == markup_2
+            True
 
         Returns markup.
         '''
@@ -194,15 +172,11 @@ class Violin(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> violin = abjad.Violin()
+            >>> violin.pitch_range
+            PitchRange('[G3, G7]')
 
-                >>> violin = abjad.Violin()
-                >>> violin.pitch_range
-                PitchRange('[G3, G7]')
-
-            ::
-
-                >>> show(violin.pitch_range) # doctest: +SKIP
+            >>> abjad.show(violin.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -214,11 +188,9 @@ class Violin(Instrument):
 
         ..  container:: example
 
-            ::
-
-                >>> violin = abjad.Violin()
-                >>> violin.short_name
-                'vn.'
+            >>> violin = abjad.Violin()
+            >>> violin.short_name
+            'vn.'
 
         Returns string.
         '''
@@ -230,15 +202,11 @@ class Violin(Instrument):
 
         ..  container:: example
 
-            ::
+            >>> violin = abjad.Violin()
+            >>> violin.short_name_markup
+            Markup(contents=['Vn.'])
 
-                >>> violin = abjad.Violin()
-                >>> violin.short_name_markup
-                Markup(contents=['Vn.'])
-
-            ::
-
-                >>> show(violin.short_name_markup) # doctest: +SKIP
+            >>> abjad.show(violin.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''

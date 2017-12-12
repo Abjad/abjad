@@ -3,10 +3,8 @@ def greatest_common_divisor(*integers):
 
     ..  container:: example
 
-        ::
-
-            >>> abjad.mathtools.greatest_common_divisor(84, -94, -144)
-            2
+        >>> abjad.mathtools.greatest_common_divisor(84, -94, -144)
+        2
 
     Allows nonpositive input.
 

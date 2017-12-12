@@ -1,8 +1,6 @@
-#from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-#class BoundedObject(AbjadObject):
 class BoundedObject(AbjadValueObject):
     r'''Bounded object mix-in.
     '''

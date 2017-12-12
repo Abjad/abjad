@@ -9,22 +9,16 @@ class CompoundOperator(AbjadValueObject):
 
         Rotation followed by transposition:
 
-        ::
+        >>> operator = abjad.CompoundOperator()
+        >>> operator = operator.rotate(n=1, stravinsky=True)
+        >>> operator = operator.transpose(n=2)
 
-            >>> operator = abjad.CompoundOperator()
-            >>> operator = operator.rotate(n=1, stravinsky=True)
-            >>> operator = operator.transpose(n=2)
+        >>> str(operator)
+        'T2rs1'
 
-        ::
-
-            >>> str(operator)
-            'T2rs1'
-
-        ::
-
-            >>> pitch_classes = abjad.PitchClassSegment([0, 1, 4, 7])
-            >>> operator(pitch_classes)
-            PitchClassSegment([2, 7, 8, 11])
+        >>> pitch_classes = abjad.PitchClassSegment([0, 1, 4, 7])
+        >>> operator(pitch_classes)
+        PitchClassSegment([2, 7, 8, 11])
 
     '''
 
@@ -56,53 +50,41 @@ class CompoundOperator(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> operator = abjad.CompoundOperator()
-                >>> operator = operator.transpose(n=1)
-                >>> operator = operator.multiply(n=5)
-                >>> str(operator)
-                'M5T1'
+            >>> operator = abjad.CompoundOperator()
+            >>> operator = operator.transpose(n=1)
+            >>> operator = operator.multiply(n=5)
+            >>> str(operator)
+            'M5T1'
 
         ..  container:: example
 
-            ::
+            >>> inversion = abjad.Inversion()
+            >>> retrograde = abjad.Retrograde()
+            >>> transposition = abjad.Transposition(n=1)
 
-                >>> inversion = abjad.Inversion()
-                >>> retrograde = abjad.Retrograde()
-                >>> transposition = abjad.Transposition(n=1)
+            >>> operator_1 = inversion + retrograde
+            >>> str(operator_1)
+            'IR'
 
-            ::
+            >>> operator_2 = inversion + transposition
+            >>> str(operator_2)
+            'IT1'
 
-                >>> operator_1 = inversion + retrograde
-                >>> str(operator_1)
-                'IR'
+            >>> operator_3 = operator_1 + operator_2
+            >>> str(operator_3)
+            'IRIT1'
 
-            ::
-
-                >>> operator_2 = inversion + transposition
-                >>> str(operator_2)
-                'IT1'
-
-            ::
-
-                >>> operator_3 = operator_1 + operator_2
-                >>> str(operator_3)
-                'IRIT1'
-
-            ::
-
-                >>> f(operator_3)
-                abjad.CompoundOperator(
-                    operators=[
-                        abjad.Transposition(
-                            n=1,
-                            ),
-                        abjad.Inversion(),
-                        abjad.Retrograde(),
-                        abjad.Inversion(),
-                        ],
-                    )
+            >>> abjad.f(operator_3)
+            abjad.CompoundOperator(
+                operators=[
+                    abjad.Transposition(
+                        n=1,
+                        ),
+                    abjad.Inversion(),
+                    abjad.Retrograde(),
+                    abjad.Inversion(),
+                    ],
+                )
 
         Returns new compound operator.
         '''
@@ -121,28 +103,20 @@ class CompoundOperator(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> operator = abjad.CompoundOperator()
+            >>> operator = operator.rotate(n=1, stravinsky=True)
+            >>> operator = operator.transpose(n=2)
+            >>> str(operator)
+            'T2rs1'
 
-                >>> operator = abjad.CompoundOperator()
-                >>> operator = operator.rotate(n=1, stravinsky=True)
-                >>> operator = operator.transpose(n=2)
-                >>> str(operator)
-                'T2rs1'
+            >>> segment = abjad.PitchClassSegment([0, 1, 4, 7])
+            >>> abjad.show(segment) # doctest: +SKIP
 
-            ::
+            >>> transform = operator(segment)
+            >>> abjad.show(transform) # doctest: +SKIP
 
-                >>> segment = abjad.PitchClassSegment([0, 1, 4, 7])
-                >>> show(segment) # doctest: +SKIP
-
-            ::
-
-                >>> transform = operator(segment)
-                >>> show(transform) # doctest: +SKIP
-
-            ::
-
-                >>> transform
-                PitchClassSegment([2, 7, 8, 11])
+            >>> transform
+            PitchClassSegment([2, 7, 8, 11])
 
         Returns new object with type equal to that of `argument`.
         '''
@@ -157,26 +131,20 @@ class CompoundOperator(AbjadValueObject):
 
         ..  container
 
-            ::
+            >>> operator = abjad.CompoundOperator()
+            >>> operator = operator.transpose(n=1)
+            >>> operator = operator.multiply(n=5)
+            >>> str(operator)
+            'M5T1'
 
-                >>> operator = abjad.CompoundOperator()
-                >>> operator = operator.transpose(n=1)
-                >>> operator = operator.multiply(n=5)
-                >>> str(operator)
-                'M5T1'
+            >>> retrograde = abjad.Retrograde()
+            >>> new_operator = retrograde + operator
+            >>> str(new_operator)
+            'RM5T1'
 
-            ::
-
-                >>> retrograde = abjad.Retrograde()
-                >>> new_operator = retrograde + operator
-                >>> str(new_operator)
-                'RM5T1'
-
-            ::
-
-                >>> new_operator = operator + retrograde
-                >>> str(new_operator)
-                'M5T1R'
+            >>> new_operator = operator + retrograde
+            >>> str(new_operator)
+            'M5T1R'
 
         Returns new compound operator.
         '''
@@ -197,29 +165,21 @@ class CompoundOperator(AbjadValueObject):
 
             Gets string:
 
-            ::
+            >>> operator = abjad.CompoundOperator()
+            >>> operator = operator.rotate(n=1)
+            >>> operator = operator.transpose(n=2)
 
-                >>> operator = abjad.CompoundOperator()
-                >>> operator = operator.rotate(n=1)
-                >>> operator = operator.transpose(n=2)
-
-            ::
-
-                >>> str(operator)
-                'T2r1'
+            >>> str(operator)
+            'T2r1'
 
         ..  container:: example
 
             Gets string of empty operator:
 
-            ::
+            >>> operator = abjad.CompoundOperator()
 
-                >>> operator = abjad.CompoundOperator()
-
-            ::
-
-                >>> str(operator)
-                ''
+            >>> str(operator)
+            ''
 
         Returns string.
         '''
@@ -283,19 +243,15 @@ class CompoundOperator(AbjadValueObject):
 
             Gets operators:
 
-            ::
+            >>> operator = abjad.CompoundOperator()
+            >>> operator = operator.rotate(n=1)
+            >>> operator = operator.transpose(n=2)
 
-                >>> operator = abjad.CompoundOperator()
-                >>> operator = operator.rotate(n=1)
-                >>> operator = operator.transpose(n=2)
-
-            ::
-
-                >>> for operator_ in operator.operators:
-                ...     operator_
-                ...
-                Rotation(n=1)
-                Transposition(n=2)
+            >>> for operator_ in operator.operators:
+            ...     operator_
+            ...
+            Rotation(n=1)
+            Transposition(n=2)
 
         Returns list of operators.
         '''
@@ -311,33 +267,25 @@ class CompoundOperator(AbjadValueObject):
 
             Does not show identity operators:
 
-            ::
+            >>> operator = abjad.CompoundOperator()
+            >>> operator = operator.transpose(n=0)
+            >>> operator = operator.multiply(n=5)
 
-                >>> operator = abjad.CompoundOperator()
-                >>> operator = operator.transpose(n=0)
-                >>> operator = operator.multiply(n=5)
-
-            ::
-
-                >>> str(operator)
-                'M5'
+            >>> str(operator)
+            'M5'
 
         ..  container:: example
 
             Shows identity operators:
 
-            ::
+            >>> operator = abjad.CompoundOperator(
+            ...     show_identity_operators=True,
+            ...     )
+            >>> operator = operator.transpose(n=0)
+            >>> operator = operator.multiply(n=5)
 
-                >>> operator = abjad.CompoundOperator(
-                ...     show_identity_operators=True,
-                ...     )
-                >>> operator = operator.transpose(n=0)
-                >>> operator = operator.multiply(n=5)
-
-            ::
-
-                >>> str(operator)
-                'M5T0'
+            >>> str(operator)
+            'M5T0'
 
         Defaults to none.
 
@@ -355,18 +303,16 @@ class CompoundOperator(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> operator = abjad.CompoundOperator()
-                >>> operator = operator.duplicate(counts=1)
-                >>> f(operator)
-                abjad.CompoundOperator(
-                    operators=[
-                        abjad.Duplication(
-                            counts=1,
-                            ),
-                        ],
-                    )
+            >>> operator = abjad.CompoundOperator()
+            >>> operator = operator.duplicate(counts=1)
+            >>> abjad.f(operator)
+            abjad.CompoundOperator(
+                operators=[
+                    abjad.Duplication(
+                        counts=1,
+                        ),
+                    ],
+                )
 
         Returns new compound operator.
         '''
@@ -383,18 +329,16 @@ class CompoundOperator(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> operator = abjad.CompoundOperator()
-                >>> operator = operator.invert(axis=2)
-                >>> f(operator)
-                abjad.CompoundOperator(
-                    operators=[
-                        abjad.Inversion(
-                            axis=abjad.NamedPitch("d'"),
-                            ),
-                        ],
-                    )
+            >>> operator = abjad.CompoundOperator()
+            >>> operator = operator.invert(axis=2)
+            >>> abjad.f(operator)
+            abjad.CompoundOperator(
+                operators=[
+                    abjad.Inversion(
+                        axis=abjad.NamedPitch("d'"),
+                        ),
+                    ],
+                )
 
         Returns new compound operator.
         '''
@@ -407,18 +351,16 @@ class CompoundOperator(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> operator = abjad.CompoundOperator()
-                >>> operator = operator.multiply(n=3)
-                >>> f(operator)
-                abjad.CompoundOperator(
-                    operators=[
-                        abjad.Multiplication(
-                            n=3,
-                            ),
-                        ],
-                    )
+            >>> operator = abjad.CompoundOperator()
+            >>> operator = operator.multiply(n=3)
+            >>> abjad.f(operator)
+            abjad.CompoundOperator(
+                operators=[
+                    abjad.Multiplication(
+                        n=3,
+                        ),
+                    ],
+                )
 
         Returns new compound operator.
         '''
@@ -431,16 +373,14 @@ class CompoundOperator(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> operator = abjad.CompoundOperator()
-                >>> operator = operator.retrograde()
-                >>> f(operator)
-                abjad.CompoundOperator(
-                    operators=[
-                        abjad.Retrograde(),
-                        ],
-                    )
+            >>> operator = abjad.CompoundOperator()
+            >>> operator = operator.retrograde()
+            >>> abjad.f(operator)
+            abjad.CompoundOperator(
+                operators=[
+                    abjad.Retrograde(),
+                    ],
+                )
 
         Returns new compound operator.
         '''
@@ -453,18 +393,16 @@ class CompoundOperator(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> operator = abjad.CompoundOperator()
-                >>> operator = operator.rotate(n=-1)
-                >>> f(operator)
-                abjad.CompoundOperator(
-                    operators=[
-                        abjad.Rotation(
-                            n=-1,
-                            ),
-                        ],
-                    )
+            >>> operator = abjad.CompoundOperator()
+            >>> operator = operator.rotate(n=-1)
+            >>> abjad.f(operator)
+            abjad.CompoundOperator(
+                operators=[
+                    abjad.Rotation(
+                        n=-1,
+                        ),
+                    ],
+                )
 
         Returns new compound operator.
         '''
@@ -481,21 +419,17 @@ class CompoundOperator(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> operator = abjad.CompoundOperator()
+            >>> operator = operator.transpose(n=1)
 
-                >>> operator = abjad.CompoundOperator()
-                >>> operator = operator.transpose(n=1)
-
-            ::
-
-                >>> f(operator)
-                abjad.CompoundOperator(
-                    operators=[
-                        abjad.Transposition(
-                            n=1,
-                            ),
-                        ],
-                    )
+            >>> abjad.f(operator)
+            abjad.CompoundOperator(
+                operators=[
+                    abjad.Transposition(
+                        n=1,
+                        ),
+                    ],
+                )
 
         Returns new compound operator.
         '''

@@ -11,16 +11,12 @@ class MetricModulation(AbjadValueObject):
 
         With notes:
 
-        ::
+        >>> metric_modulation = abjad.MetricModulation(
+        ...     left_rhythm=abjad.Note("c'4"),
+        ...     right_rhythm=abjad.Note("c'4."),
+        ...     )
 
-            >>> metric_modulation = abjad.MetricModulation(
-            ...     left_rhythm=abjad.Note("c'4"),
-            ...     right_rhythm=abjad.Note("c'4."),
-            ...     )
-
-        ::
-
-            >>> show(metric_modulation) # doctest: +SKIP
+        >>> abjad.show(metric_modulation) # doctest: +SKIP
 
         ..  docs::
 
@@ -91,16 +87,12 @@ class MetricModulation(AbjadValueObject):
 
         With tuplets:
 
-        ::
+        >>> metric_modulation = abjad.MetricModulation(
+        ...     left_rhythm=abjad.Tuplet((4, 5), "c'4"),
+        ...     right_rhythm=abjad.Note("c'4"),
+        ...     )
 
-            >>> metric_modulation = abjad.MetricModulation(
-            ...     left_rhythm=abjad.Tuplet((4, 5), "c'4"),
-            ...     right_rhythm=abjad.Note("c'4"),
-            ...     )
-
-        ::
-
-            >>> show(metric_modulation) # doctest: +SKIP
+        >>> abjad.show(metric_modulation) # doctest: +SKIP
 
         ..  docs::
 
@@ -174,16 +166,12 @@ class MetricModulation(AbjadValueObject):
 
         With tuplets again:
 
-        ::
+        >>> metric_modulation = abjad.MetricModulation(
+        ...     left_rhythm=abjad.Note("c16."),
+        ...     right_rhythm=abjad.Tuplet((2, 3), "c8"),
+        ...     )
 
-            >>> metric_modulation = abjad.MetricModulation(
-            ...     left_rhythm=abjad.Note("c16."),
-            ...     right_rhythm=abjad.Tuplet((2, 3), "c8"),
-            ...     )
-
-        ::
-
-            >>> show(metric_modulation) # doctest: +SKIP
+        >>> abjad.show(metric_modulation) # doctest: +SKIP
 
         ..  docs::
 
@@ -257,18 +245,14 @@ class MetricModulation(AbjadValueObject):
 
         With ties:
 
-        ::
+        >>> maker = abjad.NoteMaker()
+        >>> notes = maker([0], [(5, 16)])
+        >>> metric_modulation = abjad.MetricModulation(
+        ...     left_rhythm=abjad.Note("c'4"),
+        ...     right_rhythm=notes,
+        ...     )
 
-            >>> maker = abjad.NoteMaker()
-            >>> notes = maker([0], [(5, 16)])
-            >>> metric_modulation = abjad.MetricModulation(
-            ...     left_rhythm=abjad.Note("c'4"),
-            ...     right_rhythm=notes,
-            ...     )
-
-        ::
-
-            >>> show(metric_modulation) # doctest: +SKIP
+        >>> abjad.show(metric_modulation) # doctest: +SKIP
 
         ..  docs::
 
@@ -340,19 +324,15 @@ class MetricModulation(AbjadValueObject):
 
         With ties and tuplets:
 
-        ::
+        >>> maker = abjad.NoteMaker()
+        >>> notes = maker([0], [(5, 16)])
+        >>> tuplet = abjad.Tuplet((2, 3), notes)
+        >>> metric_modulation = abjad.MetricModulation(
+        ...     left_rhythm=abjad.Note("c'4"),
+        ...     right_rhythm=tuplet,
+        ...     )
 
-            >>> maker = abjad.NoteMaker()
-            >>> notes = maker([0], [(5, 16)])
-            >>> tuplet = abjad.Tuplet((2, 3), notes)
-            >>> metric_modulation = abjad.MetricModulation(
-            ...     left_rhythm=abjad.Note("c'4"),
-            ...     right_rhythm=tuplet,
-            ...     )
-
-        ::
-
-            >>> show(metric_modulation) # doctest: +SKIP
+        >>> abjad.show(metric_modulation) # doctest: +SKIP
 
         ..  docs::
 
@@ -428,28 +408,22 @@ class MetricModulation(AbjadValueObject):
 
         Attach metric modulations to generate score output:
 
-        ::
+        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4 e'4 d'4")
+        >>> abjad.attach(abjad.TimeSignature((3, 4)), staff[0])
+        >>> score = abjad.Score([staff])
 
-            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4 e'4 d'4")
-            >>> abjad.attach(abjad.TimeSignature((3, 4)), staff[0])
-            >>> score = abjad.Score([staff])
+        >>> metric_modulation = abjad.MetricModulation(
+        ...     left_rhythm=abjad.Note("c4"),
+        ...     right_rhythm=abjad.Note("c8."),
+        ...     )
+        >>> abjad.attach(metric_modulation, staff[3])
+        >>> abjad.override(staff).text_script.staff_padding = 2.5
 
-        ::
-
-            >>> metric_modulation = abjad.MetricModulation(
-            ...     left_rhythm=abjad.Note("c4"),
-            ...     right_rhythm=abjad.Note("c8."),
-            ...     )
-            >>> abjad.attach(metric_modulation, staff[3])
-            >>> abjad.override(staff).text_script.staff_padding = 2.5
-
-        ::
-
-            >>> show(score) # doctest: +SKIP
+        >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(score)
+            >>> abjad.f(score)
             \new Score <<
                 \new Staff \with {
                     \override TextScript.staff-padding = #2.5
@@ -573,58 +547,48 @@ class MetricModulation(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> metric_modulation_1 = abjad.MetricModulation(
+            ...     left_rhythm=abjad.Note("c'4"),
+            ...     right_rhythm=abjad.Note("c'4."),
+            ...     )
+            >>> metric_modulation_2 = abjad.MetricModulation(
+            ...     left_rhythm=abjad.Tuplet((2, 3), [abjad.Note("c'4")]),
+            ...     right_rhythm=abjad.Note("c'4"),
+            ...     )
+            >>> maker = abjad.NoteMaker()
+            >>> notes = maker([0], [(5, 16)])
+            >>> metric_modulation_3 = abjad.MetricModulation(
+            ...     left_rhythm=abjad.Note("c'4"),
+            ...     right_rhythm=notes,
+            ...     )
 
-                >>> metric_modulation_1 = abjad.MetricModulation(
-                ...     left_rhythm=abjad.Note("c'4"),
-                ...     right_rhythm=abjad.Note("c'4."),
-                ...     )
-                >>> metric_modulation_2 = abjad.MetricModulation(
-                ...     left_rhythm=abjad.Tuplet((2, 3), [abjad.Note("c'4")]),
-                ...     right_rhythm=abjad.Note("c'4"),
-                ...     )
-                >>> maker = abjad.NoteMaker()
-                >>> notes = maker([0], [(5, 16)])
-                >>> metric_modulation_3 = abjad.MetricModulation(
-                ...     left_rhythm=abjad.Note("c'4"),
-                ...     right_rhythm=notes,
-                ...     )
+            >>> metric_modulation_1.ratio
+            Ratio((2, 3))
+            >>> metric_modulation_2.ratio
+            Ratio((2, 3))
+            >>> metric_modulation_3.ratio
+            Ratio((4, 5))
 
-            ::
+            >>> metric_modulation_1 == metric_modulation_1
+            True
+            >>> metric_modulation_1 == metric_modulation_2
+            True
+            >>> metric_modulation_1 == metric_modulation_3
+            False
 
-                >>> metric_modulation_1.ratio
-                Ratio((2, 3))
-                >>> metric_modulation_2.ratio
-                Ratio((2, 3))
-                >>> metric_modulation_3.ratio
-                Ratio((4, 5))
+            >>> metric_modulation_2 == metric_modulation_1
+            True
+            >>> metric_modulation_2 == metric_modulation_2
+            True
+            >>> metric_modulation_2 == metric_modulation_3
+            False
 
-            ::
-
-                >>> metric_modulation_1 == metric_modulation_1
-                True
-                >>> metric_modulation_1 == metric_modulation_2
-                True
-                >>> metric_modulation_1 == metric_modulation_3
-                False
-
-            ::
-
-                >>> metric_modulation_2 == metric_modulation_1
-                True
-                >>> metric_modulation_2 == metric_modulation_2
-                True
-                >>> metric_modulation_2 == metric_modulation_3
-                False
-
-            ::
-
-                >>> metric_modulation_3 == metric_modulation_1
-                False
-                >>> metric_modulation_3 == metric_modulation_2
-                False
-                >>> metric_modulation_3 == metric_modulation_3
-                True
+            >>> metric_modulation_3 == metric_modulation_1
+            False
+            >>> metric_modulation_3 == metric_modulation_2
+            False
+            >>> metric_modulation_3 == metric_modulation_3
+            True
 
         Returns true or false.
         '''
@@ -639,28 +603,24 @@ class MetricModulation(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> metric_modulation = abjad.MetricModulation(
+            ...     left_rhythm=abjad.Note("c'4"),
+            ...     right_rhythm=abjad.Note("c'4."),
+            ...     )
 
-                >>> metric_modulation = abjad.MetricModulation(
-                ...     left_rhythm=abjad.Note("c'4"),
-                ...     right_rhythm=abjad.Note("c'4."),
-                ...     )
-
-            ::
-
-                >>> f(metric_modulation)
-                abjad.MetricModulation(
-                    left_rhythm=abjad.Selection(
-                        [
-                            abjad.Note("c'4"),
-                            ]
-                        ),
-                    right_rhythm=abjad.Selection(
-                        [
-                            abjad.Note("c'4."),
-                            ]
-                        ),
-                    )
+            >>> abjad.f(metric_modulation)
+            abjad.MetricModulation(
+                left_rhythm=abjad.Selection(
+                    [
+                        abjad.Note("c'4"),
+                        ]
+                    ),
+                right_rhythm=abjad.Selection(
+                    [
+                        abjad.Note("c'4."),
+                        ]
+                    ),
+                )
 
         Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
         Interprets `''` equal to `'storage'`.
@@ -684,13 +644,11 @@ class MetricModulation(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> metric_modulation = abjad.MetricModulation(
-                ...     left_rhythm=abjad.Tuplet((2, 3), "c'4"),
-                ...     right_rhythm=abjad.Note("c'4."),
-                ...     )
-                >>> show(metric_modulation) # doctest: +SKIP
+            >>> metric_modulation = abjad.MetricModulation(
+            ...     left_rhythm=abjad.Tuplet((2, 3), "c'4"),
+            ...     right_rhythm=abjad.Note("c'4."),
+            ...     )
+            >>> abjad.show(metric_modulation) # doctest: +SKIP
 
             ..  docs::
 
@@ -775,80 +733,76 @@ class MetricModulation(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            >>> metric_modulation = abjad.MetricModulation(
+            ...     left_rhythm=abjad.Tuplet((2, 3), [abjad.Note("c'4")]),
+            ...     right_rhythm=abjad.Note("c'4"),
+            ...     )
 
-                >>> metric_modulation = abjad.MetricModulation(
-                ...     left_rhythm=abjad.Tuplet((2, 3), [abjad.Note("c'4")]),
-                ...     right_rhythm=abjad.Note("c'4"),
-                ...     )
-
-            ::
-
-                >>> print(str(metric_modulation))
-                \markup {
-                    \scale
-                        #'(0.75 . 0.75)
-                        \score
-                            {
-                                \new Score \with {
-                                    \override SpacingSpanner.spacing-increment = #0.5
-                                    proportionalNotationDuration = ##f
-                                } <<
-                                    \new RhythmicStaff \with {
-                                        \remove Time_signature_engraver
-                                        \remove Staff_symbol_engraver
-                                        \override Stem.direction = #up
-                                        \override Stem.length = #5
-                                        \override TupletBracket.bracket-visibility = ##t
-                                        \override TupletBracket.direction = #up
-                                        \override TupletBracket.padding = #1.25
-                                        \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                        \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                        tupletFullLength = ##t
-                                    } {
-                                        \tweak edge-height #'(0.7 . 0)
-                                        \times 2/3 {
-                                            c'4
-                                        }
-                                    }
-                                >>
-                                \layout {
-                                    indent = #0
-                                    ragged-right = ##t
-                                }
-                            }
-                    =
-                    \hspace
-                        #-0.5
-                    \scale
-                        #'(0.75 . 0.75)
-                        \score
-                            {
-                                \new Score \with {
-                                    \override SpacingSpanner.spacing-increment = #0.5
-                                    proportionalNotationDuration = ##f
-                                } <<
-                                    \new RhythmicStaff \with {
-                                        \remove Time_signature_engraver
-                                        \remove Staff_symbol_engraver
-                                        \override Stem.direction = #up
-                                        \override Stem.length = #5
-                                        \override TupletBracket.bracket-visibility = ##t
-                                        \override TupletBracket.direction = #up
-                                        \override TupletBracket.padding = #1.25
-                                        \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                        \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                        tupletFullLength = ##t
-                                    } {
+            >>> print(str(metric_modulation))
+            \markup {
+                \scale
+                    #'(0.75 . 0.75)
+                    \score
+                        {
+                            \new Score \with {
+                                \override SpacingSpanner.spacing-increment = #0.5
+                                proportionalNotationDuration = ##f
+                            } <<
+                                \new RhythmicStaff \with {
+                                    \remove Time_signature_engraver
+                                    \remove Staff_symbol_engraver
+                                    \override Stem.direction = #up
+                                    \override Stem.length = #5
+                                    \override TupletBracket.bracket-visibility = ##t
+                                    \override TupletBracket.direction = #up
+                                    \override TupletBracket.padding = #1.25
+                                    \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                    \override TupletNumber.text = #tuplet-number::calc-fraction-text
+                                    tupletFullLength = ##t
+                                } {
+                                    \tweak edge-height #'(0.7 . 0)
+                                    \times 2/3 {
                                         c'4
                                     }
-                                >>
-                                \layout {
-                                    indent = #0
-                                    ragged-right = ##t
                                 }
+                            >>
+                            \layout {
+                                indent = #0
+                                ragged-right = ##t
                             }
-                    }
+                        }
+                =
+                \hspace
+                    #-0.5
+                \scale
+                    #'(0.75 . 0.75)
+                    \score
+                        {
+                            \new Score \with {
+                                \override SpacingSpanner.spacing-increment = #0.5
+                                proportionalNotationDuration = ##f
+                            } <<
+                                \new RhythmicStaff \with {
+                                    \remove Time_signature_engraver
+                                    \remove Staff_symbol_engraver
+                                    \override Stem.direction = #up
+                                    \override Stem.length = #5
+                                    \override TupletBracket.bracket-visibility = ##t
+                                    \override TupletBracket.direction = #up
+                                    \override TupletBracket.padding = #1.25
+                                    \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                    \override TupletNumber.text = #tuplet-number::calc-fraction-text
+                                    tupletFullLength = ##t
+                                } {
+                                    c'4
+                                }
+                            >>
+                            \layout {
+                                indent = #0
+                                ragged-right = ##t
+                            }
+                        }
+                }
 
         Returns string.
         '''
@@ -924,14 +878,12 @@ class MetricModulation(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> metric_modulation = abjad.MetricModulation(
-                ...     left_rhythm=abjad.Note("c'4"),
-                ...     right_rhythm=abjad.Note("c'4."),
-                ...     )
-                >>> metric_modulation.default_scope
-                <class 'abjad.tools.scoretools.Score.Score'>
+            >>> metric_modulation = abjad.MetricModulation(
+            ...     left_rhythm=abjad.Note("c'4"),
+            ...     right_rhythm=abjad.Note("c'4."),
+            ...     )
+            >>> metric_modulation.default_scope
+            <class 'abjad.tools.scoretools.Score.Score'>
 
         Returns score.
         '''
@@ -943,13 +895,11 @@ class MetricModulation(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> metric_modulation = abjad.MetricModulation(
-                ...     left_rhythm=abjad.Note("c'4"),
-                ...     right_rhythm=abjad.Note("c'4."),
-                ...     )
-                >>> metric_modulation.left_markup
+            >>> metric_modulation = abjad.MetricModulation(
+            ...     left_rhythm=abjad.Note("c'4"),
+            ...     right_rhythm=abjad.Note("c'4."),
+            ...     )
+            >>> metric_modulation.left_markup
 
         Returns markup or none.
         '''
@@ -961,14 +911,12 @@ class MetricModulation(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> metric_modulation = abjad.MetricModulation(
-                ...     left_rhythm=abjad.Note("c'4"),
-                ...     right_rhythm=abjad.Note("c'4."),
-                ...     )
-                >>> metric_modulation.left_rhythm
-                Selection([Note("c'4")])
+            >>> metric_modulation = abjad.MetricModulation(
+            ...     left_rhythm=abjad.Note("c'4"),
+            ...     right_rhythm=abjad.Note("c'4."),
+            ...     )
+            >>> metric_modulation.left_rhythm
+            Selection([Note("c'4")])
 
         Returns selection.
         '''
@@ -980,14 +928,12 @@ class MetricModulation(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> metric_modulation = abjad.MetricModulation(
-                ...     left_rhythm=abjad.Tuplet((2, 3), [abjad.Note("c'4")]),
-                ...     right_rhythm=abjad.Note("c'4"),
-                ...     )
-                >>> metric_modulation.ratio
-                Ratio((2, 3))
+            >>> metric_modulation = abjad.MetricModulation(
+            ...     left_rhythm=abjad.Tuplet((2, 3), [abjad.Note("c'4")]),
+            ...     right_rhythm=abjad.Note("c'4"),
+            ...     )
+            >>> metric_modulation.ratio
+            Ratio((2, 3))
 
         Returns ratio.
         '''
@@ -1004,13 +950,11 @@ class MetricModulation(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> metric_modulation = abjad.MetricModulation(
-                ...     left_rhythm=abjad.Note("c'4"),
-                ...     right_rhythm=abjad.Note("c'4."),
-                ...     )
-                >>> metric_modulation.right_markup
+            >>> metric_modulation = abjad.MetricModulation(
+            ...     left_rhythm=abjad.Note("c'4"),
+            ...     right_rhythm=abjad.Note("c'4."),
+            ...     )
+            >>> metric_modulation.right_markup
 
         Returns markup or none.
         '''
@@ -1022,14 +966,12 @@ class MetricModulation(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> metric_modulation = abjad.MetricModulation(
-                ...     left_rhythm=abjad.Note("c'4"),
-                ...     right_rhythm=abjad.Note("c'4."),
-                ...     )
-                >>> metric_modulation.right_rhythm
-                Selection([Note("c'4.")])
+            >>> metric_modulation = abjad.MetricModulation(
+            ...     left_rhythm=abjad.Note("c'4"),
+            ...     right_rhythm=abjad.Note("c'4."),
+            ...     )
+            >>> metric_modulation.right_rhythm
+            Selection([Note("c'4.")])
 
         Returns selection.
         '''

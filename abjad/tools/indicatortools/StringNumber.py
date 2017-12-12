@@ -9,25 +9,21 @@ class StringNumber(AbjadValueObject):
 
         String I:
 
-        ::
-
-            >>> indicator = abjad.StringNumber(1)
-            >>> f(indicator)
-            abjad.StringNumber(
-                numbers=(1,),
-                )
+        >>> indicator = abjad.StringNumber(1)
+        >>> abjad.f(indicator)
+        abjad.StringNumber(
+            numbers=(1,),
+            )
 
     ..  container:: example
 
         Strings II and III:
 
-        ::
-
-            >>> indicator = abjad.StringNumber((2, 3))
-            >>> f(indicator)
-            abjad.StringNumber(
-                numbers=(2, 3),
-                )
+        >>> indicator = abjad.StringNumber((2, 3))
+        >>> abjad.f(indicator)
+        abjad.StringNumber(
+            numbers=(2, 3),
+            )
 
     '''
 
@@ -64,21 +60,17 @@ class StringNumber(AbjadValueObject):
 
             String I:
 
-            ::
-
-                >>> indicator = abjad.StringNumber(1)
-                >>> indicator.numbers
-                (1,)
+            >>> indicator = abjad.StringNumber(1)
+            >>> indicator.numbers
+            (1,)
 
         ..  container:: example
 
             Strings II and III:
 
-            ::
-
-                >>> indicator = abjad.StringNumber((2, 3))
-                >>> indicator.numbers
-                (2, 3)
+            >>> indicator = abjad.StringNumber((2, 3))
+            >>> indicator.numbers
+            (2, 3)
 
         Set to tuple of zero or more positive integers.
 
@@ -96,21 +88,17 @@ class StringNumber(AbjadValueObject):
 
             String I:
 
-            ::
-
-                >>> indicator = abjad.StringNumber(1)
-                >>> indicator.roman_numerals
-                ('i',)
+            >>> indicator = abjad.StringNumber(1)
+            >>> indicator.roman_numerals
+            ('i',)
 
         ..  container:: example
 
             Strings II and III:
 
-            ::
-
-                >>> indicator = abjad.StringNumber((2, 3))
-                >>> indicator.roman_numerals
-                ('ii', 'iii')
+            >>> indicator = abjad.StringNumber((2, 3))
+            >>> indicator.roman_numerals
+            ('ii', 'iii')
 
         Returns tuple of zero or more strings.
         '''

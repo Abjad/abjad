@@ -6,24 +6,20 @@ class SchemeAssociativeList(Scheme):
 
     ..  container:: example
 
-        ::
+        >>> scheme_alist = abjad.SchemeAssociativeList([
+        ...     ('space', 2),
+        ...     ('padding', 0.5),
+        ...     ])
+        >>> abjad.f(scheme_alist)
+        abjad.SchemeAssociativeList(
+            [
+                abjad.SchemePair(('space', 2)),
+                abjad.SchemePair(('padding', 0.5)),
+                ]
+            )
 
-            >>> scheme_alist = abjad.SchemeAssociativeList([
-            ...     ('space', 2),
-            ...     ('padding', 0.5),
-            ...     ])
-            >>> f(scheme_alist)
-            abjad.SchemeAssociativeList(
-                [
-                    abjad.SchemePair(('space', 2)),
-                    abjad.SchemePair(('padding', 0.5)),
-                    ]
-                )
-
-        ::
-
-            >>> print(format(scheme_alist))
-            #'((space . 2) (padding . 0.5))
+        >>> print(format(scheme_alist))
+        #'((space . 2) (padding . 0.5))
 
     Scheme associative lists are immutable.
     '''

@@ -10,14 +10,12 @@ class TonalAnalysis(abctools.AbjadObject):
 
         Intializes agent on conjunct selection:
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 c'4
                 d'4
@@ -25,22 +23,18 @@ class TonalAnalysis(abctools.AbjadObject):
                 f'4
             }
 
-        ::
-
-            >>> agent_1 = abjad.analyze(staff[:])
+        >>> agent_1 = abjad.analyze(staff[:])
 
     ..  container:: example
 
         Initializes agent on disjunct selection:
 
-        ::
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> show(staff) # doctest: +SKIP
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(staff)
+            >>> abjad.f(staff)
             \new Staff {
                 c'4
                 d'4
@@ -48,9 +42,7 @@ class TonalAnalysis(abctools.AbjadObject):
                 f'4
             }
 
-        ::
-
-            >>> agent_2 = abjad.analyze(staff[:1] + staff[-1:])
+        >>> agent_2 = abjad.analyze(staff[:1] + staff[-1:])
 
     '''
 
@@ -271,84 +263,74 @@ class TonalAnalysis(abctools.AbjadObject):
 
         ..  container:: example
 
-            ::
-
-                >>> chords = [
-                ...     abjad.Chord([0, 4, 7], (1, 4)),
-                ...     abjad.Chord([4, 7, 12], (1, 4)),
-                ...     abjad.Chord([7, 12, 16], (1, 4)),
-                ...     ]
-                >>> staff = abjad.Staff(chords)
-                >>> show(staff) # doctest: +SKIP
+            >>> chords = [
+            ...     abjad.Chord([0, 4, 7], (1, 4)),
+            ...     abjad.Chord([4, 7, 12], (1, 4)),
+            ...     abjad.Chord([7, 12, 16], (1, 4)),
+            ...     ]
+            >>> staff = abjad.Staff(chords)
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(staff)
+                >>> abjad.f(staff)
                 \new Staff {
                     <c' e' g'>4
                     <e' g' c''>4
                     <g' c'' e''>4
                 }
 
-            ::
-
-                >>> for chord in abjad.analyze(staff[:]).analyze_chords():
-                ...     chord
-                ...
-                CMajorTriadInRootPosition
-                CMajorTriadInFirstInversion
-                CMajorTriadInSecondInversion
+            >>> for chord in abjad.analyze(staff[:]).analyze_chords():
+            ...     chord
+            ...
+            CMajorTriadInRootPosition
+            CMajorTriadInFirstInversion
+            CMajorTriadInSecondInversion
 
         ..  container:: example
 
             The three inversions of an a minor triad:
 
-            ::
-
-                >>> chords = [
-                ...     abjad.Chord([9, 12, 16], (1, 4)),
-                ...     abjad.Chord([12, 16, 21], (1, 4)),
-                ...     abjad.Chord([16, 21, 24], (1, 4)),
-                ...     ]
-                >>> staff = abjad.Staff(chords)
-                >>> show(staff) # doctest: +SKIP
+            >>> chords = [
+            ...     abjad.Chord([9, 12, 16], (1, 4)),
+            ...     abjad.Chord([12, 16, 21], (1, 4)),
+            ...     abjad.Chord([16, 21, 24], (1, 4)),
+            ...     ]
+            >>> staff = abjad.Staff(chords)
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(staff)
+                >>> abjad.f(staff)
                 \new Staff {
                     <a' c'' e''>4
                     <c'' e'' a''>4
                     <e'' a'' c'''>4
                 }
 
-            ::
-
-                >>> for chord in abjad.analyze(staff[:]).analyze_chords():
-                ...     chord
-                ...
-                AMinorTriadInRootPosition
-                AMinorTriadInFirstInversion
-                AMinorTriadInSecondInversion
+            >>> for chord in abjad.analyze(staff[:]).analyze_chords():
+            ...     chord
+            ...
+            AMinorTriadInRootPosition
+            AMinorTriadInFirstInversion
+            AMinorTriadInSecondInversion
 
         ..  container:: example
 
             The four inversions of a C dominant seventh chord:
 
-            ::
-
-                >>> chords = [
-                ...     abjad.Chord([0, 4, 7, 10], (1, 4)),
-                ...     abjad.Chord([4, 7, 10, 12], (1, 4)),
-                ...     abjad.Chord([7, 10, 12, 16], (1, 4)),
-                ...     abjad.Chord([10, 12, 16, 19], (1, 4)),
-                ...     ]
-                >>> staff = abjad.Staff(chords)
-                >>> show(staff) # doctest: +SKIP
+            >>> chords = [
+            ...     abjad.Chord([0, 4, 7, 10], (1, 4)),
+            ...     abjad.Chord([4, 7, 10, 12], (1, 4)),
+            ...     abjad.Chord([7, 10, 12, 16], (1, 4)),
+            ...     abjad.Chord([10, 12, 16, 19], (1, 4)),
+            ...     ]
+            >>> staff = abjad.Staff(chords)
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(staff)
+                >>> abjad.f(staff)
                 \new Staff {
                     <c' e' g' bf'>4
                     <e' g' bf' c''>4
@@ -356,35 +338,31 @@ class TonalAnalysis(abctools.AbjadObject):
                     <bf' c'' e'' g''>4
                 }
 
-            ::
-
-                >>> for chord in abjad.analyze(staff[:]).analyze_chords():
-                ...     chord
-                ...
-                CDominantSeventhInRootPosition
-                CDominantSeventhInFirstInversion
-                CDominantSeventhInSecondInversion
-                CDominantSeventhInThirdInversion
+            >>> for chord in abjad.analyze(staff[:]).analyze_chords():
+            ...     chord
+            ...
+            CDominantSeventhInRootPosition
+            CDominantSeventhInFirstInversion
+            CDominantSeventhInSecondInversion
+            CDominantSeventhInThirdInversion
 
         ..  container:: example
 
             The five inversions of a C dominant ninth chord:
 
-            ::
-
-                >>> chords = [
-                ...     abjad.Chord([0, 4, 7, 10, 14], (1, 4)),
-                ...     abjad.Chord([4, 7, 10, 12, 14], (1, 4)),
-                ...     abjad.Chord([7, 10, 12, 14, 16], (1, 4)),
-                ...     abjad.Chord([10, 12, 14, 16, 19], (1, 4)),
-                ...     abjad.Chord([2, 10, 12, 16, 19], (1, 4)),
-                ...     ]
-                >>> staff = abjad.Staff(chords)
-                >>> show(staff) # doctest: +SKIP
+            >>> chords = [
+            ...     abjad.Chord([0, 4, 7, 10, 14], (1, 4)),
+            ...     abjad.Chord([4, 7, 10, 12, 14], (1, 4)),
+            ...     abjad.Chord([7, 10, 12, 14, 16], (1, 4)),
+            ...     abjad.Chord([10, 12, 14, 16, 19], (1, 4)),
+            ...     abjad.Chord([2, 10, 12, 16, 19], (1, 4)),
+            ...     ]
+            >>> staff = abjad.Staff(chords)
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(staff)
+                >>> abjad.f(staff)
                 \new Staff {
                     <c' e' g' bf' d''>4
                     <e' g' bf' c'' d''>4
@@ -393,16 +371,14 @@ class TonalAnalysis(abctools.AbjadObject):
                     <d' bf' c'' e'' g''>4
                 }
 
-            ::
-
-                >>> for chord in abjad.analyze(staff[:]).analyze_chords():
-                ...     chord
-                ...
-                CDominantNinthInRootPosition
-                CDominantNinthInFirstInversion
-                CDominantNinthInSecondInversion
-                CDominantNinthInThirdInversion
-                CDominantNinthInFourthInversion
+            >>> for chord in abjad.analyze(staff[:]).analyze_chords():
+            ...     chord
+            ...
+            CDominantNinthInRootPosition
+            CDominantNinthInFirstInversion
+            CDominantNinthInSecondInversion
+            CDominantNinthInThirdInversion
+            CDominantNinthInFourthInversion
 
         Returns none when no tonal chord is understood.
 
@@ -419,29 +395,21 @@ class TonalAnalysis(abctools.AbjadObject):
 
         ..  container:: example
 
-            ::
+            >>> chord = abjad.Chord("<g' b'>4")
+            >>> abjad.analyze(chord).analyze_incomplete_chords()
+            [GMajorTriadInRootPosition]
 
-                >>> chord = abjad.Chord("<g' b'>4")
-                >>> abjad.analyze(chord).analyze_incomplete_chords()
-                [GMajorTriadInRootPosition]
+            >>> chord = abjad.Chord("<g' bf'>4")
+            >>> abjad.analyze(chord).analyze_incomplete_chords()
+            [GMinorTriadInRootPosition]
 
-            ::
+            >>> chord = abjad.Chord("<f g b>4")
+            >>> abjad.analyze(chord).analyze_incomplete_chords()
+            [GDominantSeventhInSecondInversion]
 
-                >>> chord = abjad.Chord("<g' bf'>4")
-                >>> abjad.analyze(chord).analyze_incomplete_chords()
-                [GMinorTriadInRootPosition]
-
-            ::
-
-                >>> chord = abjad.Chord("<f g b>4")
-                >>> abjad.analyze(chord).analyze_incomplete_chords()
-                [GDominantSeventhInSecondInversion]
-
-            ::
-
-                >>> chord = abjad.Chord("<fs g b>4")
-                >>> abjad.analyze(chord).analyze_incomplete_chords()
-                [GMajorSeventhInSecondInversion]
+            >>> chord = abjad.Chord("<fs g b>4")
+            >>> abjad.analyze(chord).analyze_incomplete_chords()
+            [GMajorSeventhInSecondInversion]
 
         Raises tonal harmony error when chord in client can not analyze.
 
@@ -459,43 +427,33 @@ class TonalAnalysis(abctools.AbjadObject):
 
         ..  container:: example
 
-            ::
+            >>> chord = abjad.Chord("<c' e'>4")
+            >>> key_signature = abjad.KeySignature('g', 'major')
+            >>> agent = abjad.analyze(chord)
+            >>> agent.analyze_incomplete_tonal_functions(key_signature)
+            [RomanNumeral('IV')]
 
-                >>> chord = abjad.Chord("<c' e'>4")
-                >>> key_signature = abjad.KeySignature('g', 'major')
-                >>> agent = abjad.analyze(chord)
-                >>> agent.analyze_incomplete_tonal_functions(key_signature)
-                [RomanNumeral('IV')]
+            >>> chord = abjad.Chord("<g' b'>4")
+            >>> key_signature = abjad.KeySignature('c', 'major')
+            >>> agent = abjad.analyze(chord)
+            >>> agent.analyze_incomplete_tonal_functions(key_signature)
+            [RomanNumeral('V')]
 
-            ::
+            >>> chord = abjad.Chord("<g' bf'>4")
+            >>> agent = abjad.analyze(chord)
+            >>> agent.analyze_incomplete_tonal_functions(key_signature)
+            [RomanNumeral('v')]
 
-                >>> chord = abjad.Chord("<g' b'>4")
-                >>> key_signature = abjad.KeySignature('c', 'major')
-                >>> agent = abjad.analyze(chord)
-                >>> agent.analyze_incomplete_tonal_functions(key_signature)
-                [RomanNumeral('V')]
+            >>> key_signature = abjad.KeySignature('c', 'major')
+            >>> chord = abjad.Chord("<f g b>4")
+            >>> agent = abjad.analyze(chord)
+            >>> agent.analyze_incomplete_tonal_functions(key_signature)
+            [RomanNumeral('V4/3')]
 
-            ::
-
-                >>> chord = abjad.Chord("<g' bf'>4")
-                >>> agent = abjad.analyze(chord)
-                >>> agent.analyze_incomplete_tonal_functions(key_signature)
-                [RomanNumeral('v')]
-
-            ::
-
-                >>> key_signature = abjad.KeySignature('c', 'major')
-                >>> chord = abjad.Chord("<f g b>4")
-                >>> agent = abjad.analyze(chord)
-                >>> agent.analyze_incomplete_tonal_functions(key_signature)
-                [RomanNumeral('V4/3')]
-
-            ::
-
-                >>> chord = abjad.Chord("<fs g b>4")
-                >>> agent = abjad.analyze(chord)
-                >>> agent.analyze_incomplete_tonal_functions(key_signature)
-                [RomanNumeral('VM4/3')]
+            >>> chord = abjad.Chord("<fs g b>4")
+            >>> agent = abjad.analyze(chord)
+            >>> agent.analyze_incomplete_tonal_functions(key_signature)
+            [RomanNumeral('VM4/3')]
 
         Raises tonal harmony error when chord in client can not analyze.
 
@@ -517,14 +475,12 @@ class TonalAnalysis(abctools.AbjadObject):
 
         ..  container:: example
 
-            ::
-
-                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> show(staff) # doctest: +SKIP
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(staff)
+                >>> abjad.f(staff)
                 \new Staff {
                     c'8
                     d'8
@@ -532,11 +488,9 @@ class TonalAnalysis(abctools.AbjadObject):
                     f'8
                 }
 
-            ::
-
-                >>> agent = abjad.analyze(staff[:])
-                >>> agent.analyze_neighbor_notes()
-                [False, False, False, False]
+            >>> agent = abjad.analyze(staff[:])
+            >>> agent.analyze_neighbor_notes()
+            [False, False, False, False]
 
         Returns list of boolean values.
         '''
@@ -552,14 +506,12 @@ class TonalAnalysis(abctools.AbjadObject):
 
         ..  container:: example
 
-            ::
-
-                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> show(staff) # doctest: +SKIP
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> f(staff)
+                >>> abjad.f(staff)
                 \new Staff {
                     c'8
                     d'8
@@ -567,11 +519,9 @@ class TonalAnalysis(abctools.AbjadObject):
                     f'8
                 }
 
-            ::
-
-                >>> agent = abjad.analyze(staff[:])
-                >>> agent.analyze_passing_tones()
-                [False, True, True, False]
+            >>> agent = abjad.analyze(staff[:])
+            >>> agent.analyze_passing_tones()
+            [False, True, True, False]
 
         Returns list of boolean values.
         '''
@@ -587,98 +537,76 @@ class TonalAnalysis(abctools.AbjadObject):
 
         ..  container:: example
 
-                >>> chord = abjad.Chord('<ef g bf>4')
-                >>> key_signature = abjad.KeySignature('c', 'major')
-                >>> agent = abjad.analyze(chord)
-                >>> agent.analyze_tonal_functions(key_signature)
-                [RomanNumeral('bIII')]
+            >>> chord = abjad.Chord('<ef g bf>4')
+            >>> key_signature = abjad.KeySignature('c', 'major')
+            >>> agent = abjad.analyze(chord)
+            >>> agent.analyze_tonal_functions(key_signature)
+            [RomanNumeral('bIII')]
 
-            ::
+            >>> key_signature = abjad.KeySignature('c', 'major')
+            >>> chord = abjad.Chord('<c e g>4')
+            >>> agent = abjad.analyze(chord)
+            >>> agent.analyze_tonal_functions(key_signature)
+            [RomanNumeral('I')]
 
-                >>> key_signature = abjad.KeySignature('c', 'major')
-                >>> chord = abjad.Chord('<c e g>4')
-                >>> agent = abjad.analyze(chord)
-                >>> agent.analyze_tonal_functions(key_signature)
-                [RomanNumeral('I')]
+            >>> chord = abjad.Chord(['e', 'g', "c'"], (1, 4))
+            >>> agent = abjad.analyze(chord)
+            >>> agent.analyze_tonal_functions(key_signature)
+            [RomanNumeral('I6')]
 
-            ::
-
-                >>> chord = abjad.Chord(['e', 'g', "c'"], (1, 4))
-                >>> agent = abjad.analyze(chord)
-                >>> agent.analyze_tonal_functions(key_signature)
-                [RomanNumeral('I6')]
-
-            ::
-
-                >>> chord = abjad.Chord(['g', "c'", "e'"], (1, 4))
-                >>> agent = abjad.analyze(chord)
-                >>> agent.analyze_tonal_functions(key_signature)
-                [RomanNumeral('I6/4')]
+            >>> chord = abjad.Chord(['g', "c'", "e'"], (1, 4))
+            >>> agent = abjad.analyze(chord)
+            >>> agent.analyze_tonal_functions(key_signature)
+            [RomanNumeral('I6/4')]
 
         ..  container:: example
 
-            ::
+            >>> key_signature = abjad.KeySignature('c', 'major')
+            >>> chord = abjad.Chord(['c', 'ef', 'g'], (1, 4))
+            >>> agent = abjad.analyze(chord)
+            >>> agent.analyze_tonal_functions(key_signature)
+            [RomanNumeral('i')]
 
-                >>> key_signature = abjad.KeySignature('c', 'major')
-                >>> chord = abjad.Chord(['c', 'ef', 'g'], (1, 4))
-                >>> agent = abjad.analyze(chord)
-                >>> agent.analyze_tonal_functions(key_signature)
-                [RomanNumeral('i')]
+            >>> chord = abjad.Chord(['ef', 'g', "c'"], (1, 4))
+            >>> agent = abjad.analyze(chord)
+            >>> agent.analyze_tonal_functions(key_signature)
+            [RomanNumeral('i6')]
 
-            ::
-
-                >>> chord = abjad.Chord(['ef', 'g', "c'"], (1, 4))
-                >>> agent = abjad.analyze(chord)
-                >>> agent.analyze_tonal_functions(key_signature)
-                [RomanNumeral('i6')]
-
-            ::
-
-                >>> chord = abjad.Chord(['g', "c'", "ef'"], (1, 4))
-                >>> agent = abjad.analyze(chord)
-                >>> agent.analyze_tonal_functions(key_signature)
-                [RomanNumeral('i6/4')]
+            >>> chord = abjad.Chord(['g', "c'", "ef'"], (1, 4))
+            >>> agent = abjad.analyze(chord)
+            >>> agent.analyze_tonal_functions(key_signature)
+            [RomanNumeral('i6/4')]
 
         ..  container:: example
 
-            ::
+            >>> key_signature = abjad.KeySignature('c', 'major')
+            >>> chord = abjad.Chord(['c', 'e', 'g', 'bf'], (1, 4))
+            >>> agent = abjad.analyze(chord)
+            >>> agent.analyze_tonal_functions(key_signature)
+            [RomanNumeral('I7')]
 
-                >>> key_signature = abjad.KeySignature('c', 'major')
-                >>> chord = abjad.Chord(['c', 'e', 'g', 'bf'], (1, 4))
-                >>> agent = abjad.analyze(chord)
-                >>> agent.analyze_tonal_functions(key_signature)
-                [RomanNumeral('I7')]
+            >>> chord = abjad.Chord(['e', 'g', 'bf', "c'"], (1, 4))
+            >>> agent = abjad.analyze(chord)
+            >>> agent.analyze_tonal_functions(key_signature)
+            [RomanNumeral('I6/5')]
 
-            ::
+            >>> chord = abjad.Chord(['g', 'bf', "c'", "e'"], (1, 4))
+            >>> agent = abjad.analyze(chord)
+            >>> agent.analyze_tonal_functions(key_signature)
+            [RomanNumeral('I4/3')]
 
-                >>> chord = abjad.Chord(['e', 'g', 'bf', "c'"], (1, 4))
-                >>> agent = abjad.analyze(chord)
-                >>> agent.analyze_tonal_functions(key_signature)
-                [RomanNumeral('I6/5')]
-
-            ::
-
-                >>> chord = abjad.Chord(['g', 'bf', "c'", "e'"], (1, 4))
-                >>> agent = abjad.analyze(chord)
-                >>> agent.analyze_tonal_functions(key_signature)
-                [RomanNumeral('I4/3')]
-
-            ::
-
-                >>> chord = abjad.Chord(['bf', "c'", "e'", "g'"], (1, 4))
-                >>> agent = abjad.analyze(chord)
-                >>> agent.analyze_tonal_functions(key_signature)
-                [RomanNumeral('I4/2')]
+            >>> chord = abjad.Chord(['bf', "c'", "e'", "g'"], (1, 4))
+            >>> agent = abjad.analyze(chord)
+            >>> agent.analyze_tonal_functions(key_signature)
+            [RomanNumeral('I4/2')]
 
         ..  container:: example
 
-            ::
-
-                >>> key_signature = abjad.KeySignature('c', 'major')
-                >>> chord = abjad.Chord(['c', 'cs', 'd'], (1, 4))
-                >>> agent = abjad.analyze(chord)
-                >>> agent.analyze_tonal_functions(key_signature)
-                [None]
+            >>> key_signature = abjad.KeySignature('c', 'major')
+            >>> chord = abjad.Chord(['c', 'cs', 'd'], (1, 4))
+            >>> agent = abjad.analyze(chord)
+            >>> agent.analyze_tonal_functions(key_signature)
+            [None]
 
         Returns none when no tonal function is understood.
 
@@ -696,43 +624,31 @@ class TonalAnalysis(abctools.AbjadObject):
 
         ..  container:: example
 
-            ::
+            >>> staff = abjad.Staff("c'4 cs'")
+            >>> abjad.analyze(staff[:]).are_scalar_notes()
+            True
 
-                >>> staff = abjad.Staff("c'4 cs'")
-                >>> abjad.analyze(staff[:]).are_scalar_notes()
-                True
+            >>> staff = abjad.Staff("c'4 d'")
+            >>> abjad.analyze(staff[:]).are_scalar_notes()
+            True
 
-            ::
+            >>> staff = abjad.Staff("c'4 ds'")
+            >>> abjad.analyze(staff[:]).are_scalar_notes()
+            True
 
-                >>> staff = abjad.Staff("c'4 d'")
-                >>> abjad.analyze(staff[:]).are_scalar_notes()
-                True
-
-            ::
-
-                >>> staff = abjad.Staff("c'4 ds'")
-                >>> abjad.analyze(staff[:]).are_scalar_notes()
-                True
-
-            ::
-
-                >>> staff = abjad.Staff("c'4 b")
-                >>> abjad.analyze(staff[:]).are_scalar_notes()
-                True
+            >>> staff = abjad.Staff("c'4 b")
+            >>> abjad.analyze(staff[:]).are_scalar_notes()
+            True
 
         ..  container:: example
 
-            ::
+            >>> staff = abjad.Staff("c'4 c'")
+            >>> abjad.analyze(staff[:]).are_scalar_notes()
+            False
 
-                >>> staff = abjad.Staff("c'4 c'")
-                >>> abjad.analyze(staff[:]).are_scalar_notes()
-                False
-
-            ::
-
-                >>> staff = abjad.Staff("c'4 e'")
-                >>> abjad.analyze(staff[:]).are_scalar_notes()
-                False
+            >>> staff = abjad.Staff("c'4 e'")
+            >>> abjad.analyze(staff[:]).are_scalar_notes()
+            False
 
         Returns true or false.
         '''
@@ -758,43 +674,31 @@ class TonalAnalysis(abctools.AbjadObject):
 
         ..  container:: example
 
-            ::
+            >>> staff = abjad.Staff("c'4 cs'")
+            >>> abjad.analyze(staff[:]).are_stepwise_ascending_notes()
+            False
 
-                >>> staff = abjad.Staff("c'4 cs'")
-                >>> abjad.analyze(staff[:]).are_stepwise_ascending_notes()
-                False
+            >>> staff = abjad.Staff("c'4 d'")
+            >>> abjad.analyze(staff[:]).are_stepwise_ascending_notes()
+            True
 
-            ::
+            >>> staff = abjad.Staff("c'4 ds'")
+            >>> abjad.analyze(staff[:]).are_stepwise_ascending_notes()
+            True
 
-                >>> staff = abjad.Staff("c'4 d'")
-                >>> abjad.analyze(staff[:]).are_stepwise_ascending_notes()
-                True
-
-            ::
-
-                >>> staff = abjad.Staff("c'4 ds'")
-                >>> abjad.analyze(staff[:]).are_stepwise_ascending_notes()
-                True
-
-            ::
-
-                >>> staff = abjad.Staff("c'4 b")
-                >>> abjad.analyze(staff[:]).are_stepwise_ascending_notes()
-                False
+            >>> staff = abjad.Staff("c'4 b")
+            >>> abjad.analyze(staff[:]).are_stepwise_ascending_notes()
+            False
 
         ..  container:: example
 
-            ::
+            >>> staff = abjad.Staff("c'4 c'")
+            >>> abjad.analyze(staff[:]).are_stepwise_ascending_notes()
+            False
 
-                >>> staff = abjad.Staff("c'4 c'")
-                >>> abjad.analyze(staff[:]).are_stepwise_ascending_notes()
-                False
-
-            ::
-
-                >>> staff = abjad.Staff("c'4 e'")
-                >>> abjad.analyze(staff[:]).are_stepwise_ascending_notes()
-                False
+            >>> staff = abjad.Staff("c'4 e'")
+            >>> abjad.analyze(staff[:]).are_stepwise_ascending_notes()
+            False
 
         Returns true or false.
         '''
@@ -816,43 +720,31 @@ class TonalAnalysis(abctools.AbjadObject):
 
         ..  container:: example
 
-            ::
+            >>> staff = abjad.Staff("c'4 cs'")
+            >>> abjad.analyze(staff[:]).are_stepwise_descending_notes()
+            False
 
-                >>> staff = abjad.Staff("c'4 cs'")
-                >>> abjad.analyze(staff[:]).are_stepwise_descending_notes()
-                False
+            >>> staff = abjad.Staff("c'4 d'")
+            >>> abjad.analyze(staff[:]).are_stepwise_descending_notes()
+            False
 
-            ::
+            >>> staff = abjad.Staff("c'4 ds'")
+            >>> abjad.analyze(staff[:]).are_stepwise_descending_notes()
+            False
 
-                >>> staff = abjad.Staff("c'4 d'")
-                >>> abjad.analyze(staff[:]).are_stepwise_descending_notes()
-                False
-
-            ::
-
-                >>> staff = abjad.Staff("c'4 ds'")
-                >>> abjad.analyze(staff[:]).are_stepwise_descending_notes()
-                False
-
-            ::
-
-                >>> staff = abjad.Staff("c'4 b")
-                >>> abjad.analyze(staff[:]).are_stepwise_descending_notes()
-                True
+            >>> staff = abjad.Staff("c'4 b")
+            >>> abjad.analyze(staff[:]).are_stepwise_descending_notes()
+            True
 
         ..  container:: example
 
-            ::
+            >>> staff = abjad.Staff("c'4 c'")
+            >>> abjad.analyze(staff[:]).are_stepwise_descending_notes()
+            False
 
-                >>> staff = abjad.Staff("c'4 c'")
-                >>> abjad.analyze(staff[:]).are_stepwise_descending_notes()
-                False
-
-            ::
-
-                >>> staff = abjad.Staff("c'4 e'")
-                >>> abjad.analyze(staff[:]).are_stepwise_descending_notes()
-                False
+            >>> staff = abjad.Staff("c'4 e'")
+            >>> abjad.analyze(staff[:]).are_stepwise_descending_notes()
+            False
 
         Returns true or false.
         '''
@@ -873,48 +765,37 @@ class TonalAnalysis(abctools.AbjadObject):
 
         ..  container:: example
 
-            ::
+            >>> staff = abjad.Staff("c'4 cs'")
+            >>> abjad.analyze(staff[:]).are_stepwise_notes()
+            True
 
-                >>> staff = abjad.Staff("c'4 cs'")
-                >>> abjad.analyze(staff[:]).are_stepwise_notes()
-                True
+            >>> staff = abjad.Staff("c'4 d'")
+            >>> abjad.analyze(staff[:]).are_stepwise_notes()
+            True
 
-            ::
+            >>> staff = abjad.Staff("c'4 ds'")
+            >>> abjad.analyze(staff[:]).are_stepwise_notes()
+            True
 
-                >>> staff = abjad.Staff("c'4 d'")
-                >>> abjad.analyze(staff[:]).are_stepwise_notes()
-                True
-
-            ::
-
-                >>> staff = abjad.Staff("c'4 ds'")
-                >>> abjad.analyze(staff[:]).are_stepwise_notes()
-                True
-
-            ::
-
-                >>> staff = abjad.Staff("c'4 b")
-                >>> abjad.analyze(staff[:]).are_stepwise_notes()
-                True
+            >>> staff = abjad.Staff("c'4 b")
+            >>> abjad.analyze(staff[:]).are_stepwise_notes()
+            True
 
         ..  container:: example
 
-            ::
+            >>> staff = abjad.Staff("c'4 c'")
+            >>> abjad.analyze(staff[:]).are_stepwise_notes()
+            False
 
-                >>> staff = abjad.Staff("c'4 c'")
-                >>> abjad.analyze(staff[:]).are_stepwise_notes()
-                False
-
-            ::
-
-                >>> staff = abjad.Staff("c'4 e'")
-                >>> abjad.analyze(staff[:]).are_stepwise_notes()
-                False
+            >>> staff = abjad.Staff("c'4 e'")
+            >>> abjad.analyze(staff[:]).are_stepwise_notes()
+            False
 
         Returns true or false.
         '''
         import abjad
-        notes = abjad.iterate(self._client).components(abjad.Note)
+        notes = abjad.iterate(
+            self._client).components(abjad.Note)
         for left, right in abjad.sequence(notes).nwise():
             try:
                 assert not (left.written_pitch == right.written_pitch)

@@ -8,44 +8,40 @@ class ContextBlock(Block):
 
     ..  container:: example
 
-        ::
+        >>> block = abjad.ContextBlock(
+        ...     source_context_name='Staff',
+        ...     name='FluteStaff',
+        ...     type_='Engraver_group',
+        ...     alias='Staff',
+        ...     )
+        >>> block.remove_commands.append('Forbid_line_break_engraver')
+        >>> block.consists_commands.append('Horizontal_bracket_engraver')
+        >>> block.accepts_commands.append('FluteUpperVoice')
+        >>> block.accepts_commands.append('FluteLowerVoice')
+        >>> block.items.append(r'\accidentalStyle dodecaphonic')
+        >>> abjad.override(block).beam.positions = (-4, -4)
+        >>> abjad.override(block).stem.stem_end_position = -6
+        >>> abjad.setting(block).auto_beaming = False
+        >>> abjad.setting(block).tuplet_full_length = True
+        >>> block
+        <ContextBlock(source_context_name='Staff', name='FluteStaff', type_='Engraver_group', alias='Staff')>
 
-            >>> block = abjad.ContextBlock(
-            ...     source_context_name='Staff',
-            ...     name='FluteStaff',
-            ...     type_='Engraver_group',
-            ...     alias='Staff',
-            ...     )
-            >>> block.remove_commands.append('Forbid_line_break_engraver')
-            >>> block.consists_commands.append('Horizontal_bracket_engraver')
-            >>> block.accepts_commands.append('FluteUpperVoice')
-            >>> block.accepts_commands.append('FluteLowerVoice')
-            >>> block.items.append(r'\accidentalStyle dodecaphonic')
-            >>> abjad.override(block).beam.positions = (-4, -4)
-            >>> abjad.override(block).stem.stem_end_position = -6
-            >>> abjad.setting(block).auto_beaming = False
-            >>> abjad.setting(block).tuplet_full_length = True
-            >>> block
-            <ContextBlock(source_context_name='Staff', name='FluteStaff', type_='Engraver_group', alias='Staff')>
-
-        ::
-
-            >>> print(format(block))
-            \context {
-                \Staff
-                \name FluteStaff
-                \type Engraver_group
-                \alias Staff
-                \remove Forbid_line_break_engraver
-                \consists Horizontal_bracket_engraver
-                \accepts FluteUpperVoice
-                \accepts FluteLowerVoice
-                \override Beam.positions = #'(-4 . -4)
-                \override Stem.stem-end-position = #-6
-                autoBeaming = ##f
-                tupletFullLength = ##t
-                \accidentalStyle dodecaphonic
-            }
+        >>> print(format(block))
+        \context {
+            \Staff
+            \name FluteStaff
+            \type Engraver_group
+            \alias Staff
+            \remove Forbid_line_break_engraver
+            \consists Horizontal_bracket_engraver
+            \accepts FluteUpperVoice
+            \accepts FluteLowerVoice
+            \override Beam.positions = #'(-4 . -4)
+            \override Stem.stem-end-position = #-6
+            autoBeaming = ##f
+            tupletFullLength = ##t
+            \accidentalStyle dodecaphonic
+        }
 
     '''
 
@@ -134,28 +130,24 @@ class ContextBlock(Block):
 
         ..  container:: example
 
-            ::
+            >>> block = abjad.ContextBlock(
+            ...     source_context_name='Staff',
+            ...     name='FluteStaff',
+            ...     type_='Engraver_group',
+            ...     alias='Staff',
+            ...     )
+            >>> block.remove_commands.append('Forbid_line_break_engraver')
+            >>> block.consists_commands.append('Horizontal_bracket_engraver')
+            >>> block.accepts_commands.append('FluteUpperVoice')
+            >>> block.accepts_commands.append('FluteLowerVoice')
+            >>> block.items.append(r'\accidentalStyle dodecaphonic')
+            >>> abjad.override(block).beam.positions = (-4, -4)
+            >>> abjad.override(block).stem.stem_end_position = -6
+            >>> abjad.setting(block).auto_beaming = False
+            >>> abjad.setting(block).tuplet_full_length = True
 
-                >>> block = abjad.ContextBlock(
-                ...     source_context_name='Staff',
-                ...     name='FluteStaff',
-                ...     type_='Engraver_group',
-                ...     alias='Staff',
-                ...     )
-                >>> block.remove_commands.append('Forbid_line_break_engraver')
-                >>> block.consists_commands.append('Horizontal_bracket_engraver')
-                >>> block.accepts_commands.append('FluteUpperVoice')
-                >>> block.accepts_commands.append('FluteLowerVoice')
-                >>> block.items.append(r'\accidentalStyle dodecaphonic')
-                >>> abjad.override(block).beam.positions = (-4, -4)
-                >>> abjad.override(block).stem.stem_end_position = -6
-                >>> abjad.setting(block).auto_beaming = False
-                >>> abjad.setting(block).tuplet_full_length = True
-
-            ::
-
-                >>> block.accepts_commands
-                ['FluteUpperVoice', 'FluteLowerVoice']
+            >>> block.accepts_commands
+            ['FluteUpperVoice', 'FluteLowerVoice']
 
         Returns list.
         '''
@@ -167,28 +159,24 @@ class ContextBlock(Block):
 
         ..  container:: example
 
-            ::
+            >>> block = abjad.ContextBlock(
+            ...     source_context_name='Staff',
+            ...     name='FluteStaff',
+            ...     type_='Engraver_group',
+            ...     alias='Staff',
+            ...     )
+            >>> block.remove_commands.append('Forbid_line_break_engraver')
+            >>> block.consists_commands.append('Horizontal_bracket_engraver')
+            >>> block.accepts_commands.append('FluteUpperVoice')
+            >>> block.accepts_commands.append('FluteLowerVoice')
+            >>> block.items.append(r'\accidentalStyle dodecaphonic')
+            >>> abjad.override(block).beam.positions = (-4, -4)
+            >>> abjad.override(block).stem.stem_end_position = -6
+            >>> abjad.setting(block).auto_beaming = False
+            >>> abjad.setting(block).tuplet_full_length = True
 
-                >>> block = abjad.ContextBlock(
-                ...     source_context_name='Staff',
-                ...     name='FluteStaff',
-                ...     type_='Engraver_group',
-                ...     alias='Staff',
-                ...     )
-                >>> block.remove_commands.append('Forbid_line_break_engraver')
-                >>> block.consists_commands.append('Horizontal_bracket_engraver')
-                >>> block.accepts_commands.append('FluteUpperVoice')
-                >>> block.accepts_commands.append('FluteLowerVoice')
-                >>> block.items.append(r'\accidentalStyle dodecaphonic')
-                >>> abjad.override(block).beam.positions = (-4, -4)
-                >>> abjad.override(block).stem.stem_end_position = -6
-                >>> abjad.setting(block).auto_beaming = False
-                >>> abjad.setting(block).tuplet_full_length = True
-
-            ::
-
-                >>> block.alias
-                'Staff'
+            >>> block.alias
+            'Staff'
 
         Returns string or none.
         '''
@@ -200,28 +188,24 @@ class ContextBlock(Block):
 
         ..  container:: example
 
-            ::
+            >>> block = abjad.ContextBlock(
+            ...     source_context_name='Staff',
+            ...     name='FluteStaff',
+            ...     type_='Engraver_group',
+            ...     alias='Staff',
+            ...     )
+            >>> block.remove_commands.append('Forbid_line_break_engraver')
+            >>> block.consists_commands.append('Horizontal_bracket_engraver')
+            >>> block.accepts_commands.append('FluteUpperVoice')
+            >>> block.accepts_commands.append('FluteLowerVoice')
+            >>> block.items.append(r'\accidentalStyle dodecaphonic')
+            >>> abjad.override(block).beam.positions = (-4, -4)
+            >>> abjad.override(block).stem.stem_end_position = -6
+            >>> abjad.setting(block).auto_beaming = False
+            >>> abjad.setting(block).tuplet_full_length = True
 
-                >>> block = abjad.ContextBlock(
-                ...     source_context_name='Staff',
-                ...     name='FluteStaff',
-                ...     type_='Engraver_group',
-                ...     alias='Staff',
-                ...     )
-                >>> block.remove_commands.append('Forbid_line_break_engraver')
-                >>> block.consists_commands.append('Horizontal_bracket_engraver')
-                >>> block.accepts_commands.append('FluteUpperVoice')
-                >>> block.accepts_commands.append('FluteLowerVoice')
-                >>> block.items.append(r'\accidentalStyle dodecaphonic')
-                >>> abjad.override(block).beam.positions = (-4, -4)
-                >>> abjad.override(block).stem.stem_end_position = -6
-                >>> abjad.setting(block).auto_beaming = False
-                >>> abjad.setting(block).tuplet_full_length = True
-
-            ::
-
-                >>> block.consists_commands
-                ['Horizontal_bracket_engraver']
+            >>> block.consists_commands
+            ['Horizontal_bracket_engraver']
 
         Returns list.
         '''
@@ -233,28 +217,24 @@ class ContextBlock(Block):
 
         ..  container:: example
 
-            ::
+            >>> block = abjad.ContextBlock(
+            ...     source_context_name='Staff',
+            ...     name='FluteStaff',
+            ...     type_='Engraver_group',
+            ...     alias='Staff',
+            ...     )
+            >>> block.remove_commands.append('Forbid_line_break_engraver')
+            >>> block.consists_commands.append('Horizontal_bracket_engraver')
+            >>> block.accepts_commands.append('FluteUpperVoice')
+            >>> block.accepts_commands.append('FluteLowerVoice')
+            >>> block.items.append(r'\accidentalStyle dodecaphonic')
+            >>> abjad.override(block).beam.positions = (-4, -4)
+            >>> abjad.override(block).stem.stem_end_position = -6
+            >>> abjad.setting(block).auto_beaming = False
+            >>> abjad.setting(block).tuplet_full_length = True
 
-                >>> block = abjad.ContextBlock(
-                ...     source_context_name='Staff',
-                ...     name='FluteStaff',
-                ...     type_='Engraver_group',
-                ...     alias='Staff',
-                ...     )
-                >>> block.remove_commands.append('Forbid_line_break_engraver')
-                >>> block.consists_commands.append('Horizontal_bracket_engraver')
-                >>> block.accepts_commands.append('FluteUpperVoice')
-                >>> block.accepts_commands.append('FluteLowerVoice')
-                >>> block.items.append(r'\accidentalStyle dodecaphonic')
-                >>> abjad.override(block).beam.positions = (-4, -4)
-                >>> abjad.override(block).stem.stem_end_position = -6
-                >>> abjad.setting(block).auto_beaming = False
-                >>> abjad.setting(block).tuplet_full_length = True
-
-            ::
-
-                >>> block.items
-                ['\\accidentalStyle dodecaphonic']
+            >>> block.items
+            ['\\accidentalStyle dodecaphonic']
 
         Returns list.
         '''
@@ -266,28 +246,24 @@ class ContextBlock(Block):
 
         ..  container:: example
 
-            ::
+            >>> block = abjad.ContextBlock(
+            ...     source_context_name='Staff',
+            ...     name='FluteStaff',
+            ...     type_='Engraver_group',
+            ...     alias='Staff',
+            ...     )
+            >>> block.remove_commands.append('Forbid_line_break_engraver')
+            >>> block.consists_commands.append('Horizontal_bracket_engraver')
+            >>> block.accepts_commands.append('FluteUpperVoice')
+            >>> block.accepts_commands.append('FluteLowerVoice')
+            >>> block.items.append(r'\accidentalStyle dodecaphonic')
+            >>> abjad.override(block).beam.positions = (-4, -4)
+            >>> abjad.override(block).stem.stem_end_position = -6
+            >>> abjad.setting(block).auto_beaming = False
+            >>> abjad.setting(block).tuplet_full_length = True
 
-                >>> block = abjad.ContextBlock(
-                ...     source_context_name='Staff',
-                ...     name='FluteStaff',
-                ...     type_='Engraver_group',
-                ...     alias='Staff',
-                ...     )
-                >>> block.remove_commands.append('Forbid_line_break_engraver')
-                >>> block.consists_commands.append('Horizontal_bracket_engraver')
-                >>> block.accepts_commands.append('FluteUpperVoice')
-                >>> block.accepts_commands.append('FluteLowerVoice')
-                >>> block.items.append(r'\accidentalStyle dodecaphonic')
-                >>> abjad.override(block).beam.positions = (-4, -4)
-                >>> abjad.override(block).stem.stem_end_position = -6
-                >>> abjad.setting(block).auto_beaming = False
-                >>> abjad.setting(block).tuplet_full_length = True
-
-            ::
-
-                >>> block.name
-                'FluteStaff'
+            >>> block.name
+            'FluteStaff'
 
         Returns string or none.
         '''
@@ -299,28 +275,24 @@ class ContextBlock(Block):
 
         ..  container:: example
 
-            ::
+            >>> block = abjad.ContextBlock(
+            ...     source_context_name='Staff',
+            ...     name='FluteStaff',
+            ...     type_='Engraver_group',
+            ...     alias='Staff',
+            ...     )
+            >>> block.remove_commands.append('Forbid_line_break_engraver')
+            >>> block.consists_commands.append('Horizontal_bracket_engraver')
+            >>> block.accepts_commands.append('FluteUpperVoice')
+            >>> block.accepts_commands.append('FluteLowerVoice')
+            >>> block.items.append(r'\accidentalStyle dodecaphonic')
+            >>> abjad.override(block).beam.positions = (-4, -4)
+            >>> abjad.override(block).stem.stem_end_position = -6
+            >>> abjad.setting(block).auto_beaming = False
+            >>> abjad.setting(block).tuplet_full_length = True
 
-                >>> block = abjad.ContextBlock(
-                ...     source_context_name='Staff',
-                ...     name='FluteStaff',
-                ...     type_='Engraver_group',
-                ...     alias='Staff',
-                ...     )
-                >>> block.remove_commands.append('Forbid_line_break_engraver')
-                >>> block.consists_commands.append('Horizontal_bracket_engraver')
-                >>> block.accepts_commands.append('FluteUpperVoice')
-                >>> block.accepts_commands.append('FluteLowerVoice')
-                >>> block.items.append(r'\accidentalStyle dodecaphonic')
-                >>> abjad.override(block).beam.positions = (-4, -4)
-                >>> abjad.override(block).stem.stem_end_position = -6
-                >>> abjad.setting(block).auto_beaming = False
-                >>> abjad.setting(block).tuplet_full_length = True
-
-            ::
-
-                >>> block.remove_commands
-                ['Forbid_line_break_engraver']
+            >>> block.remove_commands
+            ['Forbid_line_break_engraver']
 
         Returns list.
         '''
@@ -332,28 +304,24 @@ class ContextBlock(Block):
 
         ..  container:: example
 
-            ::
+            >>> block = abjad.ContextBlock(
+            ...     source_context_name='Staff',
+            ...     name='FluteStaff',
+            ...     type_='Engraver_group',
+            ...     alias='Staff',
+            ...     )
+            >>> block.remove_commands.append('Forbid_line_break_engraver')
+            >>> block.consists_commands.append('Horizontal_bracket_engraver')
+            >>> block.accepts_commands.append('FluteUpperVoice')
+            >>> block.accepts_commands.append('FluteLowerVoice')
+            >>> block.items.append(r'\accidentalStyle dodecaphonic')
+            >>> abjad.override(block).beam.positions = (-4, -4)
+            >>> abjad.override(block).stem.stem_end_position = -6
+            >>> abjad.setting(block).auto_beaming = False
+            >>> abjad.setting(block).tuplet_full_length = True
 
-                >>> block = abjad.ContextBlock(
-                ...     source_context_name='Staff',
-                ...     name='FluteStaff',
-                ...     type_='Engraver_group',
-                ...     alias='Staff',
-                ...     )
-                >>> block.remove_commands.append('Forbid_line_break_engraver')
-                >>> block.consists_commands.append('Horizontal_bracket_engraver')
-                >>> block.accepts_commands.append('FluteUpperVoice')
-                >>> block.accepts_commands.append('FluteLowerVoice')
-                >>> block.items.append(r'\accidentalStyle dodecaphonic')
-                >>> abjad.override(block).beam.positions = (-4, -4)
-                >>> abjad.override(block).stem.stem_end_position = -6
-                >>> abjad.setting(block).auto_beaming = False
-                >>> abjad.setting(block).tuplet_full_length = True
-
-            ::
-
-                >>> block.source_context_name
-                'Staff'
+            >>> block.source_context_name
+            'Staff'
 
         Returns string or none.
         '''
@@ -365,28 +333,24 @@ class ContextBlock(Block):
 
         ..  container:: example
 
-            ::
+            >>> block = abjad.ContextBlock(
+            ...     source_context_name='Staff',
+            ...     name='FluteStaff',
+            ...     type_='Engraver_group',
+            ...     alias='Staff',
+            ...     )
+            >>> block.remove_commands.append('Forbid_line_break_engraver')
+            >>> block.consists_commands.append('Horizontal_bracket_engraver')
+            >>> block.accepts_commands.append('FluteUpperVoice')
+            >>> block.accepts_commands.append('FluteLowerVoice')
+            >>> block.items.append(r'\accidentalStyle dodecaphonic')
+            >>> abjad.override(block).beam.positions = (-4, -4)
+            >>> abjad.override(block).stem.stem_end_position = -6
+            >>> abjad.setting(block).auto_beaming = False
+            >>> abjad.setting(block).tuplet_full_length = True
 
-                >>> block = abjad.ContextBlock(
-                ...     source_context_name='Staff',
-                ...     name='FluteStaff',
-                ...     type_='Engraver_group',
-                ...     alias='Staff',
-                ...     )
-                >>> block.remove_commands.append('Forbid_line_break_engraver')
-                >>> block.consists_commands.append('Horizontal_bracket_engraver')
-                >>> block.accepts_commands.append('FluteUpperVoice')
-                >>> block.accepts_commands.append('FluteLowerVoice')
-                >>> block.items.append(r'\accidentalStyle dodecaphonic')
-                >>> abjad.override(block).beam.positions = (-4, -4)
-                >>> abjad.override(block).stem.stem_end_position = -6
-                >>> abjad.setting(block).auto_beaming = False
-                >>> abjad.setting(block).tuplet_full_length = True
-
-            ::
-
-                >>> block.type_
-                'Engraver_group'
+            >>> block.type_
+            'Engraver_group'
 
         Returns string or none.
         '''

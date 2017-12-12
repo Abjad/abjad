@@ -3,50 +3,32 @@ def least_common_multiple(*integers):
 
     ..  container:: example
 
-        ::
+        >>> abjad.mathtools.least_common_multiple(2, 4, 5, 10, 20)
+        20
 
-            >>> abjad.mathtools.least_common_multiple(2, 4, 5, 10, 20)
-            20
+        >>> abjad.mathtools.least_common_multiple(4, 4)
+        4
 
-        ::
+        >>> abjad.mathtools.least_common_multiple(4, 5)
+        20
 
-            >>> abjad.mathtools.least_common_multiple(4, 4)
-            4
+        >>> abjad.mathtools.least_common_multiple(4, 6)
+        12
 
-        ::
+        >>> abjad.mathtools.least_common_multiple(4, 7)
+        28
 
-            >>> abjad.mathtools.least_common_multiple(4, 5)
-            20
+        >>> abjad.mathtools.least_common_multiple(4, 8)
+        8
 
-        ::
+        >>> abjad.mathtools.least_common_multiple(4, 9)
+        36
 
-            >>> abjad.mathtools.least_common_multiple(4, 6)
-            12
+        >>> abjad.mathtools.least_common_multiple(4, 10)
+        20
 
-        ::
-
-            >>> abjad.mathtools.least_common_multiple(4, 7)
-            28
-
-        ::
-
-            >>> abjad.mathtools.least_common_multiple(4, 8)
-            8
-
-        ::
-
-            >>> abjad.mathtools.least_common_multiple(4, 9)
-            36
-
-        ::
-
-            >>> abjad.mathtools.least_common_multiple(4, 10)
-            20
-
-        ::
-
-            >>> abjad.mathtools.least_common_multiple(4, 11)
-            44
+        >>> abjad.mathtools.least_common_multiple(4, 11)
+        44
 
     Returns positive integer.
     '''
