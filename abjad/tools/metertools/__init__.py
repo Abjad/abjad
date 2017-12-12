@@ -1,9 +1,8 @@
-from abjad.tools import systemtools
-
-
-systemtools.ImportManager.import_structured_package(
-    __path__[0],
-    globals(),
-    )
+from .Meter import Meter
+from .MeterFittingSession import MeterFittingSession
+from .MeterList import MeterList
+from .MeterManager import MeterManager
+from .MetricAccentKernel import MetricAccentKernel
+from .OffsetCounter import OffsetCounter
 
 _documentation_section = 'core'

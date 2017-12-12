@@ -1,11 +1,3 @@
-from abjad.tools import systemtools
-
-systemtools.ImportManager.import_structured_package(
-    __path__[0],
-    globals(),
-    )
+from .make_bartok_score import make_bartok_score
 
 _documentation_section = 'demos'
-
-if 'main' in dir():
-    del(globals()['main'])

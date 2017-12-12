@@ -1,9 +1,27 @@
-from abjad.tools import systemtools
-
-
-systemtools.ImportManager.import_structured_package(
-    __path__[0],
-    globals(),
-    delete_systemtools=False,
-    ignored_names=['abjadbooktools'],
-    )
+from .systemtools import *
+from .abctools import *
+from .systemtools import *
+from .mathtools import *
+from .topleveltools import *
+from .datastructuretools import *
+from .lilypondfiletools import *
+from .schemetools import *
+from .markuptools import *
+from .documentationtools import *
+from .commandlinetools import *
+from .exceptiontools import *
+from .graphtools import *
+from .indicatortools import *
+from .instrumenttools import *
+from .lilypondnametools import *
+from .pitchtools import *
+from .scoretools import *
+from .spannertools import *
+from .lilypondparsertools import *
+from .rhythmtreetools import *
+from .metertools import *
+from .quantizationtools import *
+from .rhythmmakertools import *
+from .segmenttools import *
+from .timespantools import *
+from .tonalanalysistools import *
