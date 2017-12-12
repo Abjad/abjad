@@ -283,8 +283,9 @@ class Chord(Leaf):
             #return self._get_body()[0]
             return self._get_compact_representation()
 
-    def _get_lilypond_format(self):
-        return super(Chord, self)._get_lilypond_format()
+    # TODO: remove?
+    def _get_lilypond_format(self, strict=False):
+        return super(Chord, self)._get_lilypond_format(strict=strict)
 
     def _get_sounding_pitches(self):
         from abjad.tools import instrumenttools

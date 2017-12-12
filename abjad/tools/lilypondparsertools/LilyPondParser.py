@@ -660,7 +660,7 @@ class LilyPondParser(abctools.Parser):
                 if isinstance(x, (
                     indicatortools.BarLine,
                     indicatortools.PageBreak,
-                    indicatortools.SystemBreak,
+                    indicatortools.LineBreak,
                     )):
                     apply_backward.append(x)
                 elif (
@@ -775,7 +775,7 @@ class LilyPondParser(abctools.Parser):
                 indicatortools.LilyPondCommand,
                 indicatortools.PageBreak,
                 indicatortools.StemTremolo,
-                indicatortools.SystemBreak,
+                indicatortools.LineBreak,
                 markuptools.Markup,
                 )
             if hasattr(post_event, '_attach'):
@@ -852,7 +852,7 @@ class LilyPondParser(abctools.Parser):
         elif name == 'LaissezVibrerEvent':
             return indicatortools.LilyPondCommand('laissezVibrer', 'after')
         elif name == 'LineBreakEvent':
-            return indicatortools.SystemBreak()
+            return indicatortools.LineBreak()
         event = lilypondparsertools.LilyPondEvent(name)
         if 'span-direction' in lookup:
             if lookup['span-direction'] == -1:

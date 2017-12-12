@@ -64,7 +64,7 @@ class ScorePackageScript(CommandlineScript):
     @classmethod
     def _copy_tree(cls, source_directory, target_directory, recurse=True):
         copied_paths = []
-        source_paths = [_ for _ in source_directory.glob('*')]
+        source_paths = [_ for _ in sorted(source_directory.glob('*'))]
         if not target_directory.exists():
             target_directory.mkdir(parents=True)
         for source_path in source_paths:
@@ -182,7 +182,7 @@ class ScorePackageScript(CommandlineScript):
             score_path = self._path_to_score_package_path(score_path)
             materials_path = score_path.joinpath('materials')
         paths = [
-            path for path in materials_path.glob('*')
+            path for path in sorted(materials_path.glob('*'))
             if path.is_dir() and path.joinpath('__init__.py').exists()
             ]
         return sorted(paths)
@@ -194,7 +194,7 @@ class ScorePackageScript(CommandlineScript):
         else:
             segments_path = self._segments_path
         paths = [
-            path for path in segments_path.glob('*')
+            path for path in sorted(segments_path.glob('*'))
             if path.is_dir() and path.joinpath('__init__.py').exists()
             ]
         return sorted(paths)

@@ -37,6 +37,7 @@ class PersistenceManager(abctools.AbjadObject):
         self,
         ly_file_path=None,
         illustrate_function=None,
+        strict=False,
         **keywords
         ):
         r'''Persists client as LilyPond file.
@@ -55,30 +56,34 @@ class PersistenceManager(abctools.AbjadObject):
         Returns output path and elapsed formatting time when LilyPond output is
         written.
         '''
-        from abjad import abjad_configuration
-        from abjad.tools import systemtools
+        import abjad
         if illustrate_function is None:
             assert hasattr(self._client, '__illustrate__')
             illustrate_function = self._client.__illustrate__
-        illustration = illustrate_function(**keywords)
+        lilypond_file = illustrate_function(**keywords)
         if ly_file_path is None:
-            ly_file_name = systemtools.IOManager.get_next_output_file_name()
+            ly_file_name = abjad.IOManager.get_next_output_file_name()
             ly_file_path = os.path.join(
-                abjad_configuration.abjad_output_directory,
+                abjad.abjad_configuration.abjad_output_directory,
                 ly_file_name,
                 )
         else:
             ly_file_path = str(ly_file_path)
             ly_file_path = os.path.expanduser(ly_file_path)
         assert ly_file_path.endswith('.ly'), ly_file_path
-        timer = systemtools.Timer()
+        timer = abjad.Timer()
         with timer:
-            lilypond_format = format(illustration, 'lilypond')
+            format_specification = 'lilypond'
+            if strict:
+                format_specification += ':strict'
+            string = lilypond_file.__format__(
+                format_specification=format_specification
+                )
         abjad_formatting_time = timer.elapsed_time
         directory = os.path.dirname(ly_file_path)
-        systemtools.IOManager._ensure_directory_existence(directory)
+        abjad.IOManager._ensure_directory_existence(directory)
         with open(ly_file_path, 'w') as file_pointer:
-            file_pointer.write(lilypond_format)
+            file_pointer.write(string)
         return ly_file_path, abjad_formatting_time
 
     def as_midi(self, midi_file_path=None, remove_ly=False, **keywords):
@@ -180,6 +185,7 @@ class PersistenceManager(abctools.AbjadObject):
         pdf_file_path=None,
         illustrate_function=None,
         remove_ly=False,
+        strict=False,
         **keywords
         ):
         r'''Persists client as PDF.
@@ -212,6 +218,7 @@ class PersistenceManager(abctools.AbjadObject):
         result = self.as_ly(
             ly_file_path,
             illustrate_function=illustrate_function,
+            strict=strict,
             **keywords
             )
         ly_file_path, abjad_formatting_time = result

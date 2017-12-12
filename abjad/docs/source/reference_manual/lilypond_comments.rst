@@ -14,12 +14,12 @@ Abjad.
 Creating LilyPond comments
 --------------------------
 
-Use ``LilyPondComment`` to create a LilyPond comment:
+Use ``abjad.LilyPondComment`` to create a LilyPond comment:
 
 ..  abjad::
 
-    contents_string = 'This is a LilyPond comment before a note.'
-    comment_1 = abjad.LilyPondComment(contents_string, 'before')
+    string = 'This is a LilyPond comment before a note.'
+    comment_1 = abjad.LilyPondComment(string, 'before')
 
 
 Understanding the interpreter representation of a LilyPond comment
@@ -40,42 +40,42 @@ of the comment.
 Attaching LilyPond comments to leaves
 -------------------------------------
 
-Use ``attach()`` to attach LilyPond comments to any note, rest or chord.
+Use ``abjad.attach()`` to attach LilyPond comments to any note, rest or chord.
 
 You can add LilyPond comments before, after or to the right of any leaf:
 
 ..  abjad::
 
-    note = Note("cs''4")
+    note = abjad.Note("cs''4")
 
 ..  abjad::
 
-    show(note)
+    abjad.show(note)
 
 ..  abjad::
 
-    attach(comment_1, note)
+    abjad.attach(comment_1, note)
 
 ..  abjad::
 
-    f(note)
+    abjad.f(note)
 
 
 Attaching LilyPond comments to containers
 -----------------------------------------
 
-Use ``attach()`` to attach LilyPond comments to a container.
+Use ``abjad.attach()`` to attach LilyPond comments to a container.
 
 You can add LilyPond comments before, after, in the opening or in the closing
 of any container:
 
 ..  abjad::
 
-    staff = Staff("c'8 d'8 e'8 f'8")
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
 
 ..  abjad::
 
-    show(staff)
+    abjad.show(staff)
 
 ..  abjad::
 
@@ -95,55 +95,55 @@ of any container:
 
 ..  abjad::
 
-    attach(staff_comment_1, staff)
-    attach(staff_comment_2, staff)
-    attach(staff_comment_3, staff)
-    attach(staff_comment_4, staff)
-    attach(staff_comment_5, staff)
+    abjad.attach(staff_comment_1, staff)
+    abjad.attach(staff_comment_2, staff)
+    abjad.attach(staff_comment_3, staff)
+    abjad.attach(staff_comment_4, staff)
+    abjad.attach(staff_comment_5, staff)
 
 ..  abjad::
 
-    f(staff)
+    abjad.f(staff)
 
 
 Getting the LilyPond comments attached to a component
 -----------------------------------------------------
 
-Use the inspector to get the LilyPond comments attached to any component:
+Use ``abjad.inspect()`` to get the LilyPond comments attached to any component:
 
 ..  abjad::
 
-    inspect(note).get_indicators(abjad.LilyPondComment)
+    abjad.inspect(note).get_indicators(abjad.LilyPondComment)
 
 
 Detaching LilyPond comments
 ---------------------------
 
-Use ``detach()`` to detach LilyPond comments:
+Use ``abjad.detach()`` to detach LilyPond comments:
 
 ..  abjad::
 
-    detach(comment_1, note)
+    abjad.detach(comment_1, note)
 
 ..  abjad::
 
-    f(note)
+    abjad.f(note)
 
 ..  abjad::
 
-    detached_comments = detach(abjad.LilyPondComment, staff)
+    detached_comments = abjad.detach(abjad.LilyPondComment, staff)
     for comment in detached_comments: comment
 
 ..  abjad::
 
-    f(staff)
+    abjad.f(staff)
 
 
 Getting the contents string of a LilyPond comment
 ----------------------------------------------------
 
-Use ``contents_string`` to get the contents string of a LiliyPond comment:
+Use ``string`` to get the string contents of a LilyPond comment:
 
 ..  abjad::
 
-    comment_1.contents_string
+    comment_1.string

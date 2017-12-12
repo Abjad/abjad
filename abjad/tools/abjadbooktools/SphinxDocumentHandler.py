@@ -196,7 +196,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             app.builder.imagedir,
             )
         with systemtools.TemporaryDirectoryChange(image_directory):
-            svg_paths = glob.glob('graphviz*.svg')
+            svg_paths = sorted(glob.glob('graphviz*.svg'))
             for filename in sphinx.util.status_iterator(
                 svg_paths,
                 'cleaning-up svg files (A)...',
@@ -206,7 +206,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 process_svg(filename, delete_attributes=True)
         image_directory = os.path.join(image_directory, 'abjadbook')
         with systemtools.TemporaryDirectoryChange(image_directory):
-            svg_paths = glob.glob('graphviz*.svg')
+            svg_paths = sorted(glob.glob('graphviz*.svg'))
             for filename in sphinx.util.status_iterator(
                 svg_paths,
                 'cleaning-up svg files (B)...',
@@ -625,7 +625,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         ):
         #print(file_name_pattern, pages)
         with systemtools.TemporaryDirectoryChange(absolute_directory):
-            file_name_matches = glob.glob(file_name_pattern)
+            file_name_matches = sorted(glob.glob(file_name_pattern))
             file_name_matches = [
                 _ for _ in file_name_matches
                 if '-thumbnail' not in _

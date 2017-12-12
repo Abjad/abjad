@@ -44,6 +44,6 @@ class Cluster(Container):
         result.append([contributor, contributions])
         return tuple(result)
 
-    def _get_lilypond_format(self):
+    def _get_lilypond_format(self, strict=False):
         self._update_now(indicators=True)
-        return self._format_component()
+        return self._format_component(strict=strict)

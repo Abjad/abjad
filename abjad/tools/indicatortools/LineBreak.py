@@ -1,31 +1,26 @@
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class PageBreak(AbjadValueObject):
-    r'''Page break.
+class LineBreak(AbjadValueObject):
+    r'''Line break.
 
     ..  container:: example
 
-        Formats in closing slot by default:
+        Formats closing slot by default:
 
         >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-        >>> page_break = abjad.PageBreak()
-        >>> abjad.attach(page_break, staff[-1])
+        >>> break_ = abjad.LineBreak()
+        >>> abjad.attach(break_, staff[-1])
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> page_break
-        PageBreak(format_slot='closing')
-
-        ..  docs::
-
-            >>> abjad.f(staff)
-            \new Staff {
-                c'4
-                d'4
-                e'4
-                f'4
-                \pageBreak
-            }
+        >>> abjad.f(staff)
+        \new Staff {
+            c'4
+            d'4
+            e'4
+            f'4
+            \break
+        }
 
     '''
 
@@ -48,7 +43,7 @@ class PageBreak(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format(self):
-        return r'\pageBreak'
+        return r'\break'
 
     def _get_lilypond_format_bundle(self, component=None):
         import abjad
@@ -61,14 +56,14 @@ class PageBreak(AbjadValueObject):
 
     @property
     def context(self):
-        r'''Gets default context of page break.
+        r'''Gets line break default context.
 
         ..  container:: example
 
-            Default page break:
+            Defaults to score:
 
-            >>> page_break = abjad.PageBreak()
-            >>> page_break.context
+            >>> break_ = abjad.LineBreak()
+            >>> break_.context
             'Score'
 
         Returns context or string.
@@ -84,12 +79,9 @@ class PageBreak(AbjadValueObject):
             Defaults to closing:
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-            >>> page_break = abjad.PageBreak()
-            >>> abjad.attach(page_break, staff[-1])
+            >>> break_ = abjad.LineBreak()
+            >>> abjad.attach(break_, staff[-1])
             >>> abjad.show(staff) # doctest: +SKIP
-
-            >>> page_break
-            PageBreak(format_slot='closing')
 
             >>> abjad.f(staff)
             \new Staff {
@@ -97,7 +89,7 @@ class PageBreak(AbjadValueObject):
                 d'4
                 e'4
                 f'4
-                \pageBreak
+                \break
             }
 
         ..  container:: example
@@ -105,19 +97,18 @@ class PageBreak(AbjadValueObject):
             Formats before leaf like this:
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-            >>> page_break = abjad.PageBreak(format_slot='before')
-            >>> abjad.attach(page_break, staff[0])
+            >>> break_ = abjad.LineBreak(format_slot='before')
+            >>> abjad.attach(break_, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
             >>> abjad.f(staff)
             \new Staff {
-                \pageBreak
+                \break
                 c'4
                 d'4
                 e'4
                 f'4
             }
 
-        Returns string.
         '''
         return self._format_slot

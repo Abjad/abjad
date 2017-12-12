@@ -77,6 +77,8 @@ class Component(AbjadObject):
         import abjad
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
+        elif format_specification == 'lilypond:strict':
+            return self._get_lilypond_format(strict=True)
         elif format_specification == 'storage':
             return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
@@ -210,6 +212,12 @@ class Component(AbjadObject):
         parent.__setitem__(slice(start, stop + 1), components)
         return self
 
+    def _format_absolute_after_slot(self, bundle):
+        return []
+
+    def _format_absolute_before_slot(self, bundle):
+        return []
+
     def _format_after_slot(self, bundle):
         pass
 
@@ -222,18 +230,19 @@ class Component(AbjadObject):
     def _format_closing_slot(self, bundle):
         pass
 
-    def _format_component(self, pieces=False):
+    def _format_component(self, pieces=False, strict=False):
         import abjad
         result = []
-        manager = abjad.LilyPondFormatManager
-        bundle = manager.bundle_format_contributions(self)
+        bundle = abjad.LilyPondFormatManager.bundle_format_contributions(self)
+        result.extend(self._format_absolute_before_slot(bundle))
         result.extend(self._format_before_slot(bundle))
         result.extend(self._format_open_brackets_slot(bundle))
         result.extend(self._format_opening_slot(bundle))
-        result.extend(self._format_contents_slot(bundle))
+        result.extend(self._format_contents_slot(bundle, strict=strict))
         result.extend(self._format_closing_slot(bundle))
         result.extend(self._format_close_brackets_slot(bundle))
         result.extend(self._format_after_slot(bundle))
+        result.extend(self._format_absolute_after_slot(bundle))
         contributions = []
         for contributor, contribution in result:
             contributions.extend(contribution)
@@ -242,7 +251,7 @@ class Component(AbjadObject):
         else:
             return '\n'.join(contributions)
 
-    def _format_contents_slot(self, bundle):
+    def _format_contents_slot(self, bundle, strict=False):
         pass
 
     def _format_open_brackets_slot(self, bundle):
@@ -315,18 +324,25 @@ class Component(AbjadObject):
                     return indicator
                 else:
                     return
-        # update indicators of entire score tree if necessary
-        self._update_now(indicators=True)
         # gather candidate wrappers
+        self._update_now(indicators=True)
         candidate_wrappers = {}
         for parent in abjad.inspect(self).get_parentage(
-            include_self=True, grace_notes=True):
+            include_self=True,
+            grace_notes=True,
+            ):
+            #print('PARENT', parent)
+            #print('DEP', parent._dependent_wrappers)
+            #print('DIR', parent._indicator_wrappers)
+            #print()
             for wrapper in parent._dependent_wrappers:
+                if wrapper.is_annotation:
+                    continue
                 if isinstance(wrapper.indicator, prototype):
                     offset = wrapper.start_offset
                     candidate_wrappers.setdefault(offset, []).append(wrapper)
             for wrapper in parent._indicator_wrappers:
-                if wrapper.context is not None:
+                if wrapper.is_annotation:
                     continue
                 if isinstance(wrapper.indicator, prototype):
                     offset = wrapper.start_offset
@@ -384,8 +400,8 @@ class Component(AbjadObject):
             result.extend(contributions)
         return result
 
-    def _get_format_pieces(self):
-        return self._format_component(pieces=True)
+    def _get_format_pieces(self, strict=False):
+        return self._format_component(pieces=True, strict=strict)
 
     def _get_format_specification(self):
         import abjad
@@ -462,9 +478,9 @@ class Component(AbjadObject):
         result = tuple(result)
         return result
 
-    def _get_lilypond_format(self):
+    def _get_lilypond_format(self, strict=False):
         self._update_now(indicators=True)
-        return self._format_component()
+        return self._format_component(strict=strict)
 
     def _get_lineage(self):
         import abjad

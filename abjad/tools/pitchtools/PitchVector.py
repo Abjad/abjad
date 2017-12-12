@@ -38,7 +38,8 @@ class PitchVector(Vector):
 
         ..  container:: example
 
-        Gets interpreter representation of pitch vector:
+            Gets interpreter representation of pitch vector:
+
             >>> vector = abjad.PitchVector(
             ...     items=[7, 6, -2, -3, -3, 0, 1, 14, 15, 16, 16],
             ...     item_class=abjad.NumberedPitch,

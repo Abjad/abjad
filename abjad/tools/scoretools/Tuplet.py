@@ -263,9 +263,9 @@ class Tuplet(Container):
             storage_format_kwargs_names=[],
             )
 
-    def _get_lilypond_format(self):
+    def _get_lilypond_format(self, strict=False):
         self._update_now(indicators=True)
-        return self._format_component()
+        return self._format_component(strict=strict)
 
     def _get_multiplier_fraction_string(self):
         import abjad

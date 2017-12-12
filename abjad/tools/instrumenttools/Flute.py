@@ -23,6 +23,34 @@ class Flute(Instrument):
                 fs'4
             }
 
+    ..  container:: example
+
+        Instrument markup can be tagged:
+
+        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+        >>> flute = abjad.Flute(
+        ...     name_markup=abjad.Markup('Flauto').italic(),
+        ...     short_name_markup=abjad.Markup('Fl.').italic(),
+        ...     )
+        >>> abjad.attach(flute, staff[0], tag='RED')
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        >>> abjad.f(staff)
+        \new Staff {
+            \set Staff.instrumentName = \markup { %! RED:1
+                \italic %! RED:1
+                    Flauto %! RED:1
+                } %! RED:1
+            \set Staff.shortInstrumentName = \markup { %! RED:1
+                \italic %! RED:1
+                    Fl. %! RED:1
+                } %! RED:1
+            c'4
+            d'4
+            e'4
+            fs'4
+        }
+
     '''
 
     ### CLASS VARIABLES ###

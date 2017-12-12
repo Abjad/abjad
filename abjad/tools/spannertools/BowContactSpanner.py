@@ -401,4 +401,5 @@ class BowContactSpanner(Spanner):
 
         Returns none.
         '''
-        super(BowContactSpanner, self)._attach_piecewise(indicator, leaf)
+        superclass = super(BowContactSpanner, self)
+        superclass._attach_piecewise(indicator, leaf)

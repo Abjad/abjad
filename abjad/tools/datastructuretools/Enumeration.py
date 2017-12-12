@@ -47,9 +47,9 @@ class Enumeration(enum.IntEnum):
 
         Returns string.
         '''
-        from abjad.tools import systemtools
+        import abjad
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager(self).get_storage_format()
+            return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __repr__(self):
@@ -57,20 +57,20 @@ class Enumeration(enum.IntEnum):
 
         Returns string.
         '''
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatManager(self).get_repr_format()
+        import abjad
+        return abjad.StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        from abjad.tools import systemtools
-        agent = systemtools.StorageFormatManager(self)
+        import abjad
+        agent = abjad.StorageFormatManager(self)
         repr_text = '{}.{}'.format(type(self).__name__, self.name)
         storage_format_text = '{}.{}'.format(
             agent.get_tools_package_name(),
             repr_text,
             )
-        return systemtools.FormatSpecification(
+        return abjad.FormatSpecification(
             client=self,
             repr_text=repr_text,
             storage_format_text=storage_format_text,
@@ -79,28 +79,28 @@ class Enumeration(enum.IntEnum):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_expr(cls, argument):
+    def from_expr(class_, argument):
         r'''Convenience constructor for enumerations.
 
         Returns new enumeration item.
         '''
-        from abjad.tools import datastructuretools
-        if isinstance(argument, cls):
+        import abjad
+        if isinstance(argument, class_):
             return argument
         elif isinstance(argument, int):
-            return cls(argument)
+            return class_(argument)
         elif isinstance(argument, str):
             argument = argument.strip()
-            argument = datastructuretools.String(argument).to_snake_case()
+            argument = abjad.String(argument).to_snake_case()
             argument = argument.upper()
             try:
-                return cls[argument]
+                return class_[argument]
             except KeyError:
-                return cls[argument.replace('_', '')]
+                return class_[argument.replace('_', '')]
         elif argument is None:
-            return cls(0)
+            return class_(0)
         message = 'Cannot instantiate {} from {}.'.format(
-            cls.__name__,
+            class_.__name__,
             argument,
             )
         raise ValueError(message)

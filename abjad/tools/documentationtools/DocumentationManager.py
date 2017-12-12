@@ -514,24 +514,24 @@ class DocumentationManager(abctools.AbjadObject):
         for name in dir(tools_package):
             if name.startswith('_'):
                 continue
-            obj = getattr(tools_package, name)
-            if not hasattr(obj, '__module__'):
-                if getattr(obj, '__name__', None) == 'abjad':
+            object_ = getattr(tools_package, name)
+            if not hasattr(object_, '__module__'):
+                if getattr(object_, '__name__', None) == 'abjad':
                     pass
                 else:
-                    message = 'Warning: no nominative object in {}'
-                    message = message.format(obj)
+                    message = 'Warning: {} does not implement a {name} object.'
+                    message = message.format(tools_package, name)
                     print(message)
                 continue
-            if not obj.__module__.startswith(tools_package.__name__):
+            if not object_.__module__.startswith(tools_package.__name__):
                 continue
-            if isinstance(obj, type):
-                classes.append(obj)
-            elif isinstance(obj, types.FunctionType):
-                functions.append(obj)
-        classes.sort(key=lambda x: x.__name__)
+            if isinstance(object_, type):
+                classes.append(object_)
+            elif isinstance(object_, types.FunctionType):
+                functions.append(object_)
+        classes.sort(key=lambda _: _.__name__)
         classes = tuple(classes)
-        functions.sort(key=lambda x: x.__name__)
+        functions.sort(key=lambda _: _.__name__)
         functions = tuple(functions)
         return classes, functions
 

@@ -50,9 +50,8 @@ class LilyPondCommand(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, name=None, format_slot=None, prefix='\\'):
+    def __init__(self, name=None, format_slot='opening', prefix='\\'):
         name = name or 'slurDotted'
-        format_slot = format_slot or 'opening'
         assert format_slot in self._allowable_format_slots, repr(format_slot)
         assert isinstance(name, str), repr(name)
         self._name = name

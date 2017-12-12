@@ -19,11 +19,11 @@ there is a pattern to how they arranged.
         df'4 c' ~ c'1
         """
     staff = abjad.Staff(string)
-    leaves = abjad.select(staff).leaves()
-    for group in abjad.iterate(leaves).by_run((abjad.Note, abjad.Chord)):
-        if 1 < len(group):
-            selection = abjad.select(group)
-            attach(abjad.Slur(), group)
+    leaves = abjad.select(staff).leaves(pitched=True)
+    for run in abjad.select(leaves).runs():
+        if 1 < len(run):
+            selection = abjad.select(run)
+            attach(abjad.Slur(), run)
 
     show(staff)
 
@@ -59,10 +59,10 @@ We add slur spanners inside our loop:
 
 ..  abjad::
 
-    leaves = abjad.select(staff).leaves()
-    for group in abjad.iterate(leaves).by_run((abjad.Note, abjad.Chord)):
-        if 1 < len(group):
-            attach(abjad.Slur(), group)
+    leaves = abjad.select(staff).leaves(pitched=True)
+    for run in abjad.select(leaves).runs():
+        if 1 < len(run):
+            attach(abjad.Slur(), run)
 
 Here's the result:
 
@@ -85,10 +85,10 @@ Let's rewrite our example to prevent that from happening:
 ..  abjad::
 
     staff = abjad.Staff(string)
-    leaves = abjad.select(staff).leaves()
-    for group in abjad.iterate(leaves).by_run((abjad.Note, abjad.Chord)):
-        if 1 < len(group):
-            attach(abjad.Slur(), group)
+    leaves = abjad.select(staff).leaves(pitched=True)
+    for run in abjad.select(leaves).runs():
+        if 1 < len(run):
+            attach(abjad.Slur(), run)
 
 And here's the corrected result:
 

@@ -59,6 +59,23 @@ class Clef(AbjadValueObject):
                 c''8
             }
 
+    ..  container:: example
+
+        Clefs can be tagged:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.attach(abjad.Clef('treble'), staff[0], tag='RED')
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        >>> abjad.f(staff)
+        \new Staff {
+            \clef "treble" %! RED:1
+            c'4
+            d'4
+            e'4
+            f'4
+        }
+
     '''
 
     ### CLASS VARIABLES ###

@@ -28,6 +28,7 @@ class IndicatorWrapper(AbjadValueObject):
     __slots__ = (
         '_component',
         '_context',
+        '_deactivate',
         '_effective_context',
         '_indicator',
         '_is_annotation',
@@ -35,6 +36,7 @@ class IndicatorWrapper(AbjadValueObject):
         '_name',
         '_piecewise_spanner',
         '_synthetic_offset',
+        '_tag',
         )
 
     _publish_storage_format = True
@@ -45,12 +47,14 @@ class IndicatorWrapper(AbjadValueObject):
         self,
         component=None,
         context=None,
+        deactivate=None,
         indicator=None,
         is_annotation=None,
         is_piecewise=None,
         name=None,
         piecewise_spanner=None,
         synthetic_offset=None,
+        tag=None,
         ):
         import abjad
         assert not isinstance(indicator, type(self)), repr(indicator)
@@ -58,6 +62,9 @@ class IndicatorWrapper(AbjadValueObject):
             prototype = (abjad.Component, abjad.Spanner)
             assert isinstance(component, prototype)
         self._component = component
+        if deactivate is not None:
+            deactivate = bool(deactivate)
+        self._deactivate = deactivate
         self._effective_context = None
         self._indicator = indicator
         if is_annotation is not None:
@@ -81,6 +88,11 @@ class IndicatorWrapper(AbjadValueObject):
         if synthetic_offset is not None:
             synthetic_offset = abjad.Offset(synthetic_offset)
         self._synthetic_offset = synthetic_offset
+        if isinstance(tag, abjad.Enumeration):
+            tag = tag.name
+        if tag is not None:
+            assert isinstance(tag, str), repr(tag)
+        self._tag = tag
 
     ### SPECIAL METHODS ###
 
@@ -166,6 +178,103 @@ class IndicatorWrapper(AbjadValueObject):
                 is_piecewise=True,
                 )
 
+        ..  container:: example
+
+            Preserves tag:
+
+            >>> old_staff = abjad.Staff("c'4 d'4 e'4 f'4")
+            >>> abjad.attach(abjad.Clef('alto'), old_staff[0], tag='RED')
+            >>> abjad.f(old_staff)
+            \new Staff {
+                \clef "alto" %! RED:1
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+            >>> leaf = old_staff[0]
+            >>> wrapper = abjad.inspect(leaf).get_indicator(unwrap=False)
+            >>> abjad.f(wrapper)
+            abjad.IndicatorWrapper(
+                component=abjad.Note('\\clef "alto" %! RED:1\nc\'4'),
+                context='Staff',
+                indicator=abjad.Clef('alto'),
+                tag='RED:1',
+                )
+
+            >>> new_staff = abjad.mutate(old_staff).copy()
+            >>> abjad.f(new_staff)
+            \new Staff {
+                \clef "alto" %! RED:1
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+            >>> leaf = new_staff[0]
+            >>> wrapper = abjad.inspect(leaf).get_indicator(unwrap=False)
+            >>> abjad.f(wrapper)
+            abjad.IndicatorWrapper(
+                component=abjad.Note('\\clef "alto" %! RED:1\nc\'4'),
+                context='Staff',
+                indicator=abjad.Clef('alto'),
+                tag='RED:1',
+                )
+
+        ..  container:: example
+
+            Preserves deactivate flag:
+
+            >>> old_staff = abjad.Staff("c'4 d'4 e'4 f'4")
+            >>> abjad.attach(
+            ...     abjad.Clef('alto'),
+            ...     old_staff[0],
+            ...     deactivate=True,
+            ...     tag='RED',
+            ...     )
+            >>> abjad.f(old_staff)
+            \new Staff {
+                %%% \clef "alto" %! RED:1
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+            >>> leaf = old_staff[0]
+            >>> wrapper = abjad.inspect(leaf).get_indicator(unwrap=False)
+            >>> abjad.f(wrapper)
+            abjad.IndicatorWrapper(
+                component=abjad.Note('%%% \\clef "alto" %! RED:1\nc\'4'),
+                context='Staff',
+                deactivate=True,
+                indicator=abjad.Clef('alto'),
+                tag='RED:1',
+                )
+
+            >>> new_staff = abjad.mutate(old_staff).copy()
+            >>> abjad.f(new_staff)
+            \new Staff {
+                %%% \clef "alto" %! RED:1
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+            >>> leaf = new_staff[0]
+            >>> wrapper = abjad.inspect(leaf).get_indicator(unwrap=False)
+            >>> abjad.f(wrapper)
+            abjad.IndicatorWrapper(
+                component=abjad.Note('%%% \\clef "alto" %! RED:1\nc\'4'),
+                context='Staff',
+                deactivate=True,
+                indicator=abjad.Clef('alto'),
+                tag='RED:1',
+                )
+
         Copies indicator and context.
 
         Does not copy start component.
@@ -176,14 +285,21 @@ class IndicatorWrapper(AbjadValueObject):
 
         Returns new indicator wrapper.
         '''
+        if self.tag:
+            stop = self.tag.rfind(':')
+            tag = self.tag[:stop]
+        else:
+            tag = None
         new = type(self)(
             component=None,
             context=self.context,
+            deactivate=self.deactivate,
             indicator=copy.copy(self.indicator),
             is_annotation=self.is_annotation,
             is_piecewise=self.is_piecewise,
             name=self.name,
             synthetic_offset=self.synthetic_offset,
+            tag=tag,
             )
         return new
 
@@ -202,6 +318,9 @@ class IndicatorWrapper(AbjadValueObject):
     def _bind_to_component(self, component):
         import abjad
         self._warn_duplicate_indicator(component)
+        if self.tag is not None:
+            tag_number = self._find_maximum_tag_number(component) + 1
+            self._tag = self.tag + ':' + str(tag_number)
         self._unbind_component()
         self._component = component
         self._update_effective_context()
@@ -237,6 +356,21 @@ class IndicatorWrapper(AbjadValueObject):
             message = message.format(context)
             raise TypeError(message)
 
+    @staticmethod
+    def _find_maximum_tag_number(component):
+        import abjad
+        tag_numbers = [0]
+        for wrapper in abjad.inspect(component).get_indicators(unwrap=False):
+            if wrapper.tag is not None:
+                index = wrapper.tag.rfind(':') + 1
+                tag_number = wrapper.tag[index:]
+                try:
+                    tag_number = int(tag_number)
+                except ValueError:
+                    raise Exception(wrapper.tag)
+                tag_numbers.append(tag_number)
+        return max(tag_numbers)
+
     def _get_effective_context(self):
         if self.component is not None:
             self.component._update_now(indicators=True)
@@ -248,7 +382,10 @@ class IndicatorWrapper(AbjadValueObject):
         if self.is_annotation:
             return result
         if hasattr(self.indicator, '_get_lilypond_format_bundle'):
-            return self.indicator._get_lilypond_format_bundle(self.component)
+            bundle = self.indicator._get_lilypond_format_bundle(self.component)
+            if self.tag:
+                bundle.tag_format_contributions(self.tag, self.deactivate)
+            return bundle
         try:
             context = self._get_effective_context()
             lilypond_format = self.indicator._get_lilypond_format(
@@ -256,10 +393,17 @@ class IndicatorWrapper(AbjadValueObject):
                 )
         except TypeError:
             lilypond_format = self.indicator._get_lilypond_format()
+        if self.tag:
+            tag = ' %! ' + self.tag
         if isinstance(lilypond_format, (tuple, list)):
+            if self.tag:
+                lilypond_format = [_ + tag for _ in lilypond_format]
             result.extend(lilypond_format)
         else:
+            if self.tag:
+                lilypond_format += tag
             result.append(lilypond_format)
+
         if self._get_effective_context() is not None:
             return result
         if isinstance(self.indicator, abjad.TimeSignature):
@@ -324,21 +468,24 @@ class IndicatorWrapper(AbjadValueObject):
         import abjad
         if isinstance(component, abjad.Spanner):
             return
+        if isinstance(self.indicator, abjad.LilyPondLiteral):
+            return
         prototype = type(self.indicator)
         wrapper = component._get_effective(prototype, unwrap=False)
         if (wrapper is not None and
             wrapper.context is not None and
             wrapper.indicator != self.indicator):
             if wrapper.start_offset == self.start_offset:
-                message = 'can not attach {} to ...\n\n{}'
-                message += '\n\n... because {} is already attached to ...\n\n'
-                message += '{}\n\nsee wrapper: {!r}.'
+                message = 'Can not attach ...\n\n{}\n\n...to ...\n\n{}'
+                message += '\n\n... because ...\n\n{}\n\n'
+                message += '... is already attached to ...\n\n'
+                message += '{}\n\nSee:\n\n{}'
                 message = message.format(
                     self.indicator,
                     component,
                     wrapper.indicator,
                     wrapper.component,
-                    wrapper,
+                    format(wrapper),
                     )
                 raise Exception(message)
 
@@ -365,6 +512,14 @@ class IndicatorWrapper(AbjadValueObject):
         Returns context or string.
         '''
         return self._context
+
+    @property
+    def deactivate(self):
+        r'''Is true when wrapper deactivates tag.
+
+        Returns true, false or none.
+        '''
+        return self._deactivate
 
     @property
     def indicator(self):
@@ -447,3 +602,13 @@ class IndicatorWrapper(AbjadValueObject):
         Returns offset or none.
         '''
         return self._synthetic_offset
+
+    @property
+    def tag(self):
+        r'''Gets tag.
+
+        Tag is optional.
+
+        Returns string or none.
+        '''
+        return self._tag

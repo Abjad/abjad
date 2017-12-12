@@ -108,11 +108,14 @@ del tools
 from abjad._version import __version_info__, __version__
 del _version
 
-def f(argument):
+def f(argument, strict=False):
     if hasattr(argument, '_publish_storage_format'):
         print(format(argument, 'storage'))
     else:
-        print(format(argument, 'lilypond'))
+        if strict is True:
+            print(format(argument, 'lilypond:strict'))
+        else:
+            print(format(argument, 'lilypond'))
 
 from abjad import demos
 from abjad import ly

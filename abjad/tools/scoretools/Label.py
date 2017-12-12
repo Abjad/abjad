@@ -186,6 +186,7 @@ class Label(abctools.AbjadObject):
     __slots__ = (
         '_client',
         '_expression',
+        '_tag',
         )
 
     _pc_number_to_color = {
@@ -206,7 +207,7 @@ class Label(abctools.AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, client=None):
+    def __init__(self, client=None, tag=None):
         import abjad
         prototype = (
             abjad.Component,
@@ -219,6 +220,7 @@ class Label(abctools.AbjadObject):
             raise TypeError(message)
         self._client = client
         self._expression = None
+        self._tag = tag
 
     ### PRIVATE METHODS ###
 
@@ -252,6 +254,14 @@ class Label(abctools.AbjadObject):
         Returns component, selection, spanner or none.
         '''
         return self._client
+
+    @property
+    def tag(self):
+        r'''Gets tag.
+
+        Returns string or none.
+        '''
+        return self._tag
 
     ### PUBLIC METHODS ###
 
@@ -1844,7 +1854,7 @@ class Label(abctools.AbjadObject):
                     leaf = vertical_moment.start_leaves[0]
                 else:
                     leaf = vertical_moment.start_leaves[-1]
-                abjad.attach(label, leaf)
+                abjad.attach(label, leaf, tag=self.tag)
 
     def with_durations(self, direction=Up, preferred_denominator=None):
         r'''Labels logical ties with durations.
@@ -2003,7 +2013,7 @@ class Label(abctools.AbjadObject):
                 duration = duration.with_denominator(preferred_denominator)
             label = abjad.Markup(str(duration), direction=direction)
             label = label.small()
-            abjad.attach(label, logical_tie.head)
+            abjad.attach(label, logical_tie.head, tag=self.tag)
 
     def with_indices(self, direction=Up, prototype=None):
         r'''Labels logical ties with indices.
@@ -2457,7 +2467,7 @@ class Label(abctools.AbjadObject):
             label = label.small()
             leaves = abjad.select(item).leaves()
             first_leaf = leaves[0]
-            abjad.attach(label, first_leaf)
+            abjad.attach(label, first_leaf, tag=self.tag)
 
     def with_intervals(self, direction=Up, prototype=None):
         r"""Labels consecutive notes with intervals.
@@ -2787,7 +2797,7 @@ class Label(abctools.AbjadObject):
                         interval)
                     label = abjad.Markup(label, direction)
                 if label is not None:
-                    abjad.attach(label, note)
+                    abjad.attach(label, note, tag=self.tag)
 
     def with_pitches(self, direction=Up, locale=None, prototype=None):
         r'''Labels logical ties with pitches.
@@ -3464,7 +3474,7 @@ class Label(abctools.AbjadObject):
                     label = label.small()
             if label is not None:
                 label = abjad.new(label, direction=direction)
-                abjad.attach(label, leaf)
+                abjad.attach(label, leaf, tag=self.tag)
 
     def with_set_classes(self, direction=Up, prototype=None):
         r'''Labels items in client with set-classes.
@@ -3802,13 +3812,14 @@ class Label(abctools.AbjadObject):
             if label is not None:
                 label = label.tiny()
                 leaf = selection[0]
-                abjad.attach(label, leaf)
+                abjad.attach(label, leaf, tag=self.tag)
 
     def with_start_offsets(
         self,
         clock_time=False,
-        direction=Up,
+        direction=None,
         font_size=None,
+        global_offset=None,
         ):
         r'''Labels logical ties with start offsets.
 
@@ -3818,8 +3829,11 @@ class Label(abctools.AbjadObject):
 
             ..  container:: example
 
-                >>> staff = abjad.Staff(r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4")
+                >>> string = r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4"
+                >>> staff = abjad.Staff(string)
                 >>> abjad.label(staff).with_start_offsets(direction=abjad.Up)
+                Duration(1, 1)
+
                 >>> abjad.override(staff).text_script.staff_padding = 4
                 >>> abjad.override(staff).tuplet_bracket.staff_padding = 0
                 >>> abjad.show(staff) # doctest: +SKIP
@@ -3842,9 +3856,12 @@ class Label(abctools.AbjadObject):
 
             ..  container:: example expression
 
-                >>> staff = abjad.Staff(r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4")
-                >>> expression = abjad.label().with_start_offsets(direction=abjad.Up)
+                >>> string = r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4"
+                >>> staff = abjad.Staff(string)
+                >>> expression = abjad.label().with_start_offsets()
                 >>> expression(staff)
+                Duration(1, 1)
+
                 >>> abjad.override(staff).text_script.staff_padding = 4
                 >>> abjad.override(staff).tuplet_bracket.staff_padding = 0
                 >>> abjad.show(staff) # doctest: +SKIP
@@ -3876,6 +3893,8 @@ class Label(abctools.AbjadObject):
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
                 >>> abjad.attach(mark, staff[0])
                 >>> abjad.label(staff).with_start_offsets(clock_time=True)
+                Duration(8, 1)
+
                 >>> abjad.override(staff).text_script.staff_padding = 4
                 >>> abjad.override(staff).tuplet_bracket.staff_padding = 0
                 >>> abjad.show(score) # doctest: +SKIP
@@ -3904,6 +3923,8 @@ class Label(abctools.AbjadObject):
                 >>> abjad.attach(mark, staff[0])
                 >>> expression = abjad.label().with_start_offsets(clock_time=True)
                 >>> expression(staff)
+                Duration(8, 1)
+
                 >>> abjad.override(staff).text_script.staff_padding = 4
                 >>> abjad.override(staff).tuplet_bracket.staff_padding = 0
                 >>> abjad.show(score) # doctest: +SKIP
@@ -3939,6 +3960,8 @@ class Label(abctools.AbjadObject):
                 ...     clock_time=True,
                 ...     font_size=-3,
                 ...     )
+                Duration(8, 1)
+
                 >>> abjad.override(staff).text_script.staff_padding = 4
                 >>> abjad.override(staff).tuplet_bracket.staff_padding = 0
                 >>> abjad.show(score) # doctest: +SKIP
@@ -3990,6 +4013,8 @@ class Label(abctools.AbjadObject):
                 ...     font_size=-3,
                 ...     )
                 >>> expression(staff)
+                Duration(8, 1)
+
                 >>> abjad.override(staff).text_script.staff_padding = 4
                 >>> abjad.override(staff).tuplet_bracket.staff_padding = 0
                 >>> abjad.show(score) # doctest: +SKIP
@@ -4030,23 +4055,34 @@ class Label(abctools.AbjadObject):
                         }
                     >>
 
-        Returns none.
+        Returns total duration.
         '''
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
+        direction = direction or abjad.Up
+        if global_offset is not None:
+            assert isinstance(global_offset, abjad.Duration)
         for logical_tie in abjad.iterate(self.client).logical_ties():
             if clock_time:
                 inspector = abjad.inspect(logical_tie.head)
                 timespan = inspector.get_timespan(in_seconds=True)
                 start_offset = timespan.start_offset
+                if global_offset is not None:
+                    start_offset += global_offset
                 string = start_offset.to_clock_string()
                 string = '"{}"'.format(string)
             else:
                 timespan = abjad.inspect(logical_tie.head).get_timespan()
                 start_offset = timespan.start_offset
+                if global_offset is not None:
+                    start_offset += global_offset
                 string = str(start_offset)
             label = abjad.Markup(string, direction=direction)
             if font_size is not None:
                 label = label.fontsize(font_size)
-            abjad.attach(label, logical_tie.head)
+            abjad.attach(label, logical_tie.head, tag=self.tag)
+        total_duration = abjad.Duration(timespan.stop_offset)
+        if global_offset is not None:
+            total_duration += global_offset
+        return total_duration
