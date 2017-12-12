@@ -68,15 +68,12 @@ class TieSpecifier(AbjadValueObject):
         import abjad
         if not self.use_messiaen_style_ties:
             return
-        tie_spanners = set()
+        ties = set()
         for leaf in abjad.iterate(divisions).by_leaf():
-            tie_spanners_ = abjad.inspect(leaf).get_spanners(
-                prototype=abjad.Tie,
-                in_parentage=True,
-                )
-            tie_spanners.update(tie_spanners_)
-        for tie_spanner in tie_spanners:
-            tie_spanner._use_messiaen_style_ties = True
+            ties_ = abjad.inspect(leaf).get_spanners(abjad.Tie)
+            ties.update(ties_)
+        for tie in ties:
+            tie._use_messiaen_style_ties = True
 
     def _strip_ties_(self, divisions):
         import abjad

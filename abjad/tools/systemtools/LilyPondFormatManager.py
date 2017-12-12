@@ -523,7 +523,7 @@ class LilyPondFormatManager(AbjadObject):
         Returns string or none.
         '''
         result = []
-        for leaf in spanner._get_leaves():
+        for leaf in spanner.leaves:
             bundle = spanner._get_lilypond_format_bundle(leaf)
             bundle_pieces = format(bundle).split('\n')
             result.append('{!s}\t{}'.format(leaf, bundle_pieces[0]))

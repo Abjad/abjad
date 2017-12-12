@@ -863,23 +863,23 @@ def test_scoretools_Container___setitem___21():
     beam = abjad.inspect(staff[0]).get_spanner(abjad.Beam)
 
     leaves = abjad.select(staff).by_leaf()
-    assert beam.components == leaves
+    assert beam.leaves == leaves
 
     staff[1].append("g'8")
     leaves = abjad.select(staff).by_leaf()
-    assert beam.components == leaves
+    assert beam.leaves == leaves
 
     staff[1].insert(0, "b'8")
     leaves = abjad.select(staff).by_leaf()
-    assert beam.components == leaves
+    assert beam.leaves == leaves
 
     staff.insert(1, "a'8")
     leaves = abjad.select(staff).by_leaf()
-    assert beam.components == leaves
+    assert beam.leaves == leaves
 
     staff.insert(3, "fs'8")
     leaves = abjad.select(staff).by_leaf()
-    assert beam.components == leaves
+    assert beam.leaves == leaves
 
     assert format(staff) == abjad.String.normalize(
         r'''

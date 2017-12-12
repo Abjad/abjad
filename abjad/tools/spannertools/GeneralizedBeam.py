@@ -214,7 +214,7 @@ class GeneralizedBeam(Spanner):
             not isinstance(leaf, abjad.Chord)
             ):
             return bundle
-        leaf_ids = [id(x) for x in self._get_leaves()]
+        leaf_ids = [id(_) for _ in self.leaves]
         previous_leaf = leaf._get_leaf(-1)
         previous_leaf_is_joinable = self._leaf_is_joinable(
             previous_leaf, leaf_ids)

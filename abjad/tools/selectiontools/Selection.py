@@ -896,6 +896,21 @@ class Selection(object):
             result.update(spanners)
         return result
 
+    def _get_timespan(self, in_seconds=False):
+        import abjad
+        if len(self):
+            timespan_ = self[0]._get_timespan(in_seconds=in_seconds)
+            start_offset = timespan_.start_offset
+            timespan_ = self[-1]._get_timespan(in_seconds=in_seconds)
+            stop_offset = timespan_.stop_offset
+        else:
+            start_offset = abjad.Duration(0)
+            stop_offset = abjad.Duration(0)
+        return abjad.Timespan(
+            start_offset=start_offset,
+            stop_offset=stop_offset,
+            )
+
     def _give_dominant_spanners(self, recipients):
         r'''Find all spanners dominating music.
         Insert each component in recipients into each dominant spanner.
@@ -981,10 +996,10 @@ class Selection(object):
         crossing_spanners = self._get_crossing_spanners()
         components_including_children = select(self).by_class()
         for crossing_spanner in list(crossing_spanners):
-            spanner_components = crossing_spanner._components[:]
+            spanner_components = crossing_spanner.leaves[:]
             for component in components_including_children:
                 if component in spanner_components:
-                    crossing_spanner._components.remove(component)
+                    crossing_spanner._leaves.remove(component)
                     component._spanners.discard(crossing_spanner)
 
     ### PUBLIC METHODS ###
@@ -1344,19 +1359,16 @@ class Selection(object):
             durations.append(duration)
         return sum(durations)
 
-    def get_spanners(self, prototype=None, in_parentage=False):
+    def get_spanners(self, prototype=None):
         r'''Gets spanners attached to any component in selection.
 
         Returns set.
         '''
-        result = set()
+        spanners = set()
         for component in self:
-            spanners = component._get_spanners(
-                prototype=prototype,
-                in_parentage=in_parentage,
-                )
-            result.update(spanners)
-        return result
+            spanners_ = component._get_spanners(prototype=prototype)
+            spanners.update(spanners_)
+        return spanners
 
     def get_timespan(self, in_seconds=False):
         r'''Gets timespan of contiguous selection.

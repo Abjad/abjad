@@ -41,18 +41,13 @@ def select(argument=None):
 
     Returns selector when `argument` is none.
     '''
-    from abjad.tools import scoretools
-    from abjad.tools import selectiontools
-    from abjad.tools import selectortools
-    from abjad.tools import spannertools
+    import abjad
     if argument is None:
-        return selectortools.Selector()
-    elif isinstance(argument, scoretools.Component):
-        return selectiontools.Selection(argument)
+        return abjad.Selector()
+    elif isinstance(argument, abjad.Component):
+        return abjad.Selection(argument)
     elif hasattr(argument, '_music'):
-        music = argument._music
-        return selectiontools.Selection(music)
-    elif isinstance(argument, spannertools.Spanner):
-        music = argument._components
-        return selectiontools.Selection(music)
-    return selectiontools.Selection(argument)
+        return abjad.Selection(argument._music)
+    elif isinstance(argument, abjad.Spanner):
+        return abjad.Selection(argument.leaves)
+    return abjad.Selection(argument)

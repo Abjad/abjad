@@ -14,8 +14,6 @@ class NamedPitchClass(PitchClass):
             >>> abjad.NamedPitchClass('cs')
             NamedPitchClass('cs')
 
-        Initializes quartertone from pitch-class name:
-
         ::
 
             >>> abjad.NamedPitchClass('cqs')
@@ -30,8 +28,6 @@ class NamedPitchClass(PitchClass):
             >>> abjad.NamedPitchClass(14)
             NamedPitchClass('d')
 
-        Initializes quartertone from number of semitones:
-
         ::
 
             >>> abjad.NamedPitchClass(14.5)
@@ -43,8 +39,13 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> abjad.NamedPitchClass(abjad.NamedPitch('g,'))
-            NamedPitchClass('g')
+            >>> abjad.NamedPitchClass(abjad.NamedPitch('d'))
+            NamedPitchClass('d')
+
+        ::
+
+            >>> abjad.NamedPitchClass(abjad.NamedPitch('dqs'))
+            NamedPitchClass('dqs')
 
     ..  container:: example
 
@@ -52,8 +53,13 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> abjad.NamedPitchClass(abjad.NumberedPitch(15))
-            NamedPitchClass('ef')
+            >>> abjad.NamedPitchClass(abjad.NumberedPitch(14))
+            NamedPitchClass('d')
+
+        ::
+
+            >>> abjad.NamedPitchClass(abjad.NumberedPitch(14.5))
+            NamedPitchClass('dqs')
 
     ..  container:: example
 
@@ -61,8 +67,13 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> abjad.NamedPitchClass(abjad.NumberedPitchClass(4))
-            NamedPitchClass('e')
+            >>> abjad.NamedPitchClass(abjad.NumberedPitchClass(2))
+            NamedPitchClass('d')
+
+        ::
+
+            >>> abjad.NamedPitchClass(abjad.NumberedPitchClass(2.5))
+            NamedPitchClass('dqs')
 
     ..  container:: example
 
@@ -73,6 +84,11 @@ class NamedPitchClass(PitchClass):
             >>> abjad.NamedPitchClass('C#5')
             NamedPitchClass('cs')
 
+        ::
+
+            >>> abjad.NamedPitchClass('Cs5')
+            NamedPitchClass('cs')
+
         Initializes quartertone from pitch-class / octave-number string:
 
         ::
@@ -80,38 +96,60 @@ class NamedPitchClass(PitchClass):
             >>> abjad.NamedPitchClass('C+5')
             NamedPitchClass('cqs')
 
+        ::
+
+            >>> abjad.NamedPitchClass('Cqs5')
+            NamedPitchClass('cqs')
+
     ..  container:: example
 
-        Initializes from pitch-class abbreviation:
+        Initializes from pitch-class string:
 
         ::
 
-            >>> abjad.NamedPitchClass('C#5')
+            >>> abjad.NamedPitchClass('C#')
             NamedPitchClass('cs')
 
-        Initializes quartertone from pitch-class / octave-number string:
-
         ::
 
-            >>> abjad.NamedPitchClass('C+') # doctest: +SKIP
-
-        ..  note:: Make this work.
-
-    ..  container:: example
-
-        Initializes from named pitch-class:
+            >>> abjad.NamedPitchClass('Cs')
+            NamedPitchClass('cs')
 
         ::
-
-            >>> abjad.NamedPitchClass(abjad.Note("a'8."))
-            NamedPitchClass('a')
-
-    ..  container:: example
-
-        Initializes from pitch-class name:
 
             >>> abjad.NamedPitchClass('cs')
             NamedPitchClass('cs')
+
+        Initializes quartertone from pitch-class string
+
+        ::
+
+            >>> abjad.NamedPitchClass('C+')
+            NamedPitchClass('cqs')
+
+        ::
+
+            >>> abjad.NamedPitchClass('Cqs')
+            NamedPitchClass('cqs')
+
+        ::
+
+            >>> abjad.NamedPitchClass('cqs')
+            NamedPitchClass('cqs')
+
+    ..  container:: example
+
+        Initializes from note:
+
+        ::
+
+            >>> abjad.NamedPitchClass(abjad.Note("d''8."))
+            NamedPitchClass('d')
+
+        ::
+
+            >>> abjad.NamedPitchClass(abjad.Note("dqs''8."))
+            NamedPitchClass('dqs')
 
     '''
 
@@ -389,39 +427,37 @@ class NamedPitchClass(PitchClass):
         self._diatonic_pitch_class_number = argument._diatonic_pitch_class_number
 
     def _initialize_by_number(self, argument):
-        from abjad.tools import pitchtools
+        import abjad
         pitch_class_number = float(argument) % 12
-        numbered_pitch_class = pitchtools.NumberedPitchClass(
-            pitch_class_number)
+        numbered_pitch_class = abjad.NumberedPitchClass(pitch_class_number)
         pitch_class_name = numbered_pitch_class.name
         self._initialize_by_pitch_name(pitch_class_name)
 
     def _initialize_by_pitch_carrier(self, argument):
-        from abjad.tools import pitchtools
-        named_pitch = pitchtools.NamedPitch.from_pitch_carrier(argument)
+        import abjad
+        named_pitch = abjad.NamedPitch.from_pitch_carrier(argument)
         self._initialize_by_named_pitch(named_pitch)
 
     def _initialize_by_pitch_class_octave_number_string(self, argument):
-        from abjad.tools import pitchtools
-        group_dict = pitchtools.Pitch._pitch_class_octave_number_regex.match(
+        import abjad
+        group_dict = abjad.Pitch._pitch_class_octave_number_regex.match(
             argument).groupdict()
         diatonic_pitch_class_name = group_dict['diatonic_pitch_class_name'].lower()
-        symbol = group_dict['symbol']
-        self._alteration = \
-            pitchtools.Accidental._symbol_to_semitones[
-                symbol]
+        #symbol = group_dict['symbol']
+        symbol = group_dict['comprehensive_accidental']
+        self._alteration = abjad.Accidental._symbol_to_semitones[symbol]
         self._diatonic_pitch_class_number = \
             self._diatonic_pitch_class_name_to_diatonic_pitch_class_number[
                 diatonic_pitch_class_name]
 
     def _initialize_by_pitch_name(self, argument):
-        from abjad.tools import pitchtools
-        match = pitchtools.Pitch._pitch_name_regex.match(argument.lower())
+        import abjad
+        match = abjad.Pitch._pitch_name_regex.match(argument.lower())
         assert match is not None, repr(match)
         groups = match.groups()
         diatonic_pitch_class_name = groups[0]
         abbreviation = groups[1]
-        accidental = pitchtools.Accidental(abbreviation)
+        accidental = abjad.Accidental(abbreviation)
         self._alteration = accidental.semitones
         self._diatonic_pitch_class_number = \
             self._diatonic_pitch_class_name_to_diatonic_pitch_class_number[

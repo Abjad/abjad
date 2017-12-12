@@ -2643,7 +2643,7 @@ class IterationAgent(abctools.AbjadObject):
             if isinstance(self._client, scoretools.Chord):
                 result.extend(self._client.written_pitches)
             elif isinstance(self._client, spannertools.Spanner):
-                for leaf in self._client._get_leaves():
+                for leaf in self._client.leaves:
                     try:
                         result.append(leaf.written_pitch)
                     except AttributeError:

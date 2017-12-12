@@ -247,8 +247,8 @@ class DuratedComplexBeam(ComplexBeam):
             return True
         return False
 
-    def _reverse_components(self):
-        ComplexBeam._reverse_components(self)
+    def _reverse_leaves(self):
+        ComplexBeam._reverse_leaves(self)
         durations = reversed(self.durations)
         durations = tuple(durations)
         self._durations = durations

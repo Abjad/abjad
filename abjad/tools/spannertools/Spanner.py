@@ -6,8 +6,7 @@ from abjad.tools.topleveltools import override
 class Spanner(AbjadObject):
     '''Spanner.
 
-    Any type of object that stretches horizontally and encompasses some number
-    of score components.
+    Any object that stretches horizontally and encompasses leaves.
 
     Examples include beams, slurs, hairpins and trills.
     '''
@@ -15,10 +14,10 @@ class Spanner(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_components',
         '_contiguity_constraint',
         '_ignore_attachment_test',
         '_indicator_wrappers',
+        '_leaves',
         '_lilypond_grob_name_manager',
         '_lilypond_setting_name_manager',
         '_name',
@@ -32,11 +31,11 @@ class Spanner(AbjadObject):
         name=None,
         ):
         overrides = overrides or {}
-        self._components = []
         self._contiguity_constraint = 'logical voice'
         self._apply_overrides(overrides)
         self._ignore_attachment_test = None
         self._indicator_wrappers = []
+        self._leaves = []
         self._lilypond_setting_name_manager = None
         if name is not None:
             name = str(name)
@@ -50,7 +49,7 @@ class Spanner(AbjadObject):
 
         Returns true or false.
         '''
-        for leaf in self._components:
+        for leaf in self.leaves:
             if leaf is argument:
                 return True
         else:
@@ -59,7 +58,7 @@ class Spanner(AbjadObject):
     def __copy__(self, *arguments):
         r'''Copies spanner.
 
-        Does not copy spanner components.
+        Does not copy spanner leaves.
 
         Returns new spanner.
         '''
@@ -76,13 +75,13 @@ class Spanner(AbjadObject):
     def __getitem__(self, argument):
         r'''Gets item or slice identified by `argument`.
 
-        Returns component.
+        Returns leaf.
         '''
         import abjad
         if isinstance(argument, slice):
-            components = self._components.__getitem__(argument)
-            return abjad.select(components)
-        return self._components.__getitem__(argument)
+            leaves = self.leaves.__getitem__(argument)
+            return abjad.select(leaves)
+        return self.leaves.__getitem__(argument)
 
     def __getnewargs__(self):
         r'''Gets new arguments of spanner.
@@ -103,11 +102,11 @@ class Spanner(AbjadObject):
         return state
 
     def __len__(self):
-        r'''Gets number of components in spanner.
+        r'''Gets number of leaves in spanner.
 
         Returns nonnegative integer.
         '''
-        return len(self.components)
+        return len(self.leaves)
 
     def __lt__(self, argument):
         r'''Is true when spanner is less than `argument`. Otherwise false.
@@ -121,33 +120,33 @@ class Spanner(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _append(self, component):
+    def _append(self, leaf):
         import abjad
         if self._ignore_attachment_test:
             pass
-        elif not self._attachment_test(component):
+        elif not self._attachment_test(leaf):
             message = 'can not attach {!r} to {!r}.'
-            message = message.format(self, component)
+            message = message.format(self, leaf)
             raise Exception(message)
         if self._contiguity_constraint == 'logical voice':
-            components = self[-1:] + [component]
+            leaves = self[-1:] + [leaf]
             if not abjad.Selection._all_in_same_logical_voice(
-                components,
+                leaves,
                 contiguous=True,
                 ):
-                raise Exception(components)
-        component._spanners.add(self)
-        self._components.append(component)
+                raise Exception(leaves)
+        leaf._spanners.add(self)
+        self._leaves.append(leaf)
 
-    def _append_left(self, component):
+    def _append_left(self, leaf):
         import abjad
-        components = [component] + self[:1]
+        leaves = [leaf] + self[:1]
         assert abjad.Selection._all_in_same_logical_voice(
-            components,
+            leaves,
             contiguous=True,
             )
-        component._spanners.add(self)
-        self._components.insert(0, component)
+        leaf._spanners.add(self)
+        self._leaves.insert(0, leaf)
 
     def _apply_overrides(self, overrides):
         import abjad
@@ -161,20 +160,20 @@ class Spanner(AbjadObject):
                     value = eval(value, namespace, namespace)
             setattr(grob_manager, attribute, value)
 
-    def _at_least_two_leaves(self, component_expression):
+    def _at_least_two_leaves(self, argument):
         import abjad
-        leaves = abjad.select(component_expression).by_leaf()
+        leaves = abjad.select(argument).by_leaf()
         return 1 < len(leaves)
 
-    def _attach(self, components):
+    def _attach(self, argument):
         import abjad
         assert not self, repr(self)
-        if isinstance(components, abjad.Component):
-            self._append(components)
-        elif isinstance(components, (list, tuple, abjad.Selection)):
-            self._extend(components)
+        if isinstance(argument, abjad.Leaf):
+            self._append(argument)
+        elif isinstance(argument, (list, tuple, abjad.Selection)):
+            self._extend(argument)
         else:
-            raise TypeError(components)
+            raise TypeError(argument)
 
     def _attach_piecewise(self, indicator, leaf):
         import abjad
@@ -192,76 +191,76 @@ class Spanner(AbjadObject):
             )
         wrapper._bind_to_component(leaf)
 
-    def _attachment_test(self, component):
+    def _attachment_test(self, argument):
         import abjad
-        return isinstance(component, abjad.Leaf)
+        return isinstance(argument, abjad.Leaf)
 
-    def _attachment_test_all(self, component_expression):
+    def _attachment_test_all(self, argument):
         return True
 
-    def _block_all_components(self):
+    def _block_all_leaves(self):
         r'''Not composer-safe.
         '''
-        for component in self:
-            self._block_component(component)
+        for leaf in self:
+            self._block_leaf(leaf)
 
-    def _block_component(self, component):
+    def _block_leaf(self, leaf):
         r'''Not composer-safe.
         '''
-        component._spanners.remove(self)
+        leaf._spanners.remove(self)
 
     def _constrain_contiguity(self):
         r'''Not composer-safe.
         '''
         self._contiguity_constraint = 'logical_voice'
 
-    def _copy(self, components):
-        r'''Returns copy of spanner with `components`.
-        `components` must be an iterable of components already contained in
-        spanner.
+    def _copy(self, leaves):
+        r'''Returns copy of spanner with `leaves`.
+
+        `leaves` must already be contained in spanner.
         '''
-        my_components = self._components[:]
-        self._components = []
+        my_leaf = self._leaves[:]
+        self._leaves = []
         result = copy.copy(self)
-        self._components = my_components
-        for component in components:
-            assert component in self
-        for component in components:
-            result._components.append(component)
-        result._unblock_all_components()
+        self._leaves = my_leaf
+        for leaf in leaves:
+            assert leaf in self
+        for leaf in leaves:
+            result._leaves.append(leaf)
+        result._unblock_all_leaves()
         return result
 
     def _copy_keyword_args(self, new):
         pass
 
     def _detach(self):
-        self._sever_all_components()
+        self._sever_all_leaves()
 
-    def _extend(self, components):
+    def _extend(self, leaves):
         import abjad
-        component_input = list(self[-1:])
-        component_input.extend(components)
+        leaf_input = list(self[-1:])
+        leaf_input.extend(leaves)
         if self._contiguity_constraint == 'logical voice':
             if not abjad.Selection._all_in_same_logical_voice(
-                component_input,
+                leaf_input,
                 contiguous=True,
                 ):
-                message = 'must be contiguous components'
+                message = 'must be contiguous leaves'
                 message += ' in same logical voice: {!r}.'
-                message = message.format(component_input)
+                message = message.format(leaf_input)
                 raise Exception(message)
-        for component in components:
-            self._append(component)
+        for leaf in leaves:
+            self._append(leaf)
 
-    def _extend_left(self, components):
+    def _extend_left(self, leaves):
         import abjad
-        component_input = components + list(self[:1])
+        leaf_input = leaves + list(self[:1])
         assert abjad.Selection._all_in_same_logical_voice(
-            component_input,
+            leaf_input,
             contiguous=True,
             )
-        for component in reversed(components):
-            self._append_left(component)
+        for leaf in reversed(leaves):
+            self._append_left(leaf)
 
     def _format_after_leaf(self, leaf):
         return []
@@ -273,7 +272,7 @@ class Spanner(AbjadObject):
         return []
 
     def _fracture(self, i, direction=None):
-        r'''Fractures spanner at `direction` of component at index `i`.
+        r'''Fractures spanner at `direction` of leaf at index `i`.
 
         Valid values for `direction` are ``Left``, ``Right`` and ``None``.
 
@@ -292,7 +291,7 @@ class Spanner(AbjadObject):
             left = self._copy(self[:i])
             right = self._copy(self[i + 1:])
             center = self._copy(self[i:i + 1])
-            self._block_all_components()
+            self._block_all_leaves()
             return self, left, center, right
         else:
             message = 'direction {!r} must be left, right or none.'
@@ -302,20 +301,20 @@ class Spanner(AbjadObject):
     def _fracture_left(self, i):
         left = self._copy(self[:i])
         right = self._copy(self[i:])
-        self._block_all_components()
+        self._block_all_leaves()
         return self, left, right
 
     def _fracture_right(self, i):
         left = self._copy(self[:i + 1])
         right = self._copy(self[i + 1:])
-        self._block_all_components()
+        self._block_all_leaves()
         return self, left, right
 
     def _fuse_by_reference(self, spanner):
         result = self._copy(self[:])
-        self._block_all_components()
-        spanner._block_all_components()
-        result._extend(spanner.components)
+        self._block_all_leaves()
+        spanner._block_all_leaves()
+        result._extend(spanner.leaves)
         return [(self, spanner, result)]
 
     def _get_basic_lilypond_format_bundle(self, leaf):
@@ -335,23 +334,19 @@ class Spanner(AbjadObject):
         return bundle
 
     def _get_compact_summary(self):
-        len_self = len(self)
-        if not len_self:
+        if not len(self):
             return ''
-        elif 0 < len_self <= 8:
-            return ', '.join([str(x) for x in self])
+        elif 0 < len(self) <= 8:
+            return ', '.join([str(_) for _ in self])
         else:
-            left = ', '.join([str(x) for x in self[:2]])
-            right = ', '.join([str(x) for x in self[-2:]])
-            number_in_middle = len_self - 4
-            middle = ', ... [%s] ..., ' % number_in_middle
+            left = ', '.join([str(_) for _ in self[:2]])
+            right = ', '.join([str(_) for _ in self[-2:]])
+            number = len(self) - 4
+            middle = ', ... [{}] ..., '.format(number)
             return left + middle + right
 
     def _get_duration(self, in_seconds=False):
-        return sum(
-            component._get_duration(in_seconds=in_seconds)
-            for component in self
-            )
+        return sum(_._get_duration(in_seconds=in_seconds) for _ in self)
 
     def _get_duration_in_seconds(self):
         import abjad
@@ -408,45 +403,20 @@ class Spanner(AbjadObject):
         matching_indicators = tuple(matching_indicators)
         return matching_indicators
 
-    def _get_leaves(self):
-        import abjad
-        result = []
-        for component in self._components:
-            for node in abjad.iterate(component).depth_first():
-                if isinstance(node, abjad.Leaf):
-                    result.append(node)
-        result = abjad.select(result)
-        return result
-
     def _get_lilypond_format_bundle(self, leaf):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         return bundle
 
     def _get_my_first_leaf(self):
-        import abjad
-        for leaf in abjad.iterate(self).by_leaf():
-            return leaf
+        if self.leaves:
+            return self.leaves[0]
 
     def _get_my_last_leaf(self):
-        import abjad
-        for leaf in abjad.iterate(self).by_leaf(reverse=True):
-            return leaf
+        if self.leaves:
+            return self.leaves[-1]
 
     def _get_my_nth_leaf(self, n):
-        import abjad
-        assert isinstance(n, int), repr(n)
-        if 0 <= n:
-            leaves = abjad.iterate(self).by_leaf()
-            for leaf_index, leaf in enumerate(leaves):
-                if leaf_index == n:
-                    return leaf
-        else:
-            leaves = abjad.iterate(self).by_leaf(reverse=True)
-            for leaf_index, leaf in enumerate(leaves):
-                leaf_number = -leaf_index - 1
-                if leaf_number == n:
-                    return leaf
-        raise IndexError
+        return self.leaves[n]
 
     def _get_piecewise_indicator(self, leaf, prototype=None):
         indicators = self._get_piecewise_indicators(leaf, prototype)
@@ -471,23 +441,21 @@ class Spanner(AbjadObject):
         return indicators
 
     def _get_preprolated_duration(self):
-        return sum([
-            component._get_preprolated_duration() for component in self]
-            )
+        return sum([_._get_preprolated_duration() for _ in self])
 
     def _get_summary(self):
         if 0 < len(self):
-            return ', '.join([str(x) for x in self])
+            return ', '.join([str(_) for _ in self])
         else:
             return ' '
 
     def _get_timespan(self, in_seconds=False):
         import abjad
         if len(self):
-            start_offset = self[0]._get_timespan(
-                in_seconds=in_seconds)._start_offset
-            stop_offset = self[-1]._get_timespan(
-                in_seconds=in_seconds)._stop_offset
+            timespan_ = self[0]._get_timespan(in_seconds=in_seconds)
+            start_offset = timespan_.start_offset
+            timespan_ = self[-1]._get_timespan(in_seconds=in_seconds)
+            stop_offset = timespan_.stop_offset
         else:
             start_offset = abjad.Duration(0)
             stop_offset = abjad.Duration(0)
@@ -500,19 +468,19 @@ class Spanner(AbjadObject):
         indicators = self._get_piecewise_indicators(leaf, prototype)
         return bool(indicators)
 
-    def _index(self, component):
-        return self._components.index(component)
+    def _index(self, leaf):
+        return self._leaves.index(leaf)
 
-    def _insert(self, i, component):
+    def _insert(self, i, leaf):
         r'''Not composer-safe.
         '''
         import abjad
-        if not isinstance(component, abjad.Leaf):
+        if not isinstance(leaf, abjad.Leaf):
             message = 'spanners attach only to leaves: {!s}.'
-            message = message.format(component)
+            message = message.format(leaf)
             raise Exception(message)
-        component._spanners.add(self)
-        self._components.insert(i, component)
+        leaf._spanners.add(self)
+        self._leaves.insert(i, leaf)
 
     def _is_exterior_leaf(self, leaf):
         r'''True if leaf is first or last in spanner.
@@ -529,105 +497,83 @@ class Spanner(AbjadObject):
             return False
 
     def _is_interior_leaf(self, leaf):
-        leaves = self._get_leaves()
-        if leaf not in leaves:
+        if leaf not in self.leaves:
             return False
-        if len(leaves) < 3:
+        if len(self.leaves) < 3:
             return False
-        leaf_count = len(leaves)
+        leaf_count = len(self.leaves)
         first_index = 0
         last_index = leaf_count - 1
-        leaves = list(leaves)
-        leaf_index = leaves.index(leaf)
+        leaf_index = list(self.leaves).index(leaf)
         if first_index < leaf_index < last_index:
             return True
         return False
 
     def _is_my_first(self, leaf, prototype):
-        import abjad
-        for component in abjad.iterate(self).by_class(prototype):
-            if component is leaf:
-                return True
-            else:
-                return False
+        leaves = [_ for _ in self if isinstance(_, prototype)]
+        return (leaves and leaves[0] is leaf)
 
     def _is_my_first_leaf(self, leaf):
-        try:
-            first_leaf = self._get_my_nth_leaf(0)
-            return leaf is first_leaf
-        except IndexError:
-            return False
+        return (self.leaves and self.leaves[0] is leaf)
 
     def _is_my_last(self, leaf, prototype):
-        import abjad
-        for component in abjad.iterate(self).by_class(prototype, reverse=True):
-            if component is leaf:
-                return True
-            else:
-                return False
+        leaves = [_ for _ in self if isinstance(_, prototype)]
+        return (leaves and leaves[-1] is leaf)
 
     def _is_my_last_leaf(self, leaf):
-        try:
-            last_leaf = self._get_my_nth_leaf(-1)
-            return leaf is last_leaf
-        except IndexError:
-            return False
+        return (self.leaves and self.leaves[-1] is leaf)
 
     def _is_my_only(self, leaf, prototype):
-        import abjad
-        i = None
-        components = abjad.iterate(self).by_class(prototype)
-        for i, component in enumerate(components):
-            if 0 < i:
-                return False
-        return i == 0
+        leaves = [_ for _ in self if isinstance(_, prototype)]
+        return (leaves and len(leaves) == 1 and leaves[0] is leaf)
 
     def _is_my_only_leaf(self, leaf):
-        return self._is_my_first_leaf(leaf) and self._is_my_last_leaf(leaf)
+        return len(self) == 1 and self.leaves[0] is leaf
 
-    def _remove(self, component):
+    def _remove(self, leaf):
         r'''Not composer-safe.
         '''
-        self._sever_component(component)
+        self._sever_leaf(leaf)
 
-    def _remove_component(self, component):
+    def _remove_leaf(self, leaf):
         r'''Not composer-safe.
         '''
-        for i, x in enumerate(self._components):
-            if x is component:
-                self._components.pop(i)
+        for i, leaf_ in enumerate(self.leaves):
+            if leaf_ is leaf:
+                self._leaves.pop(i)
                 break
         else:
-            message = 'component {!r} not in spanner components list.'
-            raise ValueError(message.format(component))
+            message = '{!r} not in spanner.'
+            raise ValueError(message.format(leaf))
 
-    def _reverse_components(self):
-        r'''Reverses order of spanner components.
+    # TODO: remove
+    def _reverse_leaves(self):
+        r'''Reverses order of spanner leaves.
 
-        Not composer-safe because reversing the order of spanner components
-        could scramble components of some other spanner.
+        Not composer-safe because reversing the order of spanner leaves
+        could scramble leaves of some other spanner.
 
-        Call method only as part of a full component- and spanner-reversal
+        Call method only as part of a full leaf- and spanner-reversal
         routine.
 
         Spanner subclasses with mapping variables (like the 'durations' list
         attaching to durated complex beam spanners) should override this
         method to reverse mapping elements.
         '''
-        self._components.reverse()
+        self._leaves.reverse()
 
-    def _sever_all_components(self):
+    def _sever_all_leaves(self):
         r'''Not composer-safe.
         '''
-        for n in reversed(range(len(self))):
-            component = self[n]
-            self._sever_component(component)
+        for i in reversed(range(len(self))):
+            leaf = self[i]
+            self._sever_leaf(leaf)
 
-    def _sever_component(self, component):
+    def _sever_leaf(self, leaf):
         r'''Not composer-safe.
         '''
-        self._block_component(component)
-        self._remove_component(component)
+        self._block_leaf(leaf)
+        self._remove_leaf(leaf)
 
     def _start_offset_in_me(self, leaf):
         leaf_start_offset = leaf._get_timespan().start_offset
@@ -639,16 +585,16 @@ class Spanner(AbjadObject):
         leaf_stop_offset = leaf_start_offset + leaf._get_duration()
         return leaf_stop_offset
 
-    def _unblock_all_components(self):
+    def _unblock_all_leaves(self):
         r'''Not composer-safe.
         '''
-        for component in self:
-            self._unblock_component(component)
+        for leaf in self:
+            self._unblock_leaf(leaf)
 
-    def _unblock_component(self, component):
+    def _unblock_leaf(self, leaf):
         r'''Not composer-safe.
         '''
-        component._spanners.add(self)
+        leaf._spanners.add(self)
 
     def _unconstrain_contiguity(self):
         r'''Not composer-safe.
@@ -658,18 +604,18 @@ class Spanner(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def components(self):
+    def leaves(self):
         r'''Gets leaves in spanner.
 
         Returns selection of leaves.
         '''
         import abjad
-        for leaf in self._components:
+        for leaf in self._leaves:
             if not isinstance(leaf, abjad.Leaf):
                 message = 'spanners attach only to leaves: {!s}.'
                 message = message.format(leaf)
                 raise Exception(message)
-        result = abjad.select(self._components[:])
+        result = abjad.select(self._leaves)
         return result
 
     @property

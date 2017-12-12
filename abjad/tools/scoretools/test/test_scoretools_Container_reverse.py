@@ -42,7 +42,7 @@ def test_scoretools_Container_reverse_03():
     staff.reverse()
 
     assert list(reversed_leaves) == list(staff[:])
-    assert beam.components == tuple(staff[:])
+    assert beam.leaves == tuple(staff[:])
     assert abjad.inspect(staff).is_well_formed()
 
 
@@ -81,7 +81,7 @@ def test_scoretools_Container_reverse_05():
     reversed_leaves = reversed(measure[:])
     staff[0].reverse()
     assert list(reversed_leaves) == list(measure[:])
-    assert beam.components == tuple(measure[:])
+    assert beam.leaves == tuple(measure[:])
     assert abjad.inspect(staff).is_well_formed()
 
 
@@ -242,6 +242,6 @@ def test_scoretools_Container_reverse_09():
     assert len(measure_2) == 3
     assert len(measure_1) == 4
     leaves = tuple(abjad.iterate(container).by_leaf())
-    assert pedal.components == leaves
-    assert gliss.components == leaves
+    assert pedal.leaves == leaves
+    assert gliss.leaves == leaves
     assert abjad.inspect(container).is_well_formed()

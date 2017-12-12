@@ -41,7 +41,7 @@ class LogicalTie(Selection):
                     del(parent[index])
             first = self[0]
             for spanner in first._get_spanners(abjad.Tie):
-                spanner._sever_all_components()
+                spanner._sever_all_leaves()
             #detach(abjad.Tie, first)
         elif new_written_duration.has_power_of_two_denominator:
             durations = maker(0, [new_written_duration])
@@ -57,7 +57,7 @@ class LogicalTie(Selection):
                         del(parent[index])
             elif len(self) < len(durations):
                 for spanner in self[0]._get_spanners(abjad.Tie):
-                    spanner._sever_all_components()
+                    spanner._sever_all_leaves()
                 #detach(abjad.Tie, self[0])
                 difference = len(durations) - len(self)
                 extra_leaves = self[0] * difference
@@ -150,7 +150,7 @@ class LogicalTie(Selection):
         except MissingSpannerError:
             assert self.is_trivial
             return abjad.select(self[0])
-        selection = tie._get_leaves()
+        selection = tie.leaves
         assert isinstance(selection, abjad.Selection)
         return selection
 
@@ -356,7 +356,7 @@ class LogicalTie(Selection):
         # remove tie spanner from leaves
         for leaf in self:
             for spanner in leaf._get_spanners(abjad.Tie):
-                spanner._sever_all_components()
+                spanner._sever_all_leaves()
         # replace leaves with tuplet
         abjad.mutate(self).replace(tuplet)
         return tuplet

@@ -276,11 +276,11 @@ class Leaf(Component):
 
     def _get_logical_tie(self):
         import abjad
-        for component in self._get_parentage():
-            tie_spanners = component._get_spanners(abjad.Tie)
+        for component in abjad.inspect(self).get_parentage():
+            tie_spanners = abjad.inspect(component).get_spanners(abjad.Tie)
             if len(tie_spanners) == 1:
                 tie_spanner = tie_spanners.pop()
-                return abjad.LogicalTie(music=tie_spanner._get_leaves())
+                return abjad.LogicalTie(music=tie_spanner.leaves)
             elif 1 < len(tie_spanners):
                 message = 'parentage of {!r} contains {} tie spanners.'
                 message = message.format(self, len(tie_spanners))

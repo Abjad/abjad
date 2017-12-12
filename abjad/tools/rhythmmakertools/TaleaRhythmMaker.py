@@ -438,7 +438,7 @@ class TaleaRhythmMaker(RhythmMaker):
             for component in part:
                 # TODO: make top-level detach() work here
                 for spanner in component._get_spanners(prototype=prototype):
-                    spanner._sever_all_components()
+                    spanner._sever_all_leaves()
                 #detach(prototype, component)
             # TODO: remove usage of Spanner._extend()
             tie_spanner._extend(part)

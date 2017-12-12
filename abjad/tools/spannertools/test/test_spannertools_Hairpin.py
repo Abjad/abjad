@@ -150,7 +150,7 @@ def test_spannertools_Hairpin_06():
 
     prototype = abjad.Hairpin
     spanner = abjad.inspect(staff[0]).get_spanner(prototype=prototype)
-    assert len(spanner.components) == len(staff)
+    assert len(spanner.leaves) == len(staff)
 
     assert format(staff) == abjad.String.normalize(
         r'''

@@ -110,6 +110,24 @@ class Accidental(AbjadValueObject):
         re.VERBOSE,
         )
 
+    _comprehensive_regex_body = """
+        (?P<comprehensive_accidental>
+        [s]*(qs)?
+        |[f]*(qf)?
+        |t?q?[fs]
+        |[#]+[+]?
+        |[b]+[~]?
+        |[+]
+        |[~]
+        |
+        )
+        """
+
+    _comprehensive_accidental_regex = re.compile(
+        '^{}$'.format(_comprehensive_regex_body),
+        re.VERBOSE,
+        )
+
     _name_to_abbreviation = {
         'double sharp': 'ss',
         'three-quarters sharp': 'tqs',
@@ -172,6 +190,14 @@ class Accidental(AbjadValueObject):
         '#': 1,
         '#+': 1.5,
         '##': 2,
+        'ff': -2,
+        'tqf': 1.5,
+        'f': -1,
+        'qf': -0.5,
+        'qs': 0.5,
+        's': 1,
+        'tqs': 1.5,
+        'ss': 2,
         }
 
     __slots__ = (

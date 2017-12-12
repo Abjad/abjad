@@ -327,7 +327,7 @@ class TextSpanner(Spanner):
         import abjad
         if not isinstance(component, abjad.Leaf):
             return None, None
-        leaves = self._get_leaves()
+        leaves = self.leaves
         index = leaves.index(component)
         for index in reversed(range(index)):
             previous_leaf = leaves[index]
@@ -348,8 +348,7 @@ class TextSpanner(Spanner):
         return markup
 
     def _spanner_has_smart_events(self):
-        leaves = self._get_leaves()
-        for leaf in leaves:
+        for leaf in self.leaves:
             if self._leaf_has_current_event(leaf):
                 return True
         return False
@@ -358,8 +357,7 @@ class TextSpanner(Spanner):
         import abjad
         if not isinstance(leaf, abjad.Leaf):
             return False
-        leaves = self._get_leaves()
-        leaves = list(leaves)
+        leaves = list(self.leaves)
         index = leaves.index(leaf)
         for index in reversed(range(index)):
             previous_leaf = leaves[index]
