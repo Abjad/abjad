@@ -50,7 +50,9 @@ class LilyPondOutputProxy(ImageOutputProxy):
 
     __documentation_section__ = 'Output Proxies'
 
-    __slots__ = ()
+    __slots__ = (
+        '_strict',
+        )
 
     ### INITIALIZER ###
 
@@ -59,6 +61,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
         payload,
         image_layout_specifier=None,
         image_render_specifier=None,
+        strict=None,
         ):
         from abjad.tools import abjadbooktools
         ImageOutputProxy.__init__(
@@ -88,15 +91,14 @@ class LilyPondOutputProxy(ImageOutputProxy):
         lilypond_file._date_time_token = None
         token = lilypondfiletools.LilyPondVersionToken("2.19.0")
         lilypond_file._lilypond_version_token = token
-        if (
-            image_render_specifier.stylesheet and
-            not image_render_specifier.no_stylesheet
-            ):
+        if (image_render_specifier.stylesheet and
+            not image_render_specifier.no_stylesheet):
             if not lilypond_file.includes:
                 lilypond_file._use_relative_includes = True
                 includes = [image_render_specifier.stylesheet]
                 lilypond_file._includes = tuple(includes)
         self._payload = lilypond_file
+        self._strict = strict
 
     ### PRIVATE METHODS ###
 
@@ -131,6 +133,26 @@ class LilyPondOutputProxy(ImageOutputProxy):
         if not process.returncode == 0:
             raise Exception(stdout)
         return pdf_file_path
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def file_name_prefix(self):
+        r"""
+        Gets file name prefix of LilyPond output proxy.
+
+        Returns string.
+        """
+        return 'lilypond'
+
+    @property
+    def strict(self):
+        r"""
+        Is true when LilyPond file should format strict.
+
+        Returns true, false or none.
+        """
+        return self._strict
 
     ### PUBLIC METHODS ###
 
@@ -193,10 +215,26 @@ class LilyPondOutputProxy(ImageOutputProxy):
 
         Returns list of docutils nodes.
         """
+        import abjad
         from abjad.tools import abjadbooktools
         result = []
+        if self.strict is True:
+            format_specification = 'lilypond:strict'
+        elif self.strict is not False and isinstance(self.strict, int):
+            format_specification = 'lilypond:strict'
+        else:
+            format_specification = 'lilypond'
         try:
-            code = format(self.payload)
+            code = format(self.payload, format_specification)
+            if isinstance(self.strict, int):
+                code = abjad.LilyPondFormatManager.align_tags(
+                    code,
+                    self.strict,
+                    )
+            if self.strict:
+                lines = code.split('\n')
+                lines = abjad.LilyPondFormatManager.left_shift_tags(lines)
+                code = '\n'.join(lines)
             node = abjadbooktools.abjad_output_block(code, code)
             node['image_layout_specifier'] = self.image_layout_specifier
             node['image_render_specifier'] = self.image_render_specifier
@@ -208,14 +246,3 @@ class LilyPondOutputProxy(ImageOutputProxy):
             for line in code.splitlines():
                 print(repr(line))
         return result
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def file_name_prefix(self):
-        """
-        Gets file name prefix of LilyPond output proxy.
-
-        Returns string.
-        """
-        return 'lilypond'

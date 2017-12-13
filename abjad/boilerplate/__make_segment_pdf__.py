@@ -64,7 +64,7 @@ if __name__ == '__main__':
     try:
         segment = ide.Path(__file__).parent
         ly = segment('illustration.ly')
-        result = abjad.persist(lilypond_file).as_ly(ly, strict=True)
+        result = abjad.persist(lilypond_file).as_ly(ly, strict=89)
         abjad_format_time = int(result[1])
         count = abjad_format_time
         counter = abjad.String('second').pluralize(count)
@@ -78,19 +78,20 @@ if __name__ == '__main__':
     try:
         segment = ide.Path(__file__).parent
         ly = segment('illustration.ly')
+        text = ly.read_text()
+        lines = abjad.LilyPondFormatManager.left_shift_tags(text.split('\n'))
+        ly.write_text('\n'.join(lines))
         for tag in (
-            'BUILD:FERMATA_BAR_LINE',
-            'STAGE_NUMBER',
-            'FIGURE_NAME', 
-            'CLOCK_TIME',
-            'SEGMENT:SPACING_MARKUP',
+            'CLOCK_TIME_MARKUP',
+            'FIGURE_NAME_MARKUP', 
+            'SEGMENT_SPACING_MARKUP',
+            'STAGE_NUMBER_MARKUP',
             ):
-            text, count, skipped = ly.comment_out_tag(tag)
+            text, count = ly.deactivate_tag(tag)
             messages = ide.AbjadIDE._message_deactivate(
                 None,
                 tag,
                 count,
-                skipped,
                 )
             for message in messages:
                 print(abjad.String(message).capitalize_start())

@@ -456,9 +456,9 @@ class Parentage(abctools.AbjadObject):
 
         Returns component or none.
         '''
-        from abjad.tools import scoretools
+        import abjad
         if prototype is None:
-            prototype = (scoretools.Component,)
+            prototype = (abjad.Component,)
         if not isinstance(prototype, tuple):
             prototype = (prototype,)
         for component in self:

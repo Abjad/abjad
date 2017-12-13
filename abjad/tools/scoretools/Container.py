@@ -1,5 +1,5 @@
-from abjad.tools.exceptiontools import ParentageError
 import collections
+from abjad.tools.exceptiontools import ParentageError
 from .Component import Component
 
 
@@ -171,11 +171,14 @@ class Container(Component):
 
     def __init__(self, components=None, is_simultaneous=None, name=None):
         components = components or []
-        Component.__init__(self, name=name)
+        Component.__init__(self)
         self._named_children = {}
         self._is_simultaneous = None
         self._initialize_components(components)
         self.is_simultaneous = is_simultaneous
+        self._name = None
+        if name is not None:
+            self.name = name  # name must be setup *after* parent
 
     ### SPECIAL METHODS ###
 
@@ -302,6 +305,13 @@ class Container(Component):
         message = 'can not get container at {!r}.'
         message = message.format(argument)
         raise ValueError(message)
+
+    def __getnewargs__(self):
+        r'''Gets new container arguments.
+
+        Returns tuple.
+        '''
+        return [], self.is_simultaneous, self.name
 
     def __graph__(self, spanner=None, **keywords):
         r'''Graphviz graph representation of container.
@@ -474,20 +484,15 @@ class Container(Component):
             )
         return node
 
-    def _copy_with_children_and_indicators_but_without_spanners(self):
-        new = self._copy_with_indicators_but_without_children_or_spanners()
+    def _copy_with_children(self):
+        new_container = self.__copy__()
         for component in self:
-            new_component = \
-                component._copy_with_children_and_indicators_but_without_spanners()
-            new.append(new_component)
-        return new
-
-    def _copy_with_indicators_but_without_children_or_spanners(self):
-        class_ = Component
-        new = class_._copy_with_indicators_but_without_children_or_spanners(
-            self)
-        new.is_simultaneous = self.is_simultaneous
-        return new
+            if isinstance(component, Container):
+                new_component = component._copy_with_children()
+            else:
+                new_component = component.__copy__()
+            new_container.append(new_component)
+        return new_container
 
     def _eject_contents(self):
         import abjad
@@ -532,9 +537,12 @@ class Container(Component):
         import abjad
         indent = abjad.LilyPondFormatManager.indent
         result = []
-        format_specification = 'lilypond'
-        if strict:
-            format_specification += ':strict'
+        if strict is True:
+            format_specification = 'lilypond:strict'
+        elif strict is not False and isinstance(strict, int):
+            format_specification = 'lilypond:strict'
+        else:
+            format_specification = 'lilypond'
         for component in self.components:
             string = component.__format__(
                 format_specification=format_specification
@@ -707,7 +715,7 @@ class Container(Component):
         left_contained = abjad.inspect(left_descendants).get_spanners()
         right_descendants = abjad.inspect(right).get_descendants()
         right_contained = abjad.inspect(right_descendants).get_spanners()
-        dominant_spanners = left_contained & right_contained
+        dominant_spanners = set(left_contained) & set(right_contained)
         right_start_offset = abjad.inspect(right).get_timespan().start_offset
         components_after_gap = []
         for component in abjad.inspect(right).get_lineage():
@@ -775,8 +783,13 @@ class Container(Component):
                     components_.append(parsed)
                 else:
                     components_.append(item)
-            assert all(isinstance(_, abjad.Component) for _ in components_)
+            #assert all(isinstance(_, abjad.Component) for _ in components_)
             components = components_
+            for component in components:
+                if not isinstance(component, abjad.Component):
+                    message = 'must be component: {!r}.'
+                    message = message.format(component)
+                    raise Exception(component)
         if self._all_are_orphan_components(components):
             self._components = list(components)
             self[:]._set_parents(self)
@@ -900,8 +913,8 @@ class Container(Component):
         import abjad
         argument_indicators = []
         for component in abjad.iterate(argument).components():
-            indicators = component._get_indicators(unwrap=False)
-            argument_indicators.extend(indicators)
+            wrappers = abjad.inspect(component).wrappers()
+            argument_indicators.extend(wrappers)
         if isinstance(i, int):
             argument = [argument]
             if i < 0:
@@ -996,9 +1009,9 @@ class Container(Component):
             right = type(self)(multiplier, [])
             abjad.mutate(right_components).wrap(right)
         else:
-            left = self._copy_with_indicators_but_without_children_or_spanners()
+            left = self.__copy__()
             abjad.mutate(left_components).wrap(left)
-            right = self._copy_with_indicators_but_without_children_or_spanners()
+            right = self.__copy__()
             abjad.mutate(right_components).wrap(right)
         # save left and right containers together for iteration
         halves = (left, right)
@@ -1220,10 +1233,8 @@ class Container(Component):
             right_components.extend(right_components_)
         left_components = abjad.select(left_components)
         right_components = abjad.select(right_components)
-        left_container = \
-            self._copy_with_indicators_but_without_children_or_spanners()
-        right_container = \
-            self._copy_with_indicators_but_without_children_or_spanners()
+        left_container = self.__copy__()
+        right_container = self.__copy__()
         left_container.extend(left_components)
         right_container.extend(right_components)
         if abjad.inspect(self).get_parentage().parent is not None:
@@ -1386,11 +1397,25 @@ class Container(Component):
 
         Returns string or none.
         '''
-        return Component.name.fget(self)
+        return self._name
 
     @name.setter
     def name(self, argument):
-        return Component.name.fset(self, argument)
+        import abjad
+        assert isinstance(argument, (str, type(None)))
+        old_name = self._name
+        for parent in abjad.inspect(self).get_parentage(include_self=False):
+            named_children = parent._named_children
+            if old_name is not None:
+                named_children[old_name].remove(self)
+                if not named_children[old_name]:
+                    del named_children[old_name]
+            if argument is not None:
+                if argument not in named_children:
+                    named_children[argument] = [self]
+                else:
+                    named_children[argument].append(self)
+        self._name = argument
 
     ### PUBLIC METHODS ###
 
@@ -1733,49 +1758,3 @@ class Container(Component):
         '''
         i = self.index(component)
         del(self[i])
-
-    # TODO: remove
-    def reverse(self):
-        r'''Reverses contents of container.
-
-        ..  container:: example
-
-            Reverses staff:
-
-            >>> staff = abjad.Staff("c'8 [ d'8 ] e'8 ( f'8 )")
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff {
-                    c'8 [
-                    d'8 ]
-                    e'8 (
-                    f'8 )
-                }
-
-            >>> staff.reverse()
-
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff) # doctest: +SKIP
-                \new Staff {
-                    f'8 (
-                    e'8 )
-                    d'8 [
-                    c'8 ]
-                }
-
-        Returns none.
-        '''
-        import abjad
-        self._components.reverse()
-        self._update_later(offsets=True)
-        descendants = abjad.inspect(self).get_descendants()
-        spanners = abjad.inspect(descendants).get_spanners()
-        for spanner in spanners:
-            spanner._leaves.sort(
-                key=lambda x: abjad.inspect(x).get_timespan().start_offset)

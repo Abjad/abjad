@@ -54,6 +54,8 @@ class StringContactPoint(AbjadValueObject):
         'sul tasto',
         )
 
+    _persistent = True
+
     _publish_storage_format = True
 
     ### INITIALIZER ###
@@ -132,9 +134,22 @@ class StringContactPoint(AbjadValueObject):
 
         Returns abbreviation markup.
         '''
-        from abjad.tools import markuptools
+        import abjad
         markup = self._contact_point_abbreviations[self.contact_point]
         markup = markup.title()
-        markup = markuptools.Markup(markup)
+        markup = abjad.Markup(markup)
         markup = markup.caps()
         return markup
+
+    @property
+    def persistent(self):
+        r'''Is true.
+
+        ..  container:: example
+
+            >>> abjad.StringContactPoint('sul tasto').persistent
+            True
+
+        Returns true.
+        '''
+        return self._persistent

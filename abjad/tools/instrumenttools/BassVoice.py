@@ -1,4 +1,4 @@
-from abjad.tools.instrumenttools.Instrument import Instrument
+from .Instrument import Instrument
 
 
 class BassVoice(Instrument):
@@ -38,23 +38,25 @@ class BassVoice(Instrument):
         self,
         name='bass',
         short_name='bass',
-        name_markup=None,
-        short_name_markup=None,
+        markup=None,
+        short_markup=None,
         allowable_clefs=('bass',),
         context=None,
         middle_c_sounding_pitch=None,
         pitch_range='[E2, F4]',
+        hide=None,
         ):
         Instrument.__init__(
             self,
             name=name,
             short_name=short_name,
-            name_markup=name_markup,
-            short_name_markup=short_name_markup,
+            markup=markup,
+            short_markup=short_markup,
             allowable_clefs=allowable_clefs,
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
+            hide=hide,
             )
         self._is_primary_instrument = True
 
@@ -73,6 +75,22 @@ class BassVoice(Instrument):
         Returns clef list.
         '''
         return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def markup(self):
+        r'''Gets bass's instrument name markup.
+
+        ..  container:: example
+
+            >>> bass = abjad.BassVoice()
+            >>> bass.markup
+            Markup(contents=['Bass'])
+
+            >>> abjad.show(bass.markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
@@ -105,22 +123,6 @@ class BassVoice(Instrument):
         return Instrument.name.fget(self)
 
     @property
-    def name_markup(self):
-        r'''Gets bass's instrument name markup.
-
-        ..  container:: example
-
-            >>> bass = abjad.BassVoice()
-            >>> bass.name_markup
-            Markup(contents=['Bass'])
-
-            >>> abjad.show(bass.name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.name_markup.fget(self)
-
-    @property
     def pitch_range(self):
         r'''Gets bass's range.
 
@@ -137,6 +139,22 @@ class BassVoice(Instrument):
         return Instrument.pitch_range.fget(self)
 
     @property
+    def short_markup(self):
+        r'''Gets bass's short instrument name markup.
+
+        ..  container:: example
+
+            >>> bass = abjad.BassVoice()
+            >>> bass.short_markup
+            Markup(contents=['Bass'])
+
+            >>> abjad.show(bass.short_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_markup.fget(self)
+
+    @property
     def short_name(self):
         r'''Gets bass's short instrument name.
 
@@ -149,19 +167,3 @@ class BassVoice(Instrument):
         Returns string.
         '''
         return Instrument.short_name.fget(self)
-
-    @property
-    def short_name_markup(self):
-        r'''Gets bass's short instrument name markup.
-
-        ..  container:: example
-
-            >>> bass = abjad.BassVoice()
-            >>> bass.short_name_markup
-            Markup(contents=['Bass'])
-
-            >>> abjad.show(bass.short_name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.short_name_markup.fget(self)

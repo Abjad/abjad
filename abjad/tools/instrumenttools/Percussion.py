@@ -1,4 +1,4 @@
-from abjad.tools.instrumenttools.Instrument import Instrument
+from .Instrument import Instrument
 
 
 class Percussion(Instrument):
@@ -85,23 +85,25 @@ class Percussion(Instrument):
         self,
         name='percussion',
         short_name='perc.',
-        name_markup=None,
-        short_name_markup=None,
+        markup=None,
+        short_markup=None,
         allowable_clefs=('percussion',),
         context=None,
         middle_c_sounding_pitch=None,
         pitch_range=None,
+        hide=None,
         ):
         Instrument.__init__(
             self,
             name=name,
             short_name=short_name,
-            name_markup=name_markup,
-            short_name_markup=short_name_markup,
+            markup=markup,
+            short_markup=short_markup,
             allowable_clefs=allowable_clefs,
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
+            hide=hide,
             )
 
     ### PUBLIC PROPERTIES ###
@@ -119,6 +121,22 @@ class Percussion(Instrument):
         Returns clef list.
         '''
         return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def markup(self):
+        r'''Gets percussion's instrument name markup.
+
+        ..  container:: example
+
+            >>> percussion = abjad.Percussion()
+            >>> percussion.markup
+            Markup(contents=['Percussion'])
+
+            >>> abjad.show(percussion.markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
@@ -151,22 +169,6 @@ class Percussion(Instrument):
         return Instrument.name.fget(self)
 
     @property
-    def name_markup(self):
-        r'''Gets percussion's instrument name markup.
-
-        ..  container:: example
-
-            >>> percussion = abjad.Percussion()
-            >>> percussion.name_markup
-            Markup(contents=['Percussion'])
-
-            >>> abjad.show(percussion.name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.name_markup.fget(self)
-
-    @property
     def pitch_range(self):
         r'''Gets percussion's range.
 
@@ -183,6 +185,22 @@ class Percussion(Instrument):
         return Instrument.pitch_range.fget(self)
 
     @property
+    def short_markup(self):
+        r'''Gets percussion's short instrument name markup.
+
+        ..  container:: example
+
+            >>> percussion = abjad.Percussion()
+            >>> percussion.short_markup
+            Markup(contents=['Perc.'])
+
+            >>> abjad.show(percussion.short_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_markup.fget(self)
+
+    @property
     def short_name(self):
         r'''Gets percussion's short instrument name.
 
@@ -195,19 +213,3 @@ class Percussion(Instrument):
         Returns string.
         '''
         return Instrument.short_name.fget(self)
-
-    @property
-    def short_name_markup(self):
-        r'''Gets percussion's short instrument name markup.
-
-        ..  container:: example
-
-            >>> percussion = abjad.Percussion()
-            >>> percussion.short_name_markup
-            Markup(contents=['Perc.'])
-
-            >>> abjad.show(percussion.short_name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.short_name_markup.fget(self)

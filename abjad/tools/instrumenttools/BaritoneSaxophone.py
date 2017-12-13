@@ -1,4 +1,4 @@
-from abjad.tools.instrumenttools.Instrument import Instrument
+from .Instrument import Instrument
 
 
 class BaritoneSaxophone(Instrument):
@@ -35,23 +35,25 @@ class BaritoneSaxophone(Instrument):
         self,
         name='baritone saxophone',
         short_name='bar. sax.',
-        name_markup=None,
-        short_name_markup=None,
+        markup=None,
+        short_markup=None,
         allowable_clefs=None,
         context=None,
         middle_c_sounding_pitch='Eb2',
         pitch_range='[C2, Ab4]',
+        hide=None,
         ):
         Instrument.__init__(
             self,
             name=name,
             short_name=short_name,
-            name_markup=name_markup,
-            short_name_markup=short_name_markup,
+            markup=markup,
+            short_markup=short_markup,
             allowable_clefs=allowable_clefs,
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
+            hide=hide,
             )
 
     ### PUBLIC PROPERTIES ###
@@ -69,6 +71,22 @@ class BaritoneSaxophone(Instrument):
         Returns clef list.
         '''
         return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def markup(self):
+        r'''Gets baritone saxophone's instrument name markup.
+
+        ..  container:: example
+
+            >>> baritone_saxophone = abjad.BaritoneSaxophone()
+            >>> baritone_saxophone.markup
+            Markup(contents=['Baritone saxophone'])
+
+            >>> abjad.show(baritone_saxophone.markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
@@ -101,22 +119,6 @@ class BaritoneSaxophone(Instrument):
         return Instrument.name.fget(self)
 
     @property
-    def name_markup(self):
-        r'''Gets baritone saxophone's instrument name markup.
-
-        ..  container:: example
-
-            >>> baritone_saxophone = abjad.BaritoneSaxophone()
-            >>> baritone_saxophone.name_markup
-            Markup(contents=['Baritone saxophone'])
-
-            >>> abjad.show(baritone_saxophone.name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.name_markup.fget(self)
-
-    @property
     def pitch_range(self):
         r'''Gets baritone saxophone's range.
 
@@ -133,6 +135,22 @@ class BaritoneSaxophone(Instrument):
         return Instrument.pitch_range.fget(self)
 
     @property
+    def short_markup(self):
+        r'''Gets baritone saxophone's short instrument name markup.
+
+        ..  container:: example
+
+            >>> baritone_saxophone = abjad.BaritoneSaxophone()
+            >>> baritone_saxophone.short_markup
+            Markup(contents=['Bar. sax.'])
+
+            >>> abjad.show(baritone_saxophone.short_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_markup.fget(self)
+
+    @property
     def short_name(self):
         r'''Gets baritone saxophone's short instrument name.
 
@@ -145,19 +163,3 @@ class BaritoneSaxophone(Instrument):
         Returns string.
         '''
         return Instrument.short_name.fget(self)
-
-    @property
-    def short_name_markup(self):
-        r'''Gets baritone saxophone's short instrument name markup.
-
-        ..  container:: example
-
-            >>> baritone_saxophone = abjad.BaritoneSaxophone()
-            >>> baritone_saxophone.short_name_markup
-            Markup(contents=['Bar. sax.'])
-
-            >>> abjad.show(baritone_saxophone.short_name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.short_name_markup.fget(self)

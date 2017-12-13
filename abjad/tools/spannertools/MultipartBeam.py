@@ -69,11 +69,13 @@ class MultipartBeam(Beam):
         beam_rests=False,
         direction=None,
         overrides=None,
+        stemlet_length=None,
         ):
         Beam.__init__(
             self,
             direction=direction,
             overrides=overrides,
+            stemlet_length=stemlet_length,
             )
         self._beam_rests = bool(beam_rests)
 
@@ -146,6 +148,7 @@ class MultipartBeam(Beam):
                 bundle.right.spanner_starts.append(start_piece)
             elif stop_piece:
                 bundle.right.spanner_stops.append(stop_piece)
+        self._add_stemlet_length(leaf, bundle)
         return bundle
 
     ### PUBLIC PROPERTIES ###
@@ -265,3 +268,46 @@ class MultipartBeam(Beam):
         Returns true of false.
         '''
         return self._beam_rests
+
+    @property
+    def stemlet_length(self):
+        r'''Gets stemlet length.
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff(
+            ...     "c'16 r c' c' r c'",
+            ...     context_name='RhythmicStaff',
+            ...     )
+            >>> durations = [(3, 16), (3, 16)]
+            >>> beam = abjad.MultipartBeam(
+            ...     beam_rests=True,
+            ...     stemlet_length=1.5,
+            ...     )
+            >>> abjad.attach(beam, staff[:])
+            >>> abjad.override(staff).beam.positions = (4.5, 4.5)
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new RhythmicStaff \with {
+                    \override Beam.positions = #'(4.5 . 4.5)
+                } {
+                    \override RhythmicStaff.Stem.stemlet-length = 1.5
+                    c'16 [
+                    r16
+                    c'16
+                    c'16
+                    r16
+                    \revert RhythmicStaff.Stem.stemlet-length
+                    c'16 ]
+                }
+
+        Defaults to none.
+
+        Set to nonnegative integer, float or none.
+
+        Returns nonnegative integer, float or none.
+        '''
+        return self._stemlet_length

@@ -2,7 +2,7 @@ from .Spanner import Spanner
 
 
 class MetronomeMarkSpanner(Spanner):
-    r'''MetronomeMark spanner.
+    r'''Metronome mark spanner.
 
     ..  container:: example
 
@@ -13,28 +13,30 @@ class MetronomeMarkSpanner(Spanner):
         >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
         >>> spanner = abjad.MetronomeMarkSpanner()
         >>> abjad.attach(spanner, staff[:])
+        >>> abjad.override(staff).text_spanner.staff_padding = 3
 
         >>> mark = abjad.MetronomeMark((1, 4), 60)
-        >>> spanner.attach(mark, staff[0])
+        >>> spanner.attach(mark, spanner[0])
         >>> mark = abjad.MetronomeMark((1, 4), 90)
-        >>> spanner.attach(mark, staff[2])
+        >>> spanner.attach(mark, spanner[2])
         >>> mark = abjad.MetronomeMark((1, 4), 72)
-        >>> spanner.attach(mark, staff[3])
+        >>> spanner.attach(mark, spanner[3])
         >>> mark = abjad.MetronomeMark((1, 4), 60)
-        >>> spanner.attach(mark, staff[5])
-
-        >>> abjad.override(score).text_script.staff_padding = 2.25
+        >>> spanner.attach(mark, spanner[5])
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score \with {
-                \override TextScript.staff-padding = #2.25
-            } <<
-                \new Staff {
-                    \time 3/8
-                    c'8. ^ \markup {
+            \new Score <<
+                \new Staff \with {
+                    \override TextSpanner.staff-padding = #3
+                } {
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -49,9 +51,22 @@ class MetronomeMarkSpanner(Spanner):
                                 =
                                 60
                             }
+                        \hspace
+                            #1
                         }
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.dash-period = 0
+                    \time 3/8
+                    c'8. \startTextSpan
                     d'8.
-                    e'4. ^ \markup {
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -66,8 +81,20 @@ class MetronomeMarkSpanner(Spanner):
                                 =
                                 90
                             }
+                        \hspace
+                            #1
                         }
-                    g'8. ^ \markup {
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.dash-period = 0
+                    e'4. \stopTextSpan \startTextSpan
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -82,24 +109,43 @@ class MetronomeMarkSpanner(Spanner):
                                 =
                                 72
                             }
+                        \hspace
+                            #1
                         }
-                    f'8.
-                    ef'4. ^ \markup {
-                        \fontsize
-                            #-6
-                            \general-align
-                                #Y
-                                #DOWN
-                                \note-by-number
-                                    #2
-                                    #0
-                                    #1
-                        \upright
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.right.text =
+                    \markup {
+                        \concat
                             {
-                                =
-                                60
+                                \hspace
+                                    #0.5
+                                \line
+                                    {
+                                        \fontsize
+                                            #-6
+                                            \general-align
+                                                #Y
+                                                #DOWN
+                                                \note-by-number
+                                                    #2
+                                                    #0
+                                                    #1
+                                        \upright
+                                            {
+                                                =
+                                                60
+                                            }
+                                    }
                             }
                         }
+                    \once \override TextSpanner.dash-period = 0
+                    g'8. \stopTextSpan \startTextSpan
+                    f'8.
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    ef'4. \stopTextSpan
                 }
             >>
 
@@ -112,33 +158,30 @@ class MetronomeMarkSpanner(Spanner):
         >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
         >>> spanner = abjad.MetronomeMarkSpanner()
         >>> abjad.attach(spanner, staff[:])
+        >>> abjad.override(staff).text_spanner.staff_padding = 3
 
         >>> mark = abjad.MetronomeMark((1, 4), 60)
-        >>> spanner.attach(mark, staff[0])
-        >>> mark = abjad.MetronomeMark((1, 4), 90)
-        >>> spanner.attach(mark, staff[2])
-        >>> mark = abjad.MetronomeMark((1, 4), 72)
-        >>> spanner.attach(mark, staff[3])
-        >>> mark = abjad.MetronomeMark((1, 4), 60)
-        >>> spanner.attach(mark, staff[5])
-
+        >>> spanner.attach(mark, spanner[0])
         >>> accelerando = abjad.Accelerando()
-        >>> spanner.attach(accelerando, staff[0])
-
-        >>> abjad.override(score).text_script.staff_padding = 2.25
-        >>> abjad.override(score).text_spanner.staff_padding = 3
+        >>> spanner.attach(accelerando, spanner[0])
+        >>> mark = abjad.MetronomeMark((1, 4), 90)
+        >>> spanner.attach(mark, spanner[2])
+        >>> mark = abjad.MetronomeMark((1, 4), 72)
+        >>> spanner.attach(mark, spanner[3])
+        >>> mark = abjad.MetronomeMark((1, 4), 60)
+        >>> spanner.attach(mark, spanner[5])
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score \with {
-                \override TextScript.staff-padding = #2.25
-                \override TextSpanner.staff-padding = #3
-            } <<
-                \new Staff {
+            \new Score <<
+                \new Staff \with {
+                    \override TextSpanner.staff-padding = #3
+                } {
+                    \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.padding = -2
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
                         \override
                             #'(padding . 0.45)
@@ -147,10 +190,11 @@ class MetronomeMarkSpanner(Spanner):
                                     \upright
                                         accel.
                         \hspace
-                            #0.75
+                            #1
                         }
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
-                    \once \override TextSpanner.bound-details.left.text = \markup {
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -166,20 +210,24 @@ class MetronomeMarkSpanner(Spanner):
                                 60
                             }
                         \hspace
-                            #1.25
+                            #1
                         }
                     \once \override TextSpanner.bound-details.right-broken.arrow = ##f
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
                     \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 2
-                    \once \override TextSpanner.bound-details.right.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1.5
                     \time 3/8
                     c'8. \startTextSpan
                     d'8.
-                    e'4. \stopTextSpan ^ \markup {
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -194,8 +242,20 @@ class MetronomeMarkSpanner(Spanner):
                                 =
                                 90
                             }
+                        \hspace
+                            #1
                         }
-                    g'8. ^ \markup {
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.dash-period = 0
+                    e'4. \stopTextSpan \startTextSpan
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -210,24 +270,43 @@ class MetronomeMarkSpanner(Spanner):
                                 =
                                 72
                             }
+                        \hspace
+                            #1
                         }
-                    f'8.
-                    ef'4. ^ \markup {
-                        \fontsize
-                            #-6
-                            \general-align
-                                #Y
-                                #DOWN
-                                \note-by-number
-                                    #2
-                                    #0
-                                    #1
-                        \upright
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.right.text =
+                    \markup {
+                        \concat
                             {
-                                =
-                                60
+                                \hspace
+                                    #0.5
+                                \line
+                                    {
+                                        \fontsize
+                                            #-6
+                                            \general-align
+                                                #Y
+                                                #DOWN
+                                                \note-by-number
+                                                    #2
+                                                    #0
+                                                    #1
+                                        \upright
+                                            {
+                                                =
+                                                60
+                                            }
+                                    }
                             }
                         }
+                    \once \override TextSpanner.dash-period = 0
+                    g'8. \stopTextSpan \startTextSpan
+                    f'8.
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    ef'4. \stopTextSpan
                 }
             >>
 
@@ -240,33 +319,32 @@ class MetronomeMarkSpanner(Spanner):
         >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
         >>> spanner = abjad.MetronomeMarkSpanner()
         >>> abjad.attach(spanner, staff[:])
+        >>> abjad.override(staff).text_spanner.staff_padding = 3
 
         >>> mark = abjad.MetronomeMark((1, 4), 60)
-        >>> spanner.attach(mark, staff[0])
+        >>> spanner.attach(mark, spanner[0])
         >>> mark = abjad.MetronomeMark((1, 4), 90)
-        >>> spanner.attach(mark, staff[2])
+        >>> spanner.attach(mark, spanner[2])
         >>> mark = abjad.MetronomeMark((1, 4), 72)
-        >>> spanner.attach(mark, staff[3])
-        >>> mark = abjad.MetronomeMark((1, 4), 60)
-        >>> spanner.attach(mark, staff[5])
-
+        >>> spanner.attach(mark, spanner[3])
         >>> ritardando = abjad.Ritardando()
-        >>> spanner.attach(ritardando, staff[3])
-
-        >>> abjad.override(score).text_script.staff_padding = 2.25
-        >>> abjad.override(score).text_spanner.staff_padding = 3
+        >>> spanner.attach(ritardando, spanner[3])
+        >>> mark = abjad.MetronomeMark((1, 4), 60)
+        >>> spanner.attach(mark, spanner[5])
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score \with {
-                \override TextScript.staff-padding = #2.25
-                \override TextSpanner.staff-padding = #3
-            } <<
-                \new Staff {
-                    \time 3/8
-                    c'8. ^ \markup {
+            \new Score <<
+                \new Staff \with {
+                    \override TextSpanner.staff-padding = #3
+                } {
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -281,9 +359,22 @@ class MetronomeMarkSpanner(Spanner):
                                 =
                                 60
                             }
+                        \hspace
+                            #1
                         }
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.dash-period = 0
+                    \time 3/8
+                    c'8. \startTextSpan
                     d'8.
-                    e'4. ^ \markup {
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -298,9 +389,18 @@ class MetronomeMarkSpanner(Spanner):
                                 =
                                 90
                             }
+                        \hspace
+                            #1
                         }
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.dash-period = 0
+                    e'4. \stopTextSpan \startTextSpan
+                    \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.padding = -2
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
                         \override
                             #'(padding . 0.45)
@@ -309,10 +409,11 @@ class MetronomeMarkSpanner(Spanner):
                                     \upright
                                         rit.
                         \hspace
-                            #0.75
+                            #1
                         }
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
-                    \once \override TextSpanner.bound-details.left.text = \markup {
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -328,34 +429,45 @@ class MetronomeMarkSpanner(Spanner):
                                 72
                             }
                         \hspace
-                            #1.25
+                            #1
                         }
                     \once \override TextSpanner.bound-details.right-broken.arrow = ##f
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
                     \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 2
-                    \once \override TextSpanner.bound-details.right.text = ##f
-                    \once \override TextSpanner.dash-fraction = 0.25
-                    \once \override TextSpanner.dash-period = 1.5
-                    g'8. \startTextSpan
-                    f'8.
-                    ef'4. \stopTextSpan ^ \markup {
-                        \fontsize
-                            #-6
-                            \general-align
-                                #Y
-                                #DOWN
-                                \note-by-number
-                                    #2
-                                    #0
-                                    #1
-                        \upright
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.right.text =
+                    \markup {
+                        \concat
                             {
-                                =
-                                60
+                                \hspace
+                                    #0.5
+                                \line
+                                    {
+                                        \fontsize
+                                            #-6
+                                            \general-align
+                                                #Y
+                                                #DOWN
+                                                \note-by-number
+                                                    #2
+                                                    #0
+                                                    #1
+                                        \upright
+                                            {
+                                                =
+                                                60
+                                            }
+                                    }
                             }
                         }
+                    \once \override TextSpanner.dash-fraction = 0.25
+                    \once \override TextSpanner.dash-period = 1.5
+                    g'8. \stopTextSpan \startTextSpan
+                    f'8.
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    ef'4. \stopTextSpan
                 }
             >>
 
@@ -368,35 +480,32 @@ class MetronomeMarkSpanner(Spanner):
         >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
         >>> spanner = abjad.MetronomeMarkSpanner()
         >>> abjad.attach(spanner, staff[:])
+        >>> abjad.override(staff).text_spanner.staff_padding = 3
 
         >>> mark = abjad.MetronomeMark((1, 4), 60)
-        >>> spanner.attach(mark, staff[0])
+        >>> spanner.attach(mark, spanner[0])
         >>> mark = abjad.MetronomeMark((1, 4), 90)
-        >>> spanner.attach(mark, staff[2])
+        >>> spanner.attach(mark, spanner[2])
         >>> mark = abjad.MetronomeMark((1, 4), 72)
-        >>> spanner.attach(mark, staff[3])
+        >>> spanner.attach(mark, spanner[3])
         >>> mark = abjad.MetronomeMark((1, 4), 60)
-        >>> spanner.attach(mark, staff[5])
-
+        >>> spanner.attach(mark, spanner[5])
         >>> accelerando = abjad.Accelerando()
-        >>> spanner.attach(accelerando, staff[0])
+        >>> spanner.attach(accelerando, spanner[0])
         >>> ritardando = abjad.Ritardando()
-        >>> spanner.attach(ritardando, staff[3])
-
-        >>> abjad.override(score).text_script.staff_padding = 2.25
-        >>> abjad.override(score).text_spanner.staff_padding = 3
+        >>> spanner.attach(ritardando, spanner[3])
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score \with {
-                \override TextScript.staff-padding = #2.25
-                \override TextSpanner.staff-padding = #3
-            } <<
-                \new Staff {
+            \new Score <<
+                \new Staff \with {
+                    \override TextSpanner.staff-padding = #3
+                } {
+                    \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.padding = -2
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
                         \override
                             #'(padding . 0.45)
@@ -405,10 +514,11 @@ class MetronomeMarkSpanner(Spanner):
                                     \upright
                                         accel.
                         \hspace
-                            #0.75
+                            #1
                         }
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
-                    \once \override TextSpanner.bound-details.left.text = \markup {
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -424,20 +534,24 @@ class MetronomeMarkSpanner(Spanner):
                                 60
                             }
                         \hspace
-                            #1.25
+                            #1
                         }
                     \once \override TextSpanner.bound-details.right-broken.arrow = ##f
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
                     \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 2
-                    \once \override TextSpanner.bound-details.right.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1.5
                     \time 3/8
                     c'8. \startTextSpan
                     d'8.
-                    e'4. \stopTextSpan ^ \markup {
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -452,9 +566,18 @@ class MetronomeMarkSpanner(Spanner):
                                 =
                                 90
                             }
+                        \hspace
+                            #1
                         }
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.dash-period = 0
+                    e'4. \stopTextSpan \startTextSpan
+                    \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.padding = -2
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
                         \override
                             #'(padding . 0.45)
@@ -463,10 +586,11 @@ class MetronomeMarkSpanner(Spanner):
                                     \upright
                                         rit.
                         \hspace
-                            #0.75
+                            #1
                         }
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
-                    \once \override TextSpanner.bound-details.left.text = \markup {
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -482,34 +606,45 @@ class MetronomeMarkSpanner(Spanner):
                                 72
                             }
                         \hspace
-                            #1.25
+                            #1
                         }
                     \once \override TextSpanner.bound-details.right-broken.arrow = ##f
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
                     \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 2
-                    \once \override TextSpanner.bound-details.right.text = ##f
-                    \once \override TextSpanner.dash-fraction = 0.25
-                    \once \override TextSpanner.dash-period = 1.5
-                    g'8. \startTextSpan
-                    f'8.
-                    ef'4. \stopTextSpan ^ \markup {
-                        \fontsize
-                            #-6
-                            \general-align
-                                #Y
-                                #DOWN
-                                \note-by-number
-                                    #2
-                                    #0
-                                    #1
-                        \upright
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.right.text =
+                    \markup {
+                        \concat
                             {
-                                =
-                                60
+                                \hspace
+                                    #0.5
+                                \line
+                                    {
+                                        \fontsize
+                                            #-6
+                                            \general-align
+                                                #Y
+                                                #DOWN
+                                                \note-by-number
+                                                    #2
+                                                    #0
+                                                    #1
+                                        \upright
+                                            {
+                                                =
+                                                60
+                                            }
+                                    }
                             }
                         }
+                    \once \override TextSpanner.dash-fraction = 0.25
+                    \once \override TextSpanner.dash-period = 1.5
+                    g'8. \stopTextSpan \startTextSpan
+                    f'8.
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    ef'4. \stopTextSpan
                 }
             >>
 
@@ -522,31 +657,28 @@ class MetronomeMarkSpanner(Spanner):
         >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
         >>> spanner = abjad.MetronomeMarkSpanner()
         >>> abjad.attach(spanner, staff[:])
+        >>> abjad.override(staff).text_spanner.staff_padding = 3
 
         >>> mark = abjad.MetronomeMark((1, 4), 90)
-        >>> spanner.attach(mark, staff[2])
+        >>> spanner.attach(mark, spanner[2])
         >>> mark = abjad.MetronomeMark((1, 4), 72)
-        >>> spanner.attach(mark, staff[3])
+        >>> spanner.attach(mark, spanner[3])
         >>> mark = abjad.MetronomeMark((1, 4), 60)
-        >>> spanner.attach(mark, staff[5])
-
+        >>> spanner.attach(mark, spanner[5])
         >>> accelerando = abjad.Accelerando()
-        >>> spanner.attach(accelerando, staff[0])
-
-        >>> abjad.override(score).text_script.staff_padding = 2.25
-        >>> abjad.override(score).text_spanner.staff_padding = 3
+        >>> spanner.attach(accelerando, spanner[0])
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score \with {
-                \override TextScript.staff-padding = #2.25
-                \override TextSpanner.staff-padding = #3
-            } <<
-                \new Staff {
+            \new Score <<
+                \new Staff \with {
+                    \override TextSpanner.staff-padding = #3
+                } {
+                    \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.padding = -2
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
                         \override
                             #'(padding . 0.45)
@@ -555,28 +687,32 @@ class MetronomeMarkSpanner(Spanner):
                                     \upright
                                         accel.
                         \hspace
-                            #0.75
+                            #1
                         }
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \large
                             \upright
                                 accel.
                         \hspace
-                            #0.75
+                            #1
                         }
                     \once \override TextSpanner.bound-details.right-broken.arrow = ##f
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
                     \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 2
-                    \once \override TextSpanner.bound-details.right.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1.5
                     \time 3/8
                     c'8. \startTextSpan
                     d'8.
-                    e'4. \stopTextSpan ^ \markup {
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -591,8 +727,20 @@ class MetronomeMarkSpanner(Spanner):
                                 =
                                 90
                             }
+                        \hspace
+                            #1
                         }
-                    g'8. ^ \markup {
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.dash-period = 0
+                    e'4. \stopTextSpan \startTextSpan
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -607,24 +755,43 @@ class MetronomeMarkSpanner(Spanner):
                                 =
                                 72
                             }
+                        \hspace
+                            #1
                         }
-                    f'8.
-                    ef'4. ^ \markup {
-                        \fontsize
-                            #-6
-                            \general-align
-                                #Y
-                                #DOWN
-                                \note-by-number
-                                    #2
-                                    #0
-                                    #1
-                        \upright
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.right.text =
+                    \markup {
+                        \concat
                             {
-                                =
-                                60
+                                \hspace
+                                    #0.5
+                                \line
+                                    {
+                                        \fontsize
+                                            #-6
+                                            \general-align
+                                                #Y
+                                                #DOWN
+                                                \note-by-number
+                                                    #2
+                                                    #0
+                                                    #1
+                                        \upright
+                                            {
+                                                =
+                                                60
+                                            }
+                                    }
                             }
                         }
+                    \once \override TextSpanner.dash-period = 0
+                    g'8. \stopTextSpan \startTextSpan
+                    f'8.
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    ef'4. \stopTextSpan
                 }
             >>
 
@@ -637,31 +804,28 @@ class MetronomeMarkSpanner(Spanner):
         >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
         >>> spanner = abjad.MetronomeMarkSpanner()
         >>> abjad.attach(spanner, staff[:])
+        >>> abjad.override(staff).text_spanner.staff_padding = 3
 
         >>> mark = abjad.MetronomeMark((1, 4), 90)
-        >>> spanner.attach(mark, staff[2])
+        >>> spanner.attach(mark, spanner[2])
         >>> mark = abjad.MetronomeMark((1, 4), 72)
-        >>> spanner.attach(mark, staff[3])
+        >>> spanner.attach(mark, spanner[3])
         >>> mark = abjad.MetronomeMark((1, 4), 60)
-        >>> spanner.attach(mark, staff[5])
-
+        >>> spanner.attach(mark, spanner[5])
         >>> ritardando = abjad.Ritardando()
-        >>> spanner.attach(ritardando, staff[0])
-
-        >>> abjad.override(score).text_script.staff_padding = 2.25
-        >>> abjad.override(score).text_spanner.staff_padding = 3
+        >>> spanner.attach(ritardando, spanner[0])
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score \with {
-                \override TextScript.staff-padding = #2.25
-                \override TextSpanner.staff-padding = #3
-            } <<
-                \new Staff {
+            \new Score <<
+                \new Staff \with {
+                    \override TextSpanner.staff-padding = #3
+                } {
+                    \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.padding = -2
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
                         \override
                             #'(padding . 0.45)
@@ -670,28 +834,32 @@ class MetronomeMarkSpanner(Spanner):
                                     \upright
                                         rit.
                         \hspace
-                            #0.75
+                            #1
                         }
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \large
                             \upright
                                 rit.
                         \hspace
-                            #0.75
+                            #1
                         }
                     \once \override TextSpanner.bound-details.right-broken.arrow = ##f
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
                     \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 2
-                    \once \override TextSpanner.bound-details.right.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1.5
                     \time 3/8
                     c'8. \startTextSpan
                     d'8.
-                    e'4. \stopTextSpan ^ \markup {
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -706,8 +874,20 @@ class MetronomeMarkSpanner(Spanner):
                                 =
                                 90
                             }
+                        \hspace
+                            #1
                         }
-                    g'8. ^ \markup {
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.dash-period = 0
+                    e'4. \stopTextSpan \startTextSpan
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -722,24 +902,43 @@ class MetronomeMarkSpanner(Spanner):
                                 =
                                 72
                             }
+                        \hspace
+                            #1
                         }
-                    f'8.
-                    ef'4. ^ \markup {
-                        \fontsize
-                            #-6
-                            \general-align
-                                #Y
-                                #DOWN
-                                \note-by-number
-                                    #2
-                                    #0
-                                    #1
-                        \upright
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.right.text =
+                    \markup {
+                        \concat
                             {
-                                =
-                                60
+                                \hspace
+                                    #0.5
+                                \line
+                                    {
+                                        \fontsize
+                                            #-6
+                                            \general-align
+                                                #Y
+                                                #DOWN
+                                                \note-by-number
+                                                    #2
+                                                    #0
+                                                    #1
+                                        \upright
+                                            {
+                                                =
+                                                60
+                                            }
+                                    }
                             }
                         }
+                    \once \override TextSpanner.dash-period = 0
+                    g'8. \stopTextSpan \startTextSpan
+                    f'8.
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    ef'4. \stopTextSpan
                 }
             >>
 
@@ -751,34 +950,33 @@ class MetronomeMarkSpanner(Spanner):
         >>> score = abjad.Score([staff])
         >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
         >>> spanner = abjad.MetronomeMarkSpanner(
-        ...     start_with_parenthesized_tempo=True,
+        ...     parenthesize=True,
         ...     )
         >>> abjad.attach(spanner, staff[:])
+        >>> abjad.override(staff).text_spanner.staff_padding = 3
 
         >>> mark = abjad.MetronomeMark((1, 4), 60)
-        >>> spanner.attach(mark, staff[0])
+        >>> spanner.attach(mark, spanner[0])
         >>> mark = abjad.MetronomeMark((1, 4), 90)
-        >>> spanner.attach(mark, staff[2])
+        >>> spanner.attach(mark, spanner[2])
         >>> mark = abjad.MetronomeMark((1, 4), 120)
-        >>> spanner.attach(mark, staff[5])
-
+        >>> spanner.attach(mark, spanner[5])
         >>> accelerando = abjad.Accelerando()
-        >>> spanner.attach(accelerando, staff[3])
-
-        >>> abjad.override(score).text_script.staff_padding = 2.25
-        >>> abjad.override(score).text_spanner.staff_padding = 3
+        >>> spanner.attach(accelerando, spanner[3])
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score \with {
-                \override TextScript.staff-padding = #2.25
-                \override TextSpanner.staff-padding = #3
-            } <<
-                \new Staff {
-                    \time 3/8
-                    c'8. ^ \markup {
+            \new Score <<
+                \new Staff \with {
+                    \override TextSpanner.staff-padding = #3
+                } {
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -793,9 +991,22 @@ class MetronomeMarkSpanner(Spanner):
                                 =
                                 60
                             }
+                        \hspace
+                            #1
                         }
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.dash-period = 0
+                    \time 3/8
+                    c'8. \startTextSpan
                     d'8.
-                    e'4. ^ \markup {
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -810,9 +1021,18 @@ class MetronomeMarkSpanner(Spanner):
                                 =
                                 90
                             }
+                        \hspace
+                            #1
                         }
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.dash-period = 0
+                    e'4. \stopTextSpan \startTextSpan
+                    \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.padding = -2
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
                         \override
                             #'(padding . 0.45)
@@ -821,9 +1041,9 @@ class MetronomeMarkSpanner(Spanner):
                                     \upright
                                         accel.
                         \hspace
-                            #0.75
+                            #1
                         }
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \override
                             #'(padding . 0.45)
@@ -846,34 +1066,45 @@ class MetronomeMarkSpanner(Spanner):
                                             }
                                     }
                         \hspace
-                            #0.75
+                            #1
                         }
                     \once \override TextSpanner.bound-details.right-broken.arrow = ##f
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
                     \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 2
-                    \once \override TextSpanner.bound-details.right.text = ##f
-                    \once \override TextSpanner.dash-fraction = 0.25
-                    \once \override TextSpanner.dash-period = 1.5
-                    g'8. \startTextSpan
-                    f'8.
-                    ef'4. \stopTextSpan ^ \markup {
-                        \fontsize
-                            #-6
-                            \general-align
-                                #Y
-                                #DOWN
-                                \note-by-number
-                                    #2
-                                    #0
-                                    #1
-                        \upright
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.right.text =
+                    \markup {
+                        \concat
                             {
-                                =
-                                120
+                                \hspace
+                                    #0.5
+                                \line
+                                    {
+                                        \fontsize
+                                            #-6
+                                            \general-align
+                                                #Y
+                                                #DOWN
+                                                \note-by-number
+                                                    #2
+                                                    #0
+                                                    #1
+                                        \upright
+                                            {
+                                                =
+                                                120
+                                            }
+                                    }
                             }
                         }
+                    \once \override TextSpanner.dash-fraction = 0.25
+                    \once \override TextSpanner.dash-period = 1.5
+                    g'8. \stopTextSpan \startTextSpan
+                    f'8.
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    ef'4. \stopTextSpan
                 }
             >>
 
@@ -885,34 +1116,33 @@ class MetronomeMarkSpanner(Spanner):
         >>> score = abjad.Score([staff])
         >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
         >>> spanner = abjad.MetronomeMarkSpanner(
-        ...     start_with_parenthesized_tempo=True,
+        ...     parenthesize=True,
         ...     )
         >>> abjad.attach(spanner, staff[:])
+        >>> abjad.override(staff).text_spanner.staff_padding = 3
 
         >>> mark = abjad.MetronomeMark((1, 4), 60)
-        >>> spanner.attach(mark, staff[0])
+        >>> spanner.attach(mark, spanner[0])
         >>> mark = abjad.MetronomeMark((1, 4), 90)
-        >>> spanner.attach(mark, staff[2])
+        >>> spanner.attach(mark, spanner[2])
         >>> mark = abjad.MetronomeMark((1, 4), 60)
-        >>> spanner.attach(mark, staff[5])
-
+        >>> spanner.attach(mark, spanner[5])
         >>> ritardando = abjad.Ritardando()
-        >>> spanner.attach(ritardando, staff[3])
-
-        >>> abjad.override(score).text_script.staff_padding = 2.25
-        >>> abjad.override(score).text_spanner.staff_padding = 3
+        >>> spanner.attach(ritardando, spanner[3])
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score \with {
-                \override TextScript.staff-padding = #2.25
-                \override TextSpanner.staff-padding = #3
-            } <<
-                \new Staff {
-                    \time 3/8
-                    c'8. ^ \markup {
+            \new Score <<
+                \new Staff \with {
+                    \override TextSpanner.staff-padding = #3
+                } {
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -927,9 +1157,22 @@ class MetronomeMarkSpanner(Spanner):
                                 =
                                 60
                             }
+                        \hspace
+                            #1
                         }
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.dash-period = 0
+                    \time 3/8
+                    c'8. \startTextSpan
                     d'8.
-                    e'4. ^ \markup {
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -944,9 +1187,18 @@ class MetronomeMarkSpanner(Spanner):
                                 =
                                 90
                             }
+                        \hspace
+                            #1
                         }
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.dash-period = 0
+                    e'4. \stopTextSpan \startTextSpan
+                    \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.padding = -2
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
                         \override
                             #'(padding . 0.45)
@@ -955,9 +1207,9 @@ class MetronomeMarkSpanner(Spanner):
                                     \upright
                                         rit.
                         \hspace
-                            #0.75
+                            #1
                         }
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \override
                             #'(padding . 0.45)
@@ -980,34 +1232,45 @@ class MetronomeMarkSpanner(Spanner):
                                             }
                                     }
                         \hspace
-                            #0.75
+                            #1
                         }
                     \once \override TextSpanner.bound-details.right-broken.arrow = ##f
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
                     \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 2
-                    \once \override TextSpanner.bound-details.right.text = ##f
-                    \once \override TextSpanner.dash-fraction = 0.25
-                    \once \override TextSpanner.dash-period = 1.5
-                    g'8. \startTextSpan
-                    f'8.
-                    ef'4. \stopTextSpan ^ \markup {
-                        \fontsize
-                            #-6
-                            \general-align
-                                #Y
-                                #DOWN
-                                \note-by-number
-                                    #2
-                                    #0
-                                    #1
-                        \upright
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.right.text =
+                    \markup {
+                        \concat
                             {
-                                =
-                                60
+                                \hspace
+                                    #0.5
+                                \line
+                                    {
+                                        \fontsize
+                                            #-6
+                                            \general-align
+                                                #Y
+                                                #DOWN
+                                                \note-by-number
+                                                    #2
+                                                    #0
+                                                    #1
+                                        \upright
+                                            {
+                                                =
+                                                60
+                                            }
+                                    }
                             }
                         }
+                    \once \override TextSpanner.dash-fraction = 0.25
+                    \once \override TextSpanner.dash-period = 1.5
+                    g'8. \stopTextSpan \startTextSpan
+                    f'8.
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    ef'4. \stopTextSpan
                 }
             >>
 
@@ -1022,32 +1285,37 @@ class MetronomeMarkSpanner(Spanner):
         >>> score = abjad.Score([staff])
         >>> command = abjad.LilyPondCommand('break', 'after')
         >>> abjad.attach(command, staff[3])
+        >>> abjad.override(staff).text_spanner.staff_padding = 3
 
         >>> mark = abjad.MetronomeMark((1, 4), 60)
-        >>> spanner.attach(mark, staff[2])
+        >>> spanner.attach(mark, spanner[2])
         >>> mark = abjad.MetronomeMark((1, 4), 90)
-        >>> spanner.attach(mark, staff[6])
-
+        >>> spanner.attach(mark, spanner[6])
         >>> accelerando = abjad.Accelerando()
-        >>> spanner.attach(accelerando, staff[2])
-
-        >>> abjad.override(score).text_script.staff_padding = 2.25
-        >>> abjad.override(score).text_spanner.staff_padding = 3
+        >>> spanner.attach(accelerando, spanner[2])
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score \with {
-                \override TextScript.staff-padding = #2.25
-                \override TextSpanner.staff-padding = #3
-            } <<
-                \new Staff {
+            \new Score <<
+                \new Staff \with {
+                    \override TextSpanner.staff-padding = #3
+                } {
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.dash-period = 0
                     \time 3/8
-                    c'4.
+                    c'4. \startTextSpan
                     d'4.
+                    \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.padding = -2
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
                         \override
                             #'(padding . 0.45)
@@ -1056,10 +1324,11 @@ class MetronomeMarkSpanner(Spanner):
                                     \upright
                                         accel.
                         \hspace
-                            #0.75
+                            #1
                         }
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
-                    \once \override TextSpanner.bound-details.left.text = \markup {
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -1075,22 +1344,26 @@ class MetronomeMarkSpanner(Spanner):
                                 60
                             }
                         \hspace
-                            #1.25
+                            #1
                         }
                     \once \override TextSpanner.bound-details.right-broken.arrow = ##f
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
                     \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 2
-                    \once \override TextSpanner.bound-details.right.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1.5
-                    e'4. \startTextSpan
+                    e'4. \stopTextSpan \startTextSpan
                     f'4.
                     \break
                     g'4.
                     a'4.
-                    b'4. \stopTextSpan ^ \markup {
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -1105,8 +1378,16 @@ class MetronomeMarkSpanner(Spanner):
                                 =
                                 90
                             }
+                        \hspace
+                            #1
                         }
-                    c''4.
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.dash-period = 0
+                    b'4. \stopTextSpan \startTextSpan
+                    c''4. \stopTextSpan
                 }
             >>
 
@@ -1121,32 +1402,37 @@ class MetronomeMarkSpanner(Spanner):
         >>> score = abjad.Score([staff])
         >>> command = abjad.LilyPondCommand('break', 'after')
         >>> abjad.attach(command, staff[3])
+        >>> abjad.override(staff).text_spanner.staff_padding = 3
 
         >>> mark = abjad.MetronomeMark((1, 4), 90)
-        >>> spanner.attach(mark, staff[2])
+        >>> spanner.attach(mark, spanner[2])
         >>> mark = abjad.MetronomeMark((1, 4), 60)
-        >>> spanner.attach(mark, staff[6])
-
+        >>> spanner.attach(mark, spanner[6])
         >>> ritardando = abjad.Ritardando()
-        >>> spanner.attach(ritardando, staff[2])
-
-        >>> abjad.override(score).text_script.staff_padding = 2.25
-        >>> abjad.override(score).text_spanner.staff_padding = 3
+        >>> spanner.attach(ritardando, spanner[2])
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score \with {
-                \override TextScript.staff-padding = #2.25
-                \override TextSpanner.staff-padding = #3
-            } <<
-                \new Staff {
+            \new Score <<
+                \new Staff \with {
+                    \override TextSpanner.staff-padding = #3
+                } {
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.dash-period = 0
                     \time 3/8
-                    c'4.
+                    c'4. \startTextSpan
                     d'4.
+                    \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.padding = -2
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
                         \override
                             #'(padding . 0.45)
@@ -1155,10 +1441,11 @@ class MetronomeMarkSpanner(Spanner):
                                     \upright
                                         rit.
                         \hspace
-                            #0.75
+                            #1
                         }
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
-                    \once \override TextSpanner.bound-details.left.text = \markup {
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -1174,22 +1461,26 @@ class MetronomeMarkSpanner(Spanner):
                                 90
                             }
                         \hspace
-                            #1.25
+                            #1
                         }
                     \once \override TextSpanner.bound-details.right-broken.arrow = ##f
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
                     \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 2
-                    \once \override TextSpanner.bound-details.right.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1.5
-                    e'4. \startTextSpan
+                    e'4. \stopTextSpan \startTextSpan
                     f'4.
                     \break
                     g'4.
                     a'4.
-                    b'4. \stopTextSpan ^ \markup {
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -1204,8 +1495,16 @@ class MetronomeMarkSpanner(Spanner):
                                 =
                                 60
                             }
+                        \hspace
+                            #1
                         }
-                    c''4.
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.dash-period = 0
+                    b'4. \stopTextSpan \startTextSpan
+                    c''4. \stopTextSpan
                 }
             >>
 
@@ -1218,31 +1517,31 @@ class MetronomeMarkSpanner(Spanner):
         >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
         >>> spanner = abjad.MetronomeMarkSpanner()
         >>> abjad.attach(spanner, staff[:])
+        >>> abjad.override(staff).text_spanner.staff_padding = 3
 
         >>> mark = abjad.MetronomeMark((3, 4), 90)
-        >>> spanner.attach(mark, staff[0])
+        >>> spanner.attach(mark, spanner[0])
         >>> mark = abjad.MetronomeMark((3, 4), 60)
-        >>> spanner.attach(mark, staff[3])
+        >>> spanner.attach(mark, spanner[3])
         >>> metric_modulation = abjad.MetricModulation(
         ...     left_rhythm=abjad.Note('c4.'),
         ...     right_rhythm=abjad.Note('c4'),
         ...     )
-        >>> spanner.attach(metric_modulation, staff[3])
-
-        >>> abjad.override(score).text_script.staff_padding = 2.25
-        >>> abjad.override(score).text_spanner.staff_padding = 3
+        >>> spanner.attach(metric_modulation, spanner[3])
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score \with {
-                \override TextScript.staff-padding = #2.25
-                \override TextSpanner.staff-padding = #3
-            } <<
-                \new Staff {
-                    \time 3/8
-                    c'8. ^ \markup {
+            \new Score <<
+                \new Staff \with {
+                    \override TextSpanner.staff-padding = #3
+                } {
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -1257,10 +1556,23 @@ class MetronomeMarkSpanner(Spanner):
                                 =
                                 90
                             }
+                        \hspace
+                            #1
                         }
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.dash-period = 0
+                    \time 3/8
+                    c'8. \startTextSpan
                     d'8.
                     e'4.
-                    g'8. ^ \markup {
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -1345,9 +1657,17 @@ class MetronomeMarkSpanner(Spanner):
                                                         }
                                                     }
                                         }
+                        \hspace
+                            #1
                         }
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.dash-period = 0
+                    g'8. \stopTextSpan \startTextSpan
                     f'8.
-                    ef'4.
+                    ef'4. \stopTextSpan
                 }
             >>
 
@@ -1360,34 +1680,34 @@ class MetronomeMarkSpanner(Spanner):
         >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
         >>> spanner = abjad.MetronomeMarkSpanner()
         >>> abjad.attach(spanner, staff[:])
+        >>> abjad.override(staff).text_spanner.staff_padding = 3
 
         >>> mark = abjad.MetronomeMark((3, 4), 90)
-        >>> spanner.attach(mark, staff[0])
+        >>> spanner.attach(mark, spanner[0])
         >>> mark = abjad.MetronomeMark((3, 4), 60)
-        >>> spanner.attach(mark, staff[3])
+        >>> spanner.attach(mark, spanner[3])
         >>> metric_modulation = abjad.MetricModulation(
         ...     left_rhythm=abjad.Note('c4.'),
         ...     right_rhythm=abjad.Note('c4'),
         ...     )
-        >>> spanner.attach(metric_modulation, staff[3])
-        >>> spanner.attach(abjad.Accelerando(), staff[3])
+        >>> spanner.attach(metric_modulation, spanner[3])
+        >>> spanner.attach(abjad.Accelerando(), spanner[3])
         >>> mark = abjad.MetronomeMark((3, 4), 90)
-        >>> spanner.attach(mark, staff[-1])
-
-        >>> abjad.override(score).text_script.staff_padding = 2.25
-        >>> abjad.override(score).text_spanner.staff_padding = 3
+        >>> spanner.attach(mark, spanner[-1])
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score \with {
-                \override TextScript.staff-padding = #2.25
-                \override TextSpanner.staff-padding = #3
-            } <<
-                \new Staff {
-                    \time 3/8
-                    c'8. ^ \markup {
+            \new Score <<
+                \new Staff \with {
+                    \override TextSpanner.staff-padding = #3
+                } {
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -1402,11 +1722,21 @@ class MetronomeMarkSpanner(Spanner):
                                 =
                                 90
                             }
+                        \hspace
+                            #1
                         }
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.dash-period = 0
+                    \time 3/8
+                    c'8. \startTextSpan
                     d'8.
                     e'4.
+                    \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.padding = -2
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
                         \override
                             #'(padding . 0.45)
@@ -1415,10 +1745,11 @@ class MetronomeMarkSpanner(Spanner):
                                     \upright
                                         accel.
                         \hspace
-                            #0.75
+                            #1
                         }
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
-                    \once \override TextSpanner.bound-details.left.text = \markup {
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -1504,34 +1835,45 @@ class MetronomeMarkSpanner(Spanner):
                                                     }
                                         }
                         \hspace
-                            #1.25
+                            #1
                         }
                     \once \override TextSpanner.bound-details.right-broken.arrow = ##f
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
                     \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 2
-                    \once \override TextSpanner.bound-details.right.text = ##f
-                    \once \override TextSpanner.dash-fraction = 0.25
-                    \once \override TextSpanner.dash-period = 1.5
-                    g'8. \startTextSpan
-                    f'8.
-                    ef'4. \stopTextSpan ^ \markup {
-                        \fontsize
-                            #-6
-                            \general-align
-                                #Y
-                                #DOWN
-                                \note-by-number
-                                    #2
-                                    #1
-                                    #1
-                        \upright
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.right.text =
+                    \markup {
+                        \concat
                             {
-                                =
-                                90
+                                \hspace
+                                    #0.5
+                                \line
+                                    {
+                                        \fontsize
+                                            #-6
+                                            \general-align
+                                                #Y
+                                                #DOWN
+                                                \note-by-number
+                                                    #2
+                                                    #1
+                                                    #1
+                                        \upright
+                                            {
+                                                =
+                                                90
+                                            }
+                                    }
                             }
                         }
+                    \once \override TextSpanner.dash-fraction = 0.25
+                    \once \override TextSpanner.dash-period = 1.5
+                    g'8. \stopTextSpan \startTextSpan
+                    f'8.
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    ef'4. \stopTextSpan
                 }
             >>
 
@@ -1542,7 +1884,10 @@ class MetronomeMarkSpanner(Spanner):
     __slots__ = (
         '_left_broken_padding',
         '_left_broken_text',
-        '_start_with_parenthesized_tempo',
+        '_left_hspace',
+        '_parenthesize',
+        '_right_padding',
+        '_stem_height',
         )
 
     ### INITIALIZER ###
@@ -1551,7 +1896,10 @@ class MetronomeMarkSpanner(Spanner):
         self,
         left_broken_padding=None,
         left_broken_text=None,
-        start_with_parenthesized_tempo=False,
+        left_hspace=1,
+        parenthesize=False,
+        right_padding=1,
+        stem_height=1,
         overrides=None,
         ):
         import abjad
@@ -1561,26 +1909,36 @@ class MetronomeMarkSpanner(Spanner):
         prototype = (abjad.Markup, type(None))
         assert isinstance(left_broken_text, prototype)
         self._left_broken_text = left_broken_text
-        assert isinstance(start_with_parenthesized_tempo, (bool, type(None)))
-        self._start_with_parenthesized_tempo = start_with_parenthesized_tempo
+        self._left_hspace = left_hspace
+        if parenthesize is not None:
+            parenthesize = bool(parenthesize)
+        self._parenthesize = parenthesize
+        self._right_padding = right_padding
+        self._stem_height = stem_height
 
     ### PRIVATE METHODS ###
 
-    def _combine_tempo_and_metric_modulation(
+    def _combine_metronome_mark_and_metric_modulation(
         self,
-        tempo,
+        metronome_mark,
         metric_modulation,
         ):
         import abjad
-        assert tempo is not None or metric_modulation is not None
-        if tempo is None:
+        assert metronome_mark is not None or metric_modulation is not None
+        if metronome_mark is None:
             return metric_modulation._get_markup(
                 music_scale_pair=(0.5, 0.5),
                 )
         if metric_modulation is None:
-            return tempo._to_markup()
-        tempo_markup = tempo._to_markup()
-        tempo_markup = tempo_markup + tempo_markup.hspace(0.5)
+            return metronome_mark._get_markup(
+                stem_height=self.stem_height,
+                )
+        # HERE
+        metronome_mark_markup = metronome_mark._get_markup(
+            stem_height=self.stem_height,
+            )
+        metronome_mark_markup = \
+            metronome_mark_markup + metronome_mark_markup.hspace(0.5)
         modulation_markup = metric_modulation._get_markup(
             music_scale_pair=(0.5, 0.5),
             )
@@ -1588,94 +1946,170 @@ class MetronomeMarkSpanner(Spanner):
         modulation_markup = modulation_markup.parenthesize()
         modulation_markup = modulation_markup.override(('padding', 0.5))
         modulation_markup = modulation_markup.general_align('Y', abjad.Down)
-        markup = tempo_markup + modulation_markup
+        markup = metronome_mark_markup + modulation_markup
         return markup
 
     def _get_lilypond_format_bundle(self, leaf):
         import abjad
         bundle = self._get_basic_lilypond_format_bundle(leaf)
+        if not 1 < len(self):
+            return bundle
         current_wrappers = self._get_piecewise_wrappers(leaf)
-
-        current_tempo_wrapper = current_wrappers[0]
-        if current_tempo_wrapper is not None:
-            current_tempo = current_tempo_wrapper.indicator
+        #
+        current_metronome_mark_wrapper = current_wrappers[0]
+        if current_metronome_mark_wrapper is not None:
+            current_metronome_mark = current_metronome_mark_wrapper.indicator
         else:
-            current_tempo = None
-
+            current_metronome_mark = None
+        #
         current_tempo_trend_wrapper = current_wrappers[1]
         if current_tempo_trend_wrapper is not None:
             current_tempo_trend = current_tempo_trend_wrapper.indicator
         else:
             current_tempo_trend = None
-
+        #
         current_metric_modulation_wrapper = current_wrappers[2]
         if current_metric_modulation_wrapper is not None:
             current_metric_modulation = \
                 current_metric_modulation_wrapper.indicator
         else:
             current_metric_modulation = None
-
-        if current_tempo is None and current_tempo_trend is None:
-            return bundle
-        previous_wrappers = self._get_previous_piecewise_wrappers(leaf)
-        previous_tempo_wrapper = previous_wrappers[0]
-        if previous_tempo_wrapper is not None:
-            previous_tempo = previous_tempo_wrapper.indicator
+        #
+        if self._should_format_last_leaf_markup(leaf):
+            last_leaf_metronome_mark = abjad.inspect(self[-1]).get_piecewise(
+                abjad.MetronomeMark,
+                )
         else:
-            previous_tempo = None
+            last_leaf_metronome_mark = None
+        indicators = (
+            current_metronome_mark,
+            current_metric_modulation,
+            current_tempo_trend,
+            last_leaf_metronome_mark,
+            )
+        has_indicators = any(_ is not None for _ in indicators)
+        #
+        if not has_indicators:
+            if self._is_my_first_leaf(leaf):
+                bundle.right.spanner_starts.append(r'\startTextSpan')
+                string = r'\once \override TextSpanner.Y-extent = ##f'
+                bundle.grob_overrides.append(string)
+                line_segment = self._make_invisible_line_segment()
+                line_segment = abjad.new(
+                    line_segment,
+                    right_padding=self.right_padding,
+                    )
+                overrides = line_segment._get_lilypond_grob_overrides()
+                for override in overrides:
+                    override_string = override.override_string
+                    bundle.grob_overrides.append(override_string)
+            if self._is_my_last_leaf(leaf):
+                bundle.right.spanner_stops.append(r'\stopTextSpan')
+            return bundle
+        #
+        previous_wrappers = self._get_previous_piecewise_wrappers(leaf)
+        previous_metronome_mark_wrapper = previous_wrappers[0]
+        if previous_metronome_mark_wrapper is not None:
+            previous_metronome_mark = previous_metronome_mark_wrapper.indicator
+        else:
+            previous_metronome_mark = None
         previous_tempo_trend_wrapper = previous_wrappers[1]
         if previous_tempo_trend_wrapper is not None:
             previous_tempo_trend = previous_tempo_trend_wrapper.indicator
         else:
             previous_tempo_trend = None
-        # stop any previous tempo trend
-        if previous_tempo_trend:
-            spanner_stop = r'\stopTextSpan'
-            #if previous_tempo_trend_wrapper.tag:
-            #    tag = ' % ' + previous_tempo_trend_wrapper.tag
-            #    spanner_stop += tag
-            bundle.right.spanner_stops.append(spanner_stop)
-        # use markup if no tempo trend starts now
-        if current_tempo_trend is None:
-            markup = self._combine_tempo_and_metric_modulation(
-                current_tempo,
-                current_metric_modulation,
+        #
+        if has_indicators and not self._is_my_first_leaf(leaf):
+            bundle.right.spanner_stops.append(r'\stopTextSpan')
+        #
+        if not self._is_my_last_leaf(leaf):
+            bundle.right.spanner_starts.append(r'\startTextSpan')
+            string = r'\once \override TextSpanner.Y-extent = ##f'
+            bundle.grob_overrides.append(string)
+            if current_metronome_mark or current_metric_modulation:
+                self._start_tempo_trend_spanner_with_explicit_start(
+                    leaf,
+                    bundle,
+                    current_metronome_mark_wrapper,
+                    current_metric_modulation_wrapper,
+                    )
+            else:
+                self._start_tempo_trend_spanner_with_implicit_start(
+                    leaf,
+                    bundle,
+                    current_tempo_trend,
+                    previous_metronome_mark,
+                    )
+            if current_tempo_trend is None:
+                line_segment = self._make_invisible_line_segment()
+            else:
+                line_segment = self._make_dashed_arrow()
+            line_segment = abjad.new(
+                line_segment,
+                right_padding=self.right_padding,
                 )
-            markup = abjad.new(markup, direction=abjad.Up)
-            #string = format(markup, 'lilypond')
-            pieces = markup._get_format_pieces()
-            if current_tempo_wrapper.tag:
-                tag = ' % ' + current_tempo_wrapper.tag
-                pieces = [_ + tag for _ in pieces]
+            overrides = line_segment._get_lilypond_grob_overrides()
+            for override in overrides:
+                override_string = override.override_string
+                bundle.grob_overrides.append(override_string)
+        #
+        if last_leaf_metronome_mark is not None:
+            last_leaf_wrapper = abjad.inspect(self[-1]).wrapper(
+                abjad.MetronomeMark
+                )
+            assert last_leaf_wrapper.indicator is last_leaf_metronome_mark
+            last_leaf_markup = last_leaf_metronome_mark._get_markup(
+                stem_height=self.stem_height,
+                )
+            right_hspace = line_segment.right_padding or 0
+            # optical correction to draw last markup left:
+            right_hspace -= 0.5
+            right_hspace = abjad.Markup.hspace(right_hspace)
+            last_leaf_markup = abjad.Markup.line([last_leaf_markup])
+            last_leaf_markup = abjad.Markup.concat(
+                [right_hspace, last_leaf_markup],
+                )
+            last_leaf_markup = abjad.new(last_leaf_markup, direction=None)
+            pieces = last_leaf_markup._get_format_pieces()
+            piece = r'\once \override TextSpanner.bound-details.right.text ='
+            pieces.insert(0, piece)
+            pieces = abjad.LilyPondFormatManager.tag(
+                pieces,
+                last_leaf_wrapper.tag,
+                deactivate=last_leaf_wrapper.deactivate,
+                site=last_leaf_wrapper.site,
+                )
             string = '\n'.join(pieces)
-            bundle.right.markup.append(string)
-            return bundle
-        # use spanner if tempo trend starts now
-        spanner_start = r'\startTextSpan'
-        bundle.right.spanner_starts.append(spanner_start)
-        if current_tempo or current_metric_modulation:
-            self._start_tempo_trend_spanner_with_explicit_start(
-                leaf,
-                bundle,
-                current_tempo,
-                current_metric_modulation,
-                )
-        else:
-            self._start_tempo_trend_spanner_with_implicit_start(
-                leaf,
-                bundle,
-                current_tempo_trend,
-                previous_tempo,
-                )
+            bundle.grob_overrides.append(string)
+            alternate = last_leaf_wrapper.alternate
+            if alternate is not None:
+                deactivate = not last_leaf_wrapper.deactivate
+                color, site, tag = alternate
+                color = abjad.SchemeColor(color)
+                last_leaf_markup = last_leaf_markup.with_color(color)
+                pieces = last_leaf_markup._get_format_pieces()
+                piece = r'\once \override'
+                piece += ' TextSpanner.bound-details.right.text ='
+                pieces.insert(0, piece)
+                pieces = abjad.LilyPondFormatManager.tag(
+                    pieces,
+                    tag,
+                    deactivate=deactivate,
+                    site=site,
+                    )
+                string = '\n'.join(pieces)
+                bundle.grob_overrides.append(string)
         #
         if self.left_broken_text is not None:
             markup = self.left_broken_text
-        else:
-            markup = current_tempo_trend._to_markup()
+        elif current_tempo_trend is not None:
+            markup = current_tempo_trend._get_markup()
             markup = markup.parenthesize()
             markup = markup.override(('padding', 0.45))
-            markup = markup + markup.hspace(0.75)
-        override_ = abjad.LilyPondGrobOverride(
+            markup = markup + markup.hspace(self.left_hspace)
+        else:
+            markup = False
+        override = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
             once=True,
             property_path=(
@@ -1685,15 +2119,13 @@ class MetronomeMarkSpanner(Spanner):
                 ),
             value=markup,
             )
-        override_string = override_.override_string
+        override_string = override.override_string
         bundle.grob_overrides.append(override_string)
-        #
-        self._make_other_text_spanner_overrides(bundle)
         return bundle
 
     def _get_piecewise_wrappers(self, leaf):
         import abjad
-        tempo = abjad.inspect(leaf).get_piecewise(
+        metronome_mark = abjad.inspect(leaf).get_piecewise(
             abjad.MetronomeMark,
             default=None,
             unwrap=False,
@@ -1709,7 +2141,7 @@ class MetronomeMarkSpanner(Spanner):
             unwrap=False,
             )
         return (
-            tempo,
+            metronome_mark,
             tempo_trend,
             metric_modulation,
             )
@@ -1724,198 +2156,122 @@ class MetronomeMarkSpanner(Spanner):
                 return wrappers
         return None, None, None
 
-    def _make_other_text_spanner_overrides(self, bundle):
-        r'''Alphabetical by property.
-        '''
+    @staticmethod
+    def _make_dashed_arrow():
         import abjad
-        override_ = abjad.LilyPondGrobOverride(
-            grob_name='TextSpanner',
-            once=True,
-            property_path=(
-                'arrow-width',
-                ),
-            value=0.25,
+        return abjad.ArrowLineSegment(
+            dash_fraction=0.25,
+            dash_period=1.5,
+            left_broken_text=False,
+            left_hspace=0.5,
+            right_broken_arrow=False,
+            right_broken_padding=0,
+            right_broken_text=False,
+            right_padding=0.5,
             )
-        override_string = override_.override_string
-        bundle.grob_overrides.append(override_string)
-        #
-        override_ = abjad.LilyPondGrobOverride(
-            grob_name='TextSpanner',
-            once=True,
-            property_path=(
-                'dash-fraction',
-                ),
-            value=0.25,
+
+    @staticmethod
+    def _make_invisible_line_segment():
+        import abjad
+        return abjad.LineSegment(
+            dash_period=0,
+            left_broken_text=False,
+            left_hspace=0.25,
+            left_stencil_align_direction_y=abjad.Center,
+            right_broken_padding=0,
+            right_broken_text=False,
+            right_padding=1.5,
+            right_stencil_align_direction_y=abjad.Center,
             )
-        override_string = override_.override_string
-        bundle.grob_overrides.append(override_string)
-        #
-        override_ = abjad.LilyPondGrobOverride(
-            grob_name='TextSpanner',
-            once=True,
-            property_path=(
-                'dash-period',
-                ),
-            value=1.5,
+
+    def _should_format_last_leaf_markup(self, leaf):
+        import abjad
+        prototype = abjad.MetronomeMark
+        if abjad.inspect(self[-1]).get_piecewise(prototype, None) is None:
+            return False
+        prototype = (
+            abjad.Accelerando,
+            abjad.MetricModulation,
+            abjad.MetronomeMark,
+            abjad.Ritardando,
             )
-        override_string = override_.override_string
-        bundle.grob_overrides.append(override_string)
-        #
-        override_ = abjad.LilyPondGrobOverride(
-            grob_name='TextSpanner',
-            once=True,
-            property_path=(
-                'bound-details',
-                'left',
-                'stencil-align-dir-y',
-                ),
-            value=-0.5,
-            )
-        override_string = override_.override_string
-        bundle.grob_overrides.append(override_string)
-        #
-        if self.left_broken_padding is not None:
-            padding = self.left_broken_padding
-        else:
-            padding = -2
-        override_ = abjad.LilyPondGrobOverride(
-            grob_name='TextSpanner',
-            once=True,
-            property_path=(
-                'bound-details',
-                'left-broken',
-                'padding',
-                ),
-            value=padding,
-            )
-        override_string = override_.override_string
-        bundle.grob_overrides.append(override_string)
-        #
-        #
-        override_ = abjad.LilyPondGrobOverride(
-            grob_name='TextSpanner',
-            once=True,
-            property_path=(
-                'bound-details',
-                'right',
-                'arrow',
-                ),
-            value=True,
-            )
-        override_string = override_.override_string
-        bundle.grob_overrides.append(override_string)
-        #
-        override_ = abjad.LilyPondGrobOverride(
-            grob_name='TextSpanner',
-            once=True,
-            property_path=(
-                'bound-details',
-                'right',
-                'padding',
-                ),
-            value=2,
-            )
-        override_string = override_.override_string
-        bundle.grob_overrides.append(override_string)
-        #
-        override_ = abjad.LilyPondGrobOverride(
-            grob_name='TextSpanner',
-            once=True,
-            property_path=(
-                'bound-details',
-                'right',
-                'text',
-                ),
-            value=False,
-            )
-        override_string = override_.override_string
-        bundle.grob_overrides.append(override_string)
-        #
-        override_ = abjad.LilyPondGrobOverride(
-            grob_name='TextSpanner',
-            once=True,
-            property_path=(
-                'bound-details',
-                'right-broken',
-                'arrow',
-                ),
-            value=False,
-            )
-        override_string = override_.override_string
-        bundle.grob_overrides.append(override_string)
-        #
-        override_ = abjad.LilyPondGrobOverride(
-            grob_name='TextSpanner',
-            once=True,
-            property_path=(
-                'bound-details',
-                'right-broken',
-                'padding',
-                ),
-            value=0,
-            )
-        override_string = override_.override_string
-        bundle.grob_overrides.append(override_string)
-        #
-        override_ = abjad.LilyPondGrobOverride(
-            grob_name='TextSpanner',
-            once=True,
-            property_path=(
-                'bound-details',
-                'right-broken',
-                'text',
-                ),
-            value=False,
-            )
-        override_string = override_.override_string
-        bundle.grob_overrides.append(override_string)
+        leaf_ = None
+        for leaf_ in reversed(self[:-1]):
+            has_indicator = False
+            for class_ in prototype:
+                indicator = abjad.inspect(leaf_).get_piecewise(class_, None)
+                if indicator is not None:
+                    has_indicator = True
+                    break
+            if has_indicator:
+                break
+        return leaf_ is leaf
 
     def _start_tempo_trend_spanner_with_explicit_start(
         self,
         leaf,
         bundle,
-        current_tempo,
-        current_metric_modulation,
+        current_metronome_mark_wrapper,
+        current_metric_modulation_wrapper,
         ):
         import abjad
         #
-        #markup = current_tempo._to_markup()
-        markup = self._combine_tempo_and_metric_modulation(
-            current_tempo,
-            current_metric_modulation,
+        markup = self._combine_metronome_mark_and_metric_modulation(
+            getattr(current_metronome_mark_wrapper, 'indicator', None),
+            getattr(current_metric_modulation_wrapper, 'indicator', None),
             )
-        markup = markup + markup.hspace(1.25)
-        override_ = abjad.LilyPondGrobOverride(
-            grob_name='TextSpanner',
-            once=True,
-            property_path=(
-                'bound-details',
-                'left',
-                'text',
-                ),
-            value=markup,
+        markup = markup + markup.hspace(self.left_hspace)
+        #
+        pieces = markup._get_format_pieces()
+        piece = r'\once \override TextSpanner.bound-details.left.text ='
+        pieces.insert(0, piece)
+        pieces = abjad.LilyPondFormatManager.tag(
+            pieces,
+            current_metronome_mark_wrapper.tag,
+            deactivate=current_metronome_mark_wrapper.deactivate,
+            site=current_metronome_mark_wrapper.site,
             )
-        override_string = override_.override_string
-        bundle.grob_overrides.append(override_string)
+        string = '\n'.join(pieces)
+        bundle.grob_overrides.append(string)
+        alternate = current_metronome_mark_wrapper.alternate
+        if alternate is not None:
+            deactivate = not current_metronome_mark_wrapper.deactivate
+            color, site, tag = alternate
+            color = abjad.SchemeColor(color)
+            markup = markup.with_color(color)
+            pieces = markup._get_format_pieces()
+            piece = r'\once \override TextSpanner.bound-details.left.text ='
+            pieces.insert(0, piece)
+            pieces = abjad.LilyPondFormatManager.tag(
+                pieces,
+                tag,
+                deactivate=deactivate,
+                site=site,
+                )
+            string = '\n'.join(pieces)
+            bundle.grob_overrides.append(string)
 
     def _start_tempo_trend_spanner_with_implicit_start(
         self,
         leaf,
         bundle,
         current_tempo_trend,
-        previous_tempo,
+        previous_metronome_mark,
         ):
         import abjad
-        if self.start_with_parenthesized_tempo and previous_tempo:
-            markup = previous_tempo._to_markup()
+        if (self.parenthesize and
+            previous_metronome_mark):
+            markup = previous_metronome_mark._get_markup(
+                stem_height=self.stem_height,
+                )
             markup = markup.line([markup])
             markup = markup.parenthesize()
             markup = markup.override(('padding', 0.45))
-            markup = markup + markup.hspace(0.75)
+            markup = markup + markup.hspace(self.left_hspace)
         else:
-            markup = current_tempo_trend._to_markup()
-            markup = markup + markup.hspace(0.75)
-        override_ = abjad.LilyPondGrobOverride(
+            markup = current_tempo_trend._get_markup()
+            markup = markup + markup.hspace(self.left_hspace)
+        override = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
             once=True,
             property_path=(
@@ -1925,7 +2281,7 @@ class MetronomeMarkSpanner(Spanner):
                 ),
             value=markup,
             )
-        override_string = override_.override_string
+        override_string = override.override_string
         bundle.grob_overrides.append(override_string)
 
     ### PUBLIC PROPERTIES ###
@@ -1945,32 +2301,37 @@ class MetronomeMarkSpanner(Spanner):
             >>> abjad.attach(command, staff[3])
             >>> spanner = abjad.MetronomeMarkSpanner()
             >>> abjad.attach(spanner, staff[:])
+            >>> abjad.override(staff).text_spanner.staff_padding = 3
 
             >>> mark = abjad.MetronomeMark((1, 4), 90)
-            >>> spanner.attach(mark, staff[2])
+            >>> spanner.attach(mark, spanner[2])
             >>> mark = abjad.MetronomeMark((1, 4), 60)
-            >>> spanner.attach(mark, staff[6])
-
+            >>> spanner.attach(mark, spanner[6])
             >>> ritardando = abjad.Ritardando()
-            >>> spanner.attach(ritardando, staff[2])
-
-            >>> abjad.override(score).text_script.staff_padding = 2.25
-            >>> abjad.override(score).text_spanner.staff_padding = 3
+            >>> spanner.attach(ritardando, spanner[2])
             >>> abjad.show(score) # doctest: +SKIP
 
             ..  docs::
 
                 >>> abjad.f(score)
-                \new Score \with {
-                    \override TextScript.staff-padding = #2.25
-                    \override TextSpanner.staff-padding = #3
-                } <<
-                    \new Staff {
+                \new Score <<
+                    \new Staff \with {
+                        \override TextSpanner.staff-padding = #3
+                    } {
+                        \once \override TextSpanner.Y-extent = ##f
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
+                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.right-broken.padding = 0
+                        \once \override TextSpanner.bound-details.right-broken.text = ##f
+                        \once \override TextSpanner.bound-details.right.padding = 1
+                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                        \once \override TextSpanner.dash-period = 0
                         \time 3/8
-                        c'4.
+                        c'4. \startTextSpan
                         d'4.
+                        \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.arrow-width = 0.25
-                        \once \override TextSpanner.bound-details.left-broken.padding = -2
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
                         \once \override TextSpanner.bound-details.left-broken.text = \markup {
                             \override
                                 #'(padding . 0.45)
@@ -1979,10 +2340,11 @@ class MetronomeMarkSpanner(Spanner):
                                         \upright
                                             rit.
                             \hspace
-                                #0.75
+                                #1
                             }
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
-                        \once \override TextSpanner.bound-details.left.text = \markup {
+                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.left.text =
+                        \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -1998,22 +2360,26 @@ class MetronomeMarkSpanner(Spanner):
                                     90
                                 }
                             \hspace
-                                #1.25
+                                #1
                             }
                         \once \override TextSpanner.bound-details.right-broken.arrow = ##f
                         \once \override TextSpanner.bound-details.right-broken.padding = 0
                         \once \override TextSpanner.bound-details.right-broken.text = ##f
                         \once \override TextSpanner.bound-details.right.arrow = ##t
-                        \once \override TextSpanner.bound-details.right.padding = 2
-                        \once \override TextSpanner.bound-details.right.text = ##f
+                        \once \override TextSpanner.bound-details.right.padding = 1
+                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-fraction = 0.25
                         \once \override TextSpanner.dash-period = 1.5
-                        e'4. \startTextSpan
+                        e'4. \stopTextSpan \startTextSpan
                         f'4.
                         \break
                         g'4.
                         a'4.
-                        b'4. \stopTextSpan ^ \markup {
+                        \once \override TextSpanner.Y-extent = ##f
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
+                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.left.text =
+                        \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -2028,8 +2394,16 @@ class MetronomeMarkSpanner(Spanner):
                                     =
                                     60
                                 }
+                            \hspace
+                                #1
                             }
-                        c''4.
+                        \once \override TextSpanner.bound-details.right-broken.padding = 0
+                        \once \override TextSpanner.bound-details.right-broken.text = ##f
+                        \once \override TextSpanner.bound-details.right.padding = 1
+                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                        \once \override TextSpanner.dash-period = 0
+                        b'4. \stopTextSpan \startTextSpan
+                        c''4. \stopTextSpan
                     }
                 >>
 
@@ -2048,32 +2422,37 @@ class MetronomeMarkSpanner(Spanner):
             ...     left_broken_padding=4,
             ...     )
             >>> abjad.attach(spanner, staff[:])
+            >>> abjad.override(staff).text_spanner.staff_padding = 3
 
             >>> mark = abjad.MetronomeMark((1, 4), 90)
-            >>> spanner.attach(mark, staff[2])
+            >>> spanner.attach(mark, spanner[2])
             >>> mark = abjad.MetronomeMark((1, 4), 60)
-            >>> spanner.attach(mark, staff[6])
-
+            >>> spanner.attach(mark, spanner[6])
             >>> ritardando = abjad.Ritardando()
-            >>> spanner.attach(ritardando, staff[2])
-
-            >>> abjad.override(score).text_script.staff_padding = 2.25
-            >>> abjad.override(score).text_spanner.staff_padding = 3
+            >>> spanner.attach(ritardando, spanner[2])
             >>> abjad.show(score) # doctest: +SKIP
 
             ..  docs::
 
                 >>> abjad.f(score)
-                \new Score \with {
-                    \override TextScript.staff-padding = #2.25
-                    \override TextSpanner.staff-padding = #3
-                } <<
-                    \new Staff {
+                \new Score <<
+                    \new Staff \with {
+                        \override TextSpanner.staff-padding = #3
+                    } {
+                        \once \override TextSpanner.Y-extent = ##f
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
+                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.right-broken.padding = 0
+                        \once \override TextSpanner.bound-details.right-broken.text = ##f
+                        \once \override TextSpanner.bound-details.right.padding = 1
+                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                        \once \override TextSpanner.dash-period = 0
                         \time 3/8
-                        c'4.
+                        c'4. \startTextSpan
                         d'4.
+                        \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.arrow-width = 0.25
-                        \once \override TextSpanner.bound-details.left-broken.padding = 4
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
                         \once \override TextSpanner.bound-details.left-broken.text = \markup {
                             \override
                                 #'(padding . 0.45)
@@ -2082,10 +2461,11 @@ class MetronomeMarkSpanner(Spanner):
                                         \upright
                                             rit.
                             \hspace
-                                #0.75
+                                #1
                             }
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
-                        \once \override TextSpanner.bound-details.left.text = \markup {
+                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.left.text =
+                        \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -2101,22 +2481,26 @@ class MetronomeMarkSpanner(Spanner):
                                     90
                                 }
                             \hspace
-                                #1.25
+                                #1
                             }
                         \once \override TextSpanner.bound-details.right-broken.arrow = ##f
                         \once \override TextSpanner.bound-details.right-broken.padding = 0
                         \once \override TextSpanner.bound-details.right-broken.text = ##f
                         \once \override TextSpanner.bound-details.right.arrow = ##t
-                        \once \override TextSpanner.bound-details.right.padding = 2
-                        \once \override TextSpanner.bound-details.right.text = ##f
+                        \once \override TextSpanner.bound-details.right.padding = 1
+                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-fraction = 0.25
                         \once \override TextSpanner.dash-period = 1.5
-                        e'4. \startTextSpan
+                        e'4. \stopTextSpan \startTextSpan
                         f'4.
                         \break
                         g'4.
                         a'4.
-                        b'4. \stopTextSpan ^ \markup {
+                        \once \override TextSpanner.Y-extent = ##f
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
+                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.left.text =
+                        \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -2131,8 +2515,16 @@ class MetronomeMarkSpanner(Spanner):
                                     =
                                     60
                                 }
+                            \hspace
+                                #1
                             }
-                        c''4.
+                        \once \override TextSpanner.bound-details.right-broken.padding = 0
+                        \once \override TextSpanner.bound-details.right-broken.text = ##f
+                        \once \override TextSpanner.bound-details.right.padding = 1
+                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                        \once \override TextSpanner.dash-period = 0
+                        b'4. \stopTextSpan \startTextSpan
+                        c''4. \stopTextSpan
                     }
                 >>
 
@@ -2155,32 +2547,37 @@ class MetronomeMarkSpanner(Spanner):
             >>> abjad.attach(command, staff[3])
             >>> spanner = abjad.MetronomeMarkSpanner()
             >>> abjad.attach(spanner, staff[:])
+            >>> abjad.override(staff).text_spanner.staff_padding = 3
 
             >>> mark = abjad.MetronomeMark((1, 4), 90)
-            >>> spanner.attach(mark, staff[2])
+            >>> spanner.attach(mark, spanner[2])
             >>> mark = abjad.MetronomeMark((1, 4), 60)
-            >>> spanner.attach(mark, staff[6])
-
+            >>> spanner.attach(mark, spanner[6])
             >>> ritardando = abjad.Ritardando()
-            >>> spanner.attach(ritardando, staff[2])
-
-            >>> abjad.override(score).text_script.staff_padding = 2.25
-            >>> abjad.override(score).text_spanner.staff_padding = 3
+            >>> spanner.attach(ritardando, spanner[2])
             >>> abjad.show(score) # doctest: +SKIP
 
             ..  docs::
 
                 >>> abjad.f(score)
-                \new Score \with {
-                    \override TextScript.staff-padding = #2.25
-                    \override TextSpanner.staff-padding = #3
-                } <<
-                    \new Staff {
+                \new Score <<
+                    \new Staff \with {
+                        \override TextSpanner.staff-padding = #3
+                    } {
+                        \once \override TextSpanner.Y-extent = ##f
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
+                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.right-broken.padding = 0
+                        \once \override TextSpanner.bound-details.right-broken.text = ##f
+                        \once \override TextSpanner.bound-details.right.padding = 1
+                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                        \once \override TextSpanner.dash-period = 0
                         \time 3/8
-                        c'4.
+                        c'4. \startTextSpan
                         d'4.
+                        \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.arrow-width = 0.25
-                        \once \override TextSpanner.bound-details.left-broken.padding = -2
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
                         \once \override TextSpanner.bound-details.left-broken.text = \markup {
                             \override
                                 #'(padding . 0.45)
@@ -2189,10 +2586,11 @@ class MetronomeMarkSpanner(Spanner):
                                         \upright
                                             rit.
                             \hspace
-                                #0.75
+                                #1
                             }
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
-                        \once \override TextSpanner.bound-details.left.text = \markup {
+                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.left.text =
+                        \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -2208,22 +2606,26 @@ class MetronomeMarkSpanner(Spanner):
                                     90
                                 }
                             \hspace
-                                #1.25
+                                #1
                             }
                         \once \override TextSpanner.bound-details.right-broken.arrow = ##f
                         \once \override TextSpanner.bound-details.right-broken.padding = 0
                         \once \override TextSpanner.bound-details.right-broken.text = ##f
                         \once \override TextSpanner.bound-details.right.arrow = ##t
-                        \once \override TextSpanner.bound-details.right.padding = 2
-                        \once \override TextSpanner.bound-details.right.text = ##f
+                        \once \override TextSpanner.bound-details.right.padding = 1
+                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-fraction = 0.25
                         \once \override TextSpanner.dash-period = 1.5
-                        e'4. \startTextSpan
+                        e'4. \stopTextSpan \startTextSpan
                         f'4.
                         \break
                         g'4.
                         a'4.
-                        b'4. \stopTextSpan ^ \markup {
+                        \once \override TextSpanner.Y-extent = ##f
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
+                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.left.text =
+                        \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -2238,8 +2640,16 @@ class MetronomeMarkSpanner(Spanner):
                                     =
                                     60
                                 }
+                            \hspace
+                                #1
                             }
-                        c''4.
+                        \once \override TextSpanner.bound-details.right-broken.padding = 0
+                        \once \override TextSpanner.bound-details.right-broken.text = ##f
+                        \once \override TextSpanner.bound-details.right.padding = 1
+                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                        \once \override TextSpanner.dash-period = 0
+                        b'4. \stopTextSpan \startTextSpan
+                        c''4. \stopTextSpan
                     }
                 >>
 
@@ -2260,37 +2670,43 @@ class MetronomeMarkSpanner(Spanner):
             ...     left_broken_text=null_markup,
             ...     )
             >>> abjad.attach(spanner, staff[:])
+            >>> abjad.override(staff).text_spanner.staff_padding = 3
 
             >>> mark = abjad.MetronomeMark((1, 4), 90)
-            >>> spanner.attach(mark, staff[2])
+            >>> spanner.attach(mark, spanner[2])
             >>> mark = abjad.MetronomeMark((1, 4), 60)
-            >>> spanner.attach(mark, staff[6])
-
+            >>> spanner.attach(mark, spanner[6])
             >>> ritardando = abjad.Ritardando()
-            >>> spanner.attach(ritardando, staff[2])
-
-            >>> abjad.override(score).text_script.staff_padding = 2.25
-            >>> abjad.override(score).text_spanner.staff_padding = 3
+            >>> spanner.attach(ritardando, spanner[2])
             >>> abjad.show(score) # doctest: +SKIP
 
             ..  docs::
 
                 >>> abjad.f(score)
-                \new Score \with {
-                    \override TextScript.staff-padding = #2.25
-                    \override TextSpanner.staff-padding = #3
-                } <<
-                    \new Staff {
+                \new Score <<
+                    \new Staff \with {
+                        \override TextSpanner.staff-padding = #3
+                    } {
+                        \once \override TextSpanner.Y-extent = ##f
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
+                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.right-broken.padding = 0
+                        \once \override TextSpanner.bound-details.right-broken.text = ##f
+                        \once \override TextSpanner.bound-details.right.padding = 1
+                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                        \once \override TextSpanner.dash-period = 0
                         \time 3/8
-                        c'4.
+                        c'4. \startTextSpan
                         d'4.
+                        \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.arrow-width = 0.25
-                        \once \override TextSpanner.bound-details.left-broken.padding = -2
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
                         \once \override TextSpanner.bound-details.left-broken.text = \markup {
                             \null
                             }
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
-                        \once \override TextSpanner.bound-details.left.text = \markup {
+                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.left.text =
+                        \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -2306,22 +2722,29 @@ class MetronomeMarkSpanner(Spanner):
                                     90
                                 }
                             \hspace
-                                #1.25
+                                #1
                             }
                         \once \override TextSpanner.bound-details.right-broken.arrow = ##f
                         \once \override TextSpanner.bound-details.right-broken.padding = 0
                         \once \override TextSpanner.bound-details.right-broken.text = ##f
                         \once \override TextSpanner.bound-details.right.arrow = ##t
-                        \once \override TextSpanner.bound-details.right.padding = 2
-                        \once \override TextSpanner.bound-details.right.text = ##f
+                        \once \override TextSpanner.bound-details.right.padding = 1
+                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-fraction = 0.25
                         \once \override TextSpanner.dash-period = 1.5
-                        e'4. \startTextSpan
+                        e'4. \stopTextSpan \startTextSpan
                         f'4.
                         \break
                         g'4.
                         a'4.
-                        b'4. \stopTextSpan ^ \markup {
+                        \once \override TextSpanner.Y-extent = ##f
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
+                        \once \override TextSpanner.bound-details.left-broken.text = \markup {
+                            \null
+                            }
+                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.left.text =
+                        \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -2336,8 +2759,16 @@ class MetronomeMarkSpanner(Spanner):
                                     =
                                     60
                                 }
+                            \hspace
+                                #1
                             }
-                        c''4.
+                        \once \override TextSpanner.bound-details.right-broken.padding = 0
+                        \once \override TextSpanner.bound-details.right-broken.text = ##f
+                        \once \override TextSpanner.bound-details.right.padding = 1
+                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                        \once \override TextSpanner.dash-period = 0
+                        b'4. \stopTextSpan \startTextSpan
+                        c''4. \stopTextSpan
                     }
                 >>
 
@@ -2348,45 +2779,53 @@ class MetronomeMarkSpanner(Spanner):
         return self._left_broken_text
 
     @property
-    def start_with_parenthesized_tempo(self):
-        r'''Is true when spanner should start with parenthesized tempo.
+    def left_hspace(self):
+        r'''Gets left hspace.
+
+        Set to a number or none.
+        '''
+        return self._left_hspace
+
+    @property
+    def parenthesize(self):
+        r'''Is true when spanner should start with parenthesized metronome
+        mark.
 
         ..  container:: example
 
-            Does not start with parenthesized tempo:
+            Does not start with parenthesized metronome mark:
 
             >>> staff = abjad.Staff("c'8. d' e'4. g'8. f' ef'4.")
             >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
             >>> score = abjad.Score([staff])
             >>> spanner = abjad.MetronomeMarkSpanner(
-            ...     start_with_parenthesized_tempo=False,
+            ...     parenthesize=False,
             ...     )
             >>> abjad.attach(spanner, staff[:])
+            >>> abjad.override(staff).text_spanner.staff_padding = 3
 
             >>> mark = abjad.MetronomeMark((1, 4), 60)
-            >>> spanner.attach(mark, staff[0])
+            >>> spanner.attach(mark, spanner[0])
             >>> mark = abjad.MetronomeMark((1, 4), 90)
-            >>> spanner.attach(mark, staff[2])
+            >>> spanner.attach(mark, spanner[2])
             >>> mark = abjad.MetronomeMark((1, 4), 120)
-            >>> spanner.attach(mark, staff[5])
-
+            >>> spanner.attach(mark, spanner[5])
             >>> accelerando = abjad.Accelerando()
-            >>> spanner.attach(accelerando, staff[3])
-
-            >>> abjad.override(score).text_script.staff_padding = 2.25
-            >>> abjad.override(score).text_spanner.staff_padding = 3
+            >>> spanner.attach(accelerando, spanner[3])
             >>> abjad.show(score) # doctest: +SKIP
 
             ..  docs::
 
                 >>> abjad.f(score)
-                \new Score \with {
-                    \override TextScript.staff-padding = #2.25
-                    \override TextSpanner.staff-padding = #3
-                } <<
-                    \new Staff {
-                        \time 3/8
-                        c'8. ^ \markup {
+                \new Score <<
+                    \new Staff \with {
+                        \override TextSpanner.staff-padding = #3
+                    } {
+                        \once \override TextSpanner.Y-extent = ##f
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
+                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.left.text =
+                        \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -2401,9 +2840,22 @@ class MetronomeMarkSpanner(Spanner):
                                     =
                                     60
                                 }
+                            \hspace
+                                #1
                             }
+                        \once \override TextSpanner.bound-details.right-broken.padding = 0
+                        \once \override TextSpanner.bound-details.right-broken.text = ##f
+                        \once \override TextSpanner.bound-details.right.padding = 1
+                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                        \once \override TextSpanner.dash-period = 0
+                        \time 3/8
+                        c'8. \startTextSpan
                         d'8.
-                        e'4. ^ \markup {
+                        \once \override TextSpanner.Y-extent = ##f
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
+                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.left.text =
+                        \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -2418,9 +2870,18 @@ class MetronomeMarkSpanner(Spanner):
                                     =
                                     90
                                 }
+                            \hspace
+                                #1
                             }
+                        \once \override TextSpanner.bound-details.right-broken.padding = 0
+                        \once \override TextSpanner.bound-details.right-broken.text = ##f
+                        \once \override TextSpanner.bound-details.right.padding = 1
+                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                        \once \override TextSpanner.dash-period = 0
+                        e'4. \stopTextSpan \startTextSpan
+                        \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.arrow-width = 0.25
-                        \once \override TextSpanner.bound-details.left-broken.padding = -2
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
                         \once \override TextSpanner.bound-details.left-broken.text = \markup {
                             \override
                                 #'(padding . 0.45)
@@ -2429,81 +2890,91 @@ class MetronomeMarkSpanner(Spanner):
                                         \upright
                                             accel.
                             \hspace
-                                #0.75
+                                #1
                             }
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
+                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                         \once \override TextSpanner.bound-details.left.text = \markup {
                             \large
                                 \upright
                                     accel.
                             \hspace
-                                #0.75
+                                #1
                             }
                         \once \override TextSpanner.bound-details.right-broken.arrow = ##f
                         \once \override TextSpanner.bound-details.right-broken.padding = 0
                         \once \override TextSpanner.bound-details.right-broken.text = ##f
                         \once \override TextSpanner.bound-details.right.arrow = ##t
-                        \once \override TextSpanner.bound-details.right.padding = 2
-                        \once \override TextSpanner.bound-details.right.text = ##f
-                        \once \override TextSpanner.dash-fraction = 0.25
-                        \once \override TextSpanner.dash-period = 1.5
-                        g'8. \startTextSpan
-                        f'8.
-                        ef'4. \stopTextSpan ^ \markup {
-                            \fontsize
-                                #-6
-                                \general-align
-                                    #Y
-                                    #DOWN
-                                    \note-by-number
-                                        #2
-                                        #0
-                                        #1
-                            \upright
+                        \once \override TextSpanner.bound-details.right.padding = 1
+                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.right.text =
+                        \markup {
+                            \concat
                                 {
-                                    =
-                                    120
+                                    \hspace
+                                        #0.5
+                                    \line
+                                        {
+                                            \fontsize
+                                                #-6
+                                                \general-align
+                                                    #Y
+                                                    #DOWN
+                                                    \note-by-number
+                                                        #2
+                                                        #0
+                                                        #1
+                                            \upright
+                                                {
+                                                    =
+                                                    120
+                                                }
+                                        }
                                 }
                             }
+                        \once \override TextSpanner.dash-fraction = 0.25
+                        \once \override TextSpanner.dash-period = 1.5
+                        g'8. \stopTextSpan \startTextSpan
+                        f'8.
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
+                        ef'4. \stopTextSpan
                     }
                 >>
 
         ..  container:: example
 
-            Starts with parenthesized tempo:
+            Starts with parenthesized metronome mark:
 
             >>> staff = abjad.Staff("c'8. d' e'4. g'8. f' ef'4.")
             >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
             >>> score = abjad.Score([staff])
             >>> spanner = abjad.MetronomeMarkSpanner(
-            ...     start_with_parenthesized_tempo=True,
+            ...     parenthesize=True,
             ...     )
             >>> abjad.attach(spanner, staff[:])
+            >>> abjad.override(staff).text_spanner.staff_padding = 3
 
             >>> mark = abjad.MetronomeMark((1, 4), 60)
-            >>> spanner.attach(mark, staff[0])
+            >>> spanner.attach(mark, spanner[0])
             >>> mark = abjad.MetronomeMark((1, 4), 90)
-            >>> spanner.attach(mark, staff[2])
+            >>> spanner.attach(mark, spanner[2])
             >>> mark = abjad.MetronomeMark((1, 4), 120)
-            >>> spanner.attach(mark, staff[5])
-
+            >>> spanner.attach(mark, spanner[5])
             >>> accelerando = abjad.Accelerando()
-            >>> spanner.attach(accelerando, staff[3])
-
-            >>> abjad.override(score).text_script.staff_padding = 2.25
-            >>> abjad.override(score).text_spanner.staff_padding = 3
+            >>> spanner.attach(accelerando, spanner[3])
             >>> abjad.show(score) # doctest: +SKIP
 
             ..  docs::
 
                 >>> abjad.f(score)
-                \new Score \with {
-                    \override TextScript.staff-padding = #2.25
-                    \override TextSpanner.staff-padding = #3
-                } <<
-                    \new Staff {
-                        \time 3/8
-                        c'8. ^ \markup {
+                \new Score <<
+                    \new Staff \with {
+                        \override TextSpanner.staff-padding = #3
+                    } {
+                        \once \override TextSpanner.Y-extent = ##f
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
+                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.left.text =
+                        \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -2518,9 +2989,22 @@ class MetronomeMarkSpanner(Spanner):
                                     =
                                     60
                                 }
+                            \hspace
+                                #1
                             }
+                        \once \override TextSpanner.bound-details.right-broken.padding = 0
+                        \once \override TextSpanner.bound-details.right-broken.text = ##f
+                        \once \override TextSpanner.bound-details.right.padding = 1
+                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                        \once \override TextSpanner.dash-period = 0
+                        \time 3/8
+                        c'8. \startTextSpan
                         d'8.
-                        e'4. ^ \markup {
+                        \once \override TextSpanner.Y-extent = ##f
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
+                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.left.text =
+                        \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -2535,9 +3019,18 @@ class MetronomeMarkSpanner(Spanner):
                                     =
                                     90
                                 }
+                            \hspace
+                                #1
                             }
+                        \once \override TextSpanner.bound-details.right-broken.padding = 0
+                        \once \override TextSpanner.bound-details.right-broken.text = ##f
+                        \once \override TextSpanner.bound-details.right.padding = 1
+                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                        \once \override TextSpanner.dash-period = 0
+                        e'4. \stopTextSpan \startTextSpan
+                        \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.arrow-width = 0.25
-                        \once \override TextSpanner.bound-details.left-broken.padding = -2
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
                         \once \override TextSpanner.bound-details.left-broken.text = \markup {
                             \override
                                 #'(padding . 0.45)
@@ -2546,9 +3039,9 @@ class MetronomeMarkSpanner(Spanner):
                                         \upright
                                             accel.
                             \hspace
-                                #0.75
+                                #1
                             }
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
+                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                         \once \override TextSpanner.bound-details.left.text = \markup {
                             \override
                                 #'(padding . 0.45)
@@ -2571,34 +3064,45 @@ class MetronomeMarkSpanner(Spanner):
                                                 }
                                         }
                             \hspace
-                                #0.75
+                                #1
                             }
                         \once \override TextSpanner.bound-details.right-broken.arrow = ##f
                         \once \override TextSpanner.bound-details.right-broken.padding = 0
                         \once \override TextSpanner.bound-details.right-broken.text = ##f
                         \once \override TextSpanner.bound-details.right.arrow = ##t
-                        \once \override TextSpanner.bound-details.right.padding = 2
-                        \once \override TextSpanner.bound-details.right.text = ##f
-                        \once \override TextSpanner.dash-fraction = 0.25
-                        \once \override TextSpanner.dash-period = 1.5
-                        g'8. \startTextSpan
-                        f'8.
-                        ef'4. \stopTextSpan ^ \markup {
-                            \fontsize
-                                #-6
-                                \general-align
-                                    #Y
-                                    #DOWN
-                                    \note-by-number
-                                        #2
-                                        #0
-                                        #1
-                            \upright
+                        \once \override TextSpanner.bound-details.right.padding = 1
+                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.right.text =
+                        \markup {
+                            \concat
                                 {
-                                    =
-                                    120
+                                    \hspace
+                                        #0.5
+                                    \line
+                                        {
+                                            \fontsize
+                                                #-6
+                                                \general-align
+                                                    #Y
+                                                    #DOWN
+                                                    \note-by-number
+                                                        #2
+                                                        #0
+                                                        #1
+                                            \upright
+                                                {
+                                                    =
+                                                    120
+                                                }
+                                        }
                                 }
                             }
+                        \once \override TextSpanner.dash-fraction = 0.25
+                        \once \override TextSpanner.dash-period = 1.5
+                        g'8. \stopTextSpan \startTextSpan
+                        f'8.
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
+                        ef'4. \stopTextSpan
                     }
                 >>
 
@@ -2606,11 +3110,27 @@ class MetronomeMarkSpanner(Spanner):
 
         Set to true, false or none.
         '''
-        return self._start_with_parenthesized_tempo
+        return self._parenthesize
+
+    @property
+    def right_padding(self):
+        r'''Gets right padding.
+
+        Set to a number or none.
+        '''
+        return self._right_padding
+
+    @property
+    def stem_height(self):
+        r'''Gets stem height.
+
+        Set to a number.
+        '''
+        return self._stem_height
 
     ### PUBLIC METHODS ###
 
-    def attach(self, indicator, leaf, tag=None):
+    def attach(self, indicator, leaf, deactivate=None, site=None, tag=None):
         r'''Attaches `indicator` to `leaf` in spanner.
 
         ..  container:: example
@@ -2623,28 +3143,30 @@ class MetronomeMarkSpanner(Spanner):
             >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
             >>> spanner = abjad.MetronomeMarkSpanner()
             >>> abjad.attach(spanner, staff[:])
+            >>> abjad.override(staff).text_spanner.staff_padding = 3
 
             >>> mark = abjad.MetronomeMark((1, 4), 60)
-            >>> spanner.attach(mark, staff[0])
+            >>> spanner.attach(mark, spanner[0])
             >>> mark = abjad.MetronomeMark((1, 4), 90)
-            >>> spanner.attach(mark, staff[2])
+            >>> spanner.attach(mark, spanner[2])
             >>> mark = abjad.MetronomeMark((1, 4), 72)
-            >>> spanner.attach(mark, staff[3])
+            >>> spanner.attach(mark, spanner[3])
             >>> mark = abjad.MetronomeMark((1, 4), 60)
-            >>> spanner.attach(mark, staff[5])
-
-            >>> abjad.override(score).text_script.staff_padding = 2.25
+            >>> spanner.attach(mark, spanner[5])
             >>> abjad.show(score) # doctest: +SKIP
 
             ..  docs::
 
                 >>> abjad.f(score)
-                \new Score \with {
-                    \override TextScript.staff-padding = #2.25
-                } <<
-                    \new Staff {
-                        \time 3/8
-                        c'8. ^ \markup {
+                \new Score <<
+                    \new Staff \with {
+                        \override TextSpanner.staff-padding = #3
+                    } {
+                        \once \override TextSpanner.Y-extent = ##f
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
+                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.left.text =
+                        \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -2659,9 +3181,22 @@ class MetronomeMarkSpanner(Spanner):
                                     =
                                     60
                                 }
+                            \hspace
+                                #1
                             }
+                        \once \override TextSpanner.bound-details.right-broken.padding = 0
+                        \once \override TextSpanner.bound-details.right-broken.text = ##f
+                        \once \override TextSpanner.bound-details.right.padding = 1
+                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                        \once \override TextSpanner.dash-period = 0
+                        \time 3/8
+                        c'8. \startTextSpan
                         d'8.
-                        e'4. ^ \markup {
+                        \once \override TextSpanner.Y-extent = ##f
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
+                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.left.text =
+                        \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -2676,8 +3211,20 @@ class MetronomeMarkSpanner(Spanner):
                                     =
                                     90
                                 }
+                            \hspace
+                                #1
                             }
-                        g'8. ^ \markup {
+                        \once \override TextSpanner.bound-details.right-broken.padding = 0
+                        \once \override TextSpanner.bound-details.right-broken.text = ##f
+                        \once \override TextSpanner.bound-details.right.padding = 1
+                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                        \once \override TextSpanner.dash-period = 0
+                        e'4. \stopTextSpan \startTextSpan
+                        \once \override TextSpanner.Y-extent = ##f
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
+                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.left.text =
+                        \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -2692,24 +3239,43 @@ class MetronomeMarkSpanner(Spanner):
                                     =
                                     72
                                 }
+                            \hspace
+                                #1
                             }
-                        f'8.
-                        ef'4. ^ \markup {
-                            \fontsize
-                                #-6
-                                \general-align
-                                    #Y
-                                    #DOWN
-                                    \note-by-number
-                                        #2
-                                        #0
-                                        #1
-                            \upright
+                        \once \override TextSpanner.bound-details.right-broken.padding = 0
+                        \once \override TextSpanner.bound-details.right-broken.text = ##f
+                        \once \override TextSpanner.bound-details.right.padding = 1
+                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.right.text =
+                        \markup {
+                            \concat
                                 {
-                                    =
-                                    60
+                                    \hspace
+                                        #0.5
+                                    \line
+                                        {
+                                            \fontsize
+                                                #-6
+                                                \general-align
+                                                    #Y
+                                                    #DOWN
+                                                    \note-by-number
+                                                        #2
+                                                        #0
+                                                        #1
+                                            \upright
+                                                {
+                                                    =
+                                                    60
+                                                }
+                                        }
                                 }
                             }
+                        \once \override TextSpanner.dash-period = 0
+                        g'8. \stopTextSpan \startTextSpan
+                        f'8.
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
+                        ef'4. \stopTextSpan
                     }
                 >>
 
@@ -2726,99 +3292,172 @@ class MetronomeMarkSpanner(Spanner):
             >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
             >>> spanner = abjad.MetronomeMarkSpanner()
             >>> abjad.attach(spanner, staff[:])
+            >>> abjad.override(staff).text_spanner.staff_padding = 3
 
             >>> mark = abjad.MetronomeMark((1, 4), 60)
-            >>> spanner.attach(mark, staff[0], tag='RED')
+            >>> spanner.attach(mark, spanner[0], site='M1', tag='RED')
             >>> mark = abjad.MetronomeMark((1, 4), 90)
-            >>> spanner.attach(mark, staff[2], tag='BLUE')
+            >>> spanner.attach(mark, spanner[2], tag='BLUE')
             >>> mark = abjad.MetronomeMark((1, 4), 72)
-            >>> spanner.attach(mark, staff[3], tag='YELLOW')
+            >>> spanner.attach(mark, spanner[3], deactivate=True, tag='YELLOW')
             >>> mark = abjad.MetronomeMark((1, 4), 60)
-            >>> spanner.attach(mark, staff[5])
-
-            >>> abjad.override(score).text_script.staff_padding = 2.25
+            >>> spanner.attach(mark, spanner[5])
             >>> abjad.show(score) # doctest: +SKIP
 
             >>> abjad.f(score, strict=True)
-            \new Score \with {
-                \override TextScript.staff-padding = #2.25
-            } <<
-                \new Staff {
+            \new Score <<
+                \new Staff \with {
+                    \override TextSpanner.staff-padding = #3
+                } {
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text = %! RED:M1
+                    \markup {                                             %! RED:M1
+                        \fontsize                                         %! RED:M1
+                            #-6                                           %! RED:M1
+                            \general-align                                %! RED:M1
+                                #Y                                        %! RED:M1
+                                #DOWN                                     %! RED:M1
+                                \note-by-number                           %! RED:M1
+                                    #2                                    %! RED:M1
+                                    #0                                    %! RED:M1
+                                    #1                                    %! RED:M1
+                        \upright                                          %! RED:M1
+                            {                                             %! RED:M1
+                                =                                         %! RED:M1
+                                60                                        %! RED:M1
+                            }                                             %! RED:M1
+                        \hspace                                           %! RED:M1
+                            #1                                            %! RED:M1
+                        }                                                 %! RED:M1
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.dash-period = 0
                     \time 3/8
                     c'8.
-                    ^ \markup { % RED:1
-                        \fontsize % RED:1
-                            #-6 % RED:1
-                            \general-align % RED:1
-                                #Y % RED:1
-                                #DOWN % RED:1
-                                \note-by-number % RED:1
-                                    #2 % RED:1
-                                    #0 % RED:1
-                                    #1 % RED:1
-                        \upright % RED:1
-                            { % RED:1
-                                = % RED:1
-                                60 % RED:1
-                            } % RED:1
-                        } % RED:1
+                    \startTextSpan
                     d'8.
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text = %! BLUE
+                    \markup {                                             %! BLUE
+                        \fontsize                                         %! BLUE
+                            #-6                                           %! BLUE
+                            \general-align                                %! BLUE
+                                #Y                                        %! BLUE
+                                #DOWN                                     %! BLUE
+                                \note-by-number                           %! BLUE
+                                    #2                                    %! BLUE
+                                    #0                                    %! BLUE
+                                    #1                                    %! BLUE
+                        \upright                                          %! BLUE
+                            {                                             %! BLUE
+                                =                                         %! BLUE
+                                90                                        %! BLUE
+                            }                                             %! BLUE
+                        \hspace                                           %! BLUE
+                            #1                                            %! BLUE
+                        }                                                 %! BLUE
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.dash-period = 0
                     e'4.
-                    ^ \markup { % BLUE:1
-                        \fontsize % BLUE:1
-                            #-6 % BLUE:1
-                            \general-align % BLUE:1
-                                #Y % BLUE:1
-                                #DOWN % BLUE:1
-                                \note-by-number % BLUE:1
-                                    #2 % BLUE:1
-                                    #0 % BLUE:1
-                                    #1 % BLUE:1
-                        \upright % BLUE:1
-                            { % BLUE:1
-                                = % BLUE:1
-                                90 % BLUE:1
-                            } % BLUE:1
-                        } % BLUE:1
-                    g'8.
-                    ^ \markup { % YELLOW:1
-                        \fontsize % YELLOW:1
-                            #-6 % YELLOW:1
-                            \general-align % YELLOW:1
-                                #Y % YELLOW:1
-                                #DOWN % YELLOW:1
-                                \note-by-number % YELLOW:1
-                                    #2 % YELLOW:1
-                                    #0 % YELLOW:1
-                                    #1 % YELLOW:1
-                        \upright % YELLOW:1
-                            { % YELLOW:1
-                                = % YELLOW:1
-                                72 % YELLOW:1
-                            } % YELLOW:1
-                        } % YELLOW:1
-                    f'8.
-                    ef'4.
-                    ^ \markup {
-                        \fontsize
-                            #-6
-                            \general-align
-                                #Y
-                                #DOWN
-                                \note-by-number
-                                    #2
-                                    #0
-                                    #1
-                        \upright
+                    \stopTextSpan
+                    \startTextSpan
+                %F% \once \override TextSpanner.bound-details.left.text =     %! YELLOW
+                %F% \markup {                                                 %! YELLOW
+                %F%     \fontsize                                             %! YELLOW
+                %F%         #-6                                               %! YELLOW
+                %F%         \general-align                                    %! YELLOW
+                %F%             #Y                                            %! YELLOW
+                %F%             #DOWN                                         %! YELLOW
+                %F%             \note-by-number                               %! YELLOW
+                %F%                 #2                                        %! YELLOW
+                %F%                 #0                                        %! YELLOW
+                %F%                 #1                                        %! YELLOW
+                %F%     \upright                                              %! YELLOW
+                %F%         {                                                 %! YELLOW
+                %F%             =                                             %! YELLOW
+                %F%             72                                            %! YELLOW
+                %F%         }                                                 %! YELLOW
+                %F%     \hspace                                               %! YELLOW
+                %F%         #1                                                %! YELLOW
+                %F%     }                                                     %! YELLOW
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.right.text =
+                    \markup {
+                        \concat
                             {
-                                =
-                                60
+                                \hspace
+                                    #0.5
+                                \line
+                                    {
+                                        \fontsize
+                                            #-6
+                                            \general-align
+                                                #Y
+                                                #DOWN
+                                                \note-by-number
+                                                    #2
+                                                    #0
+                                                    #1
+                                        \upright
+                                            {
+                                                =
+                                                60
+                                            }
+                                    }
                             }
                         }
+                    \once \override TextSpanner.dash-period = 0
+                    g'8.
+                    \stopTextSpan
+                    \startTextSpan
+                    f'8.
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    ef'4.
+                    \stopTextSpan
                 }
             >>
+
+        >>> wrapper = abjad.inspect(staff[3]).wrapper(abjad.MetronomeMark)
+        >>> abjad.f(wrapper)
+        abjad.IndicatorWrapper(
+            component=abjad.Note("%F% \\once \\override TextSpanner.bound-details.left.text = %! YELLOW\n%F% \\markup {                                             %! YELLOW\n%F%     \\fontsize                                         %! YELLOW\n%F%         #-6                                           %! YELLOW\n%F%         \\general-align                                %! YELLOW\n%F%             #Y                                        %! YELLOW\n%F%             #DOWN                                     %! YELLOW\n%F%             \\note-by-number                           %! YELLOW\n%F%                 #2                                    %! YELLOW\n%F%                 #0                                    %! YELLOW\n%F%                 #1                                    %! YELLOW\n%F%     \\upright                                          %! YELLOW\n%F%         {                                             %! YELLOW\n%F%             =                                         %! YELLOW\n%F%             72                                        %! YELLOW\n%F%         }                                             %! YELLOW\n%F%     \\hspace                                           %! YELLOW\n%F%         #1                                            %! YELLOW\n%F%     }                                                 %! YELLOW\n\\once \\override TextSpanner.Y-extent = ##f\n\\once \\override TextSpanner.bound-details.left-broken.text = ##f\n\\once \\override TextSpanner.bound-details.left.stencil-align-dir-y = #center\n\\once \\override TextSpanner.bound-details.right-broken.padding = 0\n\\once \\override TextSpanner.bound-details.right-broken.text = ##f\n\\once \\override TextSpanner.bound-details.right.padding = 1\n\\once \\override TextSpanner.bound-details.right.stencil-align-dir-y = #center\n\\once \\override TextSpanner.bound-details.right.text =\n\\markup {\n    \\concat\n        {\n            \\hspace\n                #0.5\n            \\line\n                {\n                    \\fontsize\n                        #-6\n                        \\general-align\n                            #Y\n                            #DOWN\n                            \\note-by-number\n                                #2\n                                #0\n                                #1\n                    \\upright\n                        {\n                            =\n                            60\n                        }\n                }\n        }\n    }\n\\once \\override TextSpanner.dash-period = 0\ng'8. \\stopTextSpan \\startTextSpan"),
+            context='Score',
+            deactivate=True,
+            indicator=abjad.MetronomeMark(
+                reference_duration=abjad.Duration(1, 4),
+                units_per_minute=72,
+                ),
+            spanner=abjad.MetronomeMarkSpanner(
+                left_hspace=1,
+                parenthesize=False,
+                right_padding=1,
+                stem_height=1,
+                ),
+            tag='YELLOW',
+            )
 
         Returns none.
         '''
         superclass = super(MetronomeMarkSpanner, self)
-        superclass._attach_piecewise(indicator, leaf, tag=tag)
+        superclass._attach_piecewise(
+            indicator,
+            leaf,
+            deactivate=deactivate,
+            site=site,
+            tag=tag,
+            )

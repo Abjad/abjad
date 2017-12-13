@@ -91,8 +91,6 @@ class Tuplet(Container):
         '_signifier',
         )
 
-    _is_counttime_component = True
-
     ### INITIALIZER ###
 
     def __init__(self, multiplier=None, components=None):

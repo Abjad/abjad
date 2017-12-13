@@ -52,19 +52,15 @@ def detach(prototype, component_expression=None):
         elif issubclass(prototype, abjad.GraceContainer):
             grace_container = inspector.get_grace_container()
         else:
-            assert hasattr(component_expression, '_indicator_wrappers')
+            assert hasattr(component_expression, '_wrappers')
             result = []
-            for item in component_expression._indicator_wrappers[:]:
-                if isinstance(item, prototype):
-                    component_expression._indicator_wrappers.remove(item)
-                    result.append(item)
-                # indicator is a expression
-                elif (
-                    hasattr(item, '_indicator') and
-                    isinstance(item.indicator, prototype)
-                    ):
-                    item._detach()
-                    result.append(item.indicator)
+            for wrapper in component_expression._wrappers[:]:
+                if isinstance(wrapper, prototype):
+                    component_expression._wrappers.remove(wrapper)
+                    result.append(wrapper)
+                elif isinstance(wrapper.indicator, prototype):
+                    wrapper._detach()
+                    result.append(wrapper.indicator)
             result = tuple(result)
             return result
     else:
@@ -75,19 +71,15 @@ def detach(prototype, component_expression=None):
         elif isinstance(prototype, abjad.GraceContainer):
             grace_container = inspector.get_grace_container()
         else:
-            assert hasattr(component_expression, '_indicator_wrappers')
+            assert hasattr(component_expression, '_wrappers')
             result = []
-            for item in component_expression._indicator_wrappers[:]:
-                if item == prototype:
-                    component_expression._indicator_wrappers.remove(item)
-                    result.append(item)
-                # indicator is an expression
-                elif (
-                    hasattr(item, '_indicator') and
-                    item.indicator == prototype
-                    ):
-                    item._detach()
-                    result.append(item.indicator)
+            for wrapper in component_expression._wrappers[:]:
+                if wrapper == prototype:
+                    component_expression._wrappers.remove(wrapper)
+                    result.append(wrapper)
+                elif wrapper.indicator == prototype:
+                    wrapper._detach()
+                    result.append(wrapper.indicator)
             result = tuple(result)
             return result
     items = []

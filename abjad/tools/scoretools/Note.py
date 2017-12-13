@@ -1,6 +1,4 @@
 import copy
-from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import inspect
 from .Leaf import Leaf
 
 
@@ -107,8 +105,8 @@ class Note(Leaf):
         pitch = abjad.NamedPitch(pitch)
         treble = copy.copy(self)
         bass = copy.copy(self)
-        detach(abjad.Markup, treble)
-        detach(abjad.Markup, bass)
+        abjad.detach(abjad.Markup, treble)
+        abjad.detach(abjad.Markup, bass)
         if treble.written_pitch < pitch:
             treble = abjad.Rest(treble)
         if pitch <= bass.written_pitch:
@@ -192,13 +190,13 @@ class Note(Leaf):
 
     @note_head.setter
     def note_head(self, argument):
-        from abjad.tools.scoretools.NoteHead import NoteHead
+        import abjad
         if isinstance(argument, type(None)):
             self._note_head = None
-        elif isinstance(argument, NoteHead):
+        elif isinstance(argument, abjad.NoteHead):
             self._note_head = argument
         else:
-            note_head = NoteHead(client=self, written_pitch=argument)
+            note_head = abjad.NoteHead(client=self, written_pitch=argument)
             self._note_head = note_head
 
     @property
@@ -257,14 +255,13 @@ class Note(Leaf):
 
     @written_pitch.setter
     def written_pitch(self, argument):
-        from abjad.tools import pitchtools
-        from abjad.tools import scoretools
+        import abjad
         if argument is None:
             if self.note_head is not None:
                 self.note_head.written_pitch = None
         else:
             if self.note_head is None:
-                self.note_head = scoretools.NoteHead(self, written_pitch=None)
+                self.note_head = abjad.NoteHead(self, written_pitch=None)
             else:
-                pitch = pitchtools.NamedPitch(argument)
+                pitch = abjad.NamedPitch(argument)
                 self.note_head.written_pitch = pitch

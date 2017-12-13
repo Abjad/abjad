@@ -29,6 +29,7 @@ class Path(pathlib.PosixPath):
     __documentation_section__ = 'Segment-makers'
 
     _known_directories = (
+        '_assets',
         '_segments',
         'builds',
         'distribution',
@@ -45,6 +46,7 @@ class Path(pathlib.PosixPath):
         '__make_pdf__.py',
         '__make_midi__.py',
         '__metadata__.py',
+        '_assets',
         '_segments',
         )
 
@@ -119,13 +121,22 @@ class Path(pathlib.PosixPath):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _assets(self):
+        '''Gets _assets directory.
+
+        Returns path.
+        '''
+        if self.builds:
+            return self.builds('_assets')
+
+    @property
     def _segments(self):
         '''Gets _segments directory.
 
         Returns path.
         '''
-        if self.builds:
-            return self.builds('_segments')
+        if self.is_build():
+            return self('_segments')
 
     ### PRIVATE METHODS ###
 
@@ -208,6 +219,7 @@ class Path(pathlib.PosixPath):
                 continue
             if (predicate is not None and
                 not predicate(name) and
+                name != '_assets' and
                 name != '_segments'):
                 continue
             path = self(name)
@@ -514,6 +526,48 @@ class Path(pathlib.PosixPath):
 
     ### PUBLIC METHODS ###
 
+    def activate_tag(self, tag):
+        r'''Activates `tag` in LilyPond file.
+
+        Returns text, count pair.
+
+        Text gives file ready for writing.
+
+        Count gives number of activated tags.
+        '''
+        assert self.is_file()
+        lines, count = [], 0
+        tags = tag.split(':')
+        with self.open() as file_pointer:
+            activated_last_line = False
+            for line in file_pointer.readlines():
+                words = []
+                for word in line.split():
+                    words.extend(word.split(':'))
+                if any(tag not in words for tag in tags):
+                    lines.append(line)
+                    activated_last_line = False
+                    continue
+                first_nonwhitespace_index = len(line) - len(line.lstrip())
+                index = first_nonwhitespace_index
+                if line[index:index+4] in ('%%% ', '%F% '):
+                    if '%F% ' in line:
+                        suffix = '%F%'
+                    else:
+                        suffix = None
+                    line = list(line)
+                    line[index:index+4] = 4 * ' '
+                    line = ''.join(line)
+                    assert line.endswith('\n'), repr(line)
+                    if suffix:
+                        line = line.strip('\n') + suffix + '\n'
+                    if not activated_last_line:
+                        count += 1
+                    activated_last_line = True
+                lines.append(line)
+        text = ''.join(lines)
+        return text, count
+
     def add_metadatum(self, name, value):
         r'''Adds metadatum.
 
@@ -689,51 +743,91 @@ class Path(pathlib.PosixPath):
             raise ValueError(self)
         return name
 
-    def comment_out_tag(self, tag, greedy=False):
-        r'''Comments out `tag` in LilyPond file.
+    def deactivate_tag(self, tag):
+        r'''Deactivates `tag` in LilyPond file.
 
-        Returns text, count, skipped triple.
+        Returns text, count pair.
 
-        Text gives processed file contents ready to be written.
+        Text gives file contents ready to be written.
 
-        Count gives the number of tags commented out.
-
-        Skipped gives number of tags already commented out (and therefore
-        skipped).
-
-        Matches all of `tag` when `greedy` is false; matches `tag` anywhere in
-        tag when `greedy` is true.
+        Count gives number of deactivated tags.
         '''
         assert self.is_file()
-        lines, count, skipped = [], 0, 0
-        current_tag_number = None
-        tag_parts = tag.split(':')
+        lines, count = [], 0
+        tags = tag.split(':')
+        current_tag = None
         with self.open() as file_pointer:
+            lines_to_deactivate = []
             for line in file_pointer.readlines():
-                if ((greedy is True and tag not in line) or
-                    (greedy is not True and
-                    any(_ not in line for _ in tag_parts))):
-                    current_tag_number = None
-                    lines.append(line)
-                    continue
-                start = line.rfind(':') + 1
-                tag_number = int(line[start:])
+                words = []
+                for word in line.split():
+                    words.extend(word.split(':'))
                 first_nonwhitespace_index = len(line) - len(line.lstrip())
-                index = first_nonwhitespace_index
-                if line[index] != '%':
-                    line = list(line)
-                    line[index:index] = '%%% '
-                    line = ''.join(line)
-                    if tag_number != current_tag_number:
-                        current_tag_number = tag_number
+                if (not any(tag in words for tag in tags) or
+                    line[first_nonwhitespace_index] == '%'):
+                    if lines_to_deactivate:
+                        indents = [
+                            len(_) - len(_.lstrip())
+                            for _ in lines_to_deactivate
+                            ]
+                        index = min(indents)
+                        for line_ in lines_to_deactivate:
+                            if '%F%' in line_:
+                                assert line_.endswith('%F%\n')
+                                comment = '%F% '
+                            else:
+                                comment = '%%% '
+                            line_ = list(line_)
+                            assert line_[index-4:index] == list(4 * ' ')
+                            line_[index-4:index] = comment
+                            line_ = ''.join(line_)
+                            if comment == '%F% ':
+                                assert line_.endswith('%F%\n')
+                                line_ = line_[:-4] + '\n'
+                            lines.append(line_)
+                        lines_to_deactivate = []
                         count += 1
+                    lines.append(line)
+                    current_tag = None
                 else:
-                    if tag_number != current_tag_number:
-                        current_tag_number = tag_number
-                        skipped += 1
-                lines.append(line)
+                    tag_start_index = line.find('%!')
+                    line_tag = line[tag_start_index:].strip('%!').strip()
+                    if current_tag is None:
+                        current_tag = line_tag
+                        lines_to_deactivate.append(line)
+                    elif line_tag == current_tag:
+                        lines_to_deactivate.append(line)
+                    elif line_tag != current_tag:
+                        if lines_to_deactivate:
+                            indents = [
+                                len(_) - len(_.lstrip())
+                                for _ in lines_to_deactivate
+                                ]
+                            index = min(indents)
+                            for line_ in lines_to_deactivate:
+                                if '%F%' in line_:
+                                    assert line_.endswith('%F%\n')
+                                    comment = '%F% '
+                                else:
+                                    comment = '%%% '
+                                tag_start_index = line_.find('%!')
+                                left = line_[:tag_start_index]
+                                right = line_[tag_start_index:]
+                                if left[-4:] == 4 * ' ':
+                                    left = left[:-4]
+                                line_ = left + right
+                                line_ = list(line_)
+                                line_[index:index] = comment
+                                line_ = ''.join(line_)
+                                if comment == '%F% ':
+                                    assert line_.endswith('%F%\n')
+                                    line_ = line_[:-4] + '\n'
+                                lines.append(line_)
+                            lines_to_deactivate = []
+                            count += 1
+                            current_tag = line_tag
         lines = ''.join(lines)
-        return lines, count, skipped
+        return lines, count
 
     def get_asset_type(self):
         r'''Gets asset identifier.
@@ -798,6 +892,7 @@ class Path(pathlib.PosixPath):
         elif self.is_materials_or_segments():
             return 'package'
         elif self.is_score_package_path((
+            '_assets',
             '_segments',
             'build',
             'distribution',
@@ -911,7 +1006,7 @@ class Path(pathlib.PosixPath):
             ...     scores='/path/to/scores',
             ...     )
 
-            >>> path._segments.get_name_predicate() is None
+            >>> path._assets.get_name_predicate() is None
             True
 
             >>> path.builds.get_name_predicate()
@@ -951,8 +1046,6 @@ class Path(pathlib.PosixPath):
             return
         elif self.is_builds():
             return abjad.String.is_build_directory_name
-        elif self.is_builds_segments():
-            return
         elif self.is_contents():
             return abjad.String.is_package_name
         elif self.is_distribution():
@@ -1161,8 +1254,8 @@ class Path(pathlib.PosixPath):
             result = result or '(untitled score)'
             return result
 
-    def is__segments(self):
-        r'''Is true when path is _segments directory.
+    def is__assets(self):
+        r'''Is true when path is _assets directory.
 
         ..  container:: example
 
@@ -1170,7 +1263,23 @@ class Path(pathlib.PosixPath):
             ...     '/path/to/scores/my_score/my_score',
             ...     scores='/path/to/scores',
             ...     )
-            >>> path._segments.is__segments()
+            >>> path._assets.is__assets()
+            True
+
+        Returns true or false.
+        '''
+        return self.name == '_assets'
+
+    def is__segments(self):
+        r'''Is true when path is _segments directory.
+
+        ..  container:: example
+
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score/builds/letter/_segments',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path.is__segments()
             True
 
         Returns true or false.
@@ -1191,7 +1300,9 @@ class Path(pathlib.PosixPath):
 
         Returns true or false.
         '''
-        return self.parent.name == 'builds' and self.name != '_segments'
+        return (self.parent.name == 'builds' and
+            self.name != '_segments' and
+            self.name != '_assets')
 
     def is_builds(self):
         r'''Is true when path is builds directory.
@@ -1208,22 +1319,6 @@ class Path(pathlib.PosixPath):
         Returns true or false.
         '''
         return self.name == 'builds'
-
-    def is_builds_segments(self):
-        r'''Is true when path is builds _segments directory.
-
-        ..  container:: example
-
-            >>> path = abjad.Path(
-            ...     '/path/to/scores/my_score/my_score',
-            ...     scores='/path/to/scores',
-            ...     )
-            >>> path._segments.is_builds_segments()
-            True
-
-        '''
-        if self.parent.is_builds() and self.name == '_segments':
-            return True
 
     def is_contents(self):
         r'''Is true when path is contents directory.
@@ -1306,6 +1401,7 @@ class Path(pathlib.PosixPath):
         if str(self) == str(directory):
             return True
         if (not self.name[0].isalpha() and
+            not self.name == '_assets' and
             not self.name == '_segments' and
             not self.parent.name == 'segments'):
             return True
@@ -1453,7 +1549,7 @@ class Path(pathlib.PosixPath):
             >>> path.stylesheets.is_score_package_path()
             True
 
-            >>> path._segments.is_score_package_path()
+            >>> path._assets.is_score_package_path()
             True
 
         Returns true or false.
@@ -1465,7 +1561,9 @@ class Path(pathlib.PosixPath):
         if not self.scores:
             return False
         if (not self.name[0].isalpha() and
-            not (self.is_builds_segments() or self.is_segment())):
+            not (self.is_segment() or
+                self.is__assets() or
+                self.is__segments())):
             return False
         if not prototype:
             return True
@@ -1734,52 +1832,6 @@ class Path(pathlib.PosixPath):
         if str(path) == '.':
             return str(self)
         return str(path)
-
-    def uncomment_tag(self, tag, greedy=False):
-        r'''Uncomments `tag` in LilyPond file.
-
-        Returns text, count, skipped triple.
-
-        Text gives the processed file.
-
-        Count gives the number of tags uncommented.
-
-        Skipped gives the number of tags already uncommented (and therefore
-        skipped).
-
-        Matches all of `tag` when `greedy` is false; matches `tag` anywhere in
-        tag when `greedy` is true.
-        '''
-        assert self.is_file()
-        lines, count, skipped = [], 0, 0
-        current_tag_number = None
-        tag_parts = tag.split(':')
-        with self.open() as file_pointer:
-            for line in file_pointer.readlines():
-                if ((greedy is True and tag not in line) or
-                    (greedy is not True and
-                    any(_ not in line for _ in tag_parts))):
-                    current_tag_number = None
-                    lines.append(line)
-                    continue
-                start = line.rfind(':') + 1
-                tag_number = int(line[start:])
-                first_nonwhitespace_index = len(line) - len(line.lstrip())
-                index = first_nonwhitespace_index
-                if line[index:index+4] == '%%% ':
-                    line = list(line)
-                    line[index:index+4] = []
-                    line = ''.join(line)
-                    if tag_number != current_tag_number:
-                        current_tag_number = tag_number
-                        count += 1
-                else:
-                    if tag_number != current_tag_number:
-                        current_tag_number = tag_number
-                        skipped += 1
-                lines.append(line)
-        text = ''.join(lines)
-        return text, count, skipped
 
     def update_order_dependent_segment_metadata(self):
         r'''Updates order-dependent segment metadata.

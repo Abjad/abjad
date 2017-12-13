@@ -795,98 +795,98 @@ class TaleaRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     { % measure
                         \time 3/8
-                        \set stemLeftBeamCount = #0
-                        \set stemRightBeamCount = #2
+                        \set stemLeftBeamCount = 0
+                        \set stemRightBeamCount = 2
                         c'16 [
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
+                        \set stemLeftBeamCount = 2
+                        \set stemRightBeamCount = 2
                         c'16
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
+                        \set stemLeftBeamCount = 2
+                        \set stemRightBeamCount = 2
                         c'16
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
+                        \set stemLeftBeamCount = 2
+                        \set stemRightBeamCount = 2
                         c'16
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
+                        \set stemLeftBeamCount = 2
+                        \set stemRightBeamCount = 2
                         c'16
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #1
+                        \set stemLeftBeamCount = 2
+                        \set stemRightBeamCount = 1
                         c'16
                     } % measure
                     { % measure
                         \time 4/8
-                        \set stemLeftBeamCount = #1
-                        \set stemRightBeamCount = #2
+                        \set stemLeftBeamCount = 1
+                        \set stemRightBeamCount = 2
                         c'16
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
+                        \set stemLeftBeamCount = 2
+                        \set stemRightBeamCount = 2
                         c'16
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
+                        \set stemLeftBeamCount = 2
+                        \set stemRightBeamCount = 2
                         c'16
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
+                        \set stemLeftBeamCount = 2
+                        \set stemRightBeamCount = 2
                         c'16
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
+                        \set stemLeftBeamCount = 2
+                        \set stemRightBeamCount = 2
                         c'16
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
+                        \set stemLeftBeamCount = 2
+                        \set stemRightBeamCount = 2
                         c'16
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
+                        \set stemLeftBeamCount = 2
+                        \set stemRightBeamCount = 2
                         c'16
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #1
+                        \set stemLeftBeamCount = 2
+                        \set stemRightBeamCount = 1
                         c'16
                     } % measure
                     { % measure
                         \time 3/8
-                        \set stemLeftBeamCount = #1
-                        \set stemRightBeamCount = #2
+                        \set stemLeftBeamCount = 1
+                        \set stemRightBeamCount = 2
                         c'16
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
+                        \set stemLeftBeamCount = 2
+                        \set stemRightBeamCount = 2
                         c'16
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
+                        \set stemLeftBeamCount = 2
+                        \set stemRightBeamCount = 2
                         c'16
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
+                        \set stemLeftBeamCount = 2
+                        \set stemRightBeamCount = 2
                         c'16
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
+                        \set stemLeftBeamCount = 2
+                        \set stemRightBeamCount = 2
                         c'16
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #1
+                        \set stemLeftBeamCount = 2
+                        \set stemRightBeamCount = 1
                         c'16
                     } % measure
                     { % measure
                         \time 4/8
-                        \set stemLeftBeamCount = #1
-                        \set stemRightBeamCount = #2
+                        \set stemLeftBeamCount = 1
+                        \set stemRightBeamCount = 2
                         c'16
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
+                        \set stemLeftBeamCount = 2
+                        \set stemRightBeamCount = 2
                         c'16
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
+                        \set stemLeftBeamCount = 2
+                        \set stemRightBeamCount = 2
                         c'16
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
+                        \set stemLeftBeamCount = 2
+                        \set stemRightBeamCount = 2
                         c'16
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
+                        \set stemLeftBeamCount = 2
+                        \set stemRightBeamCount = 2
                         c'16
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
+                        \set stemLeftBeamCount = 2
+                        \set stemRightBeamCount = 2
                         c'16
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
+                        \set stemLeftBeamCount = 2
+                        \set stemRightBeamCount = 2
                         c'16
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #0
+                        \set stemLeftBeamCount = 2
+                        \set stemRightBeamCount = 0
                         c'16 ]
                     } % measure
                 }
@@ -1127,18 +1127,18 @@ class TaleaRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     { % measure
                         \time 3/8
-                        \override Staff.Stem.stemlet-length = #0.75
+                        \override RhythmicStaff.Stem.stemlet-length = 0.75
                         c'16 [
                         c'16
                         c'16
                         r16
                         c'16
-                        \revert Staff.Stem.stemlet-length
+                        \revert RhythmicStaff.Stem.stemlet-length
                         c'16 ]
                     } % measure
                     { % measure
                         \time 4/8
-                        \override Staff.Stem.stemlet-length = #0.75
+                        \override RhythmicStaff.Stem.stemlet-length = 0.75
                         c'16 [
                         r16
                         c'16
@@ -1146,23 +1146,23 @@ class TaleaRhythmMaker(RhythmMaker):
                         c'16
                         r16
                         c'16
-                        \revert Staff.Stem.stemlet-length
+                        \revert RhythmicStaff.Stem.stemlet-length
                         c'16 ]
                     } % measure
                     { % measure
                         \time 3/8
-                        \override Staff.Stem.stemlet-length = #0.75
+                        \override RhythmicStaff.Stem.stemlet-length = 0.75
                         c'16 [
                         r16
                         c'16
                         c'16
                         c'16
-                        \revert Staff.Stem.stemlet-length
+                        \revert RhythmicStaff.Stem.stemlet-length
                         r16 ]
                     } % measure
                     { % measure
                         \time 4/8
-                        \override Staff.Stem.stemlet-length = #0.75
+                        \override RhythmicStaff.Stem.stemlet-length = 0.75
                         c'16 [
                         c'16
                         c'16
@@ -1170,7 +1170,7 @@ class TaleaRhythmMaker(RhythmMaker):
                         c'16
                         c'16
                         c'16
-                        \revert Staff.Stem.stemlet-length
+                        \revert RhythmicStaff.Stem.stemlet-length
                         r16 ]
                     } % measure
                 }

@@ -6,8 +6,6 @@ class KeySignature(AbjadValueObject):
 
     ..  container:: example
 
-        E major:
-
         >>> staff = abjad.Staff("e'8 fs'8 gs'8 a'8")
         >>> key_signature = abjad.KeySignature('e', 'major')
         >>> abjad.attach(key_signature, staff[0])
@@ -25,8 +23,6 @@ class KeySignature(AbjadValueObject):
             }
 
     ..  container:: example
-
-        e minor:
 
         >>> staff = abjad.Staff("e'8 fs'8 g'8 a'8")
         >>> key_signature = abjad.KeySignature('e', 'minor')
@@ -49,12 +45,17 @@ class KeySignature(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_context',
         '_mode',
         '_tonic',
         )
 
+    _context = 'Staff'
+
     _format_slot = 'opening'
+
+    _persistent = True
+    
+    _redraw = True
 
     ### INITIALIZER ###
 
@@ -62,7 +63,6 @@ class KeySignature(AbjadValueObject):
         import abjad
         self._tonic = abjad.NamedPitchClass(tonic)
         self._mode = abjad.tonalanalysistools.Mode(mode)
-        self._context = 'Staff'
 
     ### SPECIAL METHODS ###
 
@@ -118,7 +118,7 @@ class KeySignature(AbjadValueObject):
 
     @property
     def context(self):
-        r'''Gets default context of key signature.
+        r'''Gets (historically conventional) context.
 
         ..  container:: example
 
@@ -136,7 +136,9 @@ class KeySignature(AbjadValueObject):
             >>> key_signature.context
             'Staff'
 
-        Returns context or string.
+        Returns ``'Staff'``.
+
+        Override with ``abjad.attach(..., context='...')``.
         '''
         return self._context
 
@@ -191,6 +193,36 @@ class KeySignature(AbjadValueObject):
         else:
             tonic = str(self.tonic)
         return '{!s} {!s}'.format(tonic, self.mode.mode_name)
+
+    @property
+    def persistent(self):
+        r'''Is true.
+
+        ..  container:: example
+
+            >>> abjad.KeySignature('e', 'major').persistent
+            True
+
+        Class constant.
+
+        Returns true.
+        '''
+        return self._persistent
+
+    @property
+    def redraw(self):
+        r'''Is true.
+
+        ..  container:: example
+
+            >>> abjad.KeySignature('e', 'major').redraw
+            True
+
+        Class constant.
+
+        Returns true.
+        '''
+        return self._redraw
 
     @property
     def tonic(self):

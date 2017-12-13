@@ -626,9 +626,8 @@ class LilyPondParser(abctools.Parser):
         while len(music):
             component = music.pop(0)
             context.append(component)
-        indicators = music._indicator_wrappers
-        for indicator in indicators:
-            attach(indicator, context)
+        for wrapper in music._wrappers:
+            attach(wrapper, context)
         return context
 
     def _construct_sequential_music(self, music):

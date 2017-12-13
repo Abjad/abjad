@@ -2,26 +2,36 @@ import abjad
 import {score_package_name}
 
 
-class SegmentMaker(abjad.abctools.AbjadObject):
+class SegmentMaker(abjad.AbjadObject):
     r'''Segment-maker.
     '''
 
     ### INITIALIZER ###
 
     def __init__(self):
-        self.score_template = {score_package_name}.tools.ScoreTemplate()
+        self.score_template = {score_package_name}.ScoreTemplate()
 
-    ### SPECIAL METHODS ###
+    ### PUBLIC METHODS ###
 
-    def __call__(
+    def run(
         self,
+        builds_metadata=None,
         metadata=None,
+        midi=None,
         previous_metadata=None,
         ):
+        r'''Runs segment-maker.
+
+        Returns LilyPond file.
+        '''
+        self.builds_metadata = builds_metadata
+        self.metadata = metadata
+        self.midi = midi
+        self.previous_metadata = previous_metadata
         score = self.score_template()
         score['Example Voice'].extend("c'4 ( d'4 e'4 f'4 )")
-        lilypond_file = abjad.lilypondfiletools.LilyPondFile.new(
+        lilypond_file = abjad.LilyPondFile.new(
             score,
             includes=['../../stylesheets/stylesheet.ily'],
             )
-        return lilypond_file, metadata
+        return lilypond_file

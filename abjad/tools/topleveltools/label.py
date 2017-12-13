@@ -1,4 +1,4 @@
-def label(client=None, tag=None):
+def label(client=None, site=None, tag=None):
     r'''Makes label agent or label expression.
 
     ..  container:: example
@@ -82,10 +82,7 @@ def label(client=None, tag=None):
     '''
     import abjad
     if client is not None:
-        return abjad.Label(client=client, tag=tag)
+        return abjad.Label(client=client, site=site, tag=tag)
     expression = abjad.Expression()
-    if tag is not None:
-        expression = expression.label(tag=tag)
-    else:
-        expression = expression.label()
+    expression = expression.label(site=site, tag=tag)
     return expression

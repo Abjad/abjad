@@ -384,6 +384,7 @@ class LilyPondFile(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _get_format_pieces(self, strict=False):
+        import abjad
         result = []
         if self.date_time_token is not None:
             string = '% {}'.format(self.date_time_token)

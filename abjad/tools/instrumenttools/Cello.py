@@ -1,5 +1,4 @@
-from abjad.tools import indicatortools
-from abjad.tools.instrumenttools.Instrument import Instrument
+from .Instrument import Instrument
 
 
 class Cello(Instrument):
@@ -41,25 +40,27 @@ class Cello(Instrument):
         self,
         name='cello',
         short_name='vc.',
-        name_markup=None,
-        short_name_markup=None,
+        markup=None,
+        short_markup=None,
         allowable_clefs=('bass', 'tenor', 'treble'),
         context=None,
         default_tuning=('C2', 'G2', 'D3', 'A3'),
         middle_c_sounding_pitch=None,
         pitch_range='[C2, G5]',
+        hide=None,
         ):
         import abjad
         Instrument.__init__(
             self,
             name=name,
             short_name=short_name,
-            name_markup=name_markup,
-            short_name_markup=short_name_markup,
+            markup=markup,
+            short_markup=short_markup,
             allowable_clefs=allowable_clefs,
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
+            hide=hide,
             )
         self._is_primary_instrument = True
         self._default_tuning = abjad.Tuning(default_tuning)
@@ -95,6 +96,22 @@ class Cello(Instrument):
         return self._default_tuning
 
     @property
+    def markup(self):
+        r'''Gets cello's instrument name markup.
+
+        ..  container:: example
+
+            >>> cello = abjad.Cello()
+            >>> cello.markup
+            Markup(contents=['Cello'])
+
+            >>> abjad.show(cello.markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.markup.fget(self)
+
+    @property
     def middle_c_sounding_pitch(self):
         r'''Gets sounding pitch of cello's written middle C.
 
@@ -125,22 +142,6 @@ class Cello(Instrument):
         return Instrument.name.fget(self)
 
     @property
-    def name_markup(self):
-        r'''Gets cello's instrument name markup.
-
-        ..  container:: example
-
-            >>> cello = abjad.Cello()
-            >>> cello.name_markup
-            Markup(contents=['Cello'])
-
-            >>> abjad.show(cello.name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.name_markup.fget(self)
-
-    @property
     def pitch_range(self):
         r'''Gets cello's range.
 
@@ -157,6 +158,22 @@ class Cello(Instrument):
         return Instrument.pitch_range.fget(self)
 
     @property
+    def short_markup(self):
+        r'''Gets cello's short instrument name markup.
+
+        ..  container:: example
+
+            >>> cello = abjad.Cello()
+            >>> cello.short_markup
+            Markup(contents=['Vc.'])
+
+            >>> abjad.show(cello.short_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_markup.fget(self)
+
+    @property
     def short_name(self):
         r'''Gets cello's short instrument name.
 
@@ -169,19 +186,3 @@ class Cello(Instrument):
         Returns string.
         '''
         return Instrument.short_name.fget(self)
-
-    @property
-    def short_name_markup(self):
-        r'''Gets cello's short instrument name markup.
-
-        ..  container:: example
-
-            >>> cello = abjad.Cello()
-            >>> cello.short_name_markup
-            Markup(contents=['Vc.'])
-
-            >>> abjad.show(cello.short_name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.short_name_markup.fget(self)

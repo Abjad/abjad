@@ -13,8 +13,8 @@ def test_spannertools_DuratedComplexBeam_isolated_nib_direction_01():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            \set stemLeftBeamCount = #1
-            \set stemRightBeamCount = #1
+            \set stemLeftBeamCount = 1
+            \set stemRightBeamCount = 1
             c'8 [ ]
         }
         '''
@@ -54,11 +54,11 @@ def test_spannertools_DuratedComplexBeam_isolated_nib_direction_03():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            \set stemLeftBeamCount = #0
-            \set stemRightBeamCount = #1
+            \set stemLeftBeamCount = 0
+            \set stemRightBeamCount = 1
             c'8 [
-            \set stemLeftBeamCount = #1
-            \set stemRightBeamCount = #0
+            \set stemLeftBeamCount = 1
+            \set stemRightBeamCount = 0
             d'8 ]
         }
         '''

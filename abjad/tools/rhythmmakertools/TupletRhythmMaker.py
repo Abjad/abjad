@@ -474,18 +474,18 @@ class TupletRhythmMaker(RhythmMaker):
                         \time 5/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 5/9 {
-                            \set stemLeftBeamCount = #0
-                            \set stemRightBeamCount = #1
+                            \set stemLeftBeamCount = 0
+                            \set stemRightBeamCount = 1
                             c'8. [
-                            \set stemLeftBeamCount = #1
-                            \set stemRightBeamCount = #1
+                            \set stemLeftBeamCount = 1
+                            \set stemRightBeamCount = 1
                             c'8. ]
                             c'4.
-                            \set stemLeftBeamCount = #0
-                            \set stemRightBeamCount = #1
+                            \set stemLeftBeamCount = 0
+                            \set stemRightBeamCount = 1
                             c'8. [
-                            \set stemLeftBeamCount = #1
-                            \set stemRightBeamCount = #1
+                            \set stemLeftBeamCount = 1
+                            \set stemRightBeamCount = 1
                             c'8. ]
                         }
                     } % measure
@@ -494,29 +494,29 @@ class TupletRhythmMaker(RhythmMaker):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
                             c'4.
-                            \set stemLeftBeamCount = #0
-                            \set stemRightBeamCount = #1
+                            \set stemLeftBeamCount = 0
+                            \set stemRightBeamCount = 1
                             c'8 [
-                            \set stemLeftBeamCount = #1
-                            \set stemRightBeamCount = #1
+                            \set stemLeftBeamCount = 1
+                            \set stemRightBeamCount = 1
                             c'8
                         }
                     } % measure
                     { % measure
                         \time 6/8
                         {
-                            \set stemLeftBeamCount = #1
-                            \set stemRightBeamCount = #1
+                            \set stemLeftBeamCount = 1
+                            \set stemRightBeamCount = 1
                             c'8
-                            \set stemLeftBeamCount = #1
-                            \set stemRightBeamCount = #1
+                            \set stemLeftBeamCount = 1
+                            \set stemRightBeamCount = 1
                             c'8 ]
                             c'4
-                            \set stemLeftBeamCount = #0
-                            \set stemRightBeamCount = #1
+                            \set stemLeftBeamCount = 0
+                            \set stemRightBeamCount = 1
                             c'8 [
-                            \set stemLeftBeamCount = #1
-                            \set stemRightBeamCount = #1
+                            \set stemLeftBeamCount = 1
+                            \set stemRightBeamCount = 1
                             c'8 ]
                         }
                     } % measure
@@ -524,11 +524,11 @@ class TupletRhythmMaker(RhythmMaker):
                         \time 4/8
                         \times 4/5 {
                             c'4.
-                            \set stemLeftBeamCount = #0
-                            \set stemRightBeamCount = #1
+                            \set stemLeftBeamCount = 0
+                            \set stemRightBeamCount = 1
                             c'8 [
-                            \set stemLeftBeamCount = #1
-                            \set stemRightBeamCount = #0
+                            \set stemLeftBeamCount = 1
+                            \set stemRightBeamCount = 0
                             c'8 ]
                         }
                     } % measure

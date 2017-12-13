@@ -96,7 +96,7 @@ class Score(Context):
                     d'4
                     e'4
                     f'4
-                    \bar "|."
+                    \bar "|." %! SCORE1
                 }
             >>
 
@@ -105,17 +105,15 @@ class Score(Context):
         Returns bar line.
         '''
         import abjad
-        double_bar = abjad.BarLine(abbreviation)
+        bar_line = abjad.BarLine(abbreviation)
         if not to_each_voice:
-            selection = abjad.select(self)
-            last_leaf = selection._get_component(abjad.Leaf, -1)
-            abjad.attach(double_bar, last_leaf)
+            last_leaf = abjad.inspect(self).get_leaf(-1)
+            abjad.attach(bar_line, last_leaf, site='SCORE1')
         else:
             for voice in abjad.iterate(self).components(abjad.Voice):
-                selection = abjad.select(voice)
-                last_leaf = selection._get_component(abjad.Leaf, -1)
-                abjad.attach(double_bar, last_leaf)
-        return double_bar
+                last_leaf = abjad.inspect(voice).get_leaf(-1)
+                abjad.attach(bar_line, last_leaf, site='SCORE1')
+        return bar_line
 
     def add_final_markup(self, markup, extra_offset=None):
         r'''Adds `markup` to end of score.
@@ -145,14 +143,15 @@ class Score(Context):
                         d'4
                         e'4
                         \once \override TextScript.extra-offset = #'(0.5 . -2)
-                        f'4 _ \markup {
-                            \italic
-                                \right-column
-                                    {
-                                        "Bremen - Boston - LA."
-                                        "July 2010 - May 2011."
-                                    }
-                            }
+                        f'4
+                            _ \markup {                             %! SCORE2
+                                \italic                             %! SCORE2
+                                    \right-column                   %! SCORE2
+                                        {                           %! SCORE2
+                                            "Bremen - Boston - LA." %! SCORE2
+                                            "July 2010 - May 2011." %! SCORE2
+                                        }                           %! SCORE2
+                                }                                   %! SCORE2
                     }
                 >>
 
@@ -190,14 +189,14 @@ class Score(Context):
                         f'4
                         \once \override MultiMeasureRestText.extra-offset = #'(14.5 . -2)
                         R1
-                            _ \markup {
-                                \italic
-                                    \right-column
-                                        {
-                                            "Bremen - Boston - LA."
-                                            "July 2010 - May 2011."
-                                        }
-                                }
+                            _ \markup {                             %! SCORE2
+                                \italic                             %! SCORE2
+                                    \right-column                   %! SCORE2
+                                        {                           %! SCORE2
+                                            "Bremen - Boston - LA." %! SCORE2
+                                            "July 2010 - May 2011." %! SCORE2
+                                        }                           %! SCORE2
+                                }                                   %! SCORE2
                     }
                 >>
 
@@ -207,7 +206,7 @@ class Score(Context):
         selection = abjad.select(self)
         last_leaf = selection._get_component(abjad.Leaf, -1)
         markup = copy.copy(markup)
-        abjad.attach(markup, last_leaf)
+        abjad.attach(markup, last_leaf, site='SCORE2')
         if extra_offset is not None:
             if isinstance(last_leaf, abjad.MultimeasureRest):
                 grob_proxy = abjad.override(last_leaf).multi_measure_rest_text

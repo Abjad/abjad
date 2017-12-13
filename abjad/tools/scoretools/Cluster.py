@@ -29,8 +29,6 @@ class Cluster(Container):
 
     __slots__ = ()
 
-    _is_counttime_component = True
-
     ### PRIVATE METHODS ###
 
     def _format_open_brackets_slot(self, bundle):

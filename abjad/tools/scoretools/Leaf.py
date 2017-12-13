@@ -1,6 +1,7 @@
 import abc
 import copy
-from abjad.tools.exceptiontools import AssignabilityError, MissingMetronomeMarkError
+from abjad.tools.exceptiontools import AssignabilityError
+from abjad.tools.exceptiontools import MissingMetronomeMarkError
 from .Component import Component
 
 
@@ -19,21 +20,39 @@ class Leaf(Component):
         '_written_duration',
         )
 
-    # TODO: remove?
-    _is_counttime_component = True
-
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, written_duration, name=None):
+    def __init__(self, written_duration):
         import abjad
-        Component.__init__(self, name=name)
+        Component.__init__(self)
         self._after_grace_container = None
         self._grace_container = None
         self._leaf_index = None
         self.written_duration = abjad.Duration(written_duration)
 
     ### SPECIAL METHODS ###
+
+    def __copy__(self, *arguments):
+        r'''Shallow copies leaf.
+
+        Returns new leaf.
+        '''
+        import abjad
+        new = Component.__copy__(self, *arguments)
+        grace_container = self._grace_container
+        if grace_container is not None:
+            new_grace_container = grace_container._copy_with_children()
+            #new_grace_container = abjad.mutate(grace_container).copy()
+            abjad.attach(new_grace_container, new)
+        after_grace_container = self._after_grace_container
+        if after_grace_container is not None:
+            new_after_grace_container = \
+                after_grace_container._copy_with_children()
+            #new_after_grace_container = abjad.mutate(
+            #    after_grace_container).copy()
+            abjad.attach(new_after_grace_container, new)
+        return new
 
     def __getnewargs__(self):
         '''Gets new arguments.
@@ -81,28 +100,12 @@ class Leaf(Component):
         if getattr(leaf, '_lilypond_setting_name_manager', None) is not None:
             self._lilypond_setting_name_manager = copy.copy(
                 abjad.setting(leaf))
-        new_indicators = []
-        for indicator in leaf._indicator_wrappers:
-            new_indicator = copy.copy(indicator)
-            new_indicators.append(new_indicator)
-        for new_indicator in new_indicators:
-            abjad.attach(new_indicator, self)
-
-    def _copy_with_indicators_but_without_children_or_spanners(self):
-        import abjad
-        new = Component._copy_with_indicators_but_without_children_or_spanners(
-            self)
-        grace_container = self._grace_container
-        if grace_container is not None:
-            new_grace_container = \
-                grace_container._copy_with_children_and_indicators_but_without_spanners()
-            abjad.attach(new_grace_container, new)
-        after_grace_container = self._after_grace_container
-        if after_grace_container is not None:
-            new_after_grace_container = \
-                after_grace_container._copy_with_children_and_indicators_but_without_spanners()
-            abjad.attach(new_after_grace_container, new)
-        return new
+        new_wrappers = []
+        for wrapper in leaf._wrappers:
+            new_wrapper = copy.copy(wrapper)
+            new_wrappers.append(new_wrapper)
+        for new_wrapper in new_wrappers:
+            abjad.attach(new_wrapper, self)
 
     def _detach_after_grace_container(self):
         import abjad

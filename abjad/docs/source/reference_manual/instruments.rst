@@ -81,15 +81,15 @@ Use ``name`` to get the name of any instrument:
 
     violin.name
 
-Use ``name_markup`` to get the instrument name markup of any instrument:
+Use ``markup`` to get the instrument name markup of any instrument:
 
 ..  abjad::
 
-    violin.name_markup
+    violin.markup
 
 ..  abjad::
 
-    abjad.show(violin.name_markup)
+    abjad.show(violin.markup)
 
 
 Getting the short name of an instrument
@@ -101,16 +101,16 @@ Use ``short_name`` to get the short name of any instrument:
 
     violin.short_name
 
-Use ``short_name_markup`` to get the short instrument name markup of any
+Use ``short_markup`` to get the short instrument name markup of any
 instrument:
 
 ..  abjad::
 
-    violin.short_name_markup
+    violin.short_markup
 
 ..  abjad::
 
-    abjad.show(violin.short_name_markup)
+    abjad.show(violin.short_markup)
 
 
 Getting an instrument's range

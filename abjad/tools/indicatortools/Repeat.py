@@ -61,12 +61,13 @@ class Repeat(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_context',
         '_repeat_count',
         '_repeat_type',
         )
 
     _can_attach_to_containers = True
+
+    _context = 'Score'
 
     _format_leaf_children = False
 
@@ -75,7 +76,6 @@ class Repeat(AbjadValueObject):
     ### INITIALIZER ###
 
     def __init__(self, repeat_count=2, repeat_type='volta'):
-        self._context = 'Score'
         repeat_count = int(repeat_count)
         assert 1 < repeat_count
         self._repeat_count = repeat_count
@@ -123,7 +123,7 @@ class Repeat(AbjadValueObject):
 
     @property
     def context(self):
-        r'''Gets default context of repeat.
+        r'''Gets (historically conventional) context.
 
         ..  container:: example
 
@@ -141,7 +141,9 @@ class Repeat(AbjadValueObject):
             >>> repeat.context
             'Score'
 
-        Returns context or string.
+        Returns ``'Score'``.
+
+        Override with ``abjad.attach(..., context='...')``.
         '''
         return self._context
 

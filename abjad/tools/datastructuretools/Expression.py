@@ -1991,7 +1991,7 @@ class Expression(AbjadValueObject):
                         af'8
                         bqs'8
                         af'8
-                        \bar "|."
+                        \bar "|." %! SCORE1
                         \override Score.BarLine.transparent = ##f
                     }
 

@@ -396,10 +396,16 @@ class BowContactSpanner(Spanner):
 
     ### PUBLIC METHODS ###
 
-    def attach(self, indicator, leaf):
+    def attach(self, indicator, leaf, deactivate=None, site=None, tag=None):
         r'''Attaches `indicator` to `leaf` in spanner.
 
         Returns none.
         '''
         superclass = super(BowContactSpanner, self)
-        superclass._attach_piecewise(indicator, leaf)
+        superclass._attach_piecewise(
+            indicator,
+            leaf,
+            deactivate=deactivate,
+            site=site,
+            tag=tag,
+            )

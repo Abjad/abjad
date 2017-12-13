@@ -6,207 +6,420 @@ class TextSpanner(Spanner):
 
     ..  container:: example
 
-        Text spanner with no grob overrides:
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-        >>> text_spanner = abjad.TextSpanner()
-        >>> abjad.attach(text_spanner, staff[:])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(staff)
-            \new Staff {
-                c'4 \startTextSpan
-                d'4
-                e'4
-                f'4 \stopTextSpan
-            }
-
-        This is (notationally unlikely) default behavior.
-
-    ..  container:: example
-
-        Text spanner with grob override for left text:
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-        >>> text_spanner = abjad.TextSpanner()
-        >>> markup = abjad.Markup('foo').italic().bold()
-        >>> abjad.override(text_spanner).text_spanner.bound_details__left__text = markup
-        >>> abjad.override(text_spanner).text_spanner.bound_details__left__stencil_align_dir_y = 0
-        >>> abjad.attach(text_spanner, staff[:])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(staff)
-            \new Staff {
-                \override TextSpanner.bound-details.left.stencil-align-dir-y = #0
-                \override TextSpanner.bound-details.left.text = \markup {
-                    \bold
-                        \italic
-                            foo
-                    }
-                c'4 \startTextSpan
-                d'4
-                e'4
-                \revert TextSpanner.bound-details
-                f'4 \stopTextSpan
-            }
-
-    ..  container:: example
-
-        Text spanner interacting with piecewise markup. At beginning of
-        spanner:
-
         >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
         >>> spanner = abjad.TextSpanner()
         >>> abjad.attach(spanner, staff[:])
-        >>> spanner.attach(abjad.Markup('pont.'), staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(staff)
-            \new Staff {
-                c'4 ^ \markup { pont. }
-                d'4
-                e'4
-                f'4
-            }
-
-        Text spanner is suppresssed and only the markup appears.
-
-    ..  container:: example
-
-        Text spanner interacting with piecewise markup. At end of spanner:
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-        >>> spanner = abjad.TextSpanner()
-        >>> abjad.attach(spanner, staff[:])
-        >>> spanner.attach(abjad.Markup('tasto'), staff[-1])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(staff)
-            \new Staff {
-                c'4
-                d'4
-                e'4
-                f'4 ^ \markup { tasto }
-            }
-
-        Text spanner is suppresssed and only the markup appears.
-
-    ..  container:: example
-
-        Text spanner interacting with piecewise markup. At beginning and
-        end of spanner:
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-        >>> spanner = abjad.TextSpanner()
-        >>> abjad.attach(spanner, staff[:])
-        >>> spanner.attach(abjad.Markup('pont.'), staff[0])
-        >>> spanner.attach(abjad.Markup('tasto'), staff[-1])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(staff)
-            \new Staff {
-                c'4 ^ \markup { pont. }
-                d'4
-                e'4
-                f'4 ^ \markup { tasto }
-            }
-
-        Text spanner is suppresssed and only the markup appear.
-
-    ..  container:: example
-
-        Text spanner interacting with piecewise indicators:
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-        >>> spanner = abjad.TextSpanner()
-        >>> abjad.attach(spanner, staff[:])
-        >>> spanner.attach(abjad.Markup('one'), staff[0])
-        >>> spanner.attach(abjad.LineSegment(), staff[0])
-        >>> spanner.attach(abjad.Markup('two'), staff[1])
-        >>> spanner.attach(abjad.ArrowLineSegment(), staff[1])
-        >>> spanner.attach(abjad.Markup('three'), staff[-1])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(staff)
-            \new Staff {
-                \once \override TextSpanner.bound-details.left.text = \markup { one }
-                c'4 \startTextSpan
-                \once \override TextSpanner.arrow-width = 0.25
-                \once \override TextSpanner.bound-details.left-broken.text = ##f
-                \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                \once \override TextSpanner.bound-details.left.text = \markup {
-                    \concat
-                        {
-                            two
-                            \hspace
-                                #0.25
-                        }
-                    }
-                \once \override TextSpanner.bound-details.right-broken.padding = 0
-                \once \override TextSpanner.bound-details.right.arrow = ##t
-                \once \override TextSpanner.bound-details.right.padding = 1.5
-                \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                \once \override TextSpanner.dash-fraction = 1
-                d'4 \stopTextSpan \startTextSpan
-                e'4
-                f'4 \stopTextSpan ^ \markup { three }
-            }
-
-    ..  container:: example
-
-        Text spanner interacting with piecewise and nonpiecewise indicators:
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-        >>> spanner = abjad.TextSpanner()
-        >>> abjad.attach(spanner, staff[:])
-        >>> spanner.attach(abjad.Markup('ord.'), staff[0])
-        >>> spanner.attach(abjad.ArrowLineSegment(), staff[0])
-        >>> spanner.attach(abjad.Markup('pont.'), staff[-1])
-        >>> abjad.attach(abjad.Markup('leggieriss.'), staff[0])
-
+        >>> spanner.attach(abjad.Markup('pont.').upright(), spanner[0])
         >>> abjad.override(staff).text_spanner.staff_padding = 2.5
-        >>> abjad.override(staff).text_script.staff_padding = 2
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
             >>> abjad.f(staff)
             \new Staff \with {
-                    \override TextScript.staff-padding = #2
-                    \override TextSpanner.staff-padding = #2.5
+                \override TextSpanner.staff-padding = #2.5
             } {
+                \once \override TextSpanner.Y-extent = ##f
+                \once \override TextSpanner.bound-details.left-broken.text = ##f
+                \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                \once \override TextSpanner.bound-details.left.text = \markup {
+                    \concat
+                        {
+                            \upright
+                                pont.
+                            \hspace
+                                #0.25
+                        }
+                    }
+                \once \override TextSpanner.bound-details.right-broken.padding = 0
+                \once \override TextSpanner.bound-details.right-broken.text = ##f
+                \once \override TextSpanner.bound-details.right.padding = 1.5
+                \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                \once \override TextSpanner.dash-period = 0
+                c'4 \startTextSpan
+                d'4
+                e'4
+                f'4 \stopTextSpan
+            }
+
+        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+        >>> spanner = abjad.TextSpanner()
+        >>> abjad.attach(spanner, staff[:])
+        >>> spanner.attach(abjad.Markup('tasto').upright(), spanner[-1])
+        >>> abjad.override(staff).text_spanner.staff_padding = 2.5
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff \with {
+                \override TextSpanner.staff-padding = #2.5
+            } {
+                \once \override TextSpanner.Y-extent = ##f
+                \once \override TextSpanner.bound-details.left-broken.text = ##f
+                \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                \once \override TextSpanner.bound-details.right-broken.padding = 0
+                \once \override TextSpanner.bound-details.right-broken.text = ##f
+                \once \override TextSpanner.bound-details.right.padding = 1.5
+                \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                \once \override TextSpanner.bound-details.right.text = \markup {
+                    \concat
+                        {
+                            \hspace
+                                #1.0
+                            \upright
+                                tasto
+                        }
+                    }
+                \once \override TextSpanner.dash-period = 0
+                c'4 \startTextSpan
+                d'4
+                e'4
+                f'4 \stopTextSpan
+            }
+
+        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+        >>> spanner = abjad.TextSpanner()
+        >>> abjad.attach(spanner, staff[:])
+        >>> spanner.attach(abjad.Markup('pont.').upright(), spanner[0])
+        >>> spanner.attach(abjad.Markup('tasto').upright(), spanner[-1])
+        >>> abjad.override(staff).text_spanner.staff_padding = 2.5
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff \with {
+                \override TextSpanner.staff-padding = #2.5
+            } {
+                \once \override TextSpanner.Y-extent = ##f
+                \once \override TextSpanner.bound-details.left-broken.text = ##f
+                \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                \once \override TextSpanner.bound-details.left.text = \markup {
+                    \concat
+                        {
+                            \upright
+                                pont.
+                            \hspace
+                                #0.25
+                        }
+                    }
+                \once \override TextSpanner.bound-details.right-broken.padding = 0
+                \once \override TextSpanner.bound-details.right-broken.text = ##f
+                \once \override TextSpanner.bound-details.right.padding = 1.5
+                \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                \once \override TextSpanner.bound-details.right.text = \markup {
+                    \concat
+                        {
+                            \hspace
+                                #1.0
+                            \upright
+                                tasto
+                        }
+                    }
+                \once \override TextSpanner.dash-period = 0
+                c'4 \startTextSpan
+                d'4
+                e'4
+                f'4 \stopTextSpan
+            }
+
+        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+        >>> spanner = abjad.TextSpanner()
+        >>> abjad.attach(spanner, staff[:])
+        >>> spanner.attach(abjad.Markup('pont.').upright(), spanner[0])
+        >>> spanner.attach(abjad.ArrowLineSegment(), spanner[0])
+        >>> spanner.attach(abjad.Markup('tasto').upright(), spanner[-1])
+        >>> abjad.override(staff).text_spanner.staff_padding = 2.5
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff \with {
+                \override TextSpanner.staff-padding = #2.5
+            } {
+                \once \override TextSpanner.Y-extent = ##f
                 \once \override TextSpanner.arrow-width = 0.25
                 \once \override TextSpanner.bound-details.left-broken.text = ##f
                 \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                 \once \override TextSpanner.bound-details.left.text = \markup {
                     \concat
                         {
-                            ord.
+                            \upright
+                                pont.
                             \hspace
                                 #0.25
                         }
                     }
                 \once \override TextSpanner.bound-details.right-broken.padding = 0
+                \once \override TextSpanner.bound-details.right-broken.text = ##f
                 \once \override TextSpanner.bound-details.right.arrow = ##t
-                \once \override TextSpanner.bound-details.right.padding = 1.5
+                \once \override TextSpanner.bound-details.right.padding = 0.5
                 \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                \once \override TextSpanner.bound-details.right.text = \markup {
+                    \concat
+                        {
+                            \hspace
+                                #0.0
+                            \upright
+                                tasto
+                        }
+                    }
                 \once \override TextSpanner.dash-fraction = 1
-                c'4 \startTextSpan - \markup { leggieriss. }
+                c'4 \startTextSpan
                 d'4
                 e'4
-                f'4 \stopTextSpan ^ \markup { pont. }
+                f'4 \stopTextSpan
+            }
+
+    ..  container:: example
+
+        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+        >>> spanner = abjad.TextSpanner()
+        >>> abjad.attach(spanner, staff[:])
+        >>> arrow = abjad.ArrowLineSegment()
+        >>> spanner.attach(abjad.Markup('one').upright(), spanner[0])
+        >>> spanner.attach(arrow, spanner[0])
+        >>> spanner.attach(abjad.Markup('two').upright(), spanner[1])
+        >>> spanner.attach(arrow, spanner[1])
+        >>> spanner.attach(abjad.Markup('three').upright(), spanner[2])
+        >>> spanner.attach(arrow, spanner[2])
+        >>> spanner.attach(abjad.Markup('four').upright(), spanner[3])
+        >>> abjad.override(staff).text_spanner.staff_padding = 2.5
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff \with {
+                \override TextSpanner.staff-padding = #2.5
+            } {
+                \once \override TextSpanner.Y-extent = ##f
+                \once \override TextSpanner.arrow-width = 0.25
+                \once \override TextSpanner.bound-details.left-broken.text = ##f
+                \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                \once \override TextSpanner.bound-details.left.text = \markup {
+                    \concat
+                        {
+                            \upright
+                                one
+                            \hspace
+                                #0.25
+                        }
+                    }
+                \once \override TextSpanner.bound-details.right-broken.padding = 0
+                \once \override TextSpanner.bound-details.right-broken.text = ##f
+                \once \override TextSpanner.bound-details.right.arrow = ##t
+                \once \override TextSpanner.bound-details.right.padding = 0.5
+                \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                \once \override TextSpanner.dash-fraction = 1
+                c'4 \startTextSpan
+                \once \override TextSpanner.Y-extent = ##f
+                \once \override TextSpanner.arrow-width = 0.25
+                \once \override TextSpanner.bound-details.left-broken.text = ##f
+                \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                \once \override TextSpanner.bound-details.left.text = \markup {
+                    \concat
+                        {
+                            \upright
+                                two
+                            \hspace
+                                #0.25
+                        }
+                    }
+                \once \override TextSpanner.bound-details.right-broken.padding = 0
+                \once \override TextSpanner.bound-details.right-broken.text = ##f
+                \once \override TextSpanner.bound-details.right.arrow = ##t
+                \once \override TextSpanner.bound-details.right.padding = 0.5
+                \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                \once \override TextSpanner.dash-fraction = 1
+                d'4 \stopTextSpan \startTextSpan
+                \once \override TextSpanner.Y-extent = ##f
+                \once \override TextSpanner.arrow-width = 0.25
+                \once \override TextSpanner.bound-details.left-broken.text = ##f
+                \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                \once \override TextSpanner.bound-details.left.text = \markup {
+                    \concat
+                        {
+                            \upright
+                                three
+                            \hspace
+                                #0.25
+                        }
+                    }
+                \once \override TextSpanner.bound-details.right-broken.padding = 0
+                \once \override TextSpanner.bound-details.right-broken.text = ##f
+                \once \override TextSpanner.bound-details.right.arrow = ##t
+                \once \override TextSpanner.bound-details.right.padding = 0.5
+                \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                \once \override TextSpanner.bound-details.right.text = \markup {
+                    \concat
+                        {
+                            \hspace
+                                #0.0
+                            \upright
+                                four
+                        }
+                    }
+                \once \override TextSpanner.dash-fraction = 1
+                e'4 \stopTextSpan \startTextSpan
+                f'4 \stopTextSpan
+            }
+
+        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+        >>> spanner = abjad.TextSpanner()
+        >>> abjad.attach(spanner, staff[:])
+        >>> arrow = abjad.ArrowLineSegment(left_hspace=0.75, right_padding=1)
+        >>> spanner.attach(abjad.Markup('one').upright(), spanner[0])
+        >>> spanner.attach(arrow, spanner[0])
+        >>> spanner.attach(abjad.Markup('two').upright(), spanner[1])
+        >>> spanner.attach(arrow, spanner[1])
+        >>> spanner.attach(abjad.Markup('three').upright(), spanner[2])
+        >>> spanner.attach(arrow, spanner[2])
+        >>> spanner.attach(abjad.Markup('four').upright(), spanner[3])
+        >>> abjad.override(staff).text_spanner.staff_padding = 2.5
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff \with {
+                \override TextSpanner.staff-padding = #2.5
+            } {
+                \once \override TextSpanner.Y-extent = ##f
+                \once \override TextSpanner.arrow-width = 0.25
+                \once \override TextSpanner.bound-details.left-broken.text = ##f
+                \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                \once \override TextSpanner.bound-details.left.text = \markup {
+                    \concat
+                        {
+                            \upright
+                                one
+                            \hspace
+                                #0.75
+                        }
+                    }
+                \once \override TextSpanner.bound-details.right-broken.padding = 0
+                \once \override TextSpanner.bound-details.right-broken.text = ##f
+                \once \override TextSpanner.bound-details.right.arrow = ##t
+                \once \override TextSpanner.bound-details.right.padding = 1
+                \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                \once \override TextSpanner.dash-fraction = 1
+                c'4 \startTextSpan
+                \once \override TextSpanner.Y-extent = ##f
+                \once \override TextSpanner.arrow-width = 0.25
+                \once \override TextSpanner.bound-details.left-broken.text = ##f
+                \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                \once \override TextSpanner.bound-details.left.text = \markup {
+                    \concat
+                        {
+                            \upright
+                                two
+                            \hspace
+                                #0.75
+                        }
+                    }
+                \once \override TextSpanner.bound-details.right-broken.padding = 0
+                \once \override TextSpanner.bound-details.right-broken.text = ##f
+                \once \override TextSpanner.bound-details.right.arrow = ##t
+                \once \override TextSpanner.bound-details.right.padding = 1
+                \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                \once \override TextSpanner.dash-fraction = 1
+                d'4 \stopTextSpan \startTextSpan
+                \once \override TextSpanner.Y-extent = ##f
+                \once \override TextSpanner.arrow-width = 0.25
+                \once \override TextSpanner.bound-details.left-broken.text = ##f
+                \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                \once \override TextSpanner.bound-details.left.text = \markup {
+                    \concat
+                        {
+                            \upright
+                                three
+                            \hspace
+                                #0.75
+                        }
+                    }
+                \once \override TextSpanner.bound-details.right-broken.padding = 0
+                \once \override TextSpanner.bound-details.right-broken.text = ##f
+                \once \override TextSpanner.bound-details.right.arrow = ##t
+                \once \override TextSpanner.bound-details.right.padding = 1
+                \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                \once \override TextSpanner.bound-details.right.text = \markup {
+                    \concat
+                        {
+                            \hspace
+                                #0.5
+                            \upright
+                                four
+                        }
+                    }
+                \once \override TextSpanner.dash-fraction = 1
+                e'4 \stopTextSpan \startTextSpan
+                f'4 \stopTextSpan
+            }
+
+    ..  container:: example
+
+        Nonpiecewise markup can be styled independently:
+
+        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+        >>> spanner = abjad.TextSpanner()
+        >>> abjad.attach(spanner, staff[:])
+        >>> spanner.attach(abjad.Markup('ord.').upright(), spanner[0])
+        >>> spanner.attach(abjad.ArrowLineSegment(), spanner[0])
+        >>> spanner.attach(abjad.Markup('pont.').upright(), spanner[-1])
+        >>> markup = abjad.Markup('leggieriss.', direction=abjad.Up).italic()
+        >>> abjad.attach(markup, staff[0])
+        >>> abjad.override(staff[0]).text_script.color = 'blue'
+        >>> abjad.override(staff).text_spanner.staff_padding = 2.5
+        >>> abjad.override(staff).text_script.staff_padding = 5
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff \with {
+                \override TextScript.staff-padding = #5
+                \override TextSpanner.staff-padding = #2.5
+            } {
+                \once \override TextScript.color = #blue
+                \once \override TextSpanner.Y-extent = ##f
+                \once \override TextSpanner.arrow-width = 0.25
+                \once \override TextSpanner.bound-details.left-broken.text = ##f
+                \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                \once \override TextSpanner.bound-details.left.text = \markup {
+                    \concat
+                        {
+                            \upright
+                                ord.
+                            \hspace
+                                #0.25
+                        }
+                    }
+                \once \override TextSpanner.bound-details.right-broken.padding = 0
+                \once \override TextSpanner.bound-details.right-broken.text = ##f
+                \once \override TextSpanner.bound-details.right.arrow = ##t
+                \once \override TextSpanner.bound-details.right.padding = 0.5
+                \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                \once \override TextSpanner.bound-details.right.text = \markup {
+                    \concat
+                        {
+                            \hspace
+                                #0.0
+                            \upright
+                                pont.
+                        }
+                    }
+                \once \override TextSpanner.dash-fraction = 1
+                c'4 \startTextSpan
+                    ^ \markup {
+                        \italic
+                            leggieriss.
+                        }
+                d'4
+                e'4
+                f'4 \stopTextSpan
             }
 
     ..  container:: example
@@ -244,28 +457,43 @@ class TextSpanner(Spanner):
     def _get_lilypond_format_bundle(self, component=None):
         import abjad
         bundle = self._get_basic_lilypond_format_bundle(component)
-        current_indicators = self._get_piecewise(component)
-        current_markups = current_indicators[0]
-        current_markup = bool(current_markups)
-        current_line_segment = current_indicators[1]
-        start_spanner = self._spanner_starts_on_leaf(component)
-        stop_spanner = self._spanner_stops_on_leaf(component)
-        if start_spanner:
-            string = r'\startTextSpan'
-            bundle.right.spanner_starts.append(string)
-        if stop_spanner:
-            string = r'\stopTextSpan'
-            bundle.right.spanner_stops.append(string)
-        if current_markups is not None:
-            # assign markup to spanner left text
-            if start_spanner:
-                markup = current_markups[0]
-                if current_line_segment:
-                    if current_line_segment.left_hspace is not None:
-                        hspace = current_line_segment.left_hspace
-                        hspace = abjad.Markup.hspace(hspace)
-                        markup = abjad.Markup.concat([markup, hspace])
-                override_ = abjad.LilyPondGrobOverride(
+        markup = abjad.inspect(component).get_piecewise(abjad.Markup, None)
+        line_segment = abjad.inspect(component).get_piecewise(
+            abjad.LineSegment,
+            None,
+            )
+        if self._should_format_last_leaf_markup(component):
+            last_leaf_markup = abjad.inspect(self[-1]).get_piecewise(
+                abjad.Markup,
+                )
+        else:
+            last_leaf_markup = None
+        indicators = (markup, line_segment, last_leaf_markup)
+        has_indicators = any(_ is not None for _ in indicators)
+        if not has_indicators:
+            if self._is_my_first_leaf(component):
+                bundle.right.spanner_starts.append(r'\startTextSpan')
+                if self._wrappers:
+                    string = r'\once \override TextSpanner.Y-extent = ##f'
+                    bundle.grob_overrides.append(string)
+            if self._is_my_last_leaf(component):
+                bundle.right.spanner_stops.append(r'\stopTextSpan')
+            return bundle
+        if has_indicators and not self._is_my_first_leaf(component):
+            bundle.right.spanner_stops.append(r'\stopTextSpan')
+        if not self._is_my_last_leaf(component):
+            bundle.right.spanner_starts.append(r'\startTextSpan')
+            if self._wrappers:
+                string = r'\once \override TextSpanner.Y-extent = ##f'
+                bundle.grob_overrides.append(string)
+            if line_segment is None:
+                line_segment = self._make_invisible_line_segment()
+            if markup is not None:
+                if line_segment.left_hspace is not None:
+                    left_hspace = line_segment.left_hspace
+                    left_hspace = abjad.Markup.hspace(left_hspace)
+                    markup = abjad.Markup.concat([markup, left_hspace])
+                override = abjad.LilyPondGrobOverride(
                     grob_name='TextSpanner',
                     once=True,
                     property_path=(
@@ -275,96 +503,66 @@ class TextSpanner(Spanner):
                         ),
                     value=markup,
                     )
-                override_string = override_.override_string
+                override_string = override.override_string
                 bundle.grob_overrides.append(override_string)
-            # format markup normally
-            else:
-                current_markup = current_markups[0]
-                markup = abjad.new(current_markup, direction=abjad.Up)
-                string = format(markup, 'lilypond')
-                bundle.right.markup.append(string)
-        if current_line_segment is not None:
-            overrides = current_line_segment._get_lilypond_grob_overrides()
-            for override_ in overrides:
-                override_string = override_.override_string
+            overrides = line_segment._get_lilypond_grob_overrides()
+            for override in overrides:
+                override_string = override.override_string
                 bundle.grob_overrides.append(override_string)
+        if last_leaf_markup is not None:
+            right_hspace = line_segment.right_padding or 0
+            # optical correction to draw last markup left:
+            right_hspace -= 0.5
+            right_hspace = abjad.Markup.hspace(right_hspace)
+            last_leaf_markup = abjad.Markup.concat(
+                [right_hspace, last_leaf_markup],
+                )
+            last_leaf_markup = abjad.new(last_leaf_markup, direction=None)
+            override = abjad.LilyPondGrobOverride(
+                grob_name='TextSpanner',
+                once=True,
+                property_path=(
+                    'bound-details',
+                    'right',
+                    'text',
+                    ),
+                value=last_leaf_markup,
+                )
+            override_string = override.override_string
+            bundle.grob_overrides.append(override_string)
         return bundle
 
-    def _get_piecewise(self, leaf):
+    @staticmethod
+    def _make_invisible_line_segment():
         import abjad
-        markups = abjad.inspect(leaf).get_piecewise(
-            abjad.Markup,
-            None,
+        return abjad.LineSegment(
+            dash_period=0,
+            left_broken_text=False,
+            left_hspace=0.25,
+            left_stencil_align_direction_y=abjad.Center,
+            right_broken_padding=0,
+            right_broken_text=False,
+            right_padding=1.5,
+            right_stencil_align_direction_y=abjad.Center,
             )
-        if markups is not None:
-            markups = [markups]
-        line_segment = abjad.inspect(leaf).get_piecewise(
-            abjad.LineSegment,
-            None,
-            )
-        return markups, line_segment
 
-    def _get_previous_piecewise(self, component):
+    def _should_format_last_leaf_markup(self, component):
         import abjad
-        if not isinstance(component, abjad.Leaf):
-            return None, None
-        leaves = self.leaves
-        index = leaves.index(component)
-        for index in reversed(range(index)):
-            previous_leaf = leaves[index]
-            indicators = self._get_piecewise(previous_leaf)
-            if any(_ is not None for _ in indicators):
-                return indicators
-        return None, None
-
-    def _leaf_has_current_event(self, leaf):
-        indicators = self._get_piecewise(leaf)
-        markup = bool(indicators[0])
-        line_segment = bool(indicators[1])
-        return markup or line_segment
-
-    def _leaf_has_markup(self, leaf):
-        indicators = self._get_piecewise(leaf)
-        markup = bool(indicators[0])
-        return markup
-
-    def _spanner_has_smart_events(self):
-        for leaf in self.leaves:
-            if self._leaf_has_current_event(leaf):
-                return True
-        return False
-
-    def _spanner_is_open_immediately_before_leaf(self, leaf):
-        import abjad
-        if not isinstance(leaf, abjad.Leaf):
-            return False
-        leaves = list(self.leaves)
-        index = leaves.index(leaf)
-        for index in reversed(range(index)):
-            previous_leaf = leaves[index]
-            if self._spanner_starts_on_leaf(previous_leaf):
-                return True
-            if self._leaf_has_markup(previous_leaf):
-                return False
-        return False
-
-    def _spanner_starts_on_leaf(self, leaf):
-        indicators = self._get_piecewise(leaf)
-        line_segment = indicators[1]
-        has_smart_events = self._spanner_has_smart_events()
-        if not has_smart_events and self._is_my_first_leaf(leaf):
-            return True
-        if line_segment:
-            return True
-        return False
-
-    def _spanner_stops_on_leaf(self, leaf):
-        spanner_is_open = self._spanner_is_open_immediately_before_leaf(leaf)
-        if spanner_is_open and self._leaf_has_current_event(leaf):
-            return True
-        if spanner_is_open and self._is_my_last_leaf(leaf):
-            return True
-        return False
+        if abjad.inspect(self[-1]).get_piecewise(abjad.Markup, None) is None:
+            return
+        prototype = (abjad.LineSegment, abjad.Markup)
+        leaf = None
+        for leaf in reversed(self[:-1]):
+            markup = abjad.inspect(leaf).get_piecewise(abjad.Markup, None)
+            if markup is not None:
+                break
+            line_segment = abjad.inspect(leaf).get_piecewise(
+                abjad.LineSegment,
+                None,
+                )
+            if line_segment is not None:
+                break
+        return component is leaf
 
     ### PUBLIC PROPERTIES ###
 
@@ -374,8 +572,8 @@ class TextSpanner(Spanner):
 
         ..  container:: example
 
-            Overlapping spanner regression test. Red spanner reverts color
-            before default spanner begins:
+            REGRESSION: Red spanner reverts color before default spanner
+            begins:
 
             >>> staff = abjad.Staff("c'4 d' e' f' c' d' e' f'")
             >>> text_spanner_1 = abjad.TextSpanner()
@@ -429,10 +627,16 @@ class TextSpanner(Spanner):
 
     ### PUBLIC METHODS ###
 
-    def attach(self, indicator, leaf, tag=None):
+    def attach(self, indicator, leaf, deactivate=None, site=None, tag=None):
         r'''Attaches `indicator` to `leaf` in spanner.
 
         Returns none.
         '''
         superclass = super(TextSpanner, self)
-        superclass._attach_piecewise(indicator, leaf, tag=tag)
+        superclass._attach_piecewise(
+            indicator,
+            leaf,
+            deactivate=deactivate,
+            site=site,
+            tag=tag,
+            )

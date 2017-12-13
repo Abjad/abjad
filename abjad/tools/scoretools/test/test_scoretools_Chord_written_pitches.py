@@ -30,7 +30,7 @@ def test_scoretools_Chord_written_pitches_03():
     '''
 
     staff = abjad.Staff("<c''' e'''>4 <d''' fs'''>4")
-    glockenspiel = abjad.instrumenttools.Glockenspiel()
+    glockenspiel = abjad.Glockenspiel()
     abjad.attach(glockenspiel, staff[0])
     abjad.Instrument.transpose_from_sounding_pitch(staff)
 

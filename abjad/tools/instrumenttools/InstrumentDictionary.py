@@ -19,10 +19,10 @@ class InstrumentDictionary(TypedOrderedDict):
                     abjad.Flute(
                         name='flute',
                         short_name='fl.',
-                        name_markup=abjad.Markup(
+                        markup=abjad.Markup(
                             contents=['Flute'],
                             ),
-                        short_name_markup=abjad.Markup(
+                        short_markup=abjad.Markup(
                             contents=['Fl.'],
                             ),
                         allowable_clefs=('treble',),
@@ -36,10 +36,10 @@ class InstrumentDictionary(TypedOrderedDict):
                     abjad.Guitar(
                         name='guitar',
                         short_name='gt.',
-                        name_markup=abjad.Markup(
+                        markup=abjad.Markup(
                             contents=['Guitar'],
                             ),
-                        short_name_markup=abjad.Markup(
+                        short_markup=abjad.Markup(
                             contents=['Gt.'],
                             ),
                         allowable_clefs=('treble',),

@@ -102,6 +102,7 @@ class BeamSpecifier(AbjadValueObject):
                     beam_rests=self.beam_rests,
                     durations=durations,
                     span_beam_count=1,
+                    stemlet_length=self.stemlet_length,
                     )
             components = []
             for selection in selections:
@@ -111,17 +112,14 @@ class BeamSpecifier(AbjadValueObject):
                     components.append(selection)
                 else:
                     raise TypeError(selection)
-            if self.stemlet_length is not None:
-                grob_proxy = abjad.override(beam).staff.stem
-                grob_proxy.stemlet_length = self.stemlet_length
             leaves = abjad.select(components).leaves(grace_notes=False)
             abjad.attach(beam, leaves)
         elif self.beam_each_division:
             for selection in selections:
-                beam = abjad.MultipartBeam(beam_rests=self.beam_rests)
-                if self.stemlet_length is not None:
-                    grob_proxy = abjad.override(beam).staff.stem
-                    grob_proxy.stemlet_length = self.stemlet_length
+                beam = abjad.MultipartBeam(
+                    beam_rests=self.beam_rests,
+                    stemlet_length=self.stemlet_length,
+                    )
                 leaves = abjad.select(selection).leaves(grace_notes=False)
                 abjad.attach(beam, leaves)
 
@@ -219,33 +217,33 @@ class BeamSpecifier(AbjadValueObject):
                 \context Staff = "RhythmicStaff" \with {
                     autoBeaming = ##f
                 } {
-                    \set stemLeftBeamCount = #0
-                    \set stemRightBeamCount = #1
+                    \set stemLeftBeamCount = 0
+                    \set stemRightBeamCount = 1
                     c'8 [
-                    \set stemLeftBeamCount = #1
-                    \set stemRightBeamCount = #1
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 1
                     c'8
-                    \set stemLeftBeamCount = #1
-                    \set stemRightBeamCount = #2
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 2
                     c'16
-                    \set stemLeftBeamCount = #2
-                    \set stemRightBeamCount = #1
+                    \set stemLeftBeamCount = 2
+                    \set stemRightBeamCount = 1
                     c'16
-                    \set stemLeftBeamCount = #1
-                    \set stemRightBeamCount = #2
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 2
                     c'16
-                    \set stemLeftBeamCount = #2
-                    \set stemRightBeamCount = #1
+                    \set stemLeftBeamCount = 2
+                    \set stemRightBeamCount = 1
                     c'16
-                    \set stemLeftBeamCount = #1
-                    \set stemRightBeamCount = #1
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 1
                     c'8 ]
                     r8
-                    \set stemLeftBeamCount = #1
-                    \set stemRightBeamCount = #1
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 1
                     c'8 [
-                    \set stemLeftBeamCount = #1
-                    \set stemRightBeamCount = #0
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 0
                     c'8 ]
                 }
 
@@ -270,33 +268,33 @@ class BeamSpecifier(AbjadValueObject):
                 \context Staff = "RhythmicStaff" \with {
                     autoBeaming = ##f
                 } {
-                    \set stemLeftBeamCount = #0
-                    \set stemRightBeamCount = #1
+                    \set stemLeftBeamCount = 0
+                    \set stemRightBeamCount = 1
                     c'8 [
-                    \set stemLeftBeamCount = #1
-                    \set stemRightBeamCount = #1
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 1
                     c'8
-                    \set stemLeftBeamCount = #1
-                    \set stemRightBeamCount = #2
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 2
                     c'16
-                    \set stemLeftBeamCount = #2
-                    \set stemRightBeamCount = #1
+                    \set stemLeftBeamCount = 2
+                    \set stemRightBeamCount = 1
                     c'16
-                    \set stemLeftBeamCount = #1
-                    \set stemRightBeamCount = #2
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 2
                     c'16
-                    \set stemLeftBeamCount = #2
-                    \set stemRightBeamCount = #1
+                    \set stemLeftBeamCount = 2
+                    \set stemRightBeamCount = 1
                     c'16
-                    \set stemLeftBeamCount = #1
-                    \set stemRightBeamCount = #1
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 1
                     c'8
                     r8
-                    \set stemLeftBeamCount = #1
-                    \set stemRightBeamCount = #1
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 1
                     c'8
-                    \set stemLeftBeamCount = #1
-                    \set stemRightBeamCount = #0
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 0
                     c'8 ]
                 }
 
@@ -567,31 +565,31 @@ class BeamSpecifier(AbjadValueObject):
                 \context Staff = "RhythmicStaff" \with {
                     autoBeaming = ##f
                 } {
-                    \set stemLeftBeamCount = #0
-                    \set stemRightBeamCount = #1
+                    \set stemLeftBeamCount = 0
+                    \set stemRightBeamCount = 1
                     c'8 [ ]
                     r8
-                    \set stemLeftBeamCount = #2
-                    \set stemRightBeamCount = #2
+                    \set stemLeftBeamCount = 2
+                    \set stemRightBeamCount = 2
                     c'16 [
-                    \set stemLeftBeamCount = #2
-                    \set stemRightBeamCount = #1
+                    \set stemLeftBeamCount = 2
+                    \set stemRightBeamCount = 1
                     c'16
-                    \set stemLeftBeamCount = #1
-                    \set stemRightBeamCount = #2
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 2
                     c'16
-                    \set stemLeftBeamCount = #2
-                    \set stemRightBeamCount = #1
+                    \set stemLeftBeamCount = 2
+                    \set stemRightBeamCount = 1
                     c'16
-                    \set stemLeftBeamCount = #1
-                    \set stemRightBeamCount = #1
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 1
                     c'8 ]
                     r8
-                    \set stemLeftBeamCount = #1
-                    \set stemRightBeamCount = #1
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 1
                     c'8 [
-                    \set stemLeftBeamCount = #1
-                    \set stemRightBeamCount = #0
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 0
                     c'8 ]
                 }
 
@@ -694,13 +692,13 @@ class BeamSpecifier(AbjadValueObject):
                 \context Staff = "RhythmicStaff" \with {
                     autoBeaming = ##f
                 } {
-                    \override Staff.Stem.stemlet-length = #2
+                    \override Staff.Stem.stemlet-length = 2
                     c'8 [
                     c'8
                     c'16
                     \revert Staff.Stem.stemlet-length
                     c'16 ]
-                    \override Staff.Stem.stemlet-length = #2
+                    \override Staff.Stem.stemlet-length = 2
                     c'16 [
                     c'16
                     c'8

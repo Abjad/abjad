@@ -132,6 +132,7 @@ class MarkupCommand(AbjadValueObject):
         '_deactivate',
         '_force_quotes',
         '_name',
+        '_site',
         '_tag',
         )
 
@@ -147,6 +148,7 @@ class MarkupCommand(AbjadValueObject):
         self._force_quotes = False
         assert isinstance(name, str) and len(name) and name.find(' ') == -1
         self._name = name
+        self._site = None
         self._tag = None
 
     ### SPECIAL METHODS ###
@@ -370,11 +372,12 @@ class MarkupCommand(AbjadValueObject):
         indent = abjad.LilyPondFormatManager.indent
         parts = [r'\{}'.format(self.name)]
         parts.extend(recurse(self.arguments))
-        if self.tag:
-            tag = ' %! ' + self.tag
-            parts = [_ + tag for _ in parts]
-            if self.deactivate:
-                parts = ['%%% ' + _ for _ in parts]
+        parts = abjad.LilyPondFormatManager.tag(
+            parts,
+            self.tag,
+            deactivate=self.deactivate,
+            site=self.site,
+            )
         return parts
 
     def _get_format_specification(self):
@@ -495,6 +498,19 @@ class MarkupCommand(AbjadValueObject):
         Returns string.
         '''
         return self._name
+
+    @property
+    def site(self):
+        r'''Gets site.
+
+        Returns string or none.
+        '''
+        return self._site
+
+    @site.setter
+    def site(self, argument):
+        assert isinstance(argument, (str, type(None))), repr(argument)
+        self._site = argument
 
     @property
     def tag(self):

@@ -1,4 +1,4 @@
-from abjad.tools.instrumenttools.Instrument import Instrument
+from .Instrument import Instrument
 
 
 class Harp(Instrument):
@@ -46,23 +46,25 @@ class Harp(Instrument):
         self,
         name='harp',
         short_name='hp.',
-        name_markup=None,
-        short_name_markup=None,
+        markup=None,
+        short_markup=None,
         allowable_clefs=('treble', 'bass'),
         context='StaffGroup',
         middle_c_sounding_pitch=None,
         pitch_range='[B0, G#7]',
+        hide=None,
         ):
         Instrument.__init__(
             self,
             name=name,
             short_name=short_name,
-            name_markup=name_markup,
-            short_name_markup=short_name_markup,
+            markup=markup,
+            short_markup=short_markup,
             allowable_clefs=allowable_clefs,
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
+            hide=hide,
             )
         self._is_primary_instrument = True
 
@@ -84,17 +86,34 @@ class Harp(Instrument):
 
     @property
     def context(self):
-        r'''Gets default context of harp.
+        r'''Gets (historically conventional) context.
+
+        ..  container:: example
+
+            >>> abjad.Harp().context
+            'StaffGroup'
+
+        Returns ``'StaffGroup'``.
+
+        Override with ``abjad.attach(..., context='...')``.
+        '''
+        return self._context
+
+    @property
+    def markup(self):
+        r'''Gets harp's instrument name markup.
 
         ..  container:: example
 
             >>> harp = abjad.Harp()
-            >>> harp.context
-            'StaffGroup'
+            >>> harp.markup
+            Markup(contents=['Harp'])
 
-        Returns staff group.
+            >>> abjad.show(harp.markup) # doctest: +SKIP
+
+        Returns markup.
         '''
-        return self._context
+        return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
@@ -127,22 +146,6 @@ class Harp(Instrument):
         return Instrument.name.fget(self)
 
     @property
-    def name_markup(self):
-        r'''Gets harp's instrument name markup.
-
-        ..  container:: example
-
-            >>> harp = abjad.Harp()
-            >>> harp.name_markup
-            Markup(contents=['Harp'])
-
-            >>> abjad.show(harp.name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.name_markup.fget(self)
-
-    @property
     def pitch_range(self):
         r'''Gets harp's range.
 
@@ -159,6 +162,22 @@ class Harp(Instrument):
         return Instrument.pitch_range.fget(self)
 
     @property
+    def short_markup(self):
+        r'''Gets harp's short instrument name markup.
+
+        ..  container:: example
+
+            >>> harp = abjad.Harp()
+            >>> harp.short_markup
+            Markup(contents=['Hp.'])
+
+            >>> abjad.show(harp.short_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_markup.fget(self)
+
+    @property
     def short_name(self):
         r'''Gets harp's short instrument name.
 
@@ -171,19 +190,3 @@ class Harp(Instrument):
         Returns string.
         '''
         return Instrument.short_name.fget(self)
-
-    @property
-    def short_name_markup(self):
-        r'''Gets harp's short instrument name markup.
-
-        ..  container:: example
-
-            >>> harp = abjad.Harp()
-            >>> harp.short_name_markup
-            Markup(contents=['Hp.'])
-
-            >>> abjad.show(harp.short_name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.short_name_markup.fget(self)

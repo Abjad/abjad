@@ -6,19 +6,9 @@ class Clef(AbjadValueObject):
 
     ..  container:: example
 
-        At the beginning of a staff:
-
-        >>> clef = abjad.Clef('treble')
-        >>> clef
-        Clef('treble')
-
-        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-        >>> abjad.show(staff) # doctest: +SKIP
-
-    ..  container:: example
-
         Some available clefs:
 
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
         >>> clef = abjad.Clef('treble')
         >>> abjad.attach(clef, staff[0])
         >>> clef = abjad.Clef('alto')
@@ -69,19 +59,121 @@ class Clef(AbjadValueObject):
 
         >>> abjad.f(staff)
         \new Staff {
-            \clef "treble" %! RED:1
+            \clef "treble" %! RED
             c'4
             d'4
             e'4
             f'4
         }
 
+    ..  container:: example
+
+        Clefs can be sited:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.attach(abjad.Clef('treble'), staff[0], site='M1')
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        >>> abjad.f(staff)
+        \new Staff {
+            \clef "treble" %! M1
+            c'4
+            d'4
+            e'4
+            f'4
+        }
+
+    ..  container:: example
+
+        Clefs can be site-tagged:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.attach(abjad.Clef('treble'), staff[0], site='M1', tag='RED')
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        >>> abjad.f(staff)
+        \new Staff {
+            \clef "treble" %! RED:M1
+            c'4
+            d'4
+            e'4
+            f'4
+        }
+
+    ..  container:: example
+
+        LilyPond can not handle simultaneous clefs:
+
+        >>> voice_1 = abjad.Voice("e'8 g' f' a' g' b'")
+        >>> abjad.attach(abjad.Clef('treble'), voice_1[0], context='Voice')
+        >>> abjad.attach(abjad.LilyPondCommand('voiceOne'), voice_1)
+        >>> voice_1.consists_commands.append('Clef_engraver')
+        >>> voice_2 = abjad.Voice("c'4. c,8 b,, a,,")
+        >>> abjad.attach(abjad.Clef('treble'), voice_2[0], context='Voice')
+        >>> abjad.attach(abjad.Clef('bass'), voice_2[1], context='Voice')
+        >>> abjad.attach(abjad.LilyPondCommand('voiceTwo'), voice_2)
+        >>> voice_2.consists_commands.append('Clef_engraver')
+        >>> staff = abjad.Staff([voice_1, voice_2], is_simultaneous=True)
+        >>> staff.remove_commands.append('Clef_engraver')
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff \with {
+                \remove Clef_engraver
+            } <<
+                \new Voice \with {
+                    \consists Clef_engraver
+                } {
+                    \voiceOne
+                    \clef "treble"
+                    e'8
+                    g'8
+                    f'8
+                    a'8
+                    g'8
+                    b'8
+                }
+                \new Voice \with {
+                    \consists Clef_engraver
+                } {
+                    \voiceTwo
+                    \clef "treble"
+                    c'4.
+                    \clef "bass"
+                    c,8
+                    b,,8
+                    a,,8
+                }
+            >>
+
+        But Abjad components work fine:
+
+        >>> for leaf in abjad.select(voice_1).leaves():
+        ...     leaf, abjad.inspect(leaf).get_effective(abjad.Clef)
+        ...
+        (Note("e'8"), Clef('treble'))
+        (Note("g'8"), Clef('treble'))
+        (Note("f'8"), Clef('treble'))
+        (Note("a'8"), Clef('treble'))
+        (Note("g'8"), Clef('treble'))
+        (Note("b'8"), Clef('treble'))
+
+        >>> for leaf in abjad.select(voice_2).leaves():
+        ...     leaf, abjad.inspect(leaf).get_effective(abjad.Clef)
+        ...
+        (Note("c'4."), Clef('treble'))
+        (Note('c,8'), Clef('bass'))
+        (Note('b,,8'), Clef('bass'))
+        (Note('a,,8'), Clef('bass'))
+
     '''
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_context',
+        '_hide',
         '_middle_c_position',
         '_name',
         )
@@ -100,13 +192,18 @@ class Clef(AbjadValueObject):
         'tab': 0,
         }
 
+    _context = 'Staff'
+
     _format_slot = 'opening'
+
+    _persistent = True
+
+    _redraw = True
 
     ### INITIALIZER ###
 
-    def __init__(self, name='treble'):
+    def __init__(self, name='treble', hide=None):
         import abjad
-        self._context = 'Staff'
         if isinstance(name, str):
             self._name = name
         elif isinstance(name, type(self)):
@@ -115,6 +212,9 @@ class Clef(AbjadValueObject):
             message = 'can not initialize clef: {!r}.'
             message = message.format(name)
             raise TypeError(message)
+        if hide is not None:
+            hide = bool(hide)
+        self._hide = hide
         middle_c_position = self._calculate_middle_c_position(self._name)
         middle_c_position = abjad.StaffPosition(middle_c_position)
         self._middle_c_position = middle_c_position
@@ -212,7 +312,8 @@ class Clef(AbjadValueObject):
     def _get_lilypond_format_bundle(self, component=None):
         import abjad
         bundle = abjad.LilyPondFormatBundle()
-        bundle.opening.commands.append(self._get_lilypond_format())
+        if not self.hide:
+            bundle.opening.commands.append(self._get_lilypond_format())
         return bundle
 
     @classmethod
@@ -265,7 +366,7 @@ class Clef(AbjadValueObject):
 
     @property
     def context(self):
-        r'''Gets default context of clef.
+        r'''Gets (historically conventional) context.
 
         ..  container:: example
 
@@ -273,9 +374,48 @@ class Clef(AbjadValueObject):
             >>> clef.context
             'Staff'
 
-        Returns context or string.
+        Returns ``'Staff'``.
+
+        Override with ``abjad.attach(..., context='...')``.
         '''
         return self._context
+
+    @property
+    def hide(self):
+        r'''Is true when clef should not appear in output (but should still
+        determine effective clef).
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.attach(abjad.Clef('treble'), staff[0]) 
+            >>> abjad.attach(abjad.Clef('alto', hide=True), staff[2]) 
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            >>> abjad.f(staff)
+            \new Staff {
+                \clef "treble"
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+            >>> for leaf in abjad.iterate(staff).leaves():
+            ...     leaf, abjad.inspect(leaf).get_effective(abjad.Clef)
+            ...
+            (Note("c'4"), Clef('treble'))
+            (Note("d'4"), Clef('treble'))
+            (Note("e'4"), Clef('alto', hide=True))
+            (Note("f'4"), Clef('alto', hide=True))
+
+        Set to true, false or none.
+
+        Defaults to none.
+        
+        Returns true, false or none.
+        '''
+        return self._hide
 
     @property
     def middle_c_position(self):
@@ -320,3 +460,33 @@ class Clef(AbjadValueObject):
         Returns string.
         '''
         return self._name
+
+    @property
+    def persistent(self):
+        r'''Is true.
+
+        ..  container:: example
+
+            >>> abjad.Clef('treble').persistent
+            True
+
+        Class constant.
+        
+        Returns true.
+        '''
+        return self._persistent
+        
+    @property
+    def redraw(self):
+        r'''Is true.
+
+        ..  container:: example
+
+            >>> abjad.Clef('treble').redraw
+            True
+
+        Class constant.
+
+        Returns true.
+        '''
+        return self._redraw

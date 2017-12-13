@@ -20,25 +20,25 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
                 \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
                     \context RhythmicStaff = "Staff 1" {
                         \context Voice = "Voice 1" {
-                            \clef "percussion"
+                            \clef "percussion" %! ST3
                             s1
                         }
                     }
                     \context RhythmicStaff = "Staff 2" {
                         \context Voice = "Voice 2" {
-                            \clef "percussion"
+                            \clef "percussion" %! ST3
                             s1
                         }
                     }
                     \context RhythmicStaff = "Staff 3" {
                         \context Voice = "Voice 3" {
-                            \clef "percussion"
+                            \clef "percussion" %! ST3
                             s1
                         }
                     }
                     \context RhythmicStaff = "Staff 4" {
                         \context Voice = "Voice 4" {
-                            \clef "percussion"
+                            \clef "percussion" %! ST3
                             s1
                         }
                     }

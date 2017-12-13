@@ -2,7 +2,8 @@ import collections
 import copy
 import inspect
 import itertools
-from abjad.tools.exceptiontools import MissingSpannerError, ExtraSpannerError
+from abjad.tools.exceptiontools import ExtraSpannerError
+from abjad.tools.exceptiontools import MissingSpannerError
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -557,220 +558,54 @@ class Selection(AbjadValueObject):
             result.extend(components)
         return class_(result)
 
-    def _copy(self, n=1, include_enclosing_containers=False):
-        r'''Copies components in selection and fractures crossing spanners.
-
-        Selection must be logical-voice-contiguous components.
-
-        The steps this function takes are as follows:
-
-            * Deep copy components in selection.
-
-            * Deep copy spanners that attach to any component in selection.
-
-            * Fracture spanners that attach to components not in selection.
-
-            * Returns Python list of copied components.
-
-        ..  container:: example
-
-            Copy components one time:
-
-            >>> staff = abjad.Staff(r"c'8 ( d'8 e'8 f'8 )")
-            >>> staff.extend(r"g'8 a'8 b'8 c''8")
-            >>> time_signature = abjad.TimeSignature((2, 4))
-            >>> abjad.attach(time_signature, staff[0])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff {
-                    \time 2/4
-                    c'8 (
-                    d'8
-                    e'8
-                    f'8 )
-                    g'8
-                    a'8
-                    b'8
-                    c''8
-                }
-
-            >>> selection = staff[2:4]
-            >>> result = selection._copy()
-            >>> new_staff = abjad.Staff(result)
-            >>> abjad.show(new_staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(new_staff)
-                \new Staff {
-                    e'8 (
-                    f'8 )
-                }
-
-            >>> staff[2] is new_staff[0]
-            False
-
-        ..  container:: example
-
-            Copy components multiple times:
-
-            Copy components a total of `n` times:
-
-            >>> selection = staff[2:4]
-            >>> result = selection._copy(n=4)
-            >>> new_staff = abjad.Staff(result)
-            >>> abjad.show(new_staff) # doctest: +SKIP
-
-            >>> abjad.f(new_staff)
-            \new Staff {
-                e'8 (
-                f'8 )
-                e'8 (
-                f'8 )
-                e'8 (
-                f'8 )
-                e'8 (
-                f'8 )
-            }
-
-        ..  container:: example
-
-            Copy leaves and include enclosing conatiners:
-
-            >>> voice = abjad.Voice(r"\times 2/3 { c'4 d'4 e'4 }")
-            >>> voice.append(r"\times 2/3 { f'4 e'4 d'4 }")
-            >>> staff = abjad.Staff([voice])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff {
-                    \new Voice {
-                        \times 2/3 {
-                            c'4
-                            d'4
-                            e'4
-                        }
-                        \times 2/3 {
-                            f'4
-                            e'4
-                            d'4
-                        }
-                    }
-                }
-
-            >>> leaves = abjad.select(staff).leaves()[1:5]
-            >>> new_staff = leaves._copy(include_enclosing_containers=True)
-            >>> abjad.show(new_staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(new_staff)
-                \new Staff {
-                    \new Voice {
-                        \tweak edge-height #'(0.7 . 0)
-                        \times 2/3 {
-                            d'4
-                            e'4
-                        }
-                        \tweak edge-height #'(0.7 . 0)
-                        \times 2/3 {
-                            f'4
-                            e'4
-                        }
-                    }
-                }
-
-        Returns selection.
-        '''
+    def _copy(self):
         import abjad
-        # check input
         assert self.are_contiguous_logical_voice()
-        # return empty list when nothing to copy
-        if n < 1:
-            return []
-        new_components = [
-            component._copy_with_children_and_indicators_but_without_spanners()
-            for component in self
-            ]
-        if include_enclosing_containers:
-            return self._copy_and_include_enclosing_containers()
+        new_components = []
+        for component in self:
+            if isinstance(component, abjad.Container):
+                new_component = component._copy_with_children()
+            else:
+                new_component = component.__copy__()
+            new_components.append(new_component)
         new_components = type(self)(new_components)
-        # make schema of spanners contained by components
-        schema = self._make_spanner_schema()
-        # copy spanners covered by components
-        for covered_spanner, component_indices in list(schema.items()):
-            new_covered_spanner = copy.copy(covered_spanner)
-            del(schema[covered_spanner])
-            schema[new_covered_spanner] = component_indices
-        # reverse schema
-        reversed_schema = {}
-        for new_covered_spanner, component_indices in list(schema.items()):
-            for component_index in component_indices:
-                try:
-                    reversed_schema[component_index].append(
-                        new_covered_spanner)
-                except KeyError:
-                    reversed_schema[component_index] = [new_covered_spanner]
-        # iterate components and add new components to new spanners
-        for component_index, new_component in enumerate(
-            abjad.iterate(new_components).components()):
-            try:
-                new_covered_spanners = reversed_schema[component_index]
-                for new_covered_spanner in new_covered_spanners:
-                    new_covered_spanner._append(new_component)
-            except KeyError:
-                pass
-        # repeat as specified by input
-        for i in range(n - 1):
-            new_components += self._copy()
-        # return new components
+        # find spanners and piecewise indicators
+        spanner_to_pairs = {}
+        for i, component in enumerate(abjad.iterate(self).components()):
+            for spanner in abjad.inspect(component).get_spanners():
+                pairs = spanner_to_pairs.setdefault(spanner, [])
+                wrappers = []
+                for wrapper in abjad.inspect(component).wrappers():
+                    if wrapper.spanner is spanner:
+                        wrappers.append(wrapper)
+                if wrappers:
+                    for wrapper in wrappers:
+                        pairs.append((i, wrapper))
+                else:
+                    pairs.append((i, None))
+        # copy spanners
+        for spanner, pairs in spanner_to_pairs.items():
+            new_spanner = copy.copy(spanner)
+            del(spanner_to_pairs[spanner])
+            spanner_to_pairs[new_spanner] = pairs
+        # make reversed map
+        index_to_pairs = {}
+        for new_spanner, pairs in spanner_to_pairs.items():
+            for (i, wrapper) in pairs:
+                pairs = index_to_pairs.setdefault(i, [])
+                pair = (new_spanner, wrapper)
+                pairs.append(pair)
+        # add new components to new spanners
+        new_components_ = abjad.iterate(new_components).components()
+        for i, new_component in enumerate(new_components_):
+            for pair in index_to_pairs.get(i, []):
+                new_spanner, wrapper = pair
+                if new_component not in new_spanner:
+                    new_spanner._append(new_component)
+                if wrapper is not None:
+                    wrapper = copy.copy(wrapper)
+                    new_spanner.attach(wrapper, new_component)
         return new_components
-
-    def _copy_and_include_enclosing_containers(self):
-        import abjad
-        assert self.are_contiguous_logical_voice()
-        # get governor
-        parentage = abjad.inspect(self[0]).get_parentage(include_self=True)
-        governor = parentage._get_governor()
-        # find start and stop indices in governor
-        governor_leaves = abjad.select(governor).leaves()
-        for i, x in enumerate(governor_leaves):
-            if x is self[0]:
-                start_index_in_governor = i
-        for i, x in enumerate(governor_leaves):
-            if x is self[-1]:
-                stop_index_in_governor = i
-        # copy governor
-        governor_copy = abjad.mutate(governor).copy()
-        copied_leaves = abjad.select(governor_copy).leaves()
-        # find start and stop leaves in copy of governor
-        start_leaf = copied_leaves[start_index_in_governor]
-        stop_leaf = copied_leaves[stop_index_in_governor]
-        # trim governor copy forwards from first leaf
-        found_start_leaf = False
-        while not found_start_leaf:
-            leaf = next(abjad.iterate(governor_copy).leaves())
-            if leaf is start_leaf:
-                found_start_leaf = True
-            else:
-                leaf._remove_and_shrink_durated_parent_containers()
-        # trim governor copy backwards from last leaf
-        found_stop_leaf = False
-        while not found_stop_leaf:
-            reverse_iterator = abjad.iterate(
-                governor_copy).leaves(reverse=True)
-            leaf = next(reverse_iterator)
-            if leaf is stop_leaf:
-                found_stop_leaf = True
-            else:
-                leaf._remove_and_shrink_durated_parent_containers()
-        # return trimmed governor copy
-        return governor_copy
 
     def _fuse(self):
         import abjad
@@ -1095,23 +930,6 @@ class Selection(AbjadValueObject):
         else:
             for component in self:
                 yield component
-
-    def _make_spanner_schema(self):
-        import abjad
-        schema = {}
-        spanners = set()
-        for component in abjad.iterate(self).components():
-            spanners.update(component._get_spanners())
-        for spanner in spanners:
-            schema[spanner] = []
-        for i, component in enumerate(abjad.iterate(self).components()):
-            attached_spanners = component._get_spanners()
-            for attached_spanner in attached_spanners:
-                try:
-                    schema[attached_spanner].append(i)
-                except KeyError:
-                    pass
-        return schema
 
     def _set_parents(self, new_parent):
         r'''Not composer-safe.

@@ -145,6 +145,15 @@ class GraceContainer(Container):
         self._carrier = None
         Container.__init__(self, components)
 
+    ### SPECIAL METHODS ###
+
+    def __getnewargs__(self):
+        r'''Gets new grace container arguments.
+
+        Returns tuple of single empty list.
+        '''
+        return ([],)
+
     ### PRIVATE METHODS ###
 
     def _attach(self, leaf):

@@ -64,7 +64,7 @@ class Retrograde(AbjadValueObject):
                     g'8
                     f'8
                     ef'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -88,7 +88,7 @@ class Retrograde(AbjadValueObject):
                     g'8
                     f'8
                     ef'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 

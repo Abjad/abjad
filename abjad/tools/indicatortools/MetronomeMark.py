@@ -186,13 +186,17 @@ class MetronomeMark(AbjadValueObject):
 
     __slots__ = (
         '_custom_markup',
-        '_context',
+        '_hide',
         '_reference_duration',
         '_textual_indication',
         '_units_per_minute',
         )
 
+    _context = 'Score'
+
     _format_slot = 'opening'
+
+    _persistent = 'abjad.MetronomeMark'
 
     ### INITIALIZER ###
 
@@ -202,9 +206,9 @@ class MetronomeMark(AbjadValueObject):
         units_per_minute=None,
         textual_indication=None,
         custom_markup=None,
+        hide=None,
         ):
         import abjad
-        self._context = 'Score'
         assert isinstance(textual_indication, (str, type(None)))
         arguments = (reference_duration, units_per_minute, textual_indication)
         if all(_ is None for _ in arguments):
@@ -235,6 +239,9 @@ class MetronomeMark(AbjadValueObject):
             assert isinstance(custom_markup, abjad.Markup), repr(
                 custom_markup)
         self._custom_markup = custom_markup
+        if hide is not None:
+            hide = bool(hide)
+        self._hide = hide
 
     ### SPECIAL METHODS ###
 
@@ -775,7 +782,8 @@ class MetronomeMark(AbjadValueObject):
     def _get_lilypond_format_bundle(self, component=None):
         import abjad
         bundle = abjad.LilyPondFormatBundle()
-        bundle.before.commands.append(self._get_lilypond_format())
+        if not self.hide:
+            bundle.before.commands.append(self._get_lilypond_format())
         return bundle
 
     def _make_lhs_score_markup(self, reference_duration=None):
@@ -786,7 +794,7 @@ class MetronomeMark(AbjadValueObject):
         markup = abjad.Duration._to_score_markup(selection)
         return markup
 
-    def _to_markup(self):
+    def _get_markup(self, stem_height=1):
         import abjad
         if self.custom_markup is not None:
             return self.custom_markup
@@ -794,15 +802,12 @@ class MetronomeMark(AbjadValueObject):
         lhs = abjad.Markup.note_by_number(
             duration_log,
             self.reference_duration.dot_count,
-            1,
+            stem_height,
             )
         lhs = lhs.general_align('Y', abjad.Down).fontsize(-6)
         equals = abjad.Markup('=')
-        #right_space = abjad.Markup.hspace(0.1)
         units = abjad.Markup(self.units_per_minute)
-        #rhs = left_space + equals + right_space + units
         rhs = equals + units
-        #rhs = rhs.fontsize(3).upright()
         rhs = rhs.upright()
         markup = lhs + rhs
         return markup
@@ -893,7 +898,7 @@ class MetronomeMark(AbjadValueObject):
 
     @property
     def context(self):
-        r'''Gets default context of metronome mark.
+        r'''Gets (historically conventional) context.
 
         ..  container:: example
 
@@ -911,9 +916,57 @@ class MetronomeMark(AbjadValueObject):
             >>> mark.context
             'Score'
 
-        Returns context or string.
+        Returns ``'Score'``.
+
+        Override with ``abjad.attach(..., context='...')``.
         '''
         return self._context
+
+    @property
+    def hide(self):
+        r'''Is true when metronome mark should not appear in output (but
+        should still determine effective metronome mark).
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> metronome_mark_1 = abjad.MetronomeMark((1, 4), 72)
+            >>> abjad.attach(metronome_mark_1, staff[0]) 
+            >>> metronome_mark_2 = abjad.MetronomeMark(
+            ...     textual_indication='Allegro',
+            ...     hide=True,
+            ...     )
+            >>> abjad.attach(metronome_mark_2, staff[2]) 
+            >>> score = abjad.Score([staff])
+            >>> abjad.show(score) # doctest: +SKIP
+
+            >>> abjad.f(score)
+            \new Score <<
+                \new Staff {
+                    \tempo 4=72
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+            >>
+
+            >>> for leaf in abjad.iterate(staff).leaves():
+            ...     prototype = abjad.MetronomeMark
+            ...     leaf, abjad.inspect(leaf).get_effective(prototype)
+            ...
+            (Note("c'4"), MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=72))
+            (Note("d'4"), MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=72))
+            (Note("e'4"), MetronomeMark(textual_indication='Allegro', hide=True))
+            (Note("f'4"), MetronomeMark(textual_indication='Allegro', hide=True))
+
+        Set to true, false or none.
+
+        Defaults to none.
+
+        Returns true, false or none.
+        '''
+        return self._hide
 
     @property
     def is_imprecise(self):
@@ -949,6 +1002,19 @@ class MetronomeMark(AbjadValueObject):
                 if not isinstance(self.units_per_minute, tuple):
                     return False
         return True
+
+    @property
+    def persistent(self):
+        r'''Is ``'abjad.MetronomeMark'``.
+
+        ..  container:: example
+
+            >>> abjad.MetronomeMark((1, 8), 52).persistent
+            'abjad.MetronomeMark'
+
+        Returns ``'abjad.MetronomeMark'``.
+        '''
+        return self._persistent
 
     @property
     def quarters_per_minute(self):

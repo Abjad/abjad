@@ -28,16 +28,16 @@ class LineBreak(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_context',
         '_format_slot',
         )
+
+    _context = 'Score'
 
     _time_orientation = Right
 
     ### INITIALIZER ##
 
     def __init__(self, format_slot='closing'):
-        self._context = 'Score'
         assert isinstance(format_slot, str), repr(format_slot)
         self._format_slot = format_slot
 
@@ -57,17 +57,14 @@ class LineBreak(AbjadValueObject):
 
     @property
     def context(self):
-        r'''Gets line break default context.
+        r'''Returns ``'Score'``.
 
         ..  container:: example
 
-            Defaults to score:
-
-            >>> break_ = abjad.LineBreak()
-            >>> break_.context
+            >>> abjad.LineBreak().context
             'Score'
 
-        Returns context or string.
+        Returns ``'Score'``.
         '''
         return self._context
 

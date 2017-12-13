@@ -63,16 +63,16 @@ class RehearsalMark(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_context',
         '_markup',
         '_number',
         )
+
+    _context = 'Score'
 
     ### INITIALIZER ###
 
     def __init__(self, number=None, markup=None):
         import abjad
-        self._context = 'Score'
         if markup is not None:
             assert isinstance(markup, abjad.Markup)
         self._markup = markup
@@ -132,7 +132,7 @@ class RehearsalMark(AbjadValueObject):
 
     @property
     def context(self):
-        r'''Gets default context of rehearsal mark.
+        r'''Returns ``'Score'``.
 
         ..  container:: example
 
@@ -150,7 +150,7 @@ class RehearsalMark(AbjadValueObject):
             >>> mark.context
             'Score'
 
-        Returns context or string.
+        Returns ``'Score'``.
         '''
         return self._context
 

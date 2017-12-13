@@ -309,19 +309,19 @@ class NoteRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     { % measure
                         \time 5/32
-                        \set stemLeftBeamCount = #0
-                        \set stemRightBeamCount = #1
+                        \set stemLeftBeamCount = 0
+                        \set stemRightBeamCount = 1
                         c'8 ~ [
-                        \set stemLeftBeamCount = #3
-                        \set stemRightBeamCount = #1
+                        \set stemLeftBeamCount = 3
+                        \set stemRightBeamCount = 1
                         c'32
                     } % measure
                     { % measure
-                        \set stemLeftBeamCount = #1
-                        \set stemRightBeamCount = #1
+                        \set stemLeftBeamCount = 1
+                        \set stemRightBeamCount = 1
                         c'8 ~
-                        \set stemLeftBeamCount = #3
-                        \set stemRightBeamCount = #0
+                        \set stemLeftBeamCount = 3
+                        \set stemRightBeamCount = 0
                         c'32 ]
                     } % measure
                 }

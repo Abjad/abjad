@@ -5,7 +5,7 @@ def test_scoretools_Note_written_pitch_01():
 
 
     staff = abjad.Staff("d''8 e''8 f''8 g''8")
-    piccolo = abjad.instrumenttools.Piccolo()
+    piccolo = abjad.Piccolo()
     abjad.attach(piccolo, staff[0])
     abjad.Instrument.transpose_from_sounding_pitch(staff)
 

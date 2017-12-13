@@ -285,13 +285,14 @@ class ManageSegmentScript(ScorePackageScript):
             sys.exit(1)
         with systemtools.Timer() as timer:
             try:
-                lilypond_file, metadata = segment_maker(
+                lilypond_file = segment_maker.run(
                     metadata=metadata,
                     previous_metadata=previous_metadata,
                     )
             except:
                 traceback.print_exc()
                 sys.exit(1)
+            metadata = segment_maker.metadata
             self._write_json(metadata, segment_metadata_path)
         self._report_time(timer, prefix='Abjad runtime')
         ly_path = self._write_lilypond_ly(

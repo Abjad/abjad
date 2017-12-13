@@ -1,5 +1,4 @@
 import copy
-from abjad.tools.topleveltools import detach
 from .Leaf import Leaf
 
 
@@ -54,8 +53,8 @@ class Rest(Leaf):
         import abjad
         treble = copy.copy(self)
         bass = copy.copy(self)
-        detach(abjad.Markup, treble)
-        detach(abjad.Markup, bass)
+        abjad.detach(abjad.Markup, treble)
+        abjad.detach(abjad.Markup, bass)
         up_markup = self._get_markup(direction=abjad.Up)
         up_markup = [copy.copy(markup) for markup in up_markup]
         down_markup = self._get_markup(direction=abjad.Down)

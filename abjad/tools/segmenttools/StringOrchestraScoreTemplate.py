@@ -26,7 +26,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         >>
                         \context FingeringStaff = "Violin 1 Fingering Staff" <<
                             \context FingeringVoice = "Violin 1 Fingering Voice" {
-                                \clef "treble"
+                                \clef "treble" %! ST3
                                 s1
                             }
                         >>
@@ -40,7 +40,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         >>
                         \context FingeringStaff = "Violin 2 Fingering Staff" <<
                             \context FingeringVoice = "Violin 2 Fingering Voice" {
-                                \clef "treble"
+                                \clef "treble" %! ST3
                                 s1
                             }
                         >>
@@ -54,7 +54,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         >>
                         \context FingeringStaff = "Violin 3 Fingering Staff" <<
                             \context FingeringVoice = "Violin 3 Fingering Voice" {
-                                \clef "treble"
+                                \clef "treble" %! ST3
                                 s1
                             }
                         >>
@@ -68,7 +68,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         >>
                         \context FingeringStaff = "Violin 4 Fingering Staff" <<
                             \context FingeringVoice = "Violin 4 Fingering Voice" {
-                                \clef "treble"
+                                \clef "treble" %! ST3
                                 s1
                             }
                         >>
@@ -82,7 +82,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         >>
                         \context FingeringStaff = "Violin 5 Fingering Staff" <<
                             \context FingeringVoice = "Violin 5 Fingering Voice" {
-                                \clef "treble"
+                                \clef "treble" %! ST3
                                 s1
                             }
                         >>
@@ -96,7 +96,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         >>
                         \context FingeringStaff = "Violin 6 Fingering Staff" <<
                             \context FingeringVoice = "Violin 6 Fingering Voice" {
-                                \clef "treble"
+                                \clef "treble" %! ST3
                                 s1
                             }
                         >>
@@ -112,7 +112,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         >>
                         \context FingeringStaff = "Viola 1 Fingering Staff" <<
                             \context FingeringVoice = "Viola 1 Fingering Voice" {
-                                \clef "alto"
+                                \clef "alto" %! ST3
                                 s1
                             }
                         >>
@@ -126,7 +126,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         >>
                         \context FingeringStaff = "Viola 2 Fingering Staff" <<
                             \context FingeringVoice = "Viola 2 Fingering Voice" {
-                                \clef "alto"
+                                \clef "alto" %! ST3
                                 s1
                             }
                         >>
@@ -140,7 +140,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         >>
                         \context FingeringStaff = "Viola 3 Fingering Staff" <<
                             \context FingeringVoice = "Viola 3 Fingering Voice" {
-                                \clef "alto"
+                                \clef "alto" %! ST3
                                 s1
                             }
                         >>
@@ -154,7 +154,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         >>
                         \context FingeringStaff = "Viola 4 Fingering Staff" <<
                             \context FingeringVoice = "Viola 4 Fingering Voice" {
-                                \clef "alto"
+                                \clef "alto" %! ST3
                                 s1
                             }
                         >>
@@ -170,7 +170,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         >>
                         \context FingeringStaff = "Cello 1 Fingering Staff" <<
                             \context FingeringVoice = "Cello 1 Fingering Voice" {
-                                \clef "bass"
+                                \clef "bass" %! ST3
                                 s1
                             }
                         >>
@@ -184,7 +184,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         >>
                         \context FingeringStaff = "Cello 2 Fingering Staff" <<
                             \context FingeringVoice = "Cello 2 Fingering Voice" {
-                                \clef "bass"
+                                \clef "bass" %! ST3
                                 s1
                             }
                         >>
@@ -198,7 +198,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         >>
                         \context FingeringStaff = "Cello 3 Fingering Staff" <<
                             \context FingeringVoice = "Cello 3 Fingering Voice" {
-                                \clef "bass"
+                                \clef "bass" %! ST3
                                 s1
                             }
                         >>
@@ -214,7 +214,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         >>
                         \context FingeringStaff = "Contrabass 1 Fingering Staff" <<
                             \context FingeringVoice = "Contrabass 1 Fingering Voice" {
-                                \clef "bass_8"
+                                \clef "bass_8" %! ST3
                                 s1
                             }
                         >>
@@ -228,7 +228,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         >>
                         \context FingeringStaff = "Contrabass 2 Fingering Staff" <<
                             \context FingeringVoice = "Contrabass 2 Fingering Voice" {
-                                \clef "bass_8"
+                                \clef "bass_8" %! ST3
                                 s1
                             }
                         >>
@@ -265,7 +265,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         >>
                         \context FingeringStaff = "Violin 1 Fingering Staff" <<
                             \context FingeringVoice = "Violin 1 Fingering Voice" {
-                                \clef "treble"
+                                \clef "treble" %! ST3
                                 s1
                             }
                         >>
@@ -279,7 +279,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         >>
                         \context FingeringStaff = "Violin 2 Fingering Staff" <<
                             \context FingeringVoice = "Violin 2 Fingering Voice" {
-                                \clef "treble"
+                                \clef "treble" %! ST3
                                 s1
                             }
                         >>
@@ -295,7 +295,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         >>
                         \context FingeringStaff = "Viola Fingering Staff" <<
                             \context FingeringVoice = "Viola Fingering Voice" {
-                                \clef "alto"
+                                \clef "alto" %! ST3
                                 s1
                             }
                         >>
@@ -311,7 +311,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         >>
                         \context FingeringStaff = "Cello Fingering Staff" <<
                             \context FingeringVoice = "Cello Fingering Voice" {
-                                \clef "bass"
+                                \clef "bass" %! ST3
                                 s1
                             }
                         >>
@@ -348,7 +348,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         >>
                         \context FingeringStaff = "Cello Fingering Staff" <<
                             \context FingeringVoice = "Cello Fingering Voice" {
-                                \clef "bass"
+                                \clef "bass" %! ST3
                                 s1
                             }
                         >>
@@ -424,7 +424,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             clef_name = 'treble'
             if self.use_percussion_clefs:
                 clef_name = 'percussion'
-            instrument = abjad.instrumenttools.Violin()
+            instrument = abjad.Violin()
             instrument_count = self.violin_count
             instrument_staff_group, instrument_tag_names = \
                 self._make_instrument_staff_group(
@@ -441,7 +441,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             clef_name = 'alto'
             if self.use_percussion_clefs:
                 clef_name = 'percussion'
-            instrument = abjad.instrumenttools.Viola()
+            instrument = abjad.Viola()
             instrument_count = self.viola_count
             instrument_staff_group, instrument_tag_names = \
                 self._make_instrument_staff_group(
@@ -458,7 +458,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             clef_name = 'bass'
             if self.use_percussion_clefs:
                 clef_name = 'percussion'
-            instrument = abjad.instrumenttools.Cello()
+            instrument = abjad.Cello()
             instrument_count = self.cello_count
             instrument_staff_group, instrument_tag_names = \
                 self._make_instrument_staff_group(
@@ -475,7 +475,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             clef_name = 'bass_8'
             if self.use_percussion_clefs:
                 clef_name = 'percussion'
-            instrument = abjad.instrumenttools.Contrabass()
+            instrument = abjad.Contrabass()
             instrument_count = self.contrabass_count
             instrument_staff_group, instrument_tag_names = \
                 self._make_instrument_staff_group(

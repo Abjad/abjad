@@ -33,6 +33,7 @@ class LineSegment(AbjadValueObject):
         '_right_arrow',
         '_right_broken_arrow',
         '_right_broken_padding',
+        '_right_broken_text',
         '_right_padding',
         '_right_stencil_align_direction_y',
         '_style',
@@ -53,6 +54,7 @@ class LineSegment(AbjadValueObject):
         right_arrow=None,
         right_broken_arrow=None,
         right_broken_padding=None,
+        right_broken_text=None,
         right_padding=None,
         right_stencil_align_direction_y=None,
         style=None,
@@ -68,6 +70,7 @@ class LineSegment(AbjadValueObject):
         self._right_arrow = right_arrow
         self._right_broken_arrow = right_broken_arrow
         self._right_broken_padding = right_broken_padding
+        self._right_broken_text = right_broken_text
         self._right_padding = right_padding
         self._right_stencil_align_direction_y = right_stencil_align_direction_y
         self._style = style
@@ -189,6 +192,18 @@ class LineSegment(AbjadValueObject):
                     'padding',
                     ),
                 value=self.right_broken_padding,
+                )
+            overrides.append(override_)
+        if self.right_broken_text is not None:
+            override_ = abjad.LilyPondGrobOverride(
+                grob_name='TextSpanner',
+                once=True,
+                property_path=(
+                    'bound-details',
+                    'right-broken',
+                    'text',
+                    ),
+                value=self.right_broken_text,
                 )
             overrides.append(override_)
         if self.right_padding is not None:
@@ -318,6 +333,14 @@ class LineSegment(AbjadValueObject):
         Returns float or none.
         '''
         return self._right_broken_padding
+
+    @property
+    def right_broken_text(self):
+        r'''Gets right broken text of line segment.
+
+        Returns float or none.
+        '''
+        return self._right_broken_text
 
     @property
     def right_padding(self):

@@ -465,6 +465,7 @@ class CodeBlock(abctools.AbjadValueObject):
         r'''Proxies Abjad's toplevel `show()` function.
         '''
         from abjad.tools import abjadbooktools
+        strict = keywords.pop('strict', None)
         illustration = argument.__illustrate__(**keywords)
         default_stylesheet = None
         if (
@@ -485,6 +486,7 @@ class CodeBlock(abctools.AbjadValueObject):
             illustration,
             image_layout_specifier=self.image_layout_specifier,
             image_render_specifier=image_render_specifier,
+            strict=strict,
             )
         self.push_asset_output_proxy(output_proxy)
 

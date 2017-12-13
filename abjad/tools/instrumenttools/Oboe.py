@@ -1,4 +1,4 @@
-from abjad.tools.instrumenttools.Instrument import Instrument
+from .Instrument import Instrument
 
 
 class Oboe(Instrument):
@@ -35,23 +35,25 @@ class Oboe(Instrument):
         self,
         name='oboe',
         short_name='ob.',
-        name_markup=None,
-        short_name_markup=None,
+        markup=None,
+        short_markup=None,
         allowable_clefs=None,
         context=None,
         middle_c_sounding_pitch=None,
         pitch_range='[Bb3, A6]',
+        hide=None,
         ):
         Instrument.__init__(
             self,
             name=name,
             short_name=short_name,
-            name_markup=name_markup,
-            short_name_markup=short_name_markup,
+            markup=markup,
+            short_markup=short_markup,
             allowable_clefs=allowable_clefs,
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
+            hide=hide,
             )
         self._is_primary_instrument = True
 
@@ -70,6 +72,22 @@ class Oboe(Instrument):
         Returns clef list.
         '''
         return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def markup(self):
+        r'''Gets oboe's instrument name markup.
+
+        ..  container:: example
+
+            >>> oboe = abjad.Oboe()
+            >>> oboe.markup
+            Markup(contents=['Oboe'])
+
+            >>> abjad.show(oboe.markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
@@ -102,22 +120,6 @@ class Oboe(Instrument):
         return Instrument.name.fget(self)
 
     @property
-    def name_markup(self):
-        r'''Gets oboe's instrument name markup.
-
-        ..  container:: example
-
-            >>> oboe = abjad.Oboe()
-            >>> oboe.name_markup
-            Markup(contents=['Oboe'])
-
-            >>> abjad.show(oboe.name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.name_markup.fget(self)
-
-    @property
     def pitch_range(self):
         r'''Gets oboe's range.
 
@@ -134,6 +136,22 @@ class Oboe(Instrument):
         return Instrument.pitch_range.fget(self)
 
     @property
+    def short_markup(self):
+        r'''Gets oboe's short instrument name markup.
+
+        ..  container:: example
+
+            >>> oboe = abjad.Oboe()
+            >>> oboe.short_markup
+            Markup(contents=['Ob.'])
+
+            >>> abjad.show(oboe.short_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_markup.fget(self)
+
+    @property
     def short_name(self):
         r'''Gets oboe's short instrument name.
 
@@ -146,19 +164,3 @@ class Oboe(Instrument):
         Returns string.
         '''
         return Instrument.short_name.fget(self)
-
-    @property
-    def short_name_markup(self):
-        r'''Gets oboe's short instrument name markup.
-
-        ..  container:: example
-
-            >>> oboe = abjad.Oboe()
-            >>> oboe.short_name_markup
-            Markup(contents=['Ob.'])
-
-            >>> abjad.show(oboe.short_name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.short_name_markup.fget(self)

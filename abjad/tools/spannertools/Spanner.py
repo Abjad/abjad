@@ -15,33 +15,31 @@ class Spanner(AbjadObject):
 
     __slots__ = (
         '_contiguity_constraint',
+        '_deactivate',
         '_ignore_attachment_test',
         '_ignore_before_attach',
-        '_indicator_wrappers',
         '_leaves',
         '_lilypond_grob_name_manager',
         '_lilypond_setting_name_manager',
-        '_name',
+        '_site',
+        '_tag',
+        '_wrappers',
         )
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        overrides=None,
-        name=None,
-        ):
+    def __init__(self, overrides=None):
         overrides = overrides or {}
         self._contiguity_constraint = 'logical voice'
         self._apply_overrides(overrides)
+        self._deactivate = None
         self._ignore_attachment_test = None
         self._ignore_before_attach = None
-        self._indicator_wrappers = []
         self._leaves = []
         self._lilypond_setting_name_manager = None
-        if name is not None:
-            name = str(name)
-        self._name = name
+        self._site = None
+        self._tag = None
+        self._wrappers = []
 
     ### SPECIAL METHODS ###
 
@@ -71,7 +69,6 @@ class Spanner(AbjadObject):
         if getattr(self, '_lilypond_setting_name_manager', None) is not None:
             new._lilypond_setting_name_manager = copy.copy(abjad.setting(self))
         self._copy_keyword_args(new)
-        new._name = self.name
         return new
 
     def __getitem__(self, argument):
@@ -163,7 +160,7 @@ class Spanner(AbjadObject):
         leaves = abjad.select(argument).leaves()
         return 1 < len(leaves)
 
-    def _attach(self, argument):
+    def _attach(self, argument, deactivate=None, site=None, tag=None):
         import abjad
         assert not self, repr(self)
         if isinstance(argument, abjad.Leaf):
@@ -172,23 +169,45 @@ class Spanner(AbjadObject):
             self._extend(argument)
         else:
             raise TypeError(argument)
+        self._deactivate = deactivate
+        self._site = site
+        self._tag = tag
 
-    def _attach_piecewise(self, indicator, leaf, tag=None):
+    def _attach_piecewise(
+        self,
+        indicator,
+        leaf,
+        deactivate=None,
+        site=None,
+        tag=None,
+        ):
         import abjad
         if leaf not in self:
             message = 'must be leaf in spanner: {!r}.'
             message = message.format(leaf)
             raise Exception(message)
-        context = getattr(indicator, '_context', None)
+        if isinstance(indicator, abjad.IndicatorWrapper):
+            annotation = indicator.annotation
+            context = indicator.context
+            deactivate = deactivate or indicator.deactivate
+            site = site or indicator.site
+            synthetic_offset = indicator.synthetic_offset
+            tag = tag or indicator.tag
+            indicator._detach()
+            indicator = indicator.indicator
+        context = getattr(self, 'context', None)
+        context = context or getattr(indicator, 'context', None)
         wrapper = abjad.IndicatorWrapper(
             component=leaf,
             context=context,
+            deactivate=deactivate,
             indicator=indicator,
-            is_piecewise=True,
-            piecewise_spanner=self,
+            spanner=self,
+            site=site,
             tag=tag,
             )
         wrapper._bind_to_component(leaf)
+        self._wrappers.append(wrapper)
 
     def _attachment_test(self, argument):
         import abjad
@@ -369,7 +388,7 @@ class Spanner(AbjadObject):
             storage_format_kwargs_names=names,
             )
 
-    def _get_indicators(self, prototype=None, name=None, unwrap=True):
+    def _get_indicators(self, prototype=None, unwrap=True):
         import abjad
         prototype = prototype or (object,)
         if not isinstance(prototype, tuple):
@@ -383,18 +402,16 @@ class Spanner(AbjadObject):
         prototype_objects = tuple(prototype_objects)
         prototype_classes = tuple(prototype_classes)
         matching_indicators = []
-        for indicator in self._indicator_wrappers:
-            if name is not None and indicator._name != name:
-                continue
-            if isinstance(indicator, prototype_classes):
-                matching_indicators.append(indicator)
-            elif any(indicator == x for x in prototype_objects):
-                matching_indicators.append(indicator)
-            elif isinstance(indicator, abjad.IndicatorWrapper):
-                if isinstance(indicator.indicator, prototype_classes):
-                    matching_indicators.append(indicator)
-                elif any(indicator.indicator == x for x in prototype_objects):
-                    matching_indicators.append(indicator)
+        for wrapper in self._wrappers:
+            if isinstance(wrapper, prototype_classes):
+                matching_indicators.append(wrapper)
+            elif any(wrapper == x for x in prototype_objects):
+                matching_indicators.append(wrapper)
+            elif isinstance(wrapper, abjad.IndicatorWrapper):
+                if isinstance(wrapper.indicator, prototype_classes):
+                    matching_indicators.append(wrapper)
+                elif any(wrapper.indicator == x for x in prototype_objects):
+                    matching_indicators.append(wrapper)
         if unwrap:
             matching_indicators = [x.indicator for x in matching_indicators]
         matching_indicators = tuple(matching_indicators)
@@ -429,11 +446,8 @@ class Spanner(AbjadObject):
         import abjad
         assert leaf in self, repr(leaf)
         indicators = []
-        for wrapper in abjad.inspect(leaf).get_indicators(
-            prototype,
-            unwrap=False,
-            ):
-            if wrapper.is_piecewise and wrapper.piecewise_spanner is self:
+        for wrapper in abjad.inspect(leaf).wrappers(prototype):
+            if wrapper.spanner is self:
                 indicators.append(wrapper.indicator)
         return indicators
 
@@ -543,22 +557,6 @@ class Spanner(AbjadObject):
             message = '{!r} not in spanner.'
             raise ValueError(message.format(leaf))
 
-    # TODO: remove
-    def _reverse_leaves(self):
-        r'''Reverses order of spanner leaves.
-
-        Not composer-safe because reversing the order of spanner leaves
-        could scramble leaves of some other spanner.
-
-        Call method only as part of a full leaf- and spanner-reversal
-        routine.
-
-        Spanner subclasses with mapping variables (like the 'durations' list
-        attaching to durated complex beam spanners) should override this
-        method to reverse mapping elements.
-        '''
-        self._leaves.reverse()
-
     def _sever_all_leaves(self):
         r'''Not composer-safe.
         '''
@@ -614,14 +612,6 @@ class Spanner(AbjadObject):
                 message = message.format(leaf)
                 raise Exception(message)
         return abjad.select(self._leaves)
-
-    @property
-    def name(self):
-        r'''Gets spanner name.
-
-        Returns string.
-        '''
-        return self._name
 
     @property
     def overrides(self):

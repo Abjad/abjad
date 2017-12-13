@@ -1,4 +1,4 @@
-from abjad.tools.instrumenttools.Instrument import Instrument
+from .Instrument import Instrument
 
 
 class Tuba(Instrument):
@@ -38,23 +38,25 @@ class Tuba(Instrument):
         self,
         name='tuba',
         short_name='tb.',
-        name_markup=None,
-        short_name_markup=None,
+        markup=None,
+        short_markup=None,
         allowable_clefs=('bass',),
         context=None,
         middle_c_sounding_pitch=None,
         pitch_range='[D1, F4]',
+        hide=None,
         ):
         Instrument.__init__(
             self,
             name=name,
             short_name=short_name,
-            name_markup=name_markup,
-            short_name_markup=short_name_markup,
+            markup=markup,
+            short_markup=short_markup,
             allowable_clefs=allowable_clefs,
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
+            hide=hide,
             )
         self._is_primary_instrument = True
 
@@ -73,6 +75,22 @@ class Tuba(Instrument):
         Returns clef list.
         '''
         return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def markup(self):
+        r'''Gets tuba's instrument name markup.
+
+        ..  container:: example
+
+            >>> tuba = abjad.Tuba()
+            >>> tuba.markup
+            Markup(contents=['Tuba'])
+
+            >>> abjad.show(tuba.markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
@@ -105,22 +123,6 @@ class Tuba(Instrument):
         return Instrument.name.fget(self)
 
     @property
-    def name_markup(self):
-        r'''Gets tuba's instrument name markup.
-
-        ..  container:: example
-
-            >>> tuba = abjad.Tuba()
-            >>> tuba.name_markup
-            Markup(contents=['Tuba'])
-
-            >>> abjad.show(tuba.name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.name_markup.fget(self)
-
-    @property
     def pitch_range(self):
         r'''Gets tuba's range.
 
@@ -137,6 +139,22 @@ class Tuba(Instrument):
         return Instrument.pitch_range.fget(self)
 
     @property
+    def short_markup(self):
+        r'''Gets tuba's short instrument name markup.
+
+        ..  container:: example
+
+            >>> tuba = abjad.Tuba()
+            >>> tuba.short_markup
+            Markup(contents=['Tb.'])
+
+            >>> abjad.show(tuba.short_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_markup.fget(self)
+
+    @property
     def short_name(self):
         r'''Gets tuba's short instrument name.
 
@@ -149,19 +167,3 @@ class Tuba(Instrument):
         Returns string.
         '''
         return Instrument.short_name.fget(self)
-
-    @property
-    def short_name_markup(self):
-        r'''Gets tuba's short instrument name markup.
-
-        ..  container:: example
-
-            >>> tuba = abjad.Tuba()
-            >>> tuba.short_name_markup
-            Markup(contents=['Tb.'])
-
-            >>> abjad.show(tuba.short_name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.short_name_markup.fget(self)
