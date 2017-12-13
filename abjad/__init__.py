@@ -95,7 +95,14 @@ silence = SilenceMask.silence
 sustain = SustainMask.sustain
 
 # import custom exceptions into the builtins module
-from abjad.tools.exceptiontools import *
+import os
+from abjad.tools.systemtools.ImportManager import ImportManager
+ImportManager.import_public_names_from_path_into_namespace(
+    os.path.join(__path__[0], 'tools', 'exceptiontools'),
+    __builtins__,
+    )
+del os
+del tools
 
 # import version information
 from abjad._version import __version_info__, __version__
