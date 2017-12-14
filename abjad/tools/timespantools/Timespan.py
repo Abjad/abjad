@@ -1,5 +1,6 @@
 import copy
 from abjad.tools.mathtools.BoundedObject import BoundedObject
+from abjad.tools.datastructuretools.constants import *
 
 
 class Timespan(BoundedObject):

@@ -1,4 +1,5 @@
 from abjad.tools.indicatortools.LineSegment import LineSegment
+from abjad.tools.datastructuretools.constants import *
 
 
 class ArrowLineSegment(LineSegment):

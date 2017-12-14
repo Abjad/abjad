@@ -1,7 +1,3 @@
-try:
-    import builtins
-except ImportError:
-    import __builtin__ as builtins
 import collections
 import inspect
 import itertools
@@ -11,6 +7,7 @@ import sys
 from abjad.tools import abctools
 from abjad.tools import systemtools
 from abjad.tools import mathtools
+from abjad.tools.datastructuretools.constants import *
 
 
 class Sequence(abctools.AbjadValueObject):
@@ -5114,7 +5111,7 @@ class Sequence(abctools.AbjadValueObject):
                     items.append(item)
         return type(self)(items=items)
 
-    def truncate(self, sum=None, weight=None):
+    def truncate(self, sum_=None, weight=None):
         '''Truncates sequence.
 
         >>> sequence = abjad.sequence([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10])
@@ -5143,7 +5140,7 @@ class Sequence(abctools.AbjadValueObject):
             Truncates sequence to sums ranging from 1 to 10:
 
             >>> for sum_ in range(1, 11):
-            ...     result = sequence.truncate(sum=sum_)
+            ...     result = sequence.truncate(sum_=sum_)
             ...     print(sum_, result)
             ...
             1 Sequence([-1, 2])
@@ -5168,7 +5165,7 @@ class Sequence(abctools.AbjadValueObject):
 
             Truncates sequence to zero sum:
 
-            >>> sequence.truncate(sum=0)
+            >>> sequence.truncate(sum_=0)
             Sequence([])
 
         Ignores `sum` when `weight` and `sum` are both set.
@@ -5192,17 +5189,17 @@ class Sequence(abctools.AbjadValueObject):
                         trimmed_part *= sign
                         items.append(trimmed_part)
                         break
-        elif sum is not None:
-            assert 0 <= sum, repr(sum)
+        elif sum_ is not None:
+            assert 0 <= sum_, repr(sum_)
             items = []
-            if 0 < sum:
+            if 0 < sum_:
                 total = 0
                 for item in self:
                     total += item
-                    if total < sum:
+                    if total < sum_:
                         items.append(item)
                     else:
-                        items.append(sum - builtins.sum(items))
+                        items.append(sum_ - sum(items))
                         break
         return type(self)(items=items)
 

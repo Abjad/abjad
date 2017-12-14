@@ -1,6 +1,7 @@
 import collections
 from abjad.tools import markuptools
 from abjad.tools.datastructuretools.TypedList import TypedList
+from abjad.tools.datastructuretools.constants import *
 from abjad.tools.topleveltools import new
 
 
