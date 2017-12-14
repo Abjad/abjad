@@ -520,7 +520,7 @@ class DocumentationManager(abctools.AbjadObject):
                     pass
                 else:
                     message = 'Warning: {} does not implement a {name} object.'
-                    message = message.format(tools_package, name)
+                    message = message.format(tools_package, name=name)
                     print(message)
                 continue
             if not object_.__module__.startswith(tools_package.__name__):
