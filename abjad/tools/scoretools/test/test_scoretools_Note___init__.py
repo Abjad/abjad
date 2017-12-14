@@ -24,7 +24,7 @@ def test_scoretools_Note___init___03():
     r'''Initializes note with non-assignable duration.
     '''
 
-    pytest.raises(AssignabilityError, 'abjad.Note(0, (5, 8))')
+    pytest.raises(abjad.AssignabilityError, 'abjad.Note(0, (5, 8))')
 
 
 def test_scoretools_Note___init___04():

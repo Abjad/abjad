@@ -55,7 +55,7 @@ def test_scoretools_Measure_duration_03():
 
     measure = abjad.Measure((3, 8), "c'8 d'8 e'8 f'8")
 
-    assert pytest.raises(OverfullContainerError, 'format(measure)')
+    assert pytest.raises(abjad.OverfullContainerError, 'format(measure)')
 
     assert measure._get_contents_duration() == abjad.Duration(4, 8)
     assert measure._get_preprolated_duration() == abjad.Duration(4, 8)
@@ -69,7 +69,7 @@ def test_scoretools_Measure_duration_04():
     measure = abjad.Measure((3, 10), "c'8 d'8 e'8 f'8")
     measure.implicit_scaling = True
 
-    assert pytest.raises(OverfullContainerError, 'format(measure)')
+    assert pytest.raises(abjad.OverfullContainerError, 'format(measure)')
 
     assert measure._get_contents_duration() == abjad.Duration(4, 8)
     assert measure._get_preprolated_duration() == abjad.Duration(4, 10)

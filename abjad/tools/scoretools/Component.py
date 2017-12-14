@@ -1,6 +1,7 @@
 import abc
 import bisect
 import copy
+from abjad.tools.exceptiontools import MissingMeasureError, MissingSpannerError, ExtraSpannerError, MissingMetronomeMarkError
 from abjad.tools.abctools import AbjadObject
 
 

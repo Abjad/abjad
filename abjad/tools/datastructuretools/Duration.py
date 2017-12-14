@@ -2,6 +2,7 @@ import copy
 import math
 import re
 from abjad import Fraction
+from abjad.tools.exceptiontools import AssignabilityError
 from abjad.tools import mathtools
 from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
@@ -580,7 +581,7 @@ class Duration(AbjadObject, Fraction):
             ...         string = '{!s}\t{}'
             ...         string = string.format(sixteenths, dot_count)
             ...         print(string)
-            ...     except AssignabilityError:
+            ...     except abjad.AssignabilityError:
             ...         sixteenths = duration.with_denominator(16)
             ...         string = '{!s}\t{}'
             ...         string = string.format(sixteenths, '--')

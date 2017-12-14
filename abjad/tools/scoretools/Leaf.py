@@ -1,5 +1,6 @@
 import abc
 import copy
+from abjad.tools.exceptiontools import AssignabilityError, MissingMetronomeMarkError
 from .Component import Component
 
 

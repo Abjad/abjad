@@ -2128,7 +2128,7 @@ def test_scoretools_Mutation_split_34():
         '''
         ), format(right)
 
-    assert pytest.raises(UnderfullContainerError, 'format(measure)')
+    assert pytest.raises(abjad.UnderfullContainerError, 'format(measure)')
 
     assert format(voice) == abjad.String.normalize(
         r'''
@@ -2224,7 +2224,7 @@ def test_scoretools_Mutation_split_35():
         '''
         ), format(right)
 
-    assert pytest.raises(UnderfullContainerError, 'format(measure)')
+    assert pytest.raises(abjad.UnderfullContainerError, 'format(measure)')
 
     assert format(voice) == abjad.String.normalize(
         r'''
