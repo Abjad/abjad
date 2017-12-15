@@ -7,7 +7,7 @@ import sys
 from abjad.tools import abctools
 from abjad.tools import systemtools
 from abjad.tools import mathtools
-from abjad.tools.datastructuretools.constants import *
+from abjad.tools.datastructuretools import Exact
 
 
 class Sequence(abctools.AbjadValueObject):

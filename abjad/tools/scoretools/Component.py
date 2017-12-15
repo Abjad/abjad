@@ -3,7 +3,7 @@ import bisect
 import copy
 from abjad.tools.exceptiontools import MissingMeasureError, MissingSpannerError, ExtraSpannerError, MissingMetronomeMarkError
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.datastructuretools.constants import *
+from abjad.tools.datastructuretools import Right
 
 
 class Component(AbjadObject):

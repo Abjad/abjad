@@ -1,5 +1,5 @@
 from abjad.tools import abctools
-from abjad.tools.datastructuretools.constants import *
+from abjad.tools.datastructuretools import Right
 
 
 class Mutation(abctools.AbjadObject):

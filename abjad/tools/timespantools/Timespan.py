@@ -1,6 +1,6 @@
 import copy
 from abjad.tools.mathtools.BoundedObject import BoundedObject
-from abjad.tools.datastructuretools.constants import *
+from abjad.tools.datastructuretools import Left, Infinity, NegativeInfinity
 
 
 class Timespan(BoundedObject):
