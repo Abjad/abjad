@@ -1,5 +1,6 @@
 import copy
 from ply import lex
+from abjad.tools.exceptiontools import SchemeParserFinishedError
 from abjad.tools import scoretools
 from abjad.tools.abctools import AbjadObject
 

@@ -4,6 +4,7 @@ import types
 from abjad.tools import mathtools
 from abjad.tools import systemtools
 from abjad.tools.datastructuretools import TypedTuple
+from abjad.tools.datastructuretools import Up
 
 
 class Segment(TypedTuple):

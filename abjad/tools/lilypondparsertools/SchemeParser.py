@@ -1,5 +1,6 @@
 from ply import lex
 from ply import yacc
+from abjad.tools.exceptiontools import SchemeParserFinishedError
 from abjad.tools import abctools
 from abjad.tools import schemetools
 

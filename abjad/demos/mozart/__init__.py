@@ -1,11 +1,7 @@
-from abjad.tools import systemtools
-
-
-systemtools.ImportManager.import_structured_package(
-    __path__[0],
-    globals(),
-    )
+from .choose_mozart_measures import choose_mozart_measures
+from .make_mozart_lilypond_file import make_mozart_lilypond_file
+from .make_mozart_measure import make_mozart_measure
+from .make_mozart_measure_corpus import make_mozart_measure_corpus
+from .make_mozart_score import make_mozart_score
 
 _documentation_section = 'demos'
-
-del(main)

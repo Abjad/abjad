@@ -33,20 +33,6 @@ from abjad.tools import *
 from abjad.tools.abctools import *
 from abjad.tools.datastructuretools import *
 
-# instantiate ordinal constants
-Identity = OrdinalConstant('identity', 0, 'Identity')
-Less = OrdinalConstant('value', -1, 'Less')
-More = OrdinalConstant('value', 1, 'More')
-Exact = OrdinalConstant('value', 0, 'Exact')
-Left = OrdinalConstant('x', -1, 'Left')
-Right = OrdinalConstant('x', 1, 'Right')
-Both = OrdinalConstant('x', 0, 'Both')
-Center = OrdinalConstant('y', 0, 'Center')
-Up = OrdinalConstant('y', 1, 'Up')
-Down = OrdinalConstant('y', -1, 'Down')
-Top = OrdinalConstant('y', 1, 'Top')
-Bottom = OrdinalConstant('y', -1, 'Bottom')
-
 index = Pattern.index
 index_all = Pattern.index_all
 index_first = Pattern.index_first
@@ -65,12 +51,6 @@ from abjad.tools.segmenttools import *
 from abjad.tools.spannertools import *
 from abjad.tools.systemtools import *
 from abjad.tools.topleveltools import *
-
-# mathtools classes (but not functions)
-from abjad.tools.mathtools import Infinity
-Infinity = Infinity()
-from abjad.tools.mathtools import NegativeInfinity
-NegativeInfinity = NegativeInfinity()
 
 from abjad.tools.mathtools import Enumerator
 from abjad.tools.mathtools import NonreducedFraction
@@ -93,16 +73,6 @@ from abjad.tools.rhythmmakertools import SilenceMask
 from abjad.tools.rhythmmakertools import SustainMask
 silence = SilenceMask.silence
 sustain = SustainMask.sustain
-
-# import custom exceptions into the builtins module
-import os
-from abjad.tools.systemtools.ImportManager import ImportManager
-ImportManager.import_public_names_from_path_into_namespace(
-    os.path.join(__path__[0], 'tools', 'exceptiontools'),
-    __builtins__,
-    )
-del os
-del tools
 
 # import version information
 from abjad._version import __version_info__, __version__

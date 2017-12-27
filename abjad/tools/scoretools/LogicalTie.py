@@ -1,4 +1,5 @@
 import itertools
+from abjad.tools.exceptiontools import MissingSpannerError, AssignabilityError
 from .Selection import Selection
 
 

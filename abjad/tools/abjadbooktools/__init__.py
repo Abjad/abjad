@@ -1,9 +1,30 @@
-from abjad.tools import systemtools
-
-
-systemtools.ImportManager.import_structured_package(
-    __path__[0],
-    globals(),
-    )
+from .AbjadBookConsole import AbjadBookConsole
+from .AbjadBookError import AbjadBookError
+from .AbjadBookScript import AbjadBookScript
+from .AbjadDirective import AbjadDirective
+from .AbjadDoctestDirective import AbjadDoctestDirective
+from .CodeBlock import CodeBlock
+from .CodeBlockSpecifier import CodeBlockSpecifier
+from .CodeOutputProxy import CodeOutputProxy
+from .GraphvizOutputProxy import GraphvizOutputProxy
+from .ImageLayoutSpecifier import ImageLayoutSpecifier
+from .ImageOutputProxy import ImageOutputProxy
+from .ImageRenderSpecifier import ImageRenderSpecifier
+from .ImportDirective import ImportDirective
+from .LaTeXDocumentHandler import LaTeXDocumentHandler
+from .LilyPondBlock import LilyPondBlock
+from .LilyPondOutputProxy import LilyPondOutputProxy
+from .RawLilyPondOutputProxy import RawLilyPondOutputProxy
+from .RevealDirective import RevealDirective
+from .ShellDirective import ShellDirective
+from .SphinxDocumentHandler import SphinxDocumentHandler
+from .ThumbnailDirective import ThumbnailDirective
+from .abjad_import_block import abjad_import_block
+from .abjad_input_block import abjad_input_block
+from .abjad_output_block import abjad_output_block
+from .abjad_reveal_block import abjad_reveal_block
+from .abjad_thumbnail_block import abjad_thumbnail_block
+from .example_function import example_function
+from .run_abjad_book import run_abjad_book
 
 _documentation_section = 'core'

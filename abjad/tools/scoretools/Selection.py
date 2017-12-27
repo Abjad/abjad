@@ -2,6 +2,7 @@ import collections
 import copy
 import inspect
 import itertools
+from abjad.tools.exceptiontools import MissingSpannerError, ExtraSpannerError
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 

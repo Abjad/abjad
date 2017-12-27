@@ -2,6 +2,7 @@ import collections
 import inspect
 from abjad.tools import abctools
 from abjad.tools import schemetools
+from abjad.tools.datastructuretools import Up
 
 
 class Label(abctools.AbjadObject):

@@ -1,4 +1,5 @@
 from abjad.tools.timespantools.Timespan import Timespan
+from abjad.tools.datastructuretools import Infinity, NegativeInfinity
 
 
 class AnnotatedTimespan(Timespan):

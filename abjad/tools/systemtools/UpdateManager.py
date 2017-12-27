@@ -1,5 +1,5 @@
 from abjad.tools.abctools import AbjadObject
-
+from abjad.tools.exceptiontools import MissingMetronomeMarkError
 
 class UpdateManager(AbjadObject):
     '''Update manager.

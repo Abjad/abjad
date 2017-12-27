@@ -1,4 +1,5 @@
 import math
+from abjad.tools.exceptiontools import AssignabilityError
 from .Container import Container
 
 
@@ -2068,7 +2069,8 @@ class Tuplet(Container):
                         return tuplet
                     else:
                         return abjad.Container([note])
-                except AssignabilityError:
+                except \
+                        AssignabilityError:
                     maker = abjad.NoteMaker()
                     notes = maker(0, duration)
                     if allow_trivial:

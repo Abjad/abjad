@@ -1,11 +1,3 @@
-from abjad.tools import systemtools
-
-
-systemtools.ImportManager.import_structured_package(
-    __path__[0],
-    globals(),
-    )
+from .FerneyhoughDemo import FerneyhoughDemo
 
 _documentation_section = 'demos'
-
-del(main)

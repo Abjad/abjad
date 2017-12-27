@@ -1,3 +1,4 @@
+from abjad.tools.exceptiontools import ParentageError
 import collections
 from .Component import Component
 
@@ -920,7 +921,7 @@ class Container(Component):
             message = 'must attach grace container to note or chord.'
             raise Exception(message)
         if self._check_for_cycles(argument):
-            raise abjad.ParentageError('attempted to induce cycles.')
+            raise ParentageError('attempted to induce cycles.')
         if (i.start == i.stop and
             i.start is not None and
             i.stop is not None and
