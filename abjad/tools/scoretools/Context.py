@@ -30,10 +30,34 @@ class Context(Container):
     __slots__ = (
         '_context_name',
         '_consists_commands',
+        '_dependent_wrappers',
         '_remove_commands',
         )
 
     _default_context_name = 'Voice'
+
+    lilypond_context_names = (
+        'Score',
+        'StaffGroup',
+        'ChoirStaff',
+        'GrandStaff',
+        'PianoStaff',
+        'Staff',
+        'RhythmicStaff',
+        'TabStaff',
+        'DrumStaff',
+        'VaticanaStaff',
+        'MensuralStaff',
+        'Voice',
+        'VaticanaVoice',
+        'MensuralVoice',
+        'Lyrics',
+        'DrumVoice',
+        'FiguredBass',
+        'TabVoice',
+        'CueVoice',
+        'ChordNames',
+        )
 
     ### INITIALIZER ###
 
@@ -44,17 +68,42 @@ class Context(Container):
         is_simultaneous=None,
         name=None,
         ):
+        self._consists_commands = []
+        self._dependent_wrappers = []
+        self._remove_commands = []
+        self.context_name = context_name
         Container.__init__(
             self,
             is_simultaneous=is_simultaneous,
             components=components,
             name=name,
             )
-        self.context_name = context_name
-        self._consists_commands = []
-        self._remove_commands = []
 
     ### SPECIAL METHODS ###
+
+    def __copy__(self, *arguments):
+        r'''Shallow copies context.
+
+        Copies indicators.
+
+        Does not copy spanners.
+
+        Does not copy children.
+
+        Returns new component.
+        '''
+        import abjad
+        new_context = Container.__copy__(self)
+        new_context._consists_commands = copy.copy(self.consists_commands)
+        new_context._remove_commands = copy.copy(self.remove_commands)
+        return new_context
+
+    def __getnewargs__(self):
+        r'''Gets new container arguments.
+
+        Returns tuple.
+        '''
+        return [], self.context_name, self.is_simultaneous, self.name
 
     def __repr__(self):
         r'''Gets interpreter representation of context.
@@ -73,14 +122,6 @@ class Context(Container):
         return self._get_abbreviated_string_format()
 
     ### PRIVATE METHODS ###
-
-    def _copy_with_indicators_but_without_children_or_spanners(self):
-        new = Container._copy_with_indicators_but_without_children_or_spanners(self)
-        new._consists_commands = copy.copy(self.consists_commands)
-        new._remove_commands = copy.copy(self.remove_commands)
-        new.context_name = copy.copy(self.context_name)
-        new.name = copy.copy(self.name)
-        return new
 
     def _format_closing_slot(context, bundle):
         result = []
@@ -172,6 +213,25 @@ class Context(Container):
         self._update_now(indicators=True)
         return self._format_component(strict=strict)
 
+    def _get_persistent_wrappers(self):
+        import abjad
+        self._update_now(indicators=True)
+        wrappers = {}
+        for wrapper in self._dependent_wrappers:
+            if wrapper.annotation:
+                continue
+            indicator = wrapper.indicator
+            if not getattr(indicator, 'persistent', False):
+                continue
+            if isinstance(indicator.persistent, str):
+                key = indicator.persistent
+            else:
+                key = str(type(indicator))
+            if (key not in wrappers or
+                wrappers[key].start_offset <= wrapper.start_offset):
+                wrappers[key] = wrapper
+        return wrappers
+
     def _get_repr_kwargs_names(self):
         if self.context_name == type(self).__name__:
             return ['is_simultaneous', 'name']
@@ -200,7 +260,9 @@ class Context(Container):
 
     @property
     def context_name(self):
-        r'''Gets and sets context name of context.
+        r'''DEPRECATED: use headword instead.
+        
+        Gets and sets context name of context.
 
         Returns string.
         '''
@@ -215,18 +277,35 @@ class Context(Container):
         self._context_name = argument
 
     @property
+    def headword(self):
+        r'''Gets headword.
+
+        ..  container:: example
+
+            >>> context = abjad.Context(
+            ...     context_name='ViolinStaff',
+            ...     name='MyViolinStaff',
+            ...     )
+            >>> context.headword
+            'ViolinStaff'
+
+        Synonym for `context_name`.
+
+        Returns string.
+        '''
+        return self._context_name
+
+    @property
     def lilypond_context(self):
         r'''Gets `LilyPondContext` associated with context.
 
         Returns LilyPond context instance.
         '''
-        from abjad.tools import lilypondnametools
+        import abjad
         try:
-            lilypond_context = lilypondnametools.LilyPondContext(
-                name=self.context_name,
-                )
+            lilypond_context = abjad.LilyPondContext(name=self.context_name)
         except AssertionError:
-            lilypond_context = lilypondnametools.LilyPondContext(
+            lilypond_context = abjad.LilyPondContext(
                 name=self._default_context_name,
                 )
         return lilypond_context

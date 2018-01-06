@@ -15,15 +15,14 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
             \context PianoStaff = "Piano Staff" <<
                 \context Staff = "RH Staff" {
                     \context Voice = "RH Voice" {
-                        \set PianoStaff.instrumentName = \markup { Piano }
-                        \set PianoStaff.shortInstrumentName = \markup { Pf. }
-                        \clef "treble"
+                        \set PianoStaff.instrumentName = \markup { Piano }    %! ST1
+                        \set PianoStaff.shortInstrumentName = \markup { Pf. } %! ST1
                         s1
                     }
                 }
                 \context Staff = "LH Staff" {
                     \context Voice = "LH Voice" {
-                        \clef "bass"
+                        \clef "bass" %! ST3
                         s1
                     }
                 }
@@ -56,16 +55,15 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
         Returns score.
         '''
         import abjad
-        rh_voice = abjad.Voice(
-            name='RH Voice',
-            )
+        # RH STAFF
+        rh_voice = abjad.Voice(name='RH Voice')
         rh_staff = abjad.Staff(
             [rh_voice],
             name='RH Staff',
             )
-        lh_voice = abjad.Voice(
-            name='LH Voice',
-            )
+
+        # LH STAFF
+        lh_voice = abjad.Voice(name='LH Voice')
         lh_staff = abjad.Staff(
             [lh_voice],
             name='LH Staff',
@@ -75,6 +73,8 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
             'default_clef',
             abjad.Clef('bass'),
             )
+
+        # PIANO STAFF
         staff_group = abjad.StaffGroup(
             [rh_staff, lh_staff],
             context_name='PianoStaff',
@@ -83,8 +83,10 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
         abjad.annotate(
             staff_group,
             'default_instrument',
-            abjad.instrumenttools.Piano(),
+            abjad.Piano(),
             )
+
+        # SCORE
         score = abjad.Score(
             [staff_group],
             name='Two-Staff Piano Score',

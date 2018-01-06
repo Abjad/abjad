@@ -1,4 +1,4 @@
-from abjad.tools.instrumenttools.Instrument import Instrument
+from .Instrument import Instrument
 
 
 class Violin(Instrument):
@@ -37,25 +37,27 @@ class Violin(Instrument):
         self,
         name='violin',
         short_name='vn.',
-        name_markup=None,
-        short_name_markup=None,
+        markup=None,
+        short_markup=None,
         allowable_clefs=None,
         context=None,
         default_tuning=('G3', 'D4', 'A4', 'E5'),
         middle_c_sounding_pitch=None,
         pitch_range='[G3, G7]',
+        hide=None,
         ):
         import abjad
         Instrument.__init__(
             self,
             name=name,
             short_name=short_name,
-            name_markup=name_markup,
-            short_name_markup=short_name_markup,
+            markup=markup,
+            short_markup=short_markup,
             allowable_clefs=allowable_clefs,
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
+            hide=hide,
             )
         self._is_primary_instrument = True
         self._default_tuning = abjad.Tuning(default_tuning)
@@ -91,6 +93,52 @@ class Violin(Instrument):
         return self._default_tuning
 
     @property
+    def markup(self):
+        r'''Gets violin's instrument name markup.
+
+        ..  container:: example
+
+            >>> violin = abjad.Violin()
+            >>> violin.markup
+            Markup(contents=['Violin'])
+
+            >>> abjad.show(violin.markup) # doctest: +SKIP
+
+        ..  container:: example
+
+            Regression: markup is preserved under new-duplication:
+
+            >>> markup = abjad.Markup('Violin').italic().hcenter_in(12)
+            >>> violin_1 = abjad.Violin(
+            ...     markup=markup,
+            ...     )
+            >>> abjad.f(violin_1.markup)
+            \markup {
+                \hcenter-in
+                    #12
+                    \italic
+                        Violin
+                }
+
+            >>> violin_2 = abjad.new(violin_1)
+            >>> abjad.f(violin_2.markup)
+            \markup {
+                \hcenter-in
+                    #12
+                    \italic
+                        Violin
+                }
+
+            >>> markup_1 = violin_1.markup
+            >>> markup_2 = violin_2.markup
+            >>> markup_1 == markup_2
+            True
+
+        Returns markup.
+        '''
+        return Instrument.markup.fget(self)
+
+    @property
     def middle_c_sounding_pitch(self):
         r'''Gets sounding pitch of violin's written middle C.
 
@@ -121,52 +169,6 @@ class Violin(Instrument):
         return Instrument.name.fget(self)
 
     @property
-    def name_markup(self):
-        r'''Gets violin's instrument name markup.
-
-        ..  container:: example
-
-            >>> violin = abjad.Violin()
-            >>> violin.name_markup
-            Markup(contents=['Violin'])
-
-            >>> abjad.show(violin.name_markup) # doctest: +SKIP
-
-        ..  container:: example
-
-            Regression: markup is preserved under new-duplication:
-
-            >>> markup = abjad.Markup('Violin').italic().hcenter_in(12)
-            >>> violin_1 = abjad.Violin(
-            ...     name_markup=markup,
-            ...     )
-            >>> abjad.f(violin_1.name_markup)
-            \markup {
-                \hcenter-in
-                    #12
-                    \italic
-                        Violin
-                }
-
-            >>> violin_2 = abjad.new(violin_1)
-            >>> abjad.f(violin_2.name_markup)
-            \markup {
-                \hcenter-in
-                    #12
-                    \italic
-                        Violin
-                }
-
-            >>> markup_1 = violin_1.name_markup
-            >>> markup_2 = violin_2.name_markup
-            >>> markup_1 == markup_2
-            True
-
-        Returns markup.
-        '''
-        return Instrument.name_markup.fget(self)
-
-    @property
     def pitch_range(self):
         r'''Gets violin's range.
 
@@ -183,6 +185,22 @@ class Violin(Instrument):
         return Instrument.pitch_range.fget(self)
 
     @property
+    def short_markup(self):
+        r'''Gets violin's short instrument name markup.
+
+        ..  container:: example
+
+            >>> violin = abjad.Violin()
+            >>> violin.short_markup
+            Markup(contents=['Vn.'])
+
+            >>> abjad.show(violin.short_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_markup.fget(self)
+
+    @property
     def short_name(self):
         r'''Gets violin's short instrument name.
 
@@ -195,19 +213,3 @@ class Violin(Instrument):
         Returns string.
         '''
         return Instrument.short_name.fget(self)
-
-    @property
-    def short_name_markup(self):
-        r'''Gets violin's short instrument name markup.
-
-        ..  container:: example
-
-            >>> violin = abjad.Violin()
-            >>> violin.short_name_markup
-            Markup(contents=['Vn.'])
-
-            >>> abjad.show(violin.short_name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.short_name_markup.fget(self)

@@ -63,7 +63,7 @@ if __name__ == '__main__':
         directory = ide.Path(directory)
         target = directory('illustration.ly')
         with abjad.Timer() as timer:
-            abjad.persist(lilypond_file).as_ly(target, strict=True)
+            abjad.persist(lilypond_file).as_ly(target, strict=89)
         total_time = int(timer.elapsed_time)
         identifier = abjad.String('second').pluralize(total_time)
         message = f'LilyPond runtime {{total_time}} {{identifier}} ...'

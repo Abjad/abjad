@@ -1543,7 +1543,7 @@ class Iteration(abctools.AbjadObject):
         ..  container:: example
 
             >>> staff = abjad.Staff("c'8 r8 <d fs>8 r8")
-            >>> violin = abjad.instrumenttools.Violin()
+            >>> violin = abjad.Violin()
             >>> abjad.attach(violin, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 

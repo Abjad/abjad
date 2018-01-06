@@ -1,4 +1,4 @@
-from abjad.tools.instrumenttools.Instrument import Instrument
+from .Instrument import Instrument
 
 
 class Viola(Instrument):
@@ -40,25 +40,27 @@ class Viola(Instrument):
         self,
         name='viola',
         short_name='va.',
-        name_markup=None,
-        short_name_markup=None,
+        markup=None,
+        short_markup=None,
         allowable_clefs=('alto', 'treble'),
         context=None,
         default_tuning=('C3', 'G3', 'D4', 'A4'),
         middle_c_sounding_pitch=None,
         pitch_range='[C3, D6]',
+        hide=None,
         ):
         import abjad
         Instrument.__init__(
             self,
             name=name,
             short_name=short_name,
-            name_markup=name_markup,
-            short_name_markup=short_name_markup,
+            markup=markup,
+            short_markup=short_markup,
             allowable_clefs=allowable_clefs,
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
+            hide=hide,
             )
         self._is_primary_instrument = True
         self._default_tuning = abjad.Tuning(default_tuning)
@@ -94,6 +96,22 @@ class Viola(Instrument):
         return self._default_tuning
 
     @property
+    def markup(self):
+        r'''Gets viola's instrument name markup.
+
+        ..  container:: example
+
+            >>> viola = abjad.Viola()
+            >>> viola.markup
+            Markup(contents=['Viola'])
+
+            >>> abjad.show(viola.markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.markup.fget(self)
+
+    @property
     def middle_c_sounding_pitch(self):
         r'''Gets sounding pitch of viola's written middle C.
 
@@ -124,22 +142,6 @@ class Viola(Instrument):
         return Instrument.name.fget(self)
 
     @property
-    def name_markup(self):
-        r'''Gets viola's instrument name markup.
-
-        ..  container:: example
-
-            >>> viola = abjad.Viola()
-            >>> viola.name_markup
-            Markup(contents=['Viola'])
-
-            >>> abjad.show(viola.name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.name_markup.fget(self)
-
-    @property
     def pitch_range(self):
         r'''Gets viola's range.
 
@@ -156,6 +158,22 @@ class Viola(Instrument):
         return Instrument.pitch_range.fget(self)
 
     @property
+    def short_markup(self):
+        r'''Gets viola's short instrument name markup.
+
+        ..  container:: example
+
+            >>> viola = abjad.Viola()
+            >>> viola.short_markup
+            Markup(contents=['Va.'])
+
+            >>> abjad.show(viola.short_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_markup.fget(self)
+
+    @property
     def short_name(self):
         r'''Gets viola's short instrument name.
 
@@ -168,19 +186,3 @@ class Viola(Instrument):
         Returns string.
         '''
         return Instrument.short_name.fget(self)
-
-    @property
-    def short_name_markup(self):
-        r'''Gets viola's short instrument name markup.
-
-        ..  container:: example
-
-            >>> viola = abjad.Viola()
-            >>> viola.short_name_markup
-            Markup(contents=['Va.'])
-
-            >>> abjad.show(viola.short_name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.short_name_markup.fget(self)

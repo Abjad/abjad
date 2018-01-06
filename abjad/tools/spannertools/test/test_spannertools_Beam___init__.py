@@ -353,7 +353,7 @@ def test_spannertools_Beam___init___12():
 
 
 def test_spannertools_Beam___init___13():
-    r'''You can span the counttime components of like-named voices.
+    r'''You can span the leaves of like-named voices.
     '''
 
     staff = abjad.Staff([abjad.Voice("c'8 cs'8 d'8 ef'8"), abjad.Voice("e'8 f'8 fs'8 g'8")])
@@ -574,8 +574,9 @@ def test_spannertools_Beam___init___16():
 
 
 def test_spannertools_Beam___init___17():
-    r'''You can not yet span noncontiguous counttime components
-    in the same logical voice. Lilypond is happy with this situation, though.
+    r'''You can not yet span noncontiguous leaves in the same logical voice.
+    
+    Lilypond is happy with this situation, though.
     '''
 
     staff = abjad.Staff(
@@ -632,7 +633,7 @@ def test_spannertools_Beam___init___17():
 
 
 def test_spannertools_Beam___init___18():
-    r'''You can span counttime components in three chunks.
+    r'''You can span leaves in three chunks.
     '''
 
     staff = abjad.Staff(r'''

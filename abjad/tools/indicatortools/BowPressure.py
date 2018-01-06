@@ -6,27 +6,17 @@ class BowPressure(AbjadValueObject):
 
     ..  container:: example
 
-        Overpressure indicator:
+        >>> bow_pressure = abjad.BowPressure('overpressure')
+        >>> abjad.f(bow_pressure)
+        abjad.BowPressure(
+            pressure='overpressure',
+            )
 
-        ..  container:: example
-
-            >>> bow_pressure = abjad.BowPressure('overpressure')
-            >>> abjad.f(bow_pressure)
-            abjad.BowPressure(
-                pressure='overpressure',
-                )
-
-    ..  container:: example
-
-        Underpressure indicator:
-
-        ..  container:: example
-
-            >>> bow_pressure = abjad.BowPressure('underpressure')
-            >>> abjad.f(bow_pressure)
-            abjad.BowPressure(
-                pressure='underpressure',
-                )
+        >>> bow_pressure = abjad.BowPressure('underpressure')
+        >>> abjad.f(bow_pressure)
+        abjad.BowPressure(
+            pressure='underpressure',
+            )
 
     '''
 
@@ -35,6 +25,8 @@ class BowPressure(AbjadValueObject):
     __slots__ = (
         '_pressure',
         )
+
+    _persistent = True
 
     _publish_storage_format = True
 
@@ -47,6 +39,19 @@ class BowPressure(AbjadValueObject):
         self._pressure = pressure
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def persistent(self):
+        r'''Is true.
+
+        ..  container:: example
+
+            >>> abjad.BowPressure('overpressure').persistent
+            True
+
+        Returns true.
+        '''
+        return self._persistent
 
     @property
     def pressure(self):

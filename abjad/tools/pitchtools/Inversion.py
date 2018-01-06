@@ -69,7 +69,7 @@ class Inversion(AbjadValueObject):
                     g'8
                     f'8
                     e'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -93,7 +93,7 @@ class Inversion(AbjadValueObject):
                     cs'8
                     b'8
                     bf'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 

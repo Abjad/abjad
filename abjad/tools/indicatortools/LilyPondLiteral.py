@@ -71,7 +71,45 @@ class LilyPondLiteral(AbjadValueObject):
 
         >>> abjad.f(staff)
         \new Staff {
-            \slurDotted %! RED:1
+            \slurDotted %! RED
+            c'8 (
+            d'8
+            e'8
+            f'8 )
+        }
+
+    ..  container:: example
+
+        LilyPond literals can be sited:
+
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> abjad.attach(abjad.Slur(), staff[:])
+        >>> literal = abjad.LilyPondLiteral(r'\slurDotted')
+        >>> abjad.attach(literal, staff[0], site='M1')
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        >>> abjad.f(staff)
+        \new Staff {
+            \slurDotted %! M1
+            c'8 (
+            d'8
+            e'8
+            f'8 )
+        }
+
+    ..  container:: example
+
+        LilyPond literals can be site-tagged:
+
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> abjad.attach(abjad.Slur(), staff[:])
+        >>> literal = abjad.LilyPondLiteral(r'\slurDotted')
+        >>> abjad.attach(literal, staff[0], site='M1', tag='RED')
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        >>> abjad.f(staff)
+        \new Staff {
+            \slurDotted %! RED:M1
             c'8 (
             d'8
             e'8
@@ -97,9 +135,9 @@ class LilyPondLiteral(AbjadValueObject):
         \new Staff {
             c'8 (
             d'8
-            \stopStaff %! RED:1
-            \startStaff %! RED:1
-            \once \override Staff.StaffSymbol.color = #red %! RED:1
+            \stopStaff                                     %! RED
+            \startStaff                                    %! RED
+            \once \override Staff.StaffSymbol.color = #red %! RED
             e'8
             f'8 )
         }

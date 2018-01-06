@@ -20,14 +20,11 @@ class MultimeasureRest(Leaf):
     ### INITIALIZER ###
 
     def __init__(self, *arguments):
-        from abjad.tools import scoretools
+        import abjad
         if len(arguments) == 0:
             arguments = ((1, 4),)
-        rest = scoretools.Rest(*arguments)
-        Leaf.__init__(
-            self,
-            rest.written_duration,
-            )
+        rest = abjad.Rest(*arguments)
+        Leaf.__init__(self, rest.written_duration)
 
     ### PRIVATE METHODS ###
 
@@ -39,4 +36,4 @@ class MultimeasureRest(Leaf):
         return [result]
 
     def _get_compact_representation(self):
-        return 'R%s' % self._get_formatted_duration()
+        return 'R{}'.format(self._get_formatted_duration())

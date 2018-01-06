@@ -89,8 +89,9 @@ class Fermata(AbjadValueObject):
 
     __slots__ = (
         '_command',
-        '_context',
         )
+
+    _context = 'Score'
 
     _format_slot = 'right'
 
@@ -99,7 +100,6 @@ class Fermata(AbjadValueObject):
     def __init__(self, command='fermata'):
         assert command in self._allowable_commands, repr(command)
         self._command = command
-        self._context = 'Score'
 
     ### SPECIAL METHODS ###
 
@@ -191,7 +191,7 @@ class Fermata(AbjadValueObject):
 
     @property
     def context(self):
-        r'''Gets default context of fermata.
+        r'''Gets (historically conventional) context.
 
         ..  container:: example
 
@@ -209,6 +209,8 @@ class Fermata(AbjadValueObject):
             >>> fermata.context
             'Score'
 
-        Returns context or string.
+        Returns ``'Score'``.
+
+        Override with ``abjad.attach(..., context='...')``.
         '''
         return self._context

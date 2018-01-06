@@ -318,6 +318,32 @@ class String(str):
             String.hyphen_delimited_lowercase_file_name_regex.match(self)
             )
 
+    def is_lilypond_identifier(self):
+        r'''Is true when string contains alphabetic characters only: no
+        numbers, underscores or dashes.
+
+        Equivalent to `isalpha()`.
+
+        ..  container::
+
+            >>> abjad.String('ViolinOne').is_lilypond_identifier()
+            True
+
+            >>> abjad.String('ViolinI').is_lilypond_identifier()
+            True
+
+            >>> abjad.String('Violin One').is_lilypond_identifier()
+            False
+
+            >>> abjad.String('Violin_One').is_lilypond_identifier()
+            False
+
+            >>> abjad.String('Violin1').is_lilypond_identifier()
+            False
+
+        '''
+        return self.isalpha()
+
     def is_lower_camel_case(self):
         r'''Is true when string and is lowercamelcase.
 

@@ -10,8 +10,7 @@ class IndicatorWrapper(AbjadValueObject):
         >>> component = abjad.Note("c'4")
         >>> articulation = abjad.Articulation('accent', abjad.Up)
         >>> abjad.attach(articulation, component)
-        >>> agent = abjad.inspect(component)
-        >>> wrapper = agent.get_indicators(unwrap=False)[0]
+        >>> wrapper = abjad.inspect(component).wrapper()
 
         >>> abjad.f(wrapper)
         abjad.IndicatorWrapper(
@@ -26,15 +25,16 @@ class IndicatorWrapper(AbjadValueObject):
     __documentation_section__ = 'Internals'
 
     __slots__ = (
+        '_alternate',
+        '_annotation',
         '_component',
         '_context',
         '_deactivate',
         '_effective_context',
         '_indicator',
-        '_is_annotation',
-        '_is_piecewise',
         '_name',
-        '_piecewise_spanner',
+        '_site',
+        '_spanner',
         '_synthetic_offset',
         '_tag',
         )
@@ -45,46 +45,51 @@ class IndicatorWrapper(AbjadValueObject):
 
     def __init__(
         self,
+        alternate=None,
+        annotation=None,
         component=None,
         context=None,
         deactivate=None,
         indicator=None,
-        is_annotation=None,
-        is_piecewise=None,
         name=None,
-        piecewise_spanner=None,
+        site=None,
+        spanner=None,
         synthetic_offset=None,
         tag=None,
         ):
         import abjad
         assert not isinstance(indicator, type(self)), repr(indicator)
+        if alternate is not None:
+            assert isinstance(alternate, tuple) and len(alternate) == 3
+        self._alternate = alternate
+        if annotation is not None:
+            annotation = bool(annotation)
+        self._annotation = annotation
         if component is not None:
             prototype = (abjad.Component, abjad.Spanner)
             assert isinstance(component, prototype)
         self._component = component
         if deactivate is not None:
             deactivate = bool(deactivate)
+        if context is not None:
+            if isinstance(context, type):
+                assert issubclass(context, abjad.Context)
+            else:
+                prototype = (abjad.Context, str)
+                assert isinstance(context, prototype), repr(context)
+        self._context = context
         self._deactivate = deactivate
         self._effective_context = None
         self._indicator = indicator
-        if is_annotation is not None:
-            is_annotation = bool(is_annotation)
-        self._is_annotation = is_annotation
-        if is_piecewise is not None:
-            is_piecewise = bool(is_piecewise)
-        self._is_piecewise = is_piecewise
         if name is not None:
             name = str(name)
         self._name = name
-        if piecewise_spanner is not None:
-            assert isinstance(piecewise_spanner, abjad.Spanner)
-        self._piecewise_spanner = piecewise_spanner
-        if context is not None:
-            if isinstance(context, type):
-                assert issubclass(context, abjad.Component)
-            else:
-                assert isinstance(context, (abjad.Component, str))
-        self._context = context
+        if spanner is not None:
+            assert isinstance(spanner, abjad.Spanner)
+        self._spanner = spanner
+        if site is not None:
+            assert isinstance(site, str), repr(site)
+        self._site = site
         if synthetic_offset is not None:
             synthetic_offset = abjad.Offset(synthetic_offset)
         self._synthetic_offset = synthetic_offset
@@ -132,7 +137,7 @@ class IndicatorWrapper(AbjadValueObject):
 
         ..  container:: example
 
-            Preserves piecewise flag:
+            Mutation preserves spanner:
 
             >>> old_staff = abjad.Staff("c'4 d'4 e'4 f'4")
             >>> spanner = abjad.TextSpanner()
@@ -140,53 +145,85 @@ class IndicatorWrapper(AbjadValueObject):
             >>> spanner.attach(abjad.Markup('pont.'), old_staff[0])
             >>> abjad.f(old_staff)
             \new Staff {
-                c'4 ^ \markup { pont. }
+                \once \override TextSpanner.Y-extent = ##f
+                \once \override TextSpanner.bound-details.left-broken.text = ##f
+                \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                \once \override TextSpanner.bound-details.left.text = \markup {
+                    \concat
+                        {
+                            pont.
+                            \hspace
+                                #0.25
+                        }
+                    }
+                \once \override TextSpanner.bound-details.right-broken.padding = 0
+                \once \override TextSpanner.bound-details.right-broken.text = ##f
+                \once \override TextSpanner.bound-details.right.padding = 1.5
+                \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                \once \override TextSpanner.dash-period = 0
+                c'4 \startTextSpan
                 d'4
                 e'4
-                f'4
+                f'4 \stopTextSpan
             }
 
             >>> leaf = old_staff[0]
-            >>> wrapper = abjad.inspect(leaf).get_indicator(unwrap=False)
+            >>> wrapper = abjad.inspect(leaf).wrapper()
             >>> abjad.f(wrapper)
             abjad.IndicatorWrapper(
-                component=abjad.Note("c'4 ^ \\markup { pont. }"),
+                component=abjad.Note("\\once \\override TextSpanner.Y-extent = ##f\n\\once \\override TextSpanner.bound-details.left-broken.text = ##f\n\\once \\override TextSpanner.bound-details.left.stencil-align-dir-y = #center\n\\once \\override TextSpanner.bound-details.left.text = \\markup {\n    \\concat\n        {\n            pont.\n            \\hspace\n                #0.25\n        }\n    }\n\\once \\override TextSpanner.bound-details.right-broken.padding = 0\n\\once \\override TextSpanner.bound-details.right-broken.text = ##f\n\\once \\override TextSpanner.bound-details.right.padding = 1.5\n\\once \\override TextSpanner.bound-details.right.stencil-align-dir-y = #center\n\\once \\override TextSpanner.dash-period = 0\nc'4 \\startTextSpan"),
                 indicator=abjad.Markup(
                     contents=['pont.'],
                     ),
-                is_piecewise=True,
-                piecewise_spanner=abjad.TextSpanner(),
+                spanner=abjad.TextSpanner(),
                 )
 
             >>> new_staff = abjad.mutate(old_staff).copy()
             >>> abjad.f(new_staff)
             \new Staff {
-                c'4 ^ \markup { pont. }
+                \once \override TextSpanner.Y-extent = ##f
+                \once \override TextSpanner.bound-details.left-broken.text = ##f
+                \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                \once \override TextSpanner.bound-details.left.text = \markup {
+                    \concat
+                        {
+                            pont.
+                            \hspace
+                                #0.25
+                        }
+                    }
+                \once \override TextSpanner.bound-details.right-broken.padding = 0
+                \once \override TextSpanner.bound-details.right-broken.text = ##f
+                \once \override TextSpanner.bound-details.right.padding = 1.5
+                \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                \once \override TextSpanner.dash-period = 0
+                c'4 \startTextSpan
                 d'4
                 e'4
-                f'4
+                f'4 \stopTextSpan
             }
 
             >>> leaf = new_staff[0]
-            >>> wrapper = abjad.inspect(leaf).get_indicator(unwrap=False)
+            >>> wrapper = abjad.inspect(leaf).wrapper()
             >>> abjad.f(wrapper)
             abjad.IndicatorWrapper(
-                component=abjad.Note("c'4 ^ \\markup { pont. }"),
+                component=abjad.Note("\\once \\override TextSpanner.Y-extent = ##f\n\\once \\override TextSpanner.bound-details.left-broken.text = ##f\n\\once \\override TextSpanner.bound-details.left.stencil-align-dir-y = #center\n\\once \\override TextSpanner.bound-details.left.text = \\markup {\n    \\concat\n        {\n            pont.\n            \\hspace\n                #0.25\n        }\n    }\n\\once \\override TextSpanner.bound-details.right-broken.padding = 0\n\\once \\override TextSpanner.bound-details.right-broken.text = ##f\n\\once \\override TextSpanner.bound-details.right.padding = 1.5\n\\once \\override TextSpanner.bound-details.right.stencil-align-dir-y = #center\n\\once \\override TextSpanner.dash-period = 0\nc'4 \\startTextSpan"),
                 indicator=abjad.Markup(
                     contents=['pont.'],
                     ),
-                is_piecewise=True,
+                spanner=abjad.TextSpanner(),
                 )
 
         ..  container:: example
 
-            Preserves tag:
+            Preserves tag and site:
 
             >>> old_staff = abjad.Staff("c'4 d'4 e'4 f'4")
-            >>> abjad.attach(abjad.Clef('alto'), old_staff[0], tag='RED')
+            >>> clef = abjad.Clef('alto')
+            >>> abjad.attach(clef, old_staff[0], site='M1', tag='RED')
             >>> abjad.f(old_staff)
             \new Staff {
-                \clef "alto" %! RED:1
+                \clef "alto" %! RED:M1
                 c'4
                 d'4
                 e'4
@@ -194,19 +231,20 @@ class IndicatorWrapper(AbjadValueObject):
             }
 
             >>> leaf = old_staff[0]
-            >>> wrapper = abjad.inspect(leaf).get_indicator(unwrap=False)
+            >>> wrapper = abjad.inspect(leaf).wrapper()
             >>> abjad.f(wrapper)
             abjad.IndicatorWrapper(
-                component=abjad.Note('\\clef "alto" %! RED:1\nc\'4'),
+                component=abjad.Note('\\clef "alto" %! RED:M1\nc\'4'),
                 context='Staff',
                 indicator=abjad.Clef('alto'),
-                tag='RED:1',
+                site='M1',
+                tag='RED',
                 )
 
             >>> new_staff = abjad.mutate(old_staff).copy()
             >>> abjad.f(new_staff)
             \new Staff {
-                \clef "alto" %! RED:1
+                \clef "alto" %! RED:M1
                 c'4
                 d'4
                 e'4
@@ -214,13 +252,14 @@ class IndicatorWrapper(AbjadValueObject):
             }
 
             >>> leaf = new_staff[0]
-            >>> wrapper = abjad.inspect(leaf).get_indicator(unwrap=False)
+            >>> wrapper = abjad.inspect(leaf).wrapper()
             >>> abjad.f(wrapper)
             abjad.IndicatorWrapper(
-                component=abjad.Note('\\clef "alto" %! RED:1\nc\'4'),
+                component=abjad.Note('\\clef "alto" %! RED:M1\nc\'4'),
                 context='Staff',
                 indicator=abjad.Clef('alto'),
-                tag='RED:1',
+                site='M1',
+                tag='RED',
                 )
 
         ..  container:: example
@@ -232,11 +271,12 @@ class IndicatorWrapper(AbjadValueObject):
             ...     abjad.Clef('alto'),
             ...     old_staff[0],
             ...     deactivate=True,
+            ...     site='M1',
             ...     tag='RED',
             ...     )
             >>> abjad.f(old_staff)
             \new Staff {
-                %%% \clef "alto" %! RED:1
+                %F% \clef "alto" %! RED:M1
                 c'4
                 d'4
                 e'4
@@ -244,20 +284,21 @@ class IndicatorWrapper(AbjadValueObject):
             }
 
             >>> leaf = old_staff[0]
-            >>> wrapper = abjad.inspect(leaf).get_indicator(unwrap=False)
+            >>> wrapper = abjad.inspect(leaf).wrapper()
             >>> abjad.f(wrapper)
             abjad.IndicatorWrapper(
-                component=abjad.Note('%%% \\clef "alto" %! RED:1\nc\'4'),
+                component=abjad.Note('%F% \\clef "alto" %! RED:M1\nc\'4'),
                 context='Staff',
                 deactivate=True,
                 indicator=abjad.Clef('alto'),
-                tag='RED:1',
+                site='M1',
+                tag='RED',
                 )
 
             >>> new_staff = abjad.mutate(old_staff).copy()
             >>> abjad.f(new_staff)
             \new Staff {
-                %%% \clef "alto" %! RED:1
+                %F% \clef "alto" %! RED:M1
                 c'4
                 d'4
                 e'4
@@ -265,41 +306,92 @@ class IndicatorWrapper(AbjadValueObject):
             }
 
             >>> leaf = new_staff[0]
-            >>> wrapper = abjad.inspect(leaf).get_indicator(unwrap=False)
+            >>> wrapper = abjad.inspect(leaf).wrapper()
             >>> abjad.f(wrapper)
             abjad.IndicatorWrapper(
-                component=abjad.Note('%%% \\clef "alto" %! RED:1\nc\'4'),
+                component=abjad.Note('%F% \\clef "alto" %! RED:M1\nc\'4'),
                 context='Staff',
                 deactivate=True,
                 indicator=abjad.Clef('alto'),
-                tag='RED:1',
+                site='M1',
+                tag='RED',
                 )
 
-        Copies indicator and context.
+        ..  container:: example
 
-        Does not copy start component.
+            Preserves alternate tagging triple:
 
-        Does not copy piecewise spanner.
+            >>> old_staff = abjad.Staff("c'4 d'4 e'4 f'4")
+            >>> abjad.attach(
+            ...     abjad.Markup('Allegro'),
+            ...     old_staff[0],
+            ...     alternate=('DarkRed', 'M2', 'MARKER_WITH_COLOR'),
+            ...     deactivate=False,
+            ...     site='M1',
+            ...     tag='MARKER',
+            ...     )
+            >>> abjad.f(old_staff)
+            \new Staff {
+                c'4 - \markup { Allegro } %! MARKER:M1
+                d'4
+                e'4
+                f'4
+            }
 
-        This is to avoid reference problems.
+            >>> leaf = old_staff[0]
+            >>> wrapper = abjad.inspect(leaf).wrapper()
+            >>> abjad.f(wrapper)
+            abjad.IndicatorWrapper(
+                alternate=('DarkRed', 'M2', 'MARKER_WITH_COLOR'),
+                component=abjad.Note("c'4 - \\markup { Allegro } %! MARKER:M1"),
+                deactivate=False,
+                indicator=abjad.Markup(
+                    contents=['Allegro'],
+                    ),
+                site='M1',
+                tag='MARKER',
+                )
+
+            >>> new_staff = abjad.mutate(old_staff).copy()
+            >>> abjad.f(new_staff)
+            \new Staff {
+                c'4 - \markup { Allegro } %! MARKER:M1
+                d'4
+                e'4
+                f'4
+            }
+
+            >>> leaf = new_staff[0]
+            >>> wrapper = abjad.inspect(leaf).wrapper()
+            >>> abjad.f(wrapper)
+            abjad.IndicatorWrapper(
+                alternate=('DarkRed', 'M2', 'MARKER_WITH_COLOR'),
+                component=abjad.Note("c'4 - \\markup { Allegro } %! MARKER:M1"),
+                deactivate=False,
+                indicator=abjad.Markup(
+                    contents=['Allegro'],
+                    ),
+                site='M1',
+                tag='MARKER',
+                )
+
+        Copies all properties except component and spanner; copy operations
+        must supply component and spanner after wrapper copy.
 
         Returns new indicator wrapper.
         '''
-        if self.tag:
-            stop = self.tag.rfind(':')
-            tag = self.tag[:stop]
-        else:
-            tag = None
         new = type(self)(
+            alternate=self.alternate,
+            annotation=self.annotation,
             component=None,
             context=self.context,
             deactivate=self.deactivate,
             indicator=copy.copy(self.indicator),
-            is_annotation=self.is_annotation,
-            is_piecewise=self.is_piecewise,
             name=self.name,
+            site=self.site,
+            spanner = None,
             synthetic_offset=self.synthetic_offset,
-            tag=tag,
+            tag=self.tag,
             )
         return new
 
@@ -318,15 +410,12 @@ class IndicatorWrapper(AbjadValueObject):
     def _bind_to_component(self, component):
         import abjad
         self._warn_duplicate_indicator(component)
-        if self.tag is not None:
-            tag_number = self._find_maximum_tag_number(component) + 1
-            self._tag = self.tag + ':' + str(tag_number)
         self._unbind_component()
         self._component = component
         self._update_effective_context()
         if isinstance(self.indicator, abjad.MetronomeMark):
             self._component._update_later(offsets_in_seconds=True)
-        component._indicator_wrappers.append(self)
+        component._wrappers.append(self)
 
     def _detach(self):
         self._unbind_component()
@@ -335,41 +424,26 @@ class IndicatorWrapper(AbjadValueObject):
 
     def _find_correct_effective_context(self):
         import abjad
-        context = self.context
-        if context is None:
+        if self.context is None:
             return None
-        if isinstance(context, str):
-            if hasattr(abjad, context):
-                context = getattr(abjad, context)
+        context = getattr(abjad, self.context, self.context)
         if isinstance(context, type):
-            context_type = context
             for component in abjad.inspect(self.component).get_parentage():
-                if isinstance(component, context_type):
+                if not isinstance(component, abjad.Context):
+                    continue
+                if isinstance(component, context):
                     return component
         elif isinstance(context, str):
-            context_name = context
             for component in abjad.inspect(self.component).get_parentage():
-                if getattr(component, 'context_name', None) == context_name:
+                if not isinstance(component, abjad.Context):
+                    continue
+                if (component.name == context or
+                    component.context_name == context):
                     return component
         else:
-            message = '{!r} must be context type, context name or none.'
+            message = 'must be context or string: {!r}.'
             message = message.format(context)
             raise TypeError(message)
-
-    @staticmethod
-    def _find_maximum_tag_number(component):
-        import abjad
-        tag_numbers = [0]
-        for wrapper in abjad.inspect(component).get_indicators(unwrap=False):
-            if wrapper.tag is not None:
-                index = wrapper.tag.rfind(':') + 1
-                tag_number = wrapper.tag[index:]
-                try:
-                    tag_number = int(tag_number)
-                except ValueError:
-                    raise Exception(wrapper.tag)
-                tag_numbers.append(tag_number)
-        return max(tag_numbers)
 
     def _get_effective_context(self):
         if self.component is not None:
@@ -379,12 +453,15 @@ class IndicatorWrapper(AbjadValueObject):
     def _get_format_pieces(self):
         import abjad
         result = []
-        if self.is_annotation:
+        if self.annotation:
             return result
         if hasattr(self.indicator, '_get_lilypond_format_bundle'):
             bundle = self.indicator._get_lilypond_format_bundle(self.component)
-            if self.tag:
-                bundle.tag_format_contributions(self.tag, self.deactivate)
+            bundle.tag_format_contributions(
+                self.tag,
+                deactivate=self.deactivate,
+                site=self.site,
+                )
             return bundle
         try:
             context = self._get_effective_context()
@@ -393,17 +470,16 @@ class IndicatorWrapper(AbjadValueObject):
                 )
         except TypeError:
             lilypond_format = self.indicator._get_lilypond_format()
-        if self.tag:
-            tag = ' %! ' + self.tag
-        if isinstance(lilypond_format, (tuple, list)):
-            if self.tag:
-                lilypond_format = [_ + tag for _ in lilypond_format]
-            result.extend(lilypond_format)
-        else:
-            if self.tag:
-                lilypond_format += tag
-            result.append(lilypond_format)
-
+        if isinstance(lilypond_format, str):
+            lilypond_format = [lilypond_format]
+        assert isinstance(lilypond_format, (tuple, list))
+        lilypond_format = abjad.LilyPondFormatManager.tag(
+            lilypond_format,
+            self.tag,
+            deactivate=self.deactivate,
+            site=self.site,
+            )
+        result.extend(lilypond_format)
         if self._get_effective_context() is not None:
             return result
         if isinstance(self.indicator, abjad.TimeSignature):
@@ -414,7 +490,7 @@ class IndicatorWrapper(AbjadValueObject):
 
     def _is_formattable_for_component(self, component):
         import abjad
-        if self.is_annotation:
+        if self.annotation:
             return False
         if isinstance(self.component, abjad.Measure):
             if self.component is component:
@@ -441,9 +517,9 @@ class IndicatorWrapper(AbjadValueObject):
     def _unbind_component(self):
         component = self.component
         if component is not None:
-            if hasattr(component, '_indicator_wrappers'):
-                if self in component._indicator_wrappers:
-                    component._indicator_wrappers.remove(self)
+            if hasattr(component, '_wrappers'):
+                if self in component._wrappers:
+                    component._wrappers.remove(self)
         self._component = None
 
     def _unbind_effective_context(self):
@@ -456,9 +532,6 @@ class IndicatorWrapper(AbjadValueObject):
         self._effective_context = None
 
     def _update_effective_context(self):
-        r'''This function is designed to be called by score components
-        during score update.
-        '''
         current_effective_context = self._effective_context
         correct_effective_context = self._find_correct_effective_context()
         if current_effective_context is not correct_effective_context:
@@ -471,7 +544,7 @@ class IndicatorWrapper(AbjadValueObject):
         if isinstance(self.indicator, abjad.LilyPondLiteral):
             return
         prototype = type(self.indicator)
-        wrapper = component._get_effective(prototype, unwrap=False)
+        wrapper = abjad.inspect(component).effective_wrapper(prototype)
         if (wrapper is not None and
             wrapper.context is not None and
             wrapper.indicator != self.indicator):
@@ -490,6 +563,22 @@ class IndicatorWrapper(AbjadValueObject):
                 raise Exception(message)
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def alternate(self):
+        r'''Gets alternate tagging information.
+
+        Returns (color, site, tag) quadruple, or none.
+        '''
+        return self._alternate
+
+    @property
+    def annotation(self):
+        r'''Is true if indicator wrapper is annotation.
+
+        Returns true, false or none.
+        '''
+        return self._annotation
 
     @property
     def component(self):
@@ -530,22 +619,6 @@ class IndicatorWrapper(AbjadValueObject):
         return self._indicator
 
     @property
-    def is_annotation(self):
-        r'''Is true if indicator wrapper is annotation.
-
-        Returns true or false.
-        '''
-        return self._is_annotation
-
-    @property
-    def is_piecewise(self):
-        r'''Is true if indicator wrapper is piecewise.
-
-        Returns true or false.
-        '''
-        return self._is_piecewise
-
-    @property
     def name(self):
         r'''Gets name of indicator wrapper.
 
@@ -554,8 +627,7 @@ class IndicatorWrapper(AbjadValueObject):
             >>> note = abjad.Note("c'4")
             >>> articulation = abjad.Articulation('accent', abjad.Up)
             >>> abjad.attach(articulation, note)
-            >>> agent = abjad.inspect(note)
-            >>> wrapper = agent.get_indicators(unwrap=False)[0]
+            >>> wrapper = abjad.inspect(note).wrapper()
             >>> wrapper.name is None
             True
 
@@ -572,12 +644,22 @@ class IndicatorWrapper(AbjadValueObject):
         return self._name
 
     @property
-    def piecewise_spanner(self):
-        r'''Gets piecewise spanner of indicator wrapper.
+    def site(self):
+        r'''Gets site.
+
+        Site is optional.
+
+        Returns string or none.
+        '''
+        return self._site
+
+    @property
+    def spanner(self):
+        r'''Gets wrapper spanner.
 
         Returns spanner or none.
         '''
-        return self._piecewise_spanner
+        return self._spanner
 
     @property
     def start_offset(self):

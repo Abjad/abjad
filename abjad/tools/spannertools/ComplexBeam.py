@@ -33,15 +33,15 @@ class ComplexBeam(Beam):
             \new Staff \with {
                 autoBeaming = ##f
             } {
-                \set stemLeftBeamCount = #0
-                \set stemRightBeamCount = #2
+                \set stemLeftBeamCount = 0
+                \set stemRightBeamCount = 2
                 c'16 [
-                \set stemLeftBeamCount = #2
-                \set stemRightBeamCount = #2
+                \set stemLeftBeamCount = 2
+                \set stemRightBeamCount = 2
                 e'16 ]
                 r16
-                \set stemLeftBeamCount = #2
-                \set stemRightBeamCount = #0
+                \set stemLeftBeamCount = 2
+                \set stemRightBeamCount = 0
                 f'16 [ ]
                 g'2
             }
@@ -63,12 +63,14 @@ class ComplexBeam(Beam):
         direction=None,
         isolated_nib_direction=None,
         overrides=None,
+        stemlet_length=None,
         ):
         import abjad
         Beam.__init__(
             self,
             direction=direction,
             overrides=overrides,
+            stemlet_length=stemlet_length,
             )
         if beam_rests is not None:
             beam_rests = bool(beam_rests)
@@ -88,10 +90,10 @@ class ComplexBeam(Beam):
             else:
                 left, right = self._get_left_right_for_interior_leaf(leaf)
             if left is not None:
-                string = r'\set stemLeftBeamCount = #{}'.format(left)
+                string = r'\set stemLeftBeamCount = {}'.format(left)
                 bundle.before.commands.append(string)
             if right is not None:
-                string = r'\set stemRightBeamCount = #{}'.format(right)
+                string = r'\set stemRightBeamCount = {}'.format(right)
                 bundle.before.commands.append(string)
 
     def _add_start_and_stops(self, leaf, bundle):
@@ -264,6 +266,7 @@ class ComplexBeam(Beam):
     def _get_lilypond_format_bundle(self, leaf):
         import abjad
         bundle = self._get_basic_lilypond_format_bundle(leaf)
+        self._add_stemlet_length(leaf, bundle)
         self._add_beam_counts(leaf, bundle)
         self._add_start_and_stops(leaf, bundle)
         return bundle
@@ -288,13 +291,13 @@ class ComplexBeam(Beam):
 
                 >>> abjad.f(staff)
                 \new Staff {
-                    \set stemLeftBeamCount = #0
-                    \set stemRightBeamCount = #1
+                    \set stemLeftBeamCount = 0
+                    \set stemRightBeamCount = 1
                     c'8 [ ]
                     r8
                     r8
-                    \set stemLeftBeamCount = #1
-                    \set stemRightBeamCount = #0
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 0
                     d'8 [ ]
                 }
 
@@ -313,17 +316,17 @@ class ComplexBeam(Beam):
 
                 >>> abjad.f(staff)
                 \new Staff {
-                    \set stemLeftBeamCount = #0
-                    \set stemRightBeamCount = #1
+                    \set stemLeftBeamCount = 0
+                    \set stemRightBeamCount = 1
                     c'8 [
-                    \set stemLeftBeamCount = #1
-                    \set stemRightBeamCount = #1
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 1
                     r8
-                    \set stemLeftBeamCount = #1
-                    \set stemRightBeamCount = #1
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 1
                     r8
-                    \set stemLeftBeamCount = #1
-                    \set stemRightBeamCount = #0
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 0
                     d'8 ]
                 }
 
@@ -340,13 +343,13 @@ class ComplexBeam(Beam):
 
                 >>> abjad.f(staff)
                 \new Staff {
-                    \set stemLeftBeamCount = #0
-                    \set stemRightBeamCount = #1
+                    \set stemLeftBeamCount = 0
+                    \set stemRightBeamCount = 1
                     c'8 [ ]
                     s8
                     s8
-                    \set stemLeftBeamCount = #1
-                    \set stemRightBeamCount = #0
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 0
                     d'8 [ ]
                 }
 
@@ -365,17 +368,17 @@ class ComplexBeam(Beam):
 
                 >>> abjad.f(staff)
                 \new Staff {
-                    \set stemLeftBeamCount = #0
-                    \set stemRightBeamCount = #1
+                    \set stemLeftBeamCount = 0
+                    \set stemRightBeamCount = 1
                     c'8 [
-                    \set stemLeftBeamCount = #1
-                    \set stemRightBeamCount = #1
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 1
                     s8
-                    \set stemLeftBeamCount = #1
-                    \set stemRightBeamCount = #1
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 1
                     s8
-                    \set stemLeftBeamCount = #1
-                    \set stemRightBeamCount = #0
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 0
                     d'8 ]
                 }
 
@@ -405,8 +408,8 @@ class ComplexBeam(Beam):
                 >>> abjad.f(measure)
                 { % measure
                     \time 1/16
-                    \set stemLeftBeamCount = #2
-                    \set stemRightBeamCount = #0
+                    \set stemLeftBeamCount = 2
+                    \set stemRightBeamCount = 0
                     c'16 [ ]
                 } % measure
 
@@ -424,8 +427,8 @@ class ComplexBeam(Beam):
                 >>> abjad.f(measure)
                 { % measure
                     \time 1/16
-                    \set stemLeftBeamCount = #0
-                    \set stemRightBeamCount = #2
+                    \set stemLeftBeamCount = 0
+                    \set stemRightBeamCount = 2
                     c'16 [ ]
                 } % measure
 
@@ -443,8 +446,8 @@ class ComplexBeam(Beam):
                 >>> abjad.f(measure)
                 { % measure
                     \time 1/16
-                    \set stemLeftBeamCount = #2
-                    \set stemRightBeamCount = #2
+                    \set stemLeftBeamCount = 2
+                    \set stemRightBeamCount = 2
                     c'16 [ ]
                 } % measure
 
@@ -470,3 +473,50 @@ class ComplexBeam(Beam):
         Ignores this setting when spanner contains more than one leaf.
         '''
         return self._isolated_nib_direction
+
+    @property
+    def stemlet_length(self):
+
+        r'''Gets stemlet length.
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff(
+            ...     "r8 c' r c' g'2",
+            ...     context_name='RhythmicStaff',
+            ...     )
+            >>> abjad.setting(staff).auto_beaming = False
+            >>> beam = abjad.ComplexBeam(beam_rests=True, stemlet_length=2)
+            >>> abjad.attach(beam, staff[:-1])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new RhythmicStaff \with {
+                    autoBeaming = ##f
+                } {
+                    \override RhythmicStaff.Stem.stemlet-length = 2
+                    \set stemLeftBeamCount = 0
+                    \set stemRightBeamCount = 1
+                    r8 [
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 1
+                    c'8
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 1
+                    r8
+                    \revert RhythmicStaff.Stem.stemlet-length
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 0
+                    c'8 ]
+                    g'2
+                }
+
+        Defaults to none.
+
+        Set to nonnegative integer, float or none.
+
+        Returns nonnegative integer, float or none.
+        '''
+        return self._stemlet_length

@@ -1,4 +1,4 @@
-from abjad.tools.instrumenttools.Instrument import Instrument
+from .Instrument import Instrument
 
 
 class Accordion(Instrument):
@@ -45,22 +45,24 @@ class Accordion(Instrument):
         self,
         name='accordion',
         short_name='acc.',
-        name_markup=None,
-        short_name_markup=None,
+        markup=None,
+        short_markup=None,
         allowable_clefs=('treble', 'bass'),
         context='StaffGroup',
         middle_c_sounding_pitch=None,
         pitch_range='[E1, C8]',
+        hide=None,
         ):
         Instrument.__init__(
             self,
             name=name,
             short_name=short_name,
-            name_markup=name_markup,
-            short_name_markup=short_name_markup,
+            markup=markup,
+            short_markup=short_markup,
             allowable_clefs=allowable_clefs,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
+            hide=hide,
             )
         self._context = context
         self._is_primary_instrument = True
@@ -80,10 +82,10 @@ class Accordion(Instrument):
             abjad.Accordion(
                 name='accordion',
                 short_name='acc.',
-                name_markup=abjad.Markup(
+                markup=abjad.Markup(
                     contents=['Accordion'],
                     ),
-                short_name_markup=abjad.Markup(
+                short_markup=abjad.Markup(
                     contents=['Acc.'],
                     ),
                 allowable_clefs=('treble', 'bass'),
@@ -115,17 +117,34 @@ class Accordion(Instrument):
 
     @property
     def context(self):
-        r'''Gets default context of accordion.
+        r'''Gets (historically conventional) context.
+
+        ..  container:: example
+
+            >>> abjad.Accordion().context
+            'StaffGroup'
+
+        Returns ``'StaffGroup'``.
+
+        Override with ``abjad.attach(..., context='...')``.
+        '''
+        return self._context
+
+    @property
+    def markup(self):
+        r'''Gets accordion's instrument name markup.
 
         ..  container:: example
 
             >>> accordion = abjad.Accordion()
-            >>> accordion.context
-            'StaffGroup'
+            >>> accordion.markup
+            Markup(contents=['Accordion'])
 
-        Returns piano staff.
+            >>> abjad.show(accordion.markup) # doctest: +SKIP
+
+        Returns markup.
         '''
-        return self._context
+        return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
@@ -158,22 +177,6 @@ class Accordion(Instrument):
         return Instrument.name.fget(self)
 
     @property
-    def name_markup(self):
-        r'''Gets accordion's instrument name markup.
-
-        ..  container:: example
-
-            >>> accordion = abjad.Accordion()
-            >>> accordion.name_markup
-            Markup(contents=['Accordion'])
-
-            >>> abjad.show(accordion.name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.name_markup.fget(self)
-
-    @property
     def pitch_range(self):
         r'''Gets accordion's range.
 
@@ -190,6 +193,22 @@ class Accordion(Instrument):
         return Instrument.pitch_range.fget(self)
 
     @property
+    def short_markup(self):
+        r'''Gets accordion's short instrument name markup.
+
+        ..  container:: example
+
+            >>> accordion = abjad.Accordion()
+            >>> accordion.short_markup
+            Markup(contents=['Acc.'])
+
+            >>> abjad.show(accordion.short_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_markup.fget(self)
+
+    @property
     def short_name(self):
         r'''Gets accordion's short instrument name.
 
@@ -202,19 +221,3 @@ class Accordion(Instrument):
         Returns string.
         '''
         return Instrument.short_name.fget(self)
-
-    @property
-    def short_name_markup(self):
-        r'''Gets accordion's short instrument name markup.
-
-        ..  container:: example
-
-            >>> accordion = abjad.Accordion()
-            >>> accordion.short_name_markup
-            Markup(contents=['Acc.'])
-
-            >>> abjad.show(accordion.short_name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.short_name_markup.fget(self)

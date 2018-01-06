@@ -39,9 +39,10 @@ class StaffChange(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_context',
         '_staff',
         )
+
+    _context = 'Staff'
 
     _format_leaf_children = False
 
@@ -53,7 +54,6 @@ class StaffChange(AbjadValueObject):
 
     def __init__(self, staff=None):
         import abjad
-        self._context = 'Staff'
         if not isinstance(staff, (abjad.Staff, type(None))):
             message = 'staff change input value {!r}'
             message += ' must be staff instance.'
@@ -113,7 +113,7 @@ class StaffChange(AbjadValueObject):
 
     @property
     def context(self):
-        r'''Gets default context of staff change.
+        r'''Returns ``'Staff'``.
 
         ..  container:: example
 
@@ -132,7 +132,7 @@ class StaffChange(AbjadValueObject):
             >>> staff_change.context
             'Staff'
 
-        Returns context or string.
+        Returns ``'Staff'``.
         '''
         return self._context
 

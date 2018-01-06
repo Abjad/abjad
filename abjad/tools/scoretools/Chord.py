@@ -1,9 +1,5 @@
 import copy
-from abjad.tools import indicatortools
 from abjad.tools import mathtools
-from abjad.tools import pitchtools
-from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import inspect
 from .Leaf import Leaf
 
 
@@ -35,12 +31,11 @@ class Chord(Leaf):
     def __init__(self, *arguments):
         import abjad
         from abjad.ly import drums
-        from abjad.tools.topleveltools import parse
         assert len(arguments) in (0, 1, 2)
         self._note_heads = abjad.NoteHeadList(client=self)
         if len(arguments) == 1 and isinstance(arguments[0], str):
             string = '{{ {} }}'.format(arguments[0])
-            parsed = parse(string)
+            parsed = abjad.parse(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             arguments = [parsed[0]]
         are_cautionary = []
@@ -113,35 +108,37 @@ class Chord(Leaf):
 
     ### SPECIAL METHODS ###
 
-    def __getnewargs__(self):
-        r'''Gets new arguments.
+    def __copy__(self, *arguments):
+        r'''Shallow copies chord.
 
-        Returns tuple.
+        Returns new chord.
         '''
-        return (self.written_pitches, self.written_duration)
+        new_chord = Leaf.__copy__(self, *arguments)
+        new_chord.note_heads[:] = []
+        for note_head in self.note_heads:
+            note_head = copy.copy(note_head)
+            new_chord.note_heads.append(note_head)
+        return new_chord
 
-    ### PRIVATE PROPERTIES ###
+    def __getnewargs__(self):
+        r'''Gets new chord arguments.
+
+        Returns pair.
+        '''
+        return self.written_pitches, self.written_duration
 
     ### PRIVATE METHODS ###
 
     @staticmethod
     def _cast_defective_chord(chord):
-        from abjad.tools import scoretools
+        import abjad
         if isinstance(chord, Chord):
             note_head_count = len(chord.note_heads)
             if not note_head_count:
-                return scoretools.Rest(chord)
+                return abjad.Rest(chord)
             elif note_head_count == 1:
-                return scoretools.Note(chord)
+                return abjad.Note(chord)
         return chord
-
-    def _copy_with_indicators_but_without_children_or_spanners(self):
-        new = Leaf._copy_with_indicators_but_without_children_or_spanners(self)
-        new.note_heads[:] = []
-        for note_head in self.note_heads:
-            new_note_head = copy.copy(note_head)
-            new.note_heads.append(new_note_head)
-        return new
 
     def _divide(self, pitch=None):
         import abjad
@@ -190,11 +187,12 @@ class Chord(Leaf):
         return treble, bass
 
     def _format_before_slot(self, bundle):
+        import abjad
         result = []
         result.append(self._format_grace_body())
         result.append(('comments', bundle.before.comments))
         commands = bundle.before.commands
-        if inspect(self).has_indicator(indicatortools.Tremolo):
+        if abjad.inspect(self).has_indicator(abjad.Tremolo):
             tremolo_command = self._format_repeat_tremolo_command()
             commands = list(commands)
             commands.append(tremolo_command)
@@ -207,15 +205,16 @@ class Chord(Leaf):
         return result
 
     def _format_close_brackets_slot(self, bundle):
+        import abjad
         result = []
-        if inspect(self).has_indicator(indicatortools.Tremolo):
+        if abjad.inspect(self).has_indicator(abjad.Tremolo):
             brackets_close = ['}']
             result.append([('close brackets', ''), brackets_close])
         return result
 
     def _format_leaf_nucleus(self):
-        from abjad.tools import systemtools
-        indent = systemtools.LilyPondFormatManager.indent
+        import abjad
+        indent = abjad.LilyPondFormatManager.indent
         result = []
         note_heads = self.note_heads
         if any('\n' in format(x) for x in note_heads):
@@ -228,14 +227,14 @@ class Chord(Leaf):
             result.append('>')
             result = '\n'.join(result)
             result += str(self._get_formatted_duration())
-        elif inspect(self).has_indicator(indicatortools.Tremolo):
+        elif abjad.inspect(self).has_indicator(abjad.Tremolo):
             reattack_duration = self._get_tremolo_reattack_duration()
             duration_string = reattack_duration.lilypond_duration_string
             durated_pitches = []
             for note_head in note_heads:
                 durated_pitch = format(note_head) + duration_string
                 durated_pitches.append(durated_pitch)
-            tremolo = inspect(self).get_indicator(indicatortools.Tremolo)
+            tremolo = abjad.inspect(self).get_indicator(abjad.Tremolo)
             if tremolo.is_slurred:
                 durated_pitches[0] = durated_pitches[0] + r' \('
                 durated_pitches[-1] = durated_pitches[-1] + r' \)'
@@ -250,14 +249,16 @@ class Chord(Leaf):
         return ['nucleus', [result]]
 
     def _format_open_brackets_slot(self, bundle):
+        import abjad
         result = []
-        if inspect(self).has_indicator(indicatortools.Tremolo):
+        if abjad.inspect(self).has_indicator(abjad.Tremolo):
             brackets_open = ['{']
             result.append([('open brackets', ''), brackets_open])
         return result
 
     def _format_repeat_tremolo_command(self):
-        tremolo = inspect(self).get_indicator(indicatortools.Tremolo)
+        import abjad
+        tremolo = abjad.inspect(self).get_indicator(abjad.Tremolo)
         reattack_duration = self._get_tremolo_reattack_duration()
         repeat_count = self.written_duration / reattack_duration / 2
         if not mathtools.is_integer_equivalent(repeat_count):
@@ -283,23 +284,17 @@ class Chord(Leaf):
             #return self._get_body()[0]
             return self._get_compact_representation()
 
-    # TODO: remove?
-    def _get_lilypond_format(self, strict=False):
-        return super(Chord, self)._get_lilypond_format(strict=strict)
-
     def _get_sounding_pitches(self):
-        from abjad.tools import instrumenttools
-        from abjad.tools import pitchtools
-        if 'sounding pitch' in inspect(self).get_indicators(str):
+        import abjad
+        if 'sounding pitch' in abjad.inspect(self).get_indicators(str):
             return self.written_pitches
         else:
-            instrument = self._get_effective(
-                instrumenttools.Instrument)
+            instrument = self._get_effective(abjad.Instrument)
             if instrument:
                 sounding_pitch = instrument.middle_c_sounding_pitch
             else:
-                sounding_pitch = pitchtools.NamedPitch('C4')
-            interval = pitchtools.NamedPitch('C4') - sounding_pitch
+                sounding_pitch = abjad.NamedPitch('C4')
+            interval = abjad.NamedPitch('C4') - sounding_pitch
             sounding_pitches = [
                 interval.transpose(pitch)
                 for pitch in self.written_pitches
@@ -461,9 +456,10 @@ class Chord(Leaf):
 
         Returns tuple.
         '''
-        return pitchtools.PitchSegment(
+        import abjad
+        return abjad.PitchSegment(
             items=(note_head.written_pitch for note_head in self.note_heads),
-            item_class=pitchtools.NamedPitch,
+            item_class=abjad.NamedPitch,
             )
 
     @written_pitches.setter

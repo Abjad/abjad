@@ -93,7 +93,7 @@ class TwelveToneRow(PitchClassSegment):
                     e'8
                     c'8
                     e'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -122,7 +122,7 @@ class TwelveToneRow(PitchClassSegment):
                     a'8
                     bf'8
                     b'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -146,7 +146,7 @@ class TwelveToneRow(PitchClassSegment):
                     d'8
                     af'8
                     c'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -175,7 +175,7 @@ class TwelveToneRow(PitchClassSegment):
                     d'8
                     cs'8
                     c'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -199,7 +199,7 @@ class TwelveToneRow(PitchClassSegment):
                     a'8
                     b'8
                     cs'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -228,7 +228,7 @@ class TwelveToneRow(PitchClassSegment):
                     a'8
                     e'8
                     b'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -252,7 +252,7 @@ class TwelveToneRow(PitchClassSegment):
                     d'8
                     fs'8
                     c'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -297,7 +297,7 @@ class TwelveToneRow(PitchClassSegment):
                     ef'8
                     fs'8
                     g'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -318,7 +318,7 @@ class TwelveToneRow(PitchClassSegment):
                     d'8
                     af'8
                     c'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -367,7 +367,7 @@ class TwelveToneRow(PitchClassSegment):
                     a'8
                     bf'8
                     b'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -397,7 +397,7 @@ class TwelveToneRow(PitchClassSegment):
                     d'8
                     af'8
                     c'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -454,7 +454,7 @@ class TwelveToneRow(PitchClassSegment):
                     a'8
                     bf'8
                     b'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -499,7 +499,7 @@ class TwelveToneRow(PitchClassSegment):
                     d'8
                     af'8
                     c'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -556,7 +556,7 @@ class TwelveToneRow(PitchClassSegment):
                     a'8
                     bf'8
                     b'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -600,7 +600,7 @@ class TwelveToneRow(PitchClassSegment):
                     d'8
                     af'8
                     c'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -893,7 +893,7 @@ class TwelveToneRow(PitchClassSegment):
                     c'8
                     fs'8
                     d'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -927,7 +927,7 @@ class TwelveToneRow(PitchClassSegment):
                     c'8
                     fs'8
                     d'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -957,7 +957,7 @@ class TwelveToneRow(PitchClassSegment):
                     bf'8
                     e'8
                     c'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -985,7 +985,7 @@ class TwelveToneRow(PitchClassSegment):
                     af'8
                     d'8
                     bf'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -1037,7 +1037,7 @@ class TwelveToneRow(PitchClassSegment):
                     bf'8
                     e'8
                     c'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -1065,7 +1065,7 @@ class TwelveToneRow(PitchClassSegment):
                     d'8
                     af'8
                     c'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -1093,7 +1093,7 @@ class TwelveToneRow(PitchClassSegment):
                     d'8
                     af'8
                     c'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -1143,7 +1143,7 @@ class TwelveToneRow(PitchClassSegment):
                     a'8
                     b'8
                     cs'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -1171,7 +1171,7 @@ class TwelveToneRow(PitchClassSegment):
                     d'8
                     af'8
                     c'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -1224,7 +1224,7 @@ class TwelveToneRow(PitchClassSegment):
                     bf'8
                     d'8
                     af'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -1252,7 +1252,7 @@ class TwelveToneRow(PitchClassSegment):
                     af'8
                     c'8
                     cs'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -1280,7 +1280,7 @@ class TwelveToneRow(PitchClassSegment):
                     d'8
                     af'8
                     c'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -1311,7 +1311,7 @@ class TwelveToneRow(PitchClassSegment):
                     a'8
                     cs'8
                     d'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -1361,7 +1361,7 @@ class TwelveToneRow(PitchClassSegment):
                     ef'8
                     a'8
                     cs'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -1389,7 +1389,7 @@ class TwelveToneRow(PitchClassSegment):
                     cs'8
                     g'8
                     b'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -1417,7 +1417,7 @@ class TwelveToneRow(PitchClassSegment):
                     d'8
                     af'8
                     c'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 

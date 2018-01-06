@@ -1,10 +1,59 @@
 import copy
-from abjad.tools import markuptools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Instrument(AbjadValueObject):
-    '''Instrument.
+    r'''Instrument.
+
+    ..  container:: example
+
+        Two instruments active on a single staff:
+
+        >>> voice_1 = abjad.Voice("e'8 g'8 f'8 a'8")
+        >>> flute = abjad.Flute(hide=True)
+        >>> abjad.attach(flute, voice_1[0], context='Voice')
+        >>> flute_markup = abjad.Markup('(flute)', direction=abjad.Up)
+        >>> abjad.attach(flute_markup, voice_1[0])
+        >>> abjad.attach(abjad.LilyPondCommand('voiceOne'), voice_1)
+        >>> voice_2 = abjad.Voice("c'2")
+        >>> abjad.attach(abjad.LilyPondCommand('voiceTwo'), voice_2)
+        >>> viola = abjad.Viola(hide=True)
+        >>> abjad.attach(viola, voice_2[0], context='Voice')
+        >>> viola_markup = abjad.Markup('(viola)', direction=abjad.Down)
+        >>> abjad.attach(viola_markup, voice_2[0])
+        >>> staff = abjad.Staff([voice_1, voice_2], is_simultaneous=True)
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff <<
+                \new Voice {
+                    \voiceOne
+                    e'8 ^ \markup { (flute) }
+                    g'8
+                    f'8
+                    a'8
+                }
+                \new Voice {
+                    \voiceTwo
+                    c'2 _ \markup { (viola) }
+                }
+            >>
+
+        >>> for leaf in abjad.select(voice_1).leaves():
+        ...     leaf, abjad.inspect(leaf).get_effective(abjad.Instrument)
+        ...
+        (Note("e'8"), Flute())
+        (Note("g'8"), Flute())
+        (Note("f'8"), Flute())
+        (Note("a'8"), Flute())
+
+        >>> for leaf in abjad.select(voice_2).leaves():
+        ...     leaf, abjad.inspect(leaf).get_effective(abjad.Instrument)
+        ...
+        (Note("c'2"), Viola())
+
     '''
 
     ### CLASS VARIABLES ###
@@ -12,7 +61,6 @@ class Instrument(AbjadValueObject):
     __slots__ = (
         '_allowable_clefs',
         '_context',
-        '_do_not_format',
         '_middle_c_sounding_pitch',
         '_name',
         '_name_markup',
@@ -23,11 +71,18 @@ class Instrument(AbjadValueObject):
         '_short_name',
         '_short_name_markup',
         '_starting_clefs',
+        '_hide',
         )
 
     _format_slot = 'opening'
 
+    _latent = True
+
+    _persistent = 'abjad.Instrument'
+
     _publish_storage_format = True
+
+    _redraw = True
 
     ### INITIALIZER ###
 
@@ -35,27 +90,28 @@ class Instrument(AbjadValueObject):
         self,
         name=None,
         short_name=None,
-        name_markup=None,
-        short_name_markup=None,
+        markup=None,
+        short_markup=None,
         allowable_clefs=None,
         context=None,
         middle_c_sounding_pitch=None,
         pitch_range=None,
+        hide=None,
         ):
         import abjad
-        self._do_not_format = False
+        self._context = context or 'Staff'
         if name is not None:
             name = str(name)
         self._name = name
-        if name_markup is not None:
-            name_markup = abjad.Markup(name_markup)
-        self._name_markup = name_markup
+        if markup is not None:
+            markup = abjad.Markup(markup)
+        self._name_markup = markup
         if short_name is not None:
             short_name = str(short_name)
         self._short_name = short_name
-        if short_name_markup is not None:
-            short_name_markup = abjad.Markup(short_name_markup)
-        self._short_name_markup = short_name_markup
+        if short_markup is not None:
+            short_markup = abjad.Markup(short_markup)
+        self._short_name_markup = short_markup
         allowable_clefs = allowable_clefs or ('treble',)
         self._allowable_clefs = allowable_clefs
         if isinstance(pitch_range, str):
@@ -67,15 +123,17 @@ class Instrument(AbjadValueObject):
         else:
             raise TypeError(pitch_range)
         self._pitch_range = pitch_range
-        middle_c_sounding_pitch = middle_c_sounding_pitch or \
-            abjad.NamedPitch("c'")
+        middle_c_sounding_pitch = (middle_c_sounding_pitch or
+            abjad.NamedPitch("c'"))
         middle_c_sounding_pitch = abjad.NamedPitch(
             middle_c_sounding_pitch)
         self._middle_c_sounding_pitch = middle_c_sounding_pitch
-        self._context = context or 'Staff'
         self._is_primary_instrument = False
         self._performer_names = ['instrumentalist']
         self._starting_clefs = copy.copy(allowable_clefs)
+        if hide is not None:
+            hide = bool(hide)
+        self._hide = hide
 
     ### PRIVATE PROPERTIES ###
 
@@ -108,12 +166,12 @@ class Instrument(AbjadValueObject):
     def _get_lilypond_format(self, context=None):
         import abjad
         result = []
-        if self._do_not_format:
+        if self.hide:
             return result
-        name_markup = self.name_markup
-        if name_markup.direction is not None:
-            name_markup = abjad.new(
-                name_markup,
+        markup = self.markup
+        if markup.direction is not None:
+            markup = abjad.new(
+                markup,
                 direction=None,
                 )
         if isinstance(context, str):
@@ -122,18 +180,18 @@ class Instrument(AbjadValueObject):
             context = context.context_name
         else:
             context = self._context_name
-        pieces = name_markup._get_format_pieces()
+        pieces = markup._get_format_pieces()
         first_line = r'\set {!s}.instrumentName = {!s}'
         first_line = first_line.format(context, pieces[0])
         result.append(first_line)
         result.extend(pieces[1:])
-        short_name_markup = self.short_name_markup
-        if short_name_markup.direction is not None:
-            short_name_markup = abjad.new(
-                short_name_markup,
+        short_markup = self.short_markup
+        if short_markup.direction is not None:
+            short_markup = abjad.new(
+                short_markup,
                 direction=None,
                 )
-        pieces = short_name_markup._get_format_pieces()
+        pieces = short_markup._get_format_pieces()
         first_line = r'\set {!s}.shortInstrumentName = {!s}'
         first_line = first_line.format(context, pieces[0])
         result.append(first_line)
@@ -173,13 +231,53 @@ class Instrument(AbjadValueObject):
 
     @property
     def context(self):
-        r'''Gets default context of instrument.
+        r'''Gets (historically conventional) context of instrument.
 
-        Defaults to staff.
+        Defaults to ``'Staff'``.
 
-        Returns context or context name.
+        Returns context headword.
+
+        Override with ``abjad.attach(..., context='...')``.
         '''
         return self._context
+
+    @property
+    def hide(self):
+        r'''Is true when instrument should not appear in output (but should
+        still determine effective instrument).
+
+        Use when instrument stays constant while margin markup changes.
+
+        Defaults to none.
+
+        Returns true, false or none.
+        '''
+        return self._hide
+
+    @property
+    def latent(self):
+        r'''Is true for all instruments.
+
+        Class constant.
+
+        Returns true.
+        '''
+        return self._latent
+
+    @property
+    def markup(self):
+        r'''Gets instrument name markup.
+
+        Returns markup.
+        '''
+        import abjad
+        if self._name_markup is None:
+            self._initialize_default_name_markups()
+        if not isinstance(self._name_markup, abjad.Markup):
+            markup = abjad.Markup(contents=self._name_markup)
+            self._name_markup = markup
+        if self._name_markup.contents != ('',):
+            return self._name_markup
 
     @property
     def middle_c_sounding_pitch(self):
@@ -198,18 +296,14 @@ class Instrument(AbjadValueObject):
         return self._name
 
     @property
-    def name_markup(self):
-        r'''Gets instrument name markup.
+    def persistent(self):
+        r'''Is set to ``'abjad.Instrument'`` for all instruments.
 
-        Returns markup.
+        Class constant.
+
+        Returns true.
         '''
-        if self._name_markup is None:
-            self._initialize_default_name_markups()
-        if not isinstance(self._name_markup, markuptools.Markup):
-            markup = markuptools.Markup(contents=self._name_markup)
-            self._name_markup = markup
-        if self._name_markup.contents != ('',):
-            return self._name_markup
+        return self._persistent
 
     @property
     def pitch_range(self):
@@ -220,28 +314,38 @@ class Instrument(AbjadValueObject):
         return self._pitch_range
 
     @property
+    def redraw(self):
+        r'''Is true for all instruments.
+
+        Class constant.
+
+        Returns true.
+        '''
+        return self._redraw
+
+    @property
+    def short_markup(self):
+        r'''Gets short instrument name markup.
+
+        Returns markup.
+        '''
+        import abjad
+        if self._short_name_markup is None:
+            self._initialize_default_name_markups()
+        if not isinstance(
+            self._short_name_markup, abjad.Markup):
+            markup = abjad.Markup(contents=self._short_name_markup)
+            self._short_name_markup = markup
+        if self._short_name_markup.contents != ('',):
+            return self._short_name_markup
+
+    @property
     def short_name(self):
         r'''Gets short instrument name.
 
         Returns string.
         '''
         return self._short_name
-
-    @property
-    def short_name_markup(self):
-        r'''Gets short instrument name markup.
-
-        Returns markup.
-        '''
-        if self._short_name_markup is None:
-            self._initialize_default_name_markups()
-        if not isinstance(
-            self._short_name_markup, markuptools.Markup):
-            markup = markuptools.Markup(
-                contents=self._short_name_markup)
-            self._short_name_markup = markup
-        if self._short_name_markup.contents != ('',):
-            return self._short_name_markup
 
     ### PUBLIC METHODS ###
 

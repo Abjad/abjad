@@ -1,4 +1,4 @@
-from abjad.tools.instrumenttools.Instrument import Instrument
+from .Instrument import Instrument
 
 
 class Glockenspiel(Instrument):
@@ -35,23 +35,25 @@ class Glockenspiel(Instrument):
         self,
         name='glockenspiel',
         short_name='gkspl.',
-        name_markup=None,
-        short_name_markup=None,
+        markup=None,
+        short_markup=None,
         allowable_clefs=None,
         context=None,
         middle_c_sounding_pitch='C6',
         pitch_range='[G5, C8]',
+        hide=None,
         ):
         Instrument.__init__(
             self,
             name=name,
             short_name=short_name,
-            name_markup=name_markup,
-            short_name_markup=short_name_markup,
+            markup=markup,
+            short_markup=short_markup,
             allowable_clefs=allowable_clefs,
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
+            hide=hide,
             )
 
     ### PUBLIC PROPERTIES ###
@@ -69,6 +71,22 @@ class Glockenspiel(Instrument):
         Returns clef list.
         '''
         return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def markup(self):
+        r'''Gets glockenspiel's instrument name markup.
+
+        ..  container:: example
+
+            >>> glockenspiel = abjad.Glockenspiel()
+            >>> glockenspiel.markup
+            Markup(contents=['Glockenspiel'])
+
+            >>> abjad.show(glockenspiel.markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
@@ -101,22 +119,6 @@ class Glockenspiel(Instrument):
         return Instrument.name.fget(self)
 
     @property
-    def name_markup(self):
-        r'''Gets glockenspiel's instrument name markup.
-
-        ..  container:: example
-
-            >>> glockenspiel = abjad.Glockenspiel()
-            >>> glockenspiel.name_markup
-            Markup(contents=['Glockenspiel'])
-
-            >>> abjad.show(glockenspiel.name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.name_markup.fget(self)
-
-    @property
     def pitch_range(self):
         r'''Gets glockenspiel's range.
 
@@ -133,6 +135,22 @@ class Glockenspiel(Instrument):
         return Instrument.pitch_range.fget(self)
 
     @property
+    def short_markup(self):
+        r'''Gets glockenspiel's short instrument name markup.
+
+        ..  container:: example
+
+            >>> glockenspiel = abjad.Glockenspiel()
+            >>> glockenspiel.short_markup
+            Markup(contents=['Gkspl.'])
+
+            >>> abjad.show(glockenspiel.short_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_markup.fget(self)
+
+    @property
     def short_name(self):
         r'''Gets glockenspiel's short instrument name.
 
@@ -145,19 +163,3 @@ class Glockenspiel(Instrument):
         Returns string.
         '''
         return Instrument.short_name.fget(self)
-
-    @property
-    def short_name_markup(self):
-        r'''Gets glockenspiel's short instrument name markup.
-
-        ..  container:: example
-
-            >>> glockenspiel = abjad.Glockenspiel()
-            >>> glockenspiel.short_name_markup
-            Markup(contents=['Gkspl.'])
-
-            >>> abjad.show(glockenspiel.short_name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.short_name_markup.fget(self)

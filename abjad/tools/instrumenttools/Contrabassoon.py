@@ -1,4 +1,4 @@
-from abjad.tools.instrumenttools.Instrument import Instrument
+from .Instrument import Instrument
 
 
 class Contrabassoon(Instrument):
@@ -38,23 +38,25 @@ class Contrabassoon(Instrument):
         self,
         name='contrabassoon',
         short_name='contrabsn.',
-        name_markup=None,
-        short_name_markup=None,
+        markup=None,
+        short_markup=None,
         allowable_clefs=('bass',),
         context=None,
         middle_c_sounding_pitch='C3',
         pitch_range='[Bb0, Bb4]',
+        hide=None,
         ):
         Instrument.__init__(
             self,
             name=name,
             short_name=short_name,
-            name_markup=name_markup,
-            short_name_markup=short_name_markup,
+            markup=markup,
+            short_markup=short_markup,
             allowable_clefs=allowable_clefs,
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
+            hide=hide,
             )
 
     ### PUBLIC PROPERTIES ###
@@ -72,6 +74,22 @@ class Contrabassoon(Instrument):
         Returns clef list.
         '''
         return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def markup(self):
+        r'''Gets contrabassoon's instrument name markup.
+
+        ..  container:: example
+
+            >>> contrabassoon = abjad.Contrabassoon()
+            >>> contrabassoon.markup
+            Markup(contents=['Contrabassoon'])
+
+            >>> abjad.show(contrabassoon.markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
@@ -104,22 +122,6 @@ class Contrabassoon(Instrument):
         return Instrument.name.fget(self)
 
     @property
-    def name_markup(self):
-        r'''Gets contrabassoon's instrument name markup.
-
-        ..  container:: example
-
-            >>> contrabassoon = abjad.Contrabassoon()
-            >>> contrabassoon.name_markup
-            Markup(contents=['Contrabassoon'])
-
-            >>> abjad.show(contrabassoon.name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.name_markup.fget(self)
-
-    @property
     def pitch_range(self):
         r'''Gets contrabassoon's range.
 
@@ -136,6 +138,22 @@ class Contrabassoon(Instrument):
         return Instrument.pitch_range.fget(self)
 
     @property
+    def short_markup(self):
+        r'''Gets contrabassoon's short instrument name markup.
+
+        ..  container:: example
+
+            >>> contrabassoon = abjad.Contrabassoon()
+            >>> contrabassoon.short_markup
+            Markup(contents=['Contrabsn.'])
+
+            >>> abjad.show(contrabassoon.short_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_markup.fget(self)
+
+    @property
     def short_name(self):
         r'''Gets contrabassoon's short instrument name.
 
@@ -148,19 +166,3 @@ class Contrabassoon(Instrument):
         Returns string.
         '''
         return Instrument.short_name.fget(self)
-
-    @property
-    def short_name_markup(self):
-        r'''Gets contrabassoon's short instrument name markup.
-
-        ..  container:: example
-
-            >>> contrabassoon = abjad.Contrabassoon()
-            >>> contrabassoon.short_name_markup
-            Markup(contents=['Contrabsn.'])
-
-            >>> abjad.show(contrabassoon.short_name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.short_name_markup.fget(self)

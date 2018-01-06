@@ -33,16 +33,16 @@ class PageBreak(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_context',
         '_format_slot',
         )
+
+    _context = 'Score'
 
     _time_orientation = Right
 
     ### INITIALIZER ##
 
     def __init__(self, format_slot='closing'):
-        self._context = 'Score'
         assert isinstance(format_slot, str), repr(format_slot)
         self._format_slot = format_slot
 
@@ -62,17 +62,14 @@ class PageBreak(AbjadValueObject):
 
     @property
     def context(self):
-        r'''Gets default context of page break.
+        r'''Returns ``'Score'``.
 
         ..  container:: example
 
-            Default page break:
-
-            >>> page_break = abjad.PageBreak()
-            >>> page_break.context
+            >>> abjad.PageBreak().context
             'Score'
 
-        Returns context or string.
+        Returns ``'Score'``.
         '''
         return self._context
 

@@ -73,12 +73,15 @@ class PersistenceManager(abctools.AbjadObject):
         assert ly_file_path.endswith('.ly'), ly_file_path
         timer = abjad.Timer()
         with timer:
-            format_specification = 'lilypond'
-            if strict:
-                format_specification += ':strict'
+            if strict is True or isinstance(strict, int):
+                format_specification = 'lilypond:strict'
+            else:
+                format_specification = 'lilypond'
             string = lilypond_file.__format__(
                 format_specification=format_specification
                 )
+            if isinstance(strict, int):
+                string = abjad.LilyPondFormatManager.align_tags(string, strict)
         abjad_formatting_time = timer.elapsed_time
         directory = os.path.dirname(ly_file_path)
         abjad.IOManager._ensure_directory_existence(directory)

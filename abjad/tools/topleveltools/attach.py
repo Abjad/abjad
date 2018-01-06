@@ -1,11 +1,12 @@
 def attach(
     indicator,
     argument,
+    alternate=None,
+    annotation=None,
     context=None,
     deactivate=None,
-    is_piecewise=None,
-    is_annotation=None,
     name=None,
+    site=None,
     synthetic_offset=None,
     tag=None,
     ):
@@ -48,6 +49,36 @@ def attach(
                 f'4 -\accent
             }
 
+    ..  container:: example
+
+        Works with context names:
+
+        >>> voice = abjad.Voice("c'4 d' e' f'", name='MusicVoice')
+        >>> staff = abjad.Staff([voice], name='MusicStaff')
+        >>> abjad.attach(abjad.Clef('alto'), voice[0], context='MusicStaff')
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \context Staff = "MusicStaff" {
+                \context Voice = "MusicVoice" {
+                    \clef "alto"
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+            }
+
+        >>> for leaf in abjad.select(staff).leaves():
+        ...     leaf, abjad.inspect(leaf).get_effective(abjad.Clef)
+        ...
+        (Note("c'4"), Clef('alto'))
+        (Note("d'4"), Clef('alto'))
+        (Note("e'4"), Clef('alto'))
+        (Note("f'4"), Clef('alto'))
+
     Derives context from default `indicator` context when `context` is none.
 
     Returns none.
@@ -59,30 +90,26 @@ def attach(
         message = message.format(argument)
         raise TypeError(message)
 
-    # NOTE: uncomment the following when working on #824
-    #       "Restrict attachment to leaves".
+    if tag is not None:
+        tag = getattr(tag, 'name', tag)
+        assert ':' not in tag, repr(tag)
+
     def _is_acceptable(argument):
         if isinstance(argument, abjad.Leaf):
             return True
-        ss = (list, abjad.Selection, abjad.Spanner)
-        if not isinstance(argument, ss):
+        if not isinstance(argument, (list, abjad.Selection, abjad.Spanner)):
             return False
         for item in argument:
             if not isinstance(item, abjad.Leaf):
                 return False
         return True
-    prototype = (
-        str,
-        dict,
-        abjad.IndicatorWrapper,
-        )
+
+    prototype = (str, dict, abjad.IndicatorWrapper)
     if (isinstance(indicator, prototype) or
         getattr(indicator, '_can_attach_to_containers', False)):
         pass
-    elif (
-        isinstance(indicator, abjad.TimeSignature) and
-        isinstance(argument, abjad.Measure)
-        ):
+    elif (isinstance(indicator, abjad.TimeSignature) and
+        isinstance(argument, abjad.Measure)):
         pass
     elif not _is_acceptable(argument):
         message = 'attach {!r} to a leaf (or selection of leaves) not to {!r}.'
@@ -106,21 +133,24 @@ def attach(
             )
         assert isinstance(indicator, prototype), repr(indicator)
         assert context is None
-        if isinstance(indicator, abjad.Spanner):
-            name = name or indicator.name
-            indicator._name = name
-            leaves = []
-            try:
-                for item in argument:
-                    if isinstance(item, abjad.Leaf):
-                        leaves.append(item)
-                    else:
-                        leaves.extend(abjad.iterate(item).leaves())
-            except TypeError:
-                leaves.append(argument)
-            indicator._attach(leaves)
-        else:
-            indicator._attach(argument)
+
+    prototype = (abjad.AfterGraceContainer, abjad.GraceContainer)
+    if isinstance(indicator, prototype):
+        assert context is None, repr(context)
+        indicator._attach(argument)
+        return
+
+    if isinstance(indicator, abjad.Spanner):
+        leaves = []
+        try:
+            for item in argument:
+                if isinstance(item, abjad.Leaf):
+                    leaves.append(item)
+                else:
+                    leaves.extend(abjad.iterate(item).leaves())
+        except TypeError:
+            leaves.append(argument)
+        indicator._attach(leaves, deactivate=deactivate, site=site, tag=tag)
         return
 
     component = argument
@@ -131,11 +161,12 @@ def attach(
         raise Exception(message)
 
     if isinstance(indicator, abjad.IndicatorWrapper):
+        alternate = alternate or indicator.alternate
+        annotation = annotation or indicator.annotation
         context = context or indicator.context
         deactivate = deactivate or indicator.deactivate
-        is_annotation = is_annotation or indicator.is_annotation
-        is_piecewise = indicator.is_piecewise
         name = name or indicator.name
+        site = site or indicator.site
         synthetic_offset = synthetic_offset or indicator.synthetic_offset
         tag = tag or indicator.tag
         indicator._detach()
@@ -145,13 +176,14 @@ def attach(
         context = context or indicator.context
 
     wrapper = abjad.IndicatorWrapper(
+        alternate=alternate,
+        annotation=annotation,
         component=component,
         context=context,
         deactivate=deactivate,
         indicator=indicator,
-        is_annotation=is_annotation,
-        is_piecewise=is_piecewise,
         name=name,
+        site=site,
         synthetic_offset=synthetic_offset,
         tag=tag,
         )

@@ -74,15 +74,17 @@ class Ritardando(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_context',
         '_markup',
         )
+
+    _context = 'Score'
+
+    _persistent = 'abjad.MetronomeMark'
 
     ### INITIALIZER ###
 
     def __init__(self, markup=None):
         import abjad
-        self._context = 'Score'
         if markup is not None:
             assert isinstance(markup, abjad.Markup)
         self._markup = markup
@@ -122,7 +124,7 @@ class Ritardando(AbjadValueObject):
 
         Returns string.
         '''
-        return str(self._to_markup())
+        return str(self._get_markup())
 
     ### PRIVATE PROPERTIES ###
 
@@ -144,13 +146,13 @@ class Ritardando(AbjadValueObject):
     def _get_lilypond_format_bundle(self, component=None):
         import abjad
         bundle = abjad.LilyPondFormatBundle()
-        markup = self._to_markup()
+        markup = self._get_markup()
         markup = abjad.new(markup, direction=abjad.Up)
         markup_format_pieces = markup._get_format_pieces()
         bundle.right.markup.extend(markup_format_pieces)
         return bundle
 
-    def _to_markup(self):
+    def _get_markup(self):
         if self.markup is not None:
             return self.markup
         return self._default_markup
@@ -159,7 +161,7 @@ class Ritardando(AbjadValueObject):
 
     @property
     def context(self):
-        r'''Gets default context of ritardando.
+        r'''Gets (historically conventional) context.
 
         ..  container:: example
 
@@ -178,7 +180,9 @@ class Ritardando(AbjadValueObject):
             >>> ritardando.context
             'Score'
 
-        Returns context or string.
+        Returns ``'Score'``.
+
+        Override with ``abjad.attach(..., context='...')``.
         '''
         return self._context
 
@@ -222,3 +226,16 @@ class Ritardando(AbjadValueObject):
         Returns markup or none.
         '''
         return self._markup
+
+    @property
+    def persistent(self):
+        r'''Is ``'abjad.MetronomeMark'``.
+
+        ..  container:: example
+
+            >>> abjad.Ritardando().persistent
+            'abjad.MetronomeMark'
+
+        Returns ``'abjad.MetronomeMark'``.
+        '''
+        return self._persistent

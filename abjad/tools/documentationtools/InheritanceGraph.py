@@ -82,7 +82,7 @@ class InheritanceGraph(AbjadObject):
 
         >>> graph = abjad.documentationtools.InheritanceGraph(
         ...     addresses=('abjad',),
-        ...     lineage_addresses=(abjad.instrumenttools.Instrument,),
+        ...     lineage_addresses=(abjad.Instrument,),
         ...     lineage_prune_distance=1,
         ...     )
 

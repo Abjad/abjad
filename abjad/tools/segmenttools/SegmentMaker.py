@@ -69,7 +69,7 @@ class SegmentMaker(AbjadObject):
         ):
         r'''Runs segment-maker.
 
-        Returns LilyPond file and segment metadata.
+        Returns LilyPond file.
         '''
         import abjad
         self._builds_metadata = abjad.TypedOrderedDict(builds_metadata)

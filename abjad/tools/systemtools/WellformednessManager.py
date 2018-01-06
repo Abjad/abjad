@@ -476,7 +476,7 @@ class WellformednessManager(AbjadObject):
             >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
             >>> clef = abjad.Clef('alto')
             >>> abjad.attach(clef, staff[0])
-            >>> violin = abjad.instrumenttools.Violin()
+            >>> violin = abjad.Violin()
             >>> abjad.attach(violin, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -524,7 +524,7 @@ class WellformednessManager(AbjadObject):
             >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
             >>> clef = abjad.Clef('percussion')
             >>> abjad.attach(clef, staff[0])
-            >>> violin = abjad.instrumenttools.Violin()
+            >>> violin = abjad.Violin()
             >>> abjad.attach(violin, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -626,7 +626,7 @@ class WellformednessManager(AbjadObject):
             Out of range:
 
             >>> staff = abjad.Staff("c'8 r8 <d fs>8 r8")
-            >>> violin = abjad.instrumenttools.Violin()
+            >>> violin = abjad.Violin()
             >>> abjad.attach(violin, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 

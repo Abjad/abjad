@@ -80,12 +80,19 @@ del _version
 
 def f(argument, strict=False):
     if hasattr(argument, '_publish_storage_format'):
-        print(format(argument, 'storage'))
+        string = format(argument, 'storage')
+    elif strict is True:
+        string = format(argument, 'lilypond:strict')
+    elif strict is not False and isinstance(strict, int):
+        string = format(argument, 'lilypond:strict')
+        string = LilyPondFormatManager.align_tags(string, strict)
     else:
-        if strict is True:
-            print(format(argument, 'lilypond:strict'))
-        else:
-            print(format(argument, 'lilypond'))
+        string = format(argument, 'lilypond')
+    if strict:
+        lines = string.split('\n')
+        lines = LilyPondFormatManager.left_shift_tags(lines)
+        string = '\n'.join(lines)
+    print(string)
 
 from abjad import demos
 from abjad import ly

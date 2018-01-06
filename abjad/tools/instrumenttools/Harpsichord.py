@@ -1,4 +1,4 @@
-from abjad.tools.instrumenttools.Instrument import Instrument
+from .Instrument import Instrument
 
 
 class Harpsichord(Instrument):
@@ -49,23 +49,25 @@ class Harpsichord(Instrument):
         self,
         name='harpsichord',
         short_name='hpschd.',
-        name_markup=None,
-        short_name_markup=None,
+        markup=None,
+        short_markup=None,
         allowable_clefs=('treble', 'bass'),
         context='StaffGroup',
         middle_c_sounding_pitch=None,
         pitch_range='[C2, C7]',
+        hide=None,
         ):
         Instrument.__init__(
             self,
             name=name,
             short_name=short_name,
-            name_markup=name_markup,
-            short_name_markup=short_name_markup,
+            markup=markup,
+            short_markup=short_markup,
             allowable_clefs=allowable_clefs,
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
+            hide=hide,
             )
         self._is_primary_instrument = True
 
@@ -87,17 +89,34 @@ class Harpsichord(Instrument):
 
     @property
     def context(self):
-        r'''Gets default context of harpsichord.
+        r'''Gets (historically conventional) context.
+
+        ..  container:: example
+
+            >>> abjad.Harpsichord().context
+            'StaffGroup'
+
+        Returns ``'StaffGroup'``.
+
+        Override with ``abjad.attach(..., context='...')``.
+        '''
+        return self._context
+
+    @property
+    def markup(self):
+        r'''Gets harpsichord's instrument name markup.
 
         ..  container:: example
 
             >>> harpsichord = abjad.Harpsichord()
-            >>> harpsichord.context
-            'StaffGroup'
+            >>> harpsichord.markup
+            Markup(contents=['Harpsichord'])
 
-        Returns piano staff.
+            >>> abjad.show(harpsichord.markup) # doctest: +SKIP
+
+        Returns markup.
         '''
-        return self._context
+        return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
@@ -130,22 +149,6 @@ class Harpsichord(Instrument):
         return Instrument.name.fget(self)
 
     @property
-    def name_markup(self):
-        r'''Gets harpsichord's instrument name markup.
-
-        ..  container:: example
-
-            >>> harpsichord = abjad.Harpsichord()
-            >>> harpsichord.name_markup
-            Markup(contents=['Harpsichord'])
-
-            >>> abjad.show(harpsichord.name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.name_markup.fget(self)
-
-    @property
     def pitch_range(self):
         r'''Gets harpsichord's range.
 
@@ -162,6 +165,22 @@ class Harpsichord(Instrument):
         return Instrument.pitch_range.fget(self)
 
     @property
+    def short_markup(self):
+        r'''Gets harpsichord's short instrument name markup.
+
+        ..  container:: example
+
+            >>> harpsichord = abjad.Harpsichord()
+            >>> harpsichord.short_markup
+            Markup(contents=['Hpschd.'])
+
+            >>> abjad.show(harpsichord.short_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_markup.fget(self)
+
+    @property
     def short_name(self):
         r'''Gets harpsichord's short instrument name.
 
@@ -174,19 +193,3 @@ class Harpsichord(Instrument):
         Returns string.
         '''
         return Instrument.short_name.fget(self)
-
-    @property
-    def short_name_markup(self):
-        r'''Gets harpsichord's short instrument name markup.
-
-        ..  container:: example
-
-            >>> harpsichord = abjad.Harpsichord()
-            >>> harpsichord.short_name_markup
-            Markup(contents=['Hpschd.'])
-
-            >>> abjad.show(harpsichord.short_name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.short_name_markup.fget(self)

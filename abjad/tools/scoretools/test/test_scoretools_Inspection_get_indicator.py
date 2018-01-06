@@ -151,7 +151,7 @@ def test_scoretools_Inspection_get_indicator_13():
 def test_scoretools_Inspection_get_indicator_14():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    violin = abjad.instrumenttools.Violin()
+    violin = abjad.Violin()
     abjad.attach(violin, staff[0])
 
     indicator = abjad.inspect(staff[0]).get_indicator(abjad.Instrument)

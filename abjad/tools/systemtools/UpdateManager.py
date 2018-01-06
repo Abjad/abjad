@@ -53,12 +53,12 @@ class UpdateManager(AbjadObject):
         offsets when at least one indicator of the appropriate type
         attaches to score.
         '''
+        import abjad
         components = self._iterate_entire_score(score_root)
         for component in components:
-            for indicator in component._get_indicators(unwrap=False):
-                if indicator.context is not None:
-                    assert hasattr(indicator, '_update_effective_context')
-                    indicator._update_effective_context()
+            for wrapper in abjad.inspect(component).wrappers():
+                if wrapper.context is not None:
+                    wrapper._update_effective_context()
             component._indicators_are_current = True
 
     @staticmethod
@@ -227,7 +227,7 @@ class UpdateManager(AbjadObject):
         score_root = abjad.inspect(component).get_parentage(
             include_self=True).root
         for component in self._iterate_entire_score(score_root):
-            wrappers_ = component._get_indicators(prototype, unwrap=False)
+            wrappers_ = abjad.inspect(component).wrappers(prototype)
             wrappers.extend(wrappers_)
         pairs = []
         for wrapper in wrappers:

@@ -34,7 +34,7 @@ class Mutation(abctools.AbjadObject):
 
     @property
     def client(self):
-        r'''Returns client of mutation.
+        r'''Returns client.
 
         Returns selection or component.
         '''
@@ -42,10 +42,8 @@ class Mutation(abctools.AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def copy(self, n=1, include_enclosing_containers=False):
-        r'''Copies component and fractures crossing spanners.
-
-        ..  todo:: Add examples.
+    def copy(self):
+        r'''Copies client.
 
         ..  container:: example
 
@@ -109,18 +107,56 @@ class Mutation(abctools.AbjadObject):
                     ef'8
                 }
 
-        Returns new component.
+        ..  container:: example
+
+            Copy components one time:
+
+            >>> staff = abjad.Staff(r"c'8 ( d'8 e'8 f'8 )")
+            >>> staff.extend(r"g'8 a'8 b'8 c''8")
+            >>> time_signature = abjad.TimeSignature((2, 4))
+            >>> abjad.attach(time_signature, staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff {
+                    \time 2/4
+                    c'8 (
+                    d'8
+                    e'8
+                    f'8 )
+                    g'8
+                    a'8
+                    b'8
+                    c''8
+                }
+
+            >>> selection = staff[2:4]
+            >>> result = selection._copy()
+            >>> new_staff = abjad.Staff(result)
+            >>> abjad.show(new_staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(new_staff)
+                \new Staff {
+                    e'8 (
+                    f'8 )
+                }
+
+            >>> staff[2] is new_staff[0]
+            False
+
+        Returns selection of new components.
         '''
         import abjad
-        if isinstance(self._client, abjad.Component):
-            selection = abjad.select(self._client)
+        if isinstance(self.client, abjad.Component):
+            selection = abjad.select(self.client)
         else:
-            selection = self._client
-        result = selection._copy(
-            n=n,
-            include_enclosing_containers=include_enclosing_containers,
-            )
-        if isinstance(self._client, abjad.Component):
+            selection = self.client
+        result = selection._copy()
+        if isinstance(self.client, abjad.Component):
             if len(result) == 1:
                 result = result[0]
         return result
@@ -178,7 +214,7 @@ class Mutation(abctools.AbjadObject):
 
         Returns container contents as selection.
         '''
-        return self._client._eject_contents()
+        return self.client._eject_contents()
 
     def extract(self, scale_contents=False):
         r'''Extracts mutation client from score.
@@ -281,7 +317,7 @@ class Mutation(abctools.AbjadObject):
 
         Returns mutation client.
         '''
-        return self._client._extract(scale_contents=scale_contents)
+        return self.client._extract(scale_contents=scale_contents)
 
     def fuse(self):
         r'''Fuses mutation client.
@@ -414,17 +450,17 @@ class Mutation(abctools.AbjadObject):
         Returns selection.
         '''
         import abjad
-        if isinstance(self._client, abjad.Component):
-            selection = abjad.select(self._client)
+        if isinstance(self.client, abjad.Component):
+            selection = abjad.select(self.client)
             return selection._fuse()
         elif (
-            isinstance(self._client, abjad.Selection) and
-            self._client.are_contiguous_logical_voice()
+            isinstance(self.client, abjad.Selection) and
+            self.client.are_contiguous_logical_voice()
             ):
-            selection = abjad.select(self._client)
+            selection = abjad.select(self.client)
             return selection._fuse()
 
-    def replace(self, recipients):
+    def replace(self, recipients, wrappers=False):
         r'''Replaces mutation client (and contents of mutation client)
         with `recipients`.
 
@@ -487,48 +523,146 @@ class Mutation(abctools.AbjadObject):
 
         ..  container:: example
 
-            REGRESSION: Replace leaves no leftover indicator references:
+            Copies no wrappers when `wrappers` is false:
 
-                >>> staff = abjad.Staff("c'4")
-                >>> abjad.attach(abjad.Clef('treble'), staff[0])
-                >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff {
-                    \clef "treble"
-                    c'4
-                }
-
-            >>> chord = abjad.Chord("<d' e'>4")
-            >>> abjad.mutate(staff[0]).replace(chord)
-            >>> abjad.attach(abjad.Clef('bass'), staff[0])
+            >>> staff = abjad.Staff("c'2 f'4 g'")
+            >>> abjad.attach(abjad.Clef('alto'), staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
                 >>> abjad.f(staff)
                 \new Staff {
-                    \clef "bass"
-                    <d' e'>4
+                    \clef "alto"
+                    c'2
+                    f'4
+                    g'4
                 }
+
+            >>> for leaf in staff:
+            ...     leaf, abjad.inspect(leaf).get_effective(abjad.Clef)
+            ...
+            (Note("c'2"), Clef('alto'))
+            (Note("f'4"), Clef('alto'))
+            (Note("g'4"), Clef('alto'))
+
+            >>> chord = abjad.Chord("<d' e'>2")
+            >>> abjad.mutate(staff[0]).replace(chord)
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff {
+                    <d' e'>2
+                    f'4
+                    g'4
+                }
+
+            >>> for leaf in staff:
+            ...     leaf, abjad.inspect(leaf).get_effective(abjad.Clef)
+            ...
+            (Chord("<d' e'>2"), None)
+            (Note("f'4"), None)
+            (Note("g'4"), None)
+
+            >>> abjad.inspect(staff).is_well_formed()
+            True
+
+        ..  container:: example
+
+            Set `wrappers` to true to copy all wrappers from one leaf to
+            another leaf (and avoid full-score update). Only works from one
+            leaf to another leaf:
+        
+            >>> staff = abjad.Staff("c'2 f'4 g'")
+            >>> abjad.attach(abjad.Clef('alto'), staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff {
+                    \clef "alto"
+                    c'2
+                    f'4
+                    g'4
+                }
+
+            >>> for leaf in staff:
+            ...     leaf, abjad.inspect(leaf).get_effective(abjad.Clef)
+            ...
+            (Note("c'2"), Clef('alto'))
+            (Note("f'4"), Clef('alto'))
+            (Note("g'4"), Clef('alto'))
+
+            >>> chord = abjad.Chord("<d' e'>2")
+            >>> abjad.mutate(staff[0]).replace(chord, wrappers=True)
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff {
+                    \clef "alto"
+                    <d' e'>2
+                    f'4
+                    g'4
+                }
+
+            >>> for leaf in staff:
+            ...     leaf, abjad.inspect(leaf).get_effective(abjad.Clef)
+            ...
+            (Chord("<d' e'>2"), Clef('alto'))
+            (Note("f'4"), Clef('alto'))
+            (Note("g'4"), Clef('alto'))
+
+            >>> abjad.inspect(staff).is_well_formed()
+            True
 
         Returns none.
         '''
         import abjad
-        if isinstance(self._client, abjad.Selection):
-            donors = self._client
+        if isinstance(self.client, abjad.Selection):
+            donors = self.client
         else:
-            donors = abjad.select(self._client)
+            donors = abjad.select(self.client)
         assert donors.are_contiguous_same_parent()
         if not isinstance(recipients, abjad.Selection):
             recipients = abjad.select(recipients)
         assert recipients.are_contiguous_same_parent()
-        if donors:
-            parent, start, stop = donors._get_parent_and_start_stop_indices()
-            assert parent is not None, repr(donors)
-            parent.__setitem__(slice(start, stop + 1), recipients)
+        if not donors:
+            return
+        if wrappers is True:
+            if 1 < len(donors) or not isinstance(donors[0], abjad.Leaf):
+                message = 'set wrappers only with single leaf: {!r}.'
+                message = message.format(donors)
+                raise Exception(message)
+            if (1 < len(recipients) or
+                not isinstance(recipients[0], abjad.Leaf)):
+                message = 'set wrappers only with single leaf: {!r}.'
+                message = message.format(recipients)
+                raise Exception(message)
+            donor = donors[0]
+            wrappers = abjad.inspect(donor).wrappers()
+            recipient = recipients[0]
+        parent, start, stop = donors._get_parent_and_start_stop_indices()
+        assert parent is not None, repr(donors)
+        parent.__setitem__(slice(start, stop + 1), recipients)
+        if not wrappers:
+            return
+        for wrapper in wrappers:
+            # bypass IndicatorWrapper._bind_to_component()
+            # to avoid full-score update / traversal;
+            # this works because one-to-one leaf replacement
+            # including all (persistent) indicators
+            # doesn't change score structure:
+            donor._wrappers.remove(wrapper)
+            wrapper._component = recipient
+            recipient._wrappers.append(wrapper)
+            context = wrapper._find_correct_effective_context()
+            if context is not None:
+                context._dependent_wrappers.append(wrapper)
 
     # TODO: fix bug in function that causes tied notes to become untied
     def replace_measure_contents(self, new_contents):
@@ -598,7 +732,7 @@ class Mutation(abctools.AbjadObject):
         # init return list
         result = []
         # get first measure and first time signature
-        current_measure = self._client._get_next_measure()
+        current_measure = self.client._get_next_measure()
         result.append(current_measure)
         current_time_signature = current_measure.time_signature
         # to avoide pychecker slice assignment error
@@ -1555,7 +1689,7 @@ class Mutation(abctools.AbjadObject):
         Operates in place and returns none.
         '''
         import abjad
-        selection = self._client
+        selection = self.client
         if isinstance(selection, abjad.Container):
             selection = selection[:]
         assert isinstance(selection, abjad.Selection)
@@ -1974,11 +2108,11 @@ class Mutation(abctools.AbjadObject):
         Returns none.
         '''
         import abjad
-        if hasattr(self._client, '_scale'):
-            self._client._scale(multiplier)
+        if hasattr(self.client, '_scale'):
+            self.client._scale(multiplier)
         else:
-            assert isinstance(self._client, abjad.Selection)
-            for component in self._client:
+            assert isinstance(self.client, abjad.Selection)
+            for component in self.client:
                 component._scale(multiplier)
 
     def splice(
@@ -1993,7 +2127,7 @@ class Mutation(abctools.AbjadObject):
 
         Returns list of components.
         '''
-        return self._client._splice(
+        return self.client._splice(
             components,
             direction=direction,
             grow_spanners=grow_spanners,
@@ -2574,7 +2708,7 @@ class Mutation(abctools.AbjadObject):
         '''
         import abjad
         # check input
-        components = self._client
+        components = self.client
         single_component_input = False
         if isinstance(components, abjad.Component):
             single_component_input = True
@@ -2769,10 +2903,10 @@ class Mutation(abctools.AbjadObject):
         Returns none.
         '''
         import abjad
-        if isinstance(self._client, abjad.Selection):
-            donors = self._client
+        if isinstance(self.client, abjad.Selection):
+            donors = self.client
         else:
-            donors = abjad.select(self._client)
+            donors = abjad.select(self.client)
         assert donors.are_contiguous_same_parent()
         assert isinstance(container, abjad.Container)
         assert not container, repr(container)
@@ -2839,7 +2973,7 @@ class Mutation(abctools.AbjadObject):
         '''
         import abjad
         named_interval = abjad.NamedInterval(argument)
-        for x in abjad.iterate(self._client).components(
+        for x in abjad.iterate(self.client).components(
             (abjad.Note, abjad.Chord)):
             if isinstance(x, abjad.Note):
                 old_written_pitch = x.note_head.written_pitch
@@ -3045,6 +3179,6 @@ class Mutation(abctools.AbjadObject):
             parent._components.insert(start, container)
             container._set_parent(parent)
         for component in selection:
-            for wrapper in component._indicator_wrappers:
+            for wrapper in component._wrappers:
                 wrapper._effective_context = None
                 wrapper._update_effective_context()

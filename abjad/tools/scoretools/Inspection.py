@@ -75,6 +75,116 @@ class Inspection(abctools.AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    def annotations(self):
+        r'''Gets annotation wrappers.
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff("c'4 e' e' f'")
+            >>> abjad.annotate(staff[0], 'default_instrument', abjad.Cello())
+            >>> abjad.annotate(staff[0], 'default_clef', abjad.Clef('tenor'))
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff {
+                    c'4
+                    e'4
+                    e'4
+                    f'4
+                }
+
+            >>> for wrapper in abjad.inspect(staff[0]).annotations():
+            ...     abjad.f(wrapper)
+            ...
+            abjad.IndicatorWrapper(
+                annotation=True,
+                component=abjad.Note("c'4"),
+                indicator=abjad.Cello(
+                    name='cello',
+                    short_name='vc.',
+                    markup=abjad.Markup(
+                        contents=['Cello'],
+                        ),
+                    short_markup=abjad.Markup(
+                        contents=['Vc.'],
+                        ),
+                    allowable_clefs=('bass', 'tenor', 'treble'),
+                    context='Staff',
+                    default_tuning=abjad.Tuning(
+                        pitches=abjad.PitchSegment(
+                            (
+                                abjad.NamedPitch('c,'),
+                                abjad.NamedPitch('g,'),
+                                abjad.NamedPitch('d'),
+                                abjad.NamedPitch('a'),
+                                ),
+                            item_class=abjad.NamedPitch,
+                            ),
+                        ),
+                    middle_c_sounding_pitch=abjad.NamedPitch("c'"),
+                    pitch_range=abjad.PitchRange('[C2, G5]'),
+                    ),
+                name='default_instrument',
+                )
+            abjad.IndicatorWrapper(
+                annotation=True,
+                component=abjad.Note("c'4"),
+                indicator=abjad.Clef('tenor'),
+                name='default_clef',
+                )
+
+        Returns list of annotations or list of wrappers.
+        '''
+        result = []
+        for wrapper in getattr(self.client, '_wrappers', []):
+            if wrapper.annotation:
+                result.append(wrapper)
+        return result
+
+    def effective_wrapper(self, prototype=None, n=0):
+        r'''Gets effective wrapper.
+
+        ..  container:: example
+
+            Gets effective clef wrapper:
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.attach(abjad.Clef('alto'), staff[0])
+            >>> abjad.attach(abjad.AcciaccaturaContainer("fs'16"), staff[-1])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff {
+                    \clef "alto"
+                    c'4
+                    d'4
+                    e'4
+                    \acciaccatura {
+                        fs'16
+                    }
+                    f'4
+                }
+
+            >>> for component in abjad.iterate(staff).components():
+            ...     inspection = abjad.inspect(component)
+            ...     wrapper = inspection.effective_wrapper(abjad.Clef)
+            ...     print(component, wrapper)
+            ...
+            Staff("c'4 d'4 e'4 f'4") IndicatorWrapper(component=Note("c'4"), context='Staff', indicator=Clef('alto'))
+            c'4 IndicatorWrapper(component=Note("c'4"), context='Staff', indicator=Clef('alto'))
+            d'4 IndicatorWrapper(component=Note("c'4"), context='Staff', indicator=Clef('alto'))
+            e'4 IndicatorWrapper(component=Note("c'4"), context='Staff', indicator=Clef('alto'))
+            fs'16 IndicatorWrapper(component=Note("c'4"), context='Staff', indicator=Clef('alto'))
+            f'4 IndicatorWrapper(component=Note("c'4"), context='Staff', indicator=Clef('alto'))
+
+        Returns wrapper or none.
+        '''
+        return self.get_effective(prototype=prototype, n=n, unwrap=False)
+
     def get_after_grace_container(self):
         r'''Gets after grace containers attached to leaf.
 
@@ -109,7 +219,7 @@ class Inspection(abctools.AbjadObject):
         '''
         return getattr(self.client, '_after_grace_container', None)
 
-    def get_annotation(self, name, default=None):
+    def get_annotation(self, name, default=None, unwrap=True):
         r'''Gets annotation.
 
         ..  container:: example
@@ -165,10 +275,12 @@ class Inspection(abctools.AbjadObject):
 
         Returns annotation (or default).
         '''
-        if hasattr(self.client, '_get_annotation'):
-            annotation = self.client._get_annotation(name)
-            if annotation is not None:
-                return annotation
+        for wrapper in self.annotations():
+            if wrapper.name == name:
+                if unwrap is True:
+                    return wrapper.indicator
+                else:
+                    return wrapper
         return default
 
     def get_badly_formed_components(self):
@@ -898,6 +1010,7 @@ class Inspection(abctools.AbjadObject):
                     \override TextScript.staff-padding = #1.25
                     \override TextSpanner.staff-padding = #2
                 } {
+                    \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -910,14 +1023,23 @@ class Inspection(abctools.AbjadObject):
                             }
                         }
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1.5
+                    \once \override TextSpanner.bound-details.right.padding = 0.5
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.right.text = \markup {
+                        \concat
+                            {
+                                \hspace
+                                    #0.0
+                                ord.
+                            }
+                        }
                     \once \override TextSpanner.dash-fraction = 1
                     c'4 \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan ^ \markup { ord. }
+                    f'4 \stopTextSpan
                 }
 
             >>> for leaf in staff:
@@ -930,9 +1052,9 @@ class Inspection(abctools.AbjadObject):
 
         Returns indicator or default.
         '''
-        wrappers = self.get_indicators(prototype=prototype, unwrap=False)
+        wrappers = self.wrappers(prototype=prototype)
         wrappers = wrappers or []
-        wrappers = [_ for _ in wrappers if _.is_piecewise]
+        wrappers = [_ for _ in wrappers if _.spanner is not None]
         if not wrappers:
             return default
         if len(wrappers) == 1:
@@ -960,7 +1082,7 @@ class Inspection(abctools.AbjadObject):
         ..  container:: example
 
             >>> staff = abjad.Staff("d''8 e''8 f''8 g''8")
-            >>> piccolo = abjad.instrumenttools.Piccolo()
+            >>> piccolo = abjad.Piccolo()
             >>> abjad.attach(piccolo, staff[0])
             >>> abjad.Instrument.transpose_from_sounding_pitch(staff)
             >>> abjad.show(staff) # doctest: +SKIP
@@ -989,7 +1111,7 @@ class Inspection(abctools.AbjadObject):
         ..  container:: example
 
             >>> staff = abjad.Staff("<c''' e'''>4 <d''' fs'''>4")
-            >>> glockenspiel = abjad.instrumenttools.Glockenspiel()
+            >>> glockenspiel = abjad.Glockenspiel()
             >>> abjad.attach(glockenspiel, staff[0])
             >>> abjad.Instrument.transpose_from_sounding_pitch(staff)
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1051,10 +1173,10 @@ class Inspection(abctools.AbjadObject):
                 }
 
             >>> abjad.inspect(staff).get_spanners()
-            set()
+            []
 
             >>> abjad.inspect(staff[0]).get_spanners()
-            {Beam("c'8, d'8")}
+            [Beam("c'8, d'8")]
 
             >>> beams = abjad.inspect(staff[:]).get_spanners()
             >>> beams = list(beams)
@@ -1062,18 +1184,23 @@ class Inspection(abctools.AbjadObject):
             >>> beams
             [Beam("c'8, d'8"), Beam("e'8, f'8")]
 
-        Returns set.
+        Returns list.
         '''
         import abjad
         if hasattr(self.client, 'get_spanners'):
-            return self.client.get_spanners(prototype=prototype)
+            return list(self.client.get_spanners(prototype=prototype))
         if hasattr(self.client, '_get_spanners'):
-            return self.client._get_spanners(prototype=prototype)
+            return list(self.client._get_spanners(prototype=prototype))
         assert isinstance(self.client, collections.Iterable), repr(self.client)
-        result = set()
+        result, known_ids = [], set()
         for item in self.client:
-            spanners_ = abjad.inspect(item).get_spanners(prototype=prototype)
-            result.update(spanners_)
+            for spanner in abjad.inspect(item).get_spanners(
+                prototype=prototype,
+                ):
+                id_ = id(spanner)
+                if id_ not in known_ids:
+                    known_ids.add(id_)
+                    result.append(spanner)
         return result
 
     def get_timespan(self, in_seconds=False):
@@ -1754,3 +1881,70 @@ class Inspection(abctools.AbjadObject):
             string = string.format(violator_count, total, check_name)
             strings.append(string)
         return '\n'.join(strings)
+
+    def wrapper(self, prototype=None):
+        r'''Gets wrapper.
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.attach(abjad.Articulation('^'), staff[0])
+            >>> abjad.attach(abjad.Articulation('^'), staff[1])
+            >>> abjad.attach(abjad.Articulation('^'), staff[2])
+            >>> abjad.attach(abjad.Articulation('^'), staff[3])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff {
+                    c'4 -\marcato
+                    d'4 -\marcato
+                    e'4 -\marcato
+                    f'4 -\marcato
+                }
+
+            >>> abjad.inspect(staff).wrapper(abjad.Articulation) is None
+            True
+
+            >>> abjad.inspect(staff[0]).wrapper(abjad.Articulation)
+            IndicatorWrapper(component=Note("c'4"), indicator=Articulation('^'))
+
+        Raises exception when more than one indicator of `prototype` attach to
+        client.
+
+        Returns wrapper or none.
+        '''
+        return self.get_indicator(prototype=prototype, unwrap=False)
+
+    def wrappers(self, prototype=None):
+        r'''Gets wrappers.
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.attach(abjad.Articulation('^'), staff[0])
+            >>> abjad.attach(abjad.Articulation('^'), staff[1])
+            >>> abjad.attach(abjad.Articulation('^'), staff[2])
+            >>> abjad.attach(abjad.Articulation('^'), staff[3])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff {
+                    c'4 -\marcato
+                    d'4 -\marcato
+                    e'4 -\marcato
+                    f'4 -\marcato
+                }
+
+            >>> abjad.inspect(staff).wrappers(abjad.Articulation)
+            ()
+
+            >>> abjad.inspect(staff[0]).wrappers(abjad.Articulation)
+            (IndicatorWrapper(component=Note("c'4"), indicator=Articulation('^')),)
+
+        Returns tuple of wrappers or none.
+        '''
+        return self.get_indicators(prototype=prototype, unwrap=False)

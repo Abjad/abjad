@@ -108,18 +108,20 @@ class TrillSpanner(Spanner):
                 once=False,
                 )
             bundle.grob_overrides.extend(contributions)
+            if self.pitch is not None:
+                pitch_string = str(self.pitch)
+            elif self.interval is not None:
+                pitch = leaf.written_pitch + self.interval
+                pitch_string = str(pitch)
+            else:
+                pitch_string = None
             string = r'\startTrillSpan'
+            if pitch_string:
+                string += ' ' + pitch_string
             bundle.right.spanner_starts.append(string)
             if self.pitch is not None or self.interval is not None:
                 string = r'\pitchedTrill'
                 bundle.opening.spanners.append(string)
-                if self.pitch is not None:
-                    string = str(self.pitch)
-                    bundle.right.trill_pitches.append(string)
-                elif self.interval is not None:
-                    pitch = leaf.written_pitch + self.interval
-                    string = str(pitch)
-                    bundle.right.trill_pitches.append(string)
                 if self.is_harmonic:
                     string = '(lambda (grob) (grob-interpret-markup grob'
                     string += r' #{ \markup \musicglyph #"noteheads.s0harmonic" #}))'

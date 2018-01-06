@@ -35,8 +35,6 @@ class Measure(Container):
 
     _bracket_comment = ' % measure'
 
-    _is_counttime_component = True
-
     ### INITIALIZER ###
 
     def __init__(
@@ -58,6 +56,28 @@ class Measure(Container):
         abjad.attach(time_signature, self)
 
     ### SPECIAL METHODS ###
+
+    def __copy__(self, *arguments):
+        r'''Shallow copies measure.
+
+        Copies indicators.
+
+        Does not copy spanners.
+
+        Does not copy children.
+
+        Returns new component.
+        '''
+        import abjad
+        time_signature = self.time_signature
+        if time_signature is not None:
+            abjad.detach(time_signature, self)
+        new_measure = Container.__copy__(self)
+        if time_signature is not None:
+            abjad.attach(time_signature, self)
+            abjad.detach(abjad.TimeSignature, new_measure)
+            abjad.attach(copy.copy(time_signature), new_measure)
+        return new_measure
 
     def __delitem__(self, i):
         r'''Deletes measure item `i`.
@@ -88,12 +108,11 @@ class Measure(Container):
         self._conditionally_adjust_time_signature(old_denominator)
 
     def __getnewargs__(self):
-        r'''Gets new arguments of measure.
+        r'''Gets arguments for shallow copy.
 
-        Returns pair.
+        Returns triple.
         '''
-        time_signature = self.time_signature
-        return (time_signature.pair,)
+        return self.time_signature, [], self.implicit_scaling
 
     def __repr__(self):
         r'''Gets interpreter representation of measure.
@@ -224,8 +243,8 @@ class Measure(Container):
     def _check_duration(self):
         effective_time_signature = self.time_signature
         if (effective_time_signature.has_non_power_of_two_denominator and
-            effective_time_signature.suppress):
-            message = 'can not suppress time signature'
+            effective_time_signature.hide):
+            message = 'can not hide time signature'
             message += ' with non-power-of-two denominator.'
             raise Exception(message)
         if effective_time_signature.duration < self._get_preprolated_duration():
@@ -244,26 +263,6 @@ class Measure(Container):
             better_time_signature = abjad.TimeSignature(better_time_signature)
             abjad.detach(abjad.TimeSignature, self)
             abjad.attach(better_time_signature, self)
-
-    # essentially the same as container version of method;
-    # the definition given here adds one line to remove
-    # time signature immediately after instantiation
-    # because the indicator-copying code will then provide time signature.
-    def _copy_with_indicators_but_without_children_or_spanners(self):
-        import abjad
-        new = type(self)(*self.__getnewargs__())
-        # only the following line differs from Container
-        abjad.detach(abjad.TimeSignature, new)
-        if getattr(self, '_lilypond_grob_name_manager', None) is not None:
-            new._lilypond_grob_name_manager = copy.copy(abjad.override(self))
-        if getattr(self, '_lilypond_setting_name_manager', None) is not None:
-            new._lilypond_setting_name_manager = copy.copy(abjad.setting(self))
-        for indicator in self._get_indicators():
-            new_indicator = copy.copy(indicator)
-            abjad.attach(new_indicator, new)
-        new.is_simultaneous = self.is_simultaneous
-        new.implicit_scaling = self.implicit_scaling
-        return new
 
     @staticmethod
     def _duration_to_time_signature(

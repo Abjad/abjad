@@ -35,7 +35,7 @@ def annotate(component, name, indicator):
     wrapper = abjad.IndicatorWrapper(
         component=component,
         indicator=indicator,
-        is_annotation=True,
+        annotation=True,
         name=name,
         )
     wrapper._bind_to_component(component)

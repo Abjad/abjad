@@ -1,4 +1,4 @@
-from abjad.tools.instrumenttools.Instrument import Instrument
+from .Instrument import Instrument
 
 
 class ClarinetInBFlat(Instrument):
@@ -37,23 +37,25 @@ class ClarinetInBFlat(Instrument):
         self,
         name='clarinet in B-flat',
         short_name='cl. in B-flat',
-        name_markup=None,
-        short_name_markup=None,
+        markup=None,
+        short_markup=None,
         allowable_clefs=None,
         context=None,
         middle_c_sounding_pitch='Bb3',
         pitch_range='[D3, Bb6]',
+        hide=None,
         ):
         Instrument.__init__(
             self,
             name=name,
             short_name=short_name,
-            name_markup=name_markup,
-            short_name_markup=short_name_markup,
+            markup=markup,
+            short_markup=short_markup,
             allowable_clefs=allowable_clefs,
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
+            hide=hide,
             )
         self._is_primary_instrument = True
 
@@ -72,6 +74,22 @@ class ClarinetInBFlat(Instrument):
         Returns clef list.
         '''
         return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def markup(self):
+        r'''Gets clarinet in B-flat's instrument name markup.
+
+        ..  container:: example
+
+            >>> clarinet = abjad.ClarinetInBFlat()
+            >>> clarinet.markup
+            Markup(contents=['Clarinet in B-flat'])
+
+            >>> abjad.show(clarinet.markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
@@ -104,22 +122,6 @@ class ClarinetInBFlat(Instrument):
         return Instrument.name.fget(self)
 
     @property
-    def name_markup(self):
-        r'''Gets clarinet in B-flat's instrument name markup.
-
-        ..  container:: example
-
-            >>> clarinet = abjad.ClarinetInBFlat()
-            >>> clarinet.name_markup
-            Markup(contents=['Clarinet in B-flat'])
-
-            >>> abjad.show(clarinet.name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.name_markup.fget(self)
-
-    @property
     def pitch_range(self):
         r'''Gets clarinet in B-flat's range.
 
@@ -136,6 +138,22 @@ class ClarinetInBFlat(Instrument):
         return Instrument.pitch_range.fget(self)
 
     @property
+    def short_markup(self):
+        r'''Gets clarinet in B-flat's short instrument name markup.
+
+        ..  container:: example
+
+            >>> clarinet = abjad.ClarinetInBFlat()
+            >>> clarinet.short_markup
+            Markup(contents=['Cl. in B-flat'])
+
+            >>> abjad.show(clarinet.short_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_markup.fget(self)
+
+    @property
     def short_name(self):
         r'''Gets clarinet in B-flat's short instrument name.
 
@@ -148,19 +166,3 @@ class ClarinetInBFlat(Instrument):
         Returns string.
         '''
         return Instrument.short_name.fget(self)
-
-    @property
-    def short_name_markup(self):
-        r'''Gets clarinet in B-flat's short instrument name markup.
-
-        ..  container:: example
-
-            >>> clarinet = abjad.ClarinetInBFlat()
-            >>> clarinet.short_name_markup
-            Markup(contents=['Cl. in B-flat'])
-
-            >>> abjad.show(clarinet.short_name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.short_name_markup.fget(self)

@@ -344,7 +344,7 @@ def test_scoretools_Leaf__split_by_durations_12():
 
     assert len(staff) == 2
     for leaf in staff[:]:
-        assert abjad.inspect(leaf).get_spanners() == set([tie])
+        assert abjad.inspect(leaf).get_spanners() == [tie]
         prototype = (abjad.Tie,)
         assert abjad.inspect(leaf).get_spanner(prototype) is tie
 
@@ -366,7 +366,7 @@ def test_scoretools_Leaf__split_by_durations_13():
 
     assert len(staff) == 5
     for l in staff:
-        assert abjad.inspect(l).get_spanners() == set([beam])
+        assert abjad.inspect(l).get_spanners() == [beam]
         assert l._get_spanner(abjad.Beam) is beam
 
     assert abjad.inspect(staff).is_well_formed()
@@ -387,7 +387,7 @@ def test_scoretools_Leaf__split_by_durations_14():
     assert len(halves[0]) == 2
     assert len(halves[1]) == 1
     for l in staff:
-        assert abjad.inspect(l).get_spanners() == set([tie])
+        assert abjad.inspect(l).get_spanners() == [tie]
         assert abjad.inspect(l).get_spanner(abjad.Tie) is tie
 
     assert abjad.inspect(staff).is_well_formed()

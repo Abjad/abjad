@@ -259,7 +259,7 @@ class StorageFormatManager(AbjadValueObject):
             if value is None:
                 value = getattr(self._client, '_' + name, None)
             if value is None:
-                value = getattr(self._client, '_' + name.rstrip('_'))
+                value = getattr(self._client, '_' + name.rstrip('_'), None)
         except AttributeError:
             try:
                 value = self._client[name]
@@ -350,7 +350,7 @@ class StorageFormatManager(AbjadValueObject):
 
         ..  container:: example
 
-            >>> flute = abjad.instrumenttools.Flute()
+            >>> flute = abjad.Flute()
 
             >>> types = abjad.StorageFormatManager._get_types(flute)
             >>> for type_ in types:
@@ -538,10 +538,10 @@ class StorageFormatManager(AbjadValueObject):
             abjad.Flute(
                 name='flute',
                 short_name='fl.',
-                name_markup=abjad.Markup(
+                markup=abjad.Markup(
                     contents=['Flute'],
                     ),
-                short_name_markup=abjad.Markup(
+                short_markup=abjad.Markup(
                     contents=['Fl.'],
                     ),
                 allowable_clefs=('treble',),

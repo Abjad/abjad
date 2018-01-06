@@ -39,10 +39,10 @@ class KeyCluster(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_hide',
         '_include_black_keys',
         '_include_white_keys',
         '_markup_direction',
-        '_suppress_markup',
         )
 
     ### INITIALIZER ###
@@ -51,8 +51,8 @@ class KeyCluster(AbjadValueObject):
         self,
         include_black_keys=True,
         include_white_keys=True,
+        hide=False,
         markup_direction=Up,
-        suppress_markup=False,
         ):
         import abjad
         assert include_black_keys or include_white_keys
@@ -60,7 +60,7 @@ class KeyCluster(AbjadValueObject):
         self._include_white_keys = bool(include_white_keys)
         assert markup_direction in (abjad.Up, abjad.Center, abjad.Down)
         self._markup_direction = markup_direction
-        self._suppress_markup = bool(suppress_markup)
+        self._hide = bool(hide)
 
     ### PRIVATE METHODS ###
 
@@ -76,7 +76,7 @@ class KeyCluster(AbjadValueObject):
             "\t\\filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25\n"
             '}'
             )
-        if not self.suppress_markup:
+        if not self.hide:
             if self.include_black_keys and self.include_white_keys:
                 string = r'\center-align \concat { \natural \flat }'
             elif self.include_black_keys:
@@ -92,6 +92,68 @@ class KeyCluster(AbjadValueObject):
         return bundle
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def hide(self):
+        r'''Is true if key cluster hidees key markup.
+
+        ..  container:: example
+
+            Does not hide markup:
+
+            >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+            >>> key_cluster = abjad.KeyCluster(hide=False)
+            >>> abjad.attach(key_cluster, chord)
+            >>> abjad.show(chord) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(chord)
+                \once \override Accidental.stencil = ##f
+                \once \override AccidentalCautionary.stencil = ##f
+                \once \override Arpeggio.X-offset = #-2
+                \once \override NoteHead.stencil = #ly:text-interface::print
+                \once \override NoteHead.text = \markup {
+                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                }
+                <c' e' g' b' d'' f''>8
+                    ^ \markup {
+                        \center-align
+                            \concat
+                                {
+                                    \natural
+                                    \flat
+                                }
+                        }
+
+            Default behavior.
+
+        ..  container:: example
+
+            Does not hide markup:
+
+            >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+            >>> key_cluster = abjad.KeyCluster(hide=True)
+            >>> abjad.attach(key_cluster, chord)
+            >>> abjad.show(chord) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(chord)
+                \once \override Accidental.stencil = ##f
+                \once \override AccidentalCautionary.stencil = ##f
+                \once \override Arpeggio.X-offset = #-2
+                \once \override NoteHead.stencil = #ly:text-interface::print
+                \once \override NoteHead.text = \markup {
+                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                }
+                <c' e' g' b' d'' f''>8
+
+        ..  todo:: Remove?
+
+        Set to true or false.
+        '''
+        return self._hide
 
     @property
     def include_black_keys(self):
@@ -304,65 +366,3 @@ class KeyCluster(AbjadValueObject):
         Set to up, down or center.
         '''
         return self._markup_direction
-
-    @property
-    def suppress_markup(self):
-        r'''Is true if key cluster suppresses key markup.
-
-        ..  container:: example
-
-            Does not suppress markup:
-
-            >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
-            >>> key_cluster = abjad.KeyCluster(suppress_markup=False)
-            >>> abjad.attach(key_cluster, chord)
-            >>> abjad.show(chord) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(chord)
-                \once \override Accidental.stencil = ##f
-                \once \override AccidentalCautionary.stencil = ##f
-                \once \override Arpeggio.X-offset = #-2
-                \once \override NoteHead.stencil = #ly:text-interface::print
-                \once \override NoteHead.text = \markup {
-                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
-                }
-                <c' e' g' b' d'' f''>8
-                    ^ \markup {
-                        \center-align
-                            \concat
-                                {
-                                    \natural
-                                    \flat
-                                }
-                        }
-
-            Default behavior.
-
-        ..  container:: example
-
-            Does not suppress markup:
-
-            >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
-            >>> key_cluster = abjad.KeyCluster(suppress_markup=True)
-            >>> abjad.attach(key_cluster, chord)
-            >>> abjad.show(chord) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(chord)
-                \once \override Accidental.stencil = ##f
-                \once \override AccidentalCautionary.stencil = ##f
-                \once \override Arpeggio.X-offset = #-2
-                \once \override NoteHead.stencil = #ly:text-interface::print
-                \once \override NoteHead.text = \markup {
-                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
-                }
-                <c' e' g' b' d'' f''>8
-
-        ..  todo:: Remove?
-
-        Set to true or false.
-        '''
-        return self._suppress_markup

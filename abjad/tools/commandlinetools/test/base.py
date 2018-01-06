@@ -1,12 +1,11 @@
+import abjad
 import pathlib
 import shutil
 import sys
-from abjad.tools import commandlinetools
-from abjad.tools import datastructuretools
-from abjad.tools import systemtools
+from abjad import commandlinetools
 
 
-class ScorePackageScriptTestCase(systemtools.TestCase):
+class ScorePackageScriptTestCase(abjad.TestCase):
     r'''A base test class for score-package scripts.
     '''
 
@@ -17,7 +16,7 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
     materials_path = score_path.joinpath('test_score', 'materials')
     segments_path = score_path.joinpath('test_score', 'segments')
     tools_path = score_path.joinpath('test_score', 'tools')
-    fancy_parts_code = datastructuretools.String.normalize(r"""
+    fancy_parts_code = abjad.String.normalize(r"""
     \book {
         \bookOutputSuffix "cello"
         \score {
@@ -47,10 +46,10 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
         }
     }
     """)
-    fancy_segment_maker_code = datastructuretools.String.normalize(r"""
+    fancy_segment_maker_code = abjad.String.normalize(r"""
         import abjad
 
-        class SegmentMaker(abjad.abctools.AbjadObject):
+        class SegmentMaker(abjad.AbjadObject):
 
             ### INITIALIZER ###
 
@@ -60,13 +59,14 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
                 self.measure_count = measure_count
                 self.score_template = abjad.StringQuartetScoreTemplate()
 
-            ### SPECIAL METHODS ###
+            ### PUBLIC METHODS ###
 
-            def __call__(
+            def run(
                 self,
                 metadata=None,
                 previous_metadata=None,
                 ):
+                self.metadata = metadata
                 score = self.score_template()
                 for i in range(self.measure_count):
                     for voice in abjad.iterate(score).components(abjad.Voice):
@@ -94,7 +94,7 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
                         to_each_voice=True,
                         )
                 metadata['measure_count'] = self.measure_count
-                return lilypond_file, metadata
+                return lilypond_file
     """)
 
     ### TEST LIFECYCLE ###
@@ -127,7 +127,7 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
     def collect_segments(self):
         script = commandlinetools.ManageSegmentScript()
         command = ['--collect']
-        with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.TemporaryDirectoryChange(str(self.score_path)):
             script(command)
 
     def create_build_target(
@@ -139,7 +139,7 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
         command = ['--new']
         if force:
             command.insert(0, '-f')
-        with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.TemporaryDirectoryChange(str(self.score_path)):
             if expect_error:
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
@@ -161,7 +161,7 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
         command = ['--new', material_name]
         if force:
             command.insert(0, '-f')
-        with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.TemporaryDirectoryChange(str(self.score_path)):
             if expect_error:
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
@@ -191,7 +191,7 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
             ]
         if force:
             command.insert(0, '-f')
-        with systemtools.TemporaryDirectoryChange(str(self.test_path)):
+        with abjad.TemporaryDirectoryChange(str(self.test_path)):
             if expect_error:
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
@@ -212,7 +212,7 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
         command = ['--new', segment_name]
         if force:
             command.insert(0, '-f')
-        with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.TemporaryDirectoryChange(str(self.score_path)):
             if expect_error:
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
@@ -231,7 +231,7 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
     def illustrate_material(self, material_name):
         script = commandlinetools.ManageMaterialScript()
         command = ['--illustrate', material_name]
-        with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.TemporaryDirectoryChange(str(self.score_path)):
             try:
                 script(command)
             except SystemExit as e:
@@ -240,7 +240,7 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
     def illustrate_segment(self, segment_name):
         script = commandlinetools.ManageSegmentScript()
         command = ['--illustrate', segment_name]
-        with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.TemporaryDirectoryChange(str(self.score_path)):
             try:
                 script(command)
             except SystemExit as e:
@@ -249,7 +249,7 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
     def illustrate_segments(self):
         script = commandlinetools.ManageSegmentScript()
         command = ['--illustrate', '*']
-        with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.TemporaryDirectoryChange(str(self.score_path)):
             script(command)
 
     def install_fancy_segment_maker(self):

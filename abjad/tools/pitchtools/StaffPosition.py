@@ -175,30 +175,8 @@ class StaffPosition(AbjadValueObject):
 
     ### PUBLIC METHODS ###
 
-    def to_pitch(self, clef=None):
+    def to_pitch(self, clef='treble'):
         r'''Makes named pitch from staff position and `clef`.
-
-        ..  container:: example
-
-            From absolute staff position:
-
-            >>> for n in range(-6, 6):
-            ...     staff_position = abjad.StaffPosition(n)
-            ...     pitch = staff_position.to_pitch()
-            ...     message = '{!s}\t{}'.format(staff_position, pitch)
-            ...     print(message)
-            StaffPosition(-6)	d
-            StaffPosition(-5)	e
-            StaffPosition(-4)	f
-            StaffPosition(-3)	g
-            StaffPosition(-2)	a
-            StaffPosition(-1)	b
-            StaffPosition(0)	c'
-            StaffPosition(1)	d'
-            StaffPosition(2)	e'
-            StaffPosition(3)	f'
-            StaffPosition(4)	g'
-            StaffPosition(5)	a'
 
         ..  container:: example
 
@@ -210,6 +188,7 @@ class StaffPosition(AbjadValueObject):
             ...     pitch = staff_position.to_pitch(clef=clef)
             ...     message = '{!s}\t{}'.format(staff_position, pitch)
             ...     print(message)
+            ...
             StaffPosition(-6)	c'
             StaffPosition(-5)	d'
             StaffPosition(-4)	e'
@@ -233,6 +212,7 @@ class StaffPosition(AbjadValueObject):
             ...     pitch = staff_position.to_pitch(clef=clef)
             ...     message = '{!s}\t{}'.format(staff_position, pitch)
             ...     print(message)
+            ...
             StaffPosition(-6)	e,
             StaffPosition(-5)	f,
             StaffPosition(-4)	g,
@@ -256,6 +236,7 @@ class StaffPosition(AbjadValueObject):
             ...     pitch = staff_position.to_pitch(clef=clef)
             ...     message = '{!s}\t{}'.format(staff_position, pitch)
             ...     print(message)
+            ...
             StaffPosition(-6)	d
             StaffPosition(-5)	e
             StaffPosition(-4)	f
@@ -279,6 +260,7 @@ class StaffPosition(AbjadValueObject):
             ...     pitch = staff_position.to_pitch(clef=clef)
             ...     message = '{!s}\t{}'.format(staff_position, pitch)
             ...     print(message)
+            ...
             StaffPosition(-6)	d
             StaffPosition(-5)	e
             StaffPosition(-4)	f
@@ -295,12 +277,10 @@ class StaffPosition(AbjadValueObject):
         Returns new named pitch.
         '''
         import abjad
-        if clef is not None:
-            offset_staff_position_number = self.number
-            offset_staff_position_number -= clef.middle_c_position.number
-            offset_staff_position = type(self)(offset_staff_position_number)
-        else:
-            offset_staff_position = self
+        clef = abjad.Clef(clef)
+        offset_staff_position_number = self.number
+        offset_staff_position_number -= clef.middle_c_position.number
+        offset_staff_position = type(self)(offset_staff_position_number)
         octave_number = offset_staff_position.number // 7 + 4
         diatonic_pitch_class_number = offset_staff_position.number % 7
         pitch_class_number = abjad.PitchClass._diatonic_pitch_class_number_to_pitch_class_number[

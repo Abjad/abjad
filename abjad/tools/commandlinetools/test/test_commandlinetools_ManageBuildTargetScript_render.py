@@ -162,7 +162,9 @@ class Test(ScorePackageScriptTestCase):
             'test_score/test_score/builds/letter-portrait/score.tex',
             ]
         if platform.system().lower() == 'windows':
-            expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
+            expected_files = [
+                _.replace('/', os.path.sep) for _ in expected_files
+                ]
         self.create_score()
         self.install_fancy_segment_maker()
         self.create_segment('test_segment')

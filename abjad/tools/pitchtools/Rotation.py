@@ -74,7 +74,7 @@ class Rotation(AbjadValueObject):
                     g'8
                     af'8
                     ef'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -98,7 +98,7 @@ class Rotation(AbjadValueObject):
                     g'8
                     af'8
                     ef'8
-                    \bar "|."
+                    \bar "|." %! SCORE1
                     \override Score.BarLine.transparent = ##f
                 }
 

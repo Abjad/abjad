@@ -12,7 +12,7 @@ directories = path.materials.list_paths()
 
 @pytest.mark.parametrize('directory', directories)
 def test_materials_01(directory):
-    exit_code = abjad_ide.check_definition_file(directory)
+    exit_code = abjad_ide.check_definition(directory)
     if exit_code != 0:
         sys.exit(exit_code)
 

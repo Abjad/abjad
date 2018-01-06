@@ -1,4 +1,4 @@
-from abjad.tools.instrumenttools.Instrument import Instrument
+from .Instrument import Instrument
 
 
 class Flute(Instrument):
@@ -29,27 +29,52 @@ class Flute(Instrument):
 
         >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
         >>> flute = abjad.Flute(
-        ...     name_markup=abjad.Markup('Flauto').italic(),
-        ...     short_name_markup=abjad.Markup('Fl.').italic(),
+        ...     markup=abjad.Markup('Flauto').italic(),
+        ...     short_markup=abjad.Markup('Fl.').italic(),
         ...     )
-        >>> abjad.attach(flute, staff[0], tag='RED')
+        >>> abjad.attach(flute, staff[0], site='M1', tag='RED')
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
         \new Staff {
-            \set Staff.instrumentName = \markup { %! RED:1
-                \italic %! RED:1
-                    Flauto %! RED:1
-                } %! RED:1
-            \set Staff.shortInstrumentName = \markup { %! RED:1
-                \italic %! RED:1
-                    Fl. %! RED:1
-                } %! RED:1
+            \set Staff.instrumentName = \markup {      %! RED:M1
+                \italic                                %! RED:M1
+                    Flauto                             %! RED:M1
+                }                                      %! RED:M1
+            \set Staff.shortInstrumentName = \markup { %! RED:M1
+                \italic                                %! RED:M1
+                    Fl.                                %! RED:M1
+                }                                      %! RED:M1
             c'4
             d'4
             e'4
             fs'4
         }
+
+    ..  container:: example
+
+        Instrument markup can be hideed:
+
+        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+        >>> flute = abjad.Flute(hide=True)
+        >>> abjad.attach(flute, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        >>> abjad.f(staff)
+        \new Staff {
+            c'4
+            d'4
+            e'4
+            fs'4
+        }
+
+        >>> for leaf in abjad.select(staff).leaves():
+        ...     leaf, abjad.inspect(leaf).get_effective(abjad.Instrument)
+        ...
+        (Note("c'4"), Flute())
+        (Note("d'4"), Flute())
+        (Note("e'4"), Flute())
+        (Note("fs'4"), Flute())
 
     '''
 
@@ -63,23 +88,25 @@ class Flute(Instrument):
         self,
         name='flute',
         short_name='fl.',
-        name_markup=None,
-        short_name_markup=None,
+        markup=None,
+        short_markup=None,
         allowable_clefs=None,
         context=None,
         middle_c_sounding_pitch=None,
         pitch_range='[C4, D7]',
+        hide=None,
         ):
         Instrument.__init__(
             self,
             name=name,
             short_name=short_name,
-            name_markup=name_markup,
-            short_name_markup=short_name_markup,
+            markup=markup,
+            short_markup=short_markup,
             allowable_clefs=allowable_clefs,
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
+            hide=hide,
             )
         self._is_primary_instrument = True
 
@@ -98,6 +125,22 @@ class Flute(Instrument):
         Returns clef list.
         '''
         return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def markup(self):
+        r'''Gets flute's instrument name markup.
+
+        ..  container:: example
+
+            >>> flute = abjad.Flute()
+            >>> flute.markup
+            Markup(contents=['Flute'])
+
+            >>> abjad.show(flute.markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
@@ -130,22 +173,6 @@ class Flute(Instrument):
         return Instrument.name.fget(self)
 
     @property
-    def name_markup(self):
-        r'''Gets flute's instrument name markup.
-
-        ..  container:: example
-
-            >>> flute = abjad.Flute()
-            >>> flute.name_markup
-            Markup(contents=['Flute'])
-
-            >>> abjad.show(flute.name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.name_markup.fget(self)
-
-    @property
     def pitch_range(self):
         r'''Gets flute's range.
 
@@ -162,6 +189,22 @@ class Flute(Instrument):
         return Instrument.pitch_range.fget(self)
 
     @property
+    def short_markup(self):
+        r'''Gets flute's short instrument name markup.
+
+        ..  container:: example
+
+            >>> flute = abjad.Flute()
+            >>> flute.short_markup
+            Markup(contents=['Fl.'])
+
+            >>> abjad.show(flute.short_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_markup.fget(self)
+
+    @property
     def short_name(self):
         r'''Gets flute's short instrument name.
 
@@ -174,19 +217,3 @@ class Flute(Instrument):
         Returns string.
         '''
         return Instrument.short_name.fget(self)
-
-    @property
-    def short_name_markup(self):
-        r'''Gets flute's short instrument name markup.
-
-        ..  container:: example
-
-            >>> flute = abjad.Flute()
-            >>> flute.short_name_markup
-            Markup(contents=['Fl.'])
-
-            >>> abjad.show(flute.short_name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.short_name_markup.fget(self)

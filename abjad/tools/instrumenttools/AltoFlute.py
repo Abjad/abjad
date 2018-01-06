@@ -1,4 +1,4 @@
-from abjad.tools.instrumenttools.Instrument import Instrument
+from .Instrument import Instrument
 
 
 class AltoFlute(Instrument):
@@ -35,23 +35,25 @@ class AltoFlute(Instrument):
         self,
         name='alto flute',
         short_name='alt. fl.',
-        name_markup=None,
-        short_name_markup=None,
+        markup=None,
+        short_markup=None,
         allowable_clefs=None,
         context=None,
         middle_c_sounding_pitch='G3',
         pitch_range='[G3, G6]',
+        hide=None,
         ):
         Instrument.__init__(
             self,
             name=name,
             short_name=short_name,
-            name_markup=name_markup,
-            short_name_markup=short_name_markup,
+            markup=markup,
+            short_markup=short_markup,
             allowable_clefs=allowable_clefs,
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
+            hide=hide,
             )
 
     ### SPECIAL METHODS ###
@@ -69,10 +71,10 @@ class AltoFlute(Instrument):
             abjad.AltoFlute(
                 name='alto flute',
                 short_name='alt. fl.',
-                name_markup=abjad.Markup(
+                markup=abjad.Markup(
                     contents=['Alto flute'],
                     ),
-                short_name_markup=abjad.Markup(
+                short_markup=abjad.Markup(
                     contents=['Alt. fl.'],
                     ),
                 allowable_clefs=('treble',),
@@ -101,6 +103,22 @@ class AltoFlute(Instrument):
         Returns clef list.
         '''
         return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def markup(self):
+        r'''Gets alto flute's instrument name markup.
+
+        ..  container:: example
+
+            >>> alto_flute = abjad.AltoFlute()
+            >>> alto_flute.markup
+            Markup(contents=['Alto flute'])
+
+            >>> abjad.show(alto_flute.markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
@@ -133,22 +151,6 @@ class AltoFlute(Instrument):
         return Instrument.name.fget(self)
 
     @property
-    def name_markup(self):
-        r'''Gets alto flute's instrument name markup.
-
-        ..  container:: example
-
-            >>> alto_flute = abjad.AltoFlute()
-            >>> alto_flute.name_markup
-            Markup(contents=['Alto flute'])
-
-            >>> abjad.show(alto_flute.name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.name_markup.fget(self)
-
-    @property
     def pitch_range(self):
         r'''Gets alto flute's range.
 
@@ -165,6 +167,22 @@ class AltoFlute(Instrument):
         return Instrument.pitch_range.fget(self)
 
     @property
+    def short_markup(self):
+        r'''Gets alto flute's short instrument name markup.
+
+        ..  container:: example
+
+            >>> alto_flute = abjad.AltoFlute()
+            >>> alto_flute.short_markup
+            Markup(contents=['Alt. fl.'])
+
+            >>> abjad.show(alto_flute.short_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_markup.fget(self)
+
+    @property
     def short_name(self):
         r'''Gets alto flute's short instrument name.
 
@@ -177,19 +195,3 @@ class AltoFlute(Instrument):
         Returns string.
         '''
         return Instrument.short_name.fget(self)
-
-    @property
-    def short_name_markup(self):
-        r'''Gets alto flute's short instrument name markup.
-
-        ..  container:: example
-
-            >>> alto_flute = abjad.AltoFlute()
-            >>> alto_flute.short_name_markup
-            Markup(contents=['Alt. fl.'])
-
-            >>> abjad.show(alto_flute.short_name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.short_name_markup.fget(self)

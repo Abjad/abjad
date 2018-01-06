@@ -7,8 +7,6 @@ class TimeSignature(AbjadValueObject):
 
     ..  container:: example
 
-        First time signature:
-
         >>> staff = abjad.Staff("c'8 d'8 e'8")
         >>> time_signature = abjad.TimeSignature((3, 8))
         >>> abjad.attach(time_signature, staff[0])
@@ -26,33 +24,14 @@ class TimeSignature(AbjadValueObject):
 
     ..  container:: example
 
-        Second time signature:
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-        >>> time_signature = abjad.TimeSignature((4, 4))
-        >>> abjad.attach(time_signature, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(staff)
-            \new Staff {
-                \time 4/4
-                c'4
-                d'4
-                e'4
-                f'4
-            }
-
-    ..  container:: example
-
-        Scoped to the score context:
+        Create score-contexted time signatures like this:
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 c'8 d'8 e'8")
         >>> time_signature = abjad.TimeSignature((3, 8))
         >>> abjad.attach(time_signature, staff[0], context='Score')
 
-        Formats behind comments when no score is present:
+        Score-contexted time signatures format behind comments when no Abjad
+        score container is found:
 
         >>> abjad.f(staff)
         \new Staff {
@@ -65,11 +44,10 @@ class TimeSignature(AbjadValueObject):
             e'8
         }
 
-            LilyPond defaults to common time.
-
         >>> abjad.show(staff) # doctest: +SKIP
 
-        Formats normally when score is present:
+        Score-contexted time signatures format normally when an Abjad score
+        container is found:
 
         >>> score = abjad.Score([staff])
         >>> abjad.f(score)
@@ -100,7 +78,7 @@ class TimeSignature(AbjadValueObject):
         >>> abjad.f(score)
         \new Score <<
             \new Staff {
-                \time 3/8 %! RED:1
+                \time 3/8 %! RED
                 c'8
                 d'8
                 e'8
@@ -115,29 +93,30 @@ class TimeSignature(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_context',
         '_denominator',
         '_has_non_power_of_two_denominator',
+        '_hide',
         '_multiplier',
         '_numerator',
         '_partial',
         '_partial_repr_string',
-        '_suppress',
         )
 
+    _context = 'Staff'
+
     _format_slot = 'opening'
+
+    _persistent = True
 
     ### INITIALIZER ###
 
     def __init__(
         self,
         pair=(4, 4),
-        context='Staff',
         partial=None,
-        suppress=None,
+        hide=None,
         ):
         import abjad
-        self._context = context
         pair = getattr(pair, 'pair', pair)
         assert isinstance(pair, collections.Iterable), repr(pair)
         assert len(pair) == 2, repr(pair)
@@ -153,8 +132,8 @@ class TimeSignature(AbjadValueObject):
             self._partial_repr_string = ', partial=%r' % self._partial
         else:
             self._partial_repr_string = ''
-        assert isinstance(suppress, (bool, type(None))), repr(suppress)
-        self._suppress = suppress
+        assert isinstance(hide, (bool, type(None))), repr(hide)
+        self._hide = hide
         self._multiplier = self.implied_prolation
         self._has_non_power_of_two_denominator = \
             not abjad.mathtools.is_nonnegative_integer_power_of_two(
@@ -235,17 +214,8 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            First time signature:
-
             >>> print(format(abjad.TimeSignature((3, 8))))
             abjad.TimeSignature((3, 8))
-
-        ..  container:: example
-
-            Second time signature:
-
-            >>> print(format(abjad.TimeSignature((4, 4))))
-            abjad.TimeSignature((4, 4))
 
         Returns string.
         '''
@@ -314,16 +284,7 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            Adds integer to first time signature:
-
             >>> abjad.TimeSignature((3, 8)) + abjad.TimeSignature((4, 4))
-            TimeSignature((11, 8))
-
-        ..  container:: example
-
-            Adds integer to second time signature:
-
-            >>> abjad.TimeSignature((4, 4)) + abjad.TimeSignature((3, 8))
             TimeSignature((11, 8))
 
         Returns new time signature.
@@ -335,17 +296,8 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            First time signature:
-
             >>> str(abjad.TimeSignature((3, 8)))
             '3/8'
-
-        ..  container:: example
-
-            Second time signature:
-
-            >>> str(abjad.TimeSignature((4, 4)))
-            '4/4'
 
         Returns string.
         '''
@@ -362,18 +314,18 @@ class TimeSignature(AbjadValueObject):
     def _get_format_specification(self):
         import abjad
         storage_format_is_indented = False
-        if self.partial is not None or self.suppress is not None:
+        if self.partial is not None or self.hide is not None:
             storage_format_is_indented = True
         return abjad.FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_args_values=[self.pair],
-            storage_format_kwargs_names=['partial', 'suppress'],
+            storage_format_kwargs_names=['partial', 'hide'],
             storage_format_is_indented=storage_format_is_indented,
             )
 
     def _get_lilypond_format(self):
-        if self.suppress:
+        if self.hide:
             return []
         elif self.partial is None:
             return r'\time {}/{}'.format(
@@ -396,23 +348,18 @@ class TimeSignature(AbjadValueObject):
 
     @property
     def context(self):
-        r'''Gets time signature context.
+        r'''Gets (historically conventional) context.
 
         ..  container:: example
-
-            First time signature:
 
             >>> abjad.TimeSignature((3, 8)).context
             'Staff'
 
-        ..  container:: example
+        Returns ``'Staff'``.
 
-            Second time signature:
+        ..  todo:: Should return ``'Score'``.
 
-            >>> abjad.TimeSignature((4, 4)).context
-            'Staff'
-
-        Returns context or string.
+        Override with ``abjad.attach(..., context='...')``.
         '''
         return self._context
 
@@ -422,17 +369,8 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            First time signature:
-
             >>> abjad.TimeSignature((3, 8)).denominator
             8
-
-        ..  container:: example
-
-            Second time signature:
-
-            >>> abjad.TimeSignature((4, 4)).denominator
-            4
 
         Set to positive integer.
 
@@ -446,17 +384,8 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            First time signature:
-
             >>> abjad.TimeSignature((3, 8)).duration
             Duration(3, 8)
-
-        ..  container:: example
-
-            Second time signature:
-
-            >>> abjad.TimeSignature((4, 4)).duration
-            Duration(1, 1)
 
         Returns duration.
         '''
@@ -489,6 +418,46 @@ class TimeSignature(AbjadValueObject):
         return self._has_non_power_of_two_denominator
 
     @property
+    def hide(self):
+        r'''Is true when time signature should not appear in output (but should
+        still determine effective time signature).
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> time_signature = abjad.TimeSignature((4, 4))
+            >>> abjad.attach(time_signature, staff[0]) 
+            >>> time_signature = abjad.TimeSignature((2, 4), hide=True)
+            >>> abjad.attach(time_signature, staff[2]) 
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            >>> abjad.f(staff)
+            \new Staff {
+                \time 4/4
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+            >>> for leaf in abjad.iterate(staff).leaves():
+            ...     prototype = abjad.TimeSignature 
+            ...     leaf, abjad.inspect(leaf).get_effective(prototype)
+            ...
+            (Note("c'4"), TimeSignature((4, 4)))
+            (Note("d'4"), TimeSignature((4, 4)))
+            (Note("e'4"), TimeSignature((2, 4), hide=True))
+            (Note("f'4"), TimeSignature((2, 4), hide=True))
+
+        Set to true, false or none.
+
+        Defaults to none.
+
+        Returns true, false or none.
+        '''
+        return self._hide
+
+    @property
     def implied_prolation(self):
         '''Gets implied prolation of time signature.
 
@@ -519,17 +488,8 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            First time signature:
-
             >>> abjad.TimeSignature((3, 8)).numerator
             3
-
-        ..  container:: example
-
-            Second time signature:
-
-            >>> abjad.TimeSignature((4, 4)).numerator
-            4
 
         Set to positive integer.
 
@@ -543,17 +503,8 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            First time signature:
-
             >>> abjad.TimeSignature((3, 8)).pair
             (3, 8)
-
-        ..  container:: example
-
-            Second time signature:
-
-            >>> abjad.TimeSignature((4, 4)).pair
-            (4, 4)
 
         Returns pair.
         '''
@@ -565,16 +516,7 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            First time signature:
-
             >>> abjad.TimeSignature((3, 8)).partial is None
-            True
-
-        ..  container:: example
-
-            Second time signature:
-
-            >>> abjad.TimeSignature((4, 4)).partial is None
             True
 
         Set to duration or none.
@@ -585,37 +527,18 @@ class TimeSignature(AbjadValueObject):
         '''
         return self._partial
 
-    # TODO: make suppress settable only at initialization
     @property
-    def suppress(self):
-        r'''Is true when time signature should be suppressed in output.
-        Otherwise false.
+    def persistent(self):
+        r'''Is true.
 
         ..  container:: example
 
-            First time signature:
-
-            >>> abjad.TimeSignature((3, 8)).suppress is None
+            >>> abjad.TimeSignature((3, 8)).persistent
             True
 
-        ..  container:: example
-
-            Second time signature:
-
-            >>> abjad.TimeSignature((4, 4)).suppress is None
-            True
-
-        Set to boolean or none.
-
-        Defaults to none.
-
-        Returns boolean or none.
+        Returns true.
         '''
-        return self._suppress
-
-    @suppress.setter
-    def suppress(self, argument):
-        self._suppress = bool(argument)
+        return self._persistent
 
     ### PUBLIC METHODS ###
 
@@ -645,21 +568,16 @@ class TimeSignature(AbjadValueObject):
 
             Non-power-of-two denominator with power-of-two denominator:
 
-                >>> time_signature = abjad.TimeSignature((3, 12))
-                >>> time_signature.with_power_of_two_denominator()
-                TimeSignature((2, 8))
+            >>> time_signature = abjad.TimeSignature((3, 12))
+            >>> time_signature.with_power_of_two_denominator()
+            TimeSignature((2, 8))
 
         Returns new time signature.
         '''
         import abjad
         contents_multiplier = abjad.Multiplier(contents_multiplier)
-        # check input
         contents_multiplier = abjad.Multiplier(contents_multiplier)
-
-        # save non_power_of_two time_signature and denominator
         non_power_of_two_denominator = self.denominator
-
-        # find power_of_two denominator
         if contents_multiplier == abjad.Multiplier(1):
             power_of_two_denominator = \
                 abjad.mathtools.greatest_power_of_two_less_equal(
@@ -668,12 +586,8 @@ class TimeSignature(AbjadValueObject):
             power_of_two_denominator = \
                 abjad.mathtools.greatest_power_of_two_less_equal(
                     non_power_of_two_denominator, 1)
-
-        # find power_of_two pair
         non_power_of_two_pair = abjad.NonreducedFraction(self.pair)
         power_of_two_fraction = non_power_of_two_pair.with_denominator(
             power_of_two_denominator)
         power_of_two_pair = power_of_two_fraction.pair
-
-        # return new power_of_two time signature
         return type(self)(power_of_two_pair)

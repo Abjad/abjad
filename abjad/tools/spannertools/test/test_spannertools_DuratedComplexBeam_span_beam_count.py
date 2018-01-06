@@ -15,17 +15,17 @@ def test_spannertools_DuratedComplexBeam_span_beam_count_01():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            \set stemLeftBeamCount = #0
-            \set stemRightBeamCount = #2
+            \set stemLeftBeamCount = 0
+            \set stemRightBeamCount = 2
             c'16 [
-            \set stemLeftBeamCount = #2
-            \set stemRightBeamCount = #1
+            \set stemLeftBeamCount = 2
+            \set stemRightBeamCount = 1
             d'16
-            \set stemLeftBeamCount = #1
-            \set stemRightBeamCount = #2
+            \set stemLeftBeamCount = 1
+            \set stemRightBeamCount = 2
             e'16
-            \set stemLeftBeamCount = #2
-            \set stemRightBeamCount = #0
+            \set stemLeftBeamCount = 2
+            \set stemRightBeamCount = 0
             f'16 ]
         }
         '''
@@ -48,17 +48,17 @@ def test_spannertools_DuratedComplexBeam_span_beam_count_02():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            \set stemLeftBeamCount = #0
-            \set stemRightBeamCount = #2
+            \set stemLeftBeamCount = 0
+            \set stemRightBeamCount = 2
             c'16 [
-            \set stemLeftBeamCount = #2
-            \set stemRightBeamCount = #2
+            \set stemLeftBeamCount = 2
+            \set stemRightBeamCount = 2
             d'16
-            \set stemLeftBeamCount = #2
-            \set stemRightBeamCount = #2
+            \set stemLeftBeamCount = 2
+            \set stemRightBeamCount = 2
             e'16
-            \set stemLeftBeamCount = #2
-            \set stemRightBeamCount = #0
+            \set stemLeftBeamCount = 2
+            \set stemRightBeamCount = 0
             f'16 ]
         }
         '''

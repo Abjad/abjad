@@ -9,21 +9,21 @@ class Dynamic(AbjadValueObject):
 
         Initializes from dynamic name:
 
-        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> voice = abjad.Voice("c'8 d'8 e'8 f'8")
         >>> dynamic = abjad.Dynamic('f')
-        >>> abjad.attach(dynamic, staff[0])
+        >>> abjad.attach(dynamic, voice[0])
 
         ..  docs::
 
-            >>> abjad.f(staff)
-            \new Staff {
+            >>> abjad.f(voice)
+            \new Voice {
                 c'8 \f
                 d'8
                 e'8
                 f'8
             }
 
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> abjad.show(voice) # doctest: +SKIP
 
     ..  container:: example
 
@@ -40,22 +40,63 @@ class Dynamic(AbjadValueObject):
 
     ..  container:: example
 
-        Niente is possible, but provides no formatting.
+        Initializes niente:
 
         >>> dynamic = abjad.Dynamic('niente')
         >>> format(dynamic, 'lilypond')
         ''
+
+    ..  container:: example
+
+        Simultaneous dynamics in a single staff:
+
+        >>> voice_1 = abjad.Voice("e'8 g'8 f'8 a'8")
+        >>> abjad.attach(abjad.Dynamic('f'), voice_1[0], context='Voice')
+        >>> abjad.attach(abjad.LilyPondCommand('voiceOne'), voice_1)
+        >>> abjad.override(voice_1).dynamic_line_spanner.direction = abjad.Up
+        >>> voice_2 = abjad.Voice("c'2")
+        >>> abjad.attach(abjad.LilyPondCommand('voiceTwo'), voice_2)
+        >>> abjad.attach(abjad.Dynamic('mf'), voice_2[0], context='Voice')
+        >>> staff = abjad.Staff([voice_1, voice_2], is_simultaneous=True)
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff <<
+                \new Voice \with {
+                    \override DynamicLineSpanner.direction = #up
+                } {
+                    \voiceOne
+                    e'8 \f
+                    g'8
+                    f'8
+                    a'8
+                }
+                \new Voice {
+                    \voiceTwo
+                    c'2 \mf
+                }
+            >>
+
+        >>> for leaf in abjad.select(staff).leaves():
+        ...     leaf, abjad.inspect(leaf).get_effective(abjad.Dynamic)
+        ...
+        (Note("e'8"), Dynamic('f'))
+        (Note("g'8"), Dynamic('f'))
+        (Note("f'8"), Dynamic('f'))
+        (Note("a'8"), Dynamic('f'))
+        (Note("c'2"), Dynamic('mf'))
 
     '''
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_context',
+        '_direction',
+        '_hide',
         '_name',
         )
-
-    _format_slot = 'right'
 
     _composite_dynamic_name_to_steady_state_dynamic_name = {
         'fp': 'p',
@@ -70,6 +111,8 @@ class Dynamic(AbjadValueObject):
         'spp': 'pp',
         'rfz': 'f',
         }
+
+    _context = 'Voice'
 
     _dynamic_name_to_dynamic_ordinal = {
         'ppppp': -6,
@@ -132,38 +175,44 @@ class Dynamic(AbjadValueObject):
         6: 'fffff',
         }
 
+    _format_slot = 'right'
+
     _lilypond_dynamic_commands = [
         _ for _ in _dynamic_names if not _ == 'niente'
         ]
 
+    _lilypond_dynamic_alphabet = 'fmprsz'
+
+    _persistent = True
+
     ### INITIALIZER ###
 
-    def __init__(self, name='f'):
+    def __init__(self, name='f', direction=None, hide=None):
         if isinstance(name, type(self)):
             name = name.name
-        assert name in self._dynamic_names, repr(name)
+        if name != 'niente':
+            for letter in name.strip('"'):
+                assert letter in self._lilypond_dynamic_alphabet, repr(letter)
         self._name = name
-        self._context = 'Staff'
+        self._direction = direction
+        if hide is not None:
+            hide = bool(hide)
+        self._hide = hide
 
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
         r'''Formats dynamic.
 
-        Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
-
         ..  container:: example
 
-            Gets storage format of forte:
+            Gets storage format:
 
             >>> dynamic = abjad.Dynamic('f')
             >>> print(format(dynamic))
             abjad.Dynamic('f')
 
-        ..  container:: example
-
-            Gets LilyPond format of forte:
+            Gets LilyPond format:
 
             >>> dynamic = abjad.Dynamic('f')
             >>> print(format(dynamic, 'lilypond'))
@@ -174,7 +223,7 @@ class Dynamic(AbjadValueObject):
         if format_specification == 'lilypond':
             if self.name == 'niente':
                 return ''
-            elif self.name not in self._lilypond_dynamic_commands:
+            elif self.name.strip('"') not in self._lilypond_dynamic_commands:
                 message = '{!r} is not a LilyPond dynamic command.'
                 message = message.format(self.name)
                 raise Exception(message)
@@ -194,9 +243,65 @@ class Dynamic(AbjadValueObject):
         import abjad
         if not isinstance(component_expression, abjad.Leaf):
             return False
-        if self.name not in self._lilypond_dynamic_commands:
-            return False
         return True
+
+    def _format_effort_dynamic(self):
+        import abjad
+        name = self.name.strip('"')
+        before = {
+            'f': -0.4,
+            'm': -0.1,
+            'p': -0.1,
+            'r': -0.1,
+            's': -0.3,
+            'z': -0.2,
+            }[name[0]]
+        after = {
+            'f': -0.2,
+            'm': -0.1,
+            'p': -0.25,
+            'r': 0,
+            's': 0,
+            'z': -0.2,
+            }[name[-1]]
+        direction = self.direction
+        direction = abjad.String.to_tridirectional_lilypond_symbol(direction)
+        strings = []
+        strings.append(
+            '{} #(make-dynamic-script'.format(direction))
+        strings.append(
+            '    (markup')
+        strings.append(
+            '        #:whiteout')
+        strings.append(
+            '        #:line (')
+        strings.append(
+            '            #:general-align Y -2 #:normal-text #:larger "“"')
+        strings.append(
+            '            #:hspace {}'.format(before))
+        strings.append(
+            '            #:dynamic "{}"'.format(name))
+        strings.append(
+            '            #:hspace {}'.format(after))
+        strings.append(
+            '            #:general-align Y -2 #:normal-text #:larger "”"')
+        strings.append(
+            '            )')
+        strings.append(
+            '        )')
+        strings.append(
+            '    )')
+        string = '\n'.join(strings)
+        return string
+
+    def _format_niente(self):
+        import abjad
+        direction = self.direction
+        direction = abjad.String.to_tridirectional_lilypond_symbol(direction)
+        strings = []
+        markup = '(markup #:whiteout #:normal-text #:italic "niente")'
+        string = '{} #(make-dynamic-script {})'.format(direction, markup)
+        return string
 
     def _get_format_specification(self):
         import abjad
@@ -208,13 +313,375 @@ class Dynamic(AbjadValueObject):
             )
 
     def _get_lilypond_format(self):
+        if self.effort:
+            return self._format_effort_dynamic()
+        if self.name == 'niente':
+            return self._format_niente()
         return r'\{}'.format(self.name)
 
     def _get_lilypond_format_bundle(self, component=None):
         import abjad
         bundle = abjad.LilyPondFormatBundle()
-        bundle.right.articulations.append(self._get_lilypond_format())
+        if not self.hide:
+            string = self._get_lilypond_format()
+            bundle.right.articulations.append(string)
         return bundle
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def context(self):
+        r'''Returns (historically conventional) context.
+
+        ..  container:: example
+
+            >>> abjad.Dynamic('f').context
+            'Voice'
+
+        Class constant.
+
+        Returns ``'Voice'``.
+
+        Override with ``abjad.attach(..., context='...')``.
+        '''
+        return self._context
+
+    @property
+    def direction(self):
+        r'''Gets direction for effort dynamics only.
+
+        ..  container:: example
+
+            Effort dynamics default to down:
+
+            >>> abjad.Dynamic('"f"').direction
+            Down
+
+            And may be overriden:
+
+            >>> abjad.Dynamic('"f"', direction=abjad.Up).direction
+            Up
+
+        Returns up, down or none.
+        '''
+        import abjad
+        if self._direction is not None:
+            return self._direction
+        if self.name == 'niente' or self.effort:
+            return abjad.Down
+
+    @property
+    def effort(self):
+        r'''Is true when parentheses enclose dynamic.
+
+        ..  container:: example
+
+            >>> voice = abjad.Voice("c'4 r d' r e' r f' r")
+            >>> abjad.attach(abjad.Dynamic('"pp"'), voice[0])
+            >>> abjad.attach(abjad.Dynamic('"mp"'), voice[2])
+            >>> abjad.attach(abjad.Dynamic('"mf"'), voice[4])
+            >>> abjad.attach(abjad.Dynamic('"ff"'), voice[6])
+            >>> abjad.override(voice).dynamic_line_spanner.staff_padding = 4
+            >>> abjad.show(voice) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(voice)
+                \new Voice \with {
+                    \override DynamicLineSpanner.staff-padding = #4
+                } {
+                    c'4 _ #(make-dynamic-script
+                        (markup
+                            #:whiteout
+                            #:line (
+                                #:general-align Y -2 #:normal-text #:larger "“"
+                                #:hspace -0.1
+                                #:dynamic "pp"
+                                #:hspace -0.25
+                                #:general-align Y -2 #:normal-text #:larger "”"
+                                )
+                            )
+                        )
+                    r4
+                    d'4 _ #(make-dynamic-script
+                        (markup
+                            #:whiteout
+                            #:line (
+                                #:general-align Y -2 #:normal-text #:larger "“"
+                                #:hspace -0.1
+                                #:dynamic "mp"
+                                #:hspace -0.25
+                                #:general-align Y -2 #:normal-text #:larger "”"
+                                )
+                            )
+                        )
+                    r4
+                    e'4 _ #(make-dynamic-script
+                        (markup
+                            #:whiteout
+                            #:line (
+                                #:general-align Y -2 #:normal-text #:larger "“"
+                                #:hspace -0.1
+                                #:dynamic "mf"
+                                #:hspace -0.2
+                                #:general-align Y -2 #:normal-text #:larger "”"
+                                )
+                            )
+                        )
+                    r4
+                    f'4 _ #(make-dynamic-script
+                        (markup
+                            #:whiteout
+                            #:line (
+                                #:general-align Y -2 #:normal-text #:larger "“"
+                                #:hspace -0.4
+                                #:dynamic "ff"
+                                #:hspace -0.2
+                                #:general-align Y -2 #:normal-text #:larger "”"
+                                )
+                            )
+                        )
+                    r4
+                }
+
+        ..  container:: example
+
+            >>> voice = abjad.Voice("c'4 r d' r e' r f' r")
+            >>> abjad.attach(abjad.Dynamic('"sf"'), voice[0])
+            >>> abjad.attach(abjad.Dynamic('"sfz"'), voice[2])
+            >>> abjad.attach(abjad.Dynamic('"rf"'), voice[4])
+            >>> abjad.attach(abjad.Dynamic('"rfz"'), voice[6])
+            >>> abjad.override(voice).dynamic_line_spanner.staff_padding = 4
+            >>> abjad.show(voice) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(voice)
+                \new Voice \with {
+                    \override DynamicLineSpanner.staff-padding = #4
+                } {
+                    c'4 _ #(make-dynamic-script
+                        (markup
+                            #:whiteout
+                            #:line (
+                                #:general-align Y -2 #:normal-text #:larger "“"
+                                #:hspace -0.3
+                                #:dynamic "sf"
+                                #:hspace -0.2
+                                #:general-align Y -2 #:normal-text #:larger "”"
+                                )
+                            )
+                        )
+                    r4
+                    d'4 _ #(make-dynamic-script
+                        (markup
+                            #:whiteout
+                            #:line (
+                                #:general-align Y -2 #:normal-text #:larger "“"
+                                #:hspace -0.3
+                                #:dynamic "sfz"
+                                #:hspace -0.2
+                                #:general-align Y -2 #:normal-text #:larger "”"
+                                )
+                            )
+                        )
+                    r4
+                    e'4 _ #(make-dynamic-script
+                        (markup
+                            #:whiteout
+                            #:line (
+                                #:general-align Y -2 #:normal-text #:larger "“"
+                                #:hspace -0.1
+                                #:dynamic "rf"
+                                #:hspace -0.2
+                                #:general-align Y -2 #:normal-text #:larger "”"
+                                )
+                            )
+                        )
+                    r4
+                    f'4 _ #(make-dynamic-script
+                        (markup
+                            #:whiteout
+                            #:line (
+                                #:general-align Y -2 #:normal-text #:larger "“"
+                                #:hspace -0.1
+                                #:dynamic "rfz"
+                                #:hspace -0.2
+                                #:general-align Y -2 #:normal-text #:larger "”"
+                                )
+                            )
+                        )
+                    r4
+                }
+
+        Returns true or false.
+        '''
+        return self.name and self.name[0] == '"'
+
+    @property
+    def hide(self):
+        r'''Is true when dynamic should not appear in output (but should
+        still determine effective dynamic).
+
+        ..  container:: example
+
+            >>> voice = abjad.Voice("c'4 d' e' f'")
+            >>> abjad.attach(abjad.Dynamic('f'), voice[0]) 
+            >>> abjad.attach(abjad.Dynamic('mf', hide=True), voice[2]) 
+            >>> abjad.show(voice) # doctest: +SKIP
+
+            >>> abjad.f(voice)
+            \new Voice {
+                c'4 \f
+                d'4
+                e'4
+                f'4
+            }
+
+            >>> for leaf in abjad.iterate(voice).leaves():
+            ...     leaf, abjad.inspect(leaf).get_effective(abjad.Dynamic)
+            ...
+            (Note("c'4"), Dynamic('f'))
+            (Note("d'4"), Dynamic('f'))
+            (Note("e'4"), Dynamic('mf', hide=True))
+            (Note("f'4"), Dynamic('mf', hide=True))
+
+        Set to true, false or none.
+
+        Defaults to none.
+
+        Returns true, false or none.
+        '''
+        return self._hide
+
+    @property
+    def name(self):
+        r'''Gets name.
+
+        ..  container:: example
+
+            >>> abjad.Dynamic('f').name
+            'f'
+
+            >>> abjad.Dynamic('p').name
+            'p'
+
+            >>> abjad.Dynamic('sffz').name
+            'sffz'
+
+            >>> abjad.Dynamic('sffp').name
+            'sffp'
+
+            >>> abjad.Dynamic('"f"').name
+            '"f"'
+
+        ..  container:: example
+
+            Niente dynamics format like this:
+
+            >>> voice = abjad.Voice("c'4 r r c'4")
+            >>> abjad.attach(abjad.Dynamic('p'), voice[0])
+            >>> abjad.attach(abjad.Dynamic('niente'), voice[1])
+            >>> abjad.attach(abjad.Dynamic('p'), voice[3])
+            >>> abjad.override(voice).dynamic_line_spanner.staff_padding = 4
+            >>> abjad.show(voice) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(voice)
+                \new Voice \with {
+                    \override DynamicLineSpanner.staff-padding = #4
+                } {
+                    c'4 \p
+                    r4 _ #(make-dynamic-script (markup #:whiteout #:normal-text #:italic "niente"))
+                    r4
+                    c'4 \p
+                }
+
+        Returns string.
+        '''
+        return self._name
+
+    @property
+    def ordinal(self):
+        r'''Gets ordinal.
+
+        ..  container:: example
+
+            >>> abjad.Dynamic('f').ordinal
+            2
+
+            >>> abjad.Dynamic('p').ordinal
+            -2
+
+        ..  container:: example
+
+            >>> abjad.Dynamic('niente').ordinal
+            NegativeInfinity
+
+        ..  container:: example
+
+            >>> abjad.Dynamic('"f"').ordinal
+            2
+
+            >>> abjad.Dynamic('"p"').ordinal
+            -2
+
+        Returns integer.
+        '''
+        name = None
+        if self.name:
+            name = self.name.strip('"')
+        if name in self._composite_dynamic_name_to_steady_state_dynamic_name:
+            name = self._composite_dynamic_name_to_steady_state_dynamic_name[
+                name]
+        ordinal = self._dynamic_name_to_dynamic_ordinal[name]
+        return ordinal
+
+    @property
+    def persistent(self):
+        r'''Is true.
+
+        ..  container:: example
+
+            >>> abjad.Dynamic('f').persistent
+            True
+
+        Returns true.
+        '''
+        return self._persistent
+
+    @property
+    def sforzando(self):
+        r'''Is true when dynamic name begins in s- and ends in -z.
+
+        ..  container:: example
+
+            >>> abjad.Dynamic('f').sforzando
+            False
+
+            >>> abjad.Dynamic('sfz').sforzando
+            True
+
+            >>> abjad.Dynamic('sffz').sforzando
+            True
+
+            >>> abjad.Dynamic('sfp').sforzando
+            False
+
+            >>> abjad.Dynamic('sf').sforzando
+            False
+
+            >>> abjad.Dynamic('rfz').sforzando
+            False
+
+        Returns true or false.
+        '''
+        if (self.name and
+            self.name.startswith('s') and 
+            self.name.endswith('z')):
+            return True
+        return False
 
     ### PUBLIC METHODS ###
 
@@ -224,14 +691,8 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
-            Steady state of sfp is piano:
-
             >>> abjad.Dynamic.composite_dynamic_name_to_steady_state_dynamic_name('sfp')
             'p'
-
-        ..  container:: example
-
-            Steady state of rfz is forte:
 
             >>> abjad.Dynamic.composite_dynamic_name_to_steady_state_dynamic_name('rfz')
             'f'
@@ -247,14 +708,8 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
-            Louder dynamics change to positive integers:
-
             >>> abjad.Dynamic.dynamic_name_to_dynamic_ordinal('fff')
             4
-
-        ..  container:: example
-
-            Niente changes to negative infinity:
 
             >>> abjad.Dynamic.dynamic_name_to_dynamic_ordinal('niente')
             NegativeInfinity
@@ -274,14 +729,8 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
-            Negative values change to quiet dynamics:
-
             >>> abjad.Dynamic.dynamic_ordinal_to_dynamic_name(-5)
             'pppp'
-
-        ..  container:: example
-
-            Negative infinity changes to niente:
 
             >>> negative_infinity = abjad.mathtools.NegativeInfinity()
             >>> abjad.Dynamic.dynamic_ordinal_to_dynamic_name(negative_infinity)
@@ -301,17 +750,11 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
-            Some usual dynamic names:
-
             >>> abjad.Dynamic.is_dynamic_name('f')
             True
 
             >>> abjad.Dynamic.is_dynamic_name('sfz')
             True
-
-        ..  container:: example
-
-            Niente is also a dynamic name:
 
             >>> abjad.Dynamic.is_dynamic_name('niente')
             True
@@ -319,92 +762,3 @@ class Dynamic(AbjadValueObject):
         Returns true or false.
         '''
         return argument in Dynamic._dynamic_names
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def context(self):
-        r'''Gets default context of dynamic.
-
-        ..  container:: example
-
-            Forte:
-
-            >>> dynamic = abjad.Dynamic('f')
-            >>> dynamic.context
-            'Staff'
-
-        ..  container:: example
-
-            Piano:
-
-            >>> dynamic = abjad.Dynamic('p')
-            >>> dynamic.context
-            'Staff'
-
-        Returns context or string.
-        '''
-        return self._context
-
-    @property
-    def name(self):
-        r'''Gets name of dynamic.
-
-        ..  container:: example
-
-            Forte:
-
-            >>> abjad.Dynamic('f').name
-            'f'
-
-        ..  container:: example
-
-            Piano:
-
-            >>> abjad.Dynamic('p').name
-            'p'
-
-        ..  container:: example
-
-            Double sforzando:
-
-            >>> abjad.Dynamic('sffz').name
-            'sffz'
-
-        ..  container:: example
-
-            Double sforzando-piano:
-
-            >>> abjad.Dynamic('sffp').name
-            'sffp'
-
-        Returns string.
-        '''
-        return self._name
-
-    @property
-    def ordinal(self):
-        r'''Gets ordinal value of dynamic.
-
-        ..  container:: example
-
-            Forte:
-
-            >>> abjad.Dynamic('f').ordinal
-            2
-
-        ..  container:: example
-
-            Piano:
-
-            >>> abjad.Dynamic('p').ordinal
-            -2
-
-        Returns integer.
-        '''
-        name = self.name
-        if name in self._composite_dynamic_name_to_steady_state_dynamic_name:
-            name = self._composite_dynamic_name_to_steady_state_dynamic_name[
-                name]
-        ordinal = self._dynamic_name_to_dynamic_ordinal[name]
-        return ordinal

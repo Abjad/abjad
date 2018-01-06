@@ -51,7 +51,7 @@ class Test(ScorePackageScriptTestCase):
         ''')
 
     def test_lilypond_error(self):
-        """
+        r"""
         Handle failing LilyPond rendering.
         """
         self.create_score()
@@ -66,16 +66,17 @@ class Test(ScorePackageScriptTestCase):
 
             class FaultySegmentMaker(abctools.AbjadObject):
 
-                def __call__(
+                def run(
                     self,
                     metadata=None,
                     previous_metadata=None,
                     ):
+                    self.metadata = metadata
                     lilypond_file = lilypondfiletools.LilyPondFile.new(
                         scoretools.Staff("c'4 ( d'4 e'4 f'4 )")
                         )
                     lilypond_file.items.append(r'\this-does-not-exist')
-                    return lilypond_file, metadata
+                    return lilypond_file
 
             segment_maker = FaultySegmentMaker()
             '''))

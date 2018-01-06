@@ -26,19 +26,19 @@ class MeasuredComplexBeam(ComplexBeam):
             } {
                 { % measure
                     \time 2/16
-                    \set stemLeftBeamCount = #0
-                    \set stemRightBeamCount = #2
+                    \set stemLeftBeamCount = 0
+                    \set stemRightBeamCount = 2
                     c'16 [
-                    \set stemLeftBeamCount = #2
-                    \set stemRightBeamCount = #1
+                    \set stemLeftBeamCount = 2
+                    \set stemRightBeamCount = 1
                     d'16
                 } % measure
                 { % measure
-                    \set stemLeftBeamCount = #1
-                    \set stemRightBeamCount = #2
+                    \set stemLeftBeamCount = 1
+                    \set stemRightBeamCount = 2
                     e'16
-                    \set stemLeftBeamCount = #2
-                    \set stemRightBeamCount = #0
+                    \set stemLeftBeamCount = 2
+                    \set stemRightBeamCount = 0
                     f'16 ]
                 } % measure
             }
@@ -100,10 +100,10 @@ class MeasuredComplexBeam(ComplexBeam):
             else:
                 left, right = self._get_left_right_for_interior_leaf(leaf)
             if left is not None:
-                string = r'\set stemLeftBeamCount = #{}'.format(left)
+                string = r'\set stemLeftBeamCount = {}'.format(left)
                 bundle.before.commands.append(string)
             if right is not None:
-                string = r'\set stemRightBeamCount = #{}'.format(right)
+                string = r'\set stemRightBeamCount = {}'.format(right)
                 bundle.before.commands.append(string)
 
     def _copy_keyword_args(self, new):

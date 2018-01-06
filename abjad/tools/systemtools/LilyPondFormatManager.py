@@ -44,7 +44,7 @@ class LilyPondFormatManager(AbjadObject):
         wrappers = []
         parentage = abjad.inspect(component).get_parentage(include_self=True)
         for parent in parentage:
-            wrappers_ = abjad.inspect(parent).get_indicators(unwrap=False)
+            wrappers_ = abjad.inspect(parent).wrappers()
             wrappers.extend(wrappers_)
             wrappers_ = parent._get_spanner_indicators(unwrap=False)
             wrappers.extend(wrappers_)
@@ -61,7 +61,7 @@ class LilyPondFormatManager(AbjadObject):
                 not hasattr(indicator, '_get_lilypond_format_bundle')
                 ):
                 continue
-            elif wrapper.is_annotation or wrapper.is_piecewise:
+            elif wrapper.annotation is not None or wrapper.spanner is not None:
                 continue
             # skip comments and commands unless attached directly to us
             elif (wrapper.context is None and
@@ -123,6 +123,20 @@ class LilyPondFormatManager(AbjadObject):
                     result.append(string)
         result.sort()
         bundle.context_settings.extend(result)
+
+    @staticmethod
+    def _populate_context_wrapper_format_contributions(
+        component,
+        bundle,
+        context_wrappers,
+        ):
+        for wrapper in context_wrappers:
+            format_pieces = wrapper._get_format_pieces()
+            if isinstance(format_pieces, type(bundle)):
+                bundle.update(format_pieces)
+            else:
+                format_slot = wrapper.indicator._format_slot
+                bundle.get(format_slot).indicators.extend(format_pieces)
 
     @staticmethod
     def _populate_grob_override_format_contributions(component, bundle):
@@ -209,6 +223,7 @@ class LilyPondFormatManager(AbjadObject):
                     abjad.Markup.line(
                         [_.indicator],
                         deactivate=_.deactivate,
+                        site=_.site,
                         tag=_.tag,
                         )
                     for _ in wrappers
@@ -223,11 +238,12 @@ class LilyPondFormatManager(AbjadObject):
                 else:
                     markup = wrapper.indicator
                 format_pieces = markup._get_format_pieces()
-                if wrapper.tag:
-                    tag = ' %! ' + wrapper.tag
-                    format_pieces = [_ + tag for _ in format_pieces]
-                    if wrapper.deactivate:
-                        format_pieces = ['%%% ' + _ for _ in format_pieces]
+                format_pieces = LilyPondFormatManager.tag(
+                    format_pieces,
+                    wrapper.tag,
+                    deactivate=wrapper.deactivate,
+                    site=wrapper.site,
+                    )
                 bundle.right.markup.extend(format_pieces)
 
     @staticmethod
@@ -240,38 +256,27 @@ class LilyPondFormatManager(AbjadObject):
             indicator = wrapper.indicator
             if hasattr(indicator, '_get_lilypond_format_bundle'):
                 bundle_ = indicator._get_lilypond_format_bundle()
-                if wrapper.tag:
+                if wrapper.tag or wrapper.site:
                     bundle_.tag_format_contributions(
                         wrapper.tag,
-                        wrapper.deactivate,
+                        deactivate=wrapper.deactivate,
+                        site=wrapper.site,
                         )
                 if bundle_ is not None:
                     bundle.update(bundle_)
 
     @staticmethod
-    def _populate_context_wrapper_format_contributions(
-        component,
-        bundle,
-        context_wrappers,
-        ):
-        for wrapper in context_wrappers:
-            format_pieces = wrapper._get_format_pieces()
-            if isinstance(format_pieces, type(bundle)):
-                bundle.update(format_pieces)
-            else:
-                format_slot = wrapper.indicator._format_slot
-                bundle.get(format_slot).indicators.extend(format_pieces)
-
-    @staticmethod
-    def _populate_spanner_format_contributions(
-        component,
-        bundle,
-        ):
+    def _populate_spanner_format_contributions(component, bundle):
         import abjad
         pairs = []
         parentage = abjad.inspect(component).get_parentage()
-        for spanner in abjad.select(parentage)._get_spanners():
+        for spanner in abjad.inspect(parentage).get_spanners():
             spanner_bundle = spanner._get_lilypond_format_bundle(component)
+            spanner_bundle.tag_format_contributions(
+                spanner._tag,
+                deactivate=spanner._deactivate,
+                site=spanner._site,
+                )
             pair = (spanner, spanner_bundle)
             pairs.append(pair)
         pairs.sort(key=lambda _: type(_[0]).__name__)
@@ -279,6 +284,29 @@ class LilyPondFormatManager(AbjadObject):
             bundle.update(spanner_bundle)
 
     ### PUBLIC METHODS ###
+
+    @staticmethod
+    def align_tags(string, n):
+        r'''Line-breaks `string` and aligns tags starting a column `n`.
+
+        Returns new string.
+        '''
+        assert isinstance(n, int), repr(n)
+        lines = []
+        for line in string.split('\n'):
+            if '%!' not in line:
+                lines.append(line)
+                continue
+            location = line.find('%!')
+            left = line[:location].rstrip()
+            right = line[location:]
+            pad = n - len(left)
+            if pad < 1:
+                pad = 1
+            line = left + pad * ' ' + right
+            lines.append(line)
+        string = '\n'.join(lines)
+        return string
 
     @staticmethod
     def bundle_format_contributions(component):
@@ -295,7 +323,6 @@ class LilyPondFormatManager(AbjadObject):
             component, bundle)
         manager._populate_grob_override_format_contributions(component, bundle)
         manager._populate_grob_revert_format_contributions(component, bundle)
-        bundle.alphabetize()
         bundle.make_immutable()
         return bundle
 
@@ -389,6 +416,29 @@ class LilyPondFormatManager(AbjadObject):
         else:
             argument = abjad.Scheme(argument, quoting="'")
         return format(argument, 'lilypond')
+
+    @staticmethod
+    def left_shift_tags(strings):
+        r'''Left shifts tags in `strings`.
+
+        Returns new list of strings.
+        '''
+        import abjad
+        strings_ = [] 
+        for string in strings:
+            if '%F% ' not in string or '%!' not in string:
+                strings_.append(string)
+                continue
+            if not string.startswith(4 * ' '):
+                strings_.append(string)
+                continue
+            string_ = string[4:]
+            tag_start = string_.find('%!')
+            string_ = list(string_)
+            string_[tag_start:tag_start] = 4 * ' '
+            string_ = ''.join(string_)
+            strings_.append(string_)
+        return strings_
 
     @staticmethod
     def make_lilypond_override_string(
@@ -492,3 +542,37 @@ class LilyPondFormatManager(AbjadObject):
                 result.append('\t{}'.format(piece))
         result = '\n'.join(result)
         return result
+
+    @staticmethod
+    def tag(strings, tag, deactivate=None, site=None):
+        r'''Tags `strings` with `tag`.
+
+        Returns list of tagged strings.
+        '''
+        if not tag and not site:
+            return strings
+        if not strings:
+            return strings
+        if deactivate is not None:
+            assert isinstance(deactivate, type(True)), repr(deactivate)
+        site = site or ''
+        assert isinstance(site, str), repr(site)
+        if tag and site:
+            tag = tag + ':' + site
+        elif tag:
+            tag = tag
+        elif site:
+            tag = site
+        length = max([len(_) for _ in strings])
+        strings_ = []
+        for string in strings:
+            if '%!' not in string:
+                pad = length - len(string)
+            else:
+                pad = 0
+            tag_ = pad * ' ' + ' ' + '%!' + ' ' + tag
+            string = string + tag_
+            strings_.append(string)
+        if deactivate is True:
+            strings_ = ['%F% ' + _ for _ in strings_]
+        return strings_

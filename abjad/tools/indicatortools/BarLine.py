@@ -33,8 +33,9 @@ class BarLine(AbjadValueObject):
 
     __slots__ = (
         '_abbreviation',
-        '_context',
         )
+
+    _context = 'Staff'
 
     _format_slot = 'closing'
 
@@ -43,7 +44,6 @@ class BarLine(AbjadValueObject):
     def __init__(self, abbreviation='|'):
         assert isinstance(abbreviation, str), repr(abbreviation)
         self._abbreviation = abbreviation
-        self._context = 'Staff'
 
     ### PRIVATE PROPERTIES ###
 
@@ -88,7 +88,7 @@ class BarLine(AbjadValueObject):
 
     @property
     def context(self):
-        r'''Gets default context of bar line.
+        r'''Gets (historically conventional) context.
 
         ..  container:: example
 
@@ -96,6 +96,10 @@ class BarLine(AbjadValueObject):
             >>> bar_line.context
             'Staff'
 
-        Returns context or string.
+        Returns ``'Staff'``
+
+        ..  todo:: Should return ``'Score'``.
+
+        Override with ``abjad.attach(..., context='...')``.
         '''
         return self._context

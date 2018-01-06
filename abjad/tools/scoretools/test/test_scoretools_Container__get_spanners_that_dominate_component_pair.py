@@ -2,159 +2,59 @@ import abjad
 
 
 def test_scoretools_Container__get_spanners_that_dominate_component_pair_01():
-    r'''Returns Python list of (spanner, index) pairs.
-    Each spanner dominates an empty slice between components.
-    No spanners dominate voice[0:0].
+    '''Get spanners in proper parentage.
     '''
 
-    voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = abjad.select(voice).leaves()
+    container = abjad.Container("c'8 d'8 e'8 f'8")
     beam = abjad.Beam()
-    abjad.attach(beam, leaves[:4])
-    glissando = abjad.Glissando()
-    abjad.attach(glissando, leaves[-4:])
+    abjad.attach(abjad.Beam(), container[:])
+    slur = abjad.Slur()
+    abjad.attach(slur, container[:])
     trill = abjad.TrillSpanner()
-    abjad.attach(trill, leaves)
+    abjad.attach(trill, container[:])
 
-    assert format(voice) == abjad.String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
-        \new Voice {
-            {
-                c'8 [ \startTrillSpan
-                d'8
-            }
-            {
-                e'8 \glissando
-                f'8 ] \glissando
-            }
-            {
-                g'8 \glissando
-                a'8 \stopTrillSpan
-            }
+        {
+            c'8 [ ( \startTrillSpan
+            d'8
+            e'8
+            f'8 ] ) \stopTrillSpan
         }
         '''
         )
 
-    receipt = voice._get_spanners_that_dominate_component_pair(None, voice[0])
-
-    assert len(receipt) == 0
-    assert receipt == set([])
+    parentage = abjad.inspect(container[0]).get_parentage()
+    spanners = abjad.inspect(parentage).get_spanners()
+    spanners == [beam, slur, trill]
+    
+    parentage = abjad.inspect(container).get_parentage()
+    spanners = abjad.inspect(parentage).get_spanners()
+    spanners == [trill]
 
 
 def test_scoretools_Container__get_spanners_that_dominate_component_pair_02():
-    r'''Beam and trill both dominate crack at voice[1:1].
+    '''Get spanners in improper parentage.
     '''
 
-    voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = abjad.select(voice).leaves()
+    container = abjad.Container("c'8 d'8 e'8 f'8")
     beam = abjad.Beam()
-    abjad.attach(beam, leaves[:4])
-    glissando = abjad.Glissando()
-    abjad.attach(glissando, leaves[-4:])
+    abjad.attach(beam, container[:])
+    slur = abjad.Slur()
+    abjad.attach(slur, container[:])
     trill = abjad.TrillSpanner()
-    abjad.attach(trill, leaves)
+    abjad.attach(trill, container[:])
 
-    assert format(voice) == abjad.String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
-        \new Voice {
-            {
-                c'8 [ \startTrillSpan
-                d'8
-            }
-            {
-                e'8 \glissando
-                f'8 ] \glissando
-            }
-            {
-                g'8 \glissando
-                a'8 \stopTrillSpan
-            }
+        {
+            c'8 [ ( \startTrillSpan
+            d'8
+            e'8
+            f'8 ] ) \stopTrillSpan
         }
         '''
         )
 
-    pair = (voice[0], voice[1])
-    receipt = voice._get_spanners_that_dominate_component_pair(*pair)
-
-    assert len(receipt) == 2
-    assert (beam, 2) in receipt
-    assert (trill, 2) in receipt
-
-
-def test_scoretools_Container__get_spanners_that_dominate_component_pair_03():
-    r'''Glissando and trill both dominate crack at voice[2:2].
-    '''
-
-    voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = abjad.select(voice).leaves()
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves[:4])
-    glissando = abjad.Glissando()
-    abjad.attach(glissando, leaves[-4:])
-    trill = abjad.TrillSpanner()
-    abjad.attach(trill, leaves)
-
-    assert format(voice) == abjad.String.normalize(
-        r'''
-        \new Voice {
-            {
-                c'8 [ \startTrillSpan
-                d'8
-            }
-            {
-                e'8 \glissando
-                f'8 ] \glissando
-            }
-            {
-                g'8 \glissando
-                a'8 \stopTrillSpan
-            }
-        }
-        '''
-        )
-
-    pair = (voice[1], voice[2])
-    receipt = voice._get_spanners_that_dominate_component_pair(*pair)
-
-    assert len(receipt) == 2
-    assert (glissando, 2) in receipt
-    assert (trill, 4) in receipt
-
-
-def test_scoretools_Container__get_spanners_that_dominate_component_pair_04():
-    r'''No spanners dominate empty slice following voice.
-    '''
-
-    voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = abjad.select(voice).leaves()
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves[:4])
-    glissando = abjad.Glissando()
-    abjad.attach(glissando, leaves[-4:])
-    trill = abjad.TrillSpanner()
-    abjad.attach(trill, leaves)
-
-    assert format(voice) == abjad.String.normalize(
-        r'''
-        \new Voice {
-            {
-                c'8 [ \startTrillSpan
-                d'8
-            }
-            {
-                e'8 \glissando
-                f'8 ] \glissando
-            }
-            {
-                g'8 \glissando
-                a'8 \stopTrillSpan
-            }
-        }
-        '''
-        )
-
-    pair = (voice[2], None)
-    receipt = voice._get_spanners_that_dominate_component_pair(*pair)
-
-    assert len(receipt) == 0
-    assert receipt == set([])
+    parentage = abjad.inspect(container).get_parentage(include_self=False)
+    assert abjad.inspect(parentage).get_spanners() == []

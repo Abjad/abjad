@@ -6,7 +6,7 @@ class Block(AbjadObject):
 
     ..  container:: example
 
-        Blocks remember attribute assignment order.
+        REGRESSION. Blocks remember attribute assignment order.
 
         Here right margin precedes left margin even though left margin
         alphabetizes before right margin:

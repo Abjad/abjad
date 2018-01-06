@@ -1,4 +1,4 @@
-from abjad.tools.instrumenttools.Instrument import Instrument
+from .Instrument import Instrument
 
 
 class TenorTrombone(Instrument):
@@ -38,22 +38,24 @@ class TenorTrombone(Instrument):
         self,
         name='tenor trombone',
         short_name='ten. trb.',
-        name_markup=None,
-        short_name_markup=None,
+        markup=None,
+        short_markup=None,
         allowable_clefs=('tenor', 'bass'),
         context=None,
         middle_c_sounding_pitch=None,
         pitch_range='[E2, Eb5]',
+        hide=None,
         ):
         Instrument.__init__(
             self,
             name=name,
             short_name=short_name,
-            name_markup=name_markup,
-            short_name_markup=short_name_markup,
+            markup=markup,
+            short_markup=short_markup,
             allowable_clefs=allowable_clefs,
             context=context,
             pitch_range=pitch_range,
+            hide=hide,
             )
         self._is_primary_instrument = True
 
@@ -72,6 +74,22 @@ class TenorTrombone(Instrument):
         Returns clef list.
         '''
         return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def markup(self):
+        r'''Gets tenor trombone's instrument name markup.
+
+        ..  container:: example
+
+            >>> tenor_trombone = abjad.TenorTrombone()
+            >>> tenor_trombone.markup
+            Markup(contents=['Tenor trombone'])
+
+            >>> abjad.show(tenor_trombone.markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
@@ -104,22 +122,6 @@ class TenorTrombone(Instrument):
         return Instrument.name.fget(self)
 
     @property
-    def name_markup(self):
-        r'''Gets tenor trombone's instrument name markup.
-
-        ..  container:: example
-
-            >>> tenor_trombone = abjad.TenorTrombone()
-            >>> tenor_trombone.name_markup
-            Markup(contents=['Tenor trombone'])
-
-            >>> abjad.show(tenor_trombone.name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.name_markup.fget(self)
-
-    @property
     def pitch_range(self):
         r'''Gets tenor trombone's range.
 
@@ -136,6 +138,22 @@ class TenorTrombone(Instrument):
         return Instrument.pitch_range.fget(self)
 
     @property
+    def short_markup(self):
+        r'''Gets tenor trombone's short instrument name markup.
+
+        ..  container:: example
+
+            >>> tenor_trombone = abjad.TenorTrombone()
+            >>> tenor_trombone.short_markup
+            Markup(contents=['Ten. trb.'])
+
+            >>> abjad.show(tenor_trombone.short_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_markup.fget(self)
+
+    @property
     def short_name(self):
         r'''Gets tenor trombone's short instrument name.
 
@@ -148,19 +166,3 @@ class TenorTrombone(Instrument):
         Returns string.
         '''
         return Instrument.short_name.fget(self)
-
-    @property
-    def short_name_markup(self):
-        r'''Gets tenor trombone's short instrument name markup.
-
-        ..  container:: example
-
-            >>> tenor_trombone = abjad.TenorTrombone()
-            >>> tenor_trombone.short_name_markup
-            Markup(contents=['Ten. trb.'])
-
-            >>> abjad.show(tenor_trombone.short_name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.short_name_markup.fget(self)

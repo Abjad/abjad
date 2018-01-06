@@ -1,4 +1,4 @@
-from abjad.tools.indicatortools.LineSegment import LineSegment
+from .LineSegment import LineSegment
 from abjad.tools.datastructuretools import Center
 
 
@@ -22,7 +22,8 @@ class ArrowLineSegment(LineSegment):
             left_stencil_align_direction_y=Center,
             right_arrow=True,
             right_broken_padding=0,
-            right_padding=1.5,
+            right_broken_text=False,
+            right_padding=0.5,
             right_stencil_align_direction_y=Center,
             )
 
@@ -41,6 +42,7 @@ class ArrowLineSegment(LineSegment):
                 \override TextScript.staff-padding = #1.25
                 \override TextSpanner.staff-padding = #2
             } {
+                \once \override TextSpanner.Y-extent = ##f
                 \once \override TextSpanner.arrow-width = 0.25
                 \once \override TextSpanner.bound-details.left-broken.text = ##f
                 \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -53,14 +55,23 @@ class ArrowLineSegment(LineSegment):
                         }
                     }
                 \once \override TextSpanner.bound-details.right-broken.padding = 0
+                \once \override TextSpanner.bound-details.right-broken.text = ##f
                 \once \override TextSpanner.bound-details.right.arrow = ##t
-                \once \override TextSpanner.bound-details.right.padding = 1.5
+                \once \override TextSpanner.bound-details.right.padding = 0.5
                 \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                \once \override TextSpanner.bound-details.right.text = \markup {
+                    \concat
+                        {
+                            \hspace
+                                #0.0
+                            ord.
+                        }
+                    }
                 \once \override TextSpanner.dash-fraction = 1
                 c'4 \startTextSpan
                 d'4
                 e'4
-                f'4 \stopTextSpan ^ \markup { ord. }
+                f'4 \stopTextSpan
             }
 
     Arrow line segment is a preconfigured line segment.
@@ -89,7 +100,8 @@ class ArrowLineSegment(LineSegment):
         right_arrow=True,
         right_broken_arrow=None,
         right_broken_padding=0,
-        right_padding=1.5,
+        right_broken_text=False,
+        right_padding=0.5,
         right_stencil_align_direction_y=Center,
         style=None,
         ):
@@ -106,6 +118,7 @@ class ArrowLineSegment(LineSegment):
             right_arrow=right_arrow,
             right_broken_arrow=right_broken_arrow,
             right_broken_padding=right_broken_padding,
+            right_broken_text=right_broken_text,
             right_padding=right_padding,
             right_stencil_align_direction_y=right_stencil_align_direction_y,
             style=style,
@@ -114,7 +127,7 @@ class ArrowLineSegment(LineSegment):
     ### PRIVATE METHODS ###
 
     r'''No _get_lilypond_format(), _get_lilypond_format_bundle()
-    because class is used only as enchained indicator.
+    because class is used only by piecewise spanner.
     '''
 
     ### PUBLIC PROPERTIES ###
@@ -149,6 +162,7 @@ class ArrowLineSegment(LineSegment):
                     \override TextScript.staff-padding = #1.25
                     \override TextSpanner.staff-padding = #2
                 } {
+                    \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -162,17 +176,24 @@ class ArrowLineSegment(LineSegment):
                             }
                         }
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1.5
+                    \once \override TextSpanner.bound-details.right.padding = 0.5
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.right.text = \markup {
+                        \concat
+                            {
+                                \hspace
+                                    #0.0
+                                \upright
+                                    ord.
+                            }
+                        }
                     \once \override TextSpanner.dash-fraction = 1
                     c'4 \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan ^ \markup {
-                        \upright
-                            ord.
-                        }
+                    f'4 \stopTextSpan
                 }
 
             Results in thin arrow head.
@@ -205,6 +226,7 @@ class ArrowLineSegment(LineSegment):
                     \override TextScript.staff-padding = #1.25
                     \override TextSpanner.staff-padding = #2
                 } {
+                    \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.5
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -218,17 +240,24 @@ class ArrowLineSegment(LineSegment):
                             }
                         }
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1.5
+                    \once \override TextSpanner.bound-details.right.padding = 0.5
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.right.text = \markup {
+                        \concat
+                            {
+                                \hspace
+                                    #0.0
+                                \upright
+                                    ord.
+                            }
+                        }
                     \once \override TextSpanner.dash-fraction = 1
                     c'4 \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan ^ \markup {
-                        \upright
-                            ord.
-                        }
+                    f'4 \stopTextSpan
                 }
 
             Results in wide arrow head.
@@ -259,6 +288,7 @@ class ArrowLineSegment(LineSegment):
                     \override TextScript.staff-padding = #1.25
                     \override TextSpanner.staff-padding = #2
                 } {
+                    \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 1
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -272,17 +302,24 @@ class ArrowLineSegment(LineSegment):
                             }
                         }
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1.5
+                    \once \override TextSpanner.bound-details.right.padding = 0.5
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.right.text = \markup {
+                        \concat
+                            {
+                                \hspace
+                                    #0.0
+                                \upright
+                                    ord.
+                            }
+                        }
                     \once \override TextSpanner.dash-fraction = 1
                     c'4 \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan ^ \markup {
-                        \upright
-                            ord.
-                        }
+                    f'4 \stopTextSpan
                 }
 
             Results in very wide arrow head.
@@ -325,6 +362,7 @@ class ArrowLineSegment(LineSegment):
                     \override TextScript.staff-padding = #1.25
                     \override TextSpanner.staff-padding = #2
                 } {
+                    \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -338,17 +376,24 @@ class ArrowLineSegment(LineSegment):
                             }
                         }
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1.5
+                    \once \override TextSpanner.bound-details.right.padding = 0.5
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.right.text = \markup {
+                        \concat
+                            {
+                                \hspace
+                                    #0.0
+                                \upright
+                                    ord.
+                            }
+                        }
                     \once \override TextSpanner.dash-fraction = 1
                     c'4 \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan ^ \markup {
-                        \upright
-                            ord.
-                        }
+                    f'4 \stopTextSpan
                 }
 
             This is default behavior.
@@ -380,6 +425,7 @@ class ArrowLineSegment(LineSegment):
                     \override TextScript.staff-padding = #1.25
                     \override TextSpanner.staff-padding = #2
                 } {
+                    \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -393,17 +439,24 @@ class ArrowLineSegment(LineSegment):
                             }
                         }
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1.5
+                    \once \override TextSpanner.bound-details.right.padding = 0.5
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.right.text = \markup {
+                        \concat
+                            {
+                                \hspace
+                                    #0.0
+                                \upright
+                                    ord.
+                            }
+                        }
                     \once \override TextSpanner.dash-fraction = 0.5
                     c'4 \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan ^ \markup {
-                        \upright
-                            ord.
-                        }
+                    f'4 \stopTextSpan
                 }
 
         ..  container:: example
@@ -433,6 +486,7 @@ class ArrowLineSegment(LineSegment):
                     \override TextScript.staff-padding = #1.25
                     \override TextSpanner.staff-padding = #2
                 } {
+                    \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -446,17 +500,24 @@ class ArrowLineSegment(LineSegment):
                             }
                         }
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1.5
+                    \once \override TextSpanner.bound-details.right.padding = 0.5
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.right.text = \markup {
+                        \concat
+                            {
+                                \hspace
+                                    #0.0
+                                \upright
+                                    ord.
+                            }
+                        }
                     \once \override TextSpanner.dash-fraction = 0.1
                     c'4 \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan ^ \markup {
-                        \upright
-                            ord.
-                        }
+                    f'4 \stopTextSpan
                 }
 
         Defaults to ``1``.
@@ -498,6 +559,7 @@ class ArrowLineSegment(LineSegment):
                     \override TextScript.staff-padding = #1.25
                     \override TextSpanner.staff-padding = #2
                 } {
+                    \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -511,17 +573,24 @@ class ArrowLineSegment(LineSegment):
                             }
                         }
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1.5
+                    \once \override TextSpanner.bound-details.right.padding = 0.5
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.right.text = \markup {
+                        \concat
+                            {
+                                \hspace
+                                    #0.0
+                                \upright
+                                    ord.
+                            }
+                        }
                     \once \override TextSpanner.dash-fraction = 1
                     c'4 \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan ^ \markup {
-                        \upright
-                            ord.
-                        }
+                    f'4 \stopTextSpan
                 }
 
             Results in a solid line.
@@ -557,6 +626,7 @@ class ArrowLineSegment(LineSegment):
                     \override TextScript.staff-padding = #1.25
                     \override TextSpanner.staff-padding = #2
                 } {
+                    \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -570,18 +640,25 @@ class ArrowLineSegment(LineSegment):
                             }
                         }
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1.5
+                    \once \override TextSpanner.bound-details.right.padding = 0.5
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.right.text = \markup {
+                        \concat
+                            {
+                                \hspace
+                                    #0.0
+                                \upright
+                                    ord.
+                            }
+                        }
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1
                     c'4 \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan ^ \markup {
-                        \upright
-                            ord.
-                        }
+                    f'4 \stopTextSpan
                 }
 
             Results in fine dashes.
@@ -615,6 +692,7 @@ class ArrowLineSegment(LineSegment):
                     \override TextScript.staff-padding = #1.25
                     \override TextSpanner.staff-padding = #2
                 } {
+                    \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -628,18 +706,25 @@ class ArrowLineSegment(LineSegment):
                             }
                         }
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1.5
+                    \once \override TextSpanner.bound-details.right.padding = 0.5
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.right.text = \markup {
+                        \concat
+                            {
+                                \hspace
+                                    #0.0
+                                \upright
+                                    ord.
+                            }
+                        }
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 4
                     c'4 \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan ^ \markup {
-                        \upright
-                            ord.
-                        }
+                    f'4 \stopTextSpan
                 }
 
             Results in coarse dashes.
@@ -682,7 +767,8 @@ class ArrowLineSegment(LineSegment):
                     left_stencil_align_direction_y=Center,
                     right_arrow=True,
                     right_broken_padding=0,
-                    right_padding=1.5,
+                    right_broken_text=False,
+                    right_padding=0.5,
                     right_stencil_align_direction_y=Center,
                     )
 
@@ -704,6 +790,7 @@ class ArrowLineSegment(LineSegment):
                         \time 3/8
                         c'4.
                         d'4.
+                        \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.arrow-width = 0.25
                         \once \override TextSpanner.bound-details.left-broken.text = ##f
                         \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -717,8 +804,9 @@ class ArrowLineSegment(LineSegment):
                                 }
                             }
                         \once \override TextSpanner.bound-details.right-broken.padding = 0
+                        \once \override TextSpanner.bound-details.right-broken.text = ##f
                         \once \override TextSpanner.bound-details.right.arrow = ##t
-                        \once \override TextSpanner.bound-details.right.padding = 1.5
+                        \once \override TextSpanner.bound-details.right.padding = 0.5
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-fraction = 1
                         e'4. \startTextSpan
@@ -726,11 +814,25 @@ class ArrowLineSegment(LineSegment):
                         \break
                         g'4.
                         a'4.
-                        b'4. \stopTextSpan ^ \markup {
-                            \upright
-                                ord.
+                        \once \override TextSpanner.Y-extent = ##f
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
+                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.left.text = \markup {
+                            \concat
+                                {
+                                    \upright
+                                        ord.
+                                    \hspace
+                                        #0.25
+                                }
                             }
-                        c''4.
+                        \once \override TextSpanner.bound-details.right-broken.padding = 0
+                        \once \override TextSpanner.bound-details.right-broken.text = ##f
+                        \once \override TextSpanner.bound-details.right.padding = 1.5
+                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                        \once \override TextSpanner.dash-period = 0
+                        b'4. \stopTextSpan \startTextSpan
+                        c''4. \stopTextSpan
                     }
 
             Results in no text immediately after line break.
@@ -773,7 +875,8 @@ class ArrowLineSegment(LineSegment):
                     left_stencil_align_direction_y=Center,
                     right_arrow=True,
                     right_broken_padding=0,
-                    right_padding=1.5,
+                    right_broken_text=False,
+                    right_padding=0.5,
                     right_stencil_align_direction_y=Center,
                     )
 
@@ -795,6 +898,7 @@ class ArrowLineSegment(LineSegment):
                         \time 3/8
                         c'4.
                         d'4.
+                        \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.arrow-width = 0.25
                         \once \override TextSpanner.bound-details.left-broken.text = \markup {
                             \upright
@@ -811,8 +915,9 @@ class ArrowLineSegment(LineSegment):
                                 }
                             }
                         \once \override TextSpanner.bound-details.right-broken.padding = 0
+                        \once \override TextSpanner.bound-details.right-broken.text = ##f
                         \once \override TextSpanner.bound-details.right.arrow = ##t
-                        \once \override TextSpanner.bound-details.right.padding = 1.5
+                        \once \override TextSpanner.bound-details.right.padding = 0.5
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-fraction = 1
                         e'4. \startTextSpan
@@ -820,11 +925,25 @@ class ArrowLineSegment(LineSegment):
                         \break
                         g'4.
                         a'4.
-                        b'4. \stopTextSpan ^ \markup {
-                            \upright
-                                ord.
+                        \once \override TextSpanner.Y-extent = ##f
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
+                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.left.text = \markup {
+                            \concat
+                                {
+                                    \upright
+                                        ord.
+                                    \hspace
+                                        #0.25
+                                }
                             }
-                        c''4.
+                        \once \override TextSpanner.bound-details.right-broken.padding = 0
+                        \once \override TextSpanner.bound-details.right-broken.text = ##f
+                        \once \override TextSpanner.bound-details.right.padding = 1.5
+                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                        \once \override TextSpanner.dash-period = 0
+                        b'4. \stopTextSpan \startTextSpan
+                        c''4. \stopTextSpan
                     }
 
         Set to markup, boolean or none.
@@ -863,7 +982,8 @@ class ArrowLineSegment(LineSegment):
                     left_stencil_align_direction_y=Center,
                     right_arrow=True,
                     right_broken_padding=0,
-                    right_padding=1.5,
+                    right_broken_text=False,
+                    right_padding=0.5,
                     right_stencil_align_direction_y=Center,
                     )
 
@@ -885,6 +1005,7 @@ class ArrowLineSegment(LineSegment):
                         \time 3/8
                         c'4.
                         d'4.
+                        \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.arrow-width = 0.25
                         \once \override TextSpanner.bound-details.left-broken.text = ##f
                         \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -898,8 +1019,9 @@ class ArrowLineSegment(LineSegment):
                                 }
                             }
                         \once \override TextSpanner.bound-details.right-broken.padding = 0
+                        \once \override TextSpanner.bound-details.right-broken.text = ##f
                         \once \override TextSpanner.bound-details.right.arrow = ##t
-                        \once \override TextSpanner.bound-details.right.padding = 1.5
+                        \once \override TextSpanner.bound-details.right.padding = 0.5
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-fraction = 1
                         e'4. \startTextSpan
@@ -907,11 +1029,25 @@ class ArrowLineSegment(LineSegment):
                         \break
                         g'4.
                         a'4.
-                        b'4. \stopTextSpan ^ \markup {
-                            \upright
-                                ord.
+                        \once \override TextSpanner.Y-extent = ##f
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
+                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.left.text = \markup {
+                            \concat
+                                {
+                                    \upright
+                                        ord.
+                                    \hspace
+                                        #0.25
+                                }
                             }
-                        c''4.
+                        \once \override TextSpanner.bound-details.right-broken.padding = 0
+                        \once \override TextSpanner.bound-details.right-broken.text = ##f
+                        \once \override TextSpanner.bound-details.right.padding = 1.5
+                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                        \once \override TextSpanner.dash-period = 0
+                        b'4. \stopTextSpan \startTextSpan
+                        c''4. \stopTextSpan
                     }
 
             Results in arrow immediately before line break.
@@ -947,7 +1083,8 @@ class ArrowLineSegment(LineSegment):
                     right_arrow=True,
                     right_broken_arrow=False,
                     right_broken_padding=0,
-                    right_padding=1.5,
+                    right_broken_text=False,
+                    right_padding=0.5,
                     right_stencil_align_direction_y=Center,
                     )
 
@@ -969,6 +1106,7 @@ class ArrowLineSegment(LineSegment):
                         \time 3/8
                         c'4.
                         d'4.
+                        \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.arrow-width = 0.25
                         \once \override TextSpanner.bound-details.left-broken.text = ##f
                         \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -983,8 +1121,9 @@ class ArrowLineSegment(LineSegment):
                             }
                         \once \override TextSpanner.bound-details.right-broken.arrow = ##f
                         \once \override TextSpanner.bound-details.right-broken.padding = 0
+                        \once \override TextSpanner.bound-details.right-broken.text = ##f
                         \once \override TextSpanner.bound-details.right.arrow = ##t
-                        \once \override TextSpanner.bound-details.right.padding = 1.5
+                        \once \override TextSpanner.bound-details.right.padding = 0.5
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-fraction = 1
                         e'4. \startTextSpan
@@ -992,11 +1131,25 @@ class ArrowLineSegment(LineSegment):
                         \break
                         g'4.
                         a'4.
-                        b'4. \stopTextSpan ^ \markup {
-                            \upright
-                                ord.
+                        \once \override TextSpanner.Y-extent = ##f
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
+                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.left.text = \markup {
+                            \concat
+                                {
+                                    \upright
+                                        ord.
+                                    \hspace
+                                        #0.25
+                                }
                             }
-                        c''4.
+                        \once \override TextSpanner.bound-details.right-broken.padding = 0
+                        \once \override TextSpanner.bound-details.right-broken.text = ##f
+                        \once \override TextSpanner.bound-details.right.padding = 1.5
+                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                        \once \override TextSpanner.dash-period = 0
+                        b'4. \stopTextSpan \startTextSpan
+                        c''4. \stopTextSpan
                     }
 
         Set to true, false or none.
@@ -1033,6 +1186,7 @@ class ArrowLineSegment(LineSegment):
                     \override TextScript.staff-padding = #1.25
                     \override TextSpanner.staff-padding = #2
                 } {
+                    \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -1046,17 +1200,24 @@ class ArrowLineSegment(LineSegment):
                             }
                         }
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1.5
+                    \once \override TextSpanner.bound-details.right.padding = 0.5
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.right.text = \markup {
+                        \concat
+                            {
+                                \hspace
+                                    #0.0
+                                \upright
+                                    ord.
+                            }
+                        }
                     \once \override TextSpanner.dash-fraction = 1
                     c'4 \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan ^ \markup {
-                        \upright
-                            ord.
-                        }
+                    f'4 \stopTextSpan
                 }
 
             LilyPond defaults to solid line.
@@ -1089,6 +1250,7 @@ class ArrowLineSegment(LineSegment):
                     \override TextScript.staff-padding = #1.25
                     \override TextSpanner.staff-padding = #2
                 } {
+                    \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -1102,18 +1264,25 @@ class ArrowLineSegment(LineSegment):
                             }
                         }
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1.5
+                    \once \override TextSpanner.bound-details.right.padding = 0.5
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.right.text = \markup {
+                        \concat
+                            {
+                                \hspace
+                                    #0.0
+                                \upright
+                                    ord.
+                            }
+                        }
                     \once \override TextSpanner.dash-fraction = 1
                     \once \override TextSpanner.style = #'zigzag
                     c'4 \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan ^ \markup {
-                        \upright
-                            ord.
-                        }
+                    f'4 \stopTextSpan
                 }
 
         ..  container:: example
@@ -1142,6 +1311,7 @@ class ArrowLineSegment(LineSegment):
                     \override TextScript.staff-padding = #1.25
                     \override TextSpanner.staff-padding = #2
                 } {
+                    \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -1155,18 +1325,25 @@ class ArrowLineSegment(LineSegment):
                             }
                         }
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1.5
+                    \once \override TextSpanner.bound-details.right.padding = 0.5
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.right.text = \markup {
+                        \concat
+                            {
+                                \hspace
+                                    #0.0
+                                \upright
+                                    ord.
+                            }
+                        }
                     \once \override TextSpanner.dash-fraction = 1
                     \once \override TextSpanner.style = #'trill
                     c'4 \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan ^ \markup {
-                        \upright
-                            ord.
-                        }
+                    f'4 \stopTextSpan
                 }
 
         ..  container:: example
@@ -1195,6 +1372,7 @@ class ArrowLineSegment(LineSegment):
                     \override TextScript.staff-padding = #1.25
                     \override TextSpanner.staff-padding = #2
                 } {
+                    \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -1208,18 +1386,25 @@ class ArrowLineSegment(LineSegment):
                             }
                         }
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1.5
+                    \once \override TextSpanner.bound-details.right.padding = 0.5
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.right.text = \markup {
+                        \concat
+                            {
+                                \hspace
+                                    #0.0
+                                \upright
+                                    ord.
+                            }
+                        }
                     \once \override TextSpanner.dash-fraction = 1
                     \once \override TextSpanner.style = #'dotted-line
                     c'4 \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan ^ \markup {
-                        \upright
-                            ord.
-                        }
+                    f'4 \stopTextSpan
                 }
 
         Defaults to none.

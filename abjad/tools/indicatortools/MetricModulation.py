@@ -502,12 +502,15 @@ class MetricModulation(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_context',
         '_left_markup',
         '_left_rhythm',
         '_right_markup',
         '_right_rhythm',
         )
+
+    _context = 'Score'
+
+    _persistent = 'abjad.MetronomeMark'
 
     _publish_storage_format = True
 
@@ -521,7 +524,6 @@ class MetricModulation(AbjadValueObject):
         right_markup=None,
         ):
         import abjad
-        self._context = 'Score'
         left_rhythm = left_rhythm or abjad.Note('c4')
         right_rhythm = right_rhythm or abjad.Note('c4')
         left_rhythm = self._initialize_rhythm(left_rhythm)
@@ -872,7 +874,7 @@ class MetricModulation(AbjadValueObject):
 
     @property
     def context(self):
-        r'''Gets default context of metric modulation.
+        r'''Gets (historically conventional) context.
 
         ..  container:: example
 
@@ -883,7 +885,9 @@ class MetricModulation(AbjadValueObject):
             >>> metric_modulation.context
             'Score'
 
-        Returns context or string.
+        Returns ``'Score'``.
+
+        Override with ``abjad.attach(..., context='...')``.
         '''
         return self._context
 
@@ -919,6 +923,23 @@ class MetricModulation(AbjadValueObject):
         Returns selection.
         '''
         return self._left_rhythm
+
+    @property
+    def persistent(self):
+        r'''Is ``'abjad.MetronomeMark'``.
+
+        ..  container:: example
+
+            >>> metric_modulation = abjad.MetricModulation(
+            ...     left_rhythm=abjad.Note("c'4"),
+            ...     right_rhythm=abjad.Note("c'4."),
+            ...     )
+            >>> metric_modulation.persistent
+            'abjad.MetronomeMark'
+
+        Returns ``'abjad.MetronomeMark'``.
+        '''
+        return self._persistent
 
     @property
     def ratio(self):

@@ -1,4 +1,4 @@
-from abjad.tools.instrumenttools.Instrument import Instrument
+from .Instrument import Instrument
 
 
 class AltoTrombone(Instrument):
@@ -38,23 +38,25 @@ class AltoTrombone(Instrument):
         self,
         name='alto trombone',
         short_name='alt. trb.',
-        name_markup=None,
-        short_name_markup=None,
+        markup=None,
+        short_markup=None,
         allowable_clefs=('bass', 'tenor'),
         context=None,
         middle_c_sounding_pitch=None,
         pitch_range='[A2, Bb5]',
+        hide=None,
         ):
         Instrument.__init__(
             self,
             name=name,
             short_name=short_name,
-            name_markup=name_markup,
-            short_name_markup=short_name_markup,
+            markup=markup,
+            short_markup=short_markup,
             allowable_clefs=allowable_clefs,
             context=context,
             middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
+            hide=hide,
             )
 
     ### SPECIAL METHODS ###
@@ -72,10 +74,10 @@ class AltoTrombone(Instrument):
             abjad.AltoTrombone(
                 name='alto trombone',
                 short_name='alt. trb.',
-                name_markup=abjad.Markup(
+                markup=abjad.Markup(
                     contents=['Alto trombone'],
                     ),
-                short_name_markup=abjad.Markup(
+                short_markup=abjad.Markup(
                     contents=['Alt. trb.'],
                     ),
                 allowable_clefs=('bass', 'tenor'),
@@ -104,6 +106,22 @@ class AltoTrombone(Instrument):
         Returns clef list.
         '''
         return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def markup(self):
+        r'''Gets alto trombone's instrument name markup.
+
+        ..  container:: example
+
+            >>> alto_trombone = abjad.AltoTrombone()
+            >>> alto_trombone.markup
+            Markup(contents=['Alto trombone'])
+
+            >>> abjad.show(alto_trombone.markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.markup.fget(self)
 
     @property
     def middle_c_sounding_pitch(self):
@@ -136,22 +154,6 @@ class AltoTrombone(Instrument):
         return Instrument.name.fget(self)
 
     @property
-    def name_markup(self):
-        r'''Gets alto trombone's instrument name markup.
-
-        ..  container:: example
-
-            >>> alto_trombone = abjad.AltoTrombone()
-            >>> alto_trombone.name_markup
-            Markup(contents=['Alto trombone'])
-
-            >>> abjad.show(alto_trombone.name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.name_markup.fget(self)
-
-    @property
     def pitch_range(self):
         r'''Gets alto trombone's range.
 
@@ -168,6 +170,22 @@ class AltoTrombone(Instrument):
         return Instrument.pitch_range.fget(self)
 
     @property
+    def short_markup(self):
+        r'''Gets alto trombone's short instrument name markup.
+
+        ..  container:: example
+
+            >>> alto_trombone = abjad.AltoTrombone()
+            >>> alto_trombone.short_markup
+            Markup(contents=['Alt. trb.'])
+
+            >>> abjad.show(alto_trombone.short_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_markup.fget(self)
+
+    @property
     def short_name(self):
         r'''Gets alto trombone's short instrument name.
 
@@ -180,19 +198,3 @@ class AltoTrombone(Instrument):
         Returns string.
         '''
         return Instrument.short_name.fget(self)
-
-    @property
-    def short_name_markup(self):
-        r'''Gets alto trombone's short instrument name markup.
-
-        ..  container:: example
-
-            >>> alto_trombone = abjad.AltoTrombone()
-            >>> alto_trombone.short_name_markup
-            Markup(contents=['Alt. trb.'])
-
-            >>> abjad.show(alto_trombone.short_name_markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Instrument.short_name_markup.fget(self)

@@ -84,16 +84,16 @@ class Markup(AbjadValueObject):
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> markup = abjad.Markup('Allegro', abjad.Up).italic()
-        >>> abjad.attach(markup, staff[0], tag='RED')
+        >>> abjad.attach(markup, staff[0], site='M1', tag='RED')
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
         \new Staff {
             c'4
-                ^ \markup { %! RED:1
-                    \italic %! RED:1
-                        Allegro %! RED:1
-                    } %! RED:1
+                ^ \markup {     %! RED:M1
+                    \italic     %! RED:M1
+                        Allegro %! RED:M1
+                    }           %! RED:M1
             d'4
             e'4
             f'4
@@ -104,7 +104,8 @@ class Markup(AbjadValueObject):
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(abjad.Markup('Allegro'), staff[0])
-        >>> abjad.attach(abjad.Markup('non troppo'), staff[0], tag='RED')
+        >>> markup = abjad.Markup('non troppo')
+        >>> abjad.attach(markup, staff[0], site='M1', tag='RED')
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
@@ -117,10 +118,10 @@ class Markup(AbjadValueObject):
                                 {
                                     Allegro
                                 }
-                            \line %! RED:1
-                                { %! RED:1
-                                    "non troppo" %! RED:1
-                                } %! RED:1
+                            \line                %! RED:M1
+                                {                %! RED:M1
+                                    "non troppo" %! RED:M1
+                                }                %! RED:M1
                         }
                     }
             d'4
@@ -134,16 +135,22 @@ class Markup(AbjadValueObject):
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> markup = abjad.Markup('Allegro', abjad.Up).italic()
-        >>> abjad.attach(markup, staff[0], deactivate=True, tag='RED')
+        >>> abjad.attach(
+        ...     markup,
+        ...     staff[0],
+        ...     deactivate=True,
+        ...     site='M1',
+        ...     tag='RED',
+        ...     )
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
         \new Staff {
             c'4
-                %%% ^ \markup { %! RED:1
-                %%%     \italic %! RED:1
-                %%%         Allegro %! RED:1
-                %%%     } %! RED:1
+                %F% ^ \markup {     %! RED:M1
+                %F%     \italic     %! RED:M1
+                %F%         Allegro %! RED:M1
+                %F%     }           %! RED:M1
             d'4
             e'4
             f'4
@@ -172,10 +179,10 @@ class Markup(AbjadValueObject):
                                 {
                                     Allegro
                                 }
-                            %%% \line %! RED:1
-                            %%%    { %! RED:1
-                            %%%        "non troppo" %! RED:1
-                            %%%    } %! RED:1
+                            %F% \line                %! RED
+                            %F%     {                %! RED
+                            %F%         "non troppo" %! RED
+                            %F%     }                %! RED
                         }
                     }
             d'4
@@ -1530,7 +1537,13 @@ class Markup(AbjadValueObject):
         return Markup(contents=command, direction=direction)
 
     @staticmethod
-    def line(markup_list, direction=None, deactivate=None, tag=None):
+    def line(
+        markup_list,
+        direction=None,
+        deactivate=None,
+        site=None,
+        tag=None,
+        ):
         r'''LilyPond ``\line`` markup command.
 
         ..  container:: example
@@ -1557,6 +1570,7 @@ class Markup(AbjadValueObject):
             contents.extend(markup.contents)
         command = MarkupCommand('line', contents)
         command.deactivate = deactivate
+        command.site = site
         command.tag = tag
         return Markup(contents=command, direction=direction)
 
@@ -1660,6 +1674,30 @@ class Markup(AbjadValueObject):
         '''
         command = MarkupCommand('natural')
         return Markup(contents=command, direction=direction)
+
+    def normal_text(self):
+        r'''LilyPond ``\bold`` markup command.
+
+        ..  container:: example
+
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.normal_text()
+            >>> abjad.f(markup)
+            \markup {
+                \normal-text
+                    "Allegro assai"
+                }
+
+            >>> abjad.show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        contents = self._parse_markup_command_argument(self)
+        command = MarkupCommand(
+            'normal-text',
+            contents,
+            )
+        return new(self, contents=command)
 
     @staticmethod
     def note_by_number(log, dot_count, stem_direction, direction=None):

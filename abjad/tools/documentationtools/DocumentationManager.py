@@ -519,8 +519,8 @@ class DocumentationManager(abctools.AbjadObject):
                 if getattr(object_, '__name__', None) == 'abjad':
                     pass
                 else:
-                    message = 'Warning: {} does not implement a {name} object.'
-                    message = message.format(tools_package, name=name)
+                    message = 'Warning: {} does not implement a {} object.'
+                    message = message.format(tools_package, name)
                     print(message)
                 continue
             if not object_.__module__.startswith(tools_package.__name__):
