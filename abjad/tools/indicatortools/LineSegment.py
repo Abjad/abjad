@@ -12,7 +12,7 @@ class LineSegment(AbjadValueObject):
 
         >>> line_segment = abjad.LineSegment()
         >>> abjad.f(line_segment)
-        LineSegment()
+        abjad.LineSegment()
 
     .. todo:: Add examples.
 
@@ -38,6 +38,8 @@ class LineSegment(AbjadValueObject):
         '_right_stencil_align_direction_y',
         '_style',
         )
+
+    _publish_storage_format = True
 
     ### INITIALIZER ###
 

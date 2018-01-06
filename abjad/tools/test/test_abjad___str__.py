@@ -1,28 +1,29 @@
+import abjad
 import inspect
 import pytest
 from abjad.tools import abjadbooktools
-from abjad.tools import datastructuretools
-from abjad.tools import indicatortools
 from abjad.tools import documentationtools
-from abjad.tools import markuptools
-from abjad.tools import pitchtools
-from abjad.tools import schemetools
-from abjad.tools import segmenttools
-from abjad.tools import systemtools
 from abjad.tools import tonalanalysistools
 
 
 _allowed_to_be_empty_string = (
-    indicatortools.Articulation,
-    markuptools.Postscript,
-    pitchtools.Accidental,
-    pitchtools.CompoundOperator,
-    schemetools.SchemeColor,
-    datastructuretools.String,
+    abjad.Accidental,
+    abjad.Articulation,
+    abjad.CompoundOperator,
+    abjad.Line,
+    abjad.Postscript,
+    abjad.SchemeColor,
+    abjad.String,
     tonalanalysistools.ChordSuspension,
     )
 
 ignored_classes = (
+    abjad.Enumeration,
+    abjad.FormatSpecification,
+    abjad.Path,
+    abjad.StorageFormatManager,
+    abjad.Tags,
+    abjad.TestCase,
     abjadbooktools.AbjadDirective,
     abjadbooktools.CodeBlock,
     abjadbooktools.CodeOutputProxy,
@@ -35,11 +36,6 @@ ignored_classes = (
     abjadbooktools.RevealDirective,
     abjadbooktools.ShellDirective,
     abjadbooktools.ThumbnailDirective,
-    datastructuretools.Enumeration,
-    segmenttools.Path,
-    systemtools.FormatSpecification,
-    systemtools.StorageFormatManager,
-    systemtools.TestCase,
     )
 
 classes = documentationtools.list_all_abjad_classes(

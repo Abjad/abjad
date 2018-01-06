@@ -1,17 +1,17 @@
+import abjad
 import inspect
 import pytest
 import types
-from abjad.tools import datastructuretools
 from abjad.tools import documentationtools
-from abjad.tools import segmenttools
 
 
 ignored_classes = (
-    datastructuretools.Duration,
-    datastructuretools.Enumeration,
-    datastructuretools.Multiplier,
-    datastructuretools.Offset,
-    segmenttools.Path,
+    abjad.Duration,
+    abjad.Enumeration,
+    abjad.Multiplier,
+    abjad.Offset,
+    abjad.Path,
+    abjad.Tags,
     )
 
 ignored_package_names = (
@@ -49,7 +49,7 @@ def test_abjad_duration_01(class_):
                 continue
             # if it works to pass in an explicit duration ...
             try:
-                method(duration=datastructuretools.Duration(1, 4))
+                method(duration=abjad.Duration(1, 4))
             except:
                 continue
             # it should work to pass in a pair ...

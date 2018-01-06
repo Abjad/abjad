@@ -79,22 +79,6 @@ sustain = SustainMask.sustain
 from abjad._version import __version_info__, __version__
 del _version
 
-def f(argument, strict=False):
-    if hasattr(argument, '_publish_storage_format'):
-        string = format(argument, 'storage')
-    elif strict is True:
-        string = format(argument, 'lilypond:strict')
-    elif strict is not False and isinstance(strict, int):
-        string = format(argument, 'lilypond:strict')
-        string = LilyPondFormatManager.align_tags(string, strict)
-    else:
-        string = format(argument, 'lilypond')
-    if strict:
-        lines = string.split('\n')
-        lines = LilyPondFormatManager.left_shift_tags(lines)
-        string = '\n'.join(lines)
-    print(string)
-
 from abjad import demos
 from abjad import ly
 

@@ -6,7 +6,7 @@ def test_spannertools_TextSpanner_position_01():
     staff = abjad.Staff("c'8 c'8 c'8 c'8")
     text_spanner = abjad.TextSpanner()
     abjad.attach(text_spanner, staff[:])
-    command = abjad.LilyPondCommand('textSpannerNeutral')
+    command = abjad.LilyPondLiteral(r'\textSpannerNeutral')
     abjad.attach(command, text_spanner[0])
 
     assert format(staff) == abjad.String.normalize(
@@ -27,7 +27,7 @@ def test_spannertools_TextSpanner_position_02():
     staff = abjad.Staff("c'8 c'8 c'8 c'8")
     text_spanner = abjad.TextSpanner()
     abjad.attach(text_spanner, staff[:])
-    command = abjad.LilyPondCommand('textSpannerUp')
+    command = abjad.LilyPondLiteral(r'\textSpannerUp')
     abjad.attach(command, text_spanner[0])
 
     assert format(staff) == abjad.String.normalize(
@@ -48,7 +48,7 @@ def test_spannertools_TextSpanner_position_03():
     staff = abjad.Staff("c'8 c'8 c'8 c'8")
     text_spanner = abjad.TextSpanner()
     abjad.attach(text_spanner, staff[:])
-    command = abjad.LilyPondCommand('textSpannerDown')
+    command = abjad.LilyPondLiteral(r'\textSpannerDown')
     abjad.attach(command, text_spanner[0])
 
     assert format(staff) == abjad.String.normalize(

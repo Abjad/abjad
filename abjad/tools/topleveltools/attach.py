@@ -1,16 +1,25 @@
 def attach(
-    indicator,
-    argument,
-    alternate=None,
-    annotation=None,
+    attachable,
+    target,
     context=None,
     deactivate=None,
-    name=None,
+    left_open=None,
+    right_open=None,
     site=None,
     synthetic_offset=None,
     tag=None,
     ):
-    r'''Attaches `indicator` to component, selection or spanner `argument`.
+    r'''Attaches `attachable` to `target`.
+    
+    First form attaches indicator `attachable` to single leaf `target`.
+    
+    Second form attaches spanner `attachable` to leaf selection `target`.
+
+    Third for attaches grace container `attachable` to leaf `target`.
+
+    Fourth form attaches time signature `attachable` to measure `target`.
+
+    Fifth form attaches wrapper `attachable` to unknown (?) `target`.
 
     ..  container:: example
 
@@ -79,110 +88,113 @@ def attach(
         (Note("e'4"), Clef('alto'))
         (Note("f'4"), Clef('alto'))
 
-    Derives context from default `indicator` context when `context` is none.
+    Derives context from default `attachable` context when `context` is none.
 
     Returns none.
     '''
     import abjad
-    prototype = (abjad.Component, abjad.Selection, abjad.Spanner)
-    if not isinstance(argument, prototype):
-        message = 'must be component, selection or spanner: {!r}.'
-        message = message.format(argument)
-        raise TypeError(message)
 
-    if tag is not None:
-        tag = getattr(tag, 'name', tag)
-        assert ':' not in tag, repr(tag)
+    nonindicator_prototype = (
+        abjad.AfterGraceContainer,
+        abjad.GraceContainer,
+        abjad.Spanner,
+        )
 
-    def _is_acceptable(argument):
-        if isinstance(argument, abjad.Leaf):
-            return True
-        if not isinstance(argument, (list, abjad.Selection, abjad.Spanner)):
-            return False
-        for item in argument:
-            if not isinstance(item, abjad.Leaf):
-                return False
-        return True
-
-    prototype = (str, dict, abjad.IndicatorWrapper)
-    if (isinstance(indicator, prototype) or
-        getattr(indicator, '_can_attach_to_containers', False)):
-        pass
-    elif (isinstance(indicator, abjad.TimeSignature) and
-        isinstance(argument, abjad.Measure)):
-        pass
-    elif not _is_acceptable(argument):
-        message = 'attach {!r} to a leaf (or selection of leaves) not to {!r}.'
-        message = message.format(indicator, argument)
+    if context is not None and isinstance(attachable, nonindicator_prototype):
+        message = 'set context only for indicators, not {!r}.'
+        message = message.format(attachable)
         raise Exception(message)
 
-    if hasattr(indicator, '_before_attach'):
-        indicator._before_attach(argument)
+    if left_open is not None and not isinstance(attachable, abjad.Spanner):
+        message = 'set left_open only for spanners, not {!r}.'
+        message = message.format(attachable)
+        raise Exception(message)
 
-    if hasattr(indicator, '_attachment_test_all'):
-        if not indicator._attachment_test_all(argument):
-            message = '{!r} attachment test fails for {!r}.'
-            message = message.format(indicator, argument)
+    if right_open is not None and not isinstance(attachable, abjad.Spanner):
+        message = 'set right_open only for spanners, not {!r}.'
+        message = message.format(attachable)
+        raise Exception(message)
+            
+    if hasattr(attachable, '_before_attach'):
+        attachable._before_attach(target)
+
+    if hasattr(attachable, '_attachment_test_all'):
+        if not attachable._attachment_test_all(target):
+            message = '{!r} attachment test fails for ...'.format(attachable)
+            message += '\n\n'
+            message += '{!r}'.format(target)
             raise Exception(message)
 
-    if hasattr(indicator, '_attach'):
-        prototype = (
-            abjad.AfterGraceContainer,
-            abjad.GraceContainer,
-            abjad.Spanner,
+    grace_container = (abjad.AfterGraceContainer, abjad.GraceContainer)
+    if isinstance(attachable, abjad.Spanner):
+        if not isinstance(target, abjad.Selection):
+            raise Exception('spanners attach to leaf selections only.')
+        if not target.are_leaves():
+            raise Exception('spanners attach to leaf selections only.')
+        attachable._attach(
+            target,
+            deactivate=deactivate,
+            left_open=left_open,
+            right_open=right_open,
+            site=site,
+            tag=tag,
             )
-        assert isinstance(indicator, prototype), repr(indicator)
-        assert context is None
-
-    prototype = (abjad.AfterGraceContainer, abjad.GraceContainer)
-    if isinstance(indicator, prototype):
-        assert context is None, repr(context)
-        indicator._attach(argument)
+        return
+    elif isinstance(attachable, grace_container):
+        if not isinstance(target, abjad.Leaf):
+            raise Exception('grace containers attach to single leaf only.')
+        attachable._attach(target)
         return
 
-    if isinstance(indicator, abjad.Spanner):
-        leaves = []
-        try:
-            for item in argument:
-                if isinstance(item, abjad.Leaf):
-                    leaves.append(item)
-                else:
-                    leaves.extend(abjad.iterate(item).leaves())
-        except TypeError:
-            leaves.append(argument)
-        indicator._attach(leaves, deactivate=deactivate, site=site, tag=tag)
-        return
+    assert isinstance(target, abjad.Component), repr(target)
 
-    component = argument
-    prototype = (abjad.Component, abjad.Spanner)
-    if not isinstance(component, prototype):
-        message = 'must be component or spanner: {!r}.'
-        message = message.format(component)
+    if isinstance(target, abjad.Container):
+        acceptable = False
+        if isinstance(attachable, (dict, str, abjad.Wrapper)):
+            acceptable = True
+        if (isinstance(attachable, abjad.TimeSignature) and
+            isinstance(target, abjad.Measure)):
+            acceptable = True
+        if getattr(attachable, '_can_attach_to_containers', False):
+            acceptable = True
+        if not acceptable:
+            message = 'can not attach {!r} to containers: {!r}'
+            message = message.format(attachable, target)
+            raise Exception(message)
+    elif not isinstance(target, abjad.Leaf):
+        message = 'indicator {!r} must attach to leaf instead, not {!r}.'
+        message = message.format(attachable, target)
         raise Exception(message)
 
-    if isinstance(indicator, abjad.IndicatorWrapper):
-        alternate = alternate or indicator.alternate
-        annotation = annotation or indicator.annotation
-        context = context or indicator.context
-        deactivate = deactivate or indicator.deactivate
-        name = name or indicator.name
-        site = site or indicator.site
-        synthetic_offset = synthetic_offset or indicator.synthetic_offset
-        tag = tag or indicator.tag
-        indicator._detach()
-        indicator = indicator.indicator
+    component = target
+    assert isinstance(component, abjad.Component)
 
-    if hasattr(indicator, 'context'):
-        context = context or indicator.context
+    annotation = None
+    if isinstance(attachable, abjad.Wrapper):
+        annotation = attachable.annotation
+        context = context or attachable.context
+        deactivate = deactivate or attachable.deactivate
+        if left_open is None:
+            left_open = attachable.left_open
+        if right_open is None:
+            right_open = attachable.right_open
+        site = site or attachable.site
+        synthetic_offset = synthetic_offset or attachable.synthetic_offset
+        tag = tag or attachable.tag
+        attachable._detach()
+        attachable = attachable.indicator
 
-    wrapper = abjad.IndicatorWrapper(
-        alternate=alternate,
+    if hasattr(attachable, 'context'):
+        context = context or attachable.context
+
+    wrapper = abjad.Wrapper(
         annotation=annotation,
         component=component,
         context=context,
         deactivate=deactivate,
-        indicator=indicator,
-        name=name,
+        indicator=attachable,
+        left_open=left_open,
+        right_open=right_open,
         site=site,
         synthetic_offset=synthetic_offset,
         tag=tag,

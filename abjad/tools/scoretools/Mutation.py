@@ -652,7 +652,7 @@ class Mutation(abctools.AbjadObject):
         if not wrappers:
             return
         for wrapper in wrappers:
-            # bypass IndicatorWrapper._bind_to_component()
+            # bypass Wrapper._bind_to_component()
             # to avoid full-score update / traversal;
             # this works because one-to-one leaf replacement
             # including all (persistent) indicators

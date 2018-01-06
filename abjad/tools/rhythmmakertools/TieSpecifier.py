@@ -60,11 +60,11 @@ class TieSpecifier(AbjadValueObject):
         self._tie_across_divisions_(divisions)
         self._tie_consecutive_notes_(divisions)
         self._strip_ties_(divisions)
-        self._configure_messiaen_style_ties(divisions)
+        self._configure_repeat_ties(divisions)
 
     ### PRIVATE METHODS ###
 
-    def _configure_messiaen_style_ties(self, divisions):
+    def _configure_repeat_ties(self, divisions):
         import abjad
         if not self.repeat_ties:
             return
@@ -73,7 +73,7 @@ class TieSpecifier(AbjadValueObject):
             ties_ = abjad.inspect(leaf).get_spanners(abjad.Tie)
             ties.update(ties_)
         for tie in ties:
-            tie._repeat_ties = True
+            tie._repeat = True
 
     def _strip_ties_(self, divisions):
         import abjad
@@ -121,9 +121,7 @@ class TieSpecifier(AbjadValueObject):
             combined_logical_tie = logical_tie_one + logical_tie_two
             for leaf in combined_logical_tie:
                 abjad.detach(abjad.Tie, leaf)
-            tie = abjad.Tie(
-                repeat_ties=self.repeat_ties,
-                )
+            tie = abjad.Tie(repeat=self.repeat_ties)
             tie._unconstrain_contiguity()
             if tie._attachment_test_all(combined_logical_tie):
                 try:

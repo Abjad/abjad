@@ -672,9 +672,9 @@ def test_scoretools_Leaf__split_by_durations_22():
     r'''Split leaf outside of score and fracture spanners.
     '''
 
-    note = abjad.Note(0, (1, 8))
+    note = abjad.Note("c'8")
     beam = abjad.Beam()
-    abjad.attach(beam, note)
+    abjad.attach(beam, abjad.select(note))
 
     assert format(note) == "c'8 [ ]"
 

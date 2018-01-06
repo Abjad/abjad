@@ -2,8 +2,8 @@ import copy
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class IndicatorWrapper(AbjadValueObject):
-    r'''Indicator wrapper.
+class Wrapper(AbjadValueObject):
+    r'''Wrapper.
 
     ..  container:: example
 
@@ -13,7 +13,7 @@ class IndicatorWrapper(AbjadValueObject):
         >>> wrapper = abjad.inspect(component).wrapper()
 
         >>> abjad.f(wrapper)
-        abjad.IndicatorWrapper(
+        abjad.Wrapper(
             component=abjad.Note("c'4 ^\\accent"),
             indicator=abjad.Articulation('accent', Up),
             )
@@ -32,7 +32,8 @@ class IndicatorWrapper(AbjadValueObject):
         '_deactivate',
         '_effective_context',
         '_indicator',
-        '_name',
+        '_left_open',
+        '_right_open',
         '_site',
         '_spanner',
         '_synthetic_offset',
@@ -51,7 +52,8 @@ class IndicatorWrapper(AbjadValueObject):
         context=None,
         deactivate=None,
         indicator=None,
-        name=None,
+        left_open=None,
+        right_open=None,
         site=None,
         spanner=None,
         synthetic_offset=None,
@@ -63,7 +65,7 @@ class IndicatorWrapper(AbjadValueObject):
             assert isinstance(alternate, tuple) and len(alternate) == 3
         self._alternate = alternate
         if annotation is not None:
-            annotation = bool(annotation)
+            assert isinstance(annotation, str), repr(annotation)
         self._annotation = annotation
         if component is not None:
             prototype = (abjad.Component, abjad.Spanner)
@@ -81,12 +83,19 @@ class IndicatorWrapper(AbjadValueObject):
         self._deactivate = deactivate
         self._effective_context = None
         self._indicator = indicator
-        if name is not None:
-            name = str(name)
-        self._name = name
         if spanner is not None:
             assert isinstance(spanner, abjad.Spanner)
         self._spanner = spanner
+        if left_open is not None:
+            left_open = bool(left_open)
+        if left_open and spanner is None:
+            raise Exception('set open left only with spanners.')
+        self._left_open = left_open
+        if right_open is not None:
+            right_open = bool(right_open)
+        if right_open and spanner is None:
+            raise Exception('set open right only with spanners.')
+        self._right_open = right_open
         if site is not None:
             assert isinstance(site, str), repr(site)
         self._site = site
@@ -170,7 +179,7 @@ class IndicatorWrapper(AbjadValueObject):
             >>> leaf = old_staff[0]
             >>> wrapper = abjad.inspect(leaf).wrapper()
             >>> abjad.f(wrapper)
-            abjad.IndicatorWrapper(
+            abjad.Wrapper(
                 component=abjad.Note("\\once \\override TextSpanner.Y-extent = ##f\n\\once \\override TextSpanner.bound-details.left-broken.text = ##f\n\\once \\override TextSpanner.bound-details.left.stencil-align-dir-y = #center\n\\once \\override TextSpanner.bound-details.left.text = \\markup {\n    \\concat\n        {\n            pont.\n            \\hspace\n                #0.25\n        }\n    }\n\\once \\override TextSpanner.bound-details.right-broken.padding = 0\n\\once \\override TextSpanner.bound-details.right-broken.text = ##f\n\\once \\override TextSpanner.bound-details.right.padding = 1.5\n\\once \\override TextSpanner.bound-details.right.stencil-align-dir-y = #center\n\\once \\override TextSpanner.dash-period = 0\nc'4 \\startTextSpan"),
                 indicator=abjad.Markup(
                     contents=['pont.'],
@@ -206,7 +215,7 @@ class IndicatorWrapper(AbjadValueObject):
             >>> leaf = new_staff[0]
             >>> wrapper = abjad.inspect(leaf).wrapper()
             >>> abjad.f(wrapper)
-            abjad.IndicatorWrapper(
+            abjad.Wrapper(
                 component=abjad.Note("\\once \\override TextSpanner.Y-extent = ##f\n\\once \\override TextSpanner.bound-details.left-broken.text = ##f\n\\once \\override TextSpanner.bound-details.left.stencil-align-dir-y = #center\n\\once \\override TextSpanner.bound-details.left.text = \\markup {\n    \\concat\n        {\n            pont.\n            \\hspace\n                #0.25\n        }\n    }\n\\once \\override TextSpanner.bound-details.right-broken.padding = 0\n\\once \\override TextSpanner.bound-details.right-broken.text = ##f\n\\once \\override TextSpanner.bound-details.right.padding = 1.5\n\\once \\override TextSpanner.bound-details.right.stencil-align-dir-y = #center\n\\once \\override TextSpanner.dash-period = 0\nc'4 \\startTextSpan"),
                 indicator=abjad.Markup(
                     contents=['pont.'],
@@ -233,7 +242,7 @@ class IndicatorWrapper(AbjadValueObject):
             >>> leaf = old_staff[0]
             >>> wrapper = abjad.inspect(leaf).wrapper()
             >>> abjad.f(wrapper)
-            abjad.IndicatorWrapper(
+            abjad.Wrapper(
                 component=abjad.Note('\\clef "alto" %! RED:M1\nc\'4'),
                 context='Staff',
                 indicator=abjad.Clef('alto'),
@@ -254,7 +263,7 @@ class IndicatorWrapper(AbjadValueObject):
             >>> leaf = new_staff[0]
             >>> wrapper = abjad.inspect(leaf).wrapper()
             >>> abjad.f(wrapper)
-            abjad.IndicatorWrapper(
+            abjad.Wrapper(
                 component=abjad.Note('\\clef "alto" %! RED:M1\nc\'4'),
                 context='Staff',
                 indicator=abjad.Clef('alto'),
@@ -276,7 +285,7 @@ class IndicatorWrapper(AbjadValueObject):
             ...     )
             >>> abjad.f(old_staff)
             \new Staff {
-                %F% \clef "alto" %! RED:M1
+                %@% \clef "alto" %! RED:M1
                 c'4
                 d'4
                 e'4
@@ -286,8 +295,8 @@ class IndicatorWrapper(AbjadValueObject):
             >>> leaf = old_staff[0]
             >>> wrapper = abjad.inspect(leaf).wrapper()
             >>> abjad.f(wrapper)
-            abjad.IndicatorWrapper(
-                component=abjad.Note('%F% \\clef "alto" %! RED:M1\nc\'4'),
+            abjad.Wrapper(
+                component=abjad.Note('%@% \\clef "alto" %! RED:M1\nc\'4'),
                 context='Staff',
                 deactivate=True,
                 indicator=abjad.Clef('alto'),
@@ -298,7 +307,7 @@ class IndicatorWrapper(AbjadValueObject):
             >>> new_staff = abjad.mutate(old_staff).copy()
             >>> abjad.f(new_staff)
             \new Staff {
-                %F% \clef "alto" %! RED:M1
+                %@% \clef "alto" %! RED:M1
                 c'4
                 d'4
                 e'4
@@ -308,8 +317,8 @@ class IndicatorWrapper(AbjadValueObject):
             >>> leaf = new_staff[0]
             >>> wrapper = abjad.inspect(leaf).wrapper()
             >>> abjad.f(wrapper)
-            abjad.IndicatorWrapper(
-                component=abjad.Note('%F% \\clef "alto" %! RED:M1\nc\'4'),
+            abjad.Wrapper(
+                component=abjad.Note('%@% \\clef "alto" %! RED:M1\nc\'4'),
                 context='Staff',
                 deactivate=True,
                 indicator=abjad.Clef('alto'),
@@ -321,62 +330,194 @@ class IndicatorWrapper(AbjadValueObject):
 
             Preserves alternate tagging triple:
 
-            >>> old_staff = abjad.Staff("c'4 d'4 e'4 f'4")
-            >>> abjad.attach(
-            ...     abjad.Markup('Allegro'),
-            ...     old_staff[0],
-            ...     alternate=('DarkRed', 'M2', 'MARKER_WITH_COLOR'),
-            ...     deactivate=False,
-            ...     site='M1',
-            ...     tag='MARKER',
+            >>> staff = abjad.Staff("c'8. d' e'4. g'8. f' ef'4.")
+            >>> score = abjad.Score([staff])
+            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
+            >>> spanner = abjad.MetronomeMarkSpanner()
+            >>> abjad.attach(spanner, staff[:])
+            >>> abjad.override(staff).text_spanner.staff_padding = 3
+
+            >>> mark = abjad.MetronomeMark((1, 4), 60)
+            >>> spanner.attach(
+            ...     mark,
+            ...     spanner[0],
+            ...     alternate=('DarkRed', 'M2', 'METRONOME_MARK_WITH_COLOR'),
             ...     )
-            >>> abjad.f(old_staff)
-            \new Staff {
-                c'4 - \markup { Allegro } %! MARKER:M1
-                d'4
-                e'4
-                f'4
-            }
+            >>> abjad.show(score) # doctest: +SKIP
 
-            >>> leaf = old_staff[0]
-            >>> wrapper = abjad.inspect(leaf).wrapper()
+            >>> abjad.f(score)
+            \new Score <<
+                \new Staff \with {
+                    \override TextSpanner.staff-padding = #3
+                } {
+                    %@% \once \override TextSpanner.bound-details.left.text = %! METRONOME_MARK_WITH_COLOR:M2
+                    %@% \markup {                                             %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%     \with-color                                       %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%         #(x11-color 'DarkRed)                         %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%         {                                             %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%             \fontsize                                 %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%                 #-6                                   %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%                 \general-align                        %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%                     #Y                                %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%                     #DOWN                             %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%                     \note-by-number                   %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%                         #2                            %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%                         #0                            %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%                         #1                            %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%             \upright                                  %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%                 {                                     %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%                     =                                 %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%                     60                                %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%                 }                                     %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%             \hspace                                   %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%                 #1                                    %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%         }                                             %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%     }                                                 %! METRONOME_MARK_WITH_COLOR:M2
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
+                        \fontsize
+                            #-6
+                            \general-align
+                                #Y
+                                #DOWN
+                                \note-by-number
+                                    #2
+                                    #0
+                                    #1
+                        \upright
+                            {
+                                =
+                                60
+                            }
+                        \hspace
+                            #1
+                        }
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.dash-period = 0
+                    \time 3/8
+                    c'8. \startTextSpan
+                    d'8.
+                    e'4.
+                    g'8.
+                    f'8.
+                    ef'4. \stopTextSpan
+                }
+            >>
+
+            >>> leaf = staff[0]
+            >>> wrapper = abjad.inspect(leaf).wrapper(abjad.MetronomeMark)
             >>> abjad.f(wrapper)
-            abjad.IndicatorWrapper(
-                alternate=('DarkRed', 'M2', 'MARKER_WITH_COLOR'),
-                component=abjad.Note("c'4 - \\markup { Allegro } %! MARKER:M1"),
-                deactivate=False,
-                indicator=abjad.Markup(
-                    contents=['Allegro'],
+            abjad.Wrapper(
+                alternate=('DarkRed', 'M2', 'METRONOME_MARK_WITH_COLOR'),
+                component=abjad.Note(...),
+                context='Score',
+                indicator=abjad.MetronomeMark(
+                    reference_duration=abjad.Duration(1, 4),
+                    units_per_minute=60,
                     ),
-                site='M1',
-                tag='MARKER',
+                spanner=abjad.MetronomeMarkSpanner(
+                    left_hspace=1,
+                    parenthesize=False,
+                    right_padding=1,
+                    stem_height=1,
+                    ),
                 )
 
-            >>> new_staff = abjad.mutate(old_staff).copy()
-            >>> abjad.f(new_staff)
-            \new Staff {
-                c'4 - \markup { Allegro } %! MARKER:M1
-                d'4
-                e'4
-                f'4
-            }
 
-            >>> leaf = new_staff[0]
-            >>> wrapper = abjad.inspect(leaf).wrapper()
+            >>> new_score = abjad.mutate(score).copy()
+            >>> abjad.f(new_score)
+            \new Score <<
+                \new Staff \with {
+                    \override TextSpanner.staff-padding = #3
+                } {
+                    %@% \once \override TextSpanner.bound-details.left.text = %! METRONOME_MARK_WITH_COLOR:M2
+                    %@% \markup {                                             %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%     \with-color                                       %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%         #(x11-color 'DarkRed)                         %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%         {                                             %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%             \fontsize                                 %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%                 #-6                                   %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%                 \general-align                        %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%                     #Y                                %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%                     #DOWN                             %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%                     \note-by-number                   %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%                         #2                            %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%                         #0                            %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%                         #1                            %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%             \upright                                  %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%                 {                                     %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%                     =                                 %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%                     60                                %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%                 }                                     %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%             \hspace                                   %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%                 #1                                    %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%         }                                             %! METRONOME_MARK_WITH_COLOR:M2
+                    %@%     }                                                 %! METRONOME_MARK_WITH_COLOR:M2
+                    \once \override TextSpanner.Y-extent = ##f
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text =
+                    \markup {
+                        \fontsize
+                            #-6
+                            \general-align
+                                #Y
+                                #DOWN
+                                \note-by-number
+                                    #2
+                                    #0
+                                    #1
+                        \upright
+                            {
+                                =
+                                60
+                            }
+                        \hspace
+                            #1
+                        }
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.padding = 1
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.dash-period = 0
+                    \time 3/8
+                    c'8. \startTextSpan
+                    d'8.
+                    e'4.
+                    g'8.
+                    f'8.
+                    ef'4. \stopTextSpan
+                }
+            >>
+
+            >>> leaf = abjad.inspect(new_score).get_leaf(0)
+            >>> wrapper = abjad.inspect(leaf).wrapper(abjad.MetronomeMark)
             >>> abjad.f(wrapper)
-            abjad.IndicatorWrapper(
-                alternate=('DarkRed', 'M2', 'MARKER_WITH_COLOR'),
-                component=abjad.Note("c'4 - \\markup { Allegro } %! MARKER:M1"),
-                deactivate=False,
-                indicator=abjad.Markup(
-                    contents=['Allegro'],
+            abjad.Wrapper(
+                alternate=('DarkRed', 'M2', 'METRONOME_MARK_WITH_COLOR'),
+                component=abjad.Note(...),
+                context='Score',
+                indicator=abjad.MetronomeMark(
+                    reference_duration=abjad.Duration(1, 4),
+                    units_per_minute=60,
                     ),
-                site='M1',
-                tag='MARKER',
+                spanner=abjad.MetronomeMarkSpanner(
+                    left_hspace=1,
+                    parenthesize=False,
+                    right_padding=1,
+                    stem_height=1,
+                    ),
                 )
 
-        Copies all properties except component and spanner; copy operations
-        must supply component and spanner after wrapper copy.
+        Copies all properties except component and spanner.
+        
+        Copy operations must supply component and spanner after wrapper copy.
 
         Returns new indicator wrapper.
         '''
@@ -387,7 +528,6 @@ class IndicatorWrapper(AbjadValueObject):
             context=self.context,
             deactivate=self.deactivate,
             indicator=copy.copy(self.indicator),
-            name=self.name,
             site=self.site,
             spanner = None,
             synthetic_offset=self.synthetic_offset,
@@ -568,15 +708,35 @@ class IndicatorWrapper(AbjadValueObject):
     def alternate(self):
         r'''Gets alternate tagging information.
 
-        Returns (color, site, tag) quadruple, or none.
+        Set only by ``MetronomeMarkSpanner.attach(..., alternate=None)``
+        keyword.
+
+        Returns (color, site, tag) triple, or none.
         '''
         return self._alternate
 
     @property
     def annotation(self):
-        r'''Is true if indicator wrapper is annotation.
+        r'''Gets indicator wrapper annotation.
 
-        Returns true, false or none.
+        ..  container:: example
+
+            >>> note = abjad.Note("c'4")
+            >>> articulation = abjad.Articulation('accent', abjad.Up)
+            >>> abjad.attach(articulation, note)
+            >>> wrapper = abjad.inspect(note).wrapper()
+            >>> wrapper.annotation is None
+            True
+
+        ..  container:: example
+
+            >>> note = abjad.Note("c'4")
+            >>> articulation = abjad.Articulation('accent', abjad.Up)
+            >>> abjad.annotate(note, 'foo', articulation)
+            >>> abjad.inspect(note).get_annotation('foo')
+            Articulation('accent', Up)
+
+        Returns string or none.
         '''
         return self._annotation
 
@@ -619,29 +779,14 @@ class IndicatorWrapper(AbjadValueObject):
         return self._indicator
 
     @property
-    def name(self):
-        r'''Gets name of indicator wrapper.
+    def left_open(self):
+        r'''Is true when spanner is left-open.
 
-        ..  container:: example
+        Defaults to none.
 
-            >>> note = abjad.Note("c'4")
-            >>> articulation = abjad.Articulation('accent', abjad.Up)
-            >>> abjad.attach(articulation, note)
-            >>> wrapper = abjad.inspect(note).wrapper()
-            >>> wrapper.name is None
-            True
-
-        ..  container:: example
-
-            >>> note = abjad.Note("c'4")
-            >>> articulation = abjad.Articulation('accent', abjad.Up)
-            >>> abjad.annotate(note, 'foo', articulation)
-            >>> abjad.inspect(note).get_annotation('foo')
-            Articulation('accent', Up)
-
-        Returns string or none.
+        Set to true, false or none.
         '''
-        return self._name
+        return self._left_open
 
     @property
     def site(self):
@@ -652,6 +797,16 @@ class IndicatorWrapper(AbjadValueObject):
         Returns string or none.
         '''
         return self._site
+
+    @property
+    def right_open(self):
+        r'''Is true when spanner is right-open.
+
+        Defaults to none.
+
+        Set to true, false or none.
+        '''
+        return self._right_open
 
     @property
     def spanner(self):

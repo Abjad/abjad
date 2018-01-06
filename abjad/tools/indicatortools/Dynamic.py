@@ -52,10 +52,10 @@ class Dynamic(AbjadValueObject):
 
         >>> voice_1 = abjad.Voice("e'8 g'8 f'8 a'8")
         >>> abjad.attach(abjad.Dynamic('f'), voice_1[0], context='Voice')
-        >>> abjad.attach(abjad.LilyPondCommand('voiceOne'), voice_1)
+        >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceOne'), voice_1)
         >>> abjad.override(voice_1).dynamic_line_spanner.direction = abjad.Up
         >>> voice_2 = abjad.Voice("c'2")
-        >>> abjad.attach(abjad.LilyPondCommand('voiceTwo'), voice_2)
+        >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceTwo'), voice_2)
         >>> abjad.attach(abjad.Dynamic('mf'), voice_2[0], context='Voice')
         >>> staff = abjad.Staff([voice_1, voice_2], is_simultaneous=True)
         >>> abjad.show(staff) # doctest: +SKIP
@@ -93,6 +93,7 @@ class Dynamic(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_command',
         '_direction',
         '_hide',
         '_name',
@@ -185,15 +186,27 @@ class Dynamic(AbjadValueObject):
 
     _persistent = True
 
+    _to_width = {
+        '"f"': 2,
+        '"mf"': 3.5,
+        '"mp"': 3.5,
+        '"p"': 2,
+        'sfz': 2.5,
+        }
+
     ### INITIALIZER ###
 
-    def __init__(self, name='f', direction=None, hide=None):
+    def __init__(self, name='f', command=None, direction=None, hide=None):
         if isinstance(name, type(self)):
             name = name.name
         if name != 'niente':
             for letter in name.strip('"'):
                 assert letter in self._lilypond_dynamic_alphabet, repr(letter)
         self._name = name
+        if command is not None:
+            assert isinstance(command, str), repr(command)
+            assert command.startswith('\\'), repr(command)
+        self._command = command
         self._direction = direction
         if hide is not None:
             hide = bool(hide)
@@ -313,6 +326,8 @@ class Dynamic(AbjadValueObject):
             )
 
     def _get_lilypond_format(self):
+        if self.command:
+            return self.command
         if self.effort:
             return self._format_effort_dynamic()
         if self.name == 'niente':
@@ -328,6 +343,30 @@ class Dynamic(AbjadValueObject):
         return bundle
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def command(self):
+        r'''Gets explicit command.
+
+        ..  container:: example
+
+            >>> dynamic = abjad.Dynamic('f', command=r'\sub_f')
+            >>> abjad.f(dynamic)
+            \sub_f
+
+        Use to override LilyPond output when a custom dynamic has been defined
+        in an external stylesheet. (In the example above, ``\sub_f`` is a
+        nonstandard LilyPond dynamic. LilyPond will interpret the output above
+        only when the command ``\sub_f`` is defined somewhere in an external
+        stylesheet.)
+
+        Defaults to none.
+
+        Set to backslash-prefixed string or none.
+
+        Returns backslash-prefixed string or none.
+        '''
+        return self._command
 
     @property
     def context(self):

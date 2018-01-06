@@ -15,7 +15,7 @@ class SegmentMaker(abjad.AbjadObject):
 
     def run(
         self,
-        builds_metadata=None,
+        documents_metadata=None,
         metadata=None,
         midi=None,
         previous_metadata=None,
@@ -24,7 +24,7 @@ class SegmentMaker(abjad.AbjadObject):
 
         Returns LilyPond file.
         '''
-        self.builds_metadata = builds_metadata
+        self.documents_metadata = documents_metadata
         self.metadata = metadata
         self.midi = midi
         self.previous_metadata = previous_metadata

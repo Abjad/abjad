@@ -30,7 +30,7 @@ if __name__ == '__main__':
         segment_directory = pathlib.Path(os.path.realpath(__file__)).parent
         builds_directory = segment_directory.parent.parent / 'builds'
         builds_directory = ide.Path(builds_directory)
-        builds_metadata = builds_directory.get_metadata()
+        documents_metadata = builds_directory.get_metadata()
     except:
         traceback.print_exc()
         sys.exit(1)
@@ -38,7 +38,7 @@ if __name__ == '__main__':
     try:
         with abjad.Timer() as timer:
             lilypond_file = maker.run(
-                builds_metadata=builds_metadata,
+                documents_metadata=documents_metadata,
                 metadata=metadata,
                 previous_metadata=previous_metadata,
                 )

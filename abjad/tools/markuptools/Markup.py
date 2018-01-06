@@ -150,10 +150,10 @@ class Markup(AbjadValueObject):
         >>> abjad.f(staff)
         \new Staff {
             c'4
-                %F% ^ \markup {     %! RED:M1
-                %F%     \italic     %! RED:M1
-                %F%         Allegro %! RED:M1
-                %F%     }           %! RED:M1
+                %@% ^ \markup {     %! RED:M1
+                %@%     \italic     %! RED:M1
+                %@%         Allegro %! RED:M1
+                %@%     }           %! RED:M1
             d'4
             e'4
             f'4
@@ -182,10 +182,10 @@ class Markup(AbjadValueObject):
                                 {
                                     Allegro
                                 }
-                            %F% \line                %! RED
-                            %F%     {                %! RED
-                            %F%         "non troppo" %! RED
-                            %F%     }                %! RED
+                            %@% \line                %! RED
+                            %@%     {                %! RED
+                            %@%         "non troppo" %! RED
+                            %@%     }                %! RED
                         }
                     }
             d'4
@@ -643,10 +643,13 @@ class Markup(AbjadValueObject):
             else:
                 content = '{}'
             if direction:
-                return tweaks + [r'{} \markup {}'.format(direction, content)]
-            return tweaks + [r'\markup {}'.format(content)]
+                string = r'{} \markup {}'.format(direction, content)
+                return tweaks + [string]
+            else:
+                return tweaks + [r'\markup {}'.format(content)]
         if direction:
-            pieces = [r'{} \markup {{'.format(direction)]
+            string = r'{} \markup {{'.format(direction)
+            pieces = [string]
         else:
             pieces = [r'\markup {']
         for content in self.contents:
@@ -2491,19 +2494,100 @@ class Markup(AbjadValueObject):
 
             >>> abjad.show(up_markup.box()) # doctest: +SKIP
 
+            ..  docs::
+
+                >>> abjad.f(up_markup.box())
+                \markup {
+                    \box
+                        \postscript
+                            #"
+                            newpath
+                            0 0 moveto
+                            10 0 rlineto
+                            0 10 rlineto
+                            -10 0 rlineto
+                            closepath
+                            0.75 setgray
+                            fill
+                            "
+                    }
+
             >>> up_markup = up_markup.with_dimensions((0, 10), (0, 10))
             >>> up_markup = up_markup.box()
             >>> abjad.show(up_markup) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(up_markup)
+                \markup {
+                    \box
+                        \with-dimensions
+                            #'(0 . 10)
+                            #'(0 . 10)
+                            \postscript
+                                #"
+                                newpath
+                                0 0 moveto
+                                10 0 rlineto
+                                0 10 rlineto
+                                -10 0 rlineto
+                                closepath
+                                0.75 setgray
+                                fill
+                                "
+                    }
 
             >>> up_markup = up_postscript.as_markup()
             >>> up_markup = up_markup.with_dimensions((0, 20), (0, 20))
             >>> up_markup = up_markup.box()
             >>> abjad.show(up_markup) # doctest: +SKIP
 
+            ..  docs::
+
+                >>> abjad.f(up_markup)
+                \markup {
+                    \box
+                        \with-dimensions
+                            #'(0 . 20)
+                            #'(0 . 20)
+                            \postscript
+                                #"
+                                newpath
+                                0 0 moveto
+                                10 0 rlineto
+                                0 10 rlineto
+                                -10 0 rlineto
+                                closepath
+                                0.75 setgray
+                                fill
+                                "
+                    }
+
             >>> up_markup = up_postscript.as_markup()
             >>> up_markup = up_markup.with_dimensions((0, 20), (0, -20))
             >>> up_markup = up_markup.box()
             >>> abjad.show(up_markup) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(up_markup)
+                \markup {
+                    \box
+                        \with-dimensions
+                            #'(0 . 20)
+                            #'(0 . -20)
+                            \postscript
+                                #"
+                                newpath
+                                0 0 moveto
+                                10 0 rlineto
+                                0 10 rlineto
+                                -10 0 rlineto
+                                closepath
+                                0.75 setgray
+                                fill
+                                "
+                    }
 
         ..  container:: example
 
@@ -2536,6 +2620,37 @@ class Markup(AbjadValueObject):
             >>> down_markup = down_markup.box()
             >>> abjad.show(down_markup) # doctest: +SKIP
 
+        ..  container:: example
+
+            Simple example:
+
+            >>> markup = abjad.Markup('Allegro').box()
+            >>> abjad.show(markup) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(markup)
+                \markup {
+                    \box
+                        Allegro
+                    }
+
+            >>> markup = abjad.Markup('Allegro')
+            >>> markup = markup.with_dimensions((-10, 10), (-10, 10))
+            >>> markup = markup.box()
+            >>> abjad.show(markup) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(markup)
+                \markup {
+                    \box
+                        \with-dimensions
+                            #'(-10 . 10)
+                            #'(-10 . 10)
+                            Allegro
+                    }
+
         Returns new markup.
         '''
         contents = self._parse_markup_command_argument(self)
@@ -2547,4 +2662,44 @@ class Markup(AbjadValueObject):
             y_extent,
             contents,
             )
+        return new(self, contents=command)
+
+
+    def with_dimensions_from(self, command):
+        r'''LilyPond ``with-dimensions`` markup command.
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff("c'8 d' e' f'")
+            >>> markup = abjad.Markup('Allegro', direction=abjad.Up)
+            >>> markup = markup.with_dimensions_from(r'\null')
+            >>> abjad.attach(markup, staff[0])
+            >>> markup = abjad.Markup('non troppo', direction=abjad.Up)
+            >>> markup = markup.with_dimensions_from(r'\null')
+            >>> abjad.attach(markup, staff[1])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+            
+                >>> abjad.f(staff)
+                \new Staff {
+                    c'8
+                        ^ \markup {
+                            \with-dimensions-from
+                                \null
+                                Allegro
+                            }
+                    d'8
+                        ^ \markup {
+                            \with-dimensions-from
+                                \null
+                                "non troppo"
+                            }
+                    e'8
+                    f'8
+                }
+
+        '''
+        contents = self._parse_markup_command_argument(self)
+        command = MarkupCommand('with-dimensions-from', command, contents)
         return new(self, contents=command)

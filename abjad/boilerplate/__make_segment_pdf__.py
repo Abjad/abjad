@@ -32,7 +32,6 @@ if __name__ == '__main__':
         segment_directory = pathlib.Path(os.path.realpath(__file__)).parent
         builds_directory = segment_directory.parent.parent / 'builds'
         builds_directory = ide.Path(builds_directory)
-        builds_metadata = builds_directory.get_metadata()
     except:
         traceback.print_exc()
         sys.exit(1)
@@ -40,7 +39,6 @@ if __name__ == '__main__':
     try:
         with abjad.Timer() as timer:
             lilypond_file = maker.run(
-                builds_metadata=builds_metadata,
                 metadata=metadata,
                 previous_metadata=previous_metadata,
                 )
@@ -79,23 +77,110 @@ if __name__ == '__main__':
         segment = ide.Path(__file__).parent
         ly = segment('illustration.ly')
         text = ly.read_text()
-        lines = abjad.LilyPondFormatManager.left_shift_tags(text.split('\n'))
-        ly.write_text('\n'.join(lines))
-        for tag in (
-            'CLOCK_TIME_MARKUP',
-            'FIGURE_NAME_MARKUP', 
-            'SEGMENT_SPACING_MARKUP',
-            'STAGE_NUMBER_MARKUP',
-            ):
-            text, count = ly.deactivate_tag(tag)
+        text = abjad.LilyPondFormatManager.left_shift_tags(text, realign=89)
+        ly.write_text(text)
+        tag = f'+{{abjad.tags.SEGMENT}}'
+        text, count = ly.activate_tag(tag)
+        messages = ide.AbjadIDE._message_activate(None, tag, count)
+        for message in messages:
+            print(abjad.String(message).capitalize_start())
+        ly.write_text(text)
+        tag = f'-{{abjad.tags.SEGMENT}}'
+        text, count = ly.deactivate_tag(tag)
+        messages = ide.AbjadIDE._message_deactivate(None, tag, count)
+        for message in messages:
+            print(abjad.String(message).capitalize_start())
+        ly.write_text(text)
+        text, count = ly.deactivate_tag(
+            lambda tags: bool(set(tags) & set(abjad.tags.markup_tags)),
+            )
+        messages = ide.AbjadIDE._message_deactivate(
+            None,
+            tag,
+            count,
+            name='markup',
+            )
+        for message in messages:
+            print(abjad.String(message).capitalize_start())
+        ly.write_text(text)
+    except:
+        traceback.print_exc()
+        sys.exit(1)
+
+    # deactivate bar line adjustments after non-EOL fermata measures:
+    try:
+        bol_measure_numbers = segment.get_metadatum('bol_measure_numbers')
+        if bol_measure_numbers is not None:
+            eol_measure_numbers = [_ - 1 for _ in bol_measure_numbers[1:]]
+            last_measure_number = segment.get_metadatum('last_measure_number')
+            eol_measure_numbers.append(last_measure_number)
+            eol_measure_numbers = [
+                f'MEASURE_{{_}}' for _ in eol_measure_numbers
+                ]
+            tag = abjad.tags.BAR_LINE_ADJUSTMENT_AFTER_EOL_FERMATA
+            def match(tags):
+                if tag not in tags:
+                    return False
+                if any(_ in tags for _ in eol_measure_numbers):
+                    return False
+                return True
+            text, count = ly.deactivate_tag(match)
+            name = abjad.tags.BAR_LINE_ADJUSTMENT_AFTER_EOL_FERMATA
             messages = ide.AbjadIDE._message_deactivate(
                 None,
                 tag,
                 count,
+                name=name,
                 )
             for message in messages:
                 print(abjad.String(message).capitalize_start())
             ly.write_text(text)
+    except:
+        traceback.print_exc()
+        sys.exit(1)
+
+    # deactivate shifted clefs at BOL measures:
+    try:
+        bol_measure_numbers = segment.get_metadatum('bol_measure_numbers')
+        if bol_measure_numbers is not None:
+            bol_measure_numbers = [
+                f'MEASURE_{{_}}' for _ in bol_measure_numbers
+                ]
+            def match(tags):
+                if abjad.tags.SHIFTED_CLEF not in tags:
+                    return False
+                if any(_ in tags for _ in bol_measure_numbers):
+                    return True
+                return False
+            text, count = ly.deactivate_tag(match)
+            name = abjad.tags.SHIFTED_CLEF
+            messages = ide.AbjadIDE._message_deactivate(
+                None,
+                tag,
+                count,
+                name=name,
+                )
+            for message in messages:
+                print(abjad.String(message).capitalize_start())
+            ly.write_text(text)
+    except:
+        traceback.print_exc()
+        sys.exit(1)
+
+    try:
+        layout_py = segment('layout.py')
+        if not layout_py.exists():
+            print('Writing stub layout.py ...')
+            layout_py.write_text('')
+    except:
+        traceback.print_exc()
+        sys.exit(1)
+
+    try:
+        layout_ly = segment('layout.ly')
+        if not layout_ly.exists():
+            print('Writing stub layout.ly ...')
+            layout_ly.write_text('')
     except:
         traceback.print_exc()
         sys.exit(1)

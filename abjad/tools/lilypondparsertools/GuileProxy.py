@@ -66,7 +66,7 @@ class GuileProxy(AbjadObject):
     def breathe(self):
         r'''Handles LilyPond ``\breathe`` command.
         '''
-        return indicatortools.LilyPondCommand('breathe', 'after')
+        return indicatortools.LilyPondLiteral(r'\breathe', 'after')
 
     def clef(self, string):
         r'''Handles LilyPond ``\clef`` command.
@@ -111,12 +111,12 @@ class GuileProxy(AbjadObject):
         '''
         if label is None:
             label = '\default'
-        return indicatortools.LilyPondCommand('mark %s' % label)
+        return indicatortools.LilyPondLiteral(r'\mark %s' % label)
 
     def oneVoice(self):
         r'''Handles LilyPond ``\oneVoice`` command.
         '''
-        return indicatortools.LilyPondCommand('oneVoice')
+        return indicatortools.LilyPondLiteral(r'\oneVoice')
 
     # pitchedTrill
 
@@ -231,22 +231,22 @@ class GuileProxy(AbjadObject):
     def voiceFour(self):
         r'''Handles LilyPond ``\voiceFour`` command.
         '''
-        return indicatortools.LilyPondCommand('voiceTwo')
+        return indicatortools.LilyPondLiteral(r'\voiceFour')
 
     def voiceOne(self):
         r'''Handles LilyPond ``\voiceOnce`` command.
         '''
-        return indicatortools.LilyPondCommand('voiceOne')
+        return indicatortools.LilyPondLiteral(r'\voiceOne')
 
     def voiceThree(self):
         r'''Handles LilyPond ``\voiceThree`` command.
         '''
-        return indicatortools.LilyPondCommand('voiceThree')
+        return indicatortools.LilyPondLiteral(r'\voiceThree')
 
     def voiceTwo(self):
         r'''Handles LilyPond ``\voiceTwo`` command.
         '''
-        return indicatortools.LilyPondCommand('voiceTwo')
+        return indicatortools.LilyPondLiteral(r'\voiceTwo')
 
     ### HELPER FUNCTIONS ###
 

@@ -6,9 +6,9 @@ def test_scoretools_Inspection_get_indicators_01():
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     slur = abjad.Slur()
     abjad.attach(slur, staff[:])
-    command_1 = abjad.LilyPondCommand('slurDotted')
+    command_1 = abjad.LilyPondLiteral(r'\slurDotted')
     abjad.attach(command_1, staff[0])
-    command_2 = abjad.LilyPondCommand('slurUp')
+    command_2 = abjad.LilyPondLiteral(r'\slurUp')
     abjad.attach(command_2, staff[0])
 
     assert format(staff) == abjad.String.normalize(
@@ -24,7 +24,7 @@ def test_scoretools_Inspection_get_indicators_01():
         '''
         ), format(staff)
 
-    indicators = abjad.inspect(staff[0]).get_indicators(abjad.LilyPondCommand)
+    indicators = abjad.inspect(staff[0]).get_indicators(abjad.LilyPondLiteral)
     assert command_1 in indicators
     assert command_2 in indicators
     assert len(indicators) == 2
@@ -37,7 +37,7 @@ def test_scoretools_Inspection_get_indicators_02():
     abjad.attach(slur, staff[:])
     comment = abjad.LilyPondComment('beginning of note content')
     abjad.attach(comment, staff[0])
-    command = abjad.LilyPondCommand('slurDotted')
+    command = abjad.LilyPondLiteral(r'\slurDotted')
     abjad.attach(command, staff[0])
 
     assert format(staff) == abjad.String.normalize(

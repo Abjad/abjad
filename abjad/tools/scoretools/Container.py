@@ -1333,13 +1333,12 @@ class Container(Component):
 
     @is_simultaneous.setter
     def is_simultaneous(self, argument):
-        from abjad.tools import scoretools
         if argument is None:
             return
         assert isinstance(argument, bool), repr(argument)
-        prototype = scoretools.Context
-        if argument and not all(isinstance(x, prototype) for x in self):
-            message = 'simultaneous containers must contain only contexts.'
+        if argument and not all(isinstance(_, Container) for _ in self):
+            message = 'simultaneous containers must contain'
+            message += ' only other containers.'
             raise ValueError(message)
         self._is_simultaneous = argument
         self._update_later(offsets=True)

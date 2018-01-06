@@ -9,9 +9,9 @@ def test_scoretools_Measure_simultaneous_01():
     measure.append(abjad.Voice("c'8 d'8"))
     measure.append(abjad.Voice("e'8 f'8"))
     measure.is_simultaneous = True
-    command = abjad.LilyPondCommand('voiceOne')
+    command = abjad.LilyPondLiteral(r'\voiceOne')
     abjad.attach(command, measure[0])
-    command = abjad.LilyPondCommand('voiceTwo')
+    command = abjad.LilyPondLiteral(r'\voiceTwo')
     abjad.attach(command, measure[1])
     staff = abjad.Staff([measure])
 

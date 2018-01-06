@@ -31,7 +31,7 @@ class OctavationSpanner(Spanner):
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> octavation_spanner = abjad.OctavationSpanner(start=1)
-        >>> abjad.attach(octavation_spanner, staff[0])
+        >>> abjad.attach(octavation_spanner, staff[:1])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::

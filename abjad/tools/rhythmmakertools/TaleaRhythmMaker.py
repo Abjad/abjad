@@ -443,27 +443,28 @@ class TaleaRhythmMaker(RhythmMaker):
         return rhythmmakertools.Talea()
 
     def _handle_rest_tied_notes(self, selections):
+        import abjad
         if not self.rest_tied_notes:
             return selections
         # wrap every selection in a temporary container;
         # this allows the call to mutate().replace() to work
         containers = []
         for selection in selections:
-            container = scoretools.Container(selection)
+            container = abjad.Container(selection)
             attach('temporary container', container)
             containers.append(container)
-        for logical_tie in iterate(selections).logical_ties():
+        for logical_tie in abjad.iterate(selections).logical_ties():
             if not logical_tie.is_trivial:
                 for note in logical_tie[1:]:
-                    rest = scoretools.Rest(note)
-                    mutate(note).replace(rest)
-                detach(spannertools.Tie, logical_tie.head)
+                    rest = abjad.Rest(note)
+                    abjad.mutate(note).replace(rest)
+                abjad.detach(abjad.Tie, logical_tie.head)
         # remove every temporary container and recreate selections
         new_selections = []
         for container in containers:
-            inspector = inspect(container)
-            assert inspector.get_indicator(str) == 'temporary container'
-            new_selection = mutate(container).eject_contents()
+            inspection = abjad.inspect(container)
+            assert inspection.get_indicator(str) == 'temporary container'
+            new_selection = abjad.mutate(container).eject_contents()
             new_selections.append(new_selection)
         return new_selections
 
@@ -522,9 +523,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 not leaves[0]._has_spanner(abjad.Tie) and
                 not isinstance(leaves[0], abjad.Rest)
                 ):
-                tie = abjad.Tie(
-                    repeat_ties=repeat_ties,
-                    )
+                tie = abjad.Tie(repeat=repeat_ties)
                 attach(tie, leaves[:])
             result.extend(leaves)
         result = abjad.select(result)

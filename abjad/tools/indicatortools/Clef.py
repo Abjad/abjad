@@ -106,12 +106,12 @@ class Clef(AbjadValueObject):
 
         >>> voice_1 = abjad.Voice("e'8 g' f' a' g' b'")
         >>> abjad.attach(abjad.Clef('treble'), voice_1[0], context='Voice')
-        >>> abjad.attach(abjad.LilyPondCommand('voiceOne'), voice_1)
+        >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceOne'), voice_1)
         >>> voice_1.consists_commands.append('Clef_engraver')
         >>> voice_2 = abjad.Voice("c'4. c,8 b,, a,,")
         >>> abjad.attach(abjad.Clef('treble'), voice_2[0], context='Voice')
         >>> abjad.attach(abjad.Clef('bass'), voice_2[1], context='Voice')
-        >>> abjad.attach(abjad.LilyPondCommand('voiceTwo'), voice_2)
+        >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceTwo'), voice_2)
         >>> voice_2.consists_commands.append('Clef_engraver')
         >>> staff = abjad.Staff([voice_1, voice_2], is_simultaneous=True)
         >>> staff.remove_commands.append('Clef_engraver')
@@ -192,6 +192,7 @@ class Clef(AbjadValueObject):
         'tab': 0,
         }
 
+
     _context = 'Staff'
 
     _format_slot = 'opening'
@@ -199,6 +200,14 @@ class Clef(AbjadValueObject):
     _persistent = True
 
     _redraw = True
+
+    _to_width = {
+        'alto': 2.75,
+        'bass': 2.75,
+        'percussion': 2.5,
+        'tenor': 2.75,
+        'treble': 2.5,
+        }
 
     ### INITIALIZER ###
 

@@ -217,10 +217,11 @@ class NoteRhythmMaker(RhythmMaker):
             if (duration_specifier.spell_metrically is True or
                 (duration_specifier.spell_metrically == 'unassignable' and
                 not mathtools.is_assignable_integer(division.numerator))):
-                meter = metertools.Meter(division)
+                meter = abjad.Meter(division)
                 rhythm_tree_container = meter.root_node
                 durations = [_.duration for _ in rhythm_tree_container]
-            elif isinstance(duration_specifier.spell_metrically,
+            elif isinstance(
+                duration_specifier.spell_metrically,
                 rhythmmakertools.PartitionTable):
                 partition_table = duration_specifier.spell_metrically
                 durations = partition_table.respell_division(division)
@@ -228,11 +229,9 @@ class NoteRhythmMaker(RhythmMaker):
                 durations = [division]
             selection = leaf_maker(pitches=0, durations=durations)
             if (1 < len(selection) and
-                not selection[0]._has_spanner(spannertools.Tie)):
-                tie = spannertools.Tie(
-                    repeat_ties=tie_specifier.repeat_ties,
-                    )
-                attach(tie, selection[:])
+                not selection[0]._has_spanner(abjad.Tie)):
+                tie = abjad.Tie(repeat=tie_specifier.repeat_ties)
+                abjad.attach(tie, selection[:])
             selections.append(selection)
         selections = self._apply_burnish_specifier(selections)
         beam_specifier = self._get_beam_specifier()

@@ -455,6 +455,25 @@ class String(str):
                 return True
         return False
 
+    def is_shout_case(self):
+        r'''Is true when string and is shoutcase.
+
+        ..  container:: example
+
+            >>> abjad.String('FOO_BAR').is_shout_case()
+            True
+
+        Otherwise false:
+
+        ..  container:: example
+
+            >>> abjad.String('FooBar').is_shout_case()
+            False
+
+        Returns true or false.
+        '''
+        return self == self.to_shout_case()
+
     def is_snake_case(self):
         r'''Is true when string is underscore-delimited lowercase.
 
@@ -1104,6 +1123,44 @@ class String(str):
             pass
         else:
             string = string[0].lower() + string[1:]
+        return type(self)(string)
+
+    def to_shout_case(self):
+        r'''Changes string to shout case.
+
+        ..  container:: example
+
+            Changes words to shout case:
+
+            >>> abjad.String('scale degrees 4 and 5').to_shout_case()
+            'SCALE_DEGREES_4_AND_5'
+
+        ..  container:: example
+
+            Changes shout case to shout case:
+
+            >>> abjad.String('scale_degrees_4_and_5').to_shout_case()
+            'SCALE_DEGREES_4_AND_5'
+
+        ..  container:: example
+
+            Changes dash case to shout case:
+
+            >>> abjad.String('scale-degrees-4-and-5').to_shout_case()
+            'SCALE_DEGREES_4_AND_5'
+
+        ..  container:: example
+
+            Changes upper camel case to shout case:
+
+            >>> abjad.String('ScaleDegrees4And5').to_shout_case()
+            'SCALE_DEGREES_4_AND_5'
+
+        Returns string.
+        '''
+        words = self.delimit_words()
+        words = [_.upper() for _ in words]
+        string = '_'.join(words)
         return type(self)(string)
 
     def to_snake_case(self):

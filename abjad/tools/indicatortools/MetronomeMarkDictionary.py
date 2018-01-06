@@ -113,13 +113,13 @@ class MetronomeMarkDictionary(TypedOrderedDict):
         # score-initial metronome marks slip to the left
         zero_note = abjad.Note("c'2")
         staff.append(zero_note)
-        command = abjad.LilyPondCommand('break')
+        command = abjad.LilyPondLiteral(r'\break')
         abjad.attach(command, zero_note)
         for name, mark in self.items():
             note = abjad.Note("c'2")
             abjad.attach(mark, note)
             staff.append(note)
-            command = abjad.LilyPondCommand('break')
+            command = abjad.LilyPondLiteral(r'\break')
             abjad.attach(command, note)
         leaf = abjad.inspect(staff).get_leaf(0)
         time_signature = abjad.TimeSignature((2, 4))

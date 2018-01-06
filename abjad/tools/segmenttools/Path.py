@@ -4,7 +4,7 @@ import shutil
 
 
 class Path(pathlib.PosixPath):
-    r'''Path (of an Abjad score package).
+    r'''Path in an Abjad score package.
 
     ..  container:: example
 
@@ -126,8 +126,10 @@ class Path(pathlib.PosixPath):
 
         Returns path.
         '''
-        if self.builds:
-            return self.builds('_assets')
+        if self.is_builds():
+            return self('_assets')
+        if self.is_build():
+            return self('_assets')
 
     @property
     def _segments(self):
@@ -135,6 +137,8 @@ class Path(pathlib.PosixPath):
 
         Returns path.
         '''
+        if self.is__segments():
+            return self
         if self.is_build():
             return self('_segments')
 
@@ -215,8 +219,6 @@ class Path(pathlib.PosixPath):
                 continue
             if name in ('__init__.py', '__pycache__'):
                 continue
-            if name == '.gitignore' and not self.is_wrapper():
-                continue
             if (predicate is not None and
                 not predicate(name) and
                 name != '_assets' and
@@ -286,6 +288,39 @@ class Path(pathlib.PosixPath):
         return paths
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def build(self):
+        r'''Gets build directory (if directory is already build or is _segments
+        directory).
+
+        ..  container:: example
+
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score/builds/letter-score',
+            ...     scores='/path/to/scores',
+            ...     )
+            >>> path
+            Path*('/path/to/scores/my_score/my_score/builds/letter-score')
+
+            >>> path.build
+            Path*('/path/to/scores/my_score/my_score/builds/letter-score')
+
+            >>> path = path / '_segments'
+            >>> path
+            Path*('/path/to/scores/my_score/my_score/builds/letter-score/_segments')
+
+            >>> path.build
+            Path*('/path/to/scores/my_score/my_score/builds/letter-score')
+
+        Returns path.
+        '''
+        if self.is_build():
+            return self
+        if self.is__segments():
+            return self.contents.builds(self.parent.name)
+        if self.parent.is_build():
+            return self.parent
 
     @property
     def builds(self):
@@ -535,37 +570,10 @@ class Path(pathlib.PosixPath):
 
         Count gives number of activated tags.
         '''
+        import abjad
         assert self.is_file()
-        lines, count = [], 0
-        tags = tag.split(':')
-        with self.open() as file_pointer:
-            activated_last_line = False
-            for line in file_pointer.readlines():
-                words = []
-                for word in line.split():
-                    words.extend(word.split(':'))
-                if any(tag not in words for tag in tags):
-                    lines.append(line)
-                    activated_last_line = False
-                    continue
-                first_nonwhitespace_index = len(line) - len(line.lstrip())
-                index = first_nonwhitespace_index
-                if line[index:index+4] in ('%%% ', '%F% '):
-                    if '%F% ' in line:
-                        suffix = '%F%'
-                    else:
-                        suffix = None
-                    line = list(line)
-                    line[index:index+4] = 4 * ' '
-                    line = ''.join(line)
-                    assert line.endswith('\n'), repr(line)
-                    if suffix:
-                        line = line.strip('\n') + suffix + '\n'
-                    if not activated_last_line:
-                        count += 1
-                    activated_last_line = True
-                lines.append(line)
-        text = ''.join(lines)
+        text = self.read_text()
+        text, count = abjad.activate(text, tag)
         return text, count
 
     def add_metadatum(self, name, value):
@@ -704,6 +712,8 @@ class Path(pathlib.PosixPath):
             name = stem.to_snake_case()
         elif self.is_external():
             pass
+        elif self.is__assets():
+            pass
         elif self.is__segments():
             pass
         elif self.is_build():
@@ -752,82 +762,11 @@ class Path(pathlib.PosixPath):
 
         Count gives number of deactivated tags.
         '''
+        import abjad
         assert self.is_file()
-        lines, count = [], 0
-        tags = tag.split(':')
-        current_tag = None
-        with self.open() as file_pointer:
-            lines_to_deactivate = []
-            for line in file_pointer.readlines():
-                words = []
-                for word in line.split():
-                    words.extend(word.split(':'))
-                first_nonwhitespace_index = len(line) - len(line.lstrip())
-                if (not any(tag in words for tag in tags) or
-                    line[first_nonwhitespace_index] == '%'):
-                    if lines_to_deactivate:
-                        indents = [
-                            len(_) - len(_.lstrip())
-                            for _ in lines_to_deactivate
-                            ]
-                        index = min(indents)
-                        for line_ in lines_to_deactivate:
-                            if '%F%' in line_:
-                                assert line_.endswith('%F%\n')
-                                comment = '%F% '
-                            else:
-                                comment = '%%% '
-                            line_ = list(line_)
-                            assert line_[index-4:index] == list(4 * ' ')
-                            line_[index-4:index] = comment
-                            line_ = ''.join(line_)
-                            if comment == '%F% ':
-                                assert line_.endswith('%F%\n')
-                                line_ = line_[:-4] + '\n'
-                            lines.append(line_)
-                        lines_to_deactivate = []
-                        count += 1
-                    lines.append(line)
-                    current_tag = None
-                else:
-                    tag_start_index = line.find('%!')
-                    line_tag = line[tag_start_index:].strip('%!').strip()
-                    if current_tag is None:
-                        current_tag = line_tag
-                        lines_to_deactivate.append(line)
-                    elif line_tag == current_tag:
-                        lines_to_deactivate.append(line)
-                    elif line_tag != current_tag:
-                        if lines_to_deactivate:
-                            indents = [
-                                len(_) - len(_.lstrip())
-                                for _ in lines_to_deactivate
-                                ]
-                            index = min(indents)
-                            for line_ in lines_to_deactivate:
-                                if '%F%' in line_:
-                                    assert line_.endswith('%F%\n')
-                                    comment = '%F% '
-                                else:
-                                    comment = '%%% '
-                                tag_start_index = line_.find('%!')
-                                left = line_[:tag_start_index]
-                                right = line_[tag_start_index:]
-                                if left[-4:] == 4 * ' ':
-                                    left = left[:-4]
-                                line_ = left + right
-                                line_ = list(line_)
-                                line_[index:index] = comment
-                                line_ = ''.join(line_)
-                                if comment == '%F% ':
-                                    assert line_.endswith('%F%\n')
-                                    line_ = line_[:-4] + '\n'
-                                lines.append(line_)
-                            lines_to_deactivate = []
-                            count += 1
-                            current_tag = line_tag
-        lines = ''.join(lines)
-        return lines, count
+        text = self.read_text()
+        text, count = abjad.deactivate(text, tag)
+        return text, count
 
     def get_asset_type(self):
         r'''Gets asset identifier.
@@ -952,6 +891,17 @@ class Path(pathlib.PosixPath):
             result = self.name
         return abjad.String(result)
 
+    def get_files_ending_with(self, name):
+        r'''Gets files in path ending with `name`.
+
+        Returns list or zero or more paths.
+        '''
+        paths = []
+        for path in self.list_paths():
+            if path.name.endswith(name):
+                paths.append(path)
+        return paths
+
     def get_metadata(self):
         r'''Gets __metadata__.py file in path.
 
@@ -1005,9 +955,6 @@ class Path(pathlib.PosixPath):
             ...     '/path/to/scores/my_score/my_score',
             ...     scores='/path/to/scores',
             ...     )
-
-            >>> path._assets.get_name_predicate() is None
-            True
 
             >>> path.builds.get_name_predicate()
             <function String.is_build_directory_name at ...>
@@ -1263,7 +1210,8 @@ class Path(pathlib.PosixPath):
             ...     '/path/to/scores/my_score/my_score',
             ...     scores='/path/to/scores',
             ...     )
-            >>> path._assets.is__assets()
+            >>> path = path('build', '_assets')
+            >>> path.is__assets()
             True
 
         Returns true or false.
@@ -1509,6 +1457,14 @@ class Path(pathlib.PosixPath):
         '''
         return self.name in ('materials', 'segments')
 
+    def is_parts(self):
+        r'''Is true when directory is parts directory.
+
+        Returns true or false.
+        '''
+        if self.is_build():
+            return self.get_metadatum('parts_directory') is True
+
     def is_score_package_path(self, prototype=()):
         r'''Is true when path is package path.
 
@@ -1549,7 +1505,7 @@ class Path(pathlib.PosixPath):
             >>> path.stylesheets.is_score_package_path()
             True
 
-            >>> path._assets.is_score_package_path()
+            >>> path('build', '_assets').is_score_package_path()
             True
 
         Returns true or false.
@@ -1580,6 +1536,8 @@ class Path(pathlib.PosixPath):
         if 'contents' in prototype and self.is_contents():
             return True
         if 'material' in prototype and self.is_material():
+            return True
+        if 'parts' in prototype and self.is_parts():
             return True
         if 'segment' in prototype and self.is_segment():
             return True

@@ -1,6 +1,5 @@
 import functools
-from abjad.tools import systemtools
-from abjad.tools.schemetools.Scheme import Scheme
+from .Scheme import Scheme
 
 
 @functools.total_ordering
@@ -11,8 +10,8 @@ class SchemeMoment(Scheme):
 
         Initializes with two integers:
 
-        >>> abjad.SchemeMoment((1, 68))
-        SchemeMoment((1, 68))
+        >>> abjad.SchemeMoment((2, 68))
+        SchemeMoment((2, 68))
 
     Scheme moments are immutable.
     '''
@@ -25,7 +24,7 @@ class SchemeMoment(Scheme):
 
     def __init__(self, duration=(0, 1)):
         import abjad
-        duration = abjad.Duration(duration)
+        duration = abjad.NonreducedFraction(duration)
         pair = duration.pair
         Scheme.__init__(self, pair)
 
@@ -37,14 +36,14 @@ class SchemeMoment(Scheme):
 
         ..  container:: example
 
-            >>> abjad.SchemeMoment((1, 68)) == abjad.SchemeMoment((1, 68))
+            >>> abjad.SchemeMoment((2, 68)) == abjad.SchemeMoment((2, 68))
             True
 
         ..  container:: example
 
             Otherwise false.
 
-                >>> abjad.SchemeMoment((1, 54)) == abjad.SchemeMoment((1, 68))
+                >>> abjad.SchemeMoment((2, 54)) == abjad.SchemeMoment((2, 68))
                 False
 
         Returns true or false.
@@ -93,8 +92,9 @@ class SchemeMoment(Scheme):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
+        import abjad
         values = [self.value]
-        return systemtools.FormatSpecification(
+        return abjad.FormatSpecification(
             client=self,
             storage_format_args_values=values,
             storage_format_kwargs_names=[],
@@ -108,10 +108,10 @@ class SchemeMoment(Scheme):
 
         ..  container:: example
 
-            >>> abjad.SchemeMoment((1, 68)).duration
-            Duration(1, 68)
+            >>> abjad.SchemeMoment((2, 68)).duration
+            NonreducedFraction(2, 68)
 
-        Returns duration.
+        Returns nonreduced fraction.
         '''
         import abjad
-        return abjad.Duration(self.value)
+        return abjad.NonreducedFraction(self.value)

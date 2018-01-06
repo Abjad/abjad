@@ -1283,7 +1283,7 @@ class MetronomeMarkSpanner(Spanner):
         >>> spanner = abjad.MetronomeMarkSpanner()
         >>> abjad.attach(spanner, staff[:])
         >>> score = abjad.Score([staff])
-        >>> command = abjad.LilyPondCommand('break', 'after')
+        >>> command = abjad.LilyPondLiteral(r'\break', 'after')
         >>> abjad.attach(command, staff[3])
         >>> abjad.override(staff).text_spanner.staff_padding = 3
 
@@ -1400,7 +1400,7 @@ class MetronomeMarkSpanner(Spanner):
         >>> spanner = abjad.MetronomeMarkSpanner()
         >>> abjad.attach(spanner, staff[:])
         >>> score = abjad.Score([staff])
-        >>> command = abjad.LilyPondCommand('break', 'after')
+        >>> command = abjad.LilyPondLiteral(r'\break', 'after')
         >>> abjad.attach(command, staff[3])
         >>> abjad.override(staff).text_spanner.staff_padding = 3
 
@@ -1954,6 +1954,8 @@ class MetronomeMarkSpanner(Spanner):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         if not 1 < len(self):
             return bundle
+        if not self._wrappers:
+            return bundle
         current_wrappers = self._get_piecewise_wrappers(leaf)
         #
         current_metronome_mark_wrapper = current_wrappers[0]
@@ -2297,7 +2299,7 @@ class MetronomeMarkSpanner(Spanner):
             >>> staff = abjad.Staff("c'4. d' e' f' g' a' b' c''")
             >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
             >>> score = abjad.Score([staff])
-            >>> command = abjad.LilyPondCommand('break', 'after')
+            >>> command = abjad.LilyPondLiteral(r'\break', 'after')
             >>> abjad.attach(command, staff[3])
             >>> spanner = abjad.MetronomeMarkSpanner()
             >>> abjad.attach(spanner, staff[:])
@@ -2416,7 +2418,7 @@ class MetronomeMarkSpanner(Spanner):
             >>> staff = abjad.Staff("c'4. d' e' f' g' a' b' c''")
             >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
             >>> score = abjad.Score([staff])
-            >>> command = abjad.LilyPondCommand('break', 'after')
+            >>> command = abjad.LilyPondLiteral(r'\break', 'after')
             >>> abjad.attach(command, staff[3])
             >>> spanner = abjad.MetronomeMarkSpanner(
             ...     left_broken_padding=4,
@@ -2543,7 +2545,7 @@ class MetronomeMarkSpanner(Spanner):
             >>> staff = abjad.Staff("c'4. d' e' f' g' a' b' c''")
             >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
             >>> score = abjad.Score([staff])
-            >>> command = abjad.LilyPondCommand('break', 'after')
+            >>> command = abjad.LilyPondLiteral(r'\break', 'after')
             >>> abjad.attach(command, staff[3])
             >>> spanner = abjad.MetronomeMarkSpanner()
             >>> abjad.attach(spanner, staff[:])
@@ -2663,7 +2665,7 @@ class MetronomeMarkSpanner(Spanner):
             >>> staff = abjad.Staff("c'4. d' e' f' g' a' b' c''")
             >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
             >>> score = abjad.Score([staff])
-            >>> command = abjad.LilyPondCommand('break', 'after')
+            >>> command = abjad.LilyPondLiteral(r'\break', 'after')
             >>> abjad.attach(command, staff[3])
             >>> null_markup = abjad.Markup.null(direction=None)
             >>> spanner = abjad.MetronomeMarkSpanner(
@@ -3130,7 +3132,15 @@ class MetronomeMarkSpanner(Spanner):
 
     ### PUBLIC METHODS ###
 
-    def attach(self, indicator, leaf, deactivate=None, site=None, tag=None):
+    def attach(
+        self,
+        indicator,
+        leaf,
+        alternate=None,
+        deactivate=None,
+        site=None,
+        tag=None,
+        ):
         r'''Attaches `indicator` to `leaf` in spanner.
 
         ..  container:: example
@@ -3370,25 +3380,25 @@ class MetronomeMarkSpanner(Spanner):
                     e'4.
                     \stopTextSpan
                     \startTextSpan
-                %F% \once \override TextSpanner.bound-details.left.text =     %! YELLOW
-                %F% \markup {                                                 %! YELLOW
-                %F%     \fontsize                                             %! YELLOW
-                %F%         #-6                                               %! YELLOW
-                %F%         \general-align                                    %! YELLOW
-                %F%             #Y                                            %! YELLOW
-                %F%             #DOWN                                         %! YELLOW
-                %F%             \note-by-number                               %! YELLOW
-                %F%                 #2                                        %! YELLOW
-                %F%                 #0                                        %! YELLOW
-                %F%                 #1                                        %! YELLOW
-                %F%     \upright                                              %! YELLOW
-                %F%         {                                                 %! YELLOW
-                %F%             =                                             %! YELLOW
-                %F%             72                                            %! YELLOW
-                %F%         }                                                 %! YELLOW
-                %F%     \hspace                                               %! YELLOW
-                %F%         #1                                                %! YELLOW
-                %F%     }                                                     %! YELLOW
+                %@% \once \override TextSpanner.bound-details.left.text =     %! YELLOW
+                %@% \markup {                                                 %! YELLOW
+                %@%     \fontsize                                             %! YELLOW
+                %@%         #-6                                               %! YELLOW
+                %@%         \general-align                                    %! YELLOW
+                %@%             #Y                                            %! YELLOW
+                %@%             #DOWN                                         %! YELLOW
+                %@%             \note-by-number                               %! YELLOW
+                %@%                 #2                                        %! YELLOW
+                %@%                 #0                                        %! YELLOW
+                %@%                 #1                                        %! YELLOW
+                %@%     \upright                                              %! YELLOW
+                %@%         {                                                 %! YELLOW
+                %@%             =                                             %! YELLOW
+                %@%             72                                            %! YELLOW
+                %@%         }                                                 %! YELLOW
+                %@%     \hspace                                               %! YELLOW
+                %@%         #1                                                %! YELLOW
+                %@%     }                                                     %! YELLOW
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -3434,8 +3444,8 @@ class MetronomeMarkSpanner(Spanner):
 
         >>> wrapper = abjad.inspect(staff[3]).wrapper(abjad.MetronomeMark)
         >>> abjad.f(wrapper)
-        abjad.IndicatorWrapper(
-            component=abjad.Note("%F% \\once \\override TextSpanner.bound-details.left.text = %! YELLOW\n%F% \\markup {                                             %! YELLOW\n%F%     \\fontsize                                         %! YELLOW\n%F%         #-6                                           %! YELLOW\n%F%         \\general-align                                %! YELLOW\n%F%             #Y                                        %! YELLOW\n%F%             #DOWN                                     %! YELLOW\n%F%             \\note-by-number                           %! YELLOW\n%F%                 #2                                    %! YELLOW\n%F%                 #0                                    %! YELLOW\n%F%                 #1                                    %! YELLOW\n%F%     \\upright                                          %! YELLOW\n%F%         {                                             %! YELLOW\n%F%             =                                         %! YELLOW\n%F%             72                                        %! YELLOW\n%F%         }                                             %! YELLOW\n%F%     \\hspace                                           %! YELLOW\n%F%         #1                                            %! YELLOW\n%F%     }                                                 %! YELLOW\n\\once \\override TextSpanner.Y-extent = ##f\n\\once \\override TextSpanner.bound-details.left-broken.text = ##f\n\\once \\override TextSpanner.bound-details.left.stencil-align-dir-y = #center\n\\once \\override TextSpanner.bound-details.right-broken.padding = 0\n\\once \\override TextSpanner.bound-details.right-broken.text = ##f\n\\once \\override TextSpanner.bound-details.right.padding = 1\n\\once \\override TextSpanner.bound-details.right.stencil-align-dir-y = #center\n\\once \\override TextSpanner.bound-details.right.text =\n\\markup {\n    \\concat\n        {\n            \\hspace\n                #0.5\n            \\line\n                {\n                    \\fontsize\n                        #-6\n                        \\general-align\n                            #Y\n                            #DOWN\n                            \\note-by-number\n                                #2\n                                #0\n                                #1\n                    \\upright\n                        {\n                            =\n                            60\n                        }\n                }\n        }\n    }\n\\once \\override TextSpanner.dash-period = 0\ng'8. \\stopTextSpan \\startTextSpan"),
+        abjad.Wrapper(
+            component=abjad.Note("%@% \\once \\override TextSpanner.bound-details.left.text = %! YELLOW\n%@% \\markup {                                             %! YELLOW\n%@%     \\fontsize                                         %! YELLOW\n%@%         #-6                                           %! YELLOW\n%@%         \\general-align                                %! YELLOW\n%@%             #Y                                        %! YELLOW\n%@%             #DOWN                                     %! YELLOW\n%@%             \\note-by-number                           %! YELLOW\n%@%                 #2                                    %! YELLOW\n%@%                 #0                                    %! YELLOW\n%@%                 #1                                    %! YELLOW\n%@%     \\upright                                          %! YELLOW\n%@%         {                                             %! YELLOW\n%@%             =                                         %! YELLOW\n%@%             72                                        %! YELLOW\n%@%         }                                             %! YELLOW\n%@%     \\hspace                                           %! YELLOW\n%@%         #1                                            %! YELLOW\n%@%     }                                                 %! YELLOW\n\\once \\override TextSpanner.Y-extent = ##f\n\\once \\override TextSpanner.bound-details.left-broken.text = ##f\n\\once \\override TextSpanner.bound-details.left.stencil-align-dir-y = #center\n\\once \\override TextSpanner.bound-details.right-broken.padding = 0\n\\once \\override TextSpanner.bound-details.right-broken.text = ##f\n\\once \\override TextSpanner.bound-details.right.padding = 1\n\\once \\override TextSpanner.bound-details.right.stencil-align-dir-y = #center\n\\once \\override TextSpanner.bound-details.right.text =\n\\markup {\n    \\concat\n        {\n            \\hspace\n                #0.5\n            \\line\n                {\n                    \\fontsize\n                        #-6\n                        \\general-align\n                            #Y\n                            #DOWN\n                            \\note-by-number\n                                #2\n                                #0\n                                #1\n                    \\upright\n                        {\n                            =\n                            60\n                        }\n                }\n        }\n    }\n\\once \\override TextSpanner.dash-period = 0\ng'8. \\stopTextSpan \\startTextSpan"),
             context='Score',
             deactivate=True,
             indicator=abjad.MetronomeMark(
@@ -3457,6 +3467,7 @@ class MetronomeMarkSpanner(Spanner):
         superclass._attach_piecewise(
             indicator,
             leaf,
+            alternate=alternate,
             deactivate=deactivate,
             site=site,
             tag=tag,

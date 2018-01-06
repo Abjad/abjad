@@ -146,8 +146,8 @@ class RhythmMaker(AbjadValueObject):
                     use_multimeasure_rests=use_multimeasure_rests,
                     )
                 new_selection = leaf_maker([None], [duration])
-            for component in iterate(selection).components():
-                detach(spannertools.Tie, component)
+            for component in abjad.iterate(selection).components():
+                abjad.detach(abjad.Tie, component)
             new_selections.append(new_selection)
         return new_selections
 

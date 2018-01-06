@@ -45,10 +45,10 @@ def test_scoretools_Inspection_get_indicator_04():
 def test_scoretools_Inspection_get_indicator_05():
 
     note = abjad.Note("c'8")
-    command = abjad.LilyPondCommand('stemUp')
+    command = abjad.LilyPondLiteral(r'\stemUp')
     abjad.attach(command, note)
 
-    result = abjad.inspect(note).get_indicator(abjad.LilyPondCommand)
+    result = abjad.inspect(note).get_indicator(abjad.LilyPondLiteral)
     assert result is command
 
 
@@ -56,18 +56,18 @@ def test_scoretools_Inspection_get_indicator_06():
 
     note = abjad.Note("c'8")
 
-    assert abjad.inspect(note).get_indicator(abjad.LilyPondCommand) is None
+    assert abjad.inspect(note).get_indicator(abjad.LilyPondLiteral) is None
 
 
 def test_scoretools_Inspection_get_indicator_07():
 
     note = abjad.Note("c'8")
-    command = abjad.LilyPondCommand('stemUp')
+    command = abjad.LilyPondLiteral(r'\stemUp')
     abjad.attach(command, note)
-    command = abjad.LilyPondCommand('slurUp')
+    command = abjad.LilyPondLiteral(r'\slurUp')
     abjad.attach(command, note)
 
-    statement = 'inspect(note).get_indicator(abjad.LilyPondCommand)'
+    statement = 'inspect(note).get_indicator(abjad.LilyPondLiteral)'
     assert pytest.raises(Exception, statement)
 
 
@@ -76,9 +76,9 @@ def test_scoretools_Inspection_get_indicator_08():
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     slur = abjad.Slur()
     abjad.attach(slur, staff[:])
-    command_1 = abjad.LilyPondCommand('slurDotted')
+    command_1 = abjad.LilyPondLiteral(r'\slurDotted')
     abjad.attach(command_1, staff[0])
-    command_2 = abjad.LilyPondCommand('slurUp')
+    command_2 = abjad.LilyPondLiteral(r'\slurUp')
     abjad.attach(command_2, staff[0])
 
     assert format(staff) == abjad.String.normalize(
@@ -94,8 +94,7 @@ def test_scoretools_Inspection_get_indicator_08():
         '''
         )
 
-    indicators = abjad.inspect(staff[0]).get_indicators(
-        abjad.LilyPondCommand)
+    indicators = abjad.inspect(staff[0]).get_indicators(abjad.LilyPondLiteral)
 
     assert command_1 in indicators
     assert command_2 in indicators

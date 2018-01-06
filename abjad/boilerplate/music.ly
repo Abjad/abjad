@@ -4,10 +4,16 @@
 {lilypond_language_directive}
 
 #(ly:set-option 'relative-includes #t)
-{stylesheet_include_statement}
+\include "stylesheet.ily"
+
 
 \score {{
-    {{
-    {segment_include_statements}
-    }}
+    <<
+        {keep_with_tag_command}{{
+        \include "layout.ly"
+        }}
+        {keep_with_tag_command}{{
+        {segment_include_statements}
+        }}
+    >>
 }}

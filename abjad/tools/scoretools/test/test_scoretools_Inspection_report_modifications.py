@@ -8,7 +8,7 @@ def test_scoretools_Inspection_report_modifications_01():
     comment = abjad.LilyPondComment('Example voice', 'before')
     abjad.attach(comment, voice)
     abjad.override(voice).note_head.color = 'red'
-    command = abjad.LilyPondCommand("#(set-accidental-style 'forget)")
+    command = abjad.LilyPondLiteral("#(set-accidental-style 'forget)")
     abjad.attach(command, voice)
     beam = abjad.Beam()
     abjad.attach(beam, voice[:])
@@ -52,7 +52,7 @@ def test_scoretools_Inspection_report_modifications_02():
     comment = abjad.LilyPondComment('Example tuplet', 'before')
     abjad.attach(comment, tuplet)
     abjad.override(tuplet).note_head.color = 'red'
-    command = abjad.LilyPondCommand("#(set-accidental-style 'forget)")
+    command = abjad.LilyPondLiteral("#(set-accidental-style 'forget)")
     abjad.attach(command, tuplet)
     beam = abjad.Beam()
     abjad.attach(beam, tuplet[:])

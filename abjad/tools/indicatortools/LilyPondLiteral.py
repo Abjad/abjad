@@ -188,6 +188,12 @@ class LilyPondLiteral(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
+    def _get_format_pieces(self):
+        if isinstance(self.argument, str):
+            return [self.argument]
+        assert isinstance(self.argument, list)
+        return self.argument[:]
+
     def _get_format_specification(self):
         import abjad
         names = []
@@ -204,10 +210,8 @@ class LilyPondLiteral(AbjadValueObject):
         import abjad
         bundle = abjad.LilyPondFormatBundle()
         format_slot = bundle.get(self.format_slot)
-        if isinstance(self.argument, str):
-            format_slot.commands.append(self.argument)
-        elif isinstance(self.argument, list):
-            format_slot.commands.extend(self.argument)
+        pieces = self._get_format_pieces()
+        format_slot.commands.extend(pieces)
         return bundle
 
     ### PUBLIC METHODS ###
