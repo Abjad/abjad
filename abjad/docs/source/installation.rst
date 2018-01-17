@@ -1,7 +1,7 @@
 Installation
 ============
 
-Abjad works on Unix/Linux, OSX, and Windows on Python versions 3.4+.
+Abjad works on Unix/Linux, OSX, and Windows on Python versions 3.6+.
 
 Install Abjad
 -------------
@@ -42,12 +42,12 @@ Once you have Abjad installed, fire up Python and import it:
 ..  code-block:: bash
 
     ~$ python
-    Python 3.5.2 (v3.5.2:4def2a2901a5, Jun 26 2016, 10:47:25) 
+    Python 3.6.2 (v3.6.2:5fd33b5926, Jul 16 2017, 20:11:06) 
     [GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
     Type "help", "copyright", "credits" or "license" for more information.
     >>> import abjad
     >>> abjad.__version__
-    '2.19'
+    '2.21'
 
 Congratulations!
 
@@ -69,7 +69,8 @@ command-line by running the following command:
 ..  code-block:: bash
 
     ~$ lilypond --version
-    GNU LilyPond 2.19.20
+
+    GNU LilyPond 2.19.80
 
     Copyright (c) 1996--2015 by
       Han-Wen Nienhuys <hanwen@xs4all.nl>

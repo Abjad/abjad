@@ -2,7 +2,7 @@
 # Create a fresh Docker container and verify that various installation
 # steps work as expected.
 
-FROM python:3.4.3
+FROM python:3.6
 
 ENV LILYPOND_VERSION 2.19.37
 
