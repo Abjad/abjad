@@ -1,4 +1,4 @@
-from abjad.tools.rhythmtreetools import RhythmTreeContainer
+from abjad.tools.rhythmtreetools.RhythmTreeContainer import RhythmTreeContainer
 
 
 class QGridContainer(RhythmTreeContainer):

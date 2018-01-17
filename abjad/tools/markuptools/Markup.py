@@ -1,6 +1,7 @@
 import collections
+import fractions
 import numbers
-from abjad import Fraction
+from abjad import Fraction  # type: fractions.Fraction
 from abjad.tools import mathtools
 from abjad.tools import schemetools
 from abjad.tools.topleveltools import new

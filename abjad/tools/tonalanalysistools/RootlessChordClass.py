@@ -1,6 +1,6 @@
 from abjad.tools import datastructuretools
 from abjad.tools import pitchtools
-from abjad.tools.pitchtools import IntervalSegment
+from abjad.tools.pitchtools.IntervalSegment import IntervalSegment
 
 
 class RootlessChordClass(IntervalSegment):

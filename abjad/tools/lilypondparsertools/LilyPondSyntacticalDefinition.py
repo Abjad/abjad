@@ -1,4 +1,4 @@
-from ply import lex
+from ply import lex  # type: ignore
 from abjad.tools.exceptiontools import LilyPondParserError
 from abjad import Fraction
 from abjad.tools import datastructuretools

@@ -4,7 +4,7 @@ import types
 from abjad.tools import datastructuretools
 from abjad.tools import mathtools
 from abjad.tools import systemtools
-from abjad.tools.datastructuretools import TypedCounter
+from abjad.tools.datastructuretools.TypedCounter import TypedCounter
 
 
 class Vector(TypedCounter):

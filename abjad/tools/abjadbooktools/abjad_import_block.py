@@ -1,7 +1,7 @@
-from docutils import nodes  # type: ignore
+from docutils.nodes import General, Element  # type: ignore
 
 
-class abjad_import_block(nodes.General, nodes.Element):
+class abjad_import_block(General, Element):
     r'''An abjad import block docutils node.
     '''
     pass

@@ -1,6 +1,6 @@
 import collections
 import itertools
-import ply
+import ply  # type: ignore
 from abjad.tools import abctools
 from abjad.tools import datastructuretools
 from abjad.tools import indicatortools

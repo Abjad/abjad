@@ -16,8 +16,8 @@ from abjad.tools.topleveltools import new
 from abjad.tools import abctools
 from abjad.tools import datastructuretools
 from abjad.tools import systemtools
-from docutils import nodes
-from docutils.frontend import OptionParser
+from docutils import nodes  # type: ignore
+from docutils.frontend import OptionParser  # type: ignore
 from docutils.parsers.rst import Parser  # type: ignore
 from docutils.parsers.rst import directives  # type: ignore
 from docutils.utils import new_document  # type: ignore
