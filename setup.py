@@ -60,6 +60,7 @@ extras_require = {
         'quicktions>=1.3',
         ],
     'development': [
+        'mypy',
         'pytest>=3.0.0',
         'sphinx>=1.6.0',
         'sphinx-rtd-theme',
