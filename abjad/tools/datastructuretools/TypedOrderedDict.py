@@ -3,7 +3,7 @@ from abjad.tools import systemtools
 from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 
 
-class TypedOrderedDict(TypedCollection):
+class TypedOrderedDict(TypedCollection, collections.MutableMapping):
     r'''Typed ordered dictionary.
 
     ..  container:: example
@@ -303,6 +303,3 @@ class TypedOrderedDict(TypedCollection):
         Returns generator.
         '''
         return iter(self._collection.values())
-
-
-collections.MutableMapping.register(TypedOrderedDict)

@@ -2,7 +2,7 @@ import collections
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class CyclicTuple(AbjadObject):
+class CyclicTuple(collections.Sequence, AbjadObject):
     '''Cylic tuple.
 
     ..  container:: example
@@ -205,6 +205,3 @@ class CyclicTuple(AbjadObject):
         Returns tuple.
         '''
         return self._items
-
-
-collections.Sequence.register(CyclicTuple)

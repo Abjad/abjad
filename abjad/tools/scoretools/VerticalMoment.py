@@ -2,7 +2,7 @@ import collections
 from abjad.tools import abctools
 
 
-class VerticalMoment(abctools.AbjadObject):
+class VerticalMoment(abctools.AbjadObject, collections.Sequence):
     r'''Vertical moment.
 
     ..  container:: example
@@ -417,6 +417,3 @@ class VerticalMoment(abctools.AbjadObject):
             if isinstance(x, abjad.Note)]
         result = tuple(result)
         return result
-
-
-collections.Sequence.register(VerticalMoment)

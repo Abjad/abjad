@@ -8,6 +8,11 @@ import traceback
 import types
 from abjad.tools import abctools
 from abjad.tools import systemtools
+from sphinx.util.console import lightgray  # type: ignore
+from sphinx.util.console import darkgray  # type: ignore
+from sphinx.util.console import red  # type: ignore
+from sphinx.util.console import green  # type: ignore
+from sphinx.util.console import yellow  # type: ignore
 
 
 class DocumentationManager(abctools.AbjadObject):
@@ -918,33 +923,28 @@ class DocumentationManager(abctools.AbjadObject):
     def prefix_ignored(self):
         r'''Messaging prefix for ignored files.
         '''
-        from sphinx.util.console import lightgray
         return lightgray('IGNORED:   ')
 
     @property
     def prefix_preserved(self):
         r'''Messaging prefix for preserved files.
         '''
-        from sphinx.util.console import darkgray
         return darkgray('PRESERVED: ')
 
     @property
     def prefix_pruned(self):
         r'''Messaging prefix for pruned files.
         '''
-        from sphinx.util.console import red
         return red('PRUNED:    ')
 
     @property
     def prefix_rewrote(self):
         r'''Messaging prefix for rewritten files.
         '''
-        from sphinx.util.console import green
         return green('REWROTE:   ')
 
     @property
     def prefix_wrote(self):
         r'''Messaging prefix for written files.
         '''
-        from sphinx.util.console import yellow
         return yellow('WROTE:     ')

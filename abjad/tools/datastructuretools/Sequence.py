@@ -10,7 +10,7 @@ from abjad.tools import mathtools
 from abjad.tools.datastructuretools import Exact
 
 
-class Sequence(abctools.AbjadValueObject):
+class Sequence(abctools.AbjadValueObject, collections.Sequence):
     r'''Sequence.
 
     ..  container:: example
@@ -5290,6 +5290,3 @@ class Sequence(abctools.AbjadValueObject):
                 item = type(self)(items=item)
                 items.append(item)
         return type(self)(items=items)
-
-
-collections.Sequence.register(Sequence)

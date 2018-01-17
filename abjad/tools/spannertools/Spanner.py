@@ -3,7 +3,7 @@ import copy
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class Spanner(AbjadObject):
+class Spanner(AbjadObject, collections.Sequence):
     '''Spanner.
 
     Any object that stretches horizontally and encompasses leaves.
@@ -627,6 +627,3 @@ class Spanner(AbjadObject):
             value = attribute_tuple[-1]
             overrides[attribute] = value
         return overrides
-
-
-collections.Sequence.register(Spanner)

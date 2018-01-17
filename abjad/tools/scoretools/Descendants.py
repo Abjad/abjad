@@ -2,7 +2,7 @@ import collections
 from abjad.tools import abctools
 
 
-class Descendants(abctools.AbjadObject):
+class Descendants(abctools.AbjadObject, collections.Sequence):
     r'''Descendants of a component.
 
     ..  container:: example
@@ -115,6 +115,3 @@ class Descendants(abctools.AbjadObject):
         Returns tuple.
         '''
         return self._components
-
-
-collections.Sequence.register(Descendants)

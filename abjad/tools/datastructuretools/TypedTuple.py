@@ -3,7 +3,7 @@ from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 from abjad.tools.topleveltools import new
 
 
-class TypedTuple(TypedCollection):
+class TypedTuple(TypedCollection, collections.Sequence):
     r'''Typed tuple.
     '''
 
@@ -118,6 +118,3 @@ class TypedTuple(TypedCollection):
         '''
         item = self._item_coercer(item)
         return self._collection.index(item)
-
-
-collections.Sequence.register(TypedTuple)

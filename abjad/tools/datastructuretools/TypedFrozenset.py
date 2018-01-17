@@ -2,7 +2,7 @@ import collections
 from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 
 
-class TypedFrozenset(TypedCollection):
+class TypedFrozenset(TypedCollection, collections.Set):
     r'''Typed fozen set.
     '''
 
@@ -180,6 +180,3 @@ class TypedFrozenset(TypedCollection):
         result = self._collection.union(argument._collection)
         result = type(self)(result)
         return result
-
-
-collections.Set.register(TypedFrozenset)

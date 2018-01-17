@@ -3,7 +3,7 @@ from abjad.tools import abctools
 from abjad.tools import mathtools
 
 
-class Parentage(abctools.AbjadObject):
+class Parentage(abctools.AbjadObject, collections.Sequence):
     r'''Parentage of a component.
 
     ..  container:: example
@@ -464,6 +464,3 @@ class Parentage(abctools.AbjadObject):
         for component in self:
             if isinstance(component, prototype):
                 return component
-
-
-collections.Sequence.register(Parentage)

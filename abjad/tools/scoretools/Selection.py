@@ -7,11 +7,11 @@ from abjad.tools.exceptiontools import MissingSpannerError
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class Selection(AbjadValueObject):
+class Selection(AbjadValueObject, collections.Sequence):
     r'''Selection of items (components / or other selections).
 
     ..  container:: example
-    
+
         Selects runs:
 
         ..  container:: example
@@ -1361,7 +1361,7 @@ class Selection(AbjadValueObject):
 
         ..  container:: example
 
-            Selects chords: 
+            Selects chords:
 
             ..  container:: example
 
@@ -1730,7 +1730,7 @@ class Selection(AbjadValueObject):
             Selects runs with duration less than 3/8:
 
             ..  container:: example
-            
+
                 >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1801,7 +1801,7 @@ class Selection(AbjadValueObject):
         ..  container:: example
 
             Selects notes runs with length greater than 1:
-            
+
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
@@ -2007,7 +2007,7 @@ class Selection(AbjadValueObject):
         ..  container:: example
 
             Selects leaves with pitches intersecting C4 or E4:
-            
+
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 d'8 ~ d'8 e'8")
@@ -2210,7 +2210,7 @@ class Selection(AbjadValueObject):
             Selects runs with duration less than 3/8:
 
             ..  container:: example
-            
+
                 >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -3856,7 +3856,7 @@ class Selection(AbjadValueObject):
 
         ..  container:: example
 
-            Selects leaf -1: 
+            Selects leaf -1:
 
             ..  container:: example
 
@@ -4903,7 +4903,7 @@ class Selection(AbjadValueObject):
             Selects pitched logical ties:
 
             ..  container:: example
-            
+
                 >>> staff = abjad.Staff("c'8 d' ~ { d' e' r f'~ } f' r")
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -5750,7 +5750,7 @@ class Selection(AbjadValueObject):
         ..  container:: example
 
             Selects nontrivial runs:
-            
+
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
@@ -5844,7 +5844,7 @@ class Selection(AbjadValueObject):
 
                 >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> abjad.show(staff) # doctest: +SKIP
-                
+
                 >>> result = abjad.select(staff).leaves()
                 >>> result = result.partition_by_counts(
                 ...     [3],
@@ -8341,7 +8341,7 @@ class Selection(AbjadValueObject):
 
         ..  container:: example
 
-            Selects tuplets: 
+            Selects tuplets:
 
             ..  container:: example
 
@@ -8686,7 +8686,7 @@ class Selection(AbjadValueObject):
 
                 >>> staff = abjad.Staff(r"c'8 r d' ~ d' e' ~ e' r8 f'8")
                 >>> abjad.show(staff) # doctest: +SKIP
-                
+
                 >>> result = abjad.select(staff).logical_ties(pitched=True)
                 >>> result = result.map(abjad.select().with_next_leaf())
 
@@ -8956,7 +8956,6 @@ class Selection(AbjadValueObject):
 
         Returns new selection (or expression).
         '''
-        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         leaves = list(self.leaves())
@@ -8964,6 +8963,3 @@ class Selection(AbjadValueObject):
         if previous_leaf is not None:
             leaves.insert(0, previous_leaf)
         return type(self)(leaves)
-
-
-collections.Sequence.register(Selection)
