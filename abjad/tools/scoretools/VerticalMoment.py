@@ -2,7 +2,7 @@ import collections
 from abjad.tools import abctools
 
 
-class VerticalMoment(abctools.AbjadObject, collections.Sequence):
+class VerticalMoment(abctools.AbjadObject):
     r'''Vertical moment.
 
     ..  container:: example
@@ -161,7 +161,7 @@ class VerticalMoment(abctools.AbjadObject, collections.Sequence):
             governors.append(argument)
         elif isinstance(argument, prototype):
             for x in argument:
-                if isinstance(x, sabjad.Component):
+                if isinstance(x, abjad.Component):
                     governors.append(x)
                 else:
                     raise TypeError(message)

@@ -56,7 +56,14 @@ class TypedFrozenset(TypedCollection, collections.Set):
 
         Returns integer.
         '''
-        return super(TypedFrozenset, self).__hash__()
+        from abjad.tools import systemtools
+        hash_values = systemtools.StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            message = 'unhashable type: {}'.format(self)
+            raise TypeError(message)
+        return result
 
     def __le__(self, argument):
         r'''Is true when typed frozen set is less than or equal to `argument`.

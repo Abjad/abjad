@@ -71,7 +71,14 @@ class TypedTuple(TypedCollection, collections.Sequence):
 
         Returns integer.
         '''
-        return super(TypedTuple, self).__hash__()
+        from abjad.tools import systemtools
+        hash_values = systemtools.StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            message = 'unhashable type: {}'.format(self)
+            raise TypeError(message)
+        return result
 
     def __mul__(self, argument):
         r'''Multiplies typed tuple by `argument`.

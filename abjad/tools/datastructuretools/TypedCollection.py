@@ -61,7 +61,7 @@ class TypedCollection(AbjadObject, collections.Collection):
 
         Returns integer.
         '''
-        return super(TypedCollection, self).__hash__()
+        return object.__hash__(self)
 
     def __iter__(self):
         r'''Iterates typed collection.

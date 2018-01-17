@@ -1,3 +1,4 @@
+from typing import Dict  # noqa
 from abjad.tools import abctools
 
 
@@ -16,7 +17,7 @@ class LilyPondGrobInterface(abctools.AbjadValueObject):
         '_name',
         )
 
-    _identity_map = {}
+    _identity_map = {}  # type: Dict[str, LilyPondGrobInterface]
 
     ### CONSTRUCTOR ###
 

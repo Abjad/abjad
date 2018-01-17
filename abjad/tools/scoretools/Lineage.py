@@ -2,7 +2,7 @@ import collections
 from abjad.tools import abctools
 
 
-class Lineage(collections.Sequence, abctools.AbjadObject):
+class Lineage(abctools.AbjadObject, collections.Sequence):
     r'''Lineage of a component.
 
     ..  container:: example
@@ -90,6 +90,13 @@ class Lineage(collections.Sequence, abctools.AbjadObject):
         Returns component or tuple.
         '''
         return self.components.__getitem__(argument)
+
+    def __len__(self):
+        r'''Gets length of lineage.
+
+        Returns int.
+        '''
+        return len(self._components)
 
     ### PUBLIC PROPERTIES ###
 
