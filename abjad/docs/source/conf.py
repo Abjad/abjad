@@ -119,7 +119,7 @@ autodoc_member_order = 'groupwise'
 graphviz_dot_args = ['-s32']
 graphviz_output_format = 'svg'
 intersphinx_mapping = {
-    'python': (
-        'http://docs.python.org/{}.{}'.format(*sys.version_info[:2]), None),
+    'https://docs.python.org/3.6/': None,
+    'http://www.sphinx-doc.org/en/stable/': None,
     }
 todo_include_todos = True
