@@ -1,6 +1,6 @@
 import os
 import pathlib
-from abjad.tools.abctools import ContextManager
+from abjad.tools.abctools.ContextManager import ContextManager
 
 
 class TemporaryDirectoryChange(ContextManager):

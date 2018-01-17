@@ -8,7 +8,7 @@ import posixpath
 import platform
 import re
 import shutil
-import sphinx
+import sphinx  # type: ignore
 import subprocess
 import sys
 import traceback
@@ -20,12 +20,12 @@ from docutils import nodes
 from docutils.frontend import OptionParser
 from docutils.parsers.rst import Parser  # type: ignore
 from docutils.parsers.rst import directives  # type: ignore
-from docutils.utils import new_document
+from docutils.utils import new_document  # type: ignore
 from sphinx import addnodes  # type: ignore
 from sphinx.util import FilenameUniqDict  # type: ignore
 from sphinx.util.console import bold, red, brown  # type: ignore
 from sphinx.util.osutil import copyfile, ensuredir  # type: ignore
-from xml.dom import minidom  # noqa
+from xml.dom import minidom  # type: ignore
 
 
 class SphinxDocumentHandler(abctools.AbjadObject):

@@ -1,4 +1,4 @@
-from abjad.tools.datastructuretools import TreeNode
+from abjad.tools.datastructuretools.TreeNode import TreeNode
 
 
 class GraphvizTableHorizontalRule(TreeNode):

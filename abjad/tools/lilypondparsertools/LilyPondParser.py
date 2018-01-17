@@ -730,7 +730,7 @@ class LilyPondParser(abctools.Parser):
                 all(isinstance(y, (int, float)) for y in x),
             'number?': lambda x: isinstance(x, (int, float)),
             'real?': lambda x: isinstance(x, (int, float)),
-            'string?': lambda x: isinstance(x, (str, unicode)),
+            'string?': lambda x: isinstance(x, str),
             'void?': lambda x: isinstance(x, type(None)),
             # the following predicates have not yet been implemented in Abjad
             'hash-table?': lambda x: True,
