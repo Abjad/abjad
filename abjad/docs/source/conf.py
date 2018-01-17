@@ -24,6 +24,7 @@ extensions = [
     'sphinx.ext.graphviz',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
+    'sphinx_autodoc_typehints',
     'abjad.docs.ext.abjadbook',
     ]
 master_doc = 'index'
