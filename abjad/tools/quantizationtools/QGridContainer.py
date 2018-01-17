@@ -15,10 +15,6 @@ class QGridContainer(RhythmTreeContainer):
     Used internally by ``QGrid``.
     '''
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
     ### PRIVATE PROPERTIES ###
 
     @property

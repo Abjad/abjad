@@ -35,15 +35,6 @@ class RhythmTreeLeaf(RhythmTreeMixin, TreeNode):
 
     '''
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = (
-        '_duration',
-        '_is_pitched',
-        '_offset',
-        '_offsets_are_current',
-        )
-
     ### INITIALIZER ###
 
     def __init__(

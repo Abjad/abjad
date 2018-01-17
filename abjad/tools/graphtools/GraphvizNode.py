@@ -10,11 +10,6 @@ class GraphvizNode(GraphvizMixin, TreeContainer):
 
     __documentation_section__ = 'Graphviz'
 
-    __slots__ = (
-        '_attributes',
-        '_edges',
-        )
-
     ### INITIALIZER ###
 
     def __init__(

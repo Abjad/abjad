@@ -9,10 +9,6 @@ class RhythmTreeMixin(abctools.AbjadObject):
     r'''Abstract rhythm-tree node.
     '''
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
     ### INITIALIZER ###
 
     @abc.abstractmethod

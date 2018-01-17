@@ -1,13 +1,9 @@
 import abjad
 
 
-class PartCantusScoreTemplate(abjad.abctools.AbjadObject):
+class PartCantusScoreTemplate:
     r'''Pärt Cantus score template.
     '''
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

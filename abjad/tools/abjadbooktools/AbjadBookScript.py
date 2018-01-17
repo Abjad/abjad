@@ -1,7 +1,4 @@
-try:
-    import ConfigParser as configparser
-except ImportError:
-    import configparser
+import configparser
 from abjad.tools import commandlinetools
 
 

@@ -101,12 +101,6 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_duration',
-        '_offset',
-        '_offsets_are_current',
-        )
-
     _publish_storage_format = True
 
     ### INITIALIZER ###

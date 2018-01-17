@@ -17,10 +17,11 @@ if 'topleveltools' in os.path.abspath('.'):
     raise Exception(message)
 del os
 
+from fractions import Fraction
 try:
     from quicktions import Fraction  # type: ignore
 except ImportError:
-    from fractions import Fraction
+    pass
 
 # ensure that the ~/.abjad directory and friends are setup
 # and instantiate Abjad's configuration singleton

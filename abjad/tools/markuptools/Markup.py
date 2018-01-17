@@ -1,13 +1,15 @@
 import collections
-import fractions
 import numbers
-from abjad import Fraction
 from abjad.tools import mathtools
 from abjad.tools import schemetools
 from abjad.tools.topleveltools import new
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.markuptools.MarkupCommand import MarkupCommand
 from abjad.tools.markuptools.Postscript import Postscript
+try:
+    from quicktions import Fraction  # type: ignore
+except ImportError:
+    from fractions import Fraction
 
 
 class Markup(AbjadValueObject):

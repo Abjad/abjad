@@ -1,4 +1,4 @@
-from typing import Dict  # noqa
+from typing import Callable, Dict  # noqa
 from abjad.tools import scoretools
 from abjad.tools import indicatortools
 from abjad.tools import pitchtools
@@ -17,7 +17,7 @@ class GuileProxy(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    _function_name_mapping = {}  # type: Dict[str, callable]
+    _function_name_mapping = {}  # type: Dict[str, Callable]
 
     ### INITIALIZER ###
 

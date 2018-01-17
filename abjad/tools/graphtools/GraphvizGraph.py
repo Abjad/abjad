@@ -159,14 +159,6 @@ class GraphvizGraph(GraphvizMixin, TreeContainer):
 
     __documentation_section__ = 'Graphviz'
 
-    __slots__ = (
-        '_attributes',
-        '_edge_attributes',
-        '_is_digraph',
-        '_node_order',
-        '_node_attributes',
-        )
-
     ### INITIALIZER ###
 
     def __init__(

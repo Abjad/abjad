@@ -1,3 +1,4 @@
+from typing import Dict  # noqa
 from docutils.parsers.rst import Directive  # type: ignore
 
 
@@ -15,7 +16,7 @@ class AbjadDoctestDirective(Directive):
     required_arguments = 0
     optional_arguments = 0
     final_argument_whitespace = True
-    option_spec = {}
+    option_spec = {}  # type: Dict[str, object]
 
     ### PUBLIC METHODS ###
 
