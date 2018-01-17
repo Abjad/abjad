@@ -38,8 +38,7 @@ before_install:
     - sh lilypond-$LILYPOND_VERSION-1.linux-64.sh --batch
     - export PATH=/home/travis/bin:$PATH
     - pip install -U pip
-    - pip install coveralls
-    - pip install coverage
+    - pip install coveralls coverage
 
 install:
     # install without development dependencies.
@@ -58,6 +57,7 @@ install:
 
 script:
     - coverage run -a `which py.test`
+    - mypy abjad || exit 0
     - coverage run -a abjad/scr/ajv api -R
 
 after_success:
