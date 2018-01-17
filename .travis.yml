@@ -56,8 +56,8 @@ install:
     - if [[ $ACCELERATED == true ]]; then pip install -e .[accelerated]; fi
 
 script:
-    - coverage run -a `which py.test`
-    - mypy abjad || exit 0
+    - coverage run -a python -m pytest
+    - mypy abjad
     - coverage run -a abjad/scr/ajv api -R
 
 after_success:
