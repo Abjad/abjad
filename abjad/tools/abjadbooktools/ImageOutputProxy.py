@@ -90,7 +90,7 @@ class ImageOutputProxy(abctools.AbjadValueObject):
         ):
         r'''Creates a LaTeX representation of the image output proxy.
         '''
-        import PyPDF2
+        import PyPDF2  # type: ignore
         configuration = configuration or {}
         latex_configuration = configuration.get('latex', {})
         options_key = '{}-options'.format(self.file_name_prefix)

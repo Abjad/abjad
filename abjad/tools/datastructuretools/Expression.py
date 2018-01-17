@@ -2,7 +2,7 @@ import inspect
 import itertools
 import numbers
 from abjad.tools import systemtools
-from abjad.tools.abctools import AbjadValueObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Expression(AbjadValueObject):

@@ -1,4 +1,4 @@
-from docutils.parsers.rst import Directive
+from docutils.parsers.rst import Directive  # type: ignore
 
 
 class AbjadDoctestDirective(Directive):

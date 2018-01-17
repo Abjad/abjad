@@ -18,14 +18,14 @@ from abjad.tools import datastructuretools
 from abjad.tools import systemtools
 from docutils import nodes
 from docutils.frontend import OptionParser
-from docutils.parsers.rst import Parser
-from docutils.parsers.rst import directives
+from docutils.parsers.rst import Parser  # type: ignore
+from docutils.parsers.rst import directives  # type: ignore
 from docutils.utils import new_document
-from sphinx import addnodes
-from sphinx.util import FilenameUniqDict
-from sphinx.util.console import bold, red, brown
-from sphinx.util.osutil import copyfile, ensuredir
-from xml.dom import minidom
+from sphinx import addnodes  # type: ignore
+from sphinx.util import FilenameUniqDict  # type: ignore
+from sphinx.util.console import bold, red, brown  # type: ignore
+from sphinx.util.osutil import copyfile, ensuredir  # type: ignore
+from xml.dom import minidom  # noqa
 
 
 class SphinxDocumentHandler(abctools.AbjadObject):
@@ -566,13 +566,10 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 if defining_class != cls:
                     addname_node = signature_node.traverse(
                         addnodes.desc_addname)[0]
-                    if defining_class.__module__.startswith('abjad'):
-                        reftarget = defining_class.__module__
-                    else:
-                        reftarget = '{}.{}'.format(
-                            defining_class.__module__,
-                            defining_class.__name__,
-                            )
+                    reftarget = '{}.{}'.format(
+                        defining_class.__module__,
+                        defining_class.__name__,
+                        )
                     xref_node = addnodes.pending_xref(
                         '',
                         refdomain='py',

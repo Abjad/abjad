@@ -1,5 +1,5 @@
-from docutils.parsers.rst import Directive
-from docutils.parsers.rst import directives
+from docutils.parsers.rst import Directive  # type: ignore
+from docutils.parsers.rst import directives  # type: ignore
 
 
 class ThumbnailDirective(Directive):

@@ -2,7 +2,7 @@ import copy
 from ply import lex
 from abjad.tools.exceptiontools import SchemeParserFinishedError
 from abjad.tools import scoretools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 # TODO: should not inherit from AbjadObject because no slots

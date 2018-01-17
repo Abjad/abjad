@@ -1,8 +1,8 @@
 import os
 import subprocess
-from docutils import nodes
-from docutils.parsers.rst import Directive
-from sphinx.util.nodes import set_source_info
+from docutils import nodes  # type: ignore
+from docutils.parsers.rst import Directive  # type: ignore
+from sphinx.util.nodes import set_source_info  # type: ignore
 
 
 class ShellDirective(Directive):

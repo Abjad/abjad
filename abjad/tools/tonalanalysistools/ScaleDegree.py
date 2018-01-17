@@ -1,5 +1,5 @@
 import re
-from abjad.tools.abctools import AbjadValueObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class ScaleDegree(AbjadValueObject):

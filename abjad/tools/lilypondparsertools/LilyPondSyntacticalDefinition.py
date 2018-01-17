@@ -8,7 +8,7 @@ from abjad.tools import markuptools
 from abjad.tools import scoretools
 from abjad.tools import pitchtools
 from abjad.tools import schemetools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.topleveltools import attach
 
 

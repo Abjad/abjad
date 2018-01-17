@@ -2,8 +2,8 @@ import abc
 import logging
 import os
 import pickle
-import ply
-from ply import yacc
+import ply  # type: ignore
+from ply import yacc  # type: ignore
 import traceback
 from abjad.tools.abctools.AbjadObject import AbjadObject
 

@@ -1,6 +1,6 @@
 import collections
 import copy
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Spanner(AbjadObject):

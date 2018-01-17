@@ -1,18 +1,7 @@
 import abc
 
 
-AbstractBase = abc.ABCMeta(
-    'AbstractBase',
-    (),
-    {
-        '__metaclass__': abc.ABCMeta,
-        '__module__': __name__,
-        '__slots__': (),
-        },
-    )
-
-
-class AbjadObject(AbstractBase):
+class AbjadObject(metaclass=abc.ABCMeta):
     '''Abstract base class from which many custom classes inherit.
     '''
 

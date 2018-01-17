@@ -1,6 +1,6 @@
 import collections
 import itertools
-from abjad.tools.abctools import AbjadValueObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class TieSpecifier(AbjadValueObject):

@@ -6,7 +6,7 @@ import re
 import shutil
 import subprocess
 import sys
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 from io import StringIO
 
 

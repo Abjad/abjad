@@ -18,7 +18,7 @@ if 'topleveltools' in os.path.abspath('.'):
 del os
 
 try:
-    from quicktions import Fraction
+    from quicktions import Fraction  # type: ignore
 except ImportError:
     from fractions import Fraction
 

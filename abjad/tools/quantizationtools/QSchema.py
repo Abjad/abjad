@@ -2,7 +2,7 @@ import abc
 import bisect
 import copy
 from abjad.tools import mathtools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class QSchema(AbjadObject):

@@ -1,4 +1,4 @@
-from docutils import nodes
+from docutils import nodes  # type: ignore
 
 
 class abjad_thumbnail_block(nodes.image, nodes.General, nodes.Element):

@@ -1,7 +1,7 @@
 import re
 from abjad.tools import markuptools
 from abjad.tools import systemtools
-from abjad.tools.abctools import AbjadValueObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class RomanNumeral(AbjadValueObject):

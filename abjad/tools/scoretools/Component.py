@@ -5,7 +5,7 @@ from abjad.tools.exceptiontools import ExtraSpannerError
 from abjad.tools.exceptiontools import MissingMetronomeMarkError
 from abjad.tools.exceptiontools import MissingMeasureError
 from abjad.tools.exceptiontools import MissingSpannerError
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.datastructuretools import Right
 
 

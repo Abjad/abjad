@@ -1,4 +1,4 @@
-from abjad.tools.datastructuretools import Duration
+from abjad.tools.datastructuretools.Duration import Duration
 from abjad.tools.lilypondparsertools.LilyPondDuration import LilyPondDuration
 
 
