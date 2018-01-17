@@ -3,7 +3,7 @@ import fractions
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class NonreducedRatio(AbjadValueObject):
+class NonreducedRatio(AbjadValueObject, collections.Sequence):
     '''Nonreduced ratio.
 
     ..  container:: example
@@ -241,6 +241,3 @@ class NonreducedRatio(AbjadValueObject):
         Returns tuple of two or more numbers.
         '''
         return self._numbers
-
-
-collections.Sequence.register(NonreducedRatio)

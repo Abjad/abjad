@@ -1,4 +1,4 @@
-from abjad.tools.abctools import ContextManager
+from abjad.tools.abctools.ContextManager import ContextManager
 
 
 class NullContextManager(ContextManager):

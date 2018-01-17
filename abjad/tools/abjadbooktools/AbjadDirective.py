@@ -1,8 +1,8 @@
 import re
-from docutils.parsers.rst import directives
-from docutils.parsers.rst import Directive
-from sphinx.util.nodes import set_source_info
-from docutils.nodes import literal_block
+from docutils.parsers.rst import directives  # type: ignore
+from docutils.parsers.rst import Directive  # type: ignore
+from sphinx.util.nodes import set_source_info  # type: ignore
+from docutils.nodes import literal_block  # type: ignore
 
 
 class AbjadDirective(Directive):

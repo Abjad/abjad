@@ -249,23 +249,6 @@ class Clef(AbjadValueObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _clef_name_to_staff_position_zero(self, clef_name):
-        import abjad
-        return {
-            'treble': abjad.NamedPitch('B4'),
-            'alto': abjad.NamedPitch('C4'),
-            'tenor': abjad.NamedPitch('A3'),
-            'bass': abjad.NamedPitch('D3'),
-            'french': abjad.NamedPitch('D5'),
-            'soprano': abjad.NamedPitch('G4'),
-            'mezzosoprano': abjad.NamedPitch('E4'),
-            'baritone': abjad.NamedPitch('F3'),
-            'varbaritone': abjad.NamedPitch('F3'),
-            'percussion': None,
-            'tab': None,
-            }[clef_name]
-
-    @property
     def _contents_repr_string(self):
         return repr(self._name)
 
@@ -296,6 +279,22 @@ class Clef(AbjadValueObject):
         else:
             base_name = clef_name
         return self._clef_name_to_middle_c_position[base_name] + alteration
+
+    def _clef_name_to_staff_position_zero(self, clef_name):
+        import abjad
+        return {
+            'treble': abjad.NamedPitch('B4'),
+            'alto': abjad.NamedPitch('C4'),
+            'tenor': abjad.NamedPitch('A3'),
+            'bass': abjad.NamedPitch('D3'),
+            'french': abjad.NamedPitch('D5'),
+            'soprano': abjad.NamedPitch('G4'),
+            'mezzosoprano': abjad.NamedPitch('E4'),
+            'baritone': abjad.NamedPitch('F3'),
+            'varbaritone': abjad.NamedPitch('F3'),
+            'percussion': None,
+            'tab': None,
+            }[clef_name]
 
     def _get_format_specification(self):
         import abjad

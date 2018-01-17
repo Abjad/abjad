@@ -1,6 +1,6 @@
 import bisect
 from abjad.tools import systemtools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class TimespanInequality(AbjadObject):

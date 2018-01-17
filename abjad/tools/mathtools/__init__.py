@@ -1,4 +1,3 @@
-from .BoundedObject import BoundedObject
 from .Enumerator import Enumerator
 from .Infinity import Infinity
 from .NegativeInfinity import NegativeInfinity

@@ -1,18 +1,7 @@
 import abc
 
 
-AbstractBase = abc.ABCMeta(
-    'AbstractBase',
-    (),
-    {
-        '__metaclass__': abc.ABCMeta,
-        '__module__': __name__,
-        '__slots__': (),
-        },
-    )
-
-
-class AbjadObject(AbstractBase):
+class AbjadObject(object, metaclass=abc.ABCMeta):
     '''Abstract base class from which many custom classes inherit.
     '''
 
@@ -21,14 +10,6 @@ class AbjadObject(AbstractBase):
     __slots__ = ()
 
     ### SPECIAL METHODS ###
-
-    def __eq__(self, argument):
-        r'''Is true when ID of `argument` equals ID of Abjad object.
-        Otherwise false.
-
-        Returns true or false.
-        '''
-        return id(self) == id(argument)
 
     def __format__(self, format_specification=''):
         r'''Formats Abjad object.
@@ -59,15 +40,6 @@ class AbjadObject(AbstractBase):
                 except AttributeError:
                     pass
         return state
-
-    def __hash__(self):
-        r'''Hashes Abjad object.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(AbjadObject, self).__hash__()
 
     def __repr__(self):
         r'''Gets interpreter representation of Abjad object.

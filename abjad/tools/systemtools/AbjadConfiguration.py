@@ -472,25 +472,25 @@ class AbjadConfiguration(Configuration):
         dependencies = {}
         dependencies['configobj'] = None
         try:
-            import configobj
+            import configobj  # type: ignore
             dependencies['configobj'] = configobj.__version__
         except (AttributeError, ImportError):
             pass
         dependencies['ply'] = None
         try:
-            from ply import lex
+            from ply import lex  # type: ignore
             dependencies['ply'] = lex.__version__
         except ImportError:
             pass
         dependencies['pytest'] = None
         try:
-            import pytest
+            import pytest  # type: ignore
             dependencies['pytest'] = pytest.__version__
         except ImportError:
             pass
         dependencies['sphinx'] = None
         try:
-            import sphinx
+            import sphinx  # type: ignore
             dependencies['sphinx'] = sphinx.__version__
         except ImportError:
             pass

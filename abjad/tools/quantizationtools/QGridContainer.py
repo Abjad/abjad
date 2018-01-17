@@ -1,4 +1,4 @@
-from abjad.tools.rhythmtreetools import RhythmTreeContainer
+from abjad.tools.rhythmtreetools.RhythmTreeContainer import RhythmTreeContainer
 
 
 class QGridContainer(RhythmTreeContainer):
@@ -14,10 +14,6 @@ class QGridContainer(RhythmTreeContainer):
 
     Used internally by ``QGrid``.
     '''
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
 
     ### PRIVATE PROPERTIES ###
 

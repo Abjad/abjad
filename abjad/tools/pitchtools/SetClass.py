@@ -1033,6 +1033,7 @@ class SetClass(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
+    @staticmethod
     def _classify_set_classes():
         r'''Was only necessary to run during implementation of SetClass.
 

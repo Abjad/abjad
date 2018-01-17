@@ -2,7 +2,7 @@ import collections
 from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 
 
-class TypedFrozenset(TypedCollection):
+class TypedFrozenset(TypedCollection, collections.Set):
     r'''Typed fozen set.
     '''
 
@@ -56,7 +56,14 @@ class TypedFrozenset(TypedCollection):
 
         Returns integer.
         '''
-        return super(TypedFrozenset, self).__hash__()
+        from abjad.tools import systemtools
+        hash_values = systemtools.StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            message = 'unhashable type: {}'.format(self)
+            raise TypeError(message)
+        return result
 
     def __le__(self, argument):
         r'''Is true when typed frozen set is less than or equal to `argument`.
@@ -180,6 +187,3 @@ class TypedFrozenset(TypedCollection):
         result = self._collection.union(argument._collection)
         result = type(self)(result)
         return result
-
-
-collections.Set.register(TypedFrozenset)

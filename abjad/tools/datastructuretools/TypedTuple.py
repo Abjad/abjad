@@ -3,7 +3,7 @@ from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 from abjad.tools.topleveltools import new
 
 
-class TypedTuple(TypedCollection):
+class TypedTuple(TypedCollection, collections.Sequence):
     r'''Typed tuple.
     '''
 
@@ -71,7 +71,14 @@ class TypedTuple(TypedCollection):
 
         Returns integer.
         '''
-        return super(TypedTuple, self).__hash__()
+        from abjad.tools import systemtools
+        hash_values = systemtools.StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            message = 'unhashable type: {}'.format(self)
+            raise TypeError(message)
+        return result
 
     def __mul__(self, argument):
         r'''Multiplies typed tuple by `argument`.
@@ -118,6 +125,3 @@ class TypedTuple(TypedCollection):
         '''
         item = self._item_coercer(item)
         return self._collection.index(item)
-
-
-collections.Sequence.register(TypedTuple)

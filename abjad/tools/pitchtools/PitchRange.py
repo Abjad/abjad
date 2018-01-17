@@ -3,7 +3,7 @@ import copy
 import functools
 import numbers
 import re
-from abjad.tools.abctools import AbjadValueObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.pitchtools.Pitch import Pitch
 
 

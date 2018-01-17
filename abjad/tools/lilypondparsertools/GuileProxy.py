@@ -1,7 +1,8 @@
+from typing import Callable, Dict  # noqa
 from abjad.tools import scoretools
 from abjad.tools import indicatortools
 from abjad.tools import pitchtools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.topleveltools import attach
 
 
@@ -16,7 +17,7 @@ class GuileProxy(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    _function_name_mapping = {}
+    _function_name_mapping = {}  # type: Dict[str, Callable]
 
     ### INITIALIZER ###
 
@@ -185,7 +186,7 @@ class GuileProxy(AbjadObject):
     def times(self, fraction, music):
         r'''Handles LilyPond ``\times`` command.
         '''
-        n, d  = fraction.numerator, fraction.denominator
+        n, d = fraction.numerator, fraction.denominator
         if (not isinstance(music, scoretools.Context) and
             not isinstance(music, scoretools.Leaf)
             ):
@@ -198,8 +199,6 @@ class GuileProxy(AbjadObject):
     def transpose(self, from_pitch, to_pitch, music):
         r'''Handles LilyPond ``\transpose`` command.
         '''
-        from abjad.tools import lilypondparsertools
-        self._make_unrelativable(music)
         def recurse(music):
             key_signatures = music._get_indicators(indicatortools.KeySignature)
             if key_signatures:
@@ -211,15 +210,17 @@ class GuileProxy(AbjadObject):
             if isinstance(music, scoretools.Note):
                 music.written_pitch = \
                     lilypondparsertools.LilyPondParser._transpose_enharmonically(
-                    from_pitch, to_pitch, music.written_pitch)
+                        from_pitch, to_pitch, music.written_pitch)
             elif isinstance(music, scoretools.Chord):
                 for note_head in music.note_heads:
                     note_head.written_pitch = \
                         lilypondparsertools.LilyPondParser._transpose_enharmonically(
-                        from_pitch, to_pitch, note_head.written_pitch)
+                            from_pitch, to_pitch, note_head.written_pitch)
             elif isinstance(music, scoretools.Container):
                 for x in music:
                     recurse(x)
+        from abjad.tools import lilypondparsertools
+        self._make_unrelativable(music)
         recurse(music)
         return music
 
@@ -291,7 +292,7 @@ class GuileProxy(AbjadObject):
             up_pitch = pitchtools.NamedPitch(pair)
             pair = (pitch.pitch_class.name, reference.octave.number)
             down_pitch = pitchtools.NamedPitch(pair)
-            up_octave= up_pitch.octave.number
+            up_octave = up_pitch.octave.number
             down_octave = down_pitch.octave.number
         if abs(
                 float(up_pitch._get_diatonic_pitch_number()) -

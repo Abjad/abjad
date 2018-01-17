@@ -3,7 +3,7 @@ from abjad.tools import systemtools
 from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 
 
-class TypedCounter(TypedCollection):
+class TypedCounter(TypedCollection, collections.MutableMapping):
     r'''Typed counter.
 
     ..  container:: example
@@ -256,6 +256,3 @@ class TypedCounter(TypedCollection):
         r'''Please document.
         '''
         return self._collection.values()
-
-
-collections.MutableMapping.register(TypedCounter)

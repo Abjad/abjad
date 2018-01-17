@@ -3,7 +3,7 @@ from abjad.tools import systemtools
 from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 
 
-class TypedList(TypedCollection):
+class TypedList(TypedCollection, collections.MutableSequence):
     r'''Typed list.
 
     ..  container:: example
@@ -422,6 +422,3 @@ class TypedList(TypedCollection):
     def keep_sorted(self, argument):
         assert isinstance(argument, (bool, type(None)))
         self._keep_sorted = argument
-
-
-collections.MutableSequence.register(TypedList)

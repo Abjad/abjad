@@ -161,7 +161,7 @@ class VerticalMoment(abctools.AbjadObject):
             governors.append(argument)
         elif isinstance(argument, prototype):
             for x in argument:
-                if isinstance(x, sabjad.Component):
+                if isinstance(x, abjad.Component):
                     governors.append(x)
                 else:
                     raise TypeError(message)
@@ -417,6 +417,3 @@ class VerticalMoment(abctools.AbjadObject):
             if isinstance(x, abjad.Note)]
         result = tuple(result)
         return result
-
-
-collections.Sequence.register(VerticalMoment)

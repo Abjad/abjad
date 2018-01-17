@@ -1,4 +1,4 @@
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Block(AbjadObject):

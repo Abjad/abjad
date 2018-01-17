@@ -1,5 +1,6 @@
-from docutils.parsers.rst import Directive
-from sphinx.util.nodes import set_source_info
+from typing import Dict  # noqa
+from docutils.parsers.rst import Directive  # type: ignore
+from sphinx.util.nodes import set_source_info  # type: ignore
 
 
 class RevealDirective(Directive):
@@ -16,7 +17,7 @@ class RevealDirective(Directive):
     required_arguments = 1
     optional_arguments = 0
     final_argument_whitespace = True
-    option_spec = {}
+    option_spec = {}  # type: Dict[str, object]
 
     ### PUBLIC METHODS ###
 

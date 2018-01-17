@@ -1,5 +1,5 @@
 from abjad.tools import mathtools
-from abjad.tools.datastructuretools import TypedOrderedDict
+from abjad.tools.datastructuretools.TypedOrderedDict import TypedOrderedDict
 
 
 class PartitionTable(TypedOrderedDict):

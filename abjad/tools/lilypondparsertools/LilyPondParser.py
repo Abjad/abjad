@@ -1,6 +1,6 @@
 import collections
 import itertools
-import ply
+import ply  # type: ignore
 from abjad.tools import abctools
 from abjad.tools import datastructuretools
 from abjad.tools import indicatortools
@@ -11,9 +11,9 @@ from abjad.tools import scoretools
 from abjad.tools import spannertools
 from abjad.tools.lilypondparsertools._parse import _parse
 from abjad.tools.lilypondparsertools._parse_debug import _parse_debug
-from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import select
+from abjad.tools.topleveltools.attach import attach
+from abjad.tools.topleveltools.detach import detach
+from abjad.tools.topleveltools.select import select
 
 
 # apply monkey patch
@@ -730,7 +730,7 @@ class LilyPondParser(abctools.Parser):
                 all(isinstance(y, (int, float)) for y in x),
             'number?': lambda x: isinstance(x, (int, float)),
             'real?': lambda x: isinstance(x, (int, float)),
-            'string?': lambda x: isinstance(x, (str, unicode)),
+            'string?': lambda x: isinstance(x, str),
             'void?': lambda x: isinstance(x, type(None)),
             # the following predicates have not yet been implemented in Abjad
             'hash-table?': lambda x: True,

@@ -377,6 +377,10 @@ class MarkupList(TypedList):
         superclass = super(MarkupList, self)
         return superclass.keep_sorted
 
+    @keep_sorted.setter
+    def keep_sorted(self, keep_sorted):
+        self._keep_sorted = bool(keep_sorted)
+
     ### PUBLIC METHODS ###
 
     def append(self, item):

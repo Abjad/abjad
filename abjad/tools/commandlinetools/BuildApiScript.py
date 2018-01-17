@@ -1,7 +1,7 @@
 import os
 import webbrowser
 from abjad.tools import systemtools
-from abjad.tools.documentationtools import DocumentationManager
+from abjad.tools.documentationtools.DocumentationManager import DocumentationManager
 from abjad.tools.commandlinetools.CommandlineScript import CommandlineScript
 
 
@@ -86,7 +86,7 @@ class BuildApiScript(CommandlineScript):
         clean=False,
         rst_only=False,
         ):
-        import ide
+        import ide  # type: ignore
         api_generator = BuildApiScript.IDEDocumentationManager()
         api_title = 'Abjad IDE'
         docs_directory = os.path.join(

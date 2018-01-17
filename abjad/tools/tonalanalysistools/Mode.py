@@ -1,6 +1,6 @@
 from abjad.tools import datastructuretools
 from abjad.tools import pitchtools
-from abjad.tools.abctools import AbjadValueObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Mode(AbjadValueObject):

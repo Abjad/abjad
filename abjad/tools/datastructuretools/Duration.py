@@ -1,13 +1,16 @@
 import copy
 import math
 import re
-from abjad import Fraction
 from abjad.tools.exceptiontools import AssignabilityError
 from abjad.tools import mathtools
 from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.topleveltools.override import override
 from abjad.tools.topleveltools.setting import setting
+try:
+    from quicktions import Fraction  # type: ignore
+except ImportError:
+    from fractions import Fraction
 
 
 class Duration(AbjadObject, Fraction):

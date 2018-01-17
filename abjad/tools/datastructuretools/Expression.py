@@ -1,8 +1,9 @@
 import inspect
 import itertools
 import numbers
+from typing import List  # noqa
 from abjad.tools import systemtools
-from abjad.tools.abctools import AbjadValueObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Expression(AbjadValueObject):
@@ -95,7 +96,7 @@ class Expression(AbjadValueObject):
         '_template',
         )
 
-    _private_attributes_to_copy = []
+    _private_attributes_to_copy = []  # type: List[str]
 
     _publish_storage_format = True
 
@@ -425,7 +426,7 @@ class Expression(AbjadValueObject):
         '''
         return super(Expression, self).__hash__()
 
-    def __iadd__(self, i):
+    def __iadd__(self, i):  # type: ignore
         r'''Gets proxy method.
         '''
         proxy_method = self.__getattr__('__iadd__')

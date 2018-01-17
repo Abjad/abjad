@@ -1,7 +1,7 @@
 import abc
 import copy
 import re
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.topleveltools import new
 
 
@@ -12,8 +12,6 @@ class GraphvizMixin(AbjadObject):
     ### CLASS VARIABLES ###
 
     __documentation_section__ = 'Graphviz'
-
-    __slots__ = ()
 
     _word_pattern = re.compile('^\w[\w\-:]*$')
 

@@ -1,4 +1,4 @@
-from ply import lex
+from ply import lex  # type: ignore
 from abjad.tools.exceptiontools import LilyPondParserError
 from abjad import Fraction
 from abjad.tools import datastructuretools
@@ -8,7 +8,7 @@ from abjad.tools import markuptools
 from abjad.tools import scoretools
 from abjad.tools import pitchtools
 from abjad.tools import schemetools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.topleveltools import attach
 
 

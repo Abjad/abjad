@@ -1,8 +1,9 @@
 import os
 import subprocess
-from docutils import nodes
-from docutils.parsers.rst import Directive
-from sphinx.util.nodes import set_source_info
+from typing import Dict  # noqa
+from docutils import nodes  # type: ignore
+from docutils.parsers.rst import Directive  # type: ignore
+from sphinx.util.nodes import set_source_info  # type: ignore
 
 
 class ShellDirective(Directive):
@@ -21,7 +22,7 @@ class ShellDirective(Directive):
     required_arguments = 0
     optional_arguments = 0
     final_argument_whitespace = False
-    option_spec = {}
+    option_spec = {}  # type: Dict[str, object]
 
     ### PRIVATE METHODS ###
 

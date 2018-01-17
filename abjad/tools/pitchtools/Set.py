@@ -3,7 +3,7 @@ import collections
 import types
 from abjad.tools import datastructuretools
 from abjad.tools import systemtools
-from abjad.tools.datastructuretools import TypedFrozenset
+from abjad.tools.datastructuretools.TypedFrozenset import TypedFrozenset
 
 
 class Set(TypedFrozenset):

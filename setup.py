@@ -44,8 +44,6 @@ keywords = ', '.join(keywords)
 classifiers = [
     'Development Status :: 5 - Production/Stable',
     'License :: OSI Approved :: GNU General Public License (GPL)',
-    'Programming Language :: Python :: 3.4',
-    'Programming Language :: Python :: 3.5',
     'Programming Language :: Python :: 3.6',
     'Programming Language :: Python :: Implementation :: CPython',
     'Topic :: Artistic Software',
@@ -60,9 +58,11 @@ extras_require = {
         'quicktions>=1.3',
         ],
     'development': [
+        'mypy',
         'pytest>=3.0.0',
         'sphinx>=1.6.0',
         'sphinx-rtd-theme',
+        'sphinx_autodoc_typehints>=1.2.4',
         'PyPDF2',
         ],
     'ipython': [

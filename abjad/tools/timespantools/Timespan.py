@@ -1,9 +1,9 @@
 import copy
-from abjad.tools.mathtools.BoundedObject import BoundedObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.datastructuretools import Left, Infinity, NegativeInfinity
 
 
-class Timespan(BoundedObject):
+class Timespan(AbjadValueObject):
     r'''Timespan.
 
     ..  container:: example
@@ -32,7 +32,6 @@ class Timespan(BoundedObject):
     ### INITIALIZER ###
 
     def __init__(self, start_offset=NegativeInfinity, stop_offset=Infinity):
-        BoundedObject.__init__(self)
         if start_offset is None:
             start_offset = NegativeInfinity
         if stop_offset is None:
@@ -724,7 +723,6 @@ class Timespan(BoundedObject):
 
     @staticmethod
     def _implements_timespan_interface(timespan):
-        import abjad
         if (
             getattr(timespan, 'start_offset', 'foo') != 'foo' and
             getattr(timespan, 'stop_offset', 'foo') != 'foo'
@@ -2148,110 +2146,6 @@ class Timespan(BoundedObject):
         Returns duration.
         '''
         return self._stop_offset - self._start_offset
-
-    @property
-    def is_closed(self):
-        r'''Is false for all timespans.
-
-        ..  container:: example
-
-            >>> abjad.Timespan(0, 10).is_closed
-            False
-
-        Returns true or false.
-        '''
-        return BoundedObject.is_closed.fget(self)
-
-    @property
-    def is_half_closed(self):
-        r'''Is true for all timespans.
-
-        ..  container:: example
-
-            >>> abjad.Timespan(0, 10).is_half_closed
-            True
-
-        Returns true or false.
-        '''
-        return BoundedObject.is_half_closed.fget(self)
-
-    @property
-    def is_half_open(self):
-        r'''Is true for all timespans.
-
-        ..  container:: example
-
-            >>> abjad.Timespan(0, 10).is_half_open
-            True
-
-        Returns true or false.
-        '''
-        return BoundedObject.is_half_open.fget(self)
-
-    @property
-    def is_left_closed(self):
-        r'''Is true for all timespans.
-
-        ..  container:: example
-
-            >>> abjad.Timespan(0, 10).is_left_closed
-            True
-
-        Returns true or false.
-        '''
-        return True
-
-    @property
-    def is_left_open(self):
-        r'''Is false for all timespans.
-
-        ..  container:: example
-
-            >>> abjad.Timespan(0, 10).is_left_open
-            False
-
-        Returns true or false.
-        '''
-        return False
-
-    @property
-    def is_open(self):
-        r'''Is false for all timespans.
-
-        ..  container:: example
-
-            >>> abjad.Timespan(0, 10).is_open
-            False
-
-        Returns true or false.
-        '''
-        return BoundedObject.is_open.fget(self)
-
-    @property
-    def is_right_closed(self):
-        r'''Is false for all timespans.
-
-        ..  container:: example
-
-            >>> abjad.Timespan(0, 10).is_right_closed
-            False
-
-        Returns true or false.
-        '''
-        return False
-
-    @property
-    def is_right_open(self):
-        r'''Is true for all timespans.
-
-        ..  container:: example
-
-            >>> abjad.Timespan(0, 10).is_right_open
-            True
-
-        Returns true or false.
-        '''
-        return True
 
     @property
     def is_well_formed(self):

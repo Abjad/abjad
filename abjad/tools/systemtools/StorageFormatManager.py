@@ -2,7 +2,7 @@ import collections
 import importlib
 import inspect
 import types
-from abjad.tools.abctools import AbjadValueObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class StorageFormatManager(AbjadValueObject):

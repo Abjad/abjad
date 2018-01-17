@@ -1,4 +1,4 @@
-from abjad.tools.datastructuretools import TreeContainer
+from abjad.tools.datastructuretools.TreeContainer import TreeContainer
 from abjad.tools.graphtools.GraphvizMixin import GraphvizMixin
 
 
@@ -9,11 +9,6 @@ class GraphvizNode(GraphvizMixin, TreeContainer):
     ### CLASS VARIABLES ###
 
     __documentation_section__ = 'Graphviz'
-
-    __slots__ = (
-        '_attributes',
-        '_edges',
-        )
 
     ### INITIALIZER ###
 

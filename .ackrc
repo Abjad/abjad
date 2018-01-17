@@ -1,0 +1,5 @@
+--ignore-dir=abjad/docs/build/
+--ignore-dir=abjad/docs/source/api/
+--ignore-dir=abjad/.mypy_cache/
+--ignore-dir=Abjad.egg-info/
+--ignore-dir=.mypy_cache/

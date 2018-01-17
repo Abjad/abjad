@@ -9,11 +9,6 @@ class GraphvizSubgraph(GraphvizGraph):
 
     __documentation_section__ = 'Graphviz'
 
-    __slots__ = (
-        '_is_cluster',
-        '_edges',
-        )
-
     ### INITIALIZER ###
 
     def __init__(

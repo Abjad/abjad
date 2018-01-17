@@ -1,6 +1,6 @@
 import abc
 import functools
-from abjad.tools.abctools import AbjadValueObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 @functools.total_ordering

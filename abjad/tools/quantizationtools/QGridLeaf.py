@@ -1,6 +1,6 @@
 from abjad.tools import systemtools
-from abjad.tools.datastructuretools import TreeNode
-from abjad.tools.rhythmtreetools import RhythmTreeMixin
+from abjad.tools.datastructuretools.TreeNode import TreeNode
+from abjad.tools.rhythmtreetools.RhythmTreeMixin import RhythmTreeMixin
 
 
 class QGridLeaf(RhythmTreeMixin, TreeNode):
@@ -17,16 +17,6 @@ class QGridLeaf(RhythmTreeMixin, TreeNode):
 
     Used internally by ``QGrid``.
     '''
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = (
-        '_duration',
-        '_is_divisible',
-        '_offset',
-        '_offsets_are_current',
-        '_q_event_proxies',
-        )
 
     ### INITIALIZER ###
 

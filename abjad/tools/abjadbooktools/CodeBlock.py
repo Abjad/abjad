@@ -5,7 +5,7 @@ import types
 from abjad.tools import abctools
 from abjad.tools import systemtools
 from abjad.tools.topleveltools import new
-from sphinx.util.console import bold, red
+from sphinx.util.console import bold, red  # type: ignore
 
 
 class CodeBlock(abctools.AbjadValueObject):

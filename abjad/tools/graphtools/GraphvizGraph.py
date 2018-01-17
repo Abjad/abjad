@@ -1,5 +1,5 @@
 import subprocess
-from abjad.tools.datastructuretools import TreeContainer
+from abjad.tools.datastructuretools.TreeContainer import TreeContainer
 from abjad.tools.graphtools.GraphvizMixin import GraphvizMixin
 from abjad.tools.topleveltools import new
 
@@ -158,14 +158,6 @@ class GraphvizGraph(GraphvizMixin, TreeContainer):
     ### CLASS VARIABLES ###
 
     __documentation_section__ = 'Graphviz'
-
-    __slots__ = (
-        '_attributes',
-        '_edge_attributes',
-        '_is_digraph',
-        '_node_order',
-        '_node_attributes',
-        )
 
     ### INITIALIZER ###
 

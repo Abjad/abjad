@@ -1,4 +1,4 @@
-from ply.yacc import (
+from ply.yacc import (  # type: ignore
     YaccProduction,
     YaccSymbol,
     error_count,

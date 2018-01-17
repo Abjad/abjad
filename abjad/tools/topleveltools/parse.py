@@ -1,4 +1,8 @@
-_lilypond_parsers_by_language = {}
+from typing import Dict  # noqa
+from abjad.tools.lilypondparsertools.LilyPondParser import LilyPondParser  # noqa
+
+
+_lilypond_parsers_by_language = {}  # type: Dict[str, LilyPondParser]
 
 
 def parse(string, language='english'):

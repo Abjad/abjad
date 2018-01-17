@@ -1,6 +1,6 @@
 import abc
 from abjad.tools import indicatortools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class QSchemaItem(AbjadObject):
