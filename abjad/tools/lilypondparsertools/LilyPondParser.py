@@ -11,9 +11,9 @@ from abjad.tools import scoretools
 from abjad.tools import spannertools
 from abjad.tools.lilypondparsertools._parse import _parse
 from abjad.tools.lilypondparsertools._parse_debug import _parse_debug
-from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import select
+from abjad.tools.topleveltools.attach import attach
+from abjad.tools.topleveltools.detach import detach
+from abjad.tools.topleveltools.select import select
 
 
 # apply monkey patch
