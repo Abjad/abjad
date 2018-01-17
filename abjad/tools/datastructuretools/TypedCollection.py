@@ -1,10 +1,9 @@
 import abc
-import collections
 from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class TypedCollection(AbjadObject, collections.Collection):
+class TypedCollection(AbjadObject):
     r'''Abstract typed collection.
     '''
 
