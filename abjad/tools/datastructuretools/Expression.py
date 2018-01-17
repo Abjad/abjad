@@ -426,7 +426,7 @@ class Expression(AbjadValueObject):
         '''
         return super(Expression, self).__hash__()
 
-    def __iadd__(self, i):
+    def __iadd__(self, i):  # type: ignore
         r'''Gets proxy method.
         '''
         proxy_method = self.__getattr__('__iadd__')
