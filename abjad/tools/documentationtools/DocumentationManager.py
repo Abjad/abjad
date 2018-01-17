@@ -57,8 +57,7 @@ class DocumentationManager(abctools.AbjadObject):
                     #'noindex': True,
                     }
                 autodoc = documentationtools.ReSTAutodocDirective(
-                    argument='{}.{}.{}'.format(
-                        cls.__module__,
+                    argument='{}.{}'.format(
                         cls.__name__,
                         attr.name,
                         ),
@@ -106,8 +105,7 @@ class DocumentationManager(abctools.AbjadObject):
         if attributes:
             autosummary = documentationtools.ReSTAutosummaryDirective()
             for attribute in attributes:
-                autosummary.append('~{}.{}.{}'.format(
-                    cls.__module__,
+                autosummary.append('~{}.{}'.format(
                     cls.__name__,
                     attribute.name,
                     ))
@@ -129,11 +127,10 @@ class DocumentationManager(abctools.AbjadObject):
             ))
         mro = inspect.getmro(cls)[1:]
         for cls in mro:
-            parts = cls.__module__.split('.') + [cls.__name__]
-            while 1 < len(parts) and parts[-1] == parts[-2]:
-                parts.pop()
-            packagesystem_path = '.'.join(parts)
-            text = '- :py:class:`{}`'.format(packagesystem_path)
+            text = '- :py:class:`{}.{}`'.format(
+                cls.__module__,
+                cls.__name__,
+                )
             paragraph = documentationtools.ReSTParagraph(
                 text=text,
                 wrap=False,
@@ -297,7 +294,6 @@ class DocumentationManager(abctools.AbjadObject):
     def _get_class_rst(self, cls):
         import abjad
         module_name, _, class_name = cls.__module__.rpartition('.')
-        tools_package_python_path = '.'.join(cls.__module__.split('.')[:-1])
         (
             class_methods,
             data,
@@ -311,7 +307,7 @@ class DocumentationManager(abctools.AbjadObject):
         document = abjad.documentationtools.ReSTDocument()
         module_directive = abjad.documentationtools.ReSTDirective(
             directive='currentmodule',
-            argument=tools_package_python_path,
+            argument=cls.__module__,
             )
         document.append(module_directive)
         heading = abjad.documentationtools.ReSTHeading(
@@ -344,7 +340,7 @@ class DocumentationManager(abctools.AbjadObject):
                     )
                 graphviz_container.append(graphviz_directive)
                 document.append(graphviz_container)
-            except:
+            except Exception:
                 traceback.print_exc()
         document.extend(self._build_bases_section(cls))
         document.extend(self._build_enumeration_section(cls))
@@ -648,7 +644,10 @@ class DocumentationManager(abctools.AbjadObject):
                     )
                 for cls in sections[section_name]:
                     item = documentationtools.ReSTAutosummaryItem(
-                        text=cls.__name__,
+                        text='~{}.{}'.format(
+                            cls.__module__,
+                            cls.__name__,
+                            ),
                         )
                     autosummary.append(item)
                 document.append(autosummary)
