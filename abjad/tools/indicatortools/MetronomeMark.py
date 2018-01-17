@@ -449,7 +449,7 @@ class MetronomeMark(AbjadValueObject):
 
         Returns integer.
         '''
-        return super(MetronomeMark).__hash__()
+        return AbjadValueObject.__hash__(self)
 
     def __lt__(self, argument):
         r'''Is true when `argument` is a metronome mark with quarters per

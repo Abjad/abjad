@@ -1,6 +1,7 @@
 import inspect
 import itertools
 import numbers
+from typing import List  # noqa
 from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
@@ -95,7 +96,7 @@ class Expression(AbjadValueObject):
         '_template',
         )
 
-    _private_attributes_to_copy = []
+    _private_attributes_to_copy = []  # type: List[str]
 
     _publish_storage_format = True
 

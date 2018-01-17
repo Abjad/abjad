@@ -9,15 +9,6 @@ class GraphvizEdge(GraphvizMixin):
 
     __documentation_section__ = 'Graphviz'
 
-    __slots__ = (
-        '_attributes',
-        '_head',
-        '_head_port_position',
-        '_is_directed',
-        '_tail',
-        '_tail_port_position',
-        )
-
     ### INITIALIZER ###
 
     def __init__(
