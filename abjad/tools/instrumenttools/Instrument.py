@@ -138,7 +138,7 @@ class Instrument(AbjadValueObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _context_name(self):
+    def _lilypond_type(self):
         if isinstance(self.context, type):
             return self.context.__name__
         elif isinstance(self.context, str):
@@ -177,9 +177,9 @@ class Instrument(AbjadValueObject):
         if isinstance(context, str):
             pass
         elif context is not None:
-            context = context.context_name
+            context = context.lilypond_type
         else:
-            context = self._context_name
+            context = self._lilypond_type
         pieces = markup._get_format_pieces()
         first_line = r'\set {!s}.instrumentName = {!s}'
         first_line = first_line.format(context, pieces[0])
@@ -235,7 +235,7 @@ class Instrument(AbjadValueObject):
 
         Defaults to ``'Staff'``.
 
-        Returns context headword.
+        Returns lilypond type of context.
 
         Override with ``abjad.attach(..., context='...')``.
         '''

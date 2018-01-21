@@ -7,7 +7,7 @@ def test_scoretools_Inspection_get_vertical_moment_at_01():
     tuplet = abjad.Tuplet((4, 3), "d''8 c''8 b'8")
     score.append(abjad.Staff([tuplet]))
     staff_group = abjad.StaffGroup([])
-    staff_group.context_name = 'PianoStaff'
+    staff_group.lilypond_type = 'PianoStaff'
     staff_group.append(abjad.Staff("a'4 g'4"))
     staff_group.append(abjad.Staff("f'8 e'8 d'8 c'8"))
     clef = abjad.Clef('bass')
@@ -64,7 +64,7 @@ def test_scoretools_Inspection_get_vertical_moment_at_02():
     tuplet = abjad.Tuplet((4, 3), "d''8 c''8 b'8")
     score.append(abjad.Staff([tuplet]))
     staff_group = abjad.StaffGroup([])
-    staff_group.context_name = 'PianoStaff'
+    staff_group.lilypond_type = 'PianoStaff'
     staff_group.append(abjad.Staff("a'4 g'4"))
     staff_group.append(abjad.Staff("f'8 e'8 d'8 c'8"))
     clef = abjad.Clef('bass')

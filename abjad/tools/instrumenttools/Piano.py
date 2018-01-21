@@ -6,7 +6,7 @@ class Piano(Instrument):
 
     ..  container:: example
 
-        >>> staff_group = abjad.StaffGroup(context_name='PianoStaff')
+        >>> staff_group = abjad.StaffGroup(lilypond_type='PianoStaff')
         >>> staff_group.append(abjad.Staff("c'4 d'4 e'4 f'4"))
         >>> staff_group.append(abjad.Staff("c'2 b2"))
         >>> piano = abjad.Piano()

@@ -197,7 +197,7 @@ The context of a voice is set to ``'Voice'`` by default:
 
 ..  abjad::
 
-    voice.context_name
+    voice.lilypond_type
 
 But you can change the context of a voice if you want.
 
@@ -206,11 +206,11 @@ based on a LilyPond voice:
 
 ..  abjad::
 
-    voice.context_name = 'SpeciallyDefinedVoice'
+    voice.lilypond_type = 'SpeciallyDefinedVoice'
 
 ..  abjad::
 
-    voice.context_name
+    voice.lilypond_type
 
 ..  abjad::
 

@@ -13,7 +13,7 @@ ignored_names = (
     '__init__',
     '__new__',
     '__weakref__',
-    'context_name',
+    'lilypond_type',
     'denominator',
     'duration',
     'multiplier',

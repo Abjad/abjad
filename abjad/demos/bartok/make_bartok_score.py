@@ -4,7 +4,7 @@ import copy
 
 def make_bartok_score():
     score = abjad.Score()
-    piano_staff = abjad.StaffGroup([], context_name='PianoStaff')
+    piano_staff = abjad.StaffGroup([], lilypond_type='PianoStaff')
     upper_staff = abjad.Staff([])
     lower_staff = abjad.Staff([])
     piano_staff.append(upper_staff)

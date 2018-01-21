@@ -329,7 +329,7 @@ class LilyPondContext(abctools.AbjadValueObject):
         assert self.is_custom
         del(contexts[self.name])
         del(self._identity_map[self.name])
-        for context_name, context_info in contexts.items():
+        for lilypond_type, context_info in contexts.items():
             if self.name in context_info['accepts']:
                 context_info['accepts'].remove(self.name)
 
@@ -473,9 +473,9 @@ class LilyPondContext(abctools.AbjadValueObject):
         '''
         from abjad.ly import contexts
         accepting_contexts = set()
-        for context_name, context_info in contexts.items():
+        for lilypond_type, context_info in contexts.items():
             if self.name in context_info['accepts']:
-                accepting_context = LilyPondContext(context_name)
+                accepting_context = LilyPondContext(lilypond_type)
                 accepting_contexts.add(accepting_context)
         return tuple(sorted(accepting_contexts, key=lambda x: x.name))
 

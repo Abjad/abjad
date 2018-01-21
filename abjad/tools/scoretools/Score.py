@@ -38,21 +38,21 @@ class Score(Context):
 
     __slots__ = ()
 
-    _default_context_name = 'Score'
+    _default_lilypond_type = 'Score'
 
     ### INITIALIZER ###
 
     def __init__(
         self,
         components=None,
-        context_name='Score',
+        lilypond_type='Score',
         is_simultaneous=True,
         name=None,
         ):
         Context.__init__(
             self,
             components=components,
-            context_name=context_name,
+            lilypond_type=lilypond_type,
             is_simultaneous=is_simultaneous,
             name=name,
             )
@@ -334,7 +334,7 @@ class Score(Context):
         bass_staff = abjad.Staff([])
         bass_staff.name = 'Bass Staff'
         staff_group = abjad.StaffGroup([treble_staff, bass_staff])
-        staff_group.context_name = 'PianoStaff'
+        staff_group.lilypond_type = 'PianoStaff'
         score = abjad.Score([])
         score.append(staff_group)
         for leaf in leaves:

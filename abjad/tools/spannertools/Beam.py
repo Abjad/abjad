@@ -188,16 +188,16 @@ class Beam(Spanner):
         if self._is_my_first_leaf(leaf):
             parentage = abjad.inspect(leaf).get_parentage()
             staff = parentage.get_first(abjad.Staff)
-            headword = getattr(staff, 'headword', 'Staff')
+            lilypond_type = staff.lilypond_type
             string = r'\override {}.Stem.stemlet-length = {}'
-            string = string.format(headword, self.stemlet_length)
+            string = string.format(lilypond_type, self.stemlet_length)
             bundle.before.commands.append(string)
         if self._is_my_last_leaf(leaf):
             parentage = abjad.inspect(leaf).get_parentage()
             staff = parentage.get_first(abjad.Staff)
-            headword = getattr(staff, 'headword', 'Staff')
+            lilypond_type = staff.lilypond_type
             string = r'\revert {}.Stem.stemlet-length'
-            string = string.format(headword, self.stemlet_length)
+            string = string.format(lilypond_type, self.stemlet_length)
             bundle.before.commands.append(string)
 
     def _copy_keyword_args(self, new):
@@ -335,7 +335,7 @@ class Beam(Spanner):
 
             >>> staff = abjad.Staff(
             ...     "r8 c' r c' g'2",
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.setting(staff).auto_beaming = False
             >>> beam = abjad.Beam(stemlet_length=2)

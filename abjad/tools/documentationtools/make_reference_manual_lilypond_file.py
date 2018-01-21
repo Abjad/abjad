@@ -97,7 +97,7 @@ def make_reference_manual_lilypond_file(music=None, **keywords):
 
     # score context
     context_block = lilypondfiletools.ContextBlock(
-        source_context_name='Score',
+        source_lilypond_type='Score',
         )
     context_block.remove_commands.append('Bar_number_engraver')
     override(context_block).spacing_spanner.strict_grace_spacing = True

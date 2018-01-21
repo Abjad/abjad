@@ -7,7 +7,7 @@ def make_desordre_score(pitches):
 
     assert len(pitches) == 2
     staff_group = abjad.StaffGroup()
-    staff_group.context_name = 'PianoStaff'
+    staff_group.lilypond_type = 'PianoStaff'
 
     # build the music
     for hand in pitches:

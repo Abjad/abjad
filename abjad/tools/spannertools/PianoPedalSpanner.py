@@ -80,7 +80,7 @@ class PianoPedalSpanner(Spanner):
         if self._is_my_only_leaf(leaf):
             style = abjad.SchemeSymbol(self.style)
             context_setting = abjad.lilypondnametools.LilyPondContextSetting(
-                context_name='Staff',
+                lilypond_type='Staff',
                 context_property='pedalSustainStyle',
                 value=style,
                 )
@@ -92,7 +92,7 @@ class PianoPedalSpanner(Spanner):
         elif self._is_my_first_leaf(leaf):
             style = abjad.SchemeSymbol(self.style)
             context_setting = abjad.lilypondnametools.LilyPondContextSetting(
-                context_name='Staff',
+                lilypond_type='Staff',
                 context_property='pedalSustainStyle',
                 value=style,
                 )

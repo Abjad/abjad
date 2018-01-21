@@ -601,10 +601,10 @@ class Container(Component):
             name = '-"{}"'.format(name)
         else:
             name = ''
-        if hasattr(self, '_context_name'):
+        if hasattr(self, '_lilypond_type'):
             result = '<{}{}{}{}{}>'
             result = result.format(
-                self.context_name,
+                self.lilypond_type,
                 name,
                 open_bracket_string,
                 summary,

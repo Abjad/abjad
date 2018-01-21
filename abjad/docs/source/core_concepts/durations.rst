@@ -122,8 +122,8 @@ quarter notes:
     half_note = abjad.Note("c'2")
     abjad.attach(abjad.Multiplier(1, 2), half_note)
     half_notes = 4 * half_note
-    top_staff = abjad.Staff(quarter_notes, context_name='RhythmicStaff')
-    bottom_staff = abjad.Staff(half_notes, context_name='RhythmicStaff')
+    top_staff = abjad.Staff(quarter_notes, lilypond_type='RhythmicStaff')
+    bottom_staff = abjad.Staff(half_notes, lilypond_type='RhythmicStaff')
     staff_group = abjad.StaffGroup([top_staff, bottom_staff])
 
 ..  abjad::
@@ -152,7 +152,7 @@ Consider the measure below:
     leaves = abjad.select(measure).leaves()
     beam = abjad.Beam()
     attach(beam, leaves)
-    staff = abjad.Staff([measure], context_name='RhythmicStaff')
+    staff = abjad.Staff([measure], lilypond_type='RhythmicStaff')
 
 ..  abjad::
 
@@ -174,7 +174,7 @@ But now consider this measure:
     leaves = abjad.select(measure).leaves()
     beam = Beam()
     attach(beam, leaves)
-    staff = abjad.Staff([measure], context_name='RhythmicStaff')
+    staff = abjad.Staff([measure], lilypond_type='RhythmicStaff')
 
 ..  abjad::
 

@@ -58,7 +58,7 @@ def test_scoretools_VerticalMoment___eq___02():
         }
         '''
         )
-    staff_group.context_name = 'PianoStaff'
+    staff_group.lilypond_type = 'PianoStaff'
     score.append(staff_group)
 
     assert format(score) == abjad.String.normalize(

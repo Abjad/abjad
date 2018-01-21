@@ -578,7 +578,7 @@ class Wrapper(AbjadValueObject):
                 if not isinstance(component, abjad.Context):
                     continue
                 if (component.name == context or
-                    component.context_name == context):
+                    component.lilypond_type == context):
                     return component
         else:
             message = 'must be context or string: {!r}.'

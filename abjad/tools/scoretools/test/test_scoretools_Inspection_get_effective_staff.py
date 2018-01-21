@@ -7,7 +7,7 @@ def test_scoretools_Inspection_get_effective_staff_01():
 
     staves = 2 * abjad.Staff("c'8 d'8 e'8 f'8")
     staff_group = abjad.StaffGroup(staves)
-    staff_group.context_name = 'PianoStaff'
+    staff_group.lilypond_type = 'PianoStaff'
     staff_group.is_simultaneous = True
     staff_group[0].name = 'RH'
     staff_group[1].name = 'LH'
@@ -51,7 +51,7 @@ def test_scoretools_Inspection_get_effective_staff_02():
 
     staves = 2 * abjad.Staff("c'8 d'8 e'8 f'8")
     staff_group = abjad.StaffGroup(staves)
-    staff_group.context_name = 'PianoStaff'
+    staff_group.lilypond_type = 'PianoStaff'
     staff_group.is_simultaneous = True
     staff_group[0].name = 'RH'
     staff_group[1].name = 'LH'
@@ -98,7 +98,7 @@ def test_scoretools_Inspection_get_effective_staff_03():
 
     staves = 2 * abjad.Staff("c'8 d'8 e'8 f'8")
     staff_group = abjad.StaffGroup(staves)
-    staff_group.context_name = 'PianoStaff'
+    staff_group.lilypond_type = 'PianoStaff'
     staff_group.is_simultaneous = True
     staff_group[0].name = 'RH'
     staff_group[1].name = 'LH'
@@ -134,7 +134,7 @@ def test_scoretools_Inspection_get_effective_staff_04():
 
     staves = 2 * abjad.Staff("c'8 d'8 e'8 f'8")
     staff_group = abjad.StaffGroup(staves)
-    staff_group.context_name = 'PianoStaff'
+    staff_group.lilypond_type = 'PianoStaff'
     staff_group.is_simultaneous = True
     staff_group[0].name = 'RH'
     staff_group[1].name = 'LH'

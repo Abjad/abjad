@@ -483,7 +483,7 @@ class ComplexBeam(Beam):
 
             >>> staff = abjad.Staff(
             ...     "r8 c' r c' g'2",
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.setting(staff).auto_beaming = False
             >>> beam = abjad.ComplexBeam(beam_rests=True, stemlet_length=2)

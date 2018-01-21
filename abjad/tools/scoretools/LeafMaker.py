@@ -55,7 +55,7 @@ class LeafMaker(AbjadValueObject):
         >>> durations = [abjad.Duration(1, 4)]
         >>> leaves = maker(pitches, durations)
         >>> staff = abjad.Staff(leaves)
-        >>> staff.context_name = 'RhythmicStaff'
+        >>> staff.lilypond_type = 'RhythmicStaff'
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -353,7 +353,7 @@ class LeafMaker(AbjadValueObject):
         ...     abjad.Measure((3, 8), [leaves[0]]),
         ...     abjad.Measure((5, 8), [leaves[1]]),
         ...     ])
-        >>> staff.context_name = 'RhythmicStaff'
+        >>> staff.lilypond_type = 'RhythmicStaff'
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::

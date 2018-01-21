@@ -32,7 +32,7 @@ First let's create an empty score with a pair of staves connected by a brace:
 ..  abjad::
 
     score = abjad.Score()
-    piano_staff = abjad.StaffGroup([], context_name='PianoStaff')
+    piano_staff = abjad.StaffGroup([], lilypond_type='PianoStaff')
     upper_staff = abjad.Staff()
     lower_staff = abjad.Staff()
 

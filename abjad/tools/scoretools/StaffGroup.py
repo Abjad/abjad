@@ -37,21 +37,21 @@ class StaffGroup(Context):
 
     __slots__ = ()
 
-    _default_context_name = 'StaffGroup'
+    _default_lilypond_type = 'StaffGroup'
 
     ### INITIALIZER ###
 
     def __init__(
         self,
         components=None,
-        context_name='StaffGroup',
+        lilypond_type='StaffGroup',
         is_simultaneous=True,
         name=None,
         ):
         Context.__init__(
             self,
             components=components,
-            context_name=context_name,
+            lilypond_type=lilypond_type,
             is_simultaneous=is_simultaneous,
             name=name,
             )

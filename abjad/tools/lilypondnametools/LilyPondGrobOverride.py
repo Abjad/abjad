@@ -5,7 +5,7 @@ class LilyPondGrobOverride(AbjadValueObject):
     r'''LilyPond grob override.
 
     >>> override = abjad.LilyPondGrobOverride(
-    ...    context_name='Staff',
+    ...    lilypond_type='Staff',
     ...    grob_name='TextSpanner',
     ...    once=True,
     ...    property_path=(
@@ -30,7 +30,7 @@ class LilyPondGrobOverride(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_context_name',
+        '_lilypond_type',
         '_grob_name',
         '_once',
         '_is_revert',
@@ -44,16 +44,16 @@ class LilyPondGrobOverride(AbjadValueObject):
 
     def __init__(
         self,
-        context_name=None,
+        lilypond_type=None,
         grob_name='NoteHead',
         once=None,
         is_revert=None,
         property_path='color',
         value='red',
         ):
-        if context_name is not None:
-            context_name = str(context_name)
-        self._context_name = context_name
+        if lilypond_type is not None:
+            lilypond_type = str(lilypond_type)
+        self._lilypond_type = lilypond_type
         assert grob_name
         self._grob_name = str(grob_name)
         if once is not None:
@@ -102,8 +102,8 @@ class LilyPondGrobOverride(AbjadValueObject):
     @property
     def _override_property_path_string(self):
         parts = []
-        if self.context_name is not None:
-            parts.append(self.context_name)
+        if self.lilypond_type is not None:
+            parts.append(self.lilypond_type)
         parts.append(self.grob_name)
         parts.extend(self.property_path)
         path = '.'.join(parts)
@@ -112,8 +112,8 @@ class LilyPondGrobOverride(AbjadValueObject):
     @property
     def _revert_property_path_string(self):
         parts = []
-        if self.context_name is not None:
-            parts.append(self.context_name)
+        if self.lilypond_type is not None:
+            parts.append(self.lilypond_type)
         parts.append(self.grob_name)
         parts.append(self.property_path[0])
         path = '.'.join(parts)
@@ -122,11 +122,11 @@ class LilyPondGrobOverride(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def context_name(self):
+    def lilypond_type(self):
         r'''Optional LilyPond grob override context name.
 
         >>> override = abjad.LilyPondGrobOverride(
-        ...    context_name='Staff',
+        ...    lilypond_type='Staff',
         ...    grob_name='TextSpanner',
         ...    once=True,
         ...    property_path=(
@@ -136,7 +136,7 @@ class LilyPondGrobOverride(AbjadValueObject):
         ...        ),
         ...    value=abjad.Markup(r'\bold { over pressure }'),
         ...    )
-        >>> override.context_name
+        >>> override.lilypond_type
         'Staff'
 
         >>> override = abjad.LilyPondGrobOverride(
@@ -144,12 +144,12 @@ class LilyPondGrobOverride(AbjadValueObject):
         ...     property_path='style',
         ...     value=abjad.SchemeSymbol('zigzag'),
         ...     )
-        >>> override.context_name is None
+        >>> override.lilypond_type is None
         True
 
         Returns string or none.
         '''
-        return self._context_name
+        return self._lilypond_type
 
     @property
     def grob_name(self):
@@ -173,7 +173,7 @@ class LilyPondGrobOverride(AbjadValueObject):
         false.
 
         >>> override = abjad.LilyPondGrobOverride(
-        ...    context_name='Staff',
+        ...    lilypond_type='Staff',
         ...    grob_name='TextSpanner',
         ...    once=True,
         ...    property_path=(
@@ -227,7 +227,7 @@ class LilyPondGrobOverride(AbjadValueObject):
         r'''Gets LilyPond grob override \override format pieces.
 
         >>> override = abjad.LilyPondGrobOverride(
-        ...    context_name='Staff',
+        ...    lilypond_type='Staff',
         ...    grob_name='TextSpanner',
         ...    once=True,
         ...    property_path=(
@@ -286,7 +286,7 @@ class LilyPondGrobOverride(AbjadValueObject):
         r'''LilyPond grob override property path.
 
         >>> override = abjad.LilyPondGrobOverride(
-        ...    context_name='Staff',
+        ...    lilypond_type='Staff',
         ...    grob_name='TextSpanner',
         ...    once=True,
         ...    property_path=(
@@ -341,7 +341,7 @@ class LilyPondGrobOverride(AbjadValueObject):
         r'''Value of LilyPond grob override.
 
         >>> override = abjad.LilyPondGrobOverride(
-        ...    context_name='Staff',
+        ...    lilypond_type='Staff',
         ...    grob_name='TextSpanner',
         ...    once=True,
         ...    property_path=(

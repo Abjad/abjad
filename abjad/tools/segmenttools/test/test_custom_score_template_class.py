@@ -54,8 +54,8 @@ def test_custom_score_template_class_02():
         ### SPECIAL METHODS ###
 
         def __call__(self):
-            custom_voice = abjad.Voice(context_name='CustomVoice')
-            custom_staff = abjad.Staff(context_name='CustomStaff')
+            custom_voice = abjad.Voice(lilypond_type='CustomVoice')
+            custom_staff = abjad.Staff(lilypond_type='CustomStaff')
             score = abjad.Score()
             custom_staff.append(custom_voice)
             score.append(custom_staff)
@@ -82,7 +82,7 @@ def test_custom_score_template_class_02():
     lilypond_file = abjad.LilyPondFile.new(score)
 
     context_block = abjad.ContextBlock(
-        source_context_name='Voice',
+        source_lilypond_type='Voice',
         type_='Engraver_group',
         name='CustomVoice',
         alias='Voice',
@@ -92,7 +92,7 @@ def test_custom_score_template_class_02():
     abjad.override(context_block).stem.color = 'green'
 
     context_block = abjad.ContextBlock(
-        source_context_name='Staff',
+        source_lilypond_type='Staff',
         type_='Engraver_group',
         name='CustomStaff',
         alias='Staff',
@@ -102,7 +102,7 @@ def test_custom_score_template_class_02():
     abjad.override(context_block).staff_symbol.color = 'red'
 
     context_block = abjad.ContextBlock(
-        source_context_name='Score',
+        source_lilypond_type='Score',
         )
     lilypond_file.layout_block.items.append(context_block)
     context_block.accepts_commands.append('CustomStaff')

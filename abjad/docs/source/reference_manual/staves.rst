@@ -200,7 +200,7 @@ The context of a staff is set to ``Staff`` by default:
 
 ..  abjad::
 
-    staff.context_name
+    staff.lilypond_type
 
 But you can change the context of a staff if you want.
 
@@ -209,11 +209,11 @@ based on a LilyPond staff:
 
 ..  abjad::
 
-    staff.context_name = 'CustomUserStaff'
+    staff.lilypond_type = 'CustomUserStaff'
 
 ..  abjad::
 
-    staff.context_name
+    staff.lilypond_type
 
 ..  abjad::
 

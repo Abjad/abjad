@@ -8,7 +8,7 @@ def configure_lilypond_file(lilypond_file):
     lilypond_file._global_staff_size = 8
 
     context_block = abjad.ContextBlock(
-        source_context_name=r'Staff \RemoveEmptyStaves',
+        source_lilypond_type=r'Staff \RemoveEmptyStaves',
         )
     abjad.override(context_block).vertical_axis_group.remove_first = True
     lilypond_file.layout_block.items.append(context_block)

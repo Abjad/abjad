@@ -82,7 +82,7 @@ class StaffLinesSpanner(Spanner):
             bundle.before.commands.append(r'\stopStaff')
             if isinstance(self.lines, int):
                 override = abjad.LilyPondGrobOverride(
-                    context_name='Staff',
+                    lilypond_type='Staff',
                     grob_name='StaffSymbol',
                     once=True,
                     property_path='line-count',
@@ -92,7 +92,7 @@ class StaffLinesSpanner(Spanner):
                 bundle.before.commands.append(string)
             else:
                 override = abjad.LilyPondGrobOverride(
-                    context_name='Staff',
+                    lilypond_type='Staff',
                     grob_name='StaffSymbol',
                     once=True,
                     property_path='line-positions',

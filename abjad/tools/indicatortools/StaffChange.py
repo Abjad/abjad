@@ -10,7 +10,7 @@ class StaffChange(AbjadValueObject):
         Explicit staff change:
 
         >>> staff_group = abjad.StaffGroup()
-        >>> staff_group.context_name = 'PianoStaff'
+        >>> staff_group.lilypond_type = 'PianoStaff'
         >>> rh_staff = abjad.Staff("c'8 d'8 e'8 f'8", name='RHStaff')
         >>> lh_staff = abjad.Staff("s2", name='LHStaff')
         >>> staff_group.extend([rh_staff, lh_staff])

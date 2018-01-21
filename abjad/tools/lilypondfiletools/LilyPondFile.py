@@ -855,7 +855,7 @@ class LilyPondFile(AbjadObject):
 
             >>> score = abjad.Score()
             >>> global_context = abjad.Context(
-            ...     context_name='GlobalContext',
+            ...     lilypond_type='GlobalContext',
             ...     )
             >>> durations = [(2, 8), (3, 8), (4, 8)]
             >>> maker = abjad.MeasureMaker()
@@ -1028,7 +1028,7 @@ class LilyPondFile(AbjadObject):
             padding=6,
             )
         lilypond_file.layout_block.items.append(block)
-        block = abjad.ContextBlock(source_context_name='Score')
+        block = abjad.ContextBlock(source_lilypond_type='Score')
         lilypond_file.layout_block.items.append(block)
         block.accepts_commands.append('GlobalContext')
         block.remove_commands.append('Bar_number_engraver')
@@ -1048,12 +1048,12 @@ class LilyPondFile(AbjadObject):
         abjad.setting(block).proportionalNotationDuration = moment
         abjad.setting(block).tupletFullLength = True
         # provided as a stub position for user customization
-        block = abjad.ContextBlock(source_context_name='StaffGroup')
+        block = abjad.ContextBlock(source_lilypond_type='StaffGroup')
         lilypond_file.layout_block.items.append(block)
-        block = abjad.ContextBlock(source_context_name='Staff')
+        block = abjad.ContextBlock(source_lilypond_type='Staff')
         lilypond_file.layout_block.items.append(block)
         block.remove_commands.append('Time_signature_engraver')
-        block = abjad.ContextBlock(source_context_name='RhythmicStaff')
+        block = abjad.ContextBlock(source_lilypond_type='RhythmicStaff')
         lilypond_file.layout_block.items.append(block)
         block.remove_commands.append('Time_signature_engraver')
         return lilypond_file
@@ -1521,7 +1521,7 @@ class LilyPondFile(AbjadObject):
             if pitched_staff:
                 staff = abjad.Staff(measures)
             else:
-                staff = abjad.Staff(measures, context_name='RhythmicStaff')
+                staff = abjad.Staff(measures, lilypond_type='RhythmicStaff')
             selections = abjad.sequence(selections).flatten(depth=-1)
             selections_ = copy.deepcopy(selections)
             try:
@@ -1533,7 +1533,7 @@ class LilyPondFile(AbjadObject):
                 else:
                     staff = abjad.Staff(
                         selections_,
-                        context_name='RhythmicStaff',
+                        lilypond_type='RhythmicStaff',
                         )
         elif isinstance(selections, dict):
             voices = []
@@ -1567,7 +1567,7 @@ class LilyPondFile(AbjadObject):
         score.append(staff)
         assert isinstance(divisions, collections.Sequence), repr(divisions)
         time_signatures = time_signatures or divisions
-        context = abjad.scoretools.Context(context_name='GlobalContext')
+        context = abjad.scoretools.Context(lilypond_type='GlobalContext')
         maker = abjad.MeasureMaker(implicit_scaling=implicit_scaling)
         measures = maker(time_signatures)
         context.extend(measures)
