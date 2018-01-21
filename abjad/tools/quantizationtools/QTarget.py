@@ -135,32 +135,33 @@ class QTarget(AbjadObject):
         grace_handler=None,
         voice=None,
         ):
-        for leaf in iterate(voice).leaves():
+        import abjad
+        for leaf in abjad.iterate(voice).leaves():
             if leaf._has_indicator(dict):
                 annotation = leaf._get_indicator(dict)
                 q_events = annotation['q_events']
                 pitches, grace_container = grace_handler(q_events)
                 if not pitches:
-                    new_leaf = scoretools.Rest(leaf)
+                    new_leaf = abjad.Rest(leaf)
                 elif 1 < len(pitches):
-                    new_leaf = scoretools.Chord(leaf)
+                    new_leaf = abjad.Chord(leaf)
                     new_leaf.written_pitches = pitches
                 else:
-                    new_leaf = scoretools.Note(leaf)
+                    new_leaf = abjad.Note(leaf)
                     new_leaf.written_pitch = pitches[0]
                 if grace_container:
-                    attach(grace_container, new_leaf)
-                tie = spannertools.Tie()
+                    abjad.attach(grace_container, new_leaf)
+                tie = abjad.Tie()
                 if tie._attachment_test(new_leaf):
-                    attach(tie, new_leaf)
-                mutate(leaf).replace(new_leaf)
+                    abjad.attach(tie, abjad.select(new_leaf))
+                abjad.mutate(leaf).replace(new_leaf)
             else:
                 previous_leaf = leaf._get_leaf(-1)
-                if isinstance(previous_leaf, scoretools.Rest):
+                if isinstance(previous_leaf, abjad.Rest):
                     new_leaf = type(previous_leaf)(
                         leaf.written_duration,
                         )
-                elif isinstance(previous_leaf, scoretools.Note):
+                elif isinstance(previous_leaf, abjad.Note):
                     new_leaf = type(previous_leaf)(
                         previous_leaf.written_pitch,
                         leaf.written_duration,
@@ -170,14 +171,14 @@ class QTarget(AbjadObject):
                         previous_leaf.written_pitch,
                         leaf.written_duration,
                         )
-                mutate(leaf).replace(new_leaf)
-                tie = inspect(previous_leaf).get_spanner(spannertools.Tie)
+                abjad.mutate(leaf).replace(new_leaf)
+                tie = abjad.inspect(previous_leaf).get_spanner(abjad.Tie)
                 if tie is not None:
                     tie._append(new_leaf)
-            if leaf._has_indicator(indicatortools.MetronomeMark):
-                tempo = leaf._get_indicator(indicatortools.MetronomeMark)
-                detach(indicatortools.MetronomeMark, leaf)
-                attach(tempo, new_leaf)
+            if leaf._has_indicator(abjad.MetronomeMark):
+                tempo = leaf._get_indicator(abjad.MetronomeMark)
+                abjad.detach(indicatortools.MetronomeMark, leaf)
+                abjad.attach(tempo, new_leaf)
 
     def _shift_downbeat_q_events_to_next_q_grid(self):
         import abjad

@@ -5,7 +5,7 @@ def test_spannertools_OctavationSpanner_01():
     r'''Octavation has default start set to 1 and stop set to 0.
     '''
 
-    staff = abjad.Staff([abjad.Note("c'8"), abjad.Note("c'8"), abjad.Note("c'8"), abjad.Note("c'8")])
+    staff = abjad.Staff("c'8 c' c' c'")
     spanner = abjad.OctavationSpanner()
     abjad.attach(spanner, staff[:])
 
@@ -88,9 +88,9 @@ def test_spannertools_OctavationSpanner_04():
 
     staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(8)])
     spanner = abjad.OctavationSpanner(start=1)
-    abjad.attach(spanner, staff[0])
+    abjad.attach(spanner, staff[:1])
     spanner = abjad.OctavationSpanner(start=2)
-    abjad.attach(spanner, staff[1])
+    abjad.attach(spanner, staff[1:2])
 
     assert format(staff) == abjad.String.normalize(
         r'''

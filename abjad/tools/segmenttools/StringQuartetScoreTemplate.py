@@ -93,7 +93,7 @@ class StringQuartetScoreTemplate(ScoreTemplate):
         abjad.annotate(first_violin_staff, 'default_clef', clef)
         violin = abjad.Violin()
         abjad.annotate(first_violin_staff, 'default_instrument', violin)
-        tag = abjad.LilyPondCommand("tag #'first-violin", 'before')
+        tag = abjad.LilyPondLiteral(r"\tag #'first-violin", 'before')
         abjad.attach(tag, first_violin_staff)
 
         # make second violin voice and staff
@@ -109,7 +109,7 @@ class StringQuartetScoreTemplate(ScoreTemplate):
         abjad.annotate(second_violin_staff, 'default_clef', clef)
         violin = abjad.Violin()
         abjad.annotate(second_violin_staff, 'default_instrument', violin)
-        tag = abjad.LilyPondCommand("tag #'second-violin", 'before')
+        tag = abjad.LilyPondLiteral(r"\tag #'second-violin", 'before')
         abjad.attach(tag, second_violin_staff)
 
         # make viola voice and staff
@@ -125,7 +125,7 @@ class StringQuartetScoreTemplate(ScoreTemplate):
         abjad.annotate(viola_staff, 'default_clef', clef)
         viola = abjad.Viola()
         abjad.annotate(viola_staff, 'default_instrument', viola)
-        tag = abjad.LilyPondCommand("tag #'viola", 'before')
+        tag = abjad.LilyPondLiteral(r"\tag #'viola", 'before')
         abjad.attach(tag, viola_staff)
 
         # make cello voice and staff
@@ -141,7 +141,7 @@ class StringQuartetScoreTemplate(ScoreTemplate):
         abjad.annotate(cello_staff, 'default_clef', clef)
         cello = abjad.Cello()
         abjad.annotate(cello_staff, 'default_instrument', cello)
-        tag = abjad.LilyPondCommand("tag #'cello", 'before')
+        tag = abjad.LilyPondLiteral(r"\tag #'cello", 'before')
         abjad.attach(tag, cello_staff)
 
         # make string quartet staff group

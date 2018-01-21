@@ -418,15 +418,16 @@ class LilyPondFormatManager(AbjadObject):
         return format(argument, 'lilypond')
 
     @staticmethod
-    def left_shift_tags(strings):
-        r'''Left shifts tags in `strings`.
+    def left_shift_tags(text, realign=None):
+        r'''Left shifts tags in `strings` and realigns to column `realign`.
 
-        Returns new list of strings.
+        Returns new text.
         '''
         import abjad
+        strings = text.split('\n')
         strings_ = [] 
         for string in strings:
-            if '%F% ' not in string or '%!' not in string:
+            if '%@% ' not in string or '%!' not in string:
                 strings_.append(string)
                 continue
             if not string.startswith(4 * ' '):
@@ -438,7 +439,10 @@ class LilyPondFormatManager(AbjadObject):
             string_[tag_start:tag_start] = 4 * ' '
             string_ = ''.join(string_)
             strings_.append(string_)
-        return strings_
+        text = '\n'.join(strings_)
+        if realign is not None:
+            text = LilyPondFormatManager.align_tags(text, n=realign)
+        return text
 
     @staticmethod
     def make_lilypond_override_string(
@@ -457,8 +461,7 @@ class LilyPondFormatManager(AbjadObject):
         attribute = LilyPondFormatManager.format_lilypond_attribute(attribute)
         value = LilyPondFormatManager.format_lilypond_value(value)
         if context is not None:
-            context = abjad.String(context).to_upper_camel_case()
-            context += '.'
+            context = abjad.String(context).capitalize_start() + '.'
         else:
             context = ''
         if once is True:
@@ -574,5 +577,5 @@ class LilyPondFormatManager(AbjadObject):
             string = string + tag_
             strings_.append(string)
         if deactivate is True:
-            strings_ = ['%F% ' + _ for _ in strings_]
+            strings_ = ['%@% ' + _ for _ in strings_]
         return strings_

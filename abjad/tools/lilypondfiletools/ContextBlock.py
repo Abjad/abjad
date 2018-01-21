@@ -1,4 +1,4 @@
-from abjad.tools.lilypondfiletools.Block import Block
+from .Block import Block
 
 
 class ContextBlock(Block):

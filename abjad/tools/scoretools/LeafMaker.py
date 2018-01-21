@@ -672,9 +672,7 @@ class LeafMaker(AbjadValueObject):
         # apply tie spanner if required
         if tie_parts and 1 < len(result):
             if not issubclass(class_, (abjad.Rest, abjad.Skip)):
-                tie = abjad.Tie(
-                    repeat_ties=repeat_ties,
-                    )
+                tie = abjad.Tie(repeat=repeat_ties)
                 abjad.attach(tie, result)
         # return result
         return result

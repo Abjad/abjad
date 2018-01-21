@@ -97,8 +97,8 @@ class Segment(TypedTuple):
         abjad.override(score).flag.stencil = False
         abjad.override(score).stem.stencil = False
         abjad.override(score).time_signature.stencil = False
-        string = 'override Score.BarLine.transparent = ##f'
-        command = abjad.LilyPondCommand(string, format_slot='after')
+        string = r'\override Score.BarLine.transparent = ##f'
+        command = abjad.LilyPondLiteral(string, 'after')
         last_leaf = abjad.select(score).leaves()[-1]
         abjad.attach(command, last_leaf)
         moment = abjad.schemetools.SchemeMoment((1, 12))
@@ -112,17 +112,17 @@ class Segment(TypedTuple):
         if 'subtitle' in keywords:
             markup = abjad.Markup(keywords.get('subtitle'))
             lilypond_file.header_block.subtitle = markup
-        command = abjad.LilyPondCommand('accidentalStyle forget')
+        command = abjad.LilyPondLiteral(r'\accidentalStyle forget')
         lilypond_file.layout_block.items.append(command)
         lilypond_file.layout_block.indent = 0
         string = 'markup-system-spacing.padding = 8'
-        command = abjad.LilyPondCommand(string, prefix='')
+        command = abjad.LilyPondLiteral(string)
         lilypond_file.paper_block.items.append(command)
         string = 'system-system-spacing.padding = 10'
-        command = abjad.LilyPondCommand(string, prefix='')
+        command = abjad.LilyPondLiteral(string)
         lilypond_file.paper_block.items.append(command)
         string = 'top-markup-spacing.padding = 4'
-        command = abjad.LilyPondCommand(string, prefix='')
+        command = abjad.LilyPondLiteral(string)
         lilypond_file.paper_block.items.append(command)
         return lilypond_file
 

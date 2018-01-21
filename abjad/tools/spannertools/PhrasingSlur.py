@@ -32,7 +32,9 @@ class PhrasingSlur(Spanner):
         >>> abjad.attach(phrasing_slur, staff[:1])
         Traceback (most recent call last):
             ...
-        Exception: PhrasingSlur() attachment test fails for Selection([Note("c'8")]).
+        Exception: PhrasingSlur() attachment test fails for ...
+        <BLANKLINE>
+        Selection([Note("c'8")])
 
     Formats LilyPond ``\(`` command on first leaf in spanner.
 

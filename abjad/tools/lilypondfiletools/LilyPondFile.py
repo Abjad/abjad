@@ -258,9 +258,9 @@ class LilyPondFile(AbjadObject):
             Searches score:
 
             >>> voice_1 = abjad.Voice("c''4 b' a' g'", name='Custom Voice 1')
-            >>> abjad.attach(abjad.LilyPondCommand('voiceOne'), voice_1)
+            >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceOne'), voice_1)
             >>> voice_2 = abjad.Voice("c'4 d' e' f'", name='Custom Voice 2')
-            >>> abjad.attach(abjad.LilyPondCommand('voiceTwo'), voice_2)
+            >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceTwo'), voice_2)
             >>> staff = abjad.Staff(
             ...     [voice_1, voice_2],
             ...     is_simultaneous=True,
@@ -316,15 +316,59 @@ class LilyPondFile(AbjadObject):
             >>> lilypond_file[abjad.Voice]
             Voice("c''4 b'4 a'4 g'4", name='Custom Voice 1')
 
+        ..  container:: example
+
+            REGRESSION. Works when score block contains parallel container:
+
+                >>> include_container = abjad.Container()
+                >>> string = r'\include "layout.ly"'
+                >>> literal = abjad.LilyPondLiteral(string, 'opening')
+                >>> abjad.attach(literal, include_container)
+                >>> staff = abjad.Staff("c'4 d' e' f'", name='CustomStaff')
+                >>> container = abjad.Container(
+                ...     [include_container, staff],
+                ...     is_simultaneous=True,
+                ...     )
+                >>> lilypond_file = abjad.LilyPondFile.new(
+                ...     container,
+                ...     lilypond_language_token=False,
+                ...     lilypond_version_token=False,
+                ...     )
+                >>> del(lilypond_file.items[:3])
+
+                >>> abjad.f(lilypond_file)
+                \score {
+                    <<
+                        {
+                            \include "layout.ly"
+                        }
+                        \context Staff = "CustomStaff" {
+                            c'4
+                            d'4
+                            e'4
+                            f'4
+                        }
+                    >>
+                }
+
+                >>> lilypond_file[abjad.Staff]
+                Staff("c'4 d'4 e'4 f'4", name='CustomStaff')
+
+                >>> lilypond_file['CustomStaff']
+                Staff("c'4 d'4 e'4 f'4", name='CustomStaff')
+
         Returns item.
 
         Raises key error when no item with `name` is found.
         '''
         import abjad
+        score = None
         if self.score_block and self.score_block.items:
-            score = self.score_block.items[0]
-        else:
-            score = None
+            items = self.score_block.items
+            for container in abjad.iterate(items).components(abjad.Container):
+                if isinstance(container, abjad.Context):
+                    score = container
+                    break
         if isinstance(name, str):
             for item in self.items:
                 if getattr(item, 'name', None) == name:
@@ -334,7 +378,7 @@ class LilyPondFile(AbjadObject):
                     return score
                 context = score[name]
                 return context
-            message = 'can not find item with name: {!r}.'
+            message = 'can not find item with name {!r}.'
             message = message.format(name)
             raise KeyError(message)
         else:
@@ -348,7 +392,7 @@ class LilyPondFile(AbjadObject):
                 for context in abjad.iterate(score).components(prototype):
                     if isinstance(context, name):
                         return context
-            message = 'can not find item of class: {!r}.'
+            message = 'can not find item of class {!r}.'
             message = message.format(name)
             raise KeyError(message)
 
@@ -646,6 +690,33 @@ class LilyPondFile(AbjadObject):
             <Block(name='layout')>
             <Block(name='paper')>
             <Block(name='score')>
+
+        ..  container:: example
+
+            Accepts strings:
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> score_block = abjad.Block(name='score')
+            >>> score_block.items.append(staff)
+            >>> lilypond_file = abjad.LilyPondFile(
+            ...     lilypond_language_token=False,
+            ...     lilypond_version_token=False,
+            ...     )
+            >>> string = r'\customCommand'
+            >>> lilypond_file.items.append(string)
+            >>> lilypond_file.items.append(score_block)
+
+            >>> abjad.f(lilypond_file)
+            \customCommand
+            <BLANKLINE>
+            \score {
+                \new Staff {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+            }
 
         ..  container:: example
 
@@ -950,7 +1021,7 @@ class LilyPondFile(AbjadObject):
         lilypond_file.paper_block.system_system_spacing = vector
         lilypond_file.layout_block.indent = 0
         lilypond_file.layout_block.ragged_right = True
-        command = abjad.LilyPondCommand('accidentalStyle forget')
+        command = abjad.LilyPondLiteral(r'\accidentalStyle forget')
         lilypond_file.layout_block.items.append(command)
         block = LilyPondFile._make_global_context_block(
             font_size=1,
@@ -1327,9 +1398,9 @@ class LilyPondFile(AbjadObject):
             ...     divisions,
             ...     )
             >>> voice_1 = lilypond_file['Voice 1']
-            >>> abjad.attach(abjad.LilyPondCommand('voiceOne'), voice_1)
+            >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceOne'), voice_1)
             >>> voice_2 = lilypond_file['Voice 2']
-            >>> abjad.attach(abjad.LilyPondCommand('voiceTwo'), voice_2)
+            >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceTwo'), voice_2)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -1482,7 +1553,7 @@ class LilyPondFile(AbjadObject):
                         voice_name,
                         )
                     if command_string:
-                        command = abjad.LilyPondCommand(command_string)
+                        command = abjad.LilyPondLiteral('\\' + command_string)
                         abjad.attach(command, voice)
                 voices.append(voice)
             staff = abjad.Staff(voices, is_simultaneous=True)

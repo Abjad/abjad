@@ -68,9 +68,9 @@ def test_spannertools_HiddenStaffSpanner___init___03():
     r'''Hide staff around one leaf.
     '''
 
-    note = abjad.Note(0, (1, 8))
+    note = abjad.Note("c'8")
     spanner = abjad.HiddenStaffSpanner()
-    abjad.attach(spanner, note)
+    abjad.attach(spanner, abjad.select(note))
 
     assert format(note) == abjad.String.normalize(
         r'''

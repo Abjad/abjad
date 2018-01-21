@@ -232,9 +232,14 @@ class LilyPondOutputProxy(ImageOutputProxy):
                     self.strict,
                     )
             if self.strict:
-                lines = code.split('\n')
-                lines = abjad.LilyPondFormatManager.left_shift_tags(lines)
-                code = '\n'.join(lines)
+                if isinstance(self.strict, int):
+                    realign = self.strict
+                else:
+                    realign = None
+                code = abjad.LilyPondFormatManager.left_shift_tags(
+                    code,
+                    realign=realign,
+                    )
             node = abjadbooktools.abjad_output_block(code, code)
             node['image_layout_specifier'] = self.image_layout_specifier
             node['image_render_specifier'] = self.image_render_specifier

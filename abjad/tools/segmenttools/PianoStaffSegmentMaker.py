@@ -10,6 +10,7 @@ class PianoStaffSegmentMaker(SegmentMaker):
 
     __slots__ = (
         '_divisions',
+        '_include_layout_ly',
         '_lh_pitch_range',
         '_lh_rhythm_maker',
         '_rh_pitch_range',
@@ -45,6 +46,7 @@ class PianoStaffSegmentMaker(SegmentMaker):
         lh_rhythm_maker=None,
         rh_pitch_range=None,
         lh_pitch_range=None,
+        include_layout_ly=None,
         ):
         import abjad
         from abjad.tools import rhythmmakertools
@@ -67,6 +69,9 @@ class PianoStaffSegmentMaker(SegmentMaker):
         lh_pitch_range = lh_pitch_range or '[C2, C4)'
         lh_pitch_range = abjad.PitchRange(lh_pitch_range)
         self._lh_pitch_range = lh_pitch_range
+        if include_layout_ly is not None:
+            include_layout_ly = bool(include_layout_ly)
+        self._include_layout_ly = include_layout_ly
 
     ### PRIVATE METHODS ###
 
@@ -75,10 +80,7 @@ class PianoStaffSegmentMaker(SegmentMaker):
         time_signatures = self.time_signatures
         if not time_signatures:
             return
-        global_context = abjad.Context(
-            context_name='GlobalContext',
-            name='Global Context',
-            )
+        global_context = self._make_global_context()
         maker = abjad.MeasureMaker()
         measures = maker(time_signatures)
         global_context.extend(measures)
@@ -114,14 +116,27 @@ class PianoStaffSegmentMaker(SegmentMaker):
                     lilypond_file.items.remove(block)
             block = abjad.Block(name='midi')
             lilypond_file.items.append(block)
+        if self.include_layout_ly:
+            score_block = lilypond_file.score_block
+            score = score_block.items[0]
+            assert isinstance(score, abjad.Score)
+            include = abjad.Container()
+            string = r'\include "layout.ly"'
+            literal = abjad.LilyPondLiteral(string, 'opening')
+            abjad.attach(literal, include)
+            container = abjad.Container(
+                [include, score],
+                is_simultaneous=True,
+                )
+            score_block.items[:] = [container]
         return lilypond_file
 
     def _populate_pitches(self, voice, pitch_range):
         import abjad
         assert isinstance(pitch_range, abjad.PitchRange)
         pitch_numbers = [
-            x for x in self._test_pitch_numbers
-            if x in pitch_range
+            _ for _ in self._test_pitch_numbers
+            if _ in pitch_range
             ]
         pitch_numbers = abjad.sequence(pitch_numbers).remove_repeats()
         pitch_numbers = abjad.CyclicTuple(pitch_numbers)
@@ -151,6 +166,14 @@ class PianoStaffSegmentMaker(SegmentMaker):
         Returns list.
         '''
         return self._divisions
+
+    @property
+    def include_layout_ly(self):
+        r'''Is true when segment-maker includes layout.ly.
+
+        Returns true, false or none.
+        '''
+        return self._include_layout_ly
 
     @property
     def lh_pitch_range(self):

@@ -14,7 +14,7 @@ def test_scoretools_Container_remove_01():
     slur = abjad.Slur()
     abjad.attach(slur, voice[:])
     beam = abjad.Beam()
-    abjad.attach(beam, voice[1])
+    abjad.attach(beam, voice[1:2])
 
     assert format(voice) == abjad.String.normalize(
         r'''

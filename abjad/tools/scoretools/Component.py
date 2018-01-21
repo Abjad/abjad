@@ -454,7 +454,7 @@ class Component(AbjadObject):
                 result.append(wrapper)
             elif any(wrapper == _ for _ in prototype_objects):
                 result.append(wrapper)
-            elif isinstance(wrapper, abjad.IndicatorWrapper):
+            elif isinstance(wrapper, abjad.Wrapper):
                 if isinstance(wrapper.indicator, prototype_classes):
                     result.append(wrapper)
                 elif any(wrapper.indicator == _ for _ in prototype_objects):
@@ -610,8 +610,8 @@ class Component(AbjadObject):
         return indicators
 
     def _get_spanners(self, prototype=None):
-        from abjad.tools import spannertools
-        prototype = prototype or (spannertools.Spanner,)
+        import abjad
+        prototype = prototype or (abjad.Spanner,)
         if not isinstance(prototype, tuple):
             prototype = (prototype, )
         spanner_items = prototype[:]
@@ -619,7 +619,7 @@ class Component(AbjadObject):
         for spanner_item in spanner_items:
             if isinstance(spanner_item, type):
                 prototype.append(spanner_item)
-            elif isinstance(spanner_item, spannertools.Spanner):
+            elif isinstance(spanner_item, abjad.Spanner):
                 spanner_objects.append(spanner_item)
             else:
                 message = 'must be spanner class or spanner object: {!r}'

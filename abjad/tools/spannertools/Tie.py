@@ -48,7 +48,9 @@ class Tie(Spanner):
         >>> abjad.attach(abjad.Tie(), staff[:])
         Traceback (most recent call last):
             ...
-        Exception: Tie() attachment test fails for Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")]).
+        Exception: Tie() attachment test fails for ...
+        <BLANKLINE>
+        Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
 
     ..  container:: example
 
@@ -68,14 +70,108 @@ class Tie(Spanner):
                 <d'>4
             }
 
-    Formats LilyPond ``~`` command on nonlast leaves in spanner.
+    ..  container:: example
+
+        Conventional ties can be right-open tagged (with strict formatting) for
+        use at the end of a segment:
+
+        >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+        >>> abjad.attach(abjad.Tie(), segment_1[-1:], right_open=True)
+        >>> abjad.f(segment_1, strict=True)
+        \context Voice = "MainVoice" {
+            c'4
+            d'4
+            e'4
+            f'4
+        %@% ~     %! RIGHT_OPEN_TIE
+        }
+
+        >>> abjad.show(segment_1) # doctest: +SKIP
+
+        >>> segment_2 = abjad.Voice("f'4 e' d' c'", name='MainVoice')
+        >>> abjad.f(segment_2, strict=True)
+        \context Voice = "MainVoice" {
+            f'4
+            e'4
+            d'4
+            c'4
+        }
+
+        >>> abjad.show(segment_2) # doctest: +SKIP
+
+        >>> container = abjad.Container([segment_1, segment_2])
+        >>> abjad.f(container, strict=True)
+        {
+            \context Voice = "MainVoice" {
+                c'4
+                d'4
+                e'4
+                f'4
+            %@% ~     %! RIGHT_OPEN_TIE
+            }
+            \context Voice = "MainVoice" {
+                f'4
+                e'4
+                d'4
+                c'4
+            }
+        }
+
+        >>> abjad.show(container) # doctest: +SKIP
+
+        >>> text = format(container, 'lilypond:strict')
+        >>> text = abjad.LilyPondFormatManager.left_shift_tags(text)
+        >>> text, count = abjad.activate(text, abjad.tags.RIGHT_OPEN_TIE)
+        >>> print(text)
+        {
+            \context Voice = "MainVoice" {
+                c'4
+                d'4
+                e'4
+                f'4
+                ~     %! RIGHT_OPEN_TIE %@%
+            }
+            \context Voice = "MainVoice" {
+                f'4
+                e'4
+                d'4
+                c'4
+            }
+        }
+
+        >>> lines = text.split('\n')
+        >>> lilypond_file = abjad.LilyPondFile.new(lines)
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+    ..  container:: example
+
+        Repeat ties can be left-open tagged (with strict formatting) for use at
+        the beginning of a segment:
+
+        >>> staff = abjad.Staff("c'4 c' c' c'")
+        >>> tie = abjad.Tie(repeat=True)
+        >>> abjad.attach(tie, staff[:], left_open=True)
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        >>> abjad.f(staff, strict=True)
+        \new Staff {
+            c'4
+        %@% \repeatTie     %! LEFT_OPEN_REPEAT_TIE
+            c'4
+            \repeatTie
+            c'4
+            \repeatTie
+            c'4
+            \repeatTie
+        }
+
     '''
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
         '_direction',
-        '_repeat_ties',
+        '_repeat',
         )
 
     ### INITIALIZER ###
@@ -84,13 +180,13 @@ class Tie(Spanner):
         self,
         direction=None,
         overrides=None,
-        repeat_ties=None,
+        repeat=None,
         ):
         import abjad
         Spanner.__init__(self, overrides=overrides)
         direction = abjad.String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction
-        self._repeat_ties = repeat_ties
+        self._repeat = repeat
 
     ### PRIVATE METHODS ###
 
@@ -135,35 +231,58 @@ class Tie(Spanner):
 
     def _copy_keyword_args(self, new):
         new._direction = self.direction
-        new._repeat_ties = self.repeat_ties
+        new._repeat = self.repeat
 
     def _get_lilypond_format_bundle(self, leaf):
         import abjad
         bundle = self._get_basic_lilypond_format_bundle(leaf)
-        prototype = (
-            abjad.Container,
+        silent = (
+            abjad.MultimeasureRest,
             abjad.Rest,
             abjad.Skip,
-            abjad.MultimeasureRest,
             )
-        if not self.repeat_ties:
+        if isinstance(leaf, silent):
+            return bundle
+        if not self.repeat:
             if self._is_my_last_leaf(leaf):
+                if not self._right_open:
+                    return bundle
+                elif self.direction is not None:
+                    string = '{} ~'.format(self.direction)
+                else:
+                    string = '~'
+                strings = abjad.LilyPondFormatManager.tag(
+                    [string],
+                    deactivate=True,
+                    tag=abjad.tags.RIGHT_OPEN_TIE,
+                    )
+                assert len(strings) == 1
+                string = strings[0]
+                bundle.right.spanners.append(string)
+            elif isinstance(leaf._get_leaf(1), silent):
                 return bundle
-            elif isinstance(leaf, prototype):
-                return bundle
-            elif isinstance(leaf._get_leaf(1), prototype):
-                return bundle
-            if self.direction is not None:
+            elif self.direction is not None:
                 string = '{} ~'.format(self.direction)
                 bundle.right.spanners.append(string)
             else:
                 bundle.right.spanners.append('~')
         else:
-            if isinstance(leaf, prototype):
-                return bundle
-            elif self._is_my_first_leaf(leaf):
-                return bundle
-            if self.direction is not None:
+            if self._is_my_first_leaf(leaf):
+                if not self._left_open:
+                    return bundle
+                elif self.direction is not None:
+                    string = r'{} \repeatTie'.format(self.direction)
+                else:
+                    string = r'\repeatTie'
+                strings = abjad.LilyPondFormatManager.tag(
+                    [string],
+                    deactivate=True,
+                    tag='LEFT_OPEN_REPEAT_TIE',
+                    )
+                assert len(strings) == 1
+                string = strings[0]
+                bundle.right.spanners.append(string)
+            elif self.direction is not None:
                 string = r'{} \repeatTie'.format(self.direction)
                 bundle.right.spanners.append(string)
             else:
@@ -251,13 +370,13 @@ class Tie(Spanner):
         return self._direction
 
     @property
-    def repeat_ties(self):
+    def repeat(self):
         r'''Is true when tie should use the LilyPond ``\repeatTie`` command.
 
         ..  container:: example
 
             >>> staff = abjad.Staff("c'8 c'8 c'8 c'8")
-            >>> tie = abjad.Tie(direction=abjad.Up, repeat_ties=True)
+            >>> tie = abjad.Tie(direction=abjad.Up, repeat=True)
             >>> abjad.attach(tie, staff[:])
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -273,4 +392,4 @@ class Tie(Spanner):
 
         Returns true, false or none.
         '''
-        return self._repeat_ties
+        return self._repeat

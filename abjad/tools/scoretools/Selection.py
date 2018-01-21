@@ -504,9 +504,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         elif left_tie_spanner is None and right_tie_spanner is not None:
             right_tie_spanner._append_left(left_leaf)
         elif left_tie_spanner is None and right_tie_spanner is None:
-            tie = abjad.Tie(
-                repeat_ties=repeat_ties,
-                )
+            tie = abjad.Tie(repeat=repeat_ties)
             leaves = abjad.select([left_leaf, right_leaf])
             abjad.attach(tie, leaves)
 
@@ -570,7 +568,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             new_components.append(new_component)
         new_components = type(self)(new_components)
         # find spanners and piecewise indicators
-        spanner_to_pairs = {}
+        spanner_to_pairs = abjad.TypedOrderedDict()
         for i, component in enumerate(abjad.iterate(self).components()):
             for spanner in abjad.inspect(component).get_spanners():
                 pairs = spanner_to_pairs.setdefault(spanner, [])
@@ -584,13 +582,13 @@ class Selection(AbjadValueObject, collections.Sequence):
                 else:
                     pairs.append((i, None))
         # copy spanners
+        new_spanner_to_pairs = abjad.TypedOrderedDict()
         for spanner, pairs in spanner_to_pairs.items():
             new_spanner = copy.copy(spanner)
-            del(spanner_to_pairs[spanner])
-            spanner_to_pairs[new_spanner] = pairs
+            new_spanner_to_pairs[new_spanner] = pairs
         # make reversed map
-        index_to_pairs = {}
-        for new_spanner, pairs in spanner_to_pairs.items():
+        index_to_pairs = abjad.TypedOrderedDict()
+        for new_spanner, pairs in new_spanner_to_pairs.items():
             for (i, wrapper) in pairs:
                 pairs = index_to_pairs.setdefault(i, [])
                 pair = (new_spanner, wrapper)

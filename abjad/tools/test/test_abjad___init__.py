@@ -1,15 +1,19 @@
+import abjad
 import functools
 import inspect
 import pytest
 from abjad.tools import abjadbooktools
-from abjad.tools import datastructuretools
 from abjad.tools import documentationtools
 from abjad.tools import mathtools
-from abjad.tools import segmenttools
-from abjad.tools import systemtools
 
 
 ignored_classes = (
+    abjad.Enumeration,
+    abjad.FormatSpecification,
+    abjad.Path,
+    abjad.StorageFormatManager,
+    abjad.Tags,
+    abjad.TestCase,
     abjadbooktools.AbjadDirective,
     abjadbooktools.CodeBlock,
     abjadbooktools.CodeOutputProxy,
@@ -22,11 +26,6 @@ ignored_classes = (
     abjadbooktools.RevealDirective,
     abjadbooktools.ShellDirective,
     abjadbooktools.ThumbnailDirective,
-    datastructuretools.Enumeration,
-    segmenttools.Path,
-    systemtools.StorageFormatManager,
-    systemtools.FormatSpecification,
-    systemtools.TestCase,
     )
 
 classes = documentationtools.list_all_abjad_classes(
@@ -45,8 +44,8 @@ def test_abjad___init___01(class_):
 
 valid_types = (
     bool,
-    datastructuretools.OrdinalConstant,
-    datastructuretools.Duration,
+    abjad.OrdinalConstant,
+    abjad.Duration,
     float,
     int,
     mathtools.Infinity,

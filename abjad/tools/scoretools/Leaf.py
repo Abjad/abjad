@@ -390,9 +390,7 @@ class Leaf(Component):
             if not abjad.inspect(parentage).get_spanners(abjad.Tie):
                 tie = abjad.Tie()
                 if tie._attachment_test(self):
-                    tie = abjad.Tie(
-                        repeat_ties=repeat_ties,
-                        )
+                    tie = abjad.Tie(repeat=repeat_ties)
                     abjad.attach(tie, all_leaves)
             return abjad.select(all_leaves)
         else:
@@ -408,9 +406,7 @@ class Leaf(Component):
             if not self._get_spanners(abjad.Tie):
                 tie = abjad.Tie()
                 if tie._attachment_test(self):
-                    tie = abjad.Tie(
-                        repeat_ties=repeat_ties,
-                        )
+                    tie = abjad.Tie(repeat=repeat_ties)
                     abjad.attach(tie, all_leaves)
             multiplier = tuplet.multiplier
             tuplet = abjad.Tuplet(multiplier, [])

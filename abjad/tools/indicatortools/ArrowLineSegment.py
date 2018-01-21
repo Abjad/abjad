@@ -749,7 +749,7 @@ class ArrowLineSegment(LineSegment):
                 >>> staff = abjad.Staff("c'4. d' e' f' g' a' b' c''")
                 >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
                 >>> score = abjad.Score([staff])
-                >>> command = abjad.LilyPondCommand('break', 'after')
+                >>> command = abjad.LilyPondLiteral(r'\break', 'after')
                 >>> abjad.attach(command, staff[3])
 
                 >>> spanner = abjad.TextSpanner()
@@ -847,7 +847,7 @@ class ArrowLineSegment(LineSegment):
                 >>> staff = abjad.Staff("c'4. d' e' f' g' a' b' c''")
                 >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
                 >>> score = abjad.Score([staff])
-                >>> command = abjad.LilyPondCommand('break', 'after')
+                >>> command = abjad.LilyPondLiteral(r'\break', 'after')
                 >>> abjad.attach(command, staff[3])
 
                 >>> spanner = abjad.TextSpanner()
@@ -964,7 +964,7 @@ class ArrowLineSegment(LineSegment):
                 >>> staff = abjad.Staff("c'4. d' e' f' g' a' b' c''")
                 >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
                 >>> score = abjad.Score([staff])
-                >>> command = abjad.LilyPondCommand('break', 'after')
+                >>> command = abjad.LilyPondLiteral(r'\break', 'after')
                 >>> abjad.attach(command, staff[3])
 
                 >>> spanner = abjad.TextSpanner()
@@ -1062,7 +1062,7 @@ class ArrowLineSegment(LineSegment):
                 >>> staff = abjad.Staff("c'4. d' e' f' g' a' b' c''")
                 >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
                 >>> score = abjad.Score([staff])
-                >>> command = abjad.LilyPondCommand('break', 'after')
+                >>> command = abjad.LilyPondLiteral(r'\break', 'after')
                 >>> abjad.attach(command, staff[3])
 
                 >>> spanner = abjad.TextSpanner()

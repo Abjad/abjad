@@ -3,7 +3,6 @@ import math
 import re
 from abjad.tools.exceptiontools import AssignabilityError
 from abjad.tools import mathtools
-from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.topleveltools.override import override
 from abjad.tools.topleveltools.setting import setting
@@ -254,9 +253,9 @@ class Duration(AbjadObject, Fraction):
 
         Returns string.
         '''
-        from abjad.tools import systemtools
+        import abjad
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager(self).get_storage_format()
+            return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
 
     def __ge__(self, argument):
@@ -452,7 +451,8 @@ class Duration(AbjadObject, Fraction):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        return systemtools.FormatSpecification(
+        import abjad
+        return abjad.FormatSpecification(
             client=self,
             storage_format_args_values=[
                 self.numerator,

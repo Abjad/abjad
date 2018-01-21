@@ -194,6 +194,7 @@ class Label(abctools.AbjadObject):
 
     __slots__ = (
         '_client',
+        '_deactivate',
         '_expression',
         '_site',
         '_tag',
@@ -217,7 +218,7 @@ class Label(abctools.AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, client=None, site=None, tag=None):
+    def __init__(self, client=None, deactivate=None, site=None, tag=None):
         import abjad
         prototype = (
             abjad.Component,
@@ -229,11 +230,22 @@ class Label(abctools.AbjadObject):
             message = message.format(client)
             raise TypeError(message)
         self._client = client
+        self._deactivate = deactivate
         self._expression = None
         self._site = site
         self._tag = tag
 
     ### PRIVATE METHODS ###
+
+    def _attach(self, label, leaf):
+        import abjad
+        abjad.attach(
+            label,
+            leaf,
+            deactivate=self.deactivate,
+            site=self.site,
+            tag=self.tag,
+            )
 
     def _color_leaf(self, leaf, color):
         import abjad
@@ -248,7 +260,7 @@ class Label(abctools.AbjadObject):
             abjad.override(leaf).rest.color = color
         elif isinstance(leaf, abjad.Skip):
             comment = abjad.LilyPondComment(color)
-            abjad.attach(comment, leaf)
+            self._attach(comment, leaf)
         return leaf
 
     def _update_expression(self, frame):
@@ -265,6 +277,18 @@ class Label(abctools.AbjadObject):
         Returns component, selection, spanner or none.
         '''
         return self._client
+
+    @property
+    def deactivate(self):
+        r'''Is true when deactivated label attaches to leaf.
+
+        Defaults to none.
+
+        Set to true, false or none.
+
+        Returns true, false or none.
+        '''
+        return self._deactivate
 
     @property
     def site(self):
@@ -1873,7 +1897,7 @@ class Label(abctools.AbjadObject):
                     leaf = vertical_moment.start_leaves[0]
                 else:
                     leaf = vertical_moment.start_leaves[-1]
-                abjad.attach(label, leaf, site=self.site, tag=self.tag)
+                self._attach(label, leaf)
 
     def with_durations(self, direction=Up, preferred_denominator=None):
         r'''Labels logical ties with durations.
@@ -2032,7 +2056,7 @@ class Label(abctools.AbjadObject):
                 duration = duration.with_denominator(preferred_denominator)
             label = abjad.Markup(str(duration), direction=direction)
             label = label.small()
-            abjad.attach(label, logical_tie.head, site=self.site, tag=self.tag)
+            self._attach(label, logical_tie.head)
 
     def with_indices(self, direction=Up, prototype=None):
         r'''Labels logical ties with indices.
@@ -2486,7 +2510,7 @@ class Label(abctools.AbjadObject):
             label = label.small()
             leaves = abjad.select(item).leaves()
             first_leaf = leaves[0]
-            abjad.attach(label, first_leaf, site=self.site, tag=self.tag)
+            self._attach(label, first_leaf)
 
     def with_intervals(self, direction=Up, prototype=None):
         r"""Labels consecutive notes with intervals.
@@ -2816,7 +2840,7 @@ class Label(abctools.AbjadObject):
                         interval)
                     label = abjad.Markup(label, direction)
                 if label is not None:
-                    abjad.attach(label, note, site=self.site, tag=self.tag)
+                    self._attach(label, note)
 
     def with_pitches(self, direction=Up, locale=None, prototype=None):
         r'''Labels logical ties with pitches.
@@ -3493,7 +3517,7 @@ class Label(abctools.AbjadObject):
                     label = label.small()
             if label is not None:
                 label = abjad.new(label, direction=direction)
-                abjad.attach(label, leaf, site=self.site, tag=self.tag)
+                self._attach(label, leaf)
 
     def with_set_classes(self, direction=Up, prototype=None):
         r'''Labels items in client with set-classes.
@@ -3831,11 +3855,13 @@ class Label(abctools.AbjadObject):
             if label is not None:
                 label = label.tiny()
                 leaf = selection[0]
-                abjad.attach(label, leaf, site=self.site, tag=self.tag)
+                self._attach(label, leaf)
 
     def with_start_offsets(
         self,
-        clock_time=False,
+        brackets=None,
+        clock_time=None,
+        color=None,
         direction=None,
         font_size=None,
         global_offset=None,
@@ -4090,17 +4116,24 @@ class Label(abctools.AbjadObject):
                 if global_offset is not None:
                     start_offset += global_offset
                 string = start_offset.to_clock_string()
-                string = '"{}"'.format(string)
+                if brackets:
+                    string = '"[{}]"'.format(string)
+                else:
+                    string = '"{}"'.format(string)
             else:
                 timespan = abjad.inspect(logical_tie.head).get_timespan()
                 start_offset = timespan.start_offset
                 if global_offset is not None:
                     start_offset += global_offset
                 string = str(start_offset)
+                if brackets:
+                    string = '[' + string + ']'
             label = abjad.Markup(string, direction=direction)
             if font_size is not None:
                 label = label.fontsize(font_size)
-            abjad.attach(label, logical_tie.head, site=self.site, tag=self.tag)
+            if color is not None:
+                label = label.with_color(color)
+            self._attach(label, logical_tie.head)
         total_duration = abjad.Duration(timespan.stop_offset)
         if global_offset is not None:
             total_duration += global_offset

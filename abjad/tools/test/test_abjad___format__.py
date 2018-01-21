@@ -83,6 +83,9 @@ def test_abjad___format___02(class_):
 ignored_classes = (
     abjad.Measure,
     abjad.Enumeration,
+    abjad.Path,
+    abjad.Tags,
+    abjad.TestCase,
     abjadbooktools.AbjadDirective,
     abjadbooktools.AbjadDoctestDirective,
     abjadbooktools.CodeBlock,
@@ -96,8 +99,6 @@ ignored_classes = (
     abjadbooktools.ShellDirective,
     abjadbooktools.ThumbnailDirective,
     lilypondparsertools.SyntaxNode,
-    segmenttools.Path,
-    systemtools.TestCase,
     )
 
 classes = documentationtools.list_all_abjad_classes(

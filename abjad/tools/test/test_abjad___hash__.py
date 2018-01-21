@@ -1,13 +1,17 @@
+import abjad
 import inspect
 import pytest
 from abjad.tools import abjadbooktools
-from abjad.tools import datastructuretools
 from abjad.tools import documentationtools
-from abjad.tools import segmenttools
-from abjad.tools import systemtools
 
 
 ignored_classes = (
+    abjad.Enumeration,
+    abjad.FormatSpecification,
+    abjad.Path,
+    abjad.StorageFormatManager,
+    abjad.Tags,
+    abjad.TestCase,
     abjadbooktools.AbjadDirective,
     abjadbooktools.CodeBlock,
     abjadbooktools.CodeOutputProxy,
@@ -21,11 +25,6 @@ ignored_classes = (
     abjadbooktools.RevealDirective,
     abjadbooktools.ShellDirective,
     abjadbooktools.ThumbnailDirective,
-    datastructuretools.Enumeration,
-    segmenttools.Path,
-    systemtools.FormatSpecification,
-    systemtools.StorageFormatManager,
-    systemtools.TestCase,
     )
 
 classes = documentationtools.list_all_abjad_classes(

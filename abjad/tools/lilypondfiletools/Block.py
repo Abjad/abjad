@@ -155,8 +155,7 @@ class Block(AbjadObject):
         if (not self._get_formatted_user_attributes() and
             not getattr(self, 'contexts', None) and
             not getattr(self, 'context_blocks', None) and
-            not len(self.items)
-            ):
+            not len(self.items)):
             if self.name == 'score':
                 return ''
             string = '{} {{}}'.format(self._escaped_name)
@@ -192,7 +191,8 @@ class Block(AbjadObject):
     def _get_formatted_user_attributes(self):
         import abjad
         result = []
-        prototype = (abjad.Scheme, abjad.LilyPondCommand)
+        #prototype = (abjad.Scheme, abjad.LilyPondLiteral)
+        prototype = abjad.Scheme
         for value in self.items:
             if isinstance(value, prototype):
                 result.append(format(value, 'lilypond'))
@@ -200,6 +200,7 @@ class Block(AbjadObject):
             abjad.Scheme,
             abjad.LilyPondDimension,
             abjad.LilyPondCommand,
+            #abjad.LilyPondLiteral,
             )
         for key in self._public_attribute_names:
             assert not key.startswith('_'), repr(key)
@@ -247,6 +248,35 @@ class Block(AbjadObject):
 
             >>> block.items
             [Markup(contents=['foo'])]
+
+        ..  container:: example
+
+            Accepts strings:
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> score_block = abjad.Block(name='score')
+            >>> score_block.items.append('<<')
+            >>> score_block.items.append(r'{ \include "layout.ly" }')
+            >>> score_block.items.append(staff)
+            >>> score_block.items.append('>>')
+            >>> lilypond_file = abjad.LilyPondFile(
+            ...     lilypond_language_token=False,
+            ...     lilypond_version_token=False,
+            ...     )
+            >>> lilypond_file.items.append(score_block)
+
+            >>> abjad.f(lilypond_file)
+            \score {
+                <<
+                { \include "layout.ly" }
+                \new Staff {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+                >>
+            }
 
         Returns list.
         '''

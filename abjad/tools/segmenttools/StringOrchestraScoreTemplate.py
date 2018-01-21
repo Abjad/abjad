@@ -493,8 +493,8 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             context_name='GlobalContext',
             )
         instrument_tags = ' '.join(tag_names)
-        tag_string = "tag #'({})".format(instrument_tags)
-        tag_command = abjad.LilyPondCommand(tag_string, 'before')
+        tag_string = r"\tag #'({})".format(instrument_tags)
+        tag_command = abjad.LilyPondLiteral(tag_string, 'before')
         abjad.attach(tag_command, global_context)
         score.insert(0, global_context)
         return score
@@ -555,11 +555,8 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             name='{} Staff Group'.format(name),
             )
         tag_name = name.replace(' ', '')
-        tag_string = "tag #'{}".format(tag_name)
-        tag_command = abjad.LilyPondCommand(
-            tag_string,
-            'before',
-            )
+        tag_string = r"\tag #'{}".format(tag_name)
+        tag_command = abjad.LilyPondLiteral(tag_string, 'before')
         abjad.attach(tag_command, staff_group)
         if self.split_hands:
             lh_voice = abjad.Voice(

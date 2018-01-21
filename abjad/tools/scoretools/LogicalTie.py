@@ -172,16 +172,8 @@ class LogicalTie(Selection):
 
         Returns tie spanner.
         '''
-        from abjad.tools import spannertools
-        if 1 < len(self):
-            prototype = (spannertools.Tie,)
-            for component in self[0].parentage:
-                try:
-                    tie_spanner = component._get_spanner(prototype)
-                    break
-                except MissingSpannerError:
-                    pass
-            return tie_spanner
+        import abjad
+        return abjad.inspect(self[0]).get_spanner(abjad.Tie)
 
     @property
     def written_duration(self):
@@ -189,7 +181,7 @@ class LogicalTie(Selection):
 
         Returns duration.
         '''
-        return sum([x.written_duration for x in self])
+        return sum([_.written_duration for _ in self])
 
     ### PUBLIC METHODS ###
 

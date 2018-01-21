@@ -26,13 +26,13 @@ def test_scoretools_Inspection_has_indicator_02():
 def test_scoretools_Inspection_has_indicator_03():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    command = abjad.LilyPondCommand('break', 'closing')
+    command = abjad.LilyPondLiteral(r'\break', 'closing')
     abjad.attach(command, staff[-1])
 
-    assert not abjad.inspect(staff[0]).has_indicator(abjad.LilyPondCommand)
-    assert not abjad.inspect(staff[1]).has_indicator(abjad.LilyPondCommand)
-    assert not abjad.inspect(staff[2]).has_indicator(abjad.LilyPondCommand)
-    assert     abjad.inspect(staff[3]).has_indicator(abjad.LilyPondCommand)
+    assert not abjad.inspect(staff[0]).has_indicator(abjad.LilyPondLiteral)
+    assert not abjad.inspect(staff[1]).has_indicator(abjad.LilyPondLiteral)
+    assert not abjad.inspect(staff[2]).has_indicator(abjad.LilyPondLiteral)
+    assert     abjad.inspect(staff[3]).has_indicator(abjad.LilyPondLiteral)
 
 
 def test_scoretools_Inspection_has_indicator_04():

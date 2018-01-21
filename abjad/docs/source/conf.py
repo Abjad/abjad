@@ -15,7 +15,7 @@ PygmentsBridge.latex_formatter = CustomLatexFormatter
 ### CORE ###
 
 add_function_parentheses = True
-copyright = u'2008-2017, Trevor Bača & Josiah Wolf Oberholtzer'
+copyright = u'2008-2018, Trevor Bača & Josiah Wolf Oberholtzer'
 exclude_patterns = []
 extensions = [
     'sphinx.ext.autodoc',

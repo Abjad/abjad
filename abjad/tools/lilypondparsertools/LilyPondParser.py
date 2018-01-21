@@ -663,8 +663,8 @@ class LilyPondParser(abctools.Parser):
                     )):
                     apply_backward.append(x)
                 elif (
-                    isinstance(x, indicatortools.LilyPondCommand) and
-                    x.name in ('breathe',)
+                    isinstance(x, indicatortools.LilyPondLiteral) and
+                    x.name in (r'\breathe',)
                     ):
                     apply_backward.append(x)
                 else:
@@ -772,6 +772,7 @@ class LilyPondParser(abctools.Parser):
                 indicatortools.BarLine,
                 indicatortools.Dynamic,
                 indicatortools.LilyPondCommand,
+                indicatortools.LilyPondLiteral,
                 indicatortools.PageBreak,
                 indicatortools.StemTremolo,
                 indicatortools.LineBreak,
@@ -849,7 +850,7 @@ class LilyPondParser(abctools.Parser):
         elif name == 'AbsoluteDynamicEvent':
             return indicatortools.Dynamic(lookup['text'])
         elif name == 'LaissezVibrerEvent':
-            return indicatortools.LilyPondCommand('laissezVibrer', 'after')
+            return indicatortools.LilyPondLiteral(r'\laissezVibrer', 'after')
         elif name == 'LineBreakEvent':
             return indicatortools.LineBreak()
         event = lilypondparsertools.LilyPondEvent(name)

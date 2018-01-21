@@ -431,7 +431,9 @@ class TextSpanner(Spanner):
         >>> abjad.attach(spanner, staff[:1])
         Traceback (most recent call last):
             ...
-        Exception: TextSpanner() attachment test fails for Selection([Note("c'4")]).
+        Exception: TextSpanner() attachment test fails for ...
+        <BLANKLINE>
+        Selection([Note("c'4")])
 
     '''
 
@@ -476,6 +478,11 @@ class TextSpanner(Spanner):
                 if self._wrappers:
                     string = r'\once \override TextSpanner.Y-extent = ##f'
                     bundle.grob_overrides.append(string)
+                    line_segment = self._make_invisible_line_segment()
+                    overrides = line_segment._get_lilypond_grob_overrides()
+                    for override in overrides:
+                        override_string = override.override_string
+                        bundle.grob_overrides.append(override_string)
             if self._is_my_last_leaf(component):
                 bundle.right.spanner_stops.append(r'\stopTextSpan')
             return bundle

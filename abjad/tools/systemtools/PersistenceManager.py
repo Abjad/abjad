@@ -253,7 +253,7 @@ class PersistenceManager(abctools.AbjadObject):
 
             >>> staff = abjad.Staff()
             >>> measure = abjad.Measure((4, 4), "c'4 d'4 e'4 f'4")
-            >>> command = abjad.LilyPondCommand('break', 'after')
+            >>> command = abjad.LilyPondLiteral(r'\break', 'after')
             >>> abjad.attach(command, measure[-1])
             >>> staff.extend(measure * 200)
 

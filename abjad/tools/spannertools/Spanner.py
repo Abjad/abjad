@@ -19,8 +19,10 @@ class Spanner(AbjadObject, collections.Sequence):
         '_ignore_attachment_test',
         '_ignore_before_attach',
         '_leaves',
+        '_left_open',
         '_lilypond_grob_name_manager',
         '_lilypond_setting_name_manager',
+        '_right_open',
         '_site',
         '_tag',
         '_wrappers',
@@ -36,7 +38,9 @@ class Spanner(AbjadObject, collections.Sequence):
         self._ignore_attachment_test = None
         self._ignore_before_attach = None
         self._leaves = []
+        self._left_open = None
         self._lilypond_setting_name_manager = None
+        self._right_open = None
         self._site = None
         self._tag = None
         self._wrappers = []
@@ -131,7 +135,7 @@ class Spanner(AbjadObject, collections.Sequence):
             leaves = self[-1:] + [leaf]
             leaves = abjad.select(leaves)
             if not leaves.are_contiguous_logical_voice():
-                raise Exception(leaves)
+                raise Exception(type(self), leaves)
         leaf._spanners.add(self)
         self._leaves.append(leaf)
 
@@ -160,16 +164,23 @@ class Spanner(AbjadObject, collections.Sequence):
         leaves = abjad.select(argument).leaves()
         return 1 < len(leaves)
 
-    def _attach(self, argument, deactivate=None, site=None, tag=None):
+    def _attach(
+        self,
+        argument,
+        deactivate=None,
+        left_open=None,
+        right_open=None,
+        site=None,
+        tag=None,
+        ):
         import abjad
         assert not self, repr(self)
-        if isinstance(argument, abjad.Leaf):
-            self._append(argument)
-        elif isinstance(argument, (list, tuple, abjad.Selection)):
-            self._extend(argument)
-        else:
-            raise TypeError(argument)
+        assert isinstance(argument, abjad.Selection), repr(argument)
+        assert argument.are_leaves(), repr(argument)
+        self._extend(argument)
         self._deactivate = deactivate
+        self._left_open = left_open
+        self._right_open = right_open
         self._site = site
         self._tag = tag
 
@@ -177,6 +188,7 @@ class Spanner(AbjadObject, collections.Sequence):
         self,
         indicator,
         leaf,
+        alternate=None,
         deactivate=None,
         site=None,
         tag=None,
@@ -186,7 +198,8 @@ class Spanner(AbjadObject, collections.Sequence):
             message = 'must be leaf in spanner: {!r}.'
             message = message.format(leaf)
             raise Exception(message)
-        if isinstance(indicator, abjad.IndicatorWrapper):
+        if isinstance(indicator, abjad.Wrapper):
+            alternate = indicator.alternate
             annotation = indicator.annotation
             context = indicator.context
             deactivate = deactivate or indicator.deactivate
@@ -197,7 +210,8 @@ class Spanner(AbjadObject, collections.Sequence):
             indicator = indicator.indicator
         context = getattr(self, 'context', None)
         context = context or getattr(indicator, 'context', None)
-        wrapper = abjad.IndicatorWrapper(
+        wrapper = abjad.Wrapper(
+            alternate=alternate,
             component=leaf,
             context=context,
             deactivate=deactivate,
@@ -407,7 +421,7 @@ class Spanner(AbjadObject, collections.Sequence):
                 matching_indicators.append(wrapper)
             elif any(wrapper == x for x in prototype_objects):
                 matching_indicators.append(wrapper)
-            elif isinstance(wrapper, abjad.IndicatorWrapper):
+            elif isinstance(wrapper, abjad.Wrapper):
                 if isinstance(wrapper.indicator, prototype_classes):
                     matching_indicators.append(wrapper)
                 elif any(wrapper.indicator == x for x in prototype_objects):
