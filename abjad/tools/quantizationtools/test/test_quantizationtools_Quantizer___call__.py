@@ -8,7 +8,7 @@ def test_quantizationtools_Quantizer___call___01():
         milliseconds)
     quantizer = quantizationtools.Quantizer()
     result = quantizer(q_events)
-    staff = abjad.Staff([result], context_name='RhythmicStaff')
+    staff = abjad.Staff([result], lilypond_type='RhythmicStaff')
     score = abjad.Score([staff])
     assert format(score) == abjad.String.normalize(
         r'''
@@ -39,7 +39,7 @@ def test_quantizationtools_Quantizer___call___02():
         q_events,
         attack_point_optimizer=optimizer,
         )
-    staff = abjad.Staff([result], context_name='RhythmicStaff')
+    staff = abjad.Staff([result], lilypond_type='RhythmicStaff')
     score = abjad.Score([staff])
     assert format(score) == abjad.String.normalize(
         r'''
@@ -117,7 +117,7 @@ def test_quantizationtools_Quantizer___call___04():
     attack_point_optimizer = quantizationtools.NullAttackPointOptimizer()
     quantizer = quantizationtools.Quantizer()
     result = quantizer(sequence, attack_point_optimizer=attack_point_optimizer)
-    staff = abjad.Staff([result], context_name='RhythmicStaff')
+    staff = abjad.Staff([result], lilypond_type='RhythmicStaff')
     score = abjad.Score([staff])
 
     assert format(score) == abjad.String.normalize(
@@ -167,7 +167,7 @@ def test_quantizationtools_Quantizer___call___05():
         q_schema=q_schema,
         attack_point_optimizer=attack_point_optimizer,
         )
-    staff = abjad.Staff([result], context_name='RhythmicStaff')
+    staff = abjad.Staff([result], lilypond_type='RhythmicStaff')
     score = abjad.Score([staff])
 
     assert format(score) == abjad.String.normalize(

@@ -44,19 +44,19 @@ divithe final `logical tie` of the resulting tuplet into yet another ratio:
 ..  abjad::
 
     tuplet = ferneyhough.make_nested_tuplet(abjad.Duration(1, 4), (1, 1), 5)
-    staff = abjad.Staff([tuplet], context_name='RhythmicStaff')
+    staff = abjad.Staff([tuplet], lilypond_type='RhythmicStaff')
     show(staff)
 
 ..  abjad::
 
     tuplet = ferneyhough.make_nested_tuplet(abjad.Duration(1, 4), (2, 1), 5)
-    staff = abjad.Staff([tuplet], context_name='RhythmicStaff')
+    staff = abjad.Staff([tuplet], lilypond_type='RhythmicStaff')
     show(staff)
 
 ..  abjad::
 
     tuplet = ferneyhough.make_nested_tuplet(abjad.Duration(1, 4), (3, 1), 5)
-    staff = abjad.Staff([tuplet], context_name='RhythmicStaff')
+    staff = abjad.Staff([tuplet], lilypond_type='RhythmicStaff')
     show(staff)
 
 A `logical tie` is a selection of notes or chords connected by ties. It lets us
@@ -69,13 +69,13 @@ the second `logical tie` requires two notes to express the ``5/16`` duration:
 ..  abjad::
 
     normal_tuplet = abjad.Tuplet.from_duration_and_ratio(abjad.Duration(1, 4), (3, 5))
-    staff = abjad.Staff([normal_tuplet], context_name='RhythmicStaff')
+    staff = abjad.Staff([normal_tuplet], lilypond_type='RhythmicStaff')
     show(staff)
 
 ..  abjad::
 
     subdivided_tuplet = ferneyhough.make_nested_tuplet(abjad.Duration(1, 4), (3, 5), 3)
-    staff = abjad.Staff([subdivided_tuplet], context_name='RhythmicStaff')
+    staff = abjad.Staff([subdivided_tuplet], lilypond_type='RhythmicStaff')
     show(staff)
 
 The rhythms
@@ -96,7 +96,7 @@ subdivided:
 ..  abjad::
 
     tuplets = ferneyhough.make_row_of_nested_tuplets(duration, (2, 1), 6)
-    staff = abjad.Staff(tuplets, context_name='RhythmicStaff')
+    staff = abjad.Staff(tuplets, lilypond_type='RhythmicStaff')
     show(staff)
 
 If we can make one single row of rhythms, we can make many rows of rhythms.
@@ -106,7 +106,7 @@ Let's try:
 
     score = abjad.Score()
     for tuplet_row in ferneyhough.make_rows_of_nested_tuplets(duration, 4, 6):
-        staff = abjad.Staff(tuplet_row, context_name='RhythmicStaff')
+        staff = abjad.Staff(tuplet_row, lilypond_type='RhythmicStaff')
         score.append(staff)
 
     show(score)

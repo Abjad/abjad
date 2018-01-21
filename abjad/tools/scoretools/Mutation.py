@@ -189,7 +189,7 @@ class Mutation(abctools.AbjadObject):
 
             Container contents can be safely added to a new container:
 
-            >>> staff = abjad.Staff(contents, context_name='RhythmicStaff')
+            >>> staff = abjad.Staff(contents, lilypond_type='RhythmicStaff')
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2492,7 +2492,7 @@ class Mutation(abctools.AbjadObject):
 
             >>> voice = abjad.Voice(
             ...     "c'4 d' e' f'",
-            ...     context_name='CustomVoice',
+            ...     lilypond_type='CustomVoice',
             ...     name='1',
             ...     )
             >>> staff = abjad.Staff([voice])
@@ -2559,14 +2559,14 @@ class Mutation(abctools.AbjadObject):
             >>> for voice in staff:
             ...     voice
             ...
-            Voice("c'8 ~", context_name='CustomVoice', name='1')
-            Voice("c'8", context_name='CustomVoice', name='1')
-            Voice("d'8 ~", context_name='CustomVoice', name='1')
-            Voice("d'8", context_name='CustomVoice', name='1')
-            Voice("e'8 ~", context_name='CustomVoice', name='1')
-            Voice("e'8", context_name='CustomVoice', name='1')
-            Voice("f'8 ~", context_name='CustomVoice', name='1')
-            Voice("f'8", context_name='CustomVoice', name='1')
+            Voice("c'8 ~", lilypond_type='CustomVoice', name='1')
+            Voice("c'8", lilypond_type='CustomVoice', name='1')
+            Voice("d'8 ~", lilypond_type='CustomVoice', name='1')
+            Voice("d'8", lilypond_type='CustomVoice', name='1')
+            Voice("e'8 ~", lilypond_type='CustomVoice', name='1')
+            Voice("e'8", lilypond_type='CustomVoice', name='1')
+            Voice("f'8 ~", lilypond_type='CustomVoice', name='1')
+            Voice("f'8", lilypond_type='CustomVoice', name='1')
 
         ..  container:: example
 

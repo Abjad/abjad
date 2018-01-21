@@ -185,7 +185,7 @@ class PitchSet(Set):
         lower_staff = abjad.Staff([lower_voice])
         staff_group = abjad.StaffGroup(
             [upper_staff, lower_staff],
-            context_name='PianoStaff',
+            lilypond_type='PianoStaff',
             )
         score = abjad.Score([staff_group])
         lilypond_file = abjad.LilyPondFile.new(score)

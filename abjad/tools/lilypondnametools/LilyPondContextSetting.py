@@ -5,7 +5,7 @@ class LilyPondContextSetting(AbjadValueObject):
     r'''LilyPond context setting.
 
     >>> context_setting = abjad.lilypondnametools.LilyPondContextSetting(
-    ...    context_name='Score',
+    ...    lilypond_type='Score',
     ...    context_property='autoBeaming',
     ...    value=False,
     ...    )
@@ -18,7 +18,7 @@ class LilyPondContextSetting(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_context_name',
+        '_lilypond_type',
         '_context_property',
         '_is_unset',
         '_value',
@@ -30,14 +30,14 @@ class LilyPondContextSetting(AbjadValueObject):
 
     def __init__(
         self,
-        context_name=None,
+        lilypond_type=None,
         context_property='autoBeaming',
         is_unset=False,
         value=False,
         ):
-        if context_name is not None:
-            context_name = str(context_name)
-        self._context_name = context_name
+        if lilypond_type is not None:
+            lilypond_type = str(lilypond_type)
+        self._lilypond_type = lilypond_type
         assert isinstance(context_property, str) and context_property
         self._context_property = context_property
         if is_unset is not None:
@@ -72,12 +72,12 @@ class LilyPondContextSetting(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def context_name(self):
+    def lilypond_type(self):
         r'''Optional LilyPond context name.
 
         Returns string or none.
         '''
-        return self._context_name
+        return self._lilypond_type
 
     @property
     def context_property(self):
@@ -99,9 +99,9 @@ class LilyPondContextSetting(AbjadValueObject):
             result.append(r'\set')
         else:
             result.append(r'\unset')
-        if self.context_name is not None:
+        if self.lilypond_type is not None:
             string = '{}.{}'.format(
-                self.context_name,
+                self.lilypond_type,
                 self.context_property,
                 )
             result.append(string)

@@ -68,7 +68,7 @@ def make_text_alignment_example_lilypond_file(music=None):
     lilypond_file.layout_block.indent = 0
     lilypond_file.layout_block.ragged_right = True
     context_block = abjad.ContextBlock(
-        source_context_name='Score',
+        source_lilypond_type='Score',
         )
     lilypond_file.layout_block.items.append(context_block)
     context_block.remove_commands.append('Bar_number_engraver')

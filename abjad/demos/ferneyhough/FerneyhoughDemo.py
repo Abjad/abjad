@@ -797,7 +797,7 @@ class FerneyhoughDemo(object):
             )
         for row_of_nested_tuplets in rows_of_nested_tuplets:
             staff = abjad.Staff(row_of_nested_tuplets)
-            staff.context_name = 'RhythmicStaff'
+            staff.lilypond_type = 'RhythmicStaff'
             time_signature = abjad.TimeSignature((1, 4))
             leaf = abjad.inspect(staff).get_leaf(0)
             abjad.attach(time_signature, leaf)

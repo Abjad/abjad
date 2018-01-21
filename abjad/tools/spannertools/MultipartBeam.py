@@ -277,7 +277,7 @@ class MultipartBeam(Beam):
 
             >>> staff = abjad.Staff(
             ...     "c'16 r c' c' r c'",
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> durations = [(3, 16), (3, 16)]
             >>> beam = abjad.MultipartBeam(

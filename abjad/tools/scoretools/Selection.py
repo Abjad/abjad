@@ -439,7 +439,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 found_different_pitch = True
                 break
         if not found_different_pitch:
-            staff.context_name = 'RhythmicStaff'
+            staff.lilypond_type = 'RhythmicStaff'
         score = abjad.Score([staff])
         lilypond_file = abjad.LilyPondFile.new(score)
         lilypond_file.header_block.tagline = False

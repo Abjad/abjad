@@ -605,15 +605,15 @@ class LilyPondParser(abctools.Parser):
             'StaffGroup': scoretools.StaffGroup,
             'Voice': scoretools.Voice,
             }
-        context_name = context
+        lilypond_type = context
         if context in known_contexts:
             context = known_contexts[context]([])
         else:
             message = 'context type {!r} not supported.'
             message = message.format(context)
             raise Exception(message)
-        if context_name in ('GrandStaff', 'PianoStaff'):
-            context.context_name = context_name
+        if lilypond_type in ('GrandStaff', 'PianoStaff'):
+            context.lilypond_type = lilypond_type
         if optional_id is not None:
             context.name = optional_id
         if optional_context_mod is not None:

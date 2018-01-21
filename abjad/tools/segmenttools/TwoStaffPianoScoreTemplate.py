@@ -77,7 +77,7 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
         # PIANO STAFF
         staff_group = abjad.StaffGroup(
             [rh_staff, lh_staff],
-            context_name='PianoStaff',
+            lilypond_type='PianoStaff',
             name='Piano Staff',
             )
         abjad.annotate(

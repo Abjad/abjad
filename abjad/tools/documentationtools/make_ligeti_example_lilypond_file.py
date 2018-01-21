@@ -22,7 +22,7 @@ def make_ligeti_example_lilypond_file(music=None):
     lilypond_file.layout_block.merge_differently_headed = True
 
     context_block = lilypondfiletools.ContextBlock(
-        source_context_name='Score',
+        source_lilypond_type='Score',
         )
     lilypond_file.layout_block.items.append(context_block)
     context_block.remove_commands.append('Bar_number_engraver')
@@ -47,7 +47,7 @@ def make_ligeti_example_lilypond_file(music=None):
     setting(context_block).tupletFullLength = True
 
     context_block = lilypondfiletools.ContextBlock(
-        source_context_name='Staff',
+        source_lilypond_type='Staff',
         )
     lilypond_file.layout_block.items.append(context_block)
     # LilyPond CAUTION: Timing_translator must appear
@@ -58,7 +58,7 @@ def make_ligeti_example_lilypond_file(music=None):
     override(context_block).time_signature.style = scheme
 
     context_block = lilypondfiletools.ContextBlock(
-        source_context_name='RhythmicStaff',
+        source_lilypond_type='RhythmicStaff',
         )
     lilypond_file.layout_block.items.append(context_block)
     # LilyPond CAUTION: Timing_translator must appear
@@ -70,7 +70,7 @@ def make_ligeti_example_lilypond_file(music=None):
     override(context_block).vertical_axis_group.minimum_Y_extent = (-2, 4)
 
     context_block = lilypondfiletools.ContextBlock(
-        source_context_name='Voice',
+        source_lilypond_type='Voice',
         )
     lilypond_file.layout_block.items.append(context_block)
     context_block.remove_commands.append('Forbid_line_break_engraver')

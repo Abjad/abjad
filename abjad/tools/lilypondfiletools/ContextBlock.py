@@ -7,7 +7,7 @@ class ContextBlock(Block):
     ..  container:: example
 
         >>> block = abjad.ContextBlock(
-        ...     source_context_name='Staff',
+        ...     source_lilypond_type='Staff',
         ...     name='FluteStaff',
         ...     type_='Engraver_group',
         ...     alias='Staff',
@@ -22,7 +22,7 @@ class ContextBlock(Block):
         >>> abjad.setting(block).auto_beaming = False
         >>> abjad.setting(block).tuplet_full_length = True
         >>> block
-        <ContextBlock(source_context_name='Staff', name='FluteStaff', type_='Engraver_group', alias='Staff')>
+        <ContextBlock(source_lilypond_type='Staff', name='FluteStaff', type_='Engraver_group', alias='Staff')>
 
         >>> print(format(block))
         \context {
@@ -47,13 +47,13 @@ class ContextBlock(Block):
 
     def __init__(
         self,
-        source_context_name=None,
+        source_lilypond_type=None,
         name=None,
         type_=None,
         alias=None,
         ):
         Block.__init__(self, name='context')
-        self._source_context_name = source_context_name
+        self._source_lilypond_type = source_lilypond_type
         self._name = name
         self._type_ = type_
         self._alias = alias
@@ -73,8 +73,8 @@ class ContextBlock(Block):
         manager = abjad.LilyPondFormatManager
         # CAUTION: source context name must come before type_ to allow
         # context redefinition.
-        if self.source_context_name is not None:
-            string = indent + r'\{}'.format(self.source_context_name)
+        if self.source_lilypond_type is not None:
+            string = indent + r'\{}'.format(self.source_lilypond_type)
             result.append(string)
         if self.name is not None:
             string = indent + r'\name {}'.format(self.name)
@@ -130,7 +130,7 @@ class ContextBlock(Block):
         ..  container:: example
 
             >>> block = abjad.ContextBlock(
-            ...     source_context_name='Staff',
+            ...     source_lilypond_type='Staff',
             ...     name='FluteStaff',
             ...     type_='Engraver_group',
             ...     alias='Staff',
@@ -159,7 +159,7 @@ class ContextBlock(Block):
         ..  container:: example
 
             >>> block = abjad.ContextBlock(
-            ...     source_context_name='Staff',
+            ...     source_lilypond_type='Staff',
             ...     name='FluteStaff',
             ...     type_='Engraver_group',
             ...     alias='Staff',
@@ -188,7 +188,7 @@ class ContextBlock(Block):
         ..  container:: example
 
             >>> block = abjad.ContextBlock(
-            ...     source_context_name='Staff',
+            ...     source_lilypond_type='Staff',
             ...     name='FluteStaff',
             ...     type_='Engraver_group',
             ...     alias='Staff',
@@ -217,7 +217,7 @@ class ContextBlock(Block):
         ..  container:: example
 
             >>> block = abjad.ContextBlock(
-            ...     source_context_name='Staff',
+            ...     source_lilypond_type='Staff',
             ...     name='FluteStaff',
             ...     type_='Engraver_group',
             ...     alias='Staff',
@@ -246,7 +246,7 @@ class ContextBlock(Block):
         ..  container:: example
 
             >>> block = abjad.ContextBlock(
-            ...     source_context_name='Staff',
+            ...     source_lilypond_type='Staff',
             ...     name='FluteStaff',
             ...     type_='Engraver_group',
             ...     alias='Staff',
@@ -275,7 +275,7 @@ class ContextBlock(Block):
         ..  container:: example
 
             >>> block = abjad.ContextBlock(
-            ...     source_context_name='Staff',
+            ...     source_lilypond_type='Staff',
             ...     name='FluteStaff',
             ...     type_='Engraver_group',
             ...     alias='Staff',
@@ -298,13 +298,13 @@ class ContextBlock(Block):
         return self._remove_commands
 
     @property
-    def source_context_name(self):
+    def source_lilypond_type(self):
         r'''Gets and sets source context name.
 
         ..  container:: example
 
             >>> block = abjad.ContextBlock(
-            ...     source_context_name='Staff',
+            ...     source_lilypond_type='Staff',
             ...     name='FluteStaff',
             ...     type_='Engraver_group',
             ...     alias='Staff',
@@ -319,12 +319,12 @@ class ContextBlock(Block):
             >>> abjad.setting(block).auto_beaming = False
             >>> abjad.setting(block).tuplet_full_length = True
 
-            >>> block.source_context_name
+            >>> block.source_lilypond_type
             'Staff'
 
         Returns string or none.
         '''
-        return self._source_context_name
+        return self._source_lilypond_type
 
     @property
     def type_(self):
@@ -333,7 +333,7 @@ class ContextBlock(Block):
         ..  container:: example
 
             >>> block = abjad.ContextBlock(
-            ...     source_context_name='Staff',
+            ...     source_lilypond_type='Staff',
             ...     name='FluteStaff',
             ...     type_='Engraver_group',
             ...     alias='Staff',

@@ -8,7 +8,7 @@ def test_lilypondparsertools_LilyPondParser__contexts__PianoStaff_01():
         abjad.Staff(maker([0, 2, 4, 5, 7], (1, 8))),
         abjad.Staff(maker([0, 2, 4, 5, 7], (1, 8)))
     ])
-    target.context_name = 'PianoStaff'
+    target.lilypond_type = 'PianoStaff'
 
     assert format(target) == abjad.String.normalize(
         r'''

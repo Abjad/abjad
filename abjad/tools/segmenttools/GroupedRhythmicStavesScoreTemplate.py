@@ -165,7 +165,7 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
                 voice = abjad.Voice([], name=name)
                 name = 'Staff {}'.format(number)
                 staff = abjad.Staff([voice], name=name)
-                staff.context_name = 'RhythmicStaff'
+                staff.lilypond_type = 'RhythmicStaff'
                 abjad.annotate(staff, 'default_clef', abjad.Clef('percussion'))
                 staves.append(staff)
                 key = 'v{}'.format(number)
@@ -175,7 +175,7 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
                 staff_number = staff_index + 1
                 name = 'Staff {}'.format(staff_number)
                 staff = abjad.Staff(name=name)
-                staff.context_name = 'RhythmicStaff'
+                staff.lilypond_type = 'RhythmicStaff'
                 assert 1 <= voice_count
                 for voice_index in range(voice_count):
                     voice_number = voice_index + 1

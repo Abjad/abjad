@@ -53,16 +53,16 @@ class SegmentMaker(AbjadObject):
     def _make_global_context(self):
         import abjad
         global_rests = abjad.Context(
-            context_name='GlobalRests',
+            lilypond_type='GlobalRests',
             name='GlobalRests',
             )
         global_skips = abjad.Context(
-            context_name='GlobalSkips',
+            lilypond_type='GlobalSkips',
             name='GlobalSkips',
             )
         global_context = abjad.Context(
             [global_rests, global_skips ],
-            context_name='GlobalContext',
+            lilypond_type='GlobalContext',
             is_simultaneous=True,
             name='GlobalContext',
             )

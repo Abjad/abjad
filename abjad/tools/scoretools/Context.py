@@ -9,11 +9,11 @@ class Context(Container):
 
         >>> context = abjad.Context(
         ...     name='MeterVoice',
-        ...     context_name='GlobalContext',
+        ...     lilypond_type='GlobalContext',
         ...     )
 
         >>> context
-        Context(context_name='GlobalContext', name='MeterVoice')
+        Context(lilypond_type='GlobalContext', name='MeterVoice')
 
         ..  docs::
 
@@ -28,15 +28,15 @@ class Context(Container):
     __documentation_section__ = 'Contexts'
 
     __slots__ = (
-        '_context_name',
+        '_lilypond_type',
         '_consists_commands',
         '_dependent_wrappers',
         '_remove_commands',
         )
 
-    _default_context_name = 'Voice'
+    _default_lilypond_type = 'Voice'
 
-    lilypond_context_names = (
+    lilypond_types = (
         'Score',
         'StaffGroup',
         'ChoirStaff',
@@ -64,14 +64,14 @@ class Context(Container):
     def __init__(
         self,
         components=None,
-        context_name='Context',
+        lilypond_type='Context',
         is_simultaneous=None,
         name=None,
         ):
         self._consists_commands = []
         self._dependent_wrappers = []
         self._remove_commands = []
-        self.context_name = context_name
+        self.lilypond_type = lilypond_type
         Container.__init__(
             self,
             is_simultaneous=is_simultaneous,
@@ -103,17 +103,17 @@ class Context(Container):
 
         Returns tuple.
         '''
-        return [], self.context_name, self.is_simultaneous, self.name
+        return [], self.lilypond_type, self.is_simultaneous, self.name
 
     def __repr__(self):
         r'''Gets interpreter representation of context.
 
         >>> context = abjad.Context(
         ...     name='MeterVoice',
-        ...     context_name='GlobalContext',
+        ...     lilypond_type='GlobalContext',
         ...     )
         >>> repr(context)
-        "Context(context_name='GlobalContext', name='MeterVoice')"
+        "Context(lilypond_type='GlobalContext', name='MeterVoice')"
 
         Returns string.
         '''
@@ -140,10 +140,10 @@ class Context(Container):
     def _format_invocation(self):
         if self.name is not None:
             string = r'\context {} = "{}"'
-            string = string.format(self.context_name, self.name)
+            string = string.format(self.lilypond_type, self.name)
         else:
             string = r'\new {}'
-            string = string.format(self.context_name)
+            string = string.format(self.lilypond_type)
         return string
 
     def _format_open_brackets_slot(context, bundle):
@@ -233,10 +233,10 @@ class Context(Container):
         return wrappers
 
     def _get_repr_kwargs_names(self):
-        if self.context_name == type(self).__name__:
+        if self.lilypond_type == type(self).__name__:
             return ['is_simultaneous', 'name']
         else:
-            return ['is_simultaneous', 'context_name', 'name']
+            return ['is_simultaneous', 'lilypond_type', 'name']
 
     ### PUBLIC PROPERTIES ###
 
@@ -259,41 +259,31 @@ class Context(Container):
         return self._consists_commands
 
     @property
-    def context_name(self):
-        r'''DEPRECATED: use headword instead.
-        
-        Gets and sets context name of context.
-
-        Returns string.
-        '''
-        return self._context_name
-
-    @context_name.setter
-    def context_name(self, argument):
-        if argument is None:
-            argument = type(self).__name__
-        else:
-            argument = str(argument)
-        self._context_name = argument
-
-    @property
-    def headword(self):
-        r'''Gets headword.
+    def lilypond_type(self):
+        r'''Gets lilypond type.
 
         ..  container:: example
 
             >>> context = abjad.Context(
-            ...     context_name='ViolinStaff',
+            ...     lilypond_type='ViolinStaff',
             ...     name='MyViolinStaff',
             ...     )
-            >>> context.headword
+            >>> context.lilypond_type
             'ViolinStaff'
-
-        Synonym for `context_name`.
+        
+        Gets and sets lilypond type of context.
 
         Returns string.
         '''
-        return self._context_name
+        return self._lilypond_type
+
+    @lilypond_type.setter
+    def lilypond_type(self, argument):
+        if argument is None:
+            argument = type(self).__name__
+        else:
+            argument = str(argument)
+        self._lilypond_type = argument
 
     @property
     def lilypond_context(self):
@@ -303,10 +293,10 @@ class Context(Container):
         '''
         import abjad
         try:
-            lilypond_context = abjad.LilyPondContext(name=self.context_name)
+            lilypond_context = abjad.LilyPondContext(name=self.lilypond_type)
         except AssertionError:
             lilypond_context = abjad.LilyPondContext(
-                name=self._default_context_name,
+                name=self._default_lilypond_type,
                 )
         return lilypond_context
 

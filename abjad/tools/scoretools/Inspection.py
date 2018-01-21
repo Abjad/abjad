@@ -1429,7 +1429,7 @@ class Inspection(abctools.AbjadObject):
             >>> score = abjad.Score()
             >>> tuplet = abjad.Tuplet((4, 3), "d''8 c''8 b'8")
             >>> score.append(abjad.Staff([tuplet]))
-            >>> staff_group = abjad.StaffGroup(context_name='PianoStaff')
+            >>> staff_group = abjad.StaffGroup(lilypond_type='PianoStaff')
             >>> staff_group.append(abjad.Staff("a'4 g'4"))
             >>> staff_group.append(abjad.Staff("f'8 e'8 d'8 c'8"))
             >>> clef = abjad.Clef('bass')

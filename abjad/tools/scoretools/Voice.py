@@ -27,21 +27,21 @@ class Voice(Context):
 
     __slots__ = ()
 
-    _default_context_name = 'Voice'
+    _default_lilypond_type = 'Voice'
 
     ### INITIALIZER ###
 
     def __init__(
         self,
         components=None,
-        context_name='Voice',
+        lilypond_type='Voice',
         is_simultaneous=None,
         name=None,
         ):
         Context.__init__(
             self,
             components=components,
-            context_name=context_name,
+            lilypond_type=lilypond_type,
             is_simultaneous=is_simultaneous,
             name=name,
             )

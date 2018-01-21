@@ -10,7 +10,7 @@ class Harpsichord(Instrument):
         >>> lower_staff = abjad.Staff("c'2 b2")
         >>> staff_group = abjad.StaffGroup(
         ...     [upper_staff, lower_staff],
-        ...     context_name='PianoStaff',
+        ...     lilypond_type='PianoStaff',
         ...     )
         >>> harpsichord = abjad.Harpsichord()
         >>> abjad.attach(harpsichord, staff_group[0][0])

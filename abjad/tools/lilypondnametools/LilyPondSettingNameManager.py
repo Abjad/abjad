@@ -80,11 +80,11 @@ class LilyPondSettingNameManager(LilyPondNameManager):
         for name, value in vars(self).items():
             if type(value) is lilypondnametools.LilyPondNameManager:
                 prefixed_context_name = name
-                context_name = prefixed_context_name.strip('_')
+                lilypond_type = prefixed_context_name.strip('_')
                 context_proxy = value
                 attribute_pairs = context_proxy._get_attribute_pairs()
                 for attribute_name, attribute_value in attribute_pairs:
-                    triple = (context_name, attribute_name, attribute_value)
+                    triple = (lilypond_type, attribute_name, attribute_value)
                     result.append(triple)
             else:
                 attribute_name, attribute_value = name, value

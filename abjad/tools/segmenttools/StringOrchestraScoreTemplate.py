@@ -490,7 +490,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
 
         global_context = abjad.Context(
             name='GlobalContext',
-            context_name='GlobalContext',
+            lilypond_type='GlobalContext',
             )
         instrument_tags = ' '.join(tag_names)
         tag_string = r"\tag #'({})".format(instrument_tags)
@@ -510,7 +510,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         import abjad
         name = instrument.name.title()
         instrument_staff_group = abjad.StaffGroup(
-            context_name='{}StaffGroup'.format(name),
+            lilypond_type='{}StaffGroup'.format(name),
             name='{} Staff Group'.format(name),
             )
         tag_names = []
@@ -551,7 +551,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             name = instrument.name.title()
         pitch_range = instrument.pitch_range
         staff_group = abjad.StaffGroup(
-            context_name='StringPerformerStaffGroup',
+            lilypond_type='StringPerformerStaffGroup',
             name='{} Staff Group'.format(name),
             )
         tag_name = name.replace(' ', '')
@@ -561,7 +561,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         if self.split_hands:
             lh_voice = abjad.Voice(
                 [],
-                context_name='FingeringVoice',
+                lilypond_type='FingeringVoice',
                 name='{} Fingering Voice'.format(name),
                 )
             abbreviation = lh_voice.name.lower().replace(' ', '_')
@@ -570,7 +570,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                 [
                     lh_voice
                     ],
-                context_name='FingeringStaff',
+                lilypond_type='FingeringStaff',
                 name='{} Fingering Staff'.format(name),
                 )
             lh_staff.is_simultaneous = True
@@ -580,7 +580,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             abjad.annotate(lh_staff, 'default_clef', abjad.Clef(clef_name))
             rh_voice = abjad.Voice(
                 [],
-                context_name='BowingVoice',
+                lilypond_type='BowingVoice',
                 name='{} Bowing Voice'.format(name),
                 )
             abbreviation = rh_voice.name.lower().replace(' ', '_')
@@ -589,7 +589,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                 [
                     rh_voice
                     ],
-                context_name='BowingStaff',
+                lilypond_type='BowingStaff',
                 name='{} Bowing Staff'.format(name),
                 )
             rh_staff.is_simultaneous = True
@@ -597,14 +597,14 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         else:
             lh_voice = abjad.Voice(
                 [],
-                context_name='FingeringVoice',
+                lilypond_type='FingeringVoice',
                 name='{} Voice'.format(name),
                 )
             lh_staff = abjad.Staff(
                 [
                     lh_voice
                     ],
-                context_name='FingeringStaff',
+                lilypond_type='FingeringStaff',
                 name='{} Staff'.format(name),
                 )
             lh_staff.is_simultaneous = True

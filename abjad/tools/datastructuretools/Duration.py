@@ -538,7 +538,7 @@ class Duration(AbjadObject, Fraction):
         import abjad
         selection = copy.deepcopy(selection)
         staff = abjad.Staff(selection)
-        staff.context_name = 'RhythmicStaff'
+        staff.lilypond_type = 'RhythmicStaff'
         staff.remove_commands.append('Time_signature_engraver')
         staff.remove_commands.append('Staff_symbol_engraver')
         abjad.override(staff).stem.direction = abjad.Up
@@ -1200,7 +1200,7 @@ class Duration(AbjadObject, Fraction):
 
             >>> tuplet = abjad.Tuplet((5, 7), "c'16 c' c' c' c' c' c'")
             >>> abjad.attach(abjad.Beam(), tuplet[:])
-            >>> staff = abjad.Staff([tuplet], context_name='RhythmicStaff')
+            >>> staff = abjad.Staff([tuplet], lilypond_type='RhythmicStaff')
             >>> duration = abjad.inspect(tuplet).get_duration()
             >>> markup = duration.to_score_markup()
             >>> markup = markup.scale((0.75, 0.75))

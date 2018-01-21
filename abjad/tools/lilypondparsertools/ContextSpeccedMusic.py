@@ -10,7 +10,7 @@ class ContextSpeccedMusic(Music):
 
     __slots__ = (
         #'context',
-        'context_name',
+        'lilypond_type',
         'music',
         'optional_id',
         'optional_context_mod',
@@ -20,17 +20,17 @@ class ContextSpeccedMusic(Music):
 
     def __init__(
         self,
-        context_name=None,
+        lilypond_type=None,
         optional_id=None,
         optional_context_mod=None,
         music=None,
         ):
         from abjad.tools import lilypondparsertools
-        context_name = context_name or ''
+        lilypond_type = lilypond_type or ''
         music = music or lilypondparsertools.SequentialMusic()
-        assert datastructuretools.String.is_string(context_name)
+        assert datastructuretools.String.is_string(lilypond_type)
         assert isinstance(music, Music)
-        self.context_name = context_name
+        self.lilypond_type = lilypond_type
         self.optional_id = optional_id
         self.optional_context_mod = optional_context_mod
         self.music = music
@@ -42,11 +42,11 @@ class ContextSpeccedMusic(Music):
 
         Returns context.
         '''
-        if self.context_name in self.known_contexts:
-            context = known_contexts[self.context_name]([])
+        if self.lilypond_type in self.known_contexts:
+            context = known_contexts[self.lilypond_type]([])
         else:
             message = 'context type not supported: {}.'
-            message = message.format(self.context_name)
+            message = message.format(self.lilypond_type)
             raise Exception(message)
 
         if self.optional_id is not None:

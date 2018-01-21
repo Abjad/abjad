@@ -1201,7 +1201,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((3, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1231,7 +1231,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((3, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1261,7 +1261,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((3, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1293,7 +1293,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((3, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1323,7 +1323,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((3, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1356,7 +1356,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((3, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1386,7 +1386,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((3, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1416,7 +1416,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((3, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1448,7 +1448,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((3, 16), [tuplet])],
-            ...     context_name = 'RhythmicStaff',
+            ...     lilypond_type = 'RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1477,7 +1477,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((3, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(measure) # doctest: +SKIP
 
@@ -1569,7 +1569,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((3, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1591,7 +1591,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((3, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1614,7 +1614,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((3, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1639,7 +1639,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((3, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1665,7 +1665,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((3, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1692,7 +1692,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((3, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1720,7 +1720,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((3, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1742,7 +1742,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((3, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1765,7 +1765,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((3, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1789,7 +1789,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((3, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1815,7 +1815,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((3, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1842,7 +1842,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((3, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1884,7 +1884,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((7, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1910,7 +1910,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((7, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1934,7 +1934,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((7, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1956,7 +1956,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((7, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1978,7 +1978,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((7, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2002,7 +2002,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((7, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2027,7 +2027,7 @@ class Tuplet(Container):
             ...     )
             >>> staff = abjad.Staff(
             ...     [abjad.Measure((7, 16), [tuplet])],
-            ...     context_name='RhythmicStaff',
+            ...     lilypond_type='RhythmicStaff',
             ...     )
             >>> abjad.show(staff) # doctest: +SKIP
 
