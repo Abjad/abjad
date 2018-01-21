@@ -38,13 +38,13 @@ class Tags(AbjadValueObject):
     __slots__ = (
         )
 
-    _known_tags = (
+    _known_tags:tuple = (
 
         ### DOCUMENT COMMANDS ###
 
-        'BAR_LINE_ADJUSTMENT_AFTER_EOL_FERMATA',
         'BREAK',
         'EMPTY_START_BAR',
+        'EOL_FERMATA',
         'SHIFTED_CLEF',
         'SPACING',
         'SPACING_OVERRIDE',
@@ -89,9 +89,9 @@ class Tags(AbjadValueObject):
         'RIGHT_OPEN_TEXT_SPANNER',
         'RIGHT_OPEN_TRILL',
 
+        ### PITCH HANDLING ###
 
-        ### MISCELLANEOUS ###
-
+        'ALLOW_REPEAT_PITCH',
         'DO_NOT_TRANSPOSE',
 
     )
@@ -109,15 +109,15 @@ class Tags(AbjadValueObject):
             raise AttributeError('unknown tag: {!r}.'.format(tag))
         return tag
 
-    ### PUBLIC PROPERTES ###
+    ### PUBLIC METHODS ###
 
-    @property
-    def markup_tags(self):
-        r'''Gets markup tags.
+    @staticmethod
+    def all_score_annotation_tags():
+        r'''Gets all score annotation tags.
 
         ..  container:: example
 
-            >>> for tag in abjad.tags.markup_tags:
+            >>> for tag in abjad.tags.all_score_annotation_tags():
             ...     tag
             ...
             'CLOCK_TIME_MARKUP'
@@ -127,41 +127,17 @@ class Tags(AbjadValueObject):
             'SPACING_OVERRIDE_MARKUP'
             'STAGE_NUMBER_MARKUP'
 
-        Returns tuple of strings.
+        Returns list of strings.
         '''
-        return (
-            self.CLOCK_TIME_MARKUP,
-            self.FIGURE_NAME_MARKUP,
-            self.MEASURE_NUMBER_MARKUP,
-            self.SPACING_MARKUP,
-            self.SPACING_OVERRIDE_MARKUP,
-            self.STAGE_NUMBER_MARKUP,
-            )
-
-    @property
-    def spacing_tags(self):
-        r'''Gets spacing tags.
-
-        ..  container:: example
-
-            >>> for tag in abjad.tags.spacing_tags:
-            ...     tag
-            ...
-            'SPACING'
-            'SPACING_MARKUP'
-            'SPACING_OVERRIDE'
-            'SPACING_OVERRIDE_MARKUP'
-
-        Returns tuple.
-        '''
-        return (
-            self.SPACING,
-            self.SPACING_MARKUP,
-            self.SPACING_OVERRIDE,
-            self.SPACING_OVERRIDE_MARKUP,
-            )
-
-    ### PUBLIC METHODS ###
+        import abjad
+        return [
+            abjad.tags.CLOCK_TIME_MARKUP,
+            abjad.tags.FIGURE_NAME_MARKUP,
+            abjad.tags.MEASURE_NUMBER_MARKUP,
+            abjad.tags.SPACING_MARKUP,
+            abjad.tags.SPACING_OVERRIDE_MARKUP,
+            abjad.tags.STAGE_NUMBER_MARKUP,
+            ]
 
     @staticmethod
     def document(document):
@@ -182,3 +158,27 @@ class Tags(AbjadValueObject):
         document = '_'.join(words)
         document = document.upper()
         return document
+
+    @staticmethod
+    def spacing_tags():
+        r'''Gets spacing tags.
+
+        ..  container:: example
+
+            >>> for tag in abjad.tags.spacing_tags():
+            ...     tag
+            ...
+            'SPACING'
+            'SPACING_MARKUP'
+            'SPACING_OVERRIDE'
+            'SPACING_OVERRIDE_MARKUP'
+
+        Returns list of strings.
+        '''
+        import abjad
+        return [
+            abjad.tags.SPACING,
+            abjad.tags.SPACING_MARKUP,
+            abjad.tags.SPACING_OVERRIDE,
+            abjad.tags.SPACING_OVERRIDE_MARKUP,
+            ]

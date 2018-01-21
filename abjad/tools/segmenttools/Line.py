@@ -78,6 +78,53 @@ class Line(AbjadObject):
             tags.extend(parts[0].split(':'))
         return tags
 
+    def is_active(self):
+        r'''Is true when line is active.
+
+        ..  container:: example
+
+            >>> string = '              \\clef "treble" %! EXPLICT_CLEF'
+            >>> abjad.Line(string).is_active()
+            True
+
+            >>> string = '          %@% \\clef "treble" %! EXPLICT_CLEF'
+            >>> abjad.Line(string).is_active()
+            False
+
+            >>> string = '          %%% \\clef "treble" %! EXPLICT_CLEF'
+            >>> abjad.Line(string).is_active()
+            False
+
+        Returns true or false.
+        '''
+        return not self.is_deactivated()
+
+    def is_deactivated(self):
+        r'''Is true when line is deactivated.
+
+        ..  container:: example
+
+            >>> string = '              \\clef "treble" %! EXPLICT_CLEF'
+            >>> abjad.Line(string).is_deactivated()
+            False
+
+            >>> string = '          %@% \\clef "treble" %! EXPLICT_CLEF'
+            >>> abjad.Line(string).is_deactivated()
+            True
+
+            >>> string = '          %%% \\clef "treble" %! EXPLICT_CLEF'
+            >>> abjad.Line(string).is_deactivated()
+            True
+
+        Returns true or false.
+        '''
+        string = self.string.strip()
+        if string.startswith('%@%'):
+            return True
+        if string.startswith('%%%'):
+            return True
+        return False
+
     def match(self, predicate):
         r'''Is true when `predicate` matches tags.
 

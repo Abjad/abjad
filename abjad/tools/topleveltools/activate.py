@@ -1,4 +1,4 @@
-def activate(text, tag):
+def activate(text, tag, skipped=False):
     r'''Activates `tag` in `text`.
 
     ..  container:: example
@@ -99,9 +99,10 @@ def activate(text, tag):
     Count gives number of activated tags.
     '''
     import abjad
-    assert isinstance(tag, str) or callable(tag)
-    lines, count = [], 0
+    assert isinstance(tag, str) or callable(tag), repr(tag)
+    lines, count, skipped_count = [], 0, 0
     treated_last_line = False
+    found_already_active_on_last_line = False
     text_lines = text.split('\n')
     text_lines = [_ + '\n' for _ in text_lines[:-1]] + text_lines[-1:]
     lines = []
@@ -111,6 +112,7 @@ def activate(text, tag):
         if not abjad.Line(line).match(tag):
             lines.append(line)
             treated_last_line = False
+            found_already_active_on_last_line = False
             continue
         if line[index:index+4] in ('%%% ', '%@% '):
             if '%@% ' in line:
@@ -125,6 +127,15 @@ def activate(text, tag):
             if not treated_last_line:
                 count += 1
             treated_last_line = True
+            found_already_active_on_last_line = False
+        else:
+            if not found_already_active_on_last_line:
+                skipped_count += 1
+            found_already_active_on_last_line = True
+            treated_last_line = False
         lines.append(line)
     text = ''.join(lines)
-    return text, count
+    if skipped is True:
+        return text, count, skipped_count
+    else:
+        return text, count

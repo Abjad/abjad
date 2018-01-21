@@ -3541,7 +3541,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     @property
     def tuplet_specifier(self):
-        r'''Gets tuplet spelling specifier.
+        r'''Gets tuplet specifier.
 
         ..  container:: example
 
@@ -3839,7 +3839,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                     } % measure
                 }
 
-        Returns tuplet spelling specifier or none.
+        Returns tuplet specifier or none.
         '''
         superclass = super(AccelerandoRhythmMaker, self)
         return superclass.tuplet_specifier

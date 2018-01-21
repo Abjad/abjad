@@ -561,20 +561,117 @@ class Path(pathlib.PosixPath):
 
     ### PUBLIC METHODS ###
 
-    def activate_tag(self, tag):
-        r'''Activates `tag` in LilyPond file.
+    def activate(self, tag, name=False, deactivate=False):
+        r'''Activates `tag` in path.
 
-        Returns text, count pair.
+        Four cases:
 
-        Text gives file ready for writing.
+        Case 1: path is a file. Method activates `tag` in file.
 
-        Count gives number of activated tags.
+        Case 2: path is a segment directory. Method activates `tag` in
+        the segment's illustration.ly file.
+
+        Case 3: path is segments directory. Method activates `tag` in the
+        illustration.ly file in each segment.
+
+        Case 4: path is a build directory, method activates `tag` in every ly
+        file in the build's _segments directory.
+
+        Returns triple.
+        
+        First item in triple is count of deactivated tags activated by method.
+        
+        Second item in pair is count of already-active tags skipped by method.
+
+        Third item in pair is list of canonical string messages that explain
+        what happened.
         '''
         import abjad
-        assert self.is_file()
-        text = self.read_text()
-        text, count = abjad.activate(text, tag)
-        return text, count
+        if self.is_file():
+            text = self.read_text()
+            if deactivate:
+                text, count, skipped = abjad.deactivate(
+                    text,
+                    tag,
+                    skipped=True,
+                    )
+            else:
+                text, count, skipped = abjad.activate(text, tag, skipped=True)
+            self.write_text(text)
+        elif self.is_segment():
+            illustration_ly = self('illustration.ly')
+            assert illustration_ly.is_file()
+            count, skipped, _ = illustration_ly.activate(
+                tag,
+                deactivate=deactivate,
+                )
+            layout_ly = self('layout.ly')
+            if layout_ly.is_file():
+                count_, skipped_, _ = layout_ly.activate(
+                    tag,
+                    deactivate=deactivate,
+                    )
+                count += count_
+                skipped += skipped_
+        elif self.is_segments():
+            count, skipped = 0, 0
+            for segment in self.list_paths():
+                count_, skipped_, _ = segment.activate(
+                    tag,
+                    deactivate=deactivate,
+                    )
+                count += count_
+                skipped += skipped_
+        elif self.is_build() or self.is__segments():
+            count, skipped = 0, 0
+            for segment_ly in self.build._segments.list_paths():
+                count_, skipped_, _ = segment_ly.activate(
+                    tag,
+                    deactivate=deactivate,
+                    )
+                count += count_
+                skipped += skipped_
+        else:
+            raise ValueError(self)
+        name = name or tag
+        if deactivate:
+            adjective = 'deactivated'
+            antonym = 'active'
+            gerund = 'deactivating'
+            infinitive = 'deactivate'
+        else:
+            antonym = 'deactivated'
+            adjective = 'active'
+            gerund = 'activating'
+            infinitive = 'activate'
+        messages = []
+        total = count + skipped
+        if total == 0:
+            messages.append(f'found no {name} tags in {self.name} ...')
+        else:
+            tags = abjad.String('tag').pluralize(total)
+            messages.append(f'found {total} {name} {tags} in {self.name} ...')
+            if count == 0:
+                message = f'no {antonym} {name} tags to {infinitive}'
+                message += f' in {self.name} ...'
+                messages.append(message)
+            else:
+                tags = abjad.String('tag').pluralize(count)
+                message = f'{gerund} {count} {antonym} {name} {tags}'
+                message += f' in {self.name} ...'
+                messages.append(message)
+            if skipped == 0:
+                message = f'no already-{adjective} {name} tags to skip'
+                message += f' in {self.name} ...'
+                messages.append(message)
+            else:
+                tags = abjad.String('tag').pluralize(skipped)
+                message = f'skipping {skipped} already-{adjective}'
+                message += f' {name} {tags} in {self.name} ...'
+                messages.append(message)
+        messages = [abjad.String(_).capitalize_start() for _ in messages]
+        messages[1:] = [' ' + _ for _ in messages[1:]]
+        return count, skipped, messages
 
     def add_metadatum(self, name, value):
         r'''Adds metadatum.
@@ -753,20 +850,48 @@ class Path(pathlib.PosixPath):
             raise ValueError(self)
         return name
 
-    def deactivate_tag(self, tag):
-        r'''Deactivates `tag` in LilyPond file.
+    def count(self, tag):
+        r'''Counts `tag` in path.
 
-        Returns text, count pair.
+        Returns two pairs.
 
-        Text gives file contents ready to be written.
+        Pair 1 gives (active tags, activate lines).
 
-        Count gives number of deactivated tags.
+        Pair 2 gives (deactivated tags, deactivated lines).
         '''
         import abjad
-        assert self.is_file()
-        text = self.read_text()
-        text, count = abjad.deactivate(text, tag)
-        return text, count
+        assert isinstance(tag, str) or callable(tag), repr(tag)
+        assert self.is_file(), repr(self)
+        active_tags, active_lines = 0, 0
+        deactivated_tags, deactivated_lines = 0, 0
+        with open(self) as pointer:
+            last_line_had_tag = False
+            for line in pointer.readlines():
+                line = abjad.Line(line)
+                if line.match(tag):
+                    if line.is_active():
+                        active_lines += 1
+                        if not last_line_had_tag:
+                            active_tags += 1
+                    else:
+                        deactivated_lines += 1
+                        if not last_line_had_tag:
+                            deactivated_tags += 1
+                    last_line_had_tag = True
+                else:
+                    last_line_had_tag = False
+        pair_1 = (active_tags, active_lines)
+        pair_2 = (deactivated_tags, deactivated_lines)
+        return pair_1, pair_2
+
+    def deactivate(self, tag, name=False):
+        r'''Deactivates `tag` in path.
+
+        Dual of activate().
+
+        Returns nonnegative integer count of deactivated tags.
+        '''
+        return self.activate(tag, name=name, deactivate=True)
 
     def get_asset_type(self):
         r'''Gets asset identifier.
@@ -1533,8 +1658,14 @@ class Path(pathlib.PosixPath):
             return True
         if 'build' in prototype and self.is_build():
             return True
+        if 'buildspace' in prototype:
+            if self.is_buildspace():
+                return True
         if 'contents' in prototype and self.is_contents():
             return True
+        if 'illustrationspace' in prototype:
+            if self.is_illustrationspace():
+                return True
         if 'material' in prototype and self.is_material():
             return True
         if 'parts' in prototype and self.is_parts():

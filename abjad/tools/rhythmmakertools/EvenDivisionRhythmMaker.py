@@ -2427,11 +2427,11 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
     @property
     def tuplet_specifier(self):
-        r'''Gets tuplet spelling specifier.
+        r'''Gets tuplet specifier.
 
         ..  note:: not yet implemented.
 
-        Returns tuplet spelling specifier or none.
+        Returns tuplet specifier or none.
         '''
         superclass = super(EvenDivisionRhythmMaker, self)
         return superclass.tuplet_specifier

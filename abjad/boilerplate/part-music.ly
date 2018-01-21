@@ -9,10 +9,12 @@
 
 \score {{
     <<
-        {keep_with_tag_command}{{
-        \include "layout.ly"
+        {keep_with_tag_command}
+        {{
+        \include "{dashed_part_name}-layout.ly"
         }}
-        {keep_with_tag_command}{{
+        {keep_with_tag_command}
+        {{
         {segment_include_statements}
         }}
     >>

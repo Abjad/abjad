@@ -12,22 +12,25 @@ class TieSpecifier(AbjadValueObject):
     __documentation_section__ = 'Specifiers'
 
     __slots__ = (
+        '_repeat_ties',
         '_strip_ties',
         '_tie_across_divisions',
         '_tie_consecutive_notes',
-        '_repeat_ties',
         )
 
     ### INITIALIZER ###
 
     def __init__(
         self,
+        repeat_ties=None,
         strip_ties=None,
         tie_across_divisions=None,
         tie_consecutive_notes=None,
-        repeat_ties=None,
         ):
         import abjad
+        if repeat_ties is not None:
+            repeat_ties = bool(repeat_ties)
+        self._repeat_ties = repeat_ties
         if strip_ties is not None:
             strip_ties = bool(strip_ties)
         self._strip_ties = strip_ties
@@ -46,9 +49,6 @@ class TieSpecifier(AbjadValueObject):
         if self.tie_consecutive_notes and self.strip_ties:
             message = 'can not tie leaves and strip ties at same time.'
             raise Exception(message)
-        if repeat_ties is not None:
-            repeat_ties = bool(repeat_ties)
-        self._repeat_ties = repeat_ties
 
     ### SPECIAL METHODS ###
 

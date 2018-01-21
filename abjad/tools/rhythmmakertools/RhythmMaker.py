@@ -417,9 +417,9 @@ class RhythmMaker(AbjadValueObject):
 
     @property
     def duration_specifier(self):
-        r'''Gets duration spelling specifier.
+        r'''Gets duration specifier.
 
-        Set to duration spelling specifier or none.
+        Set to duration specifier or none.
         '''
         return self._duration_specifier
 
@@ -445,8 +445,8 @@ class RhythmMaker(AbjadValueObject):
 
     @property
     def tuplet_specifier(self):
-        r'''Gets tuplet spelling specifier.
+        r'''Gets tuplet specifier.
 
-        Set to tuplet spelling specifier or none.
+        Set to tuplet specifier or none.
         '''
         return self._tuplet_specifier

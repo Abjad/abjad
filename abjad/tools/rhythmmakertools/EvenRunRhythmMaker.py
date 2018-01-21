@@ -195,7 +195,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     @property
     def duration_specifier(self):
-        r'''Gets duration spelling specifier.
+        r'''Gets duration specifier.
 
         ..  container:: example
 
@@ -249,7 +249,7 @@ class EvenRunRhythmMaker(RhythmMaker):
                     } % measure
                 }
 
-        Returns duration spelling specifier or none.
+        Returns duration specifier or none.
         '''
         return self._duration_specifier
 
@@ -645,11 +645,11 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     @property
     def tuplet_specifier(self):
-        r'''Gets tuplet spelling specifier.
+        r'''Gets tuplet specifier.
 
         ..  note:: not yet implemented.
 
-        Returns tuplet spelling specifier or none.
+        Returns tuplet specifier or none.
         '''
         superclass = super(EvenRunRhythmMaker, self)
         return superclass.tuplet_specifier

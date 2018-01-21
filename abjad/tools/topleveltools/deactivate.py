@@ -1,4 +1,4 @@
-def deactivate(text, tag):
+def deactivate(text, tag, skipped=False):
     r'''Deactivates `tag` in `text`.
 
     ..  container:: example
@@ -98,34 +98,46 @@ def deactivate(text, tag):
     Count gives number of deactivated tags.
     '''
     import abjad
-    assert isinstance(tag, str) or callable(tag)
-    lines, count = [], 0
+    assert isinstance(tag, str) or callable(tag), repr(tag)
+    lines, count, skipped_count = [], 0, 0
     treated_last_line, last_index = False, None
+    found_already_deactivated_on_last_line = False
     text_lines = text.split('\n')
     text_lines = [_ + '\n' for _ in text_lines[:-1]] + text_lines[-1:]
     lines = []
     for line in text_lines:
         first_nonwhitespace_index = len(line) - len(line.lstrip())
         index = first_nonwhitespace_index
-        if not abjad.Line(line).match(tag) or line[index] == '%':
+        if not abjad.Line(line).match(tag):
             lines.append(line)
             treated_last_line, last_index = False, None
+            found_already_deactivated_on_last_line = False
             continue
-        if last_index is None:
-            last_index = index
-        if ' %@%' in line:
-            prefix = '%@% '
-            line = line.replace(' %@%', '')
+        if line[index] != '%':
+            if last_index is None:
+                last_index = index
+            if ' %@%' in line:
+                prefix = '%@% '
+                line = line.replace(' %@%', '')
+            else:
+                prefix = '%%% '
+            target = line[last_index-4:last_index]
+            assert target == '    ', repr((line, target, index, tag))
+            characters = list(line)
+            characters[last_index-4:last_index] = list(prefix)
+            line = ''.join(characters)
+            if not treated_last_line:
+                count += 1
+            treated_last_line = True
+            found_already_deactivated_on_last_line = False
         else:
-            prefix = '%%% '
-        target = line[last_index-4:last_index]
-        assert target == '    ', repr((line, target, index, tag))
-        characters = list(line)
-        characters[last_index-4:last_index] = list(prefix)
-        line = ''.join(characters)
+            if not found_already_deactivated_on_last_line:
+                skipped_count += 1
+            found_already_deactivated_on_last_line = True
+            treated_last_line = False
         lines.append(line)
-        if not treated_last_line:
-            count += 1
-        treated_last_line = True
     text = ''.join(lines)
-    return text, count
+    if skipped is True:
+        return text, count, skipped_count
+    else:
+        return text, count 
