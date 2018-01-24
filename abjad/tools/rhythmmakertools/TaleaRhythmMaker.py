@@ -2010,7 +2010,8 @@ class TaleaRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     { % measure
                         \time 3/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'16 [
                             c'8
                             c'8. ]
@@ -2027,7 +2028,8 @@ class TaleaRhythmMaker(RhythmMaker):
                     } % measure
                     { % measure
                         \time 3/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'16
                             c'4
                             c'16
@@ -2069,7 +2071,8 @@ class TaleaRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     { % measure
                         \time 3/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'16 [
                             c'8
                             c'8. ]
@@ -2086,7 +2089,8 @@ class TaleaRhythmMaker(RhythmMaker):
                     } % measure
                     { % measure
                         \time 3/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'4
                             c'16 [
                             c'16 ~ ]
@@ -2133,7 +2137,8 @@ class TaleaRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     { % measure
                         \time 3/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'16 [
                             c'8
                             c'8. ]
@@ -2150,7 +2155,8 @@ class TaleaRhythmMaker(RhythmMaker):
                     } % measure
                     { % measure
                         \time 3/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8. [
                             c'8. ~ ]
                         }
@@ -2653,7 +2659,8 @@ class TaleaRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     { % measure
                         \time 3/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'16 [
                             c'16
                             c'16
@@ -2669,7 +2676,8 @@ class TaleaRhythmMaker(RhythmMaker):
                             c'16
                             c'16 ]
                         }
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'16 [
                             c'16
                             c'16
@@ -2686,7 +2694,8 @@ class TaleaRhythmMaker(RhythmMaker):
                             c'16
                             c'16 ]
                         }
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'16
                         }
                     } % measure
@@ -3083,9 +3092,9 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            Leaves redundant tuplets as-is when no tuplet specifier is given.
-            The tuplets in measures 2 and 4 can be written as trivial tuplets,
-            but they are not:
+            Leaves trivializable tuplets as-is when no tuplet specifier is
+            given. The tuplets in measures 2 and 4 can be written as trivial
+            tuplets, but they are not:
 
             >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
             ...     extra_counts_per_division=[0, 4],
@@ -3109,7 +3118,8 @@ class TaleaRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     { % measure
                         \time 3/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8. [
                             c'8. ]
                         }
@@ -3123,7 +3133,8 @@ class TaleaRhythmMaker(RhythmMaker):
                     } % measure
                     { % measure
                         \time 3/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8. [
                             c'8. ]
                         }
@@ -3140,7 +3151,7 @@ class TaleaRhythmMaker(RhythmMaker):
         ..  container:: example
 
             Rewrites trivializable tuplets as trivial (1:1) tuplets when
-            `simplify_redundant_tuplets` is true. The tuplets in measures 2 and
+            `trivialize` is true. The tuplets in measures 2 and
             4 do not look like tuplets because their multipliers are 1:1:
 
             >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
@@ -3150,7 +3161,7 @@ class TaleaRhythmMaker(RhythmMaker):
             ...         denominator=16,
             ...         ),
             ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-            ...         simplify_redundant_tuplets=True,
+            ...         trivialize=True,
             ...         ),
             ...     )
 
@@ -3168,35 +3179,39 @@ class TaleaRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     { % measure
                         \time 3/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8. [
                             c'8. ]
                         }
                     } % measure
                     { % measure
                         \time 4/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'4
                             c'4
                         }
                     } % measure
                     { % measure
                         \time 3/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8. [
                             c'8. ]
                         }
                     } % measure
                     { % measure
                         \time 4/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'4
                             c'4
                         }
                     } % measure
                 }
 
-            REGRESSION #907a. Simplifies redundant tuplets even when redundant
+            REGRESSION #907a. Rewrites trivializable tuplets even when
             tuplets contain multiple ties:
 
             >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
@@ -3209,7 +3224,7 @@ class TaleaRhythmMaker(RhythmMaker):
             ...         tie_across_divisions=True,
             ...         ),
             ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-            ...         simplify_redundant_tuplets=True,
+            ...         trivialize=True,
             ...         ),
             ...     )
 
@@ -3227,35 +3242,39 @@ class TaleaRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     { % measure
                         \time 3/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8. [
                             c'8. ~ ]
                         }
                     } % measure
                     { % measure
                         \time 4/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'4
                             c'4 ~
                         }
                     } % measure
                     { % measure
                         \time 3/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8. [
                             c'8. ~ ]
                         }
                     } % measure
                     { % measure
                         \time 4/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'4
                             c'4
                         }
                     } % measure
                 }
 
-            REGRESSION #907b. Simplifies redundant tuplets even when redundant
+            REGRESSION #907b. Rewrites trivializable tuplets even when
             tuplets contain very long ties:
 
             >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
@@ -3269,7 +3288,7 @@ class TaleaRhythmMaker(RhythmMaker):
             ...         tie_consecutive_notes=True,
             ...         ),
             ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-            ...         simplify_redundant_tuplets=True,
+            ...         trivialize=True,
             ...         ),
             ...     )
 
@@ -3287,28 +3306,32 @@ class TaleaRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     { % measure
                         \time 3/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8. ~ [
                             c'8. ~ ]
                         }
                     } % measure
                     { % measure
                         \time 4/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'4 ~
                             c'4 ~
                         }
                     } % measure
                     { % measure
                         \time 3/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8. ~ [
                             c'8. ~ ]
                         }
                     } % measure
                     { % measure
                         \time 4/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'4 ~
                             c'4
                         }
@@ -3350,7 +3373,8 @@ class TaleaRhythmMaker(RhythmMaker):
                     } % measure
                     { % measure
                         \time 4/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             r4
                             r16
                             r8.
@@ -3367,7 +3391,8 @@ class TaleaRhythmMaker(RhythmMaker):
                     } % measure
                     { % measure
                         \time 4/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8
                             r4.
                         }
@@ -3385,7 +3410,7 @@ class TaleaRhythmMaker(RhythmMaker):
             ...         denominator=16,
             ...         ),
             ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-            ...         rewrite_rest_filled_tuplets=True,
+            ...         rewrite_rest_filled=True,
             ...         ),
             ...     )
 
@@ -3412,7 +3437,8 @@ class TaleaRhythmMaker(RhythmMaker):
                     } % measure
                     { % measure
                         \time 4/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             r2
                         }
                     } % measure
@@ -3427,7 +3453,8 @@ class TaleaRhythmMaker(RhythmMaker):
                     } % measure
                     { % measure
                         \time 4/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8
                             r4.
                         }

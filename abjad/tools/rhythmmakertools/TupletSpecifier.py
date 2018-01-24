@@ -1,5 +1,8 @@
 import copy
+from typing import Union
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.datastructuretools.Duration import Duration
+from abjad.tools.datastructuretools.Multiplier import Multiplier
 
 
 class TupletSpecifier(AbjadValueObject):
@@ -12,11 +15,11 @@ class TupletSpecifier(AbjadValueObject):
 
     __slots__ = (
         '_avoid_dots',
-        '_rewrite_rest_filled_tuplets',
-        '_flatten_trivial_tuplets',
-        '_is_diminution',
-        '_preferred_denominator',
-        '_simplify_redundant_tuplets',
+        '_denominator',
+        '_diminution',
+        '_extract_trivial',
+        '_rewrite_rest_filled',
+        '_trivialize',
         '_use_note_duration_bracket',
         )
 
@@ -24,26 +27,26 @@ class TupletSpecifier(AbjadValueObject):
 
     def __init__(
         self,
-        avoid_dots=False,
-        flatten_trivial_tuplets=False,
-        is_diminution=True,
-        preferred_denominator=None,
-        rewrite_rest_filled_tuplets=False,
-        simplify_redundant_tuplets=False,
-        use_note_duration_bracket=False,
-        ):
+        avoid_dots: Union[bool, None] = False,
+        denominator=None,
+        diminution: Union[bool, None] = True,
+        extract_trivial: Union[bool, None] = False,
+        rewrite_rest_filled: Union[bool, None] = False,
+        trivialize: Union[bool, None] = False,
+        use_note_duration_bracket: Union[bool, None] = False,
+        ) -> None:
         import abjad
-        # TODO: Consider renaming is_diminution=True to is_augmentation=None.
+        # TODO: Consider renaming diminution=True to augmentation=None.
         #       That would allow for all keywords to default to None,
         #       and therefore a single-line storage format.
         self._avoid_dots = bool(avoid_dots)
-        self._flatten_trivial_tuplets = bool(flatten_trivial_tuplets)
-        self._is_diminution = bool(is_diminution)
-        if isinstance(preferred_denominator, tuple):
-            preferred_denominator = abjad.Duration(preferred_denominator)
-        self._preferred_denominator = preferred_denominator
-        self._rewrite_rest_filled_tuplets = bool(rewrite_rest_filled_tuplets)
-        self._simplify_redundant_tuplets = bool(simplify_redundant_tuplets)
+        if isinstance(denominator, tuple):
+            denominator = Duration(denominator)
+        self._denominator = denominator
+        self._diminution = bool(diminution)
+        self._extract_trivial = bool(extract_trivial)
+        self._rewrite_rest_filled = bool(rewrite_rest_filled)
+        self._trivialize = bool(trivialize)
         self._use_note_duration_bracket = bool(use_note_duration_bracket)
 
     ### SPECIAL METHODS ###
@@ -53,63 +56,56 @@ class TupletSpecifier(AbjadValueObject):
 
         Returns new selections.
         '''
-        self._simplify_redundant_tuplets_(selections)
-        selections = self._rewrite_rest_filled_tuplets_(selections)
-        selections = self._flatten_trivial_tuplets_(selections)
-        self._apply_preferred_denominator(selections, divisions)
+        self._trivialize_(selections)
+        selections = self._rewrite_rest_filled_(selections)
+        selections = self._extract_trivial_(selections)
+        self._apply_denominator(selections, divisions)
         return selections
 
     ### PRIVATE METHODS ###
 
-    def _apply_preferred_denominator(self, selections, divisions):
+    def _apply_denominator(self, selections, divisions):
         import abjad
-        if not self.preferred_denominator:
+        if not self.denominator:
             return
         tuplets = list(abjad.iterate(selections).components(abjad.Tuplet))
         if divisions is None:
             divisions = len(tuplets) * [None]
         assert len(selections) == len(divisions)
         assert len(tuplets) == len(divisions)
-        preferred_denominator = self.preferred_denominator
-        if isinstance(preferred_denominator, tuple):
-            preferred_denominator = abjad.Duration(preferred_denominator)
+        denominator = self.denominator
+        if isinstance(denominator, tuple):
+            denominator = abjad.Duration(denominator)
         for tuplet, division in zip(tuplets, divisions):
-            if preferred_denominator == 'divisions':
-                tuplet.preferred_denominator = division.numerator
-            elif isinstance(preferred_denominator, abjad.Duration):
-                unit_duration = preferred_denominator
+            if denominator == 'divisions':
+                tuplet.denominator = division.numerator
+            elif isinstance(denominator, abjad.Duration):
+                unit_duration = denominator
                 assert unit_duration.numerator == 1
                 duration = abjad.inspect(tuplet).get_duration()
-                denominator = unit_duration.denominator
-                nonreduced_fraction = duration.with_denominator(denominator)
-                tuplet.preferred_denominator = nonreduced_fraction.numerator
-            elif abjad.mathtools.is_positive_integer(preferred_denominator):
-                tuplet.preferred_denominator = preferred_denominator
+                denominator_ = unit_duration.denominator
+                nonreduced_fraction = duration.with_denominator(denominator_)
+                tuplet.denominator = nonreduced_fraction.numerator
+            elif abjad.mathtools.is_positive_integer(denominator):
+                tuplet.denominator = denominator
             else:
                 message = 'invalid value for preferred denominator: {!r}.'
-                message = message.format(preferred_denominator)
+                message = message.format(denominator)
                 raise Exception(message)
 
-    def _flatten_trivial_tuplets_(self, selections):
+    def _extract_trivial_(self, selections):
         import abjad
-        if not self.flatten_trivial_tuplets:
+        if not self.extract_trivial:
             return selections
         new_selections = []
         for selection in selections:
             new_selection = []
             for component in selection:
                 if not (isinstance(component, abjad.Tuplet) and
-                    component.is_trivial):
+                    component.trivial()):
                     new_selection.append(component)
                     continue
                 tuplet = component
-                #spanners = abjad.inspect(tuplet).get_spanners()
-                #contents = tuplet[:]
-                #for spanner in spanners:
-                #    new_spanner = copy.copy(spanner)
-                #    abjad.attach(new_spanner, contents)
-                #new_selection.extend(contents)
-                #del(tuplet[:])
                 contents = abjad.mutate(tuplet).eject_contents()
                 assert isinstance(contents, abjad.Selection)
                 new_selection.extend(contents)
@@ -117,9 +113,9 @@ class TupletSpecifier(AbjadValueObject):
             new_selections.append(new_selection)
         return new_selections
 
-    def _rewrite_rest_filled_tuplets_(self, selections):
+    def _rewrite_rest_filled_(self, selections):
         import abjad
-        if not self.rewrite_rest_filled_tuplets:
+        if not self.rewrite_rest_filled:
             return selections
         new_selections = []
         maker = abjad.LeafMaker()
@@ -127,7 +123,7 @@ class TupletSpecifier(AbjadValueObject):
             new_selection = []
             for component in selection:
                 if not (isinstance(component, abjad.Tuplet) and
-                    component._is_rest_filled):
+                    component._rest_filled()):
                     new_selection.append(component)
                     continue
                 duration = abjad.inspect(component).get_duration()
@@ -139,17 +135,17 @@ class TupletSpecifier(AbjadValueObject):
             new_selections.append(new_selection)
         return new_selections
 
-    def _simplify_redundant_tuplets_(self, selections):
+    def _trivialize_(self, selections):
         import abjad
-        if not self.simplify_redundant_tuplets:
+        if not self.trivialize:
             return
         for tuplet in abjad.iterate(selections).components(abjad.Tuplet):
-            tuplet._simplify_redundant_tuplet()
+            tuplet.trivialize()
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def avoid_dots(self):
+    def avoid_dots(self) -> Union[bool, None]:
         r'''Is true when tuplet should avoid dotted rhythmic values.
         Otherwise false.
 
@@ -162,46 +158,20 @@ class TupletSpecifier(AbjadValueObject):
         return self._avoid_dots
 
     @property
-    def flatten_trivial_tuplets(self):
-        r'''Is true when tuplet should flatten trivial tuplets.
-        Otherwise false.
-
-        Defaults to false.
-
-        Set to true or false.
-
-        Returns true or false.
-        '''
-        return self._flatten_trivial_tuplets
-
-    @property
-    def is_diminution(self):
-        r'''Is true when tuplet should be spelled as diminution. Otherwise
-        false.
-
-        Defaults to true.
-
-        Set to true or false.
-
-        Returns true or false.
-        '''
-        return self._is_diminution
-
-    @property
-    def preferred_denominator(self):
+    def denominator(self):
         r'''Gets preferred denominator.
 
         ..  container:: example
 
             Tuplet numerators and denominators are reduced to numbers that are
-            relatively prime when `preferred_denominator` is set to none. This
+            relatively prime when `denominator` is set to none. This
             means that ratios like ``6:4`` and ``10:8`` do not arise:
 
             >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
             ...     tuplet_ratios=[(1, 4)],
             ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
             ...         avoid_dots=True,
-            ...         preferred_denominator=None,
+            ...         denominator=None,
             ...         ),
             ...     )
 
@@ -251,7 +221,7 @@ class TupletSpecifier(AbjadValueObject):
         ..  container:: example
 
             The preferred denominator of each tuplet is set to the numerator of
-            the division that generates the tuplet when `preferred_denominator`
+            the division that generates the tuplet when `denominator`
             is set to the string ``'divisions'``. This means that the tuplet
             numerator and denominator are not necessarily relatively prime.
             This also means that ratios like ``6:4`` and ``10:8`` may arise:
@@ -260,7 +230,7 @@ class TupletSpecifier(AbjadValueObject):
             ...     tuplet_ratios=[(1, 4)],
             ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
             ...         avoid_dots=True,
-            ...         preferred_denominator='divisions',
+            ...         denominator='divisions',
             ...         ),
             ...     )
 
@@ -310,14 +280,14 @@ class TupletSpecifier(AbjadValueObject):
         ..  container:: example
 
             The preferred denominator of each tuplet is set in terms of a unit
-            duration when `preferred_denominator` is set to a duration. The
+            duration when `denominator` is set to a duration. The
             setting does not affect the first tuplet:
 
             >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
             ...     tuplet_ratios=[(1, 4)],
             ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
             ...         avoid_dots=True,
-            ...         preferred_denominator=(1, 16),
+            ...         denominator=(1, 16),
             ...         ),
             ...     )
 
@@ -373,7 +343,7 @@ class TupletSpecifier(AbjadValueObject):
             ...     tuplet_ratios=[(1, 4)],
             ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
             ...         avoid_dots=True,
-            ...         preferred_denominator=(1, 32),
+            ...         denominator=(1, 32),
             ...         ),
             ...     )
 
@@ -429,7 +399,7 @@ class TupletSpecifier(AbjadValueObject):
             ...     tuplet_ratios=[(1, 4)],
             ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
             ...         avoid_dots=True,
-            ...         preferred_denominator=(1, 64),
+            ...         denominator=(1, 64),
             ...         ),
             ...     )
 
@@ -479,7 +449,7 @@ class TupletSpecifier(AbjadValueObject):
         ..  container:: example
 
             The preferred denominator of each tuplet is set directly when
-            `preferred_denominator` is set to a positive integer. This example
+            `denominator` is set to a positive integer. This example
             sets the preferred denominator of each tuplet to ``8``. Setting
             does not affect the third tuplet:
 
@@ -487,7 +457,7 @@ class TupletSpecifier(AbjadValueObject):
             ...     tuplet_ratios=[(1, 4)],
             ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
             ...         avoid_dots=True,
-            ...         preferred_denominator=8,
+            ...         denominator=8,
             ...         ),
             ...     )
 
@@ -543,7 +513,7 @@ class TupletSpecifier(AbjadValueObject):
             ...     tuplet_ratios=[(1, 4)],
             ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
             ...         avoid_dots=True,
-            ...         preferred_denominator=12,
+            ...         denominator=12,
             ...         ),
             ...     )
 
@@ -599,7 +569,7 @@ class TupletSpecifier(AbjadValueObject):
             ...     tuplet_ratios=[(1, 4)],
             ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
             ...         avoid_dots=True,
-            ...         preferred_denominator=13,
+            ...         denominator=13,
             ...         ),
             ...     )
 
@@ -652,35 +622,45 @@ class TupletSpecifier(AbjadValueObject):
 
         Returns ``'divisions'``, duration, positive integer or none.
         '''
-        return self._preferred_denominator
+        return self._denominator
 
     @property
-    def rewrite_rest_filled_tuplets(self):
+    def diminution(self) -> Union[bool, None]:
+        r'''Is true when tuplet should be spelled as diminution. Otherwise
+        false.
+
+        Defaults to true.
+        '''
+        return self._diminution
+
+    @property
+    def extract_trivial(self) -> Union[bool, None]:
+        r'''Is true when rhythm-maker should extract trivial tuplets.
+
+        Defaults to false.
+        '''
+        return self._extract_trivial
+
+    @property
+    def rewrite_rest_filled(self) -> Union[bool, None]:
         r'''Is true when tuplet should flatten rest-filled tuplets.
         Otherwise false.
 
         Defaults to false.
-
-        Set to true or false.
-
-        Returns true or false.
         '''
-        return self._rewrite_rest_filled_tuplets
+        return self._rewrite_rest_filled
 
     @property
-    def simplify_redundant_tuplets(self):
-        r'''Is true when tuplets should be simplified. Otherwise false.
+    def trivialize(self) -> Union[bool, None]:
+        r'''Is true when trivializable tuplets should be trivialized.
+        Otherwise false.
 
         Defaults to false.
-
-        Set to true or false
-
-        Returns true or false.
         '''
-        return self._simplify_redundant_tuplets
+        return self._trivialize
 
     @property
-    def use_note_duration_bracket(self):
+    def use_note_duration_bracket(self) -> Union[bool, None]:
         r'''Is true when tuplet should override tuplet number text with note
         duration bracket giving tuplet duration. Otherwise false.
 

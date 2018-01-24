@@ -522,7 +522,7 @@ class Leaf(Component):
         assert all(isinstance(_, abjad.Selection) for _ in result_selections)
         return result_selections
 
-    def _to_tuplet_with_ratio(self, proportions, is_diminution=True):
+    def _to_tuplet_with_ratio(self, proportions, diminution=True):
         import abjad
         # check input
         proportions = abjad.Ratio(proportions)
@@ -552,15 +552,15 @@ class Leaf(Component):
         contents_duration = abjad.inspect(notes).get_duration()
         multiplier = target_duration / contents_duration
         tuplet = abjad.Tuplet(multiplier, notes)
-        # fix tuplet contents if necessary
-        tuplet._fix()
+        # normalize tuplet multiplier if necessary
+        tuplet.normalize_multiplier()
         # change prolation if necessary
         if not tuplet.multiplier == 1:
-            if is_diminution:
-                if not tuplet.is_diminution:
+            if diminution:
+                if not tuplet.diminution():
                     tuplet.toggle_prolation()
             else:
-                if tuplet.is_diminution:
+                if tuplet.diminution():
                     tuplet.toggle_prolation()
         # return tuplet
         return tuplet

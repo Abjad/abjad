@@ -315,7 +315,8 @@ def test_scoretools_Tuplet_from_ratio_and_pair_17():
 
     assert format(tuplet) == abjad.String.normalize(
         r'''
-        {
+        \tweak text #tuplet-number::calc-fraction-text
+        \times 1/1 {
             c'16
             r16
             r16
@@ -333,7 +334,8 @@ def test_scoretools_Tuplet_from_ratio_and_pair_18():
 
     assert format(tuplet) == abjad.String.normalize(
         r'''
-        {
+        \tweak text #tuplet-number::calc-fraction-text
+        \times 1/1 {
             c'16
             c'16
             r16
@@ -352,7 +354,8 @@ def test_scoretools_Tuplet_from_ratio_and_pair_19():
 
     assert format(tuplet) == abjad.String.normalize(
         r'''
-        {
+        \tweak text #tuplet-number::calc-fraction-text
+        \times 1/1 {
             c'16
             c'16
             c'16
@@ -372,7 +375,8 @@ def test_scoretools_Tuplet_from_ratio_and_pair_20():
 
     assert format(tuplet) == abjad.String.normalize(
         r'''
-        {
+        \tweak text #tuplet-number::calc-fraction-text
+        \times 1/1 {
             c'16
             c'16
             c'16

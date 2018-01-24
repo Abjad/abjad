@@ -9,7 +9,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_01():
         duration,
         [1],
         avoid_dots=True,
-        is_diminution=False,
+        diminution=False,
         )
 
     assert format(tuplet) == abjad.String.normalize(
@@ -25,7 +25,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_01():
         duration,
         [1, 1],
         avoid_dots=True,
-        is_diminution=False,
+        diminution=False,
         )
 
     assert format(tuplet) == abjad.String.normalize(
@@ -42,12 +42,13 @@ def test_scoretools_Tuplet_from_duration_and_ratio_01():
         duration,
         [1, 1, 1],
         avoid_dots=True,
-        is_diminution=False,
+        diminution=False,
         )
 
     assert format(tuplet) == abjad.String.normalize(
         r'''
-        {
+        \tweak text #tuplet-number::calc-fraction-text
+        \times 1/1 {
             c'16
             c'16
             c'16
@@ -59,7 +60,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_01():
         duration,
         [1, 1, 1, 1],
         avoid_dots=True,
-        is_diminution=False,
+        diminution=False,
         )
 
     assert format(tuplet) == abjad.String.normalize(
@@ -78,7 +79,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_01():
         duration,
         [1, 1, 1, 1, 1],
         avoid_dots=True,
-        is_diminution=False,
+        diminution=False,
         )
 
     assert format(tuplet) == abjad.String.normalize(
@@ -103,7 +104,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_02():
         duration,
         [1],
         avoid_dots=True,
-        is_diminution=False,
+        diminution=False,
         )
 
     assert format(tuplet) == abjad.String.normalize(
@@ -119,12 +120,13 @@ def test_scoretools_Tuplet_from_duration_and_ratio_02():
         duration,
         [1, 2],
         avoid_dots=True,
-        is_diminution=False,
+        diminution=False,
         )
 
     assert format(tuplet) == abjad.String.normalize(
         r'''
-        {
+        \tweak text #tuplet-number::calc-fraction-text
+        \times 1/1 {
             c'16
             c'8
         }
@@ -135,7 +137,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_02():
         duration,
         [1, 2, 2],
         avoid_dots=True,
-        is_diminution=False,
+        diminution=False,
         )
 
     assert format(tuplet) == abjad.String.normalize(
@@ -153,7 +155,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_02():
         duration,
         [1, 2, 2, 3],
         avoid_dots=True,
-        is_diminution=False,
+        diminution=False,
         )
 
     assert format(tuplet) == abjad.String.normalize(
@@ -172,7 +174,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_02():
         duration,
         [1, 2, 2, 3, 3],
         avoid_dots=True,
-        is_diminution=False,
+        diminution=False,
         )
 
     assert format(tuplet) == abjad.String.normalize(
@@ -199,7 +201,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_03():
         duration,
         [1, -2, -2, 3, 3],
         avoid_dots=True,
-        is_diminution=False,
+        diminution=False,
         )
 
     assert format(tuplet) == abjad.String.normalize(
@@ -226,14 +228,14 @@ def test_scoretools_Tuplet_from_duration_and_ratio_04():
         duration,
         [1, -2, -2, 3, 3],
         avoid_dots=True,
-        is_diminution=False,
+        diminution=False,
         )
 
     tuplet_2 = abjad.Tuplet.from_duration_and_ratio(
         duration,
         [2, -4, -4, 6, 6],
         avoid_dots=True,
-        is_diminution=False,
+        diminution=False,
         )
 
     assert format(tuplet_1) == format(tuplet_2)
@@ -242,12 +244,13 @@ def test_scoretools_Tuplet_from_duration_and_ratio_04():
         abjad.Duration(1, 8),
         [27],
         avoid_dots=True,
-        is_diminution=False,
+        diminution=False,
         )
 
     assert format(tuplet) == abjad.String.normalize(
         r'''
-        {
+        \tweak text #tuplet-number::calc-fraction-text
+        \times 1/1 {
             c'8
         }
         '''
@@ -262,12 +265,13 @@ def test_scoretools_Tuplet_from_duration_and_ratio_05():
         duration,
         [1],
         avoid_dots=False,
-        is_diminution=False,
+        diminution=False,
         )
 
     assert format(tuplet) == abjad.String.normalize(
         r'''
-        {
+        \tweak text #tuplet-number::calc-fraction-text
+        \times 1/1 {
             c'8.
         }
         '''
@@ -277,12 +281,13 @@ def test_scoretools_Tuplet_from_duration_and_ratio_05():
         duration,
         [1, 1],
         avoid_dots=False,
-        is_diminution=False,
+        diminution=False,
         )
 
     assert format(tuplet) == abjad.String.normalize(
         r'''
-        {
+        \tweak text #tuplet-number::calc-fraction-text
+        \times 1/1 {
             c'16.
             c'16.
         }
@@ -293,12 +298,13 @@ def test_scoretools_Tuplet_from_duration_and_ratio_05():
         duration,
         [1, 1, 1],
         avoid_dots=False,
-        is_diminution=False,
+        diminution=False,
         )
 
     assert format(tuplet) == abjad.String.normalize(
         r'''
-        {
+        \tweak text #tuplet-number::calc-fraction-text
+        \times 1/1 {
             c'16
             c'16
             c'16
@@ -310,12 +316,13 @@ def test_scoretools_Tuplet_from_duration_and_ratio_05():
         duration,
         [1, 1, 1, 1],
         avoid_dots=False,
-        is_diminution=False,
+        diminution=False,
         )
 
     assert format(tuplet) == abjad.String.normalize(
         r'''
-        {
+        \tweak text #tuplet-number::calc-fraction-text
+        \times 1/1 {
             c'32.
             c'32.
             c'32.
@@ -328,7 +335,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_05():
         duration,
         [1, 1, 1, 1, 1],
         avoid_dots=False,
-        is_diminution=False,
+        diminution=False,
         )
 
     assert format(tuplet) == abjad.String.normalize(
@@ -353,12 +360,13 @@ def test_scoretools_Tuplet_from_duration_and_ratio_06():
         duration,
         [1],
         avoid_dots=False,
-        is_diminution=False,
+        diminution=False,
         )
 
     assert format(tuplet) == abjad.String.normalize(
         r'''
-        {
+        \tweak text #tuplet-number::calc-fraction-text
+        \times 1/1 {
             c'8.
         }
         '''
@@ -368,12 +376,13 @@ def test_scoretools_Tuplet_from_duration_and_ratio_06():
         duration,
         [1, 2],
         avoid_dots=False,
-        is_diminution=False,
+        diminution=False,
         )
 
     assert format(tuplet) == abjad.String.normalize(
         r'''
-        {
+        \tweak text #tuplet-number::calc-fraction-text
+        \times 1/1 {
             c'16
             c'8
         }
@@ -384,7 +393,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_06():
         duration,
         [1, 2, 2],
         avoid_dots=False,
-        is_diminution=False,
+        diminution=False,
         )
 
     assert format(tuplet) == abjad.String.normalize(
@@ -402,7 +411,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_06():
         duration,
         [1, 2, 2, 3],
         avoid_dots=False,
-        is_diminution=False,
+        diminution=False,
         )
 
     assert format(tuplet) == abjad.String.normalize(
@@ -421,7 +430,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_06():
         duration,
         [1, 2, 2, 3, 3],
         avoid_dots=False,
-        is_diminution=False,
+        diminution=False,
         )
 
     assert format(tuplet) == abjad.String.normalize(
@@ -448,14 +457,14 @@ def test_scoretools_Tuplet_from_duration_and_ratio_07():
         duration,
         [1, 2, 2, 3, 3],
         avoid_dots=False,
-        is_diminution=False,
+        diminution=False,
         )
 
     tuplet_2 = abjad.Tuplet.from_duration_and_ratio(
         duration,
         [2, 4, 4, 6, 6],
         avoid_dots=False,
-        is_diminution=False,
+        diminution=False,
         )
 
     assert format(tuplet_1) == format(tuplet_2)
@@ -463,12 +472,13 @@ def test_scoretools_Tuplet_from_duration_and_ratio_07():
     tuplet = abjad.Tuplet.from_duration_and_ratio(
         abjad.Duration(1, 8),
         [27], avoid_dots=False,
-        is_diminution=False,
+        diminution=False,
         )
 
     assert format(tuplet) == abjad.String.normalize(
         r'''
-        {
+        \tweak text #tuplet-number::calc-fraction-text
+        \times 1/1 {
             c'8
         }
         '''
@@ -483,7 +493,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_08():
         duration,
         [1],
         avoid_dots=True,
-        is_diminution=True,
+        diminution=True,
         )
 
     assert format(tuplet) == abjad.String.normalize(
@@ -499,7 +509,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_08():
         duration,
         [1, 1],
         avoid_dots=True,
-        is_diminution=True,
+        diminution=True,
         )
 
     assert format(tuplet) == abjad.String.normalize(
@@ -516,12 +526,13 @@ def test_scoretools_Tuplet_from_duration_and_ratio_08():
         duration,
         [1, 1, 1],
         avoid_dots=True,
-        is_diminution=True,
+        diminution=True,
         )
 
     assert format(tuplet) == abjad.String.normalize(
         r'''
-        {
+        \tweak text #tuplet-number::calc-fraction-text
+        \times 1/1 {
             c'16
             c'16
             c'16
@@ -533,7 +544,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_08():
         duration,
         [1, 1, 1, 1],
         avoid_dots=True,
-        is_diminution=True,
+        diminution=True,
         )
 
     assert format(tuplet) == abjad.String.normalize(
@@ -552,7 +563,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_08():
         duration,
         [1, 1, 1, 1, 1],
         avoid_dots=True,
-        is_diminution=True,
+        diminution=True,
         )
 
     assert format(tuplet) == abjad.String.normalize(
@@ -577,7 +588,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_09():
         duration,
         [1],
         avoid_dots=True,
-        is_diminution=True,
+        diminution=True,
         )
 
     assert format(tuplet) == abjad.String.normalize(
@@ -593,12 +604,13 @@ def test_scoretools_Tuplet_from_duration_and_ratio_09():
         duration,
         [1, 2],
         avoid_dots=True,
-        is_diminution=True,
+        diminution=True,
         )
 
     assert format(tuplet) == abjad.String.normalize(
         r'''
-        {
+        \tweak text #tuplet-number::calc-fraction-text
+        \times 1/1 {
             c'16
             c'8
         }
@@ -609,7 +621,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_09():
         duration,
         [1, 2, 2],
         avoid_dots=True,
-        is_diminution=True,
+        diminution=True,
         )
 
     assert format(tuplet) == abjad.String.normalize(
@@ -627,7 +639,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_09():
         duration,
         [1, 2, 2, 3],
         avoid_dots=True,
-        is_diminution=True,
+        diminution=True,
         )
 
     assert format(tuplet) == abjad.String.normalize(
@@ -646,7 +658,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_09():
         duration,
         [1, 2, 2, 3, 3],
         avoid_dots=True,
-        is_diminution=True,
+        diminution=True,
         )
 
     assert format(tuplet) == abjad.String.normalize(
@@ -673,7 +685,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_10():
         duration,
         [1, -2, -2, 3, 3],
         avoid_dots=True,
-        is_diminution=True,
+        diminution=True,
         )
 
     assert format(tuplet) == abjad.String.normalize(
@@ -700,14 +712,14 @@ def test_scoretools_Tuplet_from_duration_and_ratio_11():
         duration,
         [1, -2, -2, 3, 3],
         avoid_dots=True,
-        is_diminution=True,
+        diminution=True,
         )
 
     tuplet_2 = abjad.Tuplet.from_duration_and_ratio(
         duration,
         [2, -4, -4, 6, 6],
         avoid_dots=True,
-        is_diminution=True,
+        diminution=True,
         )
 
     assert format(tuplet_1) == format(tuplet_2)
@@ -716,7 +728,8 @@ def test_scoretools_Tuplet_from_duration_and_ratio_11():
 
     assert format(tuplet) == abjad.String.normalize(
         r'''
-        {
+        \tweak text #tuplet-number::calc-fraction-text
+        \times 1/1 {
             c'8
         }
         '''
@@ -731,12 +744,13 @@ def test_scoretools_Tuplet_from_duration_and_ratio_12():
         duration,
         [1],
         avoid_dots=False,
-        is_diminution=True,
+        diminution=True,
         )
 
     assert format(tuplet) == abjad.String.normalize(
         r'''
-        {
+        \tweak text #tuplet-number::calc-fraction-text
+        \times 1/1 {
             c'8.
         }
         '''
@@ -746,12 +760,13 @@ def test_scoretools_Tuplet_from_duration_and_ratio_12():
         duration,
         [1, 1],
         avoid_dots=False,
-        is_diminution=True,
+        diminution=True,
         )
 
     assert format(tuplet) == abjad.String.normalize(
         r'''
-        {
+        \tweak text #tuplet-number::calc-fraction-text
+        \times 1/1 {
             c'16.
             c'16.
         }
@@ -762,12 +777,13 @@ def test_scoretools_Tuplet_from_duration_and_ratio_12():
         duration,
         [1, 1, 1],
         avoid_dots=False,
-        is_diminution=True,
+        diminution=True,
         )
 
     assert format(tuplet) == abjad.String.normalize(
         r'''
-        {
+        \tweak text #tuplet-number::calc-fraction-text
+        \times 1/1 {
             c'16
             c'16
             c'16
@@ -779,12 +795,13 @@ def test_scoretools_Tuplet_from_duration_and_ratio_12():
         duration,
         [1, 1, 1, 1],
         avoid_dots=False,
-        is_diminution=True,
+        diminution=True,
         )
 
     assert format(tuplet) == abjad.String.normalize(
         r'''
-        {
+        \tweak text #tuplet-number::calc-fraction-text
+        \times 1/1 {
             c'32.
             c'32.
             c'32.
@@ -797,7 +814,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_12():
         duration,
         [1, 1, 1, 1, 1],
         avoid_dots=False,
-        is_diminution=True,
+        diminution=True,
         )
 
     assert format(tuplet) == abjad.String.normalize(
@@ -821,12 +838,13 @@ def test_scoretools_Tuplet_from_duration_and_ratio_13():
         duration,
         [1],
         avoid_dots=False,
-        is_diminution=True,
+        diminution=True,
         )
 
     assert format(tuplet) == abjad.String.normalize(
         r'''
-        {
+        \tweak text #tuplet-number::calc-fraction-text
+        \times 1/1 {
             c'8.
         }
         '''
@@ -836,12 +854,13 @@ def test_scoretools_Tuplet_from_duration_and_ratio_13():
         duration,
         [1, 2],
         avoid_dots=False,
-        is_diminution=True,
+        diminution=True,
         )
 
     assert format(tuplet) == abjad.String.normalize(
         r'''
-        {
+        \tweak text #tuplet-number::calc-fraction-text
+        \times 1/1 {
             c'16
             c'8
         }
@@ -852,7 +871,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_13():
         duration,
         [1, 2, 2],
         avoid_dots=False,
-        is_diminution=True,
+        diminution=True,
         )
 
     assert format(tuplet) == abjad.String.normalize(
@@ -869,7 +888,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_13():
         duration,
         [1, 2, 2, 3],
         avoid_dots=False,
-        is_diminution=True,
+        diminution=True,
         )
 
     assert format(tuplet) == abjad.String.normalize(
@@ -888,7 +907,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_13():
         duration,
         [1, 2, 2, 3, 3],
         avoid_dots=False,
-        is_diminution=True,
+        diminution=True,
         )
 
     assert format(tuplet) == abjad.String.normalize(
@@ -915,14 +934,14 @@ def test_scoretools_Tuplet_from_duration_and_ratio_14():
         duration,
         [1, -2, -2, 3, 3],
         avoid_dots=False,
-        is_diminution=True,
+        diminution=True,
         )
 
     tuplet_2 = abjad.Tuplet.from_duration_and_ratio(
         duration,
         [2, -4, -4, 6, 6],
         avoid_dots=False,
-        is_diminution=True,
+        diminution=True,
         )
 
     assert format(tuplet_1) == format(tuplet_2)
@@ -931,12 +950,13 @@ def test_scoretools_Tuplet_from_duration_and_ratio_14():
         abjad.Duration(1, 8),
         [27],
         avoid_dots=False,
-        is_diminution=True,
+        diminution=True,
         )
 
     assert format(tuplet) == abjad.String.normalize(
         r'''
-        {
+        \tweak text #tuplet-number::calc-fraction-text
+        \times 1/1 {
             c'8
         }
         '''
@@ -951,7 +971,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_15():
         abjad.Duration(1, 4),
         [1, -1, 1],
         avoid_dots=True,
-        is_diminution=True,
+        diminution=True,
         )
 
     assert format(tuplet) == abjad.String.normalize(

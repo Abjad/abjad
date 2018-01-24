@@ -124,13 +124,14 @@ class Multiplier(Duration):
 
     ### PUBLIC PROPERTIES ###
 
-    @property
-    def is_proper_tuplet_multiplier(self):
+    def normalized(self):
         '''Is true when mutliplier is greater than ``1/2`` and less than ``2``.
         Otherwise false:
 
-        >>> abjad.Multiplier(3, 2).is_proper_tuplet_multiplier
-        True
+        ..  container:: example
+
+            >>> abjad.Multiplier(3, 2).normalized()
+            True
 
         Returns true or false.
         '''

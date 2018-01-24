@@ -57,7 +57,7 @@ def parse_rtm_syntax(rtm):
         tuplet = node((1, 4))
         # following line added 2012-08-01. tb.
         tuplet = tuplet[0]
-        if tuplet.is_trivial:
+        if tuplet.trivial():
             con.extend(tuplet[:])
         else:
             con.append(tuplet)

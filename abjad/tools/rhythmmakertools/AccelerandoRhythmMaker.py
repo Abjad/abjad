@@ -780,7 +780,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
             override(selection[0]).beam.grow_direction = abjad.Left
         tuplet = abjad.Tuplet((1, 1), selection)
         if tuplet_specifier.use_note_duration_bracket:
-            tuplet.force_times_command = True
+            #tuplet.force_times_command = True
             duration = inspect(tuplet).get_duration()
             markup = duration.to_score_markup()
             markup = markup.scale((0.75, 0.75))
@@ -2406,7 +2406,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                     } % measure
                     { % measure
                         \time 1/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8
                         }
                     } % measure
@@ -3789,7 +3790,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     { % measure
                         \time 5/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             \once \override Beam.grow-direction = #right
                             c'16 * 61/32 [
                             c'16 * 115/64
@@ -3803,7 +3805,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                     } % measure
                     { % measure
                         \time 3/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             \once \override Beam.grow-direction = #right
                             c'16 * 117/64 [
                             c'16 * 99/64
@@ -3814,7 +3817,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                     } % measure
                     { % measure
                         \time 5/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             \once \override Beam.grow-direction = #right
                             c'16 * 61/32 [
                             c'16 * 115/64
@@ -3828,7 +3832,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                     } % measure
                     { % measure
                         \time 3/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             \once \override Beam.grow-direction = #right
                             c'16 * 117/64 [
                             c'16 * 99/64

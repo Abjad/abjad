@@ -96,7 +96,7 @@ class ScoreTemplate(abctools.AbjadValueObject):
                     voice_might_vanish = False
                     for component in abjad.inspect(voice).get_parentage():
                         if abjad.inspect(component).get_annotation(
-                            'REMOVE_ALL_EMPTY_STAVES',
+                            abjad.tags.REMOVE_ALL_EMPTY_STAVES
                             ) is True:
                             voice_might_vanish = True
                     if not voice_might_vanish:

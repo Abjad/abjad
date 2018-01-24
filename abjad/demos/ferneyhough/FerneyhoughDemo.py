@@ -38,21 +38,26 @@ class FerneyhoughDemo(object):
                 tupletFullLength = ##t
             } <<
                 \new RhythmicStaff {
-                    {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 1/1 {
                         \time 1/4
                         c'8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8
                         }
                     }
-                    {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 1/1 {
                         c'8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'16
                             c'16
                         }
                     }
-                    {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 1/1 {
                         c'8
                         \times 2/3 {
                             c'16
@@ -60,16 +65,19 @@ class FerneyhoughDemo(object):
                             c'16
                         }
                     }
-                    {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 1/1 {
                         c'8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'32
                             c'32
                             c'32
                             c'32
                         }
                     }
-                    {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 1/1 {
                         c'8
                         \times 4/5 {
                             c'32
@@ -79,7 +87,8 @@ class FerneyhoughDemo(object):
                             c'32
                         }
                     }
-                    {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 1/1 {
                         c'8
                         \times 2/3 {
                             c'32
@@ -95,13 +104,15 @@ class FerneyhoughDemo(object):
                     \times 2/3 {
                         \time 1/4
                         c'8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'4
                         }
                     }
                     \times 2/3 {
                         c'8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8
                             c'8
                         }
@@ -116,7 +127,8 @@ class FerneyhoughDemo(object):
                     }
                     \times 2/3 {
                         c'8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'16
                             c'16
                             c'16
@@ -146,7 +158,8 @@ class FerneyhoughDemo(object):
                     }
                 }
                 \new RhythmicStaff {
-                    {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 1/1 {
                         \time 1/4
                         c'16
                         \tweak text #tuplet-number::calc-fraction-text
@@ -154,7 +167,8 @@ class FerneyhoughDemo(object):
                             c'4
                         }
                     }
-                    {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 1/1 {
                         c'16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/4 {
@@ -162,15 +176,18 @@ class FerneyhoughDemo(object):
                             c'8
                         }
                     }
-                    {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 1/1 {
                         c'16
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'16
                             c'16
                             c'16
                         }
                     }
-                    {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 1/1 {
                         c'16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/4 {
@@ -180,7 +197,8 @@ class FerneyhoughDemo(object):
                             c'16
                         }
                     }
-                    {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 1/1 {
                         c'16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
@@ -191,9 +209,11 @@ class FerneyhoughDemo(object):
                             c'16
                         }
                     }
-                    {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 1/1 {
                         c'16
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'32
                             c'32
                             c'32
@@ -207,13 +227,15 @@ class FerneyhoughDemo(object):
                     \times 4/5 {
                         \time 1/4
                         c'16
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'4
                         }
                     }
                     \times 4/5 {
                         c'16
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8
                             c'8
                         }
@@ -228,7 +250,8 @@ class FerneyhoughDemo(object):
                     }
                     \times 4/5 {
                         c'16
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'16
                             c'16
                             c'16
@@ -295,7 +318,8 @@ class FerneyhoughDemo(object):
                     }
                     \times 2/3 {
                         c'16
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'16
                             c'16
                             c'16
@@ -335,7 +359,8 @@ class FerneyhoughDemo(object):
                     }
                     \times 4/7 {
                         c'16
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8
                             c'8
                             c'8
@@ -364,7 +389,8 @@ class FerneyhoughDemo(object):
                     }
                     \times 4/7 {
                         c'16
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'16
                             c'16
                             c'16
@@ -375,7 +401,8 @@ class FerneyhoughDemo(object):
                     }
                 }
                 \new RhythmicStaff {
-                    {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 1/1 {
                         \time 1/4
                         c'32
                         \tweak text #tuplet-number::calc-fraction-text
@@ -383,7 +410,8 @@ class FerneyhoughDemo(object):
                             c'4
                         }
                     }
-                    {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 1/1 {
                         c'32
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 7/8 {
@@ -391,7 +419,8 @@ class FerneyhoughDemo(object):
                             c'8
                         }
                     }
-                    {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 1/1 {
                         c'32
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 7/12 {
@@ -400,7 +429,8 @@ class FerneyhoughDemo(object):
                             c'8
                         }
                     }
-                    {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 1/1 {
                         c'32
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 7/8 {
@@ -410,7 +440,8 @@ class FerneyhoughDemo(object):
                             c'16
                         }
                     }
-                    {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 1/1 {
                         c'32
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 7/10 {
@@ -421,7 +452,8 @@ class FerneyhoughDemo(object):
                             c'16
                         }
                     }
-                    {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 1/1 {
                         c'32
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 7/12 {
@@ -438,13 +470,15 @@ class FerneyhoughDemo(object):
                     \times 8/9 {
                         \time 1/4
                         c'32
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'4
                         }
                     }
                     \times 8/9 {
                         c'32
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8
                             c'8
                         }
@@ -459,7 +493,8 @@ class FerneyhoughDemo(object):
                     }
                     \times 8/9 {
                         c'32
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'16
                             c'16
                             c'16
@@ -586,7 +621,8 @@ class FerneyhoughDemo(object):
                     }
                     \times 8/11 {
                         c'32
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'16
                             c'16
                             c'16
