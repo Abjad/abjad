@@ -1578,9 +1578,9 @@ class TaleaRhythmMaker(RhythmMaker):
 
     @property
     def duration_specifier(self):
-        r'''Gets duration spelling specifier.
+        r'''Gets duration specifier.
 
-        Several duration spelling specifier configurations are available.
+        Several duration specifier configurations are available.
 
         ..  container:: example
 
@@ -1924,9 +1924,9 @@ class TaleaRhythmMaker(RhythmMaker):
                     } % measure
                 }
 
-        Set to duration spelling specifier or none.
+        Set to duration specifier or none.
 
-        Returns duration spelling specifier or none.
+        Returns duration specifier or none.
         '''
         return RhythmMaker.duration_specifier.fget(self)
 
@@ -3079,11 +3079,13 @@ class TaleaRhythmMaker(RhythmMaker):
 
     @property
     def tuplet_specifier(self):
-        r'''Gets tuplet spelling specifier.
+        r'''Gets tuplet specifier.
 
         ..  container:: example
 
-            Redudant tuplets with no tuplet spelling specifier:
+            Leaves redundant tuplets as-is when no tuplet specifier is given.
+            The tuplets in measures 2 and 4 can be written as trivial tuplets,
+            but they are not:
 
             >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
             ...     extra_counts_per_division=[0, 4],
@@ -3137,7 +3139,9 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            Simplifies redundant tuplets:
+            Rewrites trivializable tuplets as trivial (1:1) tuplets when
+            `simplify_redundant_tuplets` is true. The tuplets in measures 2 and
+            4 do not look like tuplets because their multipliers are 1:1:
 
             >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
             ...     extra_counts_per_division=[0, 4],
@@ -3192,9 +3196,128 @@ class TaleaRhythmMaker(RhythmMaker):
                     } % measure
                 }
 
+            REGRESSION #907a. Simplifies redundant tuplets even when redundant
+            tuplets contain multiple ties:
+
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     extra_counts_per_division=[0, 4],
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[3, 3, 6, 6],
+            ...         denominator=16,
+            ...         ),
+            ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
+            ...         tie_across_divisions=True,
+            ...         ),
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         simplify_redundant_tuplets=True,
+            ...         ),
+            ...     )
+
+            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(lilypond_file[abjad.Staff])
+                \new RhythmicStaff {
+                    { % measure
+                        \time 3/8
+                        {
+                            c'8. [
+                            c'8. ~ ]
+                        }
+                    } % measure
+                    { % measure
+                        \time 4/8
+                        {
+                            c'4
+                            c'4 ~
+                        }
+                    } % measure
+                    { % measure
+                        \time 3/8
+                        {
+                            c'8. [
+                            c'8. ~ ]
+                        }
+                    } % measure
+                    { % measure
+                        \time 4/8
+                        {
+                            c'4
+                            c'4
+                        }
+                    } % measure
+                }
+
+            REGRESSION #907b. Simplifies redundant tuplets even when redundant
+            tuplets contain very long ties:
+
+            >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
+            ...     extra_counts_per_division=[0, 4],
+            ...     talea=abjad.rhythmmakertools.Talea(
+            ...         counts=[3, 3, 6, 6],
+            ...         denominator=16,
+            ...         ),
+            ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
+            ...         tie_across_divisions=True,
+            ...         tie_consecutive_notes=True,
+            ...         ),
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         simplify_redundant_tuplets=True,
+            ...         ),
+            ...     )
+
+            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(lilypond_file[abjad.Staff])
+                \new RhythmicStaff {
+                    { % measure
+                        \time 3/8
+                        {
+                            c'8. ~ [
+                            c'8. ~ ]
+                        }
+                    } % measure
+                    { % measure
+                        \time 4/8
+                        {
+                            c'4 ~
+                            c'4 ~
+                        }
+                    } % measure
+                    { % measure
+                        \time 3/8
+                        {
+                            c'8. ~ [
+                            c'8. ~ ]
+                        }
+                    } % measure
+                    { % measure
+                        \time 4/8
+                        {
+                            c'4 ~
+                            c'4
+                        }
+                    } % measure
+                }
+
         ..  container:: example
 
-            Rest-filled tuplets with no tuplet spelling specifier:
+            Rest-filled tuplets with no tuplet specifier:
 
             >>> rhythm_maker = abjad.rhythmmakertools.TaleaRhythmMaker(
             ...     extra_counts_per_division=[1, 0],
@@ -3311,9 +3434,9 @@ class TaleaRhythmMaker(RhythmMaker):
                     } % measure
                 }
 
-        Set to tuplet spelling specifier or none.
+        Set to tuplet specifier or none.
 
-        Returns tuplet spelling specifier or none.
+        Returns tuplet specifier or none.
         '''
         superclass = super(TaleaRhythmMaker, self)
         return superclass.tuplet_specifier

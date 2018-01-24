@@ -759,7 +759,7 @@ class NoteRhythmMaker(RhythmMaker):
 
     @property
     def duration_specifier(self):
-        r'''Gets duration spelling specifier.
+        r'''Gets duration specifier.
 
         ..  container:: example
 
@@ -990,7 +990,7 @@ class NoteRhythmMaker(RhythmMaker):
                     } % measure
                 }
 
-        Returns duration spelling specifier or none.
+        Returns duration specifier or none.
         '''
         return RhythmMaker.duration_specifier.fget(self)
 
@@ -1372,7 +1372,7 @@ class NoteRhythmMaker(RhythmMaker):
 
     @property
     def tuplet_specifier(self):
-        r'''Gets tuplet spelling specifier.
+        r'''Gets tuplet specifier.
 
         ..  container:: example
 
@@ -1450,7 +1450,7 @@ class NoteRhythmMaker(RhythmMaker):
                     } % measure
                 }
 
-        Returns tuplet spelling specifier or none.
+        Returns tuplet specifier or none.
         '''
         superclass = super(NoteRhythmMaker, self)
         return superclass.tuplet_specifier

@@ -60,9 +60,8 @@ if __name__ == '__main__':
         sys.exit(1)
 
     try:
-        segment = ide.Path(__file__).parent
-        ly = segment('illustration.ly')
-        result = abjad.persist(lilypond_file).as_ly(ly, strict=89)
+        illustration_ly = segment('illustration.ly')
+        result = abjad.persist(lilypond_file).as_ly(illustration_ly, strict=89)
         abjad_format_time = int(result[1])
         count = abjad_format_time
         counter = abjad.String('second').pluralize(count)
@@ -79,90 +78,28 @@ if __name__ == '__main__':
         text = ly.read_text()
         text = abjad.LilyPondFormatManager.left_shift_tags(text, realign=89)
         ly.write_text(text)
-        tag = f'+{{abjad.tags.SEGMENT}}'
-        text, count = ly.activate_tag(tag)
-        messages = ide.AbjadIDE._message_activate(None, tag, count)
-        for message in messages:
-            print(abjad.String(message).capitalize_start())
-        ly.write_text(text)
-        tag = f'-{{abjad.tags.SEGMENT}}'
-        text, count = ly.deactivate_tag(tag)
-        messages = ide.AbjadIDE._message_deactivate(None, tag, count)
-        for message in messages:
-            print(abjad.String(message).capitalize_start())
-        ly.write_text(text)
-        text, count = ly.deactivate_tag(
-            lambda tags: bool(set(tags) & set(abjad.tags.markup_tags)),
-            )
-        messages = ide.AbjadIDE._message_deactivate(
-            None,
-            tag,
-            count,
-            name='markup',
-            )
-        for message in messages:
-            print(abjad.String(message).capitalize_start())
-        ly.write_text(text)
+        result = ly.activate('+SEGMENT')
+        for message in result[-1]:
+            print(message)
+        result = ly.deactivate('-SEGMENT')
+        for message in result[-1]:
+            print(message)
+        tags_ = abjad.tags.all_score_annotation_tags()
+        match = lambda tags: bool(set(tags) & set(tags_))
+        result = ly.deactivate(match, name='score annotation')
+        for message in result[-1]:
+            print(message)
     except:
         traceback.print_exc()
         sys.exit(1)
 
-    # deactivate bar line adjustments after non-EOL fermata measures:
     try:
-        bol_measure_numbers = segment.get_metadatum('bol_measure_numbers')
-        if bol_measure_numbers is not None:
-            eol_measure_numbers = [_ - 1 for _ in bol_measure_numbers[1:]]
-            last_measure_number = segment.get_metadatum('last_measure_number')
-            eol_measure_numbers.append(last_measure_number)
-            eol_measure_numbers = [
-                f'MEASURE_{{_}}' for _ in eol_measure_numbers
-                ]
-            tag = abjad.tags.BAR_LINE_ADJUSTMENT_AFTER_EOL_FERMATA
-            def match(tags):
-                if tag not in tags:
-                    return False
-                if any(_ in tags for _ in eol_measure_numbers):
-                    return False
-                return True
-            text, count = ly.deactivate_tag(match)
-            name = abjad.tags.BAR_LINE_ADJUSTMENT_AFTER_EOL_FERMATA
-            messages = ide.AbjadIDE._message_deactivate(
-                None,
-                tag,
-                count,
-                name=name,
-                )
-            for message in messages:
-                print(abjad.String(message).capitalize_start())
-            ly.write_text(text)
-    except:
-        traceback.print_exc()
-        sys.exit(1)
-
-    # deactivate shifted clefs at BOL measures:
-    try:
-        bol_measure_numbers = segment.get_metadatum('bol_measure_numbers')
-        if bol_measure_numbers is not None:
-            bol_measure_numbers = [
-                f'MEASURE_{{_}}' for _ in bol_measure_numbers
-                ]
-            def match(tags):
-                if abjad.tags.SHIFTED_CLEF not in tags:
-                    return False
-                if any(_ in tags for _ in bol_measure_numbers):
-                    return True
-                return False
-            text, count = ly.deactivate_tag(match)
-            name = abjad.tags.SHIFTED_CLEF
-            messages = ide.AbjadIDE._message_deactivate(
-                None,
-                tag,
-                count,
-                name=name,
-                )
-            for message in messages:
-                print(abjad.String(message).capitalize_start())
-            ly.write_text(text)
+        result = segment._deactivate_bar_line_adjustment()
+        for message in result[-1]:
+            print(message)
+        result = segment._deactivate_shifted_clef_at_bol()
+        for message in result[-1]:
+            print(message)
     except:
         traceback.print_exc()
         sys.exit(1)

@@ -2,7 +2,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class DurationSpecifier(AbjadValueObject):
-    r'''Duration spelling specifier.
+    r'''Duration specifier.
     '''
 
     ### CLASS VARIABLES ###
@@ -50,7 +50,7 @@ class DurationSpecifier(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
-        r'''Formats duration spelling specifier.
+        r'''Formats duration specifier.
 
         ..  container:: example
 
@@ -90,7 +90,6 @@ class DurationSpecifier(AbjadValueObject):
         repeat_ties=False,
         ):
         import abjad
-        from abjad.tools.topleveltools import mutate
         meters = [abjad.Meter(_) for _ in meters]
         durations = [abjad.Duration(_) for _ in meters]
         reference_meters = reference_meters or ()
@@ -102,13 +101,13 @@ class DurationSpecifier(AbjadValueObject):
         maker = abjad.MeasureMaker()
         measures = maker(durations)
         staff = abjad.Staff(measures)
-        mutate(staff).replace_measure_contents(selections)
+        abjad.mutate(staff).replace_measure_contents(selections)
         for measure, meter in zip(staff, meters):
             for reference_meter in reference_meters:
                 if str(reference_meter) == str(meter):
                     meter = reference_meter
                     break
-            mutate(measure[:]).rewrite_meter(
+            abjad.mutate(measure[:]).rewrite_meter(
                 meter,
                 rewrite_tuplets=rewrite_tuplets,
                 repeat_ties=repeat_ties,

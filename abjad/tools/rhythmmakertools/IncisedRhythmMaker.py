@@ -576,7 +576,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
     @property
     def duration_specifier(self):
-        r'''Gets duration spelling specifier.
+        r'''Gets duration specifier.
 
         ..  container:: example
 
@@ -818,7 +818,7 @@ class IncisedRhythmMaker(RhythmMaker):
                     } % measure
                 }
 
-        Returns duration spelling specifier or none.
+        Returns duration specifier or none.
         '''
         superclass = super(IncisedRhythmMaker, self)
         return superclass.duration_specifier
@@ -1514,11 +1514,11 @@ class IncisedRhythmMaker(RhythmMaker):
 
     @property
     def tuplet_specifier(self):
-        r'''Gets tuplet spelling specifier.
+        r'''Gets tuplet specifier.
 
         ..  note:: not yet implemented.
 
-        Returns tuplet spelling specifier or none.
+        Returns tuplet specifier or none.
         '''
         superclass = super(IncisedRhythmMaker, self)
         return superclass.tuplet_specifier

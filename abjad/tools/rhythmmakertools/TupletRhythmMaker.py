@@ -1466,7 +1466,7 @@ class TupletRhythmMaker(RhythmMaker):
 
     @property
     def tuplet_specifier(self):
-        r'''Gets tuplet spelling specifier.
+        r'''Gets tuplet specifier.
 
         ..  container:: example
 
@@ -1662,7 +1662,8 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            Does not simplify tuplets:
+            Leaves redundant tuplets as-is when `simplify_redundant_tuplets` is
+            false:
 
             >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
             ...     tuplet_ratios=[(3, -2), (1,), (-2, 3), (1, 1)],
@@ -1716,7 +1717,11 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            Simplifies tuplets:
+            Turns redundant tuplets into trivial tuplets when
+            `simplify_redundant_tuplets` is true. Each measure below still
+            contains a tuplet; but measures 2 and 4 contain an (invisible)
+            trivial tuplet with a 1:1 ratio. To remove these trivial tuplets,
+            set `flatten_trivial_tuplets` as shown in the next example:
 
             >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
             ...     tuplet_ratios=[(3, -2), (1,), (-2, 3), (1, 1)],
@@ -1768,7 +1773,10 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            Leaves trivial tuplets enclosed in curly braces in LilyPond output:
+            Leaves trivial tuplets as-is when `flatten_trivial_tuplets` is
+            false. This is difficult to see because trivial tuplets have no
+            graphic appearance; check the LilyPond output below to verify that
+            tuplets 2 and 4 are enclosed in braces:
 
             >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
             ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
@@ -1822,13 +1830,11 @@ class TupletRhythmMaker(RhythmMaker):
                 } % measure
             }
 
-            Runs of eighth notes are enclosed in a first set of curly braces
-            (representing trivial tuplets) and a second set of curly braces
-            (representing measures).
-
         ..  container:: example
 
-            Flattens trivial tuplets:
+            Flattens trivial tuplets when `flatten_trivial_tuplets` is true.
+            Measures 2 and 4 in the example below now contain only a flat list
+            of notes:
 
             >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
             ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
@@ -1878,18 +1884,68 @@ class TupletRhythmMaker(RhythmMaker):
                 } % measure
             }
 
-            Runs of eighth notes are now enclosed in only one set of curly
-            braces (representing measures). The graphic output of the two
-            examples is the same.
-
             .. note:: Flattening trivial tuplets makes it possible
                 subsequently to rewrite the meter of the untupletted notes.
 
+        ..  container:: example
+
+            REGRESSION: Very long ties are preserved when
+            `flatten_trivial_tuplets` is true:
+
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
+            ...         tie_across_divisions=True,
+            ...         tie_consecutive_notes=True,
+            ...         ),
+            ...     tuplet_ratios=[(2, 3), (1, 1)],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         flatten_trivial_tuplets=True,
+            ...         ),
+            ...     )
+
+            >>> divisions = [(3, 8), (2, 8), (3, 8), (2, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            >>> abjad.f(lilypond_file[abjad.Staff])
+            \new RhythmicStaff {
+                { % measure
+                    \time 3/8
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 3/5 {
+                        c'4 ~
+                        c'4. ~
+                    }
+                } % measure
+                { % measure
+                    \time 2/8
+                    c'8 ~ [
+                    c'8 ~ ]
+                } % measure
+                { % measure
+                    \time 3/8
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 3/5 {
+                        c'4 ~
+                        c'4. ~
+                    }
+                } % measure
+                { % measure
+                    \time 2/8
+                    c'8 ~ [
+                    c'8 ]
+                } % measure
+            }
+
         Defaults to none.
 
-        Set to tuplet spelling specifier or none.
+        Set to tuplet specifier or none.
 
-        Returns tuplet spelling specifier or none.
+        Returns tuplet specifier or none.
         '''
         superclass = super(TupletRhythmMaker, self)
         return superclass.tuplet_specifier

@@ -49,7 +49,7 @@ class TupletSpecifier(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, selections, divisions):
-        r'''Calls tuplet spelling specifier.
+        r'''Calls tuplet specifier.
 
         Returns new selections.
         '''
@@ -102,13 +102,17 @@ class TupletSpecifier(AbjadValueObject):
                     component.is_trivial):
                     new_selection.append(component)
                     continue
-                spanners = abjad.inspect(component).get_spanners()
-                contents = component[:]
-                for spanner in spanners:
-                    new_spanner = copy.copy(spanner)
-                    abjad.attach(new_spanner, contents)
+                tuplet = component
+                #spanners = abjad.inspect(tuplet).get_spanners()
+                #contents = tuplet[:]
+                #for spanner in spanners:
+                #    new_spanner = copy.copy(spanner)
+                #    abjad.attach(new_spanner, contents)
+                #new_selection.extend(contents)
+                #del(tuplet[:])
+                contents = abjad.mutate(tuplet).eject_contents()
+                assert isinstance(contents, abjad.Selection)
                 new_selection.extend(contents)
-                del(component[:])
             new_selection = abjad.select(new_selection)
             new_selections.append(new_selection)
         return new_selections
@@ -146,7 +150,7 @@ class TupletSpecifier(AbjadValueObject):
 
     @property
     def avoid_dots(self):
-        r'''Is true when tuplet spelling should avoid dotted rhythmic values.
+        r'''Is true when tuplet should avoid dotted rhythmic values.
         Otherwise false.
 
         Defaults to false.
@@ -159,7 +163,7 @@ class TupletSpecifier(AbjadValueObject):
 
     @property
     def flatten_trivial_tuplets(self):
-        r'''Is true when tuplet spelling should flatten trivial tuplets.
+        r'''Is true when tuplet should flatten trivial tuplets.
         Otherwise false.
 
         Defaults to false.
@@ -652,7 +656,7 @@ class TupletSpecifier(AbjadValueObject):
 
     @property
     def rewrite_rest_filled_tuplets(self):
-        r'''Is true when tuplet spelling should flatten rest-filled tuplets.
+        r'''Is true when tuplet should flatten rest-filled tuplets.
         Otherwise false.
 
         Defaults to false.

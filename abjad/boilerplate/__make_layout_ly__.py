@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 import abjad
 import baca
+import ide
 import os
 import pathlib
 import sys
@@ -28,7 +29,7 @@ if __name__ == '__main__':
     try:
         file_ = pathlib.Path(os.path.realpath(__file__))
         buildspace_directory = file_.parent
-        buildspace_directory = abjad.Path(buildspace_directory)
+        buildspace_directory = ide.Path(buildspace_directory)
         document_name = abjad.tags.document(buildspace_directory.name)
     except:
         traceback.print_exc()
@@ -71,10 +72,11 @@ if __name__ == '__main__':
         if not buildspace_directory.is_segment():
             builds_directory = buildspace_directory.parent
             score_name = builds_directory.parent.name
-            score_path = abjad.Path(score_name)
+            score_path = ide.Path(score_name)
             time_signatures = score_path.get_metadatum('time_signatures')
             prototype = abjad.TypedOrderedDict
-            assert isinstance(time_signatures, prototype)
+            assert isinstance(time_signatures, prototype), repr(
+                time_signatures)
     except:
         traceback.print_exc()
         sys.exit(1)
@@ -127,7 +129,7 @@ if __name__ == '__main__':
         layout_ly = layout_module_name.replace('_', '-') + '.ly'
         layout_ly = buildspace_directory / layout_ly
         layout_ly.write_text(text)
-        print(f'Writing {{layout_ly}} ...')
+        print(f'Writing {{layout_ly.trim()}} ...')
     except:
         traceback.print_exc()
         sys.exit(1)
@@ -154,7 +156,7 @@ if __name__ == '__main__':
                 'bol_measure_numbers',
                 bol_measure_numbers,
                 )
-        print(f'Writing build metadata ...')
+        print(f'Writing BOL measure numbers to metadata ...')
     except:
         traceback.print_exc()
         sys.exit(1)

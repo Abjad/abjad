@@ -331,18 +331,13 @@ class Tuplet(Container):
         import abjad
         if not self.is_redundant:
             return
-        leaves = []
-        logical_ties = abjad.select(self).logical_ties()
-        durations = [abjad.inspect(_).get_duration() for _ in logical_ties]
-        for i, logical_tie in enumerate(logical_ties):
-            duration = durations[i]
-            if i == len(logical_ties) - 1:
-                leaf = logical_tie[-1]
+        for component in self:
+            if isinstance(component, Tuplet):
+                component.multiplier *= self.multiplier
+            elif isinstance(component, abjad.Leaf):
+                component.written_duration *= self.multiplier
             else:
-                leaf = logical_tie[0]
-            leaf.written_duration = duration
-            leaves.append(leaf)
-        self[:] = leaves
+                raise TypeError(component)
         self.multiplier = abjad.Multiplier(1)
 
     ### PUBLIC PROPERTIES ###

@@ -97,6 +97,7 @@ class Dynamic(AbjadValueObject):
         '_direction',
         '_hide',
         '_name',
+        '_sforzando',
         )
 
     _composite_dynamic_name_to_steady_state_dynamic_name = {
@@ -196,7 +197,14 @@ class Dynamic(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, name='f', command=None, direction=None, hide=None):
+    def __init__(
+        self,
+        name='f',
+        command=None,
+        direction=None,
+        hide=None,
+        sforzando=None,
+        ):
         if isinstance(name, type(self)):
             name = name.name
         if name != 'niente':
@@ -211,6 +219,9 @@ class Dynamic(AbjadValueObject):
         if hide is not None:
             hide = bool(hide)
         self._hide = hide
+        if sforzando is not None:
+            sforzando = bool(sforzando)
+        self._sforzando = sforzando
 
     ### SPECIAL METHODS ###
 
@@ -318,11 +329,15 @@ class Dynamic(AbjadValueObject):
 
     def _get_format_specification(self):
         import abjad
+        keywords = ['command', 'direction', 'hide']
+        if self._sforzando is not None:
+            keywords.append('sforzando')
         return abjad.FormatSpecification(
             self,
             repr_is_indented=False,
             storage_format_args_values=[self.name],
             storage_format_is_indented=False,
+            storage_format_kwargs_names=keywords,
             )
 
     def _get_lilypond_format(self):
@@ -716,6 +731,8 @@ class Dynamic(AbjadValueObject):
 
         Returns true or false.
         '''
+        if self._sforzando is not None:
+            return self._sforzando
         if (self.name and
             self.name.startswith('s') and 
             self.name.endswith('z')):
