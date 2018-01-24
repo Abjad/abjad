@@ -1,6 +1,6 @@
 import abjad
 
 
-aliases = abjad.TypedOrderedDict([
+aliases = abjad.OrderedDict([
     ('todo', 'etc/to-do.md'),
     ])

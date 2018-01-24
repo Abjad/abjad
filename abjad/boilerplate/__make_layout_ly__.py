@@ -27,9 +27,9 @@ if __name__ == '__main__':
         spacing = None
 
     try:
-        file_ = pathlib.Path(os.path.realpath(__file__))
-        buildspace_directory = file_.parent
-        buildspace_directory = ide.Path(buildspace_directory)
+        maker = ide.Path(os.path.realpath(__file__))
+        buildspace_directory = maker.parent
+        layout_py = buildspace_directory('{layout_module_name}.py')
         document_name = abjad.tags.document(buildspace_directory.name)
     except:
         traceback.print_exc()
@@ -74,7 +74,7 @@ if __name__ == '__main__':
             score_name = builds_directory.parent.name
             score_path = ide.Path(score_name)
             time_signatures = score_path.get_metadatum('time_signatures')
-            prototype = abjad.TypedOrderedDict
+            prototype = abjad.OrderedDict
             assert isinstance(time_signatures, prototype), repr(
                 time_signatures)
     except:
@@ -89,6 +89,13 @@ if __name__ == '__main__':
                     time_signature = abjad.TimeSignature.from_string(string)
                     time_signatures_.append(time_signature)
             time_signatures = time_signatures_
+        part_abbreviation = layout_py.get_part_abbreviation()
+        if part_abbreviation:
+            document_name = document_name + '_' + part_abbreviation
+        assert abjad.String(document_name).is_shout_case()
+        string = 'first_measure_number'
+        first_measure_number = buildspace_directory.get_metadatum(string, 1)
+        time_signatures = buildspace_directory.get_time_signature_metadata()
     except:
         traceback.print_exc()
         sys.exit(1)
@@ -127,14 +134,14 @@ if __name__ == '__main__':
         text = text.replace('GlobalSkips', 'PageLayout')
         text = abjad.LilyPondFormatManager.left_shift_tags(text, realign=89)
         layout_ly = layout_module_name.replace('_', '-') + '.ly'
-        layout_ly = buildspace_directory / layout_ly
+        layout_ly = buildspace_directory(layout_ly)
         layout_ly.write_text(text)
-        print(f'Writing {{layout_ly.trim()}} ...')
     except:
         traceback.print_exc()
         sys.exit(1)
 
     try:
+        print(f'Writing BOL measure numbers to metadata ...')
         bol_measure_numbers = []
         prototype = abjad.LilyPondLiteral
         skips = abjad.iterate(score['GlobalSkips']).leaves(abjad.Skip)
@@ -144,19 +151,11 @@ if __name__ == '__main__':
                     measure_number = first_measure_number + i
                     bol_measure_numbers.append(measure_number)
                     continue
-        if buildspace_directory.is_parts():
-            part_dictionary = buildspace_directory.get_metadatum(
-                document_name,
-                abjad.TypedOrderedDict(),
-                )
-            part_dictionary['bol_measure_numbers'] = bol_measure_numbers
-            buildspace_directory.add_metadatum(document_name, part_dictionary)
-        else:
-            buildspace_directory.add_metadatum(
-                'bol_measure_numbers',
-                bol_measure_numbers,
-                )
-        print(f'Writing BOL measure numbers to metadata ...')
+        buildspace_directory.add_buildspace_metadatum(
+            'bol_measure_numbers',
+            bol_measure_numbers,
+            document_name=document_name,
+            )
     except:
         traceback.print_exc()
         sys.exit(1)

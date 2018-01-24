@@ -92,9 +92,9 @@ class SegmentMaker(AbjadObject):
         Returns LilyPond file.
         '''
         import abjad
-        self._documents_metadata = abjad.TypedOrderedDict(documents_metadata)
-        self._metadata = abjad.TypedOrderedDict(metadata)
-        self._previous_metadata = abjad.TypedOrderedDict(previous_metadata)
+        self._documents_metadata = abjad.OrderedDict(documents_metadata)
+        self._metadata = abjad.OrderedDict(metadata)
+        self._previous_metadata = abjad.OrderedDict(previous_metadata)
         lilypond_file = self._make_lilypond_file(midi=midi)
         assert isinstance(lilypond_file, abjad.LilyPondFile)
         self._lilypond_file = lilypond_file

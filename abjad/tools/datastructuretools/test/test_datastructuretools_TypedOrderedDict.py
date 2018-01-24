@@ -1,11 +1,11 @@
 import abjad
 
 
-def test_datastructuretools_TypedOrderedDict_01():
+def test_datastructuretools_OrderedDict_01():
     r'''Implements __contains__().
     '''
 
-    dictionary = abjad.TypedOrderedDict(item_class=abjad.Clef)
+    dictionary = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary['soprano'] = 'treble'
     dictionary['alto'] = 'alto'
     dictionary['tenor'] = 'tenor'
@@ -16,29 +16,29 @@ def test_datastructuretools_TypedOrderedDict_01():
     assert [_ for _ in dictionary] == ['soprano', 'alto', 'tenor', 'bass']
 
 
-def test_datastructuretools_TypedOrderedDict_02():
+def test_datastructuretools_OrderedDict_02():
     r'''Implements __delitem__().
     '''
 
-    dictionary_1 = abjad.TypedOrderedDict(item_class=abjad.Clef)
+    dictionary_1 = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary_1['soprano'] = 'treble'
     del(dictionary_1['soprano'])
 
-    dictionary_2 = abjad.TypedOrderedDict(item_class=abjad.Clef)
+    dictionary_2 = abjad.OrderedDict(item_class=abjad.Clef)
     assert dictionary_1 == dictionary_2
 
 
-def test_datastructuretools_TypedOrderedDict_03():
+def test_datastructuretools_OrderedDict_03():
     r'''Implements __eq__().
     '''
 
-    dictionary_1 = abjad.TypedOrderedDict(item_class=abjad.Clef)
+    dictionary_1 = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary_1['soprano'] = 'treble'
 
-    dictionary_2 = abjad.TypedOrderedDict(item_class=abjad.Clef)
+    dictionary_2 = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary_2['soprano'] = 'treble'
 
-    dictionary_3 = abjad.TypedOrderedDict(item_class=abjad.Clef)
+    dictionary_3 = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary_3['bass'] = 'bass'
 
     assert dictionary_1 == dictionary_1
@@ -52,11 +52,11 @@ def test_datastructuretools_TypedOrderedDict_03():
     assert dictionary_3 == dictionary_3
 
 
-def test_datastructuretools_TypedOrderedDict_04():
+def test_datastructuretools_OrderedDict_04():
     r'''Implements __format__().
     '''
 
-    dictionary_1 = abjad.TypedOrderedDict(item_class=abjad.Clef)
+    dictionary_1 = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary_1['soprano'] = 'treble'
     dictionary_1['alto'] = 'alto'
     dictionary_1['tenor'] = 'tenor'
@@ -64,7 +64,7 @@ def test_datastructuretools_TypedOrderedDict_04():
 
     assert format(dictionary_1) == abjad.String.normalize(
         r'''
-        abjad.TypedOrderedDict(
+        abjad.OrderedDict(
             [
                 (
                     'soprano',
@@ -94,7 +94,7 @@ def test_datastructuretools_TypedOrderedDict_04():
     assert dictionary_1 == dictionary_2
 
 
-def test_datastructuretools_TypedOrderedDict_05():
+def test_datastructuretools_OrderedDict_05():
     r'''Initializes from dictionary items.
     '''
 
@@ -104,12 +104,12 @@ def test_datastructuretools_TypedOrderedDict_05():
         ('tenor', abjad.Clef('tenor')),
         ('bass', abjad.Clef('bass')),
         ]
-    dictionary_1 = abjad.TypedOrderedDict(
+    dictionary_1 = abjad.OrderedDict(
         item_class=abjad.Clef,
         items=items,
         )
 
-    dictionary_2 = abjad.TypedOrderedDict(item_class=abjad.Clef)
+    dictionary_2 = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary_2['soprano'] = 'treble'
     dictionary_2['alto'] = 'alto'
     dictionary_2['tenor'] = 'tenor'
@@ -118,27 +118,27 @@ def test_datastructuretools_TypedOrderedDict_05():
     assert dictionary_1 == dictionary_2
 
 
-def test_datastructuretools_TypedOrderedDict_06():
+def test_datastructuretools_OrderedDict_06():
     r'''Implements __len__().
     '''
 
-    dictionary = abjad.TypedOrderedDict(item_class=abjad.Clef)
+    dictionary = abjad.OrderedDict(item_class=abjad.Clef)
     assert len(dictionary) == 0
 
-    dictionary = abjad.TypedOrderedDict(item_class=abjad.Clef)
+    dictionary = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary['soprano'] = 'treble'
     assert len(dictionary) == 1
 
 
-def test_datastructuretools_TypedOrderedDict_07():
+def test_datastructuretools_OrderedDict_07():
 
-    dictionary_1 = abjad.TypedOrderedDict(item_class=abjad.Clef)
+    dictionary_1 = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary_1['soprano'] = 'treble'
 
-    dictionary_2 = abjad.TypedOrderedDict(item_class=abjad.Clef)
+    dictionary_2 = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary_2['soprano'] = 'treble'
 
-    dictionary_3 = abjad.TypedOrderedDict(item_class=abjad.Clef)
+    dictionary_3 = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary_3['bass'] = 'bass'
 
     assert not dictionary_1 != dictionary_1
@@ -152,11 +152,11 @@ def test_datastructuretools_TypedOrderedDict_07():
     assert not dictionary_3 != dictionary_3
 
 
-def test_datastructuretools_TypedOrderedDict_08():
+def test_datastructuretools_OrderedDict_08():
     r'''Implements __reversed__().
     '''
 
-    dictionary = abjad.TypedOrderedDict(item_class=abjad.Clef)
+    dictionary = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary['soprano'] = 'treble'
     dictionary['alto'] = 'alto'
     dictionary['tenor'] = 'tenor'
@@ -166,26 +166,26 @@ def test_datastructuretools_TypedOrderedDict_08():
     assert [_ for _ in generator] == ['bass', 'tenor', 'alto', 'soprano']
 
 
-def test_datastructuretools_TypedOrderedDict_09():
+def test_datastructuretools_OrderedDict_09():
     r'''Implements clear().
     '''
 
-    dictionary_1 = abjad.TypedOrderedDict(item_class=abjad.Clef)
+    dictionary_1 = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary_1['soprano'] = 'treble'
     dictionary_1['alto'] = 'alto'
     dictionary_1['tenor'] = 'tenor'
     dictionary_1['bass'] = 'bass'
     dictionary_1.clear()
 
-    dictionary_2 = abjad.TypedOrderedDict(item_class=abjad.Clef)
+    dictionary_2 = abjad.OrderedDict(item_class=abjad.Clef)
     assert dictionary_1 == dictionary_2
 
 
-def test_datastructuretools_TypedOrderedDict_10():
+def test_datastructuretools_OrderedDict_10():
     r'''Implements copy().
     '''
 
-    dictionary_1 = abjad.TypedOrderedDict(item_class=abjad.Clef)
+    dictionary_1 = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary_1['soprano'] = 'treble'
     dictionary_1['alto'] = 'alto'
     dictionary_1['tenor'] = 'tenor'
@@ -195,11 +195,11 @@ def test_datastructuretools_TypedOrderedDict_10():
     assert dictionary_1 == dictionary_2
 
 
-def test_datastructuretools_TypedOrderedDict_11():
+def test_datastructuretools_OrderedDict_11():
     r'''Implements get().
     '''
 
-    dictionary = abjad.TypedOrderedDict(item_class=abjad.Clef)
+    dictionary = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary['soprano'] = 'treble'
     dictionary['alto'] = 'alto'
     dictionary['tenor'] = 'tenor'
@@ -210,11 +210,11 @@ def test_datastructuretools_TypedOrderedDict_11():
     assert dictionary.get('foo', 'bar') == 'bar'
 
 
-def test_datastructuretools_TypedOrderedDict_12():
+def test_datastructuretools_OrderedDict_12():
     r'''Implements has_key().
     '''
 
-    dictionary = abjad.TypedOrderedDict(item_class=abjad.Clef)
+    dictionary = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary['soprano'] = 'treble'
     dictionary['alto'] = 'alto'
     dictionary['tenor'] = 'tenor'
@@ -225,11 +225,11 @@ def test_datastructuretools_TypedOrderedDict_12():
     assert not dictionary.has_key('foo')
 
 
-def test_datastructuretools_TypedOrderedDict_13():
+def test_datastructuretools_OrderedDict_13():
     r'''Implements items().
     '''
 
-    dictionary = abjad.TypedOrderedDict(item_class=abjad.Clef)
+    dictionary = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary['soprano'] = 'treble'
     dictionary['alto'] = 'alto'
     dictionary['tenor'] = 'tenor'
@@ -243,11 +243,11 @@ def test_datastructuretools_TypedOrderedDict_13():
         ]
 
 
-def test_datastructuretools_TypedOrderedDict_14():
+def test_datastructuretools_OrderedDict_14():
     r'''Implements keys().
     '''
 
-    dictionary = abjad.TypedOrderedDict(item_class=abjad.Clef)
+    dictionary = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary['soprano'] = 'treble'
     dictionary['alto'] = 'alto'
     dictionary['tenor'] = 'tenor'
@@ -256,17 +256,17 @@ def test_datastructuretools_TypedOrderedDict_14():
     assert list(dictionary.keys()) == ['soprano', 'alto', 'tenor', 'bass']
 
 
-def test_datastructuretools_TypedOrderedDict_15():
+def test_datastructuretools_OrderedDict_15():
     r'''Implements pop().
     '''
 
-    dictionary_1 = abjad.TypedOrderedDict(item_class=abjad.Clef)
+    dictionary_1 = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary_1['soprano'] = 'treble'
     dictionary_1['alto'] = 'alto'
     dictionary_1['tenor'] = 'tenor'
     dictionary_1['bass'] = 'bass'
 
-    dictionary_2 = abjad.TypedOrderedDict(item_class=abjad.Clef)
+    dictionary_2 = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary_2['alto'] = 'alto'
     dictionary_2['tenor'] = 'tenor'
     dictionary_2['bass'] = 'bass'
@@ -275,17 +275,17 @@ def test_datastructuretools_TypedOrderedDict_15():
     assert dictionary_1 == dictionary_2
 
 
-#def test_datastructuretools_TypedOrderedDict_16():
+#def test_datastructuretools_OrderedDict_16():
 #    r'''Implements popitem().
 #    '''
 #
-#    dictionary_1 = abjad.TypedOrderedDict(item_class=Clef)
+#    dictionary_1 = abjad.OrderedDict(item_class=Clef)
 #    dictionary_1['soprano'] = 'treble'
 #    dictionary_1['alto'] = 'alto'
 #    dictionary_1['tenor'] = 'tenor'
 #    dictionary_1['bass'] = 'bass'
 #
-#    dictionary_2 = abjad.TypedOrderedDict(item_class=Clef)
+#    dictionary_2 = abjad.OrderedDict(item_class=Clef)
 #    dictionary_2['alto'] = 'alto'
 #    dictionary_2['tenor'] = 'tenor'
 #    dictionary_2['bass'] = 'bass'
@@ -295,19 +295,19 @@ def test_datastructuretools_TypedOrderedDict_15():
 #    assert dictionary_1 == dictionary_2
 
 
-def test_datastructuretools_TypedOrderedDict_17():
+def test_datastructuretools_OrderedDict_17():
     r'''Implements update().
     '''
 
-    dictionary_1 = abjad.TypedOrderedDict(item_class=abjad.Clef)
+    dictionary_1 = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary_1['soprano'] = 'treble'
     dictionary_1['alto'] = 'alto'
 
-    dictionary_2 = abjad.TypedOrderedDict(item_class=abjad.Clef)
+    dictionary_2 = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary_2['tenor'] = 'tenor'
     dictionary_2['bass'] = 'bass'
 
-    dictionary_3 = abjad.TypedOrderedDict(item_class=abjad.Clef)
+    dictionary_3 = abjad.OrderedDict(item_class=abjad.Clef)
     dictionary_3['soprano'] = 'treble'
     dictionary_3['alto'] = 'alto'
     dictionary_3['tenor'] = 'tenor'

@@ -1,7 +1,7 @@
 import abjad
 
 
-metadata = abjad.TypedOrderedDict(
+metadata = abjad.OrderedDict(
     [
         ('composer', {composer_last_name!r}),
         ('title', {score_title!r}),

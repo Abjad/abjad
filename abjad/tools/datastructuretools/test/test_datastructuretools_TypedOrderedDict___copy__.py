@@ -2,9 +2,9 @@ import copy
 import abjad
 
 
-def test_datastructuretools_TypedOrderedDict___copy___01():
+def test_datastructuretools_OrderedDict___copy___01():
 
-    dictionary_1 = abjad.TypedOrderedDict([
+    dictionary_1 = abjad.OrderedDict([
         ('flavor', 'cherry'), ('count', 2),
         ])
     dictionary_2 = copy.copy(dictionary_1)

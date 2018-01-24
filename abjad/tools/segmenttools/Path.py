@@ -673,6 +673,25 @@ class Path(pathlib.PosixPath):
         messages[1:] = [' ' + _ for _ in messages[1:]]
         return count, skipped, messages
 
+    def add_buildspace_metadatum(self, name, value, document_name=None):
+        r'''Adds metadatum with `name` and `value` into buildspace metadata
+        with optional `document_name`.
+
+        Returns none.
+        '''
+        import abjad
+        assert self.is_buildspace(), repr(self)
+        if self.is_parts():
+            part_dictionary = self.get_metadatum(
+                document_name,
+                abjad.TypedOrderedDict(),
+                )
+            part_dictionary[name] = value
+            assert abjad.String(document_name).is_shout_case()
+            self.add_metadatum(document_name, part_dictionary)
+        else:
+            self.add_metadatum(name, value)
+
     def add_metadatum(self, name, value):
         r'''Adds metadatum.
 
@@ -1027,6 +1046,20 @@ class Path(pathlib.PosixPath):
                 paths.append(path)
         return paths
 
+    def get_part_abbreviation(self):
+        r'''Gets part abbreviation in layout.py only.
+
+        Returns string or none.
+        '''
+        if not self.name.endswith('layout.py'):
+            return
+        for line in self.read_text().split('\n'):
+            if line.startswith('part_abbreviation ='):
+                globals_ = globals()
+                exec(line, globals_)
+                part_abbreviation = globals_['part_abbreviation']
+                return part_abbreviation
+
     def get_metadata(self):
         r'''Gets __metadata__.py file in path.
 
@@ -1048,7 +1081,7 @@ class Path(pathlib.PosixPath):
                 metadata = result[0]
             else:
                 metadata = None
-        return abjad.TypedOrderedDict(metadata)
+        return abjad.OrderedDict(metadata)
 
     def get_metadatum(self, metadatum_name, default=None):
         r'''Gets metadatum.
@@ -1300,6 +1333,29 @@ class Path(pathlib.PosixPath):
         index = wrappers.index(wrapper)
         wrappers = abjad.CyclicTuple(wrappers)
         return wrappers[index - 1]
+
+    def get_time_signature_metadata(self):
+        r'''Gets time signature metadata for buildspace directory.
+
+        Returns list or time signatures.
+        '''
+        import abjad
+        if self.is_segment():
+            time_signatures = self.get_metadatum('time_signatures', [])
+            time_signatures = [
+                abjad.TimeSignature.from_string(_) for _ in time_signatures
+                ]
+            return time_signatures
+        time_signatures = self.contents.get_metadatum('time_signatures')
+        if time_signatures is None:
+            return []
+        assert isinstance(time_signatures, abjad.TypedOrderedDict)
+        time_signatures_ = []
+        for segment_name, strings in time_signatures.items():
+            for string in strings:
+                time_signature = abjad.TimeSignature.from_string(string)
+                time_signatures_.append(time_signature)
+        return time_signatures_
 
     def get_title(self, year=True):
         r'''Gets score title.
@@ -1991,16 +2047,16 @@ class Path(pathlib.PosixPath):
         lines.append('import abjad')
         lines.append('')
         lines.append('')
-        metadata = abjad.TypedOrderedDict(metadata)
+        metadata = abjad.OrderedDict(metadata)
         items = list(metadata.items())
         items.sort()
-        metadata = abjad.TypedOrderedDict(items)
+        metadata = abjad.OrderedDict(items)
         if metadata:
             line = format(metadata, 'storage')
             line = 'metadata = {}'.format(line)
             lines.append(line)
         else:
-            lines.append('metadata = abjad.TypedOrderedDict()')
+            lines.append('metadata = abjad.OrderedDict()')
         lines.append('')
         text = '\n'.join(lines)
         metadata_py_path.write_text(text)

@@ -1,15 +1,15 @@
 import abjad
 
 
-def test_datastructuretools_TypedOrderedDict___eq___01():
+def test_datastructuretools_OrderedDict___eq___01():
 
-    dictionary_1 = abjad.TypedOrderedDict([
+    dictionary_1 = abjad.OrderedDict([
         ('flavor', 'cherry'), ('count', 2),
         ])
-    dictionary_2 = abjad.TypedOrderedDict([
+    dictionary_2 = abjad.OrderedDict([
         ('flavor', 'cherry'), ('count', 2),
         ])
-    dictionary_3 = abjad.TypedOrderedDict([
+    dictionary_3 = abjad.OrderedDict([
         ('flavor', 'chocolate'), ('count', 2),
         ])
 
@@ -24,12 +24,12 @@ def test_datastructuretools_TypedOrderedDict___eq___01():
     assert dictionary_3 == dictionary_3
 
 
-def test_datastructuretools_TypedOrderedDict___eq___02():
+def test_datastructuretools_OrderedDict___eq___02():
 
-    dictionary_1 = abjad.TypedOrderedDict([
+    dictionary_1 = abjad.OrderedDict([
         ('flavor', 'cherry'), ('count', 2),
         ])
-    dictionary_2 = abjad.TypedOrderedDict([
+    dictionary_2 = abjad.OrderedDict([
         ('flavor', 'cherry'), ('count', 2), ('color', 'red'),
         ])
 
