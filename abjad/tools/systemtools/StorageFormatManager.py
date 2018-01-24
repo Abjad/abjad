@@ -80,7 +80,7 @@ class StorageFormatManager(AbjadValueObject):
             return self._format_sequence(as_storage_format, is_indented)
         elif isinstance(self._client, (
             collections.OrderedDict,
-            datastructuretools.TypedOrderedDict,
+            datastructuretools.OrderedDict,
             )):
             return self._format_ordered_mapping(as_storage_format, is_indented)
         elif isinstance(self._client, dict):
@@ -363,7 +363,7 @@ class StorageFormatManager(AbjadValueObject):
 
         ..  container:: example
 
-            >>> dictionary = abjad.TypedOrderedDict(
+            >>> dictionary = abjad.OrderedDict(
             ...     item_class=abjad.NamedPitch,
             ...     )
 
@@ -371,7 +371,7 @@ class StorageFormatManager(AbjadValueObject):
             >>> for _ in types:
             ...     _
             ...
-            <class 'abjad.tools.datastructuretools.TypedOrderedDict.TypedOrderedDict'>
+            <class 'abjad.tools.datastructuretools.OrderedDict.OrderedDict'>
             <class 'abjad.tools.pitchtools.NamedPitch.NamedPitch'>
 
         Returns tuple of types.

@@ -75,9 +75,6 @@ from abjad.tools.rhythmmakertools import SustainMask
 silence = SilenceMask.silence
 sustain = SustainMask.sustain
 
-# abjad.TypedOrderedDict will eventually be renamed abjad.OrderedDict
-OrderedDict = TypedOrderedDict
-
 # import version information
 from abjad._version import __version_info__, __version__
 del _version

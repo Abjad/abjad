@@ -3,20 +3,20 @@ from abjad.tools import systemtools
 from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 
 
-class TypedOrderedDict(TypedCollection, collections.MutableMapping):
+class OrderedDict(TypedCollection, collections.MutableMapping):
     r'''Typed ordered dictionary.
 
     ..  container:: example
 
         Initializes from list of pairs:
 
-        >>> dictionary = abjad.TypedOrderedDict([
+        >>> dictionary = abjad.OrderedDict([
         ...     ('color', 'red'),
         ...     ('directive', abjad.Markup(r'\italic Allegretto')),
         ...     ])
 
         >>> abjad.f(dictionary)
-        abjad.TypedOrderedDict(
+        abjad.OrderedDict(
             [
                 ('color', 'red'),
                 (
@@ -41,12 +41,12 @@ class TypedOrderedDict(TypedCollection, collections.MutableMapping):
         ...     'color': 'red',
         ...     'directive': abjad.Markup(r'\italic Allegretto'),
         ...     }
-        >>> dictionary = abjad.TypedOrderedDict(
+        >>> dictionary = abjad.OrderedDict(
         ...     dictionary
         ...     )
 
         >>> abjad.f(dictionary)
-        abjad.TypedOrderedDict(
+        abjad.OrderedDict(
             [
                 ('color', 'red'),
                 (
@@ -67,16 +67,16 @@ class TypedOrderedDict(TypedCollection, collections.MutableMapping):
 
         Initializes from other typed ordered dictionary:
 
-        >>> dictionary_1 = abjad.TypedOrderedDict([
+        >>> dictionary_1 = abjad.OrderedDict([
         ...     ('color', 'red'),
         ...     ('directive', abjad.Markup(r'\italic Allegretto')),
         ...     ])
-        >>> dictionary_2 = abjad.TypedOrderedDict(
+        >>> dictionary_2 = abjad.OrderedDict(
         ...     dictionary_1
         ...     )
 
         >>> abjad.f(dictionary_2)
-        abjad.TypedOrderedDict(
+        abjad.OrderedDict(
             [
                 ('color', 'red'),
                 (

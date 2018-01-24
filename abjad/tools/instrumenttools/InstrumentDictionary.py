@@ -1,7 +1,7 @@
-from abjad.tools.datastructuretools.TypedOrderedDict import TypedOrderedDict
+from abjad.tools.datastructuretools.OrderedDict import OrderedDict
 
 
-class InstrumentDictionary(TypedOrderedDict):
+class InstrumentDictionary(OrderedDict):
     r'''Instrument dictionary.
 
     ..  container:: example

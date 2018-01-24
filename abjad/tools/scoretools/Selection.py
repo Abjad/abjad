@@ -568,7 +568,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             new_components.append(new_component)
         new_components = type(self)(new_components)
         # find spanners and piecewise indicators
-        spanner_to_pairs = abjad.TypedOrderedDict()
+        spanner_to_pairs = abjad.OrderedDict()
         for i, component in enumerate(abjad.iterate(self).components()):
             for spanner in abjad.inspect(component).get_spanners():
                 pairs = spanner_to_pairs.setdefault(spanner, [])
@@ -582,12 +582,12 @@ class Selection(AbjadValueObject, collections.Sequence):
                 else:
                     pairs.append((i, None))
         # copy spanners
-        new_spanner_to_pairs = abjad.TypedOrderedDict()
+        new_spanner_to_pairs = abjad.OrderedDict()
         for spanner, pairs in spanner_to_pairs.items():
             new_spanner = copy.copy(spanner)
             new_spanner_to_pairs[new_spanner] = pairs
         # make reversed map
-        index_to_pairs = abjad.TypedOrderedDict()
+        index_to_pairs = abjad.OrderedDict()
         for new_spanner, pairs in new_spanner_to_pairs.items():
             for (i, wrapper) in pairs:
                 pairs = index_to_pairs.setdefault(i, [])

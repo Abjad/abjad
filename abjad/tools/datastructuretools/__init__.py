@@ -32,6 +32,7 @@ from .Offset import Offset
 from .Pattern import Pattern
 from .TypedCollection import TypedCollection
 from .TypedTuple import TypedTuple
+from .OrderedDict import OrderedDict
 from .PatternTuple import PatternTuple
 from .PitchInequality import PitchInequality
 from .Sequence import Sequence
@@ -42,7 +43,6 @@ from .TreeContainer import TreeContainer
 from .TypedCounter import TypedCounter
 from .TypedFrozenset import TypedFrozenset
 from .TypedList import TypedList
-from .TypedOrderedDict import TypedOrderedDict
 
 
 _documentation_section = 'core'

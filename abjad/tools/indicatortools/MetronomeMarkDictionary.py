@@ -1,8 +1,8 @@
 import copy
-from abjad.tools.datastructuretools.TypedOrderedDict import TypedOrderedDict
+from abjad.tools.datastructuretools.OrderedDict import OrderedDict
 
 
-class MetronomeMarkDictionary(TypedOrderedDict):
+class MetronomeMarkDictionary(OrderedDict):
     r'''Metronome mark dictionary.
 
     ..  container:: example

@@ -1,8 +1,8 @@
 from abjad.tools import mathtools
-from abjad.tools.datastructuretools.TypedOrderedDict import TypedOrderedDict
+from abjad.tools.datastructuretools.OrderedDict import OrderedDict
 
 
-class PartitionTable(TypedOrderedDict):
+class PartitionTable(OrderedDict):
     r'''Partition table.
 
     ..  container:: example
