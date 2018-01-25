@@ -1,9 +1,10 @@
-from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class InciseSpecifier(AbjadValueObject):
     r'''Incise specifier.
+
+    >>> from abjad.tools import rhythmmakertools as rhythmos
 
     ..  container:: example
 
@@ -61,6 +62,7 @@ class InciseSpecifier(AbjadValueObject):
         fill_with_notes=True,
         outer_divisions_only=None,
         ):
+        import abjad
         prefix_talea = prefix_talea or ()
         prefix_talea = tuple(prefix_talea)
         assert self._is_integer_tuple(prefix_talea)
@@ -86,7 +88,7 @@ class InciseSpecifier(AbjadValueObject):
         if suffix_talea:
             assert suffix_counts
         if talea_denominator is not None:
-            if not mathtools.is_nonnegative_integer_power_of_two(
+            if not abjad.mathtools.is_nonnegative_integer_power_of_two(
                 talea_denominator):
                 message = 'talea denominator {!r} must be nonnegative'
                 message += ' integer power of 2.'
@@ -96,7 +98,7 @@ class InciseSpecifier(AbjadValueObject):
         if prefix_talea or suffix_talea:
             assert talea_denominator is not None
         if body_ratio is not None:
-            body_ratio = mathtools.Ratio(body_ratio)
+            body_ratio = abjad.Ratio(body_ratio)
         self._body_ratio = body_ratio
         assert isinstance(fill_with_notes, bool)
         self._fill_with_notes = fill_with_notes
@@ -180,9 +182,11 @@ class InciseSpecifier(AbjadValueObject):
 
     @staticmethod
     def _is_length_tuple(argument):
+        import abjad
         if argument is None:
             return True
-        if mathtools.all_are_nonnegative_integer_equivalent_numbers(argument):
+        if abjad.mathtools.all_are_nonnegative_integer_equivalent_numbers(
+            argument):
             if isinstance(argument, (tuple, list)):
                 return True
         return False
@@ -191,12 +195,6 @@ class InciseSpecifier(AbjadValueObject):
     def _reverse_tuple(argument):
         if argument is not None:
             return tuple(reversed(argument))
-
-    @staticmethod
-    def _rotate_tuple(argument, n):
-        import abjad
-        if argument is not None:
-            return tuple(abjad.sequence(argument).rotate(n=n))
 
     ### PUBLIC PROPERTIES ###
 

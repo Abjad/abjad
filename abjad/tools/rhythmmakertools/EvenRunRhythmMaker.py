@@ -1,12 +1,10 @@
-from abjad.tools import indicatortools
-from abjad.tools import mathtools
-from abjad.tools import scoretools
-from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 
 class EvenRunRhythmMaker(RhythmMaker):
     r'''Even run rhythm-maker.
+
+    >>> from abjad.tools import rhythmmakertools as rhythmos
 
     ..  container:: example
 
@@ -74,8 +72,9 @@ class EvenRunRhythmMaker(RhythmMaker):
         tie_specifier=None,
         tuplet_specifier=None,
         ):
+        import abjad
         if exponent is not None:
-            assert mathtools.is_nonnegative_integer(exponent)
+            assert abjad.mathtools.is_nonnegative_integer(exponent)
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
@@ -87,7 +86,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, rotation=None):
+    def __call__(self, divisions, state=None):
         r'''Calls even-run rhythm-maker on `divisions`.
 
         ..  container:: example
@@ -105,10 +104,7 @@ class EvenRunRhythmMaker(RhythmMaker):
         filled with notes.
         '''
         superclass = super(EvenRunRhythmMaker, self)
-        return superclass.__call__(
-            divisions,
-            rotation=rotation,
-            )
+        return superclass.__call__(divisions, state=state)
 
     def __format__(self, format_specification=''):
         r'''Formats even run rhythm-maker.
@@ -133,11 +129,12 @@ class EvenRunRhythmMaker(RhythmMaker):
         duration_specifier = self._get_duration_specifier()
         forbidden_duration = \
             duration_specifier.forbidden_duration
-        time_signature = indicatortools.TimeSignature(division)
+        time_signature = abjad.TimeSignature(division)
         implied_prolation = time_signature.implied_prolation
         numerator, denominator = division.pair
-        denominator = mathtools.greatest_power_of_two_less_equal(denominator)
-        assert mathtools.is_positive_integer_power_of_two(denominator)
+        denominator = abjad.mathtools.greatest_power_of_two_less_equal(
+            denominator)
+        assert abjad.mathtools.is_positive_integer_power_of_two(denominator)
         exponent = self.exponent or 0
         denominator_multiplier = 2 ** exponent
         denominator *= denominator_multiplier
@@ -152,13 +149,13 @@ class EvenRunRhythmMaker(RhythmMaker):
         maker = abjad.NoteMaker()
         notes = maker(numerator * [0], [unit_duration])
         if implied_prolation == 1:
-            result = scoretools.Container(notes)
+            result = abjad.Container(notes)
         else:
             multiplier = implied_prolation
-            result = scoretools.Tuplet(multiplier, notes)
+            result = abjad.Tuplet(multiplier, notes)
         return result
 
-    def _make_music(self, divisions, rotation):
+    def _make_music(self, divisions):
         import abjad
         selections = []
         for division in divisions:

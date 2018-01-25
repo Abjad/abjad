@@ -109,7 +109,7 @@ class ComplexBeam(Beam):
                     else:
                         bundle.right.spanner_starts.append('[')
             # otherwise
-            elif (self._is_my_first_leaf(leaf) or
+            elif (leaf is self[0] or
                 not previous_leaf or
                 not self._is_beamable(
                     previous_leaf,
@@ -131,11 +131,9 @@ class ComplexBeam(Beam):
                     else:
                         bundle.right.spanner_stops.append(']')
             # otherwise
-            elif (
-                self._is_my_last_leaf(leaf) or
+            elif (leaf is self[-1] or
                 not next_leaf or
-                not self._is_beamable(next_leaf, beam_rests=self.beam_rests)
-                ):
+                not self._is_beamable(next_leaf, beam_rests=self.beam_rests)):
                 for string in bundle.right.spanner_starts:
                     if '[' in string:
                         bundle.right.spanner_starts.append(']')
@@ -155,11 +153,11 @@ class ComplexBeam(Beam):
         if self._is_my_only_leaf(leaf):
             left, right = self._get_left_right_for_lone_leaf(leaf)
         # first
-        elif self._is_my_first_leaf(leaf) or not leaf._get_leaf(-1):
+        elif leaf is self[0] or not leaf._get_leaf(-1):
             left = 0
             right = leaf.written_duration.flag_count
         # last
-        elif self._is_my_last_leaf(leaf) or leaf._get_leaf(1):
+        elif leaf is self[-1] or leaf._get_leaf(1):
             left = leaf.written_duration.flag_count
             right = 0
         else:

@@ -9,7 +9,8 @@ def test_scoretools_Selection__withdraw_from_crossing_spanners_01():
 
     voice = abjad.Voice(r'''
         {
-            c'8 [ \startTrillSpan
+            c'8 [
+            \startTrillSpan
             d'8 ]
         }
         {
@@ -22,7 +23,8 @@ def test_scoretools_Selection__withdraw_from_crossing_spanners_01():
         r'''
         \new Voice {
             {
-                c'8 [ \startTrillSpan
+                c'8 [
+                \startTrillSpan
                 d'8 ]
             }
             {
@@ -40,7 +42,8 @@ def test_scoretools_Selection__withdraw_from_crossing_spanners_01():
         r'''
         \new Voice {
             {
-                c'8 [ \startTrillSpan
+                c'8 [
+                \startTrillSpan
                 d'8 ]
             }
             {
@@ -60,7 +63,8 @@ def test_scoretools_Selection__withdraw_from_crossing_spanners_02():
 
     voice = abjad.Voice(r'''
         {
-            c'8 [ \startTrillSpan
+            c'8 [
+            \startTrillSpan
             d'8 ]
         }
         {
@@ -73,7 +77,8 @@ def test_scoretools_Selection__withdraw_from_crossing_spanners_02():
         r'''
         \new Voice {
             {
-                c'8 [ \startTrillSpan
+                c'8 [
+                \startTrillSpan
                 d'8 ]
             }
             {
@@ -94,7 +99,8 @@ def test_scoretools_Selection__withdraw_from_crossing_spanners_02():
                 d'8 ]
             }
             {
-                e'8 ( \startTrillSpan
+                e'8 (
+                \startTrillSpan
                 f'8 ) \stopTrillSpan
             }
         }
@@ -112,7 +118,8 @@ def test_scoretools_Selection__withdraw_from_crossing_spanners_03():
 
     voice = abjad.Voice(r'''
         {
-            c'8 [ \startTrillSpan
+            c'8 [
+            \startTrillSpan
             d'8 ]
         }
         {
@@ -125,7 +132,8 @@ def test_scoretools_Selection__withdraw_from_crossing_spanners_03():
         r'''
         \new Voice {
             {
-                c'8 [ \startTrillSpan
+                c'8 [
+                \startTrillSpan
                 d'8 ]
             }
             {

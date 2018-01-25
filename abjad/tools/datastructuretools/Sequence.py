@@ -5203,6 +5203,36 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
                         break
         return type(self)(items=items)
 
+    def weight(self):
+        '''Gets weight.
+
+        ..  container:: example
+
+            >>> abjad.sequence([]).weight()
+            0
+
+            >>> abjad.sequence([1]).weight()
+            1
+
+            >>> abjad.sequence([1, 2, 3]).weight()
+            6
+
+            >>> abjad.sequence([1, 2, -3]).weight()
+            6
+
+            >>> abjad.sequence([-1, -2, -3]).weight()
+            6
+
+            >>> sequence = abjad.sequence([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10])
+            >>> sequence.weight()
+            55
+
+        Returns new sequence.
+        '''
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
+        return sum(abs(_) for _ in self)
+
     def zip(self, cyclic=False, truncate=True):
         r'''Zips sequences in sequence.
 

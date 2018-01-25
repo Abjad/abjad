@@ -29,12 +29,13 @@ if __name__ == '__main__':
         sys.exit(1)
 
     try:
-        segment = ide.Path(os.path.realpath(__file__)).parent
-        ly = segment('illustration.ly')
+        segment_directory = ide.Path(os.path.realpath(__file__)).parent
+        illustration_ly = segment_directory('illustration.ly')
         with abjad.Timer() as timer:
             lilypond_file = maker.run(
                 metadata=metadata,
                 previous_metadata=previous_metadata,
+                segment_directory=segment_directory,
                 )
         segment_maker_runtime = int(timer.elapsed_time)
         count = segment_maker_runtime
@@ -42,13 +43,12 @@ if __name__ == '__main__':
         message = f'Segment-maker runtime {{count}} {{counter}} ...'
         print(message)
         segment_maker_runtime = (count, counter)
-        segment.write_metadata_py(maker.metadata)
+        segment_directory.write_metadata_py(maker.metadata)
     except:
         traceback.print_exc()
         sys.exit(1)
 
     try:
-        illustration_ly = segment('illustration.ly')
         result = abjad.persist(lilypond_file).as_ly(illustration_ly, strict=89)
         abjad_format_time = int(result[1])
         count = abjad_format_time
@@ -61,37 +61,29 @@ if __name__ == '__main__':
         sys.exit(1)
 
     try:
-        text = ly.read_text()
+        text = illustration_ly.read_text()
         text = abjad.LilyPondFormatManager.left_shift_tags(text, realign=89)
-        ly.write_text(text)
-        result = ly.activate('+SEGMENT')
-        for message in result[-1]:
+        illustration_ly.write_text(text)
+        for message in abjad.Job.document_specific_job(illustration_ly)():
             print(message)
-        result = ly.deactivate('-SEGMENT')
-        for message in result[-1]:
-            print(message)
-        tags_ = abjad.tags.all_score_annotation_tags()
-        match = lambda tags: bool(set(tags) & set(tags_))
-        result = ly.deactivate(match, name='score annotation')
-        for message in result[-1]:
+        job = abjad.Job.music_annotation_job(illustration_ly, undo=True)
+        for message in job():
             print(message)
     except:
         traceback.print_exc()
         sys.exit(1)
 
     try:
-        result = segment._deactivate_bar_line_adjustment()
-        for message in result[-1]:
+        for message in abjad.Job.fermata_bar_line_job(segment_directory)():
             print(message)
-        result = segment._deactivate_shifted_clef_at_bol()
-        for message in result[-1]:
+        for message in abjad.Job.shifted_clef_job(segment_directory)():
             print(message)
     except:
         traceback.print_exc()
         sys.exit(1)
 
     try:
-        layout_py = segment('layout.py')
+        layout_py = segment_directory('layout.py')
         if not layout_py.exists():
             print('Writing stub layout.py ...')
             layout_py.write_text('')
@@ -100,7 +92,7 @@ if __name__ == '__main__':
         sys.exit(1)
 
     try:
-        layout_ly = segment('layout.ly')
+        layout_ly = segment_directory('layout.ly')
         if not layout_ly.exists():
             print('Writing stub layout.ly ...')
             layout_ly.write_text('')
@@ -110,7 +102,7 @@ if __name__ == '__main__':
 
     try:
         with abjad.Timer() as timer:
-            abjad.IOManager.run_lilypond(ly)
+            abjad.IOManager.run_lilypond(illustration_ly)
         lilypond_runtime = int(timer.elapsed_time)
         count = lilypond_runtime
         counter = abjad.String('second').pluralize(count)
@@ -122,7 +114,7 @@ if __name__ == '__main__':
         sys.exit(1)
 
     try:
-        history = segment('.history')
+        history = segment_directory('.history')
         with history.open(mode='a') as pointer:
             pointer.write('\n')
             line = time.strftime('%Y-%m-%d %H:%M:%S') + '\n'

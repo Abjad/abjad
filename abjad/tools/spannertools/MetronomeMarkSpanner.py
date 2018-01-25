@@ -1992,7 +1992,7 @@ class MetronomeMarkSpanner(Spanner):
         has_indicators = any(_ is not None for _ in indicators)
         #
         if not has_indicators:
-            if self._is_my_first_leaf(leaf):
+            if leaf is self[0]:
                 bundle.right.spanner_starts.append(r'\startTextSpan')
                 string = r'\once \override TextSpanner.Y-extent = ##f'
                 bundle.grob_overrides.append(string)
@@ -2005,7 +2005,7 @@ class MetronomeMarkSpanner(Spanner):
                 for override in overrides:
                     override_string = override.override_string
                     bundle.grob_overrides.append(override_string)
-            if self._is_my_last_leaf(leaf):
+            if leaf is self[-1]:
                 bundle.right.spanner_stops.append(r'\stopTextSpan')
             return bundle
         #
@@ -2021,10 +2021,10 @@ class MetronomeMarkSpanner(Spanner):
         else:
             previous_tempo_trend = None
         #
-        if has_indicators and not self._is_my_first_leaf(leaf):
+        if has_indicators and not leaf is self[0]:
             bundle.right.spanner_stops.append(r'\stopTextSpan')
         #
-        if not self._is_my_last_leaf(leaf):
+        if not leaf is self[-1]:
             bundle.right.spanner_starts.append(r'\startTextSpan')
             string = r'\once \override TextSpanner.Y-extent = ##f'
             bundle.grob_overrides.append(string)
@@ -3445,7 +3445,6 @@ class MetronomeMarkSpanner(Spanner):
         >>> wrapper = abjad.inspect(staff[3]).wrapper(abjad.MetronomeMark)
         >>> abjad.f(wrapper)
         abjad.Wrapper(
-            component=abjad.Note("%@% \\once \\override TextSpanner.bound-details.left.text = %! YELLOW\n%@% \\markup {                                             %! YELLOW\n%@%     \\fontsize                                         %! YELLOW\n%@%         #-6                                           %! YELLOW\n%@%         \\general-align                                %! YELLOW\n%@%             #Y                                        %! YELLOW\n%@%             #DOWN                                     %! YELLOW\n%@%             \\note-by-number                           %! YELLOW\n%@%                 #2                                    %! YELLOW\n%@%                 #0                                    %! YELLOW\n%@%                 #1                                    %! YELLOW\n%@%     \\upright                                          %! YELLOW\n%@%         {                                             %! YELLOW\n%@%             =                                         %! YELLOW\n%@%             72                                        %! YELLOW\n%@%         }                                             %! YELLOW\n%@%     \\hspace                                           %! YELLOW\n%@%         #1                                            %! YELLOW\n%@%     }                                                 %! YELLOW\n\\once \\override TextSpanner.Y-extent = ##f\n\\once \\override TextSpanner.bound-details.left-broken.text = ##f\n\\once \\override TextSpanner.bound-details.left.stencil-align-dir-y = #center\n\\once \\override TextSpanner.bound-details.right-broken.padding = 0\n\\once \\override TextSpanner.bound-details.right-broken.text = ##f\n\\once \\override TextSpanner.bound-details.right.padding = 1\n\\once \\override TextSpanner.bound-details.right.stencil-align-dir-y = #center\n\\once \\override TextSpanner.bound-details.right.text =\n\\markup {\n    \\concat\n        {\n            \\hspace\n                #0.5\n            \\line\n                {\n                    \\fontsize\n                        #-6\n                        \\general-align\n                            #Y\n                            #DOWN\n                            \\note-by-number\n                                #2\n                                #0\n                                #1\n                    \\upright\n                        {\n                            =\n                            60\n                        }\n                }\n        }\n    }\n\\once \\override TextSpanner.dash-period = 0\ng'8. \\stopTextSpan \\startTextSpan"),
             context='Score',
             deactivate=True,
             indicator=abjad.MetronomeMark(

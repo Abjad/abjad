@@ -1,12 +1,11 @@
 import math
-from abjad.tools import datastructuretools
-from abjad.tools import mathtools
-from abjad.tools.topleveltools import inspect
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 
 class EvenDivisionRhythmMaker(RhythmMaker):
     r'''Even division rhythm-maker.
+
+    >>> from abjad.tools import rhythmmakertools as rhythmos
 
     Object model of a partially evaluated function that accepts a (possibly
     empty) list of divisions as input and returns a list of selections as
@@ -39,6 +38,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         tie_specifier=None,
         tuplet_specifier=None,
         ):
+        import abjad
         from abjad.tools import rhythmmakertools
         RhythmMaker.__init__(
             self,
@@ -49,12 +49,12 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             tie_specifier=tie_specifier,
             tuplet_specifier=tuplet_specifier,
             )
-        assert mathtools.all_are_nonnegative_integer_powers_of_two(
+        assert abjad.mathtools.all_are_nonnegative_integer_powers_of_two(
             denominators), repr(denominators)
         denominators = tuple(denominators)
         self._denominators = denominators
         if extra_counts_per_division is not None:
-            assert mathtools.all_are_integer_equivalent(
+            assert abjad.mathtools.all_are_integer_equivalent(
                 extra_counts_per_division), repr(extra_counts_per_division)
             extra_counts_per_division = [
                 int(_) for _ in extra_counts_per_division
@@ -69,7 +69,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, rotation=None):
+    def __call__(self, divisions, state=None):
         r'''Calls even division rhythm-maker on `divisions`.
 
         ..  container:: example
@@ -228,17 +228,15 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         Returns list of of selections.
         '''
         superclass = super(EvenDivisionRhythmMaker, self)
-        return superclass.__call__(
-            divisions,
-            rotation=rotation,
-            )
+        return superclass.__call__(divisions, state=state)
 
     ### PRIVATE METHODS ###
 
-    def _apply_burnish_specifier(self, selections, rotation):
+    def _apply_burnish_specifier(self, selections):
         import abjad
         if self.burnish_specifier is None:
             return selections
+        rotation = self.state.get('rotation')
         left_classes = self.burnish_specifier.left_classes
         middle_classes = self.burnish_specifier.middle_classes
         right_classes = self.burnish_specifier.right_classes
@@ -305,7 +303,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         lefts_index, rights_index = 0, 0
         for selection_index, selection in enumerate(selections):
             tuplet = selection[0]
-            original_duration = inspect(tuplet).get_duration()
+            original_duration = abjad.inspect(tuplet).get_duration()
             leaves = tuplet[:]
             leaf_count = len(leaves)
             left_length = left_counts[selection_index]
@@ -333,7 +331,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             right_part = self._burnish_division_part(right_part, right)
             burnished_leaves = left_part + middle_part + right_part
             tuplet[:] = burnished_leaves
-            assert inspect(tuplet).get_duration() == original_duration
+            assert abjad.inspect(tuplet).get_duration() == original_duration
         return selections
 
     def _burnish_outer_selections(
@@ -367,7 +365,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         # first selection
         tuplet = selections[0][0]
-        original_duration = inspect(tuplet).get_duration()
+        original_duration = abjad.inspect(tuplet).get_duration()
         leaves = tuplet[:]
         available_left_length = len(leaves)
         left_length = min([left_length, available_left_length])
@@ -386,21 +384,21 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         middle_part = self._burnish_division_part(middle_part, middle)
         burnished_leaves = left_part + middle_part
         tuplet[:] = burnished_leaves
-        assert inspect(tuplet).get_duration() == original_duration
+        assert abjad.inspect(tuplet).get_duration() == original_duration
 
         # middle selections
         for selection in selections[1:-1]:
             tuplet = selection[0]
-            original_duration = inspect(tuplet).get_duration()
+            original_duration = abjad.inspect(tuplet).get_duration()
             leaves = tuplet[:]
             middle = len(leaves) * [middle_classes[0]]
             burnished_leaves = self._burnish_division_part(leaves, middle)
             tuplet[:] = burnished_leaves
-            assert inspect(tuplet).get_duration() == original_duration
+            assert abjad.inspect(tuplet).get_duration() == original_duration
 
         # last selection
         tuplet = selections[-1][0]
-        original_duration = inspect(tuplet).get_duration()
+        original_duration = abjad.inspect(tuplet).get_duration()
         leaves = tuplet[:]
         available_right_length = len(leaves)
         right_length = min([right_length, available_right_length])
@@ -416,13 +414,12 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         right_part = self._burnish_division_part(right_part, right)
         burnished_leaves = middle_part + right_part
         tuplet[:] = burnished_leaves
-        assert inspect(tuplet).get_duration() == original_duration
+        assert abjad.inspect(tuplet).get_duration() == original_duration
         return selections
 
-    def _make_music(self, divisions, rotation):
+    def _make_music(self, divisions):
         import abjad
-        if rotation is None:
-            rotation = 0
+        rotation = self.state.get('rotation', 0)
         selections = []
         divisions = [abjad.NonreducedFraction(_) for _ in divisions]
         denominators = abjad.CyclicTuple(self.denominators)
@@ -472,10 +469,10 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 tuplet.denominator = self.denominator
             selection = abjad.Selection(tuplet)
             selections.append(selection)
-        selections = self._apply_burnish_specifier(selections, rotation)
+        selections = self._apply_burnish_specifier(selections)
         beam_specifier = self._get_beam_specifier()
         beam_specifier(selections)
-        selections = self._apply_division_masks(selections, rotation)
+        selections = self._apply_division_masks(selections)
         return selections
 
     ### PUBLIC PROPERTIES ###
@@ -645,6 +642,467 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         Returns burnish specifier or none.
         '''
         return self._burnish_specifier
+
+    @property
+    def denominator(self):
+        r'''Gets preferred denominator.
+
+        ..  container:: example
+
+            No preferred denominator:
+
+            >>> rhythm_maker = abjad.rhythmmakertools.EvenDivisionRhythmMaker(
+            ...     denominators=[16],
+            ...     extra_counts_per_division=[4],
+            ...     denominator=None,
+            ...     )
+
+            >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(lilypond_file[abjad.Staff])
+                \new RhythmicStaff {
+                    { % measure
+                        \time 4/8
+                        \times 2/3 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    } % measure
+                    { % measure
+                        \time 3/8
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    } % measure
+                    { % measure
+                        \time 4/8
+                        \times 2/3 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    } % measure
+                    { % measure
+                        \time 3/8
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    } % measure
+                }
+
+            Expresses tuplet ratios in the usual way with numerator and
+            denominator relatively prime.
+
+        ..  container:: example
+
+            Preferred denominator equal to 4:
+
+            >>> rhythm_maker = abjad.rhythmmakertools.EvenDivisionRhythmMaker(
+            ...     denominators=[16],
+            ...     extra_counts_per_division=[4],
+            ...     denominator=4,
+            ...     )
+
+            >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(lilypond_file[abjad.Staff])
+                \new RhythmicStaff {
+                    { % measure
+                        \time 4/8
+                        \times 4/6 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    } % measure
+                    { % measure
+                        \time 3/8
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    } % measure
+                    { % measure
+                        \time 4/8
+                        \times 4/6 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    } % measure
+                    { % measure
+                        \time 3/8
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    } % measure
+                }
+
+            Preferred denominator equal to 8:
+
+            >>> rhythm_maker = abjad.rhythmmakertools.EvenDivisionRhythmMaker(
+            ...     denominators=[16],
+            ...     extra_counts_per_division=[4],
+            ...     denominator=8,
+            ...     )
+
+            >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(lilypond_file[abjad.Staff])
+                \new RhythmicStaff {
+                    { % measure
+                        \time 4/8
+                        \times 8/12 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    } % measure
+                    { % measure
+                        \time 3/8
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    } % measure
+                    { % measure
+                        \time 4/8
+                        \times 8/12 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    } % measure
+                    { % measure
+                        \time 3/8
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    } % measure
+                }
+
+            Preferred denominator equal to 16:
+
+            >>> rhythm_maker = abjad.rhythmmakertools.EvenDivisionRhythmMaker(
+            ...     denominators=[16],
+            ...     extra_counts_per_division=[4],
+            ...     denominator=16,
+            ...     )
+
+            >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(lilypond_file[abjad.Staff])
+                \new RhythmicStaff {
+                    { % measure
+                        \time 4/8
+                        \times 16/24 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    } % measure
+                    { % measure
+                        \time 3/8
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    } % measure
+                    { % measure
+                        \time 4/8
+                        \times 16/24 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    } % measure
+                    { % measure
+                        \time 3/8
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    } % measure
+                }
+
+        ..  container:: example
+
+            Preferred denominator taken from count of elements in tuplet:
+
+            >>> rhythm_maker = abjad.rhythmmakertools.EvenDivisionRhythmMaker(
+            ...     denominators=[16],
+            ...     extra_counts_per_division=[4],
+            ...     denominator='from_counts',
+            ...     )
+
+            >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(lilypond_file[abjad.Staff])
+                \new RhythmicStaff {
+                    { % measure
+                        \time 4/8
+                        \times 8/12 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    } % measure
+                    { % measure
+                        \time 3/8
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 6/10 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    } % measure
+                    { % measure
+                        \time 4/8
+                        \times 8/12 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    } % measure
+                    { % measure
+                        \time 3/8
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 6/10 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    } % measure
+                }
+
+        Defaults to none.
+
+        Set to none or positive integer.
+
+        Returns none or positive integer.
+        '''
+        return self._denominator
 
     @property
     def denominators(self):
@@ -2045,467 +2503,6 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         '''
         superclass = super(EvenDivisionRhythmMaker, self)
         return superclass.logical_tie_masks
-
-    @property
-    def denominator(self):
-        r'''Gets preferred denominator.
-
-        ..  container:: example
-
-            No preferred denominator:
-
-            >>> rhythm_maker = abjad.rhythmmakertools.EvenDivisionRhythmMaker(
-            ...     denominators=[16],
-            ...     extra_counts_per_division=[4],
-            ...     denominator=None,
-            ...     )
-
-            >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-            >>> selections = rhythm_maker(divisions)
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(
-            ...     selections,
-            ...     divisions,
-            ...     )
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
-                        \time 4/8
-                        \times 2/3 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    } % measure
-                    { % measure
-                        \time 3/8
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \times 3/5 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    } % measure
-                    { % measure
-                        \time 4/8
-                        \times 2/3 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    } % measure
-                    { % measure
-                        \time 3/8
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \times 3/5 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    } % measure
-                }
-
-            Expresses tuplet ratios in the usual way with numerator and
-            denominator relatively prime.
-
-        ..  container:: example
-
-            Preferred denominator equal to 4:
-
-            >>> rhythm_maker = abjad.rhythmmakertools.EvenDivisionRhythmMaker(
-            ...     denominators=[16],
-            ...     extra_counts_per_division=[4],
-            ...     denominator=4,
-            ...     )
-
-            >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-            >>> selections = rhythm_maker(divisions)
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(
-            ...     selections,
-            ...     divisions,
-            ...     )
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
-                        \time 4/8
-                        \times 4/6 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    } % measure
-                    { % measure
-                        \time 3/8
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \times 3/5 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    } % measure
-                    { % measure
-                        \time 4/8
-                        \times 4/6 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    } % measure
-                    { % measure
-                        \time 3/8
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \times 3/5 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    } % measure
-                }
-
-            Preferred denominator equal to 8:
-
-            >>> rhythm_maker = abjad.rhythmmakertools.EvenDivisionRhythmMaker(
-            ...     denominators=[16],
-            ...     extra_counts_per_division=[4],
-            ...     denominator=8,
-            ...     )
-
-            >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-            >>> selections = rhythm_maker(divisions)
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(
-            ...     selections,
-            ...     divisions,
-            ...     )
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
-                        \time 4/8
-                        \times 8/12 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    } % measure
-                    { % measure
-                        \time 3/8
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \times 3/5 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    } % measure
-                    { % measure
-                        \time 4/8
-                        \times 8/12 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    } % measure
-                    { % measure
-                        \time 3/8
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \times 3/5 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    } % measure
-                }
-
-            Preferred denominator equal to 16:
-
-            >>> rhythm_maker = abjad.rhythmmakertools.EvenDivisionRhythmMaker(
-            ...     denominators=[16],
-            ...     extra_counts_per_division=[4],
-            ...     denominator=16,
-            ...     )
-
-            >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-            >>> selections = rhythm_maker(divisions)
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(
-            ...     selections,
-            ...     divisions,
-            ...     )
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
-                        \time 4/8
-                        \times 16/24 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    } % measure
-                    { % measure
-                        \time 3/8
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \times 3/5 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    } % measure
-                    { % measure
-                        \time 4/8
-                        \times 16/24 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    } % measure
-                    { % measure
-                        \time 3/8
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \times 3/5 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    } % measure
-                }
-
-        ..  container:: example
-
-            Preferred denominator taken from count of elements in tuplet:
-
-            >>> rhythm_maker = abjad.rhythmmakertools.EvenDivisionRhythmMaker(
-            ...     denominators=[16],
-            ...     extra_counts_per_division=[4],
-            ...     denominator='from_counts',
-            ...     )
-
-            >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-            >>> selections = rhythm_maker(divisions)
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(
-            ...     selections,
-            ...     divisions,
-            ...     )
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
-                        \time 4/8
-                        \times 8/12 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    } % measure
-                    { % measure
-                        \time 3/8
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \times 6/10 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    } % measure
-                    { % measure
-                        \time 4/8
-                        \times 8/12 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    } % measure
-                    { % measure
-                        \time 3/8
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \times 6/10 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    } % measure
-                }
-
-        Defaults to none.
-
-        Set to none or positive integer.
-
-        Returns none or positive integer.
-        '''
-        return self._denominator
 
     @property
     def tuplet_specifier(self):

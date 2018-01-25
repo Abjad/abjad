@@ -1199,7 +1199,8 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___52():
         r'''
         \new Voice {
             \override TrillSpanner.color = #red
-            c'8 \startTrillSpan
+            c'8
+            \startTrillSpan
             d'8
             e'8
             \revert TrillSpanner.color

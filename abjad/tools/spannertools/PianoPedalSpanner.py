@@ -89,7 +89,7 @@ class PianoPedalSpanner(Spanner):
             bundle.right.spanner_starts.append(string)
             string = self._kinds[self.kind][1]
             bundle.right.spanner_starts.append(string)
-        elif self._is_my_first_leaf(leaf):
+        elif leaf is self[0]:
             style = abjad.SchemeSymbol(self.style)
             context_setting = abjad.lilypondnametools.LilyPondContextSetting(
                 lilypond_type='Staff',
@@ -99,7 +99,7 @@ class PianoPedalSpanner(Spanner):
             bundle.update(context_setting)
             string = self._kinds[self.kind][0]
             bundle.right.spanner_starts.append(string)
-        elif self._is_my_last_leaf(leaf):
+        elif leaf is self[-1]:
             string = self._kinds[self.kind][1]
             bundle.right.spanner_stops.append(string)
         return bundle

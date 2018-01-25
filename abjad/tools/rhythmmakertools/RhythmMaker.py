@@ -1,14 +1,5 @@
 import collections
-from abjad.tools import datastructuretools
-from abjad.tools import mathtools
-from abjad.tools import scoretools
-from abjad.tools import spannertools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import inspect
-from abjad.tools.topleveltools import iterate
-from abjad.tools.topleveltools import mutate
 
 
 class RhythmMaker(AbjadValueObject):
@@ -21,10 +12,10 @@ class RhythmMaker(AbjadValueObject):
 
     __slots__ = (
         '_beam_specifier',
-        '_logical_tie_masks',
         '_division_masks',
         '_duration_specifier',
-        '_rotation',
+        '_logical_tie_masks',
+        '_state',
         '_tie_specifier',
         '_tuplet_specifier',
         )
@@ -62,14 +53,15 @@ class RhythmMaker(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, rotation=None):
+    def __call__(self, divisions, state=None):
         r'''Calls rhythm-maker.
 
         Returns selections.
         '''
-        self._rotation = rotation
+        import abjad
+        self._state = state or abjad.OrderedDict()
         divisions = self._coerce_divisions(divisions)
-        selections = self._make_music(divisions, rotation)
+        selections = self._make_music(divisions)
         selections = self._apply_specifiers(selections, divisions)
         self._check_wellformedness(selections)
         return selections
@@ -99,7 +91,7 @@ class RhythmMaker(AbjadValueObject):
         else:
             return False
 
-    def _apply_division_masks(self, selections, rotation=None):
+    def _apply_division_masks(self, selections):
         import abjad
         from abjad.tools import rhythmmakertools
         if not self.division_masks:
@@ -120,7 +112,7 @@ class RhythmMaker(AbjadValueObject):
             matching_division_mask = division_masks.get_matching_pattern(
                 i,
                 length,
-                rotation=rotation,
+                rotation=self.state.get('rotation'),
                 )
             if not matching_division_mask:
                 new_selections.append(selection)
@@ -157,7 +149,7 @@ class RhythmMaker(AbjadValueObject):
         if self.logical_tie_masks is None:
             return selections
         # wrap every selection in a temporary container;
-        # this allows the call to mutate().replace() to work
+        # this allows the call to abjad.mutate().replace() to work
         containers = []
         for selection in selections:
             container = abjad.Container(selection)
@@ -176,7 +168,7 @@ class RhythmMaker(AbjadValueObject):
             if isinstance(logical_tie.head, abjad.Rest):
                 continue
             for leaf in logical_tie:
-                rest = scoretools.Rest(leaf.written_duration)
+                rest = abjad.Rest(leaf.written_duration)
                 inspector = abjad.inspect(leaf)
                 if inspector.has_indicator(abjad.Multiplier):
                     multiplier = inspector.get_indicator(abjad.Multiplier)
@@ -214,8 +206,9 @@ class RhythmMaker(AbjadValueObject):
         return selections
 
     def _check_wellformedness(self, selections):
-        for component in iterate(selections).components():
-            inspector = inspect(component)
+        import abjad
+        for component in abjad.iterate(selections).components():
+            inspector = abjad.inspect(component)
             if not inspector.is_well_formed():
                 report = inspector.tabulate_wellformedness()
                 report = repr(component) + '\n' + report
@@ -223,17 +216,27 @@ class RhythmMaker(AbjadValueObject):
 
     @staticmethod
     def _coerce_divisions(divisions):
+        import abjad
         divisions_ = []
         for division in divisions:
-            if isinstance(division, mathtools.NonreducedFraction):
+            if isinstance(division, abjad.NonreducedFraction):
                 divisions_.append(division)
             else:
-                division = mathtools.NonreducedFraction(division)
+                division = abjad.NonreducedFraction(division)
                 divisions_.append(division)
         divisions = divisions_
-        prototype = mathtools.NonreducedFraction
+        prototype = abjad.NonreducedFraction
         assert all(isinstance(_, prototype) for _ in divisions)
         return divisions
+
+    def _collect_state(self, state):
+        import abjad
+        state_ = abjad.OrderedDict()
+        for key, value_ in state.items():
+            assert hasattr(self, key)
+            value = getattr(self, key)
+            state_[key] = value
+        return state_
 
     def _get_beam_specifier(self):
         from abjad.tools import rhythmmakertools
@@ -268,7 +271,8 @@ class RhythmMaker(AbjadValueObject):
 
     @staticmethod
     def _make_cyclic_tuple_generator(iterable):
-        cyclic_tuple = datastructuretools.CyclicTuple(iterable)
+        import abjad
+        cyclic_tuple = abjad.CyclicTuple(iterable)
         i = 0
         while True:
             yield cyclic_tuple[i]
@@ -311,14 +315,9 @@ class RhythmMaker(AbjadValueObject):
             tuplets.append(tuplet)
         return tuplets
 
-    def _none_to_trivial_helper(self, argument):
-        if argument is None:
-            argument = self._trivial_helper
-        assert callable(argument)
-        return argument
-
     @staticmethod
     def _prepare_masks(masks):
+        import abjad
         from abjad.tools import rhythmmakertools
         prototype = (
             rhythmmakertools.SilenceMask,
@@ -326,13 +325,11 @@ class RhythmMaker(AbjadValueObject):
             )
         if masks is None:
             return
-        if isinstance(masks, datastructuretools.Pattern):
+        if isinstance(masks, abjad.Pattern):
             masks = (masks,)
         if isinstance(masks, prototype):
             masks = (masks,)
-        masks = datastructuretools.PatternTuple(
-            items=masks,
-            )
+        masks = abjad.PatternTuple(items=masks)
         return masks
 
     @staticmethod
@@ -340,13 +337,7 @@ class RhythmMaker(AbjadValueObject):
         if argument is not None:
             return tuple(reversed(argument))
 
-    @staticmethod
-    def _rotate_tuple(argument, n):
-        import abjad
-        if argument is not None:
-            return tuple(abjad.sequence(argument).rotate(n=n))
-
-    def _scale_taleas(self, divisions, talea_denominator, taleas):
+    def _scale_counts(self, divisions, talea_denominator, counts):
         import abjad
         talea_denominator = talea_denominator or 1
         dummy_division = (1, talea_denominator)
@@ -355,16 +346,19 @@ class RhythmMaker(AbjadValueObject):
         dummy_division = divisions.pop()
         lcd = dummy_division.denominator
         multiplier = lcd / talea_denominator
-        assert mathtools.is_integer_equivalent(multiplier), repr(multiplier)
+        assert abjad.mathtools.is_integer_equivalent(multiplier)
         multiplier = int(multiplier)
-        scaled_taleas = []
-        for talea in taleas:
-            talea = [multiplier * _ for _ in talea]
-            talea = abjad.CyclicTuple(talea)
-            scaled_taleas.append(talea)
-        result = [divisions, lcd]
-        result.extend(scaled_taleas)
-        return tuple(result)
+        counts_ = {}
+        for name, vector in counts.items():
+            vector = [multiplier * _ for _ in vector]
+            vector = abjad.CyclicTuple(vector)
+            counts_[name] = vector
+        counts = counts_
+        return {
+            'divisions': divisions,
+            'lcd': lcd,
+            'counts': counts,
+            }
 
     def _sequence_to_ellipsized_string(self, sequence):
         if not sequence:
@@ -377,12 +371,6 @@ class RhythmMaker(AbjadValueObject):
         result = '[${}$]'.format(result)
         return result
 
-    def _trivial_helper(self, sequence_, rotation):
-        import abjad
-        if isinstance(rotation, int) and len(sequence_):
-            return abjad.sequence(sequence_).rotate(n=rotation)
-        return sequence_
-
     def _validate_selections(self, selections):
         import abjad
         assert isinstance(selections, collections.Sequence), repr(selections)
@@ -392,7 +380,7 @@ class RhythmMaker(AbjadValueObject):
 
     def _validate_tuplets(self, selections):
         import abjad
-        for tuplet in iterate(selections).components(abjad.Tuplet):
+        for tuplet in abjad.iterate(selections).components(abjad.Tuplet):
             assert tuplet.multiplier.normalized(), repr(tuplet)
             assert len(tuplet), repr(tuplet)
 
@@ -433,6 +421,14 @@ class RhythmMaker(AbjadValueObject):
         Returns patterns or none.
         '''
         return self._logical_tie_masks
+
+    @property
+    def state(self):
+        r'''Gets state dictionary.
+
+        Returns ordered dictionary.
+        '''
+        return self._state
 
     @property
     def tie_specifier(self):

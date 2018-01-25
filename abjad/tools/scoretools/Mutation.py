@@ -1518,7 +1518,7 @@ class Mutation(abctools.AbjadObject):
 
         ..  container:: example
 
-            Uses Messiaen-style ties:
+            Uses repeat ties:
 
             >>> measure = abjad.Measure((4, 4), "c'4. c'4. c'4")
             >>> abjad.show(measure) # doctest: +SKIP
@@ -2457,7 +2457,7 @@ class Mutation(abctools.AbjadObject):
                     d'2 \f
                 }
 
-            As above but with Messiaen-style ties:
+            As above but with repeat ties:
 
             >>> staff = abjad.Staff("c'1 d'1")
             >>> hairpin = abjad.Hairpin(descriptor='p < f')

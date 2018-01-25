@@ -7,6 +7,9 @@ from abjad.tools.datastructuretools.Multiplier import Multiplier
 
 class TupletSpecifier(AbjadValueObject):
     r'''Tuplet spelling specifier.
+
+    >>> from abjad.tools import rhythmmakertools as rhythmos
+
     '''
 
     ### CLASS VARIABLES ###

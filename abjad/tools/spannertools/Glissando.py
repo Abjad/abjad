@@ -88,13 +88,13 @@ class Glissando(Spanner):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         prototype = (abjad.Chord, abjad.Note)
         should_attach_glissando = False
-        if not self._is_my_first_leaf(leaf):
+        if not leaf is self[0]:
             if self.parenthesize_repeated_pitches:
                 if not self._previous_leaf_changes_current_pitch(leaf):
                     self._parenthesize_leaf(leaf)
         if abjad.inspect(leaf).has_indicator(abjad.BendAfter):
             pass
-        elif self._is_my_last_leaf(leaf):
+        elif leaf is self[-1]:
             pass
         elif not isinstance(leaf, prototype):
             pass

@@ -71,10 +71,10 @@ class Flute(Instrument):
         >>> for leaf in abjad.select(staff).leaves():
         ...     leaf, abjad.inspect(leaf).get_effective(abjad.Instrument)
         ...
-        (Note("c'4"), Flute())
-        (Note("d'4"), Flute())
-        (Note("e'4"), Flute())
-        (Note("fs'4"), Flute())
+        (Note("c'4"), Flute(hide=True))
+        (Note("d'4"), Flute(hide=True))
+        (Note("e'4"), Flute(hide=True))
+        (Note("fs'4"), Flute(hide=True))
 
     '''
 

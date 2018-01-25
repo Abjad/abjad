@@ -473,7 +473,7 @@ class TextSpanner(Spanner):
         indicators = (markup, line_segment, last_leaf_markup)
         has_indicators = any(_ is not None for _ in indicators)
         if not has_indicators:
-            if self._is_my_first_leaf(component):
+            if component is self[0]:
                 bundle.right.spanner_starts.append(r'\startTextSpan')
                 if self._wrappers:
                     string = r'\once \override TextSpanner.Y-extent = ##f'
@@ -483,12 +483,12 @@ class TextSpanner(Spanner):
                     for override in overrides:
                         override_string = override.override_string
                         bundle.grob_overrides.append(override_string)
-            if self._is_my_last_leaf(component):
+            if component is self[-1]:
                 bundle.right.spanner_stops.append(r'\stopTextSpan')
             return bundle
-        if has_indicators and not self._is_my_first_leaf(component):
+        if has_indicators and not component is self[0]:
             bundle.right.spanner_stops.append(r'\stopTextSpan')
-        if not self._is_my_last_leaf(component):
+        if not component is self[-1]:
             bundle.right.spanner_starts.append(r'\startTextSpan')
             if self._wrappers:
                 string = r'\once \override TextSpanner.Y-extent = ##f'

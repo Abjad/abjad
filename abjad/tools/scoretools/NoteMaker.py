@@ -1,5 +1,6 @@
 import collections
 import numbers
+from typing import Optional
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -110,7 +111,7 @@ class NoteMaker(AbjadValueObject):
 
     ..  container:: example
 
-        Uses Messiaen-style ties:
+        Uses repeat ties:
 
         >>> maker = abjad.NoteMaker(repeat_ties=True)
         >>> notes = maker([0], [(13, 16)])
@@ -268,9 +269,7 @@ class NoteMaker(AbjadValueObject):
         return self._decrease_monotonic
 
     @property
-    def repeat_ties(self):
-        r'''Is true when ties are Messiaen-style. Otherwise false.
-
-        Returns true, false or none.
+    def repeat_ties(self) -> Optional[bool]:
+        r'''Is true when ties are repeat ties.
         '''
         return self._repeat_ties

@@ -14,7 +14,6 @@ class Wrapper(AbjadValueObject):
 
         >>> abjad.f(wrapper)
         abjad.Wrapper(
-            component=abjad.Note("c'4 ^\\accent"),
             indicator=abjad.Articulation('accent', Up),
             )
 
@@ -32,8 +31,8 @@ class Wrapper(AbjadValueObject):
         '_deactivate',
         '_effective_context',
         '_indicator',
-        '_left_open',
-        '_right_open',
+        '_left_broken',
+        '_right_broken',
         '_site',
         '_spanner',
         '_synthetic_offset',
@@ -52,8 +51,8 @@ class Wrapper(AbjadValueObject):
         context=None,
         deactivate=None,
         indicator=None,
-        left_open=None,
-        right_open=None,
+        left_broken=None,
+        right_broken=None,
         site=None,
         spanner=None,
         synthetic_offset=None,
@@ -86,16 +85,16 @@ class Wrapper(AbjadValueObject):
         if spanner is not None:
             assert isinstance(spanner, abjad.Spanner)
         self._spanner = spanner
-        if left_open is not None:
-            left_open = bool(left_open)
-        if left_open and spanner is None:
+        if left_broken is not None:
+            left_broken = bool(left_broken)
+        if left_broken and spanner is None:
             raise Exception('set open left only with spanners.')
-        self._left_open = left_open
-        if right_open is not None:
-            right_open = bool(right_open)
-        if right_open and spanner is None:
+        self._left_broken = left_broken
+        if right_broken is not None:
+            right_broken = bool(right_broken)
+        if right_broken and spanner is None:
             raise Exception('set open right only with spanners.')
-        self._right_open = right_open
+        self._right_broken = right_broken
         if site is not None:
             assert isinstance(site, str), repr(site)
         self._site = site
@@ -180,7 +179,6 @@ class Wrapper(AbjadValueObject):
             >>> wrapper = abjad.inspect(leaf).wrapper()
             >>> abjad.f(wrapper)
             abjad.Wrapper(
-                component=abjad.Note("\\once \\override TextSpanner.Y-extent = ##f\n\\once \\override TextSpanner.bound-details.left-broken.text = ##f\n\\once \\override TextSpanner.bound-details.left.stencil-align-dir-y = #center\n\\once \\override TextSpanner.bound-details.left.text = \\markup {\n    \\concat\n        {\n            pont.\n            \\hspace\n                #0.25\n        }\n    }\n\\once \\override TextSpanner.bound-details.right-broken.padding = 0\n\\once \\override TextSpanner.bound-details.right-broken.text = ##f\n\\once \\override TextSpanner.bound-details.right.padding = 1.5\n\\once \\override TextSpanner.bound-details.right.stencil-align-dir-y = #center\n\\once \\override TextSpanner.dash-period = 0\nc'4 \\startTextSpan"),
                 indicator=abjad.Markup(
                     contents=['pont.'],
                     ),
@@ -216,7 +214,6 @@ class Wrapper(AbjadValueObject):
             >>> wrapper = abjad.inspect(leaf).wrapper()
             >>> abjad.f(wrapper)
             abjad.Wrapper(
-                component=abjad.Note("\\once \\override TextSpanner.Y-extent = ##f\n\\once \\override TextSpanner.bound-details.left-broken.text = ##f\n\\once \\override TextSpanner.bound-details.left.stencil-align-dir-y = #center\n\\once \\override TextSpanner.bound-details.left.text = \\markup {\n    \\concat\n        {\n            pont.\n            \\hspace\n                #0.25\n        }\n    }\n\\once \\override TextSpanner.bound-details.right-broken.padding = 0\n\\once \\override TextSpanner.bound-details.right-broken.text = ##f\n\\once \\override TextSpanner.bound-details.right.padding = 1.5\n\\once \\override TextSpanner.bound-details.right.stencil-align-dir-y = #center\n\\once \\override TextSpanner.dash-period = 0\nc'4 \\startTextSpan"),
                 indicator=abjad.Markup(
                     contents=['pont.'],
                     ),
@@ -243,7 +240,6 @@ class Wrapper(AbjadValueObject):
             >>> wrapper = abjad.inspect(leaf).wrapper()
             >>> abjad.f(wrapper)
             abjad.Wrapper(
-                component=abjad.Note('\\clef "alto" %! RED:M1\nc\'4'),
                 context='Staff',
                 indicator=abjad.Clef('alto'),
                 site='M1',
@@ -264,7 +260,6 @@ class Wrapper(AbjadValueObject):
             >>> wrapper = abjad.inspect(leaf).wrapper()
             >>> abjad.f(wrapper)
             abjad.Wrapper(
-                component=abjad.Note('\\clef "alto" %! RED:M1\nc\'4'),
                 context='Staff',
                 indicator=abjad.Clef('alto'),
                 site='M1',
@@ -296,7 +291,6 @@ class Wrapper(AbjadValueObject):
             >>> wrapper = abjad.inspect(leaf).wrapper()
             >>> abjad.f(wrapper)
             abjad.Wrapper(
-                component=abjad.Note('%@% \\clef "alto" %! RED:M1\nc\'4'),
                 context='Staff',
                 deactivate=True,
                 indicator=abjad.Clef('alto'),
@@ -318,7 +312,6 @@ class Wrapper(AbjadValueObject):
             >>> wrapper = abjad.inspect(leaf).wrapper()
             >>> abjad.f(wrapper)
             abjad.Wrapper(
-                component=abjad.Note('%@% \\clef "alto" %! RED:M1\nc\'4'),
                 context='Staff',
                 deactivate=True,
                 indicator=abjad.Clef('alto'),
@@ -415,7 +408,6 @@ class Wrapper(AbjadValueObject):
             >>> abjad.f(wrapper)
             abjad.Wrapper(
                 alternate=('DarkRed', 'M2', 'METRONOME_MARK_WITH_COLOR'),
-                component=abjad.Note(...),
                 context='Score',
                 indicator=abjad.MetronomeMark(
                     reference_duration=abjad.Duration(1, 4),
@@ -501,7 +493,6 @@ class Wrapper(AbjadValueObject):
             >>> abjad.f(wrapper)
             abjad.Wrapper(
                 alternate=('DarkRed', 'M2', 'METRONOME_MARK_WITH_COLOR'),
-                component=abjad.Note(...),
                 context='Score',
                 indicator=abjad.MetronomeMark(
                     reference_duration=abjad.Duration(1, 4),
@@ -628,6 +619,27 @@ class Wrapper(AbjadValueObject):
         result = [r'%%% {} %%%'.format(_) for _ in result]
         return result
 
+    def _get_format_specification(self):
+        import abjad
+        keywords = [
+            'alternate',
+            'annotation',
+            'context',
+            'deactivate',
+            'indicator',
+            'left_broken',
+            'right_broken',
+            'site',
+            'spanner',
+            'synthetic_offset',
+            'tag',
+            ]
+        return abjad.FormatSpecification(
+            client=self,
+            storage_format_args_values=None,
+            storage_format_kwargs_names=keywords,
+            )
+
     def _is_formattable_for_component(self, component):
         import abjad
         if self.annotation:
@@ -683,22 +695,23 @@ class Wrapper(AbjadValueObject):
             return
         if isinstance(self.indicator, abjad.LilyPondLiteral):
             return
+        if self.deactivate is True:
+            return
         prototype = type(self.indicator)
         wrapper = abjad.inspect(component).effective_wrapper(prototype)
         if (wrapper is not None and
             wrapper.context is not None and
+            wrapper.deactivate is not True and
             wrapper.indicator != self.indicator):
             if wrapper.start_offset == self.start_offset:
-                message = 'Can not attach ...\n\n{}\n\n...to ...\n\n{}'
-                message += '\n\n... because ...\n\n{}\n\n'
-                message += '... is already attached to ...\n\n'
-                message += '{}\n\nSee:\n\n{}'
+                message = 'Can not attach ...\n\n{}\n\n... to {} because ...'
+                message += '\n\n{}\n\n'
+                message += '... is already attached to {}.\n\n'
                 message = message.format(
                     self.indicator,
-                    component,
-                    wrapper.indicator,
-                    wrapper.component,
+                    repr(component),
                     format(wrapper),
+                    repr(wrapper.component),
                     )
                 raise Exception(message)
 
@@ -779,14 +792,14 @@ class Wrapper(AbjadValueObject):
         return self._indicator
 
     @property
-    def left_open(self):
+    def left_broken(self):
         r'''Is true when spanner is left-open.
 
         Defaults to none.
 
         Set to true, false or none.
         '''
-        return self._left_open
+        return self._left_broken
 
     @property
     def site(self):
@@ -799,14 +812,14 @@ class Wrapper(AbjadValueObject):
         return self._site
 
     @property
-    def right_open(self):
+    def right_broken(self):
         r'''Is true when spanner is right-open.
 
         Defaults to none.
 
         Set to true, false or none.
         '''
-        return self._right_open
+        return self._right_broken
 
     @property
     def spanner(self):

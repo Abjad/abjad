@@ -3,8 +3,8 @@ def attach(
     target,
     context=None,
     deactivate=None,
-    left_open=None,
-    right_open=None,
+    left_broken=None,
+    right_broken=None,
     site=None,
     synthetic_offset=None,
     tag=None,
@@ -88,11 +88,113 @@ def attach(
         (Note("e'4"), Clef('alto'))
         (Note("f'4"), Clef('alto'))
 
-    Derives context from default `attachable` context when `context` is none.
+        Derives context from default `attachable` context when `context` is
+        none.
+
+    ..  container:: example
+
+        Two contexted indicators can not be attached at the same offset if both
+        indicators are active:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.attach(abjad.Clef('treble'), staff[0])
+        >>> abjad.attach(abjad.Clef('alto'), staff[0])
+        Traceback (most recent call last):
+            ...
+        Exception: Can not attach ...
+
+        But simultaneous contexted indicators are allowed if only one is active
+        (and all others are inactive):
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.attach(abjad.Clef('treble'), staff[0])
+        >>> abjad.attach(
+        ...     abjad.Clef('alto'),
+        ...     staff[0],
+        ...     deactivate=True,
+        ...     tag='+PARTS_1',
+        ...     )
+        >>> abjad.attach(
+        ...     abjad.Clef('tenor'),
+        ...     staff[0],
+        ...     deactivate=True,
+        ...     tag='+PARTS_2',
+        ...     )
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff, strict=True)
+            \new Staff {
+                \clef "treble"
+            %@% \clef "alto" %! +PARTS_1
+            %@% \clef "tenor" %! +PARTS_2
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+        Active indicator is always effective when competing inactive indicators
+        are present:
+
+        >>> for note in staff:
+        ...     clef = abjad.inspect(staff[0]).get_effective(abjad.Clef)
+        ...     note, clef
+        ...
+        (Note("c'4"), Clef('treble'))
+        (Note("d'4"), Clef('treble'))
+        (Note("e'4"), Clef('treble'))
+        (Note("f'4"), Clef('treble'))
+
+        But a lone inactivate indicator is effective when no active indicator
+        is present:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.attach(
+        ...     abjad.Clef('alto'),
+        ...     staff[0],
+        ...     deactivate=True,
+        ...     tag='+PARTS',
+        ...     )
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff, strict=True)
+            \new Staff {
+            %@% \clef "alto" %! +PARTS
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+        >>> for note in staff:
+        ...     clef = abjad.inspect(staff[0]).get_effective(abjad.Clef)
+        ...     note, clef
+        ...
+        (Note("c'4"), Clef('alto'))
+        (Note("d'4"), Clef('alto'))
+        (Note("e'4"), Clef('alto'))
+        (Note("f'4"), Clef('alto'))
+
+    ..  container:: example
+
+        Tag must be string when `deactivate` is true:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.attach(abjad.Clef('alto'), staff[0], deactivate=True)
+        Traceback (most recent call last):
+            ...
+        Exception: tag must be string when deactivate is true.
 
     Returns none.
     '''
     import abjad
+
+    assert attachable is not None, repr(attachable)
+    assert target is not None, repr(target)
 
     nonindicator_prototype = (
         abjad.AfterGraceContainer,
@@ -105,16 +207,19 @@ def attach(
         message = message.format(attachable)
         raise Exception(message)
 
-    if left_open is not None and not isinstance(attachable, abjad.Spanner):
-        message = 'set left_open only for spanners, not {!r}.'
+    if left_broken is not None and not isinstance(attachable, abjad.Spanner):
+        message = 'set left_broken only for spanners, not {!r}.'
         message = message.format(attachable)
         raise Exception(message)
 
-    if right_open is not None and not isinstance(attachable, abjad.Spanner):
-        message = 'set right_open only for spanners, not {!r}.'
+    if right_broken is not None and not isinstance(attachable, abjad.Spanner):
+        message = 'set right_broken only for spanners, not {!r}.'
         message = message.format(attachable)
         raise Exception(message)
             
+    if deactivate is True and tag is None:
+        raise Exception(f'tag must be string when deactivate is true.')
+
     if hasattr(attachable, '_before_attach'):
         attachable._before_attach(target)
 
@@ -134,8 +239,8 @@ def attach(
         attachable._attach(
             target,
             deactivate=deactivate,
-            left_open=left_open,
-            right_open=right_open,
+            left_broken=left_broken,
+            right_broken=right_broken,
             site=site,
             tag=tag,
             )
@@ -174,10 +279,10 @@ def attach(
         annotation = attachable.annotation
         context = context or attachable.context
         deactivate = deactivate or attachable.deactivate
-        if left_open is None:
-            left_open = attachable.left_open
-        if right_open is None:
-            right_open = attachable.right_open
+        if left_broken is None:
+            left_broken = attachable.left_broken
+        if right_broken is None:
+            right_broken = attachable.right_broken
         site = site or attachable.site
         synthetic_offset = synthetic_offset or attachable.synthetic_offset
         tag = tag or attachable.tag
@@ -193,8 +298,8 @@ def attach(
         context=context,
         deactivate=deactivate,
         indicator=attachable,
-        left_open=left_open,
-        right_open=right_open,
+        left_broken=left_broken,
+        right_broken=right_broken,
         site=site,
         synthetic_offset=synthetic_offset,
         tag=tag,

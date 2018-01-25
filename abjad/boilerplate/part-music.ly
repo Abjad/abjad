@@ -1,4 +1,5 @@
 % {score_title} {forces_tagline}
+% part_abbreviation = {part_abbreviation}
 
 {lilypond_version_directive}
 {lilypond_language_directive}
@@ -9,7 +10,6 @@
 
 \score {{
     <<
-        {keep_with_tag_command}
         {{
         \include "{dashed_part_name}-layout.ly"
         }}

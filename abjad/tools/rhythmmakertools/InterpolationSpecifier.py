@@ -3,6 +3,9 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 class InterpolationSpecifier(AbjadValueObject):
     r'''Interpolation specifier.
+
+    >>> from abjad.tools import rhythmmakertools as rhythmos
+
     '''
 
     ### CLASS VARIABLES ###

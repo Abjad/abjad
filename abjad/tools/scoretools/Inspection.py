@@ -100,7 +100,6 @@ class Inspection(abctools.AbjadObject):
             ...
             abjad.Wrapper(
                 annotation='default_instrument',
-                component=abjad.Note("c'4"),
                 indicator=abjad.Cello(
                     name='cello',
                     short_name='vc.',
@@ -129,7 +128,6 @@ class Inspection(abctools.AbjadObject):
                 )
             abjad.Wrapper(
                 annotation='default_clef',
-                component=abjad.Note("c'4"),
                 indicator=abjad.Clef('tenor'),
                 )
 
@@ -172,12 +170,12 @@ class Inspection(abctools.AbjadObject):
             ...     wrapper = inspection.effective_wrapper(abjad.Clef)
             ...     print(component, wrapper)
             ...
-            Staff("c'4 d'4 e'4 f'4") Wrapper(component=Note("c'4"), context='Staff', indicator=Clef('alto'))
-            c'4 Wrapper(component=Note("c'4"), context='Staff', indicator=Clef('alto'))
-            d'4 Wrapper(component=Note("c'4"), context='Staff', indicator=Clef('alto'))
-            e'4 Wrapper(component=Note("c'4"), context='Staff', indicator=Clef('alto'))
-            fs'16 Wrapper(component=Note("c'4"), context='Staff', indicator=Clef('alto'))
-            f'4 Wrapper(component=Note("c'4"), context='Staff', indicator=Clef('alto'))
+            Staff("c'4 d'4 e'4 f'4") Wrapper(context='Staff', indicator=Clef('alto'))
+            c'4 Wrapper(context='Staff', indicator=Clef('alto'))
+            d'4 Wrapper(context='Staff', indicator=Clef('alto'))
+            e'4 Wrapper(context='Staff', indicator=Clef('alto'))
+            fs'16 Wrapper(context='Staff', indicator=Clef('alto'))
+            f'4 Wrapper(context='Staff', indicator=Clef('alto'))
 
         Returns wrapper or none.
         '''
@@ -1907,7 +1905,7 @@ class Inspection(abctools.AbjadObject):
             True
 
             >>> abjad.inspect(staff[0]).wrapper(abjad.Articulation)
-            Wrapper(component=Note("c'4"), indicator=Articulation('^'))
+            Wrapper(indicator=Articulation('^'))
 
         Raises exception when more than one indicator of `prototype` attach to
         client.
@@ -1942,7 +1940,7 @@ class Inspection(abctools.AbjadObject):
             ()
 
             >>> abjad.inspect(staff[0]).wrappers(abjad.Articulation)
-            (Wrapper(component=Note("c'4"), indicator=Articulation('^')),)
+            (Wrapper(indicator=Articulation('^')),)
 
         Returns tuple of wrappers or none.
         '''

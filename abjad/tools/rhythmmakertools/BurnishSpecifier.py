@@ -1,6 +1,3 @@
-from abjad.tools import datastructuretools
-from abjad.tools import mathtools
-from abjad.tools import scoretools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -139,12 +136,12 @@ class BurnishSpecifier(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, helper_functions=None, rotation=None):
+    def __call__(self, divisions):
         r'''Calls burnish specifier on `divisions`.
 
         Returns list of burnished divisions.
         '''
-        input_ = self._rotate_input(helper_functions=None, rotation=None)
+        input_ = self._prepare_input()
         if self.outer_divisions_only:
             return self._burnish_outer_divisions(input_, divisions)
         else:
@@ -197,14 +194,15 @@ class BurnishSpecifier(AbjadValueObject):
 
     @staticmethod
     def _burnish_division_part(division_part, token):
+        import abjad
         assert len(division_part) == len(token)
         new_division_part = []
         for number, i in zip(division_part, token):
-            if i in (-1, scoretools.Rest):
+            if i in (-1, abjad.Rest):
                 new_division_part.append(-abs(number))
             elif i == 0:
                 new_division_part.append(number)
-            elif i in (1, scoretools.Note):
+            elif i in (1, abjad.Note):
                 new_division_part.append(abs(number))
             else:
                 message = 'unknown burnshing: {!r}.'
@@ -254,8 +252,9 @@ class BurnishSpecifier(AbjadValueObject):
             right_part = class_._burnish_division_part(right_part, right)
             burnished_division = left_part + middle_part + right_part
             burnished_divisions.append(burnished_division)
-        unburnished_weights = [mathtools.weight(x) for x in divisions]
-        burnished_weights = [mathtools.weight(x) for x in burnished_divisions]
+        unburnished_weights = [abjad.mathtools.weight(x) for x in divisions]
+        burnished_weights = [
+            abjad.mathtools.weight(x) for x in burnished_divisions]
         assert burnished_weights == unburnished_weights
         return burnished_divisions
 
@@ -349,8 +348,9 @@ class BurnishSpecifier(AbjadValueObject):
             right_part = class_._burnish_division_part(right_part, right)
             burnished_division = middle_part + right_part
             burnished_divisions.append(burnished_division)
-        unburnished_weights = [mathtools.weight(x) for x in divisions]
-        burnished_weights = [mathtools.weight(x) for x in burnished_divisions]
+        unburnished_weights = [abjad.mathtools.weight(x) for x in divisions]
+        burnished_weights = [
+            abjad.mathtools.weight(x) for x in burnished_divisions]
         assert burnished_weights == unburnished_weights
         assert tuple(burnished_weights) == tuple(unburnished_weights)
         return burnished_divisions
@@ -369,31 +369,27 @@ class BurnishSpecifier(AbjadValueObject):
 
     @staticmethod
     def _is_length_tuple(argument):
+        import abjad
         if argument is None:
             return True
-        if mathtools.all_are_nonnegative_integer_equivalent_numbers(argument):
+        if abjad.mathtools.all_are_nonnegative_integer_equivalent_numbers(
+            argument):
             if isinstance(argument, tuple):
                 return True
         return False
 
     @staticmethod
     def _is_sign_tuple(argument):
-        from abjad.tools import scoretools
+        import abjad
         if argument is None:
             return True
         if isinstance(argument, tuple):
-            prototype = (-1, 0, 1, scoretools.Note, scoretools.Rest)
+            prototype = (-1, 0, 1, abjad.Note, abjad.Rest)
             return all(_ in prototype for _ in argument)
         return False
 
-    def _none_to_trivial_helper(self, argument):
-        if argument is None:
-            argument = self._trivial_helper
-        assert callable(argument)
-        return argument
-
-    def _rotate_input(self, helper_functions=None, rotation=None):
-        helper_functions = helper_functions or {}
+    def _prepare_input(self):
+        import abjad
         input_ = {}
         names = (
             'left_classes',
@@ -405,18 +401,9 @@ class BurnishSpecifier(AbjadValueObject):
         for name in names:
             value = getattr(self, name)
             value = value or ()
-            helper_function = helper_functions.get(name)
-            helper_function = self._none_to_trivial_helper(helper_function)
-            value = helper_function(value, rotation)
-            value = datastructuretools.CyclicTuple(value)
+            value = abjad.CyclicTuple(value)
             input_[name] = value
         return input_
-
-    def _trivial_helper(self, sequence_, rotation):
-        import abjad
-        if isinstance(rotation, int) and len(sequence_):
-            return abjad.sequence(sequence_).rotate(n=rotation)
-        return sequence_
 
     ### PUBLIC PROPERTIES ###
 

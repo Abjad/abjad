@@ -316,16 +316,28 @@ class Component(AbjadObject):
                     return
         self._update_now(indicators=True)
         candidate_wrappers = {}
-        for component in abjad.inspect(self).get_parentage(
+        parentage = abjad.inspect(self).get_parentage(
             include_self=True,
             grace_notes=True,
-            ):
+            )
+        for component in parentage:
+            these_wrappers = []
             for wrapper in component._wrappers:
                 if wrapper.annotation:
                     continue
                 if isinstance(wrapper.indicator, prototype):
-                    offset = wrapper.start_offset
-                    candidate_wrappers.setdefault(offset, []).append(wrapper)
+                    #offset = wrapper.start_offset
+                    #candidate_wrappers.setdefault(offset, []).append(wrapper)
+                    these_wrappers.append(wrapper)
+            # activate indicator takes precendence over inactive indicator
+            if (any(_.deactivate is True for _ in these_wrappers) and
+                not all(_.deactivate is True for _ in these_wrappers)):
+                these_wrappers = [
+                    _ for _ in these_wrappers if _.deactivate is not True
+                    ]
+            for wrapper in these_wrappers:
+                offset = wrapper.start_offset
+                candidate_wrappers.setdefault(offset, []).append(wrapper)
             if not isinstance(component, abjad.Context):
                 continue
             for wrapper in component._dependent_wrappers:

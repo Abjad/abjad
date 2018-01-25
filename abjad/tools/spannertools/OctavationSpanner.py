@@ -82,10 +82,10 @@ class OctavationSpanner(Spanner):
 
     def _get_lilypond_format_bundle(self, leaf):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
-        if self._is_my_first_leaf(leaf):
+        if leaf is self[0]:
             string = r'\ottava #{}'.format(self.start)
             bundle.before.commands.append(string)
-        if self._is_my_last_leaf(leaf):
+        if leaf is self[-1]:
             string = r'\ottava #{}'.format(self.stop)
             bundle.after.commands.append(string)
         return bundle

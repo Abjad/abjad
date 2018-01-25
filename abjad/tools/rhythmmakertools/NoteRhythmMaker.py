@@ -1,13 +1,10 @@
-from abjad.tools import datastructuretools
-from abjad.tools import mathtools
-from abjad.tools import metertools
-from abjad.tools import spannertools
-from abjad.tools.topleveltools import attach
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 
 class NoteRhythmMaker(RhythmMaker):
     r'''Note rhythm-maker.
+
+    >>> from abjad.tools import rhythmmakertools as rhythmos
 
     ..  container:: example
 
@@ -80,7 +77,7 @@ class NoteRhythmMaker(RhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, rotation=None):
+    def __call__(self, divisions, state=None):
         r'''Calls note rhythm-maker on `divisions`.
 
         ..  container:: example
@@ -97,11 +94,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         Returns list of selections. Each selection holds one or more notes.
         '''
-        return RhythmMaker.__call__(
-            self,
-            divisions,
-            rotation=rotation,
-            )
+        return RhythmMaker.__call__(self, divisions, state=state)
 
     def __format__(self, format_specification=''):
         r'''Formats note rhythm-maker.
@@ -148,6 +141,7 @@ class NoteRhythmMaker(RhythmMaker):
         raise NotImplementedError(message)
 
     def _burnish_outer_divisions(self, selections):
+        import abjad
         left_classes = self.burnish_specifier.left_classes
         left_counts = self.burnish_specifier.left_counts
         right_classes = self.burnish_specifier.right_classes
@@ -173,7 +167,7 @@ class NoteRhythmMaker(RhythmMaker):
             middle_count = 0
         assert left_count + middle_count + right_count == len(selections)
         new_selections = []
-        left_classes = datastructuretools.CyclicTuple(left_classes)
+        left_classes = abjad.CyclicTuple(left_classes)
         for i, selection in enumerate(selections[:left_count]):
             target_class = left_classes[i]
             new_selection = self._cast_selection(selection, target_class)
@@ -181,7 +175,7 @@ class NoteRhythmMaker(RhythmMaker):
         if right_count:
             for selection in selections[left_count:-right_count]:
                 new_selections.append(selection)
-            right_classes = datastructuretools.CyclicTuple(right_classes)
+            right_classes = abjad.CyclicTuple(right_classes)
             for i, selection in enumerate(selections[-right_count:]):
                 target_class = right_classes[i]
                 new_selection = self._cast_selection(selection, target_class)
@@ -200,7 +194,7 @@ class NoteRhythmMaker(RhythmMaker):
         new_selection = abjad.select(new_selection)
         return new_selection
 
-    def _make_music(self, divisions, rotation):
+    def _make_music(self, divisions, state=None):
         import abjad
         from abjad.tools import rhythmmakertools
         selections = []
@@ -216,7 +210,7 @@ class NoteRhythmMaker(RhythmMaker):
         for division in divisions:
             if (duration_specifier.spell_metrically is True or
                 (duration_specifier.spell_metrically == 'unassignable' and
-                not mathtools.is_assignable_integer(division.numerator))):
+                not abjad.mathtools.is_assignable_integer(division.numerator))):
                 meter = abjad.Meter(division)
                 rhythm_tree_container = meter.root_node
                 durations = [_.duration for _ in rhythm_tree_container]
@@ -236,7 +230,7 @@ class NoteRhythmMaker(RhythmMaker):
         selections = self._apply_burnish_specifier(selections)
         beam_specifier = self._get_beam_specifier()
         beam_specifier(selections)
-        selections = self._apply_division_masks(selections, rotation)
+        selections = self._apply_division_masks(selections)
         if duration_specifier.rewrite_meter:
             selections = duration_specifier._rewrite_meter_(
                 selections,
@@ -1245,7 +1239,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            Uses Messiaen-style ties:
+            Uses repeat ties:
 
             >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
             ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(

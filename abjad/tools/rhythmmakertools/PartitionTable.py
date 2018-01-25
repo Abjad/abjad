@@ -1,9 +1,10 @@
-from abjad.tools import mathtools
 from abjad.tools.datastructuretools.OrderedDict import OrderedDict
 
 
 class PartitionTable(OrderedDict):
     r'''Partition table.
+
+    >>> from abjad.tools import rhythmmakertools as rhythmos
 
     ..  container:: example
 
@@ -87,7 +88,8 @@ class PartitionTable(OrderedDict):
 
     @staticmethod
     def _item_coercer(item):
-        item = mathtools.NonreducedRatio(item)
+        import abjad
+        item = abjad.NonreducedRatio(item)
         return item
 
     ### PUBLIC METHODS ###
@@ -157,12 +159,13 @@ class PartitionTable(OrderedDict):
 
         Returns list of new divisions.
         '''
-        division = mathtools.NonreducedFraction(division)
+        import abjad
+        division = abjad.NonreducedFraction(division)
         result = [division]
-        divisors = mathtools.divisors(division.numerator)
+        divisors = abjad.mathtools.divisors(division.numerator)
         for numerator, ratio in reversed(list(self.items())):
             if numerator in divisors:
                 result = [division * _ for _ in ratio.multipliers]
                 break
-        result = [mathtools.NonreducedFraction(_) for _ in result]
+        result = [abjad.NonreducedFraction(_) for _ in result]
         return result

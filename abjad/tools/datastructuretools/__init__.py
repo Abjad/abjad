@@ -26,7 +26,6 @@ from .DurationInequality import DurationInequality
 from .Enumeration import Enumeration
 from .Expression import Expression
 from .LengthInequality import LengthInequality
-from .Momento import Momento
 from .Multiplier import Multiplier
 from .Offset import Offset
 from .Pattern import Pattern

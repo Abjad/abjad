@@ -5,6 +5,8 @@ from abjad.tools.datastructuretools.TypedCounter import TypedCounter
 class RotationCounter(TypedCounter):
     r'''Rotation counter.
 
+    >>> from abjad.tools import rhythmmakertools as rhythmos
+
     ..  container:: example
 
         >>> counter = abjad.rhythmmakertools.RotationCounter(default=3)

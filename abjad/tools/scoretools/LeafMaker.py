@@ -372,7 +372,7 @@ class LeafMaker(AbjadValueObject):
 
     ..  container:: example
 
-        Uses Messiaen-style ties:
+        Uses repeat ties:
 
         >>> maker = abjad.LeafMaker(repeat_ties=True)
         >>> pitches = [0]
@@ -735,10 +735,8 @@ class LeafMaker(AbjadValueObject):
         return self._skips_instead_of_rests
 
     @property
-    def repeat_ties(self):
-        r'''Is true when ties are Messiaen-style. Otherwise false.
-
-        Returns true, false or none.
+    def repeat_ties(self) -> bool:
+        r'''Is true when ties are repeat ties.
         '''
         return self._repeat_ties
 
