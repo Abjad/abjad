@@ -684,7 +684,7 @@ class Path(pathlib.PosixPath):
         if self.is_parts():
             part_dictionary = self.get_metadatum(
                 document_name,
-                abjad.TypedOrderedDict(),
+                abjad.OrderedDict(),
                 )
             part_dictionary[name] = value
             assert abjad.String(document_name).is_shout_case()
@@ -1349,7 +1349,7 @@ class Path(pathlib.PosixPath):
         time_signatures = self.contents.get_metadatum('time_signatures')
         if time_signatures is None:
             return []
-        assert isinstance(time_signatures, abjad.TypedOrderedDict)
+        assert isinstance(time_signatures, abjad.OrderedDict)
         time_signatures_ = []
         for segment_name, strings in time_signatures.items():
             for string in strings:

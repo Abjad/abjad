@@ -238,7 +238,7 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
         result = recurse(self, pulse_duration * self.preprolated_duration)
         for component in result[:]:
             if isinstance(component, abjad.Tuplet):
-                if component.is_trivial:
+                if component.trivial():
                     component._extract()
         return result
 

@@ -210,7 +210,7 @@ class NoteRhythmMaker(RhythmMaker):
         leaf_maker = abjad.LeafMaker(
             decrease_monotonic=duration_specifier.decrease_monotonic,
             forbidden_duration=duration_specifier.forbidden_duration,
-            is_diminution=tuplet_specifier.is_diminution,
+            diminution=tuplet_specifier.diminution,
             repeat_ties=tie_specifier.repeat_ties,
             )
         for division in divisions:
@@ -1415,7 +1415,7 @@ class NoteRhythmMaker(RhythmMaker):
 
             >>> rhythm_maker = abjad.rhythmmakertools.NoteRhythmMaker(
             ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-            ...         is_diminution=False,
+            ...         diminution=False,
             ...         ),
             ...     )
 

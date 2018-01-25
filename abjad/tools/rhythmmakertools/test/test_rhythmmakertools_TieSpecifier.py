@@ -25,7 +25,8 @@ def test_rhythmmakertools_TieSpecifier_01():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            {
+            \tweak text #tuplet-number::calc-fraction-text
+            \times 1/1 {
                 r16
                 c'8 [
                 c'8. ~ ]
@@ -41,7 +42,8 @@ def test_rhythmmakertools_TieSpecifier_01():
                 c'8 [
                 c'8 ~ ]
             }
-            {
+            \tweak text #tuplet-number::calc-fraction-text
+            \times 1/1 {
                 c'16 [
                 c'16
                 c'8

@@ -2882,7 +2882,7 @@ class Mutation(abctools.AbjadObject):
 
             >>> measures = staff[:]
             >>> tuplet = abjad.Tuplet((2, 3), [])
-            >>> tuplet.preferred_denominator = 4
+            >>> tuplet.denominator = 4
             >>> abjad.mutate(measures).swap(tuplet)
             >>> abjad.show(staff) # doctest: +SKIP
 

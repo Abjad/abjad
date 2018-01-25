@@ -35,7 +35,8 @@ def test_rhythmmakertools_BurnishSpecifier_01():
         \new Staff {
             { % measure
                 \time 5/16
-                {
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 1/1 {
                     r32
                     r32
                     c'16 [
@@ -46,7 +47,8 @@ def test_rhythmmakertools_BurnishSpecifier_01():
             } % measure
             { % measure
                 \time 6/16
-                {
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 1/1 {
                     r16
                     r8
                     c'32 [
@@ -94,7 +96,8 @@ def test_rhythmmakertools_BurnishSpecifier_02():
         \new Staff {
             { % measure
                 \time 5/16
-                {
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 1/1 {
                     c'32 [
                     c'32 ]
                     r16
@@ -105,7 +108,8 @@ def test_rhythmmakertools_BurnishSpecifier_02():
             } % measure
             { % measure
                 \time 6/16
-                {
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 1/1 {
                     c'16 [
                     c'8 ]
                     r32
@@ -216,7 +220,8 @@ def test_rhythmmakertools_BurnishSpecifier_04():
         \new Staff {
             { % measure
                 \time 5/16
-                {
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 1/1 {
                     r32
                     c'32 [
                     c'16
@@ -276,7 +281,8 @@ def test_rhythmmakertools_BurnishSpecifier_05():
         \new Staff {
             { % measure
                 \time 5/16
-                {
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 1/1 {
                     r32
                     c'32 [
                     c'16
@@ -292,7 +298,8 @@ def test_rhythmmakertools_BurnishSpecifier_05():
                     c'8
                     r32
                 }
-                {
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 1/1 {
                     r32
                     c'16 [
                     c'8 ]

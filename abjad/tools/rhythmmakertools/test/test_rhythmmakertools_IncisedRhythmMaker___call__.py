@@ -229,7 +229,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___05():
                 }
             } % measure
             { % measure
-                {
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 1/1 {
                     r8
                     c'4
                     r8
@@ -282,7 +283,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___06():
                 }
             } % measure
             { % measure
-                {
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 1/1 {
                     r32
                     c'16.
                 }
@@ -294,7 +296,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___06():
                 }
             } % measure
             { % measure
-                {
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 1/1 {
                     r32
                     c'8..
                 }
@@ -542,7 +545,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___11():
                 }
             } % measure
             { % measure
-                {
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 1/1 {
                     c'8
                     r4
                     c'8
@@ -598,7 +602,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___12():
                 }
             } % measure
             { % measure
-                {
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 1/1 {
                     c'32
                     r16.
                 }
@@ -610,7 +615,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___12():
                 }
             } % measure
             { % measure
-                {
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 1/1 {
                     c'32
                     r8..
                 }
@@ -801,7 +807,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___16():
                 }
             } % measure
             { % measure
-                {
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 1/1 {
                     c'2
                 }
             } % measure
@@ -853,17 +860,20 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___17():
                     r8
                     c'4.
                 }
-                {
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 1/1 {
                     c'8
                 }
             } % measure
             { % measure
-                {
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 1/1 {
                     c'2
                 }
             } % measure
             { % measure
-                {
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 1/1 {
                     c'8
                 }
                 \tweak text #tuplet-number::calc-fraction-text
@@ -1057,7 +1067,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___21():
                 }
             } % measure
             { % measure
-                {
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 1/1 {
                     r2
                 }
             } % measure
@@ -1110,17 +1121,20 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___22():
                     c'8
                     r4.
                 }
-                {
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 1/1 {
                     r8
                 }
             } % measure
             { % measure
-                {
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 1/1 {
                     r2
                 }
             } % measure
             { % measure
-                {
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 1/1 {
                     r8
                 }
                 \tweak text #tuplet-number::calc-fraction-text

@@ -1899,7 +1899,7 @@ class Label(abctools.AbjadObject):
                     leaf = vertical_moment.start_leaves[-1]
                 self._attach(label, leaf)
 
-    def with_durations(self, direction=Up, preferred_denominator=None):
+    def with_durations(self, direction=Up, denominator=None):
         r'''Labels logical ties with durations.
 
         ..  container:: example
@@ -1980,7 +1980,7 @@ class Label(abctools.AbjadObject):
             ..  container:: example
 
                 >>> staff = abjad.Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
-                >>> abjad.label(staff).with_durations(preferred_denominator=16)
+                >>> abjad.label(staff).with_durations(denominator=16)
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -2013,7 +2013,7 @@ class Label(abctools.AbjadObject):
             ..  container:: example expression
 
                 >>> staff = abjad.Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
-                >>> expression = abjad.label().with_durations(preferred_denominator=16)
+                >>> expression = abjad.label().with_durations(denominator=16)
                 >>> expression(staff)
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2051,9 +2051,9 @@ class Label(abctools.AbjadObject):
             return self._update_expression(inspect.currentframe())
         for logical_tie in  abjad.iterate(self.client).logical_ties():
             duration = abjad.inspect(logical_tie).get_duration()
-            if preferred_denominator is not None:
+            if denominator is not None:
                 duration = abjad.NonreducedFraction(duration)
-                duration = duration.with_denominator(preferred_denominator)
+                duration = duration.with_denominator(denominator)
             label = abjad.Markup(str(duration), direction=direction)
             label = label.small()
             self._attach(label, logical_tie.head)

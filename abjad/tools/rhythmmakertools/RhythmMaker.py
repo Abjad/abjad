@@ -393,8 +393,7 @@ class RhythmMaker(AbjadValueObject):
     def _validate_tuplets(self, selections):
         import abjad
         for tuplet in iterate(selections).components(abjad.Tuplet):
-            assert tuplet.multiplier.is_proper_tuplet_multiplier, repr(
-                tuplet)
+            assert tuplet.multiplier.normalized(), repr(tuplet)
             assert len(tuplet), repr(tuplet)
 
     ### PUBLIC PROPERTIES ###

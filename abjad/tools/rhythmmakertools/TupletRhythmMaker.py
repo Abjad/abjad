@@ -45,13 +45,15 @@ class TupletRhythmMaker(RhythmMaker):
                 } % measure
                 { % measure
                     \time 5/16
-                    {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 1/1 {
                         c'8. [
                         c'8 ]
                     }
                 } % measure
                 { % measure
-                    {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 1/1 {
                         c'8. [
                         c'8 ]
                     }
@@ -80,7 +82,8 @@ class TupletRhythmMaker(RhythmMaker):
             \new RhythmicStaff {
                 { % measure
                     \time 1/2
-                    {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 1/1 {
                         c'4
                         r4
                     }
@@ -124,7 +127,7 @@ class TupletRhythmMaker(RhythmMaker):
     __documentation_section__ = 'Rhythm-makers'
 
     __slots__ = (
-        '_preferred_denominator',
+        '_denominator',
         '_tuplet_ratios',
         '_tuplet_specifier',
         )
@@ -135,9 +138,9 @@ class TupletRhythmMaker(RhythmMaker):
         self,
         tuplet_ratios=None,
         beam_specifier=None,
+        denominator=None,
         division_masks=None,
         duration_specifier=None,
-        preferred_denominator=None,
         tie_specifier=None,
         tuplet_specifier=None,
         ):
@@ -150,16 +153,16 @@ class TupletRhythmMaker(RhythmMaker):
             tie_specifier=tie_specifier,
             tuplet_specifier=tuplet_specifier,
             )
+        if denominator is not None:
+            if isinstance(denominator, tuple):
+                denominator = abjad.Duration(denominator)
+            prototype = (abjad.Duration, int)
+            assert (denominator == 'divisions' or
+                isinstance(denominator, prototype))
+        self._denominator = denominator
         if tuplet_ratios is not None:
             tuplet_ratios = tuple(abjad.Ratio(_) for _ in tuplet_ratios)
         self._tuplet_ratios = tuplet_ratios
-        if preferred_denominator is not None:
-            if isinstance(preferred_denominator, tuple):
-                preferred_denominator = abjad.Duration(preferred_denominator)
-            prototype = (abjad.Duration, int)
-            assert (preferred_denominator == 'divisions' or
-                isinstance(preferred_denominator, prototype))
-        self._preferred_denominator = preferred_denominator
 
     ### SPECIAL METHODS ###
 
@@ -203,13 +206,15 @@ class TupletRhythmMaker(RhythmMaker):
                     } % measure
                     { % measure
                         \time 5/16
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8. [
                             c'8 ]
                         }
                     } % measure
                     { % measure
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8. [
                             c'8 ]
                         }
@@ -238,7 +243,8 @@ class TupletRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     { % measure
                         \time 1/2
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'4
                             r4
                         }
@@ -338,24 +344,24 @@ class TupletRhythmMaker(RhythmMaker):
                 duration,
                 ratio,
                 avoid_dots=tuplet_specifier.avoid_dots,
-                is_diminution=tuplet_specifier.is_diminution,
+                diminution=tuplet_specifier.diminution,
                 )
-            preferred_denominator = tuplet_specifier.preferred_denominator
-            if preferred_denominator is None:
+            denominator = tuplet_specifier.denominator
+            if denominator is None:
                 pass
-            elif preferred_denominator == 'divisions':
-                tuplet.preferred_denominator = division.numerator
-            elif isinstance(preferred_denominator, abjad.Duration):
-                unit_duration = preferred_denominator
+            elif denominator == 'divisions':
+                tuplet.denominator = division.numerator
+            elif isinstance(denominator, abjad.Duration):
+                unit_duration = denominator
                 assert unit_duration.numerator == 1
                 duration = abjad.inspect(tuplet).get_duration()
-                denominator = unit_duration.denominator
-                nonreduced_fraction = duration.with_denominator(denominator)
-                tuplet.preferred_denominator = nonreduced_fraction.numerator
-            elif abjad.mathtools.is_positive_integer(preferred_denominator):
-                tuplet.preferred_denominator = preferred_denominator
+                denominator_ = unit_duration.denominator
+                nonreduced_fraction = duration.with_denominator(denominator_)
+                tuplet.denominator = nonreduced_fraction.numerator
+            elif abjad.mathtools.is_positive_integer(denominator):
+                tuplet.denominator = denominator
             else:
-                raise ValueError(preferred_denominator)
+                raise ValueError(denominator)
             tuplets.append(tuplet)
         selections = [abjad.select(_) for _ in tuplets]
         beam_specifier = self._get_beam_specifier()
@@ -368,13 +374,13 @@ class TupletRhythmMaker(RhythmMaker):
         duration,
         ratio,
         avoid_dots=False,
-        is_diminution=True,
+        diminution=True,
         ):
         tuplet = scoretools.Tuplet.from_duration_and_ratio(
             duration,
             ratio,
             avoid_dots=avoid_dots,
-            is_diminution=is_diminution,
+            diminution=diminution,
             )
         return tuplet
 
@@ -429,7 +435,8 @@ class TupletRhythmMaker(RhythmMaker):
                     } % measure
                     { % measure
                         \time 6/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8 [
                             c'8 ]
                             c'4
@@ -504,7 +511,8 @@ class TupletRhythmMaker(RhythmMaker):
                     } % measure
                     { % measure
                         \time 6/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             \set stemLeftBeamCount = 1
                             \set stemRightBeamCount = 1
                             c'8
@@ -580,7 +588,8 @@ class TupletRhythmMaker(RhythmMaker):
                     } % measure
                     { % measure
                         \time 6/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8
                             c'8
                             c'4
@@ -606,6 +615,471 @@ class TupletRhythmMaker(RhythmMaker):
         '''
         superclass = super(TupletRhythmMaker, self)
         return superclass.beam_specifier
+
+    @property
+    def denominator(self):
+        r'''Gets preferred denominator.
+
+        ..  container:: example
+
+            Tuplet numerators and denominators are reduced to numbers that are
+            relatively prime when `denominator` is set to none. This
+            means that ratios like ``6:4`` and ``10:8`` do not arise:
+
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(1, 4)],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         avoid_dots=True,
+            ...         denominator=None,
+            ...         ),
+            ...     )
+
+            >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(lilypond_file[abjad.Staff])
+                \new RhythmicStaff {
+                    { % measure
+                        \time 2/16
+                        \times 4/5 {
+                            c'32 [
+                            c'8 ]
+                        }
+                    } % measure
+                    { % measure
+                        \time 4/16
+                        \times 4/5 {
+                            c'16
+                            c'4
+                        }
+                    } % measure
+                    { % measure
+                        \time 6/16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'8
+                            c'2
+                        }
+                    } % measure
+                    { % measure
+                        \time 8/16
+                        \times 4/5 {
+                            c'8
+                            c'2
+                        }
+                    } % measure
+                }
+
+        ..  container:: example
+
+            The preferred denominator of each tuplet is set to the numerator of
+            the division that generates the tuplet when `denominator`
+            is set to the string ``'divisions'``. This means that the tuplet
+            numerator and denominator are not necessarily relatively prime.
+            This also means that ratios like ``6:4`` and ``10:8`` may arise:
+
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(1, 4)],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         avoid_dots=True,
+            ...         denominator='divisions',
+            ...         ),
+            ...     )
+
+            >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(lilypond_file[abjad.Staff])
+                \new RhythmicStaff {
+                    { % measure
+                        \time 2/16
+                        \times 4/5 {
+                            c'32 [
+                            c'8 ]
+                        }
+                    } % measure
+                    { % measure
+                        \time 4/16
+                        \times 4/5 {
+                            c'16
+                            c'4
+                        }
+                    } % measure
+                    { % measure
+                        \time 6/16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 6/10 {
+                            c'8
+                            c'2
+                        }
+                    } % measure
+                    { % measure
+                        \time 8/16
+                        \times 8/10 {
+                            c'8
+                            c'2
+                        }
+                    } % measure
+                }
+
+        ..  container:: example
+
+            The preferred denominator of each tuplet is set in terms of a unit
+            duration when `denominator` is set to a duration. The
+            setting does not affect the first tuplet:
+
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(1, 4)],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         avoid_dots=True,
+            ...         denominator=(1, 16),
+            ...         ),
+            ...     )
+
+            >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(lilypond_file[abjad.Staff])
+                \new RhythmicStaff {
+                    { % measure
+                        \time 2/16
+                        \times 4/5 {
+                            c'32 [
+                            c'8 ]
+                        }
+                    } % measure
+                    { % measure
+                        \time 4/16
+                        \times 4/5 {
+                            c'16
+                            c'4
+                        }
+                    } % measure
+                    { % measure
+                        \time 6/16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 6/10 {
+                            c'8
+                            c'2
+                        }
+                    } % measure
+                    { % measure
+                        \time 8/16
+                        \times 8/10 {
+                            c'8
+                            c'2
+                        }
+                    } % measure
+                }
+
+        ..  container:: example
+
+            Sets the preferred denominator of each tuplet in terms 32nd notes.
+            The setting affects all tuplets:
+
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(1, 4)],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         avoid_dots=True,
+            ...         denominator=(1, 32),
+            ...         ),
+            ...     )
+
+            >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(lilypond_file[abjad.Staff])
+                \new RhythmicStaff {
+                    { % measure
+                        \time 2/16
+                        \times 4/5 {
+                            c'32 [
+                            c'8 ]
+                        }
+                    } % measure
+                    { % measure
+                        \time 4/16
+                        \times 8/10 {
+                            c'16
+                            c'4
+                        }
+                    } % measure
+                    { % measure
+                        \time 6/16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 12/20 {
+                            c'8
+                            c'2
+                        }
+                    } % measure
+                    { % measure
+                        \time 8/16
+                        \times 16/20 {
+                            c'8
+                            c'2
+                        }
+                    } % measure
+                }
+
+        ..  container:: example
+
+            Sets the preferred denominator each tuplet in terms 64th notes. The
+            setting affects all tuplets:
+
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(1, 4)],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         avoid_dots=True,
+            ...         denominator=(1, 64),
+            ...         ),
+            ...     )
+
+            >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(lilypond_file[abjad.Staff])
+                \new RhythmicStaff {
+                    { % measure
+                        \time 2/16
+                        \times 8/10 {
+                            c'32 [
+                            c'8 ]
+                        }
+                    } % measure
+                    { % measure
+                        \time 4/16
+                        \times 16/20 {
+                            c'16
+                            c'4
+                        }
+                    } % measure
+                    { % measure
+                        \time 6/16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 24/40 {
+                            c'8
+                            c'2
+                        }
+                    } % measure
+                    { % measure
+                        \time 8/16
+                        \times 32/40 {
+                            c'8
+                            c'2
+                        }
+                    } % measure
+                }
+
+        ..  container:: example
+
+            The preferred denominator of each tuplet is set directly when
+            `denominator` is set to a positive integer. This example
+            sets the preferred denominator of each tuplet to ``8``. Setting
+            does not affect the third tuplet:
+
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(1, 4)],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         avoid_dots=True,
+            ...         denominator=8,
+            ...         ),
+            ...     )
+
+            >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(lilypond_file[abjad.Staff])
+                \new RhythmicStaff {
+                    { % measure
+                        \time 2/16
+                        \times 8/10 {
+                            c'32 [
+                            c'8 ]
+                        }
+                    } % measure
+                    { % measure
+                        \time 4/16
+                        \times 8/10 {
+                            c'16
+                            c'4
+                        }
+                    } % measure
+                    { % measure
+                        \time 6/16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'8
+                            c'2
+                        }
+                    } % measure
+                    { % measure
+                        \time 8/16
+                        \times 8/10 {
+                            c'8
+                            c'2
+                        }
+                    } % measure
+                }
+
+        ..  container:: example
+
+            Sets the preferred denominator of each tuplet to ``12``. Setting
+            affects all tuplets:
+
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(1, 4)],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         avoid_dots=True,
+            ...         denominator=12,
+            ...         ),
+            ...     )
+
+            >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(lilypond_file[abjad.Staff])
+                \new RhythmicStaff {
+                    { % measure
+                        \time 2/16
+                        \times 12/15 {
+                            c'32 [
+                            c'8 ]
+                        }
+                    } % measure
+                    { % measure
+                        \time 4/16
+                        \times 12/15 {
+                            c'16
+                            c'4
+                        }
+                    } % measure
+                    { % measure
+                        \time 6/16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 12/20 {
+                            c'8
+                            c'2
+                        }
+                    } % measure
+                    { % measure
+                        \time 8/16
+                        \times 12/15 {
+                            c'8
+                            c'2
+                        }
+                    } % measure
+                }
+
+        ..  container:: example
+
+            Sets the preferred denominator of each tuplet to ``13``. Setting
+            does not affect any tuplet:
+
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(1, 4)],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         avoid_dots=True,
+            ...         denominator=13,
+            ...         ),
+            ...     )
+
+            >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(lilypond_file[abjad.Staff])
+                \new RhythmicStaff {
+                    { % measure
+                        \time 2/16
+                        \times 4/5 {
+                            c'32 [
+                            c'8 ]
+                        }
+                    } % measure
+                    { % measure
+                        \time 4/16
+                        \times 4/5 {
+                            c'16
+                            c'4
+                        }
+                    } % measure
+                    { % measure
+                        \time 6/16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'8
+                            c'2
+                        }
+                    } % measure
+                    { % measure
+                        \time 8/16
+                        \times 4/5 {
+                            c'8
+                            c'2
+                        }
+                    } % measure
+                }
+
+        Set to ``'divisions'``, duration, positive integer or none.
+
+        Returns ``'divisions'``, duration, positive integer or none.
+        '''
+        return self._denominator
 
     @property
     def division_masks(self):
@@ -724,471 +1198,6 @@ class TupletRhythmMaker(RhythmMaker):
         return superclass.division_masks
 
     @property
-    def preferred_denominator(self):
-        r'''Gets preferred denominator.
-
-        ..  container:: example
-
-            Tuplet numerators and denominators are reduced to numbers that are
-            relatively prime when `preferred_denominator` is set to none. This
-            means that ratios like ``6:4`` and ``10:8`` do not arise:
-
-            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-            ...     tuplet_ratios=[(1, 4)],
-            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-            ...         avoid_dots=True,
-            ...         preferred_denominator=None,
-            ...         ),
-            ...     )
-
-            >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
-            >>> selections = rhythm_maker(divisions)
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(
-            ...     selections,
-            ...     divisions,
-            ...     )
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
-                        \time 2/16
-                        \times 4/5 {
-                            c'32 [
-                            c'8 ]
-                        }
-                    } % measure
-                    { % measure
-                        \time 4/16
-                        \times 4/5 {
-                            c'16
-                            c'4
-                        }
-                    } % measure
-                    { % measure
-                        \time 6/16
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \times 3/5 {
-                            c'8
-                            c'2
-                        }
-                    } % measure
-                    { % measure
-                        \time 8/16
-                        \times 4/5 {
-                            c'8
-                            c'2
-                        }
-                    } % measure
-                }
-
-        ..  container:: example
-
-            The preferred denominator of each tuplet is set to the numerator of
-            the division that generates the tuplet when `preferred_denominator`
-            is set to the string ``'divisions'``. This means that the tuplet
-            numerator and denominator are not necessarily relatively prime.
-            This also means that ratios like ``6:4`` and ``10:8`` may arise:
-
-            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-            ...     tuplet_ratios=[(1, 4)],
-            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-            ...         avoid_dots=True,
-            ...         preferred_denominator='divisions',
-            ...         ),
-            ...     )
-
-            >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
-            >>> selections = rhythm_maker(divisions)
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(
-            ...     selections,
-            ...     divisions,
-            ...     )
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
-                        \time 2/16
-                        \times 4/5 {
-                            c'32 [
-                            c'8 ]
-                        }
-                    } % measure
-                    { % measure
-                        \time 4/16
-                        \times 4/5 {
-                            c'16
-                            c'4
-                        }
-                    } % measure
-                    { % measure
-                        \time 6/16
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \times 6/10 {
-                            c'8
-                            c'2
-                        }
-                    } % measure
-                    { % measure
-                        \time 8/16
-                        \times 8/10 {
-                            c'8
-                            c'2
-                        }
-                    } % measure
-                }
-
-        ..  container:: example
-
-            The preferred denominator of each tuplet is set in terms of a unit
-            duration when `preferred_denominator` is set to a duration. The
-            setting does not affect the first tuplet:
-
-            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-            ...     tuplet_ratios=[(1, 4)],
-            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-            ...         avoid_dots=True,
-            ...         preferred_denominator=(1, 16),
-            ...         ),
-            ...     )
-
-            >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
-            >>> selections = rhythm_maker(divisions)
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(
-            ...     selections,
-            ...     divisions,
-            ...     )
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
-                        \time 2/16
-                        \times 4/5 {
-                            c'32 [
-                            c'8 ]
-                        }
-                    } % measure
-                    { % measure
-                        \time 4/16
-                        \times 4/5 {
-                            c'16
-                            c'4
-                        }
-                    } % measure
-                    { % measure
-                        \time 6/16
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \times 6/10 {
-                            c'8
-                            c'2
-                        }
-                    } % measure
-                    { % measure
-                        \time 8/16
-                        \times 8/10 {
-                            c'8
-                            c'2
-                        }
-                    } % measure
-                }
-
-        ..  container:: example
-
-            Sets the preferred denominator of each tuplet in terms 32nd notes.
-            The setting affects all tuplets:
-
-            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-            ...     tuplet_ratios=[(1, 4)],
-            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-            ...         avoid_dots=True,
-            ...         preferred_denominator=(1, 32),
-            ...         ),
-            ...     )
-
-            >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
-            >>> selections = rhythm_maker(divisions)
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(
-            ...     selections,
-            ...     divisions,
-            ...     )
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
-                        \time 2/16
-                        \times 4/5 {
-                            c'32 [
-                            c'8 ]
-                        }
-                    } % measure
-                    { % measure
-                        \time 4/16
-                        \times 8/10 {
-                            c'16
-                            c'4
-                        }
-                    } % measure
-                    { % measure
-                        \time 6/16
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \times 12/20 {
-                            c'8
-                            c'2
-                        }
-                    } % measure
-                    { % measure
-                        \time 8/16
-                        \times 16/20 {
-                            c'8
-                            c'2
-                        }
-                    } % measure
-                }
-
-        ..  container:: example
-
-            Sets the preferred denominator each tuplet in terms 64th notes. The
-            setting affects all tuplets:
-
-            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-            ...     tuplet_ratios=[(1, 4)],
-            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-            ...         avoid_dots=True,
-            ...         preferred_denominator=(1, 64),
-            ...         ),
-            ...     )
-
-            >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
-            >>> selections = rhythm_maker(divisions)
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(
-            ...     selections,
-            ...     divisions,
-            ...     )
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
-                        \time 2/16
-                        \times 8/10 {
-                            c'32 [
-                            c'8 ]
-                        }
-                    } % measure
-                    { % measure
-                        \time 4/16
-                        \times 16/20 {
-                            c'16
-                            c'4
-                        }
-                    } % measure
-                    { % measure
-                        \time 6/16
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \times 24/40 {
-                            c'8
-                            c'2
-                        }
-                    } % measure
-                    { % measure
-                        \time 8/16
-                        \times 32/40 {
-                            c'8
-                            c'2
-                        }
-                    } % measure
-                }
-
-        ..  container:: example
-
-            The preferred denominator of each tuplet is set directly when
-            `preferred_denominator` is set to a positive integer. This example
-            sets the preferred denominator of each tuplet to ``8``. Setting
-            does not affect the third tuplet:
-
-            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-            ...     tuplet_ratios=[(1, 4)],
-            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-            ...         avoid_dots=True,
-            ...         preferred_denominator=8,
-            ...         ),
-            ...     )
-
-            >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
-            >>> selections = rhythm_maker(divisions)
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(
-            ...     selections,
-            ...     divisions,
-            ...     )
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
-                        \time 2/16
-                        \times 8/10 {
-                            c'32 [
-                            c'8 ]
-                        }
-                    } % measure
-                    { % measure
-                        \time 4/16
-                        \times 8/10 {
-                            c'16
-                            c'4
-                        }
-                    } % measure
-                    { % measure
-                        \time 6/16
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \times 3/5 {
-                            c'8
-                            c'2
-                        }
-                    } % measure
-                    { % measure
-                        \time 8/16
-                        \times 8/10 {
-                            c'8
-                            c'2
-                        }
-                    } % measure
-                }
-
-        ..  container:: example
-
-            Sets the preferred denominator of each tuplet to ``12``. Setting
-            affects all tuplets:
-
-            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-            ...     tuplet_ratios=[(1, 4)],
-            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-            ...         avoid_dots=True,
-            ...         preferred_denominator=12,
-            ...         ),
-            ...     )
-
-            >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
-            >>> selections = rhythm_maker(divisions)
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(
-            ...     selections,
-            ...     divisions,
-            ...     )
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
-                        \time 2/16
-                        \times 12/15 {
-                            c'32 [
-                            c'8 ]
-                        }
-                    } % measure
-                    { % measure
-                        \time 4/16
-                        \times 12/15 {
-                            c'16
-                            c'4
-                        }
-                    } % measure
-                    { % measure
-                        \time 6/16
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \times 12/20 {
-                            c'8
-                            c'2
-                        }
-                    } % measure
-                    { % measure
-                        \time 8/16
-                        \times 12/15 {
-                            c'8
-                            c'2
-                        }
-                    } % measure
-                }
-
-        ..  container:: example
-
-            Sets the preferred denominator of each tuplet to ``13``. Setting
-            does not affect any tuplet:
-
-            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
-            ...     tuplet_ratios=[(1, 4)],
-            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-            ...         avoid_dots=True,
-            ...         preferred_denominator=13,
-            ...         ),
-            ...     )
-
-            >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
-            >>> selections = rhythm_maker(divisions)
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(
-            ...     selections,
-            ...     divisions,
-            ...     )
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
-                        \time 2/16
-                        \times 4/5 {
-                            c'32 [
-                            c'8 ]
-                        }
-                    } % measure
-                    { % measure
-                        \time 4/16
-                        \times 4/5 {
-                            c'16
-                            c'4
-                        }
-                    } % measure
-                    { % measure
-                        \time 6/16
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \times 3/5 {
-                            c'8
-                            c'2
-                        }
-                    } % measure
-                    { % measure
-                        \time 8/16
-                        \times 4/5 {
-                            c'8
-                            c'2
-                        }
-                    } % measure
-                }
-
-        Set to ``'divisions'``, duration, positive integer or none.
-
-        Returns ``'divisions'``, duration, positive integer or none.
-        '''
-        return self._preferred_denominator
-
-    @property
     def tie_specifier(self):
         r'''Gets tie specifier.
 
@@ -1224,7 +1233,8 @@ class TupletRhythmMaker(RhythmMaker):
                     } % measure
                     { % measure
                         \time 3/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'16.
                             r8.
                             c'16.
@@ -1232,7 +1242,8 @@ class TupletRhythmMaker(RhythmMaker):
                     } % measure
                     { % measure
                         \time 5/16
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8 [
                             c'8. ]
                         }
@@ -1271,7 +1282,8 @@ class TupletRhythmMaker(RhythmMaker):
                     } % measure
                     { % measure
                         \time 3/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'16.
                             r8.
                             c'16. ~
@@ -1279,7 +1291,8 @@ class TupletRhythmMaker(RhythmMaker):
                     } % measure
                     { % measure
                         \time 5/16
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8 [
                             c'8. ]
                         }
@@ -1322,7 +1335,8 @@ class TupletRhythmMaker(RhythmMaker):
                     } % measure
                     { % measure
                         \time 3/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'16.
                             r8.
                             c'16.
@@ -1330,7 +1344,8 @@ class TupletRhythmMaker(RhythmMaker):
                     } % measure
                     { % measure
                         \time 5/16
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8 [
                             c'8. ~ ]
                         }
@@ -1392,13 +1407,15 @@ class TupletRhythmMaker(RhythmMaker):
                     } % measure
                     { % measure
                         \time 5/16
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8. [
                             c'8 ]
                         }
                     } % measure
                     { % measure
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8. [
                             c'8 ]
                         }
@@ -1427,7 +1444,8 @@ class TupletRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     { % measure
                         \time 1/2
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'4
                             r4
                         }
@@ -1476,7 +1494,7 @@ class TupletRhythmMaker(RhythmMaker):
             ...     tuplet_ratios=[(1, 1)],
             ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
             ...         avoid_dots=False,
-            ...         is_diminution=True,
+            ...         diminution=True,
             ...         ),
             ...     )
 
@@ -1494,21 +1512,24 @@ class TupletRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     { % measure
                         \time 2/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8 [
                             c'8 ]
                         }
                     } % measure
                     { % measure
                         \time 3/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8. [
                             c'8. ]
                         }
                     } % measure
                     { % measure
                         \time 7/16
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8.. [
                             c'8.. ]
                         }
@@ -1523,7 +1544,7 @@ class TupletRhythmMaker(RhythmMaker):
             ...     tuplet_ratios=[(1, 1)],
             ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
             ...         avoid_dots=True,
-            ...         is_diminution=True,
+            ...         diminution=True,
             ...         ),
             ...     )
 
@@ -1541,7 +1562,8 @@ class TupletRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     { % measure
                         \time 2/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8 [
                             c'8 ]
                         }
@@ -1572,7 +1594,7 @@ class TupletRhythmMaker(RhythmMaker):
             ...     tuplet_ratios=[(1, 1)],
             ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
             ...         avoid_dots=False,
-            ...         is_diminution=False,
+            ...         diminution=False,
             ...         ),
             ...     )
 
@@ -1590,21 +1612,24 @@ class TupletRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     { % measure
                         \time 2/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8 [
                             c'8 ]
                         }
                     } % measure
                     { % measure
                         \time 3/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8. [
                             c'8. ]
                         }
                     } % measure
                     { % measure
                         \time 7/16
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8.. [
                             c'8.. ]
                         }
@@ -1619,7 +1644,7 @@ class TupletRhythmMaker(RhythmMaker):
             ...     tuplet_ratios=[(1, 1)],
             ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
             ...         avoid_dots=True,
-            ...         is_diminution=False,
+            ...         diminution=False,
             ...         ),
             ...     )
 
@@ -1637,7 +1662,8 @@ class TupletRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     { % measure
                         \time 2/8
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8 [
                             c'8 ]
                         }
@@ -1662,14 +1688,13 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            Leaves redundant tuplets as-is when `simplify_redundant_tuplets` is
-            false:
+            Leaves trivializable tuplets as-is when `trivialize` is false:
 
             >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
             ...     tuplet_ratios=[(3, -2), (1,), (-2, 3), (1, 1)],
             ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
             ...         avoid_dots=True,
-            ...         simplify_redundant_tuplets=False,
+            ...         trivialize=False,
             ...         ),
             ...     )
 
@@ -1717,17 +1742,17 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            Turns redundant tuplets into trivial tuplets when
-            `simplify_redundant_tuplets` is true. Each measure below still
-            contains a tuplet; but measures 2 and 4 contain an (invisible)
-            trivial tuplet with a 1:1 ratio. To remove these trivial tuplets,
-            set `flatten_trivial_tuplets` as shown in the next example:
+            Rewrites trivializable tuplets when `trivialize` is true. Each
+            measure below still contains a tuplet; but measures 2 and 4 contain
+            an (invisible) trivial tuplet with a 1:1 ratio. To remove these
+            trivial tuplets, set `extract_trivial` as shown in the next
+            example:
 
             >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
             ...     tuplet_ratios=[(3, -2), (1,), (-2, 3), (1, 1)],
             ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
             ...         avoid_dots=True,
-            ...         simplify_redundant_tuplets=True,
+            ...         trivialize=True,
             ...         ),
             ...     )
 
@@ -1752,7 +1777,8 @@ class TupletRhythmMaker(RhythmMaker):
                         }
                     } % measure
                     { % measure
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'4.
                         }
                     } % measure
@@ -1764,7 +1790,8 @@ class TupletRhythmMaker(RhythmMaker):
                         }
                     } % measure
                     { % measure
-                        {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
                             c'8. [
                             c'8. ]
                         }
@@ -1773,7 +1800,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            Leaves trivial tuplets as-is when `flatten_trivial_tuplets` is
+            Leaves trivial tuplets as-is when `extract_trivial` is
             false. This is difficult to see because trivial tuplets have no
             graphic appearance; check the LilyPond output below to verify that
             tuplets 2 and 4 are enclosed in braces:
@@ -1784,7 +1811,7 @@ class TupletRhythmMaker(RhythmMaker):
             ...         ),
             ...     tuplet_ratios=[(2, 3), (1, 1)],
             ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-            ...         flatten_trivial_tuplets=False,
+            ...         extract_trivial=False,
             ...         ),
             ...     )
 
@@ -1808,7 +1835,8 @@ class TupletRhythmMaker(RhythmMaker):
                 } % measure
                 { % measure
                     \time 2/8
-                    {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 1/1 {
                         c'8 [
                         c'8 ~ ]
                     }
@@ -1823,7 +1851,8 @@ class TupletRhythmMaker(RhythmMaker):
                 } % measure
                 { % measure
                     \time 2/8
-                    {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 1/1 {
                         c'8 [
                         c'8 ]
                     }
@@ -1832,7 +1861,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            Flattens trivial tuplets when `flatten_trivial_tuplets` is true.
+            Flattens trivial tuplets when `extract_trivial` is true.
             Measures 2 and 4 in the example below now contain only a flat list
             of notes:
 
@@ -1842,7 +1871,7 @@ class TupletRhythmMaker(RhythmMaker):
             ...         ),
             ...     tuplet_ratios=[(2, 3), (1, 1)],
             ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-            ...         flatten_trivial_tuplets=True,
+            ...         extract_trivial=True,
             ...         ),
             ...     )
 
@@ -1890,7 +1919,7 @@ class TupletRhythmMaker(RhythmMaker):
         ..  container:: example
 
             REGRESSION: Very long ties are preserved when
-            `flatten_trivial_tuplets` is true:
+            `extract_trivial` is true:
 
             >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
             ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
@@ -1899,7 +1928,7 @@ class TupletRhythmMaker(RhythmMaker):
             ...         ),
             ...     tuplet_ratios=[(2, 3), (1, 1)],
             ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
-            ...         flatten_trivial_tuplets=True,
+            ...         extract_trivial=True,
             ...         ),
             ...     )
 

@@ -82,7 +82,8 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___02():
             } % measure
             { % measure
                 \time 5/8
-                {
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 1/1 {
                     c'8 ~
                 }
                 \times 2/3 {
@@ -92,7 +93,8 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___02():
                     r8
                     c'16 ~
                 }
-                {
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 1/1 {
                     c'8
                 }
             } % measure

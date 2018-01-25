@@ -53,6 +53,7 @@ class Tags(AbjadValueObject):
 
         'CLOCK_TIME_MARKUP',
         'FIGURE_NAME_MARKUP',
+        'MEASURE_INDEX_MARKUP',
         'MEASURE_NUMBER_MARKUP',
         'SPACING_MARKUP',
         'SPACING_OVERRIDE_MARKUP',
@@ -93,6 +94,11 @@ class Tags(AbjadValueObject):
 
         'ALLOW_REPEAT_PITCH',
         'DO_NOT_TRANSPOSE',
+
+        ### OTHER ###
+
+        'REMOVE_ALL_EMPTY_STAVES',
+        'SOUNDS_DURING_SEGMENT',
 
     )
 

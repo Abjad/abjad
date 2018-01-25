@@ -21,7 +21,8 @@ def test_rhythmmakertools_TupletRhythmMaker___call___01():
             \times 4/5 {
                 c'4
             }
-            {
+            \tweak text #tuplet-number::calc-fraction-text
+            \times 1/1 {
                 c'4
             }
             \tweak edge-height #'(0.7 . 0)

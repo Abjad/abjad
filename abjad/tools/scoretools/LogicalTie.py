@@ -189,7 +189,7 @@ class LogicalTie(Selection):
         self,
         proportions,
         dotted=False,
-        is_diminution=True,
+        diminution=True,
         ):
         r'''Changes logical tie to tuplet.
 
@@ -218,7 +218,7 @@ class LogicalTie(Selection):
                 }
 
             >>> logical_tie = abjad.inspect(staff[0]).get_logical_tie()
-            >>> logical_tie.to_tuplet([2, 1, 1, 1], is_diminution=True)
+            >>> logical_tie.to_tuplet([2, 1, 1, 1], diminution=True)
             Tuplet(Multiplier(3, 5), "c'8 c'16 c'16 c'16")
 
             >>> time_signature = abjad.TimeSignature((7, 16))
@@ -271,7 +271,7 @@ class LogicalTie(Selection):
             >>> logical_tie = abjad.inspect(staff[0]).get_logical_tie()
             >>> tuplet = logical_tie.to_tuplet(
             ...     [2, 1, 1, 1],
-            ...     is_diminution=False,
+            ...     diminution=False,
             ...     )
             >>> time_signature = abjad.TimeSignature((7, 16))
             >>> leaf = abjad.inspect(staff).get_leaf(0)
@@ -305,7 +305,7 @@ class LogicalTie(Selection):
         # find duration of each note in tuplet
         prolated_duration = target_duration / sum(proportions.numbers)
         # find written duration of each note in tuplet
-        if is_diminution:
+        if diminution:
             if dotted:
                 basic_written_duration = \
                     prolated_duration.equal_or_greater_assignable

@@ -1,4 +1,8 @@
+from typing import List
+from typing import Union as U
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.datastructuretools.OrderedDict import OrderedDict
+from abjad.tools.lilypondfiletools.LilyPondFile import LilyPondFile
 
 
 class SegmentMaker(AbjadObject):
@@ -10,7 +14,6 @@ class SegmentMaker(AbjadObject):
     __documentation_section__ = 'Segment-makers'
 
     __slots__ = (
-        '_documents_metadata',
         '_lilypond_file',
         '_previous_metadata',
         '_metadata',
@@ -19,7 +22,6 @@ class SegmentMaker(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self):
-        self._documents_metadata = None
         self._lilypond_file = None
         self._metadata = None
         self._previous_metadata = None
@@ -68,13 +70,16 @@ class SegmentMaker(AbjadObject):
             )
         return global_context
 
+    def _make_lilypond_file(self, midi=False):
+        pass
+
     ### PUBLIC PROPERTIES ###
 
     @property
     def metadata(self):
         r'''Gets segment metadata after run.
 
-        Returns typed ordered dictionary or none.
+        Returns ordered dictionary or none.
         '''
         return self._metadata
 
@@ -82,20 +87,17 @@ class SegmentMaker(AbjadObject):
 
     def run(
         self,
-        documents_metadata=None,
-        metadata=None,
-        midi=None,
-        previous_metadata=None,
-        ):
+        deactivate: U[List[str], None] = None,
+        environment: U[str, None] = None,
+        metadata: U[OrderedDict, None] = None,
+        midi: U[bool, None] = None,
+        previous_metadata: U[OrderedDict, None] = None,
+        remove: U[List[str], None] = None,
+        ) -> LilyPondFile:
         r'''Runs segment-maker.
-
-        Returns LilyPond file.
         '''
-        import abjad
-        self._documents_metadata = abjad.OrderedDict(documents_metadata)
-        self._metadata = abjad.OrderedDict(metadata)
-        self._previous_metadata = abjad.OrderedDict(previous_metadata)
+        self._metadata = OrderedDict(metadata)
+        self._previous_metadata = OrderedDict(previous_metadata)
         lilypond_file = self._make_lilypond_file(midi=midi)
-        assert isinstance(lilypond_file, abjad.LilyPondFile)
-        self._lilypond_file = lilypond_file
+        self._lilypond_file: LilyPondFile = lilypond_file
         return self._lilypond_file
