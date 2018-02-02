@@ -302,10 +302,9 @@ class BowContactSpanner(Spanner):
                 )
             if previous_contact_points:
                 previous_contact_point = previous_contact_points[0]
-        if (self._is_my_first_leaf(leaf) or
+        if (leaf is self[0] or
             previous_contact_point is None or
-            previous_contact_point.contact_point is None
-            ):
+            previous_contact_point.contact_point is None):
             if this_contact_point < next_contact_point:
                 direction_change = abjad.Down
             elif next_contact_point < this_contact_point:
@@ -376,7 +375,7 @@ class BowContactSpanner(Spanner):
 
     def _next_leaf_is_bowed(self, leaf):
         import abjad
-        if self._is_my_last_leaf(leaf):
+        if leaf is self[-1]:
             return False
         prototype = (
             abjad.MultimeasureRest,

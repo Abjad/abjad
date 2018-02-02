@@ -71,13 +71,13 @@ class PhrasingSlur(Spanner):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         if self._is_my_only_leaf(leaf):
             pass
-        elif self._is_my_first_leaf(leaf):
+        elif leaf is self[0]:
             if self.direction is not None:
                 string = '{} \('.format(self.direction)
             else:
                 string = '\('
             bundle.right.spanner_starts.append(string)
-        elif self._is_my_last_leaf(leaf):
+        elif leaf is self[-1]:
             string = '\)'
             bundle.right.spanner_stops.append(string)
         return bundle

@@ -146,6 +146,7 @@ class Leaf(Component):
         result = []
         result.append(('spanners', bundle.after.spanners))
         result.append(('indicators', bundle.after.indicators))
+        result.append(('spanner_starts', bundle.after.spanner_starts))
         result.append(('commands', bundle.after.commands))
         result.append(('comments', bundle.after.comments))
         return result
@@ -459,7 +460,8 @@ class Leaf(Component):
         for leaf in result_leaves:
             multiplier = abjad.inspect(leaf).get_indicator(abjad.Multiplier)
             abjad.detach(object, leaf)
-            abjad.attach(multiplier, leaf)
+            if multiplier is not None:
+                abjad.attach(multiplier, leaf)
         # replace leaf with flattened result
         selection = abjad.select(self)
         parent, start, stop = selection._get_parent_and_start_stop_indices()

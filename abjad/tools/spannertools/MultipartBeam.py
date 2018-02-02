@@ -104,7 +104,7 @@ class MultipartBeam(Beam):
                 next_leaf = None
             start_piece = None
             stop_piece = None
-            if self._is_my_first_leaf(leaf):
+            if leaf is self[0]:
                 if next_leaf is not None:
                     if self._is_beamable(
                         next_leaf,
@@ -122,7 +122,7 @@ class MultipartBeam(Beam):
                             beam_rests=self.beam_rests,
                             ):
                             start_piece = '{}['.format(direction_string)
-            if self._is_my_last_leaf(leaf):
+            if leaf is self[-1]:
                 if previous_leaf is not None:
                     if self._is_beamable(
                         previous_leaf,

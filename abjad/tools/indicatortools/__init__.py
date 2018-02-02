@@ -20,6 +20,7 @@ from .LilyPondCommand import LilyPondCommand
 from .LilyPondComment import LilyPondComment
 from .LilyPondLiteral import LilyPondLiteral
 from .LineBreak import LineBreak
+from .MarginMarkup import MarginMarkup
 from .MetricModulation import MetricModulation
 from .MetronomeMark import MetronomeMark
 from .MetronomeMarkDictionary import MetronomeMarkDictionary

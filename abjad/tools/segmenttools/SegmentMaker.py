@@ -3,6 +3,7 @@ from typing import Union as U
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.datastructuretools.OrderedDict import OrderedDict
 from abjad.tools.lilypondfiletools.LilyPondFile import LilyPondFile
+from .Path import Path
 
 
 class SegmentMaker(AbjadObject):
@@ -87,12 +88,13 @@ class SegmentMaker(AbjadObject):
 
     def run(
         self,
-        deactivate: U[List[str], None] = None,
-        environment: U[str, None] = None,
-        metadata: U[OrderedDict, None] = None,
-        midi: U[bool, None] = None,
-        previous_metadata: U[OrderedDict, None] = None,
-        remove: U[List[str], None] = None,
+        deactivate: List[str] = None,
+        environment: str = None,
+        metadata: OrderedDict = None,
+        midi: bool = None,
+        previous_metadata: OrderedDict = None,
+        remove: List[str] = None,
+        segment_directory: Path = None,
         ) -> LilyPondFile:
         r'''Runs segment-maker.
         '''

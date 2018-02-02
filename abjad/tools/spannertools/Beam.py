@@ -185,14 +185,14 @@ class Beam(Spanner):
         import abjad
         if self.stemlet_length is None:
             return
-        if self._is_my_first_leaf(leaf):
+        if leaf is self[0]:
             parentage = abjad.inspect(leaf).get_parentage()
             staff = parentage.get_first(abjad.Staff)
             lilypond_type = staff.lilypond_type
             string = r'\override {}.Stem.stemlet-length = {}'
             string = string.format(lilypond_type, self.stemlet_length)
             bundle.before.commands.append(string)
-        if self._is_my_last_leaf(leaf):
+        if leaf is self[-1]:
             parentage = abjad.inspect(leaf).get_parentage()
             staff = parentage.get_first(abjad.Staff)
             lilypond_type = staff.lilypond_type
@@ -207,15 +207,15 @@ class Beam(Spanner):
 
     def _get_lilypond_format_bundle(self, leaf):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
-        if self._is_my_first_leaf(leaf):
+        if leaf is self[0]:
             if self.direction is not None:
                 string = '{} ['.format(self.direction)
             else:
                 string = '['
             bundle.right.spanner_starts.append(string)
-        if self._is_my_last_leaf(leaf):
+        if leaf is self[-1]:
             string = ']'
-            if self._is_my_first_leaf(leaf):
+            if leaf is self[0]:
                 bundle.right.spanner_starts.append(string)
             else:
                 bundle.right.spanner_stops.append(string)

@@ -75,10 +75,10 @@ class StaffLinesSpanner(Spanner):
     def _get_lilypond_format_bundle(self, leaf):
         import abjad
         bundle = self._get_basic_lilypond_format_bundle(leaf)
-        if self._is_my_last_leaf(leaf) and not self.forbid_restarting:
+        if leaf is self[-1] and not self.forbid_restarting:
             bundle.after.commands.append(r'\stopStaff')
             bundle.after.commands.append(r'\startStaff')
-        if self._is_my_first_leaf(leaf):
+        if leaf is self[0]:
             bundle.before.commands.append(r'\stopStaff')
             if isinstance(self.lines, int):
                 override = abjad.LilyPondGrobOverride(

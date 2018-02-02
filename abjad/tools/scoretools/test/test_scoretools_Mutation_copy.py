@@ -22,7 +22,8 @@ def test_scoretools_Mutation_copy_01():
         \new Voice {
             { % measure
                 \time 2/8
-                c'8 [ ( \startTrillSpan
+                c'8 [ (
+                \startTrillSpan
                 d'8
             } % measure
             { % measure
@@ -43,7 +44,8 @@ def test_scoretools_Mutation_copy_01():
     assert format(new) == abjad.String.normalize(
         r'''
         \new Voice {
-            e'8 [ ( \startTrillSpan
+            e'8 [ (
+            \startTrillSpan
             f'8 ] ) \stopTrillSpan
         }
         '''
@@ -70,7 +72,8 @@ def test_scoretools_Mutation_copy_02():
         \new Voice {
             { % measure
                 \time 2/8
-                c'8 [ ( \startTrillSpan
+                c'8 [ (
+                \startTrillSpan
                 d'8
             } % measure
             { % measure
@@ -93,7 +96,8 @@ def test_scoretools_Mutation_copy_02():
         \new Voice {
             { % measure
                 \time 2/8
-                e'8 [ ( \startTrillSpan
+                e'8 [ (
+                \startTrillSpan
                 f'8 ] ) \stopTrillSpan
             } % measure
         }
@@ -121,7 +125,8 @@ def test_scoretools_Mutation_copy_03():
         \new Voice {
             { % measure
                 \time 2/8
-                c'8 [ ( \startTrillSpan
+                c'8 [ (
+                \startTrillSpan
                 d'8
             } % measure
             { % measure
@@ -142,7 +147,8 @@ def test_scoretools_Mutation_copy_03():
     assert format(new) == abjad.String.normalize(
         r'''
         \new Voice {
-            f'8 [ ( \startTrillSpan
+            f'8 [ (
+            \startTrillSpan
             g'8
             a'8 ] ) \stopTrillSpan
         }

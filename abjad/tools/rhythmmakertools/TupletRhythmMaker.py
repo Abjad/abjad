@@ -1,12 +1,10 @@
-from abjad.tools import datastructuretools
-from abjad.tools import mathtools
-from abjad.tools import scoretools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
-from abjad.tools.topleveltools import inspect
 
 
 class TupletRhythmMaker(RhythmMaker):
     r'''Tuplet rhythm-maker.
+
+    >>> from abjad.tools import rhythmmakertools as rhythmos
 
     ..  container:: example
 
@@ -166,7 +164,7 @@ class TupletRhythmMaker(RhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, rotation=None):
+    def __call__(self, divisions, state=None):
         r'''Calls tuplet rhythm-maker on `divisions`.
 
         ..  container:: example
@@ -277,11 +275,7 @@ class TupletRhythmMaker(RhythmMaker):
         Returns list of selections structured one selection per division.
         Each selection wraps a single tuplet.
         '''
-        return RhythmMaker.__call__(
-            self,
-            divisions,
-            rotation=rotation,
-            )
+        return RhythmMaker.__call__(self, divisions, state=state)
 
     def __format__(self, format_specification=''):
         r'''Formats tuplet rhythm-maker.
@@ -326,13 +320,12 @@ class TupletRhythmMaker(RhythmMaker):
 
     ### PRIVATE METHODS ###
 
-    def _make_music(self, divisions, rotation):
+    def _make_music(self, divisions):
         import abjad
         tuplets = []
         prototype = abjad.NonreducedFraction
         assert all(isinstance(_, prototype) for _ in divisions)
-        if not isinstance(rotation, int):
-            rotation = 0
+        rotation = self.state.get('rotation', 0)
         tuplet_ratios = abjad.CyclicTuple(
             abjad.sequence(self.tuplet_ratios).rotate(n=rotation)
             )
@@ -366,7 +359,7 @@ class TupletRhythmMaker(RhythmMaker):
         selections = [abjad.select(_) for _ in tuplets]
         beam_specifier = self._get_beam_specifier()
         beam_specifier(selections)
-        selections = self._apply_division_masks(selections, rotation)
+        selections = self._apply_division_masks(selections)
         return selections
 
     def _make_tuplet(
@@ -376,7 +369,8 @@ class TupletRhythmMaker(RhythmMaker):
         avoid_dots=False,
         diminution=True,
         ):
-        tuplet = scoretools.Tuplet.from_duration_and_ratio(
+        import abjad
+        tuplet = abjad.Tuplet.from_duration_and_ratio(
             duration,
             ratio,
             avoid_dots=avoid_dots,

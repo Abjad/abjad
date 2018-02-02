@@ -56,9 +56,116 @@ class TrillSpanner(Spanner):
         <BLANKLINE>
         Selection([Note("c'4")])
 
-    Formats LilyPond ``\startTrillSpan`` on first leaf in spanner.
 
-    Formats LilyPond ``\stopTrillSpan`` on last leaf in spanner.
+    ..  container:: example
+
+        Trill spanners can be broken tagged for use across segment boundaries:
+
+        >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+        >>> abjad.attach(abjad.TrillSpanner(), segment_1[:], right_broken=True)
+        >>> abjad.f(segment_1, strict=True)
+        \context Voice = "MainVoice" {
+            c'4
+            \startTrillSpan
+            d'4
+            e'4
+            f'4
+            \stopTrillSpan %! RIGHT_BROKEN_TRILL
+        }
+
+        >>> abjad.show(segment_1) # doctest: +SKIP
+
+        >>> segment_2 = abjad.Voice("g'4 f'2 r4", name='MainVoice')
+        >>> abjad.attach(abjad.TrillSpanner(), segment_2[:], left_broken=True)
+        >>> abjad.f(segment_2, strict=True)
+        \context Voice = "MainVoice" {
+            g'4
+            \startTrillSpan %! LEFT_BROKEN_TRILL
+            f'2
+            r4
+            \stopTrillSpan
+        }
+
+        >>> abjad.show(segment_2) # doctest: +SKIP
+
+        >>> container = abjad.Container([segment_1, segment_2])
+        >>> abjad.f(container, strict=True)
+        {
+            \context Voice = "MainVoice" {
+                c'4
+                \startTrillSpan
+                d'4
+                e'4
+                f'4
+                \stopTrillSpan %! RIGHT_BROKEN_TRILL
+            }
+            \context Voice = "MainVoice" {
+                g'4
+                \startTrillSpan %! LEFT_BROKEN_TRILL
+                f'2
+                r4
+                \stopTrillSpan
+            }
+        }
+
+        >>> abjad.show(container) # doctest: +SKIP
+
+        >>> text = format(container, 'lilypond:strict')
+        >>> text = abjad.LilyPondFormatManager.left_shift_tags(text)
+        >>> tags_ = [
+        ...     abjad.tags.LEFT_BROKEN_TRILL, abjad.tags.RIGHT_BROKEN_TRILL,
+        ...     ]
+        >>> match = lambda tags: set(tags) & set(tags_)
+        >>> text, count = abjad.deactivate(text, match)
+        >>> print(text)
+        {
+            \context Voice = "MainVoice" {
+                c'4
+                \startTrillSpan
+                d'4
+                e'4
+                f'4
+            %%% \stopTrillSpan %! RIGHT_BROKEN_TRILL
+            }
+            \context Voice = "MainVoice" {
+                g'4
+            %%% \startTrillSpan %! LEFT_BROKEN_TRILL
+                f'2
+                r4
+                \stopTrillSpan
+            }
+        }
+
+        >>> lines = text.split('\n')
+        >>> lilypond_file = abjad.LilyPondFile.new(lines)
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+    ..  container:: example
+
+        REGRESSION. Pitched trill spanner must appear after markup to avoid
+        hiding markup in graphic output:
+
+        >>> staff = abjad.Staff("c'4 d' e' r")
+        >>> markup = abjad.Markup('Allegro', direction=abjad.Up)
+        >>> abjad.attach(markup, staff[0])
+        >>> trill_spanner = abjad.TrillSpanner(pitch='Db4')
+        >>> abjad.attach(trill_spanner, staff[:])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff, strict=True)
+            \new Staff {
+                \pitchedTrill
+                c'4
+                ^ \markup { Allegro }
+                \startTrillSpan df'
+                d'4
+                e'4
+                r4
+                \stopTrillSpan
+            }
+
     '''
 
     ### CLASS VARIABLES ###
@@ -104,12 +211,18 @@ class TrillSpanner(Spanner):
     def _get_lilypond_format_bundle(self, leaf):
         import abjad
         bundle = abjad.LilyPondFormatBundle()
-        if self._is_my_first_leaf(leaf):
-            contributions = abjad.override(self)._list_format_contributions(
+        if leaf is self[0]:
+            strings = abjad.override(self)._list_format_contributions(
                 'override',
                 once=False,
                 )
-            bundle.grob_overrides.extend(contributions)
+            if self._left_broken:
+                strings = abjad.LilyPondFormatManager.tag(
+                    strings,
+                    deactivate=False,
+                    tag=abjad.tags.LEFT_BROKEN_TRILL,
+                    )
+            bundle.grob_overrides.extend(strings)
             if self.pitch is not None:
                 pitch_string = str(self.pitch)
             elif self.interval is not None:
@@ -120,21 +233,49 @@ class TrillSpanner(Spanner):
             string = r'\startTrillSpan'
             if pitch_string:
                 string += ' ' + pitch_string
-            bundle.right.spanner_starts.append(string)
+            strings = [string]
+            if self._left_broken:
+                strings = abjad.LilyPondFormatManager.tag(
+                    strings,
+                    deactivate=False,
+                    tag=abjad.tags.LEFT_BROKEN_TRILL,
+                    )
+            #bundle.right.spanner_starts.extend(strings)
+            # important: pitch trill must start AFTER markup
+            bundle.after.spanner_starts.extend(strings)
             if self.pitch is not None or self.interval is not None:
-                string = r'\pitchedTrill'
-                bundle.opening.spanners.append(string)
+                strings = [r'\pitchedTrill']
+                if self._left_broken:
+                    strings = abjad.LilyPondFormatManager.tag(
+                        strings,
+                        deactivate=False,
+                        tag=abjad.tags.LEFT_BROKEN_TRILL,
+                        )
+                bundle.opening.spanners.extend(strings)
                 if self.is_harmonic:
                     string = '(lambda (grob) (grob-interpret-markup grob'
                     string += r' #{ \markup \musicglyph #"noteheads.s0harmonic" #}))'
                     scheme = abjad.Scheme(string, verbatim=True)
+                    # TODO: use strings instead of override interface:
                     abjad.override(leaf).trill_pitch_head.stencil = scheme
-        if self._is_my_last_leaf(leaf):
+        if leaf is self[-1]:
             manager = abjad.override(self)
-            contributions = manager._list_format_contributions('revert')
-            bundle.grob_reverts.extend(contributions)
-            string = r'\stopTrillSpan'
-            bundle.right.spanner_stops.append(string)
+            strings = manager._list_format_contributions('revert')
+            if self._right_broken:
+                strings = abjad.LilyPondFormatManager.tag(
+                    strings,
+                    deactivate=False,
+                    tag=abjad.tags.RIGHT_BROKEN_TRILL,
+                    )
+            bundle.grob_reverts.extend(strings)
+            strings = [r'\stopTrillSpan']
+            if self._right_broken:
+                strings = abjad.LilyPondFormatManager.tag(
+                    strings,
+                    deactivate=False,
+                    tag=abjad.tags.RIGHT_BROKEN_TRILL,
+                    )
+            bundle.right.spanner_stops.extend(strings)
         return bundle
 
     ### PUBLIC PROPERTIES ###

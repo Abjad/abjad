@@ -52,9 +52,9 @@ class HorizontalBracketSpanner(Spanner):
 
     def _get_lilypond_format_bundle(self, leaf):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
-        if self._is_my_first_leaf(leaf):
+        if leaf is self[0]:
             bundle.right.spanner_starts.append(r'\startGroup')
-        if self._is_my_last_leaf(leaf):
+        if leaf is self[-1]:
             bundle.right.spanner_stops.append(r'\stopGroup')
         return bundle
 

@@ -5,6 +5,8 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class SustainMask(AbjadValueObject):
     r'''Sustain mask.
 
+    >>> from abjad.tools import rhythmmakertools as rhythmos
+
     ..  container:: example
 
         >>> mask = abjad.rhythmmakertools.SustainMask(

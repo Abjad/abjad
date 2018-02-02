@@ -1,4 +1,6 @@
+from abjad.tools.datastructuretools.String import String
 from .Spanner import Spanner
+
 
 
 class Tie(Spanner):
@@ -42,18 +44,6 @@ class Tie(Spanner):
 
     ..  container:: example
 
-        Fails attachment test when pitches differ:
-
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(abjad.Tie(), staff[:])
-        Traceback (most recent call last):
-            ...
-        Exception: Tie() attachment test fails for ...
-        <BLANKLINE>
-        Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
-
-    ..  container:: example
-
         Ties consecutive chords if all adjacent pairs have at least one pitch
         in common:
 
@@ -72,18 +62,18 @@ class Tie(Spanner):
 
     ..  container:: example
 
-        Conventional ties can be right-open tagged (with strict formatting) for
-        use at the end of a segment:
+        Conventional ties can be right-broken tagged (with strict formatting)
+        for use at the end of a segment:
 
         >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
-        >>> abjad.attach(abjad.Tie(), segment_1[-1:], right_open=True)
+        >>> abjad.attach(abjad.Tie(), segment_1[-1:], right_broken=True)
         >>> abjad.f(segment_1, strict=True)
         \context Voice = "MainVoice" {
             c'4
             d'4
             e'4
             f'4
-        %@% ~     %! RIGHT_OPEN_TIE
+        %@% ~     %! RIGHT_BROKEN_TIE
         }
 
         >>> abjad.show(segment_1) # doctest: +SKIP
@@ -107,7 +97,7 @@ class Tie(Spanner):
                 d'4
                 e'4
                 f'4
-            %@% ~     %! RIGHT_OPEN_TIE
+            %@% ~     %! RIGHT_BROKEN_TIE
             }
             \context Voice = "MainVoice" {
                 f'4
@@ -121,7 +111,7 @@ class Tie(Spanner):
 
         >>> text = format(container, 'lilypond:strict')
         >>> text = abjad.LilyPondFormatManager.left_shift_tags(text)
-        >>> text, count = abjad.activate(text, abjad.tags.RIGHT_OPEN_TIE)
+        >>> text, count = abjad.activate(text, abjad.tags.RIGHT_BROKEN_TIE)
         >>> print(text)
         {
             \context Voice = "MainVoice" {
@@ -129,7 +119,7 @@ class Tie(Spanner):
                 d'4
                 e'4
                 f'4
-                ~     %! RIGHT_OPEN_TIE %@%
+                ~     %! RIGHT_BROKEN_TIE %@%
             }
             \context Voice = "MainVoice" {
                 f'4
@@ -145,18 +135,18 @@ class Tie(Spanner):
 
     ..  container:: example
 
-        Repeat ties can be left-open tagged (with strict formatting) for use at
-        the beginning of a segment:
+        Repeat ties can be left-broken tagged (with strict formatting) for use
+        at the beginning of a segment:
 
         >>> staff = abjad.Staff("c'4 c' c' c'")
         >>> tie = abjad.Tie(repeat=True)
-        >>> abjad.attach(tie, staff[:], left_open=True)
+        >>> abjad.attach(tie, staff[:], left_broken=True)
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff, strict=True)
         \new Staff {
             c'4
-        %@% \repeatTie     %! LEFT_OPEN_REPEAT_TIE
+        %@% \repeatTie     %! LEFT_BROKEN_REPEAT_TIE
             c'4
             \repeatTie
             c'4
@@ -164,6 +154,18 @@ class Tie(Spanner):
             c'4
             \repeatTie
         }
+
+    ..  container:: example
+
+        Fails attachment test when pitches differ:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.attach(abjad.Tie(), staff[:])
+        Traceback (most recent call last):
+            ...
+        Exception: Tie() attachment test fails for ...
+        <BLANKLINE>
+        Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
 
     '''
 
@@ -180,13 +182,12 @@ class Tie(Spanner):
         self,
         direction=None,
         overrides=None,
-        repeat=None,
-        ):
-        import abjad
+        repeat: bool = None,
+        ) -> None:
         Spanner.__init__(self, overrides=overrides)
-        direction = abjad.String.to_tridirectional_lilypond_symbol(direction)
+        direction = String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction
-        self._repeat = repeat
+        self._repeat: bool = repeat
 
     ### PRIVATE METHODS ###
 
@@ -244,8 +245,8 @@ class Tie(Spanner):
         if isinstance(leaf, silent):
             return bundle
         if not self.repeat:
-            if self._is_my_last_leaf(leaf):
-                if not self._right_open:
+            if leaf is self[-1]:
+                if not self._right_broken:
                     return bundle
                 elif self.direction is not None:
                     string = '{} ~'.format(self.direction)
@@ -254,7 +255,7 @@ class Tie(Spanner):
                 strings = abjad.LilyPondFormatManager.tag(
                     [string],
                     deactivate=True,
-                    tag=abjad.tags.RIGHT_OPEN_TIE,
+                    tag=abjad.tags.RIGHT_BROKEN_TIE,
                     )
                 assert len(strings) == 1
                 string = strings[0]
@@ -267,8 +268,8 @@ class Tie(Spanner):
             else:
                 bundle.right.spanners.append('~')
         else:
-            if self._is_my_first_leaf(leaf):
-                if not self._left_open:
+            if leaf is self[0]:
+                if not self._left_broken:
                     return bundle
                 elif self.direction is not None:
                     string = r'{} \repeatTie'.format(self.direction)
@@ -277,7 +278,7 @@ class Tie(Spanner):
                 strings = abjad.LilyPondFormatManager.tag(
                     [string],
                     deactivate=True,
-                    tag='LEFT_OPEN_REPEAT_TIE',
+                    tag='LEFT_BROKEN_REPEAT_TIE',
                     )
                 assert len(strings) == 1
                 string = strings[0]

@@ -19,7 +19,8 @@ def test_scoretools_Selection__get_crossing_spanners_01():
         r'''
         \new Voice {
             {
-                c'8 \startTrillSpan
+                c'8
+                \startTrillSpan
                 d'8
             }
             {

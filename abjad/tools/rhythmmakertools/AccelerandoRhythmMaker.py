@@ -1,14 +1,11 @@
 import math
-from abjad.tools import datastructuretools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
-from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import inspect
-from abjad.tools.topleveltools import override
 
 
 class AccelerandoRhythmMaker(RhythmMaker):
     r'''Accelerando rhythm-maker.
+
+    >>> from abjad.tools import rhythmmakertools as rhythmos
 
     ..  container:: example
 
@@ -470,18 +467,12 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, rotation=None):
+    def __call__(self, divisions, state=None):
         r'''Calls interpolated rhythm-maker on `divisions`.
-
-        Ignores `rotation`.
 
         Returns list of selections.
         '''
-        return RhythmMaker.__call__(
-            self,
-            divisions,
-            rotation=rotation,
-            )
+        return RhythmMaker.__call__(self, divisions, state=state)
 
     ### PRIVATE METHODS ###
 
@@ -499,20 +490,21 @@ class AccelerandoRhythmMaker(RhythmMaker):
             multiplier = needed_duration / \
                 interpolation_specifier.written_duration
             multiplier = abjad.Multiplier(multiplier)
-            detach(abjad.Multiplier, selection[-1])
-            attach(multiplier, selection[-1])
+            abjad.detach(abjad.Multiplier, selection[-1])
+            abjad.attach(multiplier, selection[-1])
 
     def _get_interpolation_specifiers(self):
+        import abjad
         from abjad.tools import rhythmmakertools
         specifiers = self.interpolation_specifiers
         if specifiers is None:
-            specifiers = datastructuretools.CyclicTuple([
+            specifiers = abjad.CyclicTuple([
                 rhythmmakertools.InterpolationSpecifier(),
                 ])
         elif isinstance(specifiers, rhythmmakertools.InterpolationSpecifier):
-            specifiers = datastructuretools.CyclicTuple([specifiers])
+            specifiers = abjad.CyclicTuple([specifiers])
         else:
-            specifiers = datastructuretools.CyclicTuple(specifiers)
+            specifiers = abjad.CyclicTuple(specifiers)
         return specifiers
 
     @staticmethod
@@ -702,16 +694,18 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     @staticmethod
     def _is_accelerando(selection):
-        first_duration = inspect(selection[0]).get_duration()
-        last_duration = inspect(selection[-1]).get_duration()
+        import abjad
+        first_duration = abjad.inspect(selection[0]).get_duration()
+        last_duration = abjad.inspect(selection[-1]).get_duration()
         if last_duration < first_duration:
             return True
         return False
 
     @staticmethod
     def _is_ritardando(selection):
-        first_duration = inspect(selection[0]).get_duration()
-        last_duration = inspect(selection[-1]).get_duration()
+        import abjad
+        first_duration = abjad.inspect(selection[0]).get_duration()
+        last_duration = abjad.inspect(selection[-1]).get_duration()
         if first_duration < last_duration:
             return True
         return False
@@ -762,7 +756,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
             note = abjad.Note(0, written_duration)
             multiplier = duration / written_duration
             multiplier = abjad.Multiplier(multiplier)
-            attach(multiplier, note)
+            abjad.attach(multiplier, note)
             notes.append(note)
         selection = abjad.select(notes)
         class_._fix_rounding_error(
@@ -775,20 +769,20 @@ class AccelerandoRhythmMaker(RhythmMaker):
         if not beam_specifier.use_feather_beams:
             pass
         elif class_._is_accelerando(selection):
-            override(selection[0]).beam.grow_direction = abjad.Right
+            abjad.override(selection[0]).beam.grow_direction = abjad.Right
         elif class_._is_ritardando(selection):
-            override(selection[0]).beam.grow_direction = abjad.Left
+            abjad.override(selection[0]).beam.grow_direction = abjad.Left
         tuplet = abjad.Tuplet((1, 1), selection)
         if tuplet_specifier.use_note_duration_bracket:
             #tuplet.force_times_command = True
-            duration = inspect(tuplet).get_duration()
+            duration = abjad.inspect(tuplet).get_duration()
             markup = duration.to_score_markup()
             markup = markup.scale((0.75, 0.75))
-            override(tuplet).tuplet_number.text = markup
+            abjad.override(tuplet).tuplet_number.text = markup
         selection = abjad.select([tuplet])
         return selection
 
-    def _make_music(self, divisions, rotation):
+    def _make_music(self, divisions, state=None):
         selections = []
         interpolation_specifiers = self._get_interpolation_specifiers()
         beam_specifier = self._get_beam_specifier()
@@ -804,7 +798,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
             selections.append(accelerando)
         beam_specifier = self._get_beam_specifier()
         beam_specifier(selections)
-        selections = self._apply_division_masks(selections, rotation)
+        selections = self._apply_division_masks(selections)
         return selections
 
     @staticmethod

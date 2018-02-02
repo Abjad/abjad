@@ -15,8 +15,9 @@ if __name__ == '__main__':
     try:
         from {layout_module_name} import breaks
         assert isinstance(breaks, baca.BreakMeasureMap), repr(breaks)
+        maker = ide.Path(os.path.realpath(__file__))
     except ImportError:
-        print('Can not import breaks ...')
+        print(f'No breaks in {{maker.trim()}} ...')
         sys.exit(1)
 
     try:
@@ -27,10 +28,9 @@ if __name__ == '__main__':
         spacing = None
 
     try:
-        maker = ide.Path(os.path.realpath(__file__))
         buildspace_directory = maker.parent
         layout_py = buildspace_directory('{layout_module_name}.py')
-        document_name = abjad.tags.document(buildspace_directory.name)
+        document_name = abjad.String(buildspace_directory.name).to_shout_case()
     except:
         traceback.print_exc()
         sys.exit(1)
@@ -56,39 +56,6 @@ if __name__ == '__main__':
         sys.exit(1)
         
     try:
-        if buildspace_directory.is_segment():
-            string = 'time_signatures'
-            time_signatures = buildspace_directory.get_metadatum(string)
-            assert isinstance(time_signatures, list)
-            time_signatures = [
-                abjad.TimeSignature.from_string(_)
-                for _ in time_signatures
-                ]
-    except:
-        traceback.print_exc()
-        sys.exit(1)
-
-    try:
-        if not buildspace_directory.is_segment():
-            builds_directory = buildspace_directory.parent
-            score_name = builds_directory.parent.name
-            score_path = ide.Path(score_name)
-            time_signatures = score_path.get_metadatum('time_signatures')
-            prototype = abjad.OrderedDict
-            assert isinstance(time_signatures, prototype), repr(
-                time_signatures)
-    except:
-        traceback.print_exc()
-        sys.exit(1)
-
-    try:
-        if not buildspace_directory.is_segment():
-            time_signatures_ = []
-            for segment_name, strings in time_signatures.items():
-                for string in strings:
-                    time_signature = abjad.TimeSignature.from_string(string)
-                    time_signatures_.append(time_signature)
-            time_signatures = time_signatures_
         part_abbreviation = layout_py.get_part_abbreviation()
         if part_abbreviation:
             document_name = document_name + '_' + part_abbreviation
@@ -107,15 +74,15 @@ if __name__ == '__main__':
             final_bar_line=False,
             first_measure_number=first_measure_number,
             score_template=baca.SingleStaffScoreTemplate(),
-            spacing_specifier=spacing,
+            spacing=spacing,
             time_signatures=time_signatures,
             )
         remove = (
             abjad.tags.EMPTY_START_BAR,
+            abjad.tags.EXPLICIT_TIME_SIGNATURE_COLOR,
             abjad.tags.MEASURE_NUMBER_MARKUP,
+            abjad.tags.REDUNDANT_TIME_SIGNATURE_COLOR,
             abjad.tags.STAGE_NUMBER_MARKUP,
-            baca.tags.EXPLICIT_TIME_SIGNATURE_COLOR,
-            baca.tags.REDUNDANT_TIME_SIGNATURE_COLOR,
             'SM29',
             )
         lilypond_file = maker.run(remove=remove)

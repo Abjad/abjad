@@ -1,12 +1,10 @@
-from abjad.tools import datastructuretools
-from abjad.tools import mathtools
-from abjad.tools import scoretools
-from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 
 class IncisedRhythmMaker(RhythmMaker):
     r'''Incised rhythm-maker.
+
+    >>> from abjad.tools import rhythmmakertools as rhythmos
 
     ..  container:: example
 
@@ -61,7 +59,6 @@ class IncisedRhythmMaker(RhythmMaker):
 
     __slots__ = (
         '_extra_counts_per_division',
-        '_helper_functions',
         '_incise_specifier',
         '_replace_rests_with_skips',
         '_split_divisions_by_counts',
@@ -81,8 +78,8 @@ class IncisedRhythmMaker(RhythmMaker):
         split_divisions_by_counts=None,
         tie_specifier=None,
         tuplet_specifier=None,
-        helper_functions=None,
         ):
+        import abjad
         from abjad.tools import rhythmmakertools
         RhythmMaker.__init__(
             self,
@@ -101,31 +98,23 @@ class IncisedRhythmMaker(RhythmMaker):
         if split_divisions_by_counts is not None:
             split_divisions_by_counts = tuple(split_divisions_by_counts)
         assert (extra_counts_per_division is None or
-            mathtools.all_are_nonnegative_integer_equivalent_numbers(extra_counts_per_division)), extra_counts_per_division
+            abjad.mathtools.all_are_nonnegative_integer_equivalent_numbers(
+                extra_counts_per_division)), extra_counts_per_division
         assert (split_divisions_by_counts is None or
-            mathtools.all_are_nonnegative_integer_equivalent_numbers(split_divisions_by_counts)), split_divisions_by_counts
+            abjad.mathtools.all_are_nonnegative_integer_equivalent_numbers(
+                split_divisions_by_counts)), split_divisions_by_counts
         self._extra_counts_per_division = extra_counts_per_division
         self._replace_rests_with_skips = replace_rests_with_skips
         self._split_divisions_by_counts = split_divisions_by_counts
-        if helper_functions is not None:
-            assert isinstance(helper_functions, dict)
-            for name in helper_functions:
-                function = helper_functions.get(name)
-                assert callable(function)
-        self._helper_functions = helper_functions
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, rotation=None):
+    def __call__(self, divisions, state=None):
         r'''Calls incised rhythm-maker on `divisions`.
 
         Returns list of selections.
         '''
-        return RhythmMaker.__call__(
-            self,
-            divisions,
-            rotation=rotation,
-            )
+        return RhythmMaker.__call__(self, divisions, state=state)
 
     ### PRIVATE METHODS ###
 
@@ -202,68 +191,62 @@ class IncisedRhythmMaker(RhythmMaker):
                 message = 'must incise divisions or output.'
                 raise Exception(message)
 
-    def _make_music(self, divisions, rotation):
+    def _make_music(self, divisions):
         import abjad
         input_divisions = divisions[:]
-        input_ = self._prepare_input(rotation)
+        input_ = self._prepare_input()
         prefix_talea = input_[0]
         prefix_counts = input_[1]
         suffix_talea = input_[2]
         suffix_counts = input_[3]
         extra_counts_per_division = input_[4]
         split_divisions_by_counts = input_[5]
-        taleas = (
-            prefix_talea,
-            suffix_talea,
-            extra_counts_per_division,
-            split_divisions_by_counts,
-            )
+        counts = {
+            'prefix_talea': prefix_talea,
+            'suffix_talea': suffix_talea,
+            'extra_counts_per_division': extra_counts_per_division,
+            'split_divisions_by_counts': split_divisions_by_counts,
+            }
         if self.incise_specifier is not None:
             talea_denominator = self.incise_specifier.talea_denominator
         else:
             talea_denominator = None
-        input_ = self._scale_taleas(
-            divisions,
-            talea_denominator,
-            taleas,
-            )
-        divisions = input_[0]
-        lcd = input_[1]
-        prefix_talea = input_[2]
-        suffix_talea = input_[3]
-        extra_counts_per_division = input_[4]
-        split_divisions_by_counts = input_[5]
+        result = self._scale_counts(divisions, talea_denominator, counts)
+        divisions = result['divisions']
+        lcd = result['lcd']
+        counts = result['counts']
+#        prefix_talea = counts[0]
+#        suffix_talea = counts[1]
+#        extra_counts_per_division = counts[2]
+#        split_divisions_by_counts = counts[3]
         secondary_divisions = self._make_secondary_divisions(
-            divisions, split_divisions_by_counts)
+            divisions, counts['split_divisions_by_counts'])
         incise_specifier = self._get_incise_specifier()
         if not incise_specifier.outer_divisions_only:
             numeric_map = self._make_division_incised_numeric_map(
                 secondary_divisions,
-                prefix_talea,
+                counts['prefix_talea'],
                 prefix_counts,
-                suffix_talea,
+                counts['suffix_talea'],
                 suffix_counts,
-                extra_counts_per_division,
+                counts['extra_counts_per_division'],
                 )
         else:
             assert incise_specifier.outer_divisions_only
             numeric_map = self._make_output_incised_numeric_map(
                 secondary_divisions,
-                prefix_talea,
+                counts['prefix_talea'],
                 prefix_counts,
-                suffix_talea,
+                counts['suffix_talea'],
                 suffix_counts,
-                extra_counts_per_division,
+                counts['extra_counts_per_division'],
                 )
         result = []
         selections = self._numeric_map_to_leaf_selections(numeric_map, lcd)
         if not self.extra_counts_per_division:
             result.extend(selections)
         else:
-            tuplets = self._make_tuplets(
-                secondary_divisions,
-                selections,
-                )
+            tuplets = self._make_tuplets(secondary_divisions, selections)
             result.extend(tuplets)
         if not self._all_are_tuplets_or_all_are_leaf_selections(result):
             message = 'should be tuplets or leaf selections: {!r}.'
@@ -278,8 +261,8 @@ class IncisedRhythmMaker(RhythmMaker):
                 beam = abjad.MultipartBeam()
                 leaves = abjad.select(x).leaves()
                 abjad.attach(beam, leaves)
-        selections = [abjad.select(x) for x in result]
-        selections = self._apply_division_masks(selections, rotation)
+        selections = [abjad.select(_) for _ in result]
+        selections = self._apply_division_masks(selections)
         duration_specifier = self._get_duration_specifier()
         if duration_specifier.rewrite_meter:
             selections = duration_specifier._rewrite_meter_(
@@ -296,8 +279,8 @@ class IncisedRhythmMaker(RhythmMaker):
         is_note_filled=True,
         ):
         import abjad
-        prefix_weight = mathtools.weight(prefix)
-        suffix_weight = mathtools.weight(suffix)
+        prefix_weight = abjad.mathtools.weight(prefix)
+        suffix_weight = abjad.mathtools.weight(suffix)
         middle = numerator - prefix_weight - suffix_weight
         if numerator < prefix_weight:
             weights = [numerator]
@@ -333,7 +316,7 @@ class IncisedRhythmMaker(RhythmMaker):
         suffix = suffix_talea[start:stop]
         if len(divisions) == 1:
             prolation_addendum = extra_counts_per_division[0]
-            if isinstance(divisions[0], mathtools.NonreducedFraction):
+            if isinstance(divisions[0], abjad.NonreducedFraction):
                 numerator = divisions[0].numerator
             else:
                 numerator = divisions[0][0]
@@ -410,48 +393,31 @@ class IncisedRhythmMaker(RhythmMaker):
             selections.append(selection)
         return selections
 
-    def _prepare_input(self, rotation):
-        helper_functions = self.helper_functions or {}
+    def _prepare_input(self):
+        import abjad
+        
         incise_specifier = self._get_incise_specifier()
         prefix_talea = incise_specifier.prefix_talea or ()
-        helper = helper_functions.get('prefix_talea')
-        helper = self._none_to_trivial_helper(helper)
-        prefix_talea = helper(prefix_talea, rotation)
-        prefix_talea = datastructuretools.CyclicTuple(prefix_talea)
+        prefix_talea = abjad.CyclicTuple(prefix_talea)
 
         prefix_counts = incise_specifier.prefix_counts or (0,)
-        helper = helper_functions.get('prefix_counts')
-        helper = self._none_to_trivial_helper(helper)
-        prefix_counts = helper(prefix_counts, rotation)
-        prefix_counts = datastructuretools.CyclicTuple(prefix_counts)
+        prefix_counts = abjad.CyclicTuple(prefix_counts)
 
         suffix_talea = incise_specifier.suffix_talea or ()
-        helper = helper_functions.get('suffix_talea')
-        helper = self._none_to_trivial_helper(helper)
-        suffix_talea = helper(suffix_talea, rotation)
-        suffix_talea = datastructuretools.CyclicTuple(suffix_talea)
+        suffix_talea = abjad.CyclicTuple(suffix_talea)
 
         suffix_counts = incise_specifier.suffix_counts or (0,)
-        helper = helper_functions.get('suffix_counts')
-        helper = self._none_to_trivial_helper(helper)
-        suffix_counts = helper(suffix_counts, rotation)
-        suffix_counts = datastructuretools.CyclicTuple(suffix_counts)
+        suffix_counts = abjad.CyclicTuple(suffix_counts)
 
         extra_counts_per_division = self.extra_counts_per_division or ()
-        helper = helper_functions.get('extra_counts_per_division')
-        helper = self._none_to_trivial_helper(helper)
-        extra_counts_per_division = helper(extra_counts_per_division, rotation)
         if extra_counts_per_division:
-            extra_counts_per_division = datastructuretools.CyclicTuple(
+            extra_counts_per_division = abjad.CyclicTuple(
                 extra_counts_per_division)
         else:
-            extra_counts_per_division = datastructuretools.CyclicTuple([0])
+            extra_counts_per_division = abjad.CyclicTuple([0])
 
         split_divisions_by_counts = self.split_divisions_by_counts or ()
-        helper = helper_functions.get('split_divisions_by_counts')
-        helper = self._none_to_trivial_helper(helper)
-        split_divisions_by_counts = helper(split_divisions_by_counts, rotation)
-        split_divisions_by_counts = datastructuretools.CyclicTuple(
+        split_divisions_by_counts = abjad.CyclicTuple(
             split_divisions_by_counts)
 
         return (
@@ -831,14 +797,6 @@ class IncisedRhythmMaker(RhythmMaker):
         '''
         if self._extra_counts_per_division:
             return list(self._extra_counts_per_division)
-
-    @property
-    def helper_functions(self):
-        r'''Gets helper functions.
-
-        Returns dictionary or none.
-        '''
-        return self._helper_functions
 
     @property
     def incise_specifier(self):
@@ -1360,7 +1318,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            Uses Messiaen-style ties:
+            Uses repeat ties:
 
             >>> rhythm_maker = abjad.rhythmmakertools.IncisedRhythmMaker(
             ...     incise_specifier=abjad.rhythmmakertools.InciseSpecifier(

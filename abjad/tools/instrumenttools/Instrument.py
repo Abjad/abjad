@@ -44,15 +44,15 @@ class Instrument(AbjadValueObject):
         >>> for leaf in abjad.select(voice_1).leaves():
         ...     leaf, abjad.inspect(leaf).get_effective(abjad.Instrument)
         ...
-        (Note("e'8"), Flute())
-        (Note("g'8"), Flute())
-        (Note("f'8"), Flute())
-        (Note("a'8"), Flute())
+        (Note("e'8"), Flute(hide=True))
+        (Note("g'8"), Flute(hide=True))
+        (Note("f'8"), Flute(hide=True))
+        (Note("a'8"), Flute(hide=True))
 
         >>> for leaf in abjad.select(voice_2).leaves():
         ...     leaf, abjad.inspect(leaf).get_effective(abjad.Instrument)
         ...
-        (Note("c'2"), Viola())
+        (Note("c'2"), Viola(hide=True))
 
     '''
 
@@ -156,11 +156,14 @@ class Instrument(AbjadValueObject):
 
     def _get_format_specification(self):
         import abjad
+        keywords = []
+        if self.hide is True:
+            keywords.append('hide')
         return abjad.FormatSpecification(
             self,
             repr_args_values=[],
             repr_is_indented=False,
-            repr_kwargs_names=[],
+            repr_kwargs_names=keywords,
             )
 
     def _get_lilypond_format(self, context=None):

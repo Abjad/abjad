@@ -19,10 +19,10 @@ class Spanner(AbjadObject, collections.Sequence):
         '_ignore_attachment_test',
         '_ignore_before_attach',
         '_leaves',
-        '_left_open',
+        '_left_broken',
         '_lilypond_grob_name_manager',
         '_lilypond_setting_name_manager',
-        '_right_open',
+        '_right_broken',
         '_site',
         '_tag',
         '_wrappers',
@@ -38,9 +38,9 @@ class Spanner(AbjadObject, collections.Sequence):
         self._ignore_attachment_test = None
         self._ignore_before_attach = None
         self._leaves = []
-        self._left_open = None
+        self._left_broken = None
         self._lilypond_setting_name_manager = None
-        self._right_open = None
+        self._right_broken = None
         self._site = None
         self._tag = None
         self._wrappers = []
@@ -168,8 +168,8 @@ class Spanner(AbjadObject, collections.Sequence):
         self,
         argument,
         deactivate=None,
-        left_open=None,
-        right_open=None,
+        left_broken=None,
+        right_broken=None,
         site=None,
         tag=None,
         ):
@@ -179,8 +179,8 @@ class Spanner(AbjadObject, collections.Sequence):
         assert argument.are_leaves(), repr(argument)
         self._extend(argument)
         self._deactivate = deactivate
-        self._left_open = left_open
-        self._right_open = right_open
+        self._left_broken = left_broken
+        self._right_broken = right_broken
         self._site = site
         self._tag = tag
 
@@ -350,12 +350,12 @@ class Spanner(AbjadObject, collections.Sequence):
     def _get_basic_lilypond_format_bundle(self, leaf):
         import abjad
         bundle = abjad.LilyPondFormatBundle()
-        if self._is_my_last_leaf(leaf):
+        if leaf is self[-1]:
             contributions = abjad.override(self)._list_format_contributions(
                 'revert',
                 )
             bundle.grob_reverts.extend(contributions)
-        if self._is_my_first_leaf(leaf):
+        if leaf is self[0]:
             contributions = abjad.override(self)._list_format_contributions(
                 'override',
                 once=False,
@@ -512,9 +512,9 @@ class Spanner(AbjadObject, collections.Sequence):
         True if next leaf or previous leaf is none.
         Otherwise false.
         '''
-        if self._is_my_first_leaf(leaf):
+        if leaf is self[0]:
             return True
-        elif self._is_my_last_leaf(leaf):
+        elif leaf is self[-1]:
             return True
         elif not leaf._get_leaf(-1) and not leaf._get_leaf(1):
             return True

@@ -183,7 +183,7 @@ class Hairpin(Spanner):
 
             >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
             >>> hairpin = abjad.Hairpin()
-            >>> abjad.attach(hairpin, segment_1[:], right_open='<')
+            >>> abjad.attach(hairpin, segment_1[:], right_broken='<')
             >>> hairpin.attach(abjad.Dynamic('p'), hairpin[0])
             >>> abjad.override(segment_1).dynamic_line_spanner.staff_padding = 4
             >>> abjad.f(segment_1, strict=True)
@@ -196,7 +196,7 @@ class Hairpin(Spanner):
                 d'4
                 e'4
                 f'4
-                \! %! RIGHT_OPEN_HAIRPIN_STOP
+                \! %! RIGHT_BROKEN_HAIRPIN_STOP
             }
 
             >>> abjad.show(segment_1) # doctest: +SKIP
@@ -207,12 +207,12 @@ class Hairpin(Spanner):
 
             >>> segment_2 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
             >>> hairpin = abjad.Hairpin()
-            >>> abjad.attach(hairpin, segment_2[:], left_open='<')
+            >>> abjad.attach(hairpin, segment_2[:], left_broken='<')
             >>> hairpin.attach(abjad.Dynamic('f'), hairpin[-1])
             >>> abjad.f(segment_2, strict=True)
             \context Voice = "MainVoice" {
                 c'4
-                \< %! LEFT_OPEN_HAIRPIN_START
+                \< %! LEFT_BROKEN_HAIRPIN_START
                 d'4
                 e'4
                 f'4
@@ -239,11 +239,11 @@ class Hairpin(Spanner):
                     d'4
                     e'4
                     f'4
-                    \! %! RIGHT_OPEN_HAIRPIN_STOP
+                    \! %! RIGHT_BROKEN_HAIRPIN_STOP
                 }
                 \context Voice = "MainVoice" {
                     c'4
-                    \< %! LEFT_OPEN_HAIRPIN_START
+                    \< %! LEFT_BROKEN_HAIRPIN_START
                     d'4
                     e'4
                     f'4
@@ -261,11 +261,11 @@ class Hairpin(Spanner):
 
             >>> text, count = abjad.deactivate(
             ...     text,
-            ...     abjad.tags.RIGHT_OPEN_HAIRPIN_STOP,
+            ...     abjad.tags.RIGHT_BROKEN_HAIRPIN_STOP,
             ...     )
             >>> text, count = abjad.deactivate(
             ...     text,
-            ...     abjad.tags.LEFT_OPEN_HAIRPIN_START,
+            ...     abjad.tags.LEFT_BROKEN_HAIRPIN_START,
             ...     )
             >>> print(text)
             {
@@ -278,11 +278,11 @@ class Hairpin(Spanner):
                     d'4
                     e'4
                     f'4
-                %%% \! %! RIGHT_OPEN_HAIRPIN_STOP
+                %%% \! %! RIGHT_BROKEN_HAIRPIN_STOP
                 }
                 \context Voice = "MainVoice" {
                     c'4
-                %%% \< %! LEFT_OPEN_HAIRPIN_START
+                %%% \< %! LEFT_BROKEN_HAIRPIN_START
                     d'4
                     e'4
                     f'4
@@ -497,11 +497,11 @@ class Hairpin(Spanner):
 
     def _add_hairpin_start(self, leaf, bundle):
         import abjad
-        if leaf is self[0] and self._left_open is not None:
-            string = '\\' + self._left_open
+        if leaf is self[0] and self._left_broken is not None:
+            string = '\\' + self._left_broken
             strings = abjad.LilyPondFormatManager.tag(
                 [string],
-                tag=abjad.tags.LEFT_OPEN_HAIRPIN_START,
+                tag=abjad.tags.LEFT_BROKEN_HAIRPIN_START,
                 )
             assert len(strings) == 1
             string = strings[0]
@@ -511,9 +511,9 @@ class Hairpin(Spanner):
                 return
             next_dynamic = self._get_next_piecewise_dynamic_from(leaf)
             if next_dynamic is None:
-                if self._right_open is not None:
-                    assert self._right_open in ('<', '>')
-                    string = '\\' + self._right_open
+                if self._right_broken is not None:
+                    assert self._right_broken in ('<', '>')
+                    string = '\\' + self._right_broken
                 else:
                     return
             elif dynamic.ordinal == next_dynamic.ordinal:
@@ -529,16 +529,16 @@ class Hairpin(Spanner):
             string = '{} {}'.format(direction, string)
         bundle.right.spanner_starts.append(string)
 
-    def _add_right_open_hairpin_stop(self, leaf, bundle):
+    def _add_right_broken_hairpin_stop(self, leaf, bundle):
         import abjad
-        if self._right_open is None:
+        if self._right_broken is None:
             return
         if not leaf is self[-1]:
             return
         string = r'\!'
         strings = abjad.LilyPondFormatManager.tag(
             [string],
-            tag=abjad.tags.RIGHT_OPEN_HAIRPIN_STOP,
+            tag=abjad.tags.RIGHT_BROKEN_HAIRPIN_STOP,
             )
         assert len(strings) == 1
         string = strings[0]
@@ -676,7 +676,7 @@ class Hairpin(Spanner):
         self._add_circled_tip_override(leaf, bundle)
         self._add_hairpin_start(leaf, bundle)
         self._add_dynamic(leaf, bundle)
-        self._add_right_open_hairpin_stop(leaf, bundle)
+        self._add_right_broken_hairpin_stop(leaf, bundle)
         if self._is_my_only_leaf(leaf):
             bundle.right.spanner_starts.extend(bundle.right.spanner_stops)
             bundle.right.spanner_stops[:] = []

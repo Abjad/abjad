@@ -1,5 +1,6 @@
 import collections
 import itertools
+from typing import Optional
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -161,6 +162,12 @@ class TieSpecifier(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def repeat_ties(self) -> Optional[bool]:
+        r'''Is true when ties should format with LilyPond ``\repeatTie``.
+        '''
+        return self._repeat_ties
+
+    @property
     def strip_ties(self):
         r'''Is true when rhythm-maker should strip all ties from all leaves in
         each division.
@@ -188,12 +195,3 @@ class TieSpecifier(AbjadValueObject):
         Returns true, false or none.
         '''
         return self._tie_consecutive_notes
-
-    @property
-    def repeat_ties(self):
-        r'''Is true when ties should be Messiaen-style with the LilyPond
-        ``\repeatTie`` command. Otherwise false.
-
-        Set to true, false or none.
-        '''
-        return self._repeat_ties

@@ -179,14 +179,14 @@ class GeneralizedBeam(Spanner):
             if self._is_first_leaf_in_group(start_offset):
                 left = 1
                 right = current_flag_count
-            elif self._is_my_last_leaf(leaf):
+            elif leaf is self[-1]:
                 right = None
                 left = current_flag_count
 
         elif next_leaf_is_joinable:
             if self._is_last_leaf_in_group(stop_offset):
                 right = 1
-                if self._is_my_first_leaf(leaf):
+                if leaf is self[0]:
                     left = current_flag_count
 
         return left, right

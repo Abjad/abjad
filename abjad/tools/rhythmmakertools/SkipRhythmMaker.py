@@ -4,6 +4,8 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 class SkipRhythmMaker(RhythmMaker):
     r'''Skip rhythm-maker.
 
+    >>> from abjad.tools import rhythmmakertools as rhythmos
+
     ..  container:: example
 
         Makes skips equal to the duration of input divisions.
@@ -48,16 +50,12 @@ class SkipRhythmMaker(RhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, rotation=None):
+    def __call__(self, divisions, state=None):
         r'''Calls skip rhythm-maker on `divisions`.
 
         Returns list of selections.
         '''
-        return RhythmMaker.__call__(
-            self,
-            divisions,
-            rotation=rotation,
-            )
+        return RhythmMaker.__call__(self, divisions, state=state)
 
     def __format__(self, format_specification=''):
         r'''Formats skip rhythm-maker.
@@ -77,7 +75,7 @@ class SkipRhythmMaker(RhythmMaker):
 
     ### PRIVATE METHODS ###
 
-    def _make_music(self, divisions, rotation):
+    def _make_music(self, divisions, state=None):
         import abjad
         result = []
         for division in divisions:
