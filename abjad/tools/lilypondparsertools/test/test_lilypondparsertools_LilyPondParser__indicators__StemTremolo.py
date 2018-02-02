@@ -9,7 +9,8 @@ def test_lilypondparsertools_LilyPondParser__indicators__StemTremolo_01():
 
     assert format(target) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'1 :4
         }
         '''

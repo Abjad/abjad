@@ -18,7 +18,8 @@ def test_scoretools_fuse_measures_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             {
                 \time 1/8
                 c'16 [
@@ -67,7 +68,8 @@ def test_scoretools_fuse_measures_02():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 \time 1/8
                 c'16 [
@@ -86,7 +88,8 @@ def test_scoretools_fuse_measures_02():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 \time 2/8
                 c'16 [
@@ -114,7 +117,8 @@ def test_scoretools_fuse_measures_03():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 \time 1/8
                 c'16 [
@@ -133,7 +137,8 @@ def test_scoretools_fuse_measures_03():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 \time 2/8
                 c'16
@@ -165,7 +170,8 @@ def test_scoretools_fuse_measures_04():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 \time 1/8
                 c'8 [
@@ -184,7 +190,8 @@ def test_scoretools_fuse_measures_04():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 \time 5/24
                 \scaleDurations #'(2 . 3) {
@@ -233,7 +240,8 @@ def test_scoretools_fuse_measures_07():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 \time 1/8
                 c'16 [
@@ -255,7 +263,8 @@ def test_scoretools_fuse_measures_07():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 \time 3/8
                 c'16 [
@@ -283,7 +292,8 @@ def test_scoretools_fuse_measures_08():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 {
                     \time 2/8
@@ -331,7 +341,8 @@ def test_scoretools_fuse_measures_09():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             {
                 \time 9/80
                 \scaleDurations #'(4 . 5) {
@@ -359,7 +370,8 @@ def test_scoretools_fuse_measures_09():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             {
                 \time 19/80
                 \scaleDurations #'(4 . 5) {

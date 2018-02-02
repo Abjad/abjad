@@ -16,7 +16,8 @@ class BaritoneVoice(Instrument):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \set Staff.instrumentName = \markup { Baritone }
                 \set Staff.shortInstrumentName = \markup { Bar. }
                 \clef "bass"

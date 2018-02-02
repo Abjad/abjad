@@ -14,7 +14,8 @@ class TenorVoice(Instrument):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \set Staff.instrumentName = \markup { Tenor }
                 \set Staff.shortInstrumentName = \markup { Ten. }
                 c'4

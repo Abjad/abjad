@@ -36,8 +36,9 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 3/16
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 3/5 {
@@ -47,8 +48,8 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_01():
                     r16
                     r16
                 }
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 3/8
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 3/4 {
@@ -61,7 +62,7 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_01():
                     r16
                     c'16
                 }
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -98,16 +99,17 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 3/16
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 3/5 {
                     r4
                     c'16 ~
                 }
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 3/8
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 3/4 {
@@ -115,7 +117,7 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_02():
                     c'4
                     r16
                 }
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -154,16 +156,17 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_03():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 3/8
                 {
                     r16
                     c'8 [
                     c'8. ]
                 }
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 4/8
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 3/5 {
@@ -177,7 +180,7 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_03():
                     c'8 ]
                     r16
                 }
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -214,8 +217,9 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_04():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 8/8
                 r8
                 c'8 [
@@ -225,7 +229,7 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_04():
                 c'8 ]
                 r8
                 r8
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)

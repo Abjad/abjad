@@ -11,7 +11,8 @@ def test_scoretools_Staff_time_signature_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \time 2/4
             c'4
             c'4

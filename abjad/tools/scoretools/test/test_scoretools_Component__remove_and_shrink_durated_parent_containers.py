@@ -34,7 +34,8 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_02():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'4
             c'4
             c'4
@@ -57,7 +58,8 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_03():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'4
             c'4
             c'4

@@ -16,8 +16,10 @@ def test_scoretools_Inspection_get_vertical_moment_at_01():
 
     assert format(score) == abjad.String.normalize(
         r'''
-        \new Score <<
-            \new Staff {
+        \new Score
+        <<
+            \new Staff
+            {
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 4/3 {
                     d''8
@@ -25,12 +27,15 @@ def test_scoretools_Inspection_get_vertical_moment_at_01():
                     b'8
                 }
             }
-            \new PianoStaff <<
-                \new Staff {
+            \new PianoStaff
+            <<
+                \new Staff
+                {
                     a'4
                     g'4
                 }
-                \new Staff {
+                \new Staff
+                {
                     \clef "bass"
                     f'8
                     e'8
@@ -73,8 +78,10 @@ def test_scoretools_Inspection_get_vertical_moment_at_02():
 
     assert format(score) == abjad.String.normalize(
         r'''
-        \new Score <<
-            \new Staff {
+        \new Score
+        <<
+            \new Staff
+            {
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 4/3 {
                     d''8
@@ -82,12 +89,15 @@ def test_scoretools_Inspection_get_vertical_moment_at_02():
                     b'8
                 }
             }
-            \new PianoStaff <<
-                \new Staff {
+            \new PianoStaff
+            <<
+                \new Staff
+                {
                     a'4
                     g'4
                 }
-                \new Staff {
+                \new Staff
+                {
                     \clef "bass"
                     f'8
                     e'8

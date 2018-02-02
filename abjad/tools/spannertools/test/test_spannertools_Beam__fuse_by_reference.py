@@ -14,7 +14,8 @@ def test_spannertools_Beam__fuse_by_reference_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [
             d'8
             e'8

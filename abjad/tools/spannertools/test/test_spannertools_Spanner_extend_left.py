@@ -13,7 +13,8 @@ def test_spannertools_Spanner_extend_left_01():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [
                 d'8

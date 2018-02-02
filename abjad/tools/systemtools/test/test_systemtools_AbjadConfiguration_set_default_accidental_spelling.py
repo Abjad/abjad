@@ -8,7 +8,8 @@ def test_systemtools_AbjadConfiguration_set_default_accidental_spelling_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8
             cs'8
             d'8
@@ -33,7 +34,8 @@ def test_systemtools_AbjadConfiguration_set_default_accidental_spelling_02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8
             cs'8
             d'8
@@ -60,7 +62,8 @@ def test_systemtools_AbjadConfiguration_set_default_accidental_spelling_03():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8
             df'8
             d'8
@@ -89,7 +92,8 @@ def test_systemtools_AbjadConfiguration_set_default_accidental_spelling_04():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8
             cs'8
             d'8

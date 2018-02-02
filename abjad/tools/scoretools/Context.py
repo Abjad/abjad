@@ -18,7 +18,8 @@ class Context(Container):
         ..  docs::
 
             >>> abjad.f(context)
-            \context GlobalContext = "MeterVoice" {
+            \context GlobalContext = "MeterVoice"
+            {
             }
 
     '''
@@ -151,35 +152,43 @@ class Context(Container):
         indent = abjad.LilyPondFormatManager.indent
         result = []
         if context.is_simultaneous:
-            brackets_open = ['<<']
+            if context.identifier:
+                open_bracket = f'<<  {context.identifier}'
+            else:
+                open_bracket = '<<'
         else:
-            brackets_open = ['{']
+            if context.identifier:
+                open_bracket = f'{{   {context.identifier}'
+            else:
+                open_bracket = '{'
+        brackets_open = [open_bracket]
         remove_commands = context._format_remove_commands()
         consists_commands = context._format_consists_commands()
         overrides = bundle.grob_overrides
         settings = bundle.context_settings
         if remove_commands or consists_commands or overrides or settings:
-            contributions = [context._format_invocation() + r' \with {']
+            contributions = [context._format_invocation(), r'\with', '{']
             contributions = tuple(contributions)
             identifier_pair = ('context_brackets', 'open')
             result.append((identifier_pair, contributions))
-            contributions = [indent + x for x in remove_commands]
+            contributions = [indent + _ for _ in remove_commands]
             contributions = tuple(contributions)
             identifier_pair = ('engraver removals', 'remove_commands')
             result.append((identifier_pair, contributions))
-            contributions = [indent + x for x in consists_commands]
+            contributions = [indent + _ for _ in consists_commands]
             contributions = tuple(contributions)
             identifier_pair = ('engraver consists', 'consists_commands')
             result.append((identifier_pair, contributions))
-            contributions = [indent + x for x in overrides]
+            contributions = [indent + _ for _ in overrides]
             contributions = tuple(contributions)
             identifier_pair = ('overrides', 'overrides')
             result.append((identifier_pair, contributions))
-            contributions = [indent + x for x in settings]
+            contributions = [indent + _ for _ in settings]
             contributions = tuple(contributions)
             identifier_pair = ('settings', 'settings')
             result.append((identifier_pair, contributions))
             contributions = ['}} {}'.format(brackets_open[0])]
+            contributions = ['}', open_bracket]
             contributions = tuple(contributions)
             identifier_pair = ('context_brackets', 'open')
             result.append((identifier_pair, contributions))
@@ -187,6 +196,7 @@ class Context(Container):
             contribution = context._format_invocation()
             contribution += ' {}'.format(brackets_open[0])
             contributions = [contribution]
+            contributions = [context._format_invocation(), open_bracket]
             contributions = tuple(contributions)
             identifier_pair = ('context_brackets', 'open')
             result.append((identifier_pair, contributions))
@@ -250,9 +260,12 @@ class Context(Container):
         >>> staff = abjad.Staff([])
         >>> staff.consists_commands.append('Horizontal_bracket_engraver')
         >>> abjad.f(staff)
-        \new Staff \with {
+        \new Staff
+        \with
+        {
             \consists Horizontal_bracket_engraver
-        } {
+        }
+        {
         }
 
         '''
@@ -309,9 +322,12 @@ class Context(Container):
         >>> staff = abjad.Staff([])
         >>> staff.remove_commands.append('Time_signature_engraver')
         >>> abjad.f(staff)
-        \new Staff \with {
+        \new Staff
+        \with
+        {
             \remove Time_signature_engraver
-        } {
+        }
+        {
         }
 
         '''

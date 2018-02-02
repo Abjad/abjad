@@ -7,7 +7,8 @@ def test_scoretools_Component__get_nth_component_in_time_order_from_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'4
             \times 2/3 {
                 d'8

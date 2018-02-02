@@ -16,8 +16,10 @@ class TimespanTimespanTimeRelation(TimeRelation):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff {
+            \new Score
+            <<
+                \new Staff
+                {
                     \times 2/3 {
                         c'4
                         d'4
@@ -29,7 +31,8 @@ class TimespanTimespanTimeRelation(TimeRelation):
                         a'4
                     }
                 }
-                \new Staff {
+                \new Staff
+                {
                     c'2.
                     d'4
                 }

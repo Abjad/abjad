@@ -7,7 +7,8 @@ def test_scoretools_Tuplet_timespan_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'4
             d'4
             \times 2/3 {

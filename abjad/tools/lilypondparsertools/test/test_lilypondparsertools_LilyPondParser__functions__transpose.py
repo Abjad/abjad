@@ -11,7 +11,8 @@ def test_lilypondparsertools_LilyPondParser__functions__transpose_01():
 
     assert format(target) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \key e \major
             e'4
             gs'4
@@ -37,7 +38,8 @@ def test_lilypondparsertools_LilyPondParser__functions__transpose_02():
 
     assert format(target) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \key ef \major
             ef'4
             f'4
@@ -63,7 +65,8 @@ def test_lilypondparsertools_LilyPondParser__functions__transpose_03():
 
     assert format(target) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             {
                 cs'4
                 ds'4

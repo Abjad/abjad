@@ -13,7 +13,8 @@ def test_scoretools_Inspection_get_indicators_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \slurDotted
             \slurUp
             c'8 (
@@ -42,7 +43,8 @@ def test_scoretools_Inspection_get_indicators_02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             % beginning of note content
             \slurDotted
             c'8 (
@@ -69,7 +71,8 @@ def test_scoretools_Inspection_get_indicators_03():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \clef "treble"
             c'8 \p
             d'8
@@ -93,7 +96,8 @@ def test_scoretools_Inspection_get_indicators_04():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             % comment 1
             % comment 2
             c'8

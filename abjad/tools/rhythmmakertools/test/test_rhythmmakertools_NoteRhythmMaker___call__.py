@@ -16,16 +16,17 @@ def test_rhythmmakertools_NoteRhythmMaker___call___01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 5/16
                 c'4 ~
                 c'16
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 3/8
                 c'4.
-            } % measure
+            }   % measure
         }
         '''
         )
@@ -50,16 +51,17 @@ def test_rhythmmakertools_NoteRhythmMaker___call___02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 5/16
                 c'16 ~
                 c'4
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 3/8
                 c'4.
-            } % measure
+            }   % measure
         }
         '''
         )

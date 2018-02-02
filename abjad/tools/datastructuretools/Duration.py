@@ -1128,11 +1128,16 @@ class Duration(AbjadObject, Fraction):
                 \markup {
                     \score
                         {
-                            \new Score \with {
+                            \new Score
+                            \with
+                            {
                                 \override SpacingSpanner.spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
-                            } <<
-                                \new RhythmicStaff \with {
+                            }
+                            <<
+                                \new RhythmicStaff
+                                \with
+                                {
                                     \remove Time_signature_engraver
                                     \remove Staff_symbol_engraver
                                     \override Stem.direction = #up
@@ -1143,7 +1148,8 @@ class Duration(AbjadObject, Fraction):
                                     \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                     tupletFullLength = ##t
-                                } {
+                                }
+                                {
                                     c'8.
                                 }
                             >>
@@ -1167,11 +1173,16 @@ class Duration(AbjadObject, Fraction):
                 \markup {
                     \score
                         {
-                            \new Score \with {
+                            \new Score
+                            \with
+                            {
                                 \override SpacingSpanner.spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
-                            } <<
-                                \new RhythmicStaff \with {
+                            }
+                            <<
+                                \new RhythmicStaff
+                                \with
+                                {
                                     \remove Time_signature_engraver
                                     \remove Staff_symbol_engraver
                                     \override Stem.direction = #up
@@ -1182,7 +1193,8 @@ class Duration(AbjadObject, Fraction):
                                     \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                     tupletFullLength = ##t
-                                } {
+                                }
+                                {
                                     c'4 ~
                                     c'16
                                 }
@@ -1210,17 +1222,23 @@ class Duration(AbjadObject, Fraction):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new RhythmicStaff {
+                \new RhythmicStaff
+                {
                     \override TupletNumber.text = \markup {
                         \scale
                             #'(0.75 . 0.75)
                             \score
                                 {
-                                    \new Score \with {
+                                    \new Score
+                                    \with
+                                    {
                                         \override SpacingSpanner.spacing-increment = #0.5
                                         proportionalNotationDuration = ##f
-                                    } <<
-                                        \new RhythmicStaff \with {
+                                    }
+                                    <<
+                                        \new RhythmicStaff
+                                        \with
+                                        {
                                             \remove Time_signature_engraver
                                             \remove Staff_symbol_engraver
                                             \override Stem.direction = #up
@@ -1231,7 +1249,8 @@ class Duration(AbjadObject, Fraction):
                                             \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                             \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                             tupletFullLength = ##t
-                                        } {
+                                        }
+                                        {
                                             c'4 ~
                                             c'16
                                         }

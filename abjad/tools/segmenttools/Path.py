@@ -1,7 +1,19 @@
 import os
 import pathlib
 import shutil
+from typing import Any
+from typing import Callable
+from typing import List
 from typing import Optional
+from typing import Union
+from typing import Tuple
+from .Line import Line
+from abjad.tools.datastructuretools.CyclicTuple import CyclicTuple
+from abjad.tools.datastructuretools.OrderedDict import OrderedDict
+from abjad.tools.datastructuretools.String import String
+from abjad.tools.systemtools.IOManager import IOManager
+from abjad.tools.topleveltools.activate import activate
+from abjad.tools.topleveltools.deactivate import deactivate
 
 
 class Path(pathlib.PosixPath):
@@ -63,17 +75,17 @@ class Path(pathlib.PosixPath):
         if isinstance(argument, pathlib.Path) or os.sep in argument:
             self = pathlib.Path.__new__(class_, argument)
         else:
-            arguments = []
+            argument_list = []
             if argument == 'boilerplate':
-                arguments.append(configuration.boilerplate_directory)
+                argument_list.append(configuration.boilerplate_directory)
             elif scores is not None:
-                arguments.append(scores)
-                arguments.extend(2 * [argument])
+                argument_list.append(scores)
+                argument_list.extend(2 * [argument])
             else:
-                arguments.append(configuration.composer_scores_directory)
-                arguments.extend(2 * [argument])
-            arguments.extend(_arguments)
-            self = pathlib.Path.__new__(class_, *arguments)
+                argument_list.append(configuration.composer_scores_directory)
+                argument_list.extend(2 * [argument])
+            argument_list.extend(_arguments)
+            self = pathlib.Path.__new__(class_, *argument_list)
         if scores is not None:
             scores = type(self)(scores)
         self._scores = scores
@@ -81,20 +93,16 @@ class Path(pathlib.PosixPath):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, *names):
+    def __call__(self, *names) -> 'Path':
         r'''Calls path on `names`.
-
-        Returns new path.
         '''
         path = self
         for name in names:
             path /= name
         return path
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         r'''Gets interpreter representation of path.
-
-        Returns string.
         '''
         if bool(getattr(self, '_scores', None)):
             return "Path*('{}')".format(self)
@@ -204,7 +212,6 @@ class Path(pathlib.PosixPath):
         return path
 
     def _list_paths(self):
-        import abjad
         paths = []
         if not self.exists():
             return paths
@@ -214,7 +221,7 @@ class Path(pathlib.PosixPath):
         is_segments = self.is_segments()
         introduction_segments = []
         for name in sorted([_.name for _ in self.iterdir()]):
-            name = abjad.String(name)
+            name = String(name)
             if name.startswith('_') and not (is_external or is_segments):
                 continue
             if name in ('.DS_Store', '.cache', '.git', '.gitmodules'):
@@ -280,10 +287,9 @@ class Path(pathlib.PosixPath):
 
     @staticmethod
     def _sort_by_identifier(paths):
-        import abjad
         pairs = []
         for path in paths:
-            identifier = abjad.String(path.get_identifier())
+            identifier = String(path.get_identifier())
             identifier = identifier.strip_diacritics().replace("'", '')
             pairs.append((identifier, path))
         pairs.sort(key=lambda _: _[0])
@@ -348,7 +354,7 @@ class Path(pathlib.PosixPath):
             return None
 
     @property
-    def contents(self) -> Optional['Path']:
+    def contents(self):
         r'''Gets contents directory.
 
         ..  container:: example
@@ -576,12 +582,12 @@ class Path(pathlib.PosixPath):
 
     def activate(
         self,
-        tag,
-        deactivate=False,
-        indent=0,
-        message_zero=False,
-        name=False,
-        ):
+        tag: Union[str, Callable],
+        indent: int = 0,
+        message_zero: bool = False,
+        name: str = None,
+        undo: bool = False,
+        ) -> Tuple[int, int, List[str]]:
         r'''Activates `tag` in path.
 
         Four cases:
@@ -606,56 +612,40 @@ class Path(pathlib.PosixPath):
         Third item in pair is list of canonical string messages that explain
         what happened.
         '''
-        import abjad
         assert isinstance(indent, int), repr(indent)
         if self.is_file():
             text = self.read_text()
-            if deactivate:
-                text, count, skipped = abjad.deactivate(
-                    text,
-                    tag,
-                    skipped=True,
-                    )
+            if undo:
+                text, count, skipped = deactivate(text, tag, skipped=True)
             else:
-                text, count, skipped = abjad.activate(text, tag, skipped=True)
+                text, count, skipped = activate(text, tag, skipped=True)
             self.write_text(text)
         elif self.is_segment():
             illustration_ly = self('illustration.ly')
             assert illustration_ly.is_file()
-            count, skipped, _ = illustration_ly.activate(
-                tag,
-                deactivate=deactivate,
-                )
+            count, skipped, _ = illustration_ly.activate(tag, undo=undo)
             layout_ly = self('layout.ly')
             if layout_ly.is_file():
-                count_, skipped_, _ = layout_ly.activate(
-                    tag,
-                    deactivate=deactivate,
-                    )
+                count_, skipped_, _ = layout_ly.activate(tag, undo=undo)
                 count += count_
                 skipped += skipped_
         elif self.is_segments():
             count, skipped = 0, 0
             for segment in self.list_paths():
-                count_, skipped_, _ = segment.activate(
-                    tag,
-                    deactivate=deactivate,
-                    )
+                count_, skipped_, _ = segment.activate(tag, undo=undo)
                 count += count_
                 skipped += skipped_
         elif self.is_build() or self.is__segments():
             count, skipped = 0, 0
             for segment_ly in self.build._segments.list_paths():
-                count_, skipped_, _ = segment_ly.activate(
-                    tag,
-                    deactivate=deactivate,
-                    )
+                count_, skipped_, _ = segment_ly.activate(tag, undo=undo)
                 count += count_
                 skipped += skipped_
         else:
             raise ValueError(self)
-        name = name or getattr(tag, 'name', None) or tag
-        if deactivate:
+        if name is None:
+            name = str(tag)
+        if undo:
             adjective = 'inactive'
             antonym = 'active'
             gerund = 'deactivating'
@@ -670,46 +660,46 @@ class Path(pathlib.PosixPath):
         if total == 0 and message_zero:
             messages.append(f'found no {name} tags')
         if 0 < total:
-            tags = abjad.String('tag').pluralize(total)
+            tags = String('tag').pluralize(total)
             messages.append(f'found {total} {name} {tags}')
             if 0 < count:
-                tags = abjad.String('tag').pluralize(count)
+                tags = String('tag').pluralize(count)
                 message = f'{gerund} {count} {name} {tags}'
                 messages.append(message)
             if 0 < skipped:
-                tags = abjad.String('tag').pluralize(skipped)
+                tags = String('tag').pluralize(skipped)
                 message = f'skipping {skipped} ({adjective}) {name} {tags}'
                 messages.append(message)
         whitespace = indent * ' '
         messages = [
-            whitespace + abjad.String(_).capitalize_start() + ' ...'
+            whitespace + String(_).capitalize_start() + ' ...'
             for _ in messages
             ]
         return count, skipped, messages
 
-    def add_buildspace_metadatum(self, name, value, document_name=None):
+    def add_buildspace_metadatum(
+        self,
+        name,
+        value,
+        document_name: str = None,
+        ) -> None:
         r'''Adds metadatum with `name` and `value` into buildspace metadata
         with optional `document_name`.
-
-        Returns none.
         '''
-        import abjad
         assert self.is_buildspace(), repr(self)
         if self.is_parts():
             part_dictionary = self.get_metadatum(
                 document_name,
-                abjad.OrderedDict(),
+                OrderedDict(),
                 )
             part_dictionary[name] = value
-            assert abjad.String(document_name).is_shout_case()
+            assert String(document_name).is_shout_case()
             self.add_metadatum(document_name, part_dictionary)
         else:
             self.add_metadatum(name, value)
 
-    def add_metadatum(self, name, value):
+    def add_metadatum(self, name, value) -> None:
         r'''Adds metadatum.
-
-        Returns none.
         '''
         assert ' ' not in name, repr(name)
         metadata = self.get_metadata()
@@ -833,11 +823,10 @@ class Path(pathlib.PosixPath):
 
         Returns string.
         '''
-        import abjad
-        name = abjad.String(name).strip_diacritics()
+        name = String(name).strip_diacritics()
         assert os.path.sep not in name, repr(name)
         suffix = suffix or type(self)(name).suffix
-        stem = abjad.String(type(self)(name).stem)
+        stem = String(type(self)(name).stem)
         if self.is_scores():
             name = stem.to_snake_case()
         elif self.is_external():
@@ -883,7 +872,10 @@ class Path(pathlib.PosixPath):
             raise ValueError(self)
         return name
 
-    def count(self, tag):
+    def count(
+        self,
+        tag: Union[str, Callable],
+        ) -> Tuple[Tuple[int, int], Tuple[int, int]]:
         r'''Counts `tag` in path.
 
         Returns two pairs.
@@ -892,15 +884,14 @@ class Path(pathlib.PosixPath):
 
         Pair 2 gives (deactivated tags, deactivated lines).
         '''
-        import abjad
         assert isinstance(tag, str) or callable(tag), repr(tag)
         assert self.is_file(), repr(self)
         active_tags, active_lines = 0, 0
         deactivated_tags, deactivated_lines = 0, 0
         with open(self) as pointer:
             last_line_had_tag = False
-            for line in pointer.readlines():
-                line = abjad.Line(line)
+            for line_ in pointer.readlines():
+                line = Line(line_)
                 if line.match(tag):
                     if line.is_active():
                         active_lines += 1
@@ -917,22 +908,123 @@ class Path(pathlib.PosixPath):
         pair_2 = (deactivated_tags, deactivated_lines)
         return pair_1, pair_2
 
-    def deactivate(self, tag, indent=0, message_zero=False, name=False):
+    def deactivate(
+        self,
+        tag: Union[str, Callable],
+        indent: int = 0,
+        message_zero: bool = False,
+        name: str = None,
+        ) -> Tuple[int, int, List[str]]:
         r'''Deactivates `tag` in path.
-
-        Dual of activate().
-
-        Returns nonnegative integer count of deactivated tags.
         '''
         return self.activate(
             tag,
             name=name,
-            deactivate=True,
             indent=indent,
             message_zero=message_zero,
+            undo=True,
             )
 
-    def get_asset_type(self):
+    def extern(
+        self,
+        include_path: 'Path' = None,
+        score_path: 'Path' = None,
+        ) -> None:
+        r'''Externalizes LilyPond file parsable chunks.
+
+        Produces skeleton score file and include file.
+
+        Overwrites path with skeleton score when ``score_path`` is none.
+
+        Writes include file to path with ``.ily`` suffix when ``include_path``
+        is none.
+        '''
+        if not self.suffix == '.ly':
+            raise Exception(f'must be lilypond file: {self}.')
+        if include_path is None:
+            include_path = self.with_suffix('.ily')
+        assert isinstance(include_path, type(self)), repr(include_path)
+        if score_path is None:
+            score_path = self
+        assert isinstance(score_path, type(self)), repr(score_path)
+        preamble_lines, score_lines = [], []
+        stack, finished_variables = OrderedDict(), OrderedDict()
+        found_score = False
+        with open(self) as pointer:
+            for line in pointer.readlines():
+                if (line.startswith(r'\score {') or
+                    line.startswith(r'\context Score')):
+                    found_score = True
+                if not found_score:
+                    preamble_lines.append(line)
+                elif ' %*% ' in line:
+                    words = line.split()
+                    name = words[-1]
+                    # first line in expression:
+                    if name not in stack:
+                        stack[name] = []
+                        stack[name].append(line)
+                    # last line in expression
+                    else:
+                        stack[name].append(line)
+                        finished_variables[name] = stack[name]
+                        del(stack[name])
+                        count = len(line) - len(line.lstrip())
+                        indent = count * ' '
+                        dereference = indent + fr'\{name}' + '\n'
+                        if bool(stack):
+                            items = list(stack.items())
+                            items[-1][-1].append(dereference)
+                        else:
+                            score_lines.append(dereference)
+                elif bool(stack):
+                    items = list(stack.items())
+                    items[-1][-1].append(line)
+                else:
+                    score_lines.append(line)
+        lines = []
+        assert preamble_lines[-1].isspace(), repr(preamble_lines[-1])
+        preamble_lines.pop()
+        if include_path.parent == self.parent:
+            include_name = include_path.name
+        else:
+            include_name = str(include_path)
+        preamble_lines.append(f'\\include "{include_name}"\n')
+        preamble_lines.append('\n')
+        preamble_lines.append('\n')
+        lines.extend(preamble_lines)
+        lines.extend(score_lines)
+        text = ''.join(lines)
+        score_path.write_text(text)
+        lines = []
+        items = list(finished_variables.items())
+        total = len(items)
+        for i, item in enumerate(items):
+            name, variable_lines = item
+            first_line = variable_lines[0]
+            count = len(first_line) - len(first_line.lstrip())
+            first_line = first_line[count:]
+            first_line = f'{name} = {first_line}'
+            words = first_line.split()
+            assert words[-2] == '%*%', repr(words)
+            first_line = ' '.join(words[:-2]) + '\n'
+            lines.append(first_line)
+            for variable_line in variable_lines[1:]:
+                assert variable_line[:count].isspace(), repr(line)
+                variable_line = variable_line[count:]
+                lines.append(variable_line)
+            last_line = lines[-1]
+            words = last_line.split()
+            assert words[-2] == '%*%', repr(words)
+            last_line = ' '.join(words[:-2]) + '\n'
+            lines[-1] = last_line
+            if i < total - 1:
+                lines.append('\n')
+                lines.append('\n')
+        text = ''.join(lines)
+        include_path.write_text(text)
+
+    def get_asset_type(self) -> str:
         r'''Gets asset identifier.
 
         ..  container:: example
@@ -982,7 +1074,6 @@ class Path(pathlib.PosixPath):
             >>> abjad.Path('/path/to/external').get_asset_type()
             'asset'
 
-        Returns string.
         '''
         if self.is_scores():
             return 'package'
@@ -1010,10 +1101,8 @@ class Path(pathlib.PosixPath):
         else:
             return 'asset'
 
-    def get_files_ending_with(self, name):
+    def get_files_ending_with(self, name) -> List['Path']:
         r'''Gets files in path ending with `name`.
-
-        Returns list or zero or more paths.
         '''
         paths = []
         for path in self.list_paths():
@@ -1021,7 +1110,7 @@ class Path(pathlib.PosixPath):
                 paths.append(path)
         return paths
 
-    def get_identifier(self):
+    def get_identifier(self) -> str:
         r'''Gets identifier.
 
         ..  container:: example
@@ -1055,7 +1144,6 @@ class Path(pathlib.PosixPath):
 
         Returns path name otherwise.
         '''
-        import abjad
         if self.is_wrapper():
             result = self.contents().get_title()
         elif self.is_contents():
@@ -1064,20 +1152,40 @@ class Path(pathlib.PosixPath):
             result = self.get_metadatum('name', self.name)
         else:
             result = self.name
-        return abjad.String(result)
+        return String(result)
 
-    def get_metadata(self):
-        r'''Gets __metadata__.py file in path.
+    def get_measure_count_pair(self) -> Tuple[int, int]:
+        r'''Gets measure count pair.
 
-        Returns ordered dictionary.
+        Reads segment metadata when path is segment.
+
+        Reads score metadata when path is not segment.
+
+        Returns pair of first measure number / measure count.
         '''
-        import abjad
+        if self.parent.is_segment():
+            string = 'first_measure_number'
+            first_measure_number = self.parent.get_metadatum(string)
+            time_signatures = self.parent.get_metadatum('time_signatures')
+            measure_count = len(time_signatures)
+        else:
+            first_measure_number = 1
+            dictionary = self.contents.get_metadatum('time_signatures')
+            dictionary = dictionary or OrderedDict()
+            measure_count = 0
+            for segment, time_signatures in dictionary.items():
+                measure_count += len(time_signatures)
+        return first_measure_number, measure_count
+
+    def get_metadata(self) -> OrderedDict:
+        r'''Gets __metadata__.py file in path.
+        '''
         metadata_py_path = self('__metadata__.py')
         metadata = None
         if metadata_py_path.is_file():
             file_contents_string = metadata_py_path.read_text()
             try:
-                result = abjad.IOManager.execute_string(
+                result = IOManager.execute_string(
                     file_contents_string,
                     attribute_names=('metadata',),
                     )
@@ -1087,9 +1195,13 @@ class Path(pathlib.PosixPath):
                 metadata = result[0]
             else:
                 metadata = None
-        return abjad.OrderedDict(metadata)
+        return OrderedDict(metadata)
 
-    def get_metadatum(self, metadatum_name, default=None):
+    def get_metadatum(
+        self,
+        metadatum_name: str,
+        default: Any = None,
+        ) -> Any:
         r'''Gets metadatum.
 
         ..  container:: example
@@ -1102,7 +1214,6 @@ class Path(pathlib.PosixPath):
             >>> path.contents.get_metadatum('foo') is None
             True
 
-        Returns object.
         '''
         metadata = self.get_metadata()
         metadatum = metadata.get(metadatum_name)
@@ -1110,7 +1221,7 @@ class Path(pathlib.PosixPath):
             metadatum = default
         return metadatum
 
-    def get_name_predicate(self):
+    def get_name_predicate(self) -> Callable:
         r'''Gets name predicate.
 
         ..  container:: example
@@ -1144,47 +1255,45 @@ class Path(pathlib.PosixPath):
             >>> path.wrapper.get_name_predicate() is None
             True
 
-        Returns function.
         '''
-        import abjad
         if self.is_scores():
-            return abjad.String.is_package_name
+            return String.is_package_name
         elif self.is_external():
-            return
+            return None
         elif self.is_wrapper():
-            return
+            return None
         elif self.is_build():
-            return
+            return None
         elif self.is_builds():
-            return abjad.String.is_build_directory_name
+            return String.is_build_directory_name
         elif self.is_contents():
-            return abjad.String.is_package_name
+            return String.is_package_name
         elif self.is_distribution():
-            return abjad.String.is_dash_case_file_name
+            return String.is_dash_case_file_name
         elif self.is_etc():
-            return abjad.String.is_dash_case_file_name
+            return String.is_dash_case_file_name
         elif self.is_material():
-            return abjad.String.is_lowercase_file_name
+            return String.is_lowercase_file_name
         elif self.is_materials():
-            return abjad.String.is_package_name
+            return String.is_package_name
         elif self.is_scores():
-            return abjad.String.is_package_name
+            return String.is_package_name
         elif self.is_segment():
-            return abjad.String.is_lowercase_file_name
+            return String.is_lowercase_file_name
         elif self.is_segments():
-            return abjad.String.is_segment_name
+            return String.is_segment_name
         elif self.is_tools():
-            return abjad.String.is_tools_file_name
+            return String.is_tools_file_name
         elif self.is_stylesheets():
-            return abjad.String.is_stylesheet_name
+            return String.is_stylesheet_name
         elif self.is_test():
-            return abjad.String.is_module_file_name
+            return String.is_module_file_name
         elif self.is_wrapper():
-            return
+            return None
         else:
-            return
+            return None
 
-    def get_next_package(self, cyclic=False):
+    def get_next_package(self, cyclic: bool = False) -> Optional['Path']:
         r'''Gets next package.
 
         ..  container:: example
@@ -1197,33 +1306,27 @@ class Path(pathlib.PosixPath):
             >>> path.get_next_package() is None
             True
 
-        Returns path or none.
         '''
-        import abjad
         if not self.is_dir():
-            return
+            return None
         if self.is_material():
             paths = self.materials().list_paths()
-            # for Travis:
-            #paths = self.parent.list_paths()
             if self == paths[-1] and not cyclic:
                 path = self
             else:
                 index = paths.index(self)
-                paths = abjad.CyclicTuple(paths)
+                paths = CyclicTuple(paths)
                 path = paths[index + 1]
         elif self.is_materials():
             paths = self.list_paths()
             path = paths[0]
         elif self.is_segment():
             paths = self.segments().list_paths()
-            # for Travis:
-            #paths = self.parent.list_paths()
             if self == paths[-1] and not cyclic:
                 path = None
             else:
                 index = paths.index(self)
-                paths = abjad.CyclicTuple(paths)
+                paths = CyclicTuple(paths)
                 path = paths[index + 1]
         elif self.is_segments():
             paths = self.list_paths()
@@ -1232,7 +1335,7 @@ class Path(pathlib.PosixPath):
             raise ValueError(self)
         return path
 
-    def get_next_score(self, cyclic=False):
+    def get_next_score(self, cyclic: bool = False) -> Optional['Path']:
         r'''Gets next score.
 
         ..  container:: example
@@ -1245,42 +1348,39 @@ class Path(pathlib.PosixPath):
             >>> path.get_next_score() is None
             True
 
-        Returns path or none.
         '''
-        import abjad
         if not self.is_dir():
-            return
+            return None
         if not (self.is_score_package_path() or self.is_scores()):
-            return
+            return None
         if self.is_scores():
             wrappers = self.list_paths()
             if wrappers:
                 return wrappers[0]
         wrappers = self.scores.list_paths()
         if not wrappers:
-            return
+            return None
         wrapper = self.wrapper()
         if wrapper == wrappers[-1] and not cyclic:
-            return
+            return None
         index = wrappers.index(wrapper)
-        wrappers = abjad.CyclicTuple(wrappers)
+        wrappers = CyclicTuple(wrappers)
         return wrappers[index + 1]
 
-    def get_part_abbreviation(self):
+    def get_part_abbreviation(self) -> Optional[str]:
         r'''Gets part abbreviation in layout.py only.
-
-        Returns string or none.
         '''
         if not self.name.endswith('layout.py'):
-            return
+            return None
         for line in self.read_text().split('\n'):
             if line.startswith('part_abbreviation ='):
                 globals_ = globals()
                 exec(line, globals_)
                 part_abbreviation = globals_['part_abbreviation']
                 return part_abbreviation
+        return None
 
-    def get_previous_package(self, cyclic=False):
+    def get_previous_package(self, cyclic: bool = False) -> Optional['Path']:
         r'''Gets previous package.
 
         ..  container:: example
@@ -1293,33 +1393,27 @@ class Path(pathlib.PosixPath):
             >>> path.get_previous_package() is None
             True
 
-        Returns path or none.
         '''
-        import abjad
         if not self.is_dir():
-            return
+            return None
         if self.is_material():
             paths = self.materials().list_paths()
-            # for Travis:
-            #paths = self.parent.list_paths()
             if self == paths[0] and not cyclic:
                 path = None
             else:
                 index = paths.index(self)
-                paths = abjad.CyclicTuple(paths)
+                paths = CyclicTuple(paths)
                 path = paths[index - 1]
         elif self.is_materials():
             paths = self.list_paths()
             path = paths[-1]
         elif self.is_segment():
             paths = self.segments().list_paths()
-            # for Travis:
-            #paths = self.parent.list_paths()
             if self == paths[0] and not cyclic:
                 path = None
             else:
                 index = paths.index(self)
-                paths = abjad.CyclicTuple(paths)
+                paths = CyclicTuple(paths)
                 path = paths[index - 1]
         elif self.is_segments():
             paths = self.list_paths()
@@ -1328,7 +1422,7 @@ class Path(pathlib.PosixPath):
             raise ValueError(self)
         return path
 
-    def get_previous_score(self, cyclic=False):
+    def get_previous_score(self, cyclic: bool = False) -> Optional['Path']:
         r'''Gets previous score.
 
         ..  container:: example
@@ -1341,25 +1435,23 @@ class Path(pathlib.PosixPath):
             >>> path.get_previous_score() is None
             True
 
-        Returns path or none.
         '''
-        import abjad
         if not self.is_dir():
-            return
+            return None
         if not (self.is_score_package_path() or self.is_scores()):
-            return
+            return None
         if self.is_scores():
             wrappers = self.list_paths()
             if wrappers:
                 return wrappers[-1]
         wrappers = self.scores.list_paths()
         if not wrappers:
-            return
+            return None
         wrapper = self.wrapper()
         if wrapper == wrappers[0] and not cyclic:
-            return
+            return None
         index = wrappers.index(wrapper)
-        wrappers = abjad.CyclicTuple(wrappers)
+        wrappers = CyclicTuple(wrappers)
         return wrappers[index - 1]
 
     def get_time_signature_metadata(self):
@@ -1409,6 +1501,17 @@ class Path(pathlib.PosixPath):
             result = self.get_metadatum('title')
             result = result or '(untitled score)'
             return result
+
+    def global_skip_identifiers(self) -> List[String]:
+        r'''Gets global skip identifiers.
+        '''
+        assert not self.is_external(), repr(self);
+        identifiers = []
+        for segment in self.segments.list_paths():
+            identifier = String(segment.name).to_segment_lilypond_identifier()
+            identifier = String(f'{identifier}_GlobalSkips')
+            identifiers.append(identifier)
+        return identifiers
 
     def is__assets(self) -> bool:
         r'''Is true when path is _assets directory.
@@ -1718,9 +1821,47 @@ class Path(pathlib.PosixPath):
 
     def is_parts(self) -> bool:
         r'''Is true when directory is parts directory.
+
+        ..  container:: example
+
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+
+            >>> path.builds.is_parts()
+            False
+
+            >>> path.builds('arch-a-score').is_parts()
+            False
+
         '''
         if self.is_build():
             return self.get_metadatum('parts_directory') is True
+        else:
+            return False
+
+    def is_score_build(self) -> bool:
+        r'''Is true when directory is score build directory.
+
+        ..  container:: example
+
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+
+            >>> path.builds.is_score_build()
+            False
+
+            >>> path.builds('arch-a-score').is_score_build()
+            True
+
+        '''
+        if self.is_build():
+            if self.get_metadatum('parts_directory') is True:
+                return False
+            return True
         else:
             return False
 
@@ -2058,6 +2199,24 @@ class Path(pathlib.PosixPath):
                 paths.append(path)
         return paths
 
+    def part_name_to_identifiers(self, part_name) -> List[str]:
+        r'''Changes ``part_name`` to (part container) identifiers.
+        '''
+        assert not self.is_external(), repr(self)
+        identifiers = []
+        dictionary = self.contents.get_metadatum('container_to_part')
+        if not dictionary:
+            raise Exception(f'missing container-to-part dictionary.')
+        for segment_name, dictionary_ in dictionary.items():
+            pairs = []
+            for identifier, (part, timespan) in dictionary_.items():
+                if part_name in part:
+                    pairs.append((identifier, timespan))
+            pairs.sort(key=lambda pair: pair[1])
+            identifiers_ = [_[0] for _ in pairs]
+            identifiers.extend(identifiers_)
+        return identifiers
+
     def remove(self):
         r'''Removes path if it exists.
 
@@ -2108,7 +2267,7 @@ class Path(pathlib.PosixPath):
             if body == number:
                 return path
 
-    def trim(self):
+    def trim(self) -> str:
         r'''Trims path.
 
         ..  container:: example
@@ -2133,7 +2292,6 @@ class Path(pathlib.PosixPath):
             >>> path.materials('tempi').trim()
             'my_score/materials/tempi'
 
-        Returns string.
         '''
         import abjad
         configuration = abjad.abjad_configuration

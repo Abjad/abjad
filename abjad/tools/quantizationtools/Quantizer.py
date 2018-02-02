@@ -29,23 +29,26 @@ class Quantizer(AbjadObject):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff {
-                    \new Voice {
-                        { % measure
+            \new Score
+            <<
+                \new Staff
+                {
+                    \new Voice
+                    {
+                        {   % measure
                             \time 4/4
                             \tempo 4=60
                             c'4
                             cs'4
                             d'4
                             ef'4
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             e'4
                             f'4
                             fs'4
                             g'4
-                        } % measure
+                        }   % measure
                     }
                 }
             >>
@@ -76,10 +79,13 @@ class Quantizer(AbjadObject):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff {
-                    \new Voice {
-                        { % measure
+            \new Score
+            <<
+                \new Staff
+                {
+                    \new Voice
+                    {
+                        {   % measure
                             \time 2/4
                             \tempo 4=78
                             c'4 ~
@@ -87,8 +93,8 @@ class Quantizer(AbjadObject):
                                 c'16.
                                 cs'8.. ~
                             }
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             \time 5/4
                             \times 4/7 {
                                 \tempo 8=57
@@ -125,7 +131,7 @@ class Quantizer(AbjadObject):
                                 r16
                             }
                             r4
-                        } % measure
+                        }   % measure
                     }
                 }
             >>
@@ -155,9 +161,12 @@ class Quantizer(AbjadObject):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff {
-                    \new Voice {
+            \new Score
+            <<
+                \new Staff
+                {
+                    \new Voice
+                    {
                         \tempo 4=60
                         c'4
                         cs'4

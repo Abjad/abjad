@@ -16,7 +16,8 @@ def test_scoretools_Voice___delitem___01():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [ \glissando
             {
                 d'8 \glissando
@@ -32,7 +33,8 @@ def test_scoretools_Voice___delitem___01():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [ \glissando
             f'8 ]
         }

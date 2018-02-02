@@ -11,11 +11,11 @@ import traceback
 if __name__ == '__main__':
 
     layout_module_name = '{layout_module_name}'
+    maker = ide.Path(os.path.realpath(__file__))
 
     try:
         from {layout_module_name} import breaks
         assert isinstance(breaks, baca.BreakMeasureMap), repr(breaks)
-        maker = ide.Path(os.path.realpath(__file__))
     except ImportError:
         print(f'No breaks in {{maker.trim()}} ...')
         sys.exit(1)
@@ -77,15 +77,7 @@ if __name__ == '__main__':
             spacing=spacing,
             time_signatures=time_signatures,
             )
-        remove = (
-            abjad.tags.EMPTY_START_BAR,
-            abjad.tags.EXPLICIT_TIME_SIGNATURE_COLOR,
-            abjad.tags.MEASURE_NUMBER_MARKUP,
-            abjad.tags.REDUNDANT_TIME_SIGNATURE_COLOR,
-            abjad.tags.STAGE_NUMBER_MARKUP,
-            'SM29',
-            )
-        lilypond_file = maker.run(remove=remove)
+        lilypond_file = maker.run(remove=abjad.tags.layout_removal_tags())
         context = lilypond_file['GlobalSkips']
         skips = baca.select(context).skips()
         for skip in skips:

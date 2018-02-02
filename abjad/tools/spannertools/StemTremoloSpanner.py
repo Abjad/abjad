@@ -10,7 +10,8 @@ class StemTremoloSpanner(Spanner):
         >>> tremolo_spanner = abjad.StemTremoloSpanner()
         >>> abjad.attach(tremolo_spanner, staff[:])
         >>> abjad.f(staff)
-        \new Staff {
+        \new Staff
+        {
             c'32 :256
             d'16. :128
             e'8 :64

@@ -9,7 +9,8 @@ def test_spannertools_ComplexBeam_direction_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \set stemLeftBeamCount = 0
             \set stemRightBeamCount = 2
             c'16 ^ [
@@ -34,7 +35,8 @@ def test_spannertools_ComplexBeam_direction_02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \set stemLeftBeamCount = 0
             \set stemRightBeamCount = 2
             c'16 _ [

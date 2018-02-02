@@ -17,8 +17,10 @@ class Accordion(Instrument):
         ..  docs::
 
             >>> abjad.f(staff_group)
-            \new PianoStaff <<
-                \new Staff {
+            \new PianoStaff
+            <<
+                \new Staff
+                {
                     \set PianoStaff.instrumentName = \markup { Accordion }
                     \set PianoStaff.shortInstrumentName = \markup { Acc. }
                     c'4
@@ -26,7 +28,8 @@ class Accordion(Instrument):
                     e'4
                     f'4
                 }
-                \new Staff {
+                \new Staff
+                {
                     \clef "bass"
                     c'2
                     b2

@@ -208,9 +208,12 @@ class LogicalTie(Selection):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override DynamicLineSpanner.staff-padding = #3
-                } {
+                }
+                {
                     \time 7/16
                     c'8 ~ \< \p
                     c'16
@@ -228,9 +231,12 @@ class LogicalTie(Selection):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override DynamicLineSpanner.staff-padding = #3
-                } {
+                }
+                {
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 3/5 {
                         \time 7/16
@@ -259,9 +265,12 @@ class LogicalTie(Selection):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override DynamicLineSpanner.staff-padding = #3
-                } {
+                }
+                {
                     \time 7/16
                     c'8 ~ \< \p
                     c'16
@@ -281,9 +290,12 @@ class LogicalTie(Selection):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override DynamicLineSpanner.staff-padding = #3
-                } {
+                }
+                {
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 6/5 {
                         \time 7/16

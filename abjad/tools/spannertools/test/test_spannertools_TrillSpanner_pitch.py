@@ -11,7 +11,8 @@ def test_spannertools_TrillSpanner_pitch_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \pitchedTrill
             c'8
             \startTrillSpan cs'
@@ -35,7 +36,8 @@ def test_spannertools_TrillSpanner_pitch_02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8
             \startTrillSpan
             d'8 \stopTrillSpan

@@ -5,6 +5,7 @@
 
 #(ly:set-option 'relative-includes #t)
 \include "stylesheet.ily"
+{segment_ily_include_statements}
 
 
 \score {{
@@ -13,7 +14,7 @@
         \include "layout.ly"
         }}
         {{
-        {segment_include_statements}
+        {segment_ly_include_statements}
         }}
     >>
 }}

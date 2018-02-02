@@ -18,8 +18,10 @@ class Repeat(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff {
+            \new Score
+            <<
+                \new Staff
+                {
                     \repeat volta 2
                     {
                         c'4
@@ -44,8 +46,10 @@ class Repeat(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff {
+            \new Score
+            <<
+                \new Staff
+                {
                     \repeat unfold 2
                     {
                         c'4

@@ -11,9 +11,12 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff \with {
+        \new Staff
+        \with
+        {
             \override Accidental.color = #red
-        } {
+        }
+        {
             c'8
             d'8
             e'8
@@ -32,7 +35,8 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8
             \once \override Accidental.color = #red
             d'8
@@ -53,10 +57,14 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___03():
 
     assert format(score) == abjad.String.normalize(
         r'''
-        \new Score \with {
+        \new Score
+        \with
+        {
             \override BarNumber.break-visibility = #end-of-line-invisible
-        } <<
-            \new Staff {
+        }
+        <<
+            \new Staff
+            {
                 c'8
                 d'8
                 e'8
@@ -81,10 +89,14 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___04():
 
     assert format(score) == abjad.String.normalize(
         r'''
-        \new Score \with {
+        \new Score
+        \with
+        {
             \override BarNumber.color = #red
-        } <<
-            \new Staff {
+        }
+        <<
+            \new Staff
+            {
                 c'8
                 d'8
                 e'8
@@ -108,7 +120,8 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___05():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             \override Beam.positions = #'(4 . 4)
             c'8 [
             d'8
@@ -159,9 +172,12 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___08():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff \with {
+        \new Staff
+        \with
+        {
             \override Clef.color = #red
-        } {
+        }
+        {
             c'8
             d'8
             e'8
@@ -219,7 +235,8 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___10():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             \override DynamicLineSpanner.staff-padding = #4
             c'8 \< \p
             d'8
@@ -241,10 +258,13 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___11():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff \with {
+        \new Staff
+        \with
+        {
             \override DynamicLineSpanner.Y-extent = #'(-1.5 . 1.5)
             \override DynamicLineSpanner.staff-padding = #2
-        } {
+        }
+        {
             c'8
             d'8
             e'8
@@ -269,7 +289,8 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___12():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \override DynamicText.thickness = #3
             c'8 \f [
             d'8
@@ -293,10 +314,13 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___13():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff \with {
+        \new Staff
+        \with
+        {
             \override DynamicText.Y-extent = #'(-1.5 . 1.5)
             \override DynamicText.staff-padding = #2
-        } {
+        }
+        {
             c'8
             d'8
             e'8
@@ -316,10 +340,13 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___14():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff \with {
+        \new Staff
+        \with
+        {
             \override DynamicTextSpanner.Y-extent = #'(-1.5 . 1.5)
             \override DynamicTextSpanner.staff-padding = #2
-        } {
+        }
+        {
             c'8
             d'8
             e'8
@@ -340,7 +367,8 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___15():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             \override Glissando.thickness = #3
             c'8 \glissando
             d'8 \glissando
@@ -362,10 +390,13 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___16():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff \with {
+        \new Staff
+        \with
+        {
             \override Hairpin.Y-extent = #'(-1.5 . 1.5)
             \override Hairpin.staff-padding = #2
-        } {
+        }
+        {
             c'8
             d'8
             e'8
@@ -385,7 +416,9 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___17():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff \with {
+        \new Staff
+        \with
+        {
             \override InstrumentName.color = #red
             instrumentName = \markup {
                 \circle
@@ -393,7 +426,8 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___17():
                         V
                     }
                 }
-        } {
+        }
+        {
             c'8
             d'8
             e'8
@@ -417,10 +451,14 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___18():
 
     assert format(score) == abjad.String.normalize(
         r'''
-        \new Score \with {
+        \new Score
+        \with
+        {
             \override MetronomeMark.color = #red
-        } <<
-            \new Staff {
+        }
+        <<
+            \new Staff
+            {
                 \tempo 4=58
                 c'8
                 d'8
@@ -443,9 +481,12 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___19():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff \with {
+        \new Staff
+        \with
+        {
             \override MultiMeasureRest.expand-limit = #12
-        } {
+        }
+        {
             c'4
         }
         '''
@@ -462,11 +503,15 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___20():
 
     assert format(score) == abjad.String.normalize(
         r'''
-        \new Score \with {
+        \new Score
+        \with
+        {
             \override NonMusicalPaperColumn.line-break-permission = ##f
             \override NonMusicalPaperColumn.page-break-permission = ##f
-        } <<
-            \new Staff {
+        }
+        <<
+            \new Staff
+            {
                 c'8
                 d'8
                 e'8
@@ -505,9 +550,12 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___22():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff \with {
+        \new Staff
+        \with
+        {
             \override NoteColumn.ignore-collision = ##t
-        } {
+        }
+        {
             c'8
             d'8
             e'8
@@ -642,9 +690,12 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___29():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice \with {
+        \new Voice
+        \with
+        {
             \override NoteHead.color = #red
-        } {
+        }
+        {
             c'8
             d'8
             e'8
@@ -667,7 +718,8 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___30():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             \ottava #1
             \override Staff.OttavaBracket.staff-position = #4
             c'8
@@ -691,10 +743,13 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___31():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff \with {
+        \new Staff
+        \with
+        {
             \override RehearsalMark.Y-extent = #'(-1.5 . 1.5)
             \override RehearsalMark.staff-padding = #2
-        } {
+        }
+        {
             c'8
             d'8
             e'8
@@ -713,9 +768,12 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___32():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff \with {
+        \new Staff
+        \with
+        {
             \override Rest.transparent = ##t
-        } {
+        }
+        {
             c'8
             d'8
             e'8
@@ -752,10 +810,13 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___34():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff \with {
+        \new Staff
+        \with
+        {
             \override Script.Y-extent = #'(-1.5 . 1.5)
             \override Script.staff-padding = #2
-        } {
+        }
+        {
             c'8
             d'8
             e'8
@@ -778,7 +839,8 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___35():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \override Score.SpacingSpanner.strict-grace-spacing = ##t
             \override Score.SpacingSpanner.strict-note-spacing = ##t
             \override Score.SpacingSpanner.uniform-stretching = ##t
@@ -813,22 +875,23 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___36():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 \override Score.SpacingSpanner.strict-grace-spacing = ##t
                 \override Score.SpacingSpanner.strict-note-spacing = ##t
                 \override Score.SpacingSpanner.uniform-stretching = ##t
                 c'8 [
                 d'8
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8
                 \revert Score.SpacingSpanner.strict-grace-spacing
                 \revert Score.SpacingSpanner.strict-note-spacing
                 \revert Score.SpacingSpanner.uniform-stretching
                 f'8 ]
-            } % measure
+            }   % measure
         }
         '''
         )
@@ -847,11 +910,14 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___37():
 
     assert format(score) == abjad.String.normalize(
         r'''
-        \new Score \with {
+        \new Score
+        \with
+        {
             \override SpacingSpanner.strict-grace-spacing = ##t
             \override SpacingSpanner.strict-note-spacing = ##t
             \override SpacingSpanner.uniform-stretching = ##t
-        } <<
+        }
+        <<
         >>
         '''
         )
@@ -874,18 +940,24 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___38():
 
     assert format(score) == abjad.String.normalize(
         r'''
-        \new Score \with {
+        \new Score
+        \with
+        {
             \override SpanBar.color = #red
-        } <<
-            \new PianoStaff <<
-                \context Staff = "Treble Staff" {
+        }
+        <<
+            \new PianoStaff
+            <<
+                \context Staff = "Treble Staff"
+                {
                     \clef "treble"
                     c'8
                     d'8
                     e'8
                     f'8
                 }
-                \context Staff = "Bass Staff" {
+                \context Staff = "Bass Staff"
+                {
                     \clef "bass"
                     c'8
                     d'8
@@ -909,9 +981,12 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___39():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff \with {
+        \new Staff
+        \with
+        {
             \override StaffSymbol.color = #red
-        } {
+        }
+        {
             c'8
             d'8
             e'8
@@ -930,7 +1005,8 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___40():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8
             d'8
             \once \override Staff.StaffSymbol.color = #red
@@ -951,9 +1027,12 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___41():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff \with {
+        \new Staff
+        \with
+        {
             \override StaffSymbol.line-positions = #'(-4 -2 2 4)
-        } {
+        }
+        {
             c'8
             d'8
             e'8
@@ -989,10 +1068,13 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___43():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff \with {
+        \new Staff
+        \with
+        {
             \override StemTremolo.slope = #0.5
             \override StemTremolo.staff-padding = #2
-        } {
+        }
+        {
             c'8
             d'8
             e'8
@@ -1012,12 +1094,17 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___44():
 
     assert format(score) == abjad.String.normalize(
         r'''
-        \new Score \with {
+        \new Score
+        \with
+        {
             \override SystemStartBar.collapse-height = #0
             \override SystemStartBar.color = #red
-        } <<
-            \new StaffGroup <<
-                \new Staff {
+        }
+        <<
+            \new StaffGroup
+            <<
+                \new Staff
+                {
                     c'8
                     c'8
                     c'8
@@ -1044,7 +1131,8 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___45():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \override TextScript.color = #red
             c'8
             d'8
@@ -1069,7 +1157,8 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___46():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \override TextSpanner.font-shape = #'italic
             c'8 \startTextSpan
             c'8
@@ -1107,9 +1196,12 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___48():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff \with {
+        \new Staff
+        \with
+        {
             \override TimeSignature.transparent = ##t
-        } {
+        }
+        {
             c'8
             d'8
             e'8
@@ -1128,7 +1220,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___49():
 
     assert format(measure) == abjad.String.normalize(
         r'''
-        { % measure
+        {   % measure
             \override TimeSignature.transparent = ##t
             \time 4/8
             c'8
@@ -1136,7 +1228,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___49():
             e'8
             f'8
             \revert TimeSignature.transparent
-        } % measure
+        }   % measure
         '''
         )
 
@@ -1150,7 +1242,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___50():
 
     assert format(measure) == abjad.String.normalize(
         r'''
-        { % measure
+        {   % measure
             \override Staff.TimeSignature.transparent = ##t
             \time 4/8
             c'8
@@ -1158,7 +1250,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___50():
             e'8
             f'8
             \revert Staff.TimeSignature.transparent
-        } % measure
+        }   % measure
         '''
         )
 
@@ -1173,10 +1265,13 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___51():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff \with {
+        \new Staff
+        \with
+        {
             \override TrillPitchAccidental.Y-extent = #'(-1.5 . 1.5)
             \override TrillPitchAccidental.staff-padding = #2
-        } {
+        }
+        {
             c'8
             d'8
             e'8
@@ -1197,7 +1292,8 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___52():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             \override TrillSpanner.color = #red
             c'8
             \startTrillSpan
@@ -1221,9 +1317,12 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___53():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice \with {
+        \new Voice
+        \with
+        {
             \override TupletBracket.direction = #down
-        } {
+        }
+        {
             c'8 [
             d'8
             e'8
@@ -1246,7 +1345,8 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___54():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             \once \override TupletBracket.direction = #down
             d'8
@@ -1292,9 +1392,12 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___56():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice \with {
+        \new Voice
+        \with
+        {
             \override TupletNumber.fraction = ##t
-        } {
+        }
+        {
             c'8 [
             d'8
             e'8
@@ -1317,7 +1420,8 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___57():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             \once \override TupletNumber.fraction = ##t
             d'8
@@ -1341,9 +1445,12 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___58():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice \with {
+        \new Voice
+        \with
+        {
             \override TupletNumber.text = \markup { 6:4 }
-        } {
+        }
+        {
             c'8 [
             d'8
             e'8
@@ -1365,10 +1472,13 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___59():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff \with {
+        \new Staff
+        \with
+        {
             \override VerticalAlignment.Y-extent = #'(-1.5 . 1.5)
             \override VerticalAlignment.staff-padding = #2
-        } {
+        }
+        {
             c'8
             d'8
             e'8
@@ -1388,10 +1498,13 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___60():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff \with {
+        \new Staff
+        \with
+        {
             \override VerticalAxisGroup.Y-extent = #'(-1.5 . 1.5)
             \override VerticalAxisGroup.staff-padding = #2
-        } {
+        }
+        {
             c'8
             d'8
             e'8

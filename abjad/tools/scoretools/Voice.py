@@ -12,7 +12,8 @@ class Voice(Context):
         ..  docs::
 
             >>> abjad.f(voice)
-            \new Voice {
+            \new Voice
+            {
                 c'8
                 d'8
                 e'8

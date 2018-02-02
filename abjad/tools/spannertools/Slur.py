@@ -15,7 +15,8 @@ class Slur(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'4 (
                 d'4
                 e'4
@@ -98,12 +99,13 @@ class Slur(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8 ^ (
                     d'8
                     e'8
                     f'8 )
-                    }
+                }
 
         ..  container:: example
 
@@ -117,7 +119,8 @@ class Slur(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8 _ (
                     d'8
                     e'8
@@ -136,7 +139,8 @@ class Slur(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8 (
                     d'8
                     e'8

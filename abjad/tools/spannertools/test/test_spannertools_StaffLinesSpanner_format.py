@@ -13,7 +13,8 @@ def test_spannertools_StaffLinesSpanner_format_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8
             d'8
             \stopStaff
@@ -45,7 +46,8 @@ def test_spannertools_StaffLinesSpanner_format_02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8
             d'8
             \stopStaff
@@ -72,7 +74,8 @@ def test_spannertools_StaffLinesSpanner_format_03():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8
             \stopStaff
             \once \override Staff.StaffSymbol.line-positions = #'(-1.5 0 1.5)

@@ -9,7 +9,8 @@ def test_spannertools_Beam_direction_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 ^ [
             d'8
             e'8
@@ -28,7 +29,8 @@ def test_spannertools_Beam_direction_02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 _ [
             d'8
             e'8
@@ -47,7 +49,8 @@ def test_spannertools_Beam_direction_03():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 - [
             d'8
             e'8

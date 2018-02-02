@@ -12,7 +12,8 @@ class Staff(Context):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'8
                 d'8
                 e'8
@@ -33,7 +34,8 @@ class Staff(Context):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 {
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 9/10 {

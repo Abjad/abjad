@@ -19,7 +19,8 @@ class Hairpin(Spanner):
         ..  docs::
 
             >>> abjad.f(voice)
-            \new Voice {
+            \new Voice
+            {
                 r8
                 d'8 \< \p
                 e'8
@@ -54,7 +55,8 @@ class Hairpin(Spanner):
         ..  docs::
 
             >>> abjad.f(voice)
-            \new Voice {
+            \new Voice
+            {
                 r8
                 d'8 \> \f
                 e'8
@@ -93,7 +95,8 @@ class Hairpin(Spanner):
         ..  docs::
 
             >>> abjad.f(voice)
-            \new Voice {
+            \new Voice
+            {
                 \once \override Hairpin.circled-tip = ##t
                 c'2. \> \f
                 r4 \!
@@ -115,7 +118,8 @@ class Hairpin(Spanner):
         ..  docs::
 
             >>> abjad.f(voice)
-            \new Voice {
+            \new Voice
+            {
                 \once \override Hairpin.circled-tip = ##t
                 c'2. \> \f
                 r4 \!
@@ -148,7 +152,8 @@ class Hairpin(Spanner):
         ..  docs::
 
             >>> abjad.f(voice)
-            \new Voice {
+            \new Voice
+            {
                 c'8 \p \<
                 d'8
                 e'8 \f \>
@@ -187,9 +192,12 @@ class Hairpin(Spanner):
             >>> hairpin.attach(abjad.Dynamic('p'), hairpin[0])
             >>> abjad.override(segment_1).dynamic_line_spanner.staff_padding = 4
             >>> abjad.f(segment_1, strict=True)
-            \context Voice = "MainVoice" \with {
+            \context Voice = "MainVoice"
+            \with
+            {
                 \override DynamicLineSpanner.staff-padding = #4
-            } {
+            }
+            {
                 c'4
                 \<
                 \p
@@ -210,7 +218,8 @@ class Hairpin(Spanner):
             >>> abjad.attach(hairpin, segment_2[:], left_broken='<')
             >>> hairpin.attach(abjad.Dynamic('f'), hairpin[-1])
             >>> abjad.f(segment_2, strict=True)
-            \context Voice = "MainVoice" {
+            \context Voice = "MainVoice"
+            {
                 c'4
                 \< %! LEFT_BROKEN_HAIRPIN_START
                 d'4
@@ -230,9 +239,12 @@ class Hairpin(Spanner):
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text)
             >>> print(text)
             {
-                \context Voice = "MainVoice" \with {
+                \context Voice = "MainVoice"
+                \with
+                {
                     \override DynamicLineSpanner.staff-padding = #4
-                } {
+                }
+                {
                     c'4
                     \<
                     \p
@@ -241,7 +253,8 @@ class Hairpin(Spanner):
                     f'4
                     \! %! RIGHT_BROKEN_HAIRPIN_STOP
                 }
-                \context Voice = "MainVoice" {
+                \context Voice = "MainVoice"
+                {
                     c'4
                     \< %! LEFT_BROKEN_HAIRPIN_START
                     d'4
@@ -269,9 +282,12 @@ class Hairpin(Spanner):
             ...     )
             >>> print(text)
             {
-                \context Voice = "MainVoice" \with {
+                \context Voice = "MainVoice"
+                \with
+                {
                     \override DynamicLineSpanner.staff-padding = #4
-                } {
+                }
+                {
                     c'4
                     \<
                     \p
@@ -280,7 +296,8 @@ class Hairpin(Spanner):
                     f'4
                 %%% \! %! RIGHT_BROKEN_HAIRPIN_STOP
                 }
-                \context Voice = "MainVoice" {
+                \context Voice = "MainVoice"
+                {
                     c'4
                 %%% \< %! LEFT_BROKEN_HAIRPIN_START
                     d'4
@@ -308,7 +325,8 @@ class Hairpin(Spanner):
         ..  docs::
 
             >>> abjad.f(voice)
-            \new Voice {
+            \new Voice
+            {
                 r8
                 d'8 \< _ #(make-dynamic-script
                     (markup
@@ -821,11 +839,15 @@ class Hairpin(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff <<
-                    \new Voice \with {
+                \new Staff
+                <<
+                    \new Voice
+                    \with
+                    {
                         \override DynamicLineSpanner.direction = #up
                         \override DynamicLineSpanner.staff-padding = #4
-                    } {
+                    }
+                    {
                         \voiceOne
                         e'8 \< \mf
                         f'8
@@ -837,9 +859,12 @@ class Hairpin(Spanner):
                         b'8
                         g'8 \mf
                     }
-                    \new Voice \with {
+                    \new Voice
+                    \with
+                    {
                         \override DynamicLineSpanner.staff-padding = #6
-                    } {
+                    }
+                    {
                         \voiceTwo
                         c'2 \< \pp
                         b2 ~
@@ -885,7 +910,8 @@ class Hairpin(Spanner):
             ..  docs::
 
                 >>> abjad.f(voice)
-                \new Voice {
+                \new Voice
+                {
                     r8
                     d'8 \< \p
                     e'8
@@ -917,7 +943,8 @@ class Hairpin(Spanner):
             ..  docs::
 
                 >>> abjad.f(voice)
-                \new Voice {
+                \new Voice
+                {
                     r8
                     d'8 ^ \< ^ \p
                     e'8
@@ -953,7 +980,8 @@ class Hairpin(Spanner):
             ..  docs::
 
                 >>> abjad.f(voice)
-                \new Voice {
+                \new Voice
+                {
                     r8
                     d'8 \< \p
                     e'8
@@ -982,7 +1010,8 @@ class Hairpin(Spanner):
             ..  docs::
 
                 >>> abjad.f(voice)
-                \new Voice {
+                \new Voice
+                {
                     r8
                     d'8 \< \p
                     e'8
@@ -1014,7 +1043,8 @@ class Hairpin(Spanner):
             ..  docs::
 
                 >>> abjad.f(voice)
-                \new Voice {
+                \new Voice
+                {
                     r8
                     d'8 \< \p
                     e'8
@@ -1046,7 +1076,8 @@ class Hairpin(Spanner):
             ..  docs::
 
                 >>> abjad.f(voice)
-                \new Voice {
+                \new Voice
+                {
                     r8
                     d'8 \< \p
                     e'8
@@ -1085,9 +1116,12 @@ class Hairpin(Spanner):
             ..  docs::
 
                 >>> abjad.f(voice)
-                \new Voice \with {
+                \new Voice
+                \with
+                {
                     \override DynamicLineSpanner.staff-padding = #4
-                } {
+                }
+                {
                     c'8 \< \p
                     d'8
                     e'8 \f \>
@@ -1128,9 +1162,12 @@ class Hairpin(Spanner):
             ..  docs::
 
                 >>> abjad.f(voice)
-                \new Voice \with {
+                \new Voice
+                \with
+                {
                     \override DynamicLineSpanner.staff-padding = #4
-                } {
+                }
+                {
                     c'8 \< _ #(make-dynamic-script
                         (markup
                             #:whiteout
@@ -1225,9 +1262,12 @@ class Hairpin(Spanner):
             ..  docs::
 
                 >>> abjad.f(voice)
-                \new Voice \with {
+                \new Voice
+                \with
+                {
                     \override DynamicLineSpanner.staff-padding = #4
-                } {
+                }
+                {
                     \once \override Hairpin.circled-tip = ##t
                     c'8 \> \f
                     d'8

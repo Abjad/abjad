@@ -11,8 +11,10 @@ def test_scoretools_Tuplet_get_timespan_01():
 
     assert format(score) == abjad.String.normalize(
         r'''
-        \new Score <<
-            \new Staff {
+        \new Score
+        <<
+            \new Staff
+            {
                 \tempo 4=60
                 c'4
                 d'4

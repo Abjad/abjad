@@ -14,7 +14,8 @@ class FrenchHorn(Instrument):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \set Staff.instrumentName = \markup { Horn }
                 \set Staff.shortInstrumentName = \markup { Hn. }
                 c'4

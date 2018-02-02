@@ -1,7 +1,11 @@
+from typing import Callable
 from typing import List
+from typing import Tuple
+from typing import Union
+from .Path import Path
+from .Tags import Tags
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.datastructuretools.String import String
-from .Tags import Tags
 abjad_tags = Tags()
 
 
@@ -15,6 +19,7 @@ class Job(AbjadObject):
         '_activate',
         '_deactivate',
         '_deactivate_first',
+        '_message_zero',
         '_path',
         '_title',
         )
@@ -23,17 +28,19 @@ class Job(AbjadObject):
 
     def __init__(
         self,
-        activate=None,
-        deactivate=None,
+        activate: Tuple[Union[str, Callable], str] = None,
+        deactivate: Tuple[Union[str, Callable], str] = None,
         deactivate_first: bool = None,
-        path=None,
+        message_zero: bool = None,
+        path: Path = None,
         title: str = None,
-        ):
-        self._activate = activate
-        self._deactivate = deactivate
-        self._deactivate_first = deactivate_first
-        self._path = path
-        self._title = title
+        ) -> None:
+        self._activate: Tuple[Union[str, Callable], str] = activate
+        self._deactivate: Tuple[Union[str, Callable], str] = deactivate
+        self._deactivate_first: bool = deactivate_first
+        self._message_zero: bool = message_zero
+        self._path: Path = path
+        self._title: str = title
 
     ### SPECIAL METHODS ###
 
@@ -43,6 +50,7 @@ class Job(AbjadObject):
         messages = []
         if self.title is not None:
             messages.append(String(self.title).capitalize_start())
+        total_count = 0
         if self.deactivate_first is True:
             if self.deactivate is not None:
                 assert isinstance(self.deactivate, tuple)
@@ -55,6 +63,7 @@ class Job(AbjadObject):
                         name=name,
                         )
                     messages.extend(messages_)
+                    total_count += count
         if self.activate is not None:
             assert isinstance(self.activate, tuple)
             match, name = self.activate
@@ -66,6 +75,7 @@ class Job(AbjadObject):
                     name=name,
                     )
                 messages.extend(messages_)
+                total_count += count
         if self.deactivate_first is not True:
             if self.deactivate is not None:
                 assert isinstance(self.deactivate, tuple)
@@ -78,19 +88,22 @@ class Job(AbjadObject):
                         name=name,
                         )
                     messages.extend(messages_)
+                    total_count += count
+        if total_count == 0 and not self.message_zero:
+            messages = []
         return messages
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def activate(self):
-        r'''Gets activate match.
+    def activate(self) -> Tuple[Union[str, Callable], str]:
+        r'''Gets activate match / message pair.
         '''
         return self._activate
 
     @property
-    def deactivate(self):
-        r'''Gets deactivate match.
+    def deactivate(self) -> Tuple[Union[str, Callable], str]:
+        r'''Gets deactivate match / message pair.
         '''
         return self._deactivate
 
@@ -101,7 +114,13 @@ class Job(AbjadObject):
         return self._deactivate_first
 
     @property
-    def path(self):
+    def message_zero(self) -> bool:
+        r'''Is true when job returns messages even when no matches are found.
+        '''
+        return self._message_zero
+
+    @property
+    def path(self) -> Path:
         r'''Gets path.
         '''
         return self._path

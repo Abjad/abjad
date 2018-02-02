@@ -17,9 +17,12 @@ def test_scoretools_Inspection_report_modifications_01():
     assert format(voice) == abjad.String.normalize(
         r'''
         % Example voice
-        \new Voice \with {
+        \new Voice
+        \with
+        {
             \override NoteHead.color = #red
-        } {
+        }
+        {
             #(set-accidental-style 'forget)
             \override Beam.thickness = #3
             c'8 [
@@ -36,9 +39,12 @@ def test_scoretools_Inspection_report_modifications_01():
     assert format(result) == abjad.String.normalize(
         r'''
         % Example voice
-        \new Voice \with {
+        \new Voice
+        \with
+        {
             \override NoteHead.color = #red
-        } {
+        }
+        {
             #(set-accidental-style 'forget)
             %%% 4 components omitted %%%
         }

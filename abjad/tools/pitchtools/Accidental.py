@@ -653,7 +653,8 @@ class Accidental(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8
                     cs'8
                     d'8
@@ -668,7 +669,8 @@ class Accidental(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8
                     df'8
                     d'8
@@ -702,7 +704,8 @@ class Accidental(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8
                     cs'8
                     d'8
@@ -717,7 +720,8 @@ class Accidental(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8
                     cs'8
                     d'8

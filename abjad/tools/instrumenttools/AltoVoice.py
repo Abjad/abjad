@@ -14,7 +14,8 @@ class AltoVoice(Instrument):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \set Staff.instrumentName = \markup { Alto }
                 \set Staff.shortInstrumentName = \markup { Alto }
                 c'4

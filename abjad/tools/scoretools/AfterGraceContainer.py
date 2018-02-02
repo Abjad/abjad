@@ -20,7 +20,8 @@ class AfterGraceContainer(Container):
         ..  docs::
 
             >>> abjad.f(voice)
-            \new Voice {
+            \new Voice
+            {
                 #(define afterGraceFraction (cons 15 16))
                 c'4
                 \afterGrace

@@ -16,8 +16,10 @@ class Fermata(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff {
+            \new Score
+            <<
+                \new Staff
+                {
                     c'4 \shortfermata
                 }
             >>
@@ -34,8 +36,10 @@ class Fermata(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff {
+            \new Score
+            <<
+                \new Staff
+                {
                     c'4 \fermata
                 }
             >>
@@ -52,8 +56,10 @@ class Fermata(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff {
+            \new Score
+            <<
+                \new Staff
+                {
                     c'4 \longfermata
                 }
             >>
@@ -70,8 +76,10 @@ class Fermata(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff {
+            \new Score
+            <<
+                \new Staff
+                {
                     c'4 \verylongfermata
                 }
             >>

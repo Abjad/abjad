@@ -38,7 +38,8 @@ def test_rhythmmakertools_DurationSpecifier_01():
 
     assert format(staff) == abjad.String.normalize(
         r"""
-        \new Staff {
+        \new Staff
+        {
             r16
             c'16 ~ [
             c'16 ]

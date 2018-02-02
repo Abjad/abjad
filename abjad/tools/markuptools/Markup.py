@@ -62,7 +62,8 @@ class Markup(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'8
                     ^ \markup {
                         \italic
@@ -91,7 +92,8 @@ class Markup(AbjadValueObject):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
-        \new Staff {
+        \new Staff
+        {
             c'4
                 ^ \markup {     %! RED:M1
                     \italic     %! RED:M1
@@ -112,7 +114,8 @@ class Markup(AbjadValueObject):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
-        \new Staff {
+        \new Staff
+        {
             c'4
                 - \markup {
                     \column
@@ -148,7 +151,8 @@ class Markup(AbjadValueObject):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
-        \new Staff {
+        \new Staff
+        {
             c'4
                 %@% ^ \markup {     %! RED:M1
                 %@%     \italic     %! RED:M1
@@ -173,7 +177,8 @@ class Markup(AbjadValueObject):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
-        \new Staff {
+        \new Staff
+        {
             c'4
                 - \markup {
                     \column
@@ -206,7 +211,8 @@ class Markup(AbjadValueObject):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
-        \new Staff {
+        \new Staff
+        {
             c'4
                 ^ \markup {
                     \column
@@ -752,7 +758,8 @@ class Markup(AbjadValueObject):
             ..  doctest:
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8
                     d'8
                         - \markup {
@@ -784,7 +791,8 @@ class Markup(AbjadValueObject):
             ..  doctest:
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8
                     d'8
                         - \markup {
@@ -2682,7 +2690,8 @@ class Markup(AbjadValueObject):
             ..  docs::
             
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8
                         ^ \markup {
                             \with-dimensions-from

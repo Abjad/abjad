@@ -15,7 +15,8 @@ class LineBreak(AbjadValueObject):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
-        \new Staff {
+        \new Staff
+        {
             c'4
             d'4
             e'4
@@ -82,7 +83,8 @@ class LineBreak(AbjadValueObject):
             >>> abjad.show(staff) # doctest: +SKIP
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'4
                 d'4
                 e'4
@@ -100,7 +102,8 @@ class LineBreak(AbjadValueObject):
             >>> abjad.show(staff) # doctest: +SKIP
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \break
                 c'4
                 d'4

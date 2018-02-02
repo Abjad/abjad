@@ -16,7 +16,8 @@ class Dynamic(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(voice)
-            \new Voice {
+            \new Voice
+            {
                 c'8 \f
                 d'8
                 e'8
@@ -63,17 +64,22 @@ class Dynamic(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff <<
-                \new Voice \with {
+            \new Staff
+            <<
+                \new Voice
+                \with
+                {
                     \override DynamicLineSpanner.direction = #up
-                } {
+                }
+                {
                     \voiceOne
                     e'8 \f
                     g'8
                     f'8
                     a'8
                 }
-                \new Voice {
+                \new Voice
+                {
                     \voiceTwo
                     c'2 \mf
                 }
@@ -441,9 +447,12 @@ class Dynamic(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(voice)
-                \new Voice \with {
+                \new Voice
+                \with
+                {
                     \override DynamicLineSpanner.staff-padding = #4
-                } {
+                }
+                {
                     c'4 _ #(make-dynamic-script
                         (markup
                             #:whiteout
@@ -511,9 +520,12 @@ class Dynamic(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(voice)
-                \new Voice \with {
+                \new Voice
+                \with
+                {
                     \override DynamicLineSpanner.staff-padding = #4
-                } {
+                }
+                {
                     c'4 _ #(make-dynamic-script
                         (markup
                             #:whiteout
@@ -585,7 +597,8 @@ class Dynamic(AbjadValueObject):
             >>> abjad.show(voice) # doctest: +SKIP
 
             >>> abjad.f(voice)
-            \new Voice {
+            \new Voice
+            {
                 c'4 \f
                 d'4
                 e'4
@@ -643,9 +656,12 @@ class Dynamic(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(voice)
-                \new Voice \with {
+                \new Voice
+                \with
+                {
                     \override DynamicLineSpanner.staff-padding = #4
-                } {
+                }
+                {
                     c'4 \p
                     r4 _ #(make-dynamic-script (markup #:whiteout #:normal-text #:italic "niente"))
                     r4

@@ -14,7 +14,8 @@ class PianoPedalSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \set Staff.pedalSustainStyle = #'mixed
                 c'8 \sustainOn
                 d'8
@@ -122,7 +123,8 @@ class PianoPedalSpanner(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set Staff.pedalSustainStyle = #'mixed
                     c'8 \sustainOn
                     d'8
@@ -145,7 +147,8 @@ class PianoPedalSpanner(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set Staff.pedalSustainStyle = #'mixed
                     c'8 \sostenutoOn
                     d'8
@@ -168,7 +171,8 @@ class PianoPedalSpanner(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set Staff.pedalSustainStyle = #'mixed
                     c'8 \unaCorda
                     d'8
@@ -199,7 +203,8 @@ class PianoPedalSpanner(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set Staff.pedalSustainStyle = #'mixed
                     c'8 \sustainOn
                     d'8
@@ -222,7 +227,8 @@ class PianoPedalSpanner(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set Staff.pedalSustainStyle = #'bracket
                     c'8 \sustainOn
                     d'8
@@ -245,7 +251,8 @@ class PianoPedalSpanner(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set Staff.pedalSustainStyle = #'text
                     c'8 \sustainOn
                     d'8

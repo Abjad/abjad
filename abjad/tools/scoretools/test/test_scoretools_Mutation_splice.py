@@ -16,7 +16,8 @@ def test_scoretools_Mutation_splice_01():
     assert result == voice[-4:]
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8
             e'8
@@ -42,7 +43,8 @@ def test_scoretools_Mutation_splice_02():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8
             dqs'8
@@ -71,7 +73,8 @@ def test_scoretools_Mutation_splice_03():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             \times 2/3 {
                 c'8 [
                 d'8
@@ -105,7 +108,8 @@ def test_scoretools_Mutation_splice_04():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [
                 c'8
@@ -138,7 +142,8 @@ def test_scoretools_Mutation_splice_05():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8
             e'8 ]
@@ -168,7 +173,8 @@ def test_scoretools_Mutation_splice_06():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8
             dqs'8
@@ -197,7 +203,8 @@ def test_scoretools_Mutation_splice_07():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'16 [
             d'16
             e'16
@@ -227,7 +234,8 @@ def test_scoretools_Mutation_splice_08():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             dqf'8
             d'8
@@ -257,7 +265,8 @@ def test_scoretools_Mutation_splice_09():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             \times 2/3 {
                 c'8 [
                 d'8
@@ -292,7 +301,8 @@ def test_scoretools_Mutation_splice_10():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [
                 d'8
@@ -326,7 +336,8 @@ def test_scoretools_Mutation_splice_11():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'16
             d'16
             e'16
@@ -356,7 +367,8 @@ def test_scoretools_Mutation_splice_12():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             dqf'8
             d'8

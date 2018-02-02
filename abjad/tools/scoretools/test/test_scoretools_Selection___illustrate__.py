@@ -10,8 +10,10 @@ def test_scoretools_Selection___illustrate___01():
 
     assert format(score) == abjad.String.normalize(
         r'''
-        \new Score <<
-            \new Staff {
+        \new Score
+        <<
+            \new Staff
+            {
                 e'4
                 f'4
                 g'4
@@ -32,8 +34,10 @@ def test_scoretools_Selection___illustrate___02():
 
     assert format(score) == abjad.String.normalize(
         r'''
-        \new Score <<
-            \new Staff {
+        \new Score
+        <<
+            \new Staff
+            {
                 e'4 (
                 f'4
                 g'4

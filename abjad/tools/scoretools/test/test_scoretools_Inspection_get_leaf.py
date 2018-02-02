@@ -7,14 +7,17 @@ def test_scoretools_Inspection_get_leaf_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            \new Voice {
+        \new Staff
+        {
+            \new Voice
+            {
                 c'8
                 d'8
                 e'8
                 f'8
             }
-            \new Voice {
+            \new Voice
+            {
                 g'8
                 a'8
                 b'8
@@ -55,7 +58,8 @@ def test_scoretools_Inspection_get_leaf_02():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8
             cs'8
             d'8
@@ -83,7 +87,8 @@ def test_scoretools_Inspection_get_leaf_03():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8
             cs'8
             d'8
@@ -156,7 +161,8 @@ def test_scoretools_Inspection_get_leaf_06():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8
                 cs'8
@@ -194,7 +200,8 @@ def test_scoretools_Inspection_get_leaf_07():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             \times 2/3 {
                 c'8
                 cs'8
@@ -228,14 +235,17 @@ def test_scoretools_Inspection_get_leaf_08():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            \new Voice {
+        \new Staff
+        {
+            \new Voice
+            {
                 c'8
                 cs'8
                 d'8
                 ef'8
             }
-            \new Voice {
+            \new Voice
+            {
                 e'8
                 f'8
                 fs'8
@@ -261,14 +271,17 @@ def test_scoretools_Inspection_get_leaf_09():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            \context Voice = "My Voice" {
+        \new Staff
+        {
+            \context Voice = "My Voice"
+            {
                 c'8
                 cs'8
                 d'8
                 ef'8
             }
-            \context Voice = "My Voice" {
+            \context Voice = "My Voice"
+            {
                 e'8
                 f'8
                 fs'8
@@ -301,14 +314,17 @@ def test_scoretools_Inspection_get_leaf_10():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            \context Voice = "Your Voice" {
+        \new Staff
+        {
+            \context Voice = "Your Voice"
+            {
                 c'8
                 cs'8
                 d'8
                 ef'8
             }
-            \context Voice = "My Voice" {
+            \context Voice = "My Voice"
+            {
                 e'8
                 f'8
                 fs'8
@@ -352,16 +368,20 @@ def test_scoretools_Inspection_get_leaf_11():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            \context Staff = "mystaff" {
-                \context Voice = "low" {
+            \context Staff = "mystaff"
+            {
+                \context Voice = "low"
+                {
                     c'8
                     cs'8
                     d'8
                     ef'8
                 }
             }
-            \context Staff = "mystaff" {
-                \context Voice = "low" {
+            \context Staff = "mystaff"
+            {
+                \context Voice = "low"
+                {
                     e'8
                     f'8
                     fs'8
@@ -402,28 +422,34 @@ def test_scoretools_Inspection_get_leaf_12():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            \context Staff = "mystaff" <<
-                \context Voice = "high" {
+            \context Staff = "mystaff"
+            <<
+                \context Voice = "high"
+                {
                     c''8
                     cs''8
                     d''8
                     ef''8
                 }
-                \context Voice = "low" {
+                \context Voice = "low"
+                {
                     c'8
                     cs'8
                     d'8
                     ef'8
                 }
             >>
-            \context Staff = "mystaff" <<
-                \context Voice = "low" {
+            \context Staff = "mystaff"
+            <<
+                \context Voice = "low"
+                {
                     e'8
                     f'8
                     fs'8
                     g'8
                 }
-                \context Voice = "high" {
+                \context Voice = "high"
+                {
                     e''8
                     f''8
                     fs''8
@@ -453,7 +479,8 @@ def test_scoretools_Inspection_get_leaf_13():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 {
                     c'8
@@ -498,7 +525,8 @@ def test_scoretools_Inspection_get_leaf_14():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8
                 cs'8
@@ -543,7 +571,8 @@ def test_scoretools_Inspection_get_leaf_15():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 {
                     {
@@ -585,7 +614,8 @@ def test_scoretools_Inspection_get_leaf_16():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8
                 cs'8
@@ -618,7 +648,8 @@ def test_scoretools_Inspection_get_leaf_17():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             \times 2/3 {
                 c'8
                 cs'8
@@ -680,14 +711,17 @@ def test_scoretools_Inspection_get_leaf_19():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            \new Voice {
+        \new Staff
+        {
+            \new Voice
+            {
                 c'8
                 cs'8
                 d'8
             }
             ef'8
-            \new Voice {
+            \new Voice
+            {
                 e'8
                 f'8
                 fs'8
@@ -718,19 +752,23 @@ def test_scoretools_Inspection_get_leaf_20():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            \context Voice = "My Voice" {
+        \new Staff
+        {
+            \context Voice = "My Voice"
+            {
                 c'8
                 cs'8
                 d'8
             }
-            \context Voice = "Your Voice" {
+            \context Voice = "Your Voice"
+            {
                 e'8
                 f'8
                 fs'8
                 g'8
             }
-            \context Voice = "My Voice" {
+            \context Voice = "My Voice"
+            {
                 e'8
                 f'8
                 fs'8
@@ -761,8 +799,10 @@ def test_scoretools_Inspection_get_leaf_21():
 
     assert format(outer_voice) == abjad.String.normalize(
         r'''
-        \new Voice {
-            \new Voice {
+        \new Voice
+        {
+            \new Voice
+            {
                 c'8
                 cs'8
                 d'8
@@ -790,9 +830,11 @@ def test_scoretools_Inspection_get_leaf_22():
 
     assert format(outer_voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8
-            \new Voice {
+            \new Voice
+            {
                 cs'8
                 d'8
                 ef'8
@@ -822,8 +864,10 @@ def test_scoretools_Inspection_get_leaf_23():
 
     assert format(outer_voice) == abjad.String.normalize(
         r'''
-        \context Voice = "My Voice" {
-            \context Voice = "My Voice" {
+        \context Voice = "My Voice"
+        {
+            \context Voice = "My Voice"
+            {
                 c'8
                 cs'8
                 d'8
@@ -853,9 +897,11 @@ def test_scoretools_Inspection_get_leaf_24():
 
     assert format(outer_voice) == abjad.String.normalize(
         r'''
-        \context Voice = "My Voice" {
+        \context Voice = "My Voice"
+        {
             c'8
-            \context Voice = "My Voice" {
+            \context Voice = "My Voice"
+            {
                 cs'8
                 d'8
                 ef'8
@@ -884,8 +930,10 @@ def test_scoretools_Inspection_get_leaf_25():
 
     assert format(outer_voice) == abjad.String.normalize(
         r'''
-        \context Voice = "My Voice" {
-            \context Voice = "Your Voice" {
+        \context Voice = "My Voice"
+        {
+            \context Voice = "Your Voice"
+            {
                 c'8
                 cs'8
                 d'8
@@ -915,9 +963,11 @@ def test_scoretools_Inspection_get_leaf_26():
 
     assert format(voice_1) == abjad.String.normalize(
         r'''
-        \context Voice = "Voice 1" {
+        \context Voice = "Voice 1"
+        {
             c'8
-            \context Voice = "Voice 2" {
+            \context Voice = "Voice 2"
+            {
                 cs'8
                 d'8
                 ef'8

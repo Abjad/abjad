@@ -12,7 +12,8 @@ def test_scoretools_Container___delitem___01():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [ (
                 d'8 )
@@ -31,7 +32,8 @@ def test_scoretools_Container___delitem___01():
     # container no longer appears in score
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 e'8 [ (
                 f'8 ] )
@@ -64,7 +66,8 @@ def test_scoretools_Container___delitem___02():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             e'8
             f'8 ]
@@ -84,7 +87,8 @@ def test_scoretools_Container___delitem___03():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             f'8 ]
         }
@@ -103,7 +107,8 @@ def test_scoretools_Container___delitem___04():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             e'8 [
             f'8 ]
         }
@@ -122,7 +127,8 @@ def test_scoretools_Container___delitem___05():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8 ]
         }
@@ -141,7 +147,8 @@ def test_scoretools_Container___delitem___06():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
         }
         '''
         )
@@ -179,7 +186,8 @@ def test_scoretools_Container___delitem___08():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [ \glissando
             {
                 d'8 \glissando
@@ -195,7 +203,8 @@ def test_scoretools_Container___delitem___08():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [ \glissando
             {
                 e'8 \glissando

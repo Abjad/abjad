@@ -17,9 +17,12 @@ class NamedPitch(Pitch):
 
             >>> staff = pitch.__illustrate__()[abjad.Staff]
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 \override TimeSignature.stencil = ##f
-            } {
+            }
+            {
                 \clef "treble"
                 cs''1 * 1/4
             }
@@ -33,9 +36,12 @@ class NamedPitch(Pitch):
 
             >>> staff = pitch.__illustrate__()[abjad.Staff]
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 \override TimeSignature.stencil = ##f
-            } {
+            }
+            {
                 \clef "bass"
                 aqs1 * 1/4
             }
@@ -51,9 +57,12 @@ class NamedPitch(Pitch):
 
             >>> staff = pitch.__illustrate__()[abjad.Staff]
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 \override TimeSignature.stencil = ##f
-            } {
+            }
+            {
                 \clef "treble"
                 cs''1 * 1/4
             }
@@ -67,9 +76,12 @@ class NamedPitch(Pitch):
 
             >>> staff = pitch.__illustrate__()[abjad.Staff]
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 \override TimeSignature.stencil = ##f
-            } {
+            }
+            {
                 \clef "bass"
                 aqs1 * 1/4
             }
@@ -81,9 +93,12 @@ class NamedPitch(Pitch):
 
             >>> staff = pitch.__illustrate__()[abjad.Staff]
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 \override TimeSignature.stencil = ##f
-            } {
+            }
+            {
                 \clef "bass"
                 aqs1 * 1/4
             }
@@ -99,9 +114,12 @@ class NamedPitch(Pitch):
 
             >>> staff = pitch.__illustrate__()[abjad.Staff]
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 \override TimeSignature.stencil = ##f
-            } {
+            }
+            {
                 \once \override Accidental.stencil = #ly:text-interface::print
                 \once \override Accidental.text = \markup { \musicglyph #"accidentals.sharp.arrowup" }
                 \clef "treble"
@@ -866,9 +884,12 @@ class NamedPitch(Pitch):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override TextScript.staff-padding = #5
-                } {
+                }
+                {
                     g16 - \markup { -3 }
                     a16 - \markup { -2 }
                     b16 - \markup { -1 }
@@ -906,9 +927,12 @@ class NamedPitch(Pitch):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override TextScript.staff-padding = #5
-                } {
+                }
+                {
                     g16 - \markup { -9 }
                     a16 - \markup { -8 }
                     b16 - \markup { -7 }
@@ -947,9 +971,12 @@ class NamedPitch(Pitch):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override TextScript.staff-padding = #5
-                } {
+                }
+                {
                     \clef "bass"
                     g,16 - \markup { -4 }
                     a,16 - \markup { -3 }

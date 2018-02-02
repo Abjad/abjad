@@ -62,7 +62,8 @@ class Transposition(AbjadValueObject):
 
                 >>> lilypond_file = segment_.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     e'8
                     fs'8
                     af'8
@@ -86,7 +87,8 @@ class Transposition(AbjadValueObject):
 
                 >>> lilypond_file = segment_.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     e'8
                     fs'8
                     af'8

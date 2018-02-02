@@ -19,7 +19,8 @@ def test_scoretools_LogicalTie__add_or_remove_notes_to_achieve_written_duration_
     assert abjad.inspect(staff).is_well_formed()
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 ~ [
             c'32 ]
         }
@@ -44,7 +45,8 @@ def test_scoretools_LogicalTie__add_or_remove_notes_to_achieve_written_duration_
     assert abjad.inspect(staff).is_well_formed()
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [ ]
         }
         '''

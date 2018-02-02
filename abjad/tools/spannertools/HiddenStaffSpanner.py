@@ -14,7 +14,8 @@ class HiddenStaffSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'8
                 \stopStaff
                 d'8

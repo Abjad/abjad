@@ -7,7 +7,8 @@ def test_lilypondparsertools_LilyPondParser__contexts__StaffGroup_01():
 
     assert format(target) == abjad.String.normalize(
         r'''
-        \new StaffGroup <<
+        \new StaffGroup
+        <<
         >>
         '''
         )

@@ -62,7 +62,8 @@ class Multiplication(AbjadValueObject):
 
                 >>> lilypond_file = segment_.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     ef'8
                     cs'8
                     b'8
@@ -86,7 +87,8 @@ class Multiplication(AbjadValueObject):
 
                 >>> lilypond_file = segment_.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     ef'8
                     cs'8
                     b'8

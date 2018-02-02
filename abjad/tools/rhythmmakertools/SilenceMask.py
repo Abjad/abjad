@@ -55,23 +55,24 @@ class SilenceMask(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(lilypond_file[abjad.Staff])
-            \new RhythmicStaff {
-                { % measure
+            \new RhythmicStaff
+            {
+                {   % measure
                     \time 7/16
                     c'4..
-                } % measure
-                { % measure
+                }   % measure
+                {   % measure
                     \time 3/8
                     r4.
-                } % measure
-                { % measure
+                }   % measure
+                {   % measure
                     \time 7/16
                     r4..
-                } % measure
-                { % measure
+                }   % measure
+                {   % measure
                     \time 3/8
                     c'4.
-                } % measure
+                }   % measure
             }
 
     ..  container:: example
@@ -114,23 +115,24 @@ class SilenceMask(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(lilypond_file[abjad.Staff])
-            \new RhythmicStaff {
-                { % measure
+            \new RhythmicStaff
+            {
+                {   % measure
                     \time 7/16
                     r4..
-                } % measure
-                { % measure
+                }   % measure
+                {   % measure
                     \time 3/8
                     c'4.
-                } % measure
-                { % measure
+                }   % measure
+                {   % measure
                     \time 7/16
                     c'4..
-                } % measure
-                { % measure
+                }   % measure
+                {   % measure
                     \time 3/8
                     r4.
-                } % measure
+                }   % measure
             }
 
     '''
@@ -291,23 +293,24 @@ class SilenceMask(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
+                \new RhythmicStaff
+                {
+                    {   % measure
                         \time 7/16
                         c'4..
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 3/8
                         r4.
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 7/16
                         r4..
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 3/8
                         c'4.
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -335,23 +338,24 @@ class SilenceMask(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
+                \new RhythmicStaff
+                {
+                    {   % measure
                         \time 7/16
                         c'4..
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 3/8
                         c'4.
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 7/16
                         r4..
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 3/8
                         r4.
-                    } % measure
+                    }   % measure
                 }
 
 

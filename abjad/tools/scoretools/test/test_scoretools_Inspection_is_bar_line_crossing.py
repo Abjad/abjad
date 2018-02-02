@@ -11,7 +11,8 @@ def test_scoretools_Inspection_is_bar_line_crossing_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \partial 8
             \time 2/8
             c'8

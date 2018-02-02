@@ -13,9 +13,12 @@ class ComplexBeam(Beam):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 autoBeaming = ##f
-            } {
+            }
+            {
                 c'16
                 e'16
                 r16
@@ -30,9 +33,12 @@ class ComplexBeam(Beam):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 autoBeaming = ##f
-            } {
+            }
+            {
                 \set stemLeftBeamCount = 0
                 \set stemRightBeamCount = 2
                 c'16 [
@@ -288,7 +294,8 @@ class ComplexBeam(Beam):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 1
                     c'8 [ ]
@@ -313,7 +320,8 @@ class ComplexBeam(Beam):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 1
                     c'8 [
@@ -340,7 +348,8 @@ class ComplexBeam(Beam):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 1
                     c'8 [ ]
@@ -365,7 +374,8 @@ class ComplexBeam(Beam):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 1
                     c'8 [
@@ -404,12 +414,12 @@ class ComplexBeam(Beam):
             ..  docs::
 
                 >>> abjad.f(measure)
-                { % measure
+                {   % measure
                     \time 1/16
                     \set stemLeftBeamCount = 2
                     \set stemRightBeamCount = 0
                     c'16 [ ]
-                } % measure
+                }   % measure
 
         ..  container:: example
 
@@ -423,12 +433,12 @@ class ComplexBeam(Beam):
             ..  docs::
 
                 >>> abjad.f(measure)
-                { % measure
+                {   % measure
                     \time 1/16
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 2
                     c'16 [ ]
-                } % measure
+                }   % measure
 
         ..  container:: example
 
@@ -442,12 +452,12 @@ class ComplexBeam(Beam):
             ..  docs::
 
                 >>> abjad.f(measure)
-                { % measure
+                {   % measure
                     \time 1/16
                     \set stemLeftBeamCount = 2
                     \set stemRightBeamCount = 2
                     c'16 [ ]
-                } % measure
+                }   % measure
 
         ..  container:: example
 
@@ -461,10 +471,10 @@ class ComplexBeam(Beam):
             ..  docs::
 
                 >>> abjad.f(measure)
-                { % measure
+                {   % measure
                     \time 1/16
                     c'16
-                } % measure
+                }   % measure
 
         Set to left, right, true or false.
 
@@ -491,9 +501,12 @@ class ComplexBeam(Beam):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new RhythmicStaff \with {
+                \new RhythmicStaff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \override RhythmicStaff.Stem.stemlet-length = 2
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 1

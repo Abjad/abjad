@@ -48,7 +48,8 @@ def test_scoretools_Measure___add___02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             {
                 \time 1/8
                 c'16 [
@@ -71,7 +72,8 @@ def test_scoretools_Measure___add___02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             {
                 \time 2/8
                 c'16 [

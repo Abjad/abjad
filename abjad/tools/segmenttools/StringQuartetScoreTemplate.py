@@ -11,11 +11,15 @@ class StringQuartetScoreTemplate(ScoreTemplate):
         >>> abjad.show(template) # doctest: +SKIP
 
         >>> abjad.f(template.__illustrate__()[abjad.Score])
-        \context Score = "String Quartet Score" <<
-            \context StaffGroup = "String Quartet Staff Group" <<
+        \context Score = "String Quartet Score"
+        <<
+            \context StaffGroup = "String Quartet Staff Group"
+            <<
                 \tag #'first-violin
-                \context Staff = "First Violin Staff" {
-                    \context Voice = "First Violin Voice" {
+                \context Staff = "First Violin Staff"
+                {
+                    \context Voice = "First Violin Voice"
+                    {
                         \set Staff.instrumentName = \markup { Violin }   %! ST1
                         \set Staff.shortInstrumentName = \markup { Vn. } %! ST1
                         \clef "treble" %! ST3
@@ -23,8 +27,10 @@ class StringQuartetScoreTemplate(ScoreTemplate):
                     }
                 }
                 \tag #'second-violin
-                \context Staff = "Second Violin Staff" {
-                    \context Voice = "Second Violin Voice" {
+                \context Staff = "Second Violin Staff"
+                {
+                    \context Voice = "Second Violin Voice"
+                    {
                         \set Staff.instrumentName = \markup { Violin }   %! ST1
                         \set Staff.shortInstrumentName = \markup { Vn. } %! ST1
                         \clef "treble" %! ST3
@@ -32,8 +38,10 @@ class StringQuartetScoreTemplate(ScoreTemplate):
                     }
                 }
                 \tag #'viola
-                \context Staff = "Viola Staff" {
-                    \context Voice = "Viola Voice" {
+                \context Staff = "Viola Staff"
+                {
+                    \context Voice = "Viola Voice"
+                    {
                         \set Staff.instrumentName = \markup { Viola }    %! ST1
                         \set Staff.shortInstrumentName = \markup { Va. } %! ST1
                         \clef "alto" %! ST3
@@ -41,8 +49,10 @@ class StringQuartetScoreTemplate(ScoreTemplate):
                     }
                 }
                 \tag #'cello
-                \context Staff = "Cello Staff" {
-                    \context Voice = "Cello Voice" {
+                \context Staff = "Cello Staff"
+                {
+                    \context Voice = "Cello Voice"
+                    {
                         \set Staff.instrumentName = \markup { Cello }    %! ST1
                         \set Staff.shortInstrumentName = \markup { Vc. } %! ST1
                         \clef "bass" %! ST3
@@ -65,6 +75,13 @@ class StringQuartetScoreTemplate(ScoreTemplate):
         'va': 'Viola Voice',
         'vc': 'Cello Voice',
         })
+
+    _part_manifest = (
+        ('FirstViolin', 'VN_1'),
+        ('SecondViolin', 'VN_2'),
+        ('Viola', 'VA'),
+        ('Cello', 'VC'),
+        )
 
     ### INITIALIZER ###
 

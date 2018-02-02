@@ -22,14 +22,19 @@ class Descendants(abctools.AbjadObject, collections.Sequence):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \context Staff = "Treble Staff" {
-                    \context Voice = "Treble Voice" {
+            \new Score
+            <<
+                \context Staff = "Treble Staff"
+                {
+                    \context Voice = "Treble Voice"
+                    {
                         c'4
                     }
                 }
-                \context Staff = "Bass Staff" {
-                    \context Voice = "Bass Voice" {
+                \context Staff = "Bass Staff"
+                {
+                    \context Voice = "Bass Voice"
+                    {
                         b,4
                     }
                 }

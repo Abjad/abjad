@@ -20,7 +20,8 @@ class LeafMaker(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 d'4
                 e'4
                 fs''4
@@ -41,7 +42,8 @@ class LeafMaker(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 <c' d' e'>2
                 <fs'' gs'' as''>2
             }
@@ -61,7 +63,8 @@ class LeafMaker(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new RhythmicStaff {
+            \new RhythmicStaff
+            {
                 r4
                 r4
                 r4
@@ -82,7 +85,8 @@ class LeafMaker(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 <c' d' e'>4
                 r4
                 cs''4
@@ -103,7 +107,8 @@ class LeafMaker(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 e''4
                 ef''4
                 d''4
@@ -126,7 +131,8 @@ class LeafMaker(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c''4.
                 c''8
                 c''4.
@@ -148,7 +154,8 @@ class LeafMaker(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c''4
                 d''4
                 e''4
@@ -170,7 +177,8 @@ class LeafMaker(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \times 2/3 {
                     d''2
                     d''2
@@ -195,7 +203,8 @@ class LeafMaker(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \time 13/16
                 ds''2. ~
                 ds''16
@@ -218,7 +227,8 @@ class LeafMaker(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \time 13/16
                 e''16 ~
                 e''2.
@@ -243,7 +253,8 @@ class LeafMaker(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \time 5/4
                 f'4 ~
                 f'4 ~
@@ -272,7 +283,8 @@ class LeafMaker(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \time 5/4
                 f'8 ~
                 f'4 ~
@@ -299,7 +311,8 @@ class LeafMaker(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \tweak edge-height #'(0.7 . 0)
                 \times 4/7 {
                     \time 5/14
@@ -327,7 +340,8 @@ class LeafMaker(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \tweak text #tuplet-number::calc-fraction-text
                 \tweak edge-height #'(0.7 . 0)
                 \times 8/7 {
@@ -359,15 +373,16 @@ class LeafMaker(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new RhythmicStaff {
-                { % measure
+            \new RhythmicStaff
+            {
+                {   % measure
                     \time 3/8
                     R1 * 3/8
-                } % measure
-                { % measure
+                }   % measure
+                {   % measure
                     \time 5/8
                     R1 * 5/8
-                } % measure
+                }   % measure
             }
 
     ..  container:: example
@@ -384,7 +399,8 @@ class LeafMaker(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'2.
                 c'16 \repeatTie
             }
@@ -403,7 +419,8 @@ class LeafMaker(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 fs'2. ~
                 fs'16
             }

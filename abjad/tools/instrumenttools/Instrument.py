@@ -27,15 +27,18 @@ class Instrument(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff <<
-                \new Voice {
+            \new Staff
+            <<
+                \new Voice
+                {
                     \voiceOne
                     e'8 ^ \markup { (flute) }
                     g'8
                     f'8
                     a'8
                 }
-                \new Voice {
+                \new Voice
+                {
                     \voiceTwo
                     c'2 _ \markup { (viola) }
                 }
@@ -367,7 +370,8 @@ class Instrument(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set Staff.instrumentName = \markup { "Clarinet in B-flat" }
                     \set Staff.shortInstrumentName = \markup { "Cl. in B-flat" }
                     <c' e' g'>4
@@ -382,7 +386,8 @@ class Instrument(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set Staff.instrumentName = \markup { "Clarinet in B-flat" }
                     \set Staff.shortInstrumentName = \markup { "Cl. in B-flat" }
                     <d' fs' a'>4
@@ -427,7 +432,8 @@ class Instrument(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set Staff.instrumentName = \markup { "Clarinet in B-flat" }
                     \set Staff.shortInstrumentName = \markup { "Cl. in B-flat" }
                     <c' e' g'>4
@@ -442,7 +448,8 @@ class Instrument(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set Staff.instrumentName = \markup { "Clarinet in B-flat" }
                     \set Staff.shortInstrumentName = \markup { "Cl. in B-flat" }
                     <bf d' f'>4

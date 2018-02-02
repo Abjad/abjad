@@ -4,6 +4,7 @@ import six
 import sys
 import textwrap
 import unicodedata
+from abjad.tools import mathtools
 
 
 class String(str):
@@ -91,6 +92,65 @@ class String(str):
         return True
 
     ### PUBLIC METHODS ###
+
+    @staticmethod
+    def base_26(n: int) -> 'String':
+        r'''Gets base-26 representation of nonnegative integer ``n``.
+
+        ..  container:: example
+
+            >>> abjad.String.base_26(1)
+            'A'
+
+            >>> abjad.String.base_26(2)
+            'B'
+
+            >>> abjad.String.base_26(3)
+            'C'
+
+            >>> abjad.String.base_26(26)
+            'Z'
+
+            >>> abjad.String.base_26(27)
+            'AA'
+
+            >>> abjad.String.base_26(28)
+            'AB'
+
+            >>> abjad.String.base_26(52)
+            'AZ'
+
+            >>> abjad.String.base_26(53)
+            'BA'
+
+            >>> abjad.String.base_26(54)
+            'BB'
+
+            >>> abjad.String.base_26(78)
+            'BZ'
+
+            >>> abjad.String.base_26(79)
+            'CA'
+
+            >>> abjad.String.base_26(80)
+            'CB'
+
+        '''
+        assert 0 < n, repr(n)
+        if 1 <= n <= 26:
+            result = chr(ord('A') + n - 1)
+        elif 26 < n < 676:
+            left = int(n / 26)
+            right = n - (26 * left)
+            if right == 0:
+                left -= 1
+                right = 26
+            left_ = chr(ord('A') + left - 1)
+            right_ = chr(ord('A') + right - 1)
+            result = left_ + right_
+        else:
+            raise NotImplementedError(n)
+        return String(result)
 
     def capitalize_start(self):
         r'''Capitalizes start of string.
@@ -329,20 +389,37 @@ class String(str):
             >>> abjad.String('ViolinOne').is_lilypond_identifier()
             True
 
-            >>> abjad.String('ViolinI').is_lilypond_identifier()
+            >>> abjad.String('Violin_One').is_lilypond_identifier()
             True
 
             >>> abjad.String('Violin One').is_lilypond_identifier()
             False
 
-            >>> abjad.String('Violin_One').is_lilypond_identifier()
+            >>> abjad.String('ViolinI').is_lilypond_identifier()
+            True
+
+            >>> abjad.String('Violin_I').is_lilypond_identifier()
+            True
+
+            >>> abjad.String('Violin I').is_lilypond_identifier()
             False
 
             >>> abjad.String('Violin1').is_lilypond_identifier()
             False
 
+            >>> abjad.String('Violin_1').is_lilypond_identifier()
+            False
+
+            >>> abjad.String('Violin 1').is_lilypond_identifier()
+            False
+
         '''
-        return self.isalpha()
+        if self and self[0] == '_':
+            return False
+        for character in self:
+            if not (character.isalpha() or character == '_'):
+                return False
+        return True
 
     def is_lower_camel_case(self):
         r'''Is true when string and is lowercamelcase.
@@ -1124,6 +1201,57 @@ class String(str):
         else:
             string = string[0].lower() + string[1:]
         return type(self)(string)
+
+    def to_segment_lilypond_identifier(self) -> 'String':
+        r'''Gets segment LilyPond identifier.
+
+        ..  container:: example
+
+            >>> abjad.String('_').to_segment_lilypond_identifier()
+            'i'
+
+            >>> abjad.String('_1').to_segment_lilypond_identifier()
+            'i_a'
+
+            >>> abjad.String('_2').to_segment_lilypond_identifier()
+            'i_b'
+
+            >>> abjad.String('A').to_segment_lilypond_identifier()
+            'A'
+
+            >>> abjad.String('A1').to_segment_lilypond_identifier()
+            'A_a'
+
+            >>> abjad.String('A2').to_segment_lilypond_identifier()
+            'A_b'
+
+            >>> abjad.String('B').to_segment_lilypond_identifier()
+            'B'
+
+            >>> abjad.String('B1').to_segment_lilypond_identifier()
+            'B_a'
+
+            >>> abjad.String('B2').to_segment_lilypond_identifier()
+            'B_b'
+
+            >>> abjad.String('AA').to_segment_lilypond_identifier()
+            'AA'
+
+            >>> abjad.String('AA1').to_segment_lilypond_identifier()
+            'AA_a'
+
+            >>> abjad.String('AA2').to_segment_lilypond_identifier()
+            'AA_b'
+
+        '''
+        name = self.replace('_', 'i')
+        words = []
+        for word in String(name).delimit_words():
+            if word.isdigit():
+                word = String.base_26(int(word)).lower()
+            words.append(word)
+        identifier = '_'.join(words)
+        return String(identifier)
 
     def to_shout_case(self):
         r'''Changes string to shout case.

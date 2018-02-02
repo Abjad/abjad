@@ -16,9 +16,12 @@ class TextSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 \override TextSpanner.staff-padding = #2.5
-            } {
+            }
+            {
                 \once \override TextSpanner.Y-extent = ##f
                 \once \override TextSpanner.bound-details.left-broken.text = ##f
                 \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -52,9 +55,12 @@ class TextSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 \override TextSpanner.staff-padding = #2.5
-            } {
+            }
+            {
                 \once \override TextSpanner.Y-extent = ##f
                 \once \override TextSpanner.bound-details.left-broken.text = ##f
                 \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -89,9 +95,12 @@ class TextSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 \override TextSpanner.staff-padding = #2.5
-            } {
+            }
+            {
                 \once \override TextSpanner.Y-extent = ##f
                 \once \override TextSpanner.bound-details.left-broken.text = ##f
                 \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -136,9 +145,12 @@ class TextSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 \override TextSpanner.staff-padding = #2.5
-            } {
+            }
+            {
                 \once \override TextSpanner.Y-extent = ##f
                 \once \override TextSpanner.arrow-width = 0.25
                 \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -192,9 +204,12 @@ class TextSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 \override TextSpanner.staff-padding = #2.5
-            } {
+            }
+            {
                 \once \override TextSpanner.Y-extent = ##f
                 \once \override TextSpanner.arrow-width = 0.25
                 \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -284,9 +299,12 @@ class TextSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 \override TextSpanner.staff-padding = #2.5
-            } {
+            }
+            {
                 \once \override TextSpanner.Y-extent = ##f
                 \once \override TextSpanner.arrow-width = 0.25
                 \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -379,10 +397,13 @@ class TextSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 \override TextScript.staff-padding = #5
                 \override TextSpanner.staff-padding = #2.5
-            } {
+            }
+            {
                 \once \override TextScript.color = #blue
                 \once \override TextSpanner.Y-extent = ##f
                 \once \override TextSpanner.arrow-width = 0.25
@@ -600,7 +621,8 @@ class TextSpanner(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \override TextSpanner.bound-details.left.stencil-align-dir-y = #0
                     \override TextSpanner.bound-details.left.text = \markup {
                         \bold

@@ -46,9 +46,12 @@ class Selection(AbjadValueObject, collections.Sequence):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 autoBeaming = ##f
-            } {
+            }
+            {
                 \once \override Accidental.color = #red
                 \once \override Beam.color = #red
                 \once \override Dots.color = #red
@@ -199,9 +202,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -264,9 +270,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -337,9 +346,12 @@ class Selection(AbjadValueObject, collections.Sequence):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 autoBeaming = ##f
-            } {
+            }
+            {
                 c'8
                 d'8 ~
                 \once \override Accidental.color = #blue
@@ -1309,11 +1321,14 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override TupletBracket.direction = #up
                     \override TupletBracket.staff-padding = #3
-                } {
-                    { % measure
+                }
+                {
+                    {   % measure
                         \time 7/4
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
@@ -1346,7 +1361,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \once \override Stem.color = #green
                             <fs' gs'>16
                         }
-                    } % measure
+                    }   % measure
                 }
 
         '''
@@ -1414,11 +1429,14 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override TupletBracket.direction = #up
                     \override TupletBracket.staff-padding = #3
-                } {
-                    { % measure
+                }
+                {
+                    {   % measure
                         \time 7/4
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
@@ -1491,7 +1509,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \once \override Stem.color = #red
                             <fs' gs'>16
                         }
-                    } % measure
+                    }   % measure
                 }
 
         '''
@@ -1544,9 +1562,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -1633,9 +1654,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     c'8
                     r8
                     \once \override Accidental.color = #red
@@ -1700,9 +1724,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     c'8
                     r8
                     \once \override Accidental.color = #red
@@ -1758,9 +1785,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -1829,9 +1859,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     c'8
                     r8
                     \once \override Accidental.color = #red
@@ -1900,9 +1933,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -1975,9 +2011,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -2042,9 +2081,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -2110,9 +2152,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -2180,9 +2225,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     c'8
                     r8
                     \once \override Accidental.color = #red
@@ -2238,9 +2286,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -2326,11 +2377,14 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override TupletBracket.direction = #up
                     \override TupletBracket.staff-padding = #3
-                } {
-                    { % measure
+                }
+                {
+                    {   % measure
                         \time 7/4
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
@@ -2379,7 +2433,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                             <fs' gs'>4 ~
                             <fs' gs'>16
                         }
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -2434,11 +2488,14 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override TupletBracket.direction = #up
                     \override TupletBracket.staff-padding = #3
-                } {
-                    { % measure
+                }
+                {
+                    {   % measure
                         \time 7/4
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
@@ -2487,7 +2544,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                             <fs' gs'>4 ~
                             <fs' gs'>16
                         }
-                    } % measure
+                    }   % measure
                 }
 
         Returns new selection (or expression).
@@ -2535,9 +2592,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #green
                     \once \override Beam.color = #green
                     \once \override Dots.color = #green
@@ -2664,9 +2724,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -2759,7 +2822,8 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'4
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
@@ -2851,9 +2915,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     c'4
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
@@ -2921,9 +2988,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -3035,9 +3105,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -3167,9 +3240,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -3282,9 +3358,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -3403,9 +3482,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -3502,9 +3584,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -3582,9 +3667,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \time 2/8
                     c'8
                     \once \override Accidental.color = #red
@@ -3656,9 +3744,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -3775,9 +3866,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -3891,11 +3985,14 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override TupletBracket.direction = #up
                     \override TupletBracket.staff-padding = #3
-                } {
-                    { % measure
+                }
+                {
+                    {   % measure
                         \time 7/4
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
@@ -3928,7 +4025,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \once \override Stem.color = #green
                             <fs' gs'>16
                         }
-                    } % measure
+                    }   % measure
                 }
 
         '''
@@ -4000,9 +4097,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \times 2/3 {
                         \once \override Dots.color = #red
                         \once \override Rest.color = #red
@@ -4101,9 +4201,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \times 2/3 {
                         r8
                         \once \override Accidental.color = #red
@@ -4202,9 +4305,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \times 2/3 {
                         r8
                         \ottava #1
@@ -4310,9 +4416,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \times 2/3 {
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
@@ -4419,9 +4528,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \times 2/3 {
                         \once \override Dots.color = #red
                         \once \override Rest.color = #red
@@ -4504,9 +4616,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \times 2/3 {
                         r8
                         \once \override Accidental.color = #red
@@ -4587,9 +4702,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \times 2/3 {
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
@@ -4671,9 +4789,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \times 2/3 {
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
@@ -4750,9 +4871,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \times 2/3 {
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
@@ -4847,9 +4971,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -4933,9 +5060,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -5016,9 +5146,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     c'8
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
@@ -5093,9 +5226,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \times 2/3 {
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
@@ -5203,9 +5339,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \times 2/3 {
                         c'8
                         d'8
@@ -5306,9 +5445,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \times 2/3 {
                         \once \override Dots.color = #red
                         \once \override Rest.color = #red
@@ -5393,9 +5535,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \times 2/3 {
                         \once \override Dots.color = #red
                         \once \override Rest.color = #red
@@ -5488,9 +5633,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -5572,11 +5720,14 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override TupletBracket.direction = #up
                     \override TupletBracket.staff-padding = #3
-                } {
-                    { % measure
+                }
+                {
+                    {   % measure
                         \time 7/4
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
@@ -5609,7 +5760,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                             <fs' gs'>4 ~
                             <fs' gs'>16
                         }
-                    } % measure
+                    }   % measure
                 }
 
         '''
@@ -5671,11 +5822,14 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override TupletBracket.direction = #up
                     \override TupletBracket.staff-padding = #3
-                } {
-                    { % measure
+                }
+                {
+                    {   % measure
                         \time 7/4
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
@@ -5733,7 +5887,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                             <fs' gs'>4 ~
                             <fs' gs'>16
                         }
-                    } % measure
+                    }   % measure
                 }
 
         '''
@@ -5778,9 +5932,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     c'8
                     r8
                     \once \override Accidental.color = #red
@@ -5875,9 +6032,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -5942,9 +6102,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -6023,9 +6186,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -6114,9 +6280,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -6212,9 +6381,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -6375,10 +6547,13 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
-                    { % measure
+                }
+                {
+                    {   % measure
                         \time 2/8
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
@@ -6392,8 +6567,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override NoteHead.color = #red
                         \once \override Stem.color = #red
                         d'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
                         \once \override Dots.color = #red
@@ -6406,8 +6581,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override NoteHead.color = #blue
                         \once \override Stem.color = #blue
                         f'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \once \override Accidental.color = #blue
                         \once \override Beam.color = #blue
                         \once \override Dots.color = #blue
@@ -6420,8 +6595,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override NoteHead.color = #blue
                         \once \override Stem.color = #blue
                         a'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
                         \once \override Dots.color = #red
@@ -6434,7 +6609,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override NoteHead.color = #red
                         \once \override Stem.color = #red
                         c''8
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -6486,10 +6661,13 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
-                    { % measure
+                }
+                {
+                    {   % measure
                         \time 2/8
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
@@ -6503,8 +6681,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override NoteHead.color = #red
                         \once \override Stem.color = #red
                         d'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
                         \once \override Dots.color = #red
@@ -6512,15 +6690,15 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override Stem.color = #red
                         e'8
                         f'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         g'8
                         a'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         b'8
                         c''8
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -6580,10 +6758,13 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
-                    { % measure
+                }
+                {
+                    {   % measure
                         \time 2/8
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
@@ -6597,8 +6778,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override NoteHead.color = #red
                         \once \override Stem.color = #red
                         d'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \once \override Accidental.color = #blue
                         \once \override Beam.color = #blue
                         \once \override Dots.color = #blue
@@ -6611,8 +6792,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override NoteHead.color = #red
                         \once \override Stem.color = #red
                         f'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
                         \once \override Dots.color = #red
@@ -6625,8 +6806,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override NoteHead.color = #blue
                         \once \override Stem.color = #blue
                         a'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
                         \once \override Dots.color = #red
@@ -6639,7 +6820,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override NoteHead.color = #red
                         \once \override Stem.color = #red
                         c''8
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -6703,10 +6884,13 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
-                    { % measure
+                }
+                {
+                    {   % measure
                         \time 2/8
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
@@ -6720,8 +6904,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override NoteHead.color = #blue
                         \once \override Stem.color = #blue
                         d'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
                         \once \override Dots.color = #red
@@ -6734,8 +6918,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override NoteHead.color = #blue
                         \once \override Stem.color = #blue
                         f'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
                         \once \override Dots.color = #red
@@ -6748,8 +6932,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override NoteHead.color = #blue
                         \once \override Stem.color = #blue
                         a'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
                         \once \override Dots.color = #red
@@ -6757,7 +6941,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override Stem.color = #red
                         b'8
                         c''8
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -6809,10 +6993,13 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
-                    { % measure
+                }
+                {
+                    {   % measure
                         \time 2/8
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
@@ -6821,19 +7008,19 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override Stem.color = #red
                         c'8
                         d'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         e'8
                         f'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         g'8
                         a'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         b'8
                         c''8
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -6890,10 +7077,13 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
-                    { % measure
+                }
+                {
+                    {   % measure
                         \time 2/8
                         \tempo 4=60
                         \once \override Accidental.color = #red
@@ -6908,8 +7098,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override NoteHead.color = #red
                         \once \override Stem.color = #red
                         d'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
                         \once \override Dots.color = #red
@@ -6922,8 +7112,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override NoteHead.color = #blue
                         \once \override Stem.color = #blue
                         f'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \once \override Accidental.color = #blue
                         \once \override Beam.color = #blue
                         \once \override Dots.color = #blue
@@ -6936,11 +7126,11 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override NoteHead.color = #blue
                         \once \override Stem.color = #blue
                         a'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         b'8
                         c''8
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -6998,10 +7188,13 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
-                    { % measure
+                }
+                {
+                    {   % measure
                         \time 2/8
                         \tempo 4=60
                         \once \override Accidental.color = #red
@@ -7016,8 +7209,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override NoteHead.color = #red
                         \once \override Stem.color = #red
                         d'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
                         \once \override Dots.color = #red
@@ -7030,8 +7223,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override NoteHead.color = #blue
                         \once \override Stem.color = #blue
                         f'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \once \override Accidental.color = #blue
                         \once \override Beam.color = #blue
                         \once \override Dots.color = #blue
@@ -7044,8 +7237,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override NoteHead.color = #blue
                         \once \override Stem.color = #blue
                         a'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
                         \once \override Dots.color = #red
@@ -7058,7 +7251,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override NoteHead.color = #red
                         \once \override Stem.color = #red
                         c''8
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -7113,10 +7306,13 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
-                    { % measure
+                }
+                {
+                    {   % measure
                         \time 2/8
                         \tempo 4=60
                         \once \override Accidental.color = #red
@@ -7131,8 +7327,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override NoteHead.color = #red
                         \once \override Stem.color = #red
                         d'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
                         \once \override Dots.color = #red
@@ -7140,15 +7336,15 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override Stem.color = #red
                         e'8
                         f'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         g'8
                         a'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         b'8
                         c''8
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -7215,10 +7411,13 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
-                    { % measure
+                }
+                {
+                    {   % measure
                         \time 2/8
                         \tempo 4=60
                         \once \override Accidental.color = #red
@@ -7233,8 +7432,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override NoteHead.color = #blue
                         \once \override Stem.color = #blue
                         d'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
                         \once \override Dots.color = #red
@@ -7247,8 +7446,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override NoteHead.color = #blue
                         \once \override Stem.color = #blue
                         f'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
                         \once \override Dots.color = #red
@@ -7261,8 +7460,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override NoteHead.color = #blue
                         \once \override Stem.color = #blue
                         a'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
                         \once \override Dots.color = #red
@@ -7270,7 +7469,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override Stem.color = #red
                         b'8
                         c''8
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -7325,10 +7524,13 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
-                    { % measure
+                }
+                {
+                    {   % measure
                         \time 2/8
                         \tempo 4=60
                         \once \override Accidental.color = #red
@@ -7338,19 +7540,19 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override Stem.color = #red
                         c'8
                         d'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         e'8
                         f'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         g'8
                         a'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         b'8
                         c''8
-                    } % measure
+                    }   % measure
                 }
 
         Interprets `fill` as `Exact` when `fill` is none.
@@ -7497,9 +7699,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -7587,9 +7792,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -7699,11 +7907,14 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override TupletBracket.direction = #up
                     \override TupletBracket.staff-padding = #3
-                } {
-                    { % measure
+                }
+                {
+                    {   % measure
                         \time 7/4
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
@@ -7733,7 +7944,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                             <fs' gs'>4 ~
                             <fs' gs'>16
                         }
-                    } % measure
+                    }   % measure
                 }
 
         '''
@@ -7789,11 +8000,14 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override TupletBracket.direction = #up
                     \override TupletBracket.staff-padding = #3
-                } {
-                    { % measure
+                }
+                {
+                    {   % measure
                         \time 7/4
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
@@ -7827,7 +8041,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                             <fs' gs'>4 ~
                             <fs' gs'>16
                         }
-                    } % measure
+                    }   % measure
                 }
 
         '''
@@ -7878,11 +8092,14 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override TupletBracket.direction = #up
                     \override TupletBracket.staff-padding = #3
-                } {
-                    { % measure
+                }
+                {
+                    {   % measure
                         \time 7/4
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
@@ -7935,7 +8152,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \once \override Stem.color = #green
                             <fs' gs'>16
                         }
-                    } % measure
+                    }   % measure
                 }
 
         '''
@@ -7991,11 +8208,14 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override TupletBracket.direction = #up
                     \override TupletBracket.staff-padding = #3
-                } {
-                    { % measure
+                }
+                {
+                    {   % measure
                         \time 7/4
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
@@ -8098,7 +8318,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \once \override Stem.color = #red
                             <fs' gs'>16
                         }
-                    } % measure
+                    }   % measure
                 }
 
         '''
@@ -8156,9 +8376,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -8267,11 +8490,14 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override TupletBracket.direction = #up
                     \override TupletBracket.staff-padding = #3
-                } {
-                    { % measure
+                }
+                {
+                    {   % measure
                         \time 7/4
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
@@ -8326,7 +8552,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \once \override Stem.color = #green
                             <fs' gs'>16
                         }
-                    } % measure
+                    }   % measure
                 }
 
         '''
@@ -8382,11 +8608,14 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override TupletBracket.direction = #up
                     \override TupletBracket.staff-padding = #3
-                } {
-                    { % measure
+                }
+                {
+                    {   % measure
                         \time 7/4
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9 {
@@ -8495,7 +8724,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \once \override Stem.color = #red
                             <fs' gs'>16
                         }
-                    } % measure
+                    }   % measure
                 }
 
         '''
@@ -8544,9 +8773,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -8631,9 +8863,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -8721,10 +8956,13 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override SustainPedalLineSpanner.staff-padding = #6
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -8823,9 +9061,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -8910,9 +9151,12 @@ class Selection(AbjadValueObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red

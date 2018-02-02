@@ -14,7 +14,8 @@ def test_spannertools_OctavationSpanner_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \ottava #1
             c'8
             c'8
@@ -36,7 +37,8 @@ def test_spannertools_OctavationSpanner_02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \ottava #1
             c'8
             cs'8
@@ -62,7 +64,8 @@ def test_spannertools_OctavationSpanner_03():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \ottava #1
             c'8
             cs'8
@@ -94,7 +97,8 @@ def test_spannertools_OctavationSpanner_04():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \ottava #1
             c'8
             \ottava #0
@@ -126,7 +130,8 @@ def test_spannertools_OctavationSpanner_05():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \ottava #1
             c'8
             cs'8

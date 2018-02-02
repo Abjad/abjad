@@ -15,8 +15,10 @@ class Accelerando(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff {
+            \new Score
+            <<
+                \new Staff
+                {
                     c'4
                         ^ \markup {
                             \large

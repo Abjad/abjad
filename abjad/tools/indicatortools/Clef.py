@@ -30,7 +30,8 @@ class Clef(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \clef "treble"
                 c'8
                 \clef "alto"
@@ -58,7 +59,8 @@ class Clef(AbjadValueObject):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
-        \new Staff {
+        \new Staff
+        {
             \clef "treble" %! RED
             c'4
             d'4
@@ -75,7 +77,8 @@ class Clef(AbjadValueObject):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
-        \new Staff {
+        \new Staff
+        {
             \clef "treble" %! M1
             c'4
             d'4
@@ -92,7 +95,8 @@ class Clef(AbjadValueObject):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
-        \new Staff {
+        \new Staff
+        {
             \clef "treble" %! RED:M1
             c'4
             d'4
@@ -120,12 +124,18 @@ class Clef(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 \remove Clef_engraver
-            } <<
-                \new Voice \with {
+            }
+            <<
+                \new Voice
+                \with
+                {
                     \consists Clef_engraver
-                } {
+                }
+                {
                     \voiceOne
                     \clef "treble"
                     e'8
@@ -135,9 +145,12 @@ class Clef(AbjadValueObject):
                     g'8
                     b'8
                 }
-                \new Voice \with {
+                \new Voice
+                \with
+                {
                     \consists Clef_engraver
-                } {
+                }
+                {
                     \voiceTwo
                     \clef "treble"
                     c'4.
@@ -401,7 +414,8 @@ class Clef(AbjadValueObject):
             >>> abjad.show(staff) # doctest: +SKIP
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \clef "treble"
                 c'4
                 d'4

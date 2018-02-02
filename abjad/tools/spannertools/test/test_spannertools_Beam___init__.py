@@ -10,7 +10,8 @@ def test_spannertools_Beam___init___01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [
             d'8
             e'8
@@ -60,7 +61,8 @@ def test_spannertools_Beam___init___03():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             {
                 c'8 [
                 c'8
@@ -91,7 +93,8 @@ def test_spannertools_Beam___init___04():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             {
                 c'8 [
                 c'8
@@ -118,7 +121,8 @@ def test_spannertools_Beam___init___05():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             {
                 c'8 [
                 c'8
@@ -146,7 +150,8 @@ def test_spannertools_Beam___init___06():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             {
             }
             {
@@ -175,7 +180,8 @@ def test_spannertools_Beam___init___07():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 {
                     c'8 [
@@ -210,7 +216,8 @@ def test_spannertools_Beam___init___08():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 {
                     {
@@ -245,7 +252,8 @@ def test_spannertools_Beam___init___09():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [
                 cs'8
@@ -273,7 +281,8 @@ def test_spannertools_Beam___init___10():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             \times 2/3 {
                 c'8 [
                 cs'8
@@ -329,14 +338,17 @@ def test_spannertools_Beam___init___12():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            \new Voice {
+        \new Staff
+        {
+            \new Voice
+            {
                 c'8
                 cs'8
                 d'8
             }
             ef'8
-            \new Voice {
+            \new Voice
+            {
                 e'8
                 f'8
                 fs'8
@@ -364,14 +376,17 @@ def test_spannertools_Beam___init___13():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            \context Voice = "foo" {
+        \new Staff
+        {
+            \context Voice = "foo"
+            {
                 c'8 [
                 cs'8
                 d'8
                 ef'8
             }
-            \context Voice = "foo" {
+            \context Voice = "foo"
+            {
                 e'8
                 f'8
                 fs'8
@@ -390,13 +405,15 @@ def test_spannertools_Beam___init___14():
 
     container = abjad.Container(r'''
         <<
-            \context Voice = "first" {
+            \context Voice = "first"
+            {
                 c'8
                 cs'8
                 d'8
                 ef'8
             }
-            \context Voice = "second" {
+            \context Voice = "second"
+            {
                 e'8
                 f'8
                 fs'8
@@ -404,13 +421,15 @@ def test_spannertools_Beam___init___14():
             }
         >>
         <<
-            \context Voice = "second" {
+            \context Voice = "second"
+            {
                 af'8
                 a'8
                 bf'8
                 b'8
             }
-            \context Voice = "first" {
+            \context Voice = "first"
+            {
                 c''8
                 cs''8
                 d''8
@@ -426,13 +445,15 @@ def test_spannertools_Beam___init___14():
         r'''
         {
             <<
-                \context Voice = "first" {
+                \context Voice = "first"
+                {
                     c'8 [
                     cs'8
                     d'8
                     ef'8
                 }
-                \context Voice = "second" {
+                \context Voice = "second"
+                {
                     e'8
                     f'8
                     fs'8
@@ -440,13 +461,15 @@ def test_spannertools_Beam___init___14():
                 }
             >>
             <<
-                \context Voice = "second" {
+                \context Voice = "second"
+                {
                     af'8
                     a'8
                     bf'8
                     b'8
                 }
-                \context Voice = "first" {
+                \context Voice = "first"
+                {
                     c''8
                     cs''8
                     d''8
@@ -497,13 +520,15 @@ def test_spannertools_Beam___init___15():
         r'''
         {
             <<
-                \context Voice = "first" {
+                \context Voice = "first"
+                {
                     c'8 [
                     cs'8
                     d'8
                     ef'8
                 }
-                \context Voice = "second" {
+                \context Voice = "second"
+                {
                     e'8
                     f'8
                     fs'8
@@ -511,7 +536,8 @@ def test_spannertools_Beam___init___15():
                 }
             >>
             <<
-                \context Voice = "first" {
+                \context Voice = "first"
+                {
                     af'8
                     a'8
                     bf'8
@@ -554,13 +580,15 @@ def test_spannertools_Beam___init___16():
     assert format(container) == abjad.String.normalize(
         r'''
         <<
-            \new Voice {
+            \new Voice
+            {
                 c'8 [
                 cs'8
                 d'8
                 ef'8 ]
             }
-            \new Voice {
+            \new Voice
+            {
                 e'8
                 f'8
                 fs'8
@@ -603,17 +631,20 @@ def test_spannertools_Beam___init___17():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8
             cs'8
             <<
-                \new Voice {
+                \new Voice
+                {
                     d'8
                     ef'8
                     e'8
                     f'8
                 }
-                \new Voice {
+                \new Voice
+                {
                     fs'8
                     g'8
                     af'8
@@ -671,28 +702,33 @@ def test_spannertools_Beam___init___18():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            \context Voice = "foo" {
+        \new Staff
+        {
+            \context Voice = "foo"
+            {
                 c'8 [
                 cs'8
                 d'8
                 ef'8
             }
             <<
-                \context Voice = "foo" {
+                \context Voice = "foo"
+                {
                     e'8
                     f'8
                     fs'8
                     g'8
                 }
-                \context Voice = "bar" {
+                \context Voice = "bar"
+                {
                     af'8
                     a'8
                     bf'8
                     b'8
                 }
             >>
-            \context Voice = "foo" {
+            \context Voice = "foo"
+            {
                 c''8
                 cs''8
                 d''8
@@ -715,14 +751,17 @@ def test_spannertools_Beam___init___19():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            \context Voice = "foo" {
+        \new Staff
+        {
+            \context Voice = "foo"
+            {
                 c'8
                 cs'8
                 d'8
                 ef'8
             }
-            \context Voice = "bar" {
+            \context Voice = "bar"
+            {
                 e'8
                 f'8
                 fs'8

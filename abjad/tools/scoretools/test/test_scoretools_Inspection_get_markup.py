@@ -13,7 +13,8 @@ def test_scoretools_Inspection_get_markup_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 (
                 - \markup {
                     \column

@@ -14,7 +14,8 @@ class Piccolo(Instrument):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \set Staff.instrumentName = \markup { Piccolo }
                 \set Staff.shortInstrumentName = \markup { Picc. }
                 c'4

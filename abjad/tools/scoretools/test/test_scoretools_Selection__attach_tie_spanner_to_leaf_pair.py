@@ -11,7 +11,8 @@ def test_scoretools_Selection__attach_tie_spanner_to_leaf_pair_01():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 ~
             c'8
             c'8
@@ -26,7 +27,8 @@ def test_scoretools_Selection__attach_tie_spanner_to_leaf_pair_01():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 ~
             c'8 ~
             c'8
@@ -50,7 +52,8 @@ def test_scoretools_Selection__attach_tie_spanner_to_leaf_pair_02():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 ~
             c'8
             c'8 ~
@@ -65,7 +68,8 @@ def test_scoretools_Selection__attach_tie_spanner_to_leaf_pair_02():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 ~
             c'8 ~
             c'8 ~
@@ -88,7 +92,8 @@ def test_scoretools_Selection__attach_tie_spanner_to_leaf_pair_03():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8
             c'8 ~
             c'8

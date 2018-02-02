@@ -19,7 +19,8 @@ class BarLine(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'4
                 d'4
                 e'4

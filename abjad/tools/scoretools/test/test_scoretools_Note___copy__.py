@@ -123,7 +123,8 @@ def test_scoretools_Note___copy___06():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \grace {
                 d'16
             }
@@ -157,7 +158,8 @@ def test_scoretools_Note___copy___07():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 \<
             cs'8
             d'8
@@ -175,7 +177,8 @@ def test_scoretools_Note___copy___07():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 \<
             cs'8
             d'8

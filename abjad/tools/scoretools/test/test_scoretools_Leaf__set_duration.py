@@ -11,7 +11,8 @@ def test_scoretools_Leaf__set_duration_01():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8 ]
             e'8
@@ -24,7 +25,8 @@ def test_scoretools_Leaf__set_duration_01():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8 ~
             d'32 ]
@@ -49,7 +51,8 @@ def test_scoretools_Leaf__set_duration_02():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 ~ [
             c'8 ]
             c'8
@@ -62,7 +65,8 @@ def test_scoretools_Leaf__set_duration_02():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 ~ [
             c'8 ~
             c'32 ]
@@ -86,7 +90,8 @@ def test_scoretools_Leaf__set_duration_03():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8 ]
             e'8
@@ -99,7 +104,8 @@ def test_scoretools_Leaf__set_duration_03():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8. ]
             e'8
@@ -122,7 +128,8 @@ def test_scoretools_Leaf__set_duration_04():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8 ]
             e'8
@@ -135,7 +142,8 @@ def test_scoretools_Leaf__set_duration_04():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
@@ -162,7 +170,8 @@ def test_scoretools_Leaf__set_duration_05():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8 ]
             e'8
@@ -175,7 +184,8 @@ def test_scoretools_Leaf__set_duration_05():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
@@ -285,7 +295,8 @@ def test_scoretools_Leaf__set_duration_11():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             r8
             e'8 ]
@@ -298,7 +309,8 @@ def test_scoretools_Leaf__set_duration_11():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             r8
             r32

@@ -14,11 +14,13 @@ def test_scoretools_Container___copy___01():
     assert format(container_1) == abjad.String.normalize(
         r'''
         <<
-            \new Voice {
+            \new Voice
+            {
                 c'8
                 d'8
             }
-            \new Voice {
+            \new Voice
+            {
                 c''8
                 b'8
             }

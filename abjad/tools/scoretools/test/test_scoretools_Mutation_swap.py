@@ -14,7 +14,8 @@ def test_scoretools_Mutation_swap_01():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [
                 d'8
@@ -36,7 +37,8 @@ def test_scoretools_Mutation_swap_01():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             \tweak text #tuplet-number::calc-fraction-text
             \times 3/4 {
                 c'8 [
@@ -69,7 +71,8 @@ def test_scoretools_Mutation_swap_02():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \context Voice = "foo" {
+        \context Voice = "foo"
+        {
             {
                 c'8 [ \glissando
                 d'8 \glissando
@@ -92,12 +95,14 @@ def test_scoretools_Mutation_swap_02():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \context Voice = "foo" {
+        \context Voice = "foo"
+        {
             {
                 c'8 [ \glissando
                 d'8 \glissando
             }
-            \context Voice = "foo" {
+            \context Voice = "foo"
+            {
                 e'8 \glissando
                 f'8 \glissando
             }
@@ -125,7 +130,8 @@ def test_scoretools_Mutation_swap_03():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [ \glissando
                 d'8 \glissando
@@ -148,7 +154,8 @@ def test_scoretools_Mutation_swap_03():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [ \glissando
                 d'8 \glissando
@@ -209,7 +216,8 @@ def test_scoretools_Mutation_swap_06():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [
                 d'8
@@ -239,13 +247,13 @@ def test_scoretools_Mutation_swap_07():
 
     assert format(measure) == abjad.String.normalize(
         r'''
-        { % measure
+        {   % measure
             \time 4/8
             c'8
             d'8
             e'8
             f'8
-        } % measure
+        }   % measure
         '''
         )
 
@@ -254,13 +262,13 @@ def test_scoretools_Mutation_swap_07():
 
     assert format(new_measure) == abjad.String.normalize(
         r'''
-        { % measure
+        {   % measure
             \time 4/8
             c'8
             d'8
             e'8
             f'8
-        } % measure
+        }   % measure
         '''
         )
 

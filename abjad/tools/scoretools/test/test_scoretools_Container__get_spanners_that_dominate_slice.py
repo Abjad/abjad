@@ -13,7 +13,8 @@ def test_scoretools_Container__get_spanners_that_dominate_slice_01():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [ \glissando
             d'8 ] \glissando
             e'8 \glissando
@@ -40,7 +41,8 @@ def test_scoretools_Container__get_spanners_that_dominate_slice_02():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [ \glissando
             d'8 ] \glissando
             e'8 \glissando
@@ -68,7 +70,8 @@ def test_scoretools_Container__get_spanners_that_dominate_slice_03():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [ \glissando
             d'8 ] \glissando
             e'8 \glissando

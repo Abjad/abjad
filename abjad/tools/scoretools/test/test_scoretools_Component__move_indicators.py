@@ -7,7 +7,8 @@ def test_scoretools_Component__move_indicators_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \clef "bass"
             c4 -\staccato
             d4
@@ -26,7 +27,8 @@ def test_scoretools_Component__move_indicators_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c4
             d4
             \clef "bass"

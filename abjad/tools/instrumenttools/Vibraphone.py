@@ -14,7 +14,8 @@ class Vibraphone(Instrument):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \set Staff.instrumentName = \markup { Vibraphone }
                 \set Staff.shortInstrumentName = \markup { Vibr. }
                 c'4

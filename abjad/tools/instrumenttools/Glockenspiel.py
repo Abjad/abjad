@@ -14,7 +14,8 @@ class Glockenspiel(Instrument):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \set Staff.instrumentName = \markup { Glockenspiel }
                 \set Staff.shortInstrumentName = \markup { Gkspl. }
                 c'4

@@ -16,28 +16,38 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
         ..  docs::
 
             >>> abjad.f(template_1.__illustrate__()[abjad.Score])
-            \context Score = "Grouped Rhythmic Staves Score" <<
-                \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
-                    \context RhythmicStaff = "Staff 1" {
-                        \context Voice = "Voice 1" {
+            \context Score = "Grouped Rhythmic Staves Score"
+            <<
+                \context StaffGroup = "Grouped Rhythmic Staves Staff Group"
+                <<
+                    \context RhythmicStaff = "Staff 1"
+                    {
+                        \context Voice = "Voice 1"
+                        {
                             \clef "percussion" %! ST3
                             s1
                         }
                     }
-                    \context RhythmicStaff = "Staff 2" {
-                        \context Voice = "Voice 2" {
+                    \context RhythmicStaff = "Staff 2"
+                    {
+                        \context Voice = "Voice 2"
+                        {
                             \clef "percussion" %! ST3
                             s1
                         }
                     }
-                    \context RhythmicStaff = "Staff 3" {
-                        \context Voice = "Voice 3" {
+                    \context RhythmicStaff = "Staff 3"
+                    {
+                        \context Voice = "Voice 3"
+                        {
                             \clef "percussion" %! ST3
                             s1
                         }
                     }
-                    \context RhythmicStaff = "Staff 4" {
-                        \context Voice = "Voice 4" {
+                    \context RhythmicStaff = "Staff 4"
+                    {
+                        \context Voice = "Voice 4"
+                        {
                             \clef "percussion" %! ST3
                             s1
                         }
@@ -49,22 +59,32 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
         >>> abjad.show(score) # doctest: +SKIP
 
         >>> abjad.f(score)
-        \context Score = "Grouped Rhythmic Staves Score" <<
-            \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
-                \context RhythmicStaff = "Staff 1" {
-                    \context Voice = "Voice 1" {
+        \context Score = "Grouped Rhythmic Staves Score"
+        <<
+            \context StaffGroup = "Grouped Rhythmic Staves Staff Group"
+            <<
+                \context RhythmicStaff = "Staff 1"
+                {
+                    \context Voice = "Voice 1"
+                    {
                     }
                 }
-                \context RhythmicStaff = "Staff 2" {
-                    \context Voice = "Voice 2" {
+                \context RhythmicStaff = "Staff 2"
+                {
+                    \context Voice = "Voice 2"
+                    {
                     }
                 }
-                \context RhythmicStaff = "Staff 3" {
-                    \context Voice = "Voice 3" {
+                \context RhythmicStaff = "Staff 3"
+                {
+                    \context Voice = "Voice 3"
+                    {
                     }
                 }
-                \context RhythmicStaff = "Staff 4" {
-                    \context Voice = "Voice 4" {
+                \context RhythmicStaff = "Staff 4"
+                {
+                    \context Voice = "Voice 4"
+                    {
                     }
                 }
             >>
@@ -80,26 +100,36 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
         ..  docs::
 
             >>> abjad.f(template_2.__illustrate__()[abjad.Score])
-            \context Score = "Grouped Rhythmic Staves Score" <<
-                \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
-                    \context RhythmicStaff = "Staff 1" <<
-                        \context Voice = "Voice 1-1" {
+            \context Score = "Grouped Rhythmic Staves Score"
+            <<
+                \context StaffGroup = "Grouped Rhythmic Staves Staff Group"
+                <<
+                    \context RhythmicStaff = "Staff 1"
+                    <<
+                        \context Voice = "Voice 1-1"
+                        {
                             s1
                         }
-                        \context Voice = "Voice 1-2" {
+                        \context Voice = "Voice 1-2"
+                        {
                             s1
                         }
                     >>
-                    \context RhythmicStaff = "Staff 2" {
-                        \context Voice = "Voice 2" {
+                    \context RhythmicStaff = "Staff 2"
+                    {
+                        \context Voice = "Voice 2"
+                        {
                             s1
                         }
                     }
-                    \context RhythmicStaff = "Staff 3" <<
-                        \context Voice = "Voice 3-1" {
+                    \context RhythmicStaff = "Staff 3"
+                    <<
+                        \context Voice = "Voice 3-1"
+                        {
                             s1
                         }
-                        \context Voice = "Voice 3-2" {
+                        \context Voice = "Voice 3-2"
+                        {
                             s1
                         }
                     >>
@@ -110,22 +140,32 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
         >>> abjad.show(score) # doctest: +SKIP
 
         >>> abjad.f(score)
-        \context Score = "Grouped Rhythmic Staves Score" <<
-            \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
-                \context RhythmicStaff = "Staff 1" <<
-                    \context Voice = "Voice 1-1" {
+        \context Score = "Grouped Rhythmic Staves Score"
+        <<
+            \context StaffGroup = "Grouped Rhythmic Staves Staff Group"
+            <<
+                \context RhythmicStaff = "Staff 1"
+                <<
+                    \context Voice = "Voice 1-1"
+                    {
                     }
-                    \context Voice = "Voice 1-2" {
+                    \context Voice = "Voice 1-2"
+                    {
                     }
                 >>
-                \context RhythmicStaff = "Staff 2" {
-                    \context Voice = "Voice 2" {
+                \context RhythmicStaff = "Staff 2"
+                {
+                    \context Voice = "Voice 2"
+                    {
                     }
                 }
-                \context RhythmicStaff = "Staff 3" <<
-                    \context Voice = "Voice 3-1" {
+                \context RhythmicStaff = "Staff 3"
+                <<
+                    \context Voice = "Voice 3-1"
+                    {
                     }
-                    \context Voice = "Voice 3-2" {
+                    \context Voice = "Voice 3-2"
+                    {
                     }
                 >>
             >>

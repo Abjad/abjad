@@ -21,15 +21,18 @@ class StaffChange(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff_group)
-            \new PianoStaff <<
-                \context Staff = "RHStaff" {
+            \new PianoStaff
+            <<
+                \context Staff = "RHStaff"
+                {
                     c'8
                     d'8
                     \change Staff = LHStaff
                     e'8
                     f'8
                 }
-                \context Staff = "LHStaff" {
+                \context Staff = "LHStaff"
+                {
                     s2
                 }
             >>

@@ -14,7 +14,8 @@ class Flute(Instrument):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \set Staff.instrumentName = \markup { Flute }
                 \set Staff.shortInstrumentName = \markup { Fl. }
                 c'4
@@ -36,7 +37,8 @@ class Flute(Instrument):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
-        \new Staff {
+        \new Staff
+        {
             \set Staff.instrumentName = \markup {      %! RED:M1
                 \italic                                %! RED:M1
                     Flauto                             %! RED:M1
@@ -61,7 +63,8 @@ class Flute(Instrument):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
-        \new Staff {
+        \new Staff
+        {
             c'4
             d'4
             e'4

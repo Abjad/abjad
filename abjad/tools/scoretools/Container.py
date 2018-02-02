@@ -1,6 +1,15 @@
 import collections
-from abjad.tools.exceptiontools import ParentageError
+from typing import Optional
+from typing import Union
 from .Component import Component
+from .Selection import Selection
+from abjad.tools.datastructuretools import Left
+from abjad.tools.datastructuretools import Right
+from abjad.tools.datastructuretools.Duration import Duration
+from abjad.tools.exceptiontools.ParentageError import ParentageError
+from abjad.tools.topleveltools.inspect import inspect
+from abjad.tools.topleveltools.iterate import iterate
+from abjad.tools.topleveltools.select import select
 
 
 class Container(Component):
@@ -130,7 +139,8 @@ class Container(Component):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
-        \new Staff {
+        \new Staff
+        {
             c'4 :16 -\marcato ^ \markup { Allegro }
             d'4
             e'4
@@ -141,7 +151,8 @@ class Container(Component):
         comment-tag output line right ends:
 
         >>> abjad.f(staff, strict=True)
-        \new Staff {
+        \new Staff
+        {
             c'4
             :16
             -\marcato
@@ -158,6 +169,7 @@ class Container(Component):
     __documentation_section__ = 'Containers'
 
     __slots__ = (
+        '_identifier',
         '_components',
         '_formatter',
         '_named_children',
@@ -165,28 +177,31 @@ class Container(Component):
         '_is_simultaneous',
         )
 
-    _bracket_comment = ''
-
     ### INITIALIZER ###
 
-    def __init__(self, components=None, is_simultaneous=None, name=None):
+    def __init__(
+        self,
+        components=None,
+        identifier: str = None,
+        is_simultaneous: bool = None,
+        name: str = None,
+        ) -> None:
         components = components or []
         Component.__init__(self)
-        self._named_children = {}
-        self._is_simultaneous = None
+        self._named_children: dict = {}
+        self._is_simultaneous: bool = None
         self._initialize_components(components)
+        self.identifier = identifier
         self.is_simultaneous = is_simultaneous
-        self._name = None
-        if name is not None:
-            self.name = name  # name must be setup *after* parent
+        # NOTE: name must be set up *after* parent
+        self._name: str = None
+        self.name = name
 
     ### SPECIAL METHODS ###
 
-    def __contains__(self, argument):
+    def __contains__(self, argument) -> bool:
         r'''Is true when `argument` appears in container.
         Otherwise false.
-
-        Returns true or false.
         '''
         if isinstance(argument, str):
             return argument in self._named_children
@@ -214,7 +229,8 @@ class Container(Component):
             ..  docs::
 
                 >>> abjad.f(voice)
-                \new Voice {
+                \new Voice
+                {
                     \times 2/3 {
                         c'4 (
                         d'4
@@ -237,7 +253,8 @@ class Container(Component):
             ..  docs::
 
                 >>> abjad.f(voice)
-                \new Voice {
+                \new Voice
+                {
                     \times 2/3 {
                         e'4 (
                         d'4
@@ -270,28 +287,24 @@ class Container(Component):
 
         Returns none.
         '''
-        import abjad
         components = self[i]
-        if not isinstance(components, abjad.Selection):
-            components = abjad.select([components])
+        if not isinstance(components, Selection):
+            components = select([components])
         if not self.is_simultaneous:
             components._withdraw_from_crossing_spanners()
         components._set_parents(None)
 
-    def __getitem__(self, argument):
+    def __getitem__(self, argument) -> Union[Component, Selection]:
         r'''Gets item or slice identified by `argument`.
 
         Traverses top-level items only.
-
-        Returns component.
         '''
-        import abjad
         if isinstance(argument, int):
             return self.components.__getitem__(argument)
         elif isinstance(argument, slice) and not self.is_simultaneous:
-            return abjad.select(self.components.__getitem__(argument))
+            return select(self.components.__getitem__(argument))
         elif isinstance(argument, slice) and self.is_simultaneous:
-            return abjad.select(self.components.__getitem__(argument))
+            return select(self.components.__getitem__(argument))
         elif isinstance(argument, str):
             if argument not in self._named_children:
                 message = 'can not find component named {!r}.'
@@ -306,12 +319,10 @@ class Container(Component):
         message = message.format(argument)
         raise ValueError(message)
 
-    def __getnewargs__(self):
+    def __getnewargs__(self) -> tuple:
         r'''Gets new container arguments.
-
-        Returns tuple.
         '''
-        return [], self.is_simultaneous, self.name
+        return [], self.identifier, self.is_simultaneous, self.name
 
     def __graph__(self, spanner=None, **keywords):
         r'''Graphviz graph representation of container.
@@ -323,7 +334,7 @@ class Container(Component):
             component_node = component._as_graphviz_node()
             node_mapping[component] = component_node
             node_order = [component_node.name]
-            if isinstance(component, abjad.Container):
+            if isinstance(component, Container):
                 graph.append(component_node)
                 this_leaf_cluster = abjad.graphtools.GraphvizSubgraph(
                     name=component_node.name,
@@ -427,21 +438,17 @@ class Container(Component):
         '''
         return iter(self.components)
 
-    def __len__(self):
+    def __len__(self) -> int:
         r'''Gets number of components in container.
-
-        Returns nonnegative integer.
         '''
         return len(self.components)
 
-    def __setitem__(self, i, argument):
+    def __setitem__(self, i, argument) -> None:
         r'''Sets container `i` equal to `argument`.
         Finds spanners that dominate self[i] and children of self[i].
         Replaces contents at self[i] with 'argument'.
         Reattaches spanners to new contents.
         Always leaves score tree in tact.
-
-        Returns none.
         '''
         if isinstance(argument, str):
             argument = self._parse_string(argument)
@@ -454,11 +461,10 @@ class Container(Component):
 
     @staticmethod
     def _all_are_orphan_components(argument):
-        import abjad
         for component in argument:
-            if not isinstance(component, abjad.Component):
+            if not isinstance(component, Component):
                 return False
-            if not abjad.inspect(component).get_parentage().is_orphan:
+            if not inspect(component).get_parentage().is_orphan:
                 return False
         return True
 
@@ -495,8 +501,7 @@ class Container(Component):
         return new_container
 
     def _eject_contents(self):
-        import abjad
-        if abjad.inspect(self).get_parentage().parent is not None:
+        if inspect(self).get_parentage().parent is not None:
             message = 'can not eject contents of in-score container.'
             raise Exception(message)
         contents = self[:]
@@ -520,9 +525,15 @@ class Container(Component):
     def _format_close_brackets_slot(self, bundle):
         result = []
         if self.is_simultaneous:
-            brackets_close = ['>>' + self._bracket_comment]
+            if self.identifier:
+                brackets_close = [f'>>  {self.identifier}']
+            else:
+                brackets_close = ['>>']
         else:
-            brackets_close = ['}' + self._bracket_comment]
+            if self.identifier:
+                brackets_close = [f'}}   {self.identifier}']
+            else:
+                brackets_close = ['}']
         result.append([('close brackets', ''), brackets_close])
         return tuple(result)
 
@@ -564,9 +575,15 @@ class Container(Component):
     def _format_open_brackets_slot(self, bundle):
         result = []
         if self.is_simultaneous:
-            brackets_open = ['<<' + self._bracket_comment]
+            if self.identifier:
+                brackets_open = [f'<<  {self.identifier}']
+            else:
+                brackets_open = ['<<']
         else:
-            brackets_open = ['{' + self._bracket_comment]
+            if self.identifier:
+                brackets_open = [f'{{   {self.identifier}']
+            else:
+                brackets_open = ['{']
         result.append([('open brackets', ''), brackets_open])
         return tuple(result)
 
@@ -626,14 +643,13 @@ class Container(Component):
         return '{{ {} }}'.format(self._get_contents_summary())
 
     def _get_contents_duration(self):
-        import abjad
         if self.is_simultaneous:
             return max(
-                [abjad.Duration(0)] +
+                [Duration(0)] +
                 [x._get_preprolated_duration() for x in self]
                 )
         else:
-            duration = abjad.Duration(0)
+            duration = Duration(0)
             for x in self:
                 duration += x._get_preprolated_duration()
             return duration
@@ -653,15 +669,14 @@ class Container(Component):
             return ''
 
     def _get_duration_in_seconds(self):
-        import abjad
         if self.is_simultaneous:
             return max(
-                [abjad.Duration(0)] +
+                [Duration(0)] +
                 [x._get_duration(in_seconds=True) for x in self]
                 )
         else:
-            duration = abjad.Duration(0)
-            for leaf in abjad.iterate(self).leaves():
+            duration = Duration(0)
+            for leaf in iterate(self).leaves():
                 duration += leaf._get_duration(in_seconds=True)
             return duration
 
@@ -708,18 +723,17 @@ class Container(Component):
         This version is useful for finding spanners that dominant
         a zero-length slice between components, as in staff[2:2].
         '''
-        import abjad
         if left is None or right is None:
             return set([])
-        left_descendants = abjad.inspect(left).get_descendants()
-        left_contained = abjad.inspect(left_descendants).get_spanners()
-        right_descendants = abjad.inspect(right).get_descendants()
-        right_contained = abjad.inspect(right_descendants).get_spanners()
+        left_descendants = inspect(left).get_descendants()
+        left_contained = inspect(left_descendants).get_spanners()
+        right_descendants = inspect(right).get_descendants()
+        right_contained = inspect(right_descendants).get_spanners()
         dominant_spanners = set(left_contained) & set(right_contained)
-        right_start_offset = abjad.inspect(right).get_timespan().start_offset
+        right_start_offset = inspect(right).get_timespan().start_offset
         components_after_gap = []
-        for component in abjad.inspect(right).get_lineage():
-            if abjad.inspect(component).get_timespan().start_offset == right_start_offset:
+        for component in inspect(right).get_lineage():
+            if inspect(component).get_timespan().start_offset == right_start_offset:
                 components_after_gap.append(component)
         receipt = set([])
         for spanner in dominant_spanners:
@@ -771,24 +785,21 @@ class Container(Component):
             print(selection)
 
     def _initialize_components(self, components):
-        import abjad
         if (isinstance(components, collections.Iterable) and
             not isinstance(components, str)):
             components_ = []
             for item in components:
-                if isinstance(item, abjad.Selection):
+                if isinstance(item, Selection):
                     components_.extend(item)
                 elif isinstance(item, str):
                     parsed = self._parse_string(item)
                     components_.append(parsed)
                 else:
                     components_.append(item)
-            #assert all(isinstance(_, abjad.Component) for _ in components_)
             components = components_
             for component in components:
-                if not isinstance(component, abjad.Component):
-                    message = 'must be component: {!r}.'
-                    message = message.format(component)
+                if not isinstance(component, Component):
+                    message = f'must be component: {component!r}.'
                     raise Exception(component)
         if self._all_are_orphan_components(components):
             self._components = list(components)
@@ -799,7 +810,7 @@ class Container(Component):
             self.is_simultaneous = parsed.is_simultaneous
             if (
                 parsed.is_simultaneous or
-                not abjad.select(parsed[:]).are_contiguous_logical_voice()
+                not select(parsed[:]).are_contiguous_logical_voice()
                 ):
                 while len(parsed):
                     self.append(parsed.pop(0))
@@ -838,16 +849,15 @@ class Container(Component):
         import abjad
         for component in self:
             if isinstance(component, abjad.Leaf):
-                ties = abjad.inspect(component).get_spanners(abjad.Tie)
+                ties = inspect(component).get_spanners(abjad.Tie)
                 if not ties or tuple(ties)[0].leaves[-1] is component:
-                    yield abjad.inspect(component).get_logical_tie()
+                    yield inspect(component).get_logical_tie()
             else:
                 assert isinstance(component, abjad.Container)
                 yield component
 
     def _move_spanners_to_children(self):
-        import abjad
-        for spanner in abjad.inspect(self).get_spanners():
+        for spanner in inspect(self).get_spanners():
             i = spanner._index(self)
             spanner._components.__setitem__(slice(i, i + 1), self[:])
             for component in self:
@@ -862,7 +872,7 @@ class Container(Component):
             parser = abjad.lilypondparsertools.ReducedLyParser()
             parsed = parser(user_input[4:])
             if parser._toplevel_component_count == 1:
-                parent = abjad.inspect(parsed).get_parentage().parent
+                parent = inspect(parsed).get_parentage().parent
                 if parent is None:
                     parsed = Container([parsed])
                 else:
@@ -913,18 +923,18 @@ class Container(Component):
         import abjad
         argument_indicators = []
         for component in abjad.iterate(argument).components():
-            wrappers = abjad.inspect(component).wrappers()
+            wrappers = inspect(component).wrappers()
             argument_indicators.extend(wrappers)
         if isinstance(i, int):
             argument = [argument]
             if i < 0:
                 i = len(self) + i
             i = slice(i, i + 1)
-        prototype = (abjad.Component, abjad.Selection)
+        prototype = (Component, Selection)
         assert all(isinstance(_, prototype) for _ in argument)
         new_argument = []
         for item in argument:
-            if isinstance(item, abjad.Selection):
+            if isinstance(item, Selection):
                 new_argument.extend(item)
             else:
                 new_argument.append(item)
@@ -946,13 +956,13 @@ class Container(Component):
         spanners_receipt = self._get_spanners_that_dominate_slice(start, stop)
         for component in old_components:
             for child in abjad.iterate([component]).components():
-                for spanner in abjad.inspect(child).get_spanners():
+                for spanner in inspect(child).get_spanners():
                     spanner._remove(child)
         del(self[start:stop])
         # must withdraw before setting in self!
         # otherwise circular withdraw ensues!
         if withdraw_components_from_crossing_spanners:
-            selection = abjad.select(argument)
+            selection = select(argument)
             if selection.are_contiguous_logical_voice():
                 selection._withdraw_from_crossing_spanners()
         self._components.__setitem__(slice(start, start), argument)
@@ -961,7 +971,7 @@ class Container(Component):
         for spanner, index in spanners_receipt:
             for component in reversed(argument):
                 # attach spanners only to leaves
-                leaves = abjad.select(component).leaves()
+                leaves = select(component).leaves()
                 for leaf in reversed(leaves):
                     spanner._insert(index, leaf)
                     leaf._spanners.add(spanner)
@@ -1019,7 +1029,7 @@ class Container(Component):
         # give my attached spanners to my children
         self._move_spanners_to_children()
         # incorporate left and right parents in score if possible
-        selection = abjad.select(self)
+        selection = select(self)
         parent, start, stop = selection._get_parent_and_start_stop_indices()
         if parent is not None:
             parent._components.__setitem__(slice(start, stop + 1), nonempty_halves)
@@ -1030,9 +1040,9 @@ class Container(Component):
             right._set_parent(None)
         # fracture spanners if requested
         if fracture_spanners:
-            for spanner in abjad.inspect(left).get_spanners():
+            for spanner in inspect(left).get_spanners():
                 index = spanner._index(left)
-                spanner._fracture(index, direction=abjad.Right)
+                spanner._fracture(index, direction=Right)
         # return new left and right containers
         return halves
 
@@ -1052,19 +1062,19 @@ class Container(Component):
                 repeat_ties=repeat_ties,
                 )
         # check input
-        duration = abjad.Duration(duration)
+        duration = Duration(duration)
         assert 0 <= duration, repr(duration)
         # if zero duration then return empty list and self
         if duration == 0:
             return [], self
         # get split point score offset
-        timespan = abjad.inspect(self).get_timespan()
+        timespan = inspect(self).get_timespan()
         global_split_point = timespan.start_offset + duration
         # get any duration-crossing descendents
         cross_offset = timespan.start_offset + duration
         duration_crossing_descendants = []
-        for descendant in abjad.inspect(self).get_descendants():
-            timespan = abjad.inspect(descendant).get_timespan()
+        for descendant in inspect(self).get_descendants():
+            timespan = inspect(descendant).get_timespan()
             start_offset = timespan.start_offset
             stop_offset = timespan.stop_offset
             if start_offset < cross_offset < stop_offset:
@@ -1080,7 +1090,7 @@ class Container(Component):
         # code that crawls and splits later on will be happier
         if len(measures) == 1:
             measure = measures[0]
-            timespan = abjad.inspect(measure).get_timespan()
+            timespan = inspect(measure).get_timespan()
             start_offset = timespan.start_offset
             split_point_in_measure = global_split_point - start_offset
             if measure.has_non_power_of_two_denominator:
@@ -1097,11 +1107,11 @@ class Container(Component):
                     non_power_of_two_product *= non_power_of_two_factor
                 measure._scale_denominator(non_power_of_two_product)
                 # rederive duration crossers with possibly new measure contents
-                timespan = abjad.inspect(self).get_timespan()
+                timespan = inspect(self).get_timespan()
                 cross_offset = timespan.start_offset + duration
                 duration_crossing_descendants = []
-                for descendant in abjad.inspect(self).get_descendants():
-                    timespan = abjad.inspect(descendant).get_timespan()
+                for descendant in inspect(self).get_descendants():
+                    timespan = inspect(descendant).get_timespan()
                     start_offset = timespan.start_offset
                     stop_offset = timespan.stop_offset
                     if start_offset < cross_offset < stop_offset:
@@ -1116,7 +1126,7 @@ class Container(Component):
         if isinstance(bottom, abjad.Leaf):
             assert isinstance(bottom, abjad.Leaf)
             did_split_leaf = True
-            timespan = abjad.inspect(bottom).get_timespan()
+            timespan = inspect(bottom).get_timespan()
             start_offset = timespan.start_offset
             split_point_in_bottom = global_split_point - start_offset
             left_list, right_list = bottom._split_by_durations(
@@ -1137,10 +1147,10 @@ class Container(Component):
         else:
             duration_crossing_containers = duration_crossing_descendants[:]
             for leaf in abjad.iterate(bottom).leaves():
-                timespan = abjad.inspect(leaf).get_timespan()
+                timespan = inspect(leaf).get_timespan()
                 if timespan.start_offset == global_split_point:
                     leaf_right_of_split = leaf
-                    leaf_left_of_split = abjad.inspect(leaf).get_leaf(-1)
+                    leaf_left_of_split = inspect(leaf).get_leaf(-1)
                     break
             else:
                 message = 'can not split empty container {!r}.'
@@ -1150,10 +1160,10 @@ class Container(Component):
         assert leaf_right_of_split is not None
         # find component to right of split
         # that is also immediate child of last duration-crossing container
-        agent = abjad.inspect(leaf_right_of_split)
+        agent = inspect(leaf_right_of_split)
         parentage = agent.get_parentage(include_self=True)
         for component in parentage:
-            parent = abjad.inspect(component).get_parentage().parent
+            parent = inspect(component).get_parentage().parent
             if parent is duration_crossing_containers[-1]:
                 highest_level_component_right_of_split = component
                 break
@@ -1163,14 +1173,14 @@ class Container(Component):
         # crawl back up through duration-crossing containers
         # and fracture spanners if requested
         if fracture_spanners:
-            agent = abjad.inspect(leaf_right_of_split)
+            agent = inspect(leaf_right_of_split)
             start_offset = agent.get_timespan().start_offset
             for parent in agent.get_parentage():
-                timespan = abjad.inspect(parent).get_timespan()
+                timespan = inspect(parent).get_timespan()
                 if timespan.start_offset == start_offset:
-                    for spanner in abjad.inspect(parent).get_spanners():
+                    for spanner in inspect(parent).get_spanners():
                         index = spanner._index(parent)
-                        spanner._fracture(index, direction=abjad.Left)
+                        spanner._fracture(index, direction=Left)
                 if parent is component:
                     break
         # crawl back up through duration-crossing containers and split each
@@ -1186,8 +1196,8 @@ class Container(Component):
         # NOTE: If logical tie here is convenience, then fusing is good.
         #       If logical tie here is user-given, then fusing is less good.
         #       Maybe later model difference between user logical ties and not.
-        left_logical_tie = abjad.inspect(leaf_left_of_split).get_logical_tie()
-        right_logical_tie = abjad.inspect(leaf_right_of_split).get_logical_tie()
+        left_logical_tie = inspect(leaf_left_of_split).get_logical_tie()
+        right_logical_tie = inspect(leaf_right_of_split).get_logical_tie()
         left_logical_tie._fuse_leaves_by_immediate_parent()
         right_logical_tie._fuse_leaves_by_immediate_parent()
         # reapply tie here if crawl above killed tie applied to leaves
@@ -1197,14 +1207,14 @@ class Container(Component):
                 isinstance(leaf_left_of_split, abjad.Note)
                 ):
                 if (
-                    abjad.inspect(leaf_left_of_split).get_parentage().root is
-                    abjad.inspect(leaf_right_of_split).get_parentage().root
+                    inspect(leaf_left_of_split).get_parentage().root is
+                    inspect(leaf_right_of_split).get_parentage().root
                     ):
                     leaves_around_split = (
                         leaf_left_of_split,
                         leaf_right_of_split,
                         )
-                    selection = abjad.select(leaves_around_split)
+                    selection = select(leaves_around_split)
                     selection._attach_tie_spanner_to_leaf_pair(
                         repeat_ties=repeat_ties,
                         )
@@ -1231,14 +1241,14 @@ class Container(Component):
             left_components_, right_components_ = halves
             left_components.extend(left_components_)
             right_components.extend(right_components_)
-        left_components = abjad.select(left_components)
-        right_components = abjad.select(right_components)
+        left_components = select(left_components)
+        right_components = select(right_components)
         left_container = self.__copy__()
         right_container = self.__copy__()
         left_container.extend(left_components)
         right_container.extend(right_components)
-        if abjad.inspect(self).get_parentage().parent is not None:
-            containers = abjad.select([left_container, right_container])
+        if inspect(self).get_parentage().parent is not None:
+            containers = select([left_container, right_container])
             abjad.mutate(self).replace(containers)
         # return list-wrapped halves of container
         return [left_container], [right_container]
@@ -1246,15 +1256,41 @@ class Container(Component):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def components(self):
+    def components(self) -> tuple:
         r'''Gets components in container.
-        
-        Returns tuple.
         '''
         return self._components
 
     @property
-    def is_simultaneous(self):
+    def identifier(self)  -> str:
+        r'''Gets and sets bracket comment.
+
+        ..  container:: example
+
+            >>> container = abjad.Container(
+            ...     "c'4 d'4 e'4 f'4",
+            ...     identifier='%*% AB',
+            ...     )
+            >>> abjad.show(container) # doctest: +SKIP
+
+            >>> abjad.f(container)
+            {   %*% AB
+                c'4
+                d'4
+                e'4
+                f'4
+            }   %*% AB
+
+        '''
+        return self._identifier
+
+    @identifier.setter
+    def identifier(self, argument):
+        assert isinstance(argument, (str, type(None))), repr(argument)
+        self._identifier: Optional[str] = argument
+
+    @property
+    def is_simultaneous(self) -> bool:
         r'''Is true when container is simultaneous. Otherwise false.
 
         ..  container:: example
@@ -1270,12 +1306,14 @@ class Container(Component):
 
                 >>> abjad.f(container)
                 {
-                    \new Voice {
+                    \new Voice
+                    {
                         c'8
                         d'8
                         e'8
                     }
-                    \new Voice {
+                    \new Voice
+                    {
                         g4.
                     }
                 }
@@ -1296,12 +1334,14 @@ class Container(Component):
 
                 >>> abjad.f(container)
                 {
-                    \new Voice {
+                    \new Voice
+                    {
                         c'8
                         d'8
                         e'8
                     }
-                    \new Voice {
+                    \new Voice
+                    {
                         g4.
                     }
                 }
@@ -1313,12 +1353,14 @@ class Container(Component):
 
                 >>> abjad.f(container)
                 <<
-                    \new Voice {
+                    \new Voice
+                    {
                         c'8
                         d'8
                         e'8
                     }
-                    \new Voice {
+                    \new Voice
+                    {
                         g4.
                     }
                 >>
@@ -1326,8 +1368,6 @@ class Container(Component):
         Defaults to false.
 
         Set to true or false.
-
-        Returns true or false.
         '''
         return self._is_simultaneous
 
@@ -1344,7 +1384,7 @@ class Container(Component):
         self._update_later(offsets=True)
 
     @property
-    def name(self):
+    def name(self) -> str:
         r'''Gets and sets name of container.
 
         ..  container:: example
@@ -1393,17 +1433,14 @@ class Container(Component):
         Defaults to none.
 
         Set to string or none.
-
-        Returns string or none.
         '''
         return self._name
 
     @name.setter
     def name(self, argument):
-        import abjad
         assert isinstance(argument, (str, type(None)))
         old_name = self._name
-        for parent in abjad.inspect(self).get_parentage(include_self=False):
+        for parent in inspect(self).get_parentage(include_self=False):
             named_children = parent._named_children
             if old_name is not None:
                 named_children[old_name].remove(self)
@@ -1418,7 +1455,7 @@ class Container(Component):
 
     ### PUBLIC METHODS ###
 
-    def append(self, component):
+    def append(self, component) -> None:
         r'''Appends `component` to container.
 
         ..  container:: example
@@ -1450,7 +1487,6 @@ class Container(Component):
                     e'4
                 }
 
-        Returns none.
         '''
         if isinstance(component, str):
             selection = self._parse_string(component)
@@ -1458,7 +1494,7 @@ class Container(Component):
             component = selection[0]
         self.__setitem__(slice(len(self), len(self)), [component])
 
-    def extend(self, argument):
+    def extend(self, argument) -> None:
         r'''Extends container with `argument`.
 
         ..  container:: example
@@ -1493,7 +1529,6 @@ class Container(Component):
                     e'16
                 }
 
-        Returns none.
         '''
         if isinstance(argument, str):
             argument = self._parse_string(argument)
@@ -1509,7 +1544,7 @@ class Container(Component):
             argument.__getitem__(slice(0, len(argument)))
             )
 
-    def index(self, component):
+    def index(self, component) -> int:
         r'''Returns index of `component` in container.
 
         ..  container:: example
@@ -1536,7 +1571,6 @@ class Container(Component):
             >>> container.index(note)
             3
 
-        Returns nonnegative integer.
         '''
         for i, element in enumerate(self.components):
             if element is component:
@@ -1546,7 +1580,7 @@ class Container(Component):
             message = message.format(component, self)
             raise ValueError(message)
 
-    def insert(self, i, component, fracture_spanners=False):
+    def insert(self, i, component, fracture_spanners=False) -> None:
         r'''Inserts `component` at index `i` in container.
 
         ..  container:: example
@@ -1653,9 +1687,7 @@ class Container(Component):
                     fs16 )
                 }
 
-        Returns none.
         '''
-        import abjad
         assert isinstance(i, int)
         if isinstance(component, str):
             selection = self._parse_string(component)
@@ -1664,19 +1696,19 @@ class Container(Component):
         if not fracture_spanners:
             self.__setitem__(slice(i, i), [component])
             return
-        assert isinstance(component, abjad.Component)
+        assert isinstance(component, Component)
         component._set_parent(self)
         self._components.insert(i, component)
         previous_leaf = component._get_leaf(-1)
         if previous_leaf:
-            for spanner in abjad.inspect(previous_leaf).get_spanners():
+            for spanner in inspect(previous_leaf).get_spanners():
                 index = spanner._index(previous_leaf)
-                spanner._fracture(index, direction=abjad.Right)
+                spanner._fracture(index, direction=Right)
         next_leaf = component._get_leaf(1)
         if next_leaf:
-            for spanner in abjad.inspect(next_leaf).get_spanners():
+            for spanner in inspect(next_leaf).get_spanners():
                 index = spanner._index(next_leaf)
-                spanner._fracture(index, direction=abjad.Left)
+                spanner._fracture(index, direction=Left)
 
     def pop(self, i=-1):
         r'''Pops component from container at index `i`.
@@ -1717,7 +1749,7 @@ class Container(Component):
         del(self[i])
         return component
 
-    def remove(self, component):
+    def remove(self, component) -> None:
         r'''Removes `component` from container.
 
         ..  container:: example
@@ -1753,7 +1785,6 @@ class Container(Component):
                     e'4
                 }
 
-        Returns none.
         '''
         i = self.index(component)
         del(self[i])

@@ -280,7 +280,8 @@ class Scale(PitchClassSegment):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8
                     d'8
                     e'8
@@ -312,10 +313,14 @@ class Scale(PitchClassSegment):
             ..  docs::
 
                 >>> abjad.f(score)
-                \new Score \with {
+                \new Score
+                \with
+                {
                     tempoWholesPerMinute = #(ly:make-moment 30 1)
-                } <<
-                    \new Staff {
+                }
+                <<
+                    \new Staff
+                    {
                         \key e \major
                         e'8
                         fs'8

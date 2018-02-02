@@ -42,7 +42,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
         )
 
     >>> proxy.as_latex(relative_output_directory='assets')
-    ['\\noindent\\includegraphics{assets/lilypond-9a3d90e80bc733e46a43d1ee30b68fa9.pdf}']
+    ['\\noindent\\includegraphics{assets/lilypond-d68b813dd2ff6ac422fcdfb7a6b5f3a2.pdf}']
 
     """
 

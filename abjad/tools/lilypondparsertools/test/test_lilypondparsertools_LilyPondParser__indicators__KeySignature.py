@@ -9,7 +9,8 @@ def test_lilypondparsertools_LilyPondParser__indicators__KeySignature_01():
 
     assert format(target) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \key g \major
             fs'1
         }

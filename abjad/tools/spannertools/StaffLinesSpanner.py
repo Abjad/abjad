@@ -14,7 +14,8 @@ class StaffLinesSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'8
                 \stopStaff
                 \once \override Staff.StaffSymbol.line-count = 1
@@ -121,7 +122,8 @@ class StaffLinesSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \stopStaff
                 \once \override Staff.StaffSymbol.line-count = 1
                 \startStaff

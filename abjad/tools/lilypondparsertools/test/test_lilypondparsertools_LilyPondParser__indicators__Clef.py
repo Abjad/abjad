@@ -9,7 +9,8 @@ def test_lilypondparsertools_LilyPondParser__indicators__Clef_01():
 
     assert format(target) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \clef "bass"
             c'1
         }

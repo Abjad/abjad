@@ -33,7 +33,8 @@ class Staccatissimo(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'8 [
                 d'8
                 e'8

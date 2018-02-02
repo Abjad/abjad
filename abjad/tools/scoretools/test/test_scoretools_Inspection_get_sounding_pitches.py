@@ -10,7 +10,8 @@ def test_scoretools_Inspection_get_sounding_pitches_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \set Staff.instrumentName = \markup { Glockenspiel }
             \set Staff.shortInstrumentName = \markup { Gkspl. }
             <c' e'>4

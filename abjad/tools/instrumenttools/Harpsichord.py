@@ -20,8 +20,10 @@ class Harpsichord(Instrument):
         ..  docs::
 
             >>> abjad.f(staff_group)
-            \new PianoStaff <<
-                \new Staff {
+            \new PianoStaff
+            <<
+                \new Staff
+                {
                     \set PianoStaff.instrumentName = \markup { Harpsichord }
                     \set PianoStaff.shortInstrumentName = \markup { Hpschd. }
                     c'4
@@ -29,7 +31,8 @@ class Harpsichord(Instrument):
                     e'4
                     f'4
                 }
-                \new Staff {
+                \new Staff
+                {
                     \clef "bass"
                     c'2
                     b2

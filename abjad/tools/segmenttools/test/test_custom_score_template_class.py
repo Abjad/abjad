@@ -28,9 +28,12 @@ def test_custom_score_template_class_01():
 
     assert format(score) == abjad.String.normalize(
         r'''
-        \context Score = "Green Score" <<
-            \context Staff = "Red Staff" {
-                \context Voice = "Blue Voice" {
+        \context Score = "Green Score"
+        <<
+            \context Staff = "Red Staff"
+            {
+                \context Voice = "Blue Voice"
+                {
                 }
             }
         >>
@@ -66,9 +69,12 @@ def test_custom_score_template_class_02():
 
     assert format(score) == abjad.String.normalize(
         r'''
-        \new Score <<
-            \new CustomStaff {
-                \new CustomVoice {
+        \new Score
+        <<
+            \new CustomStaff
+            {
+                \new CustomVoice
+                {
                 }
             }
         >>
@@ -137,9 +143,12 @@ def test_custom_score_template_class_02():
     assert format(lilypond_file.score_block) == abjad.String.normalize(
         r'''
         \score {
-            \new Score <<
-                \new CustomStaff {
-                    \new CustomVoice {
+            \new Score
+            <<
+                \new CustomStaff
+                {
+                    \new CustomVoice
+                    {
                         c'4 (
                         d'4
                         e'4

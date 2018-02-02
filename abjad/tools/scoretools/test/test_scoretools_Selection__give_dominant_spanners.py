@@ -19,7 +19,8 @@ def test_scoretools_Selection__give_dominant_spanners_01():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [ \<
             d'8 ] (
             e'8 )
@@ -34,7 +35,8 @@ def test_scoretools_Selection__give_dominant_spanners_01():
 
     assert format(recipient) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'16 [
             c'16
             c'16 ]
@@ -49,7 +51,8 @@ def test_scoretools_Selection__give_dominant_spanners_01():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [ \<
             d'8 ]
             e'8
@@ -64,7 +67,8 @@ def test_scoretools_Selection__give_dominant_spanners_01():
 
     assert format(recipient) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'16 [ (
             c'16
             c'16 ] )

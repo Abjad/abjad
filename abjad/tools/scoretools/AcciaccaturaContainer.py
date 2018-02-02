@@ -27,7 +27,8 @@ class AcciaccaturaContainer(GraceContainer):
         ..  docs::
 
             >>> abjad.f(voice)
-            \new Voice {
+            \new Voice
+            {
                 c'4
                 \acciaccatura {
                     c'16

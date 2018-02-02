@@ -11,7 +11,8 @@ def test_spannertools_TextSpanner_position_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \textSpannerNeutral
             c'8 \startTextSpan
             c'8
@@ -32,7 +33,8 @@ def test_spannertools_TextSpanner_position_02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \textSpannerUp
             c'8 \startTextSpan
             c'8
@@ -53,7 +55,8 @@ def test_spannertools_TextSpanner_position_03():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \textSpannerDown
             c'8 \startTextSpan
             c'8

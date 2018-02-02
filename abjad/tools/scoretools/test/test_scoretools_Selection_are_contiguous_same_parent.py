@@ -44,7 +44,8 @@ def test_scoretools_Selection_are_contiguous_same_parent_02():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8
                 d'8

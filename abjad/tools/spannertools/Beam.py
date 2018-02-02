@@ -13,9 +13,12 @@ class Beam(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 autoBeaming = ##f
-            } {
+            }
+            {
                 c'8
                 d'8
                 e'8
@@ -32,9 +35,12 @@ class Beam(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 autoBeaming = ##f
-            } {
+            }
+            {
                 c'8 [
                 d'8 ]
                 e'8 [
@@ -53,9 +59,12 @@ class Beam(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 autoBeaming = ##f
-            } {
+            }
+            {
                 c'8
                 d'8
                 e'8
@@ -70,9 +79,12 @@ class Beam(Spanner):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
-        \new Staff \with {
+        \new Staff
+        \with
+        {
             autoBeaming = ##f
-        } {
+        }
+        {
             c'8 [ %! BEAM
             d'8 ] %! BEAM
             e'8 [
@@ -91,9 +103,12 @@ class Beam(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 autoBeaming = ##f
-            } {
+            }
+            {
                 c'8
                 d'8
                 e'8
@@ -108,9 +123,12 @@ class Beam(Spanner):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
-        \new Staff \with {
+        \new Staff
+        \with
+        {
             autoBeaming = ##f
-        } {
+        }
+        {
             c'8 [ %! M1
             d'8 ] %! M1
             e'8 [
@@ -129,9 +147,12 @@ class Beam(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 autoBeaming = ##f
-            } {
+            }
+            {
                 c'8
                 d'8
                 e'8
@@ -146,9 +167,12 @@ class Beam(Spanner):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
-        \new Staff \with {
+        \new Staff
+        \with
+        {
             autoBeaming = ##f
-        } {
+        }
+        {
             c'8 [ %! BEAM:M1
             d'8 ] %! BEAM:M1
             e'8 [
@@ -345,9 +369,12 @@ class Beam(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new RhythmicStaff \with {
+                \new RhythmicStaff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \override RhythmicStaff.Stem.stemlet-length = 2
                     r8 [
                     c'8

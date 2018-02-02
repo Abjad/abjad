@@ -17,9 +17,12 @@ class MultipartBeam(Beam):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 autoBeaming = ##f
-            } {
+            }
+            {
                 c'8 [
                 d'8 ]
                 e'4
@@ -39,9 +42,12 @@ class MultipartBeam(Beam):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 autoBeaming = ##f
-            } {
+            }
+            {
                 c'8
                 r8
                 d'8
@@ -168,9 +174,12 @@ class MultipartBeam(Beam):
             >>> abjad.show(staff) # doctest: +SKIP
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 autoBeaming = ##f
-            } {
+            }
+            {
                 c'8 [
                 d'8 ]
                 r8
@@ -194,9 +203,12 @@ class MultipartBeam(Beam):
             >>> abjad.show(staff) # doctest: +SKIP
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 autoBeaming = ##f
-            } {
+            }
+            {
                 c'8 [
                 d'8
                 r8
@@ -220,9 +232,12 @@ class MultipartBeam(Beam):
             >>> abjad.show(staff) # doctest: +SKIP
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 autoBeaming = ##f
-            } {
+            }
+            {
                 c'8 [
                 d'8
                 r4.
@@ -246,9 +261,12 @@ class MultipartBeam(Beam):
             >>> abjad.show(staff) # doctest: +SKIP
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 autoBeaming = ##f
-            } {
+            }
+            {
                 c'8 [
                 d'8
                 s4.
@@ -291,9 +309,12 @@ class MultipartBeam(Beam):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new RhythmicStaff \with {
+                \new RhythmicStaff
+                \with
+                {
                     \override Beam.positions = #'(4.5 . 4.5)
-                } {
+                }
+                {
                     \override RhythmicStaff.Stem.stemlet-length = 1.5
                     c'16 [
                     r16

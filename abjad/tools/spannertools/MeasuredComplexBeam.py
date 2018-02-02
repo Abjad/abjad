@@ -21,10 +21,13 @@ class MeasuredComplexBeam(ComplexBeam):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 autoBeaming = ##f
-            } {
-                { % measure
+            }
+            {
+                {   % measure
                     \time 2/16
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 2
@@ -32,15 +35,15 @@ class MeasuredComplexBeam(ComplexBeam):
                     \set stemLeftBeamCount = 2
                     \set stemRightBeamCount = 1
                     d'16
-                } % measure
-                { % measure
+                }   % measure
+                {   % measure
                     \set stemLeftBeamCount = 1
                     \set stemRightBeamCount = 2
                     e'16
                     \set stemLeftBeamCount = 2
                     \set stemRightBeamCount = 0
                     f'16 ]
-                } % measure
+                }   % measure
             }
 
     Beams leaves in spanner explicitly.

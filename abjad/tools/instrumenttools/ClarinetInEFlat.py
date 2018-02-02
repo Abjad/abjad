@@ -14,7 +14,8 @@ class ClarinetInEFlat(Instrument):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \set Staff.instrumentName = \markup { "Clarinet in E-flat" }
                 \set Staff.shortInstrumentName = \markup { "Cl. E-flat" }
                 c'4

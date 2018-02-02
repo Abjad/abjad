@@ -18,15 +18,19 @@ class VerticalMoment(abctools.AbjadObject):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new PianoStaff <<
-                    \new Staff {
+            \new Score
+            <<
+                \new PianoStaff
+                <<
+                    \new Staff
+                    {
                         c'4
                         e'4
                         d'4
                         f'4
                     }
-                    \new Staff {
+                    \new Staff
+                    {
                         \clef "bass"
                         g2
                         f2

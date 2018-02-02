@@ -20,7 +20,8 @@ class PageBreak(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'4
                 d'4
                 e'4
@@ -90,7 +91,8 @@ class PageBreak(AbjadValueObject):
             PageBreak(format_slot='closing')
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'4
                 d'4
                 e'4
@@ -108,7 +110,8 @@ class PageBreak(AbjadValueObject):
             >>> abjad.show(staff) # doctest: +SKIP
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \pageBreak
                 c'4
                 d'4

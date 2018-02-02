@@ -11,7 +11,8 @@ def test_spannertools_Spanner___in___01():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8
                 d'8

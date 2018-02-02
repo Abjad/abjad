@@ -9,8 +9,10 @@ def test_lilypondparsertools_LilyPondParser__indicators__TimeSignature_01():
 
     assert format(target) == abjad.String.normalize(
         r'''
-        \new Score <<
-            \new Staff {
+        \new Score
+        <<
+            \new Staff
+            {
                 \time 8/8
                 c'1
             }

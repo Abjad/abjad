@@ -48,11 +48,13 @@ def test_scoretools_Container_is_simultaneous_04():
     assert format(container) == abjad.String.normalize(
         r'''
         <<
-            \new Voice {
+            \new Voice
+            {
                 c'8
                 cs'8
             }
-            \new Voice {
+            \new Voice
+            {
                 d'8
                 ef'8
             }

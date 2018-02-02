@@ -18,7 +18,8 @@ class LilyPondCommand(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \slurDotted
                 c'8 (
                 d'8

@@ -7,7 +7,8 @@ def test_lilypondparsertools_LilyPondParser__contexts__Staff_01():
 
     assert format(target) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
         }
         '''
         )
@@ -27,8 +28,10 @@ def test_lilypondparsertools_LilyPondParser__contexts__Staff_02():
 
     assert format(target) == abjad.String.normalize(
         r'''
-        \new Staff <<
-            \new Voice {
+        \new Staff
+        <<
+            \new Voice
+            {
                 c'8
                 d'8
                 e'8
@@ -38,7 +41,8 @@ def test_lilypondparsertools_LilyPondParser__contexts__Staff_02():
                 b'8
                 c''8
             }
-            \new Voice {
+            \new Voice
+            {
                 c'8
                 d'8
                 e'8

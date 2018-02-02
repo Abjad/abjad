@@ -67,53 +67,53 @@ class Test(ScorePackageScriptTestCase):
                         \tag #'first-violin
                         \context Staff = "First Violin Staff" {
                             \context Voice = "First Violin Voice" {
-                                { % measure
+                                {   % measure
                                     \time 4/4
                                     \set Staff.instrumentName = \markup { Violin }   %! ST1
                                     \set Staff.shortInstrumentName = \markup { Vn. } %! ST1
                                     \clef "treble" %! ST3
                                     c'1
                                     \bar "|." %! SCORE1
-                                } % measure
+                                }   % measure
                             }
                         }
                         \tag #'second-violin
                         \context Staff = "Second Violin Staff" {
                             \context Voice = "Second Violin Voice" {
-                                { % measure
+                                {   % measure
                                     \time 4/4
                                     \set Staff.instrumentName = \markup { Violin }   %! ST1
                                     \set Staff.shortInstrumentName = \markup { Vn. } %! ST1
                                     \clef "treble" %! ST3
                                     c'1
                                     \bar "|." %! SCORE1
-                                } % measure
+                                }   % measure
                             }
                         }
                         \tag #'viola
                         \context Staff = "Viola Staff" {
                             \context Voice = "Viola Voice" {
-                                { % measure
+                                {   % measure
                                     \time 4/4
                                     \set Staff.instrumentName = \markup { Viola }   %! ST1
                                     \set Staff.shortInstrumentName = \markup { Va. } %! ST1
                                     \clef "alto" %! ST3
                                     c'1
                                     \bar "|." %! SCORE1
-                                } % measure
+                                }   % measure
                             }
                         }
                         \tag #'cello
                         \context Staff = "Cello Staff" {
                             \context Voice = "Cello Voice" {
-                                { % measure
+                                {   % measure
                                     \time 4/4
                                     \set Staff.instrumentName = \markup { Cello }   %! ST1
                                     \set Staff.shortInstrumentName = \markup { Vc. } %! ST1
                                     \clef "bass" %! ST3
                                     c'1
                                     \bar "|." %! SCORE1
-                                } % measure
+                                }   % measure
                             }
                         }
                     >>
