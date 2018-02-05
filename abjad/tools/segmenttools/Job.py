@@ -202,23 +202,29 @@ class Job(AbjadObject):
     def document_specific_job(path) -> 'Job':
         r'''Makes document-specific job.
         '''
+        if path.parent.is_segment():
+            my_name = 'SEGMENT'
+        elif path.is_score_build():
+            my_name = 'SCORE'
+        elif path.is_parts():
+            my_name = 'PARTS'
+        else:
+            my_name = path.name
+        this_document = f'+{String(my_name).to_shout_case()}'
+        not_this_document = f'-{String(my_name).to_shout_case()}'
         def deactivate(tags) -> bool:
+            if this_document in tags:
+                return False
             for tag in tags:
                 if tag.startswith('+'):
                     return True
             return False
         def activate(tags) -> bool:
-            if path.parent.is_segment():
-                my_name = 'SEGMENT'
-            else:
-                my_name = path.name
-            this_document = f'+{String(my_name).to_shout_case()}'
-            not_this_document = f'-{String(my_name).to_shout_case()}'
             tags_ = [this_document, not_this_document]
             return bool(set(tags) & set(tags_))
         return Job(
             activate=(activate, 'this-document'),
-            deactivate=(deactivate, 'document-specific'),
+            deactivate=(deactivate, 'other-document'),
             deactivate_first=True,
             path=path,
             title='handling document-specific tags ...',

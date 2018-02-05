@@ -8,6 +8,35 @@
 \include "stylesheet.ily"
 {segment_ily_include_statements}
 
+\paper {{
+    evenFooterMarkup =
+        \markup
+        \on-the-fly #print-page-number-check-first
+        \fill-line {{
+            " "
+            \bold
+            \fontsize #3
+            \override #'(font-name . "Palatino")
+            \line {{
+                \override #'(font-name . "Palatino Italic")
+                {{ {score_title_without_year} }}
+                \hspace #1.5
+                —
+                \hspace #1.5
+                \on-the-fly #print-page-number-check-first
+                \fromproperty #'page:page-number-string
+                \hspace #1.5
+                —
+                \hspace #1.5
+                \override #'(font-name . "Palatino Italic")
+                {{ {forces_tagline} }}
+                \hspace #1.5
+            }}
+            " "
+        }}
+    oddFooterMarkup = \evenFooterMarkup
+}}
+
 \header {{
     subtitle =
         \markup \column \center-align
@@ -35,7 +64,7 @@
                     {{
                     {global_skip_identifiers}
                     }}
-                >> 
+                >>
                 \context MusicContext = "MusicContext"
                 {{
                     \context Staff = "Staff"

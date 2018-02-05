@@ -56,9 +56,6 @@ if __name__ == '__main__':
         sys.exit(1)
         
     try:
-        part_abbreviation = layout_py.get_part_abbreviation()
-        if part_abbreviation:
-            document_name = document_name + '_' + part_abbreviation
         assert abjad.String(document_name).is_shout_case()
         string = 'first_measure_number'
         first_measure_number = buildspace_directory.get_metadatum(string, 1)
@@ -79,6 +76,7 @@ if __name__ == '__main__':
             )
         lilypond_file = maker.run(remove=abjad.tags.layout_removal_tags())
         context = lilypond_file['GlobalSkips']
+        measure_count = len(context)
         skips = baca.select(context).skips()
         for skip in skips:
             abjad.detach(abjad.TimeSignature, skip)
@@ -93,6 +91,7 @@ if __name__ == '__main__':
         text = format(score, 'lilypond:strict')
         text = text.replace('GlobalSkips', 'PageLayout')
         text = abjad.LilyPondFormatManager.left_shift_tags(text, realign=89)
+        text = f'% measure_count = {{measure_count}}\n\n\n' + text
         layout_ly = layout_module_name.replace('_', '-') + '.ly'
         layout_ly = buildspace_directory(layout_ly)
         layout_ly.write_text(text)
