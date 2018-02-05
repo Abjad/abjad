@@ -14,7 +14,8 @@ class BaritoneSaxophone(Instrument):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \set Staff.instrumentName = \markup { "Baritone saxophone" }
                 \set Staff.shortInstrumentName = \markup { "Bar. sax." }
                 c'4

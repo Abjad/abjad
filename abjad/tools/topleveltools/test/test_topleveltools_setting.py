@@ -13,10 +13,14 @@ def test_topleveltools_setting_01():
 
     assert format(score) == abjad.String.normalize(
         r'''
-        \new Score \with {
+        \new Score
+        \with
+        {
             tempoWholesPerMinute = #(ly:make-moment 24 1)
-        } <<
-            \new Staff {
+        }
+        <<
+            \new Staff
+            {
                 c'8
                 d'8
                 e'8
@@ -41,8 +45,10 @@ def test_topleveltools_setting_02():
 
     assert format(score) == abjad.String.normalize(
         r'''
-        \new Score <<
-            \new Staff {
+        \new Score
+        <<
+            \new Staff
+            {
                 c'8
                 \set Score.tempoWholesPerMinute = #(ly:make-moment 24 1)
                 d'8

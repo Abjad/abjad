@@ -183,7 +183,8 @@ def test_scoretools_Rest___init___12():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             r8 [
             r8
             r8

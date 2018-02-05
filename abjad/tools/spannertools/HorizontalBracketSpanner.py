@@ -15,9 +15,12 @@ class HorizontalBracketSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(voice)
-            \new Voice \with {
+            \new Voice
+            \with
+            {
                 \consists Horizontal_bracket_engraver
-            } {
+            }
+            {
                 c'4 \startGroup
                 d'4
                 e'4

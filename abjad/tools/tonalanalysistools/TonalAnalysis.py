@@ -16,7 +16,8 @@ class TonalAnalysis(abctools.AbjadObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'4
                 d'4
                 e'4
@@ -35,7 +36,8 @@ class TonalAnalysis(abctools.AbjadObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'4
                 d'4
                 e'4
@@ -274,7 +276,8 @@ class TonalAnalysis(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     <c' e' g'>4
                     <e' g' c''>4
                     <g' c'' e''>4
@@ -302,7 +305,8 @@ class TonalAnalysis(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     <a' c'' e''>4
                     <c'' e'' a''>4
                     <e'' a'' c'''>4
@@ -331,7 +335,8 @@ class TonalAnalysis(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     <c' e' g' bf'>4
                     <e' g' bf' c''>4
                     <g' bf' c'' e''>4
@@ -363,7 +368,8 @@ class TonalAnalysis(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     <c' e' g' bf' d''>4
                     <e' g' bf' c'' d''>4
                     <g' bf' c'' d'' e''>4
@@ -481,7 +487,8 @@ class TonalAnalysis(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8
                     d'8
                     e'8
@@ -512,7 +519,8 @@ class TonalAnalysis(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8
                     d'8
                     e'8

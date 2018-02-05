@@ -23,7 +23,8 @@ def test_lilypondparsertools_LilyPondParser__indicators__Articulation_01():
 
     assert format(target) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c''4 ^\marcato
             c''4 _\stopped
             c''4 -\tenuto

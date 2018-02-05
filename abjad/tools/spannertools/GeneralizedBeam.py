@@ -17,9 +17,12 @@ class GeneralizedBeam(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 autoBeaming = ##f
-            } {
+            }
+            {
                 r4
                 c'8 [
                 \set stemLeftBeamCount = 1
@@ -46,9 +49,12 @@ class GeneralizedBeam(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 autoBeaming = ##f
-            } {
+            }
+            {
                 r4
                 c'8 [
                 \set stemLeftBeamCount = 1
@@ -73,9 +79,12 @@ class GeneralizedBeam(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 autoBeaming = ##f
-            } {
+            }
+            {
                 r4
                 c'8 [
                 \set stemLeftBeamCount = 1

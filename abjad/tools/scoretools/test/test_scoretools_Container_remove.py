@@ -18,7 +18,8 @@ def test_scoretools_Container_remove_01():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 (
             d'8 [ ]
             e'8
@@ -32,7 +33,8 @@ def test_scoretools_Container_remove_01():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 (
             e'8
             f'8 )
@@ -64,7 +66,8 @@ def test_scoretools_Container_remove_02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             {
                 c'8 [
                 d'8
@@ -81,7 +84,8 @@ def test_scoretools_Container_remove_02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             {
                 e'8 [
                 f'8 ]

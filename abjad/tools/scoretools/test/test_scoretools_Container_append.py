@@ -13,7 +13,8 @@ def test_scoretools_Container_append_01():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8 ]
             {
@@ -74,7 +75,8 @@ def test_scoretools_Container_append_04():
 
     assert format(voice_1) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8
             e'8 ]
@@ -88,7 +90,8 @@ def test_scoretools_Container_append_04():
 
     assert format(voice_2) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8
             e'8
@@ -101,7 +104,8 @@ def test_scoretools_Container_append_04():
 
     assert format(voice_1) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8
             e'8 ]
@@ -114,7 +118,8 @@ def test_scoretools_Container_append_04():
 
     assert format(voice_2) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8
             e'8 ]
@@ -136,7 +141,8 @@ def test_scoretools_Container_append_05():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8
             e'8
@@ -149,7 +155,8 @@ def test_scoretools_Container_append_05():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             e'8
             f'8 ]

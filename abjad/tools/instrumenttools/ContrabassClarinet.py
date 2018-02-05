@@ -14,7 +14,8 @@ class ContrabassClarinet(Instrument):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \set Staff.instrumentName = \markup { "Contrabass clarinet" }
                 \set Staff.shortInstrumentName = \markup { "Cbass. cl." }
                 c'4

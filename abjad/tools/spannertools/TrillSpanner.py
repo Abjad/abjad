@@ -16,8 +16,10 @@ class TrillSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
-                c'8 \startTrillSpan
+            \new Staff
+            {
+                c'8
+                \startTrillSpan
                 d'8
                 e'8
                 f'8 \stopTrillSpan
@@ -35,9 +37,11 @@ class TrillSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \pitchedTrill
-                c'8 \startTrillSpan cs'
+                c'8
+                \startTrillSpan cs'
                 d'8
                 e'8
                 f'8 \stopTrillSpan
@@ -64,7 +68,8 @@ class TrillSpanner(Spanner):
         >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
         >>> abjad.attach(abjad.TrillSpanner(), segment_1[:], right_broken=True)
         >>> abjad.f(segment_1, strict=True)
-        \context Voice = "MainVoice" {
+        \context Voice = "MainVoice"
+        {
             c'4
             \startTrillSpan
             d'4
@@ -78,7 +83,8 @@ class TrillSpanner(Spanner):
         >>> segment_2 = abjad.Voice("g'4 f'2 r4", name='MainVoice')
         >>> abjad.attach(abjad.TrillSpanner(), segment_2[:], left_broken=True)
         >>> abjad.f(segment_2, strict=True)
-        \context Voice = "MainVoice" {
+        \context Voice = "MainVoice"
+        {
             g'4
             \startTrillSpan %! LEFT_BROKEN_TRILL
             f'2
@@ -91,7 +97,8 @@ class TrillSpanner(Spanner):
         >>> container = abjad.Container([segment_1, segment_2])
         >>> abjad.f(container, strict=True)
         {
-            \context Voice = "MainVoice" {
+            \context Voice = "MainVoice"
+            {
                 c'4
                 \startTrillSpan
                 d'4
@@ -99,7 +106,8 @@ class TrillSpanner(Spanner):
                 f'4
                 \stopTrillSpan %! RIGHT_BROKEN_TRILL
             }
-            \context Voice = "MainVoice" {
+            \context Voice = "MainVoice"
+            {
                 g'4
                 \startTrillSpan %! LEFT_BROKEN_TRILL
                 f'2
@@ -119,7 +127,8 @@ class TrillSpanner(Spanner):
         >>> text, count = abjad.deactivate(text, match)
         >>> print(text)
         {
-            \context Voice = "MainVoice" {
+            \context Voice = "MainVoice"
+            {
                 c'4
                 \startTrillSpan
                 d'4
@@ -127,7 +136,8 @@ class TrillSpanner(Spanner):
                 f'4
             %%% \stopTrillSpan %! RIGHT_BROKEN_TRILL
             }
-            \context Voice = "MainVoice" {
+            \context Voice = "MainVoice"
+            {
                 g'4
             %%% \startTrillSpan %! LEFT_BROKEN_TRILL
                 f'2
@@ -155,7 +165,8 @@ class TrillSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(staff, strict=True)
-            \new Staff {
+            \new Staff
+            {
                 \pitchedTrill
                 c'4
                 ^ \markup { Allegro }
@@ -298,9 +309,11 @@ class TrillSpanner(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \pitchedTrill
-                    c'8 \startTrillSpan df'
+                    c'8
+                    \startTrillSpan df'
                     d'8
                     e'8
                     f'8 \stopTrillSpan
@@ -320,9 +333,11 @@ class TrillSpanner(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \pitchedTrill
-                    c'8 \startTrillSpan d'
+                    c'8
+                    \startTrillSpan d'
                     d'8
                     e'8
                     f'8 \stopTrillSpan
@@ -356,10 +371,12 @@ class TrillSpanner(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \once \override TrillPitchHead.stencil = #(lambda (grob) (grob-interpret-markup grob #{ \markup \musicglyph #"noteheads.s0harmonic" #}))
                     \pitchedTrill
-                    c'8 \startTrillSpan d'
+                    c'8
+                    \startTrillSpan d'
                     d'8
                     e'8
                     f'8 \stopTrillSpan
@@ -390,8 +407,11 @@ class TrillSpanner(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
-                    \pitchedTrill c'8 \startTrillSpan cs'
+                \new Staff
+                {
+                    \pitchedTrill
+                    c'8
+                    \startTrillSpan cs'
                     d'8 \stopTrillSpan
                     e'8
                     f'8
@@ -412,8 +432,10 @@ class TrillSpanner(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
-                    c'8 \startTrillSpan
+                \new Staff
+                {
+                    c'8
+                    \startTrillSpan
                     d'8 \stopTrillSpan
                     e'8
                     f'8
@@ -449,8 +471,11 @@ class TrillSpanner(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
-                    \pitchedTrill c'8 \startTrillSpan cs'
+                \new Staff
+                {
+                    \pitchedTrill
+                    c'8
+                    \startTrillSpan cs'
                     d'8 \stopTrillSpan
                     e'8
                     f'8
@@ -471,8 +496,10 @@ class TrillSpanner(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
-                    c'8 \startTrillSpan
+                \new Staff
+                {
+                    c'8
+                    \startTrillSpan
                     d'8 \stopTrillSpan
                     e'8
                     f'8

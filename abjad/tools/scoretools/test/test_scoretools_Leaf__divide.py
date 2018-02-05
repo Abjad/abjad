@@ -12,7 +12,8 @@ def test_scoretools_Leaf__divide_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             <d' ef' e'>4
             <d' ef' e'>4
             r4
@@ -34,7 +35,8 @@ def test_scoretools_Leaf__divide_02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             <d' ef' e'>4
             <ef' e'>4
             d'4
@@ -56,7 +58,8 @@ def test_scoretools_Leaf__divide_03():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             <d' ef' e'>4
             e'4
             <d' ef'>4

@@ -68,17 +68,22 @@ def test_scoretools_Parentage_logical_voice_04():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice \with {
+        \new Voice
+        \with
+        {
             \override NoteHead.color = #red
-        } {
+        }
+        {
             c'8
             d'8
             <<
-                \new Voice {
+                \new Voice
+                {
                     e'8
                     f'8
                 }
-                \new Voice {
+                \new Voice
+                {
                     g'8
                     a'8
                 }
@@ -130,17 +135,22 @@ def test_scoretools_Parentage_logical_voice_05():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \context Voice = "foo" \with {
+        \context Voice = "foo"
+        \with
+        {
             \override NoteHead.color = #red
-        } {
+        }
+        {
             c'8
             d'8
             <<
-                \context Voice = "foo" {
+                \context Voice = "foo"
+                {
                     e'8
                     f'8
                 }
-                \new Voice {
+                \new Voice
+                {
                     g'8
                     a'8
                 }
@@ -197,14 +207,18 @@ def test_scoretools_Parentage_logical_voice_06():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            \context Staff = "staff1" {
-                \context Voice = "voicefoo" {
+            \context Staff = "staff1"
+            {
+                \context Voice = "voicefoo"
+                {
                     c'8 [
                     d'8 ]
                 }
             }
-            \context Staff = "staff2" {
-                \context Voice = "voicefoo" {
+            \context Staff = "staff2"
+            {
+                \context Voice = "voicefoo"
+                {
                     e'8 [
                     f'8 ]
                 }
@@ -259,22 +273,30 @@ def test_scoretools_Parentage_logical_voice_07():
         {
             c'8
             <<
-                \context Voice = "alto" {
+                \context Voice = "alto"
+                {
                     d'8
                 }
-                \context Voice = "soprano" \with {
+                \context Voice = "soprano"
+                \with
+                {
                     \override NoteHead.color = #red
-                } {
+                }
+                {
                     e'8
                 }
             >>
             {
-                \context Voice = "alto" {
+                \context Voice = "alto"
+                {
                     f'8
                 }
-                \context Voice = "soprano" \with {
+                \context Voice = "soprano"
+                \with
+                {
                     \override NoteHead.color = #red
-                } {
+                }
+                {
                     g'8
                 }
             }
@@ -354,7 +376,8 @@ def test_scoretools_Parentage_logical_voice_10():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             {
                 \time 2/8
                 c'8
@@ -385,11 +408,13 @@ def test_scoretools_Parentage_logical_voice_11():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            \context Staff = "staff" {
+            \context Staff = "staff"
+            {
                 c'8
                 c'8
             }
-            \context Staff = "staff" {
+            \context Staff = "staff"
+            {
                 c'8
                 c'8
             }

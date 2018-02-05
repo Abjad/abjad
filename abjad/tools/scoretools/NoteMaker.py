@@ -22,7 +22,8 @@ class NoteMaker(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'16
                 c'8
                 c'8
@@ -44,7 +45,8 @@ class NoteMaker(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'16
                 d'8
                 e'8
@@ -64,7 +66,8 @@ class NoteMaker(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'16
                 \tweak edge-height #'(0.7 . 0)
                 \times 2/3 {
@@ -86,7 +89,8 @@ class NoteMaker(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'2. ~
                 c'16
             }
@@ -104,7 +108,8 @@ class NoteMaker(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'16 ~
                 c'2.
             }
@@ -121,7 +126,8 @@ class NoteMaker(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'2.
                 c'16 \repeatTie
             }
@@ -139,7 +145,8 @@ class NoteMaker(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 bf8
                 bqf8
                 fs'8

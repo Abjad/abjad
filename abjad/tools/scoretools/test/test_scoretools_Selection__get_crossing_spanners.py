@@ -17,7 +17,8 @@ def test_scoretools_Selection__get_crossing_spanners_01():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8
                 \startTrillSpan
@@ -58,20 +59,21 @@ def test_scoretools_Selection__get_crossing_spanners_02():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
-            { % measure
+        \new Voice
+        {
+            {   % measure
                 \time 2/8
                 c'8
                 d'8
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8 [
                 f'8
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 g'8 ]
                 a'8
-            } % measure
+            }   % measure
         }
         '''
         )

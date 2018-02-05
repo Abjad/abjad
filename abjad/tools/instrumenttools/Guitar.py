@@ -14,7 +14,8 @@ class Guitar(Instrument):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \set Staff.instrumentName = \markup { Guitar }
                 \set Staff.shortInstrumentName = \markup { Gt. }
                 c'4

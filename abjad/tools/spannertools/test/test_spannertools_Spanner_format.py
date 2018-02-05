@@ -17,7 +17,8 @@ def test_spannertools_Spanner_format_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8
             d'8
             e'8

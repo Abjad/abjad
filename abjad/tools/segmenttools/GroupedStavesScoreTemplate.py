@@ -14,25 +14,35 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
         ..  docs::
 
             >>> abjad.f(template.__illustrate__()[abjad.Score])
-            \context Score = "Grouped Staves Score" <<
-                \context StaffGroup = "Grouped Staves Staff Group" <<
-                    \context Staff = "Staff 1" {
-                        \context Voice = "Voice 1" {
+            \context Score = "Grouped Staves Score"
+            <<
+                \context StaffGroup = "Grouped Staves Staff Group"
+                <<
+                    \context Staff = "Staff 1"
+                    {
+                        \context Voice = "Voice 1"
+                        {
                             s1
                         }
                     }
-                    \context Staff = "Staff 2" {
-                        \context Voice = "Voice 2" {
+                    \context Staff = "Staff 2"
+                    {
+                        \context Voice = "Voice 2"
+                        {
                             s1
                         }
                     }
-                    \context Staff = "Staff 3" {
-                        \context Voice = "Voice 3" {
+                    \context Staff = "Staff 3"
+                    {
+                        \context Voice = "Voice 3"
+                        {
                             s1
                         }
                     }
-                    \context Staff = "Staff 4" {
-                        \context Voice = "Voice 4" {
+                    \context Staff = "Staff 4"
+                    {
+                        \context Voice = "Voice 4"
+                        {
                             s1
                         }
                     }
@@ -41,22 +51,32 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
 
         >>> score = template()
         >>> abjad.f(score)
-        \context Score = "Grouped Staves Score" <<
-            \context StaffGroup = "Grouped Staves Staff Group" <<
-                \context Staff = "Staff 1" {
-                    \context Voice = "Voice 1" {
+        \context Score = "Grouped Staves Score"
+        <<
+            \context StaffGroup = "Grouped Staves Staff Group"
+            <<
+                \context Staff = "Staff 1"
+                {
+                    \context Voice = "Voice 1"
+                    {
                     }
                 }
-                \context Staff = "Staff 2" {
-                    \context Voice = "Voice 2" {
+                \context Staff = "Staff 2"
+                {
+                    \context Voice = "Voice 2"
+                    {
                     }
                 }
-                \context Staff = "Staff 3" {
-                    \context Voice = "Voice 3" {
+                \context Staff = "Staff 3"
+                {
+                    \context Voice = "Voice 3"
+                    {
                     }
                 }
-                \context Staff = "Staff 4" {
-                    \context Voice = "Voice 4" {
+                \context Staff = "Staff 4"
+                {
+                    \context Voice = "Voice 4"
+                    {
                     }
                 }
             >>

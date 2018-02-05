@@ -23,19 +23,20 @@ class SkipRhythmMaker(RhythmMaker):
         ..  docs::
 
             >>> abjad.f(lilypond_file[abjad.Staff])
-            \new RhythmicStaff {
-                { % measure
+            \new RhythmicStaff
+            {
+                {   % measure
                     \time 1/4
                     s1 * 1/4
-                } % measure
-                { % measure
+                }   % measure
+                {   % measure
                     \time 3/16
                     s1 * 3/16
-                } % measure
-                { % measure
+                }   % measure
+                {   % measure
                     \time 5/8
                     s1 * 5/8
-                } % measure
+                }   % measure
             }
 
     Usage follows the two-step configure-once / call-repeatedly pattern shown

@@ -29,26 +29,27 @@ class IncisedRhythmMaker(RhythmMaker):
         ..  docs::
 
             >>> abjad.f(lilypond_file[abjad.Staff])
-            \new RhythmicStaff {
-                { % measure
+            \new RhythmicStaff
+            {
+                {   % measure
                     \time 5/16
                     c'4
                     r16
-                } % measure
-                { % measure
+                }   % measure
+                {   % measure
                     r16
                     c'8.
                     r16
-                } % measure
-                { % measure
+                }   % measure
+                {   % measure
                     c'4
                     r16
-                } % measure
-                { % measure
+                }   % measure
+                {   % measure
                     r16
                     c'8.
                     r16
-                } % measure
+                }   % measure
             }
 
     '''
@@ -458,29 +459,30 @@ class IncisedRhythmMaker(RhythmMaker):
             ..  docs::
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
+                \new RhythmicStaff
+                {
+                    {   % measure
                         \time 4/8
                         r16
                         c'4..
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 3/8
                         r16
                         c'4 ~
                         c'16
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 4/8
                         r16
                         c'4..
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 3/8
                         r16
                         c'4 ~
                         c'16
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -512,27 +514,28 @@ class IncisedRhythmMaker(RhythmMaker):
             ..  docs::
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
+                \new RhythmicStaff
+                {
+                    {   % measure
                         \time 4/8
                         r2
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 3/8
                         r16
                         c'4 ~
                         c'16
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 4/8
                         r2
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 3/8
                         r16
                         c'4 ~
                         c'16
-                    } % measure
+                    }   % measure
                 }
 
         Set to division masks or none.
@@ -570,22 +573,23 @@ class IncisedRhythmMaker(RhythmMaker):
             ..  docs::
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
+                \new RhythmicStaff
+                {
+                    {   % measure
                         \time 8/8
                         r8
                         c'2..
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 4/8
                         c'2
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 6/8
                         c'2 ~
                         c'8
                         r8
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -618,26 +622,27 @@ class IncisedRhythmMaker(RhythmMaker):
             ..  docs::
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
+                \new RhythmicStaff
+                {
+                    {   % measure
                         \time 8/8
                         r8
                         c'4 ~
                         c'4 ~
                         c'4.
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 4/8
                         c'4 ~
                         c'4
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 6/8
                         c'4 ~
                         c'4 ~
                         c'8
                         r8
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -669,24 +674,25 @@ class IncisedRhythmMaker(RhythmMaker):
             ..  docs::
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
+                \new RhythmicStaff
+                {
+                    {   % measure
                         \time 8/8
                         r8
                         c'4. ~
                         c'4 ~
                         c'4
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 4/8
                         c'2
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 6/8
                         c'4. ~
                         c'4
                         r8
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -719,22 +725,23 @@ class IncisedRhythmMaker(RhythmMaker):
             ..  docs::
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
+                \new RhythmicStaff
+                {
+                    {   % measure
                         \time 8/8
                         r8
                         c'2..
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 4/8
                         c'2
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 6/8
                         c'4. ~
                         c'4
                         r8
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -766,22 +773,23 @@ class IncisedRhythmMaker(RhythmMaker):
             ..  docs::
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
+                \new RhythmicStaff
+                {
+                    {   % measure
                         \time 8/8
                         r8
                         c'2..
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 4/8
                         c'2
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 6/8
                         c'4. ~
                         c'4
                         r8
-                    } % measure
+                    }   % measure
                 }
 
         Returns duration specifier or none.
@@ -819,20 +827,21 @@ class IncisedRhythmMaker(RhythmMaker):
             ..  docs::
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
+                \new RhythmicStaff
+                {
+                    {   % measure
                         \time 5/8
                         c'2 ~
                         c'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         c'2 ~
                         c'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         c'2 ~
                         c'8
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -862,25 +871,26 @@ class IncisedRhythmMaker(RhythmMaker):
             ..  docs::
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
+                \new RhythmicStaff
+                {
+                    {   % measure
                         \time 5/8
                         r4
                         r8..
                         c'8 ~ [
                         c'32 ]
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         c'2 ~
                         c'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         c'4
                         r16.
                         r16.
                         r16.
                         r16.
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -911,25 +921,26 @@ class IncisedRhythmMaker(RhythmMaker):
             ..  docs::
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
+                \new RhythmicStaff
+                {
+                    {   % measure
                         \time 5/8
                         c'8..
                         c'4
                         r8
                         r32
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         r2
                         r8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         r4
                         c'16. [
                         c'16.
                         c'16.
                         c'16. ]
-                    } % measure
+                    }   % measure
                 }
 
         Returns incise specifier or none.
@@ -966,26 +977,27 @@ class IncisedRhythmMaker(RhythmMaker):
             ..  docs::
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
+                \new RhythmicStaff
+                {
+                    {   % measure
                         \time 4/8
                         r16
                         c'4..
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 3/8
                         c'4.
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 4/8
                         c'2
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 3/8
                         c'4 ~
                         c'16
                         r16
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -1017,26 +1029,27 @@ class IncisedRhythmMaker(RhythmMaker):
             ..  docs::
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
+                \new RhythmicStaff
+                {
+                    {   % measure
                         \time 4/8
                         r16
                         r4..
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 3/8
                         c'4.
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 4/8
                         r2
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 3/8
                         c'4 ~
                         c'16
                         r16
-                    } % measure
+                    }   % measure
                 }
 
         Set to masks or none.
@@ -1078,29 +1091,30 @@ class IncisedRhythmMaker(RhythmMaker):
             ..  docs::
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
+                \new RhythmicStaff
+                {
+                    {   % measure
                         \time 4/8
                         c'16
                         r4..
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 3/8
                         c'16
                         r4
                         r16
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 4/8
                         c'16
                         r4..
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 3/8
                         c'16
                         r4
                         r16
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -1128,29 +1142,30 @@ class IncisedRhythmMaker(RhythmMaker):
             ..  docs::
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
+                \new RhythmicStaff
+                {
+                    {   % measure
                         \time 4/8
                         c'16
                         s4..
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 3/8
                         c'16
                         s4
                         s16
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 4/8
                         c'16
                         s4..
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 3/8
                         c'16
                         s4
                         s16
-                    } % measure
+                    }   % measure
                 }
 
             Use in keyboard and other polyphonic selections where other voices
@@ -1200,22 +1215,23 @@ class IncisedRhythmMaker(RhythmMaker):
             ..  docs::
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
+                \new RhythmicStaff
+                {
+                    {   % measure
                         \time 8/8
                         r8
                         c'2..
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 4/8
                         c'2
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 6/8
                         c'2 ~
                         c'8
                         r8
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -1247,22 +1263,23 @@ class IncisedRhythmMaker(RhythmMaker):
             ..  docs::
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
+                \new RhythmicStaff
+                {
+                    {   % measure
                         \time 8/8
                         r8
                         c'2.. ~
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 4/8
                         c'2 ~
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 6/8
                         c'2 ~
                         c'8
                         r8
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -1298,22 +1315,23 @@ class IncisedRhythmMaker(RhythmMaker):
             ..  docs::
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
+                \new RhythmicStaff
+                {
+                    {   % measure
                         \time 8/8
                         r8
                         c'2.. ~
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 4/8
                         c'2
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 6/8
                         c'2 ~
                         c'8
                         r8
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -1346,22 +1364,23 @@ class IncisedRhythmMaker(RhythmMaker):
             ..  docs::
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
+                \new RhythmicStaff
+                {
+                    {   % measure
                         \time 8/8
                         r8
                         c'2..
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 4/8
                         c'2 \repeatTie
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 6/8
                         c'2 \repeatTie
                         c'8 \repeatTie
                         r8
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -1393,22 +1412,23 @@ class IncisedRhythmMaker(RhythmMaker):
             ..  docs::
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
+                \new RhythmicStaff
+                {
+                    {   % measure
                         \time 8/8
                         r8
                         c'2..
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 4/8
                         c'2
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 6/8
                         c'2
                         c'8
                         r8
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -1443,24 +1463,25 @@ class IncisedRhythmMaker(RhythmMaker):
             ..  docs::
 
                 >>> abjad.f(lilypond_file[abjad.Staff])
-                \new RhythmicStaff {
-                    { % measure
+                \new RhythmicStaff
+                {
+                    {   % measure
                         \time 8/8
                         r8
                         c'4.
                         c'4
                         c'4
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 4/8
                         c'2
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 6/8
                         c'4.
                         c'4
                         r8
-                    } % measure
+                    }   % measure
                 }
 
         Set to tie specifier or none.

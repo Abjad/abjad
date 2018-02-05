@@ -121,14 +121,17 @@ class MetricAccentKernel(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(score)
-                \new Score <<
-                    \new Staff {
+                \new Score
+                <<
+                    \new Staff
+                    {
                         c'8
                         d'4.
                         e'8
                         f'4.
                     }
-                    \new Staff {
+                    \new Staff
+                    {
                         \clef "bass"
                         c4
                         b,4

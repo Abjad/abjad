@@ -42,7 +42,8 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_05():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8
                 d'8
@@ -71,7 +72,8 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_06():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             \times 2/3 {
                 c'8
                 d'8
@@ -99,14 +101,17 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_07():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            \new Voice {
+        \new Staff
+        {
+            \new Voice
+            {
                 c'8
                 d'8
                 e'8
                 f'8
             }
-            \new Voice {
+            \new Voice
+            {
                 g'8
                 a'8
                 b'8
@@ -130,14 +135,17 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_08():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            \context Voice = "foo" {
+        \new Staff
+        {
+            \context Voice = "foo"
+            {
                 c'8
                 d'8
                 e'8
                 f'8
             }
-            \context Voice = "foo" {
+            \context Voice = "foo"
+            {
                 g'8
                 a'8
                 b'8
@@ -161,14 +169,17 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_09():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            \context Voice = "foo" {
+        \new Staff
+        {
+            \context Voice = "foo"
+            {
                 c'8
                 d'8
                 e'8
                 f'8
             }
-            \context Voice = "bar" {
+            \context Voice = "bar"
+            {
                 g'8
                 a'8
                 b'8
@@ -192,16 +203,20 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_10():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            \new Staff {
-                \new Voice {
+            \new Staff
+            {
+                \new Voice
+                {
                     c'8
                     d'8
                     e'8
                     f'8
                 }
             }
-            \new Staff {
-                \new Voice {
+            \new Staff
+            {
+                \new Voice
+                {
                     g'8
                     a'8
                     b'8
@@ -240,28 +255,34 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_11():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            \new Staff <<
-                \new Voice {
+            \new Staff
+            <<
+                \new Voice
+                {
                     c''8
                     d''8
                     e''8
                     f''8
                 }
-                \new Voice {
+                \new Voice
+                {
                     c'8
                     d'8
                     e'8
                     f'8
                 }
             >>
-            \new Staff <<
-                \new Voice {
+            \new Staff
+            <<
+                \new Voice
+                {
                     g''8
                     a''8
                     b''8
                     c''8
                 }
-                \new Voice {
+                \new Voice
+                {
                     g'8
                     a'8
                     b'8
@@ -309,7 +330,8 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_12():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 {
                     c'8

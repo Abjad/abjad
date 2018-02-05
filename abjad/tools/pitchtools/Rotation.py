@@ -69,7 +69,8 @@ class Rotation(AbjadValueObject):
 
                 >>> lilypond_file = segment_.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     f'8
                     g'8
                     af'8
@@ -93,7 +94,8 @@ class Rotation(AbjadValueObject):
 
                 >>> lilypond_file = segment_.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     f'8
                     g'8
                     af'8

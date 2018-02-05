@@ -14,15 +14,18 @@ class StaffGroup(Context):
         ..  docs::
 
             >>> abjad.f(staff_group)
-            \new StaffGroup <<
-                \new Staff {
+            \new StaffGroup
+            <<
+                \new Staff
+                {
                     c'4
                     d'4
                     e'4
                     f'4
                     g'1
                 }
-                \new Staff {
+                \new Staff
+                {
                     g2
                     f2
                     e1

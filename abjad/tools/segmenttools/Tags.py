@@ -167,6 +167,8 @@ class Tags(AbjadValueObject):
 
         ### METRONOME MARKS ###
 
+        'METRONOME_MARK_SPANNER',
+
         'EXPLICIT_METRONOME_MARK',
         'EXPLICIT_METRONOME_MARK_WITH_COLOR',
 
@@ -349,7 +351,7 @@ class Tags(AbjadValueObject):
             self.REDUNDANT_DYNAMIC_REDRAW_COLOR,
             ]
 
-    def get_document_tag(self, string: str) -> bool:
+    def get_document_tag(self, string: str) -> str:
         r'''Gets document tag in ``string``.
 
         ..  container:: example
@@ -490,6 +492,31 @@ class Tags(AbjadValueObject):
             self.REDUNDANT_INSTRUMENT_ALERT,
             self.REDUNDANT_INSTRUMENT_COLOR,
             self.REDRAWN_REDUNDANT_INSTRUMENT_COLOR,
+            ]
+
+    def layout_removal_tags(self):
+        r'''Gets layout removal tags.
+
+        ..  container:: example
+
+            >>> for tag in abjad.tags.layout_removal_tags():
+            ...     tag
+            ...
+            'EMPTY_START_BAR'
+            'EXPLICIT_TIME_SIGNATURE_COLOR'
+            'MEASURE_NUMBER_MARKUP'
+            'METRONOME_MARK_SPANNER'
+            'REDUNDANT_TIME_SIGNATURE_COLOR'
+            'STAGE_NUMBER_MARKUP'
+
+        '''
+        return [
+            self.EMPTY_START_BAR,
+            self.EXPLICIT_TIME_SIGNATURE_COLOR,
+            self.MEASURE_NUMBER_MARKUP,
+            self.METRONOME_MARK_SPANNER,
+            self.REDUNDANT_TIME_SIGNATURE_COLOR,
+            self.STAGE_NUMBER_MARKUP,
             ]
 
     def margin_markup_color_tags(self, path=None) -> List[str]:

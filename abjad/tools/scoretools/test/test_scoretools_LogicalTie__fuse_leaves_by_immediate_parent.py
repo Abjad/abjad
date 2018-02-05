@@ -15,14 +15,15 @@ def test_scoretools_LogicalTie__fuse_leaves_by_immediate_parent_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'4 ~
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 c'4
-            } % measure
+            }   % measure
         }
         '''
         )
@@ -41,7 +42,8 @@ def test_scoretools_LogicalTie__fuse_leaves_by_immediate_parent_02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 ~
             c'8 ~
             c'8 ~
@@ -55,7 +57,8 @@ def test_scoretools_LogicalTie__fuse_leaves_by_immediate_parent_02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'2
         }
         '''

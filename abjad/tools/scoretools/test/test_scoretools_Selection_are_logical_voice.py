@@ -106,7 +106,8 @@ def test_scoretools_Selection_are_logical_voice_06():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8
                 d'8
@@ -145,7 +146,8 @@ def test_scoretools_Selection_are_logical_voice_07():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             \times 2/3 {
                 c'8
                 d'8
@@ -184,14 +186,17 @@ def test_scoretools_Selection_are_logical_voice_08():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            \new Voice {
+        \new Staff
+        {
+            \new Voice
+            {
                 c'8
                 d'8
                 e'8
                 f'8
             }
-            \new Voice {
+            \new Voice
+            {
                 g'8
                 a'8
                 b'8
@@ -229,14 +234,17 @@ def test_scoretools_Selection_are_logical_voice_09():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            \context Voice = "foo" {
+        \new Staff
+        {
+            \context Voice = "foo"
+            {
                 c'8
                 d'8
                 e'8
                 f'8
             }
-            \context Voice = "foo" {
+            \context Voice = "foo"
+            {
                 g'8
                 a'8
                 b'8
@@ -267,12 +275,15 @@ def test_scoretools_Selection_are_logical_voice_10():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            \context Voice = "foo" {
+        \new Staff
+        {
+            \context Voice = "foo"
+            {
                 c'8
                 d'8
             }
-            \context Voice = "bar" {
+            \context Voice = "bar"
+            {
                 e'8
                 f'8
             }
@@ -307,14 +318,18 @@ def test_scoretools_Selection_are_logical_voice_11():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            \new Staff {
-                \new Voice {
+            \new Staff
+            {
+                \new Voice
+                {
                     c'8
                     d'8
                 }
             }
-            \new Staff {
-                \new Voice {
+            \new Staff
+            {
+                \new Voice
+                {
                     e'8
                     f'8
                 }
@@ -358,22 +373,28 @@ def test_scoretools_Selection_are_logical_voice_12():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            \new Staff <<
-                \new Voice {
+            \new Staff
+            <<
+                \new Voice
+                {
                     c'8
                     d'8
                 }
-                \new Voice {
+                \new Voice
+                {
                     e'8
                     f'8
                 }
             >>
-            \new Staff <<
-                \new Voice {
+            \new Staff
+            <<
+                \new Voice
+                {
                     g'8
                     a'8
                 }
-                \new Voice {
+                \new Voice
+                {
                     b'8
                     c''8
                 }
@@ -404,7 +425,8 @@ def test_scoretools_Selection_are_logical_voice_13():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8
                 d'8
@@ -444,13 +466,15 @@ def test_scoretools_Selection_are_logical_voice_14():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            \context Staff = "foo" {
+            \context Staff = "foo"
+            {
                 c'8
                 cs'8
                 d'8
                 ef'8
             }
-            \context Staff = "foo" {
+            \context Staff = "foo"
+            {
                 e'8
                 f'8
                 fs'8
@@ -493,7 +517,8 @@ def test_scoretools_Selection_are_logical_voice_15():
                 e'8
                 f'8
             }
-            \new Voice {
+            \new Voice
+            {
                 g'8
                 a'8
                 b'8
@@ -531,7 +556,8 @@ def test_scoretools_Selection_are_logical_voice_16():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            \new Voice {
+            \new Voice
+            {
                 c'8
                 d'8
                 e'8
@@ -617,7 +643,8 @@ def test_scoretools_Selection_are_logical_voice_18():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            \context Voice = "foo" {
+            \context Voice = "foo"
+            {
                 c'8
                 d'8
                 e'8
@@ -667,7 +694,8 @@ def test_scoretools_Selection_are_logical_voice_19():
                 e'8
                 f'8
             }
-            \new Staff {
+            \new Staff
+            {
                 g'8
                 a'8
                 b'8
@@ -705,7 +733,8 @@ def test_scoretools_Selection_are_logical_voice_20():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            \new Staff {
+            \new Staff
+            {
                 c'8
                 cs'8
                 d'8
@@ -751,7 +780,8 @@ def test_scoretools_Selection_are_logical_voice_21():
             cs'8
             d'8
             ef'8
-            \new Voice {
+            \new Voice
+            {
                 e'8
                 f'8
                 fs'8
@@ -787,7 +817,8 @@ def test_scoretools_Selection_are_logical_voice_22():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            \new Voice {
+            \new Voice
+            {
                 c'8
                 cs'8
                 d'8
@@ -831,7 +862,8 @@ def test_scoretools_Selection_are_logical_voice_23():
             cs'8
             d'8
             ef'8
-            \context Voice = "foo" {
+            \context Voice = "foo"
+            {
                 e'8
                 f'8
                 fs'8
@@ -870,7 +902,8 @@ def test_scoretools_Selection_are_logical_voice_24():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            \context Voice = "foo" {
+            \context Voice = "foo"
+            {
                 c'8
                 cs'8
                 d'8
@@ -914,7 +947,8 @@ def test_scoretools_Selection_are_logical_voice_25():
             cs'8
             d'8
             ef'8
-            \new Voice {
+            \new Voice
+            {
                 e'8
                 f'8
                 fs'8
@@ -950,7 +984,8 @@ def test_scoretools_Selection_are_logical_voice_26():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            \new Staff {
+            \new Staff
+            {
                 c'8
                 d'8
                 e'8
@@ -983,7 +1018,8 @@ def test_scoretools_Selection_are_logical_voice_27():
         r'''
         {
             {
-                \new Voice {
+                \new Voice
+                {
                     c'8
                     cs'8
                     d'8
@@ -1051,8 +1087,10 @@ def test_scoretools_Selection_are_logical_voice_29():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            \context Voice = "bar" {
-                \context Voice = "foo" {
+            \context Voice = "bar"
+            {
+                \context Voice = "foo"
+                {
                     c'8
                     cs'8
                     d'8
@@ -1085,8 +1123,10 @@ def test_scoretools_Selection_are_logical_voice_30():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            \new Voice {
-                \new Voice {
+            \new Voice
+            {
+                \new Voice
+                {
                     c'8
                     cs'8
                     d'8
@@ -1126,13 +1166,15 @@ def test_scoretools_Selection_are_logical_voice_31():
             d'8
             ef'8
             <<
-                \new Voice {
+                \new Voice
+                {
                     c''8
                     c''8
                     c''8
                     c''8
                 }
-                \new Voice {
+                \new Voice
+                {
                     c'8
                     c'8
                     c'8
@@ -1177,13 +1219,15 @@ def test_scoretools_Selection_are_logical_voice_32():
         r'''
         {
             <<
-                \new Voice {
+                \new Voice
+                {
                     c'8
                     cs'8
                     d'8
                     ef'8
                 }
-                \new Voice {
+                \new Voice
+                {
                     e'8
                     f'8
                     fs'8
@@ -1236,10 +1280,12 @@ def test_scoretools_Selection_are_logical_voice_33():
         {
             c'8
             cs'8
-            \new Voice {
+            \new Voice
+            {
                 d'8
                 ef'8
-                \new Voice {
+                \new Voice
+                {
                     e'8
                     f'8
                     fs'8
@@ -1291,13 +1337,16 @@ def test_scoretools_Selection_are_logical_voice_34():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8
             cs'8
-            \new Staff {
+            \new Staff
+            {
                 d'8
                 ef'8
-                \new Staff {
+                \new Staff
+                {
                     e'8
                     f'8
                     fs'8
@@ -1396,7 +1445,8 @@ def test_scoretools_Selection_are_logical_voice_36():
             cs'8
             {
                 {
-                    \context Voice = "foo" {
+                    \context Voice = "foo"
+                    {
                         d'8
                         ef'8
                         e'8
@@ -1445,7 +1495,8 @@ def test_scoretools_Selection_are_logical_voice_37():
         {
             {
                 {
-                    \context Voice = "foo" {
+                    \context Voice = "foo"
+                    {
                         c'8
                         cs'8
                         d'8
@@ -1493,13 +1544,15 @@ def test_scoretools_Selection_are_logical_voice_38():
 
     assert format(container) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 {
                     {
                         c'8
                         cs'8
-                        \new Voice {
+                        \new Voice
+                        {
                             d'8
                             ef'8
                             e'8
@@ -1555,7 +1608,8 @@ def test_scoretools_Selection_are_logical_voice_39():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \context Voice = "foo" {
+        \context Voice = "foo"
+        {
             c'8
             cs'8
             {
@@ -1564,7 +1618,8 @@ def test_scoretools_Selection_are_logical_voice_39():
                 {
                     e'8
                     f'8
-                    \context Voice = "bar" {
+                    \context Voice = "bar"
+                    {
                         fs'8
                         g'8
                         af'8
@@ -1617,13 +1672,15 @@ def test_scoretools_Selection_are_logical_voice_40():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            \new Voice {
+            \new Voice
+            {
                 c'8
                 cs'8
                 d'8
                 ef'8
             }
-            \new Voice {
+            \new Voice
+            {
                 e'8
                 f'8
                 fs'8
@@ -1677,13 +1734,15 @@ def test_scoretools_Selection_are_logical_voice_41():
             c'8
             cs'8
             <<
-                \new Voice {
+                \new Voice
+                {
                     d'8
                     ef'8
                     e'8
                     f'8
                 }
-                \new Voice {
+                \new Voice
+                {
                     fs'8
                     g'8
                     af'8

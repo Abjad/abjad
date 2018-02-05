@@ -16,7 +16,8 @@ class Viola(Instrument):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \set Staff.instrumentName = \markup { Viola }
                 \set Staff.shortInstrumentName = \markup { Va. }
                 \clef "alto"

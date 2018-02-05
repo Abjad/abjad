@@ -22,9 +22,12 @@ class DuratedComplexBeam(ComplexBeam):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 autoBeaming = ##f
-            } {
+            }
+            {
                 \set stemLeftBeamCount = 0
                 \set stemRightBeamCount = 2
                 c'16 [
@@ -59,9 +62,12 @@ class DuratedComplexBeam(ComplexBeam):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 autoBeaming = ##f
-            } {
+            }
+            {
                 \set stemLeftBeamCount = 0
                 \set stemRightBeamCount = 2
                 c'16 [
@@ -264,7 +270,8 @@ class DuratedComplexBeam(ComplexBeam):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 1
                     c'8 [ ]
@@ -289,7 +296,8 @@ class DuratedComplexBeam(ComplexBeam):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 1
                     c'8 [
@@ -312,7 +320,8 @@ class DuratedComplexBeam(ComplexBeam):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 1
                     c'8 [ ]
@@ -337,7 +346,8 @@ class DuratedComplexBeam(ComplexBeam):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 1
                     c'8 [
@@ -361,7 +371,8 @@ class DuratedComplexBeam(ComplexBeam):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 1
                     c'8 [
@@ -398,7 +409,8 @@ class DuratedComplexBeam(ComplexBeam):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 2
                     c'16 [
@@ -433,9 +445,12 @@ class DuratedComplexBeam(ComplexBeam):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 2
                     c'16 [
@@ -486,7 +501,8 @@ class DuratedComplexBeam(ComplexBeam):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 2
                     c'16 [
@@ -518,7 +534,8 @@ class DuratedComplexBeam(ComplexBeam):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 2
                     c'16 [
@@ -562,7 +579,8 @@ class DuratedComplexBeam(ComplexBeam):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 3
                     c'32 [
@@ -596,7 +614,8 @@ class DuratedComplexBeam(ComplexBeam):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 3
                     c'32 [
@@ -630,7 +649,8 @@ class DuratedComplexBeam(ComplexBeam):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 3
                     c'32 [
@@ -679,9 +699,12 @@ class DuratedComplexBeam(ComplexBeam):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new RhythmicStaff \with {
+                \new RhythmicStaff
+                \with
+                {
                     \override Beam.positions = #'(4.5 . 4.5)
-                } {
+                }
+                {
                     \override RhythmicStaff.Stem.stemlet-length = 1.5
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 2

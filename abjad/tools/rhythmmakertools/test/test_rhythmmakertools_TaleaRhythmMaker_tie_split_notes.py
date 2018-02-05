@@ -22,23 +22,24 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'4 ~
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 c'16 [
                 c'8. ~ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 c'8 [
                 c'8 ~ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 c'8. [
                 c'16 ]
-            } % measure
+            }   % measure
         }
         '''
         )
@@ -66,30 +67,31 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 3/16
                 c'8. ~
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 5/8
                 c'8
                 c'4 ~
                 c'16 [
                 c'8. ~ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 4/8
                 c'8
                 c'4 ~
                 c'16 [
                 c'16 ~ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 7/16
                 c'4
                 c'8.
-            } % measure
+            }   % measure
         }
         '''
         )

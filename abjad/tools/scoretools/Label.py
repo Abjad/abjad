@@ -22,7 +22,8 @@ class Label(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'4
                         ^ \markup {
                             \small
@@ -74,7 +75,8 @@ class Label(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'4
                         ^ \markup {
                             \small
@@ -111,7 +113,8 @@ class Label(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'4
                         ^ \markup {
                             \small
@@ -163,7 +166,8 @@ class Label(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'4
                         ^ \markup {
                             \small
@@ -324,7 +328,7 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(measure)
-                    { % measure
+                    {   % measure
                         \override Accidental.color = #red
                         \override Beam.color = #red
                         \override Dots.color = #red
@@ -344,7 +348,7 @@ class Label(abctools.AbjadObject):
                         \revert Stem.color
                         \revert TupletBracket.color
                         \revert TupletNumber.color
-                    } % measure
+                    }   % measure
 
             ..  container:: example expression
 
@@ -356,7 +360,7 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(measure)
-                    { % measure
+                    {   % measure
                         \override Accidental.color = #red
                         \override Beam.color = #red
                         \override Dots.color = #red
@@ -376,7 +380,7 @@ class Label(abctools.AbjadObject):
                         \revert Stem.color
                         \revert TupletBracket.color
                         \revert TupletNumber.color
-                    } % measure
+                    }   % measure
 
         Returns none.
         '''
@@ -408,7 +412,8 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
+                    \new Staff
+                    {
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
                         \once \override Dots.color = #red
@@ -438,7 +443,8 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
+                    \new Staff
+                    {
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
                         \once \override Dots.color = #red
@@ -581,7 +587,8 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
+                    \new Staff
+                    {
                         \once \override NoteHead.color = #(x11-color 'red)
                         c'8
                         \once \override NoteHead.color = #(x11-color 'MediumBlue)
@@ -620,7 +627,8 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
+                    \new Staff
+                    {
                         \once \override NoteHead.color = #(x11-color 'red)
                         c'8
                         \once \override NoteHead.color = #(x11-color 'MediumBlue)
@@ -687,7 +695,8 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
+                    \new Staff
+                    {
                         c'8
                             ^ \markup {
                                 \small
@@ -716,7 +725,8 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
+                    \new Staff
+                    {
                         c'8
                         d'8
                         e'8
@@ -733,7 +743,8 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
+                    \new Staff
+                    {
                         c'8
                             ^ \markup {
                                 \small
@@ -763,7 +774,8 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
+                    \new Staff
+                    {
                         c'8
                         d'8
                         e'8
@@ -800,8 +812,10 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff_group)
-                    \new StaffGroup <<
-                        \new Staff {
+                    \new StaffGroup
+                    <<
+                        \new Staff
+                        {
                             c'8
                                 ^ \markup {
                                     \tiny
@@ -823,7 +837,8 @@ class Label(abctools.AbjadObject):
                                         4
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "alto"
                             g4
                             f4
@@ -832,7 +847,8 @@ class Label(abctools.AbjadObject):
                                         2
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "bass"
                             c,2
                         }
@@ -854,8 +870,10 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff_group)
-                    \new StaffGroup <<
-                        \new Staff {
+                    \new StaffGroup
+                    <<
+                        \new Staff
+                        {
                             c'8
                                 ^ \markup {
                                     \tiny
@@ -877,7 +895,8 @@ class Label(abctools.AbjadObject):
                                         4
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "alto"
                             g4
                             f4
@@ -886,7 +905,8 @@ class Label(abctools.AbjadObject):
                                         2
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "bass"
                             c,2
                         }
@@ -913,8 +933,10 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff_group)
-                    \new StaffGroup <<
-                        \new Staff {
+                    \new StaffGroup
+                    <<
+                        \new Staff
+                        {
                             c'8
                                 ^ \markup {
                                     \tiny
@@ -956,7 +978,8 @@ class Label(abctools.AbjadObject):
                                             }
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "alto"
                             g4
                             f4
@@ -970,7 +993,8 @@ class Label(abctools.AbjadObject):
                                             }
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "bass"
                             c,2
                         }
@@ -993,8 +1017,10 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff_group)
-                    \new StaffGroup <<
-                        \new Staff {
+                    \new StaffGroup
+                    <<
+                        \new Staff
+                        {
                             c'8
                                 ^ \markup {
                                     \tiny
@@ -1036,7 +1062,8 @@ class Label(abctools.AbjadObject):
                                             }
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "alto"
                             g4
                             f4
@@ -1050,7 +1077,8 @@ class Label(abctools.AbjadObject):
                                             }
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "bass"
                             c,2
                         }
@@ -1076,8 +1104,10 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff_group)
-                    \new StaffGroup <<
-                        \new Staff {
+                    \new StaffGroup
+                    <<
+                        \new Staff
+                        {
                             c'8
                                 ^ \markup {
                                     \tiny
@@ -1117,7 +1147,8 @@ class Label(abctools.AbjadObject):
                                             }
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "alto"
                             g4
                             f4
@@ -1131,7 +1162,8 @@ class Label(abctools.AbjadObject):
                                             }
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "bass"
                             c,2
                         }
@@ -1154,8 +1186,10 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff_group)
-                    \new StaffGroup <<
-                        \new Staff {
+                    \new StaffGroup
+                    <<
+                        \new Staff
+                        {
                             c'8
                                 ^ \markup {
                                     \tiny
@@ -1195,7 +1229,8 @@ class Label(abctools.AbjadObject):
                                             }
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "alto"
                             g4
                             f4
@@ -1209,7 +1244,8 @@ class Label(abctools.AbjadObject):
                                             }
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "bass"
                             c,2
                         }
@@ -1235,8 +1271,10 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff_group)
-                    \new StaffGroup <<
-                        \new Staff {
+                    \new StaffGroup
+                    <<
+                        \new Staff
+                        {
                             c'8
                                 ^ \markup {
                                     \tiny
@@ -1274,7 +1312,8 @@ class Label(abctools.AbjadObject):
                                             }
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "alto"
                             g4
                             f4
@@ -1287,7 +1326,8 @@ class Label(abctools.AbjadObject):
                                             }
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "bass"
                             c,2
                         }
@@ -1310,8 +1350,10 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff_group)
-                    \new StaffGroup <<
-                        \new Staff {
+                    \new StaffGroup
+                    <<
+                        \new Staff
+                        {
                             c'8
                                 ^ \markup {
                                     \tiny
@@ -1349,7 +1391,8 @@ class Label(abctools.AbjadObject):
                                             }
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "alto"
                             g4
                             f4
@@ -1362,7 +1405,8 @@ class Label(abctools.AbjadObject):
                                             }
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "bass"
                             c,2
                         }
@@ -1388,8 +1432,10 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff_group)
-                    \new StaffGroup <<
-                        \new Staff {
+                    \new StaffGroup
+                    <<
+                        \new Staff
+                        {
                             c'8
                                 ^ \markup {
                                     \tiny
@@ -1427,7 +1473,8 @@ class Label(abctools.AbjadObject):
                                             }
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "alto"
                             g4
                             f4
@@ -1440,7 +1487,8 @@ class Label(abctools.AbjadObject):
                                             }
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "bass"
                             c,2
                         }
@@ -1463,8 +1511,10 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff_group)
-                    \new StaffGroup <<
-                        \new Staff {
+                    \new StaffGroup
+                    <<
+                        \new Staff
+                        {
                             c'8
                                 ^ \markup {
                                     \tiny
@@ -1502,7 +1552,8 @@ class Label(abctools.AbjadObject):
                                             }
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "alto"
                             g4
                             f4
@@ -1515,7 +1566,8 @@ class Label(abctools.AbjadObject):
                                             }
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "bass"
                             c,2
                         }
@@ -1541,8 +1593,10 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff_group)
-                    \new StaffGroup <<
-                        \new Staff {
+                    \new StaffGroup
+                    <<
+                        \new Staff
+                        {
                             c'8
                                 ^ \markup {
                                     \tiny
@@ -1568,7 +1622,8 @@ class Label(abctools.AbjadObject):
                                             1000020
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "alto"
                             g4
                             f4
@@ -1578,7 +1633,8 @@ class Label(abctools.AbjadObject):
                                             0011010
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "bass"
                             c,2
                         }
@@ -1601,8 +1657,10 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff_group)
-                    \new StaffGroup <<
-                        \new Staff {
+                    \new StaffGroup
+                    <<
+                        \new Staff
+                        {
                             c'8
                                 ^ \markup {
                                     \tiny
@@ -1628,7 +1686,8 @@ class Label(abctools.AbjadObject):
                                             1000020
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "alto"
                             g4
                             f4
@@ -1638,7 +1697,8 @@ class Label(abctools.AbjadObject):
                                             0011010
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "bass"
                             c,2
                         }
@@ -1664,8 +1724,10 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff_group)
-                    \new StaffGroup <<
-                        \new Staff {
+                    \new StaffGroup
+                    <<
+                        \new Staff
+                        {
                             c'8
                                 ^ \markup {
                                     \tiny
@@ -1699,7 +1761,8 @@ class Label(abctools.AbjadObject):
                                             }
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "alto"
                             g4
                             f4
@@ -1711,7 +1774,8 @@ class Label(abctools.AbjadObject):
                                             }
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "bass"
                             c,2
                         }
@@ -1734,8 +1798,10 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff_group)
-                    \new StaffGroup <<
-                        \new Staff {
+                    \new StaffGroup
+                    <<
+                        \new Staff
+                        {
                             c'8
                                 ^ \markup {
                                     \tiny
@@ -1769,7 +1835,8 @@ class Label(abctools.AbjadObject):
                                             }
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "alto"
                             g4
                             f4
@@ -1781,7 +1848,8 @@ class Label(abctools.AbjadObject):
                                             }
                                     }
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "bass"
                             c,2
                         }
@@ -1915,7 +1983,8 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
+                    \new Staff
+                    {
                         c'4.
                             ^ \markup {
                                 \small
@@ -1949,7 +2018,8 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
+                    \new Staff
+                    {
                         c'4.
                             ^ \markup {
                                 \small
@@ -1986,7 +2056,8 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
+                    \new Staff
+                    {
                         c'4.
                             ^ \markup {
                                 \small
@@ -2020,7 +2091,8 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
+                    \new Staff
+                    {
                         c'4.
                             ^ \markup {
                                 \small
@@ -2075,9 +2147,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #2
-                    } {
+                    }
+                    {
                         <c' bf'>8
                             ^ \markup {
                                 \small
@@ -2113,9 +2188,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #2
-                    } {
+                    }
+                    {
                         <c' bf'>8
                             ^ \markup {
                                 \small
@@ -2154,9 +2232,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #2
-                    } {
+                    }
+                    {
                         <c' bf'>8
                         <g' a'>4
                         af'8 ~
@@ -2194,9 +2275,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #2
-                    } {
+                    }
+                    {
                         <c' bf'>8
                         <g' a'>4
                         af'8 ~
@@ -2235,9 +2319,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #2
-                    } {
+                    }
+                    {
                         <c' bf'>8
                             ^ \markup {
                                 \small
@@ -2267,9 +2354,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #2
-                    } {
+                    }
+                    {
                         <c' bf'>8
                             ^ \markup {
                                 \small
@@ -2300,9 +2390,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #2
-                    } {
+                    }
+                    {
                         <c' bf'>8
                             ^ \markup {
                                 \small
@@ -2348,9 +2441,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #2
-                    } {
+                    }
+                    {
                         <c' bf'>8
                             ^ \markup {
                                 \small
@@ -2398,9 +2494,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #2
-                    } {
+                    }
+                    {
                         \times 2/3 {
                             c'8
                                 ^ \markup {
@@ -2453,9 +2552,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #2
-                    } {
+                    }
+                    {
                         \times 2/3 {
                             c'8
                                 ^ \markup {
@@ -2532,9 +2634,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #4
-                    } {
+                    }
+                    {
                         c'4 ^ \markup { +aug15 }
                         cs'''4 ^ \markup { -M9 }
                         b'4 ^ \markup { -aug9 }
@@ -2559,9 +2664,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #4
-                    } {
+                    }
+                    {
                         c'4 ^ \markup { +aug15 }
                         cs'''4 ^ \markup { -M9 }
                         b'4 ^ \markup { -aug9 }
@@ -2590,9 +2698,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #4
-                    } {
+                    }
+                    {
                         c'4 ^ \markup { +aug8 }
                         cs'''4 ^ \markup { -M2 }
                         b'4 ^ \markup { -aug2 }
@@ -2618,9 +2729,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #4
-                    } {
+                    }
+                    {
                         c'4 ^ \markup { +aug8 }
                         cs'''4 ^ \markup { -M2 }
                         b'4 ^ \markup { -aug2 }
@@ -2649,9 +2763,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #4
-                    } {
+                    }
+                    {
                         c'4 ^ \markup { +25 }
                         cs'''4 ^ \markup { -14 }
                         b'4 ^ \markup { -15 }
@@ -2677,9 +2794,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #4
-                    } {
+                    }
+                    {
                         c'4 ^ \markup { +25 }
                         cs'''4 ^ \markup { -14 }
                         b'4 ^ \markup { -15 }
@@ -2709,9 +2829,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #4
-                    } {
+                    }
+                    {
                         c'4 ^ \markup { +1 }
                         cs'''4 ^ \markup { -2 }
                         b'4 ^ \markup { -3 }
@@ -2737,9 +2860,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #4
-                    } {
+                    }
+                    {
                         c'4 ^ \markup { +1 }
                         cs'''4 ^ \markup { -2 }
                         b'4 ^ \markup { -3 }
@@ -2769,9 +2895,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #4
-                    } {
+                    }
+                    {
                         c'4 ^ \markup { 1 }
                         cs'''4 ^ \markup { 2 }
                         b'4 ^ \markup { 3 }
@@ -2797,9 +2926,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #4
-                    } {
+                    }
+                    {
                         c'4 ^ \markup { 1 }
                         cs'''4 ^ \markup { 2 }
                         b'4 ^ \markup { 3 }
@@ -2859,9 +2991,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #4
-                    } {
+                    }
+                    {
                         <a d' fs'>4
                             ^ \markup {
                                 \small
@@ -2897,9 +3032,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #4
-                    } {
+                    }
+                    {
                         <a d' fs'>4
                             ^ \markup {
                                 \small
@@ -2938,9 +3076,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #4
-                    } {
+                    }
+                    {
                         <a d' fs'>4
                             ^ \markup {
                                 \small
@@ -2976,9 +3117,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #4
-                    } {
+                    }
+                    {
                         <a d' fs'>4
                             ^ \markup {
                                 \small
@@ -3018,9 +3162,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #4
-                    } {
+                    }
+                    {
                         <a d' fs'>4
                             ^ \markup {
                                 \small
@@ -3057,9 +3204,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #4
-                    } {
+                    }
+                    {
                         <a d' fs'>4
                             ^ \markup {
                                 \small
@@ -3099,9 +3249,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #4
-                    } {
+                    }
+                    {
                         <a d' fs'>4
                             ^ \markup {
                                 \small
@@ -3138,9 +3291,12 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #4
-                    } {
+                    }
+                    {
                         <a d' fs'>4
                             ^ \markup {
                                 \small
@@ -3187,11 +3343,14 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(voice)
-                    \new Voice \with {
+                    \new Voice
+                    \with
+                    {
                         \consists Horizontal_bracket_engraver
                         \override HorizontalBracket.staff-padding = #3
                         \override TextScript.staff-padding = #2
-                    } {
+                    }
+                    {
                         df''4 \startGroup
                             ^ \markup {
                                 \small
@@ -3234,11 +3393,14 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(voice)
-                    \new Voice \with {
+                    \new Voice
+                    \with
+                    {
                         \consists Horizontal_bracket_engraver
                         \override HorizontalBracket.staff-padding = #3
                         \override TextScript.staff-padding = #2
-                    } {
+                    }
+                    {
                         df''4 \startGroup
                             ^ \markup {
                                 \small
@@ -3285,11 +3447,14 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(voice)
-                    \new Voice \with {
+                    \new Voice
+                    \with
+                    {
                         \consists Horizontal_bracket_engraver
                         \override HorizontalBracket.staff-padding = #3
                         \override TextScript.staff-padding = #2
-                    } {
+                    }
+                    {
                         df''4 \startGroup
                             ^ \markup {
                                 \small
@@ -3333,11 +3498,14 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(voice)
-                    \new Voice \with {
+                    \new Voice
+                    \with
+                    {
                         \consists Horizontal_bracket_engraver
                         \override HorizontalBracket.staff-padding = #3
                         \override TextScript.staff-padding = #2
-                    } {
+                    }
+                    {
                         df''4 \startGroup
                             ^ \markup {
                                 \small
@@ -3385,11 +3553,14 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(voice)
-                    \new Voice \with {
+                    \new Voice
+                    \with
+                    {
                         \consists Horizontal_bracket_engraver
                         \override HorizontalBracket.staff-padding = #3
                         \override TextScript.staff-padding = #2
-                    } {
+                    }
+                    {
                         df''4 \startGroup
                             ^ \markup {
                                 \small
@@ -3433,11 +3604,14 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(voice)
-                    \new Voice \with {
+                    \new Voice
+                    \with
+                    {
                         \consists Horizontal_bracket_engraver
                         \override HorizontalBracket.staff-padding = #3
                         \override TextScript.staff-padding = #2
-                    } {
+                    }
+                    {
                         df''4 \startGroup
                             ^ \markup {
                                 \small
@@ -3545,11 +3719,14 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(voice)
-                    \new Voice \with {
+                    \new Voice
+                    \with
+                    {
                         \consists Horizontal_bracket_engraver
                         \override HorizontalBracket.staff-padding = #3
                         \override TextScript.staff-padding = #2
-                    } {
+                    }
+                    {
                         df''8 \startGroup
                             ^ \markup {
                                 \tiny
@@ -3594,11 +3771,14 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(voice)
-                    \new Voice \with {
+                    \new Voice
+                    \with
+                    {
                         \consists Horizontal_bracket_engraver
                         \override HorizontalBracket.staff-padding = #3
                         \override TextScript.staff-padding = #2
-                    } {
+                    }
+                    {
                         df''8 \startGroup
                             ^ \markup {
                                 \tiny
@@ -3648,11 +3828,14 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(voice)
-                    \new Voice \with {
+                    \new Voice
+                    \with
+                    {
                         \consists Horizontal_bracket_engraver
                         \override HorizontalBracket.staff-padding = #3
                         \override TextScript.staff-padding = #2
-                    } {
+                    }
+                    {
                         df''8 \startGroup
                             ^ \markup {
                                 \tiny
@@ -3698,11 +3881,14 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(voice)
-                    \new Voice \with {
+                    \new Voice
+                    \with
+                    {
                         \consists Horizontal_bracket_engraver
                         \override HorizontalBracket.staff-padding = #3
                         \override TextScript.staff-padding = #2
-                    } {
+                    }
+                    {
                         df''8 \startGroup
                             ^ \markup {
                                 \tiny
@@ -3751,11 +3937,14 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(voice)
-                    \new Voice \with {
+                    \new Voice
+                    \with
+                    {
                         \consists Horizontal_bracket_engraver
                         \override HorizontalBracket.staff-padding = #3
                         \override TextScript.staff-padding = #2
-                    } {
+                    }
+                    {
                         df''8 \startGroup
                             ^ \markup {
                                 \tiny
@@ -3801,11 +3990,14 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(voice)
-                    \new Voice \with {
+                    \new Voice
+                    \with
+                    {
                         \consists Horizontal_bracket_engraver
                         \override HorizontalBracket.staff-padding = #3
                         \override TextScript.staff-padding = #2
-                    } {
+                    }
+                    {
                         df''8 \startGroup
                             ^ \markup {
                                 \tiny
@@ -3886,10 +4078,13 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #4
                         \override TupletBracket.staff-padding = #0
-                    } {
+                    }
+                    {
                         \times 2/3 {
                             c'4 ^ \markup { 0 }
                             d'4 ^ \markup { 1/6 }
@@ -3914,10 +4109,13 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \override TextScript.staff-padding = #4
                         \override TupletBracket.staff-padding = #0
-                    } {
+                    }
+                    {
                         \times 2/3 {
                             c'4 ^ \markup { 0 }
                             d'4 ^ \markup { 1/6 }
@@ -3947,11 +4145,15 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(score)
-                    \new Score <<
-                        \new Staff \with {
+                    \new Score
+                    <<
+                        \new Staff
+                        \with
+                        {
                             \override TextScript.staff-padding = #4
                             \override TupletBracket.staff-padding = #0
-                        } {
+                        }
+                        {
                             \tempo 4=60
                             c'2 ^ \markup { 0'00'' }
                             d'2 ^ \markup { 0'02'' }
@@ -3977,11 +4179,15 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(score)
-                    \new Score <<
-                        \new Staff \with {
+                    \new Score
+                    <<
+                        \new Staff
+                        \with
+                        {
                             \override TextScript.staff-padding = #4
                             \override TupletBracket.staff-padding = #0
-                        } {
+                        }
+                        {
                             \tempo 4=60
                             c'2 ^ \markup { 0'00'' }
                             d'2 ^ \markup { 0'02'' }
@@ -4014,11 +4220,15 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(score)
-                    \new Score <<
-                        \new Staff \with {
+                    \new Score
+                    <<
+                        \new Staff
+                        \with
+                        {
                             \override TextScript.staff-padding = #4
                             \override TupletBracket.staff-padding = #0
-                        } {
+                        }
+                        {
                             \tempo 4=60
                             c'2
                                 ^ \markup {
@@ -4067,11 +4277,15 @@ class Label(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(score)
-                    \new Score <<
-                        \new Staff \with {
+                    \new Score
+                    <<
+                        \new Staff
+                        \with
+                        {
                             \override TextScript.staff-padding = #4
                             \override TupletBracket.staff-padding = #0
-                        } {
+                        }
+                        {
                             \tempo 4=60
                             c'2
                                 ^ \markup {

@@ -94,13 +94,14 @@ class MeterManager(abctools.AbjadObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
-                { % measure
+            \new Staff
+            {
+                {   % measure
                     \time 2/4
                     c'4
                     d'4 ~
-                } % measure
-                { % measure
+                }   % measure
+                {   % measure
                     \time 4/4
                     d'8.
                     r16
@@ -112,20 +113,20 @@ class MeterManager(abctools.AbjadObject):
                         f'8 ~
                     }
                     f'4 ~
-                } % measure
-                { % measure
+                }   % measure
+                {   % measure
                     f'8
                     g'8 ~
                     g'4
                     a'4 ~
                     a'8
                     b'8 ~
-                } % measure
-                { % measure
+                }   % measure
+                {   % measure
                     \time 2/4
                     b'4
                     c''4
-                } % measure
+                }   % measure
             }
 
         >>> for x in abjad.MeterManager.iterate_rewrite_inputs(

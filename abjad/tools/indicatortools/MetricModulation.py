@@ -24,11 +24,16 @@ class MetricModulation(AbjadValueObject):
                     #'(0.75 . 0.75)
                     \score
                         {
-                            \new Score \with {
+                            \new Score
+                            \with
+                            {
                                 \override SpacingSpanner.spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
-                            } <<
-                                \new RhythmicStaff \with {
+                            }
+                            <<
+                                \new RhythmicStaff
+                                \with
+                                {
                                     \remove Time_signature_engraver
                                     \remove Staff_symbol_engraver
                                     \override Stem.direction = #up
@@ -39,7 +44,8 @@ class MetricModulation(AbjadValueObject):
                                     \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                     tupletFullLength = ##t
-                                } {
+                                }
+                                {
                                     c'4
                                 }
                             >>
@@ -55,11 +61,16 @@ class MetricModulation(AbjadValueObject):
                     #'(0.75 . 0.75)
                     \score
                         {
-                            \new Score \with {
+                            \new Score
+                            \with
+                            {
                                 \override SpacingSpanner.spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
-                            } <<
-                                \new RhythmicStaff \with {
+                            }
+                            <<
+                                \new RhythmicStaff
+                                \with
+                                {
                                     \remove Time_signature_engraver
                                     \remove Staff_symbol_engraver
                                     \override Stem.direction = #up
@@ -70,7 +81,8 @@ class MetricModulation(AbjadValueObject):
                                     \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                     tupletFullLength = ##t
-                                } {
+                                }
+                                {
                                     c'4.
                                 }
                             >>
@@ -100,11 +112,16 @@ class MetricModulation(AbjadValueObject):
                     #'(0.75 . 0.75)
                     \score
                         {
-                            \new Score \with {
+                            \new Score
+                            \with
+                            {
                                 \override SpacingSpanner.spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
-                            } <<
-                                \new RhythmicStaff \with {
+                            }
+                            <<
+                                \new RhythmicStaff
+                                \with
+                                {
                                     \remove Time_signature_engraver
                                     \remove Staff_symbol_engraver
                                     \override Stem.direction = #up
@@ -115,7 +132,8 @@ class MetricModulation(AbjadValueObject):
                                     \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                     tupletFullLength = ##t
-                                } {
+                                }
+                                {
                                     \tweak edge-height #'(0.7 . 0)
                                     \times 4/5 {
                                         c'4
@@ -134,11 +152,16 @@ class MetricModulation(AbjadValueObject):
                     #'(0.75 . 0.75)
                     \score
                         {
-                            \new Score \with {
+                            \new Score
+                            \with
+                            {
                                 \override SpacingSpanner.spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
-                            } <<
-                                \new RhythmicStaff \with {
+                            }
+                            <<
+                                \new RhythmicStaff
+                                \with
+                                {
                                     \remove Time_signature_engraver
                                     \remove Staff_symbol_engraver
                                     \override Stem.direction = #up
@@ -149,7 +172,8 @@ class MetricModulation(AbjadValueObject):
                                     \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                     tupletFullLength = ##t
-                                } {
+                                }
+                                {
                                     c'4
                                 }
                             >>
@@ -179,11 +203,16 @@ class MetricModulation(AbjadValueObject):
                     #'(0.75 . 0.75)
                     \score
                         {
-                            \new Score \with {
+                            \new Score
+                            \with
+                            {
                                 \override SpacingSpanner.spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
-                            } <<
-                                \new RhythmicStaff \with {
+                            }
+                            <<
+                                \new RhythmicStaff
+                                \with
+                                {
                                     \remove Time_signature_engraver
                                     \remove Staff_symbol_engraver
                                     \override Stem.direction = #up
@@ -194,7 +223,8 @@ class MetricModulation(AbjadValueObject):
                                     \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                     tupletFullLength = ##t
-                                } {
+                                }
+                                {
                                     c16.
                                 }
                             >>
@@ -210,11 +240,16 @@ class MetricModulation(AbjadValueObject):
                     #'(0.75 . 0.75)
                     \score
                         {
-                            \new Score \with {
+                            \new Score
+                            \with
+                            {
                                 \override SpacingSpanner.spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
-                            } <<
-                                \new RhythmicStaff \with {
+                            }
+                            <<
+                                \new RhythmicStaff
+                                \with
+                                {
                                     \remove Time_signature_engraver
                                     \remove Staff_symbol_engraver
                                     \override Stem.direction = #up
@@ -225,7 +260,8 @@ class MetricModulation(AbjadValueObject):
                                     \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                     tupletFullLength = ##t
-                                } {
+                                }
+                                {
                                     \tweak edge-height #'(0.7 . 0)
                                     \times 2/3 {
                                         c8
@@ -260,11 +296,16 @@ class MetricModulation(AbjadValueObject):
                     #'(0.75 . 0.75)
                     \score
                         {
-                            \new Score \with {
+                            \new Score
+                            \with
+                            {
                                 \override SpacingSpanner.spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
-                            } <<
-                                \new RhythmicStaff \with {
+                            }
+                            <<
+                                \new RhythmicStaff
+                                \with
+                                {
                                     \remove Time_signature_engraver
                                     \remove Staff_symbol_engraver
                                     \override Stem.direction = #up
@@ -275,7 +316,8 @@ class MetricModulation(AbjadValueObject):
                                     \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                     tupletFullLength = ##t
-                                } {
+                                }
+                                {
                                     c'4
                                 }
                             >>
@@ -291,11 +333,16 @@ class MetricModulation(AbjadValueObject):
                     #'(0.75 . 0.75)
                     \score
                         {
-                            \new Score \with {
+                            \new Score
+                            \with
+                            {
                                 \override SpacingSpanner.spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
-                            } <<
-                                \new RhythmicStaff \with {
+                            }
+                            <<
+                                \new RhythmicStaff
+                                \with
+                                {
                                     \remove Time_signature_engraver
                                     \remove Staff_symbol_engraver
                                     \override Stem.direction = #up
@@ -306,7 +353,8 @@ class MetricModulation(AbjadValueObject):
                                     \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                     tupletFullLength = ##t
-                                } {
+                                }
+                                {
                                     c'4 ~
                                     c'16
                                 }
@@ -340,11 +388,16 @@ class MetricModulation(AbjadValueObject):
                     #'(0.75 . 0.75)
                     \score
                         {
-                            \new Score \with {
+                            \new Score
+                            \with
+                            {
                                 \override SpacingSpanner.spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
-                            } <<
-                                \new RhythmicStaff \with {
+                            }
+                            <<
+                                \new RhythmicStaff
+                                \with
+                                {
                                     \remove Time_signature_engraver
                                     \remove Staff_symbol_engraver
                                     \override Stem.direction = #up
@@ -355,7 +408,8 @@ class MetricModulation(AbjadValueObject):
                                     \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                     tupletFullLength = ##t
-                                } {
+                                }
+                                {
                                     c'4
                                 }
                             >>
@@ -371,11 +425,16 @@ class MetricModulation(AbjadValueObject):
                     #'(0.75 . 0.75)
                     \score
                         {
-                            \new Score \with {
+                            \new Score
+                            \with
+                            {
                                 \override SpacingSpanner.spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
-                            } <<
-                                \new RhythmicStaff \with {
+                            }
+                            <<
+                                \new RhythmicStaff
+                                \with
+                                {
                                     \remove Time_signature_engraver
                                     \remove Staff_symbol_engraver
                                     \override Stem.direction = #up
@@ -386,7 +445,8 @@ class MetricModulation(AbjadValueObject):
                                     \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                     tupletFullLength = ##t
-                                } {
+                                }
+                                {
                                     \tweak edge-height #'(0.7 . 0)
                                     \times 2/3 {
                                         c'4 ~
@@ -422,10 +482,14 @@ class MetricModulation(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff \with {
+            \new Score
+            <<
+                \new Staff
+                \with
+                {
                     \override TextScript.staff-padding = #2.5
-                } {
+                }
+                {
                     \time 3/4
                     c'4
                     d'4
@@ -436,11 +500,16 @@ class MetricModulation(AbjadValueObject):
                                 #'(0.75 . 0.75)
                                 \score
                                     {
-                                        \new Score \with {
+                                        \new Score
+                                        \with
+                                        {
                                             \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
-                                        } <<
-                                            \new RhythmicStaff \with {
+                                        }
+                                        <<
+                                            \new RhythmicStaff
+                                            \with
+                                            {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
                                                 \override Stem.direction = #up
@@ -451,7 +520,8 @@ class MetricModulation(AbjadValueObject):
                                                 \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                                 \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
-                                            } {
+                                            }
+                                            {
                                                 c4
                                             }
                                         >>
@@ -467,11 +537,16 @@ class MetricModulation(AbjadValueObject):
                                 #'(0.75 . 0.75)
                                 \score
                                     {
-                                        \new Score \with {
+                                        \new Score
+                                        \with
+                                        {
                                             \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
-                                        } <<
-                                            \new RhythmicStaff \with {
+                                        }
+                                        <<
+                                            \new RhythmicStaff
+                                            \with
+                                            {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
                                                 \override Stem.direction = #up
@@ -482,7 +557,8 @@ class MetricModulation(AbjadValueObject):
                                                 \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                                 \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
-                                            } {
+                                            }
+                                            {
                                                 c8.
                                             }
                                         >>
@@ -659,11 +735,16 @@ class MetricModulation(AbjadValueObject):
                         #'(0.75 . 0.75)
                         \score
                             {
-                                \new Score \with {
+                                \new Score
+                                \with
+                                {
                                     \override SpacingSpanner.spacing-increment = #0.5
                                     proportionalNotationDuration = ##f
-                                } <<
-                                    \new RhythmicStaff \with {
+                                }
+                                <<
+                                    \new RhythmicStaff
+                                    \with
+                                    {
                                         \remove Time_signature_engraver
                                         \remove Staff_symbol_engraver
                                         \override Stem.direction = #up
@@ -674,7 +755,8 @@ class MetricModulation(AbjadValueObject):
                                         \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                         \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                         tupletFullLength = ##t
-                                    } {
+                                    }
+                                    {
                                         \tweak edge-height #'(0.7 . 0)
                                         \times 2/3 {
                                             c'4
@@ -693,11 +775,16 @@ class MetricModulation(AbjadValueObject):
                         #'(0.75 . 0.75)
                         \score
                             {
-                                \new Score \with {
+                                \new Score
+                                \with
+                                {
                                     \override SpacingSpanner.spacing-increment = #0.5
                                     proportionalNotationDuration = ##f
-                                } <<
-                                    \new RhythmicStaff \with {
+                                }
+                                <<
+                                    \new RhythmicStaff
+                                    \with
+                                    {
                                         \remove Time_signature_engraver
                                         \remove Staff_symbol_engraver
                                         \override Stem.direction = #up
@@ -708,7 +795,8 @@ class MetricModulation(AbjadValueObject):
                                         \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                         \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                         tupletFullLength = ##t
-                                    } {
+                                    }
+                                    {
                                         c'4.
                                     }
                                 >>
@@ -743,11 +831,16 @@ class MetricModulation(AbjadValueObject):
                     #'(0.75 . 0.75)
                     \score
                         {
-                            \new Score \with {
+                            \new Score
+                            \with
+                            {
                                 \override SpacingSpanner.spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
-                            } <<
-                                \new RhythmicStaff \with {
+                            }
+                            <<
+                                \new RhythmicStaff
+                                \with
+                                {
                                     \remove Time_signature_engraver
                                     \remove Staff_symbol_engraver
                                     \override Stem.direction = #up
@@ -758,7 +851,8 @@ class MetricModulation(AbjadValueObject):
                                     \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                     tupletFullLength = ##t
-                                } {
+                                }
+                                {
                                     \tweak edge-height #'(0.7 . 0)
                                     \times 2/3 {
                                         c'4
@@ -777,11 +871,16 @@ class MetricModulation(AbjadValueObject):
                     #'(0.75 . 0.75)
                     \score
                         {
-                            \new Score \with {
+                            \new Score
+                            \with
+                            {
                                 \override SpacingSpanner.spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
-                            } <<
-                                \new RhythmicStaff \with {
+                            }
+                            <<
+                                \new RhythmicStaff
+                                \with
+                                {
                                     \remove Time_signature_engraver
                                     \remove Staff_symbol_engraver
                                     \override Stem.direction = #up
@@ -792,7 +891,8 @@ class MetricModulation(AbjadValueObject):
                                     \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                     tupletFullLength = ##t
-                                } {
+                                }
+                                {
                                     c'4
                                 }
                             >>

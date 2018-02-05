@@ -12,7 +12,8 @@ def test_spannertools_Spanner___getitem___01():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [
                 d'8
@@ -43,7 +44,8 @@ def test_spannertools_Spanner___getitem___02():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [
                 d'8
@@ -74,7 +76,8 @@ def test_spannertools_Spanner___getitem___03():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [
                 d'8
@@ -105,7 +108,8 @@ def test_spannertools_Spanner___getitem___04():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [
                 d'8

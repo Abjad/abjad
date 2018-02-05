@@ -28,10 +28,14 @@ class MetronomeMarkSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff \with {
+            \new Score
+            <<
+                \new Staff
+                \with
+                {
                     \override TextSpanner.staff-padding = #3
-                } {
+                }
+                {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -175,10 +179,14 @@ class MetronomeMarkSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff \with {
+            \new Score
+            <<
+                \new Staff
+                \with
+                {
                     \override TextSpanner.staff-padding = #3
-                } {
+                }
+                {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -336,10 +344,14 @@ class MetronomeMarkSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff \with {
+            \new Score
+            <<
+                \new Staff
+                \with
+                {
                     \override TextSpanner.staff-padding = #3
-                } {
+                }
+                {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -499,10 +511,14 @@ class MetronomeMarkSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff \with {
+            \new Score
+            <<
+                \new Staff
+                \with
+                {
                     \override TextSpanner.staff-padding = #3
-                } {
+                }
+                {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -672,10 +688,14 @@ class MetronomeMarkSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff \with {
+            \new Score
+            <<
+                \new Staff
+                \with
+                {
                     \override TextSpanner.staff-padding = #3
-                } {
+                }
+                {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -819,10 +839,14 @@ class MetronomeMarkSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff \with {
+            \new Score
+            <<
+                \new Staff
+                \with
+                {
                     \override TextSpanner.staff-padding = #3
-                } {
+                }
+                {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -968,10 +992,14 @@ class MetronomeMarkSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff \with {
+            \new Score
+            <<
+                \new Staff
+                \with
+                {
                     \override TextSpanner.staff-padding = #3
-                } {
+                }
+                {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -1134,10 +1162,14 @@ class MetronomeMarkSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff \with {
+            \new Score
+            <<
+                \new Staff
+                \with
+                {
                     \override TextSpanner.staff-padding = #3
-                } {
+                }
+                {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -1298,10 +1330,14 @@ class MetronomeMarkSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff \with {
+            \new Score
+            <<
+                \new Staff
+                \with
+                {
                     \override TextSpanner.staff-padding = #3
-                } {
+                }
+                {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -1415,10 +1451,14 @@ class MetronomeMarkSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff \with {
+            \new Score
+            <<
+                \new Staff
+                \with
+                {
                     \override TextSpanner.staff-padding = #3
-                } {
+                }
+                {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -1533,10 +1573,14 @@ class MetronomeMarkSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff \with {
+            \new Score
+            <<
+                \new Staff
+                \with
+                {
                     \override TextSpanner.staff-padding = #3
-                } {
+                }
+                {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -1601,11 +1645,16 @@ class MetronomeMarkSpanner(Spanner):
                                                 #'(0.5 . 0.5)
                                                 \score
                                                     {
-                                                        \new Score \with {
+                                                        \new Score
+                                                        \with
+                                                        {
                                                             \override SpacingSpanner.spacing-increment = #0.5
                                                             proportionalNotationDuration = ##f
-                                                        } <<
-                                                            \new RhythmicStaff \with {
+                                                        }
+                                                        <<
+                                                            \new RhythmicStaff
+                                                            \with
+                                                            {
                                                                 \remove Time_signature_engraver
                                                                 \remove Staff_symbol_engraver
                                                                 \override Stem.direction = #up
@@ -1616,7 +1665,8 @@ class MetronomeMarkSpanner(Spanner):
                                                                 \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                                                 \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                                 tupletFullLength = ##t
-                                                            } {
+                                                            }
+                                                            {
                                                                 c4.
                                                             }
                                                         >>
@@ -1632,11 +1682,16 @@ class MetronomeMarkSpanner(Spanner):
                                                 #'(0.5 . 0.5)
                                                 \score
                                                     {
-                                                        \new Score \with {
+                                                        \new Score
+                                                        \with
+                                                        {
                                                             \override SpacingSpanner.spacing-increment = #0.5
                                                             proportionalNotationDuration = ##f
-                                                        } <<
-                                                            \new RhythmicStaff \with {
+                                                        }
+                                                        <<
+                                                            \new RhythmicStaff
+                                                            \with
+                                                            {
                                                                 \remove Time_signature_engraver
                                                                 \remove Staff_symbol_engraver
                                                                 \override Stem.direction = #up
@@ -1647,7 +1702,8 @@ class MetronomeMarkSpanner(Spanner):
                                                                 \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                                                 \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                                 tupletFullLength = ##t
-                                                            } {
+                                                            }
+                                                            {
                                                                 c4
                                                             }
                                                         >>
@@ -1699,10 +1755,14 @@ class MetronomeMarkSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff \with {
+            \new Score
+            <<
+                \new Staff
+                \with
+                {
                     \override TextSpanner.staff-padding = #3
-                } {
+                }
+                {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -1778,11 +1838,16 @@ class MetronomeMarkSpanner(Spanner):
                                                 #'(0.5 . 0.5)
                                                 \score
                                                     {
-                                                        \new Score \with {
+                                                        \new Score
+                                                        \with
+                                                        {
                                                             \override SpacingSpanner.spacing-increment = #0.5
                                                             proportionalNotationDuration = ##f
-                                                        } <<
-                                                            \new RhythmicStaff \with {
+                                                        }
+                                                        <<
+                                                            \new RhythmicStaff
+                                                            \with
+                                                            {
                                                                 \remove Time_signature_engraver
                                                                 \remove Staff_symbol_engraver
                                                                 \override Stem.direction = #up
@@ -1793,7 +1858,8 @@ class MetronomeMarkSpanner(Spanner):
                                                                 \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                                                 \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                                 tupletFullLength = ##t
-                                                            } {
+                                                            }
+                                                            {
                                                                 c4.
                                                             }
                                                         >>
@@ -1809,11 +1875,16 @@ class MetronomeMarkSpanner(Spanner):
                                                 #'(0.5 . 0.5)
                                                 \score
                                                     {
-                                                        \new Score \with {
+                                                        \new Score
+                                                        \with
+                                                        {
                                                             \override SpacingSpanner.spacing-increment = #0.5
                                                             proportionalNotationDuration = ##f
-                                                        } <<
-                                                            \new RhythmicStaff \with {
+                                                        }
+                                                        <<
+                                                            \new RhythmicStaff
+                                                            \with
+                                                            {
                                                                 \remove Time_signature_engraver
                                                                 \remove Staff_symbol_engraver
                                                                 \override Stem.direction = #up
@@ -1824,7 +1895,8 @@ class MetronomeMarkSpanner(Spanner):
                                                                 \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                                                 \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                                 tupletFullLength = ##t
-                                                            } {
+                                                            }
+                                                            {
                                                                 c4
                                                             }
                                                         >>
@@ -2316,10 +2388,14 @@ class MetronomeMarkSpanner(Spanner):
             ..  docs::
 
                 >>> abjad.f(score)
-                \new Score <<
-                    \new Staff \with {
+                \new Score
+                <<
+                    \new Staff
+                    \with
+                    {
                         \override TextSpanner.staff-padding = #3
-                    } {
+                    }
+                    {
                         \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.bound-details.left-broken.text = ##f
                         \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -2437,10 +2513,14 @@ class MetronomeMarkSpanner(Spanner):
             ..  docs::
 
                 >>> abjad.f(score)
-                \new Score <<
-                    \new Staff \with {
+                \new Score
+                <<
+                    \new Staff
+                    \with
+                    {
                         \override TextSpanner.staff-padding = #3
-                    } {
+                    }
+                    {
                         \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.bound-details.left-broken.text = ##f
                         \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -2562,10 +2642,14 @@ class MetronomeMarkSpanner(Spanner):
             ..  docs::
 
                 >>> abjad.f(score)
-                \new Score <<
-                    \new Staff \with {
+                \new Score
+                <<
+                    \new Staff
+                    \with
+                    {
                         \override TextSpanner.staff-padding = #3
-                    } {
+                    }
+                    {
                         \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.bound-details.left-broken.text = ##f
                         \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -2685,10 +2769,14 @@ class MetronomeMarkSpanner(Spanner):
             ..  docs::
 
                 >>> abjad.f(score)
-                \new Score <<
-                    \new Staff \with {
+                \new Score
+                <<
+                    \new Staff
+                    \with
+                    {
                         \override TextSpanner.staff-padding = #3
-                    } {
+                    }
+                    {
                         \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.bound-details.left-broken.text = ##f
                         \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -2819,10 +2907,14 @@ class MetronomeMarkSpanner(Spanner):
             ..  docs::
 
                 >>> abjad.f(score)
-                \new Score <<
-                    \new Staff \with {
+                \new Score
+                <<
+                    \new Staff
+                    \with
+                    {
                         \override TextSpanner.staff-padding = #3
-                    } {
+                    }
+                    {
                         \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.bound-details.left-broken.text = ##f
                         \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -2968,10 +3060,14 @@ class MetronomeMarkSpanner(Spanner):
             ..  docs::
 
                 >>> abjad.f(score)
-                \new Score <<
-                    \new Staff \with {
+                \new Score
+                <<
+                    \new Staff
+                    \with
+                    {
                         \override TextSpanner.staff-padding = #3
-                    } {
+                    }
+                    {
                         \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.bound-details.left-broken.text = ##f
                         \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -3168,10 +3264,14 @@ class MetronomeMarkSpanner(Spanner):
             ..  docs::
 
                 >>> abjad.f(score)
-                \new Score <<
-                    \new Staff \with {
+                \new Score
+                <<
+                    \new Staff
+                    \with
+                    {
                         \override TextSpanner.staff-padding = #3
-                    } {
+                    }
+                    {
                         \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.bound-details.left-broken.text = ##f
                         \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -3315,32 +3415,36 @@ class MetronomeMarkSpanner(Spanner):
             >>> abjad.show(score) # doctest: +SKIP
 
             >>> abjad.f(score, strict=True)
-            \new Score <<
-                \new Staff \with {
+            \new Score
+            <<
+                \new Staff
+                \with
+                {
                     \override TextSpanner.staff-padding = #3
-                } {
+                }
+                {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = %! RED:M1
-                    \markup {                                             %! RED:M1
-                        \fontsize                                         %! RED:M1
-                            #-6                                           %! RED:M1
-                            \general-align                                %! RED:M1
-                                #Y                                        %! RED:M1
-                                #DOWN                                     %! RED:M1
-                                \note-by-number                           %! RED:M1
-                                    #2                                    %! RED:M1
-                                    #0                                    %! RED:M1
-                                    #1                                    %! RED:M1
-                        \upright                                          %! RED:M1
-                            {                                             %! RED:M1
-                                =                                         %! RED:M1
-                                60                                        %! RED:M1
-                            }                                             %! RED:M1
-                        \hspace                                           %! RED:M1
-                            #1                                            %! RED:M1
-                        }                                                 %! RED:M1
+                    \markup { %! RED:M1
+                        \fontsize %! RED:M1
+                            #-6 %! RED:M1
+                            \general-align %! RED:M1
+                                #Y %! RED:M1
+                                #DOWN %! RED:M1
+                                \note-by-number %! RED:M1
+                                    #2 %! RED:M1
+                                    #0 %! RED:M1
+                                    #1 %! RED:M1
+                        \upright %! RED:M1
+                            { %! RED:M1
+                                = %! RED:M1
+                                60 %! RED:M1
+                            } %! RED:M1
+                        \hspace %! RED:M1
+                            #1 %! RED:M1
+                        } %! RED:M1
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
                     \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.padding = 1
@@ -3354,24 +3458,24 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = %! BLUE
-                    \markup {                                             %! BLUE
-                        \fontsize                                         %! BLUE
-                            #-6                                           %! BLUE
-                            \general-align                                %! BLUE
-                                #Y                                        %! BLUE
-                                #DOWN                                     %! BLUE
-                                \note-by-number                           %! BLUE
-                                    #2                                    %! BLUE
-                                    #0                                    %! BLUE
-                                    #1                                    %! BLUE
-                        \upright                                          %! BLUE
-                            {                                             %! BLUE
-                                =                                         %! BLUE
-                                90                                        %! BLUE
-                            }                                             %! BLUE
-                        \hspace                                           %! BLUE
-                            #1                                            %! BLUE
-                        }                                                 %! BLUE
+                    \markup { %! BLUE
+                        \fontsize %! BLUE
+                            #-6 %! BLUE
+                            \general-align %! BLUE
+                                #Y %! BLUE
+                                #DOWN %! BLUE
+                                \note-by-number %! BLUE
+                                    #2 %! BLUE
+                                    #0 %! BLUE
+                                    #1 %! BLUE
+                        \upright %! BLUE
+                            { %! BLUE
+                                = %! BLUE
+                                90 %! BLUE
+                            } %! BLUE
+                        \hspace %! BLUE
+                            #1 %! BLUE
+                        } %! BLUE
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
                     \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.padding = 1
@@ -3380,25 +3484,25 @@ class MetronomeMarkSpanner(Spanner):
                     e'4.
                     \stopTextSpan
                     \startTextSpan
-                %@% \once \override TextSpanner.bound-details.left.text =     %! YELLOW
-                %@% \markup {                                                 %! YELLOW
-                %@%     \fontsize                                             %! YELLOW
-                %@%         #-6                                               %! YELLOW
-                %@%         \general-align                                    %! YELLOW
-                %@%             #Y                                            %! YELLOW
-                %@%             #DOWN                                         %! YELLOW
-                %@%             \note-by-number                               %! YELLOW
-                %@%                 #2                                        %! YELLOW
-                %@%                 #0                                        %! YELLOW
-                %@%                 #1                                        %! YELLOW
-                %@%     \upright                                              %! YELLOW
-                %@%         {                                                 %! YELLOW
-                %@%             =                                             %! YELLOW
-                %@%             72                                            %! YELLOW
-                %@%         }                                                 %! YELLOW
-                %@%     \hspace                                               %! YELLOW
-                %@%         #1                                                %! YELLOW
-                %@%     }                                                     %! YELLOW
+                %@% \once \override TextSpanner.bound-details.left.text = %! YELLOW
+                %@% \markup { %! YELLOW
+                %@%     \fontsize %! YELLOW
+                %@%         #-6 %! YELLOW
+                %@%         \general-align %! YELLOW
+                %@%             #Y %! YELLOW
+                %@%             #DOWN %! YELLOW
+                %@%             \note-by-number %! YELLOW
+                %@%                 #2 %! YELLOW
+                %@%                 #0 %! YELLOW
+                %@%                 #1 %! YELLOW
+                %@%     \upright %! YELLOW
+                %@%         { %! YELLOW
+                %@%             = %! YELLOW
+                %@%             72 %! YELLOW
+                %@%         } %! YELLOW
+                %@%     \hspace %! YELLOW
+                %@%         #1 %! YELLOW
+                %@%     } %! YELLOW
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center

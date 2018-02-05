@@ -15,7 +15,8 @@ class TimeSignature(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \time 3/8
                 c'8
                 d'8
@@ -34,7 +35,8 @@ class TimeSignature(AbjadValueObject):
         score container is found:
 
         >>> abjad.f(staff)
-        \new Staff {
+        \new Staff
+        {
             %%% \time 3/8 %%%
             c'8
             d'8
@@ -51,8 +53,10 @@ class TimeSignature(AbjadValueObject):
 
         >>> score = abjad.Score([staff])
         >>> abjad.f(score)
-        \new Score <<
-            \new Staff {
+        \new Score
+        <<
+            \new Staff
+            {
                 \time 3/8
                 c'8
                 d'8
@@ -76,8 +80,10 @@ class TimeSignature(AbjadValueObject):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(score)
-        \new Score <<
-            \new Staff {
+        \new Score
+        <<
+            \new Staff
+            {
                 \time 3/8 %! RED
                 c'8
                 d'8
@@ -432,7 +438,8 @@ class TimeSignature(AbjadValueObject):
             >>> abjad.show(staff) # doctest: +SKIP
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \time 4/4
                 c'4
                 d'4

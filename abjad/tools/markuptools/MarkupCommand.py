@@ -73,11 +73,14 @@ class MarkupCommand(AbjadValueObject):
         >>> abjad.f(command)
         \score
             {
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \remove Clef_engraver
                     \remove Time_signature_engraver
                     fontSize = #-3
-                } {
+                }
+                {
                     fs'16
                     gs'16
                     as'16
@@ -97,16 +100,20 @@ class MarkupCommand(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'4
                     ^ \markup {
                         \score
                             {
-                                \new Staff \with {
+                                \new Staff
+                                \with
+                                {
                                     \remove Clef_engraver
                                     \remove Time_signature_engraver
                                     fontSize = #-3
-                                } {
+                                }
+                                {
                                     fs'16
                                     gs'16
                                     as'16

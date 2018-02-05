@@ -16,15 +16,18 @@ def test_scoretools_Inspection_get_effective_staff_01():
 
     assert format(staff_group) == abjad.String.normalize(
         r'''
-        \new PianoStaff <<
-            \context Staff = "RH" {
+        \new PianoStaff
+        <<
+            \context Staff = "RH"
+            {
                 \change Staff = LH
                 c'8
                 d'8
                 e'8
                 f'8
             }
-            \context Staff = "LH" {
+            \context Staff = "LH"
+            {
                 c'8
                 d'8
                 e'8
@@ -62,8 +65,10 @@ def test_scoretools_Inspection_get_effective_staff_02():
 
     assert format(staff_group) == abjad.String.normalize(
         r'''
-        \new PianoStaff <<
-            \context Staff = "RH" {
+        \new PianoStaff
+        <<
+            \context Staff = "RH"
+            {
                 \change Staff = LH
                 c'8
                 d'8
@@ -71,7 +76,8 @@ def test_scoretools_Inspection_get_effective_staff_02():
                 e'8
                 f'8
             }
-            \context Staff = "LH" {
+            \context Staff = "LH"
+            {
                 c'8
                 d'8
                 e'8
@@ -107,15 +113,18 @@ def test_scoretools_Inspection_get_effective_staff_03():
 
     assert format(staff_group) == abjad.String.normalize(
         r'''
-        \new PianoStaff <<
-            \context Staff = "RH" {
+        \new PianoStaff
+        <<
+            \context Staff = "RH"
+            {
                 c'8
                 d'8
                 e'8
                 \change Staff = LH
                 f'8
             }
-            \context Staff = "LH" {
+            \context Staff = "LH"
+            {
                 c'8
                 d'8
                 e'8
@@ -145,8 +154,10 @@ def test_scoretools_Inspection_get_effective_staff_04():
 
     assert format(staff_group) == abjad.String.normalize(
         r'''
-        \new PianoStaff <<
-            \context Staff = "RH" {
+        \new PianoStaff
+        <<
+            \context Staff = "RH"
+            {
                 \change Staff = LH
                 c'8
                 \change Staff = LH
@@ -154,7 +165,8 @@ def test_scoretools_Inspection_get_effective_staff_04():
                 e'8
                 f'8
             }
-            \context Staff = "LH" {
+            \context Staff = "LH"
+            {
                 c'8
                 d'8
                 e'8

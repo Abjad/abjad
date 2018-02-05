@@ -83,7 +83,8 @@ def test_scoretools_Inspection_get_indicator_08():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \slurDotted
             \slurUp
             c'8 (

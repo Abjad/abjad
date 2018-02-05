@@ -23,16 +23,17 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 \times 4/7 {
                     r16
                     c'4
                     r8
                 }
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 5/8
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 5/7 {
@@ -43,7 +44,7 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___01():
                     c'8.
                     r16
                 }
-            } % measure
+            }   % measure
         }
         '''
         )
@@ -71,16 +72,17 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 \times 4/7 {
                     r16
                     c'4
                     r8
                 }
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 5/8
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 1/1 {
@@ -97,7 +99,7 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___02():
                 \times 1/1 {
                     c'8
                 }
-            } % measure
+            }   % measure
         }
         '''
         )

@@ -12,7 +12,8 @@ def test_scoretools_Container___setitem___01():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [ \glissando
             d'8 ] \glissando
             e'8 \glissando
@@ -25,7 +26,8 @@ def test_scoretools_Container___setitem___01():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [ \glissando
             c''8 ] \glissando
             e'8 \glissando
@@ -48,7 +50,8 @@ def test_scoretools_Container___setitem___02():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [ \glissando
             d'8 ] \glissando
             e'8 \glissando
@@ -61,7 +64,8 @@ def test_scoretools_Container___setitem___02():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [ \glissando
             {
                 c'16 \glissando
@@ -87,7 +91,8 @@ def test_scoretools_Container___setitem___03():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [ \glissando
                 d'8 \glissando
@@ -104,7 +109,8 @@ def test_scoretools_Container___setitem___03():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [ \glissando
                 d'8 \glissando
@@ -128,7 +134,8 @@ def test_scoretools_Container___setitem___04():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [ \glissando
                 d'8 \glissando
@@ -145,7 +152,8 @@ def test_scoretools_Container___setitem___04():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [ \glissando
                 d'8 \glissando
@@ -172,7 +180,8 @@ def test_scoretools_Container___setitem___05():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [ \glissando
                 d'8 \glissando
@@ -189,7 +198,8 @@ def test_scoretools_Container___setitem___05():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [ \glissando
                 d'8 \glissando
@@ -213,7 +223,8 @@ def test_scoretools_Container___setitem___06():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [
                 d'8
@@ -234,7 +245,8 @@ def test_scoretools_Container___setitem___06():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [
                 d'8
@@ -263,7 +275,8 @@ def test_scoretools_Container___setitem___07():
 
     assert format(voice_1) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8
             e'8 ]
@@ -276,7 +289,8 @@ def test_scoretools_Container___setitem___07():
 
     assert format(voice_2) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             f'8 [
             g'8
             a'8 ]
@@ -288,7 +302,8 @@ def test_scoretools_Container___setitem___07():
 
     assert format(voice_1) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             g'8
             e'8 ]
@@ -300,7 +315,8 @@ def test_scoretools_Container___setitem___07():
 
     assert format(voice_2) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             f'8 [
             a'8 ]
         }
@@ -323,7 +339,8 @@ def test_scoretools_Container___setitem___08():
 
     assert format(voice_1) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8
             e'8 ]
@@ -340,7 +357,8 @@ def test_scoretools_Container___setitem___08():
 
     assert format(voice_2) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             f'8 \glissando
             {
                 g'8 \glissando (
@@ -355,7 +373,8 @@ def test_scoretools_Container___setitem___08():
 
     assert format(voice_1) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             {
                 g'8 (
@@ -370,7 +389,8 @@ def test_scoretools_Container___setitem___08():
 
     assert format(voice_2) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             f'8 \glissando
             b'8
         }
@@ -389,7 +409,8 @@ def test_scoretools_Container___setitem___09():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8
             d'8
             g'8
@@ -414,7 +435,8 @@ def test_scoretools_Container___setitem___10():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [
             d'8
             g'8
@@ -446,7 +468,8 @@ def test_scoretools_Container___setitem___11():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [
             d'8
             g'8
@@ -459,7 +482,8 @@ def test_scoretools_Container___setitem___11():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [
             d'8
             e'8
@@ -485,7 +509,8 @@ def test_scoretools_Container___setitem___12():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [
             c''8
             f'8 ]
@@ -508,7 +533,8 @@ def test_scoretools_Container___setitem___13():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [
             b'8
             a'8
@@ -529,7 +555,8 @@ def test_scoretools_Container___setitem___14():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             {
                 c'8 [
                 d'8
@@ -547,7 +574,8 @@ def test_scoretools_Container___setitem___14():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [
             d'8
             {
@@ -571,7 +599,8 @@ def test_scoretools_Container___setitem___15():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             {
                 c'8 [
                 d'8
@@ -588,7 +617,8 @@ def test_scoretools_Container___setitem___15():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8
             {
                 d'8 [
@@ -617,7 +647,8 @@ def test_scoretools_Container___setitem___16():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             {
                 c'8 [
                 d'8
@@ -634,7 +665,8 @@ def test_scoretools_Container___setitem___16():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8
             d'8
             {
@@ -660,7 +692,8 @@ def test_scoretools_Container___setitem___17():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             {
                 c'8 [
                 d'8
@@ -679,7 +712,8 @@ def test_scoretools_Container___setitem___17():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8
             d'8
             {
@@ -704,7 +738,8 @@ def test_scoretools_Container___setitem___18():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             r8
             c'8 [
             d'8
@@ -716,7 +751,8 @@ def test_scoretools_Container___setitem___18():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             r8
             c'8 [
             d'8
@@ -738,7 +774,8 @@ def test_scoretools_Container___setitem___19():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8
             e'8
@@ -769,7 +806,8 @@ def test_scoretools_Container___setitem___20():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8
             {
                 {
@@ -788,7 +826,8 @@ def test_scoretools_Container___setitem___20():
     # outer container is empty and remains in score
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8
             {
             }
@@ -816,7 +855,8 @@ def test_scoretools_Container___setitem___20():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8
             {
                 {
@@ -835,7 +875,8 @@ def test_scoretools_Container___setitem___20():
     # outer container is empty and remains in score (as before)
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8
             {
             }
@@ -883,7 +924,8 @@ def test_scoretools_Container___setitem___21():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [
             a'8
             {

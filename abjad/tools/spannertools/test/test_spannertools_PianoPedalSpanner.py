@@ -10,7 +10,8 @@ def test_spannertools_PianoPedalSpanner_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \set Staff.pedalSustainStyle = #'mixed
             c'8 \sustainOn
             c'8
@@ -35,7 +36,8 @@ def test_spannertools_PianoPedalSpanner_02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \set Staff.pedalSustainStyle = #'mixed
             c'8 \sostenutoOn
             c'8
@@ -58,7 +60,8 @@ def test_spannertools_PianoPedalSpanner_03():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \set Staff.pedalSustainStyle = #'mixed
             c'8 \unaCorda
             c'8
@@ -84,7 +87,8 @@ def test_spannertools_PianoPedalSpanner_04():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \set Staff.pedalSustainStyle = #'text
             c'8 \sustainOn
             c'8
@@ -110,7 +114,8 @@ def test_spannertools_PianoPedalSpanner_05():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \set Staff.pedalSustainStyle = #'bracket
             c'8 \sustainOn
             c'8
@@ -135,7 +140,8 @@ def test_spannertools_PianoPedalSpanner_06():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \set Staff.pedalSustainStyle = #'mixed
             c'8 \sustainOn
             c'8

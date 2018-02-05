@@ -360,19 +360,25 @@ class PitchRange(AbjadValueObject):
 
                 >>> lilypond_file = pitch_range.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Score])
-                \new Score \with {
+                \new Score
+                \with
+                {
                     \override BarLine.stencil = ##f
                     \override Glissando.thickness = #2
                     \override SpanBar.stencil = ##f
                     \override TimeSignature.stencil = ##f
-                } <<
-                    \new PianoStaff <<
-                        \context Staff = "Treble Staff" {
+                }
+                <<
+                    \new PianoStaff
+                    <<
+                        \context Staff = "Treble Staff"
+                        {
                             \clef "treble"
                             s1 * 1/4
                             s1 * 1/4
                         }
-                        \context Staff = "Bass Staff" {
+                        \context Staff = "Bass Staff"
+                        {
                             \clef "bass"
                             c1 * 1/4 \glissando
                             \change Staff = "Treble Staff"

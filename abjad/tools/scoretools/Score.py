@@ -15,14 +15,17 @@ class Score(Context):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff {
+            \new Score
+            <<
+                \new Staff
+                {
                     c'8
                     d'8
                     e'8
                     f'8
                 }
-                \new Staff {
+                \new Staff
+                {
                     c'8
                     d'8
                     e'8
@@ -74,8 +77,10 @@ class Score(Context):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff {
+            \new Score
+            <<
+                \new Staff
+                {
                     c'4
                     d'4
                     e'4
@@ -90,8 +95,10 @@ class Score(Context):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff {
+            \new Score
+            <<
+                \new Staff
+                {
                     c'4
                     d'4
                     e'4
@@ -137,8 +144,10 @@ class Score(Context):
             ..  docs::
 
                 >>> abjad.f(score)
-                \new Score <<
-                    \new Staff {
+                \new Score
+                <<
+                    \new Staff
+                    {
                         c'4
                         d'4
                         e'4
@@ -181,8 +190,10 @@ class Score(Context):
             ..  docs::
 
                 >>> abjad.f(score)
-                \new Score <<
-                    \new Staff {
+                \new Score
+                <<
+                    \new Staff
+                    {
                         c'4
                         d'4
                         e'4
@@ -226,11 +237,15 @@ class Score(Context):
             >>> result = abjad.Score.make_piano_score()
 
             >>> abjad.f(result[0])
-            \new Score <<
-                \new PianoStaff <<
-                    \context Staff = "Treble Staff" {
+            \new Score
+            <<
+                \new PianoStaff
+                <<
+                    \context Staff = "Treble Staff"
+                    {
                     }
-                    \context Staff = "Bass Staff" {
+                    \context Staff = "Bass Staff"
+                    {
                     }
                 >>
             >>
@@ -246,9 +261,12 @@ class Score(Context):
             ..  docs::
 
                 >>> abjad.f(result[0])
-                \new Score <<
-                    \new PianoStaff <<
-                        \context Staff = "Treble Staff" {
+                \new Score
+                <<
+                    \new PianoStaff
+                    <<
+                        \context Staff = "Treble Staff"
+                        {
                             \clef "treble"
                             r4
                             cs''''4
@@ -257,7 +275,8 @@ class Score(Context):
                             e'4
                             f''4
                         }
-                        \context Staff = "Bass Staff" {
+                        \context Staff = "Bass Staff"
+                        {
                             \clef "bass"
                             c4
                             r4
@@ -287,14 +306,19 @@ class Score(Context):
             ..  docs::
 
                 >>> abjad.f(result[0])
-                \new Score \with {
+                \new Score
+                \with
+                {
                     \override BarLine.stencil = ##f
                     \override BarNumber.transparent = ##t
                     \override SpanBar.stencil = ##f
                     \override TimeSignature.stencil = ##f
-                } <<
-                    \new PianoStaff <<
-                        \context Staff = "Treble Staff" {
+                }
+                <<
+                    \new PianoStaff
+                    <<
+                        \context Staff = "Treble Staff"
+                        {
                             \clef "treble"
                             r16
                             r16
@@ -307,7 +331,8 @@ class Score(Context):
                             f'16
                             g'16
                         }
-                        \context Staff = "Bass Staff" {
+                        \context Staff = "Bass Staff"
+                        {
                             \clef "bass"
                             c16
                             d16
@@ -322,6 +347,7 @@ class Score(Context):
                         }
                     >>
                 >>
+
 
         Returns score, treble staff, bass staff triple.
         """

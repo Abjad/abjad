@@ -86,7 +86,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = segment_.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     af'8
                     c'8
                     f'8
@@ -109,7 +110,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = row_2.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     c'8
                     cs'8
                     d'8
@@ -133,7 +135,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = row_3.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     cs'8
                     b'8
                     a'8
@@ -162,7 +165,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = row_2.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     b'8
                     bf'8
                     a'8
@@ -186,7 +190,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = row_3.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     c'8
                     af'8
                     d'8
@@ -215,7 +220,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = row_2.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     bf'8
                     c'8
                     d'8
@@ -239,7 +245,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = row_3.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     af'8
                     cs'8
                     a'8
@@ -290,7 +297,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = row[:6].__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     cs'8
                     b'8
                     a'8
@@ -311,7 +319,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = row[-6:].__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     f'8
                     e'8
                     bf'8
@@ -354,7 +363,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = row.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     c'8
                     cs'8
                     d'8
@@ -384,7 +394,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = row.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     cs'8
                     b'8
                     a'8
@@ -429,7 +440,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     c'8
                     cs'8
                     d'8
@@ -474,7 +486,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     cs'8
                     b'8
                     a'8
@@ -531,7 +544,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     c'8
                     cs'8
                     d'8
@@ -575,7 +589,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     cs'8
                     b'8
                     a'8
@@ -880,7 +895,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = inversion.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     cs'8
                     ef'8
                     f'8
@@ -914,7 +930,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = inversion.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     cs'8
                     ef'8
                     f'8
@@ -944,7 +961,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = inversion.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     b'8
                     cs'8
                     ef'8
@@ -972,7 +990,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = inversion.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     a'8
                     b'8
                     cs'8
@@ -1024,7 +1043,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = multiplication.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     f'8
                     g'8
                     a'8
@@ -1052,7 +1072,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = multiplication.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     g'8
                     f'8
                     ef'8
@@ -1080,7 +1101,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = multiplication.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     cs'8
                     b'8
                     a'8
@@ -1130,7 +1152,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = retrograde.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     c'8
                     af'8
                     d'8
@@ -1158,7 +1181,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = retrograde.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     cs'8
                     b'8
                     a'8
@@ -1211,7 +1235,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = rotation.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     c'8
                     cs'8
                     b'8
@@ -1239,7 +1264,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = rotation.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     b'8
                     a'8
                     ef'8
@@ -1267,7 +1293,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = rotation.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     cs'8
                     b'8
                     a'8
@@ -1298,7 +1325,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = rotation.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     c'8
                     bf'8
                     e'8
@@ -1348,7 +1376,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = transposition.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     d'8
                     c'8
                     bf'8
@@ -1376,7 +1405,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = transposition.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     c'8
                     bf'8
                     af'8
@@ -1404,7 +1434,8 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> lilypond_file = transposition.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     cs'8
                     b'8
                     a'8

@@ -21,9 +21,12 @@ class BeamSpecifier(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \context Staff = "RhythmicStaff" \with {
+            \context Staff = "RhythmicStaff"
+            \with
+            {
                 autoBeaming = ##f
-            } {
+            }
+            {
                 c'8 [
                 c'8
                 c'16
@@ -183,9 +186,12 @@ class BeamSpecifier(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \context Staff = "RhythmicStaff" \with {
+                \context Staff = "RhythmicStaff"
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     c'8 [
                     c'8
                     c'16
@@ -216,9 +222,12 @@ class BeamSpecifier(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \context Staff = "RhythmicStaff" \with {
+                \context Staff = "RhythmicStaff"
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 1
                     c'8 [
@@ -267,9 +276,12 @@ class BeamSpecifier(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \context Staff = "RhythmicStaff" \with {
+                \context Staff = "RhythmicStaff"
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 1
                     c'8 [
@@ -335,9 +347,12 @@ class BeamSpecifier(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \context Staff = "RhythmicStaff" \with {
+                \context Staff = "RhythmicStaff"
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     c'8
                     c'8
                     c'16
@@ -368,9 +383,12 @@ class BeamSpecifier(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \context Staff = "RhythmicStaff" \with {
+                \context Staff = "RhythmicStaff"
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     c'8 [
                     c'8
                     c'16
@@ -401,9 +419,12 @@ class BeamSpecifier(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \context Staff = "RhythmicStaff" \with {
+                \context Staff = "RhythmicStaff"
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     c'8 [
                     c'8
                     c'16
@@ -449,9 +470,12 @@ class BeamSpecifier(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \context Staff = "RhythmicStaff" \with {
+                \context Staff = "RhythmicStaff"
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     c'8 [
                     c'8
                     c'16
@@ -481,9 +505,12 @@ class BeamSpecifier(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \context Staff = "RhythmicStaff" \with {
+                \context Staff = "RhythmicStaff"
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     c'8 [
                     c'8
                     c'16
@@ -513,9 +540,12 @@ class BeamSpecifier(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \context Staff = "RhythmicStaff" \with {
+                \context Staff = "RhythmicStaff"
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     c'8 [
                     c'8
                     c'16
@@ -564,9 +594,12 @@ class BeamSpecifier(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \context Staff = "RhythmicStaff" \with {
+                \context Staff = "RhythmicStaff"
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 1
                     c'8 [ ]
@@ -614,9 +647,12 @@ class BeamSpecifier(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \context Staff = "RhythmicStaff" \with {
+                \context Staff = "RhythmicStaff"
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     c'8
                     r8
                     c'16 [
@@ -658,9 +694,12 @@ class BeamSpecifier(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \context Staff = "RhythmicStaff" \with {
+                \context Staff = "RhythmicStaff"
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     c'8 [
                     c'8
                     c'16
@@ -691,9 +730,12 @@ class BeamSpecifier(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \context Staff = "RhythmicStaff" \with {
+                \context Staff = "RhythmicStaff"
+                \with
+                {
                     autoBeaming = ##f
-                } {
+                }
+                {
                     \override Staff.Stem.stemlet-length = 2
                     c'8 [
                     c'8

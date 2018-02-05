@@ -14,10 +14,10 @@ class Note(Leaf):
         ..  docs::
 
             >>> abjad.f(measure)
-            { % measure
+            {   % measure
                 \time 3/16
                 cs''8.
-            } % measure
+            }   % measure
 
     '''
 

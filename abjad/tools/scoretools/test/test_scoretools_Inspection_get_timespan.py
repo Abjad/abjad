@@ -308,7 +308,8 @@ def test_scoretools_Inspection_get_timespan_26():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \tempo 8=48
             c'8
             d'8

@@ -21,7 +21,8 @@ class GraceContainer(Container):
         ..  docs::
 
             >>> abjad.f(voice)
-            \new Voice {
+            \new Voice
+            {
                 c'4
                 \grace {
                     c'16
@@ -52,7 +53,8 @@ class GraceContainer(Container):
         ..  docs::
 
             >>> abjad.f(voice)
-            \new Voice {
+            \new Voice
+            {
                 c'4
                 \grace {
                     cs'16
@@ -73,7 +75,8 @@ class GraceContainer(Container):
         ..  docs::
 
             >>> abjad.f(voice)
-            \new Voice {
+            \new Voice
+            {
                 c'4
                 \afterGrace
                 d'4
@@ -96,7 +99,8 @@ class GraceContainer(Container):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \grace {
                     fs'32
                 }
@@ -110,7 +114,8 @@ class GraceContainer(Container):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'4
                 d'4
             }
@@ -121,7 +126,8 @@ class GraceContainer(Container):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'4
                 \grace {
                     fs'32

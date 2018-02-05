@@ -537,7 +537,8 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                         }
 
                         \score {
-                            \new Staff {
+                            \new Staff
+                            {
                                 c'4
                                 d'4
                                 e'4

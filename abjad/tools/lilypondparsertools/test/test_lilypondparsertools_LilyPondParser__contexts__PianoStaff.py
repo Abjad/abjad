@@ -12,15 +12,18 @@ def test_lilypondparsertools_LilyPondParser__contexts__PianoStaff_01():
 
     assert format(target) == abjad.String.normalize(
         r'''
-        \new PianoStaff <<
-            \new Staff {
+        \new PianoStaff
+        <<
+            \new Staff
+            {
                 c'8
                 d'8
                 e'8
                 f'8
                 g'8
             }
-            \new Staff {
+            \new Staff
+            {
                 c'8
                 d'8
                 e'8

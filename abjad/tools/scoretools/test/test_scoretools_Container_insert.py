@@ -29,7 +29,8 @@ def test_scoretools_Container_insert_01():
     assert abjad.inspect(voice).is_well_formed()
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             r8
             c'8 [
             d'8
@@ -62,7 +63,8 @@ def test_scoretools_Container_insert_02():
     assert abjad.inspect(voice).is_well_formed()
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             cs'8
             d'8
@@ -96,7 +98,8 @@ def test_scoretools_Container_insert_03():
     assert abjad.inspect(staff).is_well_formed()
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [
             cs'8
             d'8
@@ -129,7 +132,8 @@ def test_scoretools_Container_insert_04():
     assert abjad.inspect(staff).is_well_formed()
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [
             cs'8
             d'8
@@ -162,7 +166,8 @@ def test_scoretools_Container_insert_05():
     assert abjad.inspect(voice).is_well_formed()
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8
             e'8
@@ -195,7 +200,8 @@ def test_scoretools_Container_insert_06():
     assert abjad.inspect(voice).is_well_formed()
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             r8
             c'8 [
             d'8
@@ -242,7 +248,8 @@ def test_scoretools_Container_insert_08():
     assert abjad.inspect(staff).is_well_formed()
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [
             cs'8
             d'8
@@ -280,7 +287,8 @@ def test_scoretools_Container_insert_09():
     assert abjad.inspect(staff).is_well_formed()
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             r4
             c'8 [
             cs'8
@@ -313,7 +321,8 @@ def test_scoretools_Container_insert_10():
     assert abjad.inspect(staff).is_well_formed()
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [ ]
             r4
             cs'8 [
@@ -346,7 +355,8 @@ def test_scoretools_Container_insert_11():
     assert abjad.inspect(staff).is_well_formed()
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff 
+        {
             c'8 [
             cs'8
             d'8
@@ -379,7 +389,8 @@ def test_scoretools_Container_insert_12():
     assert abjad.inspect(staff).is_well_formed()
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [
             cs'8
             d'8
@@ -412,7 +423,8 @@ def test_scoretools_Container_insert_13():
     assert abjad.inspect(staff).is_well_formed()
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [
             cs'8
             d'8 ]
@@ -434,7 +446,8 @@ def test_scoretools_Container_insert_14():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             r4
             c'8 [
             cs'8

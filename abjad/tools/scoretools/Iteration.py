@@ -17,7 +17,8 @@ class Iteration(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'4
                     e'4
                     d'4
@@ -74,15 +75,18 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(score)
-                    \new Score <<
-                        \new Staff {
+                    \new Score
+                    <<
+                        \new Staff
+                        {
                             c''4 ~
                             c''8
                             d''8
                             r4
                             ef''4
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             r8
                             g'4. ~
                             g'8
@@ -126,15 +130,18 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(score)
-                    \new Score <<
-                        \new Staff {
+                    \new Score
+                    <<
+                        \new Staff
+                        {
                             c''4 ~
                             c''8
                             d''8
                             r4
                             ef''4
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             r8
                             g'4. ~
                             g'8
@@ -181,7 +188,8 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(voice)
-                    \new Voice {
+                    \new Voice
+                    {
                         c'8 [
                         \grace {
                             cf''16
@@ -353,27 +361,36 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
+                    \new Staff
+                    {
                         <<
-                            \context Voice = "Voice 1" \with {
+                            \context Voice = "Voice 1"
+                            \with
+                            {
                                 \override Stem.direction = #down
-                            } {
+                            }
+                            {
                                 c'8
                                 d'8
                             }
-                            \context Voice = "Voice 2" {
+                            \context Voice = "Voice 2"
+                            {
                                 e'8
                                 f'8
                             }
                         >>
                         <<
-                            \context Voice = "Voice 1" \with {
+                            \context Voice = "Voice 1"
+                            \with
+                            {
                                 \override Stem.direction = #down
-                            } {
+                            }
+                            {
                                 g'8
                                 a'8
                             }
-                            \context Voice = "Voice 2" {
+                            \context Voice = "Voice 2"
+                            {
                                 b'8
                                 c''8
                             }
@@ -421,27 +438,36 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
+                    \new Staff
+                    {
                         <<
-                            \context Voice = "Voice 1" \with {
+                            \context Voice = "Voice 1"
+                            \with
+                            {
                                 \override Stem.direction = #down
-                            } {
+                            }
+                            {
                                 c'8
                                 d'8
                             }
-                            \context Voice = "Voice 2" {
+                            \context Voice = "Voice 2"
+                            {
                                 e'8
                                 f'8
                             }
                         >>
                         <<
-                            \context Voice = "Voice 1" \with {
+                            \context Voice = "Voice 1"
+                            \with
+                            {
                                 \override Stem.direction = #down
-                            } {
+                            }
+                            {
                                 g'8
                                 a'8
                             }
-                            \context Voice = "Voice 2" {
+                            \context Voice = "Voice 2"
+                            {
                                 b'8
                                 c''8
                             }
@@ -489,27 +515,36 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
+                    \new Staff
+                    {
                         <<
-                            \context Voice = "Voice 1" \with {
+                            \context Voice = "Voice 1"
+                            \with
+                            {
                                 \override Stem.direction = #down
-                            } {
+                            }
+                            {
                                 c'8
                                 d'8
                             }
-                            \context Voice = "Voice 2" {
+                            \context Voice = "Voice 2"
+                            {
                                 e'8
                                 f'8
                             }
                         >>
                         <<
-                            \context Voice = "Voice 1" \with {
+                            \context Voice = "Voice 1"
+                            \with
+                            {
                                 \override Stem.direction = #down
-                            } {
+                            }
+                            {
                                 g'8
                                 a'8
                             }
-                            \context Voice = "Voice 2" {
+                            \context Voice = "Voice 2"
+                            {
                                 b'8
                                 c''8
                             }
@@ -557,27 +592,36 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
+                    \new Staff
+                    {
                         <<
-                            \context Voice = "Voice 1" \with {
+                            \context Voice = "Voice 1"
+                            \with
+                            {
                                 \override Stem.direction = #down
-                            } {
+                            }
+                            {
                                 c'8
                                 d'8
                             }
-                            \context Voice = "Voice 2" {
+                            \context Voice = "Voice 2"
+                            {
                                 e'8
                                 f'8
                             }
                         >>
                         <<
-                            \context Voice = "Voice 1" \with {
+                            \context Voice = "Voice 1"
+                            \with
+                            {
                                 \override Stem.direction = #down
-                            } {
+                            }
+                            {
                                 g'8
                                 a'8
                             }
-                            \context Voice = "Voice 2" {
+                            \context Voice = "Voice 2"
+                            {
                                 b'8
                                 c''8
                             }
@@ -667,20 +711,21 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
-                        { % measure
+                    \new Staff
+                    {
+                        {   % measure
                             \time 2/8
                             c'8
                             d'8
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             e'8
                             f'8
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             g'8
                             a'8
-                        } % measure
+                        }   % measure
                     }
 
             ..  container:: example
@@ -712,7 +757,8 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(voice)
-                    \new Voice {
+                    \new Voice
+                    {
                         c'8 [
                         \grace {
                             cf''16
@@ -759,7 +805,8 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(voice)
-                    \new Voice {
+                    \new Voice
+                    {
                         c'8 [
                         \grace {
                             cf''16
@@ -885,15 +932,18 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(score)
-                    \new Score <<
-                        \new Staff {
+                    \new Score
+                    <<
+                        \new Staff
+                        {
                             c'8
                             d'8
                             e'8
                             f'8
                             g'4
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "bass"
                             c4
                             a,4
@@ -965,20 +1015,21 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
-                        { % measure
+                    \new Staff
+                    {
+                        {   % measure
                             \time 2/8
                             <c' bf'>8
                             <g' a'>8
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             af'8
                             r8
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             r8
                             gf'8
-                        } % measure
+                        }   % measure
                     }
 
             ..  container:: example
@@ -1009,7 +1060,8 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(voice)
-                    \new Voice {
+                    \new Voice
+                    {
                         c'8 [
                         \grace {
                             cf''16
@@ -1055,7 +1107,8 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(voice)
-                    \new Voice {
+                    \new Voice
+                    {
                         c'8 [
                         \grace {
                             cf''16
@@ -1097,7 +1150,8 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(voice)
-                    \new Voice {
+                    \new Voice
+                    {
                         c'8 [
                         \grace {
                             cf''16
@@ -1138,20 +1192,21 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
-                        { % measure
+                    \new Staff
+                    {
+                        {   % measure
                             \time 2/8
                             <c' bf'>8
                             <g' a'>8
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             af'8
                             r8
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             r8
                             gf'8
-                        } % measure
+                        }   % measure
                     }
 
             ..  container:: example
@@ -1179,20 +1234,21 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
-                        { % measure
+                    \new Staff
+                    {
+                        {   % measure
                             \time 2/8
                             <c' bf'>8
                             <g' a'>8
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             af'8
                             r8
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             r8
                             gf'8
-                        } % measure
+                        }   % measure
                     }
 
             ..  container:: example
@@ -1218,20 +1274,21 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
-                        { % measure
+                    \new Staff
+                    {
+                        {   % measure
                             \time 2/8
                             <c' bf'>8
                             <g' a'>8
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             af'8
                             r8
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             r8
                             gf'8
-                        } % measure
+                        }   % measure
                     }
 
             ..  container:: example
@@ -1282,7 +1339,8 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
+                    \new Staff
+                    {
                         c'4 ~
                         \times 2/3 {
                             c'16
@@ -1316,7 +1374,8 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
+                    \new Staff
+                    {
                         c'4 ~
                         \times 2/3 {
                             c'16
@@ -1352,7 +1411,8 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
+                    \new Staff
+                    {
                         c'4 ~
                         \times 2/3 {
                             c'16
@@ -1386,7 +1446,8 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
+                    \new Staff
+                    {
                         c'4 ~
                         \times 2/3 {
                             c'16
@@ -1424,7 +1485,8 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(voice)
-                    \new Voice {
+                    \new Voice
+                    {
                         c'8 [
                         \grace {
                             cf''16
@@ -1467,7 +1529,8 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
+                    \new Staff
+                    {
                         c'4 ~
                         \times 2/3 {
                             c'16
@@ -1503,7 +1566,8 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(voice)
-                    \new Voice {
+                    \new Voice
+                    {
                         c'8 ~ [
                         c'8 ~
                         c'8
@@ -1550,7 +1614,8 @@ class Iteration(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set Staff.instrumentName = \markup { Violin }
                     \set Staff.shortInstrumentName = \markup { Vn. }
                     c'8
@@ -1593,15 +1658,18 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(score)
-                    \new Score <<
-                        \new Staff {
+                    \new Score
+                    <<
+                        \new Staff
+                        {
                             c'8
                             d'8
                             e'8
                             f'8
                             g'4
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "bass"
                             c4
                             a,4
@@ -1641,7 +1709,8 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
+                    \new Staff
+                    {
                         <c' d' e'>4
                         <f'' g''>4
                     }
@@ -1704,7 +1773,8 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
+                    \new Staff
+                    {
                         c'8 [
                         d'8
                         e'8
@@ -1735,7 +1805,8 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
+                    \new Staff
+                    {
                         c'8 [
                         d'8
                         e'8
@@ -1853,7 +1924,8 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
+                    \new Staff
+                    {
                         c'8 [ (
                         d'8
                         e'8
@@ -1889,7 +1961,8 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
+                    \new Staff
+                    {
                         c'8 [ (
                         d'8
                         e'8
@@ -1947,14 +2020,17 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(score)
-                    \new Score <<
-                        \new Staff {
+                    \new Score
+                    <<
+                        \new Staff
+                        {
                             c'4
                             d'4
                             e'4
                             f'4
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             g'8
                             a'8
                             b'8
@@ -1990,14 +2066,17 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(score)
-                    \new Score <<
-                        \new Staff {
+                    \new Score
+                    <<
+                        \new Staff
+                        {
                             c'4
                             d'4
                             e'4
                             f'4
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             g'8
                             a'8
                             b'8
@@ -2033,7 +2112,8 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(voice)
-                    \new Voice {
+                    \new Voice
+                    {
                         c'8 [
                         \grace {
                             cf''16
@@ -2158,8 +2238,10 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(score)
-                    \new Score <<
-                        \new Staff {
+                    \new Score
+                    <<
+                        \new Staff
+                        {
                             \tweak text #tuplet-number::calc-fraction-text
                             \times 4/3 {
                                 d''8
@@ -2167,12 +2249,15 @@ class Iteration(abctools.AbjadObject):
                                 b'8
                             }
                         }
-                        \new PianoStaff <<
-                            \new Staff {
+                        \new PianoStaff
+                        <<
+                            \new Staff
+                            {
                                 a'4
                                 g'4
                             }
-                            \new Staff {
+                            \new Staff
+                            {
                                 \clef "bass"
                                 f'8
                                 e'8
@@ -2221,8 +2306,10 @@ class Iteration(abctools.AbjadObject):
                 ..  docs::
 
                     >>> abjad.f(score)
-                    \new Score <<
-                        \new Staff {
+                    \new Score
+                    <<
+                        \new Staff
+                        {
                             \tweak text #tuplet-number::calc-fraction-text
                             \times 4/3 {
                                 d''8
@@ -2230,12 +2317,15 @@ class Iteration(abctools.AbjadObject):
                                 b'8
                             }
                         }
-                        \new PianoStaff <<
-                            \new Staff {
+                        \new PianoStaff
+                        <<
+                            \new Staff
+                            {
                                 a'4
                                 g'4
                             }
-                            \new Staff {
+                            \new Staff
+                            {
                                 \clef "bass"
                                 f'8
                                 e'8

@@ -16,7 +16,8 @@ class BassTrombone(Instrument):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \set Staff.instrumentName = \markup { "Bass trombone" }
                 \set Staff.shortInstrumentName = \markup { "Bass trb." }
                 \clef "bass"

@@ -63,13 +63,16 @@ class IntervalClassSet(Set):
         ..  docs::
 
             >>> abjad.f(staff_group)
-            \new StaffGroup <<
-                \new Staff {
+            \new StaffGroup
+            <<
+                \new Staff
+                {
                     c'4
                     <d' fs' a'>4
                     b2
                 }
-                \new Staff {
+                \new Staff
+                {
                     c4.
                     r8
                     g2

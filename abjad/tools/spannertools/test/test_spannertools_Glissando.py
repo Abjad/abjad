@@ -9,7 +9,8 @@ def test_spannertools_Glissando_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 \glissando
             cs'8 \glissando
             d'8 \glissando

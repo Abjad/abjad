@@ -25,8 +25,10 @@ class MetronomeMark(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff {
+            \new Score
+            <<
+                \new Staff
+                {
                     \tempo 4=90
                     c'8
                     d'8
@@ -49,18 +51,25 @@ class MetronomeMark(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff {
+            \new Score
+            <<
+                \new Staff
+                {
                     \tempo \markup {
                         \scale
                             #'(0.75 . 0.75)
                             \score
                                 {
-                                    \new Score \with {
+                                    \new Score
+                                    \with
+                                    {
                                         \override SpacingSpanner.spacing-increment = #0.5
                                         proportionalNotationDuration = ##f
-                                    } <<
-                                        \new RhythmicStaff \with {
+                                    }
+                                    <<
+                                        \new RhythmicStaff
+                                        \with
+                                        {
                                             \remove Time_signature_engraver
                                             \remove Staff_symbol_engraver
                                             \override Stem.direction = #up
@@ -71,7 +80,8 @@ class MetronomeMark(AbjadValueObject):
                                             \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                             \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                             tupletFullLength = ##t
-                                        } {
+                                        }
+                                        {
                                             c'4
                                         }
                                     >>
@@ -107,18 +117,25 @@ class MetronomeMark(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff {
+            \new Score
+            <<
+                \new Staff
+                {
                     \tempo \markup {
                         \scale
                             #'(0.75 . 0.75)
                             \score
                                 {
-                                    \new Score \with {
+                                    \new Score
+                                    \with
+                                    {
                                         \override SpacingSpanner.spacing-increment = #0.5
                                         proportionalNotationDuration = ##f
-                                    } <<
-                                        \new RhythmicStaff \with {
+                                    }
+                                    <<
+                                        \new RhythmicStaff
+                                        \with
+                                        {
                                             \remove Time_signature_engraver
                                             \remove Staff_symbol_engraver
                                             \override Stem.direction = #up
@@ -129,7 +146,8 @@ class MetronomeMark(AbjadValueObject):
                                             \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                             \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                             tupletFullLength = ##t
-                                        } {
+                                        }
+                                        {
                                             c'4
                                         }
                                     >>
@@ -170,8 +188,10 @@ class MetronomeMark(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff {
+            \new Score
+            <<
+                \new Staff
+                {
                     \tempo Quick 4=120-133
                     c'8
                     d'8
@@ -840,47 +860,55 @@ class MetronomeMark(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(score)
-                \new Score <<
-                    \new Staff {
+                \new Score
+                <<
+                    \new Staff
+                    {
                         \tempo \markup {
-                        \with-color
-                            #red
-                            {
-                                \scale
-                                    #'(0.75 . 0.75)
-                                    \score
-                                        {
-                                            \new Score \with {
-                                                \override SpacingSpanner.spacing-increment = #0.5
-                                                proportionalNotationDuration = ##f
-                                            } <<
-                                                \new RhythmicStaff \with {
-                                                    \remove Time_signature_engraver
-                                                    \remove Staff_symbol_engraver
-                                                    \override Stem.direction = #up
-                                                    \override Stem.length = #5
-                                                    \override TupletBracket.bracket-visibility = ##t
-                                                    \override TupletBracket.direction = #up
-                                                    \override TupletBracket.padding = #1.25
-                                                    \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                                    \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                                    tupletFullLength = ##t
-                                                } {
-                                                    c'4
+                            \with-color
+                                #red
+                                {
+                                    \scale
+                                        #'(0.75 . 0.75)
+                                        \score
+                                            {
+                                                \new Score
+                                                \with
+                                                {
+                                                    \override SpacingSpanner.spacing-increment = #0.5
+                                                    proportionalNotationDuration = ##f
                                                 }
-                                            >>
-                                            \layout {
-                                                indent = #0
-                                                ragged-right = ##t
+                                                <<
+                                                    \new RhythmicStaff
+                                                    \with
+                                                    {
+                                                        \remove Time_signature_engraver
+                                                        \remove Staff_symbol_engraver
+                                                        \override Stem.direction = #up
+                                                        \override Stem.length = #5
+                                                        \override TupletBracket.bracket-visibility = ##t
+                                                        \override TupletBracket.direction = #up
+                                                        \override TupletBracket.padding = #1.25
+                                                        \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                        \override TupletNumber.text = #tuplet-number::calc-fraction-text
+                                                        tupletFullLength = ##t
+                                                    }
+                                                    {
+                                                        c'4
+                                                    }
+                                                >>
+                                                \layout {
+                                                    indent = #0
+                                                    ragged-right = ##t
+                                                }
                                             }
-                                        }
-                                =
-                                \general-align
-                                    #Y
-                                    #-0.5
-                                    67.5
+                                    =
+                                    \general-align
+                                        #Y
+                                        #-0.5
+                                        67.5
+                                }
                             }
-                        }
                         c'4
                         d'4
                         e'4
@@ -941,8 +969,10 @@ class MetronomeMark(AbjadValueObject):
             >>> abjad.show(score) # doctest: +SKIP
 
             >>> abjad.f(score)
-            \new Score <<
-                \new Staff {
+            \new Score
+            <<
+                \new Staff
+                {
                     \tempo 4=72
                     c'4
                     d'4
@@ -1302,11 +1332,16 @@ class MetronomeMark(AbjadValueObject):
                         #'(0.75 . 0.75)
                         \score
                             {
-                                \new Score \with {
+                                \new Score
+                                \with
+                                {
                                     \override SpacingSpanner.spacing-increment = #0.5
                                     proportionalNotationDuration = ##f
-                                } <<
-                                    \new RhythmicStaff \with {
+                                }
+                                <<
+                                    \new RhythmicStaff
+                                    \with
+                                    {
                                         \remove Time_signature_engraver
                                         \remove Staff_symbol_engraver
                                         \override Stem.direction = #up
@@ -1317,7 +1352,8 @@ class MetronomeMark(AbjadValueObject):
                                         \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                         \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                         tupletFullLength = ##t
-                                    } {
+                                    }
+                                    {
                                         c'4
                                     }
                                 >>
@@ -1351,11 +1387,16 @@ class MetronomeMark(AbjadValueObject):
                         #'(0.75 . 0.75)
                         \score
                             {
-                                \new Score \with {
+                                \new Score
+                                \with
+                                {
                                     \override SpacingSpanner.spacing-increment = #0.5
                                     proportionalNotationDuration = ##f
-                                } <<
-                                    \new RhythmicStaff \with {
+                                }
+                                <<
+                                    \new RhythmicStaff
+                                    \with
+                                    {
                                         \remove Time_signature_engraver
                                         \remove Staff_symbol_engraver
                                         \override Stem.direction = #up
@@ -1366,7 +1407,8 @@ class MetronomeMark(AbjadValueObject):
                                         \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                         \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                         tupletFullLength = ##t
-                                    } {
+                                    }
+                                    {
                                         c'4
                                     }
                                 >>
@@ -1400,11 +1442,16 @@ class MetronomeMark(AbjadValueObject):
                         #'(0.75 . 0.75)
                         \score
                             {
-                                \new Score \with {
+                                \new Score
+                                \with
+                                {
                                     \override SpacingSpanner.spacing-increment = #0.5
                                     proportionalNotationDuration = ##f
-                                } <<
-                                    \new RhythmicStaff \with {
+                                }
+                                <<
+                                    \new RhythmicStaff
+                                    \with
+                                    {
                                         \remove Time_signature_engraver
                                         \remove Staff_symbol_engraver
                                         \override Stem.direction = #up
@@ -1415,7 +1462,8 @@ class MetronomeMark(AbjadValueObject):
                                         \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                         \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                         tupletFullLength = ##t
-                                    } {
+                                    }
+                                    {
                                         c'4
                                     }
                                 >>
@@ -1454,11 +1502,16 @@ class MetronomeMark(AbjadValueObject):
                         #'(0.75 . 0.75)
                         \score
                             {
-                                \new Score \with {
+                                \new Score
+                                \with
+                                {
                                     \override SpacingSpanner.spacing-increment = #0.5
                                     proportionalNotationDuration = ##f
-                                } <<
-                                    \new RhythmicStaff \with {
+                                }
+                                <<
+                                    \new RhythmicStaff
+                                    \with
+                                    {
                                         \remove Time_signature_engraver
                                         \remove Staff_symbol_engraver
                                         \override Stem.direction = #up
@@ -1469,7 +1522,8 @@ class MetronomeMark(AbjadValueObject):
                                         \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                         \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                         tupletFullLength = ##t
-                                    } {
+                                    }
+                                    {
                                         c'4 ~
                                         c'16
                                     }
@@ -1501,11 +1555,16 @@ class MetronomeMark(AbjadValueObject):
                         #'(0.75 . 0.75)
                         \score
                             {
-                                \new Score \with {
+                                \new Score
+                                \with
+                                {
                                     \override SpacingSpanner.spacing-increment = #0.5
                                     proportionalNotationDuration = ##f
-                                } <<
-                                    \new RhythmicStaff \with {
+                                }
+                                <<
+                                    \new RhythmicStaff
+                                    \with
+                                    {
                                         \remove Time_signature_engraver
                                         \remove Staff_symbol_engraver
                                         \override Stem.direction = #up
@@ -1516,7 +1575,8 @@ class MetronomeMark(AbjadValueObject):
                                         \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                         \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                         tupletFullLength = ##t
-                                    } {
+                                    }
+                                    {
                                         \tweak edge-height #'(0.7 . 0)
                                         \times 2/3 {
                                             c'4
@@ -1555,11 +1615,16 @@ class MetronomeMark(AbjadValueObject):
                         #'(0.75 . 0.75)
                         \score
                             {
-                                \new Score \with {
+                                \new Score
+                                \with
+                                {
                                     \override SpacingSpanner.spacing-increment = #0.5
                                     proportionalNotationDuration = ##f
-                                } <<
-                                    \new RhythmicStaff \with {
+                                }
+                                <<
+                                    \new RhythmicStaff
+                                    \with
+                                    {
                                         \remove Time_signature_engraver
                                         \remove Staff_symbol_engraver
                                         \override Stem.direction = #up
@@ -1570,7 +1635,8 @@ class MetronomeMark(AbjadValueObject):
                                         \override TupletBracket.shorten-pair = #'(-1 . -1.5)
                                         \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                         tupletFullLength = ##t
-                                    } {
+                                    }
+                                    {
                                         c'16 ~ [
                                         c'8. ~
                                         c'16 ]

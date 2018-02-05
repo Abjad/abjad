@@ -9,7 +9,8 @@ def test_lilypondparsertools_LilyPondParser__indicators__Markup_01():
 
     assert format(target) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'1 ^ \markup { hello! }
         }
         '''
@@ -32,7 +33,8 @@ def test_lilypondparsertools_LilyPondParser__indicators__Markup_02():
 
     assert format(target) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'4
                 _ \markup {
                     X
@@ -66,7 +68,8 @@ def test_lilypondparsertools_LilyPondParser__indicators__Markup_03():
 
     assert format(target) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'4 -\staccato ^ \markup { hello }
             d'4
         }

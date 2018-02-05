@@ -14,7 +14,8 @@ class Glissando(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'8 \glissando
                 d'8 \glissando
                 e'8 \glissando
@@ -35,7 +36,8 @@ class Glissando(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'8 \glissando
                 d'8 - \bendAfter #'-4.0
                 e'8 \glissando
@@ -179,7 +181,8 @@ class Glissando(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     a8
                     a8 \glissando
                     b8 ~
@@ -206,7 +209,8 @@ class Glissando(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     a8 \glissando
                     a8 \glissando
                     b8 ~
@@ -232,7 +236,8 @@ class Glissando(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     a8 \glissando
                     a8 \glissando
                     b8 ~ \glissando
@@ -268,7 +273,8 @@ class Glissando(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     a8
                     a8 \glissando
                     b8 ~
@@ -295,7 +301,8 @@ class Glissando(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     a8 \glissando
                     a8 \glissando
                     b8 ~
@@ -321,7 +328,8 @@ class Glissando(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     a8 \glissando
                     a8 \glissando
                     b8 ~ \glissando
@@ -356,7 +364,8 @@ class Glissando(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     a8
                     a8 \glissando
                     b8 ~
@@ -384,7 +393,8 @@ class Glissando(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     a8 \glissando
                     \parenthesize
                     a8 \glissando
@@ -413,7 +423,8 @@ class Glissando(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     a8
                     \parenthesize
                     a8 \glissando

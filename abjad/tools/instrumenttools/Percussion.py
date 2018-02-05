@@ -14,7 +14,8 @@ class Percussion(Instrument):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \set Staff.instrumentName = \markup { Percussion }
                 \set Staff.shortInstrumentName = \markup { Perc. }
                 c'4

@@ -21,17 +21,22 @@ def test_scoretools_Voice_lilypond_voice_resolution_01():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice \with {
+        \new Voice
+        \with
+        {
             \override NoteHead.color = #red
-        } {
+        }
+        {
             c'8
             d'8
             <<
-                \new Voice {
+                \new Voice
+                {
                     e'8
                     f'8
                 }
-                \new Voice {
+                \new Voice
+                {
                     g'8
                     a'8
                 }
@@ -60,17 +65,22 @@ def test_scoretools_Voice_lilypond_voice_resolution_02():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \context Voice = "foo" \with {
+        \context Voice = "foo"
+        \with
+        {
             \override NoteHead.color = #red
-        } {
+        }
+        {
             c'8
             d'8
             <<
-                \context Voice = "foo" {
+                \context Voice = "foo"
+                {
                     e'8
                     f'8
                 }
-                \new Voice {
+                \new Voice
+                {
                     g'8
                     a'8
                 }
@@ -151,25 +161,33 @@ def test_scoretools_Voice_lilypond_voice_resolution_04():
         {
             c'8
             <<
-                \context Voice = "alto" {
+                \context Voice = "alto"
+                {
                     d'8
                     e'8
                 }
-                \context Voice = "soprano" \with {
+                \context Voice = "soprano"
+                \with
+                {
                     \override NoteHead.color = #red
-                } {
+                }
+                {
                     f'8
                     g'8
                 }
             >>
             <<
-                \context Voice = "alto" {
+                \context Voice = "alto"
+                {
                     a'8
                     b'8
                 }
-                \context Voice = "soprano" \with {
+                \context Voice = "soprano"
+                \with
+                {
                     \override NoteHead.color = #red
-                } {
+                }
+                {
                     c''8
                     d''8
                 }

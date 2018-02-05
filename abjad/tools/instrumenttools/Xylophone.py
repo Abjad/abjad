@@ -14,7 +14,8 @@ class Xylophone(Instrument):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \set Staff.instrumentName = \markup { Xylophone }
                 \set Staff.shortInstrumentName = \markup { Xyl. }
                 c'4

@@ -19,10 +19,14 @@ class RehearsalMark(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score \with {
+            \new Score
+            \with
+            {
                 markFormatter = #format-mark-box-alphabet
-            } <<
-                \new Staff {
+            }
+            <<
+                \new Staff
+                {
                     \mark #1
                     c'4
                     d'4
@@ -67,7 +71,8 @@ class RehearsalMark(AbjadValueObject):
             ..  docs::
             
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \mark #1
                     c'4
                     d'4
@@ -130,7 +135,8 @@ class RehearsalMark(AbjadValueObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \mark \markup {
                         \bold
                             {

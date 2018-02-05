@@ -21,7 +21,8 @@ class ClefSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \clef "treble"
                 c'4
                 d'4
@@ -52,7 +53,8 @@ class ClefSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \clef "treble"
                 r4
                 \clef "percussion"

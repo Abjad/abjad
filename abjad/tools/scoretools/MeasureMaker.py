@@ -14,18 +14,19 @@ class MeasureMaker(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
-                { % measure
+            \new Staff
+            {
+                {   % measure
                     \time 1/8
                     s1 * 1/8
-                } % measure
-                { % measure
+                }   % measure
+                {   % measure
                     \time 5/16
                     s1 * 5/16
-                } % measure
-                { % measure
+                }   % measure
+                {   % measure
                     s1 * 5/16
-                } % measure
+                }   % measure
             }
 
     '''

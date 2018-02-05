@@ -16,10 +16,13 @@ def test_scoretools_Staff___copy___01():
 
     assert format(staff_2) == abjad.String.normalize(
         r'''
-        \new Staff \with {
+        \new Staff
+        \with
+        {
             \override NoteHead.color = #red
             tupletFullLength = ##t
-        } {
+        }
+        {
         }
         '''
         )

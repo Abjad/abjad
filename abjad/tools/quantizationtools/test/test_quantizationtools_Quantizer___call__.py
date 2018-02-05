@@ -12,16 +12,19 @@ def test_quantizationtools_Quantizer___call___01():
     score = abjad.Score([staff])
     assert format(score) == abjad.String.normalize(
         r'''
-        \new Score <<
-            \new RhythmicStaff {
-                \new Voice {
-                    { % measure
+        \new Score
+        <<
+            \new RhythmicStaff
+            {
+                \new Voice
+                {
+                    {   % measure
                         \time 4/4
                         \tempo 4=60
                         c'4.
                         c'4.
                         r4
-                    } % measure
+                    }   % measure
                 }
             }
         >>
@@ -43,10 +46,13 @@ def test_quantizationtools_Quantizer___call___02():
     score = abjad.Score([staff])
     assert format(score) == abjad.String.normalize(
         r'''
-        \new Score <<
-            \new RhythmicStaff {
-                \new Voice {
-                    { % measure
+        \new Score
+        <<
+            \new RhythmicStaff
+            {
+                \new Voice
+                {
+                    {   % measure
                         \time 4/4
                         \tempo 4=60
                         c'8.
@@ -54,7 +60,7 @@ def test_quantizationtools_Quantizer___call___02():
                         c'8
                         r8
                         r2
-                    } % measure
+                    }   % measure
                 }
             }
         >>
@@ -78,10 +84,13 @@ def test_quantizationtools_Quantizer___call___03():
 
     assert format(score) == abjad.String.normalize(
         r'''
-        \new Score <<
-            \new Staff {
-                \new Voice {
-                    { % measure
+        \new Score
+        <<
+            \new Staff
+            {
+                \new Voice
+                {
+                    {   % measure
                         \time 4/4
                         \tempo 4=60
                         c'4 ~
@@ -91,8 +100,8 @@ def test_quantizationtools_Quantizer___call___03():
                         c'8 ~
                         c'8
                         c'8 ~
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         c'8
                         r8
                         r8
@@ -101,7 +110,7 @@ def test_quantizationtools_Quantizer___call___03():
                         r8
                         r8
                         c'8
-                    } % measure
+                    }   % measure
                 }
             }
         >>
@@ -122,10 +131,13 @@ def test_quantizationtools_Quantizer___call___04():
 
     assert format(score) == abjad.String.normalize(
         r'''
-        \new Score <<
-            \new RhythmicStaff {
-                \new Voice {
-                    { % measure
+        \new Score
+        <<
+            \new RhythmicStaff
+            {
+                \new Voice
+                {
+                    {   % measure
                         \time 4/4
                         \tempo 4=60
                         c'16
@@ -140,7 +152,7 @@ def test_quantizationtools_Quantizer___call___04():
                         c'16
                         c'16 ~
                         c'8
-                    } % measure
+                    }   % measure
                 }
             }
         >>
@@ -172,9 +184,12 @@ def test_quantizationtools_Quantizer___call___05():
 
     assert format(score) == abjad.String.normalize(
         r'''
-        \new Score <<
-            \new RhythmicStaff {
-                \new Voice {
+        \new Score
+        <<
+            \new RhythmicStaff
+            {
+                \new Voice
+                {
                     \grace {
                         c'16
                     }

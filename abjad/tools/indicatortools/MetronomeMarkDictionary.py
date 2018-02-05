@@ -81,7 +81,9 @@ class MetronomeMarkDictionary(OrderedDict):
 
                 >>> lilypond_file = marks.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Score])
-                \new Score \with {
+                \new Score
+                \with
+                {
                     \override BarLine.transparent = ##t
                     \override BarNumber.stencil = ##f
                     \override Clef.stencil = ##f
@@ -90,8 +92,10 @@ class MetronomeMarkDictionary(OrderedDict):
                     \override StaffSymbol.transparent = ##t
                     \override Stem.transparent = ##t
                     \override TimeSignature.stencil = ##f
-                } <<
-                    \new Staff {
+                }
+                <<
+                    \new Staff
+                    {
                         \time 2/4
                         \break
                         c'2

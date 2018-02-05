@@ -24,7 +24,8 @@ class AppoggiaturaContainer(GraceContainer):
         ..  docs::
 
             >>> abjad.f(voice)
-            \new Voice {
+            \new Voice
+            {
                 c'4
                 \appoggiatura {
                     c'16

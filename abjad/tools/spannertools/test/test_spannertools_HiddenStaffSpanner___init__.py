@@ -18,20 +18,21 @@ def test_spannertools_HiddenStaffSpanner___init___02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'8
                 d'8
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8
                 f'8
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 g'8
                 a'8
-            } % measure
+            }   % measure
         }
         '''
         )
@@ -41,22 +42,23 @@ def test_spannertools_HiddenStaffSpanner___init___02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'8
                 d'8
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \stopStaff
                 e'8
                 f'8
                 \startStaff
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 g'8
                 a'8
-            } % measure
+            }   % measure
         }
         '''
         )

@@ -64,7 +64,8 @@ class Inversion(AbjadValueObject):
 
                 >>> lilypond_file = segment_.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     a'8
                     g'8
                     f'8
@@ -88,7 +89,8 @@ class Inversion(AbjadValueObject):
 
                 >>> lilypond_file = segment_.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     ef'8
                     cs'8
                     b'8

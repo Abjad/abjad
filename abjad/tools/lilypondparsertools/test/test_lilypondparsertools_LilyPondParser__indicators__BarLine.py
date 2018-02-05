@@ -11,7 +11,8 @@ def test_lilypondparsertools_LilyPondParser__indicators__BarLine_01():
 
     assert format(target) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             e'4
             d'4
             c'2

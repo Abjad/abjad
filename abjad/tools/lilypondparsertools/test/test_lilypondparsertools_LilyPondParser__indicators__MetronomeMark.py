@@ -10,8 +10,10 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_01():
 
     assert format(target) == abjad.String.normalize(
         r'''
-        \new Score <<
-            \new Staff {
+        \new Score
+        <<
+            \new Staff
+            {
                 \tempo "As fast as possible"
                 c'1
             }
@@ -37,8 +39,10 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_02():
 
     assert format(target) == abjad.String.normalize(
         r'''
-        \new Score <<
-            \new Staff {
+        \new Score
+        <<
+            \new Staff
+            {
                 \tempo 4=60
                 c'1
             }
@@ -64,8 +68,10 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_03():
 
     assert format(target) == abjad.String.normalize(
         r'''
-        \new Score <<
-            \new Staff {
+        \new Score
+        <<
+            \new Staff
+            {
                 \tempo 4=59-63
                 c'1
             }
@@ -95,8 +101,10 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_04():
 
     assert format(target) == abjad.String.normalize(
         r'''
-        \new Score <<
-            \new Staff {
+        \new Score
+        <<
+            \new Staff
+            {
                 \tempo "Like a majestic swan, alive with youth and vigour!" 4=60
                 c'1
             }
@@ -126,8 +134,10 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_05():
 
     assert format(target) == abjad.String.normalize(
         r'''
-        \new Score <<
-            \new Staff {
+        \new Score
+        <<
+            \new Staff
+            {
                 \tempo "Faster than a thousand suns" 16=34-55
                 c'1
             }

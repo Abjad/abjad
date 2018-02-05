@@ -140,7 +140,18 @@ noremap <leader>q :quit<cr>
 noremap <leader>wq :wq<cr>
 
 
-" 4. plugins (alphabetical)
+" 4. macros
+" =========
+"Macro @i sets the first left-edge-adjacent number to 1.
+"Macro @j increments the next left-edge-adjacent number.
+"Macro @r ("renumber") calls @j recursively and then returns to top-of-file.
+"Use @r to renumber all items in a to-do list.
+let @i='gg/^\dcw1"nyw/\.dwi.	'
+let @j='/^\dcwn0"nyw/\.dwi.	'
+let @r='@i:g/^\d/ normal @j@i'
+
+
+" 5. plugins (alphabetical)
 " =========================
 
 " ctrlp (https://github.com/kien/ctrlp.vim)
@@ -192,7 +203,7 @@ let g:syntastic_python_flake8_args = '--builtins="unicode, basestring,Infinity,N
 " no configuration required
 
 
-" 5. other
+" 6. other
 " ========
 
 " show tab number (adapted from http://stackoverflow.com/q/5927952)

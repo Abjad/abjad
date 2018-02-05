@@ -11,7 +11,8 @@ def test_spannertools_Beam_detach_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [ ]
             cs'8
             d'8
@@ -28,7 +29,8 @@ def test_spannertools_Beam_detach_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8
             cs'8
             d'8
@@ -54,7 +56,8 @@ def test_spannertools_Beam_detach_02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [
             cs'8
             d'8
@@ -71,7 +74,8 @@ def test_spannertools_Beam_detach_02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8
             cs'8
             d'8

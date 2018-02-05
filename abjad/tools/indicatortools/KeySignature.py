@@ -14,7 +14,8 @@ class KeySignature(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \key e \major
                 e'8
                 fs'8
@@ -32,7 +33,8 @@ class KeySignature(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \key e \minor
                 e'8
                 fs'8

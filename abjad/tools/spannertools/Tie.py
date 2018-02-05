@@ -17,7 +17,8 @@ class Tie(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'4 ~
                 c'4 ~
                 c'4 ~
@@ -35,7 +36,8 @@ class Tie(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'4 ~
                 c'4 ~
                 c'4 ~
@@ -54,7 +56,8 @@ class Tie(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 <c'>4 ~
                 <c' d'>4 ~
                 <d'>4
@@ -68,19 +71,21 @@ class Tie(Spanner):
         >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
         >>> abjad.attach(abjad.Tie(), segment_1[-1:], right_broken=True)
         >>> abjad.f(segment_1, strict=True)
-        \context Voice = "MainVoice" {
+        \context Voice = "MainVoice"
+        {
             c'4
             d'4
             e'4
             f'4
-        %@% ~     %! RIGHT_BROKEN_TIE
+        %@% ~ %! RIGHT_BROKEN_TIE
         }
 
         >>> abjad.show(segment_1) # doctest: +SKIP
 
         >>> segment_2 = abjad.Voice("f'4 e' d' c'", name='MainVoice')
         >>> abjad.f(segment_2, strict=True)
-        \context Voice = "MainVoice" {
+        \context Voice = "MainVoice"
+        {
             f'4
             e'4
             d'4
@@ -92,14 +97,16 @@ class Tie(Spanner):
         >>> container = abjad.Container([segment_1, segment_2])
         >>> abjad.f(container, strict=True)
         {
-            \context Voice = "MainVoice" {
+            \context Voice = "MainVoice"
+            {
                 c'4
                 d'4
                 e'4
                 f'4
-            %@% ~     %! RIGHT_BROKEN_TIE
+            %@% ~ %! RIGHT_BROKEN_TIE
             }
-            \context Voice = "MainVoice" {
+            \context Voice = "MainVoice"
+            {
                 f'4
                 e'4
                 d'4
@@ -114,14 +121,16 @@ class Tie(Spanner):
         >>> text, count = abjad.activate(text, abjad.tags.RIGHT_BROKEN_TIE)
         >>> print(text)
         {
-            \context Voice = "MainVoice" {
+            \context Voice = "MainVoice"
+            {
                 c'4
                 d'4
                 e'4
                 f'4
                 ~     %! RIGHT_BROKEN_TIE %@%
             }
-            \context Voice = "MainVoice" {
+            \context Voice = "MainVoice"
+            {
                 f'4
                 e'4
                 d'4
@@ -144,9 +153,10 @@ class Tie(Spanner):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff, strict=True)
-        \new Staff {
+        \new Staff
+        {
             c'4
-        %@% \repeatTie     %! LEFT_BROKEN_REPEAT_TIE
+        %@% \repeatTie %! LEFT_BROKEN_REPEAT_TIE
             c'4
             \repeatTie
             c'4
@@ -308,7 +318,8 @@ class Tie(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8 ^ ~
                     c'8 ^ ~
                     c'8 ^ ~
@@ -330,7 +341,8 @@ class Tie(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8 _ ~
                     c'8 _ ~
                     c'8 _ ~
@@ -352,7 +364,8 @@ class Tie(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8 ~
                     c'8 ~
                     c'8 ~
@@ -384,7 +397,8 @@ class Tie(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8
                     c'8 ^ \repeatTie
                     c'8 ^ \repeatTie

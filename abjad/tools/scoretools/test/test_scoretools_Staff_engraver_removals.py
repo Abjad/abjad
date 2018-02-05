@@ -9,10 +9,13 @@ def test_scoretools_Staff_engraver_removals_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff \with {
+        \new Staff
+        \with
+        {
             \remove Time_signature_engraver
             \remove Bar_number_engraver
-        } {
+        }
+        {
             c'8
             d'8
             e'8

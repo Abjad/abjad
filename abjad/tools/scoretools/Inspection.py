@@ -51,14 +51,17 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
-                    \new Voice {
+                \new Staff
+                {
+                    \new Voice
+                    {
                         c'8
                         d'8
                         e'8
                         f'8
                     }
-                    \new Voice {
+                    \new Voice
+                    {
                         g'8
                         a'8
                         b'8
@@ -88,7 +91,8 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'4
                     e'4
                     e'4
@@ -154,7 +158,8 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \clef "alto"
                     c'4
                     d'4
@@ -197,7 +202,8 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8
                     \afterGrace
                     d'8
@@ -227,7 +233,8 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'4
                     e'4
                     e'4
@@ -293,7 +300,8 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8 [
                     d'4
                     e'8
@@ -324,7 +332,8 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \times 2/3 {
                         c'8
                         d'8
@@ -364,7 +373,8 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \times 2/3 {
                         c'8
                         d'8
@@ -432,7 +442,8 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'4
                     d'4
                     e'4
@@ -471,7 +482,8 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \clef "alto"
                     c'4
                     d'4
@@ -504,7 +516,8 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8
                     d'8
                     e'8
@@ -534,7 +547,8 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8
                     d'8
                     e'8
@@ -599,7 +613,8 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8
                     d'8
                     e'8
@@ -628,7 +643,8 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \time 3/8
                     c'4
                     d'4
@@ -681,7 +697,8 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8
                     \acciaccatura {
                         cs'16
@@ -742,7 +759,8 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'4 -\marcato
                     d'4 -\marcato
                     e'4 -\marcato
@@ -776,14 +794,17 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
-                    \new Voice {
+                \new Staff
+                {
+                    \new Voice
+                    {
                         c'8
                         d'8
                         e'8
                         f'8
                     }
-                    \new Voice {
+                    \new Voice
+                    {
                         g'8
                         a'8
                         b'8
@@ -931,7 +952,8 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(voice)
-                \new Voice {
+                \new Voice
+                {
                     c'4
                     \grace {
                         c'16
@@ -957,7 +979,8 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(voice)
-                \new Voice {
+                \new Voice
+                {
                     c'4
                     \grace {
                         c'16
@@ -1003,10 +1026,13 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override TextScript.staff-padding = #1.25
                     \override TextSpanner.staff-padding = #2
-                } {
+                }
+                {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -1087,7 +1113,8 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set Staff.instrumentName = \markup { Piccolo }
                     \set Staff.shortInstrumentName = \markup { Picc. }
                     d'8
@@ -1095,8 +1122,6 @@ class Inspection(abctools.AbjadObject):
                     f'8
                     g'8
                 }
-                >>> abjad.inspect(staff[0]).get_sounding_pitch()
-                NamedPitch("d''")
 
         Returns named pitch.
         '''
@@ -1116,7 +1141,8 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set Staff.instrumentName = \markup { Glockenspiel }
                     \set Staff.shortInstrumentName = \markup { Gkspl. }
                     <c' e'>4
@@ -1162,7 +1188,8 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8 [
                     d'8 ]
                     e'8 [
@@ -1218,7 +1245,8 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(voice)
-                \new Voice {
+                \new Voice
+                {
                     c'8 [
                     \grace {
                         c'16
@@ -1308,7 +1336,8 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8 [
                     d'8 ]
                     e'8 [
@@ -1360,7 +1389,8 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \times 2/3 {
                         c'8
                         d'8
@@ -1438,8 +1468,10 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(score)
-                \new Score <<
-                    \new Staff {
+                \new Score
+                <<
+                    \new Staff
+                    {
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 4/3 {
                             d''8
@@ -1447,12 +1479,15 @@ class Inspection(abctools.AbjadObject):
                             b'8
                         }
                     }
-                    \new PianoStaff <<
-                        \new Staff {
+                    \new PianoStaff
+                    <<
+                        \new Staff
+                        {
                             a'4
                             g'4
                         }
-                        \new Staff {
+                        \new Staff
+                        {
                             \clef "bass"
                             f'8
                             e'8
@@ -1531,7 +1566,8 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \time 3/8
                     c'4
                     d'4
@@ -1794,7 +1830,8 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8 [
                     d'4
                     e'8
@@ -1894,7 +1931,8 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'4 -\marcato
                     d'4 -\marcato
                     e'4 -\marcato
@@ -1929,7 +1967,8 @@ class Inspection(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'4 -\marcato
                     d'4 -\marcato
                     e'4 -\marcato

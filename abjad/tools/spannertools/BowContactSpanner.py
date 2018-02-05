@@ -39,7 +39,9 @@ class BowContactSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 \override BarLine.transparent = ##t
                 \override Dots.staff-position = #-8
                 \override Flag.Y-offset = #-8.5
@@ -52,7 +54,8 @@ class BowContactSpanner(Spanner):
                 \override Stem.length = #8
                 \override Stem.stem-begin-position = #-9
                 \override TimeSignature.stencil = ##f
-            } {
+            }
+            {
                 \once \override Glissando.style = #'dotted-line
                 \once \override NoteHead.Y-offset = -1.0
                 \once \override NoteHead.stencil = #ly:text-interface::print
@@ -144,7 +147,9 @@ class BowContactSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 \override BarLine.transparent = ##t
                 \override Dots.staff-position = #-8
                 \override Flag.Y-offset = #-8.5
@@ -157,7 +162,8 @@ class BowContactSpanner(Spanner):
                 \override Stem.length = #8
                 \override Stem.stem-begin-position = #-9
                 \override TimeSignature.stencil = ##f
-            } {
+            }
+            {
                 \once \override NoteHead.style = #'cross
                 \clef "percussion"
                 c'4

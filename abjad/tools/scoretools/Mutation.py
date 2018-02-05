@@ -61,7 +61,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \clef "treble"
                     c'8
                     cs'8
@@ -92,7 +93,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \clef "treble"
                     c'8
                     cs'8
@@ -120,7 +122,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \time 2/4
                     c'8 (
                     d'8
@@ -140,7 +143,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(new_staff)
-                \new Staff {
+                \new Staff
+                {
                     e'8 (
                     f'8 )
                 }
@@ -195,7 +199,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new RhythmicStaff {
+                \new RhythmicStaff
+                {
                     c'4 ~
                     c'4
                     d'4 ~
@@ -238,7 +243,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 3/2 {
                         \time 3/4
@@ -259,7 +265,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \time 3/4
                     c'4 \< \p
                     e'4
@@ -284,7 +291,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 3/2 {
                         \time 3/4
@@ -307,7 +315,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \time 3/4
                     c'4. \< \p
                     e'4.
@@ -336,7 +345,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8
                     d'4.
                 }
@@ -357,7 +367,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \times 2/3 {
                         c'8 [
                         d'8
@@ -378,7 +389,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \times 2/3 {
                         c'8 [
                         d'8
@@ -416,17 +428,18 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
-                    { % measure
+                \new Staff
+                {
+                    {   % measure
                         \time 1/4
                         c'8 (
                         d'8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 2/8
                         e'8
                         f'8 )
-                    } % measure
+                    }   % measure
                 }
 
             >>> measures = staff[:]
@@ -437,14 +450,15 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
-                    { % measure
+                \new Staff
+                {
+                    {   % measure
                         \time 2/4
                         c'8 (
                         d'8
                         e'8
                         f'8 )
-                    } % measure
+                    }   % measure
                 }
 
         Returns selection.
@@ -482,7 +496,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \times 2/3 {
                         c'4 \< \p (
                         d'4
@@ -503,7 +518,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'16 \< \p (
                     d'16
                     e'16
@@ -532,7 +548,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \clef "alto"
                     c'2
                     f'4
@@ -553,7 +570,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     <d' e'>2
                     f'4
                     g'4
@@ -582,7 +600,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \clef "alto"
                     c'2
                     f'4
@@ -603,7 +622,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \clef "alto"
                     <d' e'>2
                     f'4
@@ -680,15 +700,16 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
-                    { % measure
+                \new Staff
+                {
+                    {   % measure
                         \time 1/8
                         s1 * 1/8
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 3/16
                         s1 * 3/16
-                    } % measure
+                    }   % measure
                 }
 
             >>> notes = [
@@ -704,18 +725,19 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
-                    { % measure
+                \new Staff
+                {
+                    {   % measure
                         \time 1/8
                         c'16
                         d'16
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 3/16
                         e'16
                         f'16
                         s1 * 1/16
-                    } % measure
+                    }   % measure
                 }
 
         Preserves duration of all measures.
@@ -804,22 +826,23 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
-                    { % measure
+                \new Staff
+                {
+                    {   % measure
                         \time 2/4
                         c'2 ~
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 4/4
                         c'32
                         d'2.. ~
                         d'16
                         e'32 ~
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 2/4
                         e'2
-                    } % measure
+                    }   % measure
                 }
 
             >>> meter = abjad.Meter((4, 4))
@@ -836,23 +859,24 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
-                    { % measure
+                \new Staff
+                {
+                    {   % measure
                         \time 2/4
                         c'2 ~
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 4/4
                         c'32
                         d'8.. ~
                         d'2 ~
                         d'8..
                         e'32 ~
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 2/4
                         e'2
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -865,22 +889,23 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
-                    { % measure
+                \new Staff
+                {
+                    {   % measure
                         \time 2/4
                         c'2 ~
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 4/4
                         c'32
                         d'2.. ~
                         d'16
                         e'32 ~
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 2/4
                         e'2
-                    } % measure
+                    }   % measure
                 }
 
             >>> rtm = '(4/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
@@ -900,22 +925,23 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
-                    { % measure
+                \new Staff
+                {
+                    {   % measure
                         \time 2/4
                         c'2 ~
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 4/4
                         c'32
                         d'4... ~
                         d'4...
                         e'32 ~
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 2/4
                         e'2
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -930,13 +956,13 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(measure)
-                { % measure
+                {   % measure
                     \time 3/4
                     c'32
                     d'8
                     e'8
                     fs'4...
-                } % measure
+                }   % measure
 
             Without constraining the `maximum_dot_count`:
 
@@ -946,7 +972,7 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(measure)
-                { % measure
+                {   % measure
                     \time 3/4
                     c'32
                     d'16. ~
@@ -954,7 +980,7 @@ class Mutation(abctools.AbjadObject):
                     e'16. ~
                     e'32
                     fs'4...
-                } % measure
+                }   % measure
 
             Constraining the `maximum_dot_count` to `2`:
 
@@ -968,7 +994,7 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(measure)
-                { % measure
+                {   % measure
                     \time 3/4
                     c'32
                     d'16. ~
@@ -977,7 +1003,7 @@ class Mutation(abctools.AbjadObject):
                     e'32
                     fs'8.. ~
                     fs'4
-                } % measure
+                }   % measure
 
             Constraining the `maximum_dot_count` to `1`:
 
@@ -991,7 +1017,7 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(measure)
-                { % measure
+                {   % measure
                     \time 3/4
                     c'32
                     d'16. ~
@@ -1001,7 +1027,7 @@ class Mutation(abctools.AbjadObject):
                     fs'16. ~
                     fs'8 ~
                     fs'4
-                } % measure
+                }   % measure
 
             Constraining the `maximum_dot_count` to `0`:
 
@@ -1015,7 +1041,7 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(measure)
-                { % measure
+                {   % measure
                     \time 3/4
                     c'32
                     d'16 ~
@@ -1028,7 +1054,7 @@ class Mutation(abctools.AbjadObject):
                     fs'32 ~
                     fs'8 ~
                     fs'4
-                } % measure
+                }   % measure
 
         ..  container:: example
 
@@ -1064,12 +1090,12 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(measure)
-                { % measure
+                {   % measure
                     \time 9/8
                     c'2
                     d'2
                     e'8
-                } % measure
+                }   % measure
 
             >>> abjad.mutate(measure[:]).rewrite_meter(measure)
             >>> abjad.show(measure) # doctest: +SKIP
@@ -1077,13 +1103,13 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(measure)
-                { % measure
+                {   % measure
                     \time 9/8
                     c'2
                     d'4 ~
                     d'4
                     e'8
-                } % measure
+                }   % measure
 
             With a `boundary_depth` of `1`, logical ties which cross any offsets
             created by nodes with a depth of `1` in this Meter's rhythm
@@ -1100,14 +1126,14 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(measure)
-                { % measure
+                {   % measure
                     \time 9/8
                     c'4. ~
                     c'8
                     d'4 ~
                     d'4
                     e'8
-                } % measure
+                }   % measure
 
             For this `9/8` meter, and this input notation, A `boundary_depth`
             of `2` causes no change, as all logical ties already align to
@@ -1123,13 +1149,13 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(measure)
-                { % measure
+                {   % measure
                     \time 9/8
                     c'2
                     d'4 ~
                     d'4
                     e'8
-                } % measure
+                }   % measure
 
         ..  container:: example
 
@@ -1161,68 +1187,77 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(score)
-                \new Score \with {
+                \new Score
+                \with
+                {
                     \remove Timing_translator
                     \remove Time_signature_engraver
                     \remove Default_bar_line_engraver
-                } <<
-                    \new Staff \with {
+                }
+                <<
+                    \new Staff
+                    \with
+                    {
                         \consists Timing_translator
                         \consists Time_signature_engraver
                         \consists Default_bar_line_engraver
-                    } {
-                        { % measure
+                    }
+                    {
+                        {   % measure
                             \time 3/4
                             c'2
                             c'4
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             c'4
                             c'2
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             c'4.
                             c'4.
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             c'2 ~
                             c'8
                             c'8
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             c'8
                             c'8 ~
                             c'2
-                        } % measure
+                        }   % measure
                     }
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \consists Timing_translator
                         \consists Time_signature_engraver
                         \consists Default_bar_line_engraver
-                    } {
-                        { % measure
+                    }
+                    {
+                        {   % measure
                             \time 6/8
                             c'2
                             c'4
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             c'4
                             c'2
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             c'4.
                             c'4.
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             c'2 ~
                             c'8
                             c'8
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             c'8
                             c'8 ~
                             c'2
-                        } % measure
+                        }   % measure
                     }
                 >>
 
@@ -1236,68 +1271,77 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(score)
-                \new Score \with {
+                \new Score
+                \with
+                {
                     \remove Timing_translator
                     \remove Time_signature_engraver
                     \remove Default_bar_line_engraver
-                } <<
-                    \new Staff \with {
+                }
+                <<
+                    \new Staff
+                    \with
+                    {
                         \consists Timing_translator
                         \consists Time_signature_engraver
                         \consists Default_bar_line_engraver
-                    } {
-                        { % measure
+                    }
+                    {
+                        {   % measure
                             \time 3/4
                             c'2
                             c'4
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             c'4
                             c'2
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             c'4.
                             c'4.
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             c'2 ~
                             c'8
                             c'8
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             c'8
                             c'8 ~
                             c'2
-                        } % measure
+                        }   % measure
                     }
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \consists Timing_translator
                         \consists Time_signature_engraver
                         \consists Default_bar_line_engraver
-                    } {
-                        { % measure
+                    }
+                    {
+                        {   % measure
                             \time 6/8
                             c'2
                             c'4
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             c'4
                             c'2
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             c'4.
                             c'4.
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             c'4. ~
                             c'4
                             c'8
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             c'8
                             c'4 ~
                             c'4.
-                        } % measure
+                        }   % measure
                     }
                 >>
 
@@ -1314,72 +1358,81 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(score)
-                \new Score \with {
+                \new Score
+                \with
+                {
                     \remove Timing_translator
                     \remove Time_signature_engraver
                     \remove Default_bar_line_engraver
-                } <<
-                    \new Staff \with {
+                }
+                <<
+                    \new Staff
+                    \with
+                    {
                         \consists Timing_translator
                         \consists Time_signature_engraver
                         \consists Default_bar_line_engraver
-                    } {
-                        { % measure
+                    }
+                    {
+                        {   % measure
                             \time 3/4
                             c'2
                             c'4
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             c'4
                             c'2
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             c'4 ~
                             c'8
                             c'8 ~
                             c'4
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             c'2 ~
                             c'8
                             c'8
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             c'8
                             c'8 ~
                             c'2
-                        } % measure
+                        }   % measure
                     }
-                    \new Staff \with {
+                    \new Staff
+                    \with
+                    {
                         \consists Timing_translator
                         \consists Time_signature_engraver
                         \consists Default_bar_line_engraver
-                    } {
-                        { % measure
+                    }
+                    {
+                        {   % measure
                             \time 6/8
                             c'4. ~
                             c'8
                             c'4
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             c'4
                             c'8 ~
                             c'4.
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             c'4.
                             c'4.
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             c'4. ~
                             c'4
                             c'8
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             c'8
                             c'4 ~
                             c'4.
-                        } % measure
+                        }   % measure
                     }
                 >>
 
@@ -1399,7 +1452,7 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(measure)
-                { % measure
+                {   % measure
                     \time 4/4
                     c'16 ~
                     c'4
@@ -1414,7 +1467,7 @@ class Mutation(abctools.AbjadObject):
                         }
                     }
                     f'4
-                } % measure
+                }   % measure
 
             When establishing a meter on a selection of components
             which contain containers, like `Tuplets` or `Containers`,
@@ -1432,7 +1485,7 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(measure)
-                { % measure
+                {   % measure
                     \time 4/4
                     c'4 ~
                     c'16
@@ -1449,7 +1502,7 @@ class Mutation(abctools.AbjadObject):
                         }
                     }
                     f'4
-                } % measure
+                }   % measure
 
         ..  container:: example
 
@@ -1465,12 +1518,12 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(measure)
-                { % measure
+                {   % measure
                     \time 6/8
                     c'4..
                     c'16 ~
                     c'4
-                } % measure
+                }   % measure
 
             Setting boundary depth to 1 subdivides the first note in this
             measure:
@@ -1483,13 +1536,13 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(measure)
-                { % measure
+                {   % measure
                     \time 6/8
                     c'4. ~
                     c'16
                     c'16 ~
                     c'4
-                } % measure
+                }   % measure
 
             Another way of doing this is by setting preferred boundary depth on
             the meter itself:
@@ -1505,13 +1558,13 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(measure)
-                { % measure
+                {   % measure
                     \time 6/8
                     c'4. ~
                     c'16
                     c'16 ~
                     c'4
-                } % measure
+                }   % measure
 
             This makes it possible to divide different meters in different
             ways.
@@ -1526,12 +1579,12 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(measure)
-                { % measure
+                {   % measure
                     \time 4/4
                     c'4.
                     c'4.
                     c'4
-                } % measure
+                }   % measure
 
             >>> meter = abjad.Meter((4, 4))
             >>> abjad.mutate(measure[:]).rewrite_meter(
@@ -1544,14 +1597,14 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(measure)
-                { % measure
+                {   % measure
                     \time 4/4
                     c'4
                     c'8 \repeatTie
                     c'8
                     c'4 \repeatTie
                     c'4
-                } % measure
+                }   % measure
 
         ..  container:: example
 
@@ -1571,7 +1624,7 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(measure)
-                { % measure
+                {   % measure
                     \time 6/4
                     c'8 ~
                     c'8 ~
@@ -1589,7 +1642,7 @@ class Mutation(abctools.AbjadObject):
                     c'8 ~
                     c'8 ~
                     c'8
-                } % measure
+                }   % measure
 
             >>> meter = abjad.Meter((6, 4))
             >>> abjad.mutate(measure[:]).rewrite_meter(
@@ -1601,7 +1654,7 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(measure)
-                { % measure
+                {   % measure
                     \time 6/4
                     c'4.
                     \tweak text #tuplet-number::calc-fraction-text
@@ -1618,7 +1671,7 @@ class Mutation(abctools.AbjadObject):
                         c'4
                     }
                     c'4.
-                } % measure
+                }   % measure
 
             The tied note rewriting is good while the tuplet rewriting
             could use some adjustment.
@@ -1639,7 +1692,7 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(measure)
-                { % measure
+                {   % measure
                     \time 6/4
                     c'8 ~
                     c'8 ~
@@ -1657,7 +1710,7 @@ class Mutation(abctools.AbjadObject):
                     c'8 ~
                     c'8 ~
                     c'8
-                } % measure
+                }   % measure
 
             >>> meter = abjad.Meter((6, 4))
             >>> abjad.mutate(measure[:]).rewrite_meter(
@@ -1670,7 +1723,7 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(measure)
-                { % measure
+                {   % measure
                     \time 6/4
                     c'4.
                     \tweak text #tuplet-number::calc-fraction-text
@@ -1684,7 +1737,7 @@ class Mutation(abctools.AbjadObject):
                         c'4.
                     }
                     c'4.
-                } % measure
+                }   % measure
 
         Operates in place and returns none.
         '''
@@ -1720,7 +1773,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8 (
                     d'8.
                     e'8
@@ -1739,7 +1793,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \time 3/8
                     c'8 -\accent ~
                     c'8
@@ -1754,7 +1809,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \time 3/8
                     c'4. -\accent
                     d'8
@@ -1803,7 +1859,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8 (
                     d'8 ~
                     d'32
@@ -1823,7 +1880,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \time 5/16
                     c'8 -\accent ~
                     c'8
@@ -1838,7 +1896,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \time 5/16
                     c'4 -\accent ~
                     c'16
@@ -1892,7 +1951,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8 (
                     \tweak edge-height #'(0.7 . 0)
                     \times 2/3 {
@@ -1912,7 +1972,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8 -\accent
                 }
 
@@ -1924,7 +1985,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \tweak edge-height #'(0.7 . 0)
                     \times 2/3 {
                         c'4 -\accent
@@ -1986,7 +2048,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8 (
                     \tweak edge-height #'(0.7 . 0)
                     \times 2/3 {
@@ -2034,7 +2097,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \times 4/5 {
                         \time 4/8
                         c'8
@@ -2051,7 +2115,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \times 4/5 {
                         \time 4/8
                         c'4
@@ -2077,7 +2142,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \times 4/5 {
                         \time 4/8
                         c'8
@@ -2094,7 +2160,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \times 4/5 {
                         \time 4/8
                         c'4
@@ -2161,9 +2228,12 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override DynamicLineSpanner.staff-padding = #3
-                } {
+                }
+                {
                     c'8 \< \p
                     e'8
                     d'8
@@ -2184,9 +2254,12 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override DynamicLineSpanner.staff-padding = #3
-                } {
+                }
+                {
                     c'8 \< \p
                     e'16
                     e'16
@@ -2212,9 +2285,12 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override DynamicLineSpanner.staff-padding = #3
-                } {
+                }
+                {
                     c'8 \< \p
                     e'8
                     d'8
@@ -2237,9 +2313,12 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override DynamicLineSpanner.staff-padding = #3
-                } {
+                }
+                {
                     c'8 \< \p
                     e'16 \f
                     e'16 \< \p
@@ -2266,9 +2345,12 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override DynamicLineSpanner.staff-padding = #3
-                } {
+                }
+                {
                     c'8 \< \p
                     e'8
                     d'8
@@ -2290,9 +2372,12 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override DynamicLineSpanner.staff-padding = #3
-                } {
+                }
+                {
                     c'8 \< \p
                     e'16
                     e'16
@@ -2321,9 +2406,12 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override DynamicLineSpanner.staff-padding = #3
-                } {
+                }
+                {
                     c'8 \< \p
                     e'8
                     d'8
@@ -2346,9 +2434,12 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override DynamicLineSpanner.staff-padding = #3
-                } {
+                }
+                {
                     c'8 \< \p
                     e'16 \f
                     e'16 \< \p
@@ -2378,7 +2469,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \times 2/3 {
                         c'4 (
                         d'4
@@ -2402,7 +2494,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \times 2/3 {
                         c'4 (
                         d'8 )
@@ -2429,9 +2522,12 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override DynamicLineSpanner.staff-padding = #3
-                } {
+                }
+                {
                     c'1 \< \p
                     d'1 \f
                 }
@@ -2448,9 +2544,12 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override DynamicLineSpanner.staff-padding = #3
-                } {
+                }
+                {
                     c'2. ~ \< \p
                     c'4
                     d'2 ~
@@ -2477,9 +2576,12 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override DynamicLineSpanner.staff-padding = #3
-                } {
+                }
+                {
                     c'2. \< \p
                     c'4 \repeatTie
                     d'2
@@ -2504,10 +2606,14 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override DynamicLineSpanner.staff-padding = #3
-                } {
-                    \context CustomVoice = "1" {
+                }
+                {
+                    \context CustomVoice = "1"
+                    {
                         c'4 \< \p
                         d'4
                         e'4
@@ -2527,31 +2633,42 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override DynamicLineSpanner.staff-padding = #3
-                } {
-                    \context CustomVoice = "1" {
+                }
+                {
+                    \context CustomVoice = "1"
+                    {
                         c'8 ~ \< \p
                     }
-                    \context CustomVoice = "1" {
+                    \context CustomVoice = "1"
+                    {
                         c'8
                     }
-                    \context CustomVoice = "1" {
+                    \context CustomVoice = "1"
+                    {
                         d'8 ~
                     }
-                    \context CustomVoice = "1" {
+                    \context CustomVoice = "1"
+                    {
                         d'8
                     }
-                    \context CustomVoice = "1" {
+                    \context CustomVoice = "1"
+                    {
                         e'8 ~
                     }
-                    \context CustomVoice = "1" {
+                    \context CustomVoice = "1"
+                    {
                         e'8
                     }
-                    \context CustomVoice = "1" {
+                    \context CustomVoice = "1"
+                    {
                         f'8 ~
                     }
-                    \context CustomVoice = "1" {
+                    \context CustomVoice = "1"
+                    {
                         f'8 \f
                     }
                 }
@@ -2593,20 +2710,27 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     <<
-                        \context Voice = "Voice 1" \with {
+                        \context Voice = "Voice 1"
+                        \with
+                        {
                             \override Slur.direction = #up
                             \override Stem.direction = #up
-                        } {
+                        }
+                        {
                             e''4 (
                             es''4
                             f''4
                             fs''4 )
                         }
-                        \context Voice = "Voice 2" \with {
+                        \context Voice = "Voice 2"
+                        \with
+                        {
                             \override Stem.direction = #down
-                        } {
+                        }
+                        {
                             c'4 \p \<
                             cs'4
                             d'4
@@ -2625,34 +2749,47 @@ class Mutation(abctools.AbjadObject):
             >>> abjad.show(staff) # doctest: +SKIP
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 <<
-                    \context Voice = "Voice 1" \with {
+                    \context Voice = "Voice 1"
+                    \with
+                    {
                         \override Slur.direction = #up
                         \override Stem.direction = #up
-                    } {
+                    }
+                    {
                         e''4 (
                         es''8 ~
                     }
-                    \context Voice = "Voice 2" \with {
+                    \context Voice = "Voice 2"
+                    \with
+                    {
                         \override Stem.direction = #down
-                    } {
+                    }
+                    {
                         c'4 \p \<
                         cs'8 ~
                     }
                 >>
                 <<
-                    \context Voice = "Voice 1" \with {
+                    \context Voice = "Voice 1"
+                    \with
+                    {
                         \override Slur.direction = #up
                         \override Stem.direction = #up
-                    } {
+                    }
+                    {
                         es''8
                         f''4
                         fs''4 )
                     }
-                    \context Voice = "Voice 2" \with {
+                    \context Voice = "Voice 2"
+                    \with
+                    {
                         \override Stem.direction = #down
-                    } {
+                    }
+                    {
                         cs'8
                         d'4
                         ds'4 \f
@@ -2674,7 +2811,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'4 -\marcato
                     d'4 \laissezVibrer
                     e'4 -\marcato
@@ -2693,7 +2831,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8 -\marcato ~
                     c'8
                     d'8 ~
@@ -2866,18 +3005,19 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
-                    { % measure
+                \new Staff
+                {
+                    {   % measure
                         \time 3/4
                         c'4 \< \p (
                         d'4
                         e'4
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         d'4
                         e'4
                         f'4 \f )
-                    } % measure
+                    }   % measure
                 }
 
             >>> measures = staff[:]
@@ -2889,7 +3029,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \times 4/6 {
                         c'4 \< \p (
                         d'4
@@ -2931,20 +3072,21 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
-                        { % measure
+                    \new Staff
+                    {
+                        {   % measure
                             \time 4/4
                             c'4
                             d'4
                             e'4
                             r4
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             \time 3/4
                             d'4
                             e'4
                             <f' a' c''>4
-                        } % measure
+                        }   % measure
                     }
 
             >>> abjad.mutate(staff).transpose("+m3")
@@ -2953,20 +3095,21 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
-                    { % measure
+                \new Staff
+                {
+                    {   % measure
                         \time 4/4
                         ef'4
                         f'4
                         g'4
                         r4
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         \time 3/4
                         f'4
                         g'4
                         <af' c'' ef''>4
-                    } % measure
+                    }   % measure
                 }
 
         Returns none.
@@ -2999,7 +3142,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8 [ (
                     d'8
                     e'8 ] )
@@ -3015,7 +3159,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8 [ (
                     d'8
                     e'8 ] )
@@ -3060,14 +3205,15 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(voice)
-                \new Voice {
-                    { % measure
+                \new Voice
+                {
+                    {   % measure
                         \time 4/8
                         c'8
                         cs'8
                         d'8
                         ef'8
-                    } % measure
+                    }   % measure
                     e'8
                     f'8
                     fs'8
@@ -3088,20 +3234,21 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
-                    { % measure
+                \new Staff
+                {
+                    {   % measure
                         \time 1/1
                         c'1
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         cs'1
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         d'1
-                    } % measure
-                    { % measure
+                    }   % measure
+                    {   % measure
                         ef'1
-                    } % measure
+                    }   % measure
                 }
 
         ..  container:: example
@@ -3130,7 +3277,8 @@ class Mutation(abctools.AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     {
                         \time 3/8
                         c'4

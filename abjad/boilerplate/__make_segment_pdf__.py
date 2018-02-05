@@ -12,17 +12,7 @@ if __name__ == '__main__':
 
     try:
         from definition import maker
-    except ImportError:
-        traceback.print_exc()
-        sys.exit(1)
-
-    try:
         from __metadata__ import metadata as metadata
-    except ImportError:
-        traceback.print_exc()
-        sys.exit(1)
-
-    try:
         {previous_segment_metadata_import_statement}
     except ImportError:
         traceback.print_exc()
@@ -44,11 +34,6 @@ if __name__ == '__main__':
         print(message)
         segment_maker_runtime = (count, counter)
         segment_directory.write_metadata_py(maker.metadata)
-    except:
-        traceback.print_exc()
-        sys.exit(1)
-
-    try:
         result = abjad.persist(lilypond_file).as_ly(illustration_ly, strict=89)
         abjad_format_time = int(result[1])
         count = abjad_format_time
@@ -64,20 +49,14 @@ if __name__ == '__main__':
         text = illustration_ly.read_text()
         text = abjad.LilyPondFormatManager.left_shift_tags(text, realign=89)
         illustration_ly.write_text(text)
-        for message in abjad.Job.document_specific_job(illustration_ly)():
-            print(message)
-        job = abjad.Job.music_annotation_job(illustration_ly, undo=True)
-        for message in job():
-            print(message)
-    except:
-        traceback.print_exc()
-        sys.exit(1)
-
-    try:
-        for message in abjad.Job.fermata_bar_line_job(segment_directory)():
-            print(message)
-        for message in abjad.Job.shifted_clef_job(segment_directory)():
-            print(message)
+        for job in [
+            abjad.Job.document_specific_job(illustration_ly),
+            abjad.Job.music_annotation_job(illustration_ly, undo=True),
+            abjad.Job.fermata_bar_line_job(segment_directory),
+            abjad.Job.shifted_clef_job(segment_directory),
+            ]:
+            for message in job():
+                print(message)
     except:
         traceback.print_exc()
         sys.exit(1)
@@ -87,11 +66,6 @@ if __name__ == '__main__':
         if not layout_py.exists():
             print('Writing stub layout.py ...')
             layout_py.write_text('')
-    except:
-        traceback.print_exc()
-        sys.exit(1)
-
-    try:
         layout_ly = segment_directory('layout.ly')
         if not layout_ly.exists():
             print('Writing stub layout.ly ...')
@@ -101,6 +75,10 @@ if __name__ == '__main__':
         sys.exit(1)
 
     try:
+        if getattr(maker, 'do_not_externalize', False) is not True:
+            illustration_ly.extern()
+            illustration_ily = illustration_ly.with_suffix('.ily')
+            assert illustration_ily.is_file()
         with abjad.Timer() as timer:
             abjad.IOManager.run_lilypond(illustration_ly)
         lilypond_runtime = int(timer.elapsed_time)

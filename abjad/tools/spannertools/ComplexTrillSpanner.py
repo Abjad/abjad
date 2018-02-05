@@ -12,7 +12,8 @@ class ComplexTrillSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'4 ~
                 c'8
                 d'8
@@ -31,7 +32,8 @@ class ComplexTrillSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \pitchedTrill
                 c'4 ~ \startTrillSpan f'
                 c'8
@@ -151,7 +153,8 @@ class ComplexTrillSpanner(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'4
                     \pitchedTrill
                     d'4 \startTrillSpan f'

@@ -17,20 +17,23 @@ def test_scoretools_Measure_simultaneous_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            << % measure
+        \new Staff
+        {
+            <<  % measure
                 \time 2/8
-                \new Voice {
+                \new Voice
+                {
                     \voiceOne
                     c'8
                     d'8
                 }
-                \new Voice {
+                \new Voice
+                {
                     \voiceTwo
                     e'8
                     f'8
                 }
-            >> % measure
+            >>  % measure
         }
         '''
         )

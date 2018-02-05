@@ -1872,7 +1872,8 @@ class Expression(AbjadValueObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
+                    \new Staff
+                    {
                         c'4.
                             ^ \markup {
                                 \small
@@ -1975,7 +1976,8 @@ class Expression(AbjadValueObject):
                     ...     figure_name=markup,
                     ...     )
                     >>> abjad.f(lilypond_file[abjad.Voice])
-                    \new Voice {
+                    \new Voice
+                    {
                         b'8
                             ^ \markup {
                                 \concat
@@ -2053,20 +2055,21 @@ class Expression(AbjadValueObject):
                 ..  docs::
 
                     >>> abjad.f(staff)
-                    \new Staff {
-                        { % measure
+                    \new Staff
+                    {
+                        {   % measure
                             \time 2/8
                             <c' bf'>8
                             <g' a'>8
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             af'8
                             r8
-                        } % measure
-                        { % measure
+                        }   % measure
+                        {   % measure
                             r8
                             gf'8
-                        } % measure
+                        }   % measure
                     }
 
             ..  container:: example expression

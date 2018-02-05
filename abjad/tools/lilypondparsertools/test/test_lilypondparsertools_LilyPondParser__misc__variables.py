@@ -22,7 +22,8 @@ def test_lilypondparsertools_LilyPondParser__misc__variables_01():
 
     assert format(target) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             {
                 {
                     {

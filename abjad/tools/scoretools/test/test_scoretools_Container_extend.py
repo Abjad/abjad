@@ -13,7 +13,8 @@ def test_scoretools_Container_extend_01():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8 ]
             c'8
@@ -40,7 +41,8 @@ def test_scoretools_Container_extend_02():
 
     assert format(voice_1) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8 ]
             e'8 [
@@ -63,7 +65,8 @@ def test_scoretools_Container_extend_03():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8 ]
         }
@@ -85,7 +88,8 @@ def test_scoretools_Container_extend_04():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8 ]
         }
@@ -138,7 +142,8 @@ def test_scoretools_Container_extend_07():
 
     assert format(voice_1) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8 ]
             e'8
@@ -151,7 +156,8 @@ def test_scoretools_Container_extend_07():
 
     assert format(voice_2) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8 ]
         }
@@ -178,7 +184,8 @@ def test_scoretools_Container_extend_08():
 
     assert format(voice_2) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8
             e'8 (
@@ -191,7 +198,8 @@ def test_scoretools_Container_extend_08():
 
     assert format(voice_1) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8 ]
             e'8 (
@@ -204,7 +212,8 @@ def test_scoretools_Container_extend_08():
 
     assert format(voice_2) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8 ]
         }

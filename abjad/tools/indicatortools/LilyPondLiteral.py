@@ -18,7 +18,8 @@ class LilyPondLiteral(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \slurDotted
                 c'8 (
                 d'8
@@ -48,7 +49,8 @@ class LilyPondLiteral(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
             <BLANKLINE>
                 % before all formatting
                 \slurDotted
@@ -70,7 +72,8 @@ class LilyPondLiteral(AbjadValueObject):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
-        \new Staff {
+        \new Staff
+        {
             \slurDotted %! RED
             c'8 (
             d'8
@@ -89,7 +92,8 @@ class LilyPondLiteral(AbjadValueObject):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
-        \new Staff {
+        \new Staff
+        {
             \slurDotted %! M1
             c'8 (
             d'8
@@ -108,7 +112,8 @@ class LilyPondLiteral(AbjadValueObject):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
-        \new Staff {
+        \new Staff
+        {
             \slurDotted %! RED:M1
             c'8 (
             d'8
@@ -132,7 +137,8 @@ class LilyPondLiteral(AbjadValueObject):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
-        \new Staff {
+        \new Staff
+        {
             c'8 (
             d'8
             \stopStaff                                     %! RED

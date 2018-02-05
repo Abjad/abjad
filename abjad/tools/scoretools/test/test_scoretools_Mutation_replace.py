@@ -17,7 +17,8 @@ def test_scoretools_Mutation_replace_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [ \<
             d'8 ]
             e'8 [
@@ -32,7 +33,8 @@ def test_scoretools_Mutation_replace_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [ ] \<
             c''16
             c''16
@@ -63,7 +65,8 @@ def test_scoretools_Mutation_replace_02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [ \<
             d'8 ]
             e'8 [
@@ -78,7 +81,8 @@ def test_scoretools_Mutation_replace_02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c''16 [ \<
             c''16
             c''16
@@ -110,7 +114,8 @@ def test_scoretools_Mutation_replace_03():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [ \<
             d'8 ]
             e'8 [
@@ -125,7 +130,8 @@ def test_scoretools_Mutation_replace_03():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c''16 [ \<
             c''16
             c''16
@@ -156,7 +162,8 @@ def test_scoretools_Mutation_replace_04():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [ \<
             d'8 ]
             e'8 [
@@ -171,7 +178,8 @@ def test_scoretools_Mutation_replace_04():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c''16 \<
             c''16
             c''16
@@ -201,7 +209,8 @@ def test_scoretools_Mutation_replace_05():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [ \<
             d'8 ]
             e'8 [
@@ -216,7 +225,8 @@ def test_scoretools_Mutation_replace_05():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c''16 \<
             c''16
             c''16
@@ -245,8 +255,10 @@ def test_scoretools_Mutation_replace_06():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            \new Voice {
+        \new Staff
+        {
+            \new Voice
+            {
                 c'8 [
                 d'8
                 e'8
@@ -262,7 +274,8 @@ def test_scoretools_Mutation_replace_06():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [
             d'8
             e'8

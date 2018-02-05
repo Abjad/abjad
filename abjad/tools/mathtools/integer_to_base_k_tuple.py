@@ -18,6 +18,13 @@ def integer_to_base_k_tuple(n, k):
         >>> abjad.mathtools.integer_to_base_k_tuple(1066, 2)
         (1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0)
 
+    ..  container:: example
+
+        Gets base-26 digits of 1066:
+
+        >>> abjad.mathtools.integer_to_base_k_tuple(1066, 26)
+        (1, 15, 0)
+
     Returns tuple of positive integers.
     '''
     assert isinstance(n, int), repr(n)

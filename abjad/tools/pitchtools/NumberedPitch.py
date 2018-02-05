@@ -16,9 +16,12 @@ class NumberedPitch(Pitch):
         ..  docs::
 
             >>> abjad.f(numbered_pitch.__illustrate__()[abjad.Staff])
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 \override TimeSignature.stencil = ##f
-            } {
+            }
+            {
                 \clef "treble"
                 cs''1 * 1/4
             }
@@ -33,9 +36,12 @@ class NumberedPitch(Pitch):
         ..  docs::
 
             >>> abjad.f(numbered_pitch.__illustrate__()[abjad.Staff])
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 \override TimeSignature.stencil = ##f
-            } {
+            }
+            {
                 \clef "treble"
                 cs''1 * 1/4
             }
@@ -50,9 +56,12 @@ class NumberedPitch(Pitch):
         ..  docs::
 
             >>> abjad.f(numbered_pitch.__illustrate__()[abjad.Staff])
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 \override TimeSignature.stencil = ##f
-            } {
+            }
+            {
                 \clef "treble"
                 cs''1 * 1/4
             }

@@ -23,20 +23,21 @@ def test_scoretools_Inspection_get_duration_01():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
-            { % measure
+        \new Voice
+        {
+            {   % measure
                 \time 2/12
                 \scaleDurations #'(2 . 3) {
                     \tempo 8=42
                     c'8 [ \<
                     d'8 \!
                 }
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 2/8
                 c'8 \>
                 d'8 ] \!
-            } % measure
+            }   % measure
         }
         '''
         )
@@ -63,19 +64,20 @@ def test_scoretools_Inspection_get_duration_02():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
-            { % measure
+        \new Voice
+        {
+            {   % measure
                 \time 2/12
                 \scaleDurations #'(2 . 3) {
                     c'8 [ \<
                     d'8 \!
                 }
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 2/8
                 c'8 \>
                 d'8 ] \!
-            } % measure
+            }   % measure
         }
         '''
         )
@@ -99,8 +101,10 @@ def test_scoretools_Inspection_get_duration_03():
 
     assert format(score) == abjad.String.normalize(
         r'''
-        \new Score <<
-            \new Staff {
+        \new Score
+        <<
+            \new Staff
+            {
                 \tempo 4=38
                 c'8
                 d'8
@@ -138,7 +142,8 @@ def test_scoretools_Inspection_get_duration_05():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \tempo 4=38
             c'8
             d'8

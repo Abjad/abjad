@@ -18,7 +18,8 @@ def test_scoretools_Parentage__get_spanners_that_dominate_component_pair_01():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [
                 \startTrillSpan
@@ -57,7 +58,8 @@ def test_scoretools_Parentage__get_spanners_that_dominate_component_pair_02():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [
                 \startTrillSpan
@@ -98,7 +100,8 @@ def test_scoretools_Parentage__get_spanners_that_dominate_component_pair_03():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [
                 \startTrillSpan
@@ -139,7 +142,8 @@ def test_scoretools_Parentage__get_spanners_that_dominate_component_pair_04():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [
                 \startTrillSpan

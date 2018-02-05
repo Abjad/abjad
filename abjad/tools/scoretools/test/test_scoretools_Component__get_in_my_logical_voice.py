@@ -95,23 +95,28 @@ def test_scoretools_Component__get_in_my_logical_voice_07():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             <<
-                \context Voice = "voiceOne" {
+                \context Voice = "voiceOne"
+                {
                     c''8
                     d''8
                 }
-                \context Voice = "voiceTwo" {
+                \context Voice = "voiceTwo"
+                {
                     c'8
                     d'8
                 }
             >>
             <<
-                \context Voice = "voiceOne" {
+                \context Voice = "voiceOne"
+                {
                     e''8
                     f''8
                 }
-                \context Voice = "voiceTwo" {
+                \context Voice = "voiceTwo"
+                {
                     e'8
                     f'8
                 }

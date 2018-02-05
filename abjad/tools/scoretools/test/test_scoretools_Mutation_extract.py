@@ -13,7 +13,8 @@ def test_scoretools_Mutation_extract_01():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [ \glissando
             d'8 \glissando
             e'8 \glissando
@@ -27,7 +28,8 @@ def test_scoretools_Mutation_extract_01():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [ \glissando
             e'8 \glissando
             f'8 ]
@@ -51,7 +53,8 @@ def test_scoretools_Mutation_extract_02():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [ \glissando
             d'8 \glissando
             e'8 \glissando
@@ -66,7 +69,8 @@ def test_scoretools_Mutation_extract_02():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             e'8 [ \glissando
             f'8 ]
         }
@@ -92,7 +96,8 @@ def test_scoretools_Mutation_extract_03():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             {
                 c'8 [
                 d'8
@@ -110,7 +115,8 @@ def test_scoretools_Mutation_extract_03():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [
             d'8
             {
@@ -141,7 +147,8 @@ def test_scoretools_Mutation_extract_04():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [ \glissando
                 d'8 \glissando
@@ -164,7 +171,8 @@ def test_scoretools_Mutation_extract_04():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [ \glissando
             d'8 \glissando
             e'8 \glissando

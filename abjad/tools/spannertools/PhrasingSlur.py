@@ -16,7 +16,8 @@ class PhrasingSlur(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'8 \(
                 d'8
                 e'8
@@ -100,7 +101,8 @@ class PhrasingSlur(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8 ^ \(
                     d'8
                     e'8
@@ -119,7 +121,8 @@ class PhrasingSlur(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8 _ \(
                     d'8
                     e'8
@@ -138,7 +141,8 @@ class PhrasingSlur(Spanner):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     c'8 \(
                     d'8
                     e'8

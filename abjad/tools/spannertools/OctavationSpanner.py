@@ -16,7 +16,8 @@ class OctavationSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \ottava #1
                 c'4
                 d'4
@@ -37,7 +38,8 @@ class OctavationSpanner(Spanner):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \ottava #1
                 c'4
                 \ottava #0
@@ -115,7 +117,7 @@ class OctavationSpanner(Spanner):
             ..  docs::
 
                 >>> abjad.f(measure)
-                    { % measure
+                    {   % measure
                         \time 4/8
                         \ottava #1
                         c'''8
@@ -123,7 +125,7 @@ class OctavationSpanner(Spanner):
                         ef'''8
                         f'''8
                         \ottava #0
-                    } % measure
+                    }   % measure
 
         Adjusts start and stop according to the diatonic pitch number of
         the maximum pitch in spanner.

@@ -22,14 +22,19 @@ class Parentage(abctools.AbjadObject, collections.Sequence):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \context Staff = "Treble Staff" {
-                    \context Voice = "Treble Voice" {
+            \new Score
+            <<
+                \context Staff = "Treble Staff"
+                {
+                    \context Voice = "Treble Voice"
+                    {
                         e'4
                     }
                 }
-                \context Staff = "Bass Staff" {
-                    \context Voice = "Bass Voice" {
+                \context Staff = "Bass Staff"
+                {
+                    \context Voice = "Bass Voice"
+                    {
                         \clef "bass"
                         c4
                     }
@@ -177,7 +182,8 @@ class Parentage(abctools.AbjadObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(voice)
-                \new Voice {
+                \new Voice
+                {
                     c'4
                     \grace {
                         c'16
@@ -232,9 +238,12 @@ class Parentage(abctools.AbjadObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(score)
-                \context Score = "CustomScore" <<
-                    \context Staff = "CustomStaff" {
-                        \context Voice = "CustomVoice" {
+                \context Score = "CustomScore"
+                <<
+                    \context Staff = "CustomStaff"
+                    {
+                        \context Voice = "CustomVoice"
+                        {
                             c'4
                             d'4
                             e'4
@@ -330,17 +339,20 @@ class Parentage(abctools.AbjadObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(score)
-                \new Score <<
-                    \new Staff {
+                \new Score
+                <<
+                    \new Staff
+                    {
                         \times 2/3 {
                             c''2
                             b'2
                             a'2
                         }
                     }
-                    \new Staff {
-                            c'2
-                            d'2
+                    \new Staff
+                    {
+                        c'2
+                        d'2
                     }
                 >>
 
@@ -366,7 +378,8 @@ class Parentage(abctools.AbjadObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(voice)
-                \new Voice {
+                \new Voice
+                {
                     c'8 [
                     \grace {
                         cf''16
@@ -419,7 +432,8 @@ class Parentage(abctools.AbjadObject, collections.Sequence):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \times 2/3 {
                         c'2
                         d'2

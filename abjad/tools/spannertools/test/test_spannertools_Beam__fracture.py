@@ -14,7 +14,8 @@ def test_spannertools_Beam__fracture_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [
             d'8
             e'8
@@ -39,7 +40,8 @@ def test_spannertools_Beam__fracture_02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [ ]
             d'8 [
             e'8
@@ -68,7 +70,8 @@ def test_spannertools_Beam__fracture_03():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [
             d'8
             e'8
@@ -93,7 +96,8 @@ def test_spannertools_Beam__fracture_04():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [
             d'8 ]
             e'8 [
@@ -120,7 +124,8 @@ def test_spannertools_Beam__fracture_05():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [
             cs'8 ]
             d'8 [ ]
@@ -147,7 +152,8 @@ def test_spannertools_Beam__fracture_06():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [ ]
             cs'8 [
             d'8
@@ -174,7 +180,8 @@ def test_spannertools_Beam__fracture_07():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [
             cs'8
             d'8
@@ -201,7 +208,8 @@ def test_spannertools_Beam__fracture_08():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [
             cs'8
             d'8
@@ -255,7 +263,8 @@ def test_spannertools_Beam__fracture_09():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             {
                 c'8 [
                 cs'8

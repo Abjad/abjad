@@ -54,28 +54,34 @@ def test_spannertools_Slur___init___02():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            \context Staff = "foo" <<
-                \context Voice = "first" {
+            \context Staff = "foo"
+            <<
+                \context Voice = "first"
+                {
                     c'8 (
                     cs'8
                     d'8
                     ef'8
                 }
-                \context Voice = "second" {
+                \context Voice = "second"
+                {
                     e'8
                     f'8
                     fs'8
                     g'8
                 }
             >>
-            \context Staff = "foo" <<
-                \context Voice = "first" {
+            \context Staff = "foo"
+            <<
+                \context Voice = "first"
+                {
                     af'8
                     a'8
                     bf'8
                     b'8 )
                 }
-                \context Voice = "second" {
+                \context Voice = "second"
+                {
                     c''8
                     cs''8
                     d''8
@@ -122,16 +128,20 @@ def test_spannertools_Slur___init___03():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            \context Staff = "foo" {
-                \context Voice = "bar" {
+            \context Staff = "foo"
+            {
+                \context Voice = "bar"
+                {
                     c'8 (
                     cs'8
                     d'8
                     ef'8
                 }
             }
-            \context Staff = "foo" {
-                \context Voice = "bar" {
+            \context Staff = "foo"
+            {
+                \context Voice = "bar"
+                {
                     e'8
                     f'8
                     fs'8

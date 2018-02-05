@@ -16,7 +16,8 @@ def test_rhythmmakertools_TupletRhythmMaker___call___01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \tweak edge-height #'(0.7 . 0)
             \times 4/5 {
                 c'4

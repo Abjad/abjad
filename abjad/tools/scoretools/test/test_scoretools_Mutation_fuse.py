@@ -63,7 +63,8 @@ def test_scoretools_Mutation_fuse_05():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             s1 * 1/16
             s1 * 5/16
         }
@@ -76,7 +77,8 @@ def test_scoretools_Mutation_fuse_05():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             s1 * 3/8
         }
         '''
@@ -153,7 +155,8 @@ def test_scoretools_Mutation_fuse_07():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             \times 2/3 {
                 c'8 [
                 d'8
@@ -173,7 +176,8 @@ def test_scoretools_Mutation_fuse_07():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             \times 2/3 {
                 c'8 [
                 d'8
@@ -203,7 +207,8 @@ def test_scoretools_Mutation_fuse_08():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             \times 2/3 {
                 c'8 [
                 d'8
@@ -226,7 +231,8 @@ def test_scoretools_Mutation_fuse_08():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'8 [
@@ -269,7 +275,8 @@ def test_scoretools_Mutation_fuse_10():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'8 (
@@ -288,7 +295,8 @@ def test_scoretools_Mutation_fuse_10():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             \times 2/3 {
                 c'8 (
                 c'4
@@ -316,17 +324,18 @@ def test_scoretools_Mutation_fuse_11():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 1/8
                 c'16 [
                 d'16 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 2/16
                 c'16 (
                 d'16 )
-            } % measure
+            }   % measure
         }
         '''
         )
@@ -339,13 +348,13 @@ def test_scoretools_Mutation_fuse_11():
 
     assert format(new) == abjad.String.normalize(
         r'''
-        { % measure
+        {   % measure
             \time 2/8
             c'16 [
             d'16 ]
             c'16 (
             d'16 )
-        } % measure
+        }   % measure
         '''
         )
 
@@ -365,17 +374,18 @@ def test_scoretools_Mutation_fuse_12():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
-            { % measure
+        \new Voice
+        {
+            {   % measure
                 \time 1/8
                 c'16 [
                 d'16
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 2/16
                 e'16
                 f'16 ]
-            } % measure
+            }   % measure
         }
         '''
         )
@@ -384,14 +394,15 @@ def test_scoretools_Mutation_fuse_12():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
-            { % measure
+        \new Voice
+        {
+            {   % measure
                 \time 2/8
                 c'16 [
                 d'16
                 e'16
                 f'16 ]
-            } % measure
+            }   % measure
         }
         '''
         )
@@ -412,17 +423,18 @@ def test_scoretools_Mutation_fuse_13():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
-            { % measure
+        \new Voice
+        {
+            {   % measure
                 \time 1/8
                 c'16 [
                 d'16 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 2/16
                 e'16
                 f'16
-            } % measure
+            }   % measure
         }
         '''
         )
@@ -431,14 +443,15 @@ def test_scoretools_Mutation_fuse_13():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
-            { % measure
+        \new Voice
+        {
+            {   % measure
                 \time 2/8
                 c'16 [
                 d'16 ]
                 e'16
                 f'16
-            } % measure
+            }   % measure
         }
         '''
         )
@@ -464,17 +477,18 @@ def test_scoretools_Mutation_fuse_14():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
-            { % measure
+        \new Voice
+        {
+            {   % measure
                 \time 1/8
                 c'8 [
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 1/12
                 \scaleDurations #'(2 . 3) {
                     d'8 ]
                 }
-            } % measure
+            }   % measure
         }
         '''
         )
@@ -483,14 +497,15 @@ def test_scoretools_Mutation_fuse_14():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
-            { % measure
+        \new Voice
+        {
+            {   % measure
                 \time 5/24
                 \scaleDurations #'(2 . 3) {
                     c'8. [
                     d'8 ]
                 }
-            } % measure
+            }   % measure
         }
         '''
         )
@@ -529,20 +544,21 @@ def test_scoretools_Mutation_fuse_17():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
-            { % measure
+        \new Voice
+        {
+            {   % measure
                 \time 1/8
                 c'16 [
                 d'16
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'16
                 f'16
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 g'16
                 a'16 ]
-            } % measure
+            }   % measure
         }
         '''
         )
@@ -551,8 +567,9 @@ def test_scoretools_Mutation_fuse_17():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
-            { % measure
+        \new Voice
+        {
+            {   % measure
                 \time 3/8
                 c'16 [
                 d'16
@@ -560,7 +577,7 @@ def test_scoretools_Mutation_fuse_17():
                 f'16
                 g'16
                 a'16 ]
-            } % measure
+            }   % measure
         }
         '''
         )
@@ -584,8 +601,9 @@ def test_scoretools_Mutation_fuse_18():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 9/80
                 \scaleDurations #'(4 . 5) {
                     c'64
@@ -598,12 +616,12 @@ def test_scoretools_Mutation_fuse_18():
                     c'64
                     c'64
                 }
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 2/16
                 c'16
                 c'16
-            } % measure
+            }   % measure
         }
         '''
         )
@@ -612,8 +630,9 @@ def test_scoretools_Mutation_fuse_18():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 19/80
                 \scaleDurations #'(4 . 5) {
                     c'64
@@ -630,7 +649,7 @@ def test_scoretools_Mutation_fuse_18():
                     c'16 ~
                     c'64
                 }
-            } % measure
+            }   % measure
         }
         '''
         )

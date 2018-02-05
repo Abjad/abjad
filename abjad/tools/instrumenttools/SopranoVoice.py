@@ -14,7 +14,8 @@ class SopranoVoice(Instrument):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \set Staff.instrumentName = \markup { Soprano }
                 \set Staff.shortInstrumentName = \markup { Sop. }
                 c''4

@@ -59,7 +59,8 @@ class Retrograde(AbjadValueObject):
 
                 >>> lilypond_file = segment_.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     af'8
                     g'8
                     f'8
@@ -83,7 +84,8 @@ class Retrograde(AbjadValueObject):
 
                 >>> lilypond_file = segment_.__illustrate__()
                 >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice {
+                \new Voice
+                {
                     af'8
                     g'8
                     f'8

@@ -22,10 +22,13 @@ def test_scoretools_Staff_engraver_consists_01():
     assert abjad.inspect(staff).is_well_formed()
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff \with {
+        \new Staff
+        \with
+        {
             \consists Horizontal_bracket_engraver
             \consists Instrument_name_engraver
-        } {
+        }
+        {
             c'8
             d'8
             e'8

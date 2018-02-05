@@ -6,6 +6,7 @@ from abjad.tools.indicatortools.Clef import Clef
 from abjad.tools.indicatortools.MarginMarkup import MarginMarkup
 from abjad.tools.instrumenttools.Instrument import Instrument
 from abjad.tools.lilypondfiletools.LilyPondFile import LilyPondFile
+from abjad.tools.scoretools.Context import Context
 from abjad.tools.scoretools.MultimeasureRest import MultimeasureRest
 from abjad.tools.scoretools.Rest import Rest
 from abjad.tools.scoretools.Score import Score
@@ -63,6 +64,25 @@ class ScoreTemplate(abctools.AbjadValueObject):
             includes=includes,
             )
         return lilypond_file
+
+    ### PRIVATE METHODS ###
+
+    def _make_global_context(self):
+        global_rests = Context(
+            lilypond_type='GlobalRests',
+            name='GlobalRests',
+            )
+        global_skips = Context(
+            lilypond_type='GlobalSkips',
+            name='GlobalSkips',
+            )
+        global_context = Context(
+            [global_rests, global_skips],
+            lilypond_type='GlobalContext',
+            is_simultaneous=True,
+            name='GlobalContext',
+            )
+        return global_context
 
     ### PUBLIC PROPERTIES ###
 

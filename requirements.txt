@@ -4,6 +4,7 @@ ipython
 jupyter
 ply
 pytest
+roman
 six
 sphinx
 sphinx-rtd-theme

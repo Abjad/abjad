@@ -21,16 +21,17 @@ def test_scoretools_Mutation_split_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -44,18 +45,19 @@ def test_scoretools_Mutation_split_01():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'8 [ (
                 d'32. ~
                 d'32. ~
                 d'32 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -81,16 +83,17 @@ def test_scoretools_Mutation_split_02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -103,20 +106,21 @@ def test_scoretools_Mutation_split_02():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'16. ~ [ (
                 c'32
                 d'16 ~
                 d'16 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'32 ~ [
                 e'16.
                 f'16. ~
                 f'32 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -142,16 +146,17 @@ def test_scoretools_Mutation_split_03():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -166,24 +171,25 @@ def test_scoretools_Mutation_split_03():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 3/32
                 c'16. [ (
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 c'32
                 d'16
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 2/32
                 d'16 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 2/8
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -209,16 +215,17 @@ def test_scoretools_Mutation_split_04():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -233,34 +240,35 @@ def test_scoretools_Mutation_split_04():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 3/32
                 c'16. [ (
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 c'32
                 d'16
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 2/32
                 d'16 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 1/32
                 e'32 [
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 3/32
                 e'16.
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 f'16.
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 1/32
                 f'32 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -297,34 +305,35 @@ def test_scoretools_Mutation_split_05():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 3/32
                 c'16. [
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 c'32
                 d'16
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 2/32
                 d'16 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 1/32
                 e'32 [
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 3/32
                 e'16.
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 f'16.
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 1/32
                 f'32 ]
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -350,16 +359,17 @@ def test_scoretools_Mutation_split_06():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -374,19 +384,20 @@ def test_scoretools_Mutation_split_06():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'8 [ (
                 d'32 ~
                 d'32 ~
                 d'32 ~
                 d'32 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -412,16 +423,17 @@ def test_scoretools_Mutation_split_07():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -435,20 +447,21 @@ def test_scoretools_Mutation_split_07():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'16 ~ [ (
                 c'16
                 d'16 ~
                 d'16 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'16 ~ [
                 e'16
                 f'16 ~
                 f'16 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -474,16 +487,17 @@ def test_scoretools_Mutation_split_08():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -498,25 +512,26 @@ def test_scoretools_Mutation_split_08():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff 
+        {
+            {   % measure
                 \time 1/16
                 c'16 ~ [ (
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 c'16
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 d'16 ~
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 d'16 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 2/8
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -542,16 +557,17 @@ def test_scoretools_Mutation_split_09():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -566,34 +582,35 @@ def test_scoretools_Mutation_split_09():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 3/32
                 c'16. ~ [ (
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 c'32
                 d'16 ~
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 2/32
                 d'16 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 1/32
                 e'32 ~ [
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 3/32
                 e'16.
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 f'16. ~
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 1/32
                 f'32 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -619,16 +636,17 @@ def test_scoretools_Mutation_split_10():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -642,18 +660,19 @@ def test_scoretools_Mutation_split_10():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'8 [ (
                 d'32. ~ ] )
                 d'32. ~ [ ]
                 d'32 [ ] (
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -679,16 +698,17 @@ def test_scoretools_Mutation_split_11():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -701,20 +721,21 @@ def test_scoretools_Mutation_split_11():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'16. ~ [ ]
                 c'32 [ (
                 d'16 ~ ] )
                 d'16 [ ] (
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'32 ~ ) [ ]
                 e'16. [ (
                 f'16. ~ ] )
                 f'32 [ ]
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -740,16 +761,17 @@ def test_scoretools_Mutation_split_12():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -764,24 +786,25 @@ def test_scoretools_Mutation_split_12():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 3/32
                 c'16. [ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 c'32 [ (
                 d'16 ] )
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 2/32
                 d'16 [ ] (
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 2/8
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -807,16 +830,17 @@ def test_scoretools_Mutation_split_13():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -831,34 +855,35 @@ def test_scoretools_Mutation_split_13():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 3/32
                 c'16. [ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 c'32 [ (
                 d'16 ] )
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 2/32
                 d'16 [ ] (
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 1/32
                 e'32 ) [ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 3/32
                 e'16. [ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 f'16. [ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 1/32
                 f'32 [ ]
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -889,7 +914,8 @@ def test_scoretools_Mutation_split_14():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'16. ~
             c'32
             d'16 ~
@@ -933,34 +959,35 @@ def test_scoretools_Mutation_split_15():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 3/32
                 c'16. [ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 c'32 [
                 d'16 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 2/32
                 d'16 [ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 1/32
                 e'32 [ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 3/32
                 e'16. [ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 f'16. [ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 1/32
                 f'32 [ ]
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -986,16 +1013,17 @@ def test_scoretools_Mutation_split_16():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -1010,19 +1038,20 @@ def test_scoretools_Mutation_split_16():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'8 [ (
                 d'32 ~ ] )
                 d'32 ~ [ ]
                 d'32 ~ [ ]
                 d'32 [ ] (
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -1048,16 +1077,17 @@ def test_scoretools_Mutation_split_17():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -1071,20 +1101,21 @@ def test_scoretools_Mutation_split_17():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'16 ~ [ ]
                 c'16 [ (
                 d'16 ~ ] )
                 d'16 [ ] (
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'16 ~ ) [ ]
                 e'16 [ (
                 f'16 ~ ] )
                 f'16 [ ]
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -1110,16 +1141,17 @@ def test_scoretools_Mutation_split_18():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -1134,25 +1166,26 @@ def test_scoretools_Mutation_split_18():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 1/16
                 c'16 ~ [ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 c'16 [ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 d'16 ~ [ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 d'16 [ ] (
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 2/8
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -1178,16 +1211,17 @@ def test_scoretools_Mutation_split_19():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -1202,34 +1236,35 @@ def test_scoretools_Mutation_split_19():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 3/32
                 c'16. ~ [ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 c'32 [ (
                 d'16 ~ ] )
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 2/32
                 d'16 [ ] (
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 1/32
                 e'32 ~ ) [ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 3/32
                 e'16. [ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 f'16. ~ [ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 1/32
                 f'32 [ ]
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -1255,16 +1290,17 @@ def test_scoretools_Mutation_split_20():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -1279,24 +1315,25 @@ def test_scoretools_Mutation_split_20():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 1/32
                 c'32 [ (
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 3/32
                 c'16.
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 4/32
                 d'8 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 2/8
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -1322,16 +1359,17 @@ def test_scoretools_Mutation_split_21():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -1346,28 +1384,29 @@ def test_scoretools_Mutation_split_21():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 1/32
                 c'32 [ (
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 3/32
                 c'16.
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 4/32
                 d'8 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 1/32
                 e'32 [
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 7/32
                 e'16.
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -1393,16 +1432,17 @@ def test_scoretools_Mutation_split_22():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -1417,24 +1457,25 @@ def test_scoretools_Mutation_split_22():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 1/32
                 c'32 [ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 3/32
                 c'16. [ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 4/32
                 d'8 [ ] (
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 2/8
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -1460,16 +1501,17 @@ def test_scoretools_Mutation_split_23():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -1485,28 +1527,29 @@ def test_scoretools_Mutation_split_23():
     assert len(result) == 4
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 1/32
                 c'32 [ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 3/32
                 c'16. [ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 4/32
                 d'8 [ ] (
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 1/32
                 e'32 ) [ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 7/32
                 e'16. [ (
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -1533,7 +1576,8 @@ def test_scoretools_Mutation_split_24():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'32
             c'8 ~
             c'32
@@ -1556,7 +1600,8 @@ def test_scoretools_Mutation_split_25():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             c'8 [ ]
         }
         '''
@@ -1572,7 +1617,8 @@ def test_scoretools_Mutation_split_25():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff 
+        {
             c'64 [ ]
             c'16 ~ [
             c'64 ]
@@ -1605,7 +1651,8 @@ def test_scoretools_Mutation_split_26():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             \times 2/3 {
                 c'8 [
                 d'8
@@ -1648,22 +1695,23 @@ def test_scoretools_Mutation_split_27():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
-            { % measure
+        \new Voice
+        {
+            {   % measure
                 \time 3/8
                 c'8 [
                 d'8
                 e'8
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 1/8
                 f'8
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 2/8
                 g'8
                 a'8 ]
-            } % measure
+            }   % measure
         }
         '''
         ), format(voice)
@@ -1692,28 +1740,29 @@ def test_scoretools_Mutation_split_28():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
-            { % measure
+        \new Voice
+        {
+            {   % measure
                 \time 3/9
                 \scaleDurations #'(8 . 9) {
                     c'8 [
                     d'8
                     e'8
                 }
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 1/9
                 \scaleDurations #'(8 . 9) {
                     f'8
                 }
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 2/9
                 \scaleDurations #'(8 . 9) {
                     g'8
                     a'8 ]
                 }
-            } % measure
+            }   % measure
         }
         '''
         ), format(voice)
@@ -1739,7 +1788,8 @@ def test_scoretools_Mutation_split_29():
 
     assert format(voice_1) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8
             d'8
         }
@@ -1750,7 +1800,8 @@ def test_scoretools_Mutation_split_29():
 
     assert format(voice_2) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             e'8
             f'8
         }
@@ -1777,7 +1828,8 @@ def test_scoretools_Mutation_split_30():
 
     assert format(left) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8
             d'8
         }
@@ -1786,7 +1838,8 @@ def test_scoretools_Mutation_split_30():
 
     assert format(right) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             e'8
             f'8
         }
@@ -1795,19 +1848,23 @@ def test_scoretools_Mutation_split_30():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
         }
         '''
         ), format(voice)
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            \new Voice {
+        \new Staff
+        {
+            \new Voice
+            {
                 c'8
                 d'8
             }
-            \new Voice {
+            \new Voice
+            {
                 e'8
                 f'8
             }
@@ -1840,7 +1897,8 @@ def test_scoretools_Mutation_split_31():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             {
                 c'8 [
                 d'8
@@ -1880,7 +1938,8 @@ def test_scoretools_Mutation_split_31():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             {
                 c'8 [
                 d'8
@@ -1946,7 +2005,8 @@ def test_scoretools_Mutation_split_32():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             \tweak edge-height #'(0.7 . 0)
             \times 4/5 {
                 c'8 [
@@ -1964,8 +2024,10 @@ def test_scoretools_Mutation_split_32():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            \new Voice {
+        \new Staff
+        {
+            \new Voice
+            {
                 \tweak edge-height #'(0.7 . 0)
                 \times 4/5 {
                     c'8 [
@@ -2001,7 +2063,8 @@ def test_scoretools_Mutation_split_33():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             \times 2/3 {
                 c'8 [
                 d'8
@@ -2047,7 +2110,8 @@ def test_scoretools_Mutation_split_33():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             \times 2/3 {
                 c'8 [
                 d'8
@@ -2085,18 +2149,19 @@ def test_scoretools_Mutation_split_34():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
-            { % measure
+        \new Voice
+        {
+            {   % measure
                 \time 3/8
                 c'8 [
                 d'8
                 e'8
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 f'8
                 g'8
                 a'8 ]
-            } % measure
+            }   % measure
         }
         '''
         ), format(voice)
@@ -2111,20 +2176,20 @@ def test_scoretools_Mutation_split_34():
 
     assert format(left) == abjad.String.normalize(
         r'''
-        { % measure
+        {   % measure
             \time 1/8
             f'8 ]
-        } % measure
+        }   % measure
         '''
         ), format(left)
 
     assert format(right) == abjad.String.normalize(
         r'''
-        { % measure
+        {   % measure
             \time 2/8
             g'8 [
             a'8 ]
-        } % measure
+        }   % measure
         '''
         ), format(right)
 
@@ -2132,22 +2197,23 @@ def test_scoretools_Mutation_split_34():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
-            { % measure
+        \new Voice
+        {
+            {   % measure
                 \time 3/8
                 c'8 [
                 d'8
                 e'8
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 1/8
                 f'8 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 2/8
                 g'8 [
                 a'8 ]
-            } % measure
+            }   % measure
         }
         '''
         ), format(voice)
@@ -2173,22 +2239,23 @@ def test_scoretools_Mutation_split_35():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
-            { % measure
+        \new Voice
+        {
+            {   % measure
                 \time 3/9
                 \scaleDurations #'(8 . 9) {
                     c'8 [
                     d'8
                     e'8
                 }
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \scaleDurations #'(8 . 9) {
                     f'8
                     g'8
                     a'8 ]
                 }
-            } % measure
+            }   % measure
         }
         '''
         ), format(voice)
@@ -2203,24 +2270,24 @@ def test_scoretools_Mutation_split_35():
 
     assert format(left) == abjad.String.normalize(
         r'''
-        { % measure
+        {   % measure
             \time 1/9
             \scaleDurations #'(8 . 9) {
                 f'8 ]
             }
-        } % measure
+        }   % measure
         '''
         ), format(left)
 
     assert format(right) == abjad.String.normalize(
         r'''
-        { % measure
+        {   % measure
             \time 2/9
             \scaleDurations #'(8 . 9) {
                 g'8 [
                 a'8 ]
             }
-        } % measure
+        }   % measure
         '''
         ), format(right)
 
@@ -2228,28 +2295,29 @@ def test_scoretools_Mutation_split_35():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
-            { % measure
+        \new Voice
+        {
+            {   % measure
                 \time 3/9
                 \scaleDurations #'(8 . 9) {
                     c'8 [
                     d'8
                     e'8
                 }
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 1/9
                 \scaleDurations #'(8 . 9) {
                     f'8 ]
                 }
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 2/9
                 \scaleDurations #'(8 . 9) {
                     g'8 [
                     a'8 ]
                 }
-            } % measure
+            }   % measure
         }
         '''
         ), format(voice)
@@ -2269,7 +2337,8 @@ def test_scoretools_Mutation_split_36():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8
             e'8
@@ -2288,7 +2357,8 @@ def test_scoretools_Mutation_split_36():
 
     assert format(left) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             c'8 [
             d'8 ]
         }
@@ -2297,7 +2367,8 @@ def test_scoretools_Mutation_split_36():
 
     assert format(right) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             e'8 [
             f'8 ]
         }
@@ -2306,7 +2377,8 @@ def test_scoretools_Mutation_split_36():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
         }
         '''
         ), format(voice)
@@ -2331,16 +2403,17 @@ def test_scoretools_Mutation_split_37():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 2/8
                 c'8 [ (
                 d'8 ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -2356,19 +2429,20 @@ def test_scoretools_Mutation_split_37():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 1/8
                 c'8 [ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 d'8 [ ] (
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \time 2/8
                 e'8 [
                 f'8 ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -2393,12 +2467,13 @@ def test_scoretools_Mutation_split_38():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 3/8
                 c'8. [ (
                 d'8. ] )
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -2411,14 +2486,15 @@ def test_scoretools_Mutation_split_38():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 3/16
                 c'8. [ ]
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 d'8. [ ]
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -2442,7 +2518,8 @@ def test_scoretools_Mutation_split_39():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [ (
                 d'8
@@ -2466,7 +2543,8 @@ def test_scoretools_Mutation_split_39():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [ (
             }
@@ -2503,7 +2581,8 @@ def test_scoretools_Mutation_split_40():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [ (
                 d'8
@@ -2523,7 +2602,8 @@ def test_scoretools_Mutation_split_40():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [ (
             }
@@ -2556,7 +2636,8 @@ def test_scoretools_Mutation_split_41():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [ (
                 d'8
@@ -2576,7 +2657,8 @@ def test_scoretools_Mutation_split_41():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [ ]
             }
@@ -2612,7 +2694,8 @@ def test_scoretools_Mutation_split_42():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [ (
                 d'8
@@ -2632,7 +2715,8 @@ def test_scoretools_Mutation_split_42():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [ (
                 d'8 ] )
@@ -2662,7 +2746,8 @@ def test_scoretools_Mutation_split_43():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [ (
                 d'8
@@ -2682,7 +2767,8 @@ def test_scoretools_Mutation_split_43():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [ (
                 d'8
@@ -2712,7 +2798,8 @@ def test_scoretools_Mutation_split_44():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [ (
                 d'8
@@ -2732,7 +2819,8 @@ def test_scoretools_Mutation_split_44():
 
     assert format(voice) == abjad.String.normalize(
         r'''
-        \new Voice {
+        \new Voice
+        {
             {
                 c'8 [ (
                 d'8 ] )
@@ -2762,7 +2850,8 @@ def test_scoretools_Mutation_split_45():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
+        \new Staff
+        {
             \times 2/3 {
                 c'4 ~
                 c'16 ~
@@ -2791,14 +2880,15 @@ def test_scoretools_Mutation_split_46():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 3/12
                 \scaleDurations #'(2 . 3) {
                     c'8. [
                     d'8. ]
                 }
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)
@@ -2811,18 +2901,19 @@ def test_scoretools_Mutation_split_46():
 
     assert format(staff) == abjad.String.normalize(
         r'''
-        \new Staff {
-            { % measure
+        \new Staff
+        {
+            {   % measure
                 \time 3/24
                 \scaleDurations #'(2 . 3) {
                     c'8. [ ]
                 }
-            } % measure
-            { % measure
+            }   % measure
+            {   % measure
                 \scaleDurations #'(2 . 3) {
                     d'8. [ ]
                 }
-            } % measure
+            }   % measure
         }
         '''
         ), format(staff)

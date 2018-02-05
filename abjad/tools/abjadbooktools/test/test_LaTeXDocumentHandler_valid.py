@@ -31,10 +31,10 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
         'lilypond-159af81bc32aca4b263146c9052b99ec.pdf',
         'lilypond-71f63c1f11f143bb0f7a2f7ddbc77d75.ly',
         'lilypond-71f63c1f11f143bb0f7a2f7ddbc77d75.pdf',
-        'lilypond-9a3d90e80bc733e46a43d1ee30b68fa9.ly',
-        'lilypond-9a3d90e80bc733e46a43d1ee30b68fa9.pdf',
         'lilypond-9e8d4612a88db8a2f31e974c78fc915d.ly',
         'lilypond-9e8d4612a88db8a2f31e974c78fc915d.pdf',
+        'lilypond-d68b813dd2ff6ac422fcdfb7a6b5f3a2.ly',
+        'lilypond-d68b813dd2ff6ac422fcdfb7a6b5f3a2.pdf',
         'lilypond-fe5d1d78512d19b7f51b96c2ce9180f9.ly',
         'lilypond-fe5d1d78512d19b7f51b96c2ce9180f9.pdf',
         )
@@ -43,19 +43,19 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
     expected_styled_path = os.path.join(test_directory, 'expected_styled.tex')
     with open(expected_styled_path, 'r') as file_pointer:
         expected_styled_contents = file_pointer.read().rstrip()
-    styled_asset_names = (
+    styled_asset_names =(
         'graphviz-31410f5aefd17473e91ebc219ddff36e.dot',
         'graphviz-31410f5aefd17473e91ebc219ddff36e.pdf',
         'lilypond-29a694fcaa88ad2e66126db254f6e44c.ly',
         'lilypond-29a694fcaa88ad2e66126db254f6e44c.pdf',
+        'lilypond-4f0001093f4a9de61a1f620353888218.ly',
+        'lilypond-4f0001093f4a9de61a1f620353888218.pdf',
         'lilypond-60a8aa65d1dc86d7b3b3396d1dd25fa6.ly',
         'lilypond-60a8aa65d1dc86d7b3b3396d1dd25fa6.pdf',
         'lilypond-65404525b3a554691b49772ace1d914c.ly',
         'lilypond-65404525b3a554691b49772ace1d914c.pdf',
         'lilypond-8d473a765e713b5eb5d0a95f35161666.ly',
         'lilypond-8d473a765e713b5eb5d0a95f35161666.pdf',
-        'lilypond-ef7d9d5db77fdbbf21122f8479e9e338.ly',
-        'lilypond-ef7d9d5db77fdbbf21122f8479e9e338.pdf',
         )
 
     configuration_path = os.path.join(test_directory, 'configuration.cfg')
