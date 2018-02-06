@@ -368,14 +368,17 @@ class Tags(AbjadValueObject):
             >>> abjad.tags.get_document_tag('+SEGMENT:FOO')
             '+SEGMENT'
 
+            >>> abjad.tags.get_document_tag('+SCORE:+SEGMENT')
+            '+SCORE:+SEGMENT'
+
         '''
         if not isinstance(string, str):
             return None
-        words = string.split(':')
-        for word in words:
-            if word.startswith('+'):
-                return word
-        return None
+        tags = [_ for _ in string.split(':') if _.startswith('+')]
+        if tags:
+            return ':'.join(tags)
+        else:
+            return None
 
     def has_default_tag(self, string: str) -> bool:
         r'''Is true when ``string`` has default tag.

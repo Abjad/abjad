@@ -90,7 +90,10 @@ class SegmentMaker(AbjadObject):
             contexts.append(voice)
         container_to_part = OrderedDict()
         for context in contexts:
-            context_identifier = f'{segment_name}_{context.name}'
+            if segment_name:
+                context_identifier = f'{segment_name}_{context.name}'
+            else:
+                context_identifier = context.name
             context.identifier = f'%*% {context_identifier}'
             part_container_count = 0
             for container in iterate(context).components(Container):

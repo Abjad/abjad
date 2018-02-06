@@ -94,17 +94,17 @@ class ScoreTemplate(abctools.AbjadValueObject):
 
     ### PUBLIC METHODS ###
 
-    def attach_defaults(self, score) -> List:
-        r'''Attaches defaults to `score`.
+    def attach_defaults(self, argument) -> List:
+        r'''Attaches defaults to staff and staff group contexts in
+        ``argument``.
 
         Returns one leaf / indicator pair for every indicator attached.
         '''
-        assert isinstance(score, Score), repr(score)
         pairs = []
         prototype = (Staff, StaffGroup)
         empty_prototype = (MultimeasureRest, Skip)
         tag = Tags().REMOVE_ALL_EMPTY_STAVES
-        for context in iterate(score).components(prototype):
+        for context in iterate(argument).components(prototype):
             leaf = None
             voices = select(context).components(Voice)
             # find first leaf in first nonempty voice
@@ -140,9 +140,14 @@ class ScoreTemplate(abctools.AbjadValueObject):
                 string = 'default_margin_markup'
                 margin_markup = inspect(context).get_annotation(string)
                 if margin_markup is not None:
-                    attach(margin_markup, leaf, site='ST2')
+                    attach(
+                        margin_markup,
+                        leaf,
+                        site='ST2',
+                        tag='+SCORE:+SEGMENT',
+                        )
                     pairs.append((leaf, margin_markup))
-        for staff in iterate(score).components(Staff):
+        for staff in iterate(argument).components(Staff):
             leaf = inspect(staff).get_leaf(0)
             clef = inspect(leaf).get_indicator(Clef)
             if clef is not None:

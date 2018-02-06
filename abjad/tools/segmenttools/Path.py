@@ -588,20 +588,15 @@ class Path(pathlib.PosixPath):
         name: str = None,
         undo: bool = False,
         ) -> Tuple[int, int, List[str]]:
-        r'''Activates `tag` in path.
+        r'''Activates ``tag`` in path.
 
-        Four cases:
+        Case 0: path is a non-LilyPond file. Method does nothing.
 
-        Case 1: path is a file. Method activates `tag` in file.
+        Case 1: path is a LilyPond (.ily, .ly) file. Method activates ``tag``
+        in file.
 
-        Case 2: path is a segment directory. Method activates `tag` in
-        the segment's illustration.ly file.
-
-        Case 3: path is segments directory. Method activates `tag` in the
-        illustration.ly file in each segment.
-
-        Case 4: path is a build directory, method activates `tag` in every ly
-        file in the build's _segments directory.
+        Case 2: path is a directory. Method descends directory recursively and
+        activates ``tag`` in LilyPond files.
 
         Returns triple.
         
@@ -614,35 +609,25 @@ class Path(pathlib.PosixPath):
         '''
         assert isinstance(indent, int), repr(indent)
         if self.is_file():
-            text = self.read_text()
-            if undo:
-                text, count, skipped = deactivate(text, tag, skipped=True)
+            if self.suffix not in ('.ily', '.ly'):
+                count, skipped = 0, 0
             else:
-                text, count, skipped = activate(text, tag, skipped=True)
-            self.write_text(text)
-        elif self.is_segment():
-            illustration_ly = self('illustration.ly')
-            assert illustration_ly.is_file()
-            count, skipped, _ = illustration_ly.activate(tag, undo=undo)
-            layout_ly = self('layout.ly')
-            if layout_ly.is_file():
-                count_, skipped_, _ = layout_ly.activate(tag, undo=undo)
-                count += count_
-                skipped += skipped_
-        elif self.is_segments():
-            count, skipped = 0, 0
-            for segment in self.list_paths():
-                count_, skipped_, _ = segment.activate(tag, undo=undo)
-                count += count_
-                skipped += skipped_
-        elif self.is_build() or self.is__segments():
-            count, skipped = 0, 0
-            for segment_ly in self.build._segments.list_paths():
-                count_, skipped_, _ = segment_ly.activate(tag, undo=undo)
-                count += count_
-                skipped += skipped_
+                text = self.read_text()
+                if undo:
+                    text, count, skipped = deactivate(text, tag, skipped=True)
+                else:
+                    text, count, skipped = activate(text, tag, skipped=True)
+                self.write_text(text)
         else:
-            raise ValueError(self)
+            assert self.is_dir()
+            count, skipped = 0, 0
+            for path in sorted(self.glob('**/*')):
+                path = Path(path)
+                if not path.suffix in ('.ily', '.ly'):
+                    continue
+                count_, skipped_, _ = path.activate(tag, undo=undo)
+                count += count_
+                skipped += skipped_
         if name is None:
             name = str(tag)
         if undo:
@@ -1154,6 +1139,18 @@ class Path(pathlib.PosixPath):
             result = self.name
         return String(result)
 
+    def get_preamble_measure_count(self) -> Optional[int]:
+        r'''Gets measure count from path preamble.
+        '''
+        assert self.is_file(), repr(self)
+        with open(self) as pointer:
+            for line in pointer.readlines():
+                if '% measure_count =' in line:
+                    words = line.split()
+                    count = int(words[-1])
+                    return count
+        return None
+
     def get_measure_count_pair(self) -> Tuple[int, int]:
         r'''Gets measure count pair.
 
@@ -1501,6 +1498,35 @@ class Path(pathlib.PosixPath):
             result = self.get_metadatum('title')
             result = result or '(untitled score)'
             return result
+
+    @staticmethod
+    def global_rest_identifier(segment_name: str) -> String:
+        r'''Gets global rest identifier.
+
+        ..  container:: example
+
+            >>> abjad.Path.global_rest_identifier('_')
+            'i_GlobalRests'
+
+            >>> abjad.Path.global_rest_identifier('_1')
+            'i_a_GlobalRests'
+
+            >>> abjad.Path.global_rest_identifier('_2')
+            'i_b_GlobalRests'
+
+            >>> abjad.Path.global_rest_identifier('A')
+            'A_GlobalRests'
+
+            >>> abjad.Path.global_rest_identifier('A1')
+            'A_a_GlobalRests'
+
+            >>> abjad.Path.global_rest_identifier('A2')
+            'A_b_GlobalRests'
+
+        '''
+        identifier = String(segment_name).to_segment_lilypond_identifier()
+        identifier = String(f'{identifier}_GlobalRests')
+        return identifier
 
     def global_skip_identifiers(self) -> List[String]:
         r'''Gets global skip identifiers.
@@ -2212,9 +2238,13 @@ class Path(pathlib.PosixPath):
             for identifier, (part, timespan) in dictionary_.items():
                 if part_name in part:
                     pairs.append((identifier, timespan))
-            pairs.sort(key=lambda pair: pair[1])
-            identifiers_ = [_[0] for _ in pairs]
-            identifiers.extend(identifiers_)
+            if pairs:
+                pairs.sort(key=lambda pair: pair[1])
+                identifiers_ = [_[0] for _ in pairs]
+                identifiers.extend(identifiers_)
+            else:
+                identifier = self.global_rest_identifier(segment_name)
+                identifiers.append(identifier)
         return identifiers
 
     def remove(self):
