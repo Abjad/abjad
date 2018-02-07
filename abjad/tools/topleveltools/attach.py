@@ -5,9 +5,9 @@ def attach(
     deactivate=None,
     left_broken=None,
     right_broken=None,
-    site=None,
     synthetic_offset=None,
     tag=None,
+    wrapper=None,
     ):
     r'''Attaches `attachable` to `target`.
     
@@ -101,7 +101,7 @@ def attach(
         >>> abjad.attach(abjad.Clef('alto'), staff[0])
         Traceback (most recent call last):
             ...
-        Exception: Can not attach ...
+        abjad...PersistentIndicatorError: Can not attach ...
 
         But simultaneous contexted indicators are allowed if only one is active
         (and all others are inactive):
@@ -181,15 +181,28 @@ def attach(
 
     ..  container:: example
 
-        Tag must be string when `deactivate` is true:
+        Tag must exist when `deactivate` is true:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(abjad.Clef('alto'), staff[0], deactivate=True)
         Traceback (most recent call last):
             ...
-        Exception: tag must be string when deactivate is true.
+        Exception: tag must exist when deactivate is true.
 
-    Returns none.
+    ..  container:: example
+
+        Returns wrapper when ``wrapper`` is true:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> wrapper = abjad.attach(abjad.Clef('alto'), staff[0], wrapper=True)
+        >>> abjad.f(wrapper)
+        abjad.Wrapper(
+            context='Staff',
+            indicator=abjad.Clef('alto'),
+            tag=abjad.Tag(),
+            )
+
+    Otherwise returns none.
     '''
     import abjad
 
@@ -218,7 +231,7 @@ def attach(
         raise Exception(message)
             
     if deactivate is True and tag is None:
-        raise Exception(f'tag must be string when deactivate is true.')
+        raise Exception(f'tag must exist when deactivate is true.')
 
     if hasattr(attachable, '_before_attach'):
         attachable._before_attach(target)
@@ -241,7 +254,6 @@ def attach(
             deactivate=deactivate,
             left_broken=left_broken,
             right_broken=right_broken,
-            site=site,
             tag=tag,
             )
         return
@@ -283,7 +295,6 @@ def attach(
             left_broken = attachable.left_broken
         if right_broken is None:
             right_broken = attachable.right_broken
-        site = site or attachable.site
         synthetic_offset = synthetic_offset or attachable.synthetic_offset
         tag = tag or attachable.tag
         attachable._detach()
@@ -292,7 +303,7 @@ def attach(
     if hasattr(attachable, 'context'):
         context = context or attachable.context
 
-    wrapper = abjad.Wrapper(
+    wrapper_ = abjad.Wrapper(
         annotation=annotation,
         component=component,
         context=context,
@@ -300,8 +311,10 @@ def attach(
         indicator=attachable,
         left_broken=left_broken,
         right_broken=right_broken,
-        site=site,
         synthetic_offset=synthetic_offset,
         tag=tag,
         )
-    wrapper._bind_to_component(component)
+    wrapper_._bind_to_component(component)
+
+    if wrapper is True:
+        return wrapper_

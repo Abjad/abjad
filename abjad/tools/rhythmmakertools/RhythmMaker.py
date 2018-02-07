@@ -1,5 +1,12 @@
 import collections
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.datastructuretools.OrderedDict import OrderedDict
+from abjad.tools.datastructuretools.Pattern import Pattern
+from .BeamSpecifier import BeamSpecifier
+from .DurationSpecifier import DurationSpecifier
+from .TieSpecifier import TieSpecifier
+from .TupletSpecifier import TupletSpecifier
 
 
 class RhythmMaker(AbjadValueObject):
@@ -15,6 +22,7 @@ class RhythmMaker(AbjadValueObject):
         '_division_masks',
         '_duration_specifier',
         '_logical_tie_masks',
+        '_previous_state',
         '_state',
         '_tie_specifier',
         '_tuplet_specifier',
@@ -34,36 +42,42 @@ class RhythmMaker(AbjadValueObject):
         tuplet_specifier=None,
         ):
         from abjad.tools import rhythmmakertools
-        prototype = (rhythmmakertools.BeamSpecifier, type(None))
-        assert isinstance(beam_specifier, prototype)
+        if beam_specifier is not None:
+            prototype = rhythmmakertools.BeamSpecifier
+            assert isinstance(beam_specifier, prototype)
         self._beam_specifier = beam_specifier
         logical_tie_masks = self._prepare_masks(logical_tie_masks)
         self._logical_tie_masks = logical_tie_masks
-        prototype = (rhythmmakertools.DurationSpecifier, type(None))
+        if duration_specifier is not None:
+            prototype = rhythmmakertools.DurationSpecifier
+            assert isinstance(duration_specifier, prototype)
         self._duration_specifier = duration_specifier
-        assert isinstance(duration_specifier, prototype)
         division_masks = self._prepare_masks(division_masks)
         self._division_masks = division_masks
-        prototype = (rhythmmakertools.TieSpecifier, type(None))
-        assert isinstance(tie_specifier, prototype)
+        self._previous_state = OrderedDict()
+        self._state = OrderedDict()
+        if tie_specifier is not None:
+            prototype = rhythmmakertools.TieSpecifier
+            assert isinstance(tie_specifier, prototype)
         self._tie_specifier = tie_specifier
-        prototype = (rhythmmakertools.TupletSpecifier, type(None))
-        assert isinstance(tuplet_specifier, prototype)
+        if tuplet_specifier is not None:
+            prototype = rhythmmakertools.TupletSpecifier
+            assert isinstance(tuplet_specifier, prototype)
         self._tuplet_specifier = tuplet_specifier
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, state=None):
+    def __call__(self, divisions, previous_state=None):
         r'''Calls rhythm-maker.
 
         Returns selections.
         '''
-        import abjad
-        self._state = state or abjad.OrderedDict()
+        previous_state = previous_state or OrderedDict()
+        self._previous_state = OrderedDict(previous_state or OrderedDict())
         divisions = self._coerce_divisions(divisions)
         selections = self._make_music(divisions)
         selections = self._apply_specifiers(selections, divisions)
-        self._check_wellformedness(selections)
+        #self._check_wellformedness(selections)
         return selections
 
     def __illustrate__(self, divisions=((3, 8), (4, 8), (3, 16), (4, 16))):
@@ -101,18 +115,19 @@ class RhythmMaker(AbjadValueObject):
         decrease_monotonic = duration_specifier.decrease_monotonic
         forbidden_duration = duration_specifier.forbidden_duration
         tie_specifier = self._get_tie_specifier()
-        length = len(selections)
+        total_divisions = len(selections)
         division_masks = self.division_masks
         leaf_maker = abjad.LeafMaker(
             decrease_monotonic=decrease_monotonic,
             forbidden_duration=forbidden_duration,
             repeat_ties=tie_specifier.repeat_ties,
             )
+        previous_divisions_consumed = self._previous_divisions_consumed()
         for i, selection in enumerate(selections):
             matching_division_mask = division_masks.get_matching_pattern(
-                i,
-                length,
-                rotation=self.state.get('rotation'),
+                i + previous_divisions_consumed,
+                total_divisions + previous_divisions_consumed,
+                rotation=self.previous_state.get('rotation'),
                 )
             if not matching_division_mask:
                 new_selections.append(selection)
@@ -153,15 +168,18 @@ class RhythmMaker(AbjadValueObject):
         containers = []
         for selection in selections:
             container = abjad.Container(selection)
-            abjad.attach('temporary container', container)
+            abjad.attach(abjad.tags.TEMPORARY_CONTAINER, container)
             containers.append(container)
         logical_ties = abjad.iterate(selections).logical_ties()
         logical_ties = list(logical_ties)
         total_logical_ties = len(logical_ties)
+        previous_logical_ties_produced = self._previous_logical_ties_produced()
+        if self._previous_incomplete_last_note():
+            previous_logical_ties_produced -= 1
         for index, logical_tie in enumerate(logical_ties[:]):
             matching_mask = self.logical_tie_masks.get_matching_pattern(
-                index,
-                total_logical_ties,
+                index + previous_logical_ties_produced,
+                total_logical_ties + previous_logical_ties_produced,
                 )
             if not isinstance(matching_mask, rhythmmakertools.SilenceMask):
                 continue
@@ -180,7 +198,7 @@ class RhythmMaker(AbjadValueObject):
         new_selections = []
         for container in containers:
             inspector = abjad.inspect(container)
-            assert inspector.get_indicator(str) == 'temporary container'
+            assert inspector.get_indicator(abjad.tags.TEMPORARY_CONTAINER)
             new_selection = abjad.mutate(container).eject_contents()
             new_selections.append(new_selection)
         return new_selections
@@ -205,14 +223,14 @@ class RhythmMaker(AbjadValueObject):
         selections = tuplet_specifier(selections, divisions)
         return selections
 
-    def _check_wellformedness(self, selections):
-        import abjad
-        for component in abjad.iterate(selections).components():
-            inspector = abjad.inspect(component)
-            if not inspector.is_well_formed():
-                report = inspector.tabulate_wellformedness()
-                report = repr(component) + '\n' + report
-                raise Exception(report)
+#    def _check_wellformedness(self, selections):
+#        import abjad
+#        for component in abjad.iterate(selections).components():
+#            inspector = abjad.inspect(component)
+#            if not inspector.is_well_formed():
+#                report = inspector.tabulate_wellformedness()
+#                report = repr(component) + '\n' + report
+#                raise Exception(report)
 
     @staticmethod
     def _coerce_divisions(divisions):
@@ -309,6 +327,9 @@ class RhythmMaker(AbjadValueObject):
         import abjad
         assert len(divisions) == len(leaf_lists)
         tuplets = []
+        diminution = None
+        if self.tuplet_specifier:
+            diminution = self.tuplet_specifier.diminution
         for division, leaf_list in zip(divisions, leaf_lists):
             duration = abjad.Duration(division)
             tuplet = abjad.Tuplet.from_duration(duration, leaf_list)
@@ -331,6 +352,22 @@ class RhythmMaker(AbjadValueObject):
             masks = (masks,)
         masks = abjad.PatternTuple(items=masks)
         return masks
+
+    def _previous_divisions_consumed(self):
+        if not self.previous_state:
+            return 0
+        return self.previous_state.get('divisions_consumed', 0)
+
+
+    def _previous_incomplete_last_note(self):
+        if not self.previous_state:
+            return False
+        return self.previous_state.get('incomplete_last_note', False)
+
+    def _previous_logical_ties_produced(self):
+        if not self.previous_state:
+            return 0
+        return self.previous_state.get('logical_ties_produced', 0)
 
     @staticmethod
     def _reverse_tuple(argument):
@@ -387,61 +424,49 @@ class RhythmMaker(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def beam_specifier(self):
+    def beam_specifier(self) -> typing.Optional[BeamSpecifier]:
         r'''Gets beam specifier.
-
-        Set to beam specifier or none.
         '''
         return self._beam_specifier
 
     @property
-    def division_masks(self):
+    def division_masks(self) -> typing.List:
         r'''Gets division masks.
-
-        Set to division masks or none.
         '''
         return self._division_masks
 
     @property
-    def duration_specifier(self):
+    def duration_specifier(self) -> typing.Optional[DurationSpecifier]:
         r'''Gets duration specifier.
-
-        Set to duration specifier or none.
         '''
         return self._duration_specifier
 
     @property
-    def logical_tie_masks(self):
+    def logical_tie_masks(self) -> typing.Optional[typing.List[Pattern]]:
         r'''Gets logical tie masks.
-
-        Set to patterns or none.
-
-        Defaults to none.
-
-        Returns patterns or none.
         '''
         return self._logical_tie_masks
 
     @property
-    def state(self):
-        r'''Gets state dictionary.
+    def previous_state(self) -> OrderedDict:
+        r'''Gets previous state dictionary.
+        '''
+        return self._previous_state
 
-        Returns ordered dictionary.
+    @property
+    def state(self) -> OrderedDict:
+        r'''Gets state dictionary.
         '''
         return self._state
 
     @property
-    def tie_specifier(self):
+    def tie_specifier(self) -> typing.Optional[TieSpecifier]:
         r'''Gets tie specifier.
-
-        Set to tie specifier or none.
         '''
         return self._tie_specifier
 
     @property
-    def tuplet_specifier(self):
+    def tuplet_specifier(self) -> typing.Optional[TupletSpecifier]:
         r'''Gets tuplet specifier.
-
-        Set to tuplet specifier or none.
         '''
         return self._tuplet_specifier

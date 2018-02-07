@@ -48,6 +48,8 @@ if __name__ == '__main__':
         if buildspace_directory.is_segment():
             string = 'first_measure_number'
             first_measure_number = buildspace_directory.get_metadatum(string)
+            if not bool(first_measure_number):
+                raise Exception('can not find first measure number ...')
             assert isinstance(first_measure_number, int)
         else:
             first_measure_number = 1

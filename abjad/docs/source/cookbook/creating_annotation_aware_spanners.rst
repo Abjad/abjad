@@ -523,7 +523,8 @@ via rotation:
         pitches = abjad.CyclicTuple(sequence(
             ["b'", "d''", "g'", "f''", "b'", "g'", "c'", "e'", "g'"],
             ).rotate(rotation))
-        selections = talea_rhythm_maker(divisions, rotation=rotation)
+        previous_state = {'rotation': rotation}
+        selections = talea_rhythm_maker(divisions, previous_state=previous_state)
         measures = abjad.Measure.from_selections(selections, time_signatures=divisions)
         staff = abjad.Staff(measures)
         for i, logical_tie in enumerate(abjad.iterate(staff).logical_ties(pitched=True)):

@@ -70,8 +70,8 @@ from abjad.tools.timespantools import TimespanInequality
 from abjad.tools.timespantools import TimespanList
 
 # rhythm-maker static methods
-from abjad.tools.rhythmmakertools import SilenceMask
-from abjad.tools.rhythmmakertools import SustainMask
+from abjad.tools.rhythmmakertools.SilenceMask import SilenceMask
+from abjad.tools.rhythmmakertools.SustainMask import SustainMask
 silence = SilenceMask.silence
 sustain = SustainMask.sustain
 

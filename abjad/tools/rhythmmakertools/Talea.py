@@ -1,10 +1,15 @@
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.datastructuretools.CyclicTuple import CyclicTuple
+from abjad.tools.datastructuretools.Duration import Duration
+from abjad.tools.datastructuretools.Sequence import Sequence
+from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
+from abjad.tools.topleveltools.new import new
+from abjad.tools import mathtools
 
 
 class Talea(AbjadValueObject):
     '''Talea.
-
-    >>> from abjad.tools import rhythmmakertools as rhythmos
 
     ..  container:: example
 
@@ -21,8 +26,6 @@ class Talea(AbjadValueObject):
             preamble=[1, 1, 1, 1],
             )
 
-    The medieval plural of 'talea' is 'talee'. Abjad documentation uses
-    'taleas' instead.
     '''
 
     ### CLASS VARIABLES ###
@@ -41,15 +44,13 @@ class Talea(AbjadValueObject):
 
     def __init__(
         self,
-        counts=(1,),
-        denominator=16,
-        preamble=None,
-        ):
-        import abjad
+        counts: typing.Iterable[int] = (1,),
+        denominator: int = 16,
+        preamble: typing.List[int] = None,
+        ) -> None:
         assert all(isinstance(_, int) for _ in counts)
         self._counts = counts
-        if not abjad.mathtools.is_nonnegative_integer_power_of_two(
-            denominator):
+        if not mathtools.is_nonnegative_integer_power_of_two(denominator):
             message = f'denominator {denominator} must be integer power of 2.'
             raise Exception(message)
         self._denominator = denominator
@@ -59,7 +60,66 @@ class Talea(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __getitem__(self, argument):
+    def __contains__(self, argument: int) -> bool:
+        r'''Is true when talea contains ``argument``.
+
+        ..  container:: example
+
+            With preamble:
+
+            >>> talea = abjad.rhythmmakertools.Talea(
+            ...     counts=[10],
+            ...     denominator=16,
+            ...     preamble=[1, -1, 1],
+            ...     )
+
+            >>> for i in range(1, 23 + 1):
+            ...     i, i in talea
+            ...
+            (1, True)
+            (2, True)
+            (3, True)
+            (4, False)
+            (5, False)
+            (6, False)
+            (7, False)
+            (8, False)
+            (9, False)
+            (10, False)
+            (11, False)
+            (12, False)
+            (13, True)
+            (14, False)
+            (15, False)
+            (16, False)
+            (17, False)
+            (18, False)
+            (19, False)
+            (20, False)
+            (21, False)
+            (22, False)
+            (23, True)
+
+        '''
+        assert isinstance(argument, int), repr(argument)
+        assert 0 < argument, repr(argument)
+        if self.preamble:
+            preamble = Sequence([abs(_) for _ in self.preamble])
+            cumulative = mathtools.cumulative_sums(preamble)[1:]
+            if argument in cumulative:
+                return True
+            preamble_weight = preamble.weight()
+        else:
+            preamble_weight = 0
+        counts = [abs(_) for _ in self.counts]
+        cumulative = mathtools.cumulative_sums(counts)[:-1]
+        argument -= preamble_weight
+        argument %= self.period
+        return argument in cumulative
+    
+    def __getitem__(self, argument) -> typing.Union[
+        NonreducedFraction, typing.List[NonreducedFraction]
+        ]:
         r'''Gets item or slice identified by `argument`.
 
         ..  container:: example
@@ -102,24 +162,22 @@ class Talea(AbjadValueObject):
             NonreducedFraction(3, 16)
             NonreducedFraction(2, 16)
 
-        Returns nonreduced fraction or nonreduced fractions.
         '''
-        import abjad
         preamble = self.preamble or []
-        counts = abjad.CyclicTuple(preamble + self.counts)
+        counts = CyclicTuple(preamble + self.counts)
         if isinstance(argument, int):
             count = counts.__getitem__(argument)
-            return abjad.NonreducedFraction(count, self.denominator)
+            return NonreducedFraction(count, self.denominator)
         elif isinstance(argument, slice):
             counts = counts.__getitem__(argument)
             result = [
-                abjad.NonreducedFraction(count, self.denominator)
+                NonreducedFraction(count, self.denominator)
                 for count in counts
                 ]
             return result
         raise ValueError(argument)
 
-    def __iter__(self):
+    def __iter__(self) -> typing.Generator:
         r'''Iterates talea.
 
         ..  container:: example
@@ -145,17 +203,15 @@ class Talea(AbjadValueObject):
             Duration(1, 16)
             Duration(1, 16)
 
-        Yields durations.
         '''
-        import abjad
         for count in self.preamble or []:
-            duration = abjad.Duration(count, self.denominator)
+            duration = Duration(count, self.denominator)
             yield duration
         for count in self.counts:
-            duration = abjad.Duration(count, self.denominator)
+            duration = Duration(count, self.denominator)
             yield duration
 
-    def __len__(self):
+    def __len__(self) -> int:
         r'''Gets length.
 
         ..  container:: example
@@ -169,15 +225,13 @@ class Talea(AbjadValueObject):
             7
 
         Defined equal to length of counts.
-
-        Returns nonnegative integer.
         '''
         return len(self.counts)
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def counts(self):
+    def counts(self) -> typing.Optional[typing.List[int]]:
         r'''Gets counts.
 
         ..  container:: example
@@ -190,17 +244,14 @@ class Talea(AbjadValueObject):
             >>> talea.counts
             [2, 1, 3, 2, 4, 1, 1]
 
-        Set to integers.
-
-        Defaults to `[1]`.
-
-        Returns list.
         '''
         if self._counts:
             return list(self._counts)
+        else:
+            return None
 
     @property
-    def denominator(self):
+    def denominator(self) -> int:
         r'''Gets denominator.
 
         ..  container:: example
@@ -216,13 +267,61 @@ class Talea(AbjadValueObject):
         Set to nonnegative integer power of two.
 
         Defaults to 16.
-
-        Returns nonnegative integer power of two.
         '''
         return self._denominator
 
     @property
-    def preamble(self):
+    def period(self) -> int:
+        r'''Gets period of talea.
+
+        ..  container:: example
+
+            Equal to weight of counts:
+
+            >>> talea = abjad.rhythmmakertools.Talea(
+            ...     counts=[1, 2, 3, 4],
+            ...     denominator=16,
+            ...     )
+
+            >>> talea.period
+            10
+
+            Rests make no difference:
+
+            >>> talea = abjad.rhythmmakertools.Talea(
+            ...     counts=[1, 2, -3, 4],
+            ...     denominator=16,
+            ...     )
+
+            >>> talea.period
+            10
+
+            Denominator makes no difference:
+
+            >>> talea = abjad.rhythmmakertools.Talea(
+            ...     counts=[1, 2, -3, 4],
+            ...     denominator=32,
+            ...     )
+
+            >>> talea.period
+            10
+
+            Preamble makes no difference:
+
+            >>> talea = abjad.rhythmmakertools.Talea(
+            ...     counts=[1, 2, -3, 4],
+            ...     denominator=32,
+            ...     preamble=[1, 1, 1],
+            ...     )
+
+            >>> talea.period
+            10
+
+        '''
+        return Sequence(self.counts).weight()
+
+    @property
+    def preamble(self) -> typing.Optional[typing.List[int]]:
         r'''Gets preamble.
                     
         ..  container:: example
@@ -236,18 +335,31 @@ class Talea(AbjadValueObject):
             >>> talea.preamble
             [1, 1, 1, 1]
 
-        Set to integers or none.
+        ..  container:: example
 
-        Defaults to none.
+            >>> talea = abjad.rhythmmakertools.Talea(
+            ...     counts=[16, -4, 16],
+            ...     denominator=16,
+            ...     preamble=[1],
+            ...     )
 
-        Returns list.
+            >>> for i, duration in enumerate(talea):
+            ...     duration
+            ...
+            Duration(1, 16)
+            Duration(1, 1)
+            Duration(-1, 4)
+            Duration(1, 1)
+
         '''
         if self._preamble:
             return list(self._preamble)
+        else:
+            return None
 
     ### PUBLIC METHODS ###
 
-    def advance(self, weight):
+    def advance(self, weight: int) -> 'Talea':
         r'''Advances talea by `weight`.
 
         ..  container:: example
@@ -320,15 +432,35 @@ class Talea(AbjadValueObject):
                 preamble=[2, 2, 4, 1, 1],
                 )
 
+        ..  container:: example
+
+            REGRESSION. Works when talea advances by period of talea:
+
+            >>> talea = abjad.rhythmmakertools.Talea(
+            ...     counts=[1, 2, 3, 4],
+            ...     denominator=16,
+            ...     )
+
+            >>> abjad.f(talea.advance(10))
+            abjad.rhythmmakertools.Talea(
+                counts=[1, 2, 3, 4],
+                denominator=16,
+                )
+
+            >>> abjad.f(talea.advance(20))
+            abjad.rhythmmakertools.Talea(
+                counts=[1, 2, 3, 4],
+                denominator=16,
+                )
+
         '''
-        import abjad
         assert isinstance(weight, int), repr(weight)
         if weight < 0:
             raise Exception(f'weight {weight} must be nonnegative.')
         if weight == 0:
-            return abjad.new(self)
-        preamble = abjad.sequence(self.preamble or ())
-        talea = abjad.sequence(self.counts or ())
+            return new(self)
+        preamble = Sequence(self.preamble or ())
+        counts = Sequence(self.counts or ())
         if weight < preamble.weight():
             consumed, remaining = preamble.split([weight], overhang=True)
             preamble = remaining
@@ -337,16 +469,19 @@ class Talea(AbjadValueObject):
         else:
             assert preamble.weight() < weight
             weight -= preamble.weight()
-            preamble = talea[:]
+            preamble = counts[:]
             while True:
                 if weight <= preamble.weight():
                     break
-                preamble += talea
-            consumed, remaining = preamble.split([weight], overhang=True)
+                preamble += counts
+            if preamble.weight() == weight:
+                consumed, remaining = preamble[:], None
+            else:
+                consumed, remaining = preamble.split([weight], overhang=True)
             preamble = remaining
-        return abjad.new(
+        return new(
             self,
-            counts=talea,
+            counts=counts,
             denominator=self.denominator,
             preamble=preamble,
             )

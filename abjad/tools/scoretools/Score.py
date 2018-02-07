@@ -115,11 +115,11 @@ class Score(Context):
         bar_line = abjad.BarLine(abbreviation)
         if not to_each_voice:
             last_leaf = abjad.inspect(self).get_leaf(-1)
-            abjad.attach(bar_line, last_leaf, site='SCORE1')
+            abjad.attach(bar_line, last_leaf, tag='SCORE1')
         else:
             for voice in abjad.iterate(self).components(abjad.Voice):
                 last_leaf = abjad.inspect(voice).get_leaf(-1)
-                abjad.attach(bar_line, last_leaf, site='SCORE1')
+                abjad.attach(bar_line, last_leaf, tag='SCORE1')
         return bar_line
 
     def add_final_markup(self, markup, extra_offset=None):
@@ -217,7 +217,7 @@ class Score(Context):
         selection = abjad.select(self)
         last_leaf = selection._get_component(abjad.Leaf, -1)
         markup = copy.copy(markup)
-        abjad.attach(markup, last_leaf, site='SCORE2')
+        abjad.attach(markup, last_leaf, tag='SCORE2')
         if extra_offset is not None:
             if isinstance(last_leaf, abjad.MultimeasureRest):
                 grob_proxy = abjad.override(last_leaf).multi_measure_rest_text
@@ -227,7 +227,7 @@ class Score(Context):
         return markup
 
     @staticmethod
-    def make_piano_score(leaves=None, lowest_treble_pitch=None, sketch=False):
+    def make_piano_score(leaves=None, lowest_treble_pitch='B3', sketch=False):
         r"""Makes piano score from `leaves`.
 
         ..  container:: example
@@ -353,20 +353,37 @@ class Score(Context):
         """
         import abjad
         leaves = leaves or []
-        if lowest_treble_pitch is None:
-            lowest_treble_pitch = abjad.NamedPitch('b')
-        treble_staff = abjad.Staff([])
-        treble_staff.name = 'Treble Staff'
-        bass_staff = abjad.Staff([])
-        bass_staff.name = 'Bass Staff'
-        staff_group = abjad.StaffGroup([treble_staff, bass_staff])
-        staff_group.lilypond_type = 'PianoStaff'
-        score = abjad.Score([])
+        lowest_treble_pitch = abjad.NamedPitch(lowest_treble_pitch)
+        treble_staff = abjad.Staff(name='Treble Staff')
+        bass_staff = abjad.Staff(name='Bass Staff')
+        staff_group = abjad.StaffGroup(
+            [treble_staff, bass_staff],
+            lilypond_type='PianoStaff',
+            )
+        score = abjad.Score()
         score.append(staff_group)
         for leaf in leaves:
-            treble_chord, bass_chord = leaf._divide(lowest_treble_pitch)
-            treble_staff.append(treble_chord)
-            bass_staff.append(bass_chord)
+            treble_pitches, bass_pitches = [], []
+            for pitch in abjad.inspect(leaf).get_pitches():
+                if pitch < lowest_treble_pitch:
+                    bass_pitches.append(pitch)
+                else:
+                    treble_pitches.append(pitch)
+            written_duration = leaf.written_duration
+            if not treble_pitches:
+                treble_leaf = abjad.Rest(written_duration)
+            elif len(treble_pitches) == 1:
+                treble_leaf = abjad.Note(treble_pitches[0], written_duration)
+            else:
+                treble_leaf = abjad.Chord(treble_pitches, written_duration)
+            treble_staff.append(treble_leaf)
+            if not bass_pitches:
+                bass_leaf = abjad.Rest(written_duration)
+            elif len(bass_pitches) == 1:
+                bass_leaf = abjad.Note(bass_pitches[0], written_duration)
+            else:
+                bass_leaf = abjad.Chord(bass_pitches, written_duration)
+            bass_staff.append(bass_leaf)
         if 0 < len(treble_staff):
             abjad.attach(abjad.Clef('treble'), treble_staff[0])
         if 0 < len(bass_staff):

@@ -1,7 +1,11 @@
 import copy
 import functools
+import typing
 from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.pitchtools.NamedPitch import NamedPitch
+from abjad.tools.lilypondnametools.LilyPondNameManager import \
+    LilyPondNameManager
 
 
 @functools.total_ordering
@@ -10,11 +14,12 @@ class NoteHead(AbjadObject):
 
     ..  container:: example
 
-        >>> note_head = abjad.NoteHead(13)
-        >>> note_head
+        >>> note = abjad.Note("cs''")
+        >>> abjad.show(note) # doctest: +SKIP
+
+        >>> note.note_head
         NoteHead("cs''")
 
-    Note heads are immutable.
     '''
 
     ### CLASS VARIABLES ###
@@ -22,6 +27,7 @@ class NoteHead(AbjadObject):
     __documentation_section__ = 'Note-heads'
 
     __slots__ = (
+        '_alternative',
         '_client',
         '_is_cautionary',
         '_is_forced',
@@ -41,8 +47,10 @@ class NoteHead(AbjadObject):
         is_parenthesized=None,
         tweak_pairs=(),
         ):
-        from abjad.tools import scoretools
-        assert isinstance(client, (type(None), scoretools.Leaf))
+        import abjad
+        self._alternative = None
+        if client is not None:
+            assert isinstance(client, abjad.Leaf)
         self._client = client
         self._tweak = None
         if isinstance(written_pitch, type(self)):
@@ -57,21 +65,30 @@ class NoteHead(AbjadObject):
         self.is_cautionary = is_cautionary
         self.is_forced = is_forced
         self.is_parenthesized = is_parenthesized
-        for tweak_pair in tweak_pairs:
+        for tweak_pair in tweak_pairs or []:
             key, value = tweak_pair
             setattr(self.tweak, key, copy.copy(value))
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *arguments):
+    def __copy__(self, *arguments) -> 'NoteHead':
         r'''Copies note-head.
 
-        >>> import copy
-        >>> note_head = abjad.NoteHead(13)
-        >>> copy.copy(note_head)
-        NoteHead("cs''")
+        ..  container:: example
 
-        Returns new note-head.
+            >>> import copy
+            >>> note_head = abjad.NoteHead(13)
+            >>> copy.copy(note_head)
+            NoteHead("cs''")
+
+        ..  container:: example
+
+            REGRESSION. Note-heads work with new:
+
+            >>> note = abjad.Note("cs''")
+            >>> abjad.new(note.note_head)
+            NoteHead("cs''")
+
         '''
         arguments = (
             self.written_pitch,
@@ -83,20 +100,16 @@ class NoteHead(AbjadObject):
             )
         return type(self)(*arguments)
 
-    def __eq__(self, argument):
+    def __eq__(self, argument) -> bool:
         r'''Is true when `argument` is a note-head with written pitch equal to
         that of this note-head. Otherwise false.
-
-        Returns true or false.
         '''
         if isinstance(argument, type(self)):
             return self.written_pitch == argument.written_pitch
         return self.written_pitch == argument
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification='') -> str:
         r'''Formats note-head.
-
-        Returns string.
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'lilypond'):
@@ -105,18 +118,14 @@ class NoteHead(AbjadObject):
             return systemtools.StorageFormatManager(self).get_storage_format()
         return str(self)
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         r'''Hashes note-head.
-
-        Returns integer.
         '''
         return super(NoteHead, self).__hash__()
 
-    def __lt__(self, argument):
+    def __lt__(self, argument) -> bool:
         r'''Is true when `argument` is a note-head with written pitch greater
         than that of this note-head. Otherwise false.
-
-        Returns true or false.
         '''
         if isinstance(argument, type(self)):
             return self.written_pitch < argument.written_pitch
@@ -126,25 +135,27 @@ class NoteHead(AbjadObject):
             return False
         return self.written_pitch < argument.written_pitch
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         r'''Gets interpreter representation of note-head.
 
-        >>> note_head = abjad.NoteHead(13)
-        >>> note_head
-        NoteHead("cs''")
+        ..  container:: example
 
-        Returns string.
+            >>> note_head = abjad.NoteHead(13)
+            >>> note_head
+            NoteHead("cs''")
+
         '''
         return super(NoteHead, self).__repr__()
 
-    def __str__(self):
+    def __str__(self) -> str:
         r'''String representation of note-head.
 
-        >>> note_head = abjad.NoteHead(13)
-        >>> str(note_head)
-        "cs''"
+        ..  container:: example
 
-        Returns string.
+            >>> note_head = abjad.NoteHead(13)
+            >>> str(note_head)
+            "cs''"
+
         '''
         result = ''
         if self.written_pitch:
@@ -188,12 +199,10 @@ class NoteHead(AbjadObject):
             storage_format_kwargs_names=names,
             )
 
-    def _get_lilypond_format(self):
+    def _get_format_pieces_zoo(self):
         import abjad
-        # make sure note-head has pitch
         assert self.written_pitch
         result = []
-        # format chord note-head with optional tweaks
         if self.is_parenthesized:
             result.append(r'\parenthesize')
         manager = abjad.LilyPondFormatManager
@@ -206,47 +215,158 @@ class NoteHead(AbjadObject):
                         manager.format_lilypond_value(value),
                         )
                     result.append(string)
-        # format note-head pitch
         kernel = format(self.written_pitch)
         if self.is_forced:
             kernel += '!'
         if self.is_cautionary:
             kernel += '?'
         result.append(kernel)
-        result = '\n'.join(result)
-        # return formatted note-head
+        return result
+
+    def _get_lilypond_format(self, formatted_duration=None):
+        import abjad
+        pieces = self._get_format_pieces_zoo()
+        if formatted_duration is not None:
+            pieces[-1] = pieces[-1] + formatted_duration
+        if self.alternative:
+            pieces = abjad.LilyPondFormatManager.tag(
+                pieces,
+                tag=self.alternative[2],
+                )
+            pieces_ = self.alternative[0]._get_format_pieces_zoo()
+            if formatted_duration is not None:
+                pieces_[-1] = pieces_[-1] + formatted_duration
+            pieces_ = abjad.LilyPondFormatManager.tag(
+                pieces_,
+                deactivate=True,
+                tag=self.alternative[1],
+                )
+            pieces.extend(pieces_)
+        result = '\n'.join(pieces)
         return result
 
     ### PUBLIC PROPERTIES ###
 
     @property
+    def alternative(self) -> typing.Tuple['NoteHead', str]:
+        r'''Gets and sets note-head alternative.
+
+        ..  container:: example
+
+            >>> note = abjad.Note("c''4")
+            >>> alternative = abjad.new(note.note_head)
+            >>> alternative.is_forced = True
+            >>> note.note_head.alternative = (alternative, '-PARTS', '+PARTS')
+            >>> abjad.show(note) # doctest: +SKIP
+
+            >>> abjad.f(note, strict=50)
+            c''4                                              %! +PARTS
+            %@% c''!4                                         %! -PARTS
+
+            Survives pitch reassignment:
+
+            >>> note.written_pitch = 'D5'
+            >>> abjad.show(note) # doctest: +SKIP
+
+            >>> abjad.f(note, strict=50)
+            d''4                                              %! +PARTS
+            %@% d''!4                                         %! -PARTS
+
+            Clear with none:
+
+            >>> note.note_head.alternative = None
+            >>> abjad.show(note) # doctest: +SKIP
+
+            >>> abjad.f(note, strict=50)
+            d''4
+
+        ..  container:: example
+
+            >>> chord = abjad.Chord("<c' d' bf''>4")
+            >>> alternative = abjad.new(chord.note_heads[0])
+            >>> alternative.is_forced = True
+            >>> chord.note_heads[0].alternative = (alternative, '-PARTS', '+PARTS')
+            >>> abjad.show(chord) # doctest: +SKIP
+
+            >>> abjad.f(chord, strict=50)
+            <
+                c'                                            %! +PARTS
+            %@% c'!                                           %! -PARTS
+                d'
+                bf''
+            >4
+
+            Suvives pitch reassignment:
+
+            >>> chord.note_heads[0].written_pitch = 'B3'
+            >>> abjad.show(chord) # doctest: +SKIP
+
+            >>> abjad.f(chord, strict=50)
+            <
+                b                                             %! +PARTS
+            %@% b!                                            %! -PARTS
+                d'
+                bf''
+            >4
+
+            Clear with none:
+
+            >>> chord.note_heads[0].alternative = None
+            >>> abjad.f(chord, strict=50)
+            <b d' bf''>4
+
+        '''
+        return self._alternative
+
+    @alternative.setter
+    def alternative(self, argument):
+        if argument is not None:
+            assert isinstance(argument, tuple), repr(argument)
+            assert len(argument) == 3, repr(argument)
+            assert isinstance(argument[0], NoteHead), repr(argument)
+            assert argument[0].alternative is None, repr(argument)
+            assert isinstance(argument[1], str), repr(argument)
+            assert isinstance(argument[2], str), repr(argument)
+        self._alternative = argument
+
+    @property
     def client(self):
         r'''Client of note-head.
 
-        >>> note_head = abjad.NoteHead(13)
-        >>> note_head.client is None
-        True
+        ..  container:: example
+
+            >>> note_head = abjad.NoteHead(13)
+            >>> note_head.client is None
+            True
 
         Returns note, chord or none.
         '''
         return self._client
 
     @property
-    def is_cautionary(self):
+    def is_cautionary(self) -> bool:
         r'''Gets and sets cautionary accidental flag.
 
-        Gets cautionary accidental flag:
+        ..  container:: example
 
-        >>> note_head = abjad.NoteHead("cs''")
-        >>> note_head.is_cautionary is None
-        True
+            >>> note = abjad.Note("c''")
+            >>> note.note_head.is_cautionary = True
+            >>> abjad.show(note) # doctest: +SKIP
 
-        Sets cautionary accidental flag:
+            ..  docs::
 
-        >>> note_head = abjad.NoteHead("cs''")
-        >>> note_head.is_cautionary = True
+                >>> abjad.f(note)
+                c''?4
 
-        Returns true or false.
+            >>> note = abjad.Note("cs''")
+            >>> note.note_head.is_cautionary = True
+            >>> abjad.show(note) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(note)
+                cs''?4
+
         '''
         return self._is_cautionary
 
@@ -257,21 +377,29 @@ class NoteHead(AbjadObject):
         self._is_cautionary = argument
 
     @property
-    def is_forced(self):
+    def is_forced(self) -> bool:
         r'''Gets and sets forced accidental flag.
 
-        Gets forced accidental flag:
+        ..  container:: example
 
-        >>> note_head = abjad.NoteHead("cs''")
-        >>> note_head.is_forced is None
-        True
+            >>> note = abjad.Note("c''")
+            >>> note.note_head.is_forced = True
+            >>> abjad.show(note) # doctest: +SKIP
 
-        Sets forced accidental flag:
+            ..  docs::
 
-        >>> note_head = abjad.NoteHead("cs''")
-        >>> note_head.is_forced = True
+                >>> abjad.f(note)
+                c''!4
 
-        Returns true or false.
+            >>> note = abjad.Note("cs''")
+            >>> note.note_head.is_forced = True
+            >>> abjad.show(note) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(note)
+                cs''!4
+
         '''
         return self._is_forced
 
@@ -282,21 +410,31 @@ class NoteHead(AbjadObject):
         self._is_forced = argument
 
     @property
-    def is_parenthesized(self):
+    def is_parenthesized(self) -> bool:
         r'''Gets and sets forced accidental flag.
 
-        Gets forced accidental flag:
+        ..  container:: example
 
-        >>> note_head = abjad.NoteHead("cs''")
-        >>> note_head.is_parenthesized is None
-        True
+            >>> note = abjad.Note("c''")
+            >>> note.note_head.is_parenthesized = True
+            >>> abjad.show(note) # doctest: +SKIP
 
-        Sets forced accidental flag:
+            ..  docs::
 
-        >>> note_head = abjad.NoteHead("cs''")
-        >>> note_head.is_parenthesized = True
+                >>> abjad.f(note)
+                \parenthesize
+                c''4
 
-        Returns true or false.
+            >>> note = abjad.Note("cs''")
+            >>> note.note_head.is_parenthesized = True
+            >>> abjad.show(note) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(note)
+                \parenthesize
+                cs''4
+
         '''
         return self._is_parenthesized
 
@@ -307,55 +445,54 @@ class NoteHead(AbjadObject):
         self._is_parenthesized = argument
 
     @property
-    def named_pitch(self):
-        r'''Named pitch of note-head.
+    def named_pitch(self) -> NamedPitch:
+        r'''Gets named pitch.
 
-        >>> note_head = abjad.NoteHead("cs''")
-        >>> note_head.named_pitch
-        NamedPitch("cs''")
+        ..  container:: example
 
-        Returns named pitch.
+            >>> note_head = abjad.NoteHead("cs''")
+            >>> note_head.named_pitch
+            NamedPitch("cs''")
+
         '''
         return self.written_pitch
 
     @property
-    def tweak(self):
-        r'''LilyPond tweak reservoir of note-head.
+    def tweak(self) -> LilyPondNameManager:
+        r'''Gets tweak LilyPond name manager.
 
-        >>> note_head = abjad.NoteHead("cs''")
-        >>> note_head.tweak
-        LilyPondNameManager()
+        ..  container:: example
 
-        Returns LilyPond tweak reservoir.
+            >>> note_head = abjad.NoteHead("cs''")
+            >>> note_head.tweak
+            LilyPondNameManager()
+
         '''
-        from abjad.tools import lilypondnametools
         if self._tweak is None:
-            self._tweak = lilypondnametools.LilyPondNameManager()
+            self._tweak = LilyPondNameManager()
         return self._tweak
 
     @property
-    def written_pitch(self):
+    def written_pitch(self) -> NamedPitch:
         r'''Gets and sets written pitch of note-head.
 
-        Gets written pitch of note-head:
+        ..  container:: example
 
-        >>> note_head = abjad.NoteHead("cs''")
-        >>> note_head.written_pitch
-        NamedPitch("cs''")
+            >>> note_head = abjad.NoteHead("cs''")
+            >>> note_head.written_pitch
+            NamedPitch("cs''")
 
-        Sets written pitch of note-head:
+            >>> note_head = abjad.NoteHead("cs''")
+            >>> note_head.written_pitch = "d''"
+            >>> note_head.written_pitch
+            NamedPitch("d''")
 
-        >>> note_head = abjad.NoteHead("cs''")
-        >>> note_head.written_pitch = "d''"
-        >>> note_head.written_pitch
-        NamedPitch("d''")
-
-        Returns named pitch.
         '''
         return self._written_pitch
 
     @written_pitch.setter
     def written_pitch(self, argument):
-        from abjad.tools import pitchtools
-        written_pitch = pitchtools.NamedPitch(argument)
+        written_pitch = NamedPitch(argument)
         self._written_pitch = written_pitch
+        if self.alternative is not None:
+            self.alternative[0].written_pitch = written_pitch

@@ -186,42 +186,6 @@ class WellformednessManager(AbjadObject):
                 violators.append(container)
         return violators, len(containers)
 
-    def check_intermarked_hairpins(self, argument=None):
-        r'''Checks intermarked hairpins.
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> abjad.attach(abjad.Hairpin('<'), staff[:])
-            >>> abjad.attach(abjad.Dynamic('f'), staff[2])
-
-            >>> abjad.f(staff)
-            \new Staff {
-                c'4 \<
-                d'4
-                e'4 \f
-                f'4 \!
-            }
-
-            >>> manager = abjad.WellformednessManager()
-            >>> violators, total = manager.check_intermarked_hairpins(staff)
-            >>> violators
-            [Hairpin("c'4, d'4, e'4, f'4")]
-
-        Returns violators and total.
-        '''
-        import abjad
-        violators, hairpins = [], set()
-        descendants = abjad.inspect(argument).get_descendants()
-        hairpins = abjad.inspect(descendants).get_spanners(abjad.Hairpin)
-        for hairpin in hairpins:
-            if 2 < len(hairpin.leaves):
-                for leaf in hairpin.leaves[1:-1]:
-                    if abjad.inspect(leaf).get_indicators(abjad.Dynamic):
-                        violators.append(hairpin)
-                        break
-        return violators, len(hairpins)
-
     def check_misdurated_measures(self, argument=None):
         r'''Checks misdurated measures.
 
@@ -268,11 +232,10 @@ class WellformednessManager(AbjadObject):
             0 /	2 discontiguous spanners
             0 /	5 duplicate ids
             0 / 1 empty containers
-            0 /	2 intermarked hairpins
             0 /	0 misdurated measures
             0 /	0 misfilled measures
             2 /	2 mismatched enchained hairpins
-            0 /	0 mispitched ties
+            0 / 0 mispitched ties
             0 /	4 misrepresented flags
             0 /	5 missing parents
             0 /	0 nested measures
@@ -339,7 +302,6 @@ class WellformednessManager(AbjadObject):
             0 /	1 discontiguous spanners
             0 /	3 duplicate ids
             0 / 1 empty containers
-            0 /	0 intermarked hairpins
             0 /	0 misdurated measures
             0 /	0 misfilled measures
             0 /	0 mismatched enchained hairpins
@@ -362,7 +324,7 @@ class WellformednessManager(AbjadObject):
             Checks for mispitched ties attached to chords:
 
             >>> staff = abjad.Staff("<c' d' bf'>4 ~ <c' d' bf'>")
-            >>> staff[1].written_pitches = [6, 9, 10]
+            >>> staff[1].written_pitches = [6, 9]
 
             >>> agent = abjad.inspect(staff)
             >>> print(agent.tabulate_wellformedness())
@@ -370,7 +332,6 @@ class WellformednessManager(AbjadObject):
             0 /	1 discontiguous spanners
             0 /	3 duplicate ids
             0 / 1 empty containers
-            0 /	0 intermarked hairpins
             0 /	0 misdurated measures
             0 /	0 misfilled measures
             0 /	0 mismatched enchained hairpins
@@ -388,29 +349,22 @@ class WellformednessManager(AbjadObject):
             0 / 0 overlapping trill spanners
             0 /	0 tied rests
 
-        Does not check tied rests, chords or skips.
-
         Returns violator ties together with total number of ties.
         '''
         import abjad
         violators, ties = [], set()
         for leaf in abjad.iterate(argument).leaves(pitched=True):
             ties_ = abjad.inspect(leaf).get_spanners(abjad.Tie)
-            if not ties_:
-                continue
             ties.update(ties_)
-            tie = ties_.pop()
-            written_pitches = []
-            for leaf in tie:
-                if isinstance(leaf, abjad.Note):
-                    written_pitches.append(leaf.written_pitch)
-                elif isinstance(leaf, abjad.Chord):
-                    written_pitches.append(leaf.written_pitches)
-                else:
-                    raise TypeError(leaf)
-            if not abjad.mathtools.all_are_equal(written_pitches):
-                if tie not in violators:
+        for tie in ties:
+            for first_leaf, second_leaf in abjad.sequence(tie).nwise():
+                first_pitches = abjad.inspect(first_leaf).get_pitches()
+                first_pitches = set([_.number for _ in first_pitches])
+                second_pitches = abjad.inspect(second_leaf).get_pitches()
+                second_pitches = set([_.number for _ in second_pitches])
+                if not (first_pitches & second_pitches):
                     violators.append(tie)
+                    break
         return violators, len(ties)
 
     def check_misrepresented_flags(self, argument=None):
@@ -499,11 +453,10 @@ class WellformednessManager(AbjadObject):
             0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	0 intermarked hairpins
             0 /	0 misdurated measures
             0 /	0 misfilled measures
             0 /	0 mismatched enchained hairpins
-            0 /	0 mispitched ties
+            0 / 0 mispitched ties
             0 /	4 misrepresented flags
             0 /	5 missing parents
             0 /	0 nested measures
@@ -549,11 +502,10 @@ class WellformednessManager(AbjadObject):
             0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	0 intermarked hairpins
             0 /	0 misdurated measures
             0 /	0 misfilled measures
             0 /	0 mismatched enchained hairpins
-            0 /	0 mispitched ties
+            0 / 0 mispitched ties
             0 /	4 misrepresented flags
             0 /	5 missing parents
             0 /	0 nested measures
@@ -579,11 +531,10 @@ class WellformednessManager(AbjadObject):
             0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	0 intermarked hairpins
             0 /	0 misdurated measures
             0 /	0 misfilled measures
             0 /	0 mismatched enchained hairpins
-            0 /	0 mispitched ties
+            0 / 0 mispitched ties
             0 /	4 misrepresented flags
             0 /	5 missing parents
             0 /	0 nested measures
@@ -648,11 +599,10 @@ class WellformednessManager(AbjadObject):
             0 /	0 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	0 intermarked hairpins
             0 /	0 misdurated measures
             0 /	0 misfilled measures
             0 /	0 mismatched enchained hairpins
-            0 /	0 mispitched ties
+            0 / 0 mispitched ties
             0 /	4 misrepresented flags
             0 /	5 missing parents
             0 /	0 nested measures
@@ -747,11 +697,10 @@ class WellformednessManager(AbjadObject):
             0 /	2 discontiguous spanners
             0 /	5 duplicate ids
             0 / 1 empty containers
-            0 /	2 intermarked hairpins
             0 /	0 misdurated measures
             0 /	0 misfilled measures
             0 /	2 mismatched enchained hairpins
-            0 /	0 mispitched ties
+            0 / 0 mispitched ties
             0 /	4 misrepresented flags
             0 /	5 missing parents
             0 /	0 nested measures
@@ -809,11 +758,10 @@ class WellformednessManager(AbjadObject):
             0 /	2 discontiguous spanners
             0 /	5 duplicate ids
             0 / 1 empty containers
-            0 /	0 intermarked hairpins
             0 /	0 misdurated measures
             0 /	0 misfilled measures
             0 /	0 mismatched enchained hairpins
-            0 /	2 mispitched ties
+            0 / 2 mispitched ties
             0 /	4 misrepresented flags
             0 /	5 missing parents
             0 /	0 nested measures
@@ -890,11 +838,10 @@ class WellformednessManager(AbjadObject):
             0 /	2 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	0 intermarked hairpins
             0 /	0 misdurated measures
             0 /	0 misfilled measures
             0 /	0 mismatched enchained hairpins
-            0 /	0 mispitched ties
+            0 / 0 mispitched ties
             0 /	4 misrepresented flags
             0 /	5 missing parents
             0 /	0 nested measures

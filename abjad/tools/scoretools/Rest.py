@@ -1,4 +1,3 @@
-import copy
 from .Leaf import Leaf
 
 
@@ -48,22 +47,6 @@ class Rest(Leaf):
             self._copy_override_and_set_from_leaf(original_input)
 
     ### PRIVATE METHODS ###
-
-    def _divide(self, pitch=None):
-        import abjad
-        treble = copy.copy(self)
-        bass = copy.copy(self)
-        abjad.detach(abjad.Markup, treble)
-        abjad.detach(abjad.Markup, bass)
-        up_markup = self._get_markup(direction=abjad.Up)
-        up_markup = [copy.copy(markup) for markup in up_markup]
-        down_markup = self._get_markup(direction=abjad.Down)
-        down_markup = [copy.copy(markup) for markup in down_markup]
-        for markup in up_markup:
-            markup(treble)
-        for markup in down_markup:
-            markup(bass)
-        return treble, bass
 
     def _get_body(self):
         return [self._get_compact_representation()]

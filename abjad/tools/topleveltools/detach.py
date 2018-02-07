@@ -191,6 +191,59 @@ def detach(argument, target=None, by_id=False):
             f'4
         }
 
+    ..  container:: example
+
+        REGRESSION. Attach-detach-attach pattern works correctly when detaching
+        wrappers:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.attach(abjad.Clef('alto'), staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                \clef "alto"
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+        >>> wrapper = abjad.inspect(staff[0]).wrappers()[0]
+        >>> abjad.detach(wrapper, wrapper.component)
+        (Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag()),)
+
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+        >>> abjad.attach(abjad.Clef('tenor'), staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                \clef "tenor"
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
     Returns tuple of zero or more detached items.
     '''
     import abjad
@@ -234,12 +287,9 @@ def detach(argument, target=None, by_id=False):
             assert hasattr(target, '_wrappers')
             result = []
             for wrapper in target._wrappers[:]:
-                if wrapper == argument:
-                    if by_id is True and id(argument) != id(wrapper):
-                        pass
-                    else:
-                        target._wrappers.remove(wrapper)
-                        result.append(wrapper)
+                if wrapper is argument:
+                    wrapper._detach()
+                    result.append(wrapper)
                 elif wrapper.indicator == argument:
                     if by_id is True and id(argument) != id(wrapper.indicator):
                         pass

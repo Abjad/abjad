@@ -4,7 +4,7 @@ from .Spanner import Spanner
 class Hairpin(Spanner):
     r'''Hairpin.
 
-    ..  note:: Convention (nonpiecewise) hairpins are deprecated.
+    ..  note:: Conventional (nonpiecewise) hairpins are deprecated.
         Use piecewise hairpins instead.
 
     ..  container:: example
@@ -131,8 +131,6 @@ class Hairpin(Spanner):
         (Note("c'2."), None)
         (Rest('r4'), None)
 
-        ..  note:: conventional hairpins are deprecated.
-
     ..  container:: example
 
         Multiple conventional (nonpiecewise) hairpins enchained with dynamics:
@@ -178,138 +176,6 @@ class Hairpin(Spanner):
         (Note("f'8"), Dynamic('f'))
         (Note("c'8"), Dynamic('p'))
 
-    ..  container:: example
-
-        Hairpins can be tagged across segment boundaries.
-
-        ..  container:: example
-
-            Segment 1:
-
-            >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
-            >>> hairpin = abjad.Hairpin()
-            >>> abjad.attach(hairpin, segment_1[:], right_broken='<')
-            >>> hairpin.attach(abjad.Dynamic('p'), hairpin[0])
-            >>> abjad.override(segment_1).dynamic_line_spanner.staff_padding = 4
-            >>> abjad.f(segment_1, strict=True)
-            \context Voice = "MainVoice"
-            \with
-            {
-                \override DynamicLineSpanner.staff-padding = #4
-            }
-            {
-                c'4
-                \<
-                \p
-                d'4
-                e'4
-                f'4
-                \! %! RIGHT_BROKEN_HAIRPIN_STOP
-            }
-
-            >>> abjad.show(segment_1) # doctest: +SKIP
-
-        ..  container:: example
-
-            Segment 2:
-
-            >>> segment_2 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
-            >>> hairpin = abjad.Hairpin()
-            >>> abjad.attach(hairpin, segment_2[:], left_broken='<')
-            >>> hairpin.attach(abjad.Dynamic('f'), hairpin[-1])
-            >>> abjad.f(segment_2, strict=True)
-            \context Voice = "MainVoice"
-            {
-                c'4
-                \< %! LEFT_BROKEN_HAIRPIN_START
-                d'4
-                e'4
-                f'4
-                \f
-            }
-
-            >>> abjad.show(segment_2) # doctest: +SKIP
-
-        ..  container:: example
-
-            Segment 1 joined to segment 2:
-
-            >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
-            >>> text = abjad.LilyPondFormatManager.left_shift_tags(text)
-            >>> print(text)
-            {
-                \context Voice = "MainVoice"
-                \with
-                {
-                    \override DynamicLineSpanner.staff-padding = #4
-                }
-                {
-                    c'4
-                    \<
-                    \p
-                    d'4
-                    e'4
-                    f'4
-                    \! %! RIGHT_BROKEN_HAIRPIN_STOP
-                }
-                \context Voice = "MainVoice"
-                {
-                    c'4
-                    \< %! LEFT_BROKEN_HAIRPIN_START
-                    d'4
-                    e'4
-                    f'4
-                    \f
-                }
-            }
-
-            >>> lines = text.split('\n')
-            >>> lilypond_file = abjad.LilyPondFile.new(lines)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-        ..  container:: example
-
-            With tags deactivated:
-
-            >>> text, count = abjad.deactivate(
-            ...     text,
-            ...     abjad.tags.RIGHT_BROKEN_HAIRPIN_STOP,
-            ...     )
-            >>> text, count = abjad.deactivate(
-            ...     text,
-            ...     abjad.tags.LEFT_BROKEN_HAIRPIN_START,
-            ...     )
-            >>> print(text)
-            {
-                \context Voice = "MainVoice"
-                \with
-                {
-                    \override DynamicLineSpanner.staff-padding = #4
-                }
-                {
-                    c'4
-                    \<
-                    \p
-                    d'4
-                    e'4
-                    f'4
-                %%% \! %! RIGHT_BROKEN_HAIRPIN_STOP
-                }
-                \context Voice = "MainVoice"
-                {
-                    c'4
-                %%% \< %! LEFT_BROKEN_HAIRPIN_START
-                    d'4
-                    e'4
-                    f'4
-                    \f
-                }
-            }
-
-            >>> lines = text.split('\n')
-            >>> lilypond_file = abjad.LilyPondFile.new(lines)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
     ..  container:: example
 
@@ -483,14 +349,20 @@ class Hairpin(Spanner):
     ### PRIVATE METHODS ###
 
     def _add_circled_tip_override(self, leaf, bundle):
+        string = r'\once \override Hairpin.circled-tip = ##t'
+        if self._left_broken == 'niente' or self._right_broken == 'niente':
+            bundle.before.commands.append(string)
+            return
         dynamic = self._get_piecewise_dynamic(leaf)
         if not dynamic:
+            return
+        if self._right_broken and dynamic.name == 'niente':
+            bundle.before.commands.append(string)
             return
         next_dynamic = self._get_next_piecewise_dynamic_from(leaf)
         if not next_dynamic:
             return
         if dynamic.name == 'niente' or next_dynamic.name == 'niente':
-            string = r'\once \override Hairpin.circled-tip = ##t'
             bundle.before.commands.append(string)
 
     def _add_dynamic(self, leaf, bundle):
@@ -498,7 +370,11 @@ class Hairpin(Spanner):
         dynamic = self._get_piecewise_dynamic(leaf)
         if dynamic is None:
             return
-        if dynamic.name == 'niente':
+        if dynamic.name == 'niente' and leaf is self[0] and self._left_broken:
+            string = r'\!'
+        elif dynamic.name == 'niente' and leaf is self[0]:
+            return
+        elif dynamic.name == 'niente' and leaf is not self[0]:
             string = r'\!'
         else:
             string = dynamic._get_lilypond_format()
@@ -515,13 +391,11 @@ class Hairpin(Spanner):
 
     def _add_hairpin_start(self, leaf, bundle):
         import abjad
-        if leaf is self[0] and self._left_broken is not None:
-            string = '\\' + self._left_broken
-            strings = abjad.LilyPondFormatManager.tag(
-                [string],
-                tag=abjad.tags.LEFT_BROKEN_HAIRPIN_START,
-                )
-            assert len(strings) == 1
+        if (leaf is self[0] and
+            self._left_broken is not None and
+            1 < len(self)):
+            strings = ['\\' + self._left_broken]
+            strings = self._tag_hide(strings)
             string = strings[0]
         else:
             dynamic = self._get_piecewise_dynamic(leaf)
@@ -530,8 +404,13 @@ class Hairpin(Spanner):
             next_dynamic = self._get_next_piecewise_dynamic_from(leaf)
             if next_dynamic is None:
                 if self._right_broken is not None:
-                    assert self._right_broken in ('<', '>')
-                    string = '\\' + self._right_broken
+                    right_broken = self._right_broken
+                    if right_broken == 'niente':
+                        right_broken = '>'
+                    assert right_broken in ('<', '>')
+                    string = '\\' + right_broken
+                    if leaf is self[-1]:
+                        string = self._tag_show([string])[0]
                 else:
                     return
             elif dynamic.ordinal == next_dynamic.ordinal:
@@ -548,19 +427,15 @@ class Hairpin(Spanner):
         bundle.right.spanner_starts.append(string)
 
     def _add_right_broken_hairpin_stop(self, leaf, bundle):
-        import abjad
         if self._right_broken is None:
             return
-        if not leaf is self[-1]:
+        if leaf is not self[-1]:
             return
-        string = r'\!'
-        strings = abjad.LilyPondFormatManager.tag(
-            [string],
-            tag=abjad.tags.RIGHT_BROKEN_HAIRPIN_STOP,
-            )
-        assert len(strings) == 1
-        string = strings[0]
-        bundle.right.spanner_stops.append(string)
+        if leaf is self[0]:
+            return
+        strings = [r'\!']
+        strings = self._tag_hide(strings)
+        bundle.right.spanner_stops.extend(strings)
 
     def _attachment_test_all(self, argument):
         import abjad
@@ -598,7 +473,8 @@ class Hairpin(Spanner):
             return bundle
         if (leaf is self[0] and
             (self.start_dynamic and self.start_dynamic.name == 'niente' or
-            self.stop_dynamic and self.stop_dynamic.name == 'niente')):
+            self.stop_dynamic and self.stop_dynamic.name == 'niente') or
+            self._left_broken == 'niente' or self._right_broken == 'niente'):
             string = r'\once \override Hairpin.circled-tip = ##t'
             bundle.before.commands.append(string)
         if not self.trim:
@@ -896,6 +772,1040 @@ class Hairpin(Spanner):
         '''
         return self._context
 
+    def cross_segment_examples(self):
+        r'''Cross-segment examples.
+
+        ..  container:: example
+
+            Cross-segment example #1 (one-to-one):
+
+            >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> hairpin = abjad.Hairpin()
+            >>> abjad.attach(hairpin, segment_1[-1:], right_broken='<')
+            >>> hairpin.attach(abjad.Dynamic('p'), hairpin[-1])
+            >>> abjad.override(segment_1).dynamic_line_spanner.staff_padding = 4
+            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_1, strict=50)
+                \context Voice = "MainVoice"
+                \with
+                {
+                    \override DynamicLineSpanner.staff-padding = #4
+                }
+                {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                %@% \<                                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                    \p
+                }
+
+            >>> segment_2 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> hairpin = abjad.Hairpin()
+            >>> abjad.attach(hairpin, segment_2[:1], left_broken='<')
+            >>> hairpin.attach(abjad.Dynamic('f'), hairpin[0])
+            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_2, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    c'4
+                    \f
+                    d'4
+                    e'4
+                    f'4
+                }
+
+            >>> container = abjad.Container([segment_1, segment_2])
+            >>> text = format(container, 'lilypond:strict')
+            >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
+            >>> job = abjad.Job.broken_spanner_join_job(text)
+            >>> text = job()
+            >>> lines = text.split('\n')
+            >>> lilypond_file = abjad.LilyPondFile.new(lines)
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> print(text)
+                {
+                    \context Voice = "MainVoice"
+                    \with
+                    {
+                        \override DynamicLineSpanner.staff-padding = #4
+                    }
+                    {
+                        c'4
+                        d'4
+                        e'4
+                        f'4
+                        \<                                        %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        \p
+                    }
+                    \context Voice = "MainVoice"
+                    {
+                        c'4
+                        \f
+                        d'4
+                        e'4
+                        f'4
+                    }
+                }
+
+        ..  container:: example
+
+            Cross-segment example #2 (one-to-many):
+
+            >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> hairpin = abjad.Hairpin()
+            >>> abjad.attach(hairpin, segment_1[-1:], right_broken='<')
+            >>> hairpin.attach(abjad.Dynamic('p'), hairpin[-1])
+            >>> abjad.override(segment_1).dynamic_line_spanner.staff_padding = 4
+            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_1, strict=50)
+                \context Voice = "MainVoice"
+                \with
+                {
+                    \override DynamicLineSpanner.staff-padding = #4
+                }
+                {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                %@% \<                                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                    \p
+                }
+
+            >>> segment_2 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> hairpin = abjad.Hairpin()
+            >>> abjad.attach(hairpin, segment_2[:], left_broken='<')
+            >>> hairpin.attach(abjad.Dynamic('f'), hairpin[-1])
+            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_2, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    c'4
+                    \<                                            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    d'4
+                    e'4
+                    f'4
+                    \f
+                }
+
+            >>> container = abjad.Container([segment_1, segment_2])
+            >>> text = format(container, 'lilypond:strict')
+            >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
+            >>> job = abjad.Job.broken_spanner_join_job(text)
+            >>> text = job()
+            >>> lines = text.split('\n')
+            >>> lilypond_file = abjad.LilyPondFile.new(lines)
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> print(text)
+                {
+                    \context Voice = "MainVoice"
+                    \with
+                    {
+                        \override DynamicLineSpanner.staff-padding = #4
+                    }
+                    {
+                        c'4
+                        d'4
+                        e'4
+                        f'4
+                        \<                                        %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        \p
+                    }
+                    \context Voice = "MainVoice"
+                    {
+                        c'4
+                    %%% \<                                        %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                        d'4
+                        e'4
+                        f'4
+                        \f
+                    }
+                }
+
+        ..  container:: example
+
+            Cross-segment example #3 (many-to-one):
+
+            >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> hairpin = abjad.Hairpin()
+            >>> abjad.attach(hairpin, segment_1[:], right_broken='<')
+            >>> hairpin.attach(abjad.Dynamic('p'), hairpin[0])
+            >>> abjad.override(segment_1).dynamic_line_spanner.staff_padding = 4
+            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_1, strict=50)
+                \context Voice = "MainVoice"
+                \with
+                {
+                    \override DynamicLineSpanner.staff-padding = #4
+                }
+                {
+                    c'4
+                    \<
+                    \p
+                    d'4
+                    e'4
+                    f'4
+                    \!                                            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                }
+
+            >>> segment_2 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> hairpin = abjad.Hairpin()
+            >>> abjad.attach(hairpin, segment_2[:1], left_broken='<')
+            >>> hairpin.attach(abjad.Dynamic('f'), hairpin[0])
+            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_2, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    c'4
+                    \f
+                    d'4
+                    e'4
+                    f'4
+                }
+
+            >>> container = abjad.Container([segment_1, segment_2])
+            >>> text = format(container, 'lilypond:strict')
+            >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
+            >>> job = abjad.Job.broken_spanner_join_job(text)
+            >>> text = job()
+            >>> lines = text.split('\n')
+            >>> lilypond_file = abjad.LilyPondFile.new(lines)
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> print(text)
+                {
+                    \context Voice = "MainVoice"
+                    \with
+                    {
+                        \override DynamicLineSpanner.staff-padding = #4
+                    }
+                    {
+                        c'4
+                        \<
+                        \p
+                        d'4
+                        e'4
+                        f'4
+                    %%% \!                                        %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    }
+                    \context Voice = "MainVoice"
+                    {
+                        c'4
+                        \f
+                        d'4
+                        e'4
+                        f'4
+                    }
+                }
+
+        ..  container:: example
+
+            Cross-segment example #4 (many-to-many):
+
+            >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> hairpin = abjad.Hairpin()
+            >>> abjad.attach(hairpin, segment_1[:], right_broken='<')
+            >>> hairpin.attach(abjad.Dynamic('p'), hairpin[0])
+            >>> abjad.override(segment_1).dynamic_line_spanner.staff_padding = 4
+            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_1, strict=50)
+                \context Voice = "MainVoice"
+                \with
+                {
+                    \override DynamicLineSpanner.staff-padding = #4
+                }
+                {
+                    c'4
+                    \<
+                    \p
+                    d'4
+                    e'4
+                    f'4
+                    \!                                            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                }
+
+            >>> segment_2 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> hairpin = abjad.Hairpin()
+            >>> abjad.attach(hairpin, segment_2[:], left_broken='<')
+            >>> hairpin.attach(abjad.Dynamic('f'), hairpin[-1])
+            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_2, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    c'4
+                    \<                                            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    d'4
+                    e'4
+                    f'4
+                    \f
+                }
+
+            >>> container = abjad.Container([segment_1, segment_2])
+            >>> text = format(container, 'lilypond:strict')
+            >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
+            >>> job = abjad.Job.broken_spanner_join_job(text)
+            >>> text = job()
+            >>> lines = text.split('\n')
+            >>> lilypond_file = abjad.LilyPondFile.new(lines)
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> print(text)
+                {
+                    \context Voice = "MainVoice"
+                    \with
+                    {
+                        \override DynamicLineSpanner.staff-padding = #4
+                    }
+                    {
+                        c'4
+                        \<
+                        \p
+                        d'4
+                        e'4
+                        f'4
+                    %%% \!                                        %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    }
+                    \context Voice = "MainVoice"
+                    {
+                        c'4
+                    %%% \<                                        %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                        d'4
+                        e'4
+                        f'4
+                        \f
+                    }
+                }
+
+        ..  container:: example
+
+            Cross-segment example #5 (one-to-one dal niente)
+
+            >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> hairpin = abjad.Hairpin()
+            >>> abjad.attach(hairpin, segment_1[-1:], right_broken='<')
+            >>> hairpin.attach(abjad.Dynamic('niente'), hairpin[-1])
+            >>> abjad.override(segment_1).dynamic_line_spanner.staff_padding = 4
+            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_1, strict=50)
+                \context Voice = "MainVoice"
+                \with
+                {
+                    \override DynamicLineSpanner.staff-padding = #4
+                }
+                {
+                    c'4
+                    d'4
+                    e'4
+                    \once \override Hairpin.circled-tip = ##t
+                    f'4
+                %@% \<                                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                }
+
+            >>> segment_2 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> hairpin = abjad.Hairpin()
+            >>> abjad.attach(hairpin, segment_2[:1], left_broken='<')
+            >>> hairpin.attach(abjad.Dynamic('p'), hairpin[0])
+            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_2, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    c'4
+                    \p
+                    d'4
+                    e'4
+                    f'4
+                }
+
+            >>> container = abjad.Container([segment_1, segment_2])
+            >>> text = format(container, 'lilypond:strict')
+            >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
+            >>> job = abjad.Job.broken_spanner_join_job(text)
+            >>> text = job()
+            >>> lines = text.split('\n')
+            >>> lilypond_file = abjad.LilyPondFile.new(lines)
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> print(text)
+                {
+                    \context Voice = "MainVoice"
+                    \with
+                    {
+                        \override DynamicLineSpanner.staff-padding = #4
+                    }
+                    {
+                        c'4
+                        d'4
+                        e'4
+                        \once \override Hairpin.circled-tip = ##t
+                        f'4
+                        \<                                        %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                    }
+                    \context Voice = "MainVoice"
+                    {
+                        c'4
+                        \p
+                        d'4
+                        e'4
+                        f'4
+                    }
+                }
+
+        ..  container:: example
+
+            Cross-segment example #6 (one-to-many dal niente)
+
+            >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> hairpin = abjad.Hairpin()
+            >>> abjad.attach(hairpin, segment_1[-1:], right_broken='<')
+            >>> hairpin.attach(abjad.Dynamic('niente'), hairpin[-1])
+            >>> abjad.override(segment_1).dynamic_line_spanner.staff_padding = 4
+            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_1, strict=50)
+                \context Voice = "MainVoice"
+                \with
+                {
+                    \override DynamicLineSpanner.staff-padding = #4
+                }
+                {
+                    c'4
+                    d'4
+                    e'4
+                    \once \override Hairpin.circled-tip = ##t
+                    f'4
+                %@% \<                                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                }
+
+            >>> segment_2 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> hairpin = abjad.Hairpin()
+            >>> abjad.attach(hairpin, segment_2[:], left_broken='<')
+            >>> hairpin.attach(abjad.Dynamic('p'), hairpin[-1])
+            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_2, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    c'4
+                    \<                                            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    d'4
+                    e'4
+                    f'4
+                    \p
+                }
+
+            >>> container = abjad.Container([segment_1, segment_2])
+            >>> text = format(container, 'lilypond:strict')
+            >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
+            >>> job = abjad.Job.broken_spanner_join_job(text)
+            >>> text = job()
+            >>> lines = text.split('\n')
+            >>> lilypond_file = abjad.LilyPondFile.new(lines)
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> print(text)
+                {
+                    \context Voice = "MainVoice"
+                    \with
+                    {
+                        \override DynamicLineSpanner.staff-padding = #4
+                    }
+                    {
+                        c'4
+                        d'4
+                        e'4
+                        \once \override Hairpin.circled-tip = ##t
+                        f'4
+                        \<                                        %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                    }
+                    \context Voice = "MainVoice"
+                    {
+                        c'4
+                    %%% \<                                        %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                        d'4
+                        e'4
+                        f'4
+                        \p
+                    }
+                }
+
+        ..  container:: example
+
+            Cross-segment example #7 (many-to-one dal niente)
+
+            >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> hairpin = abjad.Hairpin()
+            >>> abjad.attach(hairpin, segment_1[:], right_broken='<')
+            >>> hairpin.attach(abjad.Dynamic('niente'), hairpin[0])
+            >>> abjad.override(segment_1).dynamic_line_spanner.staff_padding = 4
+            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_1, strict=50)
+                \context Voice = "MainVoice"
+                \with
+                {
+                    \override DynamicLineSpanner.staff-padding = #4
+                }
+                {
+                    \once \override Hairpin.circled-tip = ##t
+                    c'4
+                    \<
+                    d'4
+                    e'4
+                    f'4
+                    \!                                            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                }
+
+            >>> segment_2 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> hairpin = abjad.Hairpin()
+            >>> abjad.attach(hairpin, segment_2[:1], left_broken='<')
+            >>> hairpin.attach(abjad.Dynamic('p'), hairpin[0])
+            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_2, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    c'4
+                    \p
+                    d'4
+                    e'4
+                    f'4
+                }
+
+            >>> container = abjad.Container([segment_1, segment_2])
+            >>> text = format(container, 'lilypond:strict')
+            >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
+            >>> job = abjad.Job.broken_spanner_join_job(text)
+            >>> text = job()
+            >>> lines = text.split('\n')
+            >>> lilypond_file = abjad.LilyPondFile.new(lines)
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> print(text)
+                {
+                    \context Voice = "MainVoice"
+                    \with
+                    {
+                        \override DynamicLineSpanner.staff-padding = #4
+                    }
+                    {
+                        \once \override Hairpin.circled-tip = ##t
+                        c'4
+                        \<
+                        d'4
+                        e'4
+                        f'4
+                    %%% \!                                        %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    }
+                    \context Voice = "MainVoice"
+                    {
+                        c'4
+                        \p
+                        d'4
+                        e'4
+                        f'4
+                    }
+                }
+
+        ..  container:: example
+
+            Cross-segment example #8 (many-to-many dal niente)
+
+            >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> hairpin = abjad.Hairpin()
+            >>> abjad.attach(hairpin, segment_1[:], right_broken='<')
+            >>> hairpin.attach(abjad.Dynamic('niente'), hairpin[0])
+            >>> abjad.override(segment_1).dynamic_line_spanner.staff_padding = 4
+            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_1, strict=50)
+                \context Voice = "MainVoice"
+                \with
+                {
+                    \override DynamicLineSpanner.staff-padding = #4
+                }
+                {
+                    \once \override Hairpin.circled-tip = ##t
+                    c'4
+                    \<
+                    d'4
+                    e'4
+                    f'4
+                    \!                                            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                }
+
+            >>> segment_2 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> hairpin = abjad.Hairpin()
+            >>> abjad.attach(hairpin, segment_2[:], left_broken='<')
+            >>> hairpin.attach(abjad.Dynamic('p'), hairpin[-1])
+            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_2, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    c'4
+                    \<                                            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    d'4
+                    e'4
+                    f'4
+                    \p
+                }
+
+            >>> container = abjad.Container([segment_1, segment_2])
+            >>> text = format(container, 'lilypond:strict')
+            >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
+            >>> job = abjad.Job.broken_spanner_join_job(text)
+            >>> text = job()
+            >>> lines = text.split('\n')
+            >>> lilypond_file = abjad.LilyPondFile.new(lines)
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> print(text)
+                {
+                    \context Voice = "MainVoice"
+                    \with
+                    {
+                        \override DynamicLineSpanner.staff-padding = #4
+                    }
+                    {
+                        \once \override Hairpin.circled-tip = ##t
+                        c'4
+                        \<
+                        d'4
+                        e'4
+                        f'4
+                    %%% \!                                        %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    }
+                    \context Voice = "MainVoice"
+                    {
+                        c'4
+                    %%% \<                                        %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                        d'4
+                        e'4
+                        f'4
+                        \p
+                    }
+                }
+
+        ..  container:: example
+
+            Cross-segment example #9 (one-to-one al niente)
+
+            >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> hairpin = abjad.Hairpin()
+            >>> abjad.attach(hairpin, segment_1[-1:], right_broken='niente')
+            >>> hairpin.attach(abjad.Dynamic('p'), hairpin[-1])
+            >>> abjad.override(segment_1).dynamic_line_spanner.staff_padding = 4
+            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_1, strict=50)
+                \context Voice = "MainVoice"
+                \with
+                {
+                    \override DynamicLineSpanner.staff-padding = #4
+                }
+                {
+                    c'4
+                    d'4
+                    e'4
+                    \once \override Hairpin.circled-tip = ##t
+                    f'4
+                %@% \>                                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                    \p
+                }
+
+            >>> segment_2 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> hairpin = abjad.Hairpin()
+            >>> abjad.attach(hairpin, segment_2[:1], left_broken='>')
+            >>> hairpin.attach(abjad.Dynamic('niente'), hairpin[0])
+            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_2, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    c'4
+                    \!
+                    d'4
+                    e'4
+                    f'4
+                }
+
+            >>> container = abjad.Container([segment_1, segment_2])
+            >>> text = format(container, 'lilypond:strict')
+            >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
+            >>> job = abjad.Job.broken_spanner_join_job(text)
+            >>> text = job()
+            >>> lines = text.split('\n')
+            >>> lilypond_file = abjad.LilyPondFile.new(lines)
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> print(text)
+                {
+                    \context Voice = "MainVoice"
+                    \with
+                    {
+                        \override DynamicLineSpanner.staff-padding = #4
+                    }
+                    {
+                        c'4
+                        d'4
+                        e'4
+                        \once \override Hairpin.circled-tip = ##t
+                        f'4
+                        \>                                        %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        \p
+                    }
+                    \context Voice = "MainVoice"
+                    {
+                        c'4
+                        \!
+                        d'4
+                        e'4
+                        f'4
+                    }
+                }
+
+        ..  container:: example
+
+            Cross-segment example #10 (one-to-many al niente)
+
+            >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> hairpin = abjad.Hairpin()
+            >>> abjad.attach(hairpin, segment_1[-1:], right_broken='niente')
+            >>> hairpin.attach(abjad.Dynamic('p'), hairpin[-1])
+            >>> abjad.override(segment_1).dynamic_line_spanner.staff_padding = 4
+            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_1, strict=50)
+                \context Voice = "MainVoice"
+                \with
+                {
+                    \override DynamicLineSpanner.staff-padding = #4
+                }
+                {
+                    c'4
+                    d'4
+                    e'4
+                    \once \override Hairpin.circled-tip = ##t
+                    f'4
+                %@% \>                                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                    \p
+                }
+
+            >>> segment_2 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> hairpin = abjad.Hairpin()
+            >>> abjad.attach(hairpin, segment_2[:], left_broken='>')
+            >>> hairpin.attach(abjad.Dynamic('niente'), hairpin[-1])
+            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_2, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    c'4
+                    \>                                            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    d'4
+                    e'4
+                    f'4
+                    \!
+                }
+
+            >>> container = abjad.Container([segment_1, segment_2])
+            >>> text = format(container, 'lilypond:strict')
+            >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
+            >>> job = abjad.Job.broken_spanner_join_job(text)
+            >>> text = job()
+            >>> lines = text.split('\n')
+            >>> lilypond_file = abjad.LilyPondFile.new(lines)
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> print(text)
+                {
+                    \context Voice = "MainVoice"
+                    \with
+                    {
+                        \override DynamicLineSpanner.staff-padding = #4
+                    }
+                    {
+                        c'4
+                        d'4
+                        e'4
+                        \once \override Hairpin.circled-tip = ##t
+                        f'4
+                        \>                                        %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        \p
+                    }
+                    \context Voice = "MainVoice"
+                    {
+                        c'4
+                    %%% \>                                        %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                        d'4
+                        e'4
+                        f'4
+                        \!
+                    }
+                }
+
+        ..  container:: example
+
+            Cross-segment example #11 (many-to-one al niente)
+
+            >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> hairpin = abjad.Hairpin()
+            >>> abjad.attach(hairpin, segment_1[:], right_broken='niente')
+            >>> hairpin.attach(abjad.Dynamic('p'), hairpin[0])
+            >>> abjad.override(segment_1).dynamic_line_spanner.staff_padding = 4
+            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_1, strict=50)
+                \context Voice = "MainVoice"
+                \with
+                {
+                    \override DynamicLineSpanner.staff-padding = #4
+                }
+                {
+                    \once \override Hairpin.circled-tip = ##t
+                    c'4
+                    \>
+                    \p
+                    \once \override Hairpin.circled-tip = ##t
+                    d'4
+                    \once \override Hairpin.circled-tip = ##t
+                    e'4
+                    \once \override Hairpin.circled-tip = ##t
+                    f'4
+                    \!                                            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                }
+
+            >>> segment_2 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> hairpin = abjad.Hairpin()
+            >>> abjad.attach(hairpin, segment_2[:1], left_broken='>')
+            >>> hairpin.attach(abjad.Dynamic('niente'), hairpin[-1])
+            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_2, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    c'4
+                    \!
+                    d'4
+                    e'4
+                    f'4
+                }
+
+            >>> container = abjad.Container([segment_1, segment_2])
+            >>> text = format(container, 'lilypond:strict')
+            >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
+            >>> job = abjad.Job.broken_spanner_join_job(text)
+            >>> text = job()
+            >>> lines = text.split('\n')
+            >>> lilypond_file = abjad.LilyPondFile.new(lines)
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> print(text)
+                {
+                    \context Voice = "MainVoice"
+                    \with
+                    {
+                        \override DynamicLineSpanner.staff-padding = #4
+                    }
+                    {
+                        \once \override Hairpin.circled-tip = ##t
+                        c'4
+                        \>
+                        \p
+                        \once \override Hairpin.circled-tip = ##t
+                        d'4
+                        \once \override Hairpin.circled-tip = ##t
+                        e'4
+                        \once \override Hairpin.circled-tip = ##t
+                        f'4
+                    %%% \!                                        %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    }
+                    \context Voice = "MainVoice"
+                    {
+                        c'4
+                        \!
+                        d'4
+                        e'4
+                        f'4
+                    }
+                }
+
+        ..  container:: example
+
+            Cross-segment example #12 (many-to-many al niente)
+
+            >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> hairpin = abjad.Hairpin()
+            >>> abjad.attach(hairpin, segment_1[:], right_broken='niente')
+            >>> hairpin.attach(abjad.Dynamic('p'), hairpin[0])
+            >>> abjad.override(segment_1).dynamic_line_spanner.staff_padding = 4
+            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_1, strict=50)
+                \context Voice = "MainVoice"
+                \with
+                {
+                    \override DynamicLineSpanner.staff-padding = #4
+                }
+                {
+                    \once \override Hairpin.circled-tip = ##t
+                    c'4
+                    \>
+                    \p
+                    \once \override Hairpin.circled-tip = ##t
+                    d'4
+                    \once \override Hairpin.circled-tip = ##t
+                    e'4
+                    \once \override Hairpin.circled-tip = ##t
+                    f'4
+                    \!                                            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                }
+
+            >>> segment_2 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> hairpin = abjad.Hairpin()
+            >>> abjad.attach(hairpin, segment_2[:], left_broken='>')
+            >>> hairpin.attach(abjad.Dynamic('niente'), hairpin[-1])
+            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_2, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    c'4
+                    \>                                            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    d'4
+                    e'4
+                    f'4
+                    \!
+                }
+
+            >>> container = abjad.Container([segment_1, segment_2])
+            >>> text = format(container, 'lilypond:strict')
+            >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
+            >>> job = abjad.Job.broken_spanner_join_job(text)
+            >>> text = job()
+            >>> lines = text.split('\n')
+            >>> lilypond_file = abjad.LilyPondFile.new(lines)
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> print(text)
+                {
+                    \context Voice = "MainVoice"
+                    \with
+                    {
+                        \override DynamicLineSpanner.staff-padding = #4
+                    }
+                    {
+                        \once \override Hairpin.circled-tip = ##t
+                        c'4
+                        \>
+                        \p
+                        \once \override Hairpin.circled-tip = ##t
+                        d'4
+                        \once \override Hairpin.circled-tip = ##t
+                        e'4
+                        \once \override Hairpin.circled-tip = ##t
+                        f'4
+                    %%% \!                                        %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    }
+                    \context Voice = "MainVoice"
+                    {
+                        c'4
+                    %%% \>                                        %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                        d'4
+                        e'4
+                        f'4
+                        \!
+                    }
+                }
+
+        '''
+        pass
+
     @property
     def descriptor(self):
         r'''Gets descriptor.
@@ -1097,7 +2007,7 @@ class Hairpin(Spanner):
 
     ### PUBLIC METHODS ###
 
-    def attach(self, indicator, leaf, deactivate=None, site=None, tag=None):
+    def attach(self, indicator, leaf, deactivate=None, tag=None, wrapper=None):
         r'''Attaches `indicator` to `leaf` in spanner.
 
         ..  container:: example
@@ -1295,13 +2205,12 @@ class Hairpin(Spanner):
             (Note("d'8"), Dynamic('niente', direction=Down))
             (Note("c'8"), Dynamic('f'))
 
-        Returns none.
         '''
         superclass = super(Hairpin, self)
-        superclass._attach_piecewise(
+        return superclass._attach_piecewise(
             indicator,
             leaf,
             deactivate=deactivate,
-            site=site,
             tag=tag,
+            wrapper=wrapper,
             )

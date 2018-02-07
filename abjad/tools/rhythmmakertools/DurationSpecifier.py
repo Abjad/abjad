@@ -3,9 +3,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 class DurationSpecifier(AbjadValueObject):
     r'''Duration specifier.
-
-    >>> from abjad.tools import rhythmmakertools as rhythmos
-
     '''
 
     ### CLASS VARIABLES ###

@@ -5,8 +5,6 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 class EvenDivisionRhythmMaker(RhythmMaker):
     r'''Even division rhythm-maker.
 
-    >>> from abjad.tools import rhythmmakertools as rhythmos
-
     Object model of a partially evaluated function that accepts a (possibly
     empty) list of divisions as input and returns a list of selections as
     output (structured one selection per input division).
@@ -69,7 +67,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, state=None):
+    def __call__(self, divisions, previous_state=None):
         r'''Calls even division rhythm-maker on `divisions`.
 
         ..  container:: example
@@ -230,7 +228,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         Returns list of of selections.
         '''
         superclass = super(EvenDivisionRhythmMaker, self)
-        return superclass.__call__(divisions, state=state)
+        return superclass.__call__(divisions, previous_state=previous_state)
 
     ### PRIVATE METHODS ###
 

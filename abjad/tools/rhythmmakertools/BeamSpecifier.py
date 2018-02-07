@@ -4,8 +4,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class BeamSpecifier(AbjadValueObject):
     r'''Beam specifier.
 
-    >>> from abjad.tools import rhythmmakertools as rhythmos
-
     ..  container:: example
 
         Beams each division by default:

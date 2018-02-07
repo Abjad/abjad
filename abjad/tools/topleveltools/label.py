@@ -1,4 +1,4 @@
-def label(client=None, deactivate=None, site=None, tag=None):
+def label(client=None, deactivate=None, tag=None):
     r'''Makes label agent or label expression.
 
     ..  container:: example
@@ -85,9 +85,8 @@ def label(client=None, deactivate=None, site=None, tag=None):
         return abjad.Label(
             client=client,
             deactivate=deactivate,
-            site=site,
             tag=tag,
             )
     expression = abjad.Expression()
-    expression = expression.label(site=site, tag=tag)
+    expression = expression.label(tag=tag)
     return expression

@@ -99,43 +99,15 @@ class Note(Leaf):
 
     ### PRIVATE METHODS ###
 
-    def _divide(self, pitch=None):
-        import abjad
-        pitch = pitch or abjad.NamedPitch('b', 3)
-        pitch = abjad.NamedPitch(pitch)
-        treble = copy.copy(self)
-        bass = copy.copy(self)
-        abjad.detach(abjad.Markup, treble)
-        abjad.detach(abjad.Markup, bass)
-        if treble.written_pitch < pitch:
-            treble = abjad.Rest(treble)
-        if pitch <= bass.written_pitch:
-            bass = abjad.Rest(bass)
-        up_markup = self._get_markup(direction=abjad.Up)
-        up_markup = [copy.copy(markup) for markup in up_markup]
-        down_markup = self._get_markup(direction=abjad.Down)
-        down_markup = [copy.copy(markup) for markup in down_markup]
-        for markup in up_markup:
-            markup(treble)
-        for markup in down_markup:
-            markup(bass)
-        return treble, bass
-
     def _get_body(self):
-        result = []
-        if self.note_head is not None and self.note_head.is_parenthesized:
-            result.append(r'\parenthesize')
-        body = ''
-        if self.written_pitch:
-            body += str(self.written_pitch)
-            if self.note_head.is_forced:
-                body += '!'
-            if self.note_head.is_cautionary:
-                body += '?'
-        body += self._get_formatted_duration()
-        result.append(body)
-        result = ['\n'.join(result)]
-        return result
+        formatted_duration = self._get_formatted_duration()
+        if self.note_head is not None:
+            string = self.note_head._get_lilypond_format(
+                formatted_duration=formatted_duration
+                )
+        else:
+            string = formatted_duration
+        return [string]
 
     def _get_compact_representation(self):
         return self._get_body()[0]

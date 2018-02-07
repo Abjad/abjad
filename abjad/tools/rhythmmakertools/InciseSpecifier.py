@@ -4,8 +4,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class InciseSpecifier(AbjadValueObject):
     r'''Incise specifier.
 
-    >>> from abjad.tools import rhythmmakertools as rhythmos
-
     ..  container:: example
 
         Specifies one sixteenth rest cut out of the beginning of every

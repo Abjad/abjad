@@ -22,11 +22,8 @@ class Tags(AbjadValueObject):
 
     ..  container:: example
 
-        >>> abjad.tags.RIGHT_BROKEN_TIE
-        'RIGHT_BROKEN_TIE'
-
-        >>> abjad.tags.LEFT_BROKEN_REPEAT_TIE
-        'LEFT_BROKEN_REPEAT_TIE'
+        >>> abjad.tags.SHOW_TO_JOIN_BROKEN_SPANNERS
+        'SHOW_TO_JOIN_BROKEN_SPANNERS'
 
     '''
 
@@ -36,6 +33,12 @@ class Tags(AbjadValueObject):
         )
 
     _known_tags: tuple = (
+
+        ### BROKEN SPANNERS ###
+
+        'HIDE_TO_JOIN_BROKEN_SPANNERS',
+        'SHOW_TO_JOIN_BROKEN_SPANNERS',
+        'RIGHT_BROKEN_BEAM', # used in figure-maker
 
         ### CLEFS ###
 
@@ -64,9 +67,11 @@ class Tags(AbjadValueObject):
         'BREAK',
         'EMPTY_START_BAR',
         'EOL_FERMATA',
+        'FERMATA_MEASURE',
         'SHIFTED_CLEF',
         'SPACING',
         'SPACING_OVERRIDE',
+        'TWO_VOICE',
 
         ### DOCUMENT MARKUP ###
 
@@ -81,6 +86,9 @@ class Tags(AbjadValueObject):
         ### DOCUMENT TYPES ###
 
         'BUILD',
+        'FIRST_SEGMENT_DEFAULT',
+        'PARTS',
+        'SCORE',
         'SEGMENT',
 
         ### DYNAMICS ###
@@ -99,6 +107,12 @@ class Tags(AbjadValueObject):
         'REDUNDANT_DYNAMIC_COLOR',
         'REDUNDANT_DYNAMIC_COLOR_CANCELLATION',
         'REDUNDANT_DYNAMIC_REDRAW_COLOR',
+
+        ### FIGURES ###
+
+        'FORESHADOW',
+        'INCOMPLETE',
+        'RECOLLECTION',
 
         ### INSTRUMENTS ###
 
@@ -125,19 +139,6 @@ class Tags(AbjadValueObject):
         'REDUNDANT_INSTRUMENT_COLOR',
         'REDRAWN_REDUNDANT_INSTRUMENT',
         'REDRAWN_REDUNDANT_INSTRUMENT_COLOR',
-
-        ### LEFT-BROKEN SPANNERS ###
-
-        'LEFT_BROKEN_BEAM',
-        'LEFT_BROKEN_GLISSANDO',
-        'LEFT_BROKEN_HAIRPIN_START',
-        'LEFT_BROKEN_METRONOME_MARK_SPANNER',
-        'LEFT_BROKEN_OCTAVATION_SPANNER',
-        'LEFT_BROKEN_PHRASING_SLUR',
-        'LEFT_BROKEN_REPEAT_TIE',
-        'LEFT_BROKEN_SLUR',
-        'LEFT_BROKEN_TEXT_SPANNER',
-        'LEFT_BROKEN_TRILL',
 
         ### MARGIN MARKUP ###
 
@@ -185,19 +186,6 @@ class Tags(AbjadValueObject):
         'NOT_YET_PITCHED',
         'NOT_YET_REGISTERED',
 
-        ### RIGHT-BROKEN SPANNERS ###
-
-        'RIGHT_BROKEN_BEAM',
-        'RIGHT_BROKEN_GLISSANDO',
-        'RIGHT_BROKEN_HAIRPIN_STOP',
-        'RIGHT_BROKEN_METRONOME_MARK_SPANNER',
-        'RIGHT_BROKEN_OCTAVATION_SPANNER',
-        'RIGHT_BROKEN_PHRASING_SLUR',
-        'RIGHT_BROKEN_SLUR',
-        'RIGHT_BROKEN_TIE',
-        'RIGHT_BROKEN_TEXT_SPANNER',
-        'RIGHT_BROKEN_TRILL',
-
         ### SPACING SECTION ###
 
         'EXPLICIT_SPACING_SECTION',
@@ -233,9 +221,14 @@ class Tags(AbjadValueObject):
 
         ### ZZZ: OTHER ###
 
+        'LEFT_BROKEN_REPEAT_TIE_TO',
+        'PITCH',
         'REMOVE_ALL_EMPTY_STAVES',
         'REPEAT_TIE',
+        'RHYTHM',
+        'RIGHT_BROKEN_TIE_FROM',
         'SOUNDS_DURING_SEGMENT',
+        'TEMPORARY_CONTAINER',
         'TIE_FROM',
         'TIE_TO',
 
@@ -275,7 +268,7 @@ class Tags(AbjadValueObject):
 
         ..  container:: example
 
-            Ignores ``path`` when ``path`` is a segment:
+            Segment:
 
             >>> path = abjad.Path('etude', 'segments', '_')
             >>> for tag in abjad.tags.clef_color_tags(path=path):
@@ -292,7 +285,7 @@ class Tags(AbjadValueObject):
 
         ..  container:: example
 
-            Adds REAPPLIED_CLEF when ``path`` is NOT a segment:
+            Build:
 
             >>> path = abjad.Path('etude', 'builds', 'letter-score')
             >>> for tag in abjad.tags.clef_color_tags(path=path):
@@ -350,114 +343,6 @@ class Tags(AbjadValueObject):
             self.REDUNDANT_DYNAMIC_COLOR,
             self.REDUNDANT_DYNAMIC_REDRAW_COLOR,
             ]
-
-    def get_document_tag(self, string: str) -> str:
-        r'''Gets document tag in ``string``.
-
-        ..  container:: example
-
-            >>> abjad.tags.get_document_tag('') is None
-            True
-
-            >>> abjad.tags.get_document_tag('FOO') is None
-            True
-
-            >>> abjad.tags.get_document_tag('+SEGMENT')
-            '+SEGMENT'
-
-            >>> abjad.tags.get_document_tag('+SEGMENT:FOO')
-            '+SEGMENT'
-
-            >>> abjad.tags.get_document_tag('+SCORE:+SEGMENT')
-            '+SCORE:+SEGMENT'
-
-        '''
-        if not isinstance(string, str):
-            return None
-        tags = [_ for _ in string.split(':') if _.startswith('+')]
-        if tags:
-            return ':'.join(tags)
-        else:
-            return None
-
-    def has_default_tag(self, string: str) -> bool:
-        r'''Is true when ``string`` has default tag.
-
-        ..  container:: example
-
-            >>> abjad.tags.has_persistence_tag('')
-            False
-
-            >>> abjad.tags.has_persistence_tag('FOO')
-            False
-
-            >>> abjad.tags.has_persistence_tag('FOO:DEFAULT_CLEF')
-            True
-
-            >>> abjad.tags.has_persistence_tag('DEFAULT_CLEF')
-            True
-
-        '''
-        if not isinstance(string, str):
-            return False
-        words = string.split(':')
-        for word in words:
-            if word.startswith('DEFAULT'):
-                return True
-        return False
-
-    def has_persistence_tag(self, string: str) -> bool:
-        r'''Is true when ``string`` has persistence tag.
-
-        ..  container:: example
-
-            >>> abjad.tags.has_persistence_tag('')
-            False
-
-            >>> abjad.tags.has_persistence_tag('FOO')
-            False
-
-            >>> abjad.tags.has_persistence_tag('FOO:DEFAULT_CLEF')
-            True
-
-            >>> abjad.tags.has_persistence_tag('DEFAULT_CLEF')
-            True
-
-        '''
-        if not isinstance(string, str):
-            return False
-        persistent_indicator_tags = self.persistent_indicator_tags()
-        words = string.split(':')
-        for word in words:
-            if word in persistent_indicator_tags:
-                return True
-        return False
-
-    def has_reapplied_tag(self, string: str) -> bool:
-        r'''Is true when ``string`` has reapplied tag.
-
-        ..  container:: example
-
-            >>> abjad.tags.has_persistence_tag('')
-            False
-
-            >>> abjad.tags.has_persistence_tag('FOO')
-            False
-
-            >>> abjad.tags.has_persistence_tag('FOO:REAPPLIED_CLEF')
-            True
-
-            >>> abjad.tags.has_persistence_tag('REAPPLIED_CLEF')
-            True
-
-        '''
-        if not isinstance(string, str):
-            return False
-        words = string.split(':')
-        for word in words:
-            if word.startswith('REAPPLIED'):
-                return True
-        return False
 
     def instrument_color_tags(self, path=None) -> List[str]:
         r'''Gets instrument color tags.
@@ -590,6 +475,7 @@ class Tags(AbjadValueObject):
             'EXPLICIT_METRONOME_MARK'
             'REDUNDANT_METRONOME_MARK'
 
+        Ignores ``path``.
         '''
         return [
             self.EXPLICIT_METRONOME_MARK,
@@ -684,6 +570,8 @@ class Tags(AbjadValueObject):
 
         ..  container:: example
 
+            Segment:
+
             >>> path = abjad.Path('etude', 'segments', '_')
             >>> tags = abjad.tags.persistent_indicator_color_expression_tags(path)
             >>> for tag in tags:
@@ -738,6 +626,67 @@ class Tags(AbjadValueObject):
             'REAPPLIED_TIME_SIGNATURE_COLOR'
             'REDUNDANT_TIME_SIGNATURE_COLOR'
 
+        ..  container:: example
+
+            Build:
+
+            >>> path = abjad.Path('etude', 'builds', 'letter-score')
+            >>> tags = abjad.tags.persistent_indicator_color_expression_tags(path)
+            >>> for tag in tags:
+            ...     tag
+            ...
+            'DEFAULT_CLEF_COLOR'
+            'DEFAULT_CLEF_REDRAW_COLOR'
+            'EXPLICIT_CLEF_COLOR'
+            'EXPLICIT_CLEF_REDRAW_COLOR'
+            'REAPPLIED_CLEF_COLOR'
+            'REAPPLIED_CLEF_REDRAW_COLOR'
+            'REDUNDANT_CLEF_COLOR'
+            'REDUNDANT_CLEF_REDRAW_COLOR'
+            'REAPPLIED_CLEF'
+            'EXPLICIT_DYNAMIC_COLOR'
+            'EXPLICIT_DYNAMIC_REDRAW_COLOR'
+            'REAPPLIED_DYNAMIC'
+            'REAPPLIED_DYNAMIC_COLOR'
+            'REAPPLIED_DYNAMIC_REDRAW_COLOR'
+            'REDUNDANT_DYNAMIC_COLOR'
+            'REDUNDANT_DYNAMIC_REDRAW_COLOR'
+            'DEFAULT_INSTRUMENT_ALERT'
+            'DEFAULT_INSTRUMENT_COLOR'
+            'REDRAWN_DEFAULT_INSTRUMENT_COLOR'
+            'EXPLICIT_INSTRUMENT_ALERT'
+            'EXPLICIT_INSTRUMENT_COLOR'
+            'REAPPLIED_INSTRUMENT_COLOR'
+            'REAPPLIED_INSTRUMENT_ALERT'
+            'REDRAWN_EXPLICIT_INSTRUMENT_COLOR'
+            'REDRAWN_REAPPLIED_INSTRUMENT_COLOR'
+            'REDUNDANT_INSTRUMENT_ALERT'
+            'REDUNDANT_INSTRUMENT_COLOR'
+            'REDRAWN_REDUNDANT_INSTRUMENT_COLOR'
+            'DEFAULT_MARGIN_MARKUP_ALERT'
+            'DEFAULT_MARGIN_MARKUP_COLOR'
+            'REDRAWN_DEFAULT_MARGIN_MARKUP_COLOR'
+            'EXPLICIT_MARGIN_MARKUP_ALERT'
+            'EXPLICIT_MARGIN_MARKUP_COLOR'
+            'REAPPLIED_MARGIN_MARKUP_ALERT'
+            'REAPPLIED_MARGIN_MARKUP_COLOR'
+            'REDRAWN_EXPLICIT_MARGIN_MARKUP_COLOR'
+            'REDRAWN_REAPPLIED_MARGIN_MARKUP_COLOR'
+            'REDUNDANT_MARGIN_MARKUP_ALERT'
+            'REDUNDANT_MARGIN_MARKUP_COLOR'
+            'REDRAWN_REDUNDANT_MARGIN_MARKUP_COLOR'
+            'EXPLICIT_METRONOME_MARK_WITH_COLOR'
+            'REAPPLIED_METRONOME_MARK_WITH_COLOR'
+            'REDUNDANT_METRONOME_MARK_WITH_COLOR'
+            'EXPLICIT_STAFF_LINES_COLOR'
+            'REAPPLIED_STAFF_LINES_COLOR'
+            'REDUNDANT_STAFF_LINES_COLOR'
+            'REAPPLIED_STAFF_LINES'
+            'EXPLICIT_TIME_SIGNATURE_COLOR'
+            'REAPPLIED_TIME_SIGNATURE_COLOR'
+            'REDUNDANT_TIME_SIGNATURE_COLOR'
+            'REAPPLIED_TIME_SIGNATURE'
+
         '''
         tags: List[str] = []
         tags.extend(self.clef_color_tags(path))
@@ -766,7 +715,21 @@ class Tags(AbjadValueObject):
 
         ..  container:: example
 
+            Segment:
+
             >>> path = abjad.Path('etude', 'segments', '_')
+            >>> tags = abjad.tags.persistent_indicator_color_suppression_tags(path)
+            >>> for tag in tags:
+            ...     tag
+            ...
+            'EXPLICIT_METRONOME_MARK'
+            'REDUNDANT_METRONOME_MARK'
+
+        ..  container:: example
+
+            Build:
+
+            >>> path = abjad.Path('etude', 'builds', 'letter-score')
             >>> tags = abjad.tags.persistent_indicator_color_suppression_tags(path)
             >>> for tag in tags:
             ...     tag
@@ -899,6 +862,8 @@ class Tags(AbjadValueObject):
 
         ..  container:: example
 
+            Segment:
+
             >>> path = abjad.Path('etude', 'segments', '_')
             >>> for tag in abjad.tags.staff_lines_color_tags(path):
             ...     tag
@@ -907,12 +872,28 @@ class Tags(AbjadValueObject):
             'REAPPLIED_STAFF_LINES_COLOR'
             'REDUNDANT_STAFF_LINES_COLOR'
 
+        ..  container:: example
+
+            Build:
+
+            >>> path = abjad.Path('etude', 'builds', 'letter-score')
+            >>> for tag in abjad.tags.staff_lines_color_tags(path):
+            ...     tag
+            ...
+            'EXPLICIT_STAFF_LINES_COLOR'
+            'REAPPLIED_STAFF_LINES_COLOR'
+            'REDUNDANT_STAFF_LINES_COLOR'
+            'REAPPLIED_STAFF_LINES'
+
         '''
-        return [
+        tags = [
             self.EXPLICIT_STAFF_LINES_COLOR,
             self.REAPPLIED_STAFF_LINES_COLOR,
             self.REDUNDANT_STAFF_LINES_COLOR,
             ]
+        if path and not path.is_segment():
+            tags.append(self.REAPPLIED_STAFF_LINES)
+        return tags
 
     def time_signature_color_tags(self, path=None) -> List[str]:
         r'''Gets time signature color tags.
@@ -928,7 +909,21 @@ class Tags(AbjadValueObject):
 
         ..  container:: example
 
+            Segment:
+
             >>> path = abjad.Path('etude', 'segments', '_')
+            >>> for tag in abjad.tags.time_signature_color_tags():
+            ...     tag
+            ...
+            'EXPLICIT_TIME_SIGNATURE_COLOR'
+            'REAPPLIED_TIME_SIGNATURE_COLOR'
+            'REDUNDANT_TIME_SIGNATURE_COLOR'
+
+        ..  container:: example
+
+            Build:
+
+            >>> path = abjad.Path('etude', 'builds', 'letter-score')
             >>> for tag in abjad.tags.time_signature_color_tags():
             ...     tag
             ...

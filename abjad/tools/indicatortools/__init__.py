@@ -32,6 +32,7 @@ from .Ritardando import Ritardando
 from .Staccatissimo import Staccatissimo
 from .Staccato import Staccato
 from .StaffChange import StaffChange
+from .StartMarkup import StartMarkup
 from .StemTremolo import StemTremolo
 from .StringContactPoint import StringContactPoint
 from .StringNumber import StringNumber

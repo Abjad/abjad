@@ -158,7 +158,7 @@ class SlotContributions(AbjadObject):
         self._stem_tremolos = tuple(self.stem_tremolos)
         self._trill_pitches = tuple(self.trill_pitches)
 
-    def tag(self, tag, deactivate=None, site=None):
+    def tag(self, tag, deactivate=None):
         r'''Tags contributions.
         '''
         import abjad
@@ -166,61 +166,51 @@ class SlotContributions(AbjadObject):
             self.articulations,
             tag,
             deactivate,
-            site,
             )
         self._commands = abjad.LilyPondFormatManager.tag(
             self.commands,
             tag,
             deactivate,
-            site,
             )
         self._comments = abjad.LilyPondFormatManager.tag(
             self.comments,
             tag,
             deactivate,
-            site,
             )
         self._indicators = abjad.LilyPondFormatManager.tag(
             self.indicators,
             tag,
             deactivate,
-            site,
             )
         self._markup = abjad.LilyPondFormatManager.tag(
             self.markup,
             tag,
             deactivate,
-            site,
             )
         self._spanners = abjad.LilyPondFormatManager.tag(
             self.spanners,
             tag,
             deactivate,
-            site,
             )
         self._spanner_starts = abjad.LilyPondFormatManager.tag(
             self.spanner_starts,
             tag,
             deactivate,
-            site,
             )
         self._spanner_stops = abjad.LilyPondFormatManager.tag(
             self.spanner_stops,
             tag,
             deactivate,
-            site,
             )
         self._stem_tremolos = abjad.LilyPondFormatManager.tag(
             self.stem_tremolos,
             tag,
             deactivate,
-            site,
             )
         self._trill_pitches = abjad.LilyPondFormatManager.tag(
             self.trill_pitches,
             tag,
             deactivate,
-            site,
             )
 
     def update(self, slot_contributions):

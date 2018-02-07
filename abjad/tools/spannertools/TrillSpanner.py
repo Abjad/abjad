@@ -54,101 +54,6 @@ class TrillSpanner(Spanner):
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> trill = abjad.TrillSpanner()
         >>> abjad.attach(trill, staff[:1])
-        Traceback (most recent call last):
-            ...
-        Exception: TrillSpanner() attachment test fails for ...
-        <BLANKLINE>
-        Selection([Note("c'4")])
-
-
-    ..  container:: example
-
-        Trill spanners can be broken tagged for use across segment boundaries:
-
-        >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
-        >>> abjad.attach(abjad.TrillSpanner(), segment_1[:], right_broken=True)
-        >>> abjad.f(segment_1, strict=True)
-        \context Voice = "MainVoice"
-        {
-            c'4
-            \startTrillSpan
-            d'4
-            e'4
-            f'4
-            \stopTrillSpan %! RIGHT_BROKEN_TRILL
-        }
-
-        >>> abjad.show(segment_1) # doctest: +SKIP
-
-        >>> segment_2 = abjad.Voice("g'4 f'2 r4", name='MainVoice')
-        >>> abjad.attach(abjad.TrillSpanner(), segment_2[:], left_broken=True)
-        >>> abjad.f(segment_2, strict=True)
-        \context Voice = "MainVoice"
-        {
-            g'4
-            \startTrillSpan %! LEFT_BROKEN_TRILL
-            f'2
-            r4
-            \stopTrillSpan
-        }
-
-        >>> abjad.show(segment_2) # doctest: +SKIP
-
-        >>> container = abjad.Container([segment_1, segment_2])
-        >>> abjad.f(container, strict=True)
-        {
-            \context Voice = "MainVoice"
-            {
-                c'4
-                \startTrillSpan
-                d'4
-                e'4
-                f'4
-                \stopTrillSpan %! RIGHT_BROKEN_TRILL
-            }
-            \context Voice = "MainVoice"
-            {
-                g'4
-                \startTrillSpan %! LEFT_BROKEN_TRILL
-                f'2
-                r4
-                \stopTrillSpan
-            }
-        }
-
-        >>> abjad.show(container) # doctest: +SKIP
-
-        >>> text = format(container, 'lilypond:strict')
-        >>> text = abjad.LilyPondFormatManager.left_shift_tags(text)
-        >>> tags_ = [
-        ...     abjad.tags.LEFT_BROKEN_TRILL, abjad.tags.RIGHT_BROKEN_TRILL,
-        ...     ]
-        >>> match = lambda tags: set(tags) & set(tags_)
-        >>> text, count = abjad.deactivate(text, match)
-        >>> print(text)
-        {
-            \context Voice = "MainVoice"
-            {
-                c'4
-                \startTrillSpan
-                d'4
-                e'4
-                f'4
-            %%% \stopTrillSpan %! RIGHT_BROKEN_TRILL
-            }
-            \context Voice = "MainVoice"
-            {
-                g'4
-            %%% \startTrillSpan %! LEFT_BROKEN_TRILL
-                f'2
-                r4
-                \stopTrillSpan
-            }
-        }
-
-        >>> lines = text.split('\n')
-        >>> lilypond_file = abjad.LilyPondFile.new(lines)
-        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
     ..  container:: example
 
@@ -212,9 +117,6 @@ class TrillSpanner(Spanner):
 
     ### PRIVATE METHODS ###
 
-    def _attachment_test_all(self, argument):
-        return self._at_least_two_leaves(argument)
-
     def _copy_keyword_args(self, new):
         self._is_harmonic = self.is_harmonic
         new._pitch = self.pitch
@@ -222,17 +124,18 @@ class TrillSpanner(Spanner):
     def _get_lilypond_format_bundle(self, leaf):
         import abjad
         bundle = abjad.LilyPondFormatBundle()
+        if len(self) == 1 and self._left_broken:
+            strings = [r'\stopTrillSpan']
+            strings = self._tag_show(strings)
+            bundle.right.spanner_stops.extend(strings)
+            return bundle
         if leaf is self[0]:
             strings = abjad.override(self)._list_format_contributions(
                 'override',
                 once=False,
                 )
             if self._left_broken:
-                strings = abjad.LilyPondFormatManager.tag(
-                    strings,
-                    deactivate=False,
-                    tag=abjad.tags.LEFT_BROKEN_TRILL,
-                    )
+                strings = self._tag_hide(strings)
             bundle.grob_overrides.extend(strings)
             if self.pitch is not None:
                 pitch_string = str(self.pitch)
@@ -246,22 +149,13 @@ class TrillSpanner(Spanner):
                 string += ' ' + pitch_string
             strings = [string]
             if self._left_broken:
-                strings = abjad.LilyPondFormatManager.tag(
-                    strings,
-                    deactivate=False,
-                    tag=abjad.tags.LEFT_BROKEN_TRILL,
-                    )
-            #bundle.right.spanner_starts.extend(strings)
+                strings = self._tag_hide(strings)
             # important: pitch trill must start AFTER markup
             bundle.after.spanner_starts.extend(strings)
             if self.pitch is not None or self.interval is not None:
                 strings = [r'\pitchedTrill']
                 if self._left_broken:
-                    strings = abjad.LilyPondFormatManager.tag(
-                        strings,
-                        deactivate=False,
-                        tag=abjad.tags.LEFT_BROKEN_TRILL,
-                        )
+                    strings = self._tag_hide(strings)
                 bundle.opening.spanners.extend(strings)
                 if self.is_harmonic:
                     string = '(lambda (grob) (grob-interpret-markup grob'
@@ -273,23 +167,290 @@ class TrillSpanner(Spanner):
             manager = abjad.override(self)
             strings = manager._list_format_contributions('revert')
             if self._right_broken:
-                strings = abjad.LilyPondFormatManager.tag(
-                    strings,
-                    deactivate=False,
-                    tag=abjad.tags.RIGHT_BROKEN_TRILL,
-                    )
+                strings = self._tag_hide(strings)
             bundle.grob_reverts.extend(strings)
-            strings = [r'\stopTrillSpan']
-            if self._right_broken:
-                strings = abjad.LilyPondFormatManager.tag(
-                    strings,
-                    deactivate=False,
-                    tag=abjad.tags.RIGHT_BROKEN_TRILL,
-                    )
-            bundle.right.spanner_stops.extend(strings)
+            if 1 < len(self):
+                strings = [r'\stopTrillSpan']
+                if self._right_broken:
+                    strings = self._tag_hide(strings)
+                bundle.right.spanner_stops.extend(strings)
         return bundle
 
     ### PUBLIC PROPERTIES ###
+
+    def cross_segment_examples(self):
+        r'''Cross-segment examples.
+
+        ..  container:: example
+
+            Cross-segment example #1 (one-to-one):
+
+            >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> abjad.attach(abjad.TrillSpanner(), segment_1[-1:], right_broken=True)
+            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_1, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                    \startTrillSpan
+                }
+
+            >>> segment_2 = abjad.Voice("g'4 f'2 r4", name='MainVoice')
+            >>> abjad.attach(abjad.TrillSpanner(), segment_2[:1], left_broken=True)
+            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_2, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    g'4
+                %@% \stopTrillSpan                                %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                    f'2
+                    r4
+                }
+
+            >>> container = abjad.Container([segment_1, segment_2])
+            >>> text = format(container, 'lilypond:strict')
+            >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
+            >>> job = abjad.Job.broken_spanner_join_job(text)
+            >>> text = job()
+            >>> lines = text.split('\n')
+            >>> lilypond_file = abjad.LilyPondFile.new(lines)
+            >>> abjad.show(lilypond_file, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> print(text)
+                {
+                    \context Voice = "MainVoice"
+                    {
+                        c'4
+                        d'4
+                        e'4
+                        f'4
+                        \startTrillSpan
+                    }
+                    \context Voice = "MainVoice"
+                    {
+                        g'4
+                        \stopTrillSpan                            %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        f'2
+                        r4
+                    }
+                }
+
+        ..  container:: example
+
+            Cross-segment example #2 (one-to-many):
+
+            >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> abjad.attach(abjad.TrillSpanner(), segment_1[-1:], right_broken=True)
+            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_1, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                    \startTrillSpan
+                }
+
+            >>> segment_2 = abjad.Voice("g'4 f'2 r4", name='MainVoice')
+            >>> abjad.attach(abjad.TrillSpanner(), segment_2[:], left_broken=True)
+            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_2, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    g'4
+                    \startTrillSpan                               %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    f'2
+                    r4
+                    \stopTrillSpan
+                }
+
+            >>> container = abjad.Container([segment_1, segment_2])
+            >>> text = format(container, 'lilypond:strict')
+            >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
+            >>> job = abjad.Job.broken_spanner_join_job(text)
+            >>> text = job()
+            >>> lines = text.split('\n')
+            >>> lilypond_file = abjad.LilyPondFile.new(lines)
+            >>> abjad.show(lilypond_file, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> print(text)
+                {
+                    \context Voice = "MainVoice"
+                    {
+                        c'4
+                        d'4
+                        e'4
+                        f'4
+                        \startTrillSpan
+                    }
+                    \context Voice = "MainVoice"
+                    {
+                        g'4
+                    %%% \startTrillSpan                           %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                        f'2
+                        r4
+                        \stopTrillSpan
+                    }
+                }
+
+        ..  container:: example
+
+            Cross-segment example #3 (many-to-one):
+
+            >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> abjad.attach(abjad.TrillSpanner(), segment_1[:], right_broken=True)
+            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_1, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    c'4
+                    \startTrillSpan
+                    d'4
+                    e'4
+                    f'4
+                    \stopTrillSpan                                %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                }
+
+            >>> segment_2 = abjad.Voice("g'4 f'2 r4", name='MainVoice')
+            >>> abjad.attach(abjad.TrillSpanner(), segment_2[:1], left_broken=True)
+            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_2, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    g'4
+                %@% \stopTrillSpan                                %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                    f'2
+                    r4
+                }
+
+            >>> container = abjad.Container([segment_1, segment_2])
+            >>> text = format(container, 'lilypond:strict')
+            >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
+            >>> job = abjad.Job.broken_spanner_join_job(text)
+            >>> text = job()
+            >>> lines = text.split('\n')
+            >>> lilypond_file = abjad.LilyPondFile.new(lines)
+            >>> abjad.show(lilypond_file, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> print(text)
+                {
+                    \context Voice = "MainVoice"
+                    {
+                        c'4
+                        \startTrillSpan
+                        d'4
+                        e'4
+                        f'4
+                    %%% \stopTrillSpan                            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    }
+                    \context Voice = "MainVoice"
+                    {
+                        g'4
+                        \stopTrillSpan                            %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        f'2
+                        r4
+                    }
+                }
+
+        ..  container:: example
+
+            Cross-segment example #4 (many-to-many):
+
+            >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
+            >>> abjad.attach(abjad.TrillSpanner(), segment_1[:], right_broken=True)
+            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_1, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    c'4
+                    \startTrillSpan
+                    d'4
+                    e'4
+                    f'4
+                    \stopTrillSpan                                %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                }
+
+            >>> segment_2 = abjad.Voice("g'4 f'2 r4", name='MainVoice')
+            >>> abjad.attach(abjad.TrillSpanner(), segment_2[:], left_broken=True)
+            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_2, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    g'4
+                    \startTrillSpan                               %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    f'2
+                    r4
+                    \stopTrillSpan
+                }
+
+            >>> container = abjad.Container([segment_1, segment_2])
+            >>> text = format(container, 'lilypond:strict')
+            >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
+            >>> job = abjad.Job.broken_spanner_join_job(text)
+            >>> text = job()
+            >>> lines = text.split('\n')
+            >>> lilypond_file = abjad.LilyPondFile.new(lines)
+            >>> abjad.show(lilypond_file, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> print(text)
+                {
+                    \context Voice = "MainVoice"
+                    {
+                        c'4
+                        \startTrillSpan
+                        d'4
+                        e'4
+                        f'4
+                    %%% \stopTrillSpan                            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    }
+                    \context Voice = "MainVoice"
+                    {
+                        g'4
+                    %%% \startTrillSpan                           %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                        f'2
+                        r4
+                        \stopTrillSpan
+                    }
+                }
+
+        '''
+        pass
 
     @property
     def interval(self):

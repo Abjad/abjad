@@ -92,36 +92,33 @@ class LilyPondFormatBundle(AbjadObject):
         self._grob_overrides = tuple(sorted(set(self.grob_overrides)))
         self._grob_reverts = tuple(sorted(set(self.grob_reverts)))
 
-    def tag_format_contributions(self, tag, deactivate=None, site=None):
+    def tag_format_contributions(self, tag, deactivate=None):
         r'''Tags format contributions with string `tag`.
 
         Returns none.
         '''
         import abjad
-        self.absolute_before.tag(tag, deactivate, site)
-        self.absolute_after.tag(tag, deactivate, site)
-        self.before.tag(tag, deactivate, site)
-        self.after.tag(tag, deactivate, site)
-        self.opening.tag(tag, deactivate, site)
-        self.closing.tag(tag, deactivate, site)
-        self.right.tag(tag, deactivate, site)
+        self.absolute_before.tag(tag, deactivate)
+        self.absolute_after.tag(tag, deactivate)
+        self.before.tag(tag, deactivate)
+        self.after.tag(tag, deactivate)
+        self.opening.tag(tag, deactivate)
+        self.closing.tag(tag, deactivate)
+        self.right.tag(tag, deactivate)
         self._context_settings = abjad.LilyPondFormatManager.tag(
             self.context_settings,
             tag,
             deactivate,
-            site,
             )
         self._grob_overrides = abjad.LilyPondFormatManager.tag(
             self.grob_overrides,
             tag,
             deactivate,
-            site,
             )
         self._grob_reverts = abjad.LilyPondFormatManager.tag(
             self.grob_reverts,
             tag,
             deactivate,
-            site,
             )
 
     def update(self, format_bundle):

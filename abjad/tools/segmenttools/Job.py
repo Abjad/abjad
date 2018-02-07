@@ -6,6 +6,8 @@ from .Path import Path
 from .Tags import Tags
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.datastructuretools.String import String
+from abjad.tools.topleveltools.activate import activate
+from abjad.tools.topleveltools.deactivate import deactivate
 abjad_tags = Tags()
 
 
@@ -44,19 +46,42 @@ class Job(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self) -> List[str]:
+    def __call__(self) -> List[String]:
         r'''Calls job on job ``path``.
         '''
         messages = []
         if self.title is not None:
             messages.append(String(self.title).capitalize_start())
         total_count = 0
+        if isinstance(self.path, str):
+            text = self.path
         if self.deactivate_first is True:
             if self.deactivate is not None:
                 assert isinstance(self.deactivate, tuple)
                 match, name = self.deactivate
                 if match is not None:
-                    count, skipped, messages_ = self.path.deactivate(
+                    if isinstance(self.path, Path):
+                        count, skipped, messages_ = self.path.deactivate(
+                            match,
+                            indent=1,
+                            message_zero=True,
+                            name=name,
+                            )
+                        messages.extend(messages_)
+                        total_count += count
+                    else:
+                        assert isinstance(self.path, str)
+                        text, count, skipped = deactivate(
+                            text,
+                            match,
+                            skipped=True,
+                            )
+        if self.activate is not None:
+            assert isinstance(self.activate, tuple)
+            match, name = self.activate
+            if match is not None:
+                if isinstance(self.path, Path):
+                    count, skipped, messages_ = self.path.activate(
                         match,
                         indent=1,
                         message_zero=True,
@@ -64,34 +89,41 @@ class Job(AbjadObject):
                         )
                     messages.extend(messages_)
                     total_count += count
-        if self.activate is not None:
-            assert isinstance(self.activate, tuple)
-            match, name = self.activate
-            if match is not None:
-                count, skipped, messages_ = self.path.activate(
-                    match,
-                    indent=1,
-                    message_zero=True,
-                    name=name,
-                    )
-                messages.extend(messages_)
-                total_count += count
+                else:
+                    assert isinstance(self.path, str)
+                    text, count, skipped = activate(
+                        text,
+                        match,
+                        skipped=True,
+                        )
         if self.deactivate_first is not True:
             if self.deactivate is not None:
                 assert isinstance(self.deactivate, tuple)
                 match, name = self.deactivate
                 if match is not None:
-                    count, skipped, messages_ = self.path.deactivate(
-                        match,
-                        indent=1,
-                        message_zero=True,
-                        name=name,
-                        )
-                    messages.extend(messages_)
-                    total_count += count
+                    if isinstance(self.path, Path):
+                        count, skipped, messages_ = self.path.deactivate(
+                            match,
+                            indent=1,
+                            message_zero=True,
+                            name=name,
+                            )
+                        messages.extend(messages_)
+                        total_count += count
+                    else:
+                        assert isinstance(self.path, str)
+                        text, count, skipped = deactivate(
+                            text,
+                            match,
+                            skipped=True,
+                            )
         if total_count == 0 and not self.message_zero:
             messages = []
-        return messages
+        if isinstance(self.path, Path):
+            return messages
+        else:
+            assert isinstance(self.path, str)
+            return text
 
     ### PUBLIC PROPERTIES ###
 
@@ -139,14 +171,12 @@ class Job(AbjadObject):
         '''
         def activate(tags):
             tags_ = [
-                abjad_tags.LEFT_BROKEN_REPEAT_TIE,
-                abjad_tags.RIGHT_BROKEN_TIE,
+                abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS,
                 ]
             return bool(set(tags) & set(tags_))
         def deactivate(tags):
             tags_ = [
-                abjad_tags.LEFT_BROKEN_TRILL,
-                abjad_tags.RIGHT_BROKEN_TRILL,
+                abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS,
                 ]
             return bool(set(tags) & set(tags_))
         return Job(
@@ -199,8 +229,33 @@ class Job(AbjadObject):
                 )
 
     @staticmethod
-    def document_specific_job(path) -> 'Job':
-        r'''Makes document-specific job.
+    def edition_specific_job(path) -> 'Job':
+        r'''Makes edition-specific job.
+
+        The logic here is important:
+
+            * deactivations run first:
+
+                -TAG (where TAG is either my directory or my buildtype)
+
+                +TAG (where TAG is neither my directory nor my buildtype)
+
+            * activations run afterwards:
+
+                TAG_SET such that there exists at least one build-forbid
+                    -TAG (equal to neither my directory nor my buildtype) in
+                    TAG_SET and such that there exists no -TAG (equal to either
+                    my directory or my buildtype) in TAG_SET
+
+                +TAG (where TAG is either my directory or my buildtype)
+
+            Notionally: first we deactivate anything that is tagged EITHER
+            specifically against me OR specifically for another build; then we
+            activate anything that is deactivated for editions other than me;
+            then we activate anything is tagged specifically for me.
+
+        ..  todo: Tests.
+
         '''
         if path.parent.is_segment():
             my_name = 'SEGMENT'
@@ -209,25 +264,39 @@ class Job(AbjadObject):
         elif path.is_parts():
             my_name = 'PARTS'
         else:
-            my_name = path.name
-        this_document = f'+{String(my_name).to_shout_case()}'
-        not_this_document = f'-{String(my_name).to_shout_case()}'
+            assert path.is_part()
+            my_name = 'PARTS'
+        this_edition = f'+{String(my_name).to_shout_case()}'
+        not_this_edition = f'-{String(my_name).to_shout_case()}'
+        if path.is_dir():
+            directory_name = path.name
+        else:
+            directory_name = path.parent.name
+        this_directory = f'+{String(directory_name).to_shout_case()}'
+        not_this_directory = f'-{String(directory_name).to_shout_case()}'
         def deactivate(tags) -> bool:
-            if this_document in tags:
-                return False
+            if not_this_edition in tags:
+                return True
+            if not_this_directory in tags:
+                return True
             for tag in tags:
                 if tag.startswith('+'):
                     return True
             return False
         def activate(tags) -> bool:
-            tags_ = [this_document, not_this_document]
-            return bool(set(tags) & set(tags_))
+            for tag in tags:
+                if tag in [not_this_edition, not_this_directory]:
+                    return False
+            for tag in tags:
+                if tag.startswith('-'):
+                    return True
+            return bool(set(tags) & set([this_edition, this_directory]))
         return Job(
-            activate=(activate, 'this-document'),
-            deactivate=(deactivate, 'other-document'),
+            activate=(activate, 'this-edition'),
+            deactivate=(deactivate, 'other-edition'),
             deactivate_first=True,
             path=path,
-            title='handling document-specific tags ...',
+            title='handling edition-specific tags ...',
             )
 
     @staticmethod

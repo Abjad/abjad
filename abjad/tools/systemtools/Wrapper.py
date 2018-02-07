@@ -1,5 +1,7 @@
 import copy
+from typing import Optional
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from .Tag import Tag
 
 
 class Wrapper(AbjadValueObject):
@@ -15,7 +17,83 @@ class Wrapper(AbjadValueObject):
         >>> abjad.f(wrapper)
         abjad.Wrapper(
             indicator=abjad.Articulation('accent', Up),
+            tag=abjad.Tag(),
             )
+
+    ..  container:: example
+
+        Duplicate indicator warnings take two forms.
+
+        >>> voice_1 = abjad.Voice("c''4 d'' e'' f''", name='VoiceI')
+        >>> voice_2 = abjad.Voice("c'4 d' e' f'", name='VoiceII')
+        >>> abjad.attach(abjad.Clef('alto'), voice_2[0])
+        >>> staff = abjad.Staff([voice_1, voice_2], is_simultaneous=True)
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            <<
+                \context Voice = "VoiceI"
+                {
+                    c''4
+                    d''4
+                    e''4
+                    f''4
+                }
+                \context Voice = "VoiceII"
+                {
+                    \clef "alto"
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+            >>
+
+        First form when attempting to attach a contexted indicator to a leaf
+        that already carries a contexted indicator of the same type:
+
+        >>> abjad.attach(abjad.Clef('treble'), voice_2[0])
+        Traceback (most recent call last):
+        ...
+        abjad...PersistentIndicatorError: Can not attach ...
+        <BLANKLINE>
+            abjad.Clef('treble')
+        <BLANKLINE>
+        ... to Note("c'4") in VoiceII because ...
+        <BLANKLINE>
+        abjad.Wrapper(
+            context='Staff',
+            indicator=abjad.Clef('alto'),
+            tag=abjad.Tag(),
+            )
+        <BLANKLINE>
+        ... is already attached to the same leaf.
+        <BLANKLINE>
+
+        Second form when attempting to attach a contexted indicator to a leaf
+        governed by some other component carrying a contexted indicator of the
+        same type.
+
+        >>> abjad.attach(abjad.Clef('treble'), voice_1[0])
+        Traceback (most recent call last):
+        ...
+        abjad...PersistentIndicatorError: Can not attach ...
+        <BLANKLINE>
+            abjad.Clef('treble')
+        <BLANKLINE>
+        ... to Note("c''4") in VoiceI because ...
+        <BLANKLINE>
+        abjad.Wrapper(
+            context='Staff',
+            indicator=abjad.Clef('alto'),
+            tag=abjad.Tag(),
+            )
+        <BLANKLINE>
+        ... is already attached to Note("c'4") in VoiceII.
+        <BLANKLINE>
 
     '''
 
@@ -33,7 +111,6 @@ class Wrapper(AbjadValueObject):
         '_indicator',
         '_left_broken',
         '_right_broken',
-        '_site',
         '_spanner',
         '_synthetic_offset',
         '_tag',
@@ -53,7 +130,6 @@ class Wrapper(AbjadValueObject):
         indicator=None,
         left_broken=None,
         right_broken=None,
-        site=None,
         spanner=None,
         synthetic_offset=None,
         tag=None,
@@ -61,7 +137,7 @@ class Wrapper(AbjadValueObject):
         import abjad
         assert not isinstance(indicator, type(self)), repr(indicator)
         if alternate is not None:
-            assert isinstance(alternate, tuple) and len(alternate) == 3
+            assert isinstance(alternate, tuple) and len(alternate) == 2
         self._alternate = alternate
         if annotation is not None:
             assert isinstance(annotation, str), repr(annotation)
@@ -79,7 +155,7 @@ class Wrapper(AbjadValueObject):
                 prototype = (abjad.Context, str)
                 assert isinstance(context, prototype), repr(context)
         self._context = context
-        self._deactivate = deactivate
+        self._deactivate: bool = deactivate
         self._effective_context = None
         self._indicator = indicator
         if spanner is not None:
@@ -88,24 +164,20 @@ class Wrapper(AbjadValueObject):
         if left_broken is not None:
             left_broken = bool(left_broken)
         if left_broken and spanner is None:
-            raise Exception('set open left only with spanners.')
+            raise Exception('set left_broken only with spanners.')
         self._left_broken = left_broken
         if right_broken is not None:
             right_broken = bool(right_broken)
         if right_broken and spanner is None:
-            raise Exception('set open right only with spanners.')
+            raise Exception('set right_broken only with spanners.')
         self._right_broken = right_broken
-        if site is not None:
-            assert isinstance(site, str), repr(site)
-        self._site = site
         if synthetic_offset is not None:
             synthetic_offset = abjad.Offset(synthetic_offset)
         self._synthetic_offset = synthetic_offset
         if isinstance(tag, abjad.Enumeration):
             tag = tag.name
-        if tag is not None:
-            assert isinstance(tag, str), repr(tag)
-        self._tag = tag
+        tag = Tag(tag)
+        self._tag: Tag = tag
 
     ### SPECIAL METHODS ###
 
@@ -183,6 +255,7 @@ class Wrapper(AbjadValueObject):
                     contents=['pont.'],
                     ),
                 spanner=abjad.TextSpanner(),
+                tag=abjad.Tag(),
                 )
 
             >>> new_staff = abjad.mutate(old_staff).copy()
@@ -218,15 +291,16 @@ class Wrapper(AbjadValueObject):
                     contents=['pont.'],
                     ),
                 spanner=abjad.TextSpanner(),
+                tag=abjad.Tag(),
                 )
 
         ..  container:: example
 
-            Preserves tag and site:
+            Preserves tag:
 
             >>> old_staff = abjad.Staff("c'4 d'4 e'4 f'4")
             >>> clef = abjad.Clef('alto')
-            >>> abjad.attach(clef, old_staff[0], site='M1', tag='RED')
+            >>> abjad.attach(clef, old_staff[0], tag='RED:M1')
             >>> abjad.f(old_staff)
             \new Staff {
                 \clef "alto" %! RED:M1
@@ -242,8 +316,7 @@ class Wrapper(AbjadValueObject):
             abjad.Wrapper(
                 context='Staff',
                 indicator=abjad.Clef('alto'),
-                site='M1',
-                tag='RED',
+                tag=abjad.Tag('RED:M1'),
                 )
 
             >>> new_staff = abjad.mutate(old_staff).copy()
@@ -262,8 +335,7 @@ class Wrapper(AbjadValueObject):
             abjad.Wrapper(
                 context='Staff',
                 indicator=abjad.Clef('alto'),
-                site='M1',
-                tag='RED',
+                tag=abjad.Tag('RED:M1'),
                 )
 
         ..  container:: example
@@ -275,8 +347,7 @@ class Wrapper(AbjadValueObject):
             ...     abjad.Clef('alto'),
             ...     old_staff[0],
             ...     deactivate=True,
-            ...     site='M1',
-            ...     tag='RED',
+            ...     tag='RED:M1',
             ...     )
             >>> abjad.f(old_staff)
             \new Staff {
@@ -294,8 +365,7 @@ class Wrapper(AbjadValueObject):
                 context='Staff',
                 deactivate=True,
                 indicator=abjad.Clef('alto'),
-                site='M1',
-                tag='RED',
+                tag=abjad.Tag('RED:M1'),
                 )
 
             >>> new_staff = abjad.mutate(old_staff).copy()
@@ -315,8 +385,7 @@ class Wrapper(AbjadValueObject):
                 context='Staff',
                 deactivate=True,
                 indicator=abjad.Clef('alto'),
-                site='M1',
-                tag='RED',
+                tag=abjad.Tag('RED:M1'),
                 )
 
         ..  container:: example
@@ -334,7 +403,7 @@ class Wrapper(AbjadValueObject):
             >>> spanner.attach(
             ...     mark,
             ...     spanner[0],
-            ...     alternate=('DarkRed', 'M2', 'METRONOME_MARK_WITH_COLOR'),
+            ...     alternate=('DarkRed', 'METRONOME_MARK_WITH_COLOR:M2'),
             ...     )
             >>> abjad.show(score) # doctest: +SKIP
 
@@ -407,18 +476,20 @@ class Wrapper(AbjadValueObject):
             >>> wrapper = abjad.inspect(leaf).wrapper(abjad.MetronomeMark)
             >>> abjad.f(wrapper)
             abjad.Wrapper(
-                alternate=('DarkRed', 'M2', 'METRONOME_MARK_WITH_COLOR'),
+                alternate=('DarkRed', 'METRONOME_MARK_WITH_COLOR:M2'),
                 context='Score',
                 indicator=abjad.MetronomeMark(
                     reference_duration=abjad.Duration(1, 4),
                     units_per_minute=60,
                     ),
                 spanner=abjad.MetronomeMarkSpanner(
+                    left_broken_text=False,
                     left_hspace=1,
                     parenthesize=False,
                     right_padding=1,
                     stem_height=1,
                     ),
+                tag=abjad.Tag(),
                 )
 
 
@@ -492,18 +563,20 @@ class Wrapper(AbjadValueObject):
             >>> wrapper = abjad.inspect(leaf).wrapper(abjad.MetronomeMark)
             >>> abjad.f(wrapper)
             abjad.Wrapper(
-                alternate=('DarkRed', 'M2', 'METRONOME_MARK_WITH_COLOR'),
+                alternate=('DarkRed', 'METRONOME_MARK_WITH_COLOR:M2'),
                 context='Score',
                 indicator=abjad.MetronomeMark(
                     reference_duration=abjad.Duration(1, 4),
                     units_per_minute=60,
                     ),
                 spanner=abjad.MetronomeMarkSpanner(
+                    left_broken_text=False,
                     left_hspace=1,
                     parenthesize=False,
                     right_padding=1,
                     stem_height=1,
                     ),
+                tag=abjad.Tag(),
                 )
 
         Copies all properties except component and spanner.
@@ -519,7 +592,6 @@ class Wrapper(AbjadValueObject):
             context=self.context,
             deactivate=self.deactivate,
             indicator=copy.copy(self.indicator),
-            site=self.site,
             spanner = None,
             synthetic_offset=self.synthetic_offset,
             tag=self.tag,
@@ -591,7 +663,6 @@ class Wrapper(AbjadValueObject):
             bundle.tag_format_contributions(
                 self.tag,
                 deactivate=self.deactivate,
-                site=self.site,
                 )
             return bundle
         try:
@@ -608,7 +679,6 @@ class Wrapper(AbjadValueObject):
             lilypond_format,
             self.tag,
             deactivate=self.deactivate,
-            site=self.site,
             )
         result.extend(lilypond_format)
         if self._get_effective_context() is not None:
@@ -629,7 +699,6 @@ class Wrapper(AbjadValueObject):
             'indicator',
             'left_broken',
             'right_broken',
-            'site',
             'spanner',
             'synthetic_offset',
             'tag',
@@ -704,16 +773,29 @@ class Wrapper(AbjadValueObject):
             wrapper.deactivate is not True and
             wrapper.indicator != self.indicator):
             if wrapper.start_offset == self.start_offset:
-                message = 'Can not attach ...\n\n{}\n\n... to {} because ...'
-                message += '\n\n{}\n\n'
-                message += '... is already attached to {}.\n\n'
+                parentage = abjad.inspect(component).get_parentage()
+                context = parentage.get_first(abjad.Context)
+                message = f'Can not attach ...\n\n{self.indicator}\n\n...'
+                message += f' to {repr(component)}'
+                message += f' in {context.name} because ...'
+                message += f'\n\n{format(wrapper)}\n\n'
+                message += '... is already attached'
+                if component is wrapper.component:
+                    message += ' to the same leaf.'
+                else:
+                    inspection = abjad.inspect(wrapper.component)
+                    parentage = inspection.get_parentage()
+                    context = parentage.get_first(abjad.Context)
+                    message += f' to {repr(wrapper.component)}'
+                    message += f' in {context.name}.'
+                message += '\n'
                 message = message.format(
                     self.indicator,
                     repr(component),
                     format(wrapper),
                     repr(wrapper.component),
                     )
-                raise Exception(message)
+                raise abjad.PersistentIndicatorError(message)
 
     ### PUBLIC PROPERTIES ###
 
@@ -724,7 +806,7 @@ class Wrapper(AbjadValueObject):
         Set only by ``MetronomeMarkSpanner.attach(..., alternate=None)``
         keyword.
 
-        Returns (color, site, tag) triple, or none.
+        Returns (color, tag) pair, or none.
         '''
         return self._alternate
 
@@ -776,12 +858,16 @@ class Wrapper(AbjadValueObject):
         return self._context
 
     @property
-    def deactivate(self):
+    def deactivate(self) -> Optional[bool]:
         r'''Is true when wrapper deactivates tag.
-
-        Returns true, false or none.
         '''
+        assert self._deactivate in (True, False, None)
         return self._deactivate
+
+    @deactivate.setter
+    def deactivate(self, argument):
+        assert argument in (True, False, None)
+        self._deactivate: Optional[bool] = argument
 
     @property
     def indicator(self):
@@ -800,16 +886,6 @@ class Wrapper(AbjadValueObject):
         Set to true, false or none.
         '''
         return self._left_broken
-
-    @property
-    def site(self):
-        r'''Gets site.
-
-        Site is optional.
-
-        Returns string or none.
-        '''
-        return self._site
 
     @property
     def right_broken(self):
@@ -854,11 +930,15 @@ class Wrapper(AbjadValueObject):
         return self._synthetic_offset
 
     @property
-    def tag(self):
-        r'''Gets tag.
-
-        Tag is optional.
-
-        Returns string or none.
+    def tag(self) -> Tag:
+        r'''Gets and sets tag.
         '''
+        assert isinstance(self._tag, Tag), repr(self._tag)
         return self._tag
+
+    @tag.setter
+    def tag(self, argument):
+        if not isinstance(argument, (str, Tag)):
+            raise Exception(f'string or tag: {argument!r}.')
+        tag = Tag(argument)
+        self._tag = tag

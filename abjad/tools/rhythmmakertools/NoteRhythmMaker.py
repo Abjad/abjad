@@ -1,10 +1,15 @@
-from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
+import typing
+from abjad.tools.datastructuretools.Pattern import Pattern
+from .BeamSpecifier import BeamSpecifier
+from .BurnishSpecifier import BurnishSpecifier
+from .DurationSpecifier import DurationSpecifier
+from .RhythmMaker import RhythmMaker
+from .TieSpecifier import TieSpecifier
+from .TupletSpecifier import TupletSpecifier
 
 
 class NoteRhythmMaker(RhythmMaker):
     r'''Note rhythm-maker.
-
-    >>> from abjad.tools import rhythmmakertools as rhythmos
 
     ..  container:: example
 
@@ -78,7 +83,7 @@ class NoteRhythmMaker(RhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, state=None):
+    def __call__(self, divisions, previous_state=None):
         r'''Calls note rhythm-maker on `divisions`.
 
         ..  container:: example
@@ -95,7 +100,11 @@ class NoteRhythmMaker(RhythmMaker):
 
         Returns list of selections. Each selection holds one or more notes.
         '''
-        return RhythmMaker.__call__(self, divisions, state=state)
+        return RhythmMaker.__call__(
+            self,
+            divisions,
+            previous_state=previous_state,
+            )
 
     def __format__(self, format_specification=''):
         r'''Formats note rhythm-maker.
@@ -195,7 +204,7 @@ class NoteRhythmMaker(RhythmMaker):
         new_selection = abjad.select(new_selection)
         return new_selection
 
-    def _make_music(self, divisions, state=None):
+    def _make_music(self, divisions):
         import abjad
         from abjad.tools import rhythmmakertools
         selections = []
@@ -243,7 +252,7 @@ class NoteRhythmMaker(RhythmMaker):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def beam_specifier(self):
+    def beam_specifier(self) -> typing.Optional[BeamSpecifier]:
         r'''Gets beam specifier.
 
         ..  container:: example
@@ -357,13 +366,11 @@ class NoteRhythmMaker(RhythmMaker):
                     }   % measure
                 }
 
-        Returns beam specifier.
         '''
-        superclass = super(NoteRhythmMaker, self)
-        return superclass.beam_specifier
+        return super(NoteRhythmMaker, self).beam_specifier
 
     @property
-    def burnish_specifier(self):
+    def burnish_specifier(self) -> typing.Optional[BurnishSpecifier]:
         r'''Gets burnish specifier.
 
         ..  container:: example
@@ -540,12 +547,11 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  note:: Currently only works when `outer_divisions_only` is true.
 
-        Returns burnish specifier or none.
         '''
         return self._burnish_specifier
 
     @property
-    def division_masks(self):
+    def division_masks(self) -> typing.Optional[typing.List[Pattern]]:
         r'''Gets division masks.
 
         ..  container:: example
@@ -759,13 +765,11 @@ class NoteRhythmMaker(RhythmMaker):
                     }   % measure
                 }
 
-        Set to masks or none.
         '''
-        superclass = super(NoteRhythmMaker, self)
-        return superclass.division_masks
+        return super(NoteRhythmMaker, self).division_masks
 
     @property
-    def duration_specifier(self):
+    def duration_specifier(self) -> typing.Optional[DurationSpecifier]:
         r'''Gets duration specifier.
 
         ..  container:: example
@@ -1003,12 +1007,11 @@ class NoteRhythmMaker(RhythmMaker):
                     }   % measure
                 }
 
-        Returns duration specifier or none.
         '''
-        return RhythmMaker.duration_specifier.fget(self)
+        return super(NoteRhythmMaker, self).duration_specifier
 
     @property
-    def logical_tie_masks(self):
+    def logical_tie_masks(self) -> typing.Optional[typing.List[Pattern]]:
         r'''Gets logical tie masks.
 
         ..  container:: example
@@ -1126,13 +1129,11 @@ class NoteRhythmMaker(RhythmMaker):
                     }   % measure
                 }
 
-        Set to masks or none.
         '''
-        superclass = super(NoteRhythmMaker, self)
-        return superclass.logical_tie_masks
+        return super(NoteRhythmMaker, self).logical_tie_masks
 
     @property
-    def tie_specifier(self):
+    def tie_specifier(self) -> typing.Optional[TieSpecifier]:
         r'''Gets tie specifier.
 
         ..  container:: example
@@ -1389,11 +1390,10 @@ class NoteRhythmMaker(RhythmMaker):
 
         Returns tie specifier.
         '''
-        superclass = super(NoteRhythmMaker, self)
-        return superclass.tie_specifier
+        return super(NoteRhythmMaker, self).tie_specifier
 
     @property
-    def tuplet_specifier(self):
+    def tuplet_specifier(self) -> typing.Optional[TupletSpecifier]:
         r'''Gets tuplet specifier.
 
         ..  container:: example
@@ -1474,7 +1474,5 @@ class NoteRhythmMaker(RhythmMaker):
                     }   % measure
                 }
 
-        Returns tuplet specifier or none.
         '''
-        superclass = super(NoteRhythmMaker, self)
-        return superclass.tuplet_specifier
+        return super(NoteRhythmMaker, self).tuplet_specifier

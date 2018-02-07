@@ -57,7 +57,6 @@ class Label(abctools.AbjadObject):
                         evaluation_template='abjad.Label',
                         is_initializer=True,
                         keywords={
-                            'site': None,
                             'tag': None,
                             },
                         ),
@@ -148,7 +147,6 @@ class Label(abctools.AbjadObject):
                         evaluation_template='abjad.Label',
                         is_initializer=True,
                         keywords={
-                            'site': None,
                             'tag': None,
                             },
                         ),
@@ -200,7 +198,6 @@ class Label(abctools.AbjadObject):
         '_client',
         '_deactivate',
         '_expression',
-        '_site',
         '_tag',
         )
 
@@ -222,7 +219,7 @@ class Label(abctools.AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, client=None, deactivate=None, site=None, tag=None):
+    def __init__(self, client=None, deactivate=None, tag=None):
         import abjad
         prototype = (
             abjad.Component,
@@ -236,7 +233,6 @@ class Label(abctools.AbjadObject):
         self._client = client
         self._deactivate = deactivate
         self._expression = None
-        self._site = site
         self._tag = tag
 
     ### PRIVATE METHODS ###
@@ -247,7 +243,6 @@ class Label(abctools.AbjadObject):
             label,
             leaf,
             deactivate=self.deactivate,
-            site=self.site,
             tag=self.tag,
             )
 
@@ -293,14 +288,6 @@ class Label(abctools.AbjadObject):
         Returns true, false or none.
         '''
         return self._deactivate
-
-    @property
-    def site(self):
-        r'''Gets site.
-
-        Returns string or none.
-        '''
-        return self._site
 
     @property
     def tag(self):

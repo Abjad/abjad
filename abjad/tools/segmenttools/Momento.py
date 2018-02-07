@@ -1,6 +1,7 @@
 from typing import Optional
-from typing import Union as U
+from typing import Union
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.systemtools.Tag import Tag
 
 
 class Momento(AbjadObject):
@@ -12,7 +13,7 @@ class Momento(AbjadObject):
     __slots__ = (
         '_absent',
         '_context',
-        '_document',
+        '_edition',
         '_prototype',
         '_value',
         )
@@ -23,25 +24,26 @@ class Momento(AbjadObject):
         self, 
         absent: bool = None,
         context: str = None,
-        document: str = None,
+        edition: Union[str, Tag] = None,
         prototype: str = None,
-        value: U[int, str] = None,
+        value: Union[int, str] = None,
         ) -> None:
         if absent is not None:
             absent = bool(absent)
-        self._absent = absent
+        self._absent: bool = absent
         if context is not None:
             assert isinstance(context, str), repr(context)
-        self._context = context
-        if document is not None:
-            assert isinstance(document, str), repr(document)
-        self._document = document
+        self._context: str = context
+        edition_ = None
+        if edition is not None:
+            edition_ = Tag(edition)
+        self._edition: Tag = edition_
         if prototype is not None:
             assert isinstance(prototype, str), repr(prototype)
-        self._prototype = prototype
+        self._prototype: str = prototype
         if value is not None:
             assert isinstance(value, (int, str)), repr(value)
-        self._value = value
+        self._value: Union[int, str] = value
 
     ### PUBLIC PROPERTIES ###
 
@@ -58,10 +60,10 @@ class Momento(AbjadObject):
         return self._context
 
     @property
-    def document(self) -> Optional[str]:
-        r'''Gets document.
+    def edition(self) -> Optional[Tag]:
+        r'''Gets edition.
         '''
-        return self._document
+        return self._edition
 
     @property
     def prototype(self) -> str:
@@ -70,7 +72,7 @@ class Momento(AbjadObject):
         return self._prototype
 
     @property
-    def value(self) -> U[int, str]:
+    def value(self) -> Union[int, str]:
         r'''Gets value.
         '''
         return self._value
