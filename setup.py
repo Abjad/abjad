@@ -51,6 +51,7 @@ classifiers = [
 
 install_requires = [
     'ply',
+    'roman',
     ]
 
 extras_require = {
