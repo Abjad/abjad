@@ -153,7 +153,6 @@ class TextSpanner(Spanner):
             {
                 \once \override TextSpanner.Y-extent = ##f
                 \once \override TextSpanner.arrow-width = 0.25
-                \once \override TextSpanner.bound-details.left-broken.text = ##f
                 \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                 \once \override TextSpanner.bound-details.left.text = \markup {
                     \concat
@@ -212,7 +211,6 @@ class TextSpanner(Spanner):
             {
                 \once \override TextSpanner.Y-extent = ##f
                 \once \override TextSpanner.arrow-width = 0.25
-                \once \override TextSpanner.bound-details.left-broken.text = ##f
                 \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                 \once \override TextSpanner.bound-details.left.text = \markup {
                     \concat
@@ -232,7 +230,6 @@ class TextSpanner(Spanner):
                 c'4 \startTextSpan
                 \once \override TextSpanner.Y-extent = ##f
                 \once \override TextSpanner.arrow-width = 0.25
-                \once \override TextSpanner.bound-details.left-broken.text = ##f
                 \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                 \once \override TextSpanner.bound-details.left.text = \markup {
                     \concat
@@ -252,7 +249,6 @@ class TextSpanner(Spanner):
                 d'4 \stopTextSpan \startTextSpan
                 \once \override TextSpanner.Y-extent = ##f
                 \once \override TextSpanner.arrow-width = 0.25
-                \once \override TextSpanner.bound-details.left-broken.text = ##f
                 \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                 \once \override TextSpanner.bound-details.left.text = \markup {
                     \concat
@@ -307,7 +303,6 @@ class TextSpanner(Spanner):
             {
                 \once \override TextSpanner.Y-extent = ##f
                 \once \override TextSpanner.arrow-width = 0.25
-                \once \override TextSpanner.bound-details.left-broken.text = ##f
                 \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                 \once \override TextSpanner.bound-details.left.text = \markup {
                     \concat
@@ -327,7 +322,6 @@ class TextSpanner(Spanner):
                 c'4 \startTextSpan
                 \once \override TextSpanner.Y-extent = ##f
                 \once \override TextSpanner.arrow-width = 0.25
-                \once \override TextSpanner.bound-details.left-broken.text = ##f
                 \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                 \once \override TextSpanner.bound-details.left.text = \markup {
                     \concat
@@ -347,7 +341,6 @@ class TextSpanner(Spanner):
                 d'4 \stopTextSpan \startTextSpan
                 \once \override TextSpanner.Y-extent = ##f
                 \once \override TextSpanner.arrow-width = 0.25
-                \once \override TextSpanner.bound-details.left-broken.text = ##f
                 \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                 \once \override TextSpanner.bound-details.left.text = \markup {
                     \concat
@@ -407,7 +400,6 @@ class TextSpanner(Spanner):
                 \once \override TextScript.color = #blue
                 \once \override TextSpanner.Y-extent = ##f
                 \once \override TextSpanner.arrow-width = 0.25
-                \once \override TextSpanner.bound-details.left-broken.text = ##f
                 \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                 \once \override TextSpanner.bound-details.left.text = \markup {
                     \concat
@@ -501,9 +493,7 @@ class TextSpanner(Spanner):
                     bundle.grob_overrides.append(string)
                     line_segment = self._make_invisible_line_segment()
                     overrides = line_segment._get_lilypond_grob_overrides()
-                    for override in overrides:
-                        override_string = override.override_string
-                        bundle.grob_overrides.append(override_string)
+                    bundle.grob_overrides.extend(overrides)
             if component is self[-1]:
                 bundle.right.spanner_stops.append(r'\stopTextSpan')
             return bundle
@@ -531,12 +521,10 @@ class TextSpanner(Spanner):
                         ),
                     value=markup,
                     )
-                override_string = override.override_string
-                bundle.grob_overrides.append(override_string)
+                string = override.override_string
+                bundle.grob_overrides.append(string)
             overrides = line_segment._get_lilypond_grob_overrides()
-            for override in overrides:
-                override_string = override.override_string
-                bundle.grob_overrides.append(override_string)
+            bundle.grob_overrides.extend(overrides)
         if last_leaf_markup is not None:
             right_hspace = line_segment.right_padding or 0
             # optical correction to draw last markup left:
@@ -556,8 +544,8 @@ class TextSpanner(Spanner):
                     ),
                 value=last_leaf_markup,
                 )
-            override_string = override.override_string
-            bundle.grob_overrides.append(override_string)
+            string = override.override_string
+            bundle.grob_overrides.append(string)
         return bundle
 
     @staticmethod
@@ -656,16 +644,14 @@ class TextSpanner(Spanner):
 
     ### PUBLIC METHODS ###
 
-    def attach(self, indicator, leaf, deactivate=None, site=None, tag=None):
+    def attach(self, indicator, leaf, deactivate=None, tag=None, wrapper=None):
         r'''Attaches `indicator` to `leaf` in spanner.
-
-        Returns none.
         '''
         superclass = super(TextSpanner, self)
-        superclass._attach_piecewise(
+        return superclass._attach_piecewise(
             indicator,
             leaf,
             deactivate=deactivate,
-            site=site,
             tag=tag,
+            wrapper=wrapper,
             )

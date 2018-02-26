@@ -17,7 +17,6 @@ class ArrowLineSegment(LineSegment):
         abjad.ArrowLineSegment(
             arrow_width=0.25,
             dash_fraction=1,
-            left_broken_text=False,
             left_hspace=0.25,
             left_stencil_align_direction_y=Center,
             right_arrow=True,
@@ -47,7 +46,6 @@ class ArrowLineSegment(LineSegment):
             {
                 \once \override TextSpanner.Y-extent = ##f
                 \once \override TextSpanner.arrow-width = 0.25
-                \once \override TextSpanner.bound-details.left-broken.text = ##f
                 \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                 \once \override TextSpanner.bound-details.left.text = \markup {
                     \concat
@@ -96,7 +94,8 @@ class ArrowLineSegment(LineSegment):
         dash_fraction=1,
         dash_period=None,
         left_broken_padding=None,
-        left_broken_text=False,
+        #left_broken_text=False,
+        left_broken_text=None,
         left_hspace=0.25,
         left_padding=None,
         left_stencil_align_direction_y=Center,
@@ -170,7 +169,6 @@ class ArrowLineSegment(LineSegment):
                 {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \concat
@@ -237,7 +235,6 @@ class ArrowLineSegment(LineSegment):
                 {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.5
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \concat
@@ -302,7 +299,6 @@ class ArrowLineSegment(LineSegment):
                 {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 1
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \concat
@@ -379,7 +375,6 @@ class ArrowLineSegment(LineSegment):
                 {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \concat
@@ -445,7 +440,6 @@ class ArrowLineSegment(LineSegment):
                 {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \concat
@@ -509,7 +503,6 @@ class ArrowLineSegment(LineSegment):
                 {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \concat
@@ -585,7 +578,6 @@ class ArrowLineSegment(LineSegment):
                 {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \concat
@@ -655,7 +647,6 @@ class ArrowLineSegment(LineSegment):
                 {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \concat
@@ -724,7 +715,6 @@ class ArrowLineSegment(LineSegment):
                 {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \concat
@@ -792,7 +782,6 @@ class ArrowLineSegment(LineSegment):
                 abjad.ArrowLineSegment(
                     arrow_width=0.25,
                     dash_fraction=1,
-                    left_broken_text=False,
                     left_hspace=0.25,
                     left_stencil_align_direction_y=Center,
                     right_arrow=True,
@@ -825,7 +814,6 @@ class ArrowLineSegment(LineSegment):
                         d'4.
                         \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.arrow-width = 0.25
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
                         \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                         \once \override TextSpanner.bound-details.left.text = \markup {
                             \concat
@@ -1013,7 +1001,6 @@ class ArrowLineSegment(LineSegment):
                 abjad.ArrowLineSegment(
                     arrow_width=0.25,
                     dash_fraction=1,
-                    left_broken_text=False,
                     left_hspace=0.25,
                     left_stencil_align_direction_y=Center,
                     right_arrow=True,
@@ -1046,7 +1033,6 @@ class ArrowLineSegment(LineSegment):
                         d'4.
                         \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.arrow-width = 0.25
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
                         \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                         \once \override TextSpanner.bound-details.left.text = \markup {
                             \concat
@@ -1116,7 +1102,6 @@ class ArrowLineSegment(LineSegment):
                 abjad.ArrowLineSegment(
                     arrow_width=0.25,
                     dash_fraction=1,
-                    left_broken_text=False,
                     left_hspace=0.25,
                     left_stencil_align_direction_y=Center,
                     right_arrow=True,
@@ -1150,7 +1135,6 @@ class ArrowLineSegment(LineSegment):
                         d'4.
                         \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.arrow-width = 0.25
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
                         \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                         \once \override TextSpanner.bound-details.left.text = \markup {
                             \concat
@@ -1233,7 +1217,6 @@ class ArrowLineSegment(LineSegment):
                 {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \concat
@@ -1300,7 +1283,6 @@ class ArrowLineSegment(LineSegment):
                 {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \concat
@@ -1364,7 +1346,6 @@ class ArrowLineSegment(LineSegment):
                 {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \concat
@@ -1428,7 +1409,6 @@ class ArrowLineSegment(LineSegment):
                 {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \concat

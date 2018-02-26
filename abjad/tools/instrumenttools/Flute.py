@@ -33,7 +33,7 @@ class Flute(Instrument):
         ...     markup=abjad.Markup('Flauto').italic(),
         ...     short_markup=abjad.Markup('Fl.').italic(),
         ...     )
-        >>> abjad.attach(flute, staff[0], site='M1', tag='RED')
+        >>> abjad.attach(flute, staff[0], tag='RED:M1')
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
@@ -55,7 +55,7 @@ class Flute(Instrument):
 
     ..  container:: example
 
-        Instrument markup can be hideed:
+        Instrument markup can be hidden:
 
         >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
         >>> flute = abjad.Flute(hide=True)

@@ -5,7 +5,7 @@
 {lilypond_language_directive}
 
 #(ly:set-option 'relative-includes #t)
-\include "stylesheet.ily"
+\include "../stylesheet.ily"
 {segment_ily_include_statements}
 
 \paper {{
@@ -62,14 +62,14 @@
                 <<
                     \context GlobalSkips = "GlobalSkips"
                     {{
-                    {global_skip_identifiers}
+                        {global_skip_identifiers}
                     }}
                 >>
                 \context MusicContext = "MusicContext"
                 {{
                     \context Staff = "Staff"
                     {{
-                    {segment_ly_include_statements}
+                        {segment_ly_include_statements}
                     }}
                 }}
             >>

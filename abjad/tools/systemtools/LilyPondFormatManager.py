@@ -223,7 +223,6 @@ class LilyPondFormatManager(AbjadObject):
                     abjad.Markup.line(
                         [_.indicator],
                         deactivate=_.deactivate,
-                        site=_.site,
                         tag=_.tag,
                         )
                     for _ in wrappers
@@ -242,7 +241,6 @@ class LilyPondFormatManager(AbjadObject):
                     format_pieces,
                     wrapper.tag,
                     deactivate=wrapper.deactivate,
-                    site=wrapper.site,
                     )
                 bundle.right.markup.extend(format_pieces)
 
@@ -256,11 +254,10 @@ class LilyPondFormatManager(AbjadObject):
             indicator = wrapper.indicator
             if hasattr(indicator, '_get_lilypond_format_bundle'):
                 bundle_ = indicator._get_lilypond_format_bundle()
-                if wrapper.tag or wrapper.site:
+                if wrapper.tag:
                     bundle_.tag_format_contributions(
                         wrapper.tag,
                         deactivate=wrapper.deactivate,
-                        site=wrapper.site,
                         )
                 if bundle_ is not None:
                     bundle.update(bundle_)
@@ -275,7 +272,6 @@ class LilyPondFormatManager(AbjadObject):
             spanner_bundle.tag_format_contributions(
                 spanner._tag,
                 deactivate=spanner._deactivate,
-                site=spanner._site,
                 )
             pair = (spanner, spanner_bundle)
             pairs.append(pair)
@@ -547,25 +543,17 @@ class LilyPondFormatManager(AbjadObject):
         return result
 
     @staticmethod
-    def tag(strings, tag, deactivate=None, site=None):
+    def tag(strings, tag, deactivate=None):
         r'''Tags `strings` with `tag`.
 
         Returns list of tagged strings.
         '''
-        if not tag and not site:
+        if not tag:
             return strings
         if not strings:
             return strings
         if deactivate is not None:
             assert isinstance(deactivate, type(True)), repr(deactivate)
-        site = site or ''
-        assert isinstance(site, str), repr(site)
-        if tag and site:
-            tag = tag + ':' + site
-        elif tag:
-            tag = tag
-        elif site:
-            tag = site
         length = max([len(_) for _ in strings])
         strings_ = []
         for string in strings:
@@ -573,7 +561,7 @@ class LilyPondFormatManager(AbjadObject):
                 pad = length - len(string)
             else:
                 pad = 0
-            tag_ = pad * ' ' + ' ' + '%!' + ' ' + tag
+            tag_ = pad * ' ' + ' ' + '%!' + ' ' + str(tag)
             string = string + tag_
             strings_.append(string)
         if deactivate is True:

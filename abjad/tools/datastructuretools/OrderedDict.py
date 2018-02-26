@@ -4,7 +4,7 @@ from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 
 
 class OrderedDict(TypedCollection, collections.MutableMapping):
-    r'''Typed ordered dictionary.
+    r'''Ordered dictionary.
 
     ..  container:: example
 
@@ -65,7 +65,7 @@ class OrderedDict(TypedCollection, collections.MutableMapping):
 
     ..  container:: example
 
-        Initializes from other typed ordered dictionary:
+        Initializes from other ordered dictionary:
 
         >>> dictionary_1 = abjad.OrderedDict([
         ...     ('color', 'red'),
@@ -289,6 +289,79 @@ class OrderedDict(TypedCollection, collections.MutableMapping):
         Returns items.
         '''
         return self._collection.setdefault(key, default)
+
+    def sort(self, recurse=False) -> None:
+        r'''Sorts ordered dictionary (in place).
+
+        ..  container:: example
+
+            >>> dictionary = abjad.OrderedDict()
+            >>> dictionary['flavor'] = 'cherry'
+            >>> dictionary['colors'] = abjad.OrderedDict()
+            >>> dictionary['colors']['red'] = 3
+            >>> dictionary['colors']['green'] = 2
+            >>> dictionary['colors']['blue'] = 1
+            >>> abjad.f(dictionary)
+            abjad.OrderedDict(
+                [
+                    ('flavor', 'cherry'),
+                    (
+                        'colors',
+                        abjad.OrderedDict(
+                            [
+                                ('red', 3),
+                                ('green', 2),
+                                ('blue', 1),
+                                ]
+                            ),
+                        ),
+                    ]
+                )
+
+            >>> dictionary.sort()
+            >>> abjad.f(dictionary)
+            abjad.OrderedDict(
+                [
+                    (
+                        'colors',
+                        abjad.OrderedDict(
+                            [
+                                ('red', 3),
+                                ('green', 2),
+                                ('blue', 1),
+                                ]
+                            ),
+                        ),
+                    ('flavor', 'cherry'),
+                    ]
+                )
+
+            >>> dictionary.sort(recurse=True)
+            >>> abjad.f(dictionary)
+            abjad.OrderedDict(
+                [
+                    (
+                        'colors',
+                        abjad.OrderedDict(
+                            [
+                                ('blue', 1),
+                                ('green', 2),
+                                ('red', 3),
+                                ]
+                            ),
+                        ),
+                    ('flavor', 'cherry'),
+                    ]
+                )
+
+        '''
+        items = list(self.items())
+        items.sort()
+        self.clear()
+        for key, value in items:
+            if recurse is True and isinstance(value, OrderedDict):
+                value.sort(recurse=True)
+            self[key] = value
 
     def update(self, *arguments, **keywords):
         r'''Aliases OrderedDict.update().

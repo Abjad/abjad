@@ -14,6 +14,7 @@ _allowed_to_be_empty_string = (
     abjad.Postscript,
     abjad.SchemeColor,
     abjad.String,
+    abjad.Tag,
     tonalanalysistools.ChordSuspension,
     )
 

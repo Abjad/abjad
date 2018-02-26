@@ -7,6 +7,7 @@ from .MissingMetronomeMarkError import MissingMetronomeMarkError
 from .MissingSpannerError import MissingSpannerError
 from .OverfullContainerError import OverfullContainerError
 from .ParentageError import ParentageError
+from .PersistentIndicatorError import PersistentIndicatorError
 from .SchemeParserFinishedError import SchemeParserFinishedError
 from .UnboundedTimeIntervalError import UnboundedTimeIntervalError
 from .UnderfullContainerError import UnderfullContainerError

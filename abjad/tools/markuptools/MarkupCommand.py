@@ -139,7 +139,6 @@ class MarkupCommand(AbjadValueObject):
         '_deactivate',
         '_force_quotes',
         '_name',
-        '_site',
         '_tag',
         )
 
@@ -155,7 +154,6 @@ class MarkupCommand(AbjadValueObject):
         self._force_quotes = False
         assert isinstance(name, str) and len(name) and name.find(' ') == -1
         self._name = name
-        self._site = None
         self._tag = None
 
     ### SPECIAL METHODS ###
@@ -383,7 +381,6 @@ class MarkupCommand(AbjadValueObject):
             parts,
             self.tag,
             deactivate=self.deactivate,
-            site=self.site,
             )
         return parts
 
@@ -507,30 +504,19 @@ class MarkupCommand(AbjadValueObject):
         return self._name
 
     @property
-    def site(self):
-        r'''Gets site.
-
-        Returns string or none.
-        '''
-        return self._site
-
-    @site.setter
-    def site(self, argument):
-        assert isinstance(argument, (str, type(None))), repr(argument)
-        self._site = argument
-
-    @property
     def tag(self):
         r'''Gets tag.
-
-        Returns string or none.
         '''
         return self._tag
 
     @tag.setter
     def tag(self, argument):
-        assert isinstance(argument, (str, type(None))), repr(argument)
-        self._tag = argument
+        import abjad
+        if argument is not None:
+            tag = abjad.Tag(argument)
+        else:
+            tag = None
+        self._tag = tag
 
     ### PUBLIC METHODS ###
 

@@ -129,10 +129,12 @@ class Inspection(abctools.AbjadObject):
                     middle_c_sounding_pitch=abjad.NamedPitch("c'"),
                     pitch_range=abjad.PitchRange('[C2, G5]'),
                     ),
+                tag=abjad.Tag(),
                 )
             abjad.Wrapper(
                 annotation='default_clef',
                 indicator=abjad.Clef('tenor'),
+                tag=abjad.Tag(),
                 )
 
         Returns list of annotations or list of wrappers.
@@ -175,12 +177,12 @@ class Inspection(abctools.AbjadObject):
             ...     wrapper = inspection.effective_wrapper(abjad.Clef)
             ...     print(component, wrapper)
             ...
-            Staff("c'4 d'4 e'4 f'4") Wrapper(context='Staff', indicator=Clef('alto'))
-            c'4 Wrapper(context='Staff', indicator=Clef('alto'))
-            d'4 Wrapper(context='Staff', indicator=Clef('alto'))
-            e'4 Wrapper(context='Staff', indicator=Clef('alto'))
-            fs'16 Wrapper(context='Staff', indicator=Clef('alto'))
-            f'4 Wrapper(context='Staff', indicator=Clef('alto'))
+            Staff("c'4 d'4 e'4 f'4") Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+            c'4 Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+            d'4 Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+            e'4 Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+            fs'16 Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+            f'4 Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
 
         Returns wrapper or none.
         '''
@@ -467,7 +469,7 @@ class Inspection(abctools.AbjadObject):
             for _ in self.client
             ])
 
-    def get_effective(self, prototype=None, unwrap=True, n=0):
+    def get_effective(self, prototype=None, unwrap=True, n=0, default=None):
         r'''Gets effective indicator.
 
         ..  container:: example
@@ -667,11 +669,14 @@ class Inspection(abctools.AbjadObject):
         Returns indicator or none.
         '''
         if hasattr(self.client, '_get_effective'):
-            return self.client._get_effective(
+            result = self.client._get_effective(
                 prototype=prototype,
                 unwrap=unwrap,
                 n=n,
                 )
+            if result is None:
+                return default
+            return result
 
     def get_effective_staff(self):
         r'''Gets effective staff.
@@ -1035,7 +1040,6 @@ class Inspection(abctools.AbjadObject):
                 {
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \concat
@@ -1620,7 +1624,6 @@ class Inspection(abctools.AbjadObject):
         check_discontiguous_spanners=True,
         check_duplicate_ids=True,
         check_empty_containers=True,
-        check_intermarked_hairpins=True,
         check_misdurated_measures=True,
         check_misfilled_measures=True,
         check_mismatched_enchained_hairpins=True,
@@ -1800,7 +1803,6 @@ class Inspection(abctools.AbjadObject):
         check_discontiguous_spanners=True,
         check_duplicate_ids=True,
         check_empty_containers=True,
-        check_intermarked_hairpins=True,
         check_misdurated_measures=True,
         check_misfilled_measures=True,
         check_mismatched_enchained_hairpins=True,
@@ -1846,7 +1848,6 @@ class Inspection(abctools.AbjadObject):
             0 /	1 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	0 intermarked hairpins
             0 /	0 misdurated measures
             0 /	0 misfilled measures
             0 /	0 mismatched enchained hairpins
@@ -1861,7 +1862,7 @@ class Inspection(abctools.AbjadObject):
             0 /	0 overlapping hairpins
             0 /	0 overlapping octavation spanners
             0 /	0 overlapping ties
-            0 / 0 overlapping trill spanners
+            0 /	0 overlapping trill spanners
             0 /	0 tied rests
 
             Beamed long notes are not well-formed.
@@ -1885,7 +1886,6 @@ class Inspection(abctools.AbjadObject):
             0 /	1 discontiguous spanners
             0 /	5 duplicate ids
             0 /	1 empty containers
-            0 /	0 intermarked hairpins
             0 /	0 misdurated measures
             0 /	0 misfilled measures
             0 /	0 mismatched enchained hairpins
@@ -1943,7 +1943,7 @@ class Inspection(abctools.AbjadObject):
             True
 
             >>> abjad.inspect(staff[0]).wrapper(abjad.Articulation)
-            Wrapper(indicator=Articulation('^'))
+            Wrapper(indicator=Articulation('^'), tag=Tag())
 
         Raises exception when more than one indicator of `prototype` attach to
         client.
@@ -1979,7 +1979,7 @@ class Inspection(abctools.AbjadObject):
             ()
 
             >>> abjad.inspect(staff[0]).wrappers(abjad.Articulation)
-            (Wrapper(indicator=Articulation('^')),)
+            (Wrapper(indicator=Articulation('^'), tag=Tag()),)
 
         Returns tuple of wrappers or none.
         '''

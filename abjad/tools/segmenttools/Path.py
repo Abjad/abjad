@@ -1,3 +1,4 @@
+import importlib
 import os
 import pathlib
 import shutil
@@ -8,12 +9,25 @@ from typing import Optional
 from typing import Union
 from typing import Tuple
 from .Line import Line
+from .Tags import Tags
 from abjad.tools.datastructuretools.CyclicTuple import CyclicTuple
 from abjad.tools.datastructuretools.OrderedDict import OrderedDict
 from abjad.tools.datastructuretools.String import String
+from abjad.tools.indicatortools.Clef import Clef
+from abjad.tools.indicatortools.LilyPondLiteral import LilyPondLiteral
+from abjad.tools.indicatortools.MarginMarkup import MarginMarkup
+from abjad.tools.indicatortools.TimeSignature import TimeSignature
+from abjad.tools.scoretools.MultimeasureRest import MultimeasureRest
+from abjad.tools.scoretools.Container import Container
+from abjad.tools.scoretools.Score import Score
+from abjad.tools.scoretools.Staff import Staff
+from abjad.tools.scoretools.StaffGroup import StaffGroup
 from abjad.tools.systemtools.IOManager import IOManager
+from abjad.tools.systemtools.LilyPondFormatManager import LilyPondFormatManager
 from abjad.tools.topleveltools.activate import activate
+from abjad.tools.topleveltools.attach import attach
 from abjad.tools.topleveltools.deactivate import deactivate
+from abjad.tools.topleveltools.iterate import iterate
 
 
 class Path(pathlib.PosixPath):
@@ -130,26 +144,32 @@ class Path(pathlib.PosixPath):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _assets(self):
+    def _assets(self) -> Optional['Path']:
         '''Gets _assets directory.
-
-        Returns path.
         '''
         if self.is_builds():
-            return self('_assets')
-        if self.is_build():
-            return self('_assets')
+            return self / '_assets'
+        if self.is_score_build():
+            return self / '_assets'
+        if self.is_parts():
+            return self / '_assets'
+        if self.is_part():
+            return self.parent / '_assets'
+        return None
 
     @property
-    def _segments(self):
+    def _segments(self) -> Optional['Path']:
         '''Gets _segments directory.
-
-        Returns path.
         '''
         if self.is__segments():
             return self
-        if self.is_build():
-            return self('_segments')
+        if self.is_score_build():
+            return self / '_segments'
+        if self.is_parts():
+            return self / '_segments'
+        if self.is_part():
+            return self.parent / '_segments'
+        return None
 
     ### PRIVATE METHODS ###
 
@@ -205,11 +225,39 @@ class Path(pathlib.PosixPath):
             if path.is_file():
                 return path
 
+    def _get_part_manifest(self):
+        assert self.is_score_package_path()
+        score_template = self._get_score_template()
+        if not hasattr(score_template, 'part_names'):
+            message = f'{score_package_name}.ScoreTemplate'
+            message += " has no 'part_manifest' property."
+            return -1, message
+        score_template = score_template()
+        part_manifest = score_template.part_manifest
+        return part_manifest
+
     def _get_score_pdf(self):
         path = self.distribution._get_file_path_ending_with('score.pdf')
         if not path:
             path = self.builds._get_file_path_ending_with('score.pdf')
         return path
+
+    def _get_score_template(self):
+        module = self._import_score_package()
+        if not module:
+            return -1, f'can not import {self.contents.name!r}.'
+        score_template = getattr(module, 'ScoreTemplate', None)
+        if not score_template:
+            return -1, f'{module} has no score template.'
+        return score_template
+
+    def _import_score_package(self):
+        assert self.is_score_package_path()
+        try:
+            module = importlib.import_module(self.contents.name)
+        except:
+            return
+        return module
 
     def _list_paths(self):
         paths = []
@@ -285,6 +333,48 @@ class Path(pathlib.PosixPath):
             return False
         return result
 
+    def _part_name_to_default_clef(self, part_name):
+        module = self._import_score_package()
+        instruments = getattr(module, 'instruments', None)
+        if not instruments:
+            raise Exception(f'can not find instruments: {self!r}.')
+        words = String(part_name).delimit_words()
+        if words[-1].isdigit():
+            words = words[:-1]
+        if words[0] in ('First', 'Second'):
+            words = words[1:]
+        key = ''.join(words)
+        instrument = instruments.get(key, None)
+        if not instrument:
+            raise Exception(f'can not find {key!r}.')
+        clef = Clef(instrument.allowable_clefs[0])
+        return clef
+
+    def _context_name_to_first_appearance_margin_markup(self, context_name):
+        module = self._import_score_package()
+        margin_markups = getattr(module, 'margin_markups', None)
+        if not margin_markups:
+            return []
+        dictionary = OrderedDict()
+        string = 'first_appearance_margin_markup'
+        for segment in self.segments.list_paths():
+            dictionary_ = segment.get_metadatum(string, [])
+            dictionary.update(dictionary_)
+        key = dictionary.get(context_name)
+        if key is None:
+            return []
+        margin_markup = margin_markups.get(key)
+        if margin_markup is None:
+            return []
+        markup = margin_markup.markup
+        assert markup is not None, repr(margin_markup)
+        strings = markup._get_format_pieces()
+        strings.insert(0, 'shortInstrumentName =')
+        indent = 4 * ' '
+        strings = [indent + _ for _ in strings]
+        strings = [r'\with', '{'] + strings + ['}']
+        return strings
+
     @staticmethod
     def _sort_by_identifier(paths):
         pairs = []
@@ -326,7 +416,7 @@ class Path(pathlib.PosixPath):
         if self.is_build():
             return self
         elif self.is__segments():
-            return self.contents.builds(self.parent.name)
+            return self.contents.builds / self.parent.name
         elif self.parent.is_build():
             return self.parent
         else:
@@ -587,16 +677,17 @@ class Path(pathlib.PosixPath):
         message_zero: bool = False,
         name: str = None,
         undo: bool = False,
-        ) -> Tuple[int, int, List[str]]:
+        ) -> Tuple[int, int, List[String]]:
         r'''Activates ``tag`` in path.
 
         Case 0: path is a non-LilyPond file. Method does nothing.
 
-        Case 1: path is a LilyPond (.ily, .ly) file. Method activates ``tag``
+        Case 1: path is a LilyPond (.ily, .ly) file starting with
+        ``illustration``, ``layout`` or ``segment``. Method activates ``tag``
         in file.
 
         Case 2: path is a directory. Method descends directory recursively and
-        activates ``tag`` in LilyPond files.
+        activates ``tag`` in LilyPond files given in case 1.
 
         Returns triple.
         
@@ -624,6 +715,10 @@ class Path(pathlib.PosixPath):
             for path in sorted(self.glob('**/*')):
                 path = Path(path)
                 if not path.suffix in ('.ily', '.ly'):
+                    continue
+                if not (path.name.startswith('illustration') or
+                    path.name.startswith('layout') or
+                    path.name.startswith('segment')):
                     continue
                 count_, skipped_, _ = path.activate(tag, undo=undo)
                 count += count_
@@ -656,11 +751,11 @@ class Path(pathlib.PosixPath):
                 message = f'skipping {skipped} ({adjective}) {name} {tags}'
                 messages.append(message)
         whitespace = indent * ' '
-        messages = [
-            whitespace + String(_).capitalize_start() + ' ...'
+        messages_ = [
+            String(whitespace + String(_).capitalize_start() + ' ...')
             for _ in messages
             ]
-        return count, skipped, messages
+        return count, skipped, messages_
 
     def add_buildspace_metadatum(
         self,
@@ -899,7 +994,7 @@ class Path(pathlib.PosixPath):
         indent: int = 0,
         message_zero: bool = False,
         name: str = None,
-        ) -> Tuple[int, int, List[str]]:
+        ) -> Tuple[int, int, List[String]]:
         r'''Deactivates `tag` in path.
         '''
         return self.activate(
@@ -938,7 +1033,8 @@ class Path(pathlib.PosixPath):
         with open(self) as pointer:
             for line in pointer.readlines():
                 if (line.startswith(r'\score {') or
-                    line.startswith(r'\context Score')):
+                    line.startswith(r'\context Score') or
+                    line.startswith('{')):
                     found_score = True
                 if not found_score:
                     preamble_lines.append(line)
@@ -968,8 +1064,9 @@ class Path(pathlib.PosixPath):
                 else:
                     score_lines.append(line)
         lines = []
-        assert preamble_lines[-1].isspace(), repr(preamble_lines[-1])
-        preamble_lines.pop()
+        if preamble_lines:
+            assert preamble_lines[-1].isspace(), repr(preamble_lines[-1])
+            preamble_lines.pop()
         if include_path.parent == self.parent:
             include_name = include_path.name
         else:
@@ -1164,7 +1261,10 @@ class Path(pathlib.PosixPath):
             string = 'first_measure_number'
             first_measure_number = self.parent.get_metadatum(string)
             time_signatures = self.parent.get_metadatum('time_signatures')
-            measure_count = len(time_signatures)
+            if bool(time_signatures):
+                measure_count = len(time_signatures)
+            else:
+                measure_count = 0
         else:
             first_measure_number = 1
             dictionary = self.contents.get_metadatum('time_signatures')
@@ -1528,6 +1628,17 @@ class Path(pathlib.PosixPath):
         identifier = String(f'{identifier}_GlobalRests')
         return identifier
 
+    def global_rest_identifiers(self) -> List[String]:
+        r'''Gets global rest identifiers.
+        '''
+        assert not self.is_external(), repr(self);
+        identifiers = []
+        for segment in self.segments.list_paths():
+            identifier = String(segment.name).to_segment_lilypond_identifier()
+            identifier = String(f'{identifier}_GlobalRests')
+            identifiers.append(identifier)
+        return identifiers
+
     def global_skip_identifiers(self) -> List[String]:
         r'''Gets global skip identifiers.
         '''
@@ -1538,6 +1649,37 @@ class Path(pathlib.PosixPath):
             identifier = String(f'{identifier}_GlobalSkips')
             identifiers.append(identifier)
         return identifiers
+
+    def instrument_to_staff_identifiers(self, instrument: str) -> OrderedDict: 
+        r'''Changes ``instrument`` to staff identifiers dictionary.
+        '''
+        assert not self.is_external(), repr(self)
+        alive_during_segment = OrderedDict()
+        for segment in self.segments.list_paths():
+            dictionary = segment.get_metadatum('alive_during_segment', [])
+            alive_during_segment[segment.name] = dictionary
+        staves_in_score: List[String] = []
+        for segment_name, contexts in alive_during_segment.items():
+            for context in contexts:
+                if context.startswith(instrument):
+                    words = String(context).delimit_words()
+                    if words[-2] == 'Staff' and String(words[-1]).is_roman():
+                        if context not in staves_in_score:
+                           staves_in_score.append(context) 
+        staves_in_score = String.sort_roman(staves_in_score)
+        dictionary = OrderedDict()
+        for staff in staves_in_score:
+            dictionary[staff] = identifiers = []
+            for segment_name, contexts in alive_during_segment.items():
+                identifier = String(segment_name)
+                identifier = identifier.to_segment_lilypond_identifier()
+                if staff in contexts:
+                    identifier_ = f'{identifier}_{staff}'
+                else:
+                    identifier_ =  f'{identifier}_GlobalRests'
+                identifier = String(identifier_)
+                identifiers.append(identifier)
+        return dictionary
 
     def is__assets(self) -> bool:
         r'''Is true when path is _assets directory.
@@ -1583,9 +1725,13 @@ class Path(pathlib.PosixPath):
             True
 
         '''
-        return (self.parent.name == 'builds' and
-            self.name != '_segments' and
-            self.name != '_assets')
+        if self.name in ('_assets', '_segments'):
+            return False
+        if self.parent.name == 'builds':
+            return True
+        if self.parent.parent.name == 'builds' and self.suffix == '':
+            return True
+        return False
 
     def is_builds(self) -> bool:
         r'''Is true when path is builds directory.
@@ -1603,10 +1749,14 @@ class Path(pathlib.PosixPath):
         return self.name == 'builds'
 
     def is_buildspace(self) -> bool:
-        r'''Is true when path is any of _segments, build, builds, segment or
-        segments directories.
+        r'''Is true when path is buildspace.
 
-        Returns true or false.
+            * build
+            * builds
+            * segment
+            * segments
+            * _segments
+
         '''
         if self.is_build() or self.is_builds():
             return True
@@ -1845,6 +1995,25 @@ class Path(pathlib.PosixPath):
         '''
         return self.name in ('materials', 'segments')
 
+    def is_part(self) -> bool:
+        r'''Is true when directory is part directory.
+
+        ..  container:: example
+
+            >>> path = abjad.Path(
+            ...     '/path/to/scores/my_score/my_score',
+            ...     scores='/path/to/scores',
+            ...     )
+
+            >>> path.builds.is_part()
+            False
+
+            >>> path.builds('arch-a-parts').is_part()
+            False
+
+        '''
+        return self.parent.is_parts()
+
     def is_parts(self) -> bool:
         r'''Is true when directory is parts directory.
 
@@ -1886,6 +2055,8 @@ class Path(pathlib.PosixPath):
         '''
         if self.is_build():
             if self.get_metadatum('parts_directory') is True:
+                return False
+            if self.parent.get_metadatum('parts_directory') is True:
                 return False
             return True
         else:
@@ -1968,6 +2139,8 @@ class Path(pathlib.PosixPath):
                 return True
         if 'material' in prototype and self.is_material():
             return True
+        if 'part' in prototype and self.is_part():
+            return True
         if 'parts' in prototype and self.is_parts():
             return True
         if 'segment' in prototype and self.is_segment():
@@ -2004,6 +2177,8 @@ class Path(pathlib.PosixPath):
             True
 
         '''
+        if self.name[0] == '.':
+            return False
         return self.parent.name == 'segments'
 
     @staticmethod
@@ -2230,10 +2405,19 @@ class Path(pathlib.PosixPath):
         '''
         assert not self.is_external(), repr(self)
         identifiers = []
+        default_clef = self._part_name_to_default_clef(part_name)
+        clef_string = format(default_clef, 'lilypond')
+        assert clef_string.startswith('\\'), repr(clef_string)
+        clef_string = clef_string[1:]
+        identifiers.append(clef_string)
         dictionary = self.contents.get_metadatum('container_to_part')
         if not dictionary:
             raise Exception(f'missing container-to-part dictionary.')
-        for segment_name, dictionary_ in dictionary.items():
+        for i, (segment_name, dictionary_) in enumerate(dictionary.items()):
+            if i == 0:
+                first_segment = True
+            else:
+                first_segment = False
             pairs = []
             for identifier, (part, timespan) in dictionary_.items():
                 if part_name in part:
@@ -2246,6 +2430,26 @@ class Path(pathlib.PosixPath):
                 identifier = self.global_rest_identifier(segment_name)
                 identifiers.append(identifier)
         return identifiers
+
+    def part_tuple(self) -> Tuple:
+        r'''Changes path to part tuple.
+        '''
+        assert self.parent.is_part(), repr(self)
+        assert self.name.endswith('music.ly')
+        words = self.name.split('-')
+        assert words[-1] == 'music.ly'
+        words = words[:-1]
+        part_manifest = self._get_part_manifest()
+        if not part_manifest:
+            raise Exception(f'no part manifest: {self}.')
+        words = [String(_).capitalize_start() for _ in words]
+        part_name = ''.join(words)
+        for part_index, tuple_ in enumerate(part_manifest):
+            part_number = part_index + 1
+            if tuple_[0] == part_name:
+                tuple_ = tuple_ + (part_number,)
+                return tuple_
+        raise Exception(f'can not find {part_name!r} in part manifest.')
 
     def remove(self):
         r'''Removes path if it exists.
@@ -2269,6 +2473,73 @@ class Path(pathlib.PosixPath):
         except KeyError:
             pass
         self.write_metadata_py(metadata)
+
+    def score_skeleton(self) -> Optional[Score]:
+        r'''Makes score skeleton.
+
+        Only works when score template defines ``skeleton()`` method.
+        '''
+        assert not self.is_external(), repr(self)
+        score_template = self._get_score_template()
+        if not hasattr(score_template, 'skeleton'):
+            return None
+        skeleton = score_template.skeleton()
+        indent = 4 * ' '
+        context = skeleton['GlobalSkips']
+        identifiers = self.global_skip_identifiers()
+        strings = ['\\' + _ for _ in identifiers]
+        literal = LilyPondLiteral(strings)
+        attach(literal, context)
+        context = skeleton['GlobalRests']
+        identifiers = self.global_rest_identifiers()
+        strings = ['\\' + _ for _ in identifiers]
+        literal = LilyPondLiteral(strings)
+        attach(literal, context)
+        module = self._import_score_package()
+        instruments = getattr(module, 'instruments', None)
+        for staff_group in iterate(skeleton).components(StaffGroup):
+            if staff_group:
+                continue
+            assert len(staff_group) == 0, repr(staff_group)
+            instrument = staff_group.name
+            words = String(staff_group.name).delimit_words()
+            if words[-3:] == ['Square', 'Staff', 'Group']:
+                words = words[:-3]
+            elif words[-2:] == ['Piano', 'Staff']:
+                words = words[:-2]
+            elif words == ['Percussion', 'Staff', 'Group']:
+                words = [String('Percussion')]
+            else:
+                raise ValueError(staff_group)
+            instrument = ''.join(words)
+            dictionary = self.instrument_to_staff_identifiers(instrument)
+            if instrument in ('FirstViolin', 'SecondViolin'):
+                key = 'Violin'
+            else:
+                key = instrument
+            abjad_instrument = instruments.get(key, None)
+            if not abjad_instrument:
+                raise Exception(f'can not find {key!r}.')
+            clef = Clef(abjad_instrument.allowable_clefs[0])
+            clef_string = format(clef, 'lilypond')
+            strings = []
+            method = self._context_name_to_first_appearance_margin_markup
+            for staff_name, identifiers in dictionary.items():
+                strings.append('{')
+                for i, identifier in enumerate(identifiers):
+                    string = indent + rf'\context Staff = "{staff_name}"'
+                    strings.append(string)
+                    if i == 0:
+                        margin_markup_strings = method(staff_name)
+                        for string_ in margin_markup_strings:
+                            strings.append(indent + string_)
+                        strings.append(indent + clef_string)
+                    string = indent + '\\' + identifier
+                    strings.append(string)
+                strings.append('}')
+            literal = LilyPondLiteral(strings)
+            attach(literal, staff_group)
+        return skeleton
 
     def segment_number_to_path(self, number):
         r'''Changes segment number to path.

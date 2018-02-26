@@ -5,8 +5,6 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 class AccelerandoRhythmMaker(RhythmMaker):
     r'''Accelerando rhythm-maker.
 
-    >>> from abjad.tools import rhythmmakertools as rhythmos
-
     ..  container:: example
 
         Makes accelerando for each input division:
@@ -517,12 +515,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, state=None):
+    def __call__(self, divisions, previous_state=None):
         r'''Calls interpolated rhythm-maker on `divisions`.
 
         Returns list of selections.
         '''
-        return RhythmMaker.__call__(self, divisions, state=state)
+        return RhythmMaker.__call__(
+            self,
+            divisions,
+            previous_state=previous_state,
+            )
 
     ### PRIVATE METHODS ###
 
@@ -832,7 +834,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
         selection = abjad.select([tuplet])
         return selection
 
-    def _make_music(self, divisions, state=None):
+    def _make_music(self, divisions):
         selections = []
         interpolation_specifiers = self._get_interpolation_specifiers()
         beam_specifier = self._get_beam_specifier()

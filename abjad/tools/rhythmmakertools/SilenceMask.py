@@ -5,8 +5,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class SilenceMask(AbjadValueObject):
     r'''Silence mask.
 
-    >>> from abjad.tools import rhythmmakertools as rhythmos
-
     ..  container:: example
 
         >>> pattern = abjad.index([0, 1, 7], 16)

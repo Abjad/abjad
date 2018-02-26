@@ -4,8 +4,6 @@ from abjad.tools.datastructuretools.OrderedDict import OrderedDict
 class PartitionTable(OrderedDict):
     r'''Partition table.
 
-    >>> from abjad.tools import rhythmmakertools as rhythmos
-
     ..  container:: example
 
         Partitions integers roughly ``1:1`` (restricted to assignable values)

@@ -4,8 +4,6 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 class EvenRunRhythmMaker(RhythmMaker):
     r'''Even run rhythm-maker.
 
-    >>> from abjad.tools import rhythmmakertools as rhythmos
-
     ..  container:: example
 
         Makes even run of notes each equal in duration to ``1/d``
@@ -87,7 +85,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, state=None):
+    def __call__(self, divisions, previous_state=None):
         r'''Calls even-run rhythm-maker on `divisions`.
 
         ..  container:: example
@@ -105,7 +103,7 @@ class EvenRunRhythmMaker(RhythmMaker):
         filled with notes.
         '''
         superclass = super(EvenRunRhythmMaker, self)
-        return superclass.__call__(divisions, state=state)
+        return superclass.__call__(divisions, previous_state=previous_state)
 
     def __format__(self, format_specification=''):
         r'''Formats even run rhythm-maker.

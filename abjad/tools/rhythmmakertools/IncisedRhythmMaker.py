@@ -4,8 +4,6 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 class IncisedRhythmMaker(RhythmMaker):
     r'''Incised rhythm-maker.
 
-    >>> from abjad.tools import rhythmmakertools as rhythmos
-
     ..  container:: example
 
         >>> rhythm_maker = abjad.rhythmmakertools.IncisedRhythmMaker(
@@ -110,12 +108,16 @@ class IncisedRhythmMaker(RhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, state=None):
+    def __call__(self, divisions, previous_state=None):
         r'''Calls incised rhythm-maker on `divisions`.
 
         Returns list of selections.
         '''
-        return RhythmMaker.__call__(self, divisions, state=state)
+        return RhythmMaker.__call__(
+            self,
+            divisions,
+            previous_state=previous_state,
+            )
 
     ### PRIVATE METHODS ###
 

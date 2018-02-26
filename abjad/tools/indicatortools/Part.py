@@ -1,9 +1,9 @@
-import roman # type: ignore
 from typing import List
 from typing import Optional
 from typing import Tuple
 from typing import Union
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.datastructuretools.String import String
 from abjad.tools.systemtools.FormatSpecification import FormatSpecification
 
 
@@ -63,57 +63,69 @@ class Part(AbjadValueObject):
 
         ..  container:: example
 
-            >>> part_names = ['HornI', 'HornII', 'HornIII', 'HornIV']
+            >>> part_names = ['Horn1', 'Horn2', 'Horn3', 'Horn4']
 
             >>> part = abjad.Part('Horn')
             >>> for part_name in part_names:
             ...     part_name, part_name in part
             ...
-            ('HornI', True)
-            ('HornII', True)
-            ('HornIII', True)
-            ('HornIV', True)
+            ('Horn1', True)
+            ('Horn2', True)
+            ('Horn3', True)
+            ('Horn4', True)
 
             >>> part = abjad.Part('Horn', 1)
             >>> for part_name in part_names:
             ...     part_name, part_name in part
             ...
-            ('HornI', True)
-            ('HornII', False)
-            ('HornIII', False)
-            ('HornIV', False)
+            ('Horn1', True)
+            ('Horn2', False)
+            ('Horn3', False)
+            ('Horn4', False)
 
             >>> part = abjad.Part('Horn', 2)
             >>> for part_name in part_names:
             ...     part_name, part_name in part
             ...
-            ('HornI', False)
-            ('HornII', True)
-            ('HornIII', False)
-            ('HornIV', False)
+            ('Horn1', False)
+            ('Horn2', True)
+            ('Horn3', False)
+            ('Horn4', False)
 
             >>> part = abjad.Part('Horn', (3, 4))
             >>> for part_name in part_names:
             ...     part_name, part_name in part
             ...
-            ('HornI', False)
-            ('HornII', False)
-            ('HornIII', True)
-            ('HornIV', True)
+            ('Horn1', False)
+            ('Horn2', False)
+            ('Horn3', True)
+            ('Horn4', True)
 
             >>> part = abjad.Part('Horn', [1, 3])
             >>> for part_name in part_names:
             ...     part_name, part_name in part
             ...
-            ('HornI', True)
-            ('HornII', False)
-            ('HornIII', True)
-            ('HornIV', False)
+            ('Horn1', True)
+            ('Horn2', False)
+            ('Horn3', True)
+            ('Horn4', False)
+
+        ..  container:: example
+
+            REGRESSION. Removes zfill:
+
+            >>> part = abjad.Part('Horn', 1)
+            >>> 'Horn1' in part
+            True
+
+            >>> 'Horn01' in part
+            True
 
 
         '''
         if not isinstance(argument, str):
             return False
+        argument = String(argument).remove_zfill()
         if self.members is None:
             if argument.startswith(self.section):
                 return True
@@ -139,8 +151,8 @@ class Part(AbjadValueObject):
             members = self.members
         part_names_ = []
         for member in members:
-            member_numeral = roman.toRoman(member)
-            part_name = self.section + member_numeral
+            member_number = int(member)
+            part_name = f'{self.section}{member_number}'
             part_names_.append(part_name)
         return part_names_
 

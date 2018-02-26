@@ -11,6 +11,7 @@ from abjad.tools.lilypondfiletools.LilyPondFile import LilyPondFile
 from abjad.tools.scoretools.Container import Container
 from abjad.tools.scoretools.Context import Context
 from abjad.tools.scoretools.Score import Score
+from abjad.tools.scoretools.Staff import Staff
 from abjad.tools.scoretools.Voice import Voice
 from abjad.tools.topleveltools.inspect import inspect
 from abjad.tools.topleveltools.iterate import iterate
@@ -70,7 +71,7 @@ class SegmentMaker(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _add_parse_handles(self):
+    def _add_container_identifiers(self):
         if getattr(self, '_environment', None) == 'docs':
             return
         segment_name = self.segment_name or ''
@@ -113,6 +114,12 @@ class SegmentMaker(AbjadObject):
                     pair = (part, timespan)
                     container_to_part[container_identifier] = pair
                     container.identifier = f'%*% {container_identifier}'
+        for staff in iterate(self.score).components(Staff):
+            if segment_name:
+                context_identifier = f'{segment_name}_{staff.name}'
+            else:
+                context_identifier = staff.name
+            staff.identifier = f'%*% {context_identifier}'
         self._container_to_part = container_to_part
 
     def _make_global_context(self):

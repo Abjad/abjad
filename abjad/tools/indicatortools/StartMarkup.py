@@ -2,16 +2,14 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.markuptools.Markup import Markup
 
 
-class MarginMarkup(AbjadValueObject):
-    r'''Margin markup.
+class StartMarkup(AbjadValueObject):
+    r'''Start markup.
 
     ..  container:: example
 
         >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-        >>> margin_markup = abjad.MarginMarkup(
-        ...     markup=abjad.Markup('Vc.'),
-        ...     )
-        >>> abjad.attach(margin_markup, staff[0])
+        >>> start_markup = abjad.StartMarkup(markup=abjad.Markup('Cellos'))
+        >>> abjad.attach(start_markup, staff[0])
         >>> abjad.show(staff, strict=89) # doctest: +SKIP
 
         ..  docs::
@@ -20,9 +18,7 @@ class MarginMarkup(AbjadValueObject):
             \new Staff
             {
                 \set Staff.instrumentName =
-                \markup { Vc. }
-                \set Staff.shortInstrumentName =
-                \markup { Vc. }
+                \markup { Cellos }
                 c'4
                 d'4
                 e'4
@@ -41,13 +37,7 @@ class MarginMarkup(AbjadValueObject):
         '_markup',
         )
 
-    _latent = True
-
-    _persistent = True
-
     _publish_storage_format = True
-
-    _redraw = True
 
     ### INITIALIZER ##
 
@@ -64,43 +54,43 @@ class MarginMarkup(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is margin markup with context and markup
-        equal to those of this margin markup.
+        r'''Is true when `argument` is start markup with context and markup
+        equal to those of this start markup.
 
         ..  container:: example
 
-            >>> margin_markup_1 = abjad.MarginMarkup(
+            >>> start_markup_1 = abjad.StartMarkup(
             ...     context='PianoStaff',
-            ...     markup=abjad.Markup('Hp.'),
+            ...     markup=abjad.Markup('Harp'),
             ...     )
-            >>> margin_markup_2 = abjad.MarginMarkup(
+            >>> start_markup_2 = abjad.StartMarkup(
             ...     context='PianoStaff',
-            ...     markup=abjad.Markup('Hp.'),
+            ...     markup=abjad.Markup('Harp'),
             ...     )
-            >>> margin_markup_3 = abjad.MarginMarkup(
+            >>> start_markup_3 = abjad.StartMarkup(
             ...     context='Staff',
-            ...     markup=abjad.Markup('Hp.'),
+            ...     markup=abjad.Markup('Harp'),
             ...     )
 
-            >>> margin_markup_1 == margin_markup_1
+            >>> start_markup_1 == start_markup_1
             True
-            >>> margin_markup_1 == margin_markup_2
+            >>> start_markup_1 == start_markup_2
             True
-            >>> margin_markup_1 == margin_markup_3
+            >>> start_markup_1 == start_markup_3
             False
 
-            >>> margin_markup_2 == margin_markup_1
+            >>> start_markup_2 == start_markup_1
             True
-            >>> margin_markup_2 == margin_markup_2
+            >>> start_markup_2 == start_markup_2
             True
-            >>> margin_markup_2 == margin_markup_3
+            >>> start_markup_2 == start_markup_3
             False
 
-            >>> margin_markup_3 == margin_markup_1
+            >>> start_markup_3 == start_markup_1
             False
-            >>> margin_markup_3 == margin_markup_2
+            >>> start_markup_3 == start_markup_2
             False
-            >>> margin_markup_3 == margin_markup_3
+            >>> start_markup_3 == start_markup_3
             True
 
         Returns true or false.
@@ -112,22 +102,22 @@ class MarginMarkup(AbjadValueObject):
         return False
 
     def __hash__(self):
-        r'''Hashes margin markup.
+        r'''Hashes start markup.
 
         ..  container:: example
 
-            >>> margin_markup = abjad.MarginMarkup(
+            >>> start_markup = abjad.StartMarkup(
             ...     context='PianoStaff',
-            ...     markup=abjad.Markup('Hp.'),
+            ...     markup=abjad.Markup('Harp'),
             ...     )
 
-            >>> hash_ = hash(margin_markup)
+            >>> hash_ = hash(start_markup)
             >>> isinstance(hash_, int)
             True
 
         Returns integer.
         '''
-        return super(MarginMarkup, self).__hash__()
+        return super(StartMarkup, self).__hash__()
 
     ### PRIVATE PROPERTIES ###
 
@@ -160,8 +150,6 @@ class MarginMarkup(AbjadValueObject):
         pieces = markup._get_format_pieces()
         result.append(rf'\set {context!s}.instrumentName =')
         result.extend(pieces)
-        result.append(rf'\set {context!s}.shortInstrumentName =')
-        result.extend(pieces)
         return result
 
     def _get_lilypond_format_bundle(self, component=None):
@@ -175,11 +163,11 @@ class MarginMarkup(AbjadValueObject):
 
     @property
     def context(self):
-        r'''Gets default context of margin markup.
+        r'''Gets default context of start markup.
 
         ..  container:: example
 
-            >>> abjad.MarginMarkup().context
+            >>> abjad.StartMarkup().context
             'Staff'
 
         Returns string.
@@ -192,30 +180,12 @@ class MarginMarkup(AbjadValueObject):
 
         ..  container:: example
 
-            >>> abjad.MarginMarkup().format_slot
+            >>> abjad.StartMarkup().format_slot
             'before'
 
         Returns string.
         '''
         return self._format_slot
-
-    @property
-    def latent(self):
-        r'''Is true.
-
-        ..  container::
-
-            >>> margin_markup = abjad.MarginMarkup(
-            ...     markup=abjad.Markup('Vc.'),
-            ...     )
-            >>> margin_markup.latent
-            True
-
-        Class constant.
-
-        Returns true.
-        '''
-        return self._latent
 
     @property
     def markup(self):
@@ -224,39 +194,3 @@ class MarginMarkup(AbjadValueObject):
         Returns markup.
         '''
         return self._markup
-
-    @property
-    def persistent(self):
-        r'''Is true.
-
-        ..  container:: example
-
-            >>> margin_markup = abjad.MarginMarkup(
-            ...     markup=abjad.Markup('Vc.'),
-            ...     )
-            >>> margin_markup.persistent
-            True
-
-        Class constant.
-
-        Returns true.
-        '''
-        return self._persistent
-
-    @property
-    def redraw(self):
-        r'''Is true.
-
-        ..  container:: example
-
-            >>> margin_markup = abjad.MarginMarkup(
-            ...     markup=abjad.Markup('Vc.'),
-            ...     )
-            >>> margin_markup.redraw
-            True
-
-        Class constant.
-
-        Returns true.
-        '''
-        return self._redraw

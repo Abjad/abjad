@@ -886,7 +886,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Makes tuplet equal to two eighths of a whole note:
+            Makes diminution:
 
             >>> tuplet = abjad.Tuplet.from_duration((2, 8), "c'8 d' e'")
             >>> abjad.show(tuplet) # doctest: +SKIP
@@ -1237,23 +1237,18 @@ class Tuplet(Container):
         Returns tuplet.
         '''
         import abjad
-        # coerce duration and ratio
         duration = abjad.Duration(duration)
         ratio = abjad.Ratio(ratio)
-        # find basic duration of note in tuplet
         basic_prolated_duration = duration / abjad.mathtools.weight(
             ratio.numbers)
-        # find basic written duration of note in tuplet
         if avoid_dots:
             basic_written_duration = \
                 basic_prolated_duration.equal_or_greater_power_of_two
         else:
             basic_written_duration = \
                 basic_prolated_duration.equal_or_greater_assignable
-        # find written duration of each note in tuplet
         written_durations = [x * basic_written_duration for x in ratio.numbers]
         leaf_maker = abjad.LeafMaker(decrease_monotonic=decrease_monotonic)
-        # make tuplet leaves
         try:
             notes = [
                 abjad.Note(0, x) if 0 < x else abjad.Rest(abs(x))
@@ -1274,19 +1269,15 @@ class Tuplet(Container):
                 for note_duration in note_durations
                 ]
             notes = leaf_maker(pitches, leaf_durations)
-        # make tuplet
         tuplet = abjad.Tuplet.from_duration(duration, notes)
-        # normalize tuplet multiplier if necessary
         tuplet.normalize_multiplier()
-        # change prolation if necessary
-        if not tuplet.multiplier == 1:
+        if tuplet.multiplier != 1:
             if diminution:
                 if not tuplet.diminution():
                     tuplet.toggle_prolation()
             else:
                 if tuplet.diminution():
                     tuplet.toggle_prolation()
-        # return tuplet
         return tuplet
 
     @staticmethod
@@ -1601,10 +1592,7 @@ class Tuplet(Container):
 
         Returns tuplet.
         '''
-        tuplet = leaf._to_tuplet_with_ratio(
-            ratio,
-            diminution=diminution,
-            )
+        tuplet = leaf._to_tuplet_with_ratio(ratio, diminution=diminution)
         return tuplet
 
     @staticmethod
@@ -1810,8 +1798,7 @@ class Tuplet(Container):
                         return tuplet
                     else:
                         return abjad.Container([note])
-                except \
-                        AssignabilityError:
+                except AssignabilityError:
                     maker = abjad.NoteMaker()
                     notes = maker(0, duration)
                     if allow_trivial:
@@ -2131,11 +2118,6 @@ class Tuplet(Container):
         r'''Is true when tuplet is trivializable (can be rewritten with a ratio
         of 1:1). Otherwise false.
 
-        Two conditions must be true for Abjad to identify a tuplet as
-        trivializable. First, the tuplet must contain only leaves (not other
-        tuplets). Second, the durations of all leaves contained in the tuplet
-        must be able to be rewritten without a tuplet bracket.
-
         ..  container:: example
 
             Redudant tuplet:
@@ -2201,13 +2183,36 @@ class Tuplet(Container):
 
             Can not be rewritten without a tuplet bracket.
 
+        ..  container:: example
+
+            REGRESSION. Nontrivializable tuplet:
+
+            >>> tuplet = abjad.Tuplet((3, 4), "c'2. c4")
+            >>> measure = abjad.Measure((3, 4), [tuplet])
+            >>> abjad.show(measure) # doctest: +SKIP
+
+            ..  docs::
+
+                        >>> abjad.f(measure)
+                        {   % measure
+                            \time 3/4
+                            \tweak text #tuplet-number::calc-fraction-text
+                            \times 3/4 {
+                                c'2.
+                                c4
+                            }
+                        }   % measure
+
+            >>> tuplet.trivializable()
+            False
+
         '''
-        import abjad
-        descendants = inspect(self).get_descendants()
-        leaves = list(iterate(self).leaves())
-        for logical_tie in iterate(leaves).logical_ties():
-            leaves = [_ for _ in logical_tie if _ in descendants]
-            if not inspect(leaves).get_duration().is_assignable:
+        for component in self:
+            if isinstance(component, Tuplet):
+                continue
+            assert isinstance(component, Leaf), repr(component)
+            duration = component.written_duration * self.multiplier
+            if not duration.is_assignable:
                 return False
         return True
 

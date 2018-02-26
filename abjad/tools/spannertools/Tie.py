@@ -2,7 +2,6 @@ from abjad.tools.datastructuretools.String import String
 from .Spanner import Spanner
 
 
-
 class Tie(Spanner):
     r'''Tie.
 
@@ -65,109 +64,26 @@ class Tie(Spanner):
 
     ..  container:: example
 
-        Conventional ties can be right-broken tagged (with strict formatting)
-        for use at the end of a segment:
+        Enharmonics are allowed:
 
-        >>> segment_1 = abjad.Voice("c'4 d' e' f'", name='MainVoice')
-        >>> abjad.attach(abjad.Tie(), segment_1[-1:], right_broken=True)
-        >>> abjad.f(segment_1, strict=True)
-        \context Voice = "MainVoice"
-        {
-            c'4
-            d'4
-            e'4
-            f'4
-        %@% ~ %! RIGHT_BROKEN_TIE
-        }
-
-        >>> abjad.show(segment_1) # doctest: +SKIP
-
-        >>> segment_2 = abjad.Voice("f'4 e' d' c'", name='MainVoice')
-        >>> abjad.f(segment_2, strict=True)
-        \context Voice = "MainVoice"
-        {
-            f'4
-            e'4
-            d'4
-            c'4
-        }
-
-        >>> abjad.show(segment_2) # doctest: +SKIP
-
-        >>> container = abjad.Container([segment_1, segment_2])
-        >>> abjad.f(container, strict=True)
-        {
-            \context Voice = "MainVoice"
-            {
-                c'4
-                d'4
-                e'4
-                f'4
-            %@% ~ %! RIGHT_BROKEN_TIE
-            }
-            \context Voice = "MainVoice"
-            {
-                f'4
-                e'4
-                d'4
-                c'4
-            }
-        }
-
-        >>> abjad.show(container) # doctest: +SKIP
-
-        >>> text = format(container, 'lilypond:strict')
-        >>> text = abjad.LilyPondFormatManager.left_shift_tags(text)
-        >>> text, count = abjad.activate(text, abjad.tags.RIGHT_BROKEN_TIE)
-        >>> print(text)
-        {
-            \context Voice = "MainVoice"
-            {
-                c'4
-                d'4
-                e'4
-                f'4
-                ~     %! RIGHT_BROKEN_TIE %@%
-            }
-            \context Voice = "MainVoice"
-            {
-                f'4
-                e'4
-                d'4
-                c'4
-            }
-        }
-
-        >>> lines = text.split('\n')
-        >>> lilypond_file = abjad.LilyPondFile.new(lines)
-        >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-    ..  container:: example
-
-        Repeat ties can be left-broken tagged (with strict formatting) for use
-        at the beginning of a segment:
-
-        >>> staff = abjad.Staff("c'4 c' c' c'")
-        >>> tie = abjad.Tie(repeat=True)
-        >>> abjad.attach(tie, staff[:], left_broken=True)
+        >>> staff = abjad.Staff("c'4 bs c' dff'")
+        >>> abjad.attach(abjad.Tie(), staff[:])
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.f(staff, strict=True)
-        \new Staff
-        {
-            c'4
-        %@% \repeatTie %! LEFT_BROKEN_REPEAT_TIE
-            c'4
-            \repeatTie
-            c'4
-            \repeatTie
-            c'4
-            \repeatTie
-        }
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4 ~
+                bs4 ~
+                c'4 ~
+                dff'4
+            }
 
     ..  container:: example
 
-        Fails attachment test when pitches differ:
+        Raises exception at attach-time when pitches differ:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(abjad.Tie(), staff[:])
@@ -220,9 +136,10 @@ class Tie(Spanner):
             component_expression = [component_expression]
         for component in component_expression:
             if isinstance(component, abjad.Note):
-                written_pitches.append(set([component.written_pitch]))
+                written_pitches.append(set([component.written_pitch.number]))
             elif isinstance(component, abjad.Chord):
-                written_pitches.append(set(component.written_pitches))
+                numbers = [_.number for _ in component.written_pitches]
+                written_pitches.append(set(numbers))
             else:
                 return False
         for pair in abjad.sequence(written_pitches).nwise():
@@ -259,48 +176,580 @@ class Tie(Spanner):
                 if not self._right_broken:
                     return bundle
                 elif self.direction is not None:
-                    string = '{} ~'.format(self.direction)
+                    strings = ['{} ~'.format(self.direction)]
                 else:
-                    string = '~'
-                strings = abjad.LilyPondFormatManager.tag(
-                    [string],
-                    deactivate=True,
-                    tag=abjad.tags.RIGHT_BROKEN_TIE,
-                    )
-                assert len(strings) == 1
-                string = strings[0]
-                bundle.right.spanners.append(string)
+                    strings = ['~']
+                strings = self._tag_show(strings)
+                bundle.right.spanners.extend(strings)
             elif isinstance(leaf._get_leaf(1), silent):
                 return bundle
             elif self.direction is not None:
-                string = '{} ~'.format(self.direction)
-                bundle.right.spanners.append(string)
+                strings = ['{} ~'.format(self.direction)]
+                bundle.right.spanners.extend(strings)
             else:
-                bundle.right.spanners.append('~')
+                strings = ['~']
+                bundle.right.spanners.extend(strings)
         else:
             if leaf is self[0]:
                 if not self._left_broken:
                     return bundle
                 elif self.direction is not None:
-                    string = r'{} \repeatTie'.format(self.direction)
+                    strings = [r'{} \repeatTie'.format(self.direction)]
                 else:
-                    string = r'\repeatTie'
-                strings = abjad.LilyPondFormatManager.tag(
-                    [string],
-                    deactivate=True,
-                    tag='LEFT_BROKEN_REPEAT_TIE',
-                    )
-                assert len(strings) == 1
-                string = strings[0]
-                bundle.right.spanners.append(string)
+                    strings = [r'\repeatTie']
+                strings = self._tag_show(strings)
+                bundle.right.spanners.extend(strings)
             elif self.direction is not None:
-                string = r'{} \repeatTie'.format(self.direction)
-                bundle.right.spanners.append(string)
+                strings = [r'{} \repeatTie'.format(self.direction)]
+                bundle.right.spanners.extend(strings)
             else:
-                bundle.right.spanners.append(r'\repeatTie')
+                strings = [r'\repeatTie']
+                bundle.right.spanners.extend(strings)
         return bundle
 
     ### PUBLIC PROPERTIES ###
+
+    def cross_segment_examples(self):
+        r'''Cross-segment examples.
+
+        ..  container:: example
+
+            [Tie] cross-segment example #1 (one-to-one):
+
+            >>> segment_1 = abjad.Voice("c'4 d' f' f'", name='MainVoice')
+            >>> abjad.attach(abjad.Tie(), segment_1[-1:], right_broken=True)
+            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_1, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    c'4
+                    d'4
+                    f'4
+                    f'4
+                %@% ~                                             %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                }
+
+            >>> segment_2 = abjad.Voice("f'4 f' d' c'", name='MainVoice')
+            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_2, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    f'4
+                    f'4
+                    d'4
+                    c'4
+                }
+
+            >>> container = abjad.Container([segment_1, segment_2])
+            >>> text = format(container, 'lilypond:strict')
+            >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
+            >>> job = abjad.Job.broken_spanner_join_job(text)
+            >>> text = job()
+            >>> lines = text.split('\n')
+            >>> lilypond_file = abjad.LilyPondFile.new(lines)
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> print(text)
+                {
+                    \context Voice = "MainVoice"
+                    {
+                        c'4
+                        d'4
+                        f'4
+                        f'4
+                        ~                                         %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                    }
+                    \context Voice = "MainVoice"
+                    {
+                        f'4
+                        f'4
+                        d'4
+                        c'4
+                    }
+                }
+
+        ..  container:: example
+
+            [Tie] cross-segment example #2 (one-to-many):
+
+            >>> segment_1 = abjad.Voice("c'4 d' f' f'", name='MainVoice')
+            >>> abjad.attach(abjad.Tie(), segment_1[-1:], right_broken=True)
+            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_1, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    c'4
+                    d'4
+                    f'4
+                    f'4
+                %@% ~                                             %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                }
+
+            >>> segment_2 = abjad.Voice("f'4 f' d' c'", name='MainVoice')
+            >>> abjad.attach(abjad.Tie(), segment_2[:2])
+            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_2, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    f'4
+                    ~
+                    f'4
+                    d'4
+                    c'4
+                }
+
+            >>> container = abjad.Container([segment_1, segment_2])
+            >>> text = format(container, 'lilypond:strict')
+            >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
+            >>> job = abjad.Job.broken_spanner_join_job(text)
+            >>> text = job()
+            >>> lines = text.split('\n')
+            >>> lilypond_file = abjad.LilyPondFile.new(lines)
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> print(text)
+                {
+                    \context Voice = "MainVoice"
+                    {
+                        c'4
+                        d'4
+                        f'4
+                        f'4
+                        ~                                         %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                    }
+                    \context Voice = "MainVoice"
+                    {
+                        f'4
+                        ~
+                        f'4
+                        d'4
+                        c'4
+                    }
+                }
+
+        ..  container:: example
+
+            [Tie] cross-segment example #3 (many-to-one):
+
+            >>> segment_1 = abjad.Voice("c'4 d' f' f'", name='MainVoice')
+            >>> abjad.attach(abjad.Tie(), segment_1[-2:], right_broken=True)
+            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_1, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    c'4
+                    d'4
+                    f'4
+                    ~
+                    f'4
+                %@% ~                                             %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                }
+
+            >>> segment_2 = abjad.Voice("f'4 f' d' c'", name='MainVoice')
+            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_2, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    f'4
+                    f'4
+                    d'4
+                    c'4
+                }
+
+            >>> container = abjad.Container([segment_1, segment_2])
+            >>> text = format(container, 'lilypond:strict')
+            >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
+            >>> job = abjad.Job.broken_spanner_join_job(text)
+            >>> text = job()
+            >>> lines = text.split('\n')
+            >>> lilypond_file = abjad.LilyPondFile.new(lines)
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> print(text)
+                {
+                    \context Voice = "MainVoice"
+                    {
+                        c'4
+                        d'4
+                        f'4
+                        ~
+                        f'4
+                        ~                                         %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                    }
+                    \context Voice = "MainVoice"
+                    {
+                        f'4
+                        f'4
+                        d'4
+                        c'4
+                    }
+                }
+
+        ..  container:: example
+
+            [Tie] cross-segment example #4 (many-to-many):
+
+            >>> segment_1 = abjad.Voice("c'4 d' f' f'", name='MainVoice')
+            >>> abjad.attach(abjad.Tie(), segment_1[-2:], right_broken=True)
+            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_1, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    c'4
+                    d'4
+                    f'4
+                    ~
+                    f'4
+                %@% ~                                             %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                }
+
+            >>> segment_2 = abjad.Voice("f'4 f' d' c'", name='MainVoice')
+            >>> abjad.attach(abjad.Tie(), segment_2[:2])
+
+            ..  docs::
+
+                >>> abjad.f(segment_2, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    f'4
+                    ~
+                    f'4
+                    d'4
+                    c'4
+                }
+
+            >>> container = abjad.Container([segment_1, segment_2])
+            >>> text = format(container, 'lilypond:strict')
+            >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
+            >>> job = abjad.Job.broken_spanner_join_job(text)
+            >>> text = job()
+            >>> lines = text.split('\n')
+            >>> lilypond_file = abjad.LilyPondFile.new(lines)
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> print(text)
+                {
+                    \context Voice = "MainVoice"
+                    {
+                        c'4
+                        d'4
+                        f'4
+                        ~
+                        f'4
+                        ~                                         %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                    }
+                    \context Voice = "MainVoice"
+                    {
+                        f'4
+                        ~
+                        f'4
+                        d'4
+                        c'4
+                    }
+                }
+
+        ..  container:: example
+
+            [Repeat tie] cross-segment example #1 (one-to-one):
+
+            >>> segment_1 = abjad.Voice("c'4 d' f' f'", name='MainVoice')
+            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_1, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    c'4
+                    d'4
+                    f'4
+                    f'4
+                }
+
+            >>> segment_2 = abjad.Voice("f'4 f' d' c'", name='MainVoice')
+            >>> repeat_tie = abjad.Tie(repeat=True)
+            >>> abjad.attach(repeat_tie, segment_2[:1], left_broken=True)
+            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_2, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    f'4
+                %@% \repeatTie                                    %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                    f'4
+                    d'4
+                    c'4
+                }
+
+            >>> container = abjad.Container([segment_1, segment_2])
+            >>> text = format(container, 'lilypond:strict')
+            >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
+            >>> job = abjad.Job.broken_spanner_join_job(text)
+            >>> text = job()
+            >>> lines = text.split('\n')
+            >>> lilypond_file = abjad.LilyPondFile.new(lines)
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> print(text)
+                {
+                    \context Voice = "MainVoice"
+                    {
+                        c'4
+                        d'4
+                        f'4
+                        f'4
+                    }
+                    \context Voice = "MainVoice"
+                    {
+                        f'4
+                        \repeatTie                                %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        f'4
+                        d'4
+                        c'4
+                    }
+                }
+
+        ..  container:: example
+
+            [Repeat tie] cross-segment example #2 (one-to-many):
+
+            >>> segment_1 = abjad.Voice("c'4 d' f' f'", name='MainVoice')
+            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_1, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    c'4
+                    d'4
+                    f'4
+                    f'4
+                }
+
+            >>> segment_2 = abjad.Voice("f'4 f' d' c'", name='MainVoice')
+            >>> repeat_tie = abjad.Tie(repeat=True)
+            >>> abjad.attach(repeat_tie, segment_2[:2], left_broken=True)
+            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_2, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    f'4
+                %@% \repeatTie                                    %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                    f'4
+                    \repeatTie
+                    d'4
+                    c'4
+                }
+
+            >>> container = abjad.Container([segment_1, segment_2])
+            >>> text = format(container, 'lilypond:strict')
+            >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
+            >>> job = abjad.Job.broken_spanner_join_job(text)
+            >>> text = job()
+            >>> lines = text.split('\n')
+            >>> lilypond_file = abjad.LilyPondFile.new(lines)
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> print(text)
+                {
+                    \context Voice = "MainVoice"
+                    {
+                        c'4
+                        d'4
+                        f'4
+                        f'4
+                    }
+                    \context Voice = "MainVoice"
+                    {
+                        f'4
+                        \repeatTie                                %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        f'4
+                        \repeatTie
+                        d'4
+                        c'4
+                    }
+                }
+
+        ..  container:: example
+
+            [Repeat tie] cross-segment example #3 (many-to-one):
+
+            >>> segment_1 = abjad.Voice("c'4 d' f' f'", name='MainVoice')
+            >>> repeat_tie = abjad.Tie(repeat=True)
+            >>> abjad.attach(repeat_tie, segment_1[-2:])
+            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_1, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    c'4
+                    d'4
+                    f'4
+                    f'4
+                    \repeatTie
+                }
+
+            >>> segment_2 = abjad.Voice("f'4 f' d' c'", name='MainVoice')
+            >>> repeat_tie = abjad.Tie(repeat=True)
+            >>> abjad.attach(repeat_tie, segment_2[:1], left_broken=True)
+            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_2, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    f'4
+                %@% \repeatTie                                    %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                    f'4
+                    d'4
+                    c'4
+                }
+
+            >>> container = abjad.Container([segment_1, segment_2])
+            >>> text = format(container, 'lilypond:strict')
+            >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
+            >>> job = abjad.Job.broken_spanner_join_job(text)
+            >>> text = job()
+            >>> lines = text.split('\n')
+            >>> lilypond_file = abjad.LilyPondFile.new(lines)
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> print(text)
+                {
+                    \context Voice = "MainVoice"
+                    {
+                        c'4
+                        d'4
+                        f'4
+                        f'4
+                        \repeatTie
+                    }
+                    \context Voice = "MainVoice"
+                    {
+                        f'4
+                        \repeatTie                                %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        f'4
+                        d'4
+                        c'4
+                    }
+                }
+
+        ..  container:: example
+
+            [Repeat tie] cross-segment example #4 (many-to-many):
+
+            >>> segment_1 = abjad.Voice("c'4 d' f' f'", name='MainVoice')
+            >>> repeat_tie = abjad.Tie(repeat=True)
+            >>> abjad.attach(repeat_tie, segment_1[-2:])
+            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(segment_1, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    c'4
+                    d'4
+                    f'4
+                    f'4
+                    \repeatTie
+                }
+
+            >>> segment_2 = abjad.Voice("f'4 f' d' c'", name='MainVoice')
+            >>> repeat_tie = abjad.Tie(repeat=True)
+            >>> abjad.attach(repeat_tie, segment_2[:2], left_broken=True)
+
+            ..  docs::
+
+                >>> abjad.f(segment_2, strict=50)
+                \context Voice = "MainVoice"
+                {
+                    f'4
+                %@% \repeatTie                                    %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                    f'4
+                    \repeatTie
+                    d'4
+                    c'4
+                }
+
+            >>> container = abjad.Container([segment_1, segment_2])
+            >>> text = format(container, 'lilypond:strict')
+            >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
+            >>> job = abjad.Job.broken_spanner_join_job(text)
+            >>> text = job()
+            >>> lines = text.split('\n')
+            >>> lilypond_file = abjad.LilyPondFile.new(lines)
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> print(text)
+                {
+                    \context Voice = "MainVoice"
+                    {
+                        c'4
+                        d'4
+                        f'4
+                        f'4
+                        \repeatTie
+                    }
+                    \context Voice = "MainVoice"
+                    {
+                        f'4
+                        \repeatTie                                %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        f'4
+                        \repeatTie
+                        d'4
+                        c'4
+                    }
+                }
+
+        '''
+        pass
 
     @property
     def direction(self):

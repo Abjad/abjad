@@ -852,21 +852,11 @@ class NamedPitch(Pitch):
             >>> abjad.NamedPitch('C#5').to_staff_position()
             StaffPosition(7)
 
-        ..  container:: example
+            >>> abjad.NamedPitch('C#5').to_staff_position(clef='treble')
+            StaffPosition(1)
 
-            Changes C#5 to treble staff position:
-
-
-                >>> abjad.NamedPitch('C#5').to_staff_position(clef=abjad.Clef('treble'))
-                StaffPosition(1)
-
-        ..  container:: example
-
-            Changes C#5 to bass staff position:
-
-
-                >>> abjad.NamedPitch('C#5').to_staff_position(clef=abjad.Clef('bass'))
-                StaffPosition(13)
+            >>> abjad.NamedPitch('C#5').to_staff_position(clef='bass')
+            StaffPosition(13)
 
         ..  container:: example
 
@@ -1001,6 +991,7 @@ class NamedPitch(Pitch):
         import abjad
         staff_position_number = self._get_diatonic_pitch_number()
         if clef is not None:
+            clef = abjad.Clef(clef)
             staff_position_number += clef.middle_c_position.number
         staff_position = abjad.StaffPosition(staff_position_number)
         return staff_position

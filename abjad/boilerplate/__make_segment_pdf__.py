@@ -50,7 +50,7 @@ if __name__ == '__main__':
         text = abjad.LilyPondFormatManager.left_shift_tags(text, realign=89)
         illustration_ly.write_text(text)
         for job in [
-            abjad.Job.document_specific_job(illustration_ly),
+            abjad.Job.edition_specific_job(illustration_ly),
             abjad.Job.music_annotation_job(illustration_ly, undo=True),
             abjad.Job.fermata_bar_line_job(segment_directory),
             abjad.Job.shifted_clef_job(segment_directory),

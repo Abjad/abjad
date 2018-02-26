@@ -45,7 +45,7 @@ def test_scoretools_Container___setitem___02():
 
     voice = abjad.Voice("c'8 [ d'8 ] e'8 f'8")
     leaves = abjad.select(voice).leaves()
-    glissando = abjad.Glissando(allow_repeat_pitches=True)
+    glissando = abjad.Glissando(allow_repeats=True)
     abjad.attach(glissando, leaves)
 
     assert format(voice) == abjad.String.normalize(

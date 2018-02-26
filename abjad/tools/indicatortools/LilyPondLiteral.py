@@ -83,46 +83,6 @@ class LilyPondLiteral(AbjadValueObject):
 
     ..  container:: example
 
-        LilyPond literals can be sited:
-
-        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-        >>> abjad.attach(abjad.Slur(), staff[:])
-        >>> literal = abjad.LilyPondLiteral(r'\slurDotted')
-        >>> abjad.attach(literal, staff[0], site='M1')
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        >>> abjad.f(staff)
-        \new Staff
-        {
-            \slurDotted %! M1
-            c'8 (
-            d'8
-            e'8
-            f'8 )
-        }
-
-    ..  container:: example
-
-        LilyPond literals can be site-tagged:
-
-        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-        >>> abjad.attach(abjad.Slur(), staff[:])
-        >>> literal = abjad.LilyPondLiteral(r'\slurDotted')
-        >>> abjad.attach(literal, staff[0], site='M1', tag='RED')
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        >>> abjad.f(staff)
-        \new Staff
-        {
-            \slurDotted %! RED:M1
-            c'8 (
-            d'8
-            e'8
-            f'8 )
-        }
-
-    ..  container:: example
-
         Multiline input is allowed:
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")

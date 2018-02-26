@@ -2,6 +2,7 @@ import abc
 from typing import List
 from typing import Tuple
 from abjad.tools import abctools
+from abjad.tools.datastructuretools.String import String
 from abjad.tools.indicatortools.Clef import Clef
 from abjad.tools.indicatortools.MarginMarkup import MarginMarkup
 from abjad.tools.instrumenttools.Instrument import Instrument
@@ -14,6 +15,7 @@ from abjad.tools.scoretools.Skip import Skip
 from abjad.tools.scoretools.Staff import Staff
 from abjad.tools.scoretools.StaffGroup import StaffGroup
 from abjad.tools.scoretools.Voice import Voice
+from abjad.tools.systemtools.Tag import Tag
 from abjad.tools.topleveltools.attach import attach
 from abjad.tools.topleveltools.inspect import inspect
 from abjad.tools.topleveltools.iterate import iterate
@@ -95,18 +97,32 @@ class ScoreTemplate(abctools.AbjadValueObject):
     ### PUBLIC METHODS ###
 
     def attach_defaults(self, argument) -> List:
-        r'''Attaches defaults to staff and staff group contexts in
-        ``argument``.
+        r'''Attaches defaults to all staff and staff group contexts in
+        ``argument`` when ``argument`` is a score.
 
-        Returns one leaf / indicator pair for every indicator attached.
+        Attaches defaults to ``argument`` (without iterating ``argument``) when
+        ``argument`` is a staff or staff group.
+
+        Returns list of one wrapper for every indicator attached.
         '''
-        pairs = []
-        prototype = (Staff, StaffGroup)
-        empty_prototype = (MultimeasureRest, Skip)
+        assert isinstance(argument, (Score, Staff, StaffGroup)), repr(argument)
+        wrappers = []
         tag = Tags().REMOVE_ALL_EMPTY_STAVES
-        for context in iterate(argument).components(prototype):
+        empty_prototype = (MultimeasureRest, Skip)
+        prototype = (Staff, StaffGroup)
+        if isinstance(argument, Score):
+            staff__groups = select(argument).components(prototype)
+            staves = select(argument).components(Staff)
+        elif isinstance(argument, Staff):
+            staff__groups = [argument]
+            staves = [argument]
+        else:
+            assert isinstance(argument, StaffGroup), repr(argument)
+            staff__groups = [argument]
+            staves = []
+        for staff__group in staff__groups:
             leaf = None
-            voices = select(context).components(Voice)
+            voices = select(staff__group).components(Voice)
             # find first leaf in first nonempty voice
             for voice in voices:
                 leaves = select(voice).leaves()
@@ -131,32 +147,49 @@ class ScoreTemplate(abctools.AbjadValueObject):
             instrument = inspect(leaf).get_indicator(Instrument)
             if instrument is None:
                 string = 'default_instrument'
-                instrument = inspect(context).get_annotation(string)
+                instrument = inspect(staff__group).get_annotation(string)
                 if instrument is not None:
-                    attach(instrument, leaf, site='ST1')
-                    pairs.append((leaf, instrument))
+                    wrapper = attach(instrument, leaf, tag='ST1', wrapper=True)
+                    wrappers.append(wrapper)
             margin_markup = inspect(leaf).get_indicator(MarginMarkup)
             if margin_markup is None:
                 string = 'default_margin_markup'
-                margin_markup = inspect(context).get_annotation(string)
+                margin_markup = inspect(staff__group).get_annotation(string)
                 if margin_markup is not None:
-                    attach(
+                    wrapper = attach(
                         margin_markup,
                         leaf,
-                        site='ST2',
-                        tag='+SCORE:+SEGMENT',
+                        tag=Tag('-PARTS').prepend('ST2'),
+                        wrapper=True,
                         )
-                    pairs.append((leaf, margin_markup))
-        for staff in iterate(argument).components(Staff):
+                    wrappers.append(wrapper)
+        for staff in staves:
             leaf = inspect(staff).get_leaf(0)
             clef = inspect(leaf).get_indicator(Clef)
             if clef is not None:
                 continue
             clef = inspect(staff).get_annotation('default_clef')
             if clef is not None:
-                attach(clef, leaf, site='ST3')
-                pairs.append((leaf, clef))
-        return pairs
+                wrapper = attach(clef, leaf, tag='ST3', wrapper=True)
+                wrappers.append(wrapper)
+        return wrappers
+
+    def instrument_keys(self) -> List[String]:
+        r'''Gets instrument keys.
+        '''
+        keys: List[String] = []
+        for item in self.part_manifest:
+            assert isinstance(item, tuple), repr(item)
+            if len(item) == 2:
+                part_name = item[0]
+                key = String(part_name).strip_roman()
+            elif len(item) == 3:
+                key = item[-1]
+            else:
+                raise ValueError(item)
+            if key not in keys:
+                keys.append(key)
+        return keys
 
     def part_names(self) -> List[str]:
         r'''Gets part names.

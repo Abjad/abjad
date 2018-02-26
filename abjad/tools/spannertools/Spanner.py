@@ -1,6 +1,9 @@
 import collections
 import copy
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.systemtools.LilyPondFormatManager import LilyPondFormatManager
+from abjad.tools.segmenttools.Tags import Tags
+abjad_tags = Tags()
 
 
 class Spanner(AbjadObject, collections.Sequence):
@@ -23,7 +26,6 @@ class Spanner(AbjadObject, collections.Sequence):
         '_lilypond_grob_name_manager',
         '_lilypond_setting_name_manager',
         '_right_broken',
-        '_site',
         '_tag',
         '_wrappers',
         )
@@ -41,7 +43,6 @@ class Spanner(AbjadObject, collections.Sequence):
         self._left_broken = None
         self._lilypond_setting_name_manager = None
         self._right_broken = None
-        self._site = None
         self._tag = None
         self._wrappers = []
 
@@ -170,7 +171,6 @@ class Spanner(AbjadObject, collections.Sequence):
         deactivate=None,
         left_broken=None,
         right_broken=None,
-        site=None,
         tag=None,
         ):
         import abjad
@@ -181,7 +181,8 @@ class Spanner(AbjadObject, collections.Sequence):
         self._deactivate = deactivate
         self._left_broken = left_broken
         self._right_broken = right_broken
-        self._site = site
+        if tag is not None:
+            tag = abjad.Tag(tag)
         self._tag = tag
 
     def _attach_piecewise(
@@ -190,8 +191,8 @@ class Spanner(AbjadObject, collections.Sequence):
         leaf,
         alternate=None,
         deactivate=None,
-        site=None,
         tag=None,
+        wrapper=None,
         ):
         import abjad
         if leaf not in self:
@@ -203,25 +204,25 @@ class Spanner(AbjadObject, collections.Sequence):
             annotation = indicator.annotation
             context = indicator.context
             deactivate = deactivate or indicator.deactivate
-            site = site or indicator.site
             synthetic_offset = indicator.synthetic_offset
             tag = tag or indicator.tag
             indicator._detach()
             indicator = indicator.indicator
         context = getattr(self, 'context', None)
         context = context or getattr(indicator, 'context', None)
-        wrapper = abjad.Wrapper(
+        wrapper_ = abjad.Wrapper(
             alternate=alternate,
             component=leaf,
             context=context,
             deactivate=deactivate,
             indicator=indicator,
             spanner=self,
-            site=site,
             tag=tag,
             )
-        wrapper._bind_to_component(leaf)
-        self._wrappers.append(wrapper)
+        wrapper_._bind_to_component(leaf)
+        self._wrappers.append(wrapper_)
+        if wrapper:
+            return wrapper_
 
     def _attachment_test(self, argument):
         import abjad
@@ -449,11 +450,11 @@ class Spanner(AbjadObject, collections.Sequence):
     def _get_piecewise_indicator(self, leaf, prototype=None):
         indicators = self._get_piecewise_indicators(leaf, prototype)
         if not indicators:
-            message = 'no piecewise indicator found.'
+            message = 'no piecewise {prototype!s} indicator found.'
             raise Exception(message)
         if len(indicators) == 1:
             return indicators[0]
-        message = 'multiple piecewise indicators found.'
+        message = f'multiple piecewise {prototype!s} indicators found.'
         raise Exception(message)
 
     def _get_piecewise_indicators(self, leaf, prototype=None):
@@ -555,6 +556,28 @@ class Spanner(AbjadObject, collections.Sequence):
     def _is_my_only_leaf(self, leaf):
         return len(self) == 1 and self.leaves[0] is leaf
 
+    def _is_trending(self, leaf):
+        import abjad
+        if leaf not in self:
+            return False
+        if isinstance(self, abjad.Hairpin):
+            return True
+        if isinstance(self, abjad.MetronomeMarkSpanner):
+            prototype = (abjad.Accelerando, abjad.Ritardando)
+            if abjad.inspect(leaf).has_indicator(prototype):
+                return True
+            previous_wrapper = abjad.inspect(leaf).get_effective(
+                abjad.MetronomeMark,
+                n=-1,
+                unwrap=False,
+                )
+            if previous_wrapper is None:
+                return False
+            previous_leaf = previous_wrapper.component
+            if abjad.inspect(previous_leaf).has_indicator(prototype):
+                return True
+        return False
+
     def _remove(self, leaf):
         r'''Not composer-safe.
         '''
@@ -594,6 +617,22 @@ class Spanner(AbjadObject, collections.Sequence):
         leaf_start_offset = self._start_offset_in_me(leaf)
         leaf_stop_offset = leaf_start_offset + leaf._get_duration()
         return leaf_stop_offset
+
+    @staticmethod
+    def _tag_hide(strings):
+        return LilyPondFormatManager.tag(
+            strings,
+            deactivate=False,
+            tag=abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS,
+            )
+
+    @staticmethod
+    def _tag_show(strings):
+        return LilyPondFormatManager.tag(
+            strings,
+            deactivate=True,
+            tag=abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS,
+            )
 
     def _unblock_all_leaves(self):
         r'''Not composer-safe.

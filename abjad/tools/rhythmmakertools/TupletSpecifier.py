@@ -1,15 +1,12 @@
 import copy
-from typing import Union
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.datastructuretools.Duration import Duration
 from abjad.tools.datastructuretools.Multiplier import Multiplier
 
 
 class TupletSpecifier(AbjadValueObject):
-    r'''Tuplet spelling specifier.
-
-    >>> from abjad.tools import rhythmmakertools as rhythmos
-
+    r'''Tuplet specifier.
     '''
 
     ### CLASS VARIABLES ###
@@ -30,13 +27,13 @@ class TupletSpecifier(AbjadValueObject):
 
     def __init__(
         self,
-        avoid_dots: Union[bool, None] = False,
-        denominator=None,
-        diminution: Union[bool, None] = True,
-        extract_trivial: Union[bool, None] = False,
-        rewrite_rest_filled: Union[bool, None] = False,
-        trivialize: Union[bool, None] = False,
-        use_note_duration_bracket: Union[bool, None] = False,
+        avoid_dots: typing.Union[bool] = False,
+        denominator: typing.Union[str, Duration, int] = None,
+        diminution: typing.Union[bool, None] = True,
+        extract_trivial: typing.Union[bool, None] = False,
+        rewrite_rest_filled: typing.Union[bool, None] = False,
+        trivialize: typing.Union[bool, None] = False,
+        use_note_duration_bracket: typing.Union[bool, None] = False,
         ) -> None:
         import abjad
         # TODO: Consider renaming diminution=True to augmentation=None.
@@ -148,20 +145,14 @@ class TupletSpecifier(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def avoid_dots(self) -> Union[bool, None]:
+    def avoid_dots(self) -> typing.Optional[bool]:
         r'''Is true when tuplet should avoid dotted rhythmic values.
         Otherwise false.
-
-        Defaults to false.
-
-        Set to true or false.
-
-        Returns true or false.
         '''
         return self._avoid_dots
 
     @property
-    def denominator(self):
+    def denominator(self) -> typing.Optional[typing.Union[str, Duration, int]]:
         r'''Gets preferred denominator.
 
         ..  container:: example
@@ -627,58 +618,40 @@ class TupletSpecifier(AbjadValueObject):
                     }   % measure
                 }
 
-        Defaults to none.
-
         Set to ``'divisions'``, duration, positive integer or none.
-
-        Returns ``'divisions'``, duration, positive integer or none.
         '''
         return self._denominator
 
     @property
-    def diminution(self) -> Union[bool, None]:
+    def diminution(self) -> typing.Optional[bool]:
         r'''Is true when tuplet should be spelled as diminution. Otherwise
         false.
-
-        Defaults to true.
         '''
         return self._diminution
 
     @property
-    def extract_trivial(self) -> Union[bool, None]:
+    def extract_trivial(self) -> typing.Optional[bool]:
         r'''Is true when rhythm-maker should extract trivial tuplets.
-
-        Defaults to false.
         '''
         return self._extract_trivial
 
     @property
-    def rewrite_rest_filled(self) -> Union[bool, None]:
+    def rewrite_rest_filled(self) -> typing.Optional[bool]:
         r'''Is true when tuplet should flatten rest-filled tuplets.
         Otherwise false.
-
-        Defaults to false.
         '''
         return self._rewrite_rest_filled
 
     @property
-    def trivialize(self) -> Union[bool, None]:
+    def trivialize(self) -> typing.Optional[bool]:
         r'''Is true when trivializable tuplets should be trivialized.
         Otherwise false.
-
-        Defaults to false.
         '''
         return self._trivialize
 
     @property
-    def use_note_duration_bracket(self) -> Union[bool, None]:
+    def use_note_duration_bracket(self) -> typing.Optional[bool]:
         r'''Is true when tuplet should override tuplet number text with note
         duration bracket giving tuplet duration. Otherwise false.
-
-        Defaults to false.
-
-        Set to true or false.
-
-        Returns true or false.
         '''
         return self._use_note_duration_bracket

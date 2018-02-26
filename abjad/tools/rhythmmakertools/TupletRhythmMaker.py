@@ -1,10 +1,16 @@
-from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
+import typing
+from abjad.tools.datastructuretools.Duration import Duration
+from abjad.tools.datastructuretools.Pattern import Pattern
+from abjad.tools.mathtools.Ratio import Ratio
+from .BeamSpecifier import BeamSpecifier
+from .DurationSpecifier import DurationSpecifier
+from .RhythmMaker import RhythmMaker
+from .TieSpecifier import TieSpecifier
+from .TupletSpecifier import TupletSpecifier
 
 
 class TupletRhythmMaker(RhythmMaker):
     r'''Tuplet rhythm-maker.
-
-    >>> from abjad.tools import rhythmmakertools as rhythmos
 
     ..  container:: example
 
@@ -166,7 +172,7 @@ class TupletRhythmMaker(RhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, state=None):
+    def __call__(self, divisions, previous_state=None):
         r'''Calls tuplet rhythm-maker on `divisions`.
 
         ..  container:: example
@@ -279,7 +285,11 @@ class TupletRhythmMaker(RhythmMaker):
         Returns list of selections structured one selection per division.
         Each selection wraps a single tuplet.
         '''
-        return RhythmMaker.__call__(self, divisions, state=state)
+        return RhythmMaker.__call__(
+            self,
+            divisions,
+            previous_state=previous_state,
+            )
 
     def __format__(self, format_specification=''):
         r'''Formats tuplet rhythm-maker.
@@ -385,7 +395,7 @@ class TupletRhythmMaker(RhythmMaker):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def beam_specifier(self):
+    def beam_specifier(self) -> typing.Optional[BeamSpecifier]:
         r'''Gets beam specifier.
 
         ..  container:: example
@@ -609,16 +619,11 @@ class TupletRhythmMaker(RhythmMaker):
                 }
 
         Ignores `beam_each_division` when `beam_division_together` is true.
-
-        Set to beam specifier or none.
-
-        Returns beam specifier or none.
         '''
-        superclass = super(TupletRhythmMaker, self)
-        return superclass.beam_specifier
+        return super(TupletRhythmMaker, self).beam_specifier
 
     @property
-    def denominator(self):
+    def denominator(self) -> typing.Optional[typing.Union[str, Duration, int]]:
         r'''Gets preferred denominator.
 
         ..  container:: example
@@ -1085,13 +1090,11 @@ class TupletRhythmMaker(RhythmMaker):
                 }
 
         Set to ``'divisions'``, duration, positive integer or none.
-
-        Returns ``'divisions'``, duration, positive integer or none.
         '''
         return self._denominator
 
     @property
-    def division_masks(self):
+    def division_masks(self) -> typing.Optional[typing.List[Pattern]]:
         r'''Gets division masks.
 
         ..  container:: example
@@ -1201,15 +1204,11 @@ class TupletRhythmMaker(RhythmMaker):
                     }   % measure
                 }
 
-        Set to division masks or none.
-
-        Returns division masks or none.
         '''
-        superclass = super(TupletRhythmMaker, self)
-        return superclass.division_masks
+        return super(TupletRhythmMaker, self).division_masks
 
     @property
-    def tie_specifier(self):
+    def tie_specifier(self) -> typing.Optional[TieSpecifier]:
         r'''Gets tie specifier.
 
         ..  container:: example
@@ -1374,14 +1373,11 @@ class TupletRhythmMaker(RhythmMaker):
                     }   % measure
                 }
 
-        Set to tie specifier or none.
-
-        Returns tie speicifer or none.
         '''
-        return RhythmMaker.tie_specifier.fget(self)
+        return super(TupletRhythmMaker, self).tie_specifier
 
     @property
-    def tuplet_ratios(self):
+    def tuplet_ratios(self) -> typing.Optional[typing.List[Ratio]]:
         r'''Gets tuplet ratios.
 
         ..  container:: example
@@ -1491,16 +1487,110 @@ class TupletRhythmMaker(RhythmMaker):
                     }   % measure
                 }
 
-        Set to tuple of ratios.
-
-        Returns tuple of ratios.
         '''
         if self._tuplet_ratios:
             return list(self._tuplet_ratios)
+        else:
+            return None
 
     @property
-    def tuplet_specifier(self):
+    def tuplet_specifier(self) -> typing.Optional[TupletSpecifier]:
         r'''Gets tuplet specifier.
+
+        ..  container:: example
+
+            Makes diminished tuplets:
+
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(2, 1)],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         diminution=True,
+            ...         ),
+            ...     )
+
+            >>> divisions = [(2, 8), (2, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(lilypond_file[abjad.Staff])
+                \new RhythmicStaff
+                {
+                    {   % measure
+                        \time 2/8
+                        \times 2/3 {
+                            c'4
+                            c'8
+                        }
+                    }   % measure
+                    {   % measure
+                        \times 2/3 {
+                            c'4
+                            c'8
+                        }
+                    }   % measure
+                    {   % measure
+                        \time 4/8
+                        \times 2/3 {
+                            c'2
+                            c'4
+                        }
+                    }   % measure
+                }
+
+        ..  container:: example
+
+            Makes augmented tuplets:
+
+            >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
+            ...     tuplet_ratios=[(2, 1)],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         diminution=False,
+            ...         ),
+            ...     )
+
+            >>> divisions = [(2, 8), (2, 8), (4, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(lilypond_file[abjad.Staff])
+                \new RhythmicStaff
+                {
+                    {   % measure
+                        \time 2/8
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 4/3 {
+                            c'8 [
+                            c'16 ]
+                        }
+                    }   % measure
+                    {   % measure
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 4/3 {
+                            c'8 [
+                            c'16 ]
+                        }
+                    }   % measure
+                    {   % measure
+                        \time 4/8
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 4/3 {
+                            c'4
+                            c'8
+                        }
+                    }   % measure
+                }
 
         ..  container:: example
 
@@ -1763,10 +1853,9 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            Rewrites trivializable tuplets when `trivialize` is true. Each
-            measure below still contains a tuplet; but measures 2 and 4 contain
-            an (invisible) trivial tuplet with a 1:1 ratio. To remove these
-            trivial tuplets, set `extract_trivial` as shown in the next
+            Rewrites trivializable tuplets when ``trivialize`` is true.
+            Measures 2 and 4 contain trivial tuplets with 1:1 ratios. To remove
+            these trivial tuplets, set ``extract_trivial`` as shown in the next
             example:
 
             >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
@@ -1822,10 +1911,8 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            Leaves trivial tuplets as-is when `extract_trivial` is
-            false. This is difficult to see because trivial tuplets have no
-            graphic appearance; check the LilyPond output below to verify that
-            tuplets 2 and 4 are enclosed in braces:
+            Leaves trivial tuplets as-is when ``extract_trivial`` is
+            false:
 
             >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
             ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
@@ -1845,46 +1932,48 @@ class TupletRhythmMaker(RhythmMaker):
             ...     )
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-            >>> abjad.f(lilypond_file[abjad.Staff])
-            \new RhythmicStaff
-            {
-                {   % measure
-                    \time 3/8
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 3/5 {
-                        c'4
-                        c'4. ~
-                    }
-                }   % measure
-                {   % measure
-                    \time 2/8
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 1/1 {
-                        c'8 [
-                        c'8 ~ ]
-                    }
-                }   % measure
-                {   % measure
-                    \time 3/8
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 3/5 {
-                        c'4
-                        c'4. ~
-                    }
-                }   % measure
-                {   % measure
-                    \time 2/8
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 1/1 {
-                        c'8 [
-                        c'8 ]
-                    }
-                }   % measure
-            }
+            ..  docs::
+
+                >>> abjad.f(lilypond_file[abjad.Staff])
+                \new RhythmicStaff
+                {
+                    {   % measure
+                        \time 3/8
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'4
+                            c'4. ~
+                        }
+                    }   % measure
+                    {   % measure
+                        \time 2/8
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
+                            c'8 [
+                            c'8 ~ ]
+                        }
+                    }   % measure
+                    {   % measure
+                        \time 3/8
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'4
+                            c'4. ~
+                        }
+                    }   % measure
+                    {   % measure
+                        \time 2/8
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 1/1 {
+                            c'8 [
+                            c'8 ]
+                        }
+                    }   % measure
+                }
 
         ..  container:: example
 
-            Flattens trivial tuplets when `extract_trivial` is true.
+            Extracts trivial tuplets when ``extract_trivial`` is true.
             Measures 2 and 4 in the example below now contain only a flat list
             of notes:
 
@@ -1906,44 +1995,46 @@ class TupletRhythmMaker(RhythmMaker):
             ...     )
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-            >>> abjad.f(lilypond_file[abjad.Staff])
-            \new RhythmicStaff
-            {
-                {   % measure
-                    \time 3/8
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 3/5 {
-                        c'4
-                        c'4. ~
-                    }
-                }   % measure
-                {   % measure
-                    \time 2/8
-                    c'8 [
-                    c'8 ~ ]
-                }   % measure
-                {   % measure
-                    \time 3/8
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 3/5 {
-                        c'4
-                        c'4. ~
-                    }
-                }   % measure
-                {   % measure
-                    \time 2/8
-                    c'8 [
-                    c'8 ]
-                }   % measure
-            }
+            ..  docs::
+
+                >>> abjad.f(lilypond_file[abjad.Staff])
+                \new RhythmicStaff
+                {
+                    {   % measure
+                        \time 3/8
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'4
+                            c'4. ~
+                        }
+                    }   % measure
+                    {   % measure
+                        \time 2/8
+                        c'8 [
+                        c'8 ~ ]
+                    }   % measure
+                    {   % measure
+                        \time 3/8
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'4
+                            c'4. ~
+                        }
+                    }   % measure
+                    {   % measure
+                        \time 2/8
+                        c'8 [
+                        c'8 ]
+                    }   % measure
+                }
 
             .. note:: Flattening trivial tuplets makes it possible
                 subsequently to rewrite the meter of the untupletted notes.
 
         ..  container:: example
 
-            REGRESSION: Very long ties are preserved when
-            `extract_trivial` is true:
+            REGRESSION: Very long ties are preserved when ``extract_trivial``
+            is true:
 
             >>> rhythm_maker = abjad.rhythmmakertools.TupletRhythmMaker(
             ...     tie_specifier=abjad.rhythmmakertools.TieSpecifier(
@@ -1964,42 +2055,38 @@ class TupletRhythmMaker(RhythmMaker):
             ...     )
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-            >>> abjad.f(lilypond_file[abjad.Staff])
-            \new RhythmicStaff
-            {
-                {   % measure
-                    \time 3/8
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 3/5 {
-                        c'4 ~
-                        c'4. ~
-                    }
-                }   % measure
-                {   % measure
-                    \time 2/8
-                    c'8 ~ [
-                    c'8 ~ ]
-                }   % measure
-                {   % measure
-                    \time 3/8
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 3/5 {
-                        c'4 ~
-                        c'4. ~
-                    }
-                }   % measure
-                {   % measure
-                    \time 2/8
-                    c'8 ~ [
-                    c'8 ]
-                }   % measure
-            }
+            ..  docs::
 
-        Defaults to none.
+                >>> abjad.f(lilypond_file[abjad.Staff])
+                \new RhythmicStaff
+                {
+                    {   % measure
+                        \time 3/8
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'4 ~
+                            c'4. ~
+                        }
+                    }   % measure
+                    {   % measure
+                        \time 2/8
+                        c'8 ~ [
+                        c'8 ~ ]
+                    }   % measure
+                    {   % measure
+                        \time 3/8
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'4 ~
+                            c'4. ~
+                        }
+                    }   % measure
+                    {   % measure
+                        \time 2/8
+                        c'8 ~ [
+                        c'8 ]
+                    }   % measure
+                }
 
-        Set to tuplet specifier or none.
-
-        Returns tuplet specifier or none.
         '''
-        superclass = super(TupletRhythmMaker, self)
-        return superclass.tuplet_specifier
+        return super(TupletRhythmMaker, self).tuplet_specifier
