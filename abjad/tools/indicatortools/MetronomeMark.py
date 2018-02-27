@@ -288,7 +288,7 @@ class MetronomeMark(AbjadValueObject):
             >>> mark_2 = abjad.MetronomeMark((1, 4), 90)
             >>> mark_1 + mark_2
             Traceback (most recent call last):
-            ...
+                ...
             abjad.tools.exceptiontools.ImpreciseMetronomeMarkError.ImpreciseMetronomeMarkError
 
         ..  container:: example
@@ -299,7 +299,7 @@ class MetronomeMark(AbjadValueObject):
             >>> mark_2 = abjad.MetronomeMark((1, 4), 90)
             >>> mark_1 + mark_2
             Traceback (most recent call last):
-            ...
+                ...
             abjad.tools.exceptiontools.ImpreciseMetronomeMarkError.ImpreciseMetronomeMarkError
 
         ..  container:: example
@@ -308,7 +308,7 @@ class MetronomeMark(AbjadValueObject):
 
             >>> abjad.MetronomeMark((1, 4), 60) + 90
             Traceback (most recent call last):
-            ...
+                ...
             TypeError: 90
 
         Returns new metronome mark or none.
@@ -537,7 +537,7 @@ class MetronomeMark(AbjadValueObject):
             >>> mark_2 = abjad.MetronomeMark((1, 4), 90)
             >>> mark_1 + mark_2
             Traceback (most recent call last):
-            ...
+                ...
             abjad.tools.exceptiontools.ImpreciseMetronomeMarkError.ImpreciseMetronomeMarkError
 
         ..  container:: example
@@ -548,7 +548,7 @@ class MetronomeMark(AbjadValueObject):
             >>> mark_2 = abjad.MetronomeMark((1, 4), 90)
             >>> mark_1 + mark_2
             Traceback (most recent call last):
-            ...
+                ...
             abjad.tools.exceptiontools.ImpreciseMetronomeMarkError.ImpreciseMetronomeMarkError
 
         ..  container:: example
@@ -557,7 +557,7 @@ class MetronomeMark(AbjadValueObject):
 
             >>> 90 + abjad.MetronomeMark((1, 4), 60)
             Traceback (most recent call last):
-            ...
+                ...
             TypeError: 90
 
         Returns new metronome mark or none.
@@ -690,7 +690,7 @@ class MetronomeMark(AbjadValueObject):
             >>> mark_2 = abjad.MetronomeMark((1, 2), 90)
             >>> mark_1 - mark_2
             Traceback (most recent call last):
-            ...
+                ...
             abjad.tools.exceptiontools.ImpreciseMetronomeMarkError.ImpreciseMetronomeMarkError
 
         Returns new metronome mark.

@@ -5227,11 +5227,25 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
             >>> sequence.weight()
             55
 
+        ..  container:: example
+
+            >>> abjad.sequence([[1, -7, -7], [1, -8 -8]]).weight()
+            32
+
         Returns new sequence.
         '''
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        return sum(abs(_) for _ in self)
+        weights = []
+        for item in self:
+            if hasattr(item, 'weight'):
+                weights.append(item.weight())
+            elif isinstance(item, collections.Iterable):
+                item = Sequence(item)
+                weights.append(item.weight())
+            else:
+                weights.append(abs(item))
+        return sum(weights)
 
     def zip(self, cyclic=False, truncate=True):
         r'''Zips sequences in sequence.

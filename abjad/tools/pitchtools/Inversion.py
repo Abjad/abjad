@@ -200,7 +200,7 @@ class Inversion(AbjadValueObject):
 
             >>> abjad.Inversion().__radd__(abjad.Inversion())
             Traceback (most recent call last):
-            ...
+                ...
             NotImplementedError: right-addition not defined on Inversion.
 
         Raises not implemented error.

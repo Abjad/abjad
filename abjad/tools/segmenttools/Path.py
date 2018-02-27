@@ -173,6 +173,31 @@ class Path(pathlib.PosixPath):
 
     ### PRIVATE METHODS ###
 
+    def _context_name_to_first_appearance_margin_markup(self, context_name):
+        module = self._import_score_package()
+        margin_markups = getattr(module, 'margin_markups', None)
+        if not margin_markups:
+            return []
+        dictionary = OrderedDict()
+        string = 'first_appearance_margin_markup'
+        for segment in self.segments.list_paths():
+            dictionary_ = segment.get_metadatum(string, [])
+            dictionary.update(dictionary_)
+        key = dictionary.get(context_name)
+        if key is None:
+            return []
+        margin_markup = margin_markups.get(key)
+        if margin_markup is None:
+            return []
+        markup = margin_markup.markup
+        assert markup is not None, repr(margin_markup)
+        strings = markup._get_format_pieces()
+        strings.insert(0, 'shortInstrumentName =')
+        indent = 4 * ' '
+        strings = [indent + _ for _ in strings]
+        strings = [r'\with', '{'] + strings + ['}']
+        return strings
+
     def _filter_by_view(self, paths):
         view = self.get_metadatum('view')
         if view is None:
@@ -228,10 +253,6 @@ class Path(pathlib.PosixPath):
     def _get_part_manifest(self):
         assert self.is_score_package_path()
         score_template = self._get_score_template()
-        if not hasattr(score_template, 'part_names'):
-            message = f'{score_package_name}.ScoreTemplate'
-            message += " has no 'part_manifest' property."
-            return -1, message
         score_template = score_template()
         part_manifest = score_template.part_manifest
         return part_manifest
@@ -349,31 +370,6 @@ class Path(pathlib.PosixPath):
             raise Exception(f'can not find {key!r}.')
         clef = Clef(instrument.allowable_clefs[0])
         return clef
-
-    def _context_name_to_first_appearance_margin_markup(self, context_name):
-        module = self._import_score_package()
-        margin_markups = getattr(module, 'margin_markups', None)
-        if not margin_markups:
-            return []
-        dictionary = OrderedDict()
-        string = 'first_appearance_margin_markup'
-        for segment in self.segments.list_paths():
-            dictionary_ = segment.get_metadatum(string, [])
-            dictionary.update(dictionary_)
-        key = dictionary.get(context_name)
-        if key is None:
-            return []
-        margin_markup = margin_markups.get(key)
-        if margin_markup is None:
-            return []
-        markup = margin_markup.markup
-        assert markup is not None, repr(margin_markup)
-        strings = markup._get_format_pieces()
-        strings.insert(0, 'shortInstrumentName =')
-        indent = 4 * ' '
-        strings = [indent + _ for _ in strings]
-        strings = [r'\with', '{'] + strings + ['}']
-        return strings
 
     @staticmethod
     def _sort_by_identifier(paths):
@@ -1236,18 +1232,6 @@ class Path(pathlib.PosixPath):
             result = self.name
         return String(result)
 
-    def get_preamble_measure_count(self) -> Optional[int]:
-        r'''Gets measure count from path preamble.
-        '''
-        assert self.is_file(), repr(self)
-        with open(self) as pointer:
-            for line in pointer.readlines():
-                if '% measure_count =' in line:
-                    words = line.split()
-                    count = int(words[-1])
-                    return count
-        return None
-
     def get_measure_count_pair(self) -> Tuple[int, int]:
         r'''Gets measure count pair.
 
@@ -1475,6 +1459,18 @@ class Path(pathlib.PosixPath):
                 exec(line, globals_)
                 part_abbreviation = globals_['part_abbreviation']
                 return part_abbreviation
+        return None
+
+    def get_preamble_measure_count(self) -> Optional[int]:
+        r'''Gets measure count from path preamble.
+        '''
+        assert self.is_file(), repr(self)
+        with open(self) as pointer:
+            for line in pointer.readlines():
+                if '% measure_count =' in line:
+                    words = line.split()
+                    count = int(words[-1])
+                    return count
         return None
 
     def get_previous_package(self, cyclic: bool = False) -> Optional['Path']:
@@ -2410,9 +2406,11 @@ class Path(pathlib.PosixPath):
         assert clef_string.startswith('\\'), repr(clef_string)
         clef_string = clef_string[1:]
         identifiers.append(clef_string)
-        dictionary = self.contents.get_metadatum('container_to_part')
+        string = 'container_to_part_assignment'
+        dictionary = self.contents.get_metadatum(string)
         if not dictionary:
-            raise Exception(f'missing container-to-part dictionary.')
+            message = f'missing container-to-part-assignment dictionary.'
+            raise Exception(message)
         for i, (segment_name, dictionary_) in enumerate(dictionary.items()):
             if i == 0:
                 first_segment = True

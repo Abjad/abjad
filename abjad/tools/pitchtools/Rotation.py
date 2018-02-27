@@ -211,7 +211,7 @@ class Rotation(AbjadValueObject):
 
             >>> abjad.Rotation().__radd__(abjad.Rotation())
             Traceback (most recent call last):
-            ...
+                ...
             NotImplementedError: right-addition not defined on Rotation.
 
         Raises not implemented error.

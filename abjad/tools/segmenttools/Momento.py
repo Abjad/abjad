@@ -1,5 +1,4 @@
-from typing import Optional
-from typing import Union
+import typing
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.systemtools.Tag import Tag
 
@@ -24,9 +23,10 @@ class Momento(AbjadObject):
         self, 
         absent: bool = None,
         context: str = None,
-        edition: Union[str, Tag] = None,
+        edition: typing.Union[str, Tag] = None,
         prototype: str = None,
-        value: Union[int, str] = None,
+        #value: Union[int, str] = None,
+        value: typing.Any = None,
         ) -> None:
         if absent is not None:
             absent = bool(absent)
@@ -42,13 +42,15 @@ class Momento(AbjadObject):
             assert isinstance(prototype, str), repr(prototype)
         self._prototype: str = prototype
         if value is not None:
-            assert isinstance(value, (int, str)), repr(value)
-        self._value: Union[int, str] = value
+            if not isinstance(value, (int, str)):
+                assert type(value).__name__ == 'PersistentOverride'
+        #self._value: Union[int, str] = value
+        self._value = value
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def absent(self) -> Optional[bool]:
+    def absent(self) -> typing.Optional[bool]:
         r'''Is true when context is absent in this segment.
         '''
         return self._absent
@@ -60,7 +62,7 @@ class Momento(AbjadObject):
         return self._context
 
     @property
-    def edition(self) -> Optional[Tag]:
+    def edition(self) -> typing.Optional[Tag]:
         r'''Gets edition.
         '''
         return self._edition
@@ -72,7 +74,7 @@ class Momento(AbjadObject):
         return self._prototype
 
     @property
-    def value(self) -> Union[int, str]:
+    def value(self) -> typing.Union[int, str]:
         r'''Gets value.
         '''
         return self._value

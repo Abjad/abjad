@@ -1,8 +1,10 @@
 import collections
 from abjad.tools import markuptools
 from abjad.tools.datastructuretools.TypedList import TypedList
-from abjad.tools.datastructuretools import Left, Infinity, NegativeInfinity
-from abjad.tools.topleveltools import new
+from abjad.tools.datastructuretools import Infinity
+from abjad.tools.datastructuretools import Left
+from abjad.tools.datastructuretools import NegativeInfinity
+from abjad.tools.topleveltools.new import new
 
 
 class TimespanList(TypedList):

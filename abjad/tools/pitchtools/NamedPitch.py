@@ -313,7 +313,7 @@ class NamedPitch(Pitch):
 
             >>> abjad.NamedPitch("cs'").__radd__(1)
             Traceback (most recent call last):
-            ...
+                ...
             NotImplementedError: right-addition not defined on NamedPitch.
 
         '''

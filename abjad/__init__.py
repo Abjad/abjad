@@ -45,6 +45,7 @@ from abjad.tools.instrumenttools import *
 from abjad.tools.lilypondfiletools import *
 from abjad.tools.lilypondnametools import *
 from abjad.tools.markuptools import *
+from abjad.tools.metertools import *
 from abjad.tools.pitchtools import *
 from abjad.tools.schemetools import *
 from abjad.tools.scoretools import *
@@ -53,21 +54,17 @@ from abjad.tools.spannertools import *
 from abjad.tools.systemtools import *
 from abjad.tools.topleveltools import *
 
-from abjad.tools.mathtools import Enumerator
-from abjad.tools.mathtools import NonreducedFraction
-from abjad.tools.mathtools import NonreducedRatio
-from abjad.tools.mathtools import Ratio
-from abjad.tools.metertools import Meter
-from abjad.tools.metertools import MeterList
-from abjad.tools.metertools import MeterManager
-from abjad.tools.metertools import MetricAccentKernel
-from abjad.tools.metertools import OffsetCounter
+# import all the way down to module to satisfy mypy:
+from abjad.tools.mathtools.Enumerator import Enumerator
+from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
+from abjad.tools.mathtools.NonreducedRatio import NonreducedRatio
+from abjad.tools.mathtools.Ratio import Ratio
 
 # timespantools classes (but not functions)
-from abjad.tools.timespantools import AnnotatedTimespan
-from abjad.tools.timespantools import Timespan
-from abjad.tools.timespantools import TimespanInequality
-from abjad.tools.timespantools import TimespanList
+from abjad.tools.timespantools.AnnotatedTimespan import AnnotatedTimespan
+from abjad.tools.timespantools.Timespan import Timespan
+from abjad.tools.timespantools.TimespanInequality import TimespanInequality
+from abjad.tools.timespantools.TimespanList import TimespanList
 
 # rhythm-maker static methods
 from abjad.tools.rhythmmakertools.SilenceMask import SilenceMask

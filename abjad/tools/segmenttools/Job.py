@@ -166,29 +166,8 @@ class Job(AbjadObject):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def broken_spanner_join_job(path) -> 'Job':
-        r'''Makes broken spanner join job.
-        '''
-        def activate(tags):
-            tags_ = [
-                abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS,
-                ]
-            return bool(set(tags) & set(tags_))
-        def deactivate(tags):
-            tags_ = [
-                abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS,
-                ]
-            return bool(set(tags) & set(tags_))
-        return Job(
-            activate=(activate, 'broken spanner expression'),
-            deactivate=(deactivate, 'broken spanner suppression'),
-            path=path,
-            title='joining broken spanners ...',
-            )
-
-    @staticmethod
-    def clef_color_job(path, undo=False) -> 'Job':
-        r'''Makes clef color job.
+    def color_clefs(path, undo=False) -> 'Job':
+        r'''Colors clefs.
         '''
         name = 'clef color'
         def match(tags):
@@ -208,12 +187,150 @@ class Job(AbjadObject):
                 )
 
     @staticmethod
-    def clock_time_markup_job(path, undo=False) -> 'Job':
-        r'''Makes clock time markup job.
+    def color_dynamics(path, undo=False) -> 'Job':
+        r'''Colors dynamics.
         '''
-        name = 'clock time markup'
+        name = 'dynamic color'
+        def match(tags):
+            tags_ = abjad_tags.dynamic_color_tags(path)
+            return bool(set(tags) & set(tags_))
+        if undo:
+            return Job(
+                deactivate=(match, name),
+                path=path,
+                title='uncoloring dynamics ...',
+                )
+        else:
+            return Job(
+                activate=(match, name),
+                path=path,
+                title='coloring dynamics ...',
+                )
+
+    @staticmethod
+    def color_instruments(path, undo=False) -> 'Job':
+        r'''Colors instruments.
+        '''
+        name = 'instrument color'
+        def match(tags):
+            tags_ = abjad_tags.instrument_color_tags(path)
+            return bool(set(tags) & set(tags_))
+        if undo:
+            return Job(
+                deactivate=(match, name),
+                path=path,
+                title='uncoloring instruments ...',
+                )
+        else:
+            return Job(
+                activate=(match, name),
+                path=path,
+                title='coloring instruments ...',
+                )
+
+    @staticmethod
+    def color_margin_markup(path, undo=False) -> 'Job':
+        r'''Colors margin markup.
+        '''
+        name = 'margin markup color'
+        def match(tags):
+            tags_ = abjad_tags.margin_markup_color_tags(path)
+            return bool(set(tags) & set(tags_))
+        if undo:
+            return Job(
+                deactivate=(match, name),
+                path=path,
+                title='uncoloring margin markup ...',
+                )
+        else:
+            return Job(
+                activate=(match, name),
+                path=path,
+                title='coloring margin markup ...',
+                )
+
+    @staticmethod
+    def color_metronome_marks(path, undo=False) -> 'Job':
+        r'''Colors metronome marks.
+        '''
+        def activate(tags):
+            tags_ = abjad_tags.metronome_mark_color_expression_tags(path)
+            return bool(set(tags) & set(tags_))
+        def deactivate(tags):
+            tags_ = abjad_tags.metronome_mark_color_suppression_tags(path)
+            return bool(set(tags) & set(tags_))
+        if undo:
+            return Job(
+                activate=(deactivate, 'metronome mark color suppression'),
+                deactivate=(activate, 'metronome mark color expression'),
+                path=path,
+                title='uncoloring metronome marks ...',
+                )
+        else:
+            return Job(
+                activate=(activate, 'metronome mark color expression'),
+                deactivate=(deactivate, 'metronome mark color suppression'),
+                path=path,
+                title='coloring metronome marks ...',
+                )
+
+    @staticmethod
+    def color_persistent_indicators(path, undo=False) -> 'Job':
+        r'''Color persistent indicators.
+        '''
+        name = 'persistent indicator'
+        activate_name = 'persistent indicator color expression'
+        def activate(tags):
+            tags_ = abjad_tags.persistent_indicator_color_expression_tags(path)
+            return bool(set(tags) & set(tags_))
+        deactivate_name = 'persistent indicator color suppression'
+        def deactivate(tags):
+            tags_ = abjad_tags.persistent_indicator_color_suppression_tags(
+                path)
+            return bool(set(tags) & set(tags_))
+        if undo:
+            return Job(
+                activate=(deactivate, deactivate_name),
+                deactivate=(activate, activate_name),
+                path=path,
+                title=f'uncoloring {name}s ...',
+                )
+        else:
+            return Job(
+                activate=(activate, activate_name),
+                deactivate=(deactivate, deactivate_name),
+                path=path,
+                title=f'coloring {name}s ...',
+                )
+
+    @staticmethod
+    def color_staff_lines(path, undo=False) -> 'Job':
+        r'''Colors staff lines.
+        '''
+        name = 'staff lines color'
+        def match(tags):
+            tags_ = abjad_tags.staff_lines_color_tags(path)
+            return bool(set(tags) & set(tags_))
+        if undo:
+            return Job(
+                deactivate=(match, name),
+                path=path,
+                title='uncoloring staff lines ...',
+                )
+        else:
+            return Job(
+                activate=(match, name),
+                path=path,
+                title='coloring staff lines ...',
+                )
+
+    @staticmethod
+    def color_stage_number_markup(path, undo=False) -> 'Job':
+        r'''Colors stage number markup.
+        '''
+        name = 'stage number markup'
         def match(tags) -> bool:
-            tags_ = [abjad_tags.CLOCK_TIME_MARKUP]
+            tags_ = [abjad_tags.STAGE_NUMBER_MARKUP]
             return bool(set(tags) & set(tags_))
         if undo:
             return Job(
@@ -229,8 +346,29 @@ class Job(AbjadObject):
                 )
 
     @staticmethod
-    def edition_specific_job(path) -> 'Job':
-        r'''Makes edition-specific job.
+    def color_time_signatures(path, undo=False) -> 'Job':
+        r'''Colors time signatures.
+        '''
+        name = 'time signature color'
+        def match(tags):
+            tags_ = abjad_tags.time_signature_color_tags(path)
+            return bool(set(tags) & set(tags_))
+        if undo:
+            return Job(
+                deactivate=(match, name),
+                path=path,
+                title='uncoloring time signatures ...',
+                )
+        else:
+            return Job(
+                activate=(match, name),
+                path=path,
+                title='coloring time signatures ...',
+                )
+
+    @staticmethod
+    def handle_edition_tags(path) -> 'Job':
+        r'''Handles edition tags.
 
         The logic here is important:
 
@@ -296,33 +434,12 @@ class Job(AbjadObject):
             deactivate=(deactivate, 'other-edition'),
             deactivate_first=True,
             path=path,
-            title='handling edition-specific tags ...',
+            title='handling edition tags ...',
             )
 
     @staticmethod
-    def dynamic_color_job(path, undo=False) -> 'Job':
-        r'''Makes dynamic color job.
-        '''
-        name = 'dynamic color'
-        def match(tags):
-            tags_ = abjad_tags.dynamic_color_tags(path)
-            return bool(set(tags) & set(tags_))
-        if undo:
-            return Job(
-                deactivate=(match, name),
-                path=path,
-                title='uncoloring dynamics ...',
-                )
-        else:
-            return Job(
-                activate=(match, name),
-                path=path,
-                title='coloring dynamics ...',
-                )
-
-    @staticmethod
-    def fermata_bar_line_job(path) -> 'Job':
-        r'''Makes fermata bar line job.
+    def handle_fermata_bar_lines(path) -> 'Job':
+        r'''Handles EOL fermata bar lines.
         '''
         def activate(tags):
             return bool(set(tags) & set([abjad_tags.EOL_FERMATA]))
@@ -351,188 +468,8 @@ class Job(AbjadObject):
             )
 
     @staticmethod
-    def figure_name_markup_job(path, undo=False) -> 'Job':
-        r'''Makes figure name markup job.
-        '''
-        name = 'figure name markup'
-        def match(tags) -> bool:
-            tags_ = [abjad_tags.FIGURE_NAME_MARKUP]
-            return bool(set(tags) & set(tags_))
-        if undo:
-            return Job(
-                deactivate=(match, name),
-                path=path,
-                title=f'hiding {name} ...',
-                )
-        else:
-            return Job(
-                activate=(match, name),
-                path=path,
-                title=f'showing {name} ...',
-                )
-
-    @staticmethod
-    def instrument_color_job(path, undo=False) -> 'Job':
-        r'''Makes instrument color job.
-        '''
-        name = 'instrument color'
-        def match(tags):
-            tags_ = abjad_tags.instrument_color_tags(path)
-            return bool(set(tags) & set(tags_))
-        if undo:
-            return Job(
-                deactivate=(match, name),
-                path=path,
-                title='uncoloring instruments ...',
-                )
-        else:
-            return Job(
-                activate=(match, name),
-                path=path,
-                title='coloring instruments ...',
-                )
-
-    @staticmethod
-    def margin_markup_color_job(path, undo=False) -> 'Job':
-        r'''Makes margin markup color job.
-        '''
-        name = 'margin markup color'
-        def match(tags):
-            tags_ = abjad_tags.margin_markup_color_tags(path)
-            return bool(set(tags) & set(tags_))
-        if undo:
-            return Job(
-                deactivate=(match, name),
-                path=path,
-                title='uncoloring margin markup ...',
-                )
-        else:
-            return Job(
-                activate=(match, name),
-                path=path,
-                title='coloring margin markup ...',
-                )
-
-    @staticmethod
-    def measure_index_markup_job(path, undo=False) -> 'Job':
-        r'''Makes measure index markup job.
-        '''
-        name = 'measure index markup'
-        def match(tags) -> bool:
-            tags_ = [abjad_tags.MEASURE_INDEX_MARKUP]
-            return bool(set(tags) & set(tags_))
-        if undo:
-            return Job(
-                deactivate=(match, name),
-                path=path,
-                title=f'hiding {name} ...',
-                )
-        else:
-            return Job(
-                activate=(match, name),
-                path=path,
-                title=f'showing {name} ...',
-                )
-
-    @staticmethod
-    def measure_number_markup_job(path, undo=False) -> 'Job':
-        r'''Makes measure number markup job.
-        '''
-        name = 'measure number markup'
-        def match(tags) -> bool:
-            tags_ = [abjad_tags.MEASURE_NUMBER_MARKUP]
-            return bool(set(tags) & set(tags_))
-        if undo:
-            return Job(
-                deactivate=(match, name),
-                path=path,
-                title=f'hiding {name} ...',
-                )
-        else:
-            return Job(
-                activate=(match, name),
-                path=path,
-                title=f'showing {name} ...',
-                )
-
-    @staticmethod
-    def metronome_mark_color_job(path, undo=False) -> 'Job':
-        r'''Makes metronome mark color job.
-        '''
-        def activate(tags):
-            tags_ = abjad_tags.metronome_mark_color_expression_tags(path)
-            return bool(set(tags) & set(tags_))
-        def deactivate(tags):
-            tags_ = abjad_tags.metronome_mark_color_suppression_tags(path)
-            return bool(set(tags) & set(tags_))
-        if undo:
-            return Job(
-                activate=(deactivate, 'metronome mark color suppression'),
-                deactivate=(activate, 'metronome mark color expression'),
-                path=path,
-                title='uncoloring metronome marks ...',
-                )
-        else:
-            return Job(
-                activate=(activate, 'metronome mark color expression'),
-                deactivate=(deactivate, 'metronome mark color suppression'),
-                path=path,
-                title='coloring metronome marks ...',
-                )
-
-    @staticmethod
-    def music_annotation_job(path, undo=False) -> 'Job':
-        r'''Makes music annotation job.
-        '''
-        name = 'music annotation'
-        def match(tags) -> bool:
-            tags_ = abjad_tags.music_annotation_tags()
-            return bool(set(tags) & set(tags_))
-        if undo:
-            return Job(
-                deactivate=(match, name),
-                path=path,
-                title=f'hiding {name}s ...',
-                )
-        else:
-            return Job(
-                activate=(match, name),
-                path=path,
-                title=f'showing {name}s ...',
-                )
-
-    @staticmethod
-    def persistent_indicator_color_job(path, undo=False) -> 'Job':
-        r'''Makes persistent indicator color job.
-        '''
-        name = 'persistent indicator'
-        activate_name = 'persistent indicator color expression'
-        def activate(tags):
-            tags_ = abjad_tags.persistent_indicator_color_expression_tags(path)
-            return bool(set(tags) & set(tags_))
-        deactivate_name = 'persistent indicator color suppression'
-        def deactivate(tags):
-            tags_ = abjad_tags.persistent_indicator_color_suppression_tags(
-                path)
-            return bool(set(tags) & set(tags_))
-        if undo:
-            return Job(
-                activate=(deactivate, deactivate_name),
-                deactivate=(activate, activate_name),
-                path=path,
-                title=f'uncoloring {name}s ...',
-                )
-        else:
-            return Job(
-                activate=(activate, activate_name),
-                deactivate=(deactivate, deactivate_name),
-                path=path,
-                title=f'coloring {name}s ...',
-                )
-
-    @staticmethod
-    def shifted_clef_job(path) -> 'Job':
-        r'''Makes shifted clef job.
+    def handle_shifted_clefs(path) -> 'Job':
+        r'''Handles shifted clefs.
         '''
         def activate(tags):
             return abjad_tags.SHIFTED_CLEF in tags
@@ -556,8 +493,155 @@ class Job(AbjadObject):
             )
 
     @staticmethod
-    def spacing_markup_job(path, undo=False) -> 'Job':
-        r'''Makes spacing markup job.
+    def hide_default_clefs(path, undo=False) -> 'Job':
+        r'''Hides default clefs.
+        '''
+        name = 'default clef'
+        def match(tags):
+            tags_ = [abjad_tags.DEFAULT_CLEF]
+            return bool(set(tags) & set(tags_))
+        if undo:
+            return Job(
+                activate=(match, name),
+                path=path,
+                title='showing default clefs ...',
+                )
+        else:
+            return Job(
+                deactivate=(match, name),
+                path=path,
+                title='hiding default clefs ...',
+                )
+
+    @staticmethod
+    def join_broken_spanners(path) -> 'Job':
+        r'''Joins broken spanners.
+        '''
+        def activate(tags):
+            tags_ = [
+                abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS,
+                ]
+            return bool(set(tags) & set(tags_))
+        def deactivate(tags):
+            tags_ = [
+                abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS,
+                ]
+            return bool(set(tags) & set(tags_))
+        return Job(
+            activate=(activate, 'broken spanner expression'),
+            deactivate=(deactivate, 'broken spanner suppression'),
+            path=path,
+            title='joining broken spanners ...',
+            )
+
+    @staticmethod
+    def show_clock_time_markup(path, undo=False) -> 'Job':
+        r'''Makes clock time markup job.
+        '''
+        name = 'clock time markup'
+        def match(tags) -> bool:
+            tags_ = [abjad_tags.CLOCK_TIME_MARKUP]
+            return bool(set(tags) & set(tags_))
+        if undo:
+            return Job(
+                deactivate=(match, name),
+                path=path,
+                title=f'hiding {name} ...',
+                )
+        else:
+            return Job(
+                activate=(match, name),
+                path=path,
+                title=f'showing {name} ...',
+                )
+
+    @staticmethod
+    def show_figure_name_markup(path, undo=False) -> 'Job':
+        r'''Shows figure name markup.
+        '''
+        name = 'figure name markup'
+        def match(tags) -> bool:
+            tags_ = [abjad_tags.FIGURE_NAME_MARKUP]
+            return bool(set(tags) & set(tags_))
+        if undo:
+            return Job(
+                deactivate=(match, name),
+                path=path,
+                title=f'hiding {name} ...',
+                )
+        else:
+            return Job(
+                activate=(match, name),
+                path=path,
+                title=f'showing {name} ...',
+                )
+
+    @staticmethod
+    def show_measure_index_markup(path, undo=False) -> 'Job':
+        r'''Shows measure index markup.
+        '''
+        name = 'measure index markup'
+        def match(tags) -> bool:
+            tags_ = [abjad_tags.MEASURE_INDEX_MARKUP]
+            return bool(set(tags) & set(tags_))
+        if undo:
+            return Job(
+                deactivate=(match, name),
+                path=path,
+                title=f'hiding {name} ...',
+                )
+        else:
+            return Job(
+                activate=(match, name),
+                path=path,
+                title=f'showing {name} ...',
+                )
+
+    @staticmethod
+    def show_measure_number_markup(path, undo=False) -> 'Job':
+        r'''Shows measure number markup.
+        '''
+        name = 'measure number markup'
+        def match(tags) -> bool:
+            tags_ = [abjad_tags.MEASURE_NUMBER_MARKUP]
+            return bool(set(tags) & set(tags_))
+        if undo:
+            return Job(
+                deactivate=(match, name),
+                path=path,
+                title=f'hiding {name} ...',
+                )
+        else:
+            return Job(
+                activate=(match, name),
+                path=path,
+                title=f'showing {name} ...',
+                )
+
+    @staticmethod
+    def show_music_annotations(path, undo=False) -> 'Job':
+        r'''Shows music annotations.
+        '''
+        name = 'music annotation'
+        def match(tags) -> bool:
+            tags_ = abjad_tags.music_annotation_tags()
+            return bool(set(tags) & set(tags_))
+        if undo:
+            return Job(
+                deactivate=(match, name),
+                path=path,
+                title=f'hiding {name}s ...',
+                )
+        else:
+            return Job(
+                activate=(match, name),
+                path=path,
+                title=f'showing {name}s ...',
+                )
+
+    @staticmethod
+    def show_spacing_markup(path, undo=False) -> 'Job':
+        r'''Shows spacing markup.
         '''
         name = 'spacing markup'
         def match(tags) -> bool:
@@ -574,67 +658,4 @@ class Job(AbjadObject):
                 activate=(match, name),
                 path=path,
                 title=f'showing {name} ...',
-                )
-
-    @staticmethod
-    def staff_lines_color_job(path, undo=False) -> 'Job':
-        r'''Makes staff lines color job.
-        '''
-        name = 'staff lines color'
-        def match(tags):
-            tags_ = abjad_tags.staff_lines_color_tags(path)
-            return bool(set(tags) & set(tags_))
-        if undo:
-            return Job(
-                deactivate=(match, name),
-                path=path,
-                title='uncoloring staff lines ...',
-                )
-        else:
-            return Job(
-                activate=(match, name),
-                path=path,
-                title='coloring staff lines ...',
-                )
-
-    @staticmethod
-    def stage_number_markup_job(path, undo=False) -> 'Job':
-        r'''Makes stage number markup job.
-        '''
-        name = 'stage number markup'
-        def match(tags) -> bool:
-            tags_ = [abjad_tags.STAGE_NUMBER_MARKUP]
-            return bool(set(tags) & set(tags_))
-        if undo:
-            return Job(
-                deactivate=(match, name),
-                path=path,
-                title=f'hiding {name} ...',
-                )
-        else:
-            return Job(
-                activate=(match, name),
-                path=path,
-                title=f'showing {name} ...',
-                )
-
-    @staticmethod
-    def time_signature_color_job(path, undo=False) -> 'Job':
-        r'''Makes time signature color job.
-        '''
-        name = 'time signature color'
-        def match(tags):
-            tags_ = abjad_tags.time_signature_color_tags(path)
-            return bool(set(tags) & set(tags_))
-        if undo:
-            return Job(
-                deactivate=(match, name),
-                path=path,
-                title='uncoloring time signatures ...',
-                )
-        else:
-            return Job(
-                activate=(match, name),
-                path=path,
-                title='coloring time signatures ...',
                 )

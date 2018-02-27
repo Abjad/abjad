@@ -50,13 +50,27 @@ if __name__ == '__main__':
         text = abjad.LilyPondFormatManager.left_shift_tags(text, realign=89)
         illustration_ly.write_text(text)
         for job in [
-            abjad.Job.edition_specific_job(illustration_ly),
-            abjad.Job.music_annotation_job(illustration_ly, undo=True),
-            abjad.Job.fermata_bar_line_job(segment_directory),
-            abjad.Job.shifted_clef_job(segment_directory),
+            abjad.Job.handle_edition_tags(illustration_ly),
+            abjad.Job.show_music_annotations(illustration_ly, undo=True),
+            abjad.Job.handle_fermata_bar_lines(segment_directory),
+            abjad.Job.handle_shifted_clefs(segment_directory),
             ]:
             for message in job():
                 print(message)
+    except:
+        traceback.print_exc()
+        sys.exit(1)
+
+    try:
+        if 'GlobalSkips' in lilypond_file:
+            context = lilypond_file['GlobalSkips']
+            measure_count = len(context)
+            counter = abjad.String('measure').pluralize(measure_count)
+            message = f'Wrote {{measure_count}} {{counter}}'
+            message += f' to {{illustration_ly.trim()}} ...'
+            print(message)
+        else:
+            measure_count = None
     except:
         traceback.print_exc()
         sys.exit(1)
@@ -70,6 +84,33 @@ if __name__ == '__main__':
         if not layout_ly.exists():
             print('Writing stub layout.ly ...')
             layout_ly.write_text('')
+    except:
+        traceback.print_exc()
+        sys.exit(1)
+
+    try:
+        layout_measure_count = layout_ly.get_preamble_measure_count()
+        counter = abjad.String('measure').pluralize(layout_measure_count)
+        message = f'Found {{layout_measure_count}} {{counter}}'
+        message += f' in {{layout_ly.trim()}} ...'
+        print(message)
+        if layout_measure_count != measure_count:
+            print(f'Remaking {{layout_ly.trim()}} ...')
+            ide = ide.AbjadIDE()
+            ide._make_layout_ly(layout_py)
+            counter = abjad.String('measure').pluralize(measure_count)
+            message = f'Found {{measure_count}} {{counter}}'
+            message += f' in {{illustration_ly.trim()}} ...'
+            print(message)
+            layout_measure_count = layout_ly.get_preamble_measure_count()
+            counter = abjad.String('measure').pluralize(layout_measure_count)
+            message = f'Found {{layout_measure_count}} {{counter}}'
+            message += f' in {{layout_ly.trim()}} ...'
+            print(message)
+            if layout_measure_count != measure_count:
+                message = 'Music measure count still does not match'
+                message += ' layout measure count ...'
+                print(message)
     except:
         traceback.print_exc()
         sys.exit(1)

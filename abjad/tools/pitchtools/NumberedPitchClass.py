@@ -238,7 +238,7 @@ class NumberedPitchClass(PitchClass):
 
             >>> 1 + abjad.NumberedPitchClass(9)
             Traceback (most recent call last):
-            ...
+                ...
             NotImplementedError: right-addition not defined on NumberedPitchClass.
 
         Raises not implemented error.

@@ -1,41 +1,38 @@
-from typing import List
-from typing import Optional
-from typing import Tuple
-from typing import Union
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.datastructuretools.String import String
 from abjad.tools.systemtools.FormatSpecification import FormatSpecification
 
 
-class Part(AbjadValueObject):
-    r'''Part.
+class PartAssignment(AbjadValueObject):
+    r'''Part assignment.
 
     ..  container:: example
 
-        >>> abjad.Part('Horn')
-        Part('Horn')
+        >>> abjad.PartAssignment('Horn')
+        PartAssignment('Horn')
 
-        >>> abjad.Part('Horn', 1)
-        Part('Horn', 1)
+        >>> abjad.PartAssignment('Horn', 1)
+        PartAssignment('Horn', 1)
 
-        >>> abjad.Part('Horn', 2)
-        Part('Horn', 2)
+        >>> abjad.PartAssignment('Horn', 2)
+        PartAssignment('Horn', 2)
 
-        >>> abjad.Part('Horn', (3, 4))
-        Part('Horn', (3, 4))
+        >>> abjad.PartAssignment('Horn', (3, 4))
+        PartAssignment('Horn', (3, 4))
 
-        >>> abjad.Part('Horn', [1, 3])
-        Part('Horn', [1, 3])
+        >>> abjad.PartAssignment('Horn', [1, 3])
+        PartAssignment('Horn', [1, 3])
 
     ..  container:: example
 
-        >>> part = abjad.Part('Horn', [1, 3])
+        >>> part = abjad.PartAssignment('Horn', [1, 3])
 
         >>> abjad.f(part)
-        Part('Horn', [1, 3])
+        PartAssignment('Horn', [1, 3])
 
         >>> print(format(part))
-        abjad.Part('Horn', [1, 3])
+        abjad.PartAssignment('Horn', [1, 3])
         
     '''
 
@@ -51,9 +48,13 @@ class Part(AbjadValueObject):
     def __init__(
         self,
         section: str = None,
-        members: Union[int, Tuple[int, int], List[int]] = None,
+        members: typing.Union[
+            int, typing.Tuple[int, int], typing.List[int]
+            ] = None,
         ) -> None:
-        self._members: Union[int, Tuple[int, int], List[int]] = members
+        self._members: typing.Union[
+            int, typing.Tuple[int, int], typing.List[int]
+            ] = members
         self._section: str = section
 
     ### SPECIAL METHODS ###
@@ -65,7 +66,7 @@ class Part(AbjadValueObject):
 
             >>> part_names = ['Horn1', 'Horn2', 'Horn3', 'Horn4']
 
-            >>> part = abjad.Part('Horn')
+            >>> part = abjad.PartAssignment('Horn')
             >>> for part_name in part_names:
             ...     part_name, part_name in part
             ...
@@ -74,7 +75,7 @@ class Part(AbjadValueObject):
             ('Horn3', True)
             ('Horn4', True)
 
-            >>> part = abjad.Part('Horn', 1)
+            >>> part = abjad.PartAssignment('Horn', 1)
             >>> for part_name in part_names:
             ...     part_name, part_name in part
             ...
@@ -83,7 +84,7 @@ class Part(AbjadValueObject):
             ('Horn3', False)
             ('Horn4', False)
 
-            >>> part = abjad.Part('Horn', 2)
+            >>> part = abjad.PartAssignment('Horn', 2)
             >>> for part_name in part_names:
             ...     part_name, part_name in part
             ...
@@ -92,7 +93,7 @@ class Part(AbjadValueObject):
             ('Horn3', False)
             ('Horn4', False)
 
-            >>> part = abjad.Part('Horn', (3, 4))
+            >>> part = abjad.PartAssignment('Horn', (3, 4))
             >>> for part_name in part_names:
             ...     part_name, part_name in part
             ...
@@ -101,7 +102,7 @@ class Part(AbjadValueObject):
             ('Horn3', True)
             ('Horn4', True)
 
-            >>> part = abjad.Part('Horn', [1, 3])
+            >>> part = abjad.PartAssignment('Horn', [1, 3])
             >>> for part_name in part_names:
             ...     part_name, part_name in part
             ...
@@ -114,13 +115,12 @@ class Part(AbjadValueObject):
 
             REGRESSION. Removes zfill:
 
-            >>> part = abjad.Part('Horn', 1)
+            >>> part = abjad.PartAssignment('Horn', 1)
             >>> 'Horn1' in part
             True
 
             >>> 'Horn01' in part
             True
-
 
         '''
         if not isinstance(argument, str):
@@ -138,7 +138,7 @@ class Part(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
-    def _expand(self) -> List[str]:
+    def _expand(self) -> typing.List[str]:
         if self.members is None:
             return []
         if isinstance(self.members, int):
@@ -175,12 +175,14 @@ class Part(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def members(self) -> Optional[Union[int, Tuple[int, int], List[int]]]:
+    def members(self) -> typing.Optional[
+        typing.Union[int, typing.Tuple[int, int], typing.List[int]]
+        ]:
         r'''Gets members.
 
         ..  container:: example
 
-            >>> abjad.Part('Horn', [1, 3]).members
+            >>> abjad.PartAssignment('Horn', [1, 3]).members
             [1, 3]
 
         '''
@@ -192,7 +194,7 @@ class Part(AbjadValueObject):
 
         ..  container:: example
 
-            >>> abjad.Part('Horn', [1, 3]).section
+            >>> abjad.PartAssignment('Horn', [1, 3]).section
             'Horn'
 
         '''

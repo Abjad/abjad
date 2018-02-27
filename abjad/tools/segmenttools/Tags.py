@@ -179,6 +179,14 @@ class Tags(AbjadValueObject):
         'REDUNDANT_METRONOME_MARK',
         'REDUNDANT_METRONOME_MARK_WITH_COLOR',
 
+        ### PERSISTENT OVERRIDES ###
+
+        'EXPLICIT_PERSISTENT_OVERRIDE',
+
+        'REAPPLIED_PERSISTENT_OVERRIDE',
+
+        'REDUNDANT_PERSISTENT_OVERRIDE',
+
         ### PITCH HANDLING ###
 
         'ALLOW_REPEAT_PITCH',
@@ -239,9 +247,7 @@ class Tags(AbjadValueObject):
     def __getattr__(self, tag: str) -> str:
         r'''Gets `tag`.
 
-        Raise attribute error when `tag` is unknown.
-
-        Returns strings.
+        Raises attribute error when `tag` is unknown.
         '''
         if tag not in self._known_tags:
             raise AttributeError('unknown tag: {!r}.'.format(tag))
@@ -768,6 +774,9 @@ class Tags(AbjadValueObject):
             'EXPLICIT_METRONOME_MARK'
             'REAPPLIED_METRONOME_MARK'
             'REDUNDANT_METRONOME_MARK'
+            'EXPLICIT_PERSISTENT_OVERRIDE'
+            'REAPPLIED_PERSISTENT_OVERRIDE'
+            'REDUNDANT_PERSISTENT_OVERRIDE'
             'EXPLICIT_STAFF_LINES'
             'REAPPLIED_STAFF_LINES'
             'REDUNDANT_STAFF_LINES'
@@ -799,6 +808,10 @@ class Tags(AbjadValueObject):
             self.EXPLICIT_METRONOME_MARK,
             self.REAPPLIED_METRONOME_MARK,
             self.REDUNDANT_METRONOME_MARK,
+            #
+            self.EXPLICIT_PERSISTENT_OVERRIDE,
+            self.REAPPLIED_PERSISTENT_OVERRIDE,
+            self.REDUNDANT_PERSISTENT_OVERRIDE,
             #
             self.EXPLICIT_STAFF_LINES,
             self.REAPPLIED_STAFF_LINES,

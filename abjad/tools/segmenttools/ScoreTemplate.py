@@ -1,6 +1,5 @@
 import abc
-from typing import List
-from typing import Tuple
+import typing
 from abjad.tools import abctools
 from abjad.tools.datastructuretools.String import String
 from abjad.tools.indicatortools.Clef import Clef
@@ -21,6 +20,8 @@ from abjad.tools.topleveltools.inspect import inspect
 from abjad.tools.topleveltools.iterate import iterate
 from abjad.tools.topleveltools.new import new
 from abjad.tools.topleveltools.select import select
+from .PartAssignment import PartAssignment
+from .PartManifest import PartManifest
 from .Tags import Tags
 
 
@@ -35,8 +36,7 @@ class ScoreTemplate(abctools.AbjadValueObject):
     __slots__ = (
         )
 
-    _part_manifest: Tuple = (
-        )
+    _part_manifest: PartManifest = PartManifest()
 
     ### SPECIAL METHODS ###
 
@@ -50,7 +50,7 @@ class ScoreTemplate(abctools.AbjadValueObject):
         self,
         default_paper_size: str = None,
         global_staff_size: int = None,
-        includes: List = None,
+        includes: typing.List[str] = None,
         ) -> LilyPondFile:
         r'''Illustrates score template.
         '''
@@ -89,14 +89,14 @@ class ScoreTemplate(abctools.AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def part_manifest(self) -> Tuple:
+    def part_manifest(self) -> typing.Optional[PartManifest]:
         r'''Gets part manifest.
         '''
         return self._part_manifest
 
     ### PUBLIC METHODS ###
 
-    def attach_defaults(self, argument) -> List:
+    def attach_defaults(self, argument) -> typing.List:
         r'''Attaches defaults to all staff and staff group contexts in
         ``argument`` when ``argument`` is a score.
 
@@ -174,24 +174,24 @@ class ScoreTemplate(abctools.AbjadValueObject):
                 wrappers.append(wrapper)
         return wrappers
 
-    def instrument_keys(self) -> List[String]:
-        r'''Gets instrument keys.
-        '''
-        keys: List[String] = []
-        for item in self.part_manifest:
-            assert isinstance(item, tuple), repr(item)
-            if len(item) == 2:
-                part_name = item[0]
-                key = String(part_name).strip_roman()
-            elif len(item) == 3:
-                key = item[-1]
-            else:
-                raise ValueError(item)
-            if key not in keys:
-                keys.append(key)
-        return keys
+    def allows_instrument(
+        self,
+        staff_name: str,
+        instrument: Instrument,
+        ) -> bool:
+        r'''Is true when ``staff_name`` allows ``instrument``.
 
-    def part_names(self) -> List[str]:
-        r'''Gets part names.
+        To be implemented by concrete score template classes.
         '''
-        return [_[0] for _ in self.part_manifest]
+        return True
+
+    def allows_part_assignment(
+        self,
+        voice_name: str,
+        part_assignment: PartAssignment,
+        ) -> bool:
+        r'''Is true when ``voice_name`` allows ``part_assignment``.
+        '''
+        if voice_name.startswith(part_assignment.section):
+            return True
+        return False
