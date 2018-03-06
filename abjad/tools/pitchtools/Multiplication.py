@@ -140,7 +140,7 @@ class Multiplication(AbjadValueObject):
 
             >>> abjad.Multiplication().__radd__(abjad.Multiplication())
             Traceback (most recent call last):
-            ...
+                ...
             NotImplementedError: right-addition not defined on Multiplication.
 
         Raises not implemented error.

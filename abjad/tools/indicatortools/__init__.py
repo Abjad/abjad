@@ -25,7 +25,6 @@ from .MetricModulation import MetricModulation
 from .MetronomeMark import MetronomeMark
 from .MetronomeMarkDictionary import MetronomeMarkDictionary
 from .PageBreak import PageBreak
-from .Part import Part
 from .RehearsalMark import RehearsalMark
 from .Repeat import Repeat
 from .Ritardando import Ritardando

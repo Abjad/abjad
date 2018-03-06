@@ -97,12 +97,15 @@ if __name__ == '__main__':
         layout_ly = layout_module_name.replace('_', '-') + '.ly'
         layout_ly = buildspace_directory(layout_ly)
         layout_ly.write_text(text)
+        counter = abjad.String('measure').pluralize(measure_count)
+        message = f'Writing {{measure_count}} {{counter}}'
+        message += f' to {{layout_ly.trim()}} ...'
+        print(message)
     except:
         traceback.print_exc()
         sys.exit(1)
 
     try:
-        print(f'Writing BOL measure numbers to metadata ...')
         bol_measure_numbers = []
         prototype = abjad.LilyPondLiteral
         skips = abjad.iterate(score['GlobalSkips']).leaves(abjad.Skip)
@@ -112,6 +115,11 @@ if __name__ == '__main__':
                     measure_number = first_measure_number + i
                     bol_measure_numbers.append(measure_number)
                     continue
+        counter = abjad.String('number').pluralize(len(bol_measure_numbers))
+        numbers = ', '.join(str(_) for _ in bol_measure_numbers)
+        message = f'Writing BOL measure {{counter}} {{numbers}}'
+        message += ' to metadata ...'
+        print(message)
         buildspace_directory.add_buildspace_metadatum(
             'bol_measure_numbers',
             bol_measure_numbers,

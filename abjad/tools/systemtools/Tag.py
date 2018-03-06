@@ -1,6 +1,6 @@
 import typing
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from abjad.tools.systemtools.FormatSpecification import FormatSpecification
+from .FormatSpecification import FormatSpecification
 
 
 class Tag(AbjadObject):
@@ -50,12 +50,18 @@ class Tag(AbjadObject):
         for word in words:
             if word not in words_:
                 words_.append(word)
-        edition_only_tags = []
+        only_edition_tags, not_edition_tags = [], []
         for word_ in words_:
             if word_.startswith('+'):
-                edition_only_tags.append(word_)
-        if 1 < len(edition_only_tags):
-            message = f'at most one edition-only tag: {edition_only_tags!r}.'
+                only_edition_tags.append(word_)
+            if word_.startswith('-'):
+                not_edition_tags.append(word_)
+        if 1 < len(only_edition_tags):
+            message = f'at most one only-edition tag: {only_edition_tags!r}.'
+            raise Exception(message)
+        if only_edition_tags and not_edition_tags:
+            message = 'only-edition and not-edition forbidden in same tag:\n\n'
+            message += f'  {only_edition_tags} / {not_edition_tags}'
             raise Exception(message)
         self._words = words_
         if bool(string):
@@ -234,64 +240,6 @@ class Tag(AbjadObject):
         words_.append(word)
         return Tag.from_words(words_)
 
-    def edition_only(self) -> typing.Optional['Tag']:
-        r'''Gets edition-only tag in tag.
-
-        ..  container:: example
-
-            >>> abjad.Tag('FOO').edition_only() is None
-            True
-
-            >>> abjad.Tag('+SEGMENT').edition_only()
-            Tag('+SEGMENT')
-
-            >>> abjad.Tag('+SEGMENT:FOO').edition_only()
-            Tag('+SEGMENT')
-
-        ..  container:: example
-
-            Raises exception on multiple edition-only tags:
-
-            >>> abjad.Tag('+SEGMENT:+PARTS')
-            Traceback (most recent call last):
-            ...
-            Exception: at most one edition-only tag: ['+SEGMENT', '+PARTS'].
-
-        '''
-        for word in self:
-            if word.startswith('+'):
-                return Tag(word)
-        else:
-            return None
-
-    def edition_specific(self) -> bool:
-        r'''Is true when tag contains edition-specific tag.
-
-        ..  container:: example
-
-            >>> abjad.Tag('FOO').edition_specific()
-            False
-
-            >>> abjad.Tag('-SEGMENT').edition_specific()
-            True
-
-            >>> abjad.Tag('-SEGMENT:FOO').edition_specific()
-            True
-
-            >>> abjad.Tag('-SEGMENT:-PARTS').edition_specific()
-            True
-
-            >>> abjad.Tag('+PARTS').edition_specific()
-            True
-
-        '''
-        for word in self:
-            if word.startswith('-'):
-                return True
-            if word.startswith('+'):
-                return True
-        return False
-
     def extend(self, words: typing.List[str]) -> 'Tag':
         r'''Extends tag with ``words``.
 
@@ -344,18 +292,18 @@ class Tag(AbjadObject):
                 return True
         return False
 
-    def invert_edition_specific(self) -> 'Tag':
-        r'''Inverts edition-specific tag in tag.
+    def invert_edition_tags(self) -> 'Tag':
+        r'''Inverts edition tags in tag.
 
         ..  container:: example
 
-            >>> abjad.Tag('FOO').invert_edition_specific()
+            >>> abjad.Tag('FOO').invert_edition_tags()
             Tag('FOO')
 
-            >>> abjad.Tag('FOO:-PARTS').invert_edition_specific()
+            >>> abjad.Tag('FOO:-PARTS').invert_edition_tags()
             Tag('FOO:+PARTS')
 
-            >>> abjad.Tag('FOO:+PARTS').invert_edition_specific()
+            >>> abjad.Tag('FOO:+PARTS').invert_edition_tags()
             Tag('FOO:-PARTS')
 
         '''
@@ -394,6 +342,47 @@ class Tag(AbjadObject):
             if word.startswith('-'):
                 result.append(Tag(word))
         return result
+
+    def only_edition(self) -> typing.Optional['Tag']:
+        r'''Gets only-edition tag in tag.
+
+        ..  container:: example
+
+            >>> abjad.Tag('FOO').only_edition() is None
+            True
+
+            >>> abjad.Tag('+SEGMENT').only_edition()
+            Tag('+SEGMENT')
+
+            >>> abjad.Tag('+SEGMENT:FOO').only_edition()
+            Tag('+SEGMENT')
+
+        ..  container:: example
+
+            Raises exception on multiple only-edition tags:
+
+            >>> abjad.Tag('+SEGMENT:+PARTS')
+            Traceback (most recent call last):
+                ...
+            Exception: at most one only-edition tag: ['+SEGMENT', '+PARTS'].
+
+        ..  container:: example
+
+            Raises exception on mixed only-edition / not-edition tags:
+
+            >>> abjad.Tag('+SEGMENT:-PARTS')
+            Traceback (most recent call last):
+                ...
+            Exception: only-edition and not-edition forbidden in same tag:
+            <BLANKLINE>
+            ['+SEGMENT'] / ['-PARTS']
+
+        '''
+        for word in self:
+            if word.startswith('+'):
+                return Tag(word)
+        else:
+            return None
 
     def prepend(self, word: str) -> 'Tag':
         r'''Prepends ``word`` to tag.

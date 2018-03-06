@@ -155,7 +155,7 @@ class Transposition(AbjadValueObject):
 
             >>> abjad.Transposition().__radd__(abjad.Transposition())
             Traceback (most recent call last):
-            ...
+                ...
             NotImplementedError: right-addition not defined on Transposition.
 
         Raises not implemented error.

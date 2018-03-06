@@ -331,7 +331,7 @@ class String(str):
 
             >>> abjad.String('Allegro').from_roman()
             Traceback (most recent call last):
-            ...
+                ...
             roman.InvalidRomanNumeralError: Invalid Roman numeral: Allegro
 
         '''

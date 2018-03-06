@@ -57,12 +57,12 @@ class Wrapper(AbjadValueObject):
 
         >>> abjad.attach(abjad.Clef('treble'), voice_2[0])
         Traceback (most recent call last):
-        ...
+            ...
         abjad...PersistentIndicatorError: Can not attach ...
         <BLANKLINE>
             abjad.Clef('treble')
         <BLANKLINE>
-        ... to Note("c'4") in VoiceII because ...
+            ... to Note("c'4") in VoiceII because ...
         <BLANKLINE>
         abjad.Wrapper(
             context='Staff',
@@ -70,7 +70,7 @@ class Wrapper(AbjadValueObject):
             tag=abjad.Tag(),
             )
         <BLANKLINE>
-        ... is already attached to the same leaf.
+            ... is already attached to the same leaf.
         <BLANKLINE>
 
         Second form when attempting to attach a contexted indicator to a leaf
@@ -79,12 +79,12 @@ class Wrapper(AbjadValueObject):
 
         >>> abjad.attach(abjad.Clef('treble'), voice_1[0])
         Traceback (most recent call last):
-        ...
+            ...
         abjad...PersistentIndicatorError: Can not attach ...
         <BLANKLINE>
             abjad.Clef('treble')
         <BLANKLINE>
-        ... to Note("c''4") in VoiceI because ...
+            ... to Note("c''4") in VoiceI because ...
         <BLANKLINE>
         abjad.Wrapper(
             context='Staff',
@@ -92,7 +92,7 @@ class Wrapper(AbjadValueObject):
             tag=abjad.Tag(),
             )
         <BLANKLINE>
-        ... is already attached to Note("c'4") in VoiceII.
+            ... is already attached to Note("c'4") in VoiceII.
         <BLANKLINE>
 
     '''

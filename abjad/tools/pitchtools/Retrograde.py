@@ -173,7 +173,7 @@ class Retrograde(AbjadValueObject):
 
             >>> abjad.Retrograde().__radd__(abjad.Retrograde())
             Traceback (most recent call last):
-            ...
+                ...
             NotImplementedError: right-addition not defined on Retrograde.
 
         Raises not implemented error.

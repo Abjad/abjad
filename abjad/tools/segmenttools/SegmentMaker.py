@@ -1,20 +1,21 @@
-from typing import List
-from typing import Optional
-from typing import Union as U
-from .Path import Path
+import typing
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.datastructuretools.OrderedDict import OrderedDict
 from abjad.tools.datastructuretools.String import String
-from abjad.tools.indicatortools.Part import Part
 from abjad.tools.lilypondfiletools.LilyPondFile import LilyPondFile
 from abjad.tools.scoretools.Container import Container
 from abjad.tools.scoretools.Context import Context
 from abjad.tools.scoretools.Score import Score
 from abjad.tools.scoretools.Staff import Staff
 from abjad.tools.scoretools.Voice import Voice
+from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
+from abjad.tools.systemtools.TestManager import TestManager
+from abjad.tools.timespantools.TimespanList import TimespanList
 from abjad.tools.topleveltools.inspect import inspect
 from abjad.tools.topleveltools.iterate import iterate
+from .PartAssignment import PartAssignment
+from .Path import Path
 
 
 class SegmentMaker(AbjadObject):
@@ -26,7 +27,7 @@ class SegmentMaker(AbjadObject):
     __documentation_section__ = 'Segment-makers'
 
     __slots__ = (
-        '_container_to_part',
+        '_container_to_part_assignment',
         '_environment',
         '_lilypond_file',
         '_metadata',
@@ -38,7 +39,7 @@ class SegmentMaker(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self):
-        self._container_to_part: OrderedDict = None
+        self._container_to_part_assignment: OrderedDict = None
         self._environment: str = None
         self._lilypond_file: LilyPondFile = None
         self._metadata: OrderedDict = None
@@ -51,28 +52,25 @@ class SegmentMaker(AbjadObject):
     def __eq__(self, expr):
         r'''Is true if `expr` is a segment-maker with equivalent properties.
         '''
-        import abjad
-        return abjad.TestManager.compare_objects(self, expr)
+        return TestManager.compare_objects(self, expr)
 
     def __hash__(self):
         r'''Hashes segment-maker.
         '''
-        import abjad
-        hash_values = abjad.StorageFormatManager(self).get_hash_values()
+        hash_values = StorageFormatManager(self).get_hash_values()
         return hash(hash_values)
 
-    def __illustrate__(self, **keywords):
+    def __illustrate__(self, **keywords) -> LilyPondFile:
         r'''Illustrates segment-maker.
-
-        Returns LilyPond file.
         '''
-        lilypond_file = self(**keywords)
+        lilypond_file = self.run(**keywords)
         return lilypond_file
 
     ### PRIVATE METHODS ###
 
     def _add_container_identifiers(self):
-        if getattr(self, '_environment', None) == 'docs':
+        if (self.environment == 'docs' and
+            not getattr(self, 'test_container_identifiers', False)):
             return
         segment_name = self.segment_name or ''
         segment_name = String(segment_name).to_segment_lilypond_identifier()
@@ -89,7 +87,7 @@ class SegmentMaker(AbjadObject):
             pass
         for voice in iterate(self.score).components(Voice):
             contexts.append(voice)
-        container_to_part = OrderedDict()
+        container_to_part_assignment = OrderedDict()
         for context in contexts:
             if segment_name:
                 context_identifier = f'{segment_name}_{context.name}'
@@ -109,10 +107,11 @@ class SegmentMaker(AbjadObject):
                     container_identifier = f'{context_identifier}_{suffix}'
                     container_identifier = String(container_identifier)
                     assert container_identifier.is_lilypond_identifier()
-                    assert container_identifier not in container_to_part
+                    assert container_identifier not in \
+                        container_to_part_assignment
                     timespan = inspect(container).get_timespan()
                     pair = (part, timespan)
-                    container_to_part[container_identifier] = pair
+                    container_to_part_assignment[container_identifier] = pair
                     container.identifier = f'%*% {container_identifier}'
         for staff in iterate(self.score).components(Staff):
             if segment_name:
@@ -120,7 +119,35 @@ class SegmentMaker(AbjadObject):
             else:
                 context_identifier = staff.name
             staff.identifier = f'%*% {context_identifier}'
-        self._container_to_part = container_to_part
+        self._container_to_part_assignment = container_to_part_assignment
+
+    def _check_duplicate_part_assignments(self):
+        dictionary = self._container_to_part_assignment
+        if not dictionary:
+            return
+        if not self.score_template:
+            return
+        part_manifest = self.score_template.part_manifest
+        if not part_manifest:
+            return
+        part_to_timespans = OrderedDict()
+        for identifier, (part_assignment, timespan) in dictionary.items():
+            for part in part_manifest.expand(part_assignment):
+                if part.name not in part_to_timespans:
+                    part_to_timespans[part.name] = []
+                part_to_timespans[part.name].append(timespan)
+        messages = []
+        for part_name, timespans in part_to_timespans.items():
+            if len(timespans) <= 1:
+                continue
+            timespan_list = TimespanList(timespans)
+            if timespan_list.compute_logical_and():
+                message = f'  Part {part_name!r} is assigned'
+                message += ' to overlapping containers ...'
+                messages.append(message)
+        if messages:
+            message = '\n' + '\n'.join(messages)
+            raise Exception(message)
 
     def _make_global_context(self):
         global_rests = Context(
@@ -132,7 +159,7 @@ class SegmentMaker(AbjadObject):
             name='GlobalSkips',
             )
         global_context = Context(
-            [global_rests, global_skips ],
+            [global_rests, global_skips],
             lilypond_type='GlobalContext',
             is_simultaneous=True,
             name='GlobalContext',
@@ -145,27 +172,31 @@ class SegmentMaker(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def metadata(self):
-        r'''Gets segment metadata after run.
+    def environment(self) -> typing.Optional[str]:
+        r'''Gets environment.
+        '''
+        return self._environment
 
-        Returns ordered dictionary or none.
+    @property
+    def metadata(self) -> OrderedDict:
+        r'''Gets segment metadata after run.
         '''
         return self._metadata
 
     @property
-    def score(self) -> Optional[Score]:
+    def score(self) -> typing.Optional[Score]:
         r'''Gets score.
         '''
         return self._score
 
     @property
-    def segment_directory(self) -> Optional[Path]:
+    def segment_directory(self) -> typing.Optional[Path]:
         r'''Gets segment directory.
         '''
         return self._segment_directory
 
     @property
-    def segment_name(self) -> Optional[str]:
+    def segment_name(self) -> typing.Optional[str]:
         r'''Gets segment name.
         '''
         if bool(self.segment_directory):
@@ -176,12 +207,12 @@ class SegmentMaker(AbjadObject):
 
     def run(
         self,
-        deactivate: List[str] = None,
+        deactivate: typing.List[str] = None,
         environment: str = None,
         metadata: OrderedDict = None,
         midi: bool = None,
         previous_metadata: OrderedDict = None,
-        remove: List[str] = None,
+        remove: typing.List[str] = None,
         segment_directory: Path = None,
         ) -> LilyPondFile:
         r'''Runs segment-maker.

@@ -1,5 +1,6 @@
 import collections
 import copy
+import inspect
 import pathlib
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
@@ -124,6 +125,33 @@ class LilyPondFile(AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    def __contains__(self, argument) -> bool:
+        r'''Is true when LilyPond file contains ``argument``.
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> lilypond_file = abjad.LilyPondFile.new(staff)
+
+            >>> staff in lilypond_file
+            True
+
+            >>> abjad.Staff in lilypond_file
+            True
+
+            >>> 'Allegro' in lilypond_file
+            False
+
+            >>> 0 in lilypond_file
+            False
+
+        '''
+        try:
+            item = self[argument]
+            return True
+        except (AssertionError, KeyError, ValueError, TypeError):
+            return False
+        
     def __format__(self, format_specification=''):
         r'''Formats LilyPond file.
 
@@ -373,6 +401,11 @@ class LilyPondFile(AbjadObject):
         Raises key error when no item with `name` is found.
         '''
         import abjad
+        if not isinstance(name, str):
+            if inspect.isclass(name):
+                assert issubclass(name, abjad.Component), repr(name)
+            else:
+                assert isinstance(name, abjad.Component), repr(name)
         score = None
         if self.score_block and self.score_block.items:
             items = self.score_block.items
@@ -389,23 +422,33 @@ class LilyPondFile(AbjadObject):
                     return score
                 context = score[name]
                 return context
-            message = 'can not find item with name {!r}.'
-            message = message.format(name)
-            raise KeyError(message)
-        else:
+            raise KeyError(f'can not find item with name {name!r}.')
+        elif isinstance(name, abjad.Component):
+            for item in self.items:
+                if item is name:
+                    return item
+            if score is not None:
+                if score is name:
+                    return score
+                prototype = abjad.Context
+                for context in abjad.iterate(score).components(prototype):
+                    if context is name:
+                        return context
+            raise KeyError(f'can not find {name}.')
+        elif inspect.isclass(name) and issubclass(name, abjad.Component):
             for item in self.items:
                 if isinstance(item, name):
                     return item
             if score is not None:
                 if isinstance(score, name):
                     return score
-                prototype = abjad.scoretools.Context
+                prototype = abjad.Context
                 for context in abjad.iterate(score).components(prototype):
                     if isinstance(context, name):
                         return context
-            message = 'can not find item of class {!r}.'
-            message = message.format(name)
-            raise KeyError(message)
+            raise KeyError(f'can not find item of class {name}.')
+        else:
+            raise TypeError(name)
 
     def __illustrate__(self):
         r'''Illustrates LilyPond file.

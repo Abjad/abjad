@@ -1,10 +1,14 @@
-from abjad import Fraction
+try:
+    import quicktions as fractions # type: ignore
+except ImportError:
+    import fractions # type: ignore
+import typing
 from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class NonreducedFraction(AbjadObject, Fraction):
-    r'''Nonereduced fraction.
+class NonreducedFraction(AbjadObject, fractions.Fraction):
+    r'''Nonreduced fraction.
 
     ..  container:: example
 
@@ -103,10 +107,15 @@ class NonreducedFraction(AbjadObject, Fraction):
             raise ValueError(message)
         numerator *= mathtools.sign(denominator)
         denominator = abs(denominator)
-        self = Fraction.__new__(class_, numerator, denominator)
+        self = fractions.Fraction.__new__(class_, numerator, denominator)
         self._numerator = numerator
         self._denominator = denominator
         return self
+
+    def __init__(self, *arguments):
+        r'''Dummy initializer to satisfy mypy.
+        '''
+        pass
 
     ### SPECIAL METHODS ###
 
@@ -592,7 +601,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
         Returns fraction.
         '''
-        return Fraction(self.numerator, self.denominator)
+        return fractions.Fraction(self.numerator, self.denominator)
 
     def with_denominator(self, denominator):
         r'''Returns new nonreduced fraction with integer `denominator`.
