@@ -1,7 +1,4 @@
-from typing import Callable
-from typing import List
-from typing import Tuple
-from typing import Union
+import typing
 from .Path import Path
 from .Tags import Tags
 from abjad.tools.abctools.AbjadObject import AbjadObject
@@ -9,6 +6,7 @@ from abjad.tools.datastructuretools.String import String
 from abjad.tools.topleveltools.activate import activate
 from abjad.tools.topleveltools.deactivate import deactivate
 abjad_tags = Tags()
+callable_type = typing.Union[str, typing.Callable]
 
 
 class Job(AbjadObject):
@@ -30,15 +28,15 @@ class Job(AbjadObject):
 
     def __init__(
         self,
-        activate: Tuple[Union[str, Callable], str] = None,
-        deactivate: Tuple[Union[str, Callable], str] = None,
+        activate: typing.Tuple[callable_type, str] = None,
+        deactivate: typing.Tuple[callable_type, str] = None,
         deactivate_first: bool = None,
         message_zero: bool = None,
         path: Path = None,
         title: str = None,
         ) -> None:
-        self._activate: Tuple[Union[str, Callable], str] = activate
-        self._deactivate: Tuple[Union[str, Callable], str] = deactivate
+        self._activate: typing.Tuple[callable_type, str] = activate
+        self._deactivate: typing.Tuple[callable_type, str] = deactivate
         self._deactivate_first: bool = deactivate_first
         self._message_zero: bool = message_zero
         self._path: Path = path
@@ -46,7 +44,7 @@ class Job(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self) -> List[String]:
+    def __call__(self) -> typing.List[String]:
         r'''Calls job on job ``path``.
         '''
         messages = []
@@ -128,13 +126,13 @@ class Job(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def activate(self) -> Tuple[Union[str, Callable], str]:
+    def activate(self) -> typing.Tuple[typing.Union[str, typing.Callable], str]:
         r'''Gets activate match / message pair.
         '''
         return self._activate
 
     @property
-    def deactivate(self) -> Tuple[Union[str, Callable], str]:
+    def deactivate(self) -> typing.Tuple[typing.Union[str, typing.Callable], str]:
         r'''Gets deactivate match / message pair.
         '''
         return self._deactivate
@@ -397,13 +395,12 @@ class Job(AbjadObject):
         '''
         if path.parent.is_segment():
             my_name = 'SEGMENT'
-        elif path.is_score_build():
+        elif path.is_score_build() or path.parent.is_score_build():
             my_name = 'SCORE'
-        elif path.is_parts():
+        elif path.is_parts() or path.is_part():
             my_name = 'PARTS'
         else:
-            assert path.is_part()
-            my_name = 'PARTS'
+            raise Exception(path)
         this_edition = f'+{String(my_name).to_shout_case()}'
         not_this_edition = f'-{String(my_name).to_shout_case()}'
         if path.is_dir():

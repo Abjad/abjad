@@ -1,5 +1,5 @@
 import math
-from typing import Union
+import typing
 from .Container import Container
 from .Leaf import Leaf
 from abjad.tools.exceptiontools import AssignabilityError
@@ -102,9 +102,9 @@ class Tuplet(Container):
         self,
         multiplier=None,
         components=None,
-        denominator: Union[int, None] = None,
-        force_fraction: Union[bool, None] = None,
-        hide: Union[bool, None] = None,
+        denominator: int = None,
+        force_fraction: bool = None,
+        hide: bool = None,
         ) -> None:
         import abjad
         Container.__init__(self, components)
@@ -316,7 +316,7 @@ class Tuplet(Container):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def denominator(self) -> Union[int, None]:
+    def denominator(self) -> typing.Optional[int]:
         r'''Gets and sets preferred denominator of tuplet.
 
         ..  container:: example
@@ -378,7 +378,7 @@ class Tuplet(Container):
         self._denominator = argument
 
     @property
-    def force_fraction(self) -> Union[bool, None]:
+    def force_fraction(self) -> typing.Optional[bool]:
         r'''Gets and sets flag to force fraction formatting of tuplet.
 
         ..  container:: example
@@ -489,7 +489,7 @@ class Tuplet(Container):
             raise TypeError(message)
 
     @property
-    def hide(self) -> Union[bool, None]:
+    def hide(self) -> typing.Optional[bool]:
         r'''Is true when tuplet bracket hides.
 
         ..  container:: example

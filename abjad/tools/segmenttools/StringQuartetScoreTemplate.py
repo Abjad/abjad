@@ -1,4 +1,5 @@
 from abjad.tools.datastructuretools.OrderedDict import OrderedDict
+from .Part import Part
 from .PartManifest import PartManifest
 from .ScoreTemplate import ScoreTemplate
 
@@ -78,10 +79,10 @@ class StringQuartetScoreTemplate(ScoreTemplate):
         })
 
     _part_manifest = PartManifest(
-        ('FirstViolin', 'VN-1'),
-        ('SecondViolin', 'VN-2'),
-        ('Viola', 'VA'),
-        ('Cello', 'VC'),
+        Part(section='FirstViolin', section_abbreviation='VN-1'),
+        Part(section='SecondViolin', section_abbreviation='VN-2'),
+        Part(section='Viola', section_abbreviation='VA'),
+        Part(section='Cello', section_abbreviation='VC'),
         )
 
     ### INITIALIZER ###

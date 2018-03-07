@@ -1,6 +1,6 @@
 import collections
 import itertools
-from typing import Optional
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -162,7 +162,7 @@ class TieSpecifier(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def repeat_ties(self) -> Optional[bool]:
+    def repeat_ties(self) -> typing.Optional[bool]:
         r'''Is true when ties should format with LilyPond ``\repeatTie``.
         '''
         return self._repeat_ties

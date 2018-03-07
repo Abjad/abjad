@@ -1,6 +1,5 @@
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.systemtools.LilyPondFormatManager import LilyPondFormatManager
-from typing import Optional
 
 
 class LineSegment(AbjadValueObject):

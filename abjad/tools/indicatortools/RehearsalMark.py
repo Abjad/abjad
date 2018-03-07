@@ -1,4 +1,4 @@
-from typing import Optional
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.markuptools.Markup import Markup
 
@@ -121,7 +121,7 @@ class RehearsalMark(AbjadValueObject):
         return self._context
 
     @property
-    def markup(self) -> Optional[Markup]:
+    def markup(self) -> typing.Optional[Markup]:
         r'''Gets rehearsal mark markup.
 
         ..  container:: example
@@ -156,7 +156,7 @@ class RehearsalMark(AbjadValueObject):
         return self._markup
 
     @property
-    def number(self) -> Optional[int]:
+    def number(self) -> typing.Optional[int]:
         r'''Gets rehearsal mark number.
 
         ..  container:: example

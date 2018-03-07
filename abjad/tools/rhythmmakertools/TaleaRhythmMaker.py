@@ -3841,7 +3841,7 @@ class TaleaRhythmMaker(RhythmMaker):
             ...         counts=[1],
             ...         denominator=16,
             ...         ),
-            ...     tuplet_specifier=rhythmmakertools.TupletSpecifier(
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
             ...         extract_trivial=True,
             ...         ),
             ...     )
@@ -3909,7 +3909,7 @@ class TaleaRhythmMaker(RhythmMaker):
             ...         counts=[1],
             ...         denominator=16,
             ...         ),
-            ...     tuplet_specifier=rhythmmakertools.TupletSpecifier(
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
             ...         diminution=False,
             ...         extract_trivial=True,
             ...         ),

@@ -1,4 +1,4 @@
-from typing import Optional
+import typing
 from .Spanner import Spanner
 
 
@@ -130,6 +130,7 @@ class Glissando(Spanner):
         if self.stems:
             if leaf is self[1]:
                 strings = [
+                    r'\override Accidental.stencil = ##f',
                     r'\override NoteColumn.glissando-skip = ##t',
                     r'\hide NoteHead',
                     r'\override NoteHead.no-ledgers = ##t',
@@ -137,6 +138,7 @@ class Glissando(Spanner):
                 bundle.grob_overrides.extend(strings)
             if leaf is self[-1]:
                 strings = [
+                    r'\revert Accidental.stencil',
                     r'\revert NoteColumn.glissando-skip',
                     r'\undo \hide NoteHead',
                     r'\revert NoteHead.no-ledgers',
@@ -203,7 +205,7 @@ class Glissando(Spanner):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def allow_repeats(self) -> Optional[bool]:
+    def allow_repeats(self) -> typing.Optional[bool]:
         r'''Is true when glissando should allow repeated pitches.
         Otherwise false.
 
@@ -294,7 +296,7 @@ class Glissando(Spanner):
         return self._allow_repeats
 
     @property
-    def allow_ties(self) -> Optional[bool]:
+    def allow_ties(self) -> typing.Optional[bool]:
         r'''Is true when glissando should allow ties. Otherwise false.
 
         ..  container:: example
@@ -668,7 +670,7 @@ class Glissando(Spanner):
         pass
 
     @property
-    def parenthesize_repeats(self) -> Optional[bool]:
+    def parenthesize_repeats(self) -> typing.Optional[bool]:
         r'''Is true when glissando should parenthesize repeated pitches.
         Otherwise false.
 
@@ -763,7 +765,7 @@ class Glissando(Spanner):
         return self._parenthesize_repeats
 
     @property
-    def stems(self) -> Optional[bool]:
+    def stems(self) -> typing.Optional[bool]:
         r'''Is true when glissando formats stems-only timing marks non nonedge
         leaves.
 
@@ -781,10 +783,12 @@ class Glissando(Spanner):
                 {
                     c'8 \glissando
                     \hide NoteHead
+                    \override Accidental.stencil = ##f
                     \override NoteColumn.glissando-skip = ##t
                     \override NoteHead.no-ledgers = ##t
                     d'8 \glissando
                     e'8 \glissando
+                    \revert Accidental.stencil
                     \revert NoteColumn.glissando-skip
                     \revert NoteHead.no-ledgers
                     \undo \hide NoteHead
@@ -795,7 +799,7 @@ class Glissando(Spanner):
         return self._stems
 
     @property
-    def style(self) -> Optional[str]:
+    def style(self) -> typing.Optional[str]:
         r'''Gets style.
 
         ..  container:: example

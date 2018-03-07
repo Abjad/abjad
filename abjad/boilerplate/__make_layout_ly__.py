@@ -37,9 +37,9 @@ if __name__ == '__main__':
 
     try:
         if buildspace_directory.get_metadatum('parts_directory') is True:
-            from {layout_module_name} import part_abbreviation
-            assert abjad.String(part_abbreviation).is_shout_case()
-            document_name = f'{{document_name}}_{{part_abbreviation}}'
+            from {layout_module_name} import part_identifier
+            assert abjad.String(part_identifier).is_shout_case()
+            document_name = f'{{document_name}}_{{part_identifier}}'
     except ImportError:
         traceback.print_exc()
         sys.exit(1)
@@ -67,6 +67,7 @@ if __name__ == '__main__':
         sys.exit(1)
 
     try:
+        print(' Running segment-maker ...')
         maker = baca.SegmentMaker(
             breaks=breaks,
             do_not_check_persistence=True,
@@ -93,12 +94,16 @@ if __name__ == '__main__':
         text = format(score, 'lilypond:strict')
         text = text.replace('GlobalSkips', 'PageLayout')
         text = abjad.LilyPondFormatManager.left_shift_tags(text, realign=89)
-        text = f'% measure_count = {{measure_count}}\n\n\n' + text
+        time_signatures = [str(_) for _ in time_signatures]
+        line_1 = f'% time_signatures = {{time_signatures}}\n'
+        measure_count = len(time_signatures)
+        line_2 = f'% measure_count = {{measure_count}}\n'
+        text = line_1 + line_2 + '\n\n' + text
         layout_ly = layout_module_name.replace('_', '-') + '.ly'
         layout_ly = buildspace_directory(layout_ly)
         layout_ly.write_text(text)
         counter = abjad.String('measure').pluralize(measure_count)
-        message = f'Writing {{measure_count}} {{counter}}'
+        message = f' Writing {{measure_count}} {{counter}}'
         message += f' to {{layout_ly.trim()}} ...'
         print(message)
     except:
@@ -115,11 +120,23 @@ if __name__ == '__main__':
                     measure_number = first_measure_number + i
                     bol_measure_numbers.append(measure_number)
                     continue
-        counter = abjad.String('number').pluralize(len(bol_measure_numbers))
-        numbers = ', '.join(str(_) for _ in bol_measure_numbers)
-        message = f'Writing BOL measure {{counter}} {{numbers}}'
-        message += ' to metadata ...'
-        print(message)
+        bols = bol_measure_numbers
+        count = len(bols)
+        numbers = abjad.String('number').pluralize(count)
+        if count <= 4:
+            items = ', '.join([str(_) for _ in bols])
+            print(
+                f' Writing BOL measure {{numbers}} {{items}} to metadata ...')
+        else:
+            print(f' Writing BOL measure {{numbers}} to metadata ...')
+            parts = abjad.sequence(bols).partition_by_counts(
+                [12],
+                cyclic=True,
+                overhang=True,
+                )
+            for part in parts:
+                items = ', '.join(str(_) for _ in part)
+                print(f'  {{items}} ...')
         buildspace_directory.add_buildspace_metadatum(
             'bol_measure_numbers',
             bol_measure_numbers,

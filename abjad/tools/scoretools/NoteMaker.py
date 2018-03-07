@@ -1,6 +1,6 @@
 import collections
 import numbers
-from typing import Optional
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -276,7 +276,7 @@ class NoteMaker(AbjadValueObject):
         return self._decrease_monotonic
 
     @property
-    def repeat_ties(self) -> Optional[bool]:
+    def repeat_ties(self) -> typing.Optional[bool]:
         r'''Is true when ties are repeat ties.
         '''
         return self._repeat_ties
