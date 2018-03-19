@@ -2,6 +2,7 @@ import typing
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from .Part import Part
 from .PartAssignment import PartAssignment
+from .Section import Section
 
 
 class PartManifest(AbjadObject):
@@ -9,37 +10,51 @@ class PartManifest(AbjadObject):
 
     ..  container:: example
 
-        >>> part_manifest = abjad.PartManifest(
-        ...    ('Piccolo', 'PICC'),
-        ...    ('Flute1', 'FL-1'),
-        ...    ('Flute2', 'FL-2'),
-        ...    ('Flute3', 'FL-3'),
-        ...    ('Oboe1', 'OB-1'),
-        ...    ('Oboe2', 'OB-2'),
-        ...    ('Oboe3', 'OB-3'),
-        ...    ('EnglishHorn', 'EH'),
-        ...    ('FirstViolin01', 'VN-1-1', 'Violin'),
-        ...    ('FirstViolin02', 'VN-1-2', 'Violin'),
-        ...    ('FirstViolin03', 'VN-1-3', 'Violin'),
-        ...    ('FirstViolin04', 'VN-1-4', 'Violin'),
-        ...    ('FirstViolin05', 'VN-1-5', 'Violin'),
-        ...    ('FirstViolin06', 'VN-1-6', 'Violin'),
-        ...    ('FirstViolin07', 'VN-1-7', 'Violin'),
-        ...    ('FirstViolin08', 'VN-1-8', 'Violin'),
-        ...    ('FirstViolin09', 'VN-1-9', 'Violin'),
-        ...    ('FirstViolin10', 'VN-1-10', 'Violin'),
-        ...    ('FirstViolin11', 'VN-1-11', 'Violin'),
-        ...    ('FirstViolin12', 'VN-1-12', 'Violin'),
-        ...    ('FirstViolin13', 'VN-1-13', 'Violin'),
-        ...    ('FirstViolin14', 'VN-1-14', 'Violin'),
-        ...    ('FirstViolin15', 'VN-1-15', 'Violin'),
-        ...    ('FirstViolin16', 'VN-1-16', 'Violin'),
-        ...    ('FirstViolin17', 'VN-1-17', 'Violin'),
-        ...    ('FirstViolin18', 'VN-1-18', 'Violin'),
-        ...    )
+        Initializes from parts:
 
-        >>> part_manifest
-        PartManifest()
+        >>> part_manifest = abjad.PartManifest(
+        ...    abjad.Part(section='BassClarinet', section_abbreviation='BCL'),
+        ...    abjad.Part(section='Violin', section_abbreviation='VN'),
+        ...    abjad.Part(section='Viola', section_abbreviation='VA'),
+        ...    abjad.Part(section='Cello', section_abbreviation='VC'),
+        ...    )
+        >>> len(part_manifest)
+        4
+
+    ..  container:: example
+
+        Initializes from orchestra sections:
+
+        >>> part_manifest = abjad.PartManifest(
+        ...    abjad.Section(
+        ...         abbreviation='FL',
+        ...         count=4,
+        ...         name='Flute',
+        ...         ),
+        ...    abjad.Section(
+        ...         abbreviation='OB',
+        ...         count=3,
+        ...         name='Oboe',
+        ...         ),
+        ...    abjad.Part(
+        ...         section_abbreviation='EH',
+        ...         section='EnglishHorn',
+        ...         ),
+        ...    abjad.Section(
+        ...         abbreviation='VN-1',
+        ...         count=18,
+        ...         instrument='Violin',
+        ...         name='FirstViolin',
+        ...         ),
+        ...    abjad.Section(
+        ...         abbreviation='VN-2',
+        ...         count=18,
+        ...         instrument='Violin',
+        ...         name='SecondViolin',
+        ...         ),
+        ...    )
+        >>> len(part_manifest)
+        44
 
     '''
 
@@ -47,19 +62,113 @@ class PartManifest(AbjadObject):
 
     __slots__ = (
         '_parts',
+        '_sections',
         )
 
     ### INITIALIZER ###
 
     def __init__(self, *arguments):
-        parts = []
+        parts, sections = [], []
         for argument in arguments:
-            assert isinstance(argument, tuple), repr(argument)
-            part = Part(*argument)
-            parts.append(part)
+            if isinstance(argument, Part):
+                parts.append(argument)
+            elif isinstance(argument, Section):
+                sections.append(argument)
+                parts.extend(argument.parts)
+            else:
+                raise TypeError(f'must be part or section (not {argument}).')
+        for i, part in enumerate(parts):
+            number = i + 1
+            part._number = number
         self._parts = parts
+        self._sections = sections
 
     ### SPECIAL METHODS ###
+
+    def __iter__(self) -> typing.Iterator:
+        r'''Iterates parts in manifest.
+
+        ..  container:: example
+
+            >>> part_manifest = abjad.PartManifest(
+            ...    abjad.Section(
+            ...         abbreviation='FL',
+            ...         count=4,
+            ...         name='Flute',
+            ...         ),
+            ...    abjad.Section(
+            ...         abbreviation='OB',
+            ...         count=3,
+            ...         name='Oboe',
+            ...         ),
+            ...    abjad.Part(
+            ...         section_abbreviation='EH',
+            ...         section='EnglishHorn',
+            ...         ),
+            ...    abjad.Section(
+            ...         abbreviation='VN-1',
+            ...         count=18,
+            ...         instrument='Violin',
+            ...         name='FirstViolin',
+            ...         ),
+            ...    abjad.Section(
+            ...         abbreviation='VN-2',
+            ...         count=18,
+            ...         instrument='Violin',
+            ...         name='SecondViolin',
+            ...         ),
+            ...    )
+
+            >>> for part in part_manifest:
+            ...     part
+            ...
+            Part(instrument='Flute', member=1, number=1, section='Flute', section_abbreviation='FL')
+            Part(instrument='Flute', member=2, number=2, section='Flute', section_abbreviation='FL')
+            Part(instrument='Flute', member=3, number=3, section='Flute', section_abbreviation='FL')
+            Part(instrument='Flute', member=4, number=4, section='Flute', section_abbreviation='FL')
+            Part(instrument='Oboe', member=1, number=5, section='Oboe', section_abbreviation='OB')
+            Part(instrument='Oboe', member=2, number=6, section='Oboe', section_abbreviation='OB')
+            Part(instrument='Oboe', member=3, number=7, section='Oboe', section_abbreviation='OB')
+            Part(instrument='EnglishHorn', number=8, section='EnglishHorn', section_abbreviation='EH')
+            Part(instrument='Violin', member=1, number=9, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=2, number=10, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=3, number=11, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=4, number=12, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=5, number=13, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=6, number=14, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=7, number=15, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=8, number=16, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=9, number=17, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=10, number=18, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=11, number=19, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=12, number=20, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=13, number=21, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=14, number=22, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=15, number=23, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=16, number=24, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=17, number=25, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=18, number=26, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=1, number=27, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=2, number=28, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=3, number=29, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=4, number=30, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=5, number=31, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=6, number=32, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=7, number=33, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=8, number=34, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=9, number=35, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=10, number=36, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=11, number=37, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=12, number=38, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=13, number=39, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=14, number=40, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=15, number=41, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=16, number=42, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=17, number=43, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=18, number=44, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+
+        '''
+        return iter(self.parts)
 
     def __len__(self) -> int:
         r'''Gets number of parts in manifest.
@@ -67,112 +176,52 @@ class PartManifest(AbjadObject):
         ..  container:: example
 
             >>> part_manifest = abjad.PartManifest(
-            ...    ('Piccolo', 'PICC'),
-            ...    ('Flute1', 'FL-1'),
-            ...    ('Flute2', 'FL-2'),
-            ...    ('Flute3', 'FL-3'),
-            ...    ('Oboe1', 'OB-1'),
-            ...    ('Oboe2', 'OB-2'),
-            ...    ('Oboe3', 'OB-3'),
-            ...    ('EnglishHorn', 'EH'),
-            ...    ('FirstViolin01', 'VN-1-1', 'Violin'),
-            ...    ('FirstViolin02', 'VN-1-2', 'Violin'),
-            ...    ('FirstViolin03', 'VN-1-3', 'Violin'),
-            ...    ('FirstViolin04', 'VN-1-4', 'Violin'),
-            ...    ('FirstViolin05', 'VN-1-5', 'Violin'),
-            ...    ('FirstViolin06', 'VN-1-6', 'Violin'),
-            ...    ('FirstViolin07', 'VN-1-7', 'Violin'),
-            ...    ('FirstViolin08', 'VN-1-8', 'Violin'),
-            ...    ('FirstViolin09', 'VN-1-9', 'Violin'),
-            ...    ('FirstViolin10', 'VN-1-10', 'Violin'),
-            ...    ('FirstViolin11', 'VN-1-11', 'Violin'),
-            ...    ('FirstViolin12', 'VN-1-12', 'Violin'),
-            ...    ('FirstViolin13', 'VN-1-13', 'Violin'),
-            ...    ('FirstViolin14', 'VN-1-14', 'Violin'),
-            ...    ('FirstViolin15', 'VN-1-15', 'Violin'),
-            ...    ('FirstViolin16', 'VN-1-16', 'Violin'),
-            ...    ('FirstViolin17', 'VN-1-17', 'Violin'),
-            ...    ('FirstViolin18', 'VN-1-18', 'Violin'),
+            ...    abjad.Part(section='BassClarinet', section_abbreviation='BCL'),
+            ...    abjad.Part(section='Violin', section_abbreviation='VN'),
+            ...    abjad.Part(section='Viola', section_abbreviation='VA'),
+            ...    abjad.Part(section='Cello', section_abbreviation='VC'),
+            ...    )
+            >>> len(part_manifest)
+            4
+
+        ..  container:: example
+
+            >>> part_manifest = abjad.PartManifest(
+            ...    abjad.Section(
+            ...         abbreviation='FL',
+            ...         count=4,
+            ...         name='Flute',
+            ...         ),
+            ...    abjad.Section(
+            ...         abbreviation='OB',
+            ...         count=3,
+            ...         name='Oboe',
+            ...         ),
+            ...    abjad.Part(
+            ...         section_abbreviation='EH',
+            ...         section='EnglishHorn',
+            ...         ),
+            ...    abjad.Section(
+            ...         abbreviation='VN-1',
+            ...         count=18,
+            ...         instrument='Violin',
+            ...         name='FirstViolin',
+            ...         ),
+            ...    abjad.Section(
+            ...         abbreviation='VN-2',
+            ...         count=18,
+            ...         instrument='Violin',
+            ...         name='SecondViolin',
+            ...         ),
             ...    )
 
             >>> len(part_manifest)
-            26
+            44
 
         '''
         return len(self.parts)
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def names(self) -> typing.List[str]:
-        r'''Gets part names.
-
-        ..  container:: example
-
-            >>> part_manifest = abjad.PartManifest(
-            ...    ('Piccolo', 'PICC'),
-            ...    ('Flute1', 'FL-1'),
-            ...    ('Flute2', 'FL-2'),
-            ...    ('Flute3', 'FL-3'),
-            ...    ('Oboe1', 'OB-1'),
-            ...    ('Oboe2', 'OB-2'),
-            ...    ('Oboe3', 'OB-3'),
-            ...    ('EnglishHorn', 'EH'),
-            ...    ('FirstViolin01', 'VN-1-1', 'Violin'),
-            ...    ('FirstViolin02', 'VN-1-2', 'Violin'),
-            ...    ('FirstViolin03', 'VN-1-3', 'Violin'),
-            ...    ('FirstViolin04', 'VN-1-4', 'Violin'),
-            ...    ('FirstViolin05', 'VN-1-5', 'Violin'),
-            ...    ('FirstViolin06', 'VN-1-6', 'Violin'),
-            ...    ('FirstViolin07', 'VN-1-7', 'Violin'),
-            ...    ('FirstViolin08', 'VN-1-8', 'Violin'),
-            ...    ('FirstViolin09', 'VN-1-9', 'Violin'),
-            ...    ('FirstViolin10', 'VN-1-10', 'Violin'),
-            ...    ('FirstViolin11', 'VN-1-11', 'Violin'),
-            ...    ('FirstViolin12', 'VN-1-12', 'Violin'),
-            ...    ('FirstViolin13', 'VN-1-13', 'Violin'),
-            ...    ('FirstViolin14', 'VN-1-14', 'Violin'),
-            ...    ('FirstViolin15', 'VN-1-15', 'Violin'),
-            ...    ('FirstViolin16', 'VN-1-16', 'Violin'),
-            ...    ('FirstViolin17', 'VN-1-17', 'Violin'),
-            ...    ('FirstViolin18', 'VN-1-18', 'Violin'),
-            ...    )
-
-            >>> for name in part_manifest.names:
-            ...     name
-            ...
-            'Piccolo'
-            'Flute1'
-            'Flute2'
-            'Flute3'
-            'Oboe1'
-            'Oboe2'
-            'Oboe3'
-            'EnglishHorn'
-            'FirstViolin01'
-            'FirstViolin02'
-            'FirstViolin03'
-            'FirstViolin04'
-            'FirstViolin05'
-            'FirstViolin06'
-            'FirstViolin07'
-            'FirstViolin08'
-            'FirstViolin09'
-            'FirstViolin10'
-            'FirstViolin11'
-            'FirstViolin12'
-            'FirstViolin13'
-            'FirstViolin14'
-            'FirstViolin15'
-            'FirstViolin16'
-            'FirstViolin17'
-            'FirstViolin18'
-
-        '''
-        names = []
-        for part in self.parts:
-            names.append(part.name)
-        return names
 
     @property
     def parts(self) -> typing.List[Part]:
@@ -181,206 +230,237 @@ class PartManifest(AbjadObject):
         ..  container:: example
 
             >>> part_manifest = abjad.PartManifest(
-            ...    ('Piccolo', 'PICC'),
-            ...    ('Flute1', 'FL-1'),
-            ...    ('Flute2', 'FL-2'),
-            ...    ('Flute3', 'FL-3'),
-            ...    ('Oboe1', 'OB-1'),
-            ...    ('Oboe2', 'OB-2'),
-            ...    ('Oboe3', 'OB-3'),
-            ...    ('EnglishHorn', 'EH'),
-            ...    ('FirstViolin01', 'VN-1-1', 'Violin'),
-            ...    ('FirstViolin02', 'VN-1-2', 'Violin'),
-            ...    ('FirstViolin03', 'VN-1-3', 'Violin'),
-            ...    ('FirstViolin04', 'VN-1-4', 'Violin'),
-            ...    ('FirstViolin05', 'VN-1-5', 'Violin'),
-            ...    ('FirstViolin06', 'VN-1-6', 'Violin'),
-            ...    ('FirstViolin07', 'VN-1-7', 'Violin'),
-            ...    ('FirstViolin08', 'VN-1-8', 'Violin'),
-            ...    ('FirstViolin09', 'VN-1-9', 'Violin'),
-            ...    ('FirstViolin10', 'VN-1-10', 'Violin'),
-            ...    ('FirstViolin11', 'VN-1-11', 'Violin'),
-            ...    ('FirstViolin12', 'VN-1-12', 'Violin'),
-            ...    ('FirstViolin13', 'VN-1-13', 'Violin'),
-            ...    ('FirstViolin14', 'VN-1-14', 'Violin'),
-            ...    ('FirstViolin15', 'VN-1-15', 'Violin'),
-            ...    ('FirstViolin16', 'VN-1-16', 'Violin'),
-            ...    ('FirstViolin17', 'VN-1-17', 'Violin'),
-            ...    ('FirstViolin18', 'VN-1-18', 'Violin'),
+            ...    abjad.Part(section='BassClarinet', section_abbreviation='BCL'),
+            ...    abjad.Part(section='Violin', section_abbreviation='VN'),
+            ...    abjad.Part(section='Viola', section_abbreviation='VA'),
+            ...    abjad.Part(section='Cello', section_abbreviation='VC'),
+            ...    )
+            >>> for part in part_manifest:
+            ...     part
+            ...
+            Part(instrument='BassClarinet', number=1, section='BassClarinet', section_abbreviation='BCL')
+            Part(instrument='Violin', number=2, section='Violin', section_abbreviation='VN')
+            Part(instrument='Viola', number=3, section='Viola', section_abbreviation='VA')
+            Part(instrument='Cello', number=4, section='Cello', section_abbreviation='VC')
+
+        ..  container:: example
+
+            >>> part_manifest = abjad.PartManifest(
+            ...    abjad.Section(
+            ...         abbreviation='FL',
+            ...         count=4,
+            ...         name='Flute',
+            ...         ),
+            ...    abjad.Section(
+            ...         abbreviation='OB',
+            ...         count=3,
+            ...         name='Oboe',
+            ...         ),
+            ...    abjad.Part(
+            ...         section_abbreviation='EH',
+            ...         section='EnglishHorn',
+            ...         ),
+            ...    abjad.Section(
+            ...         abbreviation='VN-1',
+            ...         count=18,
+            ...         instrument='Violin',
+            ...         name='FirstViolin',
+            ...         ),
+            ...    abjad.Section(
+            ...         abbreviation='VN-2',
+            ...         count=18,
+            ...         instrument='Violin',
+            ...         name='SecondViolin',
+            ...         ),
             ...    )
 
             >>> for part in part_manifest.parts:
             ...     part
             ...
-            Part(name='Piccolo', abbreviation='PICC')
-            Part(name='Flute1', abbreviation='FL-1')
-            Part(name='Flute2', abbreviation='FL-2')
-            Part(name='Flute3', abbreviation='FL-3')
-            Part(name='Oboe1', abbreviation='OB-1')
-            Part(name='Oboe2', abbreviation='OB-2')
-            Part(name='Oboe3', abbreviation='OB-3')
-            Part(name='EnglishHorn', abbreviation='EH')
-            Part(name='FirstViolin01', abbreviation='VN-1-1', instrument_name='Violin')
-            Part(name='FirstViolin02', abbreviation='VN-1-2', instrument_name='Violin')
-            Part(name='FirstViolin03', abbreviation='VN-1-3', instrument_name='Violin')
-            Part(name='FirstViolin04', abbreviation='VN-1-4', instrument_name='Violin')
-            Part(name='FirstViolin05', abbreviation='VN-1-5', instrument_name='Violin')
-            Part(name='FirstViolin06', abbreviation='VN-1-6', instrument_name='Violin')
-            Part(name='FirstViolin07', abbreviation='VN-1-7', instrument_name='Violin')
-            Part(name='FirstViolin08', abbreviation='VN-1-8', instrument_name='Violin')
-            Part(name='FirstViolin09', abbreviation='VN-1-9', instrument_name='Violin')
-            Part(name='FirstViolin10', abbreviation='VN-1-10', instrument_name='Violin')
-            Part(name='FirstViolin11', abbreviation='VN-1-11', instrument_name='Violin')
-            Part(name='FirstViolin12', abbreviation='VN-1-12', instrument_name='Violin')
-            Part(name='FirstViolin13', abbreviation='VN-1-13', instrument_name='Violin')
-            Part(name='FirstViolin14', abbreviation='VN-1-14', instrument_name='Violin')
-            Part(name='FirstViolin15', abbreviation='VN-1-15', instrument_name='Violin')
-            Part(name='FirstViolin16', abbreviation='VN-1-16', instrument_name='Violin')
-            Part(name='FirstViolin17', abbreviation='VN-1-17', instrument_name='Violin')
-            Part(name='FirstViolin18', abbreviation='VN-1-18', instrument_name='Violin')
+            Part(instrument='Flute', member=1, number=1, section='Flute', section_abbreviation='FL')
+            Part(instrument='Flute', member=2, number=2, section='Flute', section_abbreviation='FL')
+            Part(instrument='Flute', member=3, number=3, section='Flute', section_abbreviation='FL')
+            Part(instrument='Flute', member=4, number=4, section='Flute', section_abbreviation='FL')
+            Part(instrument='Oboe', member=1, number=5, section='Oboe', section_abbreviation='OB')
+            Part(instrument='Oboe', member=2, number=6, section='Oboe', section_abbreviation='OB')
+            Part(instrument='Oboe', member=3, number=7, section='Oboe', section_abbreviation='OB')
+            Part(instrument='EnglishHorn', number=8, section='EnglishHorn', section_abbreviation='EH')
+            Part(instrument='Violin', member=1, number=9, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=2, number=10, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=3, number=11, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=4, number=12, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=5, number=13, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=6, number=14, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=7, number=15, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=8, number=16, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=9, number=17, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=10, number=18, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=11, number=19, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=12, number=20, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=13, number=21, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=14, number=22, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=15, number=23, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=16, number=24, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=17, number=25, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=18, number=26, section='FirstViolin', section_abbreviation='VN-1', zfill=2)
+            Part(instrument='Violin', member=1, number=27, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=2, number=28, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=3, number=29, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=4, number=30, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=5, number=31, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=6, number=32, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=7, number=33, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=8, number=34, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=9, number=35, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=10, number=36, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=11, number=37, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=12, number=38, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=13, number=39, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=14, number=40, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=15, number=41, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=16, number=42, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=17, number=43, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+            Part(instrument='Violin', member=18, number=44, section='SecondViolin', section_abbreviation='VN-2', zfill=2)
+
+        ..  container:: example
+
+            >>> abjad.Part(section='FirstViolin', member=18) in part_manifest.parts
+            True
+
+            >>> abjad.Part(section='FirstViolin', member=19) in part_manifest.parts
+            False
 
         '''
         return list(self._parts)
 
+    @property
+    def sections(self) -> typing.List[Section]:
+        r'''Gets sections in manifest.
+
+        ..  container:: example
+
+            >>> part_manifest = abjad.PartManifest(
+            ...    abjad.Part(section='BassClarinet', section_abbreviation='BCL'),
+            ...    abjad.Part(section='Violin', section_abbreviation='VN'),
+            ...    abjad.Part(section='Viola', section_abbreviation='VA'),
+            ...    abjad.Part(section='Cello', section_abbreviation='VC'),
+            ...    )
+            >>> part_manifest.sections
+            []
+
+        ..  container:: example
+
+            >>> part_manifest = abjad.PartManifest(
+            ...    abjad.Section(
+            ...         abbreviation='FL',
+            ...         count=4,
+            ...         name='Flute',
+            ...         ),
+            ...    abjad.Section(
+            ...         abbreviation='OB',
+            ...         count=3,
+            ...         name='Oboe',
+            ...         ),
+            ...    abjad.Part(
+            ...         section_abbreviation='EH',
+            ...         section='EnglishHorn',
+            ...         ),
+            ...    abjad.Section(
+            ...         abbreviation='VN-1',
+            ...         count=18,
+            ...         instrument='Violin',
+            ...         name='FirstViolin',
+            ...         ),
+            ...    abjad.Section(
+            ...         abbreviation='VN-2',
+            ...         count=18,
+            ...         instrument='Violin',
+            ...         name='SecondViolin',
+            ...         ),
+            ...    )
+
+            >>> for section in part_manifest.sections:
+            ...     section
+            ...
+            Section(abbreviation='FL', count=4, instrument='Flute', name='Flute')
+            Section(abbreviation='OB', count=3, instrument='Oboe', name='Oboe')
+            Section(abbreviation='VN-1', count=18, instrument='Violin', name='FirstViolin')
+            Section(abbreviation='VN-2', count=18, instrument='Violin', name='SecondViolin')
+
+        ..  container:: example
+
+            >>> section = abjad.Section(
+            ...     abbreviation='VN-1',
+            ...     count=18,
+            ...     instrument='Violin',
+            ...     name='FirstViolin',
+            ...     )
+            >>> section in part_manifest.sections
+            True
+
+            >>> section = abjad.Section(
+            ...     abbreviation='VN-1',
+            ...     count=36,
+            ...     instrument='Violin',
+            ...     name='FirstViolin',
+            ...     )
+            >>> section in part_manifest.sections
+            False
+
+        '''
+        return list(self._sections)
+
     ### PUBLIC METHODS ###
 
-    def expand(self, part_assignment: PartAssignment) -> typing.List[Part]:
+    def expand(self, part_assignment):
         r'''Expands ``part_assignment``.
 
         ..  container:: example
 
             >>> part_manifest = abjad.PartManifest(
-            ...    ('Piccolo', 'PICC'),
-            ...    ('Flute1', 'FL-1'),
-            ...    ('Flute2', 'FL-2'),
-            ...    ('Flute3', 'FL-3'),
-            ...    ('Oboe1', 'OB-1'),
-            ...    ('Oboe2', 'OB-2'),
-            ...    ('Oboe3', 'OB-3'),
-            ...    ('EnglishHorn', 'EH'),
-            ...    ('FirstViolin01', 'VN-1-1', 'Violin'),
-            ...    ('FirstViolin02', 'VN-1-2', 'Violin'),
-            ...    ('FirstViolin03', 'VN-1-3', 'Violin'),
-            ...    ('FirstViolin04', 'VN-1-4', 'Violin'),
-            ...    ('FirstViolin05', 'VN-1-5', 'Violin'),
-            ...    ('FirstViolin06', 'VN-1-6', 'Violin'),
-            ...    ('FirstViolin07', 'VN-1-7', 'Violin'),
-            ...    ('FirstViolin08', 'VN-1-8', 'Violin'),
-            ...    ('FirstViolin09', 'VN-1-9', 'Violin'),
-            ...    ('FirstViolin10', 'VN-1-10', 'Violin'),
-            ...    ('FirstViolin11', 'VN-1-11', 'Violin'),
-            ...    ('FirstViolin12', 'VN-1-12', 'Violin'),
-            ...    ('FirstViolin13', 'VN-1-13', 'Violin'),
-            ...    ('FirstViolin14', 'VN-1-14', 'Violin'),
-            ...    ('FirstViolin15', 'VN-1-15', 'Violin'),
-            ...    ('FirstViolin16', 'VN-1-16', 'Violin'),
-            ...    ('FirstViolin17', 'VN-1-17', 'Violin'),
-            ...    ('FirstViolin18', 'VN-1-18', 'Violin'),
+            ...    abjad.Section(
+            ...         abbreviation='FL',
+            ...         count=4,
+            ...         name='Flute',
+            ...         ),
+            ...    abjad.Section(
+            ...         abbreviation='OB',
+            ...         count=3,
+            ...         name='Oboe',
+            ...         ),
+            ...    abjad.Part(
+            ...         section_abbreviation='EH',
+            ...         section='EnglishHorn',
+            ...         ),
+            ...    abjad.Section(
+            ...         abbreviation='VN-1',
+            ...         count=18,
+            ...         instrument='Violin',
+            ...         name='FirstViolin',
+            ...         ),
+            ...    abjad.Section(
+            ...         abbreviation='VN-2',
+            ...         count=18,
+            ...         instrument='Violin',
+            ...         name='SecondViolin',
+            ...         ),
             ...    )
 
             >>> part_assignment = abjad.PartAssignment('Oboe')
             >>> for part in part_manifest.expand(part_assignment):
             ...     part
             ...
-            Part(name='Oboe1', abbreviation='OB-1')
-            Part(name='Oboe2', abbreviation='OB-2')
-            Part(name='Oboe3', abbreviation='OB-3')
-
-            >>> part_assignment = abjad.PartAssignment('FirstViolin', (10, 18))
-            >>> for part in part_manifest.expand(part_assignment):
-            ...     part
-            ...
-            Part(name='FirstViolin10', abbreviation='VN-1-10', instrument_name='Violin')
-            Part(name='FirstViolin11', abbreviation='VN-1-11', instrument_name='Violin')
-            Part(name='FirstViolin12', abbreviation='VN-1-12', instrument_name='Violin')
-            Part(name='FirstViolin13', abbreviation='VN-1-13', instrument_name='Violin')
-            Part(name='FirstViolin14', abbreviation='VN-1-14', instrument_name='Violin')
-            Part(name='FirstViolin15', abbreviation='VN-1-15', instrument_name='Violin')
-            Part(name='FirstViolin16', abbreviation='VN-1-16', instrument_name='Violin')
-            Part(name='FirstViolin17', abbreviation='VN-1-17', instrument_name='Violin')
-            Part(name='FirstViolin18', abbreviation='VN-1-18', instrument_name='Violin')
+            Part(instrument='Oboe', member=1, number=5, section='Oboe', section_abbreviation='OB')
+            Part(instrument='Oboe', member=2, number=6, section='Oboe', section_abbreviation='OB')
+            Part(instrument='Oboe', member=3, number=7, section='Oboe', section_abbreviation='OB')
 
         '''
-        section = self.section(part_assignment.section)
-        if not section:
-            message = f'Section {part_assignment.section} not found'
-            message += ' in manifest.'
-            raise Exception(message)
-        parts = []
-        for part in section:
-            if part.name in part_assignment:
-                parts.append(part)
-        return parts
-
-    def section(self, section: str) -> typing.List[Part]:
-        r'''Gets parts in section
-
-        ..  container:: example
-
-            >>> part_manifest = abjad.PartManifest(
-            ...    ('Piccolo', 'PICC'),
-            ...    ('Flute1', 'FL-1'),
-            ...    ('Flute2', 'FL-2'),
-            ...    ('Flute3', 'FL-3'),
-            ...    ('Oboe1', 'OB-1'),
-            ...    ('Oboe2', 'OB-2'),
-            ...    ('Oboe3', 'OB-3'),
-            ...    ('EnglishHorn', 'EH'),
-            ...    ('FirstViolin01', 'VN-1-1', 'Violin'),
-            ...    ('FirstViolin02', 'VN-1-2', 'Violin'),
-            ...    ('FirstViolin03', 'VN-1-3', 'Violin'),
-            ...    ('FirstViolin04', 'VN-1-4', 'Violin'),
-            ...    ('FirstViolin05', 'VN-1-5', 'Violin'),
-            ...    ('FirstViolin06', 'VN-1-6', 'Violin'),
-            ...    ('FirstViolin07', 'VN-1-7', 'Violin'),
-            ...    ('FirstViolin08', 'VN-1-8', 'Violin'),
-            ...    ('FirstViolin09', 'VN-1-9', 'Violin'),
-            ...    ('FirstViolin10', 'VN-1-10', 'Violin'),
-            ...    ('FirstViolin11', 'VN-1-11', 'Violin'),
-            ...    ('FirstViolin12', 'VN-1-12', 'Violin'),
-            ...    ('FirstViolin13', 'VN-1-13', 'Violin'),
-            ...    ('FirstViolin14', 'VN-1-14', 'Violin'),
-            ...    ('FirstViolin15', 'VN-1-15', 'Violin'),
-            ...    ('FirstViolin16', 'VN-1-16', 'Violin'),
-            ...    ('FirstViolin17', 'VN-1-17', 'Violin'),
-            ...    ('FirstViolin18', 'VN-1-18', 'Violin'),
-            ...    )
-
-            >>> for part in part_manifest.section('Oboe'):
-            ...     part
-            ...
-            Part(name='Oboe1', abbreviation='OB-1')
-            Part(name='Oboe2', abbreviation='OB-2')
-            Part(name='Oboe3', abbreviation='OB-3')
-
-            >>> for part in part_manifest.section('FirstViolin'):
-            ...     part
-            ...
-            Part(name='FirstViolin01', abbreviation='VN-1-1', instrument_name='Violin')
-            Part(name='FirstViolin02', abbreviation='VN-1-2', instrument_name='Violin')
-            Part(name='FirstViolin03', abbreviation='VN-1-3', instrument_name='Violin')
-            Part(name='FirstViolin04', abbreviation='VN-1-4', instrument_name='Violin')
-            Part(name='FirstViolin05', abbreviation='VN-1-5', instrument_name='Violin')
-            Part(name='FirstViolin06', abbreviation='VN-1-6', instrument_name='Violin')
-            Part(name='FirstViolin07', abbreviation='VN-1-7', instrument_name='Violin')
-            Part(name='FirstViolin08', abbreviation='VN-1-8', instrument_name='Violin')
-            Part(name='FirstViolin09', abbreviation='VN-1-9', instrument_name='Violin')
-            Part(name='FirstViolin10', abbreviation='VN-1-10', instrument_name='Violin')
-            Part(name='FirstViolin11', abbreviation='VN-1-11', instrument_name='Violin')
-            Part(name='FirstViolin12', abbreviation='VN-1-12', instrument_name='Violin')
-            Part(name='FirstViolin13', abbreviation='VN-1-13', instrument_name='Violin')
-            Part(name='FirstViolin14', abbreviation='VN-1-14', instrument_name='Violin')
-            Part(name='FirstViolin15', abbreviation='VN-1-15', instrument_name='Violin')
-            Part(name='FirstViolin16', abbreviation='VN-1-16', instrument_name='Violin')
-            Part(name='FirstViolin17', abbreviation='VN-1-17', instrument_name='Violin')
-            Part(name='FirstViolin18', abbreviation='VN-1-18', instrument_name='Violin')
-
-            >>> part_manifest.section('Contrabass')
-            []
-
-        '''
+        assert isinstance(part_assignment, PartAssignment)
         parts = []
         for part in self.parts:
-            if part.section == section:
-                parts.append(part)
+            if part.section == part_assignment.section:
+                if part_assignment.token is None:
+                    parts.append(part)
+                elif part.member in part_assignment.members:
+                    parts.append(part)
         return parts

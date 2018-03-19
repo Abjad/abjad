@@ -5,6 +5,7 @@ from .GroupedStavesScoreTemplate import GroupedStavesScoreTemplate
 from .Job import Job
 from .Line import Line
 from .Momento import Momento
+from .Section import Section
 from .Part import Part
 from .PartAssignment import PartAssignment
 from .PartManifest import PartManifest

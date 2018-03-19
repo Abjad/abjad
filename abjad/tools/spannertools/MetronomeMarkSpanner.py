@@ -1,4 +1,4 @@
-from typing import Union
+import typing
 from .Spanner import Spanner
 from abjad.tools.systemtools.LilyPondFormatManager import LilyPondFormatManager
 from abjad.tools.markuptools.Markup import Markup
@@ -5082,7 +5082,7 @@ class MetronomeMarkSpanner(Spanner):
         return self._left_broken_padding
 
     @property
-    def left_broken_text(self) -> Union[bool, Markup]:
+    def left_broken_text(self) -> typing.Union[bool, Markup]:
         r'''Gets left broken text of metronome mark spanner.
 
         ..  container:: example

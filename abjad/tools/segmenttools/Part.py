@@ -1,6 +1,7 @@
 import typing
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.datastructuretools.String import String
+from abjad.tools.systemtools.FormatSpecification import FormatSpecification
 
 
 class Part(AbjadObject):
@@ -8,13 +9,18 @@ class Part(AbjadObject):
 
     ..  container:: example
 
-        >>> part = abjad.Part('FirstViolin01', 'VN-1-1', 'Violin')
+        >>> part = abjad.Part(
+        ...     member=18,
+        ...     section='FirstViolin',
+        ...     section_abbreviation='VN-1',
+        ...     )
         
         >>> abjad.f(part)
         abjad.Part(
-            name='FirstViolin01',
-            abbreviation='VN-1-1',
-            instrument_name='Violin',
+            instrument='FirstViolin',
+            member=18,
+            section='FirstViolin',
+            section_abbreviation='VN-1',
             )
 
     '''
@@ -22,11 +28,13 @@ class Part(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_abbreviation',
-        '_instrument_name',
+        '_section_abbreviation',
+        '_instrument',
+        '_member',
         '_name',
         '_number',
         '_section',
+        '_zfill',
         )
 
     _publish_storage_format = True
@@ -35,41 +43,76 @@ class Part(AbjadObject):
 
     def __init__(
         self,
-        name: str = None,
-        abbreviation: str = None,
-        instrument_name: str = None,
+        instrument: str = None,
+        member: int = None,
+        number: int = None,
+        section: str = None,
+        section_abbreviation: str = None,
+        zfill: int = None,
         ) -> None:
-        if name is not None:
-            assert isinstance(name, str), repr(name)
-        self._name = name
-        if abbreviation is not None:
-            assert isinstance(abbreviation, str), repr(abbreviation)
-        self._abbreviation = abbreviation
-        if instrument_name is not None:
-            assert isinstance(instrument_name, str), repr(instrument_name)
-        self._instrument_name = instrument_name
-        words = String(name).delimit_words()
-        try:
-            number = int(words[-1])
-        except ValueError:
-            number = None
+        instrument = instrument or section
+        if instrument is not None:
+            if not isinstance(instrument, str):
+                message = 'instrument must be string'
+                message += f' (not {instrument!r}).'
+                raise Exception(message)
+        self._instrument = instrument
+        if member is not None:
+            if not isinstance(member, int):
+                message = 'member must be integer'
+                message += f' (not {member!r}).'
+                raise Exception(message)
+        self._member = member
+        if number is not None:
+            assert isinstance(number, int), repr(number)
+            assert 1 <= number, repr(number)
         self._number = number
-        if name is not None:
-            section = name.strip('0123456789')
-        else:
-            section = None
+        if section is not None:
+            if not isinstance(section, str):
+                raise Exception(f'section must be string (not {section!r}).')
         self._section = section
+        if section_abbreviation is not None:
+            if not isinstance(section_abbreviation, str):
+                message = 'section_abbreviation must be string'
+                message += f' (not {section_abbreviation!r}).'
+                raise Exception(message)
+        self._section_abbreviation = section_abbreviation
+        if zfill is not None:
+            assert isinstance(zfill, int), repr(zfill)
+            assert 1 <= zfill, repr(zfill)
+        self._zfill = zfill
+        if member is not None:
+            member_ = str(member)
+            if self.zfill is not None:
+                member_ = member_.zfill(self.zfill)
+            name = f'{section}{member_}'
+        else:
+            name = section
+        self._name = name
 
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument) -> bool:
-        r'''Is true when ``argument`` is a part with same name as this part.
+        r'''Is true when ``argument`` is a part with the same section and
+        member as this part.
 
         ..  container:: example
 
-            >>> part_1 = abjad.Part('FirstViolin01')
-            >>> part_2 = abjad.Part('FirstViolin01', 'VN-1-1')
-            >>> part_3 = abjad.Part('Piccolo')
+            >>> part_1 = abjad.Part(
+            ...     member=18,
+            ...     section='FirstViolin',
+            ...     section_abbreviation='VN-1',
+            ...     )
+            >>> part_2 = abjad.Part(
+            ...     member=18,
+            ...     section='FirstViolin',
+            ...     section_abbreviation='VN-1',
+            ...     )
+            >>> part_3 = abjad.Part(
+            ...     member=18,
+            ...     section='SecondViolin',
+            ...     section_abbreviation='VN-2',
+            ...     )
 
             >>> part_1 == part_1
             True
@@ -94,7 +137,8 @@ class Part(AbjadObject):
 
         '''
         if isinstance(argument, type(self)):
-            return argument.name == self.name
+            if argument.section == self.section:
+                return argument.member == self.member
         return False
 
     def __hash__(self):
@@ -105,28 +149,66 @@ class Part(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def abbreviation(self) -> typing.Optional[str]:
-        r'''Gets abbreviation.
+    def identifier(self) -> str:
+        r'''Gets identifier.
 
         ..  container:: example
 
-            >>> abjad.Part('FirstViolin01', 'VN-1-1', 'Violin').abbreviation
-            'VN-1-1'
+            >>> part = abjad.Part(
+            ...     instrument='Violin',
+            ...     member=18,
+            ...     section='FirstViolin',
+            ...     section_abbreviation='VN-1',
+            ...     )
+
+            >>> part.identifier
+            'VN-1-18'
 
         '''
-        return self._abbreviation
+        assert isinstance(self.section_abbreviation, str)
+        if self.member is None:
+            return self.section_abbreviation
+        else:
+            assert isinstance(self.member, int)
+            return f'{self.section_abbreviation}-{self.member}'
 
     @property
-    def instrument_name(self) -> typing.Optional[str]:
-        r'''Gets instrument name.
+    def instrument(self) -> str:
+        r'''Gets instrument.
 
         ..  container:: example
 
-            >>> abjad.Part('FirstViolin01', 'VN-1-1', 'Violin').instrument_name
+            >>> part = abjad.Part(
+            ...     instrument='Violin',
+            ...     member=18,
+            ...     section='FirstViolin',
+            ...     section_abbreviation='VN-1',
+            ...     )
+
+            >>> part.instrument
             'Violin'
 
         '''
-        return self._instrument_name
+        return self._instrument
+
+    @property
+    def member(self) -> typing.Optional[int]:
+        r'''Gets member.
+
+        ..  container:: example
+
+            >>> part = abjad.Part(
+            ...     instrument='Violin',
+            ...     member=18,
+            ...     section='FirstViolin',
+            ...     section_abbreviation='VN-1',
+            ...     )
+
+            >>> part.member
+            18
+
+        '''
+        return self._member
 
     @property
     def name(self) -> str:
@@ -134,20 +216,46 @@ class Part(AbjadObject):
 
         ..  container:: example
 
-            >>> abjad.Part('FirstViolin01', 'VN-1-1', 'Violin').name
+            >>> part = abjad.Part(
+            ...     instrument='Violin',
+            ...     member=1,
+            ...     section='FirstViolin',
+            ...     section_abbreviation='VN-1',
+            ...     )
+
+            >>> part.name
+            'FirstViolin1'
+
+            >>> part = abjad.Part(
+            ...     instrument='Violin',
+            ...     member=1,
+            ...     zfill=2,
+            ...     section='FirstViolin',
+            ...     section_abbreviation='VN-1',
+            ...     )
+
+            >>> part.name
             'FirstViolin01'
 
         '''
         return self._name
 
     @property
-    def number(self) -> typing.Optional[int]:
+    def number(self) -> int:
         r'''Gets number.
 
         ..  container:: example
 
-            >>> abjad.Part('FirstViolin01', 'VN-1-1', 'Violin').number
-            1
+            >>> part = abjad.Part(
+            ...     instrument='Violin',
+            ...     member=18,
+            ...     number=107,
+            ...     section='FirstViolin',
+            ...     section_abbreviation='VN-1',
+            ...     )
+            
+            >>> part.number
+            107
 
         '''
         return self._number
@@ -158,8 +266,58 @@ class Part(AbjadObject):
 
         ..  container:: example
 
-            >>> abjad.Part('FirstViolin01', 'VN-1-1', 'Violin').section
+            >>> part = abjad.Part(
+            ...     instrument='Violin',
+            ...     member=18,
+            ...     section='FirstViolin',
+            ...     section_abbreviation='VN-1',
+            ...     )
+
+            >>> part.section
             'FirstViolin'
 
         '''
         return self._section
+
+    @property
+    def section_abbreviation(self) -> str:
+        r'''Gets section_abbreviation.
+
+        ..  container:: example
+
+            >>> part = abjad.Part(
+            ...     instrument='Violin',
+            ...     member=18,
+            ...     section='FirstViolin',
+            ...     section_abbreviation='VN-1',
+            ...     )
+
+            >>> part.section_abbreviation
+            'VN-1'
+
+        '''
+        return self._section_abbreviation
+
+    @property
+    def zfill(self) -> int:
+        r'''Gets zfill.
+
+        ..  container:: example
+
+            >>> part = abjad.Part(
+            ...     instrument='Violin',
+            ...     member=9,
+            ...     number=99,
+            ...     section='FirstViolin',
+            ...     section_abbreviation='VN-1',
+            ...     zfill=2,
+            ...     )
+            
+            >>> part.zfill
+            2
+
+            >>> str(part.member).zfill(part.zfill)
+            '09'
+
+        '''
+        return self._zfill

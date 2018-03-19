@@ -1,6 +1,5 @@
 import collections
-from typing import Optional
-from typing import Union
+import typing
 from .Component import Component
 from .Selection import Selection
 from abjad.tools.datastructuretools import Left
@@ -294,7 +293,7 @@ class Container(Component):
             components._withdraw_from_crossing_spanners()
         components._set_parents(None)
 
-    def __getitem__(self, argument) -> Union[Component, Selection]:
+    def __getitem__(self, argument) -> typing.Union[Component, Selection]:
         r'''Gets item or slice identified by `argument`.
 
         Traverses top-level items only.
@@ -1287,7 +1286,7 @@ class Container(Component):
     @identifier.setter
     def identifier(self, argument):
         assert isinstance(argument, (str, type(None))), repr(argument)
-        self._identifier: Optional[str] = argument
+        self._identifier: typing.Optional[str] = argument
 
     @property
     def is_simultaneous(self) -> bool:

@@ -26,6 +26,26 @@ class Tag(AbjadObject):
         >>> abjad.Tag(abjad.Tag('YELLOW'))
         Tag('YELLOW')
 
+    ..  container:: example
+
+        Raises exception on multiple only-edition tags:
+
+        >>> abjad.Tag('+SEGMENT:+PARTS')
+        Traceback (most recent call last):
+            ...
+        Exception: at most one only-edition tag: ['+SEGMENT', '+PARTS'].
+
+    ..  container:: example
+
+        Raises exception on mixed only-edition / not-edition tags:
+
+        >>> abjad.Tag('+SEGMENT:-PARTS')
+        Traceback (most recent call last):
+            ...
+        Exception: only-edition and not-edition forbidden in same tag:
+        <BLANKLINE>
+        ['+SEGMENT'] / ['-PARTS']
+
     '''
 
     ### CLASS VARIABLES ###
@@ -240,6 +260,36 @@ class Tag(AbjadObject):
         words_.append(word)
         return Tag.from_words(words_)
 
+    def editions(self) -> typing.List['Tag']:
+        r'''Gets edition tags in tag.
+
+        ..  container:: example
+
+            >>> abjad.Tag('FOO').editions()
+            []
+
+            >>> abjad.Tag('+SEGMENT').only_edition()
+            Tag('+SEGMENT')
+
+            >>> abjad.Tag('+SEGMENT:FOO').only_edition()
+            Tag('+SEGMENT')
+
+            >>> abjad.Tag('-SEGMENT').editions()
+            [Tag('-SEGMENT')]
+
+            >>> abjad.Tag('-SEGMENT:FOO').editions()
+            [Tag('-SEGMENT')]
+
+            >>> abjad.Tag('-SEGMENT:-PARTS').editions()
+            [Tag('-SEGMENT'), Tag('-PARTS')]
+
+        '''
+        result = []
+        for word in self:
+            if word.startswith('+') or word.startswith('-'):
+                result.append(Tag(word))
+        return result
+
     def extend(self, words: typing.List[str]) -> 'Tag':
         r'''Extends tag with ``words``.
 
@@ -356,26 +406,6 @@ class Tag(AbjadObject):
 
             >>> abjad.Tag('+SEGMENT:FOO').only_edition()
             Tag('+SEGMENT')
-
-        ..  container:: example
-
-            Raises exception on multiple only-edition tags:
-
-            >>> abjad.Tag('+SEGMENT:+PARTS')
-            Traceback (most recent call last):
-                ...
-            Exception: at most one only-edition tag: ['+SEGMENT', '+PARTS'].
-
-        ..  container:: example
-
-            Raises exception on mixed only-edition / not-edition tags:
-
-            >>> abjad.Tag('+SEGMENT:-PARTS')
-            Traceback (most recent call last):
-                ...
-            Exception: only-edition and not-edition forbidden in same tag:
-            <BLANKLINE>
-            ['+SEGMENT'] / ['-PARTS']
 
         '''
         for word in self:

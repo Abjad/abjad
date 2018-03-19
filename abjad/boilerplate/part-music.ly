@@ -1,5 +1,5 @@
 % {score_title} {forces_tagline}
-% part_abbreviation = {part_abbreviation}
+% part_identifier = {part_identifier}
 
 {lilypond_version_directive}
 {lilypond_language_directive}

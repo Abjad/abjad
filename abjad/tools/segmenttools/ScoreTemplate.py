@@ -92,9 +92,33 @@ class ScoreTemplate(abctools.AbjadValueObject):
     def part_manifest(self) -> typing.Optional[PartManifest]:
         r'''Gets part manifest.
         '''
+        if self._part_manifest is not None:
+            assert isinstance(self._part_manifest, PartManifest)
         return self._part_manifest
 
     ### PUBLIC METHODS ###
+
+    def allows_instrument(
+        self,
+        staff_name: str,
+        instrument: Instrument,
+        ) -> bool:
+        r'''Is true when ``staff_name`` allows ``instrument``.
+
+        To be implemented by concrete score template classes.
+        '''
+        return True
+
+    def allows_part_assignment(
+        self,
+        voice_name: str,
+        part_assignment: PartAssignment,
+        ) -> bool:
+        r'''Is true when ``voice_name`` allows ``part_assignment``.
+        '''
+        if voice_name.startswith(part_assignment.section):
+            return True
+        return False
 
     def attach_defaults(self, argument) -> typing.List:
         r'''Attaches defaults to all staff and staff group contexts in
@@ -173,25 +197,3 @@ class ScoreTemplate(abctools.AbjadValueObject):
                 wrapper = attach(clef, leaf, tag='ST3', wrapper=True)
                 wrappers.append(wrapper)
         return wrappers
-
-    def allows_instrument(
-        self,
-        staff_name: str,
-        instrument: Instrument,
-        ) -> bool:
-        r'''Is true when ``staff_name`` allows ``instrument``.
-
-        To be implemented by concrete score template classes.
-        '''
-        return True
-
-    def allows_part_assignment(
-        self,
-        voice_name: str,
-        part_assignment: PartAssignment,
-        ) -> bool:
-        r'''Is true when ``voice_name`` allows ``part_assignment``.
-        '''
-        if voice_name.startswith(part_assignment.section):
-            return True
-        return False

@@ -1,5 +1,5 @@
 import copy
-from typing import Optional
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from .Tag import Tag
 
@@ -775,7 +775,7 @@ class Wrapper(AbjadValueObject):
             if wrapper.start_offset == self.start_offset:
                 parentage = abjad.inspect(component).get_parentage()
                 context = parentage.get_first(abjad.Context)
-                message = f'Can not attach ...\n\n{self.indicator}\n\n...'
+                message = f'\n\nCan not attach ...\n\n{self.indicator}\n\n...'
                 message += f' to {repr(component)}'
                 message += f' in {context.name} because ...'
                 message += f'\n\n{format(wrapper)}\n\n'
@@ -858,7 +858,7 @@ class Wrapper(AbjadValueObject):
         return self._context
 
     @property
-    def deactivate(self) -> Optional[bool]:
+    def deactivate(self) -> typing.Optional[bool]:
         r'''Is true when wrapper deactivates tag.
         '''
         assert self._deactivate in (True, False, None)
@@ -867,7 +867,7 @@ class Wrapper(AbjadValueObject):
     @deactivate.setter
     def deactivate(self, argument):
         assert argument in (True, False, None)
-        self._deactivate: Optional[bool] = argument
+        self._deactivate: typing.Optional[bool] = argument
 
     @property
     def indicator(self):
