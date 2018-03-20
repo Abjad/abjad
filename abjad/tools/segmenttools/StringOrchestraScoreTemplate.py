@@ -1,4 +1,4 @@
-import collections
+from abjad.tools.datastructuretools.OrderedDict import OrderedDict
 from .ScoreTemplate import ScoreTemplate
 
 
@@ -485,7 +485,6 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         '_use_percussion_clefs',
         '_viola_count',
         '_violin_count',
-        '_context_name_abbreviations',
         )
 
     ### INITIALIZER ###
@@ -503,13 +502,13 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         assert 0 <= viola_count
         assert 0 <= cello_count
         assert 0 <= contrabass_count
+        super(StringOrchestraScoreTemplate, self).__init__()
         self._violin_count = int(violin_count)
         self._viola_count = int(viola_count)
         self._cello_count = int(cello_count)
         self._contrabass_count = int(contrabass_count)
         self._split_hands = bool(split_hands)
         self._use_percussion_clefs = bool(use_percussion_clefs)
-        self._context_name_abbreviations = collections.OrderedDict()
 
     ### SPECIAL METHODS ###
 
@@ -682,7 +681,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                 name='{} Fingering Voice'.format(name),
                 )
             abbreviation = lh_voice.name.lower().replace(' ', '_')
-            self.context_name_abbreviations[abbreviation] = lh_voice.name
+            self.voice_abbreviations[abbreviation] = lh_voice.name
             lh_staff = abjad.Staff(
                 [
                     lh_voice
@@ -691,8 +690,6 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                 name='{} Fingering Staff'.format(name),
                 )
             lh_staff.is_simultaneous = True
-            #abjad.attach(pitch_range, lh_staff)
-            #abjad.attach(abjad.Clef(clef_name), lh_staff)
             abjad.annotate(lh_staff, 'pitch_range', pitch_range)
             abjad.annotate(lh_staff, 'default_clef', abjad.Clef(clef_name))
             rh_voice = abjad.Voice(
@@ -701,7 +698,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                 name='{} Bowing Voice'.format(name),
                 )
             abbreviation = rh_voice.name.lower().replace(' ', '_')
-            self.context_name_abbreviations[abbreviation] = rh_voice.name
+            self.voice_abbreviations[abbreviation] = rh_voice.name
             rh_staff = abjad.Staff(
                 [
                     rh_voice
@@ -725,8 +722,6 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                 name='{} Staff'.format(name),
                 )
             lh_staff.is_simultaneous = True
-            #abjad.attach(pitch_range, lh_staff)
-            #abjad.attach(abjad.Clef(clef_name), lh_staff)
             abjad.annotate(lh_staff, 'pitch_range', pitch_range)
             abjad.annotate(lh_staff, 'default_clef', abjad.Clef(clef_name))
             staff_group.append(lh_staff)
@@ -741,12 +736,6 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         Returns nonnegative integer.
         '''
         return self._cello_count
-
-    @property
-    def context_name_abbreviations(self):
-        r'''Voice name abbreviations.
-        '''
-        return self._context_name_abbreviations
 
     @property
     def contrabass_count(self):

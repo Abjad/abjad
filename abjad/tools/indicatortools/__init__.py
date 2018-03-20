@@ -23,7 +23,6 @@ from .LineBreak import LineBreak
 from .MarginMarkup import MarginMarkup
 from .MetricModulation import MetricModulation
 from .MetronomeMark import MetronomeMark
-from .MetronomeMarkDictionary import MetronomeMarkDictionary
 from .PageBreak import PageBreak
 from .RehearsalMark import RehearsalMark
 from .Repeat import Repeat

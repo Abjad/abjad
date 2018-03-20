@@ -71,12 +71,6 @@ class StringQuartetScoreTemplate(ScoreTemplate):
 
     __slots__ = ()
 
-    context_name_abbreviations = OrderedDict({
-        'vn1': 'First Violin Voice',
-        'vn2': 'Second Violin Voice',
-        'va': 'Viola Voice',
-        'vc': 'Cello Voice',
-        })
 
     _part_manifest = PartManifest(
         Part(section='FirstViolin', section_abbreviation='VN-1'),
@@ -88,7 +82,13 @@ class StringQuartetScoreTemplate(ScoreTemplate):
     ### INITIALIZER ###
 
     def __init__(self):
-        pass
+        super(StringQuartetScoreTemplate, self).__init__()
+        self.voice_abbreviations.update({
+            'vn1': 'First Violin Voice',
+            'vn2': 'Second Violin Voice',
+            'va': 'Viola Voice',
+            'vc': 'Cello Voice',
+            })
 
     ### SPECIAL METHODS ###
 

@@ -1,4 +1,4 @@
-import collections
+from abjad.tools.datastructuretools.OrderedDict import OrderedDict
 from .ScoreTemplate import ScoreTemplate
 
 
@@ -87,14 +87,13 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_context_name_abbreviations',
         '_staff_count',
         )
 
     ### INITIALIZER ###
 
     def __init__(self, staff_count=2):
-        self._context_name_abbreviations = collections.OrderedDict()
+        super(GroupedStavesScoreTemplate, self).__init__()
         self._staff_count = staff_count
 
     ### SPECIAL METHODS ###
@@ -117,7 +116,7 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
                 name='Staff {}'.format(number),
                 )
             staves.append(staff)
-            self.context_name_abbreviations['v{}'.format(number)] = voice.name
+            self.voice_abbreviations['v{}'.format(number)] = voice.name
         staff_group = abjad.StaffGroup(
             staves,
             name='Grouped Staves Staff Group',
@@ -131,18 +130,18 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def context_name_abbreviations(self):
+    def voice_abbreviations(self):
         r'''Gets context name abbreviations.
 
         ..  container::
 
             >>> class_ = abjad.GroupedStavesScoreTemplate
             >>> template = class_(staff_count=4)
-            >>> template.context_name_abbreviations
-            OrderedDict()
+            >>> template.voice_abbreviations
+            OrderedDict([])
 
         '''
-        return self._context_name_abbreviations
+        return super(GroupedStavesScoreTemplate, self).voice_abbreviations
 
     @property
     def staff_count(self):

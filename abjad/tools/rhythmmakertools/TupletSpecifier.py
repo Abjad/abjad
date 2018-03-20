@@ -18,6 +18,7 @@ class TupletSpecifier(AbjadValueObject):
         '_denominator',
         '_diminution',
         '_extract_trivial',
+        '_force_fraction',
         '_rewrite_rest_filled',
         '_trivialize',
         '_use_note_duration_bracket',
@@ -31,6 +32,7 @@ class TupletSpecifier(AbjadValueObject):
         denominator: typing.Union[str, Duration, int] = None,
         diminution: typing.Union[bool, None] = True,
         extract_trivial: typing.Union[bool, None] = False,
+        force_fraction: bool = None,
         rewrite_rest_filled: typing.Union[bool, None] = False,
         trivialize: typing.Union[bool, None] = False,
         use_note_duration_bracket: typing.Union[bool, None] = False,
@@ -45,6 +47,9 @@ class TupletSpecifier(AbjadValueObject):
         self._denominator = denominator
         self._diminution = bool(diminution)
         self._extract_trivial = bool(extract_trivial)
+        if force_fraction is not None:
+            force_fraction = bool(force_fraction)
+        self._force_fraction = force_fraction
         self._rewrite_rest_filled = bool(rewrite_rest_filled)
         self._trivialize = bool(trivialize)
         self._use_note_duration_bracket = bool(use_note_duration_bracket)
@@ -56,10 +61,14 @@ class TupletSpecifier(AbjadValueObject):
 
         Returns new selections.
         '''
+        import abjad
         self._trivialize_(selections)
         selections = self._rewrite_rest_filled_(selections)
         selections = self._extract_trivial_(selections)
         self._apply_denominator(selections, divisions)
+        if self.force_fraction:
+            for tuplet in abjad.iterate(selections).components(abjad.Tuplet):
+                tuplet.force_fraction = True
         return selections
 
     ### PRIVATE METHODS ###
@@ -147,7 +156,6 @@ class TupletSpecifier(AbjadValueObject):
     @property
     def avoid_dots(self) -> typing.Optional[bool]:
         r'''Is true when tuplet should avoid dotted rhythmic values.
-        Otherwise false.
         '''
         return self._avoid_dots
 
@@ -624,8 +632,7 @@ class TupletSpecifier(AbjadValueObject):
 
     @property
     def diminution(self) -> typing.Optional[bool]:
-        r'''Is true when tuplet should be spelled as diminution. Otherwise
-        false.
+        r'''Is true when tuplet should be spelled as diminution.
         '''
         return self._diminution
 
@@ -636,22 +643,26 @@ class TupletSpecifier(AbjadValueObject):
         return self._extract_trivial
 
     @property
+    def force_fraction(self) -> typing.Optional[bool]:
+        r'''Is true when tuplet forces fraction.
+        '''
+        return self._force_fraction
+
+    @property
     def rewrite_rest_filled(self) -> typing.Optional[bool]:
         r'''Is true when tuplet should flatten rest-filled tuplets.
-        Otherwise false.
         '''
         return self._rewrite_rest_filled
 
     @property
     def trivialize(self) -> typing.Optional[bool]:
         r'''Is true when trivializable tuplets should be trivialized.
-        Otherwise false.
         '''
         return self._trivialize
 
     @property
     def use_note_duration_bracket(self) -> typing.Optional[bool]:
         r'''Is true when tuplet should override tuplet number text with note
-        duration bracket giving tuplet duration. Otherwise false.
+        duration bracket giving tuplet duration.
         '''
         return self._use_note_duration_bracket

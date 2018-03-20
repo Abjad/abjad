@@ -1,4 +1,5 @@
 import collections
+from abjad.tools.datastructuretools.OrderedDict import OrderedDict
 from .ScoreTemplate import ScoreTemplate
 
 
@@ -176,14 +177,13 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_context_name_abbreviations',
         '_staff_count',
         )
 
     ### INITIALIZER ###
 
     def __init__(self, staff_count=2):
-        self._context_name_abbreviations = collections.OrderedDict()
+        super(GroupedRhythmicStavesScoreTemplate, self).__init__()
         assert isinstance(staff_count, (int, collections.Iterable))
         if isinstance(staff_count, collections.Iterable):
             staff_count = list(staff_count)
@@ -209,7 +209,7 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
                 abjad.annotate(staff, 'default_clef', abjad.Clef('percussion'))
                 staves.append(staff)
                 key = 'v{}'.format(number)
-                self.context_name_abbreviations[key] = voice.name
+                self.voice_abbreviations[key] = voice.name
         elif isinstance(self.staff_count, list):
             for staff_index, voice_count in enumerate(self.staff_count):
                 staff_number = staff_index + 1
@@ -229,7 +229,7 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
                     voice = abjad.Voice([], name=name)
                     staff.append(voice)
                     key = 'v{}'.format(voice_identifier)
-                    self.context_name_abbreviations[key] = voice.name
+                    self.voice_abbreviations[key] = voice.name
                 staves.append(staff)
         grouped_rhythmic_staves_staff_group = abjad.StaffGroup(
             staves,
@@ -244,18 +244,21 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def context_name_abbreviations(self):
+    def voice_abbreviations(self):
         r'''Gets context name abbreviations.
 
         ..  container:: example
 
             >>> class_ = abjad.GroupedRhythmicStavesScoreTemplate
             >>> template = class_(staff_count=4)
-            >>> template.context_name_abbreviations
-            OrderedDict()
+            >>> template.voice_abbreviations
+            OrderedDict([])
 
         '''
-        return self._context_name_abbreviations
+        return super(
+            GroupedRhythmicStavesScoreTemplate,
+            self,
+            ).voice_abbreviations
 
     @property
     def staff_count(self):

@@ -28,7 +28,6 @@ from .Glockenspiel import Glockenspiel
 from .Guitar import Guitar
 from .Harp import Harp
 from .Harpsichord import Harpsichord
-from .InstrumentDictionary import InstrumentDictionary
 from .Marimba import Marimba
 from .MezzoSopranoVoice import MezzoSopranoVoice
 from .Oboe import Oboe

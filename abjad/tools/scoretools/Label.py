@@ -4040,10 +4040,9 @@ class Label(abctools.AbjadObject):
         self,
         brackets=None,
         clock_time=None,
-        color=None,
         direction=None,
-        font_size=None,
         global_offset=None,
+        markup_command=None,
         ):
         r'''Labels logical ties with start offsets.
 
@@ -4185,8 +4184,8 @@ class Label(abctools.AbjadObject):
 
         ..  container:: example
 
-            Labels logical tie start offsets with clock time and custom font
-            size:
+            Labels logical tie start offsets with clock time and custom markup
+            command:
 
             ..  container:: example
 
@@ -4196,7 +4195,7 @@ class Label(abctools.AbjadObject):
                 >>> abjad.attach(mark, staff[0])
                 >>> abjad.label(staff).with_start_offsets(
                 ...     clock_time=True,
-                ...     font_size=-3,
+                ...     markup_command='make-dark-cyan',
                 ...     )
                 Duration(8, 1)
 
@@ -4204,45 +4203,39 @@ class Label(abctools.AbjadObject):
                 >>> abjad.override(staff).tuplet_bracket.staff_padding = 0
                 >>> abjad.show(score) # doctest: +SKIP
 
-                ..  docs::
-
-                    >>> abjad.f(score)
-                    \new Score
-                    <<
-                        \new Staff
-                        \with
-                        {
-                            \override TextScript.staff-padding = #4
-                            \override TupletBracket.staff-padding = #0
-                        }
-                        {
-                            \tempo 4=60
-                            c'2
-                                ^ \markup {
-                                    \fontsize
-                                        #-3
-                                        0'00''
-                                    }
-                            d'2
-                                ^ \markup {
-                                    \fontsize
-                                        #-3
-                                        0'02''
-                                    }
-                            e'2
-                                ^ \markup {
-                                    \fontsize
-                                        #-3
-                                        0'04''
-                                    }
-                            f'2
-                                ^ \markup {
-                                    \fontsize
-                                        #-3
-                                        0'06''
-                                    }
-                        }
-                    >>
+                >>> abjad.f(score)
+                \new Score
+                <<
+                    \new Staff
+                    \with
+                    {
+                        \override TextScript.staff-padding = #4
+                        \override TupletBracket.staff-padding = #0
+                    }
+                    {
+                        \tempo 4=60
+                        c'2
+                            ^ \markup {
+                                \make-dark-cyan
+                                    0'00''
+                                }
+                        d'2
+                            ^ \markup {
+                                \make-dark-cyan
+                                    0'02''
+                                }
+                        e'2
+                            ^ \markup {
+                                \make-dark-cyan
+                                    0'04''
+                                }
+                        f'2
+                            ^ \markup {
+                                \make-dark-cyan
+                                    0'06''
+                                }
+                    }
+                >>
 
             ..  container:: example expression
 
@@ -4252,7 +4245,7 @@ class Label(abctools.AbjadObject):
                 >>> abjad.attach(mark, staff[0])
                 >>> expression = abjad.label().with_start_offsets(
                 ...     clock_time=True,
-                ...     font_size=-3,
+                ...     markup_command='make-dark-cyan',
                 ...     )
                 >>> expression(staff)
                 Duration(8, 1)
@@ -4261,45 +4254,39 @@ class Label(abctools.AbjadObject):
                 >>> abjad.override(staff).tuplet_bracket.staff_padding = 0
                 >>> abjad.show(score) # doctest: +SKIP
 
-                ..  docs::
-
-                    >>> abjad.f(score)
-                    \new Score
-                    <<
-                        \new Staff
-                        \with
-                        {
-                            \override TextScript.staff-padding = #4
-                            \override TupletBracket.staff-padding = #0
-                        }
-                        {
-                            \tempo 4=60
-                            c'2
-                                ^ \markup {
-                                    \fontsize
-                                        #-3
-                                        0'00''
-                                    }
-                            d'2
-                                ^ \markup {
-                                    \fontsize
-                                        #-3
-                                        0'02''
-                                    }
-                            e'2
-                                ^ \markup {
-                                    \fontsize
-                                        #-3
-                                        0'04''
-                                    }
-                            f'2
-                                ^ \markup {
-                                    \fontsize
-                                        #-3
-                                        0'06''
-                                    }
-                        }
-                    >>
+                >>> abjad.f(score)
+                \new Score
+                <<
+                    \new Staff
+                    \with
+                    {
+                        \override TextScript.staff-padding = #4
+                        \override TupletBracket.staff-padding = #0
+                    }
+                    {
+                        \tempo 4=60
+                        c'2
+                            ^ \markup {
+                                \make-dark-cyan
+                                    0'00''
+                                }
+                        d'2
+                            ^ \markup {
+                                \make-dark-cyan
+                                    0'02''
+                                }
+                        e'2
+                            ^ \markup {
+                                \make-dark-cyan
+                                    0'04''
+                                }
+                        f'2
+                            ^ \markup {
+                                \make-dark-cyan
+                                    0'06''
+                                }
+                    }
+                >>
 
         Returns total duration.
         '''
@@ -4330,10 +4317,8 @@ class Label(abctools.AbjadObject):
                 if brackets:
                     string = '[' + string + ']'
             label = abjad.Markup(string, direction=direction)
-            if font_size is not None:
-                label = label.fontsize(font_size)
-            if color is not None:
-                label = label.with_color(color)
+            if markup_command is not None:
+                label = label.with_literal(markup_command)
             self._attach(label, logical_tie.head)
         total_duration = abjad.Duration(timespan.stop_offset)
         if global_offset is not None:

@@ -1,6 +1,7 @@
 import abc
 import typing
 from abjad.tools import abctools
+from abjad.tools.datastructuretools.OrderedDict import OrderedDict
 from abjad.tools.datastructuretools.String import String
 from abjad.tools.indicatortools.Clef import Clef
 from abjad.tools.indicatortools.MarginMarkup import MarginMarkup
@@ -34,9 +35,19 @@ class ScoreTemplate(abctools.AbjadValueObject):
     __documentation_section__ = 'Score templates'
 
     __slots__ = (
+        '_voice_abbreviations',
         )
 
+    _always_make_global_rests = False
+
+    _do_not_require_margin_markup = False
+
     _part_manifest: PartManifest = PartManifest()
+
+    ### INITIALIZER ###
+
+    def __init__(self):
+        self._voice_abbreviations = OrderedDict()
 
     ### SPECIAL METHODS ###
 
@@ -87,6 +98,20 @@ class ScoreTemplate(abctools.AbjadValueObject):
         return global_context
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def always_make_global_rests(self) -> bool:
+        r'''Is true when score template always makes global rests.
+        '''
+        return self._always_make_global_rests
+
+    @property
+    def do_not_require_margin_markup(self) -> bool:
+        r'''Is true when score template does not require margin markup.
+
+        Conventionally, solos do not require margin markup.
+        '''
+        return self._do_not_require_margin_markup
 
     @property
     def part_manifest(self) -> typing.Optional[PartManifest]:
@@ -197,3 +222,11 @@ class ScoreTemplate(abctools.AbjadValueObject):
                 wrapper = attach(clef, leaf, tag='ST3', wrapper=True)
                 wrappers.append(wrapper)
         return wrappers
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def voice_abbreviations(self) -> OrderedDict:
+        r'''Gets voice abbreviations.
+        '''
+        return self._voice_abbreviations
