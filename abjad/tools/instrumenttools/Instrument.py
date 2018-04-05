@@ -64,6 +64,7 @@ class Instrument(AbjadValueObject):
     __slots__ = (
         '_allowable_clefs',
         '_context',
+        '_hide',
         '_middle_c_sounding_pitch',
         '_name',
         '_name_markup',
@@ -74,7 +75,6 @@ class Instrument(AbjadValueObject):
         '_short_name',
         '_short_name_markup',
         '_starting_clefs',
-        '_hide',
         )
 
     _format_slot = 'opening'
@@ -91,15 +91,15 @@ class Instrument(AbjadValueObject):
 
     def __init__(
         self,
-        name=None,
-        short_name=None,
-        markup=None,
-        short_markup=None,
         allowable_clefs=None,
         context=None,
-        middle_c_sounding_pitch=None,
-        pitch_range=None,
         hide=None,
+        markup=None,
+        middle_c_sounding_pitch=None,
+        name=None,
+        pitch_range=None,
+        short_name=None,
+        short_markup=None,
         ):
         import abjad
         self._context = context or 'Staff'

@@ -1,4 +1,4 @@
-import collections
+from abjad.tools.datastructuretools.OrderedDict import OrderedDict
 from .ScoreTemplate import ScoreTemplate
 
 
@@ -52,15 +52,14 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
     __slots__ = (
         )
 
-    context_name_abbreviations = collections.OrderedDict({
-        'rh': 'RHVoice',
-        'lh': 'LHVoice',
-        })
-
     ### INITIALIZER ###
 
     def __init__(self):
-        pass
+        super(TwoStaffPianoScoreTemplate, self).__init__()
+        self.voice_abbreviations.update({
+            'rh': 'RHVoice',
+            'lh': 'LHVoice',
+            })
 
     ### SPECIAL METHODS ###
 

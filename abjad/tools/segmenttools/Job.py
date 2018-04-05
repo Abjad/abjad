@@ -574,6 +574,27 @@ class Job(AbjadObject):
                 )
 
     @staticmethod
+    def show_local_measure_number_markup(path, undo=False) -> 'Job':
+        r'''Shows local measure number markup.
+        '''
+        name = 'local measure number markup'
+        def match(tags) -> bool:
+            tags_ = [abjad_tags.LOCAL_MEASURE_NUMBER_MARKUP]
+            return bool(set(tags) & set(tags_))
+        if undo:
+            return Job(
+                deactivate=(match, name),
+                path=path,
+                title=f'hiding {name} ...',
+                )
+        else:
+            return Job(
+                activate=(match, name),
+                path=path,
+                title=f'showing {name} ...',
+                )
+
+    @staticmethod
     def show_measure_index_markup(path, undo=False) -> 'Job':
         r'''Shows measure index markup.
         '''

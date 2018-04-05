@@ -301,7 +301,7 @@ class Path(pathlib.PosixPath):
 
     def _get_part_manifest(self):
         assert self.is_score_package_path()
-        score_template = self._get_score_template()
+        score_template = self._import_score_template()
         score_template = score_template()
         part_manifest = score_template.part_manifest
         assert isinstance(part_manifest, PartManifest), repr(part_manifest)
@@ -313,15 +313,6 @@ class Path(pathlib.PosixPath):
             path = self.builds._get_file_path_ending_with('score.pdf')
         return path
 
-    def _get_score_template(self):
-        module = self._import_score_package()
-        if not module:
-            raise Exception('can not import score package.')
-        score_template = getattr(module, 'ScoreTemplate', None)
-        if not score_template:
-            raise Exception('can not import score template.')
-        return score_template
-
     def _import_score_package(self):
         assert self.is_score_package_path()
         try:
@@ -329,6 +320,15 @@ class Path(pathlib.PosixPath):
         except:
             return
         return module
+
+    def _import_score_template(self):
+        module = self._import_score_package()
+        if not module:
+            raise Exception('can not import score package.')
+        score_template = getattr(module, 'ScoreTemplate', None)
+        if not score_template:
+            raise Exception('can not import score template.')
+        return score_template
 
     def _list_paths(self):
         paths = []
@@ -2581,7 +2581,7 @@ class Path(pathlib.PosixPath):
         Only works when score template defines ``skeleton()`` method.
         '''
         assert not self.is_external(), repr(self)
-        score_template = self._get_score_template()
+        score_template = self._import_score_template()
         if not hasattr(score_template, 'skeleton'):
             return None
         skeleton = score_template.skeleton()

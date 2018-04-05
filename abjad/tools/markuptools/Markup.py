@@ -2669,7 +2669,6 @@ class Markup(AbjadValueObject):
             )
         return new(self, contents=command)
 
-
     def with_dimensions_from(self, command):
         r'''LilyPond ``with-dimensions`` markup command.
 
@@ -2708,4 +2707,40 @@ class Markup(AbjadValueObject):
         '''
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand('with-dimensions-from', command, contents)
+        return new(self, contents=command)
+
+    def with_literal(self, string):
+        r'''Makes markup with literal ``string``.
+
+        ..  container:: example
+
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.bold()
+            >>> markup = markup.with_literal(r'\user-markup-command')
+            >>> abjad.f(markup)
+            \markup {
+                \user-markup-command
+                    \bold
+                        "Allegro assai"
+                }
+
+            >>> markup = abjad.Markup('Allegro assai')
+            >>> markup = markup.with_literal(r'\user-markup-command')
+            >>> markup = markup.bold()
+            >>> abjad.f(markup)
+            \markup {
+                \bold
+                    \user-markup-command
+                        "Allegro assai"
+                }
+
+        Returns new markup.
+        '''
+        contents = self._parse_markup_command_argument(self)
+        if string.startswith('\\'):
+            string = string[1:]
+        command = MarkupCommand(
+            string,
+            contents,
+            )
         return new(self, contents=command)

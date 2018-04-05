@@ -25,7 +25,6 @@ class Momento(AbjadObject):
         context: str = None,
         edition: typing.Union[str, Tag] = None,
         prototype: str = None,
-        #value: Union[int, str] = None,
         value: typing.Any = None,
         ) -> None:
         if absent is not None:
@@ -44,8 +43,7 @@ class Momento(AbjadObject):
         if value is not None:
             if not isinstance(value, (int, str)):
                 assert type(value).__name__ == 'PersistentOverride'
-        #self._value: Union[int, str] = value
-        self._value = value
+        self._value: typing.Any = value
 
     ### PUBLIC PROPERTIES ###
 

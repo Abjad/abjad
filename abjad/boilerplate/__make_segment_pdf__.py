@@ -20,6 +20,12 @@ if __name__ == '__main__':
 
     try:
         segment_directory = ide.Path(os.path.realpath(__file__)).parent
+        scores_directory = segment_directory.parent.parent.parent.parent
+        segment_directory = ide.Path(
+            segment_directory,
+            scores=scores_directory,
+            )
+        assert segment_directory.is_score_package_path(), repr(segment_directory)
         illustration_ly = segment_directory('illustration.ly')
         print(' Running segment-maker ...')
         with abjad.Timer() as timer:

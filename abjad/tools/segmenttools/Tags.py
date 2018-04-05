@@ -77,6 +77,7 @@ class Tags(AbjadValueObject):
 
         'CLOCK_TIME_MARKUP',
         'FIGURE_NAME_MARKUP',
+        'LOCAL_MEASURE_NUMBER_MARKUP',
         'MEASURE_INDEX_MARKUP',
         'MEASURE_NUMBER_MARKUP',
         'SPACING_MARKUP',
@@ -189,10 +190,12 @@ class Tags(AbjadValueObject):
 
         ### PITCH HANDLING ###
 
+        'ALLOW_OCTAVE',
         'ALLOW_REPEAT_PITCH',
         'DO_NOT_TRANSPOSE',
         'NOT_YET_PITCHED',
         'NOT_YET_REGISTERED',
+        'STAFF_POSITION',
 
         ### SPACING SECTION ###
 
@@ -322,6 +325,33 @@ class Tags(AbjadValueObject):
             tags.append(self.REAPPLIED_CLEF)
         return tags
 
+    def documentation_removal_tags(self):
+        r'''Gets documentation removal tags.
+
+        ..  container:: example
+
+            >>> for tag in abjad.tags.documentation_removal_tags():
+            ...     tag
+            ...
+            'CLOCK_TIME_MARKUP'
+            'FIGURE_NAME_MARKUP'
+            'LOCAL_MEASURE_NUMBER_MARKUP'
+            'MEASURE_INDEX_MARKUP'
+            'MEASURE_NUMBER_MARKUP'
+            'SPACING_MARKUP'
+            'STAGE_NUMBER_MARKUP'
+
+        '''
+        return [
+            self.CLOCK_TIME_MARKUP,
+            self.FIGURE_NAME_MARKUP,
+            self.LOCAL_MEASURE_NUMBER_MARKUP,
+            self.MEASURE_INDEX_MARKUP,
+            self.MEASURE_NUMBER_MARKUP,
+            self.SPACING_MARKUP,
+            self.STAGE_NUMBER_MARKUP,
+            ]
+
     def dynamic_color_tags(self, path=None) -> typing.List[str]:
         r'''Gets dynamic color tags.
 
@@ -398,6 +428,8 @@ class Tags(AbjadValueObject):
             ...
             'EMPTY_START_BAR'
             'EXPLICIT_TIME_SIGNATURE_COLOR'
+            'LOCAL_MEASURE_NUMBER_MARKUP'
+            'MEASURE_INDEX_MARKUP'
             'MEASURE_NUMBER_MARKUP'
             'METRONOME_MARK_SPANNER'
             'REDUNDANT_TIME_SIGNATURE_COLOR'
@@ -407,6 +439,8 @@ class Tags(AbjadValueObject):
         return [
             self.EMPTY_START_BAR,
             self.EXPLICIT_TIME_SIGNATURE_COLOR,
+            self.LOCAL_MEASURE_NUMBER_MARKUP,
+            self.MEASURE_INDEX_MARKUP,
             self.MEASURE_NUMBER_MARKUP,
             self.METRONOME_MARK_SPANNER,
             self.REDUNDANT_TIME_SIGNATURE_COLOR,
