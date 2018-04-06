@@ -1329,14 +1329,15 @@ class Path(pathlib.PosixPath):
             result = self.name
         return String(result)
 
-    def get_measure_count_pair(self) -> typing.Tuple[int, int]:
-        r'''Gets measure count pair.
+    def get_measure_profile_metadata(self) -> typing.Tuple[int, int, list]:
+        r'''Gets measure profile metadata.
 
         Reads segment metadata when path is segment.
 
         Reads score metadata when path is not segment.
 
-        Returns pair of first measure number / measure count.
+        Returns triple of three metadata: first measure number; measure count;
+        list of fermata measure numbers.
         '''
         if self.parent.is_segment():
             string = 'first_measure_number'
@@ -1346,6 +1347,8 @@ class Path(pathlib.PosixPath):
                 measure_count = len(time_signatures)
             else:
                 measure_count = 0
+            string = 'fermata_measure_numbers'
+            fermata_measure_numbers = self.parent.get_metadatum(string)
         else:
             first_measure_number = 1
             dictionary = self.contents.get_metadatum('time_signatures')
@@ -1353,7 +1356,13 @@ class Path(pathlib.PosixPath):
             measure_count = 0
             for segment, time_signatures in dictionary.items():
                 measure_count += len(time_signatures)
-        return first_measure_number, measure_count
+            string = 'fermata_measure_numbers'
+            dictionary = self.contents.get_metadatum(string)
+            dictionary = dictionary or OrderedDict()
+            fermata_measure_numbers = []
+            for segment, fermata_measure_numbers_ in dictionary.items():
+                fermata_measure_numbers.extend(fermata_measure_numbers_)
+        return first_measure_number, measure_count, fermata_measure_numbers
 
     def get_metadata(self) -> OrderedDict:
         r'''Gets __metadata__.py file in path.
@@ -2517,7 +2526,7 @@ class Path(pathlib.PosixPath):
         self,
         part: Part,
         container_to_part_assignment: OrderedDict,
-        ) -> typing.List[str]:
+        ) -> typing.Union[str, typing.List[str]]:
         r'''Changes ``part`` to (part container) identifiers (using
         ``container_to_part_assignment`` dictionary).
         '''
@@ -2532,8 +2541,8 @@ class Path(pathlib.PosixPath):
         identifiers.append(clef_string)
         dictionary = container_to_part_assignment
         if not dictionary:
-            message = 'empty container-to-part-assignment dictionary.'
-            raise Exception(message)
+            message = 'empty container-to-part-assignment dictionary'
+            return message
         for i, (segment_name, dictionary_) in enumerate(dictionary.items()):
             if i == 0:
                 first_segment = True

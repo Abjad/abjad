@@ -126,6 +126,68 @@ class NamedPitch(Pitch):
                 cs''1 * 1/4
             }
 
+    ..  container:: example
+
+        REGRESSION. Small floats just less than a C initialize in the correct
+        octave.
+
+        Initializes c / C3:
+
+        >>> pitch = abjad.NamedPitch(-12.1)
+        >>> abjad.show(pitch) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> staff = pitch.__illustrate__()[abjad.Staff]
+            >>> abjad.f(staff)
+            \new Staff
+            \with
+            {
+                \override TimeSignature.stencil = ##f
+            }
+            {
+                \clef "bass"
+                c1 * 1/4
+            }
+
+        Initializes c' / C4:
+
+        >>> pitch = abjad.NamedPitch(-0.1)
+        >>> abjad.show(pitch) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> staff = pitch.__illustrate__()[abjad.Staff]
+            >>> abjad.f(staff)
+            \new Staff
+            \with
+            {
+                \override TimeSignature.stencil = ##f
+            }
+            {
+                \clef "treble"
+                c'1 * 1/4
+            }
+
+        Initializes c'' / C5:
+
+        >>> pitch = abjad.NamedPitch(11.9)
+        >>> abjad.show(pitch) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> staff = pitch.__illustrate__()[abjad.Staff]
+            >>> abjad.f(staff)
+            \new Staff
+            \with
+            {
+                \override TimeSignature.stencil = ##f
+            }
+            {
+                \clef "treble"
+                c''1 * 1/4
+            }
+
     '''
 
     ### CLASS VARIABLES ###
@@ -156,6 +218,10 @@ class NamedPitch(Pitch):
             number = getattr(name, 'number', name)
             named_pitch_class = abjad.NamedPitchClass(number)
             octave = number // 12 + 4
+            if named_pitch_class == 'c':
+                rounded = 12 * (octave - 4) + named_pitch_class.number
+                if 0.5 <= abs(number - rounded):
+                    octave += 1
             name = named_pitch_class.name + abjad.Octave(octave).ticks
         elif isinstance(name, abjad.Note):
             name = name.written_pitch.name
@@ -639,8 +705,12 @@ class NamedPitch(Pitch):
             >>> abjad.NamedPitch.from_hertz(440)
             NamedPitch("a'")
 
+        ..  container:: example
+
+            REGRESSION. Returns c'' (C5) and not c' (C4):
+
             >>> abjad.NamedPitch.from_hertz(519)
-            NamedPitch("c'")
+            NamedPitch("c''")
 
         Returns newly constructed named pitch.
         '''
@@ -724,7 +794,6 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-
             >>> abjad.NamedPitch.from_pitch_number(13, 'b')
             NamedPitch("bss'")
             >>> abjad.NamedPitch.from_pitch_number(13, 'c')
@@ -733,7 +802,6 @@ class NamedPitch(Pitch):
             NamedPitch("df''")
 
         ..  container:: example
-
 
             >>> abjad.NamedPitch.from_pitch_number(14, 'c')
             NamedPitch("css''")

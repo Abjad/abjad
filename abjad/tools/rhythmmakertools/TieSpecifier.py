@@ -124,7 +124,7 @@ class TieSpecifier(AbjadValueObject):
                 abjad.detach(abjad.Tie, leaf)
             tie = abjad.Tie(repeat=self.repeat_ties)
             tie._unconstrain_contiguity()
-            if tie._attachment_test_all(combined_logical_tie):
+            if tie._attachment_test_all(combined_logical_tie) is True:
                 try:
                     abjad.attach(tie, combined_logical_tie)
                 except:
@@ -156,7 +156,7 @@ class TieSpecifier(AbjadValueObject):
                 if len(subgroup) == 1:
                     continue
                 tie = abjad.Tie()
-                assert tie._attachment_test_all(subgroup)
+                assert tie._attachment_test_all(subgroup) is True
                 abjad.attach(tie, abjad.select(subgroup))
 
     ### PUBLIC PROPERTIES ###

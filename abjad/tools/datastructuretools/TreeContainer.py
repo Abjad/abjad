@@ -1,5 +1,4 @@
-from abjad.tools import systemtools
-from abjad.tools.datastructuretools.TreeNode import TreeNode
+from .TreeNode import TreeNode
 
 
 class TreeContainer(TreeNode):
@@ -299,6 +298,7 @@ class TreeContainer(TreeNode):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
+        from abjad.tools import systemtools
         agent = systemtools.StorageFormatManager(self)
         names = list(agent.signature_keyword_names)
         template_names = names[:]

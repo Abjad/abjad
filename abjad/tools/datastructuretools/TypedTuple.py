@@ -1,6 +1,6 @@
 import collections
-from abjad.tools.datastructuretools.TypedCollection import TypedCollection
-from abjad.tools.topleveltools import new
+from abjad.tools.topleveltools.new import new
+from .TypedCollection import TypedCollection
 
 
 class TypedTuple(TypedCollection, collections.Sequence):

@@ -1,5 +1,4 @@
 import copy
-from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -28,7 +27,7 @@ class TreeNode(AbjadObject):
     def __copy__(self):
         r'''Copies tree node.
         '''
-        import copy
+        from abjad.tools import systemtools
         agent = systemtools.StorageFormatManager(self)
         arguments = []
         for value in agent.get_template_dict().values():
@@ -54,6 +53,7 @@ class TreeNode(AbjadObject):
         return name_dictionary
 
     def _get_format_specification(self):
+        from abjad.tools import systemtools
         agent = systemtools.StorageFormatManager(self)
         names = agent.signature_names
         return systemtools.FormatSpecification(

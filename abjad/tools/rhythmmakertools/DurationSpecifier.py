@@ -1,4 +1,7 @@
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.datastructuretools.Duration import Duration
+from .PartitionTable import PartitionTable
 
 
 class DurationSpecifier(AbjadValueObject):
@@ -14,6 +17,7 @@ class DurationSpecifier(AbjadValueObject):
         '_forbid_meter_rewriting',
         '_forbidden_duration',
         '_rewrite_meter',
+        '_rewrite_rest_filled',
         '_spell_metrically',
         )
 
@@ -23,25 +27,31 @@ class DurationSpecifier(AbjadValueObject):
 
     def __init__(
         self,
-        decrease_monotonic=True,
-        forbid_meter_rewriting=None,
-        forbidden_duration=None,
-        rewrite_meter=None,
-        spell_metrically=None,
-        ):
-        import abjad
-        from abjad.tools import rhythmmakertools
-        assert isinstance(decrease_monotonic, bool)
+        decrease_monotonic: bool = True,
+        forbid_meter_rewriting: bool = None,
+        forbidden_duration: typing.Union[tuple, Duration] = None,
+        rewrite_meter: bool = None,
+        rewrite_rest_filled: bool = None,
+        spell_metrically: typing.Union[bool, str, PartitionTable] = None,
+        ) -> None:
+        if decrease_monotonic is not None:
+            decrease_monotonic = bool(decrease_monotonic)
         self._decrease_monotonic = decrease_monotonic
-        if forbidden_duration is not None:
-            forbidden_duration = abjad.Duration(forbidden_duration)
-        self._forbidden_duration = forbidden_duration
-        assert isinstance(rewrite_meter, (bool, type(None)))
+        if forbidden_duration is None:
+            forbidden_duration_ = None
+        else:
+            forbidden_duration_ = Duration(forbidden_duration)
+        self._forbidden_duration = forbidden_duration_
+        if rewrite_meter is not None:
+            rewrite_meter = bool(rewrite_meter)
         self._rewrite_meter = rewrite_meter
+        if rewrite_rest_filled is not None:
+            rewrite_rest_filled = bool(rewrite_rest_filled)
+        self._rewrite_rest_filled = rewrite_rest_filled
         assert (spell_metrically is None or
             isinstance(spell_metrically, bool) or
             spell_metrically == 'unassignable' or
-            isinstance(spell_metrically, rhythmmakertools.PartitionTable))
+            isinstance(spell_metrically, PartitionTable))
         self._spell_metrically = spell_metrically
         if forbid_meter_rewriting is not None:
             forbid_meter_rewriting = bool(forbid_meter_rewriting)
@@ -49,7 +59,7 @@ class DurationSpecifier(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification='') -> str:
         r'''Formats duration specifier.
 
         ..  container:: example
@@ -60,14 +70,13 @@ class DurationSpecifier(AbjadValueObject):
                 decrease_monotonic=True,
                 )
 
-        Returns string.
         '''
         return AbjadValueObject.__format__(
             self,
             format_specification=format_specification,
             )
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         r'''Gets interpreter representation.
 
         ..  container:: example
@@ -75,7 +84,6 @@ class DurationSpecifier(AbjadValueObject):
             >>> abjad.rhythmmakertools.DurationSpecifier()
             DurationSpecifier(decrease_monotonic=True)
 
-        Returns string.
         '''
         return super(DurationSpecifier, self).__repr__()
 
@@ -121,6 +129,30 @@ class DurationSpecifier(AbjadValueObject):
         return selections
 
     @staticmethod
+    def _rewrite_rest_filled_(
+        selections,
+        multimeasure_rests=None,
+        ):
+        import abjad
+        selections_ = []
+        maker = abjad.LeafMaker()
+        prototype = (abjad.MultimeasureRest, abjad.Rest)
+        for selection in selections:
+            if not all(isinstance(_, prototype) for _ in selection):
+                selections_.append(selection)
+            else:
+                duration = abjad.inspect(selection).get_duration()
+                if multimeasure_rests:
+                    multiplier = abjad.Multiplier(duration)
+                    rest = abjad.MultimeasureRest(1)
+                    abjad.attach(multiplier, rest, tag=None)
+                    rests = abjad.select(rest)
+                else:
+                    rests = maker([None], [duration])
+                selections_.append(rests)
+        return selections_
+
+    @staticmethod
     def _split_at_measure_boundaries(
         selections,
         meters,
@@ -134,11 +166,10 @@ class DurationSpecifier(AbjadValueObject):
         music_duration = sum(
             abjad.inspect(_).get_duration() for _ in selections)
         if not meter_duration == music_duration:
-            message = 'Duration of meters is {!s}'
-            message += ' but duration of selections is {!s}:'
-            message = message.format(meter_duration, music_duration)
-            message += '\nmeters: {}.'.format(meters)
-            message += '\nmusic: {}.'.format(selections)
+            message = f'Duration of meters is {meter_duration!s}'
+            message += f' but duration of selections is {music_duration!s}:'
+            message += f'\nmeters: {meters}.'
+            message += f'\nmusic: {selections}.'
             raise Exception(message)
         voice = abjad.Voice(selections)
         abjad.mutate(voice[:]).split(
@@ -165,9 +196,9 @@ class DurationSpecifier(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def decrease_monotonic(self):
+    def decrease_monotonic(self) -> typing.Optional[bool]:
         r'''Is true when all durations should be spelled as a tied series of
-        monotonically decreasing values. Otherwise false.
+        monotonically decreasing values.
 
         ..  container:: example
 
@@ -175,14 +206,11 @@ class DurationSpecifier(AbjadValueObject):
             >>> specifier.decrease_monotonic
             True
 
-        Defaults to true.
-
-        Returns true or false.
         '''
         return self._decrease_monotonic
 
     @property
-    def forbid_meter_rewriting(self):
+    def forbid_meter_rewriting(self) -> typing.Optional[bool]:
         r'''Is true when meter rewriting is forbidden.
 
         ..  container:: example
@@ -191,14 +219,11 @@ class DurationSpecifier(AbjadValueObject):
             >>> specifier.forbid_meter_rewriting is None
             True
 
-        Defaults to none.
-
-        Returns boolean or none.
         '''
         return self._forbid_meter_rewriting
 
     @property
-    def forbidden_duration(self):
+    def forbidden_duration(self) -> typing.Optional[Duration]:
         r'''Gets forbidden written duration.
 
         ..  container:: example
@@ -207,16 +232,12 @@ class DurationSpecifier(AbjadValueObject):
             >>> specifier.forbidden_duration is None
             True
 
-        Defaults to none.
-
-        Returns duration or none.
         '''
         return self._forbidden_duration
 
     @property
-    def rewrite_meter(self):
+    def rewrite_meter(self) -> typing.Optional[bool]:
         r'''Is true when all output divisions should rewrite meter.
-        Otherwise false.
 
         ..  container:: example
 
@@ -224,18 +245,26 @@ class DurationSpecifier(AbjadValueObject):
             >>> specifier.rewrite_meter is None
             True
 
-        Defaults to none.
-
-        Set to true, false or none.
-
-        Returns true, false or none.
         '''
         return self._rewrite_meter
 
     @property
-    def spell_metrically(self):
+    def rewrite_rest_filled(self) -> typing.Optional[bool]:
+        r'''Is true when rhythm-maker rewrites rest-filled divisions.
+
+        ..  container:: example
+
+            >>> specifier = abjad.rhythmmakertools.DurationSpecifier()
+            >>> specifier.rewrite_rest_filled is None
+            True
+
+        '''
+        return self._rewrite_rest_filled
+
+    @property
+    def spell_metrically(self) -> typing.Union[bool, str, PartitionTable]:
         r'''Is true when durations should spell according to approximate common
-        practice understandings of meter. Otherwise false.
+        practice understandings of meter.
 
         ..  container:: example
 
@@ -245,9 +274,5 @@ class DurationSpecifier(AbjadValueObject):
 
         Spells unassignable durations like ``5/16`` and ``9/4`` metrically when
         set to ``'unassignable'``. Leaves other durations unchanged.
-
-        Defaults to none.
-
-        Returns boolean, ``'unassignable'`` or none..
         '''
         return self._spell_metrically

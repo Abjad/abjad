@@ -37,6 +37,7 @@ class LineSegment(AbjadValueObject):
         '_right_broken_text',
         '_right_padding',
         '_right_stencil_align_direction_y',
+        '_right_text',
         '_style',
         )
 
@@ -60,6 +61,7 @@ class LineSegment(AbjadValueObject):
         right_broken_text=None,
         right_padding=None,
         right_stencil_align_direction_y=None,
+        right_text=None,
         style=None,
         ):
         self._arrow_width = arrow_width
@@ -76,6 +78,7 @@ class LineSegment(AbjadValueObject):
         self._right_broken_text = right_broken_text
         self._right_padding = right_padding
         self._right_stencil_align_direction_y = right_stencil_align_direction_y
+        self._right_text = right_text
         self._style = style
 
     ### PRIVATE METHODS ###
@@ -233,6 +236,18 @@ class LineSegment(AbjadValueObject):
                 value=self.right_stencil_align_direction_y,
                 )
             overrides.append(override.override_string)
+        if self.right_text is not None:
+            override = abjad.LilyPondGrobOverride(
+                grob_name='TextSpanner',
+                once=True,
+                property_path=(
+                    'bound-details',
+                    'right',
+                    'text',
+                    ),
+                value=self.right_text,
+                )
+            overrides.append(override.override_string)
         if self.style is not None:
             style = abjad.Scheme(self.style, quoting="'")
             override = abjad.LilyPondGrobOverride(
@@ -361,6 +376,14 @@ class LineSegment(AbjadValueObject):
         Returns float or none.
         '''
         return self._right_stencil_align_direction_y
+
+    @property
+    def right_text(self):
+        r'''Gets right text.
+
+        Returns markup or none.
+        '''
+        return self._right_text
 
     @property
     def style(self):

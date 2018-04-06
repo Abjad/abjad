@@ -379,43 +379,115 @@ class Tuplet(Container):
 
     @property
     def force_fraction(self) -> typing.Optional[bool]:
-        r'''Gets and sets flag to force fraction formatting of tuplet.
+        r'''Gets and sets force fraction flag.
 
         ..  container:: example
 
-            Gets forced fraction formatting of tuplet:
+            The ``default.ly`` stylesheet included in all Abjad API examples
+            includes the following:
+            
+            ``\override TupletNumber.text = #tuplet-number::calc-fraction-text``
 
-            >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
-            >>> abjad.show(tuplet) # doctest: +SKIP
+            This means that even simple tuplets format as explicit fractions:
+
+            >>> staff = abjad.Staff()
+            >>> staff.append(abjad.Tuplet((2, 3), "c'4 d' e'"))
+            >>> staff.append(abjad.Tuplet((2, 3), "c'4 d' e'"))
+            >>> staff.append(abjad.Tuplet((2, 3), "c'4 d' e'"))
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
-                \times 2/3 {
-                    c'8
-                    d'8
-                    e'8
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    \times 2/3 {
+                        c'4
+                        d'4
+                        e'4
+                    }
+                    \times 2/3 {
+                        c'4
+                        d'4
+                        e'4
+                    }
+                    \times 2/3 {
+                        c'4
+                        d'4
+                        e'4
+                    }
                 }
 
+            To illustrate the effect of Abjad's force fraction property, we can
+            temporarily restore LilyPond's default tuplet number formatting
+            like this:
 
-            >>> tuplet.force_fraction is None
-            True
-
-        ..  container:: example
-
-            Sets forced fraction formatting of tuplet:
-
-            >>> tuplet.force_fraction = True
-            >>> abjad.show(tuplet) # doctest: +SKIP
+            >>> staff = abjad.Staff()
+            >>> staff.append(abjad.Tuplet((2, 3), "c'4 d' e'"))
+            >>> staff.append(abjad.Tuplet((2, 3), "c'4 d' e'"))
+            >>> staff.append(abjad.Tuplet((2, 3), "c'4 d' e'"))
+            >>> string = 'tuplet-number::calc-denominator-text'
+            >>> abjad.override(staff).tuplet_number.text = string
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
-                \tweak text #tuplet-number::calc-fraction-text
-                \times 2/3 {
-                    c'8
-                    d'8
-                    e'8
+                >>> abjad.f(staff)
+                \new Staff
+                \with
+                {
+                    \override TupletNumber.text = #tuplet-number::calc-denominator-text
+                }
+                {
+                    \times 2/3 {
+                        c'4
+                        d'4
+                        e'4
+                    }
+                    \times 2/3 {
+                        c'4
+                        d'4
+                        e'4
+                    }
+                    \times 2/3 {
+                        c'4
+                        d'4
+                        e'4
+                    }
+                }
+
+            Which makes it possible to see the effect of setting force fraction
+            to true on a single tuplet:
+
+            >>> tuplet = staff[1]
+            >>> tuplet.force_fraction = True
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                \with
+                {
+                    \override TupletNumber.text = #tuplet-number::calc-denominator-text
+                }
+                {
+                    \times 2/3 {
+                        c'4
+                        d'4
+                        e'4
+                    }
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 2/3 {
+                        c'4
+                        d'4
+                        e'4
+                    }
+                    \times 2/3 {
+                        c'4
+                        d'4
+                        e'4
+                    }
                 }
 
         ..  container:: example
@@ -484,8 +556,7 @@ class Tuplet(Container):
         if isinstance(argument, (bool, type(None))):
             self._force_fraction = argument
         else:
-            message = 'must be true or false: {!r}.'
-            message = message.format(argument)
+            message = f'force fraction must be boolean (not {argument!r}).'
             raise TypeError(message)
 
     @property
@@ -2100,18 +2171,53 @@ class Tuplet(Container):
                     leaf.written_duration *= 2
 
     def trivial(self) -> bool:
-        r'''Is true when tuplet multiplier is equal to ``1``.
+        r'''Is true when tuplet multiplier is equal to ``1`` and no multipliers
+        attach to any leaves in tuplet.
 
         ..  container:: example
 
             >>> tuplet = abjad.Tuplet((1, 1), "c'8 d'8 e'8")
-
             >>> abjad.show(tuplet) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(tuplet)
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 1/1 {
+                    c'8
+                    d'8
+                    e'8
+                }
 
             >>> tuplet.trivial()
             True
 
+        ..  container:: example
+
+            Tuplet is not trivial when multipliers attach to tuplet leaves:
+
+            >>> tuplet = abjad.Tuplet((1, 1), "c'8 d'8 e'8")
+            >>> abjad.attach(abjad.Multiplier(3, 2), tuplet[0])
+            >>> abjad.attach(abjad.Multiplier(1, 2), tuplet[-1])
+            >>> abjad.show(tuplet) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(tuplet)
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 1/1 {
+                    c'8 * 3/2
+                    d'8
+                    e'8 * 1/2
+                }
+
+            >>> tuplet.trivial()
+            False
+
         '''
+        for leaf in iterate(self).leaves():
+            if inspect(leaf).has_indicator(Multiplier):
+                return False
         return self.multiplier == 1
 
     def trivializable(self) -> bool:

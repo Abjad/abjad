@@ -1,5 +1,4 @@
 import collections
-from abjad.tools import systemtools
 from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 
 
@@ -208,6 +207,7 @@ class OrderedDict(TypedCollection, collections.MutableMapping):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
+        from abjad.tools import systemtools
         agent = systemtools.StorageFormatManager(self)
         names = list(agent.signature_keyword_names)
         if 'items' in names:

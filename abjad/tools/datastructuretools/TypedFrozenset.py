@@ -1,5 +1,5 @@
 import collections
-from abjad.tools.datastructuretools.TypedCollection import TypedCollection
+from .TypedCollection import TypedCollection
 
 
 class TypedFrozenset(TypedCollection, collections.Set):

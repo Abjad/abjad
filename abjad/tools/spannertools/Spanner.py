@@ -1,8 +1,19 @@
 import collections
 import copy
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.datastructuretools.Duration import Duration
 from abjad.tools.systemtools.LilyPondFormatManager import LilyPondFormatManager
+from abjad.tools.systemtools.Wrapper import Wrapper
 from abjad.tools.segmenttools.Tags import Tags
+from abjad.tools.systemtools.FormatSpecification import FormatSpecification
+from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
+from abjad.tools.timespantools.Timespan import Timespan
+from abjad.tools.topleveltools.attach import attach
+from abjad.tools.topleveltools.inspect import inspect
+from abjad.tools.topleveltools.override import override
+from abjad.tools.topleveltools.select import select
+from abjad.tools.topleveltools.setting import setting
 abjad_tags = Tags()
 
 
@@ -67,12 +78,11 @@ class Spanner(AbjadObject, collections.Sequence):
 
         Returns new spanner.
         '''
-        import abjad
         new = type(self)(*self.__getnewargs__())
         if getattr(self, '_lilypond_grob_name_manager', None) is not None:
-            new._lilypond_grob_name_manager = copy.copy(abjad.override(self))
+            new._lilypond_grob_name_manager = copy.copy(override(self))
         if getattr(self, '_lilypond_setting_name_manager', None) is not None:
-            new._lilypond_setting_name_manager = copy.copy(abjad.setting(self))
+            new._lilypond_setting_name_manager = copy.copy(setting(self))
         self._copy_keyword_args(new)
         return new
 
@@ -81,10 +91,9 @@ class Spanner(AbjadObject, collections.Sequence):
 
         Returns leaf.
         '''
-        import abjad
         if isinstance(argument, slice):
             leaves = self.leaves.__getitem__(argument)
-            return abjad.select(leaves)
+            return select(leaves)
         return self.leaves.__getitem__(argument)
 
     def __getnewargs__(self):
@@ -125,25 +134,22 @@ class Spanner(AbjadObject, collections.Sequence):
     ### PRIVATE METHODS ###
 
     def _append(self, leaf):
-        import abjad
         if self._ignore_attachment_test:
             pass
         elif not self._attachment_test(leaf):
-            message = 'can not attach {!r} to {!r}.'
-            message = message.format(self, leaf)
+            message = f'can not attach {self!r} to {leaf!r}.'
             raise Exception(message)
         if self._contiguity_constraint == 'logical voice':
             leaves = self[-1:] + [leaf]
-            leaves = abjad.select(leaves)
+            leaves = select(leaves)
             if not leaves.are_contiguous_logical_voice():
                 raise Exception(type(self), leaves)
         leaf._spanners.add(self)
         self._leaves.append(leaf)
 
     def _append_left(self, leaf):
-        import abjad
         leaves = [leaf] + self[:1]
-        leaves = abjad.select(leaves)
+        leaves = select(leaves)
         assert leaves.are_contiguous_logical_voice()
         leaf._spanners.add(self)
         self._leaves.insert(0, leaf)
@@ -151,7 +157,7 @@ class Spanner(AbjadObject, collections.Sequence):
     def _apply_overrides(self, overrides):
         import abjad
         namespace = abjad.__dict__.copy()
-        manager = abjad.override(self)
+        manager = override(self)
         for key, value in overrides.items():
             grob_name, attribute = key.split('__', 1)
             grob_manager = getattr(manager, grob_name)
@@ -161,9 +167,13 @@ class Spanner(AbjadObject, collections.Sequence):
             setattr(grob_manager, attribute, value)
 
     def _at_least_two_leaves(self, argument):
-        import abjad
-        leaves = abjad.select(argument).leaves()
-        return 1 < len(leaves)
+        leaves = select(argument).leaves()
+        if 1 < len(leaves):
+            return True
+        return [
+            'Requires at least two leaves.',
+            f'Not just {leaves[0]!r}.',
+            ]
 
     def _attach(
         self,
@@ -194,12 +204,10 @@ class Spanner(AbjadObject, collections.Sequence):
         tag=None,
         wrapper=None,
         ):
-        import abjad
         if leaf not in self:
-            message = 'must be leaf in spanner: {!r}.'
-            message = message.format(leaf)
+            message = f'must be leaf in spanner: {leaf!r}.'
             raise Exception(message)
-        if isinstance(indicator, abjad.Wrapper):
+        if isinstance(indicator, Wrapper):
             alternate = indicator.alternate
             annotation = indicator.annotation
             context = indicator.context
@@ -210,7 +218,7 @@ class Spanner(AbjadObject, collections.Sequence):
             indicator = indicator.indicator
         context = getattr(self, 'context', None)
         context = context or getattr(indicator, 'context', None)
-        wrapper_ = abjad.Wrapper(
+        wrapper_ = Wrapper(
             alternate=alternate,
             component=leaf,
             context=context,
@@ -273,22 +281,20 @@ class Spanner(AbjadObject, collections.Sequence):
         self._sever_all_leaves()
 
     def _extend(self, leaves):
-        import abjad
         leaf_input = list(self[-1:])
         leaf_input.extend(leaves)
-        leaf_input = abjad.select(leaf_input)
+        leaf_input = select(leaf_input)
         if self._contiguity_constraint == 'logical voice':
             if not leaf_input.are_contiguous_logical_voice():
-                message = 'must be contiguous: {!r}.'
-                message = message.format(leaf_input)
-                raise Exception(self, message)
+                message = f'{self!r} leaves must be contiguous:\n'
+                message += f'  {leaf_input}'
+                raise Exception(message)
         for leaf in leaves:
             self._append(leaf)
 
     def _extend_left(self, leaves):
-        import abjad
         leaf_input = leaves + list(self[:1])
-        leaf_input = abjad.select(leaf_input)
+        leaf_input = select(leaf_input)
         assert leaf_input.are_contiguous_logical_voice()
         for leaf in reversed(leaves):
             self._append_left(leaf)
@@ -349,15 +355,14 @@ class Spanner(AbjadObject, collections.Sequence):
         return [(self, spanner, result)]
 
     def _get_basic_lilypond_format_bundle(self, leaf):
-        import abjad
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         if leaf is self[-1]:
-            contributions = abjad.override(self)._list_format_contributions(
+            contributions = override(self)._list_format_contributions(
                 'revert',
                 )
             bundle.grob_reverts.extend(contributions)
         if leaf is self[0]:
-            contributions = abjad.override(self)._list_format_contributions(
+            contributions = override(self)._list_format_contributions(
                 'override',
                 once=False,
                 )
@@ -380,15 +385,13 @@ class Spanner(AbjadObject, collections.Sequence):
         return sum(_._get_duration(in_seconds=in_seconds) for _ in self)
 
     def _get_duration_in_seconds(self):
-        import abjad
-        duration = abjad.Duration(0)
+        duration = Duration(0)
         for leaf in self.leaves:
             duration += leaf._get_duration(in_seconds=True)
         return duration
 
     def _get_format_specification(self):
-        import abjad
-        agent = abjad.StorageFormatManager(self)
+        agent = StorageFormatManager(self)
         names = list(agent.signature_keyword_names)
         if self._get_compact_summary() == '':
             values = []
@@ -396,7 +399,7 @@ class Spanner(AbjadObject, collections.Sequence):
             values = [self._get_compact_summary()]
         if 'overrides' in names and not self.overrides:
             names.remove('overrides')
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             repr_is_indented=False,
             repr_args_values=values,
@@ -404,7 +407,6 @@ class Spanner(AbjadObject, collections.Sequence):
             )
 
     def _get_indicators(self, prototype=None, unwrap=True):
-        import abjad
         prototype = prototype or (object,)
         if not isinstance(prototype, tuple):
             prototype = (prototype,)
@@ -422,7 +424,7 @@ class Spanner(AbjadObject, collections.Sequence):
                 matching_indicators.append(wrapper)
             elif any(wrapper == x for x in prototype_objects):
                 matching_indicators.append(wrapper)
-            elif isinstance(wrapper, abjad.Wrapper):
+            elif isinstance(wrapper, Wrapper):
                 if isinstance(wrapper.indicator, prototype_classes):
                     matching_indicators.append(wrapper)
                 elif any(wrapper.indicator == x for x in prototype_objects):
@@ -458,10 +460,9 @@ class Spanner(AbjadObject, collections.Sequence):
         raise Exception(message)
 
     def _get_piecewise_indicators(self, leaf, prototype=None):
-        import abjad
         assert leaf in self, repr(leaf)
         indicators = []
-        for wrapper in abjad.inspect(leaf).wrappers(prototype):
+        for wrapper in inspect(leaf).wrappers(prototype):
             if wrapper.spanner is self:
                 indicators.append(wrapper.indicator)
         return indicators
@@ -476,16 +477,15 @@ class Spanner(AbjadObject, collections.Sequence):
             return ' '
 
     def _get_timespan(self, in_seconds=False):
-        import abjad
         if len(self):
             timespan_ = self[0]._get_timespan(in_seconds=in_seconds)
             start_offset = timespan_.start_offset
             timespan_ = self[-1]._get_timespan(in_seconds=in_seconds)
             stop_offset = timespan_.stop_offset
         else:
-            start_offset = abjad.Duration(0)
-            stop_offset = abjad.Duration(0)
-        return abjad.Timespan(
+            start_offset = Duration(0)
+            stop_offset = Duration(0)
+        return Timespan(
             start_offset=start_offset,
             stop_offset=stop_offset,
             )
@@ -564,9 +564,9 @@ class Spanner(AbjadObject, collections.Sequence):
             return True
         if isinstance(self, abjad.MetronomeMarkSpanner):
             prototype = (abjad.Accelerando, abjad.Ritardando)
-            if abjad.inspect(leaf).has_indicator(prototype):
+            if inspect(leaf).has_indicator(prototype):
                 return True
-            previous_wrapper = abjad.inspect(leaf).get_effective(
+            previous_wrapper = inspect(leaf).get_effective(
                 abjad.MetronomeMark,
                 n=-1,
                 unwrap=False,
@@ -574,7 +574,7 @@ class Spanner(AbjadObject, collections.Sequence):
             if previous_wrapper is None:
                 return False
             previous_leaf = previous_wrapper.component
-            if abjad.inspect(previous_leaf).has_indicator(prototype):
+            if inspect(previous_leaf).has_indicator(prototype):
                 return True
         return False
 
@@ -608,9 +608,8 @@ class Spanner(AbjadObject, collections.Sequence):
         self._remove_leaf(leaf)
 
     def _start_offset_in_me(self, leaf):
-        import abjad
-        leaf_start_offset = abjad.inspect(leaf).get_timespan().start_offset
-        self_start_offset = abjad.inspect(self).get_timespan().start_offset
+        leaf_start_offset = inspect(leaf).get_timespan().start_offset
+        self_start_offset = inspect(self).get_timespan().start_offset
         return leaf_start_offset - self_start_offset
 
     def _stop_offset_in_me(self, leaf):
@@ -661,9 +660,7 @@ class Spanner(AbjadObject, collections.Sequence):
         import abjad
         for leaf in self._leaves:
             if not isinstance(leaf, abjad.Leaf):
-                message = 'spanners attach only to leaves: {!s}.'
-                message = message.format(leaf)
-                raise Exception(message)
+                raise Exception(f'spanners attach only to leaves: {leaf!s}.')
         return abjad.select(self._leaves)
 
     @property
@@ -672,8 +669,7 @@ class Spanner(AbjadObject, collections.Sequence):
 
         Returns dictionary.
         '''
-        import abjad
-        manager = abjad.override(self)
+        manager = override(self)
         overrides = {}
         for attribute_tuple in manager._get_attribute_tuples():
             attribute = '__'.join(attribute_tuple[:-1])

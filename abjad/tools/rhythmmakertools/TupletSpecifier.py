@@ -3,10 +3,21 @@ import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.datastructuretools.Duration import Duration
 from abjad.tools.datastructuretools.Multiplier import Multiplier
+from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
+from abjad.tools.scoretools.Selection import Selection
 
 
 class TupletSpecifier(AbjadValueObject):
     r'''Tuplet specifier.
+
+    ..  container:: example
+
+        >>> specifier = abjad.rhythmmakertools.TupletSpecifier()
+        >>> abjad.f(specifier)
+        abjad.rhythmmakertools.TupletSpecifier(
+            diminution=True,
+            )
+
     '''
 
     ### CLASS VARIABLES ###
@@ -24,51 +35,66 @@ class TupletSpecifier(AbjadValueObject):
         '_use_note_duration_bracket',
         )
 
+    _publish_storage_format = True
+
     ### INITIALIZER ###
 
     def __init__(
         self,
-        avoid_dots: typing.Union[bool] = False,
+        avoid_dots: bool = None,
         denominator: typing.Union[str, Duration, int] = None,
-        diminution: typing.Union[bool, None] = True,
-        extract_trivial: typing.Union[bool, None] = False,
+        diminution: bool = True,
+        extract_trivial: bool = None,
         force_fraction: bool = None,
-        rewrite_rest_filled: typing.Union[bool, None] = False,
-        trivialize: typing.Union[bool, None] = False,
-        use_note_duration_bracket: typing.Union[bool, None] = False,
+        rewrite_rest_filled: bool = None,
+        trivialize: bool = None,
+        use_note_duration_bracket: bool = None,
         ) -> None:
         import abjad
-        # TODO: Consider renaming diminution=True to augmentation=None.
-        #       That would allow for all keywords to default to None,
-        #       and therefore a single-line storage format.
-        self._avoid_dots = bool(avoid_dots)
+        if avoid_dots is not None:
+            avoid_dots = bool(avoid_dots)
+        self._avoid_dots = avoid_dots
         if isinstance(denominator, tuple):
             denominator = Duration(denominator)
         self._denominator = denominator
-        self._diminution = bool(diminution)
-        self._extract_trivial = bool(extract_trivial)
+        # TODO: Consider renaming diminution=True to augmentation=None.
+        #       That would allow for all keywords to default to None,
+        #       and therefore a single-line storage format.
+        if diminution is not None:
+            diminution = bool(diminution)
+        self._diminution = diminution
+        if extract_trivial is not None:
+            extract_trivial = bool(extract_trivial)
+        self._extract_trivial = extract_trivial
         if force_fraction is not None:
             force_fraction = bool(force_fraction)
         self._force_fraction = force_fraction
-        self._rewrite_rest_filled = bool(rewrite_rest_filled)
-        self._trivialize = bool(trivialize)
-        self._use_note_duration_bracket = bool(use_note_duration_bracket)
+        if rewrite_rest_filled is not None:
+            rewrite_rest_fille = bool(rewrite_rest_filled)
+        self._rewrite_rest_filled = rewrite_rest_filled
+        if trivialize is not None:
+            trivialize = bool(trivialize)
+        self._trivialize = trivialize
+        if use_note_duration_bracket is not None:
+            use_note_duration_bracket = bool(use_note_duration_bracket)
+        self._use_note_duration_bracket = use_note_duration_bracket
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, selections, divisions):
+    def __call__(
+        self,
+        selections: typing.List[Selection],
+        divisions: typing.List[NonreducedFraction],
+        ) -> typing.List[Selection]:
         r'''Calls tuplet specifier.
-
-        Returns new selections.
         '''
         import abjad
+        self._apply_denominator(selections, divisions)
+        self._force_fraction_(selections)
         self._trivialize_(selections)
         selections = self._rewrite_rest_filled_(selections)
+        # extract trivial must follow the other operations:
         selections = self._extract_trivial_(selections)
-        self._apply_denominator(selections, divisions)
-        if self.force_fraction:
-            for tuplet in abjad.iterate(selections).components(abjad.Tuplet):
-                tuplet.force_fraction = True
         return selections
 
     ### PRIVATE METHODS ###
@@ -98,51 +124,57 @@ class TupletSpecifier(AbjadValueObject):
             elif abjad.mathtools.is_positive_integer(denominator):
                 tuplet.denominator = denominator
             else:
-                message = 'invalid value for preferred denominator: {!r}.'
-                message = message.format(denominator)
+                message = f'invalid preferred denominator: {denominator!r}.'
                 raise Exception(message)
 
     def _extract_trivial_(self, selections):
         import abjad
         if not self.extract_trivial:
             return selections
-        new_selections = []
+        selections_ = []
         for selection in selections:
-            new_selection = []
+            selection_ = []
             for component in selection:
                 if not (isinstance(component, abjad.Tuplet) and
                     component.trivial()):
-                    new_selection.append(component)
+                    selection_.append(component)
                     continue
                 tuplet = component
                 contents = abjad.mutate(tuplet).eject_contents()
                 assert isinstance(contents, abjad.Selection)
-                new_selection.extend(contents)
-            new_selection = abjad.select(new_selection)
-            new_selections.append(new_selection)
-        return new_selections
+                selection_.extend(contents)
+            selection_ = abjad.select(selection_)
+            selections_.append(selection_)
+        return selections_
+
+    def _force_fraction_(self, selections):
+        import abjad
+        if not self.force_fraction:
+            return
+        for tuplet in abjad.iterate(selections).components(abjad.Tuplet):
+            tuplet.force_fraction = True
 
     def _rewrite_rest_filled_(self, selections):
         import abjad
         if not self.rewrite_rest_filled:
             return selections
-        new_selections = []
+        selections_ = []
         maker = abjad.LeafMaker()
         for selection in selections:
-            new_selection = []
+            selection_ = []
             for component in selection:
                 if not (isinstance(component, abjad.Tuplet) and
                     component._rest_filled()):
-                    new_selection.append(component)
+                    selection_.append(component)
                     continue
                 duration = abjad.inspect(component).get_duration()
-                new_rests = maker([None], [duration])
-                abjad.mutate(component[:]).replace(new_rests)
+                rests = maker([None], [duration])
+                abjad.mutate(component[:]).replace(rests)
                 component.multiplier = abjad.Multiplier(1)
-                new_selection.append(component)
-            new_selection = abjad.select(new_selection)
-            new_selections.append(new_selection)
-        return new_selections
+                selection_.append(component)
+            selection_ = abjad.select(selection_)
+            selections_.append(selection_)
+        return selections_
 
     def _trivialize_(self, selections):
         import abjad
@@ -644,13 +676,172 @@ class TupletSpecifier(AbjadValueObject):
 
     @property
     def force_fraction(self) -> typing.Optional[bool]:
-        r'''Is true when tuplet forces fraction.
+        r'''Is true when tuplet forces tuplet number fraction formatting.
+
+        ..  container:: example
+
+            The ``default.ly`` stylesheet included in all Abjad API examples
+            includes the following:
+            
+            ``\override TupletNumber.text = #tuplet-number::calc-fraction-text``
+
+            This means that even simple tuplets format as explicit fractions:
+
+            >>> rhythm_maker = abjad.rhythmmakertools.EvenDivisionRhythmMaker(
+            ...     extra_counts_per_division=[1],
+            ...     )
+
+            >>> divisions = [(2, 8), (2, 8), (2, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(lilypond_file[abjad.Staff])
+                \new RhythmicStaff
+                {
+                    {   % measure
+                        \time 2/8
+                        \times 2/3 {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }   % measure
+                    {   % measure
+                        \times 2/3 {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }   % measure
+                    {   % measure
+                        \times 2/3 {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }   % measure
+                }
+
+            We can temporarily restore LilyPond's default tuplet numbering like
+            this:
+
+            >>> rhythm_maker = abjad.rhythmmakertools.EvenDivisionRhythmMaker(
+            ...     extra_counts_per_division=[1],
+            ...     )
+
+            >>> divisions = [(2, 8), (2, 8), (2, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> staff = lilypond_file[abjad.Staff]
+            >>> string = 'tuplet-number::calc-denominator-text'
+            >>> abjad.override(staff).tuplet_number.text = string
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(lilypond_file[abjad.Staff])
+                \new RhythmicStaff
+                \with
+                {
+                    \override TupletNumber.text = #tuplet-number::calc-denominator-text
+                }
+                {
+                    {   % measure
+                        \time 2/8
+                        \times 2/3 {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }   % measure
+                    {   % measure
+                        \times 2/3 {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }   % measure
+                    {   % measure
+                        \times 2/3 {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }   % measure
+                }
+
+            Which then makes it possible to show that the force fraction
+            property cancels LilyPond's default tuplet numbering once again:
+
+            >>> rhythm_maker = abjad.rhythmmakertools.EvenDivisionRhythmMaker(
+            ...     extra_counts_per_division=[1],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         force_fraction=True,
+            ...         ),
+            ...     )
+
+            >>> divisions = [(2, 8), (2, 8), (2, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> staff = lilypond_file[abjad.Staff]
+            >>> string = 'tuplet-number::calc-denominator-text'
+            >>> abjad.override(staff).tuplet_number.text = string
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(lilypond_file[abjad.Staff])
+                \new RhythmicStaff
+                \with
+                {
+                    \override TupletNumber.text = #tuplet-number::calc-denominator-text
+                }
+                {
+                    {   % measure
+                        \time 2/8
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 2/3 {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }   % measure
+                    {   % measure
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 2/3 {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }   % measure
+                    {   % measure
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 2/3 {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }   % measure
+                }
+
         '''
         return self._force_fraction
 
     @property
     def rewrite_rest_filled(self) -> typing.Optional[bool]:
-        r'''Is true when tuplet should flatten rest-filled tuplets.
+        r'''Is true when rhythm-maker rewrites rest-filled tuplets.
         '''
         return self._rewrite_rest_filled
 

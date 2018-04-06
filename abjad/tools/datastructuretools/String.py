@@ -7,8 +7,8 @@ import textwrap
 import typing
 import unicodedata
 from abjad.tools import mathtools
-from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
-from abjad.tools.datastructuretools.TypedList import TypedList
+from .OrdinalConstant import OrdinalConstant
+from .TypedList import TypedList
 
 
 class String(str):
@@ -1765,7 +1765,7 @@ class String(str):
     @staticmethod
     def to_tridirectional_lilypond_symbol(
         argument: typing.Any,
-        ) -> typing.Union[None, OrdinalConstant, 'String']:
+        ) -> typing.Optional['String']:
         r'''Changes `argument` to tridirectional LilyPond symbol.
 
         ..  container:: example

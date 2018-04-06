@@ -1,5 +1,5 @@
-import pytest
 import abjad
+import pytest
 
 
 def test_datastructuretools_Duration__group_by_implied_prolation_01():
