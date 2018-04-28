@@ -5,9 +5,9 @@ import math
 import numbers
 import sys
 from abjad.tools import abctools
-from abjad.tools import systemtools
 from abjad.tools import mathtools
 from abjad.tools.datastructuretools import Exact
+from abjad.tools.systemtools.Signature import Signature
 
 
 class Sequence(abctools.AbjadValueObject, collections.Sequence):
@@ -87,7 +87,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
 
     ### SPECIAL METHODS ###
 
-    @systemtools.Signature(
+    @Signature(
         markup_maker_callback='_make___add___markup',
         string_template_callback='_make___add___string_template',
         )
@@ -329,7 +329,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
         superclass = super(Sequence, self)
         return superclass.__format__(format_specification=format_specification)
 
-    @systemtools.Signature(
+    @Signature(
         markup_maker_callback='_make___getitem___markup',
         string_template_callback='_make___getitem___string_template',
         )
@@ -581,7 +581,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
         '''
         return len(self._items)
 
-    @systemtools.Signature(
+    @Signature(
         markup_maker_callback='_make___radd___markup',
         string_template_callback='_make___radd___string_template',
         )
@@ -1052,7 +1052,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
 
     ### PUBLIC METHODS ###
 
-    @systemtools.Signature()
+    @Signature()
     def filter(self, predicate=None):
         r'''Filters sequence by `predicate`.
 
@@ -1133,7 +1133,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
         return type(self)(items)
 
     # TODO: remove indices=None parameter
-    @systemtools.Signature()
+    @Signature()
     def flatten(self, classes=None, depth=1, indices=None):
         r'''Flattens sequence.
 
@@ -1634,7 +1634,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
         except TypeError:
             return False
 
-    @systemtools.Signature()
+    @Signature()
     def join(self):
         r'''Join subsequences in `sequence`.
 
@@ -1690,7 +1690,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
         cumulative_sum = abjad.mathtools.cumulative_sums(self, start=None)[-1]
         return type(self)([cumulative_sum])
 
-    @systemtools.Signature(
+    @Signature(
         markup_maker_callback='_make_map_markup',
         string_template_callback='_make_map_string_template',
         )
@@ -1974,7 +1974,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
                     yield type(self)(item_buffer)
                     item_buffer.pop(0)
 
-    @systemtools.Signature(
+    @Signature(
         argument_list_callback='_make_partition_indicator',
         method_name='partition',
         )
@@ -3331,7 +3331,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
             result = result_
         return type(self)(result)
 
-    @systemtools.Signature(
+    @Signature(
         argument_list_callback='_make_partition_ratio_indicator',
         method_name='partition',
         )
@@ -3872,7 +3872,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
             message = message.format(allow_part_weights)
             raise ValueError(message)
 
-    @systemtools.Signature()
+    @Signature()
     def permute(self, permutation):
         r'''Permutes sequence by `permutation`.
 
@@ -4038,7 +4038,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
                 items.append(item)
         return type(self)(items)
 
-    @systemtools.Signature()
+    @Signature()
     def repeat(self, n=1):
         r'''Repeats sequence.
 
@@ -4495,7 +4495,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
                 items.append(item)
         return type(self)(items=items)
 
-    @systemtools.Signature(
+    @Signature(
         is_operator=True,
         method_name_callback='_make_reverse_method_name',
         )
@@ -4605,7 +4605,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
         items = _reverse_helper(self.items)
         return type(self)(items=items)
 
-    @systemtools.Signature(
+    @Signature(
         is_operator=True,
         method_name='r',
         subscript='n',
@@ -4773,7 +4773,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
         items.sort(key=key, reverse=reverse)
         return type(self)(items=items)
 
-    @systemtools.Signature(
+    @Signature(
         argument_list_callback='_make_split_indicator',
         )
     def split(self, weights, cyclic=False, overhang=False):
@@ -4912,7 +4912,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
                 result.append(last_piece)
         return type(self)(items=result)
 
-    @systemtools.Signature()
+    @Signature()
     def sum(self):
         r'''Sums sequence.
 

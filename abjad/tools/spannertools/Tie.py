@@ -83,15 +83,42 @@ class Tie(Spanner):
 
     ..  container:: example
 
-        Raises exception at attach-time when pitches differ:
+        Raises exception when pitches do not equal each other:
 
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(abjad.Tie(), staff[:])
+        >>> staff = abjad.Staff("c'4 d' e'8 ~ e'8 r4")
+        >>> abjad.attach(abjad.Tie(), staff[:2])
         Traceback (most recent call last):
             ...
-        Exception: Tie() attachment test fails for ...
-        <BLANKLINE>
-        Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
+        Exception: Tie()._attachment_test_all():
+          Pitch {0} does not equal pitch {2}.
+
+        Raises exception on nonnote, nonchord leaves:
+
+        >>> staff = abjad.Staff("c'4 d' e'8 ~ e'8 r4")
+        >>> abjad.attach(abjad.Tie(), staff[-2:])
+        Traceback (most recent call last):
+            ...
+        Exception: Tie()._attachment_test_all():
+          Can only tie notes and chords.
+          Not Rest('r4').
+
+        Detaches existing ties before attach:
+
+        >>> staff = abjad.Staff("c'4 d' e'8 ~ e'8 r4")
+        >>> abjad.attach(abjad.Tie(), staff[2:4])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+                d'4
+                e'8 ~
+                e'8
+                r4
+            }
 
     '''
 
@@ -141,13 +168,13 @@ class Tie(Spanner):
                 numbers = [_.number for _ in component.written_pitches]
                 written_pitches.append(set(numbers))
             else:
-                return False
+                return [
+                    'Can only tie notes and chords.',
+                    f'Not {component!r}.',
+                    ]
         for pair in abjad.sequence(written_pitches).nwise():
             if not set.intersection(*pair):
-                return False
-        for component in component_expression:
-            if abjad.inspect(component).has_spanner(abjad.Tie):
-                return False
+                return [f'Pitch {pair[0]} does not equal pitch {pair[1]}.']
         return True
 
     def _before_attach(self, argument):

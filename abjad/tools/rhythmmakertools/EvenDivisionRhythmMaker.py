@@ -2538,7 +2538,157 @@ class EvenDivisionRhythmMaker(RhythmMaker):
     def tuplet_specifier(self):
         r'''Gets tuplet specifier.
 
-        ..  note:: not yet implemented.
+        ..  container:: example
+
+            No tuplet specifier:
+
+            >>> rhythm_maker = abjad.rhythmmakertools.EvenDivisionRhythmMaker(
+            ...     denominators=[4],
+            ...     extra_counts_per_division=[0, 0, 1],
+            ...     )
+
+            >>> divisions = [(5, 8), (6, 8), (6, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(lilypond_file[abjad.Staff])
+                \new RhythmicStaff
+                {
+                    {   % measure
+                        \time 5/8
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 5/4 {
+                            c'4
+                            c'4
+                        }
+                    }   % measure
+                    {   % measure
+                        \time 6/8
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 3/3 {
+                            c'4
+                            c'4
+                            c'4
+                        }
+                    }   % measure
+                    {   % measure
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 3/4 {
+                            c'4
+                            c'4
+                            c'4
+                            c'4
+                        }
+                    }   % measure
+                }
+
+        ..  container:: example
+
+            Extracts trivial tuplets:
+
+            >>> rhythm_maker = abjad.rhythmmakertools.EvenDivisionRhythmMaker(
+            ...     denominators=[4],
+            ...     extra_counts_per_division=[0, 0, 1],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         extract_trivial=True,
+            ...         ),
+            ...     )
+
+            >>> divisions = [(5, 8), (6, 8), (6, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(lilypond_file[abjad.Staff])
+                \new RhythmicStaff
+                {
+                    {   % measure
+                        \time 5/8
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 5/4 {
+                            c'4
+                            c'4
+                        }
+                    }   % measure
+                    {   % measure
+                        \time 6/8
+                        c'4
+                        c'4
+                        c'4
+                    }   % measure
+                    {   % measure
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 3/4 {
+                            c'4
+                            c'4
+                            c'4
+                            c'4
+                        }
+                    }   % measure
+                }
+
+        ..  container:: example
+
+            Extracts trivial tuplets and spells tuplet denominators according
+            to division numerators:
+
+            >>> rhythm_maker = abjad.rhythmmakertools.EvenDivisionRhythmMaker(
+            ...     denominators=[4],
+            ...     extra_counts_per_division=[0, 0, 1],
+            ...     tuplet_specifier=abjad.rhythmmakertools.TupletSpecifier(
+            ...         denominator='divisions',
+            ...         extract_trivial=True,
+            ...         ),
+            ...     )
+
+            >>> divisions = [(5, 8), (6, 8), (6, 8)]
+            >>> selections = rhythm_maker(divisions)
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
+            ...     selections,
+            ...     divisions,
+            ...     )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(lilypond_file[abjad.Staff])
+                \new RhythmicStaff
+                {
+                    {   % measure
+                        \time 5/8
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 5/4 {
+                            c'4
+                            c'4
+                        }
+                    }   % measure
+                    {   % measure
+                        \time 6/8
+                        c'4
+                        c'4
+                        c'4
+                    }   % measure
+                    {   % measure
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 6/8 {
+                            c'4
+                            c'4
+                            c'4
+                            c'4
+                        }
+                    }   % measure
+                }
 
         Returns tuplet specifier or none.
         '''

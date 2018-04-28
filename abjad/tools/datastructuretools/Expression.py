@@ -2,7 +2,7 @@ import inspect
 import itertools
 import numbers
 from typing import List  # noqa
-from abjad.tools import systemtools
+from abjad.tools.systemtools.Signature import Signature
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -201,7 +201,7 @@ class Expression(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    @systemtools.Signature(
+    @Signature(
         markup_maker_callback='_make_expression_add_markup',
         )
     def __add__(self, i):

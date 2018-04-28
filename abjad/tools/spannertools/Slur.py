@@ -31,9 +31,9 @@ class Slur(Spanner):
         >>> abjad.attach(abjad.Slur(), staff[:1])
         Traceback (most recent call last):
             ...
-        Exception: Slur() attachment test fails for ...
-        <BLANKLINE>
-        Selection([Note("c'4")])
+        Exception: Slur()._attachment_test_all():
+          Requires at least two leaves.
+          Not just Note("c'4").
 
     Formats LilyPond ``(`` command on first leaf in spanner.
 

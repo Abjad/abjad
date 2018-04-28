@@ -33,8 +33,6 @@ class MarginMarkup(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = '(5) Utilities'
-
     __slots__ = (
         '_context',
         '_format_slot',

@@ -49,12 +49,17 @@ if __name__ == '__main__':
             string = 'first_measure_number'
             first_measure_number = buildspace_directory.get_metadatum(string)
             if not bool(first_measure_number):
-                raise Exception('can not find first measure number ...')
+                print('Can not find first measure number ...')
+                first_measure_number = False
             assert isinstance(first_measure_number, int)
         else:
             first_measure_number = 1
     except:
         traceback.print_exc()
+        sys.exit(1)
+
+    if first_measure_number is False:
+        print('Skipping layout ...')
         sys.exit(1)
         
     try:

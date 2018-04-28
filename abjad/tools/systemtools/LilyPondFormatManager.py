@@ -452,12 +452,12 @@ class LilyPondFormatManager(AbjadObject):
 
         Returns string.
         '''
-        import abjad
-        grob = abjad.String(grob).to_upper_camel_case()
+        from abjad.tools.datastructuretools.String import String
+        grob = String(grob).to_upper_camel_case()
         attribute = LilyPondFormatManager.format_lilypond_attribute(attribute)
         value = LilyPondFormatManager.format_lilypond_value(value)
         if context is not None:
-            context = abjad.String(context).capitalize_start() + '.'
+            context = String(context).capitalize_start() + '.'
         else:
             context = ''
         if once is True:
@@ -469,22 +469,28 @@ class LilyPondFormatManager(AbjadObject):
         return result
 
     @staticmethod
-    def make_lilypond_revert_string(grob, attribute, context=None):
+    def make_lilypond_revert_string(grob, attribute, context=None) -> str:
         r'''Makes LilyPond revert string.
 
-        Returns string.
+        ..  container:: example
+
+            >>> abjad.LilyPondFormatManager.make_lilypond_revert_string(
+            ...     'glissando',
+            ...     'bound_details__right__arrow',
+            ...     )
+            '\\revert Glissando.bound-details.right.arrow'
+
         '''
-        import abjad
-        grob = abjad.String(grob).to_upper_camel_case()
-        attribute = LilyPondFormatManager.format_lilypond_attribute(attribute)
-        attribute = attribute.split('.')[0]
+        from abjad.tools.datastructuretools.String import String
+        grob = String(grob).to_upper_camel_case()
+        dotted = LilyPondFormatManager.format_lilypond_attribute(attribute)
         if context is not None:
-            context = abjad.String(context).to_upper_camel_case()
+            context = String(context).to_upper_camel_case()
             context += '.'
         else:
             context = ''
         result = r'\revert {}{}.{}'
-        result = result.format(context, grob, attribute)
+        result = result.format(context, grob, dotted)
         return result
 
     @staticmethod
@@ -493,9 +499,9 @@ class LilyPondFormatManager(AbjadObject):
 
         Returns string.
         '''
-        import abjad
+        from abjad.tools.datastructuretools.String import String
         if grob is not None:
-            grob = abjad.String(grob).to_upper_camel_case()
+            grob = String(grob).to_upper_camel_case()
             grob += '.'
         else:
             grob = ''

@@ -1,5 +1,4 @@
 import functools
-from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -130,12 +129,13 @@ class OrdinalConstant(AbjadValueObject):
 
     # can only compare like-dimensioned ordinal constants
     def _check_comparator(self, argument):
-        if not isinstance(argument, type(self)) or \
-            self._dimension != argument._dimension:
+        if (not isinstance(argument, type(self)) or
+            self._dimension != argument._dimension):
             message = 'can only compare like-dimensioned ordinal constants.'
             raise Exception(message)
 
     def _get_format_specification(self):
+        from abjad.tools import systemtools
         storage_format_text = repr_text = self._representation or None
         return systemtools.FormatSpecification(
             client=self,

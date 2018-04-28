@@ -1,7 +1,35 @@
-*.py[cod]
-
 # C extensions
 *.so
+
+# Emacs
+*~
+\#*\#
+
+# Installer logs
+pip-log.txt
+
+# IPython
+.ipynb_checkpoints
+
+# LaTeX intermediate files
+*.synctex.gz
+
+# Misc.
+*.bak
+*.pkl
+.cache
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+/.settings
+
+# MyPy
+.mypy_cache
+
+# OS X
+.DS_Store
 
 # Packages
 *.egg
@@ -20,36 +48,22 @@ lib
 lib64
 __pycache__
 
-# Installer logs
-pip-log.txt
+# Pycharm
+.idea/
+
+# Pytest
+.pytest_cache
+
+# Python
+*.py[cod]
+
+# Translations
+*.mo
 
 # Unit test / coverage reports
 .coverage
 .tox
 nosetests.xml
-
-# Translations
-*.mo
-
-# Mr Developer
-.mr.developer.cfg
-.project
-.pydevproject
-/.settings
-
-# LaTeX intermediate files
-*.synctex.gz
-
-# Misc.
-*.bak
-*.pkl
-.cache
-
-# OS X
-.DS_Store
-
-# IPython
-.ipynb_checkpoints
 
 # Virtual Environments
 venv/
@@ -57,15 +71,3 @@ Envs/
 ENV/
 .virtualenvs
 .python-version
-
-# IDE's and Text Editors
-
-# Pycharm
-.idea/
-
-# Emacs
-*~
-\#*\#
-
-# MyPy
-.mypy_cache

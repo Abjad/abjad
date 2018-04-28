@@ -405,8 +405,12 @@ class NumberedPitch(Pitch):
             >>> abjad.NumberedPitch.from_hertz(440)
             NumberedPitch(9)
 
+        ..  container:: example
+
+            REGRESSION. Returns 12 (not 0):
+
             >>> abjad.NumberedPitch.from_hertz(519)
-            NumberedPitch(0)
+            NumberedPitch(12)
 
         Returns newly constructed numbered pitch.
         '''

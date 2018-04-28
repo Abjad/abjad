@@ -1,5 +1,4 @@
 import abc
-from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -91,6 +90,7 @@ class TypedCollection(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
+        from abjad.tools import systemtools
         agent = systemtools.StorageFormatManager(self)
         names = list(agent.signature_keyword_names)
         if 'items' in names:

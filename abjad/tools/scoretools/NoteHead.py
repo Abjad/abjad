@@ -248,7 +248,7 @@ class NoteHead(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def alternative(self) -> typing.Tuple['NoteHead', str]:
+    def alternative(self) -> typing.Tuple['NoteHead', str, str]:
         r'''Gets and sets note-head alternative.
 
         ..  container:: example

@@ -444,9 +444,26 @@ class TextSpanner(Spanner):
         >>> abjad.attach(spanner, staff[:1])
         Traceback (most recent call last):
             ...
-        Exception: TextSpanner() attachment test fails for ...
-        <BLANKLINE>
-        Selection([Note("c'4")])
+        Exception: TextSpanner()._attachment_test_all():
+          Requires at least two leaves.
+          Not just Note("c'4").
+
+    ..  container:: example
+
+        Raises exception on noncontiguous leaves:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> spanner = abjad.TextSpanner()
+        >>> abjad.attach(spanner, staff[:1] + staff[-1:])
+        Traceback (most recent call last):
+            ...
+        Exception: TextSpanner() leaves must be contiguous:
+          abjad.Selection(
+            [
+                abjad.Note("c'4"),
+                abjad.Note("f'4"),
+                ]
+            )
 
     '''
 
@@ -622,7 +639,9 @@ class TextSpanner(Spanner):
                     c'4 \startTextSpan
                     d'4
                     e'4
-                    \revert TextSpanner.bound-details
+                    \revert TextSpanner.bound-details.left.stencil-align-dir-y
+                    \revert TextSpanner.bound-details.left.text
+                    \revert TextSpanner.bound-details.right.padding
                     \revert TextSpanner.color
                     \override TextSpanner.bound-details.left.stencil-align-dir-y = #0
                     \override TextSpanner.bound-details.left.text = \markup {
@@ -634,7 +653,8 @@ class TextSpanner(Spanner):
                     c'4
                     d'4
                     e'4
-                    \revert TextSpanner.bound-details
+                    \revert TextSpanner.bound-details.left.stencil-align-dir-y
+                    \revert TextSpanner.bound-details.left.text
                     f'4 \stopTextSpan
                 }
 

@@ -193,3 +193,22 @@ class Ratio(NonreducedRatio):
         Returns tuple of two or more numbers.
         '''
         return self._numbers
+
+    @property
+    def reciprocal(self):
+        r'''Gets reciprocal.
+
+        ..  container:: example
+
+            Gets reciprocal:
+
+            >>> abjad.Ratio((3, 2)).reciprocal
+            Ratio((2, 3))
+
+            >>> abjad.Ratio((3, 2, 7)).reciprocal
+            Ratio((7, 2, 3))
+
+        Returns new ratio.
+        '''
+        numbers = list(reversed(self.numbers))
+        return type(self)(numbers)

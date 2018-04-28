@@ -1,5 +1,9 @@
 import copy
+from abjad.tools.datastructuretools.Duration import Duration
+from abjad.tools.pitchtools.NamedPitch import NamedPitch
+from .DrumNoteHead import DrumNoteHead
 from .Leaf import Leaf
+from .NoteHead import NoteHead
 
 
 class Note(Leaf):
@@ -8,16 +12,12 @@ class Note(Leaf):
     ..  container:: example
 
         >>> note = abjad.Note("cs''8.")
-        >>> measure = abjad.Measure((3, 16), [note])
-        >>> abjad.show(measure) # doctest: +SKIP
+        >>> abjad.show(note) # doctest: +SKIP
 
         ..  docs::
 
-            >>> abjad.f(measure)
-            {   % measure
-                \time 3/16
-                cs''8.
-            }   % measure
+            >>> abjad.f(note)
+            cs''8.
 
     '''
 
@@ -63,21 +63,21 @@ class Note(Leaf):
             written_pitch, written_duration = arguments
         elif len(arguments) == 0:
             written_pitch = 'C4'
-            written_duration = abjad.Duration(1, 4)
+            written_duration = Duration(1, 4)
         else:
             message = 'can not initialize note from {!r}.'
             raise ValueError(message.format(arguments))
         Leaf.__init__(self, written_duration)
         if written_pitch is not None:
             if written_pitch not in drums:
-                self.note_head = abjad.NoteHead(
+                self.note_head = NoteHead(
                     written_pitch=written_pitch,
                     is_cautionary=is_cautionary,
                     is_forced=is_forced,
                     is_parenthesized=is_parenthesized,
                     )
             else:
-                self.note_head = abjad.DrumNoteHead(
+                self.note_head = DrumNoteHead(
                     written_pitch=written_pitch,
                     is_cautionary=is_cautionary,
                     is_forced=is_forced,
@@ -128,68 +128,81 @@ class Note(Leaf):
             if instrument:
                 sounding_pitch = instrument.middle_c_sounding_pitch
             else:
-                sounding_pitch = abjad.NamedPitch('C4')
-            interval = abjad.NamedPitch('C4') - sounding_pitch
+                sounding_pitch = NamedPitch('C4')
+            interval = NamedPitch('C4') - sounding_pitch
             sounding_pitch = interval.transpose(self.written_pitch)
             return sounding_pitch
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def note_head(self):
-        r'''Gets and sets note-head of note.
+    def note_head(self) -> NoteHead:
+        r'''Gets and sets note-head.
 
         .. container:: example
 
-            Gets note-head:
-
-            >>> note = abjad.Note(13, (3, 16))
+            >>> note = abjad.Note("cs''8.")
             >>> note.note_head
             NoteHead("cs''")
 
-        ..  container:: example
+            >>> abjad.show(note) # doctest: +SKIP
+            
+            ..  docs::
+            
+                >>> abjad.f(note)
+                cs''8.
+                
+            >>> note.note_head = 'D5'
+            >>> note.note_head
+            NoteHead("d''")
 
-            Sets note-head:
+            >>> abjad.show(note) # doctest: +SKIP
 
-            >>> note = abjad.Note(13, (3, 16))
-            >>> note.note_head = 14
-            >>> note
-            Note("d''8.")
+            ..  docs::
 
-        Returns note-head.
+                >>> abjad.f(note)
+                d''8.
+
         '''
         return self._note_head
 
     @note_head.setter
     def note_head(self, argument):
-        import abjad
         if isinstance(argument, type(None)):
             self._note_head = None
-        elif isinstance(argument, abjad.NoteHead):
+        elif isinstance(argument, NoteHead):
             self._note_head = argument
         else:
-            note_head = abjad.NoteHead(client=self, written_pitch=argument)
+            note_head = NoteHead(client=self, written_pitch=argument)
             self._note_head = note_head
 
     @property
-    def written_duration(self):
-        r'''Gets and sets written duration of note.
+    def written_duration(self) -> Duration:
+        r'''Gets and sets written duration.
 
         ..  container:: example
 
-            Gets written duration of note.
-
-            >>> note = abjad.Note("c'4")
+            >>> note = abjad.Note("cs''8.")
             >>> note.written_duration
-            Duration(1, 4)
+            Duration(3, 16)
 
-        ..  container:: example
+            >>> abjad.show(note) # doctest: +SKIP
 
-            Sets written duration of note:
+            ..  docs::
 
-            >>> note.written_duration = abjad.Duration(1, 16)
+                >>> abjad.f(note)
+                cs''8.
+
+            >>> note.written_duration = (1, 16)
             >>> note.written_duration
             Duration(1, 16)
+
+            >>> abjad.show(note) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(note)
+                cs''16
 
         Returns duration
         '''
@@ -200,40 +213,68 @@ class Note(Leaf):
         return Leaf.written_duration.fset(self, argument)
 
     @property
-    def written_pitch(self):
-        r'''Gets and sets written pitch of note.
+    def written_pitch(self) -> NamedPitch:
+        r'''Gets and sets written pitch.
 
         ..  container:: example
 
-            Gets written pitch of note.
-
-            >>> note = abjad.Note(13, (3, 16))
+            >>> note = abjad.Note("cs''8.")
             >>> note.written_pitch
             NamedPitch("cs''")
 
-        ..  container:: example
+            >>> abjad.show(note) # doctest: +SKIP
 
-            Sets written pitch of note:
+            ..  docs::
 
-            >>> note = abjad.Note(13, (3, 16))
-            >>> note.written_pitch = 14
-            >>> note
-            Note("d''8.")
+                >>> abjad.f(note)
+                cs''8.
+
+            >>> note.written_pitch = 'D5'
+            >>> note.written_pitch
+            NamedPitch("d''")
+
+            >>> abjad.show(note) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(note)
+                d''8.
 
         Returns named pitch.
         '''
         if self.note_head is not None:
             return self.note_head.written_pitch
+        else:
+            return None
 
     @written_pitch.setter
     def written_pitch(self, argument):
-        import abjad
         if argument is None:
             if self.note_head is not None:
                 self.note_head.written_pitch = None
         else:
             if self.note_head is None:
-                self.note_head = abjad.NoteHead(self, written_pitch=None)
+                self.note_head = NoteHead(self, written_pitch=None)
             else:
-                pitch = abjad.NamedPitch(argument)
+                pitch = NamedPitch(argument)
                 self.note_head.written_pitch = pitch
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def from_pitch_and_duration(pitch, duration):
+        r'''Makes note from ``pitch`` and ``duration``.
+
+        ..  container:: example
+
+            >>> note = abjad.Note.from_pitch_and_duration('C#5', (3, 16))
+            >>> abjad.show(note) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(note)
+                cs''8.
+
+        '''
+        note = Note(pitch, duration)
+        return note

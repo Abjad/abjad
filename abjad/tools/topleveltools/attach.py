@@ -237,10 +237,13 @@ def attach(
         attachable._before_attach(target)
 
     if hasattr(attachable, '_attachment_test_all'):
-        if not attachable._attachment_test_all(target):
-            message = '{!r} attachment test fails for ...'.format(attachable)
-            message += '\n\n'
-            message += '{!r}'.format(target)
+        result = attachable._attachment_test_all(target)
+        if result is not True:
+            assert isinstance(result, list)
+            result = ['  ' + _ for _ in result]
+            message = f'{attachable!r}._attachment_test_all():'
+            result.insert(0, message)
+            message = '\n'.join(result)
             raise Exception(message)
 
     grace_container = (abjad.AfterGraceContainer, abjad.GraceContainer)

@@ -1,9 +1,8 @@
-from abjad.tools import systemtools
 from .Duration import Duration
 
 
 class Offset(Duration):
-    '''Offset.
+    r'''Offset.
 
     ..  container:: example
 
@@ -595,6 +594,8 @@ class Offset(Duration):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
+        from abjad.tools.systemtools.FormatSpecification import \
+            FormatSpecification
         is_indented = False
         names = []
         values = [self.numerator, self.denominator]
@@ -602,7 +603,7 @@ class Offset(Duration):
             is_indented = True
             names = ['grace_displacement']
             values = [(self.numerator, self.denominator)]
-        return systemtools.FormatSpecification(
+        return FormatSpecification(
             client=self,
             repr_is_indented=is_indented,
             storage_format_args_values=values,
