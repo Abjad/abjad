@@ -1,4 +1,5 @@
 import typing
+from abjad.tools.datastructuretools.OrderedDict import OrderedDict
 from .Spanner import Spanner
 
 
@@ -63,7 +64,7 @@ class Glissando(Spanner):
         self,
         allow_repeats: bool = None,
         allow_ties: bool = None,
-        overrides: dict = None,
+        overrides: OrderedDict = None,
         parenthesize_repeats: bool = None,
         stems: bool = None,
         style: str = None,
