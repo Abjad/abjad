@@ -2682,10 +2682,7 @@ class Path(pathlib.PosixPath):
         r'''Changes path to part.
         '''
         assert self.parent.is_part(), repr(self)
-        assert self.name.endswith('music.ly')
-        words = self.name.split('-')
-        assert words[-1] == 'music.ly'
-        words = words[:-1]
+        words = self.parent.name.split('-')
         part_manifest = self._get_part_manifest()
         if not part_manifest:
             raise Exception(f'no part manifest: {self}.')

@@ -76,6 +76,7 @@ if __name__ == '__main__':
         maker = baca.SegmentMaker(
             breaks=breaks,
             do_not_check_persistence=True,
+            do_not_include_layout_ly=True,
             final_bar_line=False,
             first_measure_number=first_measure_number,
             score_template=baca.SingleStaffScoreTemplate(),

@@ -1,13 +1,20 @@
 import collections
 import copy
+import typing
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.datastructuretools import Left
+from abjad.tools.datastructuretools import Right
 from abjad.tools.datastructuretools.Duration import Duration
+from abjad.tools.datastructuretools.OrderedDict import OrderedDict
+from abjad.tools.scoretools.Leaf import Leaf
+from abjad.tools.scoretools.Selection import Selection
 from abjad.tools.systemtools.LilyPondFormatManager import LilyPondFormatManager
 from abjad.tools.systemtools.Wrapper import Wrapper
 from abjad.tools.segmenttools.Tags import Tags
 from abjad.tools.systemtools.FormatSpecification import FormatSpecification
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
+from abjad.tools.systemtools.Tag import Tag
 from abjad.tools.timespantools.Timespan import Timespan
 from abjad.tools.topleveltools.attach import attach
 from abjad.tools.topleveltools.inspect import inspect
@@ -43,19 +50,22 @@ class Spanner(AbjadObject, collections.Sequence):
 
     ### INITIALIZER ###
 
-    def __init__(self, overrides=None):
-        overrides = overrides or {}
+    def __init__(
+        self,
+        overrides: OrderedDict = None,
+        ) -> None:
+        overrides = overrides or OrderedDict()
         self._contiguity_constraint = 'logical voice'
         self._apply_overrides(overrides)
         self._deactivate = None
         self._ignore_attachment_test = None
         self._ignore_before_attach = None
-        self._leaves = []
+        self._leaves: typing.List[Leaf] = []
         self._left_broken = None
         self._lilypond_setting_name_manager = None
         self._right_broken = None
         self._tag = None
-        self._wrappers = []
+        self._wrappers: typing.List[Wrapper] = []
 
     ### SPECIAL METHODS ###
 
@@ -183,16 +193,15 @@ class Spanner(AbjadObject, collections.Sequence):
         right_broken=None,
         tag=None,
         ):
-        import abjad
         assert not self, repr(self)
-        assert isinstance(argument, abjad.Selection), repr(argument)
+        assert isinstance(argument, Selection), repr(argument)
         assert argument.are_leaves(), repr(argument)
         self._extend(argument)
         self._deactivate = deactivate
         self._left_broken = left_broken
         self._right_broken = right_broken
         if tag is not None:
-            tag = abjad.Tag(tag)
+            tag = Tag(tag)
         self._tag = tag
 
     def _attach_piecewise(
@@ -205,8 +214,7 @@ class Spanner(AbjadObject, collections.Sequence):
         wrapper=None,
         ):
         if leaf not in self:
-            message = f'must be leaf in spanner: {leaf!r}.'
-            raise Exception(message)
+            raise Exception(f'must be leaf in spanner: {leaf!r}.')
         if isinstance(indicator, Wrapper):
             alternate = indicator.alternate
             annotation = indicator.annotation
@@ -233,8 +241,7 @@ class Spanner(AbjadObject, collections.Sequence):
             return wrapper_
 
     def _attachment_test(self, argument):
-        import abjad
-        return isinstance(argument, abjad.Leaf)
+        return isinstance(argument, Leaf)
 
     def _attachment_test_all(self, argument):
         return True
@@ -317,12 +324,11 @@ class Spanner(AbjadObject, collections.Sequence):
 
         Returns tuple of original, left and right spanners.
         '''
-        import abjad
         if i < 0:
             i = len(self) + i
-        if direction == abjad.Left:
+        if direction == Left:
             return self._fracture_left(i)
-        elif direction == abjad.Right:
+        elif direction == Right:
             return self._fracture_right(i)
         elif direction is None:
             left = self._copy(self[:i])
@@ -500,8 +506,7 @@ class Spanner(AbjadObject, collections.Sequence):
     def _insert(self, i, leaf):
         r'''Not composer-safe.
         '''
-        import abjad
-        if not isinstance(leaf, abjad.Leaf):
+        if not isinstance(leaf, Leaf):
             message = 'spanners attach only to leaves: {!s}.'
             message = message.format(leaf)
             raise Exception(message)
@@ -557,25 +562,6 @@ class Spanner(AbjadObject, collections.Sequence):
         return len(self) == 1 and self.leaves[0] is leaf
 
     def _is_trending(self, leaf):
-        import abjad
-        if leaf not in self:
-            return False
-        if isinstance(self, abjad.Hairpin):
-            return True
-        if isinstance(self, abjad.MetronomeMarkSpanner):
-            prototype = (abjad.Accelerando, abjad.Ritardando)
-            if inspect(leaf).has_indicator(prototype):
-                return True
-            previous_wrapper = inspect(leaf).get_effective(
-                abjad.MetronomeMark,
-                n=-1,
-                unwrap=False,
-                )
-            if previous_wrapper is None:
-                return False
-            previous_leaf = previous_wrapper.component
-            if inspect(previous_leaf).has_indicator(prototype):
-                return True
         return False
 
     def _remove(self, leaf):
@@ -591,8 +577,7 @@ class Spanner(AbjadObject, collections.Sequence):
                 self._leaves.pop(i)
                 break
         else:
-            message = '{!r} not in spanner.'
-            raise ValueError(message.format(leaf))
+            raise ValueError(f'{leaf!r} not in spanner.')
 
     def _sever_all_leaves(self):
         r'''Not composer-safe.
@@ -652,25 +637,21 @@ class Spanner(AbjadObject, collections.Sequence):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def leaves(self):
+    def leaves(self) -> Selection:
         r'''Gets leaves in spanner.
-
-        Returns selection of leaves.
         '''
-        import abjad
         for leaf in self._leaves:
-            if not isinstance(leaf, abjad.Leaf):
-                raise Exception(f'spanners attach only to leaves: {leaf!s}.')
-        return abjad.select(self._leaves)
+            if not isinstance(leaf, Leaf):
+                message = f'spanners attach only to leaves (not {leaf!s}).'
+                raise Exception(message)
+        return select(self._leaves)
 
     @property
-    def overrides(self):
+    def overrides(self) -> OrderedDict:
         r'''Gets overrides.
-
-        Returns dictionary.
         '''
         manager = override(self)
-        overrides = {}
+        overrides = OrderedDict()
         for attribute_tuple in manager._get_attribute_tuples():
             attribute = '__'.join(attribute_tuple[:-1])
             value = attribute_tuple[-1]

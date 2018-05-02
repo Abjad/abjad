@@ -1,7 +1,11 @@
 import typing
 from .Spanner import Spanner
-from abjad.tools.systemtools.LilyPondFormatManager import LilyPondFormatManager
+from abjad.tools.indicatortools.Accelerando import Accelerando
+from abjad.tools.indicatortools.MetronomeMark import MetronomeMark
+from abjad.tools.indicatortools.Ritardando import Ritardando
 from abjad.tools.markuptools.Markup import Markup
+from abjad.tools.systemtools.LilyPondFormatManager import LilyPondFormatManager
+from abjad.tools.topleveltools.inspect import inspect
 
 
 class MetronomeMarkSpanner(Spanner):
@@ -2278,6 +2282,24 @@ class MetronomeMarkSpanner(Spanner):
             if any(_ is not None for _ in indicators):
                 return wrappers
         return None, None, None
+
+    def _is_trending(self, leaf):
+        if leaf not in self:
+            return False
+        prototype = (Accelerando, Ritardando)
+        if inspect(leaf).has_indicator(prototype):
+            return True
+        previous_wrapper = inspect(leaf).get_effective(
+            MetronomeMark,
+            n=-1,
+            unwrap=False,
+            )
+        if previous_wrapper is None:
+            return False
+        previous_leaf = previous_wrapper.component
+        if inspect(previous_leaf).has_indicator(prototype):
+            return True
+        return False
 
     def _make_dashed_arrow(self):
         import abjad

@@ -1,5 +1,6 @@
 import typing
 from .Spanner import Spanner
+from abjad.tools.datastructuretools.OrderedDict import OrderedDict
 from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
 from abjad.tools.datastructuretools.String import String
 from abjad.tools.indicatortools.Dynamic import Dynamic
@@ -272,7 +273,7 @@ class Hairpin(Spanner):
         descriptor: str = None,
         context: str = None,
         direction: OrdinalConstant = None,
-        overrides: typing.List[str] = None,
+        overrides: OrderedDict = None,
         start_dynamic_is_textual: bool = None,
         stop_dynamic_is_textual: bool = None,
         trim: bool = None,
@@ -616,6 +617,11 @@ class Hairpin(Spanner):
                 return True
         else:
             return False
+
+    def _is_trending(self, leaf):
+        if leaf not in self:
+            return False
+        return True
 
     def _is_valid_descriptor(self, descriptor):
         start, shape, stop = self._parse_descriptor(descriptor)
