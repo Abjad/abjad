@@ -1875,26 +1875,29 @@ class Expression(AbjadValueObject):
                     \new Staff
                     {
                         c'4.
-                            ^ \markup {
-                                \small
-                                    3/8
-                                }
-                        d'8 ~
-                            ^ \markup {
-                                \small
-                                    1/2
-                                }
+                        ^ \markup {
+                            \small
+                                3/8
+                            }
+                        d'8
+                        ~
+                        ^ \markup {
+                            \small
+                                1/2
+                            }
                         d'4.
-                        e'16 [
-                            ^ \markup {
-                                \small
-                                    1/16
-                                }
-                        ef'16 ]
-                            ^ \markup {
-                                \small
-                                    1/16
-                                }
+                        e'16
+                        [
+                        ^ \markup {
+                            \small
+                                1/16
+                            }
+                        ef'16
+                        ]
+                        ^ \markup {
+                            \small
+                                1/16
+                            }
                     }
 
         Returns expression.
@@ -1979,16 +1982,16 @@ class Expression(AbjadValueObject):
                     \new Voice
                     {
                         b'8
-                            ^ \markup {
-                                \concat
-                                    {
-                                        T
-                                        \sub
-                                            13
-                                        \bold
-                                            J
-                                    }
+                        ^ \markup {
+                            \concat
+                                {
+                                    T
+                                    \sub
+                                        13
+                                    \bold
+                                        J
                                 }
+                            }
                         bqs'8
                         g'8
                         af'8

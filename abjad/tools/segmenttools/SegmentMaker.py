@@ -39,13 +39,13 @@ class SegmentMaker(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self):
-        self._container_to_part_assignment: OrderedDict = None
-        self._environment: str = None
-        self._lilypond_file: LilyPondFile = None
-        self._metadata: OrderedDict = None
-        self._previous_metadata: OrderedDict = None
-        self._score: Score = None
-        self._segment_directory: Path = None
+        self._container_to_part_assignment: typing.Optional[OrderedDict] = None
+        self._environment: typing.Optional[str] = None
+        self._lilypond_file: typing.Optional[LilyPondFile] = None
+        self._metadata: typing.Optional[OrderedDict] = None
+        self._previous_metadata: typing.Optional[OrderedDict] = None
+        self._score: typing.Optional[Score] = None
+        self._segment_directory: typing.Optional[Path] = None
 
     ### SPECIAL METHODS ###
 
@@ -178,7 +178,7 @@ class SegmentMaker(AbjadObject):
         return self._environment
 
     @property
-    def metadata(self) -> OrderedDict:
+    def metadata(self) -> typing.Optional[OrderedDict]:
         r'''Gets segment metadata after run.
         '''
         return self._metadata
@@ -199,7 +199,7 @@ class SegmentMaker(AbjadObject):
     def segment_name(self) -> typing.Optional[str]:
         r'''Gets segment name.
         '''
-        if bool(self.segment_directory):
+        if self.segment_directory is not None:
             return self.segment_directory.name
         return None
 
@@ -220,5 +220,6 @@ class SegmentMaker(AbjadObject):
         self._metadata = OrderedDict(metadata)
         self._previous_metadata = OrderedDict(previous_metadata)
         lilypond_file = self._make_lilypond_file(midi=midi)
-        self._lilypond_file: LilyPondFile = lilypond_file
+        self._lilypond_file = lilypond_file
+        assert isinstance(self._lilypond_file, LilyPondFile)
         return self._lilypond_file

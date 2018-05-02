@@ -16,17 +16,25 @@ def label(client=None, deactivate=None, tag=None):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 \override TextScript.staff-padding = #4
                 \override TupletBracket.staff-padding = #0
-            } {
+            }
+            {
                 \times 2/3 {
-                    c'4 ^ \markup { 0 }
-                    d'4 ^ \markup { 1/6 }
-                    e'4 ~ ^ \markup { 1/3 }
+                    c'4
+                    ^ \markup { 0 }
+                    d'4
+                    ^ \markup { 1/6 }
+                    e'4
+                    ~
+                    ^ \markup { 1/3 }
                 }
                 e'4
-                ef'4 ^ \markup { 3/4 }
+                ef'4
+                ^ \markup { 3/4 }
             }
 
         See the ``Label`` API entry for many more examples.
@@ -61,17 +69,25 @@ def label(client=None, deactivate=None, tag=None):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 \override TextScript.staff-padding = #4
                 \override TupletBracket.staff-padding = #0
-            } {
+            }
+            {
                 \times 2/3 {
-                    c'4 ^ \markup { 0 }
-                    d'4 ^ \markup { 1/6 }
-                    e'4 ~ ^ \markup { 1/3 }
+                    c'4
+                    ^ \markup { 0 }
+                    d'4
+                    ^ \markup { 1/6 }
+                    e'4
+                    ~
+                    ^ \markup { 1/3 }
                 }
                 e'4
-                ef'4 ^ \markup { 3/4 }
+                ef'4
+                ^ \markup { 3/4 }
             }
 
         See the ``Label`` API entry for many more examples.

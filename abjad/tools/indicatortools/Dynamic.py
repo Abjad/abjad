@@ -27,7 +27,8 @@ class Dynamic(AbjadValueObject):
             >>> abjad.f(voice)
             \new Voice
             {
-                c'8 \f
+                c'8
+                \f
                 d'8
                 e'8
                 f'8
@@ -82,7 +83,8 @@ class Dynamic(AbjadValueObject):
                 }
                 {
                     \voiceOne
-                    e'8 \f
+                    e'8
+                    \f
                     g'8
                     f'8
                     a'8
@@ -90,7 +92,8 @@ class Dynamic(AbjadValueObject):
                 \new Voice
                 {
                     \voiceTwo
-                    c'2 \mf
+                    c'2
+                    \mf
                 }
             >>
 
@@ -442,9 +445,8 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
-            >>> dynamic = abjad.Dynamic('f', command=r'\sub_f')
-            >>> abjad.f(dynamic)
-            \sub_f
+            >>> abjad.Dynamic('f', command=r'\sub_f').command
+            '\\sub_f'
 
         Use to override LilyPond output when a custom dynamic has been defined
         in an external stylesheet. (In the example above, ``\sub_f`` is a
@@ -516,7 +518,8 @@ class Dynamic(AbjadValueObject):
                     \override DynamicLineSpanner.staff-padding = #4
                 }
                 {
-                    c'4 _ #(make-dynamic-script
+                    c'4
+                    _ #(make-dynamic-script
                         (markup
                             #:whiteout
                             #:line (
@@ -529,7 +532,8 @@ class Dynamic(AbjadValueObject):
                             )
                         )
                     r4
-                    d'4 _ #(make-dynamic-script
+                    d'4
+                    _ #(make-dynamic-script
                         (markup
                             #:whiteout
                             #:line (
@@ -542,7 +546,8 @@ class Dynamic(AbjadValueObject):
                             )
                         )
                     r4
-                    e'4 _ #(make-dynamic-script
+                    e'4
+                    _ #(make-dynamic-script
                         (markup
                             #:whiteout
                             #:line (
@@ -555,7 +560,8 @@ class Dynamic(AbjadValueObject):
                             )
                         )
                     r4
-                    f'4 _ #(make-dynamic-script
+                    f'4
+                    _ #(make-dynamic-script
                         (markup
                             #:whiteout
                             #:line (
@@ -589,7 +595,8 @@ class Dynamic(AbjadValueObject):
                     \override DynamicLineSpanner.staff-padding = #4
                 }
                 {
-                    c'4 _ #(make-dynamic-script
+                    c'4
+                    _ #(make-dynamic-script
                         (markup
                             #:whiteout
                             #:line (
@@ -602,7 +609,8 @@ class Dynamic(AbjadValueObject):
                             )
                         )
                     r4
-                    d'4 _ #(make-dynamic-script
+                    d'4
+                    _ #(make-dynamic-script
                         (markup
                             #:whiteout
                             #:line (
@@ -615,7 +623,8 @@ class Dynamic(AbjadValueObject):
                             )
                         )
                     r4
-                    e'4 _ #(make-dynamic-script
+                    e'4
+                    _ #(make-dynamic-script
                         (markup
                             #:whiteout
                             #:line (
@@ -628,7 +637,8 @@ class Dynamic(AbjadValueObject):
                             )
                         )
                     r4
-                    f'4 _ #(make-dynamic-script
+                    f'4
+                    _ #(make-dynamic-script
                         (markup
                             #:whiteout
                             #:line (
@@ -661,7 +671,8 @@ class Dynamic(AbjadValueObject):
             >>> abjad.f(voice)
             \new Voice
             {
-                c'4 \f
+                c'4
+                \f
                 d'4
                 e'4
                 f'4
@@ -719,10 +730,13 @@ class Dynamic(AbjadValueObject):
                     \override DynamicLineSpanner.staff-padding = #4
                 }
                 {
-                    c'4 \p
-                    r4 _ #(make-dynamic-script (markup #:whiteout #:normal-text #:italic "niente"))
+                    c'4
+                    \p
                     r4
-                    c'4 \p
+                    _ #(make-dynamic-script (markup #:whiteout #:normal-text #:italic "niente"))
+                    r4
+                    c'4
+                    \p
                 }
 
         '''
@@ -768,7 +782,8 @@ class Dynamic(AbjadValueObject):
                     \override DynamicText.self-alignment-X = #left
                 }
                 {
-                    c'4 _ #(make-dynamic-script (markup #:whiteout #:normal-text #:italic "appena udibile"))
+                    c'4
+                    _ #(make-dynamic-script (markup #:whiteout #:normal-text #:italic "appena udibile"))
                     d'4
                     e'4
                     f'4
@@ -794,7 +809,8 @@ class Dynamic(AbjadValueObject):
             >>> abjad.f(voice)
             \new Voice
             {
-                c'4 \appena_udibile
+                c'4
+                \appena_udibile
                 d'4
                 e'4
                 f'4

@@ -165,7 +165,7 @@ class PersistentOverride(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def after(self) -> bool:
+    def after(self) -> typing.Optional[bool]:
         r'''Ist true when override formats after leaf.
 
         ..  container:: example
@@ -184,7 +184,7 @@ class PersistentOverride(AbjadObject):
         return self._after
 
     @property
-    def attribute(self) -> str:
+    def attribute(self) -> typing.Optional[str]:
         r'''Gets attribute.
 
         ..  container:: example
@@ -203,7 +203,7 @@ class PersistentOverride(AbjadObject):
         return self._attribute
 
     @property
-    def context(self) -> str:
+    def context(self) -> typing.Optional[str]:
         r'''Gets context.
 
         ..  container:: example
@@ -222,7 +222,7 @@ class PersistentOverride(AbjadObject):
         return self._context
 
     @property
-    def grob(self) -> str:
+    def grob(self) -> typing.Optional[str]:
         r'''Gets grob.
 
         ..  container:: example
@@ -241,7 +241,7 @@ class PersistentOverride(AbjadObject):
         return self._grob
 
     @property
-    def hide(self) -> bool:
+    def hide(self) -> typing.Optional[bool]:
         r'''Is true when staff lines should not appear in output.
 
         ..  container:: example
@@ -279,7 +279,7 @@ class PersistentOverride(AbjadObject):
         return self._persistent
 
     @property
-    def value(self) -> str:
+    def value(self) -> typing.Optional[str]:
         r'''Gets value.
 
         ..  container:: example

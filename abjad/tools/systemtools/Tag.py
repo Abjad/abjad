@@ -213,7 +213,7 @@ class Tag(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def string(self) -> str:
+    def string(self) -> typing.Optional[str]:
         r'''Gets string.
 
         ..  container:: example

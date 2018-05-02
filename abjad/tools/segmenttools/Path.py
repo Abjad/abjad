@@ -861,10 +861,13 @@ class Path(pathlib.PosixPath):
         '''
         assert self.is_buildspace(), repr(self)
         if self.is_parts():
-            part_dictionary = self.get_metadatum(
-                document_name,
-                OrderedDict(),
-                )
+            if document_name is not None:
+                part_dictionary = self.get_metadatum(
+                    document_name,
+                    OrderedDict(),
+                    )
+            else:
+                part_dictionary = OrderedDict()
             part_dictionary[name] = value
             assert String(document_name).is_shout_case()
             self.add_metadatum(document_name, part_dictionary)
@@ -1408,7 +1411,7 @@ class Path(pathlib.PosixPath):
             metadatum = default
         return metadatum
 
-    def get_name_predicate(self) -> typing.Callable:
+    def get_name_predicate(self) -> typing.Optional[typing.Callable]:
         r'''Gets name predicate.
 
         ..  container:: example
@@ -1499,8 +1502,12 @@ class Path(pathlib.PosixPath):
         '''
         if not self.is_dir():
             return None
+        path: typing.Optional[Path] = None
         if self.is_material():
-            paths = self.materials().list_paths()
+            if self.materials is not None:
+                paths = self.materials.list_paths()
+            else:
+                paths = []
             if self == paths[-1] and not cyclic:
                 path = self
             else:
@@ -1511,7 +1518,10 @@ class Path(pathlib.PosixPath):
             paths = self.list_paths()
             path = paths[0]
         elif self.is_segment():
-            paths = self.segments().list_paths()
+            if self.segments is not None:
+                paths = self.segments.list_paths()
+            else:
+                paths = []
             if self == paths[-1] and not cyclic:
                 path = None
             else:
@@ -1550,10 +1560,13 @@ class Path(pathlib.PosixPath):
             wrappers = self.list_paths()
             if wrappers:
                 return wrappers[0]
-        wrappers = self.scores.list_paths()
+        if self.scores is not None:
+            wrappers = self.scores.list_paths()
+        else:
+            wrappers = []
         if not wrappers:
             return None
-        wrapper = self.wrapper()
+        wrapper = self.wrapper
         if wrapper == wrappers[-1] and not cyclic:
             return None
         index = wrappers.index(wrapper)
@@ -1608,7 +1621,10 @@ class Path(pathlib.PosixPath):
         if not self.is_dir():
             return None
         if self.is_material():
-            paths = self.materials().list_paths()
+            if self.materials is not None:
+                paths = self.materials.list_paths()
+            else:
+                paths = []
             if self == paths[0] and not cyclic:
                 path = None
             else:
@@ -1619,7 +1635,10 @@ class Path(pathlib.PosixPath):
             paths = self.list_paths()
             path = paths[-1]
         elif self.is_segment():
-            paths = self.segments().list_paths()
+            if self.segments is not None:
+                paths = self.segments.list_paths()
+            else:
+                paths = []
             if self == paths[0] and not cyclic:
                 path = None
             else:
@@ -1658,10 +1677,13 @@ class Path(pathlib.PosixPath):
             wrappers = self.list_paths()
             if wrappers:
                 return wrappers[-1]
-        wrappers = self.scores.list_paths()
+        if self.scores is not None:
+            wrappers = self.scores.list_paths()
+        else:
+            wrappers = []
         if not wrappers:
             return None
-        wrapper = self.wrapper()
+        wrapper = self.wrapper
         if wrapper == wrappers[0] and not cyclic:
             return None
         index = wrappers.index(wrapper)
@@ -1747,7 +1769,11 @@ class Path(pathlib.PosixPath):
         '''
         assert not self.is_external(), repr(self);
         identifiers = []
-        for segment in self.segments.list_paths():
+        if self.segments is not None:
+            paths = self.segments.list_paths()
+        else:
+            paths = []
+        for segment in paths:
             identifier = String(segment.name).to_segment_lilypond_identifier()
             identifier = String(f'{identifier}_GlobalRests')
             identifiers.append(identifier)
@@ -1758,7 +1784,11 @@ class Path(pathlib.PosixPath):
         '''
         assert not self.is_external(), repr(self);
         identifiers = []
-        for segment in self.segments.list_paths():
+        if self.segments is not None:
+            paths = self.segments.list_paths()
+        else:
+            paths = []
+        for segment in paths:
             identifier = String(segment.name).to_segment_lilypond_identifier()
             identifier = String(f'{identifier}_GlobalSkips')
             identifiers.append(identifier)
@@ -1769,7 +1799,11 @@ class Path(pathlib.PosixPath):
         '''
         assert not self.is_external(), repr(self)
         alive_during_segment = OrderedDict()
-        for segment in self.segments.list_paths():
+        if self.segments is not None:
+            paths = self.segments.list_paths()
+        else:
+            paths = []
+        for segment in paths:
             dictionary = segment.get_metadatum('alive_during_segment', [])
             alive_during_segment[segment.name] = dictionary
         staves_in_score: typing.List[String] = []
@@ -1891,7 +1925,10 @@ class Path(pathlib.PosixPath):
             True
 
         '''
-        return bool(self.scores) and self.scores(self.name, self.name) == self
+        if self.scores is not None:
+            return self.scores / self.name / self.name == self
+        else:
+            return False
 
     def is_distribution(self) -> bool:
         r'''Is true when path is distribution directory.
@@ -2476,7 +2513,10 @@ class Path(pathlib.PosixPath):
             True
 
         '''
-        return bool(self.scores) and self.scores(self.name) == self
+        if self.scores is not None:
+            return self.scores / self.name == self
+        else:
+            return False
 
     def list_paths(self):
         r'''Lists paths ordered by view (if any).

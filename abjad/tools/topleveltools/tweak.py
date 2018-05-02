@@ -14,10 +14,11 @@ def tweak(argument):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'4
-                    - \tweak color #red
-                    ^ \markup { "Allegro assai" }
+                - \tweak color #red
+                ^ \markup { "Allegro assai" }
                 d'4
                 e'4
                 f'4
@@ -36,10 +37,11 @@ def tweak(argument):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'4
-                    - \tweak color #red
-                    ^ \markup { "Allegro assai" }
+                - \tweak color #red
+                ^ \markup { "Allegro assai" }
                 d'4
                 e'4
                 f'4
@@ -57,13 +59,14 @@ def tweak(argument):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'4
-                    - \tweak color #red
-                    ^ \markup {
-                        \italic
-                            "Allegro assai"
-                        }
+                - \tweak color #red
+                ^ \markup {
+                    \italic
+                        "Allegro assai"
+                    }
                 d'4
                 e'4
                 f'4
@@ -84,13 +87,14 @@ def tweak(argument):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'4
-                    - \tweak color #red
-                    ^ \markup { "Allegro assai ..." }
-                    - \tweak color #blue
-                    - \tweak staff-padding #4
-                    _ \markup { "... ma non troppo" }
+                - \tweak color #red
+                ^ \markup { "Allegro assai ..." }
+                - \tweak color #blue
+                - \tweak staff-padding #4
+                _ \markup { "... ma non troppo" }
                 d'4
                 e'4
                 f'4
@@ -111,21 +115,22 @@ def tweak(argument):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'4
-                    ^ \markup {
-                        \column
-                            {
-                                \line
-                                    {
-                                        "Allegro assai ..."
-                                    }
-                                \line
-                                    {
-                                        "... ma non troppo"
-                                    }
-                            }
+                ^ \markup {
+                    \column
+                        {
+                            \line
+                                {
+                                    "Allegro assai ..."
+                                }
+                            \line
+                                {
+                                    "... ma non troppo"
+                                }
                         }
+                    }
                 d'4
                 e'4
                 f'4

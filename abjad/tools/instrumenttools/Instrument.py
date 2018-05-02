@@ -32,7 +32,8 @@ class Instrument(AbjadValueObject):
                 \new Voice
                 {
                     \voiceOne
-                    e'8 ^ \markup { (flute) }
+                    e'8
+                    ^ \markup { (flute) }
                     g'8
                     f'8
                     a'8
@@ -40,7 +41,8 @@ class Instrument(AbjadValueObject):
                 \new Voice
                 {
                     \voiceTwo
-                    c'2 _ \markup { (viola) }
+                    c'2
+                    _ \markup { (viola) }
                 }
             >>
 

@@ -1703,7 +1703,8 @@ class String(str):
         return type(self)(string)
 
     @staticmethod
-    def to_tridirectional_direction_string(argument) -> 'String':
+    def to_tridirectional_direction_string(argument) -> typing.Optional[
+        'String']:
         r'''Changes `argument` to tridirectional direction string.
 
         ..  container:: example

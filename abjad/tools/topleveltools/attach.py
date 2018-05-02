@@ -32,7 +32,8 @@ def attach(
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \clef "alto"
                 c'4
                 d'4
@@ -51,11 +52,13 @@ def attach(
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'4
                 d'4
                 e'4
-                f'4 -\accent
+                f'4
+                -\accent
             }
 
     ..  container:: example
@@ -70,8 +73,10 @@ def attach(
         ..  docs::
 
             >>> abjad.f(staff)
-            \context Staff = "MusicStaff" {
-                \context Voice = "MusicVoice" {
+            \context Staff = "MusicStaff"
+            {
+                \context Voice = "MusicVoice"
+                {
                     \clef "alto"
                     c'4
                     d'4
@@ -125,7 +130,8 @@ def attach(
         ..  docs::
 
             >>> abjad.f(staff, strict=True)
-            \new Staff {
+            \new Staff
+            {
                 \clef "treble"
             %@% \clef "alto" %! +PARTS_1
             %@% \clef "tenor" %! +PARTS_2
@@ -162,7 +168,8 @@ def attach(
         ..  docs::
 
             >>> abjad.f(staff, strict=True)
-            \new Staff {
+            \new Staff
+            {
             %@% \clef "alto" %! +PARTS
                 c'4
                 d'4

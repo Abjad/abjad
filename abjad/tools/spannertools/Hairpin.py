@@ -291,6 +291,7 @@ class Hairpin(Spanner):
             stop_dynamic_is_textual = bool(stop_dynamic_is_textual)
         self._stop_dynamic_is_textual = stop_dynamic_is_textual
         self._trim = trim
+        self._descriptor: typing.Optional[str] = None
         if descriptor is not None:
             assert self._is_valid_descriptor(descriptor), repr(descriptor)
             result = self._parse_descriptor(descriptor)
@@ -1807,7 +1808,7 @@ class Hairpin(Spanner):
         pass
 
     @property
-    def descriptor(self) -> str:
+    def descriptor(self) -> typing.Optional[str]:
         r'''Gets descriptor.
 
         ..  container:: example

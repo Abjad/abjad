@@ -29,21 +29,21 @@ class Momento(AbjadObject):
         ) -> None:
         if absent is not None:
             absent = bool(absent)
-        self._absent: bool = absent
+        self._absent = absent
         if context is not None:
             assert isinstance(context, str), repr(context)
-        self._context: str = context
+        self._context = context
         edition_ = None
         if edition is not None:
             edition_ = Tag(edition)
-        self._edition: Tag = edition_
+        self._edition = edition_
         if prototype is not None:
             assert isinstance(prototype, str), repr(prototype)
-        self._prototype: str = prototype
+        self._prototype = prototype
         if value is not None:
             if not isinstance(value, (int, str)):
                 assert type(value).__name__ == 'PersistentOverride'
-        self._value: typing.Any = value
+        self._value = value
 
     ### PUBLIC PROPERTIES ###
 
@@ -54,7 +54,7 @@ class Momento(AbjadObject):
         return self._absent
 
     @property
-    def context(self) -> str:
+    def context(self) -> typing.Optional[str]:
         r'''Gets (name of local) context.
         '''
         return self._context
@@ -66,7 +66,7 @@ class Momento(AbjadObject):
         return self._edition
 
     @property
-    def prototype(self) -> str:
+    def prototype(self) -> typing.Optional[str]:
         r'''Gets prototype.
         '''
         return self._prototype

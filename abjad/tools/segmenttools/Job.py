@@ -6,7 +6,8 @@ from abjad.tools.datastructuretools.String import String
 from abjad.tools.topleveltools.activate import activate
 from abjad.tools.topleveltools.deactivate import deactivate
 abjad_tags = Tags()
-callable_type = typing.Union[str, typing.Callable]
+callable_type = typing.Union[str, typing.Callable, None]
+activation_type = typing.Tuple[callable_type, str]
 
 
 class Job(AbjadObject):
@@ -28,19 +29,19 @@ class Job(AbjadObject):
 
     def __init__(
         self,
-        activate: typing.Tuple[callable_type, str] = None,
-        deactivate: typing.Tuple[callable_type, str] = None,
+        activate: activation_type = None,
+        deactivate: activation_type = None,
         deactivate_first: bool = None,
         message_zero: bool = None,
         path: Path = None,
         title: str = None,
         ) -> None:
-        self._activate: typing.Tuple[callable_type, str] = activate
-        self._deactivate: typing.Tuple[callable_type, str] = deactivate
-        self._deactivate_first: bool = deactivate_first
-        self._message_zero: bool = message_zero
-        self._path: Path = path
-        self._title: str = title
+        self._activate = activate
+        self._deactivate = deactivate
+        self._deactivate_first = deactivate_first
+        self._message_zero = message_zero
+        self._path = path
+        self._title = title
 
     ### SPECIAL METHODS ###
 
@@ -126,37 +127,37 @@ class Job(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def activate(self) -> typing.Tuple[typing.Union[str, typing.Callable], str]:
+    def activate(self) -> typing.Optional[activation_type]:
         r'''Gets activate match / message pair.
         '''
         return self._activate
 
     @property
-    def deactivate(self) -> typing.Tuple[typing.Union[str, typing.Callable], str]:
+    def deactivate(self) -> typing.Optional[activation_type]:
         r'''Gets deactivate match / message pair.
         '''
         return self._deactivate
 
     @property
-    def deactivate_first(self) -> bool:
+    def deactivate_first(self) -> typing.Optional[bool]:
         r'''Is true when deactivate runs first.
         '''
         return self._deactivate_first
 
     @property
-    def message_zero(self) -> bool:
+    def message_zero(self) -> typing.Optional[bool]:
         r'''Is true when job returns messages even when no matches are found.
         '''
         return self._message_zero
 
     @property
-    def path(self) -> Path:
+    def path(self) -> typing.Optional[Path]:
         r'''Gets path.
         '''
         return self._path
 
     @property
-    def title(self) -> str:
+    def title(self) -> typing.Optional[str]:
         r'''Gets title.
         '''
         return self._title
@@ -440,6 +441,7 @@ class Job(AbjadObject):
         '''
         def activate(tags):
             return bool(set(tags) & set([abjad_tags.EOL_FERMATA]))
+        deactivate: typing.Optional[callable_type]
         # then deactivate non-EOL tags:
         bol_measure_numbers = path.get_metadatum('bol_measure_numbers')
         if bol_measure_numbers:
@@ -470,6 +472,7 @@ class Job(AbjadObject):
         '''
         def activate(tags):
             return abjad_tags.SHIFTED_CLEF in tags
+        deactivate: typing.Optional[typing.Callable]
         # then deactivate shifted clefs at BOL:
         bol_measure_numbers = path.get_metadatum('bol_measure_numbers')
         if bol_measure_numbers:

@@ -16,12 +16,13 @@ def new(argument, **keywords):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'4
-                    ^ \markup {
-                        \italic
-                            "Andante assai"
-                        }
+                ^ \markup {
+                    \italic
+                        "Andante assai"
+                    }
                 d'4
                 e'4
                 f'4
@@ -35,12 +36,13 @@ def new(argument, **keywords):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'4
-                    _ \markup {
-                        \italic
-                            "Andante assai"
-                        }
+                _ \markup {
+                    \italic
+                        "Andante assai"
+                    }
                 d'4
                 e'4
                 f'4

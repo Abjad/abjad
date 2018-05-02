@@ -20,13 +20,13 @@ class ColorFingering(AbjadValueObject):
 
             >>> abjad.f(note)
             c'4
-                ^ \markup {
-                    \override
-                        #'(circle-padding . 0.25)
-                        \circle
-                            \finger
-                                1
-                    }
+            ^ \markup {
+                \override
+                    #'(circle-padding . 0.25)
+                    \circle
+                        \finger
+                            1
+                }
 
     ..  container:: example
 
@@ -42,13 +42,13 @@ class ColorFingering(AbjadValueObject):
 
             >>> abjad.f(note)
             c'4
-                ^ \markup {
-                    \override
-                        #'(circle-padding . 0.25)
-                        \circle
-                            \finger
-                                2
-                    }
+            ^ \markup {
+                \override
+                    #'(circle-padding . 0.25)
+                    \circle
+                        \finger
+                            2
+                }
 
     Color fingerings indicate alternate woodwind fingerings by amount of pitch
     of timbre deviation.

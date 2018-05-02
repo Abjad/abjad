@@ -111,7 +111,10 @@ class Talea(AbjadValueObject):
             preamble_weight = preamble.weight()
         else:
             preamble_weight = 0
-        counts = [abs(_) for _ in self.counts]
+        if self.counts is not None:
+            counts = [abs(_) for _ in self.counts]
+        else:
+            counts = []
         cumulative = mathtools.cumulative_sums(counts)[:-1]
         argument -= preamble_weight
         argument %= self.period
@@ -163,16 +166,23 @@ class Talea(AbjadValueObject):
             NonreducedFraction(2, 16)
 
         '''
-        preamble = self.preamble or []
-        counts = CyclicTuple(preamble + self.counts)
+        if self.preamble:
+            preamble = self.preamble
+        else:
+            preamble = []
+        if self.counts:
+            counts = self.counts
+        else:
+            counts = []
+        counts_ = CyclicTuple(preamble + counts)
         if isinstance(argument, int):
-            count = counts.__getitem__(argument)
+            count = counts_.__getitem__(argument)
             return NonreducedFraction(count, self.denominator)
         elif isinstance(argument, slice):
-            counts = counts.__getitem__(argument)
+            counts_ = counts_.__getitem__(argument)
             result = [
                 NonreducedFraction(count, self.denominator)
-                for count in counts
+                for count in counts_
                 ]
             return result
         raise ValueError(argument)
@@ -207,7 +217,7 @@ class Talea(AbjadValueObject):
         for count in self.preamble or []:
             duration = Duration(count, self.denominator)
             yield duration
-        for count in self.counts:
+        for count in self.counts or []:
             duration = Duration(count, self.denominator)
             yield duration
 
@@ -226,7 +236,7 @@ class Talea(AbjadValueObject):
 
         Defined equal to length of counts.
         '''
-        return len(self.counts)
+        return len(self.counts or [])
 
     ### PUBLIC PROPERTIES ###
 
@@ -461,11 +471,12 @@ class Talea(AbjadValueObject):
             return new(self)
         preamble = Sequence(self.preamble or ())
         counts = Sequence(self.counts or ())
+        preamble_: typing.Optional[Sequence]
         if weight < preamble.weight():
             consumed, remaining = preamble.split([weight], overhang=True)
-            preamble = remaining
+            preamble_ = remaining
         elif weight == preamble.weight():
-            preamble = None
+            preamble_ = None
         else:
             assert preamble.weight() < weight
             weight -= preamble.weight()
@@ -478,10 +489,10 @@ class Talea(AbjadValueObject):
                 consumed, remaining = preamble[:], None
             else:
                 consumed, remaining = preamble.split([weight], overhang=True)
-            preamble = remaining
+            preamble_ = remaining
         return new(
             self,
             counts=counts,
             denominator=self.denominator,
-            preamble=preamble,
+            preamble=preamble_,
             )

@@ -430,7 +430,7 @@ class RhythmMaker(AbjadValueObject):
         return self._beam_specifier
 
     @property
-    def division_masks(self) -> typing.List:
+    def division_masks(self) -> typing.Optional[typing.List[Pattern]]:
         r'''Gets division masks.
         '''
         return self._division_masks

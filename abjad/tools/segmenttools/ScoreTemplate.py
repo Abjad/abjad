@@ -16,6 +16,7 @@ from abjad.tools.scoretools.Staff import Staff
 from abjad.tools.scoretools.StaffGroup import StaffGroup
 from abjad.tools.scoretools.Voice import Voice
 from abjad.tools.systemtools.Tag import Tag
+from abjad.tools.systemtools.Wrapper import Wrapper
 from abjad.tools.topleveltools.attach import attach
 from abjad.tools.topleveltools.inspect import inspect
 from abjad.tools.topleveltools.iterate import iterate
@@ -141,7 +142,8 @@ class ScoreTemplate(abctools.AbjadValueObject):
         ) -> bool:
         r'''Is true when ``voice_name`` allows ``part_assignment``.
         '''
-        if voice_name.startswith(part_assignment.section):
+        section = part_assignment.section or 'ZZZ'
+        if voice_name.startswith(section):
             return True
         return False
 
@@ -155,7 +157,7 @@ class ScoreTemplate(abctools.AbjadValueObject):
         Returns list of one wrapper for every indicator attached.
         '''
         assert isinstance(argument, (Score, Staff, StaffGroup)), repr(argument)
-        wrappers = []
+        wrappers: typing.List[Wrapper] = []
         tag = Tags().REMOVE_ALL_EMPTY_STAVES
         empty_prototype = (MultimeasureRest, Skip)
         prototype = (Staff, StaffGroup)

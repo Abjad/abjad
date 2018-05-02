@@ -212,16 +212,16 @@ class PitchClassSegment(Segment):
                     \new Voice
                     {
                         bf'8
-                            ^ \markup {
-                                \line
-                                    {
-                                        \bold
-                                            J
-                                        +
-                                        \bold
-                                            K
-                                    }
+                        ^ \markup {
+                            \line
+                                {
+                                    \bold
+                                        J
+                                    +
+                                    \bold
+                                        K
                                 }
+                            }
                         bqf'8
                         fs'8
                         g'8
@@ -294,16 +294,16 @@ class PitchClassSegment(Segment):
                     \new Voice
                     {
                         c'8
-                            ^ \markup {
-                                \line
-                                    {
-                                        \bold
-                                            K
-                                        +
-                                        \bold
-                                            J
-                                    }
+                        ^ \markup {
+                            \line
+                                {
+                                    \bold
+                                        K
+                                    +
+                                    \bold
+                                        J
                                 }
+                            }
                         ef'8
                         bqs'8
                         d'8
@@ -384,22 +384,22 @@ class PitchClassSegment(Segment):
                     \new Voice
                     {
                         bf'8
-                            ^ \markup {
-                                \line
-                                    {
-                                        \line
-                                            {
-                                                \bold
-                                                    J
-                                                +
-                                                \bold
-                                                    J
-                                            }
-                                        +
-                                        \bold
-                                            J
-                                    }
+                        ^ \markup {
+                            \line
+                                {
+                                    \line
+                                        {
+                                            \bold
+                                                J
+                                            +
+                                            \bold
+                                                J
+                                        }
+                                    +
+                                    \bold
+                                        J
                                 }
+                            }
                         bqf'8
                         fs'8
                         g'8
@@ -482,28 +482,28 @@ class PitchClassSegment(Segment):
                     \new Voice
                     {
                         g'8
-                            ^ \markup {
-                                \line
-                                    {
-                                        \concat
-                                            {
-                                                r
-                                                \sub
-                                                    1
-                                                \bold
-                                                    J
-                                            }
-                                        +
-                                        \concat
-                                            {
-                                                r
-                                                \sub
-                                                    2
-                                                \bold
-                                                    K
-                                            }
-                                    }
+                        ^ \markup {
+                            \line
+                                {
+                                    \concat
+                                        {
+                                            r
+                                            \sub
+                                                1
+                                            \bold
+                                                J
+                                        }
+                                    +
+                                    \concat
+                                        {
+                                            r
+                                            \sub
+                                                2
+                                            \bold
+                                                K
+                                        }
                                 }
+                            }
                         bf'8
                         bqf'8
                         fs'8
@@ -580,37 +580,37 @@ class PitchClassSegment(Segment):
                     \new Voice
                     {
                         ef'8
-                            ^ \markup {
-                                \concat
-                                    {
-                                        R
-                                        \concat
-                                            {
-                                                (
-                                                \line
-                                                    {
-                                                        \concat
-                                                            {
-                                                                r
-                                                                \sub
-                                                                    1
-                                                                \bold
-                                                                    J
-                                                            }
-                                                        +
-                                                        \concat
-                                                            {
-                                                                r
-                                                                \sub
-                                                                    2
-                                                                \bold
-                                                                    K
-                                                            }
-                                                    }
-                                                )
-                                            }
-                                    }
+                        ^ \markup {
+                            \concat
+                                {
+                                    R
+                                    \concat
+                                        {
+                                            (
+                                            \line
+                                                {
+                                                    \concat
+                                                        {
+                                                            r
+                                                            \sub
+                                                                1
+                                                            \bold
+                                                                J
+                                                        }
+                                                    +
+                                                    \concat
+                                                        {
+                                                            r
+                                                            \sub
+                                                                2
+                                                            \bold
+                                                                K
+                                                        }
+                                                }
+                                            )
+                                        }
                                 }
+                            }
                         c'8
                         d'8
                         bqs'8
@@ -656,34 +656,34 @@ class PitchClassSegment(Segment):
                 \new Voice
                 {
                     g'8
-                        ^ \markup {
-                            \line
-                                {
-                                    \bold
-                                        Q
-                                    =
-                                    \line
-                                        {
-                                            \concat
-                                                {
-                                                    r
-                                                    \sub
-                                                        1
-                                                    \bold
-                                                        J
-                                                }
-                                            +
-                                            \concat
-                                                {
-                                                    r
-                                                    \sub
-                                                        2
-                                                    \bold
-                                                        K
-                                                }
-                                        }
-                                }
+                    ^ \markup {
+                        \line
+                            {
+                                \bold
+                                    Q
+                                =
+                                \line
+                                    {
+                                        \concat
+                                            {
+                                                r
+                                                \sub
+                                                    1
+                                                \bold
+                                                    J
+                                            }
+                                        +
+                                        \concat
+                                            {
+                                                r
+                                                \sub
+                                                    2
+                                                \bold
+                                                    K
+                                            }
+                                    }
                             }
+                        }
                     bf'8
                     bqf'8
                     fs'8
@@ -722,16 +722,16 @@ class PitchClassSegment(Segment):
                 \new Voice
                 {
                     af'8
-                        ^ \markup {
-                            \concat
-                                {
-                                    T
-                                    \sub
-                                        1
-                                    \bold
-                                        Q
-                                }
+                    ^ \markup {
+                        \concat
+                            {
+                                T
+                                \sub
+                                    1
+                                \bold
+                                    Q
                             }
+                        }
                     b'8
                     bqs'8
                     g'8
@@ -1013,15 +1013,15 @@ class PitchClassSegment(Segment):
                     \new Voice
                     {
                         bf'8
-                            ^ \markup {
-                                \concat
-                                    {
-                                        \bold
-                                            J
-                                        \sub
-                                            [:4]
-                                    }
+                        ^ \markup {
+                            \concat
+                                {
+                                    \bold
+                                        J
+                                    \sub
+                                        [:4]
                                 }
+                            }
                         bqf'8
                         fs'8
                         g'8
@@ -1081,19 +1081,19 @@ class PitchClassSegment(Segment):
                     \new Voice
                     {
                         g'8
-                            ^ \markup {
-                                \concat
-                                    {
-                                        R
-                                        \concat
-                                            {
-                                                \bold
-                                                    J
-                                                \sub
-                                                    [:4]
-                                            }
-                                    }
+                        ^ \markup {
+                            \concat
+                                {
+                                    R
+                                    \concat
+                                        {
+                                            \bold
+                                                J
+                                            \sub
+                                                [:4]
+                                        }
                                 }
+                            }
                         fs'8
                         bqf'8
                         bf'8
@@ -1153,24 +1153,24 @@ class PitchClassSegment(Segment):
                     \new Voice
                     {
                         g'8
-                            ^ \markup {
-                                \concat
-                                    {
-                                        \concat
-                                            {
-                                                (
-                                                \concat
-                                                    {
-                                                        R
-                                                        \bold
-                                                            J
-                                                    }
-                                                )
-                                            }
-                                        \sub
-                                            [:4]
-                                    }
+                        ^ \markup {
+                            \concat
+                                {
+                                    \concat
+                                        {
+                                            (
+                                            \concat
+                                                {
+                                                    R
+                                                    \bold
+                                                        J
+                                                }
+                                            )
+                                        }
+                                    \sub
+                                        [:4]
                                 }
+                            }
                         bqf'8
                         g'8
                         fs'8
@@ -1730,14 +1730,14 @@ class PitchClassSegment(Segment):
                     \new Voice
                     {
                         d'8
-                            ^ \markup {
-                                \concat
-                                    {
-                                        I
-                                        \bold
-                                            J
-                                    }
+                        ^ \markup {
+                            \concat
+                                {
+                                    I
+                                    \bold
+                                        J
                                 }
+                            }
                         dqf'8
                         fs'8
                         f'8
@@ -1804,18 +1804,18 @@ class PitchClassSegment(Segment):
                     \new Voice
                     {
                         bf'8
-                            ^ \markup {
-                                \concat
-                                    {
-                                        I
-                                        \concat
-                                            {
-                                                I
-                                                \bold
-                                                    J
-                                            }
-                                    }
+                        ^ \markup {
+                            \concat
+                                {
+                                    I
+                                    \concat
+                                        {
+                                            I
+                                            \bold
+                                                J
+                                        }
                                 }
+                            }
                         bqf'8
                         fs'8
                         g'8
@@ -1886,13 +1886,17 @@ class PitchClassSegment(Segment):
                 \new Staff
                 {
                     \time 5/4
-                    d'4 ~
+                    d'4
+                    ~
                     d'16
-                    eqs'4 ~
+                    eqs'4
+                    ~
                     eqs'16
-                    fs'4 ~
+                    fs'4
+                    ~
                     fs'16
-                    b'4 ~
+                    b'4
+                    ~
                     b'16
                 }
 
@@ -1993,16 +1997,16 @@ class PitchClassSegment(Segment):
                     \new Voice
                     {
                         bf'8
-                            ^ \markup {
-                                \concat
-                                    {
-                                        M
-                                        \sub
-                                            1
-                                        \bold
-                                            J
-                                    }
+                        ^ \markup {
+                            \concat
+                                {
+                                    M
+                                    \sub
+                                        1
+                                    \bold
+                                        J
                                 }
+                            }
                         bqf'8
                         fs'8
                         g'8
@@ -2065,16 +2069,16 @@ class PitchClassSegment(Segment):
                     \new Voice
                     {
                         d'8
-                            ^ \markup {
-                                \concat
-                                    {
-                                        M
-                                        \sub
-                                            5
-                                        \bold
-                                            J
-                                    }
+                        ^ \markup {
+                            \concat
+                                {
+                                    M
+                                    \sub
+                                        5
+                                    \bold
+                                        J
                                 }
+                            }
                         eqs'8
                         fs'8
                         b'8
@@ -2137,16 +2141,16 @@ class PitchClassSegment(Segment):
                     \new Voice
                     {
                         bf'8
-                            ^ \markup {
-                                \concat
-                                    {
-                                        M
-                                        \sub
-                                            7
-                                        \bold
-                                            J
-                                    }
+                        ^ \markup {
+                            \concat
+                                {
+                                    M
+                                    \sub
+                                        7
+                                    \bold
+                                        J
                                 }
+                            }
                         dqf'8
                         fs'8
                         cs'8
@@ -2209,16 +2213,16 @@ class PitchClassSegment(Segment):
                     \new Voice
                     {
                         d'8
-                            ^ \markup {
-                                \concat
-                                    {
-                                        M
-                                        \sub
-                                            11
-                                        \bold
-                                            J
-                                    }
+                        ^ \markup {
+                            \concat
+                                {
+                                    M
+                                    \sub
+                                        11
+                                    \bold
+                                        J
                                 }
+                            }
                         gqs'8
                         fs'8
                         f'8
@@ -2319,15 +2323,15 @@ class PitchClassSegment(Segment):
                 \new Voice
                 {
                     e'8
-                        ^ \markup {
-                            \concat
-                                {
-                                    permute(
-                                    \bold
-                                        J
-                                    ", row=[10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11])"
-                                }
+                    ^ \markup {
+                        \concat
+                            {
+                                permute(
+                                \bold
+                                    J
+                                ", row=[10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11])"
                             }
+                        }
                     b'8
                     f'8
                     ef'8
@@ -2414,14 +2418,14 @@ class PitchClassSegment(Segment):
                     \new Voice
                     {
                         g'8
-                            ^ \markup {
-                                \concat
-                                    {
-                                        R
-                                        \bold
-                                            J
-                                    }
+                        ^ \markup {
+                            \concat
+                                {
+                                    R
+                                    \bold
+                                        J
                                 }
+                            }
                         bqf'8
                         g'8
                         fs'8
@@ -2488,18 +2492,18 @@ class PitchClassSegment(Segment):
                     \new Voice
                     {
                         bf'8
-                            ^ \markup {
-                                \concat
-                                    {
-                                        R
-                                        \concat
-                                            {
-                                                R
-                                                \bold
-                                                    J
-                                            }
-                                    }
+                        ^ \markup {
+                            \concat
+                                {
+                                    R
+                                    \concat
+                                        {
+                                            R
+                                            \bold
+                                                J
+                                        }
                                 }
+                            }
                         bqf'8
                         fs'8
                         g'8
@@ -2596,16 +2600,16 @@ class PitchClassSegment(Segment):
                     \new Voice
                     {
                         g'8
-                            ^ \markup {
-                                \concat
-                                    {
-                                        r
-                                        \sub
-                                            1
-                                        \bold
-                                            J
-                                    }
+                        ^ \markup {
+                            \concat
+                                {
+                                    r
+                                    \sub
+                                        1
+                                    \bold
+                                        J
                                 }
+                            }
                         bf'8
                         bqf'8
                         fs'8
@@ -2668,16 +2672,16 @@ class PitchClassSegment(Segment):
                     \new Voice
                     {
                         bqf'8
-                            ^ \markup {
-                                \concat
-                                    {
-                                        r
-                                        \sub
-                                            -1
-                                        \bold
-                                            J
-                                    }
+                        ^ \markup {
+                            \concat
+                                {
+                                    r
+                                    \sub
+                                        -1
+                                    \bold
+                                        J
                                 }
+                            }
                         fs'8
                         g'8
                         bqf'8
@@ -2743,16 +2747,16 @@ class PitchClassSegment(Segment):
                     \new Voice
                     {
                         bf'8
-                            ^ \markup {
-                                \concat
-                                    {
-                                        r
-                                        \sub
-                                            0
-                                        \bold
-                                            J
-                                    }
+                        ^ \markup {
+                            \concat
+                                {
+                                    r
+                                    \sub
+                                        0
+                                    \bold
+                                        J
                                 }
+                            }
                         bqf'8
                         fs'8
                         g'8
@@ -2819,16 +2823,16 @@ class PitchClassSegment(Segment):
                     \new Voice
                     {
                         c'8
-                            ^ \markup {
-                                \concat
-                                    {
-                                        rs
-                                        \sub
-                                            1
-                                        \bold
-                                            J
-                                    }
+                        ^ \markup {
+                            \concat
+                                {
+                                    rs
+                                    \sub
+                                        1
+                                    \bold
+                                        J
                                 }
+                            }
                         ef'8
                         eqf'8
                         b'8
@@ -3173,16 +3177,16 @@ class PitchClassSegment(Segment):
                     \new Voice
                     {
                         b'8
-                            ^ \markup {
-                                \concat
-                                    {
-                                        T
-                                        \sub
-                                            13
-                                        \bold
-                                            J
-                                    }
+                        ^ \markup {
+                            \concat
+                                {
+                                    T
+                                    \sub
+                                        13
+                                    \bold
+                                        J
                                 }
+                            }
                         bqs'8
                         g'8
                         af'8
@@ -3245,16 +3249,16 @@ class PitchClassSegment(Segment):
                     \new Voice
                     {
                         a'8
-                            ^ \markup {
-                                \concat
-                                    {
-                                        T
-                                        \sub
-                                            -13
-                                        \bold
-                                            J
-                                    }
+                        ^ \markup {
+                            \concat
+                                {
+                                    T
+                                    \sub
+                                        -13
+                                    \bold
+                                        J
                                 }
+                            }
                         aqs'8
                         f'8
                         fs'8
@@ -3320,16 +3324,16 @@ class PitchClassSegment(Segment):
                     \new Voice
                     {
                         bf'8
-                            ^ \markup {
-                                \concat
-                                    {
-                                        T
-                                        \sub
-                                            0
-                                        \bold
-                                            J
-                                    }
+                        ^ \markup {
+                            \concat
+                                {
+                                    T
+                                    \sub
+                                        0
+                                    \bold
+                                        J
                                 }
+                            }
                         bqf'8
                         fs'8
                         g'8

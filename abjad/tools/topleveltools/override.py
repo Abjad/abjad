@@ -12,9 +12,12 @@ def override(argument):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff \with {
+            \new Staff
+            \with
+            {
                 \override StaffSymbol.color = #red
-            } {
+            }
+            {
                 c'4
                 e'4
                 d'4

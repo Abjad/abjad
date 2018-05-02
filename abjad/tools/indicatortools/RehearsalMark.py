@@ -53,8 +53,8 @@ class RehearsalMark(AbjadValueObject):
         number: int = None,
         markup: Markup = None,
         ) -> None:
-        self._markup: Markup = markup
-        self._number: int = number
+        self._markup = markup
+        self._number = number
 
     ### SPECIAL METHODS ###
 

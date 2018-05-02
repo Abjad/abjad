@@ -78,11 +78,11 @@ class WoodwindFingering(AbjadObject):
 
             >>> abjad.f(chord)
             <ds' fs''>4
-                _ \markup {
-                    \woodwind-diagram
-                        #'clarinet
-                        #'((cc . (one two three five)) (lh . (R thumb)) (rh . (e)))
-                    }
+            _ \markup {
+                \woodwind-diagram
+                    #'clarinet
+                    #'((cc . (one two three five)) (lh . (R thumb)) (rh . (e)))
+                }
 
     ..  container:: example
 
@@ -128,13 +128,13 @@ class WoodwindFingering(AbjadObject):
 
             >>> abjad.f(chord)
             <e' as' gqf''>1
-                _ \markup {
-                    \override
-                        #'(graphical . #f)
-                    \woodwind-diagram
-                        #'clarinet
-                        #'((cc . (one two three four)) (lh . (R cis)) (rh . (fis)))
-                    }
+            _ \markup {
+                \override
+                    #'(graphical . #f)
+                \woodwind-diagram
+                    #'clarinet
+                    #'((cc . (one two three four)) (lh . (R cis)) (rh . (fis)))
+                }
 
     ..  container:: example
 
@@ -171,17 +171,17 @@ class WoodwindFingering(AbjadObject):
 
             >>> abjad.f(chord)
             <e' as' gqf''>1
-                _ \markup {
-                    \override
-                        #'(graphical . #f)
-                    \override
-                        #'(size . 0.5)
-                    \override
-                        #'(thickness . 0.4)
-                    \woodwind-diagram
-                        #'clarinet
-                        #'((cc . (one two three four)) (lh . (R cis)) (rh . (fis)))
-                    }
+            _ \markup {
+                \override
+                    #'(graphical . #f)
+                \override
+                    #'(size . 0.5)
+                \override
+                    #'(thickness . 0.4)
+                \woodwind-diagram
+                    #'clarinet
+                    #'((cc . (one two three four)) (lh . (R cis)) (rh . (fis)))
+                }
 
     Inspired by Mike Solomon's LilyPond woodwind diagrams.
     '''

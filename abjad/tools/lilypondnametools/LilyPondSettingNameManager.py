@@ -30,9 +30,12 @@ class LilyPondSettingNameManager(LilyPondNameManager):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     instrumentName = \markup { "Vn. I" }
-                } {
+                }
+                {
                     c'4
                     d'4
                     e'4

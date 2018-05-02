@@ -55,9 +55,9 @@ class MarginMarkup(AbjadValueObject):
         format_slot: str = 'before',
         markup: Markup = None,
         ) -> None:
-        self._context: str = context
-        self._format_slot: str = format_slot
-        self._markup: Markup = markup
+        self._context = context
+        self._format_slot = format_slot
+        self._markup = markup
 
     ### SPECIAL METHODS ###
 

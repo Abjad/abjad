@@ -147,10 +147,15 @@ class ReducedLyParser(abctools.Parser):
 
             >>> abjad.f(container)
             {
-                c16 [ (
-                d16 ~
-                d16 )
-                f16 ]
+                c16
+                [
+                (
+                d16
+                ~
+                d16
+                )
+                f16
+                ]
             }
 
     '''

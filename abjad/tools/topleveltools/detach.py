@@ -18,8 +18,10 @@ def detach(argument, target=None, by_id=False):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
-                c'4 -\accent
+            \new Staff
+            {
+                c'4
+                -\accent
                 d'4
                 e'4
                 f'4
@@ -32,7 +34,8 @@ def detach(argument, target=None, by_id=False):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'4
                 d'4
                 e'4
@@ -74,7 +77,8 @@ def detach(argument, target=None, by_id=False):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff, strict=50)
-        \new Staff {
+        \new Staff
+        {
             c'4
             ^ \markup {
                 \column
@@ -110,7 +114,8 @@ def detach(argument, target=None, by_id=False):
         >>> abjad.show(staff) # doctest: +SKIP
         
         >>> abjad.f(staff, strict=50)
-        \new Staff {
+        \new Staff
+        {
             c'4
             ^ \markup { tutti }                           %! +SCORE
             d'4
@@ -137,7 +142,8 @@ def detach(argument, target=None, by_id=False):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff, strict=50)
-        \new Staff {
+        \new Staff
+        {
             c'4
             ^ \markup {
                 \column
@@ -171,7 +177,8 @@ def detach(argument, target=None, by_id=False):
         >>> abjad.show(staff) # doctest: +SKIP
         
         >>> abjad.f(staff, strict=50)
-        \new Staff {
+        \new Staff
+        {
             c'4
             ^ \markup {
                 \column

@@ -15,7 +15,8 @@ def select(items=None):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 \once \override NoteHead.color = #red
                 c'4
                 \once \override NoteHead.color = #red

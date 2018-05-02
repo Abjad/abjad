@@ -188,19 +188,18 @@ class Container(Component):
         components = components or []
         Component.__init__(self)
         self._named_children: dict = {}
-        self._is_simultaneous: bool = None
+        self._is_simultaneous = None
         self._initialize_components(components)
         self.identifier = identifier
         self.is_simultaneous = is_simultaneous
         # NOTE: name must be set up *after* parent
-        self._name: str = None
+        self._name = None
         self.name = name
 
     ### SPECIAL METHODS ###
 
     def __contains__(self, argument) -> bool:
         r'''Is true when `argument` appears in container.
-        Otherwise false.
         '''
         if isinstance(argument, str):
             return argument in self._named_children
@@ -1261,7 +1260,7 @@ class Container(Component):
         return self._components
 
     @property
-    def identifier(self)  -> str:
+    def identifier(self)  -> typing.Optional[str]:
         r'''Gets and sets bracket comment.
 
         ..  container:: example
@@ -1289,7 +1288,7 @@ class Container(Component):
         self._identifier: typing.Optional[str] = argument
 
     @property
-    def is_simultaneous(self) -> bool:
+    def is_simultaneous(self) -> typing.Optional[bool]:
         r'''Is true when container is simultaneous. Otherwise false.
 
         ..  container:: example
@@ -1364,9 +1363,6 @@ class Container(Component):
                     }
                 >>
 
-        Defaults to false.
-
-        Set to true or false.
         '''
         return self._is_simultaneous
 
@@ -1383,7 +1379,7 @@ class Container(Component):
         self._update_later(offsets=True)
 
     @property
-    def name(self) -> str:
+    def name(self) -> typing.Optional[str]:
         r'''Gets and sets name of container.
 
         ..  container:: example
@@ -1429,9 +1425,6 @@ class Container(Component):
                 f'4
             }
 
-        Defaults to none.
-
-        Set to string or none.
         '''
         return self._name
 
