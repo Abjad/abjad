@@ -41,7 +41,8 @@ def test_spannertools_MeasuredComplexBeam_direction_01():
                 \time 2/16
                 \set stemLeftBeamCount = 0
                 \set stemRightBeamCount = 2
-                c'16 _ [
+                c'16
+                _ [
                 \set stemLeftBeamCount = 2
                 \set stemRightBeamCount = 1
                 d'16
@@ -60,7 +61,8 @@ def test_spannertools_MeasuredComplexBeam_direction_01():
                 g'16
                 \set stemLeftBeamCount = 2
                 \set stemRightBeamCount = 0
-                a'16 ]
+                a'16
+                ]
             }   % measure
         }
         '''

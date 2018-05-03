@@ -206,7 +206,8 @@ class LeafMaker(AbjadValueObject):
             \new Staff
             {
                 \time 13/16
-                ds''2. ~
+                ds''2.
+                ~
                 ds''16
             }
 
@@ -230,7 +231,8 @@ class LeafMaker(AbjadValueObject):
             \new Staff
             {
                 \time 13/16
-                e''16 ~
+                e''16
+                ~
                 e''2.
             }
 
@@ -256,11 +258,15 @@ class LeafMaker(AbjadValueObject):
             \new Staff
             {
                 \time 5/4
-                f'4 ~
-                f'4 ~
+                f'4
+                ~
+                f'4
+                ~
                 f'8
-                g'4 ~
-                g'4 ~
+                g'4
+                ~
+                g'4
+                ~
                 g'8
             }
 
@@ -286,11 +292,15 @@ class LeafMaker(AbjadValueObject):
             \new Staff
             {
                 \time 5/4
-                f'8 ~
-                f'4 ~
+                f'8
+                ~
                 f'4
-                g'8 ~
-                g'4 ~
+                ~
+                f'4
+                g'8
+                ~
+                g'4
+                ~
                 g'4
             }
 
@@ -316,7 +326,8 @@ class LeafMaker(AbjadValueObject):
                 \tweak edge-height #'(0.7 . 0)
                 \times 4/7 {
                     \time 5/14
-                    f'2 ~
+                    f'2
+                    ~
                     f'8
                 }
             }
@@ -346,7 +357,8 @@ class LeafMaker(AbjadValueObject):
                 \tweak edge-height #'(0.7 . 0)
                 \times 8/7 {
                     \time 5/14
-                    f'4 ~
+                    f'4
+                    ~
                     f'16
                 }
             }
@@ -402,7 +414,8 @@ class LeafMaker(AbjadValueObject):
             \new Staff
             {
                 c'2.
-                c'16 \repeatTie
+                c'16
+                \repeatTie
             }
 
     ..  container:: example
@@ -421,7 +434,8 @@ class LeafMaker(AbjadValueObject):
             >>> abjad.f(staff)
             \new Staff
             {
-                fs'2. ~
+                fs'2.
+                ~
                 fs'16
             }
 

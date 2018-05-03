@@ -304,10 +304,12 @@ class Inspection(abctools.AbjadObject):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'8 [
+                    c'8
+                    [
                     d'4
                     e'8
-                    f'8 ]
+                    f'8
+                    ]
                 }
 
             >>> abjad.inspect(staff).get_badly_formed_components()
@@ -766,10 +768,14 @@ class Inspection(abctools.AbjadObject):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'4 -\marcato
-                    d'4 -\marcato
-                    e'4 -\marcato
-                    f'4 -\marcato
+                    c'4
+                    -\marcato
+                    d'4
+                    -\marcato
+                    e'4
+                    -\marcato
+                    f'4
+                    -\marcato
                 }
 
             >>> abjad.inspect(staff).get_indicators(abjad.Articulation)
@@ -1063,10 +1069,12 @@ class Inspection(abctools.AbjadObject):
                             }
                         }
                     \once \override TextSpanner.dash-fraction = 1
-                    c'4 \startTextSpan
+                    c'4
+                    \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan
+                    f'4
+                    \stopTextSpan
                 }
 
             >>> for leaf in staff:
@@ -1194,10 +1202,14 @@ class Inspection(abctools.AbjadObject):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'8 [
-                    d'8 ]
-                    e'8 [
-                    f'8 ]
+                    c'8
+                    [
+                    d'8
+                    ]
+                    e'8
+                    [
+                    f'8
+                    ]
                 }
 
             >>> abjad.inspect(staff).get_spanners()
@@ -1251,7 +1263,8 @@ class Inspection(abctools.AbjadObject):
                 >>> abjad.f(voice)
                 \new Voice
                 {
-                    c'8 [
+                    c'8
+                    [
                     \grace {
                         c'16
                         d'16
@@ -1263,7 +1276,8 @@ class Inspection(abctools.AbjadObject):
                         f'16
                     }
                     e'8
-                    f'8 ]
+                    f'8
+                    ]
                 }
 
             >>> for leaf in abjad.iterate(voice).leaves():
@@ -1342,10 +1356,14 @@ class Inspection(abctools.AbjadObject):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'8 [
-                    d'8 ]
-                    e'8 [
-                    f'8 ]
+                    c'8
+                    [
+                    d'8
+                    ]
+                    e'8
+                    [
+                    f'8
+                    ]
                 }
 
             >>> abjad.inspect(staff).get_timespan()
@@ -1834,10 +1852,12 @@ class Inspection(abctools.AbjadObject):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'8 [
+                    c'8
+                    [
                     d'4
                     e'8
-                    f'8 ]
+                    f'8
+                    ]
                 }
 
             >>> agent = abjad.inspect(staff)
@@ -1933,10 +1953,14 @@ class Inspection(abctools.AbjadObject):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'4 -\marcato
-                    d'4 -\marcato
-                    e'4 -\marcato
-                    f'4 -\marcato
+                    c'4
+                    -\marcato
+                    d'4
+                    -\marcato
+                    e'4
+                    -\marcato
+                    f'4
+                    -\marcato
                 }
 
             >>> abjad.inspect(staff).wrapper(abjad.Articulation) is None
@@ -1969,10 +1993,14 @@ class Inspection(abctools.AbjadObject):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'4 -\marcato
-                    d'4 -\marcato
-                    e'4 -\marcato
-                    f'4 -\marcato
+                    c'4
+                    -\marcato
+                    d'4
+                    -\marcato
+                    e'4
+                    -\marcato
+                    f'4
+                    -\marcato
                 }
 
             >>> abjad.inspect(staff).wrappers(abjad.Articulation)

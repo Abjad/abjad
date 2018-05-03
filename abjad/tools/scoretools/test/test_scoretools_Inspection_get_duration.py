@@ -29,14 +29,20 @@ def test_scoretools_Inspection_get_duration_01():
                 \time 2/12
                 \scaleDurations #'(2 . 3) {
                     \tempo 8=42
-                    c'8 [ \<
-                    d'8 \!
+                    c'8
+                    [
+                    \<
+                    d'8
+                    \!
                 }
             }   % measure
             {   % measure
                 \time 2/8
-                c'8 \>
-                d'8 ] \!
+                c'8
+                \>
+                d'8
+                ]
+                \!
             }   % measure
         }
         '''
@@ -69,14 +75,20 @@ def test_scoretools_Inspection_get_duration_02():
             {   % measure
                 \time 2/12
                 \scaleDurations #'(2 . 3) {
-                    c'8 [ \<
-                    d'8 \!
+                    c'8
+                    [
+                    \<
+                    d'8
+                    \!
                 }
             }   % measure
             {   % measure
                 \time 2/8
-                c'8 \>
-                d'8 ] \!
+                c'8
+                \>
+                d'8
+                ]
+                \!
             }   % measure
         }
         '''

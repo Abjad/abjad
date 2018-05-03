@@ -20,9 +20,11 @@ def test_lilypondparsertools_LilyPondParser__spanners__Trill_01():
             c'4
             \startTrillSpan
             c'4
-            c'4 \stopTrillSpan
+            c'4
+            \stopTrillSpan
             \startTrillSpan
-            c'4 \stopTrillSpan
+            c'4
+            \stopTrillSpan
         }
         '''
         )
@@ -50,9 +52,11 @@ def test_lilypondparsertools_LilyPondParser__spanners__Trill_02():
             c'4
             \startTrillSpan
             c'4
-            c'4 \stopTrillSpan
+            c'4
+            \stopTrillSpan
             \startTrillSpan
-            c'4 \stopTrillSpan
+            c'4
+            \stopTrillSpan
         }
         '''
         )

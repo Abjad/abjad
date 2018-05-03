@@ -16,10 +16,12 @@ def test_spannertools_Beam__fracture_01():
         r'''
         \new Staff
         {
-            c'8 [
+            c'8
+            [
             d'8
             e'8
-            f'8 ]
+            f'8
+            ]
             g'8
             a'8
             b'8
@@ -42,10 +44,14 @@ def test_spannertools_Beam__fracture_02():
         r'''
         \new Staff
         {
-            c'8 [ ]
-            d'8 [
+            c'8
+            [
+            ]
+            d'8
+            [
             e'8
-            f'8 ]
+            f'8
+            ]
             g'8
             a'8
             b'8
@@ -72,10 +78,12 @@ def test_spannertools_Beam__fracture_03():
         r'''
         \new Staff
         {
-            c'8 [
+            c'8
+            [
             d'8
             e'8
-            f'8 ]
+            f'8
+            ]
             g'8
             a'8
             b'8
@@ -98,10 +106,14 @@ def test_spannertools_Beam__fracture_04():
         r'''
         \new Staff
         {
-            c'8 [
-            d'8 ]
-            e'8 [
-            f'8 ]
+            c'8
+            [
+            d'8
+            ]
+            e'8
+            [
+            f'8
+            ]
             g'8
             a'8
             b'8
@@ -126,11 +138,17 @@ def test_spannertools_Beam__fracture_05():
         r'''
         \new Staff
         {
-            c'8 [
-            cs'8 ]
-            d'8 [ ]
-            ef'8 [
-            e'8 ]
+            c'8
+            [
+            cs'8
+            ]
+            d'8
+            [
+            ]
+            ef'8
+            [
+            e'8
+            ]
             f'8
             fs'8
             g'8
@@ -154,11 +172,15 @@ def test_spannertools_Beam__fracture_06():
         r'''
         \new Staff
         {
-            c'8 [ ]
-            cs'8 [
+            c'8
+            [
+            ]
+            cs'8
+            [
             d'8
             ef'8
-            e'8 ]
+            e'8
+            ]
             f'8
             fs'8
             g'8
@@ -182,11 +204,15 @@ def test_spannertools_Beam__fracture_07():
         r'''
         \new Staff
         {
-            c'8 [
+            c'8
+            [
             cs'8
             d'8
-            ef'8 ]
-            e'8 [ ]
+            ef'8
+            ]
+            e'8
+            [
+            ]
             f'8
             fs'8
             g'8
@@ -210,11 +236,15 @@ def test_spannertools_Beam__fracture_08():
         r'''
         \new Staff
         {
-            c'8 [
+            c'8
+            [
             cs'8
             d'8
-            ef'8 ]
-            e'8 [ ]
+            ef'8
+            ]
+            e'8
+            [
+            ]
             f'8
             fs'8
             g'8
@@ -266,7 +296,8 @@ def test_spannertools_Beam__fracture_09():
         \new Staff
         {
             {
-                c'8 [
+                c'8
+                [
                 cs'8
                 d'8
                 ef'8
@@ -275,13 +306,16 @@ def test_spannertools_Beam__fracture_09():
                 e'8
                 f'8
                 fs'8
-                g'8 ]
+                g'8
+                ]
             }
             {
-                af'8 [
+                af'8
+                [
                 a'8
                 bf'8
-                b'8 ]
+                b'8
+                ]
             }
         }
         '''

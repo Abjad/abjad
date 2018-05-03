@@ -58,7 +58,8 @@ def test_spannertools_Slur___init___02():
             <<
                 \context Voice = "first"
                 {
-                    c'8 (
+                    c'8
+                    (
                     cs'8
                     d'8
                     ef'8
@@ -78,7 +79,8 @@ def test_spannertools_Slur___init___02():
                     af'8
                     a'8
                     bf'8
-                    b'8 )
+                    b'8
+                    )
                 }
                 \context Voice = "second"
                 {
@@ -132,7 +134,8 @@ def test_spannertools_Slur___init___03():
             {
                 \context Voice = "bar"
                 {
-                    c'8 (
+                    c'8
+                    (
                     cs'8
                     d'8
                     ef'8
@@ -145,7 +148,8 @@ def test_spannertools_Slur___init___03():
                     e'8
                     f'8
                     fs'8
-                    g'8 )
+                    g'8
+                    )
                 }
             }
         }

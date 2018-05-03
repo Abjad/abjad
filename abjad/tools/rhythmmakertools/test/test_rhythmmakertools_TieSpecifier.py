@@ -29,26 +29,36 @@ def test_rhythmmakertools_TieSpecifier_01():
             \tweak text #tuplet-number::calc-fraction-text
             \times 1/1 {
                 r16
-                c'8 [
-                c'8. ~ ]
+                c'8
+                [
+                c'8.
+                ~
+                ]
             }
             \tweak text #tuplet-number::calc-fraction-text
             \times 5/6 {
-                c'16 [
+                c'16
+                [
                 c'8
-                c'8. ]
+                c'8.
+                ]
             }
             \times 4/5 {
                 r16
-                c'8 [
-                c'8 ~ ]
+                c'8
+                [
+                c'8
+                ~
+                ]
             }
             \tweak text #tuplet-number::calc-fraction-text
             \times 1/1 {
-                c'16 [
+                c'16
+                [
                 c'16
                 c'8
-                c'16 ]
+                c'16
+                ]
             }
         }
         '''

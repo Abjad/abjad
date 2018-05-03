@@ -15,7 +15,7 @@ def activate(text, tag, skipped=False):
         ...     tag='RED_MARKUP',
         ...     )
 
-        >>> text = format(staff, 'lilypond:strict')
+        >>> text = format(staff, 'lilypond')
         >>> text = abjad.LilyPondFormatManager.left_shift_tags(text)
         >>> print(text)
         \new Staff {

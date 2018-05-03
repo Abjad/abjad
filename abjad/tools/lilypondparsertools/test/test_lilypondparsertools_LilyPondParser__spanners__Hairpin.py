@@ -17,11 +17,15 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_01():
         r'''
         \new Staff
         {
-            c'4 \<
             c'4
-            c'4 \! \>
+            \<
             c'4
-            c'4 \ppp
+            c'4
+            \!
+            \>
+            c'4
+            c'4
+            \ppp
         }
         '''
         )
@@ -45,10 +49,16 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_02():
     assert format(target) == abjad.String.normalize(
         r'''
         {
-            c'4 \<
-            c'4 \! \<
-            c'4 \! \<
-            c'4 \!
+            c'4
+            \<
+            c'4
+            \!
+            \<
+            c'4
+            \!
+            \<
+            c'4
+            \!
         }
         '''
         )
@@ -78,9 +88,13 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_03():
         r'''
         \new Staff
         {
-            c'4 \<
-            c'4 \p \>
-            c'4 \f
+            c'4
+            \<
+            c'4
+            \p
+            \>
+            c'4
+            \f
         }
         '''
         )
@@ -132,11 +146,15 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_07():
         r'''
         \new Staff
         {
-            c'4 ^ \<
             c'4
-            c'4 \! _ \>
+            ^ \<
             c'4
-            c'4 \ppp
+            c'4
+            \!
+            _ \>
+            c'4
+            c'4
+            \ppp
         }
         '''
         )
@@ -155,10 +173,15 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_08():
         r'''
         \new Staff
         {
-            c'4 \p \< (
+            c'4
+            \p
+            \<
+            (
             d'4
             e'4
-            f'4 \! )
+            f'4
+            \!
+            )
         }
         '''
         )

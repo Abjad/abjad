@@ -37,7 +37,7 @@ class PersistenceManager(abctools.AbjadObject):
         self,
         ly_file_path=None,
         illustrate_function=None,
-        strict=False,
+        strict=None,
         **keywords
         ):
         r'''Persists client as LilyPond file.
@@ -57,6 +57,8 @@ class PersistenceManager(abctools.AbjadObject):
         written.
         '''
         import abjad
+        if strict is not None:
+            assert isinstance(strict, int), repr(strict)
         if illustrate_function is None:
             assert hasattr(self._client, '__illustrate__')
             illustrate_function = self._client.__illustrate__
@@ -73,12 +75,8 @@ class PersistenceManager(abctools.AbjadObject):
         assert ly_file_path.endswith('.ly'), ly_file_path
         timer = abjad.Timer()
         with timer:
-            if strict is True or isinstance(strict, int):
-                format_specification = 'lilypond:strict'
-            else:
-                format_specification = 'lilypond'
             string = lilypond_file.__format__(
-                format_specification=format_specification
+                format_specification='lilypond',
                 )
             if isinstance(strict, int):
                 string = abjad.LilyPondFormatManager.align_tags(string, strict)
@@ -188,7 +186,7 @@ class PersistenceManager(abctools.AbjadObject):
         pdf_file_path=None,
         illustrate_function=None,
         remove_ly=False,
-        strict=False,
+        strict=None,
         **keywords
         ):
         r'''Persists client as PDF.
@@ -209,6 +207,8 @@ class PersistenceManager(abctools.AbjadObject):
         time when PDF output is written.
         '''
         from abjad.tools import systemtools
+        if strict is not None:
+            assert isinstance(strict, int), repr(strict)
         if illustrate_function is None:
             assert hasattr(self._client, '__illustrate__'), repr(self._client)
         if pdf_file_path is not None:

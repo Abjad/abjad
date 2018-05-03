@@ -51,10 +51,12 @@ class TextSpanner(Spanner):
                 \once \override TextSpanner.bound-details.right.padding = 1.5
                 \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                 \once \override TextSpanner.dash-period = 0
-                c'4 \startTextSpan
+                c'4
+                \startTextSpan
                 d'4
                 e'4
-                f'4 \stopTextSpan
+                f'4
+                \stopTextSpan
             }
 
         >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
@@ -90,10 +92,12 @@ class TextSpanner(Spanner):
                         }
                     }
                 \once \override TextSpanner.dash-period = 0
-                c'4 \startTextSpan
+                c'4
+                \startTextSpan
                 d'4
                 e'4
-                f'4 \stopTextSpan
+                f'4
+                \stopTextSpan
             }
 
         >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
@@ -139,10 +143,12 @@ class TextSpanner(Spanner):
                         }
                     }
                 \once \override TextSpanner.dash-period = 0
-                c'4 \startTextSpan
+                c'4
+                \startTextSpan
                 d'4
                 e'4
-                f'4 \stopTextSpan
+                f'4
+                \stopTextSpan
             }
 
         >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
@@ -190,10 +196,12 @@ class TextSpanner(Spanner):
                         }
                     }
                 \once \override TextSpanner.dash-fraction = 1
-                c'4 \startTextSpan
+                c'4
+                \startTextSpan
                 d'4
                 e'4
-                f'4 \stopTextSpan
+                f'4
+                \stopTextSpan
             }
 
     ..  container:: example
@@ -239,7 +247,8 @@ class TextSpanner(Spanner):
                 \once \override TextSpanner.bound-details.right.padding = 0.5
                 \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                 \once \override TextSpanner.dash-fraction = 1
-                c'4 \startTextSpan
+                c'4
+                \startTextSpan
                 \once \override TextSpanner.Y-extent = ##f
                 \once \override TextSpanner.arrow-width = 0.25
                 \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -258,7 +267,9 @@ class TextSpanner(Spanner):
                 \once \override TextSpanner.bound-details.right.padding = 0.5
                 \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                 \once \override TextSpanner.dash-fraction = 1
-                d'4 \stopTextSpan \startTextSpan
+                d'4
+                \stopTextSpan
+                \startTextSpan
                 \once \override TextSpanner.Y-extent = ##f
                 \once \override TextSpanner.arrow-width = 0.25
                 \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -286,8 +297,11 @@ class TextSpanner(Spanner):
                         }
                     }
                 \once \override TextSpanner.dash-fraction = 1
-                e'4 \stopTextSpan \startTextSpan
-                f'4 \stopTextSpan
+                e'4
+                \stopTextSpan
+                \startTextSpan
+                f'4
+                \stopTextSpan
             }
 
         >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
@@ -331,7 +345,8 @@ class TextSpanner(Spanner):
                 \once \override TextSpanner.bound-details.right.padding = 1
                 \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                 \once \override TextSpanner.dash-fraction = 1
-                c'4 \startTextSpan
+                c'4
+                \startTextSpan
                 \once \override TextSpanner.Y-extent = ##f
                 \once \override TextSpanner.arrow-width = 0.25
                 \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -350,7 +365,9 @@ class TextSpanner(Spanner):
                 \once \override TextSpanner.bound-details.right.padding = 1
                 \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                 \once \override TextSpanner.dash-fraction = 1
-                d'4 \stopTextSpan \startTextSpan
+                d'4
+                \stopTextSpan
+                \startTextSpan
                 \once \override TextSpanner.Y-extent = ##f
                 \once \override TextSpanner.arrow-width = 0.25
                 \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -378,8 +395,11 @@ class TextSpanner(Spanner):
                         }
                     }
                 \once \override TextSpanner.dash-fraction = 1
-                e'4 \stopTextSpan \startTextSpan
-                f'4 \stopTextSpan
+                e'4
+                \stopTextSpan
+                \startTextSpan
+                f'4
+                \stopTextSpan
             }
 
     ..  container:: example
@@ -437,14 +457,16 @@ class TextSpanner(Spanner):
                         }
                     }
                 \once \override TextSpanner.dash-fraction = 1
-                c'4 \startTextSpan
-                    ^ \markup {
-                        \italic
-                            leggieriss.
-                        }
+                c'4
+                \startTextSpan
+                ^ \markup {
+                    \italic
+                        leggieriss.
+                    }
                 d'4
                 e'4
-                f'4 \stopTextSpan
+                f'4
+                \stopTextSpan
             }
 
     ..  container:: example
@@ -683,10 +705,12 @@ class TextSpanner(Spanner):
                         }
                     }
                 \once \override TextSpanner.dash-fraction = 1
-                c'4 \startTextSpanOne
+                c'4
+                \startTextSpanOne
                 d'4
                 e'4
-                f'4 \stopTextSpanOne
+                f'4
+                \stopTextSpanOne
             }
 
         '''
@@ -729,7 +753,8 @@ class TextSpanner(Spanner):
                         }
                     \override TextSpanner.bound-details.right.padding = #1
                     \override TextSpanner.color = #red
-                    c'4 \startTextSpan
+                    c'4
+                    \startTextSpan
                     d'4
                     e'4
                     \revert TextSpanner.bound-details.left.stencil-align-dir-y
@@ -742,13 +767,16 @@ class TextSpanner(Spanner):
                             \italic
                                 default
                         }
-                    f'4 \stopTextSpan \startTextSpan
+                    f'4
+                    \stopTextSpan
+                    \startTextSpan
                     c'4
                     d'4
                     e'4
                     \revert TextSpanner.bound-details.left.stencil-align-dir-y
                     \revert TextSpanner.bound-details.left.text
-                    f'4 \stopTextSpan
+                    f'4
+                    \stopTextSpan
                 }
 
         '''

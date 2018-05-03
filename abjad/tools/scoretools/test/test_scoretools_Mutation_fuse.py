@@ -102,9 +102,11 @@ def test_scoretools_Mutation_fuse_06():
     assert format(tuplet_1) == abjad.String.normalize(
         r'''
         \times 2/3 {
-            c'8 [
+            c'8
+            [
             d'8
-            e'8 ]
+            e'8
+            ]
         }
         '''
         )
@@ -112,9 +114,11 @@ def test_scoretools_Mutation_fuse_06():
     assert format(tuplet_2) == abjad.String.normalize(
         r'''
         \times 2/3 {
-            c'16 (
+            c'16
+            (
             d'16
-            e'16 )
+            e'16
+            )
         }
         '''
         )
@@ -125,12 +129,16 @@ def test_scoretools_Mutation_fuse_06():
     assert format(new) == abjad.String.normalize(
         r'''
         \times 2/3 {
-            c'8 [
+            c'8
+            [
             d'8
-            e'8 ]
-            c'16 (
+            e'8
+            ]
+            c'16
+            (
             d'16
-            e'16 )
+            e'16
+            )
         }
         '''
         )
@@ -158,14 +166,18 @@ def test_scoretools_Mutation_fuse_07():
         \new Voice
         {
             \times 2/3 {
-                c'8 [
+                c'8
+                [
                 d'8
-                e'8 ]
+                e'8
+                ]
             }
             \times 2/3 {
-                c'16 (
+                c'16
+                (
                 d'16
-                e'16 )
+                e'16
+                )
             }
         }
         '''
@@ -179,12 +191,16 @@ def test_scoretools_Mutation_fuse_07():
         \new Voice
         {
             \times 2/3 {
-                c'8 [
+                c'8
+                [
                 d'8
-                e'8 ]
-                c'16 (
+                e'8
+                ]
+                c'16
+                (
                 d'16
-                e'16 )
+                e'16
+                )
             }
         }
         '''
@@ -210,17 +226,21 @@ def test_scoretools_Mutation_fuse_08():
         \new Voice
         {
             \times 2/3 {
-                c'8 [
+                c'8
+                [
                 d'8
-                e'8 ]
+                e'8
+                ]
             }
             \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
-                c'8 (
+                c'8
+                (
                 d'8
                 e'8
                 f'8
-                g'8 )
+                g'8
+                )
             }
         }
         '''
@@ -235,14 +255,18 @@ def test_scoretools_Mutation_fuse_08():
         {
             \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
-                c'8 [
+                c'8
+                [
                 d'8
-                e'8 ]
-                c'8 (
+                e'8
+                ]
+                c'8
+                (
                 d'8
                 e'8
                 f'8
-                g'8 )
+                g'8
+                )
             }
         }
         '''
@@ -279,13 +303,15 @@ def test_scoretools_Mutation_fuse_10():
         {
             \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
-                c'8 (
+                c'8
+                (
             }
             \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'4
             }
-            c'4 )
+            c'4
+            )
         }
         '''
         )
@@ -298,10 +324,12 @@ def test_scoretools_Mutation_fuse_10():
         \new Voice
         {
             \times 2/3 {
-                c'8 (
+                c'8
+                (
                 c'4
             }
-            c'4 )
+            c'4
+            )
         }
         '''
         )
@@ -328,13 +356,17 @@ def test_scoretools_Mutation_fuse_11():
         {
             {   % measure
                 \time 1/8
-                c'16 [
-                d'16 ]
+                c'16
+                [
+                d'16
+                ]
             }   % measure
             {   % measure
                 \time 2/16
-                c'16 (
-                d'16 )
+                c'16
+                (
+                d'16
+                )
             }   % measure
         }
         '''
@@ -350,10 +382,14 @@ def test_scoretools_Mutation_fuse_11():
         r'''
         {   % measure
             \time 2/8
-            c'16 [
-            d'16 ]
-            c'16 (
-            d'16 )
+            c'16
+            [
+            d'16
+            ]
+            c'16
+            (
+            d'16
+            )
         }   % measure
         '''
         )
@@ -378,13 +414,15 @@ def test_scoretools_Mutation_fuse_12():
         {
             {   % measure
                 \time 1/8
-                c'16 [
+                c'16
+                [
                 d'16
             }   % measure
             {   % measure
                 \time 2/16
                 e'16
-                f'16 ]
+                f'16
+                ]
             }   % measure
         }
         '''
@@ -398,10 +436,12 @@ def test_scoretools_Mutation_fuse_12():
         {
             {   % measure
                 \time 2/8
-                c'16 [
+                c'16
+                [
                 d'16
                 e'16
-                f'16 ]
+                f'16
+                ]
             }   % measure
         }
         '''
@@ -427,8 +467,10 @@ def test_scoretools_Mutation_fuse_13():
         {
             {   % measure
                 \time 1/8
-                c'16 [
-                d'16 ]
+                c'16
+                [
+                d'16
+                ]
             }   % measure
             {   % measure
                 \time 2/16
@@ -447,8 +489,10 @@ def test_scoretools_Mutation_fuse_13():
         {
             {   % measure
                 \time 2/8
-                c'16 [
-                d'16 ]
+                c'16
+                [
+                d'16
+                ]
                 e'16
                 f'16
             }   % measure
@@ -481,12 +525,14 @@ def test_scoretools_Mutation_fuse_14():
         {
             {   % measure
                 \time 1/8
-                c'8 [
+                c'8
+                [
             }   % measure
             {   % measure
                 \time 1/12
                 \scaleDurations #'(2 . 3) {
-                    d'8 ]
+                    d'8
+                    ]
                 }
             }   % measure
         }
@@ -502,8 +548,10 @@ def test_scoretools_Mutation_fuse_14():
             {   % measure
                 \time 5/24
                 \scaleDurations #'(2 . 3) {
-                    c'8. [
-                    d'8 ]
+                    c'8.
+                    [
+                    d'8
+                    ]
                 }
             }   % measure
         }
@@ -548,7 +596,8 @@ def test_scoretools_Mutation_fuse_17():
         {
             {   % measure
                 \time 1/8
-                c'16 [
+                c'16
+                [
                 d'16
             }   % measure
             {   % measure
@@ -557,7 +606,8 @@ def test_scoretools_Mutation_fuse_17():
             }   % measure
             {   % measure
                 g'16
-                a'16 ]
+                a'16
+                ]
             }   % measure
         }
         '''
@@ -571,12 +621,14 @@ def test_scoretools_Mutation_fuse_17():
         {
             {   % measure
                 \time 3/8
-                c'16 [
+                c'16
+                [
                 d'16
                 e'16
                 f'16
                 g'16
-                a'16 ]
+                a'16
+                ]
             }   % measure
         }
         '''
@@ -644,9 +696,11 @@ def test_scoretools_Mutation_fuse_18():
                     c'64
                     c'64
                     c'64
-                    c'16 ~
+                    c'16
+                    ~
                     c'64
-                    c'16 ~
+                    c'16
+                    ~
                     c'64
                 }
             }   % measure

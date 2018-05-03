@@ -21,7 +21,7 @@ def test_scoretools_Chord___format___02():
     command = abjad.LilyPondLiteral(r'\glissando', 'right')
     abjad.attach(command, chord)
 
-    assert format(chord) == "<d' ef' e'>4 \\glissando"
+    assert format(chord) == "<d' ef' e'>4\n\\glissando"
 
 
 def test_scoretools_Chord___format___03():
@@ -40,7 +40,8 @@ def test_scoretools_Chord___format___03():
             d'
             ef'
             e'
-        >4 \glissando
+        >4
+        \glissando
         '''
         )
 

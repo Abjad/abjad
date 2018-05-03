@@ -380,14 +380,16 @@ class Parentage(abctools.AbjadObject, collections.Sequence):
                 >>> abjad.f(voice)
                 \new Voice
                 {
-                    c'8 [
+                    c'8
+                    [
                     \grace {
                         cf''16
                         bf'16
                     }
                     d'8
                     e'8
-                    f'8 ]
+                    f'8
+                    ]
                 }
 
             >>> leaves = abjad.iterate(voice).components()

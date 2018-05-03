@@ -19,10 +19,12 @@ def test_scoretools_Container_insert_01():
     r'''
     \new Voice {
         r8
-        c'8 [
+        c'8
+        [
         d'8
         e'8
-        f'8 ]
+        f'8
+        ]
     }
     '''
 
@@ -32,10 +34,12 @@ def test_scoretools_Container_insert_01():
         \new Voice
         {
             r8
-            c'8 [
+            c'8
+            [
             d'8
             e'8
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )
@@ -52,11 +56,13 @@ def test_scoretools_Container_insert_02():
 
     r'''
     \new Voice {
-        c'8 [
+        c'8
+        [
         cs'8
         d'8
         e'8
-        f'8 ]
+        f'8
+        ]
     }
     '''
 
@@ -65,11 +71,13 @@ def test_scoretools_Container_insert_02():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             cs'8
             d'8
             e'8
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )
@@ -87,10 +95,12 @@ def test_scoretools_Container_insert_03():
 
     r'''
     \new Staff {
-        c'8 [
+        c'8
+        [
         cs'8
         d'8
-        ef'8 ]
+        ef'8
+        ]
         r4
     }
     '''
@@ -100,10 +110,12 @@ def test_scoretools_Container_insert_03():
         r'''
         \new Staff
         {
-            c'8 [
+            c'8
+            [
             cs'8
             d'8
-            ef'8 ]
+            ef'8
+            ]
             r4
         }
         '''
@@ -121,10 +133,12 @@ def test_scoretools_Container_insert_04():
 
     r'''
     \new Staff {
-        c'8 [
+        c'8
+        [
         cs'8
         d'8
-        ef'8 ]
+        ef'8
+        ]
     r4
     }
     '''
@@ -134,10 +148,12 @@ def test_scoretools_Container_insert_04():
         r'''
         \new Staff
         {
-            c'8 [
+            c'8
+            [
             cs'8
             d'8
-            ef'8 ]
+            ef'8
+            ]
             r4
         }
         '''
@@ -155,11 +171,13 @@ def test_scoretools_Container_insert_05():
 
     r'''
     \new Voice {
-        c'8 [
+        c'8
+        [
         d'8
         e'8
         eqs'8
-        f'8 ]
+        f'8
+        ]
     }
     '''
 
@@ -168,11 +186,13 @@ def test_scoretools_Container_insert_05():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             d'8
             e'8
             eqs'8
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )
@@ -190,10 +210,12 @@ def test_scoretools_Container_insert_06():
     r'''
     \new Voice {
         r8
-        c'8 [
+        c'8
+        [
         d'8
         e'8
-        f'8 ]
+        f'8
+        ]
     }
     '''
 
@@ -203,10 +225,12 @@ def test_scoretools_Container_insert_06():
         \new Voice
         {
             r8
-            c'8 [
+            c'8
+            [
             d'8
             e'8
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )
@@ -237,11 +261,13 @@ def test_scoretools_Container_insert_08():
 
     r'''
     \new Staff {
-        c'8 [
+        c'8
+        [
         cs'8
         d'8
         e'8
-        f'8 ]
+        f'8
+        ]
     }
     '''
 
@@ -250,11 +276,13 @@ def test_scoretools_Container_insert_08():
         r'''
         \new Staff
         {
-            c'8 [
+            c'8
+            [
             cs'8
             d'8
             e'8
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )
@@ -290,10 +318,12 @@ def test_scoretools_Container_insert_09():
         \new Staff
         {
             r4
-            c'8 [
+            c'8
+            [
             cs'8
             d'8
-            ef'8 ]
+            ef'8
+            ]
         }
         '''
         )
@@ -310,11 +340,15 @@ def test_scoretools_Container_insert_10():
 
     r'''
     \new Staff {
-        c'8 [ ]
+        c'8
+        [
+        ]
         r4
-        cs'8 [
+        cs'8
+        [
         d'8
-        ef'8 ]
+        ef'8
+        ]
     }
     '''
 
@@ -323,11 +357,15 @@ def test_scoretools_Container_insert_10():
         r'''
         \new Staff
         {
-            c'8 [ ]
+            c'8
+            [
+            ]
             r4
-            cs'8 [
+            cs'8
+            [
             d'8
-            ef'8 ]
+            ef'8
+            ]
         }
         '''
         )
@@ -344,10 +382,12 @@ def test_scoretools_Container_insert_11():
 
     r'''
     \new Staff {
-        c'8 [
+        c'8
+        [
         cs'8
         d'8
-        ef'8 ]
+        ef'8
+        ]
         r4
     }
     '''
@@ -357,10 +397,12 @@ def test_scoretools_Container_insert_11():
         r'''
         \new Staff 
         {
-            c'8 [
+            c'8
+            [
             cs'8
             d'8
-            ef'8 ]
+            ef'8
+            ]
             r4
         }
         '''
@@ -378,10 +420,12 @@ def test_scoretools_Container_insert_12():
 
     r'''
     \new Staff {
-        c'8 [
+        c'8
+        [
         cs'8
         d'8
-        ef'8 ]
+        ef'8
+        ]
     r4
     }
     '''
@@ -391,10 +435,12 @@ def test_scoretools_Container_insert_12():
         r'''
         \new Staff
         {
-            c'8 [
+            c'8
+            [
             cs'8
             d'8
-            ef'8 ]
+            ef'8
+            ]
             r4
         }
         '''
@@ -412,11 +458,15 @@ def test_scoretools_Container_insert_13():
 
     r'''
     \new Staff {
-        c'8 [
+        c'8
+        [
         cs'8
-        d'8 ]
+        d'8
+        ]
         r4
-        ef'8 [ ]
+        ef'8
+        [
+        ]
     }
     '''
 
@@ -425,11 +475,15 @@ def test_scoretools_Container_insert_13():
         r'''
         \new Staff
         {
-            c'8 [
+            c'8
+            [
             cs'8
-            d'8 ]
+            d'8
+            ]
             r4
-            ef'8 [ ]
+            ef'8
+            [
+            ]
         }
         '''
         )
@@ -449,10 +503,12 @@ def test_scoretools_Container_insert_14():
         \new Staff
         {
             r4
-            c'8 [
+            c'8
+            [
             cs'8
             d'8
-            ef'8 ]
+            ef'8
+            ]
         }
         '''
         )

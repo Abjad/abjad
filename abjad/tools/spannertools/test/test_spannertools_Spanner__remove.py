@@ -18,10 +18,12 @@ def test_spannertools_Spanner__remove_01():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             d'8
             e'8
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )
@@ -34,10 +36,12 @@ def test_spannertools_Spanner__remove_01():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             d'8
             e'8
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )
@@ -63,7 +67,8 @@ def test_spannertools_Spanner__remove_02():
         \new Voice
         {
             {
-                c'8 [
+                c'8
+                [
                 d'8
             }
             {
@@ -72,7 +77,8 @@ def test_spannertools_Spanner__remove_02():
             }
             {
                 g'8
-                a'8 ]
+                a'8
+                ]
             }
         }
         '''
@@ -86,12 +92,14 @@ def test_spannertools_Spanner__remove_02():
         \new Voice
         {
             {
-                c'8 [
+                c'8
+                [
                 d'8
             }
             {
                 e'8
-                f'8 ]
+                f'8
+                ]
             }
             {
                 g'8

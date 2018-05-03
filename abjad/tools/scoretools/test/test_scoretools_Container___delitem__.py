@@ -15,12 +15,18 @@ def test_scoretools_Container___delitem___01():
         \new Voice
         {
             {
-                c'8 [ (
-                d'8 )
+                c'8
+                [
+                (
+                d'8
+                )
             }
             {
-                e'8 (
-                f'8 ] )
+                e'8
+                (
+                f'8
+                ]
+                )
             }
         }
         '''
@@ -35,8 +41,12 @@ def test_scoretools_Container___delitem___01():
         \new Voice
         {
             {
-                e'8 [ (
-                f'8 ] )
+                e'8
+                [
+                (
+                f'8
+                ]
+                )
             }
         }
         '''
@@ -48,8 +58,10 @@ def test_scoretools_Container___delitem___01():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            c'8 (
-            d'8 )
+            c'8
+            (
+            d'8
+            )
         }
         '''
         )
@@ -68,9 +80,11 @@ def test_scoretools_Container___delitem___02():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             e'8
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )
@@ -89,8 +103,10 @@ def test_scoretools_Container___delitem___03():
         r'''
         \new Voice
         {
-            c'8 [
-            f'8 ]
+            c'8
+            [
+            f'8
+            ]
         }
         '''
         )
@@ -109,8 +125,10 @@ def test_scoretools_Container___delitem___04():
         r'''
         \new Voice
         {
-            e'8 [
-            f'8 ]
+            e'8
+            [
+            f'8
+            ]
         }
         '''
         )
@@ -129,8 +147,10 @@ def test_scoretools_Container___delitem___05():
         r'''
         \new Voice
         {
-            c'8 [
-            d'8 ]
+            c'8
+            [
+            d'8
+            ]
         }
         '''
         )
@@ -167,8 +187,10 @@ def test_scoretools_Container___delitem___07():
         r'''
         \tweak edge-height #'(0.7 . 0)
         \times 2/3 {
-            c'8 [
-            e'8 ]
+            c'8
+            [
+            e'8
+            ]
         }
         '''
         )
@@ -188,12 +210,17 @@ def test_scoretools_Container___delitem___08():
         r'''
         \new Voice
         {
-            c'8 [ \glissando
+            c'8
+            [
+            \glissando
             {
-                d'8 \glissando
-                e'8 \glissando
+                d'8
+                \glissando
+                e'8
+                \glissando
             }
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )
@@ -205,11 +232,15 @@ def test_scoretools_Container___delitem___08():
         r'''
         \new Voice
         {
-            c'8 [ \glissando
+            c'8
+            [
+            \glissando
             {
-                e'8 \glissando
+                e'8
+                \glissando
             }
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )

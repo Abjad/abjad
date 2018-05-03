@@ -91,7 +91,8 @@ class NoteMaker(AbjadValueObject):
             >>> abjad.f(staff)
             \new Staff
             {
-                c'2. ~
+                c'2.
+                ~
                 c'16
             }
 
@@ -110,7 +111,8 @@ class NoteMaker(AbjadValueObject):
             >>> abjad.f(staff)
             \new Staff
             {
-                c'16 ~
+                c'16
+                ~
                 c'2.
             }
 
@@ -129,7 +131,8 @@ class NoteMaker(AbjadValueObject):
             \new Staff
             {
                 c'2.
-                c'16 \repeatTie
+                c'16
+                \repeatTie
             }
 
     ..  container:: example

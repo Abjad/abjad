@@ -19,10 +19,16 @@ def test_scoretools_Mutation_replace_01():
         r'''
         \new Staff
         {
-            c'8 [ \<
-            d'8 ]
-            e'8 [
-            f'8 ] \!
+            c'8
+            [
+            \<
+            d'8
+            ]
+            e'8
+            [
+            f'8
+            ]
+            \!
         }
         '''
         ), format(staff)
@@ -35,13 +41,19 @@ def test_scoretools_Mutation_replace_01():
         r'''
         \new Staff
         {
-            c'8 [ ] \<
+            c'8
+            [
+            ]
+            \<
             c''16
             c''16
             c''16
             c''16
             c''16
-            f'8 \! [ ]
+            f'8
+            \!
+            [
+            ]
         }
         '''
         ), format(staff)
@@ -67,10 +79,16 @@ def test_scoretools_Mutation_replace_02():
         r'''
         \new Staff
         {
-            c'8 [ \<
-            d'8 ]
-            e'8 [
-            f'8 ] \!
+            c'8
+            [
+            \<
+            d'8
+            ]
+            e'8
+            [
+            f'8
+            ]
+            \!
         }
         '''
         ), format(staff)
@@ -83,14 +101,20 @@ def test_scoretools_Mutation_replace_02():
         r'''
         \new Staff
         {
-            c''16 [ \<
+            c''16
+            [
+            \<
             c''16
             c''16
             c''16
             c''16
-            d'8 ]
-            e'8 [
-            f'8 ] \!
+            d'8
+            ]
+            e'8
+            [
+            f'8
+            ]
+            \!
         }
         '''
         ), format(staff)
@@ -116,10 +140,16 @@ def test_scoretools_Mutation_replace_03():
         r'''
         \new Staff
         {
-            c'8 [ \<
-            d'8 ]
-            e'8 [
-            f'8 ] \!
+            c'8
+            [
+            \<
+            d'8
+            ]
+            e'8
+            [
+            f'8
+            ]
+            \!
         }
         '''
         ), format(staff)
@@ -132,13 +162,19 @@ def test_scoretools_Mutation_replace_03():
         r'''
         \new Staff
         {
-            c''16 [ \<
+            c''16
+            [
+            \<
             c''16
             c''16
             c''16
-            c''16 ]
-            e'8 [
-            f'8 ] \!
+            c''16
+            ]
+            e'8
+            [
+            f'8
+            ]
+            \!
         }
         '''
         ), format(staff)
@@ -164,10 +200,16 @@ def test_scoretools_Mutation_replace_04():
         r'''
         \new Staff
         {
-            c'8 [ \<
-            d'8 ]
-            e'8 [
-            f'8 ] \!
+            c'8
+            [
+            \<
+            d'8
+            ]
+            e'8
+            [
+            f'8
+            ]
+            \!
         }
         '''
         ), format(staff)
@@ -180,12 +222,16 @@ def test_scoretools_Mutation_replace_04():
         r'''
         \new Staff
         {
-            c''16 \<
+            c''16
+            \<
             c''16
             c''16
             c''16
             c''16
-            f'8 \! [ ]
+            f'8
+            \!
+            [
+            ]
         }
         '''
         ), format(staff)
@@ -211,10 +257,16 @@ def test_scoretools_Mutation_replace_05():
         r'''
         \new Staff
         {
-            c'8 [ \<
-            d'8 ]
-            e'8 [
-            f'8 ] \!
+            c'8
+            [
+            \<
+            d'8
+            ]
+            e'8
+            [
+            f'8
+            ]
+            \!
         }
         '''
         ), format(staff)
@@ -227,11 +279,13 @@ def test_scoretools_Mutation_replace_05():
         r'''
         \new Staff
         {
-            c''16 \<
+            c''16
+            \<
             c''16
             c''16
             c''16
-            c''16 \!
+            c''16
+            \!
         }
         '''
         ), format(staff)
@@ -259,10 +313,12 @@ def test_scoretools_Mutation_replace_06():
         {
             \new Voice
             {
-                c'8 [
+                c'8
+                [
                 d'8
                 e'8
-                f'8 ]
+                f'8
+                ]
             }
         }
         '''
@@ -276,10 +332,12 @@ def test_scoretools_Mutation_replace_06():
         r'''
         \new Staff
         {
-            c'8 [
+            c'8
+            [
             d'8
             e'8
-            f'8 ]
+            f'8
+            ]
         }
         '''
         ), format(staff)

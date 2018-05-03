@@ -16,10 +16,14 @@ def test_lilypondparsertools_LilyPondParser__spanners__Text_01():
     assert format(target) == abjad.String.normalize(
         r'''
         {
-            c'4 \startTextSpan
             c'4
-            c'4 \stopTextSpan \startTextSpan
-            c'4 \stopTextSpan
+            \startTextSpan
+            c'4
+            c'4
+            \stopTextSpan
+            \startTextSpan
+            c'4
+            \stopTextSpan
         }
         '''
         )
@@ -43,10 +47,14 @@ def test_lilypondparsertools_LilyPondParser__spanners__Text_02():
     assert format(target) == abjad.String.normalize(
         r'''
         {
-            c'4 \startTextSpan
             c'4
-            c'4 \stopTextSpan \startTextSpan
-            c'4 \stopTextSpan
+            \startTextSpan
+            c'4
+            c'4
+            \stopTextSpan
+            \startTextSpan
+            c'4
+            \stopTextSpan
         }
         '''
         )

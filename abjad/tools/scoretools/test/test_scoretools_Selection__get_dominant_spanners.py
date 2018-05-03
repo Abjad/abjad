@@ -25,17 +25,23 @@ def test_scoretools_Selection__get_dominant_spanners_01():
         \new Voice
         {
             {
-                c'8 [
+                c'8
+                [
                 \startTrillSpan
                 d'8
             }
             {
-                e'8 \glissando
-                f'8 ] \glissando
+                e'8
+                \glissando
+                f'8
+                ]
+                \glissando
             }
             {
-                g'8 \glissando
-                a'8 \stopTrillSpan
+                g'8
+                \glissando
+                a'8
+                \stopTrillSpan
             }
         }
         '''

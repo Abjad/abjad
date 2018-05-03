@@ -18,7 +18,8 @@ def test_spannertools_DuratedComplexBeam_direction_01():
         {
             \set stemLeftBeamCount = 0
             \set stemRightBeamCount = 2
-            c'16 ^ [
+            c'16
+            ^ [
             \set stemLeftBeamCount = 2
             \set stemRightBeamCount = 1
             d'16
@@ -27,7 +28,8 @@ def test_spannertools_DuratedComplexBeam_direction_01():
             e'16
             \set stemLeftBeamCount = 2
             \set stemRightBeamCount = 0
-            f'16 ]
+            f'16
+            ]
         }
         '''
         )

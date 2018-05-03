@@ -103,12 +103,14 @@ def test_scoretools_Selection_are_contiguous_logical_voice_07():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             d'8
             e'8
             f'8
             g'8
-            a'8 ]
+            a'8
+            ]
         }
         '''
         )
@@ -121,9 +123,11 @@ def test_scoretools_Selection_are_contiguous_logical_voice_08():
     r'''False when components belonging to same logical voice are ommitted.
     '''
 
-    voice = abjad.Voice(r'''
+    voice = abjad.Voice(
+        r'''
         {
-            c'8 [
+            c'8
+            [
             d'8
         }
         {
@@ -132,7 +136,8 @@ def test_scoretools_Selection_are_contiguous_logical_voice_08():
         }
         {
             g'8
-            a'8 ]
+            a'8
+            ]
         }
         ''')
 

@@ -129,7 +129,7 @@ def attach(
 
         ..  docs::
 
-            >>> abjad.f(staff, strict=True)
+            >>> abjad.f(staff)
             \new Staff
             {
                 \clef "treble"
@@ -167,7 +167,7 @@ def attach(
 
         ..  docs::
 
-            >>> abjad.f(staff, strict=True)
+            >>> abjad.f(staff)
             \new Staff
             {
             %@% \clef "alto" %! +PARTS

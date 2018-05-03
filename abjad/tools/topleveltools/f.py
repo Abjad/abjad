@@ -1,5 +1,12 @@
-def f(argument, strict=False):
-    r'''Formats `argument` and prints result.
+import typing
+from abjad.tools.systemtools.LilyPondFormatManager import LilyPondFormatManager
+
+
+def f(
+    argument: typing.Any,
+    strict: int = None,
+    ) -> None:
+    r'''Formats ``argument`` and prints result.
     
     ..  container:: example
 
@@ -30,49 +37,16 @@ def f(argument, strict=False):
 
         >>> abjad.show(staff) # doctest: +SKIP
 
-    ..  container:: example
-
-        Set `strict` to true to force only one item per line:
-
-        >>> abjad.f(staff, strict=True)
-        \new Staff
-        {
-            c'4
-            -\staccato
-            ^ \markup {
-                \with-color
-                    #blue
-                    Allegro
-                }
-            d'4
-            -\staccato
-            e'4
-            -\staccato
-            f'4
-            -\staccato
-        }
-
-        >>> abjad.show(staff) # doctest: +SKIP
-
-    Returns none.
     '''
-    import abjad
+    if strict is not None:
+        assert isinstance(strict, int), repr(strict)
     if hasattr(argument, '_publish_storage_format'):
         string = format(argument, 'storage')
-    elif strict is True:
-        string = format(argument, 'lilypond:strict')
-    elif strict is not False and isinstance(strict, int):
-        string = format(argument, 'lilypond:strict')
-        string = abjad.LilyPondFormatManager.align_tags(string, strict)
     else:
         string = format(argument, 'lilypond')
-    if strict:
-        if isinstance(strict, int):
-            realign = strict
-        else:
-            realign = None
-        string = abjad.LilyPondFormatManager.left_shift_tags(
-            string,
-            realign=realign,
-            )
+    realign = None
+    if isinstance(strict, int):
+        string = LilyPondFormatManager.align_tags(string, strict)
+        realign = strict
+    string = LilyPondFormatManager.left_shift_tags(string, realign=realign)
     print(string)

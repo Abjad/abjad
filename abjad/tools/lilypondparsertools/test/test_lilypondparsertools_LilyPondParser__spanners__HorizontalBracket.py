@@ -16,10 +16,16 @@ def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracket_01():
     assert format(target) == abjad.String.normalize(
         r'''
         {
-            c'4 \startGroup \startGroup
-            c'4 \stopGroup
-            c'4 \startGroup
-            c'4 \stopGroup \stopGroup
+            c'4
+            \startGroup
+            \startGroup
+            c'4
+            \stopGroup
+            c'4
+            \startGroup
+            c'4
+            \stopGroup
+            \stopGroup
         }
         '''
         )

@@ -33,7 +33,8 @@ class NoteRhythmMaker(RhythmMaker):
             {
                 {   % measure
                     \time 5/8
-                    c'2 ~
+                    c'2
+                    ~
                     c'8
                 }   % measure
                 {   % measure
@@ -280,12 +281,18 @@ class NoteRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 5/32
-                        c'8 ~ [
-                        c'32 ]
+                        c'8
+                        ~
+                        [
+                        c'32
+                        ]
                     }   % measure
                     {   % measure
-                        c'8 ~ [
-                        c'32 ]
+                        c'8
+                        ~
+                        [
+                        c'32
+                        ]
                     }   % measure
                 }
 
@@ -316,7 +323,9 @@ class NoteRhythmMaker(RhythmMaker):
                         \time 5/32
                         \set stemLeftBeamCount = 0
                         \set stemRightBeamCount = 1
-                        c'8 ~ [
+                        c'8
+                        ~
+                        [
                         \set stemLeftBeamCount = 3
                         \set stemRightBeamCount = 1
                         c'32
@@ -324,10 +333,12 @@ class NoteRhythmMaker(RhythmMaker):
                     {   % measure
                         \set stemLeftBeamCount = 1
                         \set stemRightBeamCount = 1
-                        c'8 ~
+                        c'8
+                        ~
                         \set stemLeftBeamCount = 3
                         \set stemRightBeamCount = 0
-                        c'32 ]
+                        c'32
+                        ]
                     }   % measure
                 }
 
@@ -357,11 +368,13 @@ class NoteRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 5/32
-                        c'8 ~
+                        c'8
+                        ~
                         c'32
                     }   % measure
                     {   % measure
-                        c'8 ~
+                        c'8
+                        ~
                         c'32
                     }   % measure
                 }
@@ -394,7 +407,8 @@ class NoteRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 5/8
-                        c'2 ~
+                        c'2
+                        ~
                         c'8
                     }   % measure
                     {   % measure
@@ -406,7 +420,8 @@ class NoteRhythmMaker(RhythmMaker):
                     }   % measure
                     {   % measure
                         \time 5/8
-                        c'2 ~
+                        c'2
+                        ~
                         c'8
                     }   % measure
                 }
@@ -450,7 +465,8 @@ class NoteRhythmMaker(RhythmMaker):
                     }   % measure
                     {   % measure
                         \time 5/8
-                        c'2 ~
+                        c'2
+                        ~
                         c'8
                     }   % measure
                 }
@@ -494,7 +510,8 @@ class NoteRhythmMaker(RhythmMaker):
                     }   % measure
                     {   % measure
                         \time 5/8
-                        c'2 ~
+                        c'2
+                        ~
                         c'8
                     }   % measure
                 }
@@ -793,7 +810,8 @@ class NoteRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 5/8
-                        c'2 ~
+                        c'2
+                        ~
                         c'8
                     }   % measure
                     {   % measure
@@ -828,8 +846,10 @@ class NoteRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 5/8
-                        c'4 ~
-                        c'4 ~
+                        c'4
+                        ~
+                        c'4
+                        ~
                         c'8
                     }   % measure
                     {   % measure
@@ -863,20 +883,29 @@ class NoteRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 3/4
-                        c'4 ~
-                        c'4 ~
+                        c'4
+                        ~
+                        c'4
+                        ~
                         c'4
                     }   % measure
                     {   % measure
                         \time 6/16
-                        c'8. ~ [
-                        c'8. ]
+                        c'8.
+                        ~
+                        [
+                        c'8.
+                        ]
                     }   % measure
                     {   % measure
                         \time 9/16
-                        c'8. ~ [
-                        c'8. ~
-                        c'8. ]
+                        c'8.
+                        ~
+                        [
+                        c'8.
+                        ~
+                        c'8.
+                        ]
                     }   % measure
                 }
 
@@ -914,9 +943,13 @@ class NoteRhythmMaker(RhythmMaker):
                     }   % measure
                     {   % measure
                         \time 9/16
-                        c'8. ~ [
-                        c'8. ~
-                        c'8. ]
+                        c'8.
+                        ~
+                        [
+                        c'8.
+                        ~
+                        c'8.
+                        ]
                     }   % measure
                 }
 
@@ -953,18 +986,26 @@ class NoteRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 5/16
-                        c'8. ~ [
-                        c'8 ]
+                        c'8.
+                        ~
+                        [
+                        c'8
+                        ]
                     }   % measure
                     {   % measure
                         \time 9/16
-                        c'8. ~ [
-                        c'8. ~
-                        c'8. ]
+                        c'8.
+                        ~
+                        [
+                        c'8.
+                        ~
+                        c'8.
+                        ]
                     }   % measure
                     {   % measure
                         \time 10/16
-                        c'4. ~
+                        c'4.
+                        ~
                         c'4
                     }   % measure
                 }
@@ -1002,7 +1043,8 @@ class NoteRhythmMaker(RhythmMaker):
                     }   % measure
                     {   % measure
                         \time 9/16
-                        c'4. ~
+                        c'4.
+                        ~
                         c'8.
                     }   % measure
                 }
@@ -1202,15 +1244,18 @@ class NoteRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 4/8
-                        c'2 ~
+                        c'2
+                        ~
                     }   % measure
                     {   % measure
                         \time 3/8
-                        c'4. ~
+                        c'4.
+                        ~
                     }   % measure
                     {   % measure
                         \time 4/8
-                        c'2 ~
+                        c'2
+                        ~
                     }   % measure
                     {   % measure
                         \time 3/8
@@ -1247,7 +1292,8 @@ class NoteRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 4/8
-                        c'2 ~
+                        c'2
+                        ~
                     }   % measure
                     {   % measure
                         \time 3/8
@@ -1255,7 +1301,8 @@ class NoteRhythmMaker(RhythmMaker):
                     }   % measure
                     {   % measure
                         \time 4/8
-                        c'2 ~
+                        c'2
+                        ~
                     }   % measure
                     {   % measure
                         \time 3/8
@@ -1293,17 +1340,22 @@ class NoteRhythmMaker(RhythmMaker):
                     }   % measure
                     {   % measure
                         \time 3/8
-                        c'4. \repeatTie
+                        c'4.
+                        \repeatTie
                     }   % measure
                     {   % measure
                         \time 9/16
-                        c'2 \repeatTie
-                        c'16 \repeatTie
+                        c'2
+                        \repeatTie
+                        c'16
+                        \repeatTie
                     }   % measure
                     {   % measure
                         \time 5/16
-                        c'4 \repeatTie
-                        c'16 \repeatTie
+                        c'4
+                        \repeatTie
+                        c'16
+                        \repeatTie
                     }   % measure
                 }
 
@@ -1373,9 +1425,11 @@ class NoteRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 7/16
-                        c'8. [
+                        c'8.
+                        [
                         c'8
-                        c'8 ]
+                        c'8
+                        ]
                     }   % measure
                     {   % measure
                         \time 1/4
@@ -1383,8 +1437,10 @@ class NoteRhythmMaker(RhythmMaker):
                     }   % measure
                     {   % measure
                         \time 5/16
-                        c'8. [
-                        c'8 ]
+                        c'8.
+                        [
+                        c'8
+                        ]
                     }   % measure
                 }
 
@@ -1419,7 +1475,8 @@ class NoteRhythmMaker(RhythmMaker):
                         \time 5/14
                         \tweak edge-height #'(0.7 . 0)
                         \times 4/7 {
-                            c'2 ~
+                            c'2
+                            ~
                             c'8
                         }
                     }   % measure
@@ -1460,7 +1517,8 @@ class NoteRhythmMaker(RhythmMaker):
                         \tweak text #tuplet-number::calc-fraction-text
                         \tweak edge-height #'(0.7 . 0)
                         \times 8/7 {
-                            c'4 ~
+                            c'4
+                            ~
                             c'16
                         }
                     }   % measure

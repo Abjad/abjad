@@ -106,7 +106,8 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_02():
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 3/5 {
                     r4
-                    c'16 ~
+                    c'16
+                    ~
                 }
             }   % measure
             {   % measure
@@ -162,8 +163,10 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_03():
                 \time 3/8
                 {
                     r16
-                    c'8 [
-                    c'8. ]
+                    c'8
+                    [
+                    c'8.
+                    ]
                 }
             }   % measure
             {   % measure
@@ -172,12 +175,16 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_03():
                 \times 3/5 {
                     c'16 [
                     c'8
-                    c'8 ~ ]
+                    c'8
+                    ~
+                    ]
                 }
                 {
-                    c'16 [
                     c'16
-                    c'8 ]
+                    [
+                    c'16
+                    c'8
+                    ]
                     r16
                 }
             }   % measure
@@ -222,11 +229,13 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_04():
             {   % measure
                 \time 8/8
                 r8
-                c'8 [
+                c'8
+                [
                 c'8
                 c'8
                 c'8
-                c'8 ]
+                c'8
+                ]
                 r8
                 r8
             }   % measure

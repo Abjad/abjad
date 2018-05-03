@@ -71,7 +71,8 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                     \once \override TextSpanner.dash-period = 0
                     \time 3/8
-                    c'8. \startTextSpan
+                    c'8.
+                    \startTextSpan
                     d'8.
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -100,7 +101,9 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.padding = 1
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                     \once \override TextSpanner.dash-period = 0
-                    e'4. \stopTextSpan \startTextSpan
+                    e'4.
+                    \stopTextSpan
+                    \startTextSpan
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -153,10 +156,13 @@ class MetronomeMarkSpanner(Spanner):
                             }
                         }
                     \once \override TextSpanner.dash-period = 0
-                    g'8. \stopTextSpan \startTextSpan
+                    g'8.
+                    \stopTextSpan
+                    \startTextSpan
                     f'8.
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    ef'4. \stopTextSpan
+                    ef'4.
+                    \stopTextSpan
                 }
             >>
 
@@ -226,7 +232,8 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1.5
                     \time 3/8
-                    c'8. \startTextSpan
+                    c'8.
+                    \startTextSpan
                     d'8.
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -255,7 +262,9 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.padding = 1
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                     \once \override TextSpanner.dash-period = 0
-                    e'4. \stopTextSpan \startTextSpan
+                    e'4.
+                    \stopTextSpan
+                    \startTextSpan
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -308,10 +317,13 @@ class MetronomeMarkSpanner(Spanner):
                             }
                         }
                     \once \override TextSpanner.dash-period = 0
-                    g'8. \stopTextSpan \startTextSpan
+                    g'8.
+                    \stopTextSpan
+                    \startTextSpan
                     f'8.
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    ef'4. \stopTextSpan
+                    ef'4.
+                    \stopTextSpan
                 }
             >>
 
@@ -377,7 +389,8 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                     \once \override TextSpanner.dash-period = 0
                     \time 3/8
-                    c'8. \startTextSpan
+                    c'8.
+                    \startTextSpan
                     d'8.
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -406,7 +419,9 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.padding = 1
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                     \once \override TextSpanner.dash-period = 0
-                    e'4. \stopTextSpan \startTextSpan
+                    e'4.
+                    \stopTextSpan
+                    \startTextSpan
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -463,10 +478,13 @@ class MetronomeMarkSpanner(Spanner):
                         }
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1.5
-                    g'8. \stopTextSpan \startTextSpan
+                    g'8.
+                    \stopTextSpan
+                    \startTextSpan
                     f'8.
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    ef'4. \stopTextSpan
+                    ef'4.
+                    \stopTextSpan
                 }
             >>
 
@@ -538,7 +556,8 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1.5
                     \time 3/8
-                    c'8. \startTextSpan
+                    c'8.
+                    \startTextSpan
                     d'8.
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -567,7 +586,9 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.padding = 1
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                     \once \override TextSpanner.dash-period = 0
-                    e'4. \stopTextSpan \startTextSpan
+                    e'4.
+                    \stopTextSpan
+                    \startTextSpan
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -624,10 +645,13 @@ class MetronomeMarkSpanner(Spanner):
                         }
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1.5
-                    g'8. \stopTextSpan \startTextSpan
+                    g'8.
+                    \stopTextSpan
+                    \startTextSpan
                     f'8.
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    ef'4. \stopTextSpan
+                    ef'4.
+                    \stopTextSpan
                 }
             >>
 
@@ -684,7 +708,8 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1.5
                     \time 3/8
-                    c'8. \startTextSpan
+                    c'8.
+                    \startTextSpan
                     d'8.
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -713,7 +738,9 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.padding = 1
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                     \once \override TextSpanner.dash-period = 0
-                    e'4. \stopTextSpan \startTextSpan
+                    e'4.
+                    \stopTextSpan
+                    \startTextSpan
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -766,10 +793,13 @@ class MetronomeMarkSpanner(Spanner):
                             }
                         }
                     \once \override TextSpanner.dash-period = 0
-                    g'8. \stopTextSpan \startTextSpan
+                    g'8.
+                    \stopTextSpan
+                    \startTextSpan
                     f'8.
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    ef'4. \stopTextSpan
+                    ef'4.
+                    \stopTextSpan
                 }
             >>
 
@@ -826,7 +856,8 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1.5
                     \time 3/8
-                    c'8. \startTextSpan
+                    c'8.
+                    \startTextSpan
                     d'8.
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -855,7 +886,9 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.padding = 1
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                     \once \override TextSpanner.dash-period = 0
-                    e'4. \stopTextSpan \startTextSpan
+                    e'4.
+                    \stopTextSpan
+                    \startTextSpan
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -908,10 +941,13 @@ class MetronomeMarkSpanner(Spanner):
                             }
                         }
                     \once \override TextSpanner.dash-period = 0
-                    g'8. \stopTextSpan \startTextSpan
+                    g'8.
+                    \stopTextSpan
+                    \startTextSpan
                     f'8.
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    ef'4. \stopTextSpan
+                    ef'4.
+                    \stopTextSpan
                 }
             >>
 
@@ -977,7 +1013,8 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                     \once \override TextSpanner.dash-period = 0
                     \time 3/8
-                    c'8. \startTextSpan
+                    c'8.
+                    \startTextSpan
                     d'8.
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -1006,7 +1043,9 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.padding = 1
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                     \once \override TextSpanner.dash-period = 0
-                    e'4. \stopTextSpan \startTextSpan
+                    e'4.
+                    \stopTextSpan
+                    \startTextSpan
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -1069,10 +1108,13 @@ class MetronomeMarkSpanner(Spanner):
                         }
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1.5
-                    g'8. \stopTextSpan \startTextSpan
+                    g'8.
+                    \stopTextSpan
+                    \startTextSpan
                     f'8.
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    ef'4. \stopTextSpan
+                    ef'4.
+                    \stopTextSpan
                 }
             >>
 
@@ -1138,7 +1180,8 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                     \once \override TextSpanner.dash-period = 0
                     \time 3/8
-                    c'8. \startTextSpan
+                    c'8.
+                    \startTextSpan
                     d'8.
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -1167,7 +1210,9 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.padding = 1
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                     \once \override TextSpanner.dash-period = 0
-                    e'4. \stopTextSpan \startTextSpan
+                    e'4.
+                    \stopTextSpan
+                    \startTextSpan
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -1230,10 +1275,13 @@ class MetronomeMarkSpanner(Spanner):
                         }
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1.5
-                    g'8. \stopTextSpan \startTextSpan
+                    g'8.
+                    \stopTextSpan
+                    \startTextSpan
                     f'8.
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    ef'4. \stopTextSpan
+                    ef'4.
+                    \stopTextSpan
                 }
             >>
 
@@ -1277,7 +1325,8 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                     \once \override TextSpanner.dash-period = 0
                     \time 3/8
-                    c'4. \startTextSpan
+                    c'4.
+                    \startTextSpan
                     d'4.
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
@@ -1310,7 +1359,9 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1.5
-                    e'4. \stopTextSpan \startTextSpan
+                    e'4.
+                    \stopTextSpan
+                    \startTextSpan
                     f'4.
                     \break
                     g'4.
@@ -1342,8 +1393,11 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.padding = 1
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                     \once \override TextSpanner.dash-period = 0
-                    b'4. \stopTextSpan \startTextSpan
-                    c''4. \stopTextSpan
+                    b'4.
+                    \stopTextSpan
+                    \startTextSpan
+                    c''4.
+                    \stopTextSpan
                 }
             >>
 
@@ -1387,7 +1441,8 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                     \once \override TextSpanner.dash-period = 0
                     \time 3/8
-                    c'4. \startTextSpan
+                    c'4.
+                    \startTextSpan
                     d'4.
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.arrow-width = 0.25
@@ -1420,7 +1475,9 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1.5
-                    e'4. \stopTextSpan \startTextSpan
+                    e'4.
+                    \stopTextSpan
+                    \startTextSpan
                     f'4.
                     \break
                     g'4.
@@ -1452,8 +1509,11 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.padding = 1
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                     \once \override TextSpanner.dash-period = 0
-                    b'4. \stopTextSpan \startTextSpan
-                    c''4. \stopTextSpan
+                    b'4.
+                    \stopTextSpan
+                    \startTextSpan
+                    c''4.
+                    \stopTextSpan
                 }
             >>
 
@@ -1518,7 +1578,8 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                     \once \override TextSpanner.dash-period = 0
                     \time 3/8
-                    c'8. \startTextSpan
+                    c'8.
+                    \startTextSpan
                     d'8.
                     e'4.
                     \once \override TextSpanner.Y-extent = ##f
@@ -1630,9 +1691,12 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.padding = 1
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                     \once \override TextSpanner.dash-period = 0
-                    g'8. \stopTextSpan \startTextSpan
+                    g'8.
+                    \stopTextSpan
+                    \startTextSpan
                     f'8.
-                    ef'4. \stopTextSpan
+                    ef'4.
+                    \stopTextSpan
                 }
             >>
 
@@ -1700,7 +1764,8 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                     \once \override TextSpanner.dash-period = 0
                     \time 3/8
-                    c'8. \startTextSpan
+                    c'8.
+                    \startTextSpan
                     d'8.
                     e'4.
                     \once \override TextSpanner.Y-extent = ##f
@@ -1841,10 +1906,13 @@ class MetronomeMarkSpanner(Spanner):
                         }
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1.5
-                    g'8. \stopTextSpan \startTextSpan
+                    g'8.
+                    \stopTextSpan
+                    \startTextSpan
                     f'8.
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    ef'4. \stopTextSpan
+                    ef'4.
+                    \stopTextSpan
                 }
             >>
 
@@ -1906,13 +1974,15 @@ class MetronomeMarkSpanner(Spanner):
                             }
                         }
                     \once \override TextSpanner.dash-period = 0
-                    c'8. \startTextSpan
+                    c'8.
+                    \startTextSpan
                     d'8.
                     e'4.
                     g'8.
                     f'8.
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    ef'4. \stopTextSpan
+                    ef'4.
+                    \stopTextSpan
                 }
             >>
 
@@ -2592,7 +2662,7 @@ class MetronomeMarkSpanner(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -2816,7 +2886,7 @@ class MetronomeMarkSpanner(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -3063,7 +3133,7 @@ class MetronomeMarkSpanner(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -3311,7 +3381,7 @@ class MetronomeMarkSpanner(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -3552,7 +3622,7 @@ class MetronomeMarkSpanner(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -3817,7 +3887,7 @@ class MetronomeMarkSpanner(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -4100,7 +4170,7 @@ class MetronomeMarkSpanner(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -4393,7 +4463,7 @@ class MetronomeMarkSpanner(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -4710,7 +4780,7 @@ class MetronomeMarkSpanner(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -4915,7 +4985,8 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-period = 0
                         \time 3/8
-                        c'4. \startTextSpan
+                        c'4.
+                        \startTextSpan
                         d'4.
                         \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.arrow-width = 0.25
@@ -4948,7 +5019,9 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-fraction = 0.25
                         \once \override TextSpanner.dash-period = 1.5
-                        e'4. \stopTextSpan \startTextSpan
+                        e'4.
+                        \stopTextSpan
+                        \startTextSpan
                         f'4.
                         \break
                         g'4.
@@ -4980,8 +5053,11 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.bound-details.right.padding = 1
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-period = 0
-                        b'4. \stopTextSpan \startTextSpan
-                        c''4. \stopTextSpan
+                        b'4.
+                        \stopTextSpan
+                        \startTextSpan
+                        c''4.
+                        \stopTextSpan
                     }
                 >>
 
@@ -5029,7 +5105,8 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-period = 0
                         \time 3/8
-                        c'4. \startTextSpan
+                        c'4.
+                        \startTextSpan
                         d'4.
                         \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.arrow-width = 0.25
@@ -5062,7 +5139,9 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-fraction = 0.25
                         \once \override TextSpanner.dash-period = 1.5
-                        e'4. \stopTextSpan \startTextSpan
+                        e'4.
+                        \stopTextSpan
+                        \startTextSpan
                         f'4.
                         \break
                         g'4.
@@ -5094,8 +5173,11 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.bound-details.right.padding = 1
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-period = 0
-                        b'4. \stopTextSpan \startTextSpan
-                        c''4. \stopTextSpan
+                        b'4.
+                        \stopTextSpan
+                        \startTextSpan
+                        c''4.
+                        \stopTextSpan
                     }
                 >>
 
@@ -5147,7 +5229,8 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-period = 0
                         \time 3/8
-                        c'4. \startTextSpan
+                        c'4.
+                        \startTextSpan
                         d'4.
                         \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.arrow-width = 0.25
@@ -5180,7 +5263,9 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-fraction = 0.25
                         \once \override TextSpanner.dash-period = 1.5
-                        e'4. \stopTextSpan \startTextSpan
+                        e'4.
+                        \stopTextSpan
+                        \startTextSpan
                         f'4.
                         \break
                         g'4.
@@ -5212,8 +5297,11 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.bound-details.right.padding = 1
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-period = 0
-                        b'4. \stopTextSpan \startTextSpan
-                        c''4. \stopTextSpan
+                        b'4.
+                        \stopTextSpan
+                        \startTextSpan
+                        c''4.
+                        \stopTextSpan
                     }
                 >>
 
@@ -5263,7 +5351,8 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-period = 0
                         \time 3/8
-                        c'4. \startTextSpan
+                        c'4.
+                        \startTextSpan
                         d'4.
                         \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.arrow-width = 0.25
@@ -5306,7 +5395,9 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-fraction = 0.25
                         \once \override TextSpanner.dash-period = 1.5
-                        e'4. \stopTextSpan \startTextSpan
+                        e'4.
+                        \stopTextSpan
+                        \startTextSpan
                         f'4.
                         \break
                         g'4.
@@ -5337,8 +5428,11 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.bound-details.right.padding = 1
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-period = 0
-                        b'4. \stopTextSpan \startTextSpan
-                        c''4. \stopTextSpan
+                        b'4.
+                        \stopTextSpan
+                        \startTextSpan
+                        c''4.
+                        \stopTextSpan
                     }
                 >>
 
@@ -5388,7 +5482,8 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-period = 0
                         \time 3/8
-                        c'4. \startTextSpan
+                        c'4.
+                        \startTextSpan
                         d'4.
                         \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.arrow-width = 0.25
@@ -5422,7 +5517,9 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-fraction = 0.25
                         \once \override TextSpanner.dash-period = 1.5
-                        e'4. \stopTextSpan \startTextSpan
+                        e'4.
+                        \stopTextSpan
+                        \startTextSpan
                         f'4.
                         \break
                         g'4.
@@ -5455,8 +5552,11 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.bound-details.right.padding = 1
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-period = 0
-                        b'4. \stopTextSpan \startTextSpan
-                        c''4. \stopTextSpan
+                        b'4.
+                        \stopTextSpan
+                        \startTextSpan
+                        c''4.
+                        \stopTextSpan
                     }
                 >>
 
@@ -5537,7 +5637,8 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-period = 0
                         \time 3/8
-                        c'8. \startTextSpan
+                        c'8.
+                        \startTextSpan
                         d'8.
                         \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -5566,7 +5667,9 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.bound-details.right.padding = 1
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-period = 0
-                        e'4. \stopTextSpan \startTextSpan
+                        e'4.
+                        \stopTextSpan
+                        \startTextSpan
                         \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.arrow-width = 0.25
                         \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -5612,10 +5715,13 @@ class MetronomeMarkSpanner(Spanner):
                             }
                         \once \override TextSpanner.dash-fraction = 0.25
                         \once \override TextSpanner.dash-period = 1.5
-                        g'8. \stopTextSpan \startTextSpan
+                        g'8.
+                        \stopTextSpan
+                        \startTextSpan
                         f'8.
                         \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        ef'4. \stopTextSpan
+                        ef'4.
+                        \stopTextSpan
                     }
                 >>
 
@@ -5681,7 +5787,8 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-period = 0
                         \time 3/8
-                        c'8. \startTextSpan
+                        c'8.
+                        \startTextSpan
                         d'8.
                         \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -5710,7 +5817,9 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.bound-details.right.padding = 1
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-period = 0
-                        e'4. \stopTextSpan \startTextSpan
+                        e'4.
+                        \stopTextSpan
+                        \startTextSpan
                         \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.arrow-width = 0.25
                         \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -5773,10 +5882,13 @@ class MetronomeMarkSpanner(Spanner):
                             }
                         \once \override TextSpanner.dash-fraction = 0.25
                         \once \override TextSpanner.dash-period = 1.5
-                        g'8. \stopTextSpan \startTextSpan
+                        g'8.
+                        \stopTextSpan
+                        \startTextSpan
                         f'8.
                         \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        ef'4. \stopTextSpan
+                        ef'4.
+                        \stopTextSpan
                     }
                 >>
 
@@ -5876,7 +5988,8 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-period = 0
                         \time 3/8
-                        c'8. \startTextSpan
+                        c'8.
+                        \startTextSpan
                         d'8.
                         \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -5905,7 +6018,9 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.bound-details.right.padding = 1
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-period = 0
-                        e'4. \stopTextSpan \startTextSpan
+                        e'4.
+                        \stopTextSpan
+                        \startTextSpan
                         \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.bound-details.left-broken.text = ##f
                         \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
@@ -5958,10 +6073,13 @@ class MetronomeMarkSpanner(Spanner):
                                 }
                             }
                         \once \override TextSpanner.dash-period = 0
-                        g'8. \stopTextSpan \startTextSpan
+                        g'8.
+                        \stopTextSpan
+                        \startTextSpan
                         f'8.
                         \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        ef'4. \stopTextSpan
+                        ef'4.
+                        \stopTextSpan
                     }
                 >>
 

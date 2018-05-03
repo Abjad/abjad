@@ -15,8 +15,10 @@ def test_scoretools_Container_extend_01():
         r'''
         \new Voice
         {
-            c'8 [
-            d'8 ]
+            c'8
+            [
+            d'8
+            ]
             c'8
             d'8
         }
@@ -43,10 +45,14 @@ def test_scoretools_Container_extend_02():
         r'''
         \new Voice
         {
-            c'8 [
-            d'8 ]
-            e'8 [
-            f'8 ]
+            c'8
+            [
+            d'8
+            ]
+            e'8
+            [
+            f'8
+            ]
         }
         '''
         )
@@ -67,8 +73,10 @@ def test_scoretools_Container_extend_03():
         r'''
         \new Voice
         {
-            c'8 [
-            d'8 ]
+            c'8
+            [
+            d'8
+            ]
         }
         '''
         )
@@ -90,8 +98,10 @@ def test_scoretools_Container_extend_04():
         r'''
         \new Voice
         {
-            c'8 [
-            d'8 ]
+            c'8
+            [
+            d'8
+            ]
         }
         '''
         )
@@ -144,8 +154,10 @@ def test_scoretools_Container_extend_07():
         r'''
         \new Voice
         {
-            c'8 [
-            d'8 ]
+            c'8
+            [
+            d'8
+            ]
             e'8
             f'8
         }
@@ -158,8 +170,10 @@ def test_scoretools_Container_extend_07():
         r'''
         \new Voice
         {
-            c'8 [
-            d'8 ]
+            c'8
+            [
+            d'8
+            ]
         }
         '''
         )
@@ -186,10 +200,14 @@ def test_scoretools_Container_extend_08():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             d'8
-            e'8 (
-            f'8 ] )
+            e'8
+            (
+            f'8
+            ]
+            )
         }
         '''
         )
@@ -200,10 +218,14 @@ def test_scoretools_Container_extend_08():
         r'''
         \new Voice
         {
-            c'8 [
-            d'8 ]
-            e'8 (
-            f'8 )
+            c'8
+            [
+            d'8
+            ]
+            e'8
+            (
+            f'8
+            )
         }
         '''
         )
@@ -214,8 +236,10 @@ def test_scoretools_Container_extend_08():
         r'''
         \new Voice
         {
-            c'8 [
-            d'8 ]
+            c'8
+            [
+            d'8
+            ]
         }
         '''
         )
@@ -233,10 +257,12 @@ def test_scoretools_Container_extend_09():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            c'4 (
+            c'4
+            (
             d'4
             e'4
-            f'4 )
+            f'4
+            )
         }
         '''
         )

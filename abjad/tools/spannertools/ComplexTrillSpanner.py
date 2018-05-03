@@ -14,11 +14,13 @@ class ComplexTrillSpanner(Spanner):
             >>> abjad.f(staff)
             \new Staff
             {
-                c'4 ~
+                c'4
+                ~
                 c'8
                 d'8
                 r8
-                e'8 ~
+                e'8
+                ~
                 e'8
                 r8
             }
@@ -35,7 +37,8 @@ class ComplexTrillSpanner(Spanner):
             \new Staff
             {
                 \pitchedTrill
-                c'4 ~ \startTrillSpan f'
+                c'4
+                ~ \startTrillSpan f'
                 c'8
                 <> \stopTrillSpan
                 \once \override TrillSpanner.bound-details.left.text = \markup {
@@ -46,7 +49,8 @@ class ComplexTrillSpanner(Spanner):
                 <> \stopTrillSpan
                 r8
                 \pitchedTrill
-                e'8 ~ \startTrillSpan a'
+                e'8
+                ~ \startTrillSpan a'
                 e'8
                 <> \stopTrillSpan
                 r8

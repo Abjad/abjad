@@ -24,11 +24,13 @@ class GeneralizedBeam(Spanner):
             }
             {
                 r4
-                c'8 [
+                c'8
+                [
                 \set stemLeftBeamCount = 1
                 \set stemRightBeamCount = 2
                 d'16
-                e'16 ]
+                e'16
+                ]
                 r8
                 fs'8
                 g'4
@@ -56,13 +58,17 @@ class GeneralizedBeam(Spanner):
             }
             {
                 r4
-                c'8 [
+                c'8
+                [
                 \set stemLeftBeamCount = 1
                 \set stemRightBeamCount = 2
                 d'16
-                e'16 ]
+                e'16
+                ]
                 r8
-                fs'8 [ ]
+                fs'8
+                [
+                ]
                 g'4
             }
 
@@ -86,7 +92,8 @@ class GeneralizedBeam(Spanner):
             }
             {
                 r4
-                c'8 [
+                c'8
+                [
                 \set stemLeftBeamCount = 1
                 \set stemRightBeamCount = 2
                 d'16
@@ -96,7 +103,8 @@ class GeneralizedBeam(Spanner):
                 \set stemLeftBeamCount = 1
                 \set stemRightBeamCount = 1
                 r8
-                fs'8 ]
+                fs'8
+                ]
                 g'4
             }
 

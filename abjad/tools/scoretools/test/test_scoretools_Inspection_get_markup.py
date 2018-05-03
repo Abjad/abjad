@@ -15,23 +15,25 @@ def test_scoretools_Inspection_get_markup_01():
         r'''
         \new Staff
         {
-            c'8 (
-                - \markup {
-                    \column
-                        {
-                            \line
-                                {
-                                    foo
-                                }
-                            \line
-                                {
-                                    bar
-                                }
-                        }
+            c'8
+            (
+            - \markup {
+                \column
+                    {
+                        \line
+                            {
+                                foo
+                            }
+                        \line
+                            {
+                                bar
+                            }
                     }
+                }
             d'8
             e'8
-            f'8 )
+            f'8
+            )
         }
         '''
         )

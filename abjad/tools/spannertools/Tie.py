@@ -18,9 +18,12 @@ class Tie(Spanner):
             >>> abjad.f(staff)
             \new Staff
             {
-                c'4 ~
-                c'4 ~
-                c'4 ~
+                c'4
+                ~
+                c'4
+                ~
+                c'4
+                ~
                 c'4
             }
 
@@ -37,9 +40,12 @@ class Tie(Spanner):
             >>> abjad.f(staff)
             \new Staff
             {
-                c'4 ~
-                c'4 ~
-                c'4 ~
+                c'4
+                ~
+                c'4
+                ~
+                c'4
+                ~
                 c'4
             }
 
@@ -57,8 +63,10 @@ class Tie(Spanner):
             >>> abjad.f(staff)
             \new Staff
             {
-                <c'>4 ~
-                <c' d'>4 ~
+                <c'>4
+                ~
+                <c' d'>4
+                ~
                 <d'>4
             }
 
@@ -75,9 +83,12 @@ class Tie(Spanner):
             >>> abjad.f(staff)
             \new Staff
             {
-                c'4 ~
-                bs4 ~
-                c'4 ~
+                c'4
+                ~
+                bs4
+                ~
+                c'4
+                ~
                 dff'4
             }
 
@@ -115,7 +126,8 @@ class Tie(Spanner):
             {
                 c'4
                 d'4
-                e'8 ~
+                e'8
+                ~
                 e'8
                 r4
             }
@@ -274,7 +286,7 @@ class Tie(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -340,7 +352,7 @@ class Tie(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -406,7 +418,7 @@ class Tie(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -473,7 +485,7 @@ class Tie(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -540,7 +552,7 @@ class Tie(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -606,7 +618,7 @@ class Tie(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -675,7 +687,7 @@ class Tie(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -744,7 +756,7 @@ class Tie(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -796,9 +808,12 @@ class Tie(Spanner):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'8 ^ ~
-                    c'8 ^ ~
-                    c'8 ^ ~
+                    c'8
+                    ^ ~
+                    c'8
+                    ^ ~
+                    c'8
+                    ^ ~
                     c'8
                 }
 
@@ -819,9 +834,12 @@ class Tie(Spanner):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'8 _ ~
-                    c'8 _ ~
-                    c'8 _ ~
+                    c'8
+                    _ ~
+                    c'8
+                    _ ~
+                    c'8
+                    _ ~
                     c'8
                 }
 
@@ -842,9 +860,12 @@ class Tie(Spanner):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'8 ~
-                    c'8 ~
-                    c'8 ~
+                    c'8
+                    ~
+                    c'8
+                    ~
+                    c'8
+                    ~
                     c'8
                 }
 
@@ -876,9 +897,12 @@ class Tie(Spanner):
                 \new Staff
                 {
                     c'8
-                    c'8 ^ \repeatTie
-                    c'8 ^ \repeatTie
-                    c'8 ^ \repeatTie
+                    c'8
+                    ^ \repeatTie
+                    c'8
+                    ^ \repeatTie
+                    c'8
+                    ^ \repeatTie
                 }
 
         Returns true, false or none.

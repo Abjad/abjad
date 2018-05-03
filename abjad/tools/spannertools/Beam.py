@@ -41,10 +41,14 @@ class Beam(Spanner):
                 autoBeaming = ##f
             }
             {
-                c'8 [
-                d'8 ]
-                e'8 [
-                f'8 ]
+                c'8
+                [
+                d'8
+                ]
+                e'8
+                [
+                f'8
+                ]
                 g'2
             }
 
@@ -85,10 +89,14 @@ class Beam(Spanner):
             autoBeaming = ##f
         }
         {
-            c'8 [ %! BEAM
-            d'8 ] %! BEAM
-            e'8 [
-            f'8 ]
+            c'8
+            [ %! BEAM
+            d'8
+            ] %! BEAM
+            e'8
+            [
+            f'8
+            ]
             g'2
         }
 
@@ -174,7 +182,7 @@ class Beam(Spanner):
 
             >>> for leaf in staff:
             ...     result = abjad.Beam._is_beamable(leaf)
-            ...     print('{:<8}\t{}'.format(leaf, result))
+            ...     print(f'{str(leaf):<8}\t{result}')
             ...
             r32     False
             a'32    True
@@ -198,7 +206,7 @@ class Beam(Spanner):
             ...         leaf,
             ...         beam_rests=True,
             ...         )
-            ...     print('{:<8}\t{}'.format(leaf, result))
+            ...     print(f'{str(leaf):<8}\t{result}')
             ...
             r32	True
             a'32	True
@@ -288,11 +296,13 @@ class Beam(Spanner):
                 }
                 {
                     \override RhythmicStaff.Stem.stemlet-length = 2
-                    r8 [
+                    r8
+                    [
                     c'8
                     r8
                     \revert RhythmicStaff.Stem.stemlet-length
-                    c'8 ]
+                    c'8
+                    ]
                     g'2
                 }
 

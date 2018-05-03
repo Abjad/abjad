@@ -48,8 +48,8 @@ class MeterList(TypedList):
             ..  doctest
 
                 >>> lilypond_file = meters.__illustrate__()
-                >>> abjad.f(lilypond_file)
-                \version "2.19.80"
+                >>> abjad.f(lilypond_file) # doctest: +SKIP
+                \version "2.19..."
                 \language "english"
                 <BLANKLINE>
                 \header {

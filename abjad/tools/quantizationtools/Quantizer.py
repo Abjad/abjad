@@ -88,10 +88,12 @@ class Quantizer(AbjadObject):
                         {   % measure
                             \time 2/4
                             \tempo 4=78
-                            c'4 ~
+                            c'4
+                            ~
                             \times 4/5 {
                                 c'16.
-                                cs'8.. ~
+                                cs'8..
+                                ~
                             }
                         }   % measure
                         {   % measure
@@ -99,26 +101,33 @@ class Quantizer(AbjadObject):
                             \times 4/7 {
                                 \tempo 8=57
                                 cs'16.
-                                d'8 ~
+                                d'8
+                                ~
                             }
                             \times 4/5 {
                                 d'16
-                                ef'16. ~
+                                ef'16.
+                                ~
                             }
                             \times 2/3 {
                                 ef'16
-                                e'8 ~
+                                e'8
+                                ~
                             }
                             \times 4/7 {
                                 e'16
-                                f'8 ~
-                                f'32 ~
+                                f'8
+                                ~
+                                f'32
+                                ~
                             }
                             f'32
-                            fs'16. ~
+                            fs'16.
+                            ~
                             \times 4/5 {
                                 fs'32
-                                g'8 ~
+                                g'8
+                                ~
                             }
                             \times 4/7 {
                                 g'32
@@ -172,17 +181,22 @@ class Quantizer(AbjadObject):
                         cs'4
                         \tempo 4=120
                         d'2
-                        ef'4 ~
+                        ef'4
+                        ~
                         \tempo 4=90
                         ef'8.
-                        e'4 ~
-                        e'16 ~
+                        e'4
+                        ~
+                        e'16
+                        ~
                         \times 2/3 {
                             \tempo 4=30
                             e'32
                             f'8.
-                            fs'8 ~
-                            fs'32 ~
+                            fs'8
+                            ~
+                            fs'32
+                            ~
                         }
                         \times 2/3 {
                             fs'32

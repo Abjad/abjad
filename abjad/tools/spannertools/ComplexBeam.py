@@ -41,14 +41,18 @@ class ComplexBeam(Beam):
             {
                 \set stemLeftBeamCount = 0
                 \set stemRightBeamCount = 2
-                c'16 [
+                c'16
+                [
                 \set stemLeftBeamCount = 2
                 \set stemRightBeamCount = 2
-                e'16 ]
+                e'16
+                ]
                 r16
                 \set stemLeftBeamCount = 2
                 \set stemRightBeamCount = 0
-                f'16 [ ]
+                f'16
+                [
+                ]
                 g'2
             }
 
@@ -298,12 +302,16 @@ class ComplexBeam(Beam):
                 {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 1
-                    c'8 [ ]
+                    c'8
+                    [
+                    ]
                     r8
                     r8
                     \set stemLeftBeamCount = 1
                     \set stemRightBeamCount = 0
-                    d'8 [ ]
+                    d'8
+                    [
+                    ]
                 }
 
             This is default behavior.
@@ -324,7 +332,8 @@ class ComplexBeam(Beam):
                 {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 1
-                    c'8 [
+                    c'8
+                    [
                     \set stemLeftBeamCount = 1
                     \set stemRightBeamCount = 1
                     r8
@@ -333,7 +342,8 @@ class ComplexBeam(Beam):
                     r8
                     \set stemLeftBeamCount = 1
                     \set stemRightBeamCount = 0
-                    d'8 ]
+                    d'8
+                    ]
                 }
 
         ..  container:: example
@@ -352,12 +362,16 @@ class ComplexBeam(Beam):
                 {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 1
-                    c'8 [ ]
+                    c'8
+                    [
+                    ]
                     s8
                     s8
                     \set stemLeftBeamCount = 1
                     \set stemRightBeamCount = 0
-                    d'8 [ ]
+                    d'8
+                    [
+                    ]
                 }
 
             This is default behavior.
@@ -378,7 +392,8 @@ class ComplexBeam(Beam):
                 {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 1
-                    c'8 [
+                    c'8
+                    [
                     \set stemLeftBeamCount = 1
                     \set stemRightBeamCount = 1
                     s8
@@ -387,7 +402,8 @@ class ComplexBeam(Beam):
                     s8
                     \set stemLeftBeamCount = 1
                     \set stemRightBeamCount = 0
-                    d'8 ]
+                    d'8
+                    ]
                 }
 
         Defaults to none.
@@ -418,7 +434,9 @@ class ComplexBeam(Beam):
                     \time 1/16
                     \set stemLeftBeamCount = 2
                     \set stemRightBeamCount = 0
-                    c'16 [ ]
+                    c'16
+                    [
+                    ]
                 }   % measure
 
         ..  container:: example
@@ -437,7 +455,9 @@ class ComplexBeam(Beam):
                     \time 1/16
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 2
-                    c'16 [ ]
+                    c'16
+                    [
+                    ]
                 }   % measure
 
         ..  container:: example
@@ -456,7 +476,9 @@ class ComplexBeam(Beam):
                     \time 1/16
                     \set stemLeftBeamCount = 2
                     \set stemRightBeamCount = 2
-                    c'16 [ ]
+                    c'16
+                    [
+                    ]
                 }   % measure
 
         ..  container:: example
@@ -510,7 +532,8 @@ class ComplexBeam(Beam):
                     \override RhythmicStaff.Stem.stemlet-length = 2
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 1
-                    r8 [
+                    r8
+                    [
                     \set stemLeftBeamCount = 1
                     \set stemRightBeamCount = 1
                     c'8
@@ -520,7 +543,8 @@ class ComplexBeam(Beam):
                     \revert RhythmicStaff.Stem.stemlet-length
                     \set stemLeftBeamCount = 1
                     \set stemRightBeamCount = 0
-                    c'8 ]
+                    c'8
+                    ]
                     g'2
                 }
 

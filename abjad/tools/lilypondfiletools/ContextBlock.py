@@ -63,8 +63,7 @@ class ContextBlock(Block):
 
     ### PRIVATE METHODS ###
 
-    # ignores strict keyword
-    def _get_format_pieces(self, strict=False):
+    def _get_format_pieces(self):
         import abjad
         indent = abjad.LilyPondFormatManager.indent
         result = []

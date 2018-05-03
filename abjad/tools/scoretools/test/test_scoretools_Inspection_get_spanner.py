@@ -13,9 +13,13 @@ def test_scoretools_Inspection_get_spanner_01():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            c'8 [ (
+            c'8
+            [
+            (
             d'8
-            e'8 ] )
+            e'8
+            ]
+            )
             f'8
         }
         '''

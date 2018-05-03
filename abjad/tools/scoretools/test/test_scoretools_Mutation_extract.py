@@ -15,10 +15,15 @@ def test_scoretools_Mutation_extract_01():
         r'''
         \new Voice
         {
-            c'8 [ \glissando
-            d'8 \glissando
-            e'8 \glissando
-            f'8 ]
+            c'8
+            [
+            \glissando
+            d'8
+            \glissando
+            e'8
+            \glissando
+            f'8
+            ]
         }
         '''
         )
@@ -30,9 +35,13 @@ def test_scoretools_Mutation_extract_01():
         r'''
         \new Voice
         {
-            c'8 [ \glissando
-            e'8 \glissando
-            f'8 ]
+            c'8
+            [
+            \glissando
+            e'8
+            \glissando
+            f'8
+            ]
         }
         '''
         )
@@ -55,10 +64,15 @@ def test_scoretools_Mutation_extract_02():
         r'''
         \new Voice
         {
-            c'8 [ \glissando
-            d'8 \glissando
-            e'8 \glissando
-            f'8 ]
+            c'8
+            [
+            \glissando
+            d'8
+            \glissando
+            e'8
+            \glissando
+            f'8
+            ]
         }
         '''
         )
@@ -71,8 +85,11 @@ def test_scoretools_Mutation_extract_02():
         r'''
         \new Voice
         {
-            e'8 [ \glissando
-            f'8 ]
+            e'8
+            [
+            \glissando
+            f'8
+            ]
         }
         '''
         )
@@ -99,12 +116,14 @@ def test_scoretools_Mutation_extract_03():
         \new Staff
         {
             {
-                c'8 [
+                c'8
+                [
                 d'8
             }
             {
                 e'8
-                f'8 ]
+                f'8
+                ]
             }
         }
         '''
@@ -117,11 +136,13 @@ def test_scoretools_Mutation_extract_03():
         r'''
         \new Staff
         {
-            c'8 [
+            c'8
+            [
             d'8
             {
                 e'8
-                f'8 ]
+                f'8
+                ]
             }
         }
         '''
@@ -150,16 +171,23 @@ def test_scoretools_Mutation_extract_04():
         \new Voice
         {
             {
-                c'8 [ \glissando
-                d'8 \glissando
+                c'8
+                [
+                \glissando
+                d'8
+                \glissando
             }
             {
-                e'8 \glissando
-                f'8 \glissando
+                e'8
+                \glissando
+                f'8
+                \glissando
             }
             {
-                g'8 \glissando
-                a'8 ]
+                g'8
+                \glissando
+                a'8
+                ]
             }
         }
         '''
@@ -173,13 +201,20 @@ def test_scoretools_Mutation_extract_04():
         r'''
         \new Voice
         {
-            c'8 [ \glissando
-            d'8 \glissando
-            e'8 \glissando
-            f'8 \glissando
+            c'8
+            [
+            \glissando
+            d'8
+            \glissando
+            e'8
+            \glissando
+            f'8
+            \glissando
             {
-                g'8 \glissando
-                a'8 ]
+                g'8
+                \glissando
+                a'8
+                ]
             }
         }
         '''

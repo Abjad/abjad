@@ -11,7 +11,8 @@ def test_lilypondparsertools_LilyPondParser__indicators__StemTremolo_01():
         r'''
         \new Staff
         {
-            c'1 :4
+            c'1
+            :4
         }
         '''
         )

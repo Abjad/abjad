@@ -20,10 +20,14 @@ def test_scoretools_Container_remove_01():
         r'''
         \new Voice
         {
-            c'8 (
-            d'8 [ ]
+            c'8
+            (
+            d'8
+            [
+            ]
             e'8
-            f'8 )
+            f'8
+            )
         }
         '''
         )
@@ -35,16 +39,18 @@ def test_scoretools_Container_remove_01():
         r'''
         \new Voice
         {
-            c'8 (
+            c'8
+            (
             e'8
-            f'8 )
+            f'8
+            )
         }
         '''
         )
 
     "Note is now d'8 [ ]"
 
-    assert format(note) == "d'8 [ ]"
+    assert format(note) == "d'8\n[\n]"
 
     assert abjad.inspect(voice).is_well_formed()
     assert abjad.inspect(note).is_well_formed()
@@ -69,12 +75,14 @@ def test_scoretools_Container_remove_02():
         \new Staff
         {
             {
-                c'8 [
+                c'8
+                [
                 d'8
             }
             {
                 e'8
-                f'8 ]
+                f'8
+                ]
             }
         }
         '''
@@ -87,8 +95,10 @@ def test_scoretools_Container_remove_02():
         \new Staff
         {
             {
-                e'8 [
-                f'8 ]
+                e'8
+                [
+                f'8
+                ]
             }
         }
         '''

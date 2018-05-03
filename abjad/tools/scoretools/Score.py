@@ -153,14 +153,14 @@ class Score(Context):
                         e'4
                         \once \override TextScript.extra-offset = #'(0.5 . -2)
                         f'4
-                            _ \markup {                             %! SCORE2
-                                \italic                             %! SCORE2
-                                    \right-column                   %! SCORE2
-                                        {                           %! SCORE2
-                                            "Bremen - Boston - LA." %! SCORE2
-                                            "July 2010 - May 2011." %! SCORE2
-                                        }                           %! SCORE2
-                                }                                   %! SCORE2
+                        _ \markup { %! SCORE2
+                            \italic %! SCORE2
+                                \right-column %! SCORE2
+                                    { %! SCORE2
+                                        "Bremen - Boston - LA." %! SCORE2
+                                        "July 2010 - May 2011." %! SCORE2
+                                    } %! SCORE2
+                            } %! SCORE2
                     }
                 >>
 
@@ -200,14 +200,14 @@ class Score(Context):
                         f'4
                         \once \override MultiMeasureRestText.extra-offset = #'(14.5 . -2)
                         R1
-                            _ \markup {                             %! SCORE2
-                                \italic                             %! SCORE2
-                                    \right-column                   %! SCORE2
-                                        {                           %! SCORE2
-                                            "Bremen - Boston - LA." %! SCORE2
-                                            "July 2010 - May 2011." %! SCORE2
-                                        }                           %! SCORE2
-                                }                                   %! SCORE2
+                        _ \markup { %! SCORE2
+                            \italic %! SCORE2
+                                \right-column %! SCORE2
+                                    { %! SCORE2
+                                        "Bremen - Boston - LA." %! SCORE2
+                                        "July 2010 - May 2011." %! SCORE2
+                                    } %! SCORE2
+                            } %! SCORE2
                     }
                 >>
 

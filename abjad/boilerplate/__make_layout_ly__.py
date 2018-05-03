@@ -97,7 +97,7 @@ if __name__ == '__main__':
 
     try:
         score = lilypond_file['Score']
-        text = format(score, 'lilypond:strict')
+        text = format(score, 'lilypond')
         text = text.replace('GlobalSkips', 'PageLayout')
         text = abjad.LilyPondFormatManager.left_shift_tags(text, realign=89)
         time_signatures = [str(_) for _ in time_signatures]

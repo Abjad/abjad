@@ -44,8 +44,10 @@ class Tuplet(Container):
             \times 2/3 {
                 c'8
                 \times 4/7 {
-                    g'4. (
-                    a'16 )
+                    g'4.
+                    (
+                    a'16
+                    )
                 }
                 d'8
                 e'8
@@ -69,15 +71,19 @@ class Tuplet(Container):
                 c'8
                 \tweak edge-height #'(0.7 . 0)
                 \times 4/7 {
-                    g'4. (
+                    g'4.
+                    (
                     \times 4/5 {
-                        e''32 [
+                        e''32
+                        [
                         ef''32
                         d''32
                         cs''32
-                        cqs''32 ]
+                        cqs''32
+                        ]
                     }
-                    a'16 )
+                    a'16
+                    )
                 }
                 d'8
                 e'8
@@ -244,9 +250,9 @@ class Tuplet(Container):
             storage_format_kwargs_names=[],
             )
 
-    def _get_lilypond_format(self, strict=False):
+    def _get_lilypond_format(self):
         self._update_now(indicators=True)
-        return self._format_component(strict=strict)
+        return self._format_component()
 
     def _get_multiplier_fraction_string(self):
         import abjad
@@ -734,9 +740,11 @@ class Tuplet(Container):
 
                 >>> abjad.f(tuplet)
                 \times 2/3 {
-                    c'4 (
+                    c'4
+                    (
                     d'4
-                    f'4 )
+                    f'4
+                    )
                 }
 
             >>> tuplet.append(abjad.Note("e'4"))
@@ -747,9 +755,11 @@ class Tuplet(Container):
                 >>> abjad.f(tuplet)
                 \tweak edge-height #'(0.7 . 0)
                 \times 2/3 {
-                    c'4 (
+                    c'4
+                    (
                     d'4
-                    f'4 )
+                    f'4
+                    )
                     e'4
                 }
 
@@ -764,9 +774,11 @@ class Tuplet(Container):
 
                 >>> abjad.f(tuplet)
                 \times 2/3 {
-                    c'4 (
+                    c'4
+                    (
                     d'4
-                    f'4 )
+                    f'4
+                    )
                 }
 
             >>> tuplet.append(abjad.Note("e'4"), preserve_duration=True)
@@ -776,9 +788,11 @@ class Tuplet(Container):
 
                 >>> abjad.f(tuplet)
                 \times 1/2 {
-                    c'4 (
+                    c'4
+                    (
                     d'4
-                    f'4 )
+                    f'4
+                    )
                     e'4
                 }
 
@@ -886,9 +900,11 @@ class Tuplet(Container):
 
                 >>> abjad.f(tuplet)
                 \times 2/3 {
-                    c'4 (
+                    c'4
+                    (
                     d'4
-                    f'4 )
+                    f'4
+                    )
                 }
 
             >>> notes = [abjad.Note("e'32"), abjad.Note("d'32"), abjad.Note("e'16")]
@@ -900,9 +916,11 @@ class Tuplet(Container):
                 >>> abjad.f(tuplet)
                 \tweak edge-height #'(0.7 . 0)
                 \times 2/3 {
-                    c'4 (
+                    c'4
+                    (
                     d'4
-                    f'4 )
+                    f'4
+                    )
                     e'32
                     d'32
                     e'16
@@ -919,9 +937,11 @@ class Tuplet(Container):
 
                 >>> abjad.f(tuplet)
                 \times 2/3 {
-                    c'4 (
+                    c'4
+                    (
                     d'4
-                    f'4 )
+                    f'4
+                    )
                 }
 
             >>> notes = [abjad.Note("e'32"), abjad.Note("d'32"), abjad.Note("e'16")]
@@ -932,9 +952,11 @@ class Tuplet(Container):
 
                 >>> abjad.f(tuplet)
                 \times 4/7 {
-                    c'4 (
+                    c'4
+                    (
                     d'4
-                    f'4 )
+                    f'4
+                    )
                     e'32
                     d'32
                     e'16
@@ -1080,10 +1102,12 @@ class Tuplet(Container):
                     \time 3/16
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 12/11 {
-                        c'64 ~
+                        c'64
+                        ~
                         c'16
                         r64
-                        c'64 ~
+                        c'64
+                        ~
                         c'16
                     }
                 }   % measure
@@ -1235,10 +1259,12 @@ class Tuplet(Container):
                     \time 3/16
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 6/11 {
-                        c'32 ~
+                        c'32
+                        ~
                         c'8
                         r32
-                        c'32 ~
+                        c'32
+                        ~
                         c'8
                     }
                 }   % measure

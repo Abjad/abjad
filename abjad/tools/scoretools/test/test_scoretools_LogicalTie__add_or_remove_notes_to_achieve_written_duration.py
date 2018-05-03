@@ -11,8 +11,11 @@ def test_scoretools_LogicalTie__add_or_remove_notes_to_achieve_written_duration_
 
     r'''
     \new Staff {
-        c'8 ~ [
-        c'32 ]
+        c'8
+        ~
+        [
+        c'32
+        ]
     }
     '''
 
@@ -21,8 +24,11 @@ def test_scoretools_LogicalTie__add_or_remove_notes_to_achieve_written_duration_
         r'''
         \new Staff
         {
-            c'8 ~ [
-            c'32 ]
+            c'8
+            ~
+            [
+            c'32
+            ]
         }
         '''
         )
@@ -38,7 +44,9 @@ def test_scoretools_LogicalTie__add_or_remove_notes_to_achieve_written_duration_
 
     r'''
     \new Staff {
-        c'8 [ ]
+        c'8
+        [
+        ]
     }
     '''
 
@@ -47,7 +55,9 @@ def test_scoretools_LogicalTie__add_or_remove_notes_to_achieve_written_duration_
         r'''
         \new Staff
         {
-            c'8 [ ]
+            c'8
+            [
+            ]
         }
         '''
         )

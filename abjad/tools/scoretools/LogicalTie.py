@@ -215,9 +215,13 @@ class LogicalTie(Selection):
                 }
                 {
                     \time 7/16
-                    c'8 ~ \< \p
+                    c'8
+                    ~
+                    \<
+                    \p
                     c'16
-                    cqs''4 \f
+                    cqs''4
+                    \f
                 }
 
             >>> logical_tie = abjad.inspect(staff[0]).get_logical_tie()
@@ -240,12 +244,15 @@ class LogicalTie(Selection):
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 3/5 {
                         \time 7/16
-                        c'8 \< \p
+                        c'8
+                        \<
+                        \p
                         c'16
                         c'16
                         c'16
                     }
-                    cqs''4 \f
+                    cqs''4
+                    \f
                 }
 
             >>> abjad.show(staff) # doctest: +SKIP
@@ -272,9 +279,13 @@ class LogicalTie(Selection):
                 }
                 {
                     \time 7/16
-                    c'8 ~ \< \p
+                    c'8
+                    ~
+                    \<
+                    \p
                     c'16
-                    cqs''4 \f
+                    cqs''4
+                    \f
                 }
 
             >>> logical_tie = abjad.inspect(staff[0]).get_logical_tie()
@@ -299,12 +310,15 @@ class LogicalTie(Selection):
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 6/5 {
                         \time 7/16
-                        c'16 \< \p
+                        c'16
+                        \<
+                        \p
                         c'32
                         c'32
                         c'32
                     }
-                    cqs''4 \f
+                    cqs''4
+                    \f
                 }
 
         Returns tuplet.

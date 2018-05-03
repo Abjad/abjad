@@ -87,10 +87,12 @@ def test_scoretools_Inspection_get_indicator_08():
         {
             \slurDotted
             \slurUp
-            c'8 (
+            c'8
+            (
             d'8
             e'8
-            f'8 )
+            f'8
+            )
         }
         '''
         )

@@ -18,9 +18,12 @@ class Glissando(Spanner):
             >>> abjad.f(staff)
             \new Staff
             {
-                c'8 \glissando
-                d'8 \glissando
-                e'8 \glissando
+                c'8
+                \glissando
+                d'8
+                \glissando
+                e'8
+                \glissando
                 f'8
             }
 
@@ -40,9 +43,12 @@ class Glissando(Spanner):
             >>> abjad.f(staff)
             \new Staff
             {
-                c'8 \glissando
-                d'8 - \bendAfter #'-4.0
-                e'8 \glissando
+                c'8
+                \glissando
+                d'8
+                - \bendAfter #'-4.0
+                e'8
+                \glissando
                 f'8
             }
 
@@ -227,12 +233,17 @@ class Glissando(Spanner):
                 \new Staff
                 {
                     a8
-                    a8 \glissando
-                    b8 ~
-                    b8 \glissando
+                    a8
+                    \glissando
+                    b8
+                    ~
+                    b8
+                    \glissando
                     c'8
-                    c'8 \glissando
-                    d'8 ~
+                    c'8
+                    \glissando
+                    d'8
+                    ~
                     d'8
                 }
 
@@ -254,13 +265,20 @@ class Glissando(Spanner):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    a8 \glissando
-                    a8 \glissando
-                    b8 ~
-                    b8 \glissando
-                    c'8 \glissando
-                    c'8 \glissando
-                    d'8 ~
+                    a8
+                    \glissando
+                    a8
+                    \glissando
+                    b8
+                    ~
+                    b8
+                    \glissando
+                    c'8
+                    \glissando
+                    c'8
+                    \glissando
+                    d'8
+                    ~
                     d'8
                 }
 
@@ -281,13 +299,22 @@ class Glissando(Spanner):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    a8 \glissando
-                    a8 \glissando
-                    b8 ~ \glissando
-                    b8 \glissando
-                    c'8 \glissando
-                    c'8 \glissando
-                    d'8 ~ \glissando
+                    a8
+                    \glissando
+                    a8
+                    \glissando
+                    b8
+                    ~
+                    \glissando
+                    b8
+                    \glissando
+                    c'8
+                    \glissando
+                    c'8
+                    \glissando
+                    d'8
+                    ~
+                    \glissando
                     d'8
                 }
 
@@ -317,12 +344,17 @@ class Glissando(Spanner):
                 \new Staff
                 {
                     a8
-                    a8 \glissando
-                    b8 ~
-                    b8 \glissando
+                    a8
+                    \glissando
+                    b8
+                    ~
+                    b8
+                    \glissando
                     c'8
-                    c'8 \glissando
-                    d'8 ~
+                    c'8
+                    \glissando
+                    d'8
+                    ~
                     d'8
                 }
 
@@ -344,13 +376,20 @@ class Glissando(Spanner):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    a8 \glissando
-                    a8 \glissando
-                    b8 ~
-                    b8 \glissando
-                    c'8 \glissando
-                    c'8 \glissando
-                    d'8 ~
+                    a8
+                    \glissando
+                    a8
+                    \glissando
+                    b8
+                    ~
+                    b8
+                    \glissando
+                    c'8
+                    \glissando
+                    c'8
+                    \glissando
+                    d'8
+                    ~
                     d'8
                 }
 
@@ -371,13 +410,22 @@ class Glissando(Spanner):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    a8 \glissando
-                    a8 \glissando
-                    b8 ~ \glissando
-                    b8 \glissando
-                    c'8 \glissando
-                    c'8 \glissando
-                    d'8 ~ \glissando
+                    a8
+                    \glissando
+                    a8
+                    \glissando
+                    b8
+                    ~
+                    \glissando
+                    b8
+                    \glissando
+                    c'8
+                    \glissando
+                    c'8
+                    \glissando
+                    d'8
+                    ~
+                    \glissando
                     d'8
                 }
 
@@ -424,7 +472,7 @@ class Glissando(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -491,7 +539,7 @@ class Glissando(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -560,7 +608,7 @@ class Glissando(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -633,7 +681,7 @@ class Glissando(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -690,12 +738,17 @@ class Glissando(Spanner):
                 \new Staff
                 {
                     a8
-                    a8 \glissando
-                    b8 ~
-                    b8 \glissando
+                    a8
+                    \glissando
+                    b8
+                    ~
+                    b8
+                    \glissando
                     c'8
-                    c'8 \glissando
-                    d'8 ~
+                    c'8
+                    \glissando
+                    d'8
+                    ~
                     d'8
                 }
 
@@ -718,16 +771,23 @@ class Glissando(Spanner):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    a8 \glissando
+                    a8
+                    \glissando
                     \parenthesize
-                    a8 \glissando
-                    b8 ~
+                    a8
+                    \glissando
+                    b8
+                    ~
                     \parenthesize
-                    b8 \glissando
-                    c'8 \glissando
+                    b8
+                    \glissando
+                    c'8
+                    \glissando
                     \parenthesize
-                    c'8 \glissando
-                    d'8 ~
+                    c'8
+                    \glissando
+                    d'8
+                    ~
                     \parenthesize
                     d'8
                 }
@@ -750,14 +810,19 @@ class Glissando(Spanner):
                 {
                     a8
                     \parenthesize
-                    a8 \glissando
-                    b8 ~
+                    a8
+                    \glissando
+                    b8
+                    ~
                     \parenthesize
-                    b8 \glissando
+                    b8
+                    \glissando
                     c'8
                     \parenthesize
-                    c'8 \glissando
-                    d'8 ~
+                    c'8
+                    \glissando
+                    d'8
+                    ~
                     \parenthesize
                     d'8
                 }
@@ -782,13 +847,16 @@ class Glissando(Spanner):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'8 \glissando
+                    c'8
+                    \glissando
                     \hide NoteHead
                     \override Accidental.stencil = ##f
                     \override NoteColumn.glissando-skip = ##t
                     \override NoteHead.no-ledgers = ##t
-                    d'8 \glissando
-                    e'8 \glissando
+                    d'8
+                    \glissando
+                    e'8
+                    \glissando
                     \revert Accidental.stencil
                     \revert NoteColumn.glissando-skip
                     \revert NoteHead.no-ledgers
@@ -816,9 +884,12 @@ class Glissando(Spanner):
                 \new Staff
                 {
                     \override Glissando.style = #'trill
-                    c'8 \glissando
-                    d'8 \glissando
-                    e'8 \glissando
+                    c'8
+                    \glissando
+                    d'8
+                    \glissando
+                    e'8
+                    \glissando
                     \revert Glissando.style
                     f'8
                 }

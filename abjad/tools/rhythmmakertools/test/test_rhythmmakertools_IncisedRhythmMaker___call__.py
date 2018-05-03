@@ -30,24 +30,28 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___01():
         {
             {   % measure
                 \time 5/8
-                c'2 ~
+                c'2
+                ~
                 c'16.
                 r32
             }   % measure
             {   % measure
                 r4
-                c'4 ~
+                c'4
+                ~
                 c'16.
                 r32
             }   % measure
             {   % measure
-                c'2 ~
+                c'2
+                ~
                 c'16.
                 r32
             }   % measure
             {   % measure
                 r4
-                c'4 ~
+                c'4
+                ~
                 c'16.
                 r32
             }   % measure
@@ -85,7 +89,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___02():
             {   % measure
                 \time 5/8
                 r4
-                c'4 ~
+                c'4
+                ~
                 c'16.
                 r32
             }   % measure
@@ -139,7 +144,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___03():
             {   % measure
                 \time 5/8
                 r32
-                c'4 ~
+                c'4
+                ~
                 c'16.
                 r4
             }   % measure
@@ -182,15 +188,18 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___04():
         {
             {   % measure
                 \time 5/8
-                c'2 ~
+                c'2
+                ~
                 c'8
             }   % measure
             {   % measure
-                c'2 ~
+                c'2
+                ~
                 c'8
             }   % measure
             {   % measure
-                c'2 ~
+                c'2
+                ~
                 c'8
             }   % measure
         }
@@ -244,7 +253,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___05():
             {   % measure
                 \times 4/7 {
                     r8
-                    c'2 ~
+                    c'2
+                    ~
                     c'8
                     r8
                 }
@@ -284,7 +294,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___06():
                 \time 4/8
                 \times 8/9 {
                     r32
-                    c'2 ~
+                    c'2
+                    ~
                     c'32
                 }
             }   % measure
@@ -297,7 +308,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___06():
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 6/7 {
                     r32
-                    c'4. ~
+                    c'4.
+                    ~
                     c'32
                 }
             }   % measure
@@ -309,7 +321,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___06():
                 }
                 \times 4/5 {
                     r32
-                    c'4 ~
+                    c'4
+                    ~
                     c'32
                 }
             }   % measure
@@ -679,7 +692,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___13():
                 c'8
             }   % measure
             {   % measure
-                c'2 ~
+                c'2
+                ~
                 c'8
             }   % measure
             {   % measure
@@ -730,7 +744,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___14():
                 r8
             }   % measure
             {   % measure
-                c'2 ~
+                c'2
+                ~
                 c'8
             }   % measure
             {   % measure
@@ -769,15 +784,18 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___15():
         {
             {   % measure
                 \time 5/8
-                c'2 ~
+                c'2
+                ~
                 c'8
             }   % measure
             {   % measure
-                c'2 ~
+                c'2
+                ~
                 c'8
             }   % measure
             {   % measure
-                c'2 ~
+                c'2
+                ~
                 c'8
             }   % measure
         }
@@ -946,10 +964,12 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___18():
             }   % measure
             {   % measure
                 r4
-                c'16. [
+                c'16.
+                [
                 c'16.
                 c'16.
-                c'16. ]
+                c'16.
+                ]
             }   % measure
         }
         '''

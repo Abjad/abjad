@@ -18,10 +18,12 @@ class PhrasingSlur(Spanner):
             >>> abjad.f(staff)
             \new Staff
             {
-                c'8 \(
+                c'8
+                \(
                 d'8
                 e'8
-                f'8 \)
+                f'8
+                \)
             }
 
     ..  container:: example
@@ -103,10 +105,12 @@ class PhrasingSlur(Spanner):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'8 ^ \(
+                    c'8
+                    ^ \(
                     d'8
                     e'8
-                    f'8 \)
+                    f'8
+                    \)
                 }
 
         ..  container:: example
@@ -123,10 +127,12 @@ class PhrasingSlur(Spanner):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'8 _ \(
+                    c'8
+                    _ \(
                     d'8
                     e'8
-                    f'8 \)
+                    f'8
+                    \)
                 }
 
         ..  container:: example
@@ -143,10 +149,12 @@ class PhrasingSlur(Spanner):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'8 \(
+                    c'8
+                    \(
                     d'8
                     e'8
-                    f'8 \)
+                    f'8
+                    \)
                 }
 
         Defaults to none.

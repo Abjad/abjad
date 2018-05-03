@@ -31,7 +31,8 @@ class MeasuredComplexBeam(ComplexBeam):
                     \time 2/16
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 2
-                    c'16 [
+                    c'16
+                    [
                     \set stemLeftBeamCount = 2
                     \set stemRightBeamCount = 1
                     d'16
@@ -42,7 +43,8 @@ class MeasuredComplexBeam(ComplexBeam):
                     e'16
                     \set stemLeftBeamCount = 2
                     \set stemRightBeamCount = 0
-                    f'16 ]
+                    f'16
+                    ]
                 }   % measure
             }
 

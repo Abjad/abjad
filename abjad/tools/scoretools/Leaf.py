@@ -175,9 +175,9 @@ class Leaf(Component):
         result.append(('comments', bundle.closing.comments))
         return result
 
-    def _format_contents_slot(self, bundle, strict=False):
+    def _format_contents_slot(self, bundle):
         result = []
-        result.append(self._format_leaf_body(bundle, strict=strict))
+        result.append(self._format_leaf_body(bundle))
         return result
 
     def _format_grace_body(self):
@@ -188,7 +188,7 @@ class Leaf(Component):
                 result.append(format(grace))
         return ['grace body', result]
 
-    def _format_leaf_body(self, bundle, strict=False):
+    def _format_leaf_body(self, bundle):
         import abjad
         indent = abjad.LilyPondFormatManager.indent
         result = self._format_leaf_nucleus()[1]
@@ -200,17 +200,9 @@ class Leaf(Component):
         result.extend(bundle.right.spanner_stops)
         result.extend(bundle.right.spanner_starts)
         result.extend(bundle.right.comments)
-        if not strict:
-            result = [' '.join(result)]
         markup = bundle.right.markup
         if markup:
-            if not strict:
-                if len(markup) == 1:
-                    result[0] += ' {}'.format(markup[0])
-                else:
-                    result.extend(indent + '{}'.format(_) for _ in markup)
-            else:
-                result.extend('{}'.format(_) for _ in markup)
+            result.extend('{}'.format(_) for _ in markup)
         trill_pitches = bundle.right.trill_pitches
         if trill_pitches:
             assert len(trill_pitches) == 1, repr(trill_pitches)
@@ -235,8 +227,8 @@ class Leaf(Component):
     def _get_compact_representation(self):
         return '({})'.format(self._get_formatted_duration())
 
-    def _get_format_pieces(self, strict=False):
-        return self._get_lilypond_format(strict=strict).split('\n')
+    def _get_format_pieces(self):
+        return self._get_lilypond_format().split('\n')
 
     def _get_format_specification(self):
         import abjad
@@ -324,7 +316,7 @@ class Leaf(Component):
                     result += contribution
         return result
 
-    def _report_format_contributions(self, strict=False):
+    def _report_format_contributions(self):
         import abjad
         manager = abjad.LilyPondFormatManager
         indent = manager.indent
@@ -341,7 +333,7 @@ class Leaf(Component):
         report += self._process_contribution_packet(packet)
         report += 'slot 4:\n'
         report += indent + 'leaf body:\n'
-        string = self._format_contents_slot(bundle, strict=strict)[0][1][0]
+        string = self._format_contents_slot(bundle)[0][1][0]
         report += (2 * indent) + string + '\n'
         report += 'slot 5:\n'
         packet = self._format_closing_slot(bundle)

@@ -125,10 +125,12 @@ class Mutation(abctools.AbjadObject):
                 \new Staff
                 {
                     \time 2/4
-                    c'8 (
+                    c'8
+                    (
                     d'8
                     e'8
-                    f'8 )
+                    f'8
+                    )
                     g'8
                     a'8
                     b'8
@@ -145,8 +147,10 @@ class Mutation(abctools.AbjadObject):
                 >>> abjad.f(new_staff)
                 \new Staff
                 {
-                    e'8 (
-                    f'8 )
+                    e'8
+                    (
+                    f'8
+                    )
                 }
 
             >>> staff[2] is new_staff[0]
@@ -179,9 +183,11 @@ class Mutation(abctools.AbjadObject):
 
                 >>> abjad.f(container)
                 {
-                    c'4 ~
                     c'4
-                    d'4 ~
+                    ~
+                    c'4
+                    d'4
+                    ~
                     d'4
                 }
 
@@ -201,9 +207,11 @@ class Mutation(abctools.AbjadObject):
                 >>> abjad.f(staff)
                 \new RhythmicStaff
                 {
-                    c'4 ~
                     c'4
-                    d'4 ~
+                    ~
+                    c'4
+                    d'4
+                    ~
                     d'4
                 }
 
@@ -248,13 +256,16 @@ class Mutation(abctools.AbjadObject):
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 3/2 {
                         \time 3/4
-                        c'4 \< \p
+                        c'4
+                        \<
+                        \p
                         e'4
                     }
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 3/2 {
                         d'4
-                        f'4 \f
+                        f'4
+                        \f
                     }
                 }
 
@@ -268,10 +279,13 @@ class Mutation(abctools.AbjadObject):
                 \new Staff
                 {
                     \time 3/4
-                    c'4 \< \p
+                    c'4
+                    \<
+                    \p
                     e'4
                     d'4
-                    f'4 \f
+                    f'4
+                    \f
                 }
 
         ..  container:: example
@@ -296,13 +310,16 @@ class Mutation(abctools.AbjadObject):
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 3/2 {
                         \time 3/4
-                        c'4 \< \p
+                        c'4
+                        \<
+                        \p
                         e'4
                     }
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 3/2 {
                         d'4
-                        f'4 \f
+                        f'4
+                        \f
                     }
                 }
 
@@ -318,10 +335,13 @@ class Mutation(abctools.AbjadObject):
                 \new Staff
                 {
                     \time 3/4
-                    c'4. \< \p
+                    c'4.
+                    \<
+                    \p
                     e'4.
                     d'4.
-                    f'4. \f
+                    f'4.
+                    \f
                 }
 
         Returns mutation client.
@@ -370,14 +390,18 @@ class Mutation(abctools.AbjadObject):
                 \new Staff
                 {
                     \times 2/3 {
-                        c'8 [
+                        c'8
+                        [
                         d'8
-                        e'8 ]
+                        e'8
+                        ]
                     }
                     \times 2/3 {
-                        c'16 (
+                        c'16
+                        (
                         d'16
-                        e'16 )
+                        e'16
+                        )
                     }
                 }
 
@@ -392,12 +416,16 @@ class Mutation(abctools.AbjadObject):
                 \new Staff
                 {
                     \times 2/3 {
-                        c'8 [
+                        c'8
+                        [
                         d'8
-                        e'8 ]
-                        c'16 (
+                        e'8
+                        ]
+                        c'16
+                        (
                         d'16
-                        e'16 )
+                        e'16
+                        )
                     }
                 }
 
@@ -432,13 +460,15 @@ class Mutation(abctools.AbjadObject):
                 {
                     {   % measure
                         \time 1/4
-                        c'8 (
+                        c'8
+                        (
                         d'8
                     }   % measure
                     {   % measure
                         \time 2/8
                         e'8
-                        f'8 )
+                        f'8
+                        )
                     }   % measure
                 }
 
@@ -454,10 +484,12 @@ class Mutation(abctools.AbjadObject):
                 {
                     {   % measure
                         \time 2/4
-                        c'8 (
+                        c'8
+                        (
                         d'8
                         e'8
-                        f'8 )
+                        f'8
+                        )
                     }   % measure
                 }
 
@@ -499,14 +531,19 @@ class Mutation(abctools.AbjadObject):
                 \new Staff
                 {
                     \times 2/3 {
-                        c'4 \< \p (
+                        c'4
+                        \<
+                        \p
+                        (
                         d'4
                         e'4
                     }
                     \times 2/3 {
                         d'4
                         e'4
-                        f'4 \f )
+                        f'4
+                        \f
+                        )
                     }
                 }
 
@@ -520,7 +557,10 @@ class Mutation(abctools.AbjadObject):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'16 \< \p (
+                    c'16
+                    \<
+                    \p
+                    (
                     d'16
                     e'16
                     f'16
@@ -531,7 +571,9 @@ class Mutation(abctools.AbjadObject):
                     \times 2/3 {
                         d'4
                         e'4
-                        f'4 \f )
+                        f'4
+                        \f
+                        )
                     }
                 }
 
@@ -830,14 +872,17 @@ class Mutation(abctools.AbjadObject):
                 {
                     {   % measure
                         \time 2/4
-                        c'2 ~
+                        c'2
+                        ~
                     }   % measure
                     {   % measure
                         \time 4/4
                         c'32
-                        d'2.. ~
+                        d'2..
+                        ~
                         d'16
-                        e'32 ~
+                        e'32
+                        ~
                     }   % measure
                     {   % measure
                         \time 2/4
@@ -863,15 +908,19 @@ class Mutation(abctools.AbjadObject):
                 {
                     {   % measure
                         \time 2/4
-                        c'2 ~
+                        c'2
+                        ~
                     }   % measure
                     {   % measure
                         \time 4/4
                         c'32
-                        d'8.. ~
-                        d'2 ~
                         d'8..
-                        e'32 ~
+                        ~
+                        d'2
+                        ~
+                        d'8..
+                        e'32
+                        ~
                     }   % measure
                     {   % measure
                         \time 2/4
@@ -893,14 +942,17 @@ class Mutation(abctools.AbjadObject):
                 {
                     {   % measure
                         \time 2/4
-                        c'2 ~
+                        c'2
+                        ~
                     }   % measure
                     {   % measure
                         \time 4/4
                         c'32
-                        d'2.. ~
+                        d'2..
+                        ~
                         d'16
-                        e'32 ~
+                        e'32
+                        ~
                     }   % measure
                     {   % measure
                         \time 2/4
@@ -929,14 +981,17 @@ class Mutation(abctools.AbjadObject):
                 {
                     {   % measure
                         \time 2/4
-                        c'2 ~
+                        c'2
+                        ~
                     }   % measure
                     {   % measure
                         \time 4/4
                         c'32
-                        d'4... ~
                         d'4...
-                        e'32 ~
+                        ~
+                        d'4...
+                        e'32
+                        ~
                     }   % measure
                     {   % measure
                         \time 2/4
@@ -975,9 +1030,11 @@ class Mutation(abctools.AbjadObject):
                 {   % measure
                     \time 3/4
                     c'32
-                    d'16. ~
+                    d'16.
+                    ~
                     d'32
-                    e'16. ~
+                    e'16.
+                    ~
                     e'32
                     fs'4...
                 }   % measure
@@ -997,11 +1054,14 @@ class Mutation(abctools.AbjadObject):
                 {   % measure
                     \time 3/4
                     c'32
-                    d'16. ~
+                    d'16.
+                    ~
                     d'32
-                    e'16. ~
+                    e'16.
+                    ~
                     e'32
-                    fs'8.. ~
+                    fs'8..
+                    ~
                     fs'4
                 }   % measure
 
@@ -1020,12 +1080,16 @@ class Mutation(abctools.AbjadObject):
                 {   % measure
                     \time 3/4
                     c'32
-                    d'16. ~
+                    d'16.
+                    ~
                     d'32
-                    e'16. ~
+                    e'16.
+                    ~
                     e'32
-                    fs'16. ~
-                    fs'8 ~
+                    fs'16.
+                    ~
+                    fs'8
+                    ~
                     fs'4
                 }   % measure
 
@@ -1044,15 +1108,22 @@ class Mutation(abctools.AbjadObject):
                 {   % measure
                     \time 3/4
                     c'32
-                    d'16 ~
-                    d'32 ~
+                    d'16
+                    ~
                     d'32
-                    e'16 ~
-                    e'32 ~
+                    ~
+                    d'32
+                    e'16
+                    ~
                     e'32
-                    fs'16 ~
-                    fs'32 ~
-                    fs'8 ~
+                    ~
+                    e'32
+                    fs'16
+                    ~
+                    fs'32
+                    ~
+                    fs'8
+                    ~
                     fs'4
                 }   % measure
 
@@ -1106,7 +1177,8 @@ class Mutation(abctools.AbjadObject):
                 {   % measure
                     \time 9/8
                     c'2
-                    d'4 ~
+                    d'4
+                    ~
                     d'4
                     e'8
                 }   % measure
@@ -1128,9 +1200,11 @@ class Mutation(abctools.AbjadObject):
                 >>> abjad.f(measure)
                 {   % measure
                     \time 9/8
-                    c'4. ~
+                    c'4.
+                    ~
                     c'8
-                    d'4 ~
+                    d'4
+                    ~
                     d'4
                     e'8
                 }   % measure
@@ -1152,7 +1226,8 @@ class Mutation(abctools.AbjadObject):
                 {   % measure
                     \time 9/8
                     c'2
-                    d'4 ~
+                    d'4
+                    ~
                     d'4
                     e'8
                 }   % measure
@@ -1217,13 +1292,15 @@ class Mutation(abctools.AbjadObject):
                             c'4.
                         }   % measure
                         {   % measure
-                            c'2 ~
+                            c'2
+                            ~
                             c'8
                             c'8
                         }   % measure
                         {   % measure
                             c'8
-                            c'8 ~
+                            c'8
+                            ~
                             c'2
                         }   % measure
                     }
@@ -1249,13 +1326,15 @@ class Mutation(abctools.AbjadObject):
                             c'4.
                         }   % measure
                         {   % measure
-                            c'2 ~
+                            c'2
+                            ~
                             c'8
                             c'8
                         }   % measure
                         {   % measure
                             c'8
-                            c'8 ~
+                            c'8
+                            ~
                             c'2
                         }   % measure
                     }
@@ -1301,13 +1380,15 @@ class Mutation(abctools.AbjadObject):
                             c'4.
                         }   % measure
                         {   % measure
-                            c'2 ~
+                            c'2
+                            ~
                             c'8
                             c'8
                         }   % measure
                         {   % measure
                             c'8
-                            c'8 ~
+                            c'8
+                            ~
                             c'2
                         }   % measure
                     }
@@ -1333,13 +1414,15 @@ class Mutation(abctools.AbjadObject):
                             c'4.
                         }   % measure
                         {   % measure
-                            c'4. ~
+                            c'4.
+                            ~
                             c'4
                             c'8
                         }   % measure
                         {   % measure
                             c'8
-                            c'4 ~
+                            c'4
+                            ~
                             c'4.
                         }   % measure
                     }
@@ -1384,19 +1467,23 @@ class Mutation(abctools.AbjadObject):
                             c'2
                         }   % measure
                         {   % measure
-                            c'4 ~
+                            c'4
+                            ~
                             c'8
-                            c'8 ~
+                            c'8
+                            ~
                             c'4
                         }   % measure
                         {   % measure
-                            c'2 ~
+                            c'2
+                            ~
                             c'8
                             c'8
                         }   % measure
                         {   % measure
                             c'8
-                            c'8 ~
+                            c'8
+                            ~
                             c'2
                         }   % measure
                     }
@@ -1410,13 +1497,15 @@ class Mutation(abctools.AbjadObject):
                     {
                         {   % measure
                             \time 6/8
-                            c'4. ~
+                            c'4.
+                            ~
                             c'8
                             c'4
                         }   % measure
                         {   % measure
                             c'4
-                            c'8 ~
+                            c'8
+                            ~
                             c'4.
                         }   % measure
                         {   % measure
@@ -1424,13 +1513,15 @@ class Mutation(abctools.AbjadObject):
                             c'4.
                         }   % measure
                         {   % measure
-                            c'4. ~
+                            c'4.
+                            ~
                             c'4
                             c'8
                         }   % measure
                         {   % measure
                             c'8
-                            c'4 ~
+                            c'4
+                            ~
                             c'4.
                         }   % measure
                     }
@@ -1454,16 +1545,20 @@ class Mutation(abctools.AbjadObject):
                 >>> abjad.f(measure)
                 {   % measure
                     \time 4/4
-                    c'16 ~
+                    c'16
+                    ~
                     c'4
-                    d'8. ~
+                    d'8.
+                    ~
                     \times 2/3 {
-                        d'8. ~
+                        d'8.
+                        ~
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
                             d'16
                             e'8.
-                            f'16 ~
+                            f'16
+                            ~
                         }
                     }
                     f'4
@@ -1487,18 +1582,24 @@ class Mutation(abctools.AbjadObject):
                 >>> abjad.f(measure)
                 {   % measure
                     \time 4/4
-                    c'4 ~
+                    c'4
+                    ~
                     c'16
-                    d'8. ~
+                    d'8.
+                    ~
                     \times 2/3 {
-                        d'8 ~
-                        d'16 ~
+                        d'8
+                        ~
+                        d'16
+                        ~
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
                             d'16
-                            e'8 ~
+                            e'8
+                            ~
                             e'16
-                            f'16 ~
+                            f'16
+                            ~
                         }
                     }
                     f'4
@@ -1521,7 +1622,8 @@ class Mutation(abctools.AbjadObject):
                 {   % measure
                     \time 6/8
                     c'4..
-                    c'16 ~
+                    c'16
+                    ~
                     c'4
                 }   % measure
 
@@ -1538,9 +1640,11 @@ class Mutation(abctools.AbjadObject):
                 >>> abjad.f(measure)
                 {   % measure
                     \time 6/8
-                    c'4. ~
+                    c'4.
+                    ~
                     c'16
-                    c'16 ~
+                    c'16
+                    ~
                     c'4
                 }   % measure
 
@@ -1560,9 +1664,11 @@ class Mutation(abctools.AbjadObject):
                 >>> abjad.f(measure)
                 {   % measure
                     \time 6/8
-                    c'4. ~
+                    c'4.
+                    ~
                     c'16
-                    c'16 ~
+                    c'16
+                    ~
                     c'4
                 }   % measure
 
@@ -1600,9 +1706,11 @@ class Mutation(abctools.AbjadObject):
                 {   % measure
                     \time 4/4
                     c'4
-                    c'8 \repeatTie
                     c'8
-                    c'4 \repeatTie
+                    \repeatTie
+                    c'8
+                    c'4
+                    \repeatTie
                     c'4
                 }   % measure
 
@@ -1626,8 +1734,10 @@ class Mutation(abctools.AbjadObject):
                 >>> abjad.f(measure)
                 {   % measure
                     \time 6/4
-                    c'8 ~
-                    c'8 ~
+                    c'8
+                    ~
+                    c'8
+                    ~
                     c'8
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 6/7 {
@@ -1639,8 +1749,10 @@ class Mutation(abctools.AbjadObject):
                         r16
                         c'4.
                     }
-                    c'8 ~
-                    c'8 ~
+                    c'8
+                    ~
+                    c'8
+                    ~
                     c'8
                 }   % measure
 
@@ -1659,15 +1771,18 @@ class Mutation(abctools.AbjadObject):
                     c'4.
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 6/7 {
-                        c'8. ~
-                        c'8 ~
+                        c'8.
+                        ~
+                        c'8
+                        ~
                         c'16
                         r16
                     }
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 6/7 {
                         r16
-                        c'8 ~
+                        c'8
+                        ~
                         c'4
                     }
                     c'4.
@@ -1694,8 +1809,10 @@ class Mutation(abctools.AbjadObject):
                 >>> abjad.f(measure)
                 {   % measure
                     \time 6/4
-                    c'8 ~
-                    c'8 ~
+                    c'8
+                    ~
+                    c'8
+                    ~
                     c'8
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 6/7 {
@@ -1707,8 +1824,10 @@ class Mutation(abctools.AbjadObject):
                         r16
                         c'4.
                     }
-                    c'8 ~
-                    c'8 ~
+                    c'8
+                    ~
+                    c'8
+                    ~
                     c'8
                 }   % measure
 
@@ -1775,10 +1894,12 @@ class Mutation(abctools.AbjadObject):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'8 (
+                    c'8
+                    (
                     d'8.
                     e'8
-                    f'8 )
+                    f'8
+                    )
                 }
 
         ..  container:: example
@@ -1796,7 +1917,9 @@ class Mutation(abctools.AbjadObject):
                 \new Staff
                 {
                     \time 3/8
-                    c'8 -\accent ~
+                    c'8
+                    -\accent
+                    ~
                     c'8
                     d'8
                 }
@@ -1812,7 +1935,8 @@ class Mutation(abctools.AbjadObject):
                 \new Staff
                 {
                     \time 3/8
-                    c'4. -\accent
+                    c'4.
+                    -\accent
                     d'8
                 }
 
@@ -1827,10 +1951,12 @@ class Mutation(abctools.AbjadObject):
 
                 >>> abjad.f(container)
                 {
-                    c'8 (
+                    c'8
+                    (
                     d'8
                     e'8
-                    f'8 )
+                    f'8
+                    )
                 }
 
             >>> abjad.mutate(container).scale(abjad.Multiplier(3, 2))
@@ -1840,10 +1966,12 @@ class Mutation(abctools.AbjadObject):
 
                 >>> abjad.f(container)
                 {
-                    c'8. (
+                    c'8.
+                    (
                     d'8.
                     e'8.
-                    f'8. )
+                    f'8.
+                    )
                 }
 
         ..  container:: example
@@ -1861,11 +1989,14 @@ class Mutation(abctools.AbjadObject):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'8 (
-                    d'8 ~
+                    c'8
+                    (
+                    d'8
+                    ~
                     d'32
                     e'8
-                    f'8 )
+                    f'8
+                    )
                 }
 
         ..  container:: example
@@ -1883,7 +2014,9 @@ class Mutation(abctools.AbjadObject):
                 \new Staff
                 {
                     \time 5/16
-                    c'8 -\accent ~
+                    c'8
+                    -\accent
+                    ~
                     c'8
                     d'16
                 }
@@ -1899,7 +2032,9 @@ class Mutation(abctools.AbjadObject):
                 \new Staff
                 {
                     \time 5/16
-                    c'4 -\accent ~
+                    c'4
+                    -\accent
+                    ~
                     c'16
                     d'16
                 }
@@ -1915,10 +2050,12 @@ class Mutation(abctools.AbjadObject):
 
                 >>> abjad.f(container)
                 {
-                    c'8 (
+                    c'8
+                    (
                     d'8
                     e'8
-                    f'8 )
+                    f'8
+                    )
                 }
 
             >>> abjad.mutate(container).scale(abjad.Multiplier(5, 4))
@@ -1928,14 +2065,20 @@ class Mutation(abctools.AbjadObject):
 
                 >>> abjad.f(container)
                 {
-                    c'8 ~ (
+                    c'8
+                    ~
+                    (
                     c'32
-                    d'8 ~
+                    d'8
+                    ~
                     d'32
-                    e'8 ~
+                    e'8
+                    ~
                     e'32
-                    f'8 ~
-                    f'32 )
+                    f'8
+                    ~
+                    f'32
+                    )
                 }
 
         ..  container:: example
@@ -1953,13 +2096,15 @@ class Mutation(abctools.AbjadObject):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'8 (
+                    c'8
+                    (
                     \tweak edge-height #'(0.7 . 0)
                     \times 2/3 {
                         d'8
                     }
                     e'8
-                    f'8 )
+                    f'8
+                    )
                 }
 
         ..  container:: example
@@ -1974,7 +2119,8 @@ class Mutation(abctools.AbjadObject):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'8 -\accent
+                    c'8
+                    -\accent
                 }
 
             >>> logical_tie = abjad.inspect(staff[0]).get_logical_tie()
@@ -1989,7 +2135,8 @@ class Mutation(abctools.AbjadObject):
                 {
                     \tweak edge-height #'(0.7 . 0)
                     \times 2/3 {
-                        c'4 -\accent
+                        c'4
+                        -\accent
                     }
                 }
 
@@ -2004,10 +2151,12 @@ class Mutation(abctools.AbjadObject):
 
                 >>> abjad.f(container)
                 {
-                    c'8 (
+                    c'8
+                    (
                     d'8
                     e'8
-                    f'8 )
+                    f'8
+                    )
                 }
 
             >>> abjad.mutate(container).scale(abjad.Multiplier(4, 3))
@@ -2019,7 +2168,8 @@ class Mutation(abctools.AbjadObject):
                 {
                     \tweak edge-height #'(0.7 . 0)
                     \times 2/3 {
-                        c'4 (
+                        c'4
+                        (
                     }
                     \tweak edge-height #'(0.7 . 0)
                     \times 2/3 {
@@ -2031,7 +2181,8 @@ class Mutation(abctools.AbjadObject):
                     }
                     \tweak edge-height #'(0.7 . 0)
                     \times 2/3 {
-                        f'4 )
+                        f'4
+                        )
                     }
                 }
 
@@ -2050,14 +2201,17 @@ class Mutation(abctools.AbjadObject):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'8 (
+                    c'8
+                    (
                     \tweak edge-height #'(0.7 . 0)
                     \times 2/3 {
-                        d'8 ~
+                        d'8
+                        ~
                         d'32
                     }
                     e'8
-                    f'8 )
+                    f'8
+                    )
                 }
 
         ..  container:: example
@@ -2234,14 +2388,17 @@ class Mutation(abctools.AbjadObject):
                     \override DynamicLineSpanner.staff-padding = #3
                 }
                 {
-                    c'8 \< \p
+                    c'8
+                    \<
+                    \p
                     e'8
                     d'8
                     f'8
                     c'8
                     e'8
                     d'8
-                    f'8 \f
+                    f'8
+                    \f
                 }
 
             >>> durations = [(3, 16), (7, 32)]
@@ -2260,7 +2417,9 @@ class Mutation(abctools.AbjadObject):
                     \override DynamicLineSpanner.staff-padding = #3
                 }
                 {
-                    c'8 \< \p
+                    c'8
+                    \<
+                    \p
                     e'16
                     e'16
                     d'8
@@ -2269,7 +2428,8 @@ class Mutation(abctools.AbjadObject):
                     c'8
                     e'8
                     d'8
-                    f'8 \f
+                    f'8
+                    \f
                 }
 
         ..  container:: example
@@ -2291,14 +2451,17 @@ class Mutation(abctools.AbjadObject):
                     \override DynamicLineSpanner.staff-padding = #3
                 }
                 {
-                    c'8 \< \p
+                    c'8
+                    \<
+                    \p
                     e'8
                     d'8
                     f'8
                     c'8
                     e'8
                     d'8
-                    f'8 \f
+                    f'8
+                    \f
                 }
 
             >>> durations = [(3, 16), (7, 32)]
@@ -2319,16 +2482,25 @@ class Mutation(abctools.AbjadObject):
                     \override DynamicLineSpanner.staff-padding = #3
                 }
                 {
-                    c'8 \< \p
-                    e'16 \f
-                    e'16 \< \p
+                    c'8
+                    \<
+                    \p
+                    e'16
+                    \f
+                    e'16
+                    \<
+                    \p
                     d'8
-                    f'32 \f
-                    f'16. \< \p
+                    f'32
+                    \f
+                    f'16.
+                    \<
+                    \p
                     c'8
                     e'8
                     d'8
-                    f'8 \f
+                    f'8
+                    \f
                 }
 
         ..  container:: example
@@ -2351,14 +2523,17 @@ class Mutation(abctools.AbjadObject):
                     \override DynamicLineSpanner.staff-padding = #3
                 }
                 {
-                    c'8 \< \p
+                    c'8
+                    \<
+                    \p
                     e'8
                     d'8
                     f'8
                     c'8
                     e'8
                     d'8
-                    f'8 \f
+                    f'8
+                    \f
                 }
 
             >>> durations = [(3, 16), (7, 32)]
@@ -2378,7 +2553,9 @@ class Mutation(abctools.AbjadObject):
                     \override DynamicLineSpanner.staff-padding = #3
                 }
                 {
-                    c'8 \< \p
+                    c'8
+                    \<
+                    \p
                     e'16
                     e'16
                     d'8
@@ -2389,7 +2566,8 @@ class Mutation(abctools.AbjadObject):
                     e'8
                     d'16
                     d'16
-                    f'8 \f
+                    f'8
+                    \f
                 }
 
         ..  container:: example
@@ -2412,14 +2590,17 @@ class Mutation(abctools.AbjadObject):
                     \override DynamicLineSpanner.staff-padding = #3
                 }
                 {
-                    c'8 \< \p
+                    c'8
+                    \<
+                    \p
                     e'8
                     d'8
                     f'8
                     c'8
                     e'8
                     d'8
-                    f'8 \f
+                    f'8
+                    \f
                 }
 
             >>> durations = [(3, 16), (7, 32)]
@@ -2440,18 +2621,33 @@ class Mutation(abctools.AbjadObject):
                     \override DynamicLineSpanner.staff-padding = #3
                 }
                 {
-                    c'8 \< \p
-                    e'16 \f
-                    e'16 \< \p
+                    c'8
+                    \<
+                    \p
+                    e'16
+                    \f
+                    e'16
+                    \<
+                    \p
                     d'8
-                    f'32 \f
-                    f'16. \< \p
-                    c'16. \f
-                    c'32 \< \p
+                    f'32
+                    \f
+                    f'16.
+                    \<
+                    \p
+                    c'16.
+                    \f
+                    c'32
+                    \<
+                    \p
                     e'8
-                    d'16 \f
-                    d'16 \< \p
-                    f'8 \f
+                    d'16
+                    \f
+                    d'16
+                    \<
+                    \p
+                    f'8
+                    \f
                 }
 
         ..  container:: example
@@ -2472,14 +2668,16 @@ class Mutation(abctools.AbjadObject):
                 \new Staff
                 {
                     \times 2/3 {
-                        c'4 (
+                        c'4
+                        (
                         d'4
                         e'4
                     }
                     \times 2/3 {
                         c'4
                         d'4
-                        e'4 )
+                        e'4
+                        )
                     }
                 }
 
@@ -2497,15 +2695,19 @@ class Mutation(abctools.AbjadObject):
                 \new Staff
                 {
                     \times 2/3 {
-                        c'4 (
-                        d'8 )
-                        d'8 (
+                        c'4
+                        (
+                        d'8
+                        )
+                        d'8
+                        (
                         e'4
                     }
                     \times 2/3 {
                         c'4
                         d'4
-                        e'4 )
+                        e'4
+                        )
                     }
                 }
 
@@ -2528,8 +2730,11 @@ class Mutation(abctools.AbjadObject):
                     \override DynamicLineSpanner.staff-padding = #3
                 }
                 {
-                    c'1 \< \p
-                    d'1 \f
+                    c'1
+                    \<
+                    \p
+                    d'1
+                    \f
                 }
 
             >>> durations = [(3, 4)]
@@ -2550,10 +2755,15 @@ class Mutation(abctools.AbjadObject):
                     \override DynamicLineSpanner.staff-padding = #3
                 }
                 {
-                    c'2. ~ \< \p
+                    c'2.
+                    ~
+                    \<
+                    \p
                     c'4
-                    d'2 ~
-                    d'2 \f
+                    d'2
+                    ~
+                    d'2
+                    \f
                 }
 
             As above but with repeat ties:
@@ -2582,10 +2792,15 @@ class Mutation(abctools.AbjadObject):
                     \override DynamicLineSpanner.staff-padding = #3
                 }
                 {
-                    c'2. \< \p
-                    c'4 \repeatTie
+                    c'2.
+                    \<
+                    \p
+                    c'4
+                    \repeatTie
                     d'2
-                    d'2 \repeatTie \f
+                    d'2
+                    \repeatTie
+                    \f
                 }
 
         ..  container:: example
@@ -2614,10 +2829,13 @@ class Mutation(abctools.AbjadObject):
                 {
                     \context CustomVoice = "1"
                     {
-                        c'4 \< \p
+                        c'4
+                        \<
+                        \p
                         d'4
                         e'4
-                        f'4 \f
+                        f'4
+                        \f
                     }
                 }
 
@@ -2641,7 +2859,10 @@ class Mutation(abctools.AbjadObject):
                 {
                     \context CustomVoice = "1"
                     {
-                        c'8 ~ \< \p
+                        c'8
+                        ~
+                        \<
+                        \p
                     }
                     \context CustomVoice = "1"
                     {
@@ -2649,7 +2870,8 @@ class Mutation(abctools.AbjadObject):
                     }
                     \context CustomVoice = "1"
                     {
-                        d'8 ~
+                        d'8
+                        ~
                     }
                     \context CustomVoice = "1"
                     {
@@ -2657,7 +2879,8 @@ class Mutation(abctools.AbjadObject):
                     }
                     \context CustomVoice = "1"
                     {
-                        e'8 ~
+                        e'8
+                        ~
                     }
                     \context CustomVoice = "1"
                     {
@@ -2665,11 +2888,13 @@ class Mutation(abctools.AbjadObject):
                     }
                     \context CustomVoice = "1"
                     {
-                        f'8 ~
+                        f'8
+                        ~
                     }
                     \context CustomVoice = "1"
                     {
-                        f'8 \f
+                        f'8
+                        \f
                     }
                 }
 
@@ -2720,10 +2945,12 @@ class Mutation(abctools.AbjadObject):
                             \override Stem.direction = #up
                         }
                         {
-                            e''4 (
+                            e''4
+                            (
                             es''4
                             f''4
-                            fs''4 )
+                            fs''4
+                            )
                         }
                         \context Voice = "Voice 2"
                         \with
@@ -2731,10 +2958,13 @@ class Mutation(abctools.AbjadObject):
                             \override Stem.direction = #down
                         }
                         {
-                            c'4 \p \<
+                            c'4
+                            \p
+                            \<
                             cs'4
                             d'4
-                            ds'4 \f
+                            ds'4
+                            \f
                         }
                     >>
                 }
@@ -2759,8 +2989,10 @@ class Mutation(abctools.AbjadObject):
                         \override Stem.direction = #up
                     }
                     {
-                        e''4 (
-                        es''8 ~
+                        e''4
+                        (
+                        es''8
+                        ~
                     }
                     \context Voice = "Voice 2"
                     \with
@@ -2768,8 +3000,11 @@ class Mutation(abctools.AbjadObject):
                         \override Stem.direction = #down
                     }
                     {
-                        c'4 \p \<
-                        cs'8 ~
+                        c'4
+                        \p
+                        \<
+                        cs'8
+                        ~
                     }
                 >>
                 <<
@@ -2782,7 +3017,8 @@ class Mutation(abctools.AbjadObject):
                     {
                         es''8
                         f''4
-                        fs''4 )
+                        fs''4
+                        )
                     }
                     \context Voice = "Voice 2"
                     \with
@@ -2792,7 +3028,8 @@ class Mutation(abctools.AbjadObject):
                     {
                         cs'8
                         d'4
-                        ds'4 \f
+                        ds'4
+                        \f
                     }
                 >>
             }
@@ -2813,10 +3050,14 @@ class Mutation(abctools.AbjadObject):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'4 -\marcato
-                    d'4 \laissezVibrer
-                    e'4 -\marcato
-                    f'4 \laissezVibrer
+                    c'4
+                    -\marcato
+                    d'4
+                    \laissezVibrer
+                    e'4
+                    -\marcato
+                    f'4
+                    \laissezVibrer
                 }
 
             >>> durations = [(1, 8)]
@@ -2833,14 +3074,22 @@ class Mutation(abctools.AbjadObject):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'8 -\marcato ~
                     c'8
-                    d'8 ~
-                    d'8 \laissezVibrer
-                    e'8 -\marcato ~
+                    -\marcato
+                    ~
+                    c'8
+                    d'8
+                    ~
+                    d'8
+                    \laissezVibrer
                     e'8
-                    f'8 ~
-                    f'8 \laissezVibrer
+                    -\marcato
+                    ~
+                    e'8
+                    f'8
+                    ~
+                    f'8
+                    \laissezVibrer
                 }
 
         Returns list of selections.
@@ -3009,14 +3258,19 @@ class Mutation(abctools.AbjadObject):
                 {
                     {   % measure
                         \time 3/4
-                        c'4 \< \p (
+                        c'4
+                        \<
+                        \p
+                        (
                         d'4
                         e'4
                     }   % measure
                     {   % measure
                         d'4
                         e'4
-                        f'4 \f )
+                        f'4
+                        \f
+                        )
                     }   % measure
                 }
 
@@ -3032,12 +3286,17 @@ class Mutation(abctools.AbjadObject):
                 \new Staff
                 {
                     \times 4/6 {
-                        c'4 \< \p (
+                        c'4
+                        \<
+                        \p
+                        (
                         d'4
                         e'4
                         d'4
                         e'4
-                        f'4 \f )
+                        f'4
+                        \f
+                        )
                     }
                 }
 
@@ -3144,12 +3403,20 @@ class Mutation(abctools.AbjadObject):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'8 [ (
+                    c'8
+                    [
+                    (
                     d'8
-                    e'8 ] )
-                    c'8 [ (
+                    e'8
+                    ]
+                    )
+                    c'8
+                    [
+                    (
                     d'8
-                    e'8 ] )
+                    e'8
+                    ]
+                    )
                 }
 
             >>> tuplet = abjad.Tuplet((2, 3), [])
@@ -3161,13 +3428,21 @@ class Mutation(abctools.AbjadObject):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    c'8 [ (
+                    c'8
+                    [
+                    (
                     d'8
-                    e'8 ] )
+                    e'8
+                    ]
+                    )
                     \times 2/3 {
-                        c'8 [ (
+                        c'8
+                        [
+                        (
                         d'8
-                        e'8 ] )
+                        e'8
+                        ]
+                        )
                     }
                 }
 

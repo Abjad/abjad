@@ -34,13 +34,17 @@ def test_scoretools_Mutation_scale_02():
         r'''
         \new Voice
         {
-            c'8 ~
+            c'8
+            ~
             c'32
-            d'8 ~
+            d'8
+            ~
             d'32
-            e'8 ~
+            e'8
+            ~
             e'32
-            f'8 ~
+            f'8
+            ~
             f'32
         }
         '''
@@ -96,22 +100,26 @@ def test_scoretools_Mutation_scale_04():
         {
             \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
-                c'8 ~
+                c'8
+                ~
                 c'32
             }
             \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
-                d'8 ~
+                d'8
+                ~
                 d'32
             }
             \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
-                e'8 ~
+                e'8
+                ~
                 e'32
             }
             \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
-                f'8 ~
+                f'8
+                ~
                 f'32
             }
         }
@@ -132,13 +140,17 @@ def test_scoretools_Mutation_scale_05():
         r'''
         \new Voice
         {
-            c'8 ~
+            c'8
+            ~
             c'32
-            d'8 ~
+            d'8
+            ~
             d'32
-            e'8 ~
+            e'8
+            ~
             e'32
-            f'8 ~
+            f'8
+            ~
             f'32
         }
         '''
@@ -241,15 +253,19 @@ def test_scoretools_Mutation_scale_07():
         {
             {   % measure
                 \time 20/64
-                c'8 ~
+                c'8
+                ~
                 c'32
-                d'8 ~
+                d'8
+                ~
                 d'32
             }   % measure
             {   % measure
-                e'8 ~
+                e'8
+                ~
                 e'32
-                f'8 ~
+                f'8
+                ~
                 f'32
             }   % measure
         }

@@ -26,19 +26,28 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_01():
         {
             {   % measure
                 \time 2/8
-                c'4 ~
+                c'4
+                ~
             }   % measure
             {   % measure
-                c'16 [
-                c'8. ~ ]
+                c'16
+                [
+                c'8.
+                ~
+                ]
             }   % measure
             {   % measure
-                c'8 [
-                c'8 ~ ]
+                c'8
+                [
+                c'8
+                ~
+                ]
             }   % measure
             {   % measure
-                c'8. [
-                c'16 ]
+                c'8.
+                [
+                c'16
+                ]
             }   % measure
         }
         '''
@@ -71,21 +80,30 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_02():
         {
             {   % measure
                 \time 3/16
-                c'8. ~
+                c'8.
+                ~
             }   % measure
             {   % measure
                 \time 5/8
                 c'8
-                c'4 ~
-                c'16 [
-                c'8. ~ ]
+                c'4
+                ~
+                c'16
+                [
+                c'8.
+                ~
+                ]
             }   % measure
             {   % measure
                 \time 4/8
                 c'8
-                c'4 ~
-                c'16 [
-                c'16 ~ ]
+                c'4
+                ~
+                c'16
+                [
+                c'16
+                ~
+                ]
             }   % measure
             {   % measure
                 \time 7/16

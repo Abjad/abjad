@@ -22,7 +22,8 @@ class TrillSpanner(Spanner):
                 \startTrillSpan
                 d'8
                 e'8
-                f'8 \stopTrillSpan
+                f'8
+                \stopTrillSpan
             }
 
     ..  container:: example
@@ -44,7 +45,8 @@ class TrillSpanner(Spanner):
                 \startTrillSpan cs'
                 d'8
                 e'8
-                f'8 \stopTrillSpan
+                f'8
+                \stopTrillSpan
             }
 
     ..  container:: example
@@ -69,7 +71,7 @@ class TrillSpanner(Spanner):
 
         ..  docs::
 
-            >>> abjad.f(staff, strict=True)
+            >>> abjad.f(staff)
             \new Staff
             {
                 \pitchedTrill
@@ -217,7 +219,7 @@ class TrillSpanner(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -283,7 +285,7 @@ class TrillSpanner(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -350,7 +352,7 @@ class TrillSpanner(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -418,7 +420,7 @@ class TrillSpanner(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -477,7 +479,8 @@ class TrillSpanner(Spanner):
                     \startTrillSpan df'
                     d'8
                     e'8
-                    f'8 \stopTrillSpan
+                    f'8
+                    \stopTrillSpan
                 }
 
         ..  container:: example
@@ -501,7 +504,8 @@ class TrillSpanner(Spanner):
                     \startTrillSpan d'
                     d'8
                     e'8
-                    f'8 \stopTrillSpan
+                    f'8
+                    \stopTrillSpan
                 }
 
         Defaults to none.
@@ -540,7 +544,8 @@ class TrillSpanner(Spanner):
                     \startTrillSpan d'
                     d'8
                     e'8
-                    f'8 \stopTrillSpan
+                    f'8
+                    \stopTrillSpan
                 }
 
         Defaults to false.
@@ -573,7 +578,8 @@ class TrillSpanner(Spanner):
                     \pitchedTrill
                     c'8
                     \startTrillSpan cs'
-                    d'8 \stopTrillSpan
+                    d'8
+                    \stopTrillSpan
                     e'8
                     f'8
                 }
@@ -597,7 +603,8 @@ class TrillSpanner(Spanner):
                 {
                     c'8
                     \startTrillSpan
-                    d'8 \stopTrillSpan
+                    d'8
+                    \stopTrillSpan
                     e'8
                     f'8
                 }
@@ -637,7 +644,8 @@ class TrillSpanner(Spanner):
                     \pitchedTrill
                     c'8
                     \startTrillSpan cs'
-                    d'8 \stopTrillSpan
+                    d'8
+                    \stopTrillSpan
                     e'8
                     f'8
                 }
@@ -661,7 +669,8 @@ class TrillSpanner(Spanner):
                 {
                     c'8
                     \startTrillSpan
-                    d'8 \stopTrillSpan
+                    d'8
+                    \stopTrillSpan
                     e'8
                     f'8
                 }

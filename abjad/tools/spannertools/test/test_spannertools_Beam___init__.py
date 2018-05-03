@@ -12,10 +12,12 @@ def test_spannertools_Beam___init___01():
         r'''
         \new Staff
         {
-            c'8 [
+            c'8
+            [
             d'8
             e'8
-            f'8 ]
+            f'8
+            ]
             g'2
         }
         '''
@@ -35,14 +37,16 @@ def test_spannertools_Beam___init___02():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            c'8 [
+            c'8
+            [
             c'8
             c'8
             c'8
             c'8
             c'8
             c'8
-            c'8 ]
+            c'8
+            ]
         }
         '''
         )
@@ -64,7 +68,8 @@ def test_spannertools_Beam___init___03():
         \new Staff
         {
             {
-                c'8 [
+                c'8
+                [
                 c'8
                 c'8
                 c'8
@@ -73,7 +78,8 @@ def test_spannertools_Beam___init___03():
                 c'8
                 c'8
                 c'8
-                c'8 ]
+                c'8
+                ]
             }
         }
         '''
@@ -96,13 +102,15 @@ def test_spannertools_Beam___init___04():
         \new Staff
         {
             {
-                c'8 [
+                c'8
+                [
                 c'8
                 c'8
                 c'8
             }
             c'8
-            c'8 ]
+            c'8
+            ]
         }
         '''
         )
@@ -124,13 +132,15 @@ def test_spannertools_Beam___init___05():
         \new Staff
         {
             {
-                c'8 [
+                c'8
+                [
                 c'8
                 c'8
                 c'8
             }
             c'8
-            c'8 ]
+            c'8
+            ]
         }
         '''
         )
@@ -155,10 +165,12 @@ def test_spannertools_Beam___init___06():
             {
             }
             {
-                c'8 [
+                c'8
+                [
                 c'8
                 c'8
-                c'8 ]
+                c'8
+                ]
             }
             {
             }
@@ -184,7 +196,8 @@ def test_spannertools_Beam___init___07():
         {
             {
                 {
-                    c'8 [
+                    c'8
+                    [
                     cs'8
                     d'8
                     ef'8
@@ -195,7 +208,8 @@ def test_spannertools_Beam___init___07():
                     e'8
                     f'8
                     fs'8
-                    g'8 ]
+                    g'8
+                    ]
                 }
             }
         }
@@ -221,7 +235,8 @@ def test_spannertools_Beam___init___08():
             {
                 {
                     {
-                        c'8 [
+                        c'8
+                        [
                         cs'8
                         d'8
                         ef'8
@@ -232,7 +247,8 @@ def test_spannertools_Beam___init___08():
                 e'8
                 f'8
                 fs'8
-                g'8 ]
+                g'8
+                ]
             }
         }
         '''
@@ -255,13 +271,15 @@ def test_spannertools_Beam___init___09():
         \new Voice
         {
             {
-                c'8 [
+                c'8
+                [
                 cs'8
             }
             d'8
             {
                 ef'8
-                e'8 ]
+                e'8
+                ]
             }
         }
         '''
@@ -274,7 +292,9 @@ def test_spannertools_Beam___init___10():
     r'''Voice with tuplets and top-level leaves.
     '''
 
-    voice = abjad.Voice(r"\times 2/3 { c'8 cs' d' } ef'8 \times 2/3 { e'8 f' fs' }")
+    voice = abjad.Voice(
+        r"\times 2/3 { c'8 cs' d' } ef'8 \times 2/3 { e'8 f' fs' }"
+        )
     leaves = abjad.select(voice).leaves()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
@@ -284,7 +304,8 @@ def test_spannertools_Beam___init___10():
         \new Voice
         {
             \times 2/3 {
-                c'8 [
+                c'8
+                [
                 cs'8
                 d'8
             }
@@ -292,7 +313,8 @@ def test_spannertools_Beam___init___10():
             \times 2/3 {
                 e'8
                 f'8
-                fs'8 ]
+                fs'8
+                ]
             }
         }
         '''
@@ -314,9 +336,11 @@ def test_spannertools_Beam___init___11():
         \times 2/3 {
             c'4
             \times 2/3 {
-                c'8 [
                 c'8
-                c'8 ]
+                [
+                c'8
+                c'8
+                ]
             }
             c'4
         }
@@ -368,7 +392,8 @@ def test_spannertools_Beam___init___13():
     r'''You can span the leaves of like-named voices.
     '''
 
-    staff = abjad.Staff([abjad.Voice("c'8 cs'8 d'8 ef'8"), abjad.Voice("e'8 f'8 fs'8 g'8")])
+    staff = abjad.Staff(
+        [abjad.Voice("c'8 cs'8 d'8 ef'8"), abjad.Voice("e'8 f'8 fs'8 g'8")])
     staff[0].name = 'foo'
     staff[1].name = 'foo'
     beam = abjad.Beam()
@@ -380,7 +405,8 @@ def test_spannertools_Beam___init___13():
         {
             \context Voice = "foo"
             {
-                c'8 [
+                c'8
+                [
                 cs'8
                 d'8
                 ef'8
@@ -390,7 +416,8 @@ def test_spannertools_Beam___init___13():
                 e'8
                 f'8
                 fs'8
-                g'8 ]
+                g'8
+                ]
             }
         }
         '''
@@ -447,7 +474,8 @@ def test_spannertools_Beam___init___14():
             <<
                 \context Voice = "first"
                 {
-                    c'8 [
+                    c'8
+                    [
                     cs'8
                     d'8
                     ef'8
@@ -473,7 +501,8 @@ def test_spannertools_Beam___init___14():
                     c''8
                     cs''8
                     d''8
-                    ef''8 ]
+                    ef''8
+                    ]
                 }
             >>
         }
@@ -522,7 +551,8 @@ def test_spannertools_Beam___init___15():
             <<
                 \context Voice = "first"
                 {
-                    c'8 [
+                    c'8
+                    [
                     cs'8
                     d'8
                     ef'8
@@ -541,7 +571,8 @@ def test_spannertools_Beam___init___15():
                     af'8
                     a'8
                     bf'8
-                    b'8 ]
+                    b'8
+                    ]
                 }
             >>
         }
@@ -582,10 +613,12 @@ def test_spannertools_Beam___init___16():
         <<
             \new Voice
             {
-                c'8 [
+                c'8
+                [
                 cs'8
                 d'8
-                ef'8 ]
+                ef'8
+                ]
             }
             \new Voice
             {
@@ -706,7 +739,8 @@ def test_spannertools_Beam___init___18():
         {
             \context Voice = "foo"
             {
-                c'8 [
+                c'8
+                [
                 cs'8
                 d'8
                 ef'8
@@ -732,7 +766,8 @@ def test_spannertools_Beam___init___18():
                 c''8
                 cs''8
                 d''8
-                ef''8 ]
+                ef''8
+                ]
             }
         }
         '''

@@ -183,6 +183,6 @@ class GraceContainer(Container):
         result.append([('grace_brackets', 'open'), [r'\grace {']])
         return tuple(result)
 
-    def _get_lilypond_format(self, strict=False):
+    def _get_lilypond_format(self):
         self._update_now(indicators=True)
-        return self._format_component(strict=strict)
+        return self._format_component()

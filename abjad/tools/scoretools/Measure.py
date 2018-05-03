@@ -1,5 +1,6 @@
-from abjad.tools.exceptiontools import OverfullContainerError, UnderfullContainerError
 import copy
+from abjad.tools.exceptiontools import OverfullContainerError
+from abjad.tools.exceptiontools import UnderfullContainerError
 from .Container import Container
 
 
@@ -299,7 +300,7 @@ class Measure(Container):
         else:
             return abjad.TimeSignature(duration)
 
-    def _format_content_pieces(self, strict=False):
+    def _format_content_pieces(self):
         import abjad
         result = []
         if (self.has_non_power_of_two_denominator and
@@ -313,13 +314,13 @@ class Measure(Container):
                 self.implied_prolation.denominator,
                 )
             result.append(string)
-            pieces = Container._format_content_pieces(self, strict=strict)
+            pieces = Container._format_content_pieces(self)
             pieces = [indent + _ for _ in pieces]
             result.extend(pieces)
             result.append(indent + '}')
         else:
             result.extend(
-                Container._format_content_pieces(self, strict=strict))
+                Container._format_content_pieces(self))
         return result
 
     def _format_opening_slot(self, bundle):
@@ -356,9 +357,9 @@ class Measure(Container):
             storage_format_kwargs_names=names,
             )
 
-    def _get_lilypond_format(self, strict=False):
+    def _get_lilypond_format(self):
         self._check_duration()
-        return self._format_component(strict=strict)
+        return self._format_component()
 
     def _get_preprolated_duration(self):
         time_signature_prolation = 1

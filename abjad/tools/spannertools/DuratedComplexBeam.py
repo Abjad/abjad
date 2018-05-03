@@ -30,7 +30,8 @@ class DuratedComplexBeam(ComplexBeam):
             {
                 \set stemLeftBeamCount = 0
                 \set stemRightBeamCount = 2
-                c'16 [
+                c'16
+                [
                 \set stemLeftBeamCount = 2
                 \set stemRightBeamCount = 1
                 d'16
@@ -42,7 +43,8 @@ class DuratedComplexBeam(ComplexBeam):
                 f'16
                 \set stemLeftBeamCount = 2
                 \set stemRightBeamCount = 0
-                g'16 ]
+                g'16
+                ]
             }
 
     ..  container:: example
@@ -70,7 +72,8 @@ class DuratedComplexBeam(ComplexBeam):
             {
                 \set stemLeftBeamCount = 0
                 \set stemRightBeamCount = 2
-                c'16 [
+                c'16
+                [
                 \set stemLeftBeamCount = 2
                 \set stemRightBeamCount = 2
                 d'16
@@ -82,7 +85,8 @@ class DuratedComplexBeam(ComplexBeam):
                 f'16
                 \set stemLeftBeamCount = 2
                 \set stemRightBeamCount = 0
-                g'16 ]
+                g'16
+                ]
             }
 
     Groups leaves in spanner according to `durations`.
@@ -274,12 +278,16 @@ class DuratedComplexBeam(ComplexBeam):
                 {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 1
-                    c'8 [ ]
+                    c'8
+                    [
+                    ]
                     r8
                     r8
                     \set stemLeftBeamCount = 1
                     \set stemRightBeamCount = 0
-                    d'8 [ ]
+                    d'8
+                    [
+                    ]
                 }
 
             This is default behavior.
@@ -300,12 +308,14 @@ class DuratedComplexBeam(ComplexBeam):
                 {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 1
-                    c'8 [
+                    c'8
+                    [
                     r8
                     r8
                     \set stemLeftBeamCount = 1
                     \set stemRightBeamCount = 0
-                    d'8 ]
+                    d'8
+                    ]
                 }
 
         ..  container:: example
@@ -324,12 +334,16 @@ class DuratedComplexBeam(ComplexBeam):
                 {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 1
-                    c'8 [ ]
+                    c'8
+                    [
+                    ]
                     s8
                     s8
                     \set stemLeftBeamCount = 1
                     \set stemRightBeamCount = 0
-                    d'8 [ ]
+                    d'8
+                    [
+                    ]
                 }
 
             This is default behavior.
@@ -350,12 +364,14 @@ class DuratedComplexBeam(ComplexBeam):
                 {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 1
-                    c'8 [
+                    c'8
+                    [
                     s8
                     s8
                     \set stemLeftBeamCount = 1
                     \set stemRightBeamCount = 0
-                    d'8 ]
+                    d'8
+                    ]
                 }
 
         ..  container:: example
@@ -375,12 +391,14 @@ class DuratedComplexBeam(ComplexBeam):
                 {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 1
-                    c'8 [
+                    c'8
+                    [
                     s4
                     \set stemLeftBeamCount = 1
                     \set stemRightBeamCount = 1
                     d'8
-                    s8 ]
+                    s8
+                    ]
                 }
 
         Defaults to none.
@@ -413,7 +431,8 @@ class DuratedComplexBeam(ComplexBeam):
                 {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 2
-                    c'16 [
+                    c'16
+                    [
                     \set stemLeftBeamCount = 2
                     \set stemRightBeamCount = 1
                     d'16
@@ -422,7 +441,8 @@ class DuratedComplexBeam(ComplexBeam):
                     e'16
                     \set stemLeftBeamCount = 2
                     \set stemRightBeamCount = 0
-                    f'16 ]
+                    f'16
+                    ]
                 }
 
             >>> beam.durations
@@ -453,7 +473,8 @@ class DuratedComplexBeam(ComplexBeam):
                 {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 2
-                    c'16 [
+                    c'16
+                    [
                     \set stemLeftBeamCount = 2
                     \set stemRightBeamCount = 1
                     d'16
@@ -465,7 +486,8 @@ class DuratedComplexBeam(ComplexBeam):
                     f'16
                     \set stemLeftBeamCount = 2
                     \set stemRightBeamCount = 0
-                    c'16 ]
+                    c'16
+                    ]
                 }
 
             Test ensures that leaf groups format correctly when they contain
@@ -505,17 +527,21 @@ class DuratedComplexBeam(ComplexBeam):
                 {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 2
-                    c'16 [
+                    c'16
+                    [
                     \set stemLeftBeamCount = 2
                     \set stemRightBeamCount = 0
-                    d'16 ]
+                    d'16
+                    ]
                     r4
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 2
-                    e'16 [
+                    e'16
+                    [
                     \set stemLeftBeamCount = 2
                     \set stemRightBeamCount = 0
-                    f'16 ]
+                    f'16
+                    ]
                 }
 
         ..  container:: example
@@ -538,17 +564,21 @@ class DuratedComplexBeam(ComplexBeam):
                 {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 2
-                    c'16 [
+                    c'16
+                    [
                     \set stemLeftBeamCount = 2
                     \set stemRightBeamCount = 1
-                    d'16 ]
+                    d'16
+                    ]
                     r4
                     \set stemLeftBeamCount = 1
                     \set stemRightBeamCount = 2
-                    e'16 [
+                    e'16
+                    [
                     \set stemLeftBeamCount = 2
                     \set stemRightBeamCount = 0
-                    f'16 ]
+                    f'16
+                    ]
                 }
 
         Defaults to true.
@@ -583,7 +613,8 @@ class DuratedComplexBeam(ComplexBeam):
                 {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 3
-                    c'32 [
+                    c'32
+                    [
                     \set stemLeftBeamCount = 3
                     \set stemRightBeamCount = 1
                     d'32
@@ -592,7 +623,8 @@ class DuratedComplexBeam(ComplexBeam):
                     e'32
                     \set stemLeftBeamCount = 3
                     \set stemRightBeamCount = 0
-                    f'32 ]
+                    f'32
+                    ]
                 }
 
             >>> beam.span_beam_count
@@ -618,7 +650,8 @@ class DuratedComplexBeam(ComplexBeam):
                 {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 3
-                    c'32 [
+                    c'32
+                    [
                     \set stemLeftBeamCount = 3
                     \set stemRightBeamCount = 2
                     d'32
@@ -627,7 +660,8 @@ class DuratedComplexBeam(ComplexBeam):
                     e'32
                     \set stemLeftBeamCount = 3
                     \set stemRightBeamCount = 0
-                    f'32 ]
+                    f'32
+                    ]
                 }
 
             >>> beam.span_beam_count
@@ -653,7 +687,8 @@ class DuratedComplexBeam(ComplexBeam):
                 {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 3
-                    c'32 [
+                    c'32
+                    [
                     \set stemLeftBeamCount = 3
                     \set stemRightBeamCount = 0
                     d'32
@@ -662,7 +697,8 @@ class DuratedComplexBeam(ComplexBeam):
                     e'32
                     \set stemLeftBeamCount = 3
                     \set stemRightBeamCount = 0
-                    f'32 ]
+                    f'32
+                    ]
                 }
 
             >>> beam.span_beam_count
@@ -708,7 +744,8 @@ class DuratedComplexBeam(ComplexBeam):
                     \override RhythmicStaff.Stem.stemlet-length = 1.5
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 2
-                    c'16 [
+                    c'16
+                    [
                     r16
                     \set stemLeftBeamCount = 2
                     \set stemRightBeamCount = 1
@@ -720,7 +757,8 @@ class DuratedComplexBeam(ComplexBeam):
                     \revert RhythmicStaff.Stem.stemlet-length
                     \set stemLeftBeamCount = 2
                     \set stemRightBeamCount = 0
-                    c'16 ]
+                    c'16
+                    ]
                 }
 
         Defaults to none.

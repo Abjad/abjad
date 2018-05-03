@@ -23,11 +23,15 @@ class MultipartBeam(Beam):
                 autoBeaming = ##f
             }
             {
-                c'8 [
-                d'8 ]
+                c'8
+                [
+                d'8
+                ]
                 e'4
-                f'8 [
-                g'8 ]
+                f'8
+                [
+                g'8
+                ]
                 r4
             }
 
@@ -52,8 +56,10 @@ class MultipartBeam(Beam):
                 r8
                 d'8
                 r8
-                f'8 [
-                g'8 ]
+                f'8
+                [
+                g'8
+                ]
                 r4
             }
 
@@ -180,11 +186,15 @@ class MultipartBeam(Beam):
                 autoBeaming = ##f
             }
             {
-                c'8 [
-                d'8 ]
+                c'8
+                [
+                d'8
+                ]
                 r8
-                f'8 [
-                g'8 ]
+                f'8
+                [
+                g'8
+                ]
                 r4.
             }
 
@@ -209,12 +219,14 @@ class MultipartBeam(Beam):
                 autoBeaming = ##f
             }
             {
-                c'8 [
+                c'8
+                [
                 d'8
                 r8
                 f'8
                 g'8
-                r4. ]
+                r4.
+                ]
             }
 
             Abjad beams all rests.
@@ -238,12 +250,14 @@ class MultipartBeam(Beam):
                 autoBeaming = ##f
             }
             {
-                c'8 [
+                c'8
+                [
                 d'8
                 r4.
                 f'8
                 g'8
-                r8 ]
+                r8
+                ]
             }
 
             Abjad beams all rests.
@@ -267,12 +281,14 @@ class MultipartBeam(Beam):
                 autoBeaming = ##f
             }
             {
-                c'8 [
+                c'8
+                [
                 d'8
                 s4.
                 f'8
                 g'8
-                s8 ]
+                s8
+                ]
             }
 
             Abjad beams all skips.
@@ -316,13 +332,15 @@ class MultipartBeam(Beam):
                 }
                 {
                     \override RhythmicStaff.Stem.stemlet-length = 1.5
-                    c'16 [
+                    c'16
+                    [
                     r16
                     c'16
                     c'16
                     r16
                     \revert RhythmicStaff.Stem.stemlet-length
-                    c'16 ]
+                    c'16
+                    ]
                 }
 
         Defaults to none.
