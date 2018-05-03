@@ -16,7 +16,8 @@ class Arpeggio(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(chord)
-            <c' e' g' c''>4 \arpeggio
+            <c' e' g' c''>4
+            \arpeggio
 
     ..  container:: example
 
@@ -31,7 +32,8 @@ class Arpeggio(AbjadValueObject):
 
             >>> abjad.f(chord)
             \arpeggioArrowDown
-            <c' e' g' c''>4 \arpeggio
+            <c' e' g' c''>4
+            \arpeggio
 
     '''
 

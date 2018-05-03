@@ -1101,7 +1101,8 @@ class Duration(AbjadObject, Fraction):
             ..  docs::
 
                 >>> abjad.f(note)
-                c'4 ^ \markup { 1'57'' }
+                c'4
+                ^ \markup { 1'57'' }
 
         Rounds down to nearest second.
 
@@ -1262,13 +1263,15 @@ class Duration(AbjadObject, Fraction):
                                 }
                         }
                     \times 5/7 {
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
                         c'16
                         c'16
                         c'16
-                        c'16 ]
+                        c'16
+                        ]
                     }
                     \revert TupletNumber.text
                 }

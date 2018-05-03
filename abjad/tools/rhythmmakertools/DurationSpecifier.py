@@ -262,7 +262,7 @@ class DurationSpecifier(AbjadValueObject):
         return self._rewrite_rest_filled
 
     @property
-    def spell_metrically(self) -> typing.Union[bool, str, PartitionTable]:
+    def spell_metrically(self) -> typing.Union[bool, str, PartitionTable, None]:
         r'''Is true when durations should spell according to approximate common
         practice understandings of meter.
 

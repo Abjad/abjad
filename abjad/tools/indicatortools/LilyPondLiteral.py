@@ -21,10 +21,12 @@ class LilyPondLiteral(AbjadValueObject):
             \new Staff
             {
                 \slurDotted
-                c'8 (
+                c'8
+                (
                 d'8
                 e'8
-                f'8 )
+                f'8
+                )
             }
 
     ..  container:: example
@@ -54,10 +56,12 @@ class LilyPondLiteral(AbjadValueObject):
             <BLANKLINE>
                 % before all formatting
                 \slurDotted
-                c'8 (
+                c'8
+                (
                 d'8
                 e'8
-                f'8 )
+                f'8
+                )
             <BLANKLINE>
             }
 
@@ -75,10 +79,12 @@ class LilyPondLiteral(AbjadValueObject):
         \new Staff
         {
             \slurDotted %! RED
-            c'8 (
+            c'8
+            (
             d'8
             e'8
-            f'8 )
+            f'8
+            )
         }
 
     ..  container:: example
@@ -99,13 +105,15 @@ class LilyPondLiteral(AbjadValueObject):
         >>> abjad.f(staff)
         \new Staff
         {
-            c'8 (
+            c'8
+            (
             d'8
-            \stopStaff                                     %! RED
-            \startStaff                                    %! RED
+            \stopStaff %! RED
+            \startStaff %! RED
             \once \override Staff.StaffSymbol.color = #red %! RED
             e'8
-            f'8 )
+            f'8
+            )
         }
 
     '''

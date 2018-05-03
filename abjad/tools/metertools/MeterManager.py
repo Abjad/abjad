@@ -99,28 +99,36 @@ class MeterManager(abctools.AbjadObject):
                 {   % measure
                     \time 2/4
                     c'4
-                    d'4 ~
+                    d'4
+                    ~
                 }   % measure
                 {   % measure
                     \time 4/4
                     d'8.
                     r16
                     r8.
-                    e'16 ~
+                    e'16
+                    ~
                     \times 2/3 {
-                        e'8 ~
                         e'8
-                        f'8 ~
+                        ~
+                        e'8
+                        f'8
+                        ~
                     }
-                    f'4 ~
+                    f'4
+                    ~
                 }   % measure
                 {   % measure
                     f'8
-                    g'8 ~
+                    g'8
+                    ~
                     g'4
-                    a'4 ~
+                    a'4
+                    ~
                     a'8
-                    b'8 ~
+                    b'8
+                    ~
                 }   % measure
                 {   % measure
                     \time 2/4

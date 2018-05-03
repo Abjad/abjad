@@ -29,9 +29,12 @@ class LilyPondGrobNameManager(LilyPondNameManager):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff \with {
+                \new Staff
+                \with
+                {
                     \override NoteHead.color = #red
-                } {
+                }
+                {
                     c'4
                     d'4
                     e'4

@@ -85,7 +85,7 @@ class Part(AbjadObject):
             member_ = str(member)
             if self.zfill is not None:
                 member_ = member_.zfill(self.zfill)
-            name = f'{section}{member_}'
+            name: typing.Optional[str] = f'{section}{member_}'
         else:
             name = section
         self._name = name
@@ -173,7 +173,7 @@ class Part(AbjadObject):
             return f'{self.section_abbreviation}-{self.member}'
 
     @property
-    def instrument(self) -> str:
+    def instrument(self) -> typing.Optional[str]:
         r'''Gets instrument.
 
         ..  container:: example
@@ -211,7 +211,7 @@ class Part(AbjadObject):
         return self._member
 
     @property
-    def name(self) -> str:
+    def name(self) -> typing.Optional[str]:
         r'''Gets name.
 
         ..  container:: example
@@ -241,7 +241,7 @@ class Part(AbjadObject):
         return self._name
 
     @property
-    def number(self) -> int:
+    def number(self) -> typing.Optional[int]:
         r'''Gets number.
 
         ..  container:: example
@@ -261,7 +261,7 @@ class Part(AbjadObject):
         return self._number
 
     @property
-    def section(self) -> str:
+    def section(self) -> typing.Optional[str]:
         r'''Gets section.
 
         ..  container:: example
@@ -280,7 +280,7 @@ class Part(AbjadObject):
         return self._section
 
     @property
-    def section_abbreviation(self) -> str:
+    def section_abbreviation(self) -> typing.Optional[str]:
         r'''Gets section_abbreviation.
 
         ..  container:: example
@@ -299,7 +299,7 @@ class Part(AbjadObject):
         return self._section_abbreviation
 
     @property
-    def zfill(self) -> int:
+    def zfill(self) -> typing.Optional[int]:
         r'''Gets zfill.
 
         ..  container:: example

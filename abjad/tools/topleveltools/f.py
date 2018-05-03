@@ -11,16 +11,21 @@ def f(argument, strict=False):
         ...     abjad.attach(abjad.Articulation('.'), leaf)
         ...
         >>> abjad.f(staff)
-        \new Staff {
-            c'4 -\staccato
-                ^ \markup {
-                    \with-color
-                        #blue
-                        Allegro
-                    }
-            d'4 -\staccato
-            e'4 -\staccato
-            f'4 -\staccato
+        \new Staff
+        {
+            c'4
+            -\staccato
+            ^ \markup {
+                \with-color
+                    #blue
+                    Allegro
+                }
+            d'4
+            -\staccato
+            e'4
+            -\staccato
+            f'4
+            -\staccato
         }
 
         >>> abjad.show(staff) # doctest: +SKIP
@@ -30,7 +35,8 @@ def f(argument, strict=False):
         Set `strict` to true to force only one item per line:
 
         >>> abjad.f(staff, strict=True)
-        \new Staff {
+        \new Staff
+        {
             c'4
             -\staccato
             ^ \markup {

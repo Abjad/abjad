@@ -60,15 +60,15 @@ class PartAssignment(AbjadValueObject):
         section: str = None,
         token: token_type = None,
         ) -> None:
-        self._section: str = section
+        self._section = section
         if token is not None:
             assert self._is_token(token), repr(token)
         self._token = token
         members = self._expand_members(token)
-        self._members: typing.Optional[typing.List[int]] = members
+        self._members = members
         parts = self._expand_parts()
         assert isinstance(parts, list), repr(parts)
-        self._parts: typing.List[Part] = parts
+        self._parts = parts
 
     ### SPECIAL METHODS ###
 
@@ -320,7 +320,7 @@ class PartAssignment(AbjadValueObject):
         return self._parts
 
     @property
-    def section(self) -> str:
+    def section(self) -> typing.Optional[str]:
         r'''Gets section.
 
         ..  container:: example

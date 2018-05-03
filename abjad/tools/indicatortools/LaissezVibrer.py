@@ -15,7 +15,8 @@ class LaissezVibrer(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(chord)
-            <c' e' g' c''>4 \laissezVibrer
+            <c' e' g' c''>4
+            \laissezVibrer
 
     '''
 

@@ -32,11 +32,15 @@ class LilyPondParser(abctools.Parser):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
-        \new Staff {
-            c'4 (
+        \new Staff
+        {
+            c'4
+            (
             d'8
             e'8
-            fs'2 -\fermata )
+            fs'2
+            -\fermata
+            )
         }
 
     ..  container:: example
@@ -62,15 +66,32 @@ class LilyPondParser(abctools.Parser):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
-                c'8 \f \> (
-                d'8 -\portato [
-                e'8 ^\accent
-                f'8 \ppp \<
-                g'8 \( \startTrillSpan
-                a'8 \)
-                b'8 ] \stopTrillSpan
-                c''8 -\accent \sfz )
+            \new Staff
+            {
+                c'8
+                \f
+                \>
+                (
+                d'8
+                -\portato
+                [
+                e'8
+                ^\accent
+                f'8
+                \ppp
+                \<
+                g'8
+                \(
+                \startTrillSpan
+                a'8
+                \)
+                b'8
+                ]
+                \stopTrillSpan
+                c''8
+                -\accent
+                \sfz
+                )
             }
 
     ..  container:: example
@@ -97,24 +118,29 @@ class LilyPondParser(abctools.Parser):
         ..  docs::
 
             >>> abjad.f(score)
-            \new Score <<
-                \context Staff = "Treble Staff" {
-                    \context Voice = "Treble Voice" {
+            \new Score
+            <<
+                \context Staff = "Treble Staff"
+                {
+                    \context Voice = "Treble Voice"
+                    {
                         c'4
-                            ^ \markup {
-                                \bold
-                                    Treble!
-                                }
+                        ^ \markup {
+                            \bold
+                                Treble!
+                            }
                     }
                 }
-                \context Staff = "Bass Staff" {
-                    \context Voice = "Bass Voice" {
+                \context Staff = "Bass Staff"
+                {
+                    \context Voice = "Bass Voice"
+                    {
                         \clef "bass"
                         c,4
-                            _ \markup {
-                                \italic
-                                    Bass!
-                                }
+                        _ \markup {
+                            \italic
+                                Bass!
+                            }
                     }
                 }
             >>
@@ -201,7 +227,8 @@ class LilyPondParser(abctools.Parser):
         ..  docs::
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c32
                 d32
                 e32

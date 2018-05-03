@@ -380,7 +380,8 @@ class PitchRange(AbjadValueObject):
                         \context Staff = "Bass Staff"
                         {
                             \clef "bass"
-                            c1 * 1/4 \glissando
+                            c1 * 1/4
+                            \glissando
                             \change Staff = "Treble Staff"
                             c''''1 * 1/4
                         }

@@ -20,11 +20,11 @@ class Accelerando(AbjadValueObject):
                 \new Staff
                 {
                     c'4
-                        ^ \markup {
-                            \large
-                                \upright
-                                    accel.
-                            }
+                    ^ \markup {
+                        \large
+                            \upright
+                                accel.
+                        }
                     d'4
                     e'4
                     f'4

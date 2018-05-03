@@ -22,7 +22,12 @@ class Markup(AbjadValueObject):
         >>> string = r'\italic { "Allegro assai" }'
         >>> markup = abjad.Markup(string)
         >>> abjad.f(markup)
-        \markup { \italic { "Allegro assai" } }
+        \markup {
+            \italic
+                {
+                    "Allegro assai"
+                }
+            }
 
         >>> abjad.show(markup) # doctest: +SKIP
 
@@ -65,12 +70,12 @@ class Markup(AbjadValueObject):
             \new Staff
             {
                 c'8
-                    ^ \markup {
-                        \italic
-                            {
-                                "Allegro assai"
-                            }
+                ^ \markup {
+                    \italic
+                        {
+                            "Allegro assai"
                         }
+                    }
                 d'8
                 e'8
                 f'8
@@ -95,10 +100,10 @@ class Markup(AbjadValueObject):
         \new Staff
         {
             c'4
-                ^ \markup {     %! RED:M1
-                    \italic     %! RED:M1
-                        Allegro %! RED:M1
-                    }           %! RED:M1
+            ^ \markup { %! RED:M1
+                \italic %! RED:M1
+                    Allegro %! RED:M1
+                } %! RED:M1
             d'4
             e'4
             f'4
@@ -117,19 +122,19 @@ class Markup(AbjadValueObject):
         \new Staff
         {
             c'4
-                - \markup {
-                    \column
-                        {
-                            \line
-                                {
-                                    Allegro
-                                }
-                            \line                %! RED:M1
-                                {                %! RED:M1
-                                    "non troppo" %! RED:M1
-                                }                %! RED:M1
-                        }
+            - \markup {
+                \column
+                    {
+                        \line
+                            {
+                                Allegro
+                            }
+                        \line %! RED:M1
+                            { %! RED:M1
+                                "non troppo" %! RED:M1
+                            } %! RED:M1
                     }
+                }
             d'4
             e'4
             f'4
@@ -153,10 +158,10 @@ class Markup(AbjadValueObject):
         \new Staff
         {
             c'4
-                %@% ^ \markup {     %! RED:M1
-                %@%     \italic     %! RED:M1
-                %@%         Allegro %! RED:M1
-                %@%     }           %! RED:M1
+        %@% ^ \markup { %! RED:M1
+        %@%     \italic %! RED:M1
+        %@%         Allegro %! RED:M1
+        %@%     } %! RED:M1
             d'4
             e'4
             f'4
@@ -179,19 +184,19 @@ class Markup(AbjadValueObject):
         \new Staff
         {
             c'4
-                - \markup {
-                    \column
-                        {
-                            \line
-                                {
-                                    Allegro
-                                }
-                            %@% \line                %! RED
-                            %@%     {                %! RED
-                            %@%         "non troppo" %! RED
-                            %@%     }                %! RED
-                        }
+            - \markup {
+                \column
+                    {
+                        \line
+                            {
+                                Allegro
+                            }
+                    %@% \line %! RED
+                    %@%     { %! RED
+                    %@%         "non troppo" %! RED
+                    %@%     } %! RED
                     }
+                }
             d'4
             e'4
             f'4
@@ -213,21 +218,21 @@ class Markup(AbjadValueObject):
         \new Staff
         {
             c'4
-                ^ \markup {
-                    \column
-                        {
-                            \line
-                                {
-                                    \italic
-                                        Allegro
-                                }
-                            \line
-                                {
-                                    \italic
-                                        "non troppo"
-                                }
-                        }
+            ^ \markup {
+                \column
+                    {
+                        \line
+                            {
+                                \italic
+                                    Allegro
+                            }
+                        \line
+                            {
+                                \italic
+                                    "non troppo"
+                            }
                     }
+                }
             d'4
             e'4
             f'4
@@ -761,20 +766,20 @@ class Markup(AbjadValueObject):
                 {
                     c'8
                     d'8
-                        - \markup {
-                            \column
-                                {
-                                    \line
-                                        {
-                                            Non
-                                            troppo
-                                        }
-                                    \line
-                                        {
-                                            allegro
-                                        }
-                                }
+                    - \markup {
+                        \column
+                            {
+                                \line
+                                    {
+                                        Non
+                                        troppo
+                                    }
+                                \line
+                                    {
+                                        allegro
+                                    }
                             }
+                        }
                     e'8
                     f'8
                 }
@@ -794,20 +799,20 @@ class Markup(AbjadValueObject):
                 {
                     c'8
                     d'8
-                        - \markup {
-                            \column
-                                {
-                                    \line
-                                        {
-                                            Allegro
-                                        }
-                                    \line
-                                        {
-                                            non
-                                            troppo
-                                        }
-                                }
+                    - \markup {
+                        \column
+                            {
+                                \line
+                                    {
+                                        Allegro
+                                    }
+                                \line
+                                    {
+                                        non
+                                        troppo
+                                    }
                             }
+                        }
                     e'8
                     f'8
                 }
@@ -1265,7 +1270,8 @@ class Markup(AbjadValueObject):
             >>> markup = markup.fontsize(-3)
             >>> abjad.f(markup)
             \markup {
-                \fontsize #-3
+                \fontsize
+                    #-3
                     "Allegro assai"
                 }
 
@@ -2689,17 +2695,17 @@ class Markup(AbjadValueObject):
                 \new Staff
                 {
                     c'8
-                        ^ \markup {
-                            \with-dimensions-from
-                                \null
-                                Allegro
-                            }
+                    ^ \markup {
+                        \with-dimensions-from
+                            \null
+                            Allegro
+                        }
                     d'8
-                        ^ \markup {
-                            \with-dimensions-from
-                                \null
-                                "non troppo"
-                            }
+                    ^ \markup {
+                        \with-dimensions-from
+                            \null
+                            "non troppo"
+                        }
                     e'8
                     f'8
                 }

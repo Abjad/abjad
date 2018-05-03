@@ -140,7 +140,7 @@ class Tie(Spanner):
         Spanner.__init__(self, overrides=overrides)
         direction = String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction
-        self._repeat: bool = repeat
+        self._repeat = repeat
 
     ### PRIVATE METHODS ###
 

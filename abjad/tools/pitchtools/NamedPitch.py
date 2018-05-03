@@ -948,22 +948,38 @@ class NamedPitch(Pitch):
                     \override TextScript.staff-padding = #5
                 }
                 {
-                    g16 - \markup { -3 }
-                    a16 - \markup { -2 }
-                    b16 - \markup { -1 }
-                    c'16 - \markup { 0 }
-                    d'16 - \markup { 1 }
-                    e'16 - \markup { 2 }
-                    f'16 - \markup { 3 }
-                    g'16 - \markup { 4 }
-                    a'16 - \markup { 5 }
-                    b'16 - \markup { 6 }
-                    c''16 - \markup { 7 }
-                    d''16 - \markup { 8 }
-                    e''16 - \markup { 9 }
-                    f''16 - \markup { 10 }
-                    g''16 - \markup { 11 }
-                    a''16 - \markup { 12 }
+                    g16
+                    - \markup { -3 }
+                    a16
+                    - \markup { -2 }
+                    b16
+                    - \markup { -1 }
+                    c'16
+                    - \markup { 0 }
+                    d'16
+                    - \markup { 1 }
+                    e'16
+                    - \markup { 2 }
+                    f'16
+                    - \markup { 3 }
+                    g'16
+                    - \markup { 4 }
+                    a'16
+                    - \markup { 5 }
+                    b'16
+                    - \markup { 6 }
+                    c''16
+                    - \markup { 7 }
+                    d''16
+                    - \markup { 8 }
+                    e''16
+                    - \markup { 9 }
+                    f''16
+                    - \markup { 10 }
+                    g''16
+                    - \markup { 11 }
+                    a''16
+                    - \markup { 12 }
                 }
 
         ..  container:: example
@@ -991,22 +1007,38 @@ class NamedPitch(Pitch):
                     \override TextScript.staff-padding = #5
                 }
                 {
-                    g16 - \markup { -9 }
-                    a16 - \markup { -8 }
-                    b16 - \markup { -7 }
-                    c'16 - \markup { -6 }
-                    d'16 - \markup { -5 }
-                    e'16 - \markup { -4 }
-                    f'16 - \markup { -3 }
-                    g'16 - \markup { -2 }
-                    a'16 - \markup { -1 }
-                    b'16 - \markup { 0 }
-                    c''16 - \markup { 1 }
-                    d''16 - \markup { 2 }
-                    e''16 - \markup { 3 }
-                    f''16 - \markup { 4 }
-                    g''16 - \markup { 5 }
-                    a''16 - \markup { 6 }
+                    g16
+                    - \markup { -9 }
+                    a16
+                    - \markup { -8 }
+                    b16
+                    - \markup { -7 }
+                    c'16
+                    - \markup { -6 }
+                    d'16
+                    - \markup { -5 }
+                    e'16
+                    - \markup { -4 }
+                    f'16
+                    - \markup { -3 }
+                    g'16
+                    - \markup { -2 }
+                    a'16
+                    - \markup { -1 }
+                    b'16
+                    - \markup { 0 }
+                    c''16
+                    - \markup { 1 }
+                    d''16
+                    - \markup { 2 }
+                    e''16
+                    - \markup { 3 }
+                    f''16
+                    - \markup { 4 }
+                    g''16
+                    - \markup { 5 }
+                    a''16
+                    - \markup { 6 }
                 }
 
         ..  container:: example
@@ -1036,22 +1068,38 @@ class NamedPitch(Pitch):
                 }
                 {
                     \clef "bass"
-                    g,16 - \markup { -4 }
-                    a,16 - \markup { -3 }
-                    b,16 - \markup { -2 }
-                    c16 - \markup { -1 }
-                    d16 - \markup { 0 }
-                    e16 - \markup { 1 }
-                    f16 - \markup { 2 }
-                    g16 - \markup { 3 }
-                    a16 - \markup { 4 }
-                    b16 - \markup { 5 }
-                    c'16 - \markup { 6 }
-                    d'16 - \markup { 7 }
-                    e'16 - \markup { 8 }
-                    f'16 - \markup { 9 }
-                    g'16 - \markup { 10 }
-                    a'16 - \markup { 11 }
+                    g,16
+                    - \markup { -4 }
+                    a,16
+                    - \markup { -3 }
+                    b,16
+                    - \markup { -2 }
+                    c16
+                    - \markup { -1 }
+                    d16
+                    - \markup { 0 }
+                    e16
+                    - \markup { 1 }
+                    f16
+                    - \markup { 2 }
+                    g16
+                    - \markup { 3 }
+                    a16
+                    - \markup { 4 }
+                    b16
+                    - \markup { 5 }
+                    c'16
+                    - \markup { 6 }
+                    d'16
+                    - \markup { 7 }
+                    e'16
+                    - \markup { 8 }
+                    f'16
+                    - \markup { 9 }
+                    g'16
+                    - \markup { 10 }
+                    a'16
+                    - \markup { 11 }
                 }
 
         Returns staff position.

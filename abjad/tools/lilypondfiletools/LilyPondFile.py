@@ -227,7 +227,9 @@ class LilyPondFile(AbjadObject):
                     <<
                         \new Staff
                         {
-                            c'8 -\staccato - \markup { Allegro }
+                            c'8
+                            -\staccato
+                            - \markup { Allegro }
                             d'8
                             e'8
                             f'8
@@ -1258,28 +1260,34 @@ class LilyPondFile(AbjadObject):
                     {
                         {   % measure
                             \time 3/4
-                            c'8 [
+                            c'8
+                            [
                             c'8
                             c'8
                             c'8
                             c'8
-                            c'8 ]
+                            c'8
+                            ]
                         }   % measure
                         {   % measure
                             \time 4/8
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }   % measure
                         {   % measure
                             \time 1/4
-                            c'8 [
-                            c'8 ]
+                            c'8
+                            [
+                            c'8
+                            ]
                         }   % measure
                     }
                 >>
@@ -1329,28 +1337,34 @@ class LilyPondFile(AbjadObject):
                     {
                         {   % measure
                             \time 6/8
-                            c'8 [
+                            c'8
+                            [
                             c'8
                             c'8
                             c'8
                             c'8
-                            c'8 ]
+                            c'8
+                            ]
                         }   % measure
                         {   % measure
                             \time 4/8
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }   % measure
                         {   % measure
                             \time 2/8
-                            c'8 [
-                            c'8 ]
+                            c'8
+                            [
+                            c'8
+                            ]
                         }   % measure
                     }
                 >>
@@ -1400,28 +1414,34 @@ class LilyPondFile(AbjadObject):
                     {
                         {   % measure
                             \time 3/4
-                            c'8 [
+                            c'8
+                            [
                             c'8
                             c'8
                             c'8
                             c'8
-                            c'8 ]
+                            c'8
+                            ]
                         }   % measure
                         {   % measure
                             \time 4/8
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }   % measure
                         {   % measure
                             \time 1/4
-                            c'8 [
-                            c'8 ]
+                            c'8
+                            [
+                            c'8
+                            ]
                         }   % measure
                     }
                 >>
@@ -1492,27 +1512,34 @@ class LilyPondFile(AbjadObject):
                         \context Voice = "Voice 1"
                         {
                             \voiceOne
-                            e'8 [
+                            e'8
+                            [
                             e'8
                             e'8
                             e'8
                             e'8
-                            e'8 ]
-                            e'16 [
+                            e'8
+                            ]
+                            e'16
+                            [
                             e'16
                             e'16
                             e'16
                             e'16
                             e'16
                             e'16
-                            e'16 ]
-                            e'8 [
-                            e'8 ]
+                            e'16
+                            ]
+                            e'8
+                            [
+                            e'8
+                            ]
                         }
                         \context Voice = "Voice 2"
                         {
                             \voiceTwo
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
@@ -1523,8 +1550,10 @@ class LilyPondFile(AbjadObject):
                             c'16
                             c'16
                             c'16
-                            c'16 ]
-                            c'32 [
+                            c'16
+                            ]
+                            c'32
+                            [
                             c'32
                             c'32
                             c'32
@@ -1539,11 +1568,14 @@ class LilyPondFile(AbjadObject):
                             c'32
                             c'32
                             c'32
-                            c'32 ]
-                            c'16 [
+                            c'32
+                            ]
+                            c'16
+                            [
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     >>
                 >>

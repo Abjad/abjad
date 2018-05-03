@@ -20,7 +20,8 @@ class Fermata(AbjadValueObject):
             <<
                 \new Staff
                 {
-                    c'4 \shortfermata
+                    c'4
+                    \shortfermata
                 }
             >>
 
@@ -40,7 +41,8 @@ class Fermata(AbjadValueObject):
             <<
                 \new Staff
                 {
-                    c'4 \fermata
+                    c'4
+                    \fermata
                 }
             >>
 
@@ -60,7 +62,8 @@ class Fermata(AbjadValueObject):
             <<
                 \new Staff
                 {
-                    c'4 \longfermata
+                    c'4
+                    \longfermata
                 }
             >>
 
@@ -80,7 +83,8 @@ class Fermata(AbjadValueObject):
             <<
                 \new Staff
                 {
-                    c'4 \verylongfermata
+                    c'4
+                    \verylongfermata
                 }
             >>
 

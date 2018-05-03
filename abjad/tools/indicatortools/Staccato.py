@@ -17,7 +17,8 @@ class Staccato(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(note)
-            c'4 \staccato
+            c'4
+            \staccato
 
     ..  container:: example
 
@@ -35,15 +36,19 @@ class Staccato(AbjadValueObject):
             >>> abjad.f(staff)
             \new Staff
             {
-                c'8 [
+                c'8
+                [
                 d'8
                 e'8
-                f'8 ]
+                f'8
+                ]
                 \staccato
-                g'8 [
+                g'8
+                [
                 a'8
                 b'8
-                c''8 ]
+                c''8
+                ]
                 \staccato
             }
 

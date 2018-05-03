@@ -69,10 +69,12 @@ class ArrowLineSegment(LineSegment):
                         }
                     }
                 \once \override TextSpanner.dash-fraction = 1
-                c'4 \startTextSpan
+                c'4
+                \startTextSpan
                 d'4
                 e'4
-                f'4 \stopTextSpan
+                f'4
+                \stopTextSpan
             }
 
     Arrow line segment is a preconfigured line segment.
@@ -194,10 +196,12 @@ class ArrowLineSegment(LineSegment):
                             }
                         }
                     \once \override TextSpanner.dash-fraction = 1
-                    c'4 \startTextSpan
+                    c'4
+                    \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan
+                    f'4
+                    \stopTextSpan
                 }
 
             Results in thin arrow head.
@@ -260,10 +264,12 @@ class ArrowLineSegment(LineSegment):
                             }
                         }
                     \once \override TextSpanner.dash-fraction = 1
-                    c'4 \startTextSpan
+                    c'4
+                    \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan
+                    f'4
+                    \stopTextSpan
                 }
 
             Results in wide arrow head.
@@ -324,10 +330,12 @@ class ArrowLineSegment(LineSegment):
                             }
                         }
                     \once \override TextSpanner.dash-fraction = 1
-                    c'4 \startTextSpan
+                    c'4
+                    \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan
+                    f'4
+                    \stopTextSpan
                 }
 
             Results in very wide arrow head.
@@ -400,10 +408,12 @@ class ArrowLineSegment(LineSegment):
                             }
                         }
                     \once \override TextSpanner.dash-fraction = 1
-                    c'4 \startTextSpan
+                    c'4
+                    \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan
+                    f'4
+                    \stopTextSpan
                 }
 
             This is default behavior.
@@ -465,10 +475,12 @@ class ArrowLineSegment(LineSegment):
                             }
                         }
                     \once \override TextSpanner.dash-fraction = 0.5
-                    c'4 \startTextSpan
+                    c'4
+                    \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan
+                    f'4
+                    \stopTextSpan
                 }
 
         ..  container:: example
@@ -528,10 +540,12 @@ class ArrowLineSegment(LineSegment):
                             }
                         }
                     \once \override TextSpanner.dash-fraction = 0.1
-                    c'4 \startTextSpan
+                    c'4
+                    \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan
+                    f'4
+                    \stopTextSpan
                 }
 
         Defaults to ``1``.
@@ -603,10 +617,12 @@ class ArrowLineSegment(LineSegment):
                             }
                         }
                     \once \override TextSpanner.dash-fraction = 1
-                    c'4 \startTextSpan
+                    c'4
+                    \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan
+                    f'4
+                    \stopTextSpan
                 }
 
             Results in a solid line.
@@ -673,10 +689,12 @@ class ArrowLineSegment(LineSegment):
                         }
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1
-                    c'4 \startTextSpan
+                    c'4
+                    \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan
+                    f'4
+                    \stopTextSpan
                 }
 
             Results in fine dashes.
@@ -741,10 +759,12 @@ class ArrowLineSegment(LineSegment):
                         }
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 4
-                    c'4 \startTextSpan
+                    c'4
+                    \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan
+                    f'4
+                    \stopTextSpan
                 }
 
             Results in coarse dashes.
@@ -830,7 +850,8 @@ class ArrowLineSegment(LineSegment):
                         \once \override TextSpanner.bound-details.right.padding = 0.5
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-fraction = 1
-                        e'4. \startTextSpan
+                        e'4.
+                        \startTextSpan
                         f'4.
                         \break
                         g'4.
@@ -852,8 +873,11 @@ class ArrowLineSegment(LineSegment):
                         \once \override TextSpanner.bound-details.right.padding = 1.5
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-period = 0
-                        b'4. \stopTextSpan \startTextSpan
-                        c''4. \stopTextSpan
+                        b'4.
+                        \stopTextSpan
+                        \startTextSpan
+                        c''4.
+                        \stopTextSpan
                     }
 
             Results in no text immediately after line break.
@@ -944,7 +968,8 @@ class ArrowLineSegment(LineSegment):
                         \once \override TextSpanner.bound-details.right.padding = 0.5
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-fraction = 1
-                        e'4. \startTextSpan
+                        e'4.
+                        \startTextSpan
                         f'4.
                         \break
                         g'4.
@@ -966,8 +991,11 @@ class ArrowLineSegment(LineSegment):
                         \once \override TextSpanner.bound-details.right.padding = 1.5
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-period = 0
-                        b'4. \stopTextSpan \startTextSpan
-                        c''4. \stopTextSpan
+                        b'4.
+                        \stopTextSpan
+                        \startTextSpan
+                        c''4.
+                        \stopTextSpan
                     }
 
         Set to markup, boolean or none.
@@ -1049,7 +1077,8 @@ class ArrowLineSegment(LineSegment):
                         \once \override TextSpanner.bound-details.right.padding = 0.5
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-fraction = 1
-                        e'4. \startTextSpan
+                        e'4.
+                        \startTextSpan
                         f'4.
                         \break
                         g'4.
@@ -1071,8 +1100,11 @@ class ArrowLineSegment(LineSegment):
                         \once \override TextSpanner.bound-details.right.padding = 1.5
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-period = 0
-                        b'4. \stopTextSpan \startTextSpan
-                        c''4. \stopTextSpan
+                        b'4.
+                        \stopTextSpan
+                        \startTextSpan
+                        c''4.
+                        \stopTextSpan
                     }
 
             Results in arrow immediately before line break.
@@ -1152,7 +1184,8 @@ class ArrowLineSegment(LineSegment):
                         \once \override TextSpanner.bound-details.right.padding = 0.5
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-fraction = 1
-                        e'4. \startTextSpan
+                        e'4.
+                        \startTextSpan
                         f'4.
                         \break
                         g'4.
@@ -1174,8 +1207,11 @@ class ArrowLineSegment(LineSegment):
                         \once \override TextSpanner.bound-details.right.padding = 1.5
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
                         \once \override TextSpanner.dash-period = 0
-                        b'4. \stopTextSpan \startTextSpan
-                        c''4. \stopTextSpan
+                        b'4.
+                        \stopTextSpan
+                        \startTextSpan
+                        c''4.
+                        \stopTextSpan
                     }
 
         Set to true, false or none.
@@ -1242,10 +1278,12 @@ class ArrowLineSegment(LineSegment):
                             }
                         }
                     \once \override TextSpanner.dash-fraction = 1
-                    c'4 \startTextSpan
+                    c'4
+                    \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan
+                    f'4
+                    \stopTextSpan
                 }
 
             LilyPond defaults to solid line.
@@ -1309,10 +1347,12 @@ class ArrowLineSegment(LineSegment):
                         }
                     \once \override TextSpanner.dash-fraction = 1
                     \once \override TextSpanner.style = #'zigzag
-                    c'4 \startTextSpan
+                    c'4
+                    \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan
+                    f'4
+                    \stopTextSpan
                 }
 
         ..  container:: example
@@ -1372,10 +1412,12 @@ class ArrowLineSegment(LineSegment):
                         }
                     \once \override TextSpanner.dash-fraction = 1
                     \once \override TextSpanner.style = #'trill
-                    c'4 \startTextSpan
+                    c'4
+                    \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan
+                    f'4
+                    \stopTextSpan
                 }
 
         ..  container:: example
@@ -1435,10 +1477,12 @@ class ArrowLineSegment(LineSegment):
                         }
                     \once \override TextSpanner.dash-fraction = 1
                     \once \override TextSpanner.style = #'dotted-line
-                    c'4 \startTextSpan
+                    c'4
+                    \startTextSpan
                     d'4
                     e'4
-                    f'4 \stopTextSpan
+                    f'4
+                    \stopTextSpan
                 }
 
         Defaults to none.

@@ -6,6 +6,7 @@ import re
 import shutil
 import traceback
 import types
+import typing
 from abjad.tools import abctools
 from abjad.tools import systemtools
 
@@ -20,7 +21,7 @@ class DocumentationManager(abctools.AbjadObject):
 
     __slots__ = ()
 
-    api_directory_name = 'api'
+    api_directory_name: typing.Optional[str] = 'api'
 
     api_title = 'Abjad API'
 
@@ -30,11 +31,11 @@ class DocumentationManager(abctools.AbjadObject):
         'ide',
         )
 
-    root_package_name = 'abjad'
+    root_package_name: typing.Optional[str] = 'abjad'
 
-    source_directory_parts = ('docs', 'source')
+    source_directory_parts: typing.Optional[tuple] = ('docs', 'source')
 
-    tools_packages_package_path = 'abjad.tools'
+    tools_packages_package_path: typing.Optional[str] = 'abjad.tools'
 
     ### PRIVATE METHODS ###
 

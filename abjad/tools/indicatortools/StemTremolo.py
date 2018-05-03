@@ -16,7 +16,8 @@ class StemTremolo(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(note)
-            c'4 :16
+            c'4
+            :16
 
     ..  container:: example
 
@@ -30,7 +31,8 @@ class StemTremolo(AbjadValueObject):
         ..  docs::
 
             >>> abjad.f(note)
-            c'4 :32
+            c'4
+            :32
 
     '''
 

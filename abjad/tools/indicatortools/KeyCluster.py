@@ -22,17 +22,17 @@ class KeyCluster(AbjadValueObject):
             \once \override Arpeggio.X-offset = #-2
             \once \override NoteHead.stencil = #ly:text-interface::print
             \once \override NoteHead.text = \markup {
-                \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+            	\filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
             }
             <c' e' g' b' d'' f''>8
-                ^ \markup {
-                    \center-align
-                        \concat
-                            {
-                                \natural
-                                \flat
-                            }
-                    }
+            ^ \markup {
+                \center-align
+                    \concat
+                        {
+                            \natural
+                            \flat
+                        }
+                }
 
     '''
 
@@ -114,17 +114,17 @@ class KeyCluster(AbjadValueObject):
                 \once \override Arpeggio.X-offset = #-2
                 \once \override NoteHead.stencil = #ly:text-interface::print
                 \once \override NoteHead.text = \markup {
-                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                	\filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 }
                 <c' e' g' b' d'' f''>8
-                    ^ \markup {
-                        \center-align
-                            \concat
-                                {
-                                    \natural
-                                    \flat
-                                }
-                        }
+                ^ \markup {
+                    \center-align
+                        \concat
+                            {
+                                \natural
+                                \flat
+                            }
+                    }
 
             Default behavior.
 
@@ -145,7 +145,7 @@ class KeyCluster(AbjadValueObject):
                 \once \override Arpeggio.X-offset = #-2
                 \once \override NoteHead.stencil = #ly:text-interface::print
                 \once \override NoteHead.text = \markup {
-                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                	\filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 }
                 <c' e' g' b' d'' f''>8
 
@@ -178,17 +178,17 @@ class KeyCluster(AbjadValueObject):
                 \once \override Arpeggio.X-offset = #-2
                 \once \override NoteHead.stencil = #ly:text-interface::print
                 \once \override NoteHead.text = \markup {
-                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                	\filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 }
                 <c' e' g' b' d'' f''>8
-                    ^ \markup {
-                        \center-align
-                            \concat
-                                {
-                                    \natural
-                                    \flat
-                                }
-                        }
+                ^ \markup {
+                    \center-align
+                        \concat
+                            {
+                                \natural
+                                \flat
+                            }
+                    }
 
             Default behavior.
 
@@ -211,13 +211,13 @@ class KeyCluster(AbjadValueObject):
                 \once \override Arpeggio.X-offset = #-2
                 \once \override NoteHead.stencil = #ly:text-interface::print
                 \once \override NoteHead.text = \markup {
-                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                	\filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 }
                 <c' e' g' b' d'' f''>8
-                    ^ \markup {
-                        \center-align
-                            \natural
-                        }
+                ^ \markup {
+                    \center-align
+                        \natural
+                    }
 
         ..  todo:: Rename to ``include_flat_markup``.
 
@@ -248,17 +248,17 @@ class KeyCluster(AbjadValueObject):
                 \once \override Arpeggio.X-offset = #-2
                 \once \override NoteHead.stencil = #ly:text-interface::print
                 \once \override NoteHead.text = \markup {
-                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                	\filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 }
                 <c' e' g' b' d'' f''>8
-                    ^ \markup {
-                        \center-align
-                            \concat
-                                {
-                                    \natural
-                                    \flat
-                                }
-                        }
+                ^ \markup {
+                    \center-align
+                        \concat
+                            {
+                                \natural
+                                \flat
+                            }
+                    }
 
             Default behavior.
 
@@ -281,13 +281,13 @@ class KeyCluster(AbjadValueObject):
                 \once \override Arpeggio.X-offset = #-2
                 \once \override NoteHead.stencil = #ly:text-interface::print
                 \once \override NoteHead.text = \markup {
-                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                	\filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 }
                 <c' e' g' b' d'' f''>8
-                    ^ \markup {
-                        \center-align
-                            \flat
-                        }
+                ^ \markup {
+                    \center-align
+                        \flat
+                    }
 
         ..  todo:: Rename to ``include_natural_markup``.
 
@@ -318,17 +318,17 @@ class KeyCluster(AbjadValueObject):
                 \once \override Arpeggio.X-offset = #-2
                 \once \override NoteHead.stencil = #ly:text-interface::print
                 \once \override NoteHead.text = \markup {
-                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                	\filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 }
                 <c' e' g' b' d'' f''>8
-                    ^ \markup {
-                        \center-align
-                            \concat
-                                {
-                                    \natural
-                                    \flat
-                                }
-                        }
+                ^ \markup {
+                    \center-align
+                        \concat
+                            {
+                                \natural
+                                \flat
+                            }
+                    }
 
             Default behavior.
 
@@ -351,17 +351,17 @@ class KeyCluster(AbjadValueObject):
                 \once \override Arpeggio.X-offset = #-2
                 \once \override NoteHead.stencil = #ly:text-interface::print
                 \once \override NoteHead.text = \markup {
-                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                	\filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 }
                 <c' e' g' b' d'' f''>8
-                    _ \markup {
-                        \center-align
-                            \concat
-                                {
-                                    \natural
-                                    \flat
-                                }
-                        }
+                _ \markup {
+                    \center-align
+                        \concat
+                            {
+                                \natural
+                                \flat
+                            }
+                    }
 
         Set to up, down or center.
         '''

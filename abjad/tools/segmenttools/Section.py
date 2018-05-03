@@ -90,7 +90,7 @@ class Section(AbjadObject):
             parts.append(part)
         else:
             if 1 < len(str(self.count)):
-                zfill = len(str(self.count))
+                zfill: typing.Optional[int] = len(str(self.count))
             else:
                 zfill = None
             for member in range(1, self.count + 1):

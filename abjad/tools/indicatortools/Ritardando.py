@@ -22,11 +22,11 @@ class Ritardando(AbjadValueObject):
                 \new Staff
                 {
                     c'4
-                        ^ \markup {
-                            \large
-                                \upright
-                                    rit.
-                            }
+                    ^ \markup {
+                        \large
+                            \upright
+                                rit.
+                        }
                     d'4
                     e'4
                     f'4
@@ -52,15 +52,15 @@ class Ritardando(AbjadValueObject):
                 \new Staff
                 {
                     c'4
-                        ^ \markup {
-                            \bold
-                                {
-                                    \italic
-                                        {
-                                            ritardando
-                                        }
-                                }
+                    ^ \markup {
+                        \bold
+                            {
+                                \italic
+                                    {
+                                        ritardando
+                                    }
                             }
+                        }
                     d'4
                     e'4
                     f'4
