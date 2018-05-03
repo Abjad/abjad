@@ -14,9 +14,11 @@ def test_scoretools_Leaf__split_by_durations_01():
         r'''
         \new Staff
         {
-            c'8 [
+            c'8
+            [
             d'8
-            e'8 ]
+            e'8
+            ]
         }
         '''
         )
@@ -31,10 +33,12 @@ def test_scoretools_Leaf__split_by_durations_01():
         r'''
         \new Staff
         {
-            c'8 [
+            c'8
+            [
             d'32
             d'16.
-            e'8 ]
+            e'8
+            ]
         }
         '''
         )
@@ -54,9 +58,11 @@ def test_scoretools_Leaf__split_by_durations_02():
         r'''
         \new Staff
         {
-            c'8 [
+            c'8
+            [
             d'8
-            e'8 ]
+            e'8
+            ]
         }
         '''
         )
@@ -71,10 +77,14 @@ def test_scoretools_Leaf__split_by_durations_02():
         r'''
         \new Staff
         {
-            c'8 [
-            d'32 ]
-            d'16. [
-            e'8 ]
+            c'8
+            [
+            d'32
+            ]
+            d'16.
+            [
+            e'8
+            ]
         }
         '''
         )
@@ -94,9 +104,11 @@ def test_scoretools_Leaf__split_by_durations_03():
         r'''
         \new Staff
         {
-            c'8 [
+            c'8
+            [
             d'8
-            e'8 ]
+            e'8
+            ]
         }
         '''
         )
@@ -111,10 +123,13 @@ def test_scoretools_Leaf__split_by_durations_03():
         r'''
         \new Staff
         {
-            c'8 [
-            d'32 ~
+            c'8
+            [
+            d'32
+            ~
             d'16.
-            e'8 ]
+            e'8
+            ]
         }
         '''
         )
@@ -140,10 +155,15 @@ def test_scoretools_Leaf__split_by_durations_04():
         r'''
         \new Staff
         {
-            c'8 [
-            d'32 ~ ]
-            d'16. [
-            e'8 ]
+            c'8
+            [
+            d'32
+            ~
+            ]
+            d'16.
+            [
+            e'8
+            ]
         }
         '''
         )
@@ -168,12 +188,14 @@ def test_scoretools_Leaf__split_by_durations_05():
         r'''
         \new Staff
         {
-            c'8 [
+            c'8
+            [
             \times 2/3 {
                 d'16
                 d'8
             }
-            e'8 ]
+            e'8
+            ]
         }
         '''
         )
@@ -201,11 +223,14 @@ def test_scoretools_Leaf__split_by_durations_06():
         {
             \times 2/3 {
                 \times 4/5 {
-                    c'16. ~ [
+                    c'16.
+                    ~
+                    [
                     c'16
                 }
                 d'8
-                e'8 ]
+                e'8
+                ]
             }
         }
         '''
@@ -229,11 +254,13 @@ def test_scoretools_Leaf__split_by_durations_07():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             \times 2/3 {
                 d'8
                 e'8
-                f'8 ]
+                f'8
+                ]
             }
         }
         '''
@@ -248,12 +275,14 @@ def test_scoretools_Leaf__split_by_durations_07():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             \times 2/3 {
                 d'16
                 d'16
                 e'8
-                f'8 ]
+                f'8
+                ]
             }
         }
         '''
@@ -469,12 +498,18 @@ def test_scoretools_Leaf__split_by_durations_18():
         {
             {   % measure
                 \time 2/8
-                c'8 [ (
-                d'8 ]
+                c'8
+                [
+                (
+                d'8
+                ]
             }   % measure
             {   % measure
-                e'8 [
-                f'8 ] )
+                e'8
+                [
+                f'8
+                ]
+                )
             }   % measure
         }
         '''
@@ -492,13 +527,19 @@ def test_scoretools_Leaf__split_by_durations_18():
         {
             {   % measure
                 \time 2/8
-                c'32 [ (
+                c'32
+                [
+                (
                 c'16.
-                d'8 ]
+                d'8
+                ]
             }   % measure
             {   % measure
-                e'8 [
-                f'8 ] )
+                e'8
+                [
+                f'8
+                ]
+                )
             }   % measure
         }
         '''
@@ -529,12 +570,18 @@ def test_scoretools_Leaf__split_by_durations_19():
         {
             {   % measure
                 \time 2/8
-                c'8 [ (
-                d'8 ]
+                c'8
+                [
+                (
+                d'8
+                ]
             }   % measure
             {   % measure
-                e'8 [
-                f'8 ] )
+                e'8
+                [
+                f'8
+                ]
+                )
             }   % measure
         }
         '''
@@ -552,13 +599,20 @@ def test_scoretools_Leaf__split_by_durations_19():
         {
             {   % measure
                 \time 2/8
-                c'32 ~ [ (
+                c'32
+                ~
+                [
+                (
                 c'16.
-                d'8 ]
+                d'8
+                ]
             }   % measure
             {   % measure
-                e'8 [
-                f'8 ] )
+                e'8
+                [
+                f'8
+                ]
+                )
             }   % measure
         }
         '''
@@ -588,12 +642,18 @@ def test_scoretools_Leaf__split_by_durations_20():
         {
             {   % measure
                 \time 2/8
-                c'8 [ (
-                d'8 ]
+                c'8
+                [
+                (
+                d'8
+                ]
             }   % measure
             {   % measure
-                e'8 [
-                f'8 ] )
+                e'8
+                [
+                f'8
+                ]
+                )
             }   % measure
         }
         '''
@@ -611,13 +671,21 @@ def test_scoretools_Leaf__split_by_durations_20():
         {
             {   % measure
                 \time 2/8
-                c'32 [ ]
-                c'16. [ (
-                d'8 ]
+                c'32
+                [
+                ]
+                c'16.
+                [
+                (
+                d'8
+                ]
             }   % measure
             {   % measure
-                e'8 [
-                f'8 ] )
+                e'8
+                [
+                f'8
+                ]
+                )
             }   % measure
         }
         '''
@@ -649,12 +717,18 @@ def test_scoretools_Leaf__split_by_durations_21():
         {
             {   % measure
                 \time 2/8
-                c'8 [ (
-                d'8 ]
+                c'8
+                [
+                (
+                d'8
+                ]
             }   % measure
             {   % measure
-                e'8 [
-                f'8 ] )
+                e'8
+                [
+                f'8
+                ]
+                )
             }   % measure
         }
         '''
@@ -672,13 +746,23 @@ def test_scoretools_Leaf__split_by_durations_21():
         {
             {   % measure
                 \time 2/8
-                c'8 [ (
-                d'32 ] )
-                d'16. [ ] (
+                c'8
+                [
+                (
+                d'32
+                ]
+                )
+                d'16.
+                [
+                ]
+                (
             }   % measure
             {   % measure
-                e'8 [
-                f'8 ] )
+                e'8
+                [
+                f'8
+                ]
+                )
             }   % measure
         }
         '''
@@ -695,17 +779,17 @@ def test_scoretools_Leaf__split_by_durations_22():
     beam = abjad.Beam()
     abjad.attach(beam, abjad.select(note))
 
-    assert format(note) == "c'8 [ ]"
+    assert format(note) == "c'8\n[\n]"
 
     halves = note._split_by_durations(
         [abjad.Duration(1, 32)],
         fracture_spanners=True,
         )
 
-    assert format(halves[0][0]) == "c'32 ~ [ ]"
+    assert format(halves[0][0]) == "c'32\n~\n[\n]"
     assert abjad.inspect(halves[0][0]).is_well_formed()
 
-    assert format(halves[1][0]) == "c'16. [ ]"
+    assert format(halves[1][0]) == "c'16.\n[\n]"
     assert abjad.inspect(halves[1][0]).is_well_formed()
 
 
@@ -731,12 +815,18 @@ def test_scoretools_Leaf__split_by_durations_23():
         {
             {   % measure
                 \time 2/8
-                c'8 [ (
-                d'8 ]
+                c'8
+                [
+                (
+                d'8
+                ]
             }   % measure
             {   % measure
-                e'8 [
-                f'8 ] )
+                e'8
+                [
+                f'8
+                ]
+                )
             }   % measure
         }
         '''
@@ -754,13 +844,22 @@ def test_scoretools_Leaf__split_by_durations_23():
         {
             {   % measure
                 \time 2/8
-                c'32 ~ [ ]
-                c'16. [ (
-                d'8 ]
+                c'32
+                ~
+                [
+                ]
+                c'16.
+                [
+                (
+                d'8
+                ]
             }   % measure
             {   % measure
-                e'8 [
-                f'8 ] )
+                e'8
+                [
+                f'8
+                ]
+                )
             }   % measure
         }
         '''

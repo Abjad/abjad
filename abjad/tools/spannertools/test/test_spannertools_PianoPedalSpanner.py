@@ -13,10 +13,12 @@ def test_spannertools_PianoPedalSpanner_01():
         \new Staff
         {
             \set Staff.pedalSustainStyle = #'mixed
-            c'8 \sustainOn
+            c'8
+            \sustainOn
             c'8
             c'8
-            c'8 \sustainOff
+            c'8
+            \sustainOff
         }
         '''
         )
@@ -39,10 +41,12 @@ def test_spannertools_PianoPedalSpanner_02():
         \new Staff
         {
             \set Staff.pedalSustainStyle = #'mixed
-            c'8 \sostenutoOn
+            c'8
+            \sostenutoOn
             c'8
             c'8
-            c'8 \sostenutoOff
+            c'8
+            \sostenutoOff
         }
         '''
         )
@@ -63,10 +67,12 @@ def test_spannertools_PianoPedalSpanner_03():
         \new Staff
         {
             \set Staff.pedalSustainStyle = #'mixed
-            c'8 \unaCorda
+            c'8
+            \unaCorda
             c'8
             c'8
-            c'8 \treCorde
+            c'8
+            \treCorde
         }
         '''
         )
@@ -90,10 +96,12 @@ def test_spannertools_PianoPedalSpanner_04():
         \new Staff
         {
             \set Staff.pedalSustainStyle = #'text
-            c'8 \sustainOn
+            c'8
+            \sustainOn
             c'8
             c'8
-            c'8 \sustainOff
+            c'8
+            \sustainOff
         }
         '''
         )
@@ -117,10 +125,12 @@ def test_spannertools_PianoPedalSpanner_05():
         \new Staff
         {
             \set Staff.pedalSustainStyle = #'bracket
-            c'8 \sustainOn
+            c'8
+            \sustainOn
             c'8
             c'8
-            c'8 \sustainOff
+            c'8
+            \sustainOff
         }
         '''
         )
@@ -143,15 +153,19 @@ def test_spannertools_PianoPedalSpanner_06():
         \new Staff
         {
             \set Staff.pedalSustainStyle = #'mixed
-            c'8 \sustainOn
+            c'8
+            \sustainOn
             c'8
             c'8
             \set Staff.pedalSustainStyle = #'mixed
-            c'8 \sustainOff \sustainOn
+            c'8
+            \sustainOff
+            \sustainOn
             c'8
             c'8
             c'8
-            c'8 \sustainOff
+            c'8
+            \sustainOff
         }
         '''
         )

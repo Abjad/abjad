@@ -10,7 +10,8 @@ def test_scoretools_Component__move_indicators_01():
         \new Staff
         {
             \clef "bass"
-            c4 -\staccato
+            c4
+            -\staccato
             d4
             e4
             f4
@@ -32,7 +33,8 @@ def test_scoretools_Component__move_indicators_01():
             c4
             d4
             \clef "bass"
-            e4 -\staccato
+            e4
+            -\staccato
             f4
         }
         '''

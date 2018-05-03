@@ -15,9 +15,14 @@ def test_scoretools_Container__get_spanners_that_dominate_slice_01():
         r'''
         \new Voice
         {
-            c'8 [ \glissando
-            d'8 ] \glissando
-            e'8 \glissando
+            c'8
+            [
+            \glissando
+            d'8
+            ]
+            \glissando
+            e'8
+            \glissando
             f'8
         }
         '''
@@ -43,9 +48,14 @@ def test_scoretools_Container__get_spanners_that_dominate_slice_02():
         r'''
         \new Voice
         {
-            c'8 [ \glissando
-            d'8 ] \glissando
-            e'8 \glissando
+            c'8
+            [
+            \glissando
+            d'8
+            ]
+            \glissando
+            e'8
+            \glissando
             f'8
         }
         '''
@@ -72,9 +82,14 @@ def test_scoretools_Container__get_spanners_that_dominate_slice_03():
         r'''
         \new Voice
         {
-            c'8 [ \glissando
-            d'8 ] \glissando
-            e'8 \glissando
+            c'8
+            [
+            \glissando
+            d'8
+            ]
+            \glissando
+            e'8
+            \glissando
             f'8
         }
         '''

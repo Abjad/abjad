@@ -15,7 +15,8 @@ def test_spannertools_Spanner___getitem___01():
         \new Voice
         {
             {
-                c'8 [
+                c'8
+                [
                 d'8
             }
             {
@@ -24,7 +25,8 @@ def test_spannertools_Spanner___getitem___01():
             }
             {
                 g'8
-                a'8 ]
+                a'8
+                ]
             }
         }
         '''
@@ -47,7 +49,8 @@ def test_spannertools_Spanner___getitem___02():
         \new Voice
         {
             {
-                c'8 [
+                c'8
+                [
                 d'8
             }
             {
@@ -56,7 +59,8 @@ def test_spannertools_Spanner___getitem___02():
             }
             {
                 g'8
-                a'8 ]
+                a'8
+                ]
             }
         }
         '''
@@ -79,7 +83,8 @@ def test_spannertools_Spanner___getitem___03():
         \new Voice
         {
             {
-                c'8 [
+                c'8
+                [
                 d'8
             }
             {
@@ -88,7 +93,8 @@ def test_spannertools_Spanner___getitem___03():
             }
             {
                 g'8
-                a'8 ]
+                a'8
+                ]
             }
         }
         '''
@@ -111,7 +117,8 @@ def test_spannertools_Spanner___getitem___04():
         \new Voice
         {
             {
-                c'8 [
+                c'8
+                [
                 d'8
             }
             {
@@ -120,7 +127,8 @@ def test_spannertools_Spanner___getitem___04():
             }
             {
                 g'8
-                a'8 ]
+                a'8
+                ]
             }
         }
         '''

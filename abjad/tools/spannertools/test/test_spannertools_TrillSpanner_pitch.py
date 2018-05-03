@@ -16,7 +16,8 @@ def test_spannertools_TrillSpanner_pitch_01():
             \pitchedTrill
             c'8
             \startTrillSpan cs'
-            d'8 \stopTrillSpan
+            d'8
+            \stopTrillSpan
             e'8
             f'8
         }
@@ -40,7 +41,8 @@ def test_spannertools_TrillSpanner_pitch_02():
         {
             c'8
             \startTrillSpan
-            d'8 \stopTrillSpan
+            d'8
+            \stopTrillSpan
             e'8
             f'8
         }

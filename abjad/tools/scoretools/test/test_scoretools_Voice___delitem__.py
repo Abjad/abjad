@@ -6,10 +6,14 @@ def test_scoretools_Voice___delitem___01():
     '''
 
     voice = abjad.Voice(r'''
-        c'8 [ \glissando
+        c'8
+        [
+        \glissando
         {
-            d'8 \glissando
-            e'8 \glissando
+            d'8
+            \glissando
+            e'8
+            \glissando
         }
         f'8 ]
         ''')
@@ -18,12 +22,17 @@ def test_scoretools_Voice___delitem___01():
         r'''
         \new Voice
         {
-            c'8 [ \glissando
+            c'8
+            [
+            \glissando
             {
-                d'8 \glissando
-                e'8 \glissando
+                d'8
+                \glissando
+                e'8
+                \glissando
             }
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )
@@ -35,8 +44,11 @@ def test_scoretools_Voice___delitem___01():
         r'''
         \new Voice
         {
-            c'8 [ \glissando
-            f'8 ]
+            c'8
+            [
+            \glissando
+            f'8
+            ]
         }
         '''
         )

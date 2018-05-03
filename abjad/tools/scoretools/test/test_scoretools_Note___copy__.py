@@ -99,7 +99,8 @@ def test_scoretools_Note___copy___05():
             d'16
         }
         \once \override NoteHead.color = #red
-        c'4 -\staccato
+        c'4
+        -\staccato
         '''
         )
 
@@ -129,10 +130,13 @@ def test_scoretools_Note___copy___06():
                 d'16
             }
             \once \override NoteHead.color = #red
-            c'8 -\staccato [
+            c'8
+            -\staccato
+            [
             c'8
             e'8
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )
@@ -160,10 +164,12 @@ def test_scoretools_Note___copy___07():
         r'''
         \new Staff
         {
-            c'8 \<
+            c'8
+            \<
             cs'8
             d'8
-            ef'8 \!
+            ef'8
+            \!
             e'8
             f'8
             fs'8
@@ -179,10 +185,12 @@ def test_scoretools_Note___copy___07():
         r'''
         \new Staff
         {
-            c'8 \<
+            c'8
+            \<
             cs'8
             d'8
-            ef'8 \!
+            ef'8
+            \!
             e'8
             f'8
             fs'8

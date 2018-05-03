@@ -25,8 +25,11 @@ def test_scoretools_Selection__get_crossing_spanners_01():
                 d'8
             }
             {
-                e'8 (
-                f'8 ) \stopTrillSpan
+                e'8
+                (
+                f'8
+                )
+                \stopTrillSpan
             }
         }
         '''
@@ -67,11 +70,13 @@ def test_scoretools_Selection__get_crossing_spanners_02():
                 d'8
             }   % measure
             {   % measure
-                e'8 [
+                e'8
+                [
                 f'8
             }   % measure
             {   % measure
-                g'8 ]
+                g'8
+                ]
                 a'8
             }   % measure
         }

@@ -25,11 +25,13 @@ def test_scoretools_Inspection_report_modifications_01():
         {
             #(set-accidental-style 'forget)
             \override Beam.thickness = #3
-            c'8 [
+            c'8
+            [
             d'8
             e'8
             \revert Beam.thickness
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )
@@ -71,10 +73,12 @@ def test_scoretools_Inspection_report_modifications_02():
         \times 2/3 {
             #(set-accidental-style 'forget)
             \override Beam.thickness = #3
-            c'8 [
+            c'8
+            [
             d'8
             \revert Beam.thickness
-            e'8 ]
+            e'8
+            ]
         }
         \revert NoteHead.color
         '''

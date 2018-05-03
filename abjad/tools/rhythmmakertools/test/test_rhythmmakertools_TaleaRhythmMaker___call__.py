@@ -86,14 +86,16 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___02():
                 \time 5/8
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 1/1 {
-                    c'8 ~
+                    c'8
+                    ~
                 }
                 \times 2/3 {
                     c'16
                     r16
                     c'4
                     r8
-                    c'16 ~
+                    c'16
+                    ~
                 }
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 1/1 {

@@ -157,7 +157,8 @@ def test_scoretools_Mutation_replace_measure_contents_06():
         {
             {   % measure
                 \time 5/16
-                c'4 ~
+                c'4
+                ~
                 c'16
             }   % measure
             {   % measure

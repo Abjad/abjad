@@ -14,10 +14,12 @@ def test_spannertools_TextSpanner_position_01():
         \new Staff
         {
             \textSpannerNeutral
-            c'8 \startTextSpan
+            c'8
+            \startTextSpan
             c'8
             c'8
-            c'8 \stopTextSpan
+            c'8
+            \stopTextSpan
         }
         '''
         )
@@ -36,10 +38,12 @@ def test_spannertools_TextSpanner_position_02():
         \new Staff
         {
             \textSpannerUp
-            c'8 \startTextSpan
+            c'8
+            \startTextSpan
             c'8
             c'8
-            c'8 \stopTextSpan
+            c'8
+            \stopTextSpan
         }
         '''
         )
@@ -58,10 +62,12 @@ def test_spannertools_TextSpanner_position_03():
         \new Staff
         {
             \textSpannerDown
-            c'8 \startTextSpan
+            c'8
+            \startTextSpan
             c'8
             c'8
-            c'8 \stopTextSpan
+            c'8
+            \stopTextSpan
         }
         '''
         )

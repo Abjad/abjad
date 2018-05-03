@@ -211,16 +211,20 @@ def test_scoretools_Parentage_logical_voice_06():
             {
                 \context Voice = "voicefoo"
                 {
-                    c'8 [
-                    d'8 ]
+                    c'8
+                    [
+                    d'8
+                    ]
                 }
             }
             \context Staff = "staff2"
             {
                 \context Voice = "voicefoo"
                 {
-                    e'8 [
-                    f'8 ]
+                    e'8
+                    [
+                    f'8
+                    ]
                 }
             }
         }

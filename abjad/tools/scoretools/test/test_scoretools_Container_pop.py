@@ -18,10 +18,14 @@ def test_scoretools_Container_pop_01():
         r'''
         \new Voice
         {
-            c'8 (
-            d'8 [ ]
+            c'8
+            (
+            d'8
+            [
+            ]
             e'8
-            f'8 )
+            f'8
+            )
         }
         '''
         )
@@ -32,9 +36,11 @@ def test_scoretools_Container_pop_01():
         r'''
         \new Voice
         {
-            c'8 (
+            c'8
+            (
             e'8
-            f'8 )
+            f'8
+            )
         }
         '''
         )
@@ -44,7 +50,7 @@ def test_scoretools_Container_pop_01():
     "Result is now d'8 [ ]"
 
     assert abjad.inspect(result).is_well_formed()
-    assert format(result) == "d'8 [ ]"
+    assert format(result) == "d'8\n[\n]"
 
 
 def test_scoretools_Container_pop_02():
@@ -62,12 +68,14 @@ def test_scoretools_Container_pop_02():
         \new Staff
         {
             {
-                c'8 [
+                c'8
+                [
                 d'8
             }
             {
                 e'8
-                f'8 ]
+                f'8
+                ]
             }
         }
         '''
@@ -80,8 +88,10 @@ def test_scoretools_Container_pop_02():
         \new Staff
         {
             {
-                c'8 [
-                d'8 ]
+                c'8
+                [
+                d'8
+                ]
             }
         }
         '''

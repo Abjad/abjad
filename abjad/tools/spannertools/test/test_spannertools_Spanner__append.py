@@ -18,8 +18,10 @@ def test_spannertools_Spanner__append_01():
                 d'8
             }
             {
-                e'8 [
-                f'8 ]
+                e'8
+                [
+                f'8
+                ]
             }
             {
                 g'8
@@ -41,12 +43,14 @@ def test_spannertools_Spanner__append_01():
                 d'8
             }
             {
-                e'8 [
+                e'8
+                [
                 f'8
             }
             {
                 g'8
-                a'8 ]
+                a'8
+                ]
             }
         }
         '''
@@ -70,8 +74,10 @@ def test_spannertools_Spanner__append_02():
                 d'8
             }
             {
-                e'8 [
-                f'8 ]
+                e'8
+                [
+                f'8
+                ]
             }
             {
                 g'8
@@ -92,11 +98,13 @@ def test_spannertools_Spanner__append_02():
                 d'8
             }
             {
-                e'8 [
+                e'8
+                [
                 f'8
             }
             {
-                g'8 ]
+                g'8
+                ]
                 a'8
             }
         }

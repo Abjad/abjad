@@ -41,13 +41,19 @@ def test_rhythmmakertools_DurationSpecifier_01():
         \new Staff
         {
             r16
-            c'16 ~ [
-            c'16 ]
+            c'16
+            ~
+            [
+            c'16
+            ]
             r8.
             c'4
             r16
-            c'16 ~ [
-            c'16 ]
+            c'16
+            ~
+            [
+            c'16
+            ]
             r16
             r8
             c'8.

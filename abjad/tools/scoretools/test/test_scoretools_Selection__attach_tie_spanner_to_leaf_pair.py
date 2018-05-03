@@ -13,7 +13,8 @@ def test_scoretools_Selection__attach_tie_spanner_to_leaf_pair_01():
         r'''
         \new Voice
         {
-            c'8 ~
+            c'8
+            ~
             c'8
             c'8
             c'8
@@ -29,8 +30,10 @@ def test_scoretools_Selection__attach_tie_spanner_to_leaf_pair_01():
         r'''
         \new Voice
         {
-            c'8 ~
-            c'8 ~
+            c'8
+            ~
+            c'8
+            ~
             c'8
             c'8
         }
@@ -54,9 +57,11 @@ def test_scoretools_Selection__attach_tie_spanner_to_leaf_pair_02():
         r'''
         \new Voice
         {
-            c'8 ~
             c'8
-            c'8 ~
+            ~
+            c'8
+            c'8
+            ~
             c'8
         }
         '''
@@ -70,9 +75,12 @@ def test_scoretools_Selection__attach_tie_spanner_to_leaf_pair_02():
         r'''
         \new Voice
         {
-            c'8 ~
-            c'8 ~
-            c'8 ~
+            c'8
+            ~
+            c'8
+            ~
+            c'8
+            ~
             c'8
         }
         '''
@@ -95,7 +103,8 @@ def test_scoretools_Selection__attach_tie_spanner_to_leaf_pair_03():
         \new Voice
         {
             c'8
-            c'8 ~
+            c'8
+            ~
             c'8
             c'8
         }

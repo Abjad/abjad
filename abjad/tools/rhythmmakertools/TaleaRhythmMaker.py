@@ -40,16 +40,21 @@ class TaleaRhythmMaker(RhythmMaker):
             {
                 {   % measure
                     \time 3/8
-                    c'16 [
+                    c'16
+                    [
                     c'8
-                    c'8. ]
+                    c'8.
+                    ]
                 }   % measure
                 {   % measure
                     \time 4/8
                     c'4
-                    c'16 [
+                    c'16
+                    [
                     c'8
-                    c'16 ~ ]
+                    c'16
+                    ~
+                    ]
                 }   % measure
                 {   % measure
                     \time 3/8
@@ -58,10 +63,12 @@ class TaleaRhythmMaker(RhythmMaker):
                 }   % measure
                 {   % measure
                     \time 4/8
-                    c'16 [
+                    c'16
+                    [
                     c'8
                     c'8.
-                    c'8 ]
+                    c'8
+                    ]
                 }   % measure
             }
 
@@ -240,26 +247,36 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 3/8
-                        c'16 [
+                        c'16
+                        [
                         c'8
-                        c'8. ]
+                        c'8.
+                        ]
                     }   % measure
                     {   % measure
                         \time 4/8
                         c'4
-                        c'16 [
+                        c'16
+                        [
                         c'8
-                        c'16 ~ ]
+                        c'16
+                        ~
+                        ]
                     }   % measure
                     {   % measure
                         \time 3/16
-                        c'8 [
-                        c'16 ~ ]
+                        c'8
+                        [
+                        c'16
+                        ~
+                        ]
                     }   % measure
                     {   % measure
                         \time 4/16
-                        c'8. [
-                        c'16 ]
+                        c'8.
+                        [
+                        c'16
+                        ]
                     }   % measure
                 }
 
@@ -733,43 +750,51 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 3/8
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
                         c'16
                         c'16
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
                         \time 4/8
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
                         c'16
                         c'16
                         c'16
                         c'16
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
                         \time 3/8
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
                         c'16
                         c'16
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
                         \time 4/8
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
                         c'16
                         c'16
                         c'16
                         c'16
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                 }
 
@@ -804,7 +829,8 @@ class TaleaRhythmMaker(RhythmMaker):
                         \time 3/8
                         \set stemLeftBeamCount = 0
                         \set stemRightBeamCount = 2
-                        c'16 [
+                        c'16
+                        [
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 2
                         c'16
@@ -894,7 +920,8 @@ class TaleaRhythmMaker(RhythmMaker):
                         c'16
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 0
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                 }
 
@@ -997,42 +1024,56 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 3/8
-                        c'16 [
                         c'16
-                        c'16 ]
+                        [
+                        c'16
+                        c'16
+                        ]
                         r16
-                        c'16 [
-                        c'16 ]
+                        c'16
+                        [
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
                         \time 4/8
                         c'16
                         r16
-                        c'16 [
                         c'16
-                        c'16 ]
+                        [
+                        c'16
+                        c'16
+                        ]
                         r16
-                        c'16 [
-                        c'16 ]
+                        c'16
+                        [
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
                         \time 3/8
                         c'16
                         r16
-                        c'16 [
                         c'16
-                        c'16 ]
+                        [
+                        c'16
+                        c'16
+                        ]
                         r16
                     }   % measure
                     {   % measure
                         \time 4/8
-                        c'16 [
                         c'16
-                        c'16 ]
+                        [
+                        c'16
+                        c'16
+                        ]
                         r16
-                        c'16 [
                         c'16
-                        c'16 ]
+                        [
+                        c'16
+                        c'16
+                        ]
                         r16
                     }   % measure
                 }
@@ -1067,43 +1108,51 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 3/8
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
                         r16
                         c'16
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
                         \time 4/8
-                        c'16 [
+                        c'16
+                        [
                         r16
                         c'16
                         c'16
                         c'16
                         r16
                         c'16
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
                         \time 3/8
-                        c'16 [
+                        c'16
+                        [
                         r16
                         c'16
                         c'16
                         c'16
-                        r16 ]
+                        r16
+                        ]
                     }   % measure
                     {   % measure
                         \time 4/8
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
                         r16
                         c'16
                         c'16
                         c'16
-                        r16 ]
+                        r16
+                        ]
                     }   % measure
                 }
 
@@ -1139,18 +1188,21 @@ class TaleaRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 3/8
                         \override RhythmicStaff.Stem.stemlet-length = 0.75
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
                         r16
                         c'16
                         \revert RhythmicStaff.Stem.stemlet-length
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
                         \time 4/8
                         \override RhythmicStaff.Stem.stemlet-length = 0.75
-                        c'16 [
+                        c'16
+                        [
                         r16
                         c'16
                         c'16
@@ -1158,23 +1210,27 @@ class TaleaRhythmMaker(RhythmMaker):
                         r16
                         c'16
                         \revert RhythmicStaff.Stem.stemlet-length
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
                         \time 3/8
                         \override RhythmicStaff.Stem.stemlet-length = 0.75
-                        c'16 [
+                        c'16
+                        [
                         r16
                         c'16
                         c'16
                         c'16
                         \revert RhythmicStaff.Stem.stemlet-length
-                        r16 ]
+                        r16
+                        ]
                     }   % measure
                     {   % measure
                         \time 4/8
                         \override RhythmicStaff.Stem.stemlet-length = 0.75
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
                         r16
@@ -1182,7 +1238,8 @@ class TaleaRhythmMaker(RhythmMaker):
                         c'16
                         c'16
                         \revert RhythmicStaff.Stem.stemlet-length
-                        r16 ]
+                        r16
+                        ]
                     }   % measure
                 }
 
@@ -1227,15 +1284,20 @@ class TaleaRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 3/8
                         r16
-                        c'8 [
-                        c'8. ]
+                        c'8
+                        [
+                        c'8.
+                        ]
                     }   % measure
                     {   % measure
                         \time 4/8
                         c'4
-                        c'16 [
+                        c'16
+                        [
                         c'8
-                        c'16 ~ ]
+                        c'16
+                        ~
+                        ]
                     }   % measure
                     {   % measure
                         \time 3/8
@@ -1244,8 +1306,10 @@ class TaleaRhythmMaker(RhythmMaker):
                     }   % measure
                     {   % measure
                         \time 4/8
-                        c'16 [
-                        c'8 ]
+                        c'16
+                        [
+                        c'8
+                        ]
                         r8.
                         r8
                     }   % measure
@@ -1282,15 +1346,19 @@ class TaleaRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 3/8
                         r16
-                        c'8 [
-                        c'8. ]
+                        c'8
+                        [
+                        c'8.
+                        ]
                     }   % measure
                     {   % measure
                         \time 4/8
                         r4
-                        c'16 [
+                        c'16
+                        [
                         c'8
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
                         \time 3/8
@@ -1300,9 +1368,11 @@ class TaleaRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 4/8
                         r16
-                        c'8 [
+                        c'8
+                        [
                         c'8.
-                        c'8 ]
+                        c'8
+                        ]
                     }   % measure
                 }
 
@@ -1339,16 +1409,21 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 3/8
-                        c'16 [
+                        c'16
+                        [
                         c'8
-                        c'8. ]
+                        c'8.
+                        ]
                     }   % measure
                     {   % measure
                         \time 4/8
                         c'4
-                        c'16 [
+                        c'16
+                        [
                         c'8
-                        c'16 ~ ]
+                        c'16
+                        ~
+                        ]
                     }   % measure
                     {   % measure
                         \time 3/8
@@ -1357,10 +1432,12 @@ class TaleaRhythmMaker(RhythmMaker):
                     }   % measure
                     {   % measure
                         \time 4/8
-                        c'16 [
+                        c'16
+                        [
                         c'8
                         c'8.
-                        c'8 ]
+                        c'8
+                        ]
                     }   % measure
                 }
 
@@ -1395,9 +1472,11 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 3/8
-                        c'16 [
+                        c'16
+                        [
                         c'8
-                        c'8. ]
+                        c'8.
+                        ]
                     }   % measure
                     {   % measure
                         \time 4/8
@@ -1443,9 +1522,11 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 3/8
-                        c'16 [
+                        c'16
+                        [
                         c'8
-                        c'8. ]
+                        c'8.
+                        ]
                     }   % measure
                     {   % measure
                         \time 4/8
@@ -1494,27 +1575,33 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 3/8
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
                         c'16
                         c'16
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
                         \time 4/8
                         r8.
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
                         c'16
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
                         \time 3/8
                         r4
-                        c'16 [
-                        c'16 ]
+                        c'16
+                        [
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
                         \time 4/8
@@ -1553,27 +1640,33 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 3/8
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
                         c'16
                         c'16
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
                         \time 4/8
                         c'8.
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
                         c'16
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
                         \time 3/8
                         c'4
-                        c'16 [
-                        c'16 ]
+                        c'16
+                        [
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
                         \time 4/8
@@ -1669,7 +1762,8 @@ class TaleaRhythmMaker(RhythmMaker):
                         \times 6/7 {
                             c'16
                             c'4
-                            c'8 ~
+                            c'8
+                            ~
                         }
                     }   % measure
                     {   % measure
@@ -1734,7 +1828,8 @@ class TaleaRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 3/8
                         c'4
-                        c'8 ~
+                        c'8
+                        ~
                     }   % measure
                     {   % measure
                         \time 4/8
@@ -1798,7 +1893,8 @@ class TaleaRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 3/8
                         c'4
-                        c'8 ~
+                        c'8
+                        ~
                     }   % measure
                     {   % measure
                         \time 4/8
@@ -1860,21 +1956,27 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 5/8
-                        c'4 ~
+                        c'4
+                        ~
                         c'16
-                        c'4 ~
-                        c'16
-                    }   % measure
-                    {   % measure
-                        c'4 ~
-                        c'16
-                        c'4 ~
+                        c'4
+                        ~
                         c'16
                     }   % measure
                     {   % measure
-                        c'4 ~
+                        c'4
+                        ~
                         c'16
-                        c'4 ~
+                        c'4
+                        ~
+                        c'16
+                    }   % measure
+                    {   % measure
+                        c'4
+                        ~
+                        c'16
+                        c'4
+                        ~
                         c'16
                     }   % measure
                 }
@@ -1909,21 +2011,27 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 5/8
-                        c'16 ~
+                        c'16
+                        ~
                         c'4
-                        c'16 ~
-                        c'4
-                    }   % measure
-                    {   % measure
-                        c'16 ~
-                        c'4
-                        c'16 ~
+                        c'16
+                        ~
                         c'4
                     }   % measure
                     {   % measure
-                        c'16 ~
+                        c'16
+                        ~
                         c'4
-                        c'16 ~
+                        c'16
+                        ~
+                        c'4
+                    }   % measure
+                    {   % measure
+                        c'16
+                        ~
+                        c'4
+                        c'16
+                        ~
                         c'4
                     }   % measure
                 }
@@ -1957,18 +2065,22 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 3/4
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
-                        c'16 ]
+                        c'16
+                        ]
                         c'4
                         c'4
                     }   % measure
                     {   % measure
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
-                        c'16 ]
+                        c'16
+                        ]
                         c'4
                         c'4
                     }   % measure
@@ -2003,24 +2115,32 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 3/4
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
                         c'16
-                        c'8 ~
                         c'8
-                        c'8 ~
-                        c'8 ]
+                        ~
+                        c'8
+                        c'8
+                        ~
+                        c'8
+                        ]
                     }   % measure
                     {   % measure
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
                         c'16
-                        c'8 ~
                         c'8
-                        c'8 ~
-                        c'8 ]
+                        ~
+                        c'8
+                        c'8
+                        ~
+                        c'8
+                        ]
                     }   % measure
                 }
 
@@ -2055,26 +2175,43 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 3/4
-                        c'8. ~ [
-                        c'8 ]
-                        c'4
-                        c'16 ~ [
-                        c'16 ~
-                        c'16 ~ ]
-                    }   % measure
-                    {   % measure
+                        c'8.
+                        ~
+                        [
                         c'8
+                        ]
                         c'4
-                        c'8. ~ [
-                        c'8
-                        c'16 ~ ]
-                    }   % measure
-                    {   % measure
-                        c'16 ~ [
-                        c'16 ~
                         c'16
-                        c'8. ~
-                        c'8 ]
+                        ~
+                        [
+                        c'16
+                        ~
+                        c'16
+                        ~
+                        ]
+                    }   % measure
+                    {   % measure
+                        c'8
+                        c'4
+                        c'8.
+                        ~
+                        [
+                        c'8
+                        c'16
+                        ~
+                        ]
+                    }   % measure
+                    {   % measure
+                        c'16
+                        ~
+                        [
+                        c'16
+                        ~
+                        c'16
+                        c'8.
+                        ~
+                        c'8
+                        ]
                         c'4
                     }   % measure
                 }
@@ -2108,22 +2245,33 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 3/4
-                        c'8. ~ [
-                        c'8 ]
+                        c'8.
+                        ~
+                        [
+                        c'8
+                        ]
                         c'4
-                        c'8. ~
+                        c'8.
+                        ~
                     }   % measure
                     {   % measure
                         c'8
                         c'4
-                        c'8. ~ [
+                        c'8.
+                        ~
+                        [
                         c'8
-                        c'16 ~ ]
+                        c'16
+                        ~
+                        ]
                     }   % measure
                     {   % measure
-                        c'8. [
-                        c'8. ~
-                        c'8 ]
+                        c'8.
+                        [
+                        c'8.
+                        ~
+                        c'8
+                        ]
                         c'4
                     }   % measure
                 }
@@ -2157,23 +2305,36 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 3/4
-                        c'4 ~
-                        c'16 [
-                        c'8. ~
+                        c'4
+                        ~
                         c'16
-                        c'8. ~ ]
-                    }   % measure
-                    {   % measure
-                        c'8 [
-                        c'8 ~
-                        c'8
-                        c'8 ~
+                        [
                         c'8.
-                        c'16 ~ ]
+                        ~
+                        c'16
+                        c'8.
+                        ~
+                        ]
                     }   % measure
                     {   % measure
-                        c'8. [
-                        c'16 ~ ]
+                        c'8
+                        [
+                        c'8
+                        ~
+                        c'8
+                        c'8
+                        ~
+                        c'8.
+                        c'16
+                        ~
+                        ]
+                    }   % measure
+                    {   % measure
+                        c'8.
+                        [
+                        c'16
+                        ~
+                        ]
                         c'4
                         c'4
                     }   % measure
@@ -2212,16 +2373,21 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 3/8
-                        c'16 [
+                        c'16
+                        [
                         c'8
-                        c'8. ]
+                        c'8.
+                        ]
                     }   % measure
                     {   % measure
                         \time 4/8
                         c'4
-                        c'16 [
+                        c'16
+                        [
                         c'8
-                        c'16 ~ ]
+                        c'16
+                        ~
+                        ]
                     }   % measure
                     {   % measure
                         \time 3/8
@@ -2230,10 +2396,12 @@ class TaleaRhythmMaker(RhythmMaker):
                     }   % measure
                     {   % measure
                         \time 4/8
-                        c'16 [
+                        c'16
+                        [
                         c'8
                         c'8.
-                        c'8 ]
+                        c'8
+                        ]
                     }   % measure
                 }
 
@@ -2266,18 +2434,23 @@ class TaleaRhythmMaker(RhythmMaker):
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 1/1 {
-                            c'16 [
+                            c'16
+                            [
                             c'8
-                            c'8. ]
+                            c'8.
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/8
                         \times 8/9 {
                             c'4
-                            c'16 [
+                            c'16
+                            [
                             c'8
-                            c'8 ~ ]
+                            c'8
+                            ~
+                            ]
                         }
                     }   % measure
                     {   % measure
@@ -2292,8 +2465,10 @@ class TaleaRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 4/8
                         \times 8/9 {
-                            c'8 [
-                            c'8. ]
+                            c'8
+                            [
+                            c'8.
+                            ]
                             c'4
                         }
                     }   % measure
@@ -2328,18 +2503,22 @@ class TaleaRhythmMaker(RhythmMaker):
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 1/1 {
-                            c'16 [
+                            c'16
+                            [
                             c'8
-                            c'8. ]
+                            c'8.
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/8
                         \times 4/5 {
                             c'4
-                            c'16 [
+                            c'16
+                            [
                             c'8
-                            c'8. ]
+                            c'8.
+                            ]
                         }
                     }   % measure
                     {   % measure
@@ -2347,18 +2526,25 @@ class TaleaRhythmMaker(RhythmMaker):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 1/1 {
                             c'4
-                            c'16 [
-                            c'16 ~ ]
+                            c'16
+                            [
+                            c'16
+                            ~
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/8
                         \times 4/5 {
-                            c'16 [
-                            c'8. ]
+                            c'16
+                            [
+                            c'8.
+                            ]
                             c'4
-                            c'16 [
-                            c'16 ]
+                            c'16
+                            [
+                            c'16
+                            ]
                         }
                     }   % measure
                 }
@@ -2395,9 +2581,11 @@ class TaleaRhythmMaker(RhythmMaker):
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 1/1 {
-                            c'16 [
+                            c'16
+                            [
                             c'8
-                            c'8. ]
+                            c'8.
+                            ]
                         }
                     }   % measure
                     {   % measure
@@ -2405,26 +2593,33 @@ class TaleaRhythmMaker(RhythmMaker):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 8/7 {
                             c'4
-                            c'16 [
-                            c'8 ]
+                            c'16
+                            [
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 1/1 {
-                            c'8. [
-                            c'8. ~ ]
+                            c'8.
+                            [
+                            c'8.
+                            ~
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 8/7 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'8
-                            c'8. ]
+                            c'8.
+                            ]
                         }
                     }   % measure
                 }
@@ -2468,8 +2663,10 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 3/8
-                        c'16 [
-                        c'8 ]
+                        c'16
+                        [
+                        c'8
+                        ]
                         r8.
                     }   % measure
                     {   % measure
@@ -2479,14 +2676,19 @@ class TaleaRhythmMaker(RhythmMaker):
                     }   % measure
                     {   % measure
                         r16
-                        c'8. [
-                        c'8 ~ ]
+                        c'8.
+                        [
+                        c'8
+                        ~
+                        ]
                     }   % measure
                     {   % measure
                         c'8
                         r16
-                        c'8 [
-                        c'16 ]
+                        c'8
+                        [
+                        c'16
+                        ]
                     }   % measure
                 }
 
@@ -2519,23 +2721,33 @@ class TaleaRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 3/8
                         r16
-                        c'8 [
-                        c'8. ]
+                        c'8
+                        [
+                        c'8.
+                        ]
                     }   % measure
                     {   % measure
                         c'4
-                        c'16 [
-                        c'16 ~ ]
-                    }   % measure
-                    {   % measure
-                        c'16 [
-                        c'8.
-                        c'8 ~ ]
-                    }   % measure
-                    {   % measure
-                        c'8 [
                         c'16
-                        c'8 ]
+                        [
+                        c'16
+                        ~
+                        ]
+                    }   % measure
+                    {   % measure
+                        c'16
+                        [
+                        c'8.
+                        c'8
+                        ~
+                        ]
+                    }   % measure
+                    {   % measure
+                        c'8
+                        [
+                        c'16
+                        c'8
+                        ]
                         r16
                     }   % measure
                 }
@@ -2574,14 +2786,16 @@ class TaleaRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 3/8
                         r4
-                        c'8 ~
+                        c'8
+                        ~
                     }   % measure
                     {   % measure
                         \time 4/8
                         \times 8/9 {
                             c'8
                             r4
-                            c'8. ~
+                            c'8.
+                            ~
                         }
                     }   % measure
                     {   % measure
@@ -2590,7 +2804,8 @@ class TaleaRhythmMaker(RhythmMaker):
                         \times 3/4 {
                             c'16
                             c'4
-                            c'8. ~
+                            c'8.
+                            ~
                         }
                     }   % measure
                     {   % measure
@@ -2633,7 +2848,8 @@ class TaleaRhythmMaker(RhythmMaker):
                         \times 6/7 {
                             c'16
                             c'4
-                            c'8 ~
+                            c'8
+                            ~
                         }
                     }   % measure
                     {   % measure
@@ -2647,7 +2863,8 @@ class TaleaRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 3/8
                         r4
-                        c'8 ~
+                        c'8
+                        ~
                     }   % measure
                     {   % measure
                         \time 4/8
@@ -2706,7 +2923,8 @@ class TaleaRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 3/8
                         c'4
-                        c'8 ~
+                        c'8
+                        ~
                     }   % measure
                     {   % measure
                         \time 4/8
@@ -2722,7 +2940,8 @@ class TaleaRhythmMaker(RhythmMaker):
                         \times 3/4 {
                             r16
                             c'4
-                            c'8. ~
+                            c'8.
+                            ~
                         }
                     }   % measure
                     {   % measure
@@ -2765,7 +2984,8 @@ class TaleaRhythmMaker(RhythmMaker):
                         \times 6/7 {
                             r16
                             c'4
-                            c'8 ~
+                            c'8
+                            ~
                         }
                     }   % measure
                     {   % measure
@@ -2779,7 +2999,8 @@ class TaleaRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 3/8
                         c'4
-                        c'8 ~
+                        c'8
+                        ~
                     }   % measure
                     {   % measure
                         \time 4/8
@@ -2835,25 +3056,35 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 3/8
-                        c'16 [
+                        c'16
+                        [
                         c'8
-                        c'8. ]
+                        c'8.
+                        ]
                     }   % measure
                     {   % measure
                         c'4
-                        c'16 [
-                        c'16 ~ ]
+                        c'16
+                        [
+                        c'16
+                        ~
+                        ]
                     }   % measure
                     {   % measure
-                        c'16 [
+                        c'16
+                        [
                         c'8.
-                        c'8 ~ ]
+                        c'8
+                        ~
+                        ]
                     }   % measure
                     {   % measure
-                        c'8 [
+                        c'8
+                        [
                         c'16
                         c'8
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                 }
 
@@ -2917,25 +3148,35 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 3/8
-                        c'16 [
+                        c'16
+                        [
                         c'8
-                        c'8. ]
+                        c'8.
+                        ]
                     }   % measure
                     {   % measure
                         c'4
-                        c'16 [
-                        c'16 ~ ]
+                        c'16
+                        [
+                        c'16
+                        ~
+                        ]
                     }   % measure
                     {   % measure
-                        c'16 [
+                        c'16
+                        [
                         c'8.
-                        c'8 ~ ]
+                        c'8
+                        ~
+                        ]
                     }   % measure
                     {   % measure
-                        c'8 [
+                        c'8
+                        [
                         c'16
                         c'8
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                 }
 
@@ -2966,25 +3207,33 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 3/8
-                        c'16 [
+                        c'16
+                        [
                         c'8
-                        c'8. ]
+                        c'8.
+                        ]
                     }   % measure
                     {   % measure
                         c'4
-                        c'16 [
-                        c'16 ]
+                        c'16
+                        [
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
                         r16
-                        c'8. [
-                        c'8 ]
+                        c'8.
+                        [
+                        c'8
+                        ]
                     }   % measure
                     {   % measure
                         r8
-                        c'16 [
+                        c'16
+                        [
                         c'8
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                 }
 
@@ -3025,36 +3274,44 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 3/8
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
                         c'16
                         c'16
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
                         c'16
                         c'16
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
                         c'16
                         c'16
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
                         c'16
                         c'16
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                 }
 
@@ -3090,37 +3347,48 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 3/8
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
                         c'16
                         c'16
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
-                        c'16 [
                         c'16
-                        c'32 ~ ]
-                        c'32 [
+                        [
+                        c'16
+                        c'32
+                        ~
+                        ]
+                        c'32
+                        [
                         c'16
                         c'16
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
                         c'16
-                        c'16 ]
+                        c'16
+                        ]
                         c'16
                     }   % measure
                     {   % measure
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
                         c'16
                         c'16
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                 }
 
@@ -3160,38 +3428,47 @@ class TaleaRhythmMaker(RhythmMaker):
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 1/1 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 5/6 {
-                            c'16 [
                             c'16
-                            c'16 ]
+                            [
+                            c'16
+                            c'16
+                            ]
                         }
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 1/1 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
-                            c'32 ~ ]
+                            c'32
+                            ~
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/11 {
-                            c'32 [
+                            c'32
+                            [
                             c'16
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 1/1 {
@@ -3201,13 +3478,15 @@ class TaleaRhythmMaker(RhythmMaker):
                     {   % measure
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 12/13 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
                             c'16
                             c'16
-                            c'32 ]
+                            c'32
+                            ]
                         }
                     }   % measure
                 }
@@ -3250,14 +3529,16 @@ class TaleaRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 3/8
                         c'4
-                        c'8 ~
+                        c'8
+                        ~
                     }   % measure
                     {   % measure
                         \time 4/8
                         \times 8/9 {
                             c'8
                             c'4
-                            c'8. ~
+                            c'8.
+                            ~
                         }
                     }   % measure
                     {   % measure
@@ -3266,7 +3547,8 @@ class TaleaRhythmMaker(RhythmMaker):
                         \times 3/4 {
                             c'16
                             c'4
-                            c'8. ~
+                            c'8.
+                            ~
                         }
                     }   % measure
                     {   % measure
@@ -3310,7 +3592,8 @@ class TaleaRhythmMaker(RhythmMaker):
                         \times 6/7 {
                             c'16
                             c'4
-                            c'8 ~
+                            c'8
+                            ~
                         }
                     }   % measure
                     {   % measure
@@ -3324,7 +3607,8 @@ class TaleaRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 3/8
                         c'4
-                        c'8 ~
+                        c'8
+                        ~
                     }   % measure
                     {   % measure
                         \time 4/8
@@ -3369,14 +3653,16 @@ class TaleaRhythmMaker(RhythmMaker):
                         \times 3/4 {
                             c'16
                             c'4
-                            c'8. ~
+                            c'8.
+                            ~
                         }
                     }   % measure
                     {   % measure
                         \time 4/8
                         c'16
                         c'4
-                        c'8. ~
+                        c'8.
+                        ~
                     }   % measure
                     {   % measure
                         \time 3/8
@@ -3384,7 +3670,8 @@ class TaleaRhythmMaker(RhythmMaker):
                         \times 6/7 {
                             c'16
                             c'4
-                            c'8 ~
+                            c'8
+                            ~
                         }
                     }   % measure
                     {   % measure
@@ -3479,23 +3766,27 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 3/8
-                        c'32 [
+                        c'32
+                        [
                         c'32
                         c'32
-                        c'32 ]
+                        c'32
+                        ]
                         c'4
                     }   % measure
                     {   % measure
                         \time 4/8
                         r8
                         c'4
-                        c'8 ~
+                        c'8
+                        ~
                     }   % measure
                     {   % measure
                         \time 3/8
                         c'8
                         r8
-                        c'8 ~
+                        c'8
+                        ~
                     }   % measure
                     {   % measure
                         \time 4/8
@@ -3530,16 +3821,19 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 3/8
-                        c'4. ~
+                        c'4.
+                        ~
                     }   % measure
                     {   % measure
                         \time 4/8
-                        c'2 ~
+                        c'2
+                        ~
                     }   % measure
                     {   % measure
                         \time 3/8
                         c'8
-                        c'4 ~
+                        c'4
+                        ~
                     }   % measure
                     {   % measure
                         \time 4/8
@@ -3580,25 +3874,35 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 4/8
-                        c'4 ~
-                        c'16 [
-                        c'8. ]
+                        c'4
+                        ~
+                        c'16
+                        [
+                        c'8.
+                        ]
                     }   % measure
                     {   % measure
                         \time 3/8
-                        c'8. [
-                        c'8. ]
+                        c'8.
+                        [
+                        c'8.
+                        ]
                     }   % measure
                     {   % measure
                         \time 4/8
-                        c'4 ~
-                        c'16 [
-                        c'8. ]
+                        c'4
+                        ~
+                        c'16
+                        [
+                        c'8.
+                        ]
                     }   % measure
                     {   % measure
                         \time 3/8
-                        c'8. [
-                        c'8. ]
+                        c'8.
+                        [
+                        c'8.
+                        ]
                     }   % measure
                 }
 
@@ -3631,25 +3935,38 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 4/8
-                        c'4 ~
-                        c'16 [
-                        c'8. ~ ]
+                        c'4
+                        ~
+                        c'16
+                        [
+                        c'8.
+                        ~
+                        ]
                     }   % measure
                     {   % measure
                         \time 3/8
-                        c'8. [
-                        c'8. ~ ]
+                        c'8.
+                        [
+                        c'8.
+                        ~
+                        ]
                     }   % measure
                     {   % measure
                         \time 4/8
-                        c'4 ~
-                        c'16 [
-                        c'8. ~ ]
+                        c'4
+                        ~
+                        c'16
+                        [
+                        c'8.
+                        ~
+                        ]
                     }   % measure
                     {   % measure
                         \time 3/8
-                        c'8. [
-                        c'8. ]
+                        c'8.
+                        [
+                        c'8.
+                        ]
                     }   % measure
                 }
 
@@ -3686,25 +4003,37 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 4/8
-                        c'4 ~
-                        c'16 [
-                        c'8. ~ ]
+                        c'4
+                        ~
+                        c'16
+                        [
+                        c'8.
+                        ~
+                        ]
                     }   % measure
                     {   % measure
                         \time 3/8
-                        c'8. [
-                        c'8. ]
+                        c'8.
+                        [
+                        c'8.
+                        ]
                     }   % measure
                     {   % measure
                         \time 4/8
-                        c'4 ~
-                        c'16 [
-                        c'8. ~ ]
+                        c'4
+                        ~
+                        c'16
+                        [
+                        c'8.
+                        ~
+                        ]
                     }   % measure
                     {   % measure
                         \time 3/8
-                        c'8. [
-                        c'8. ]
+                        c'8.
+                        [
+                        c'8.
+                        ]
                     }   % measure
                 }
 
@@ -3739,24 +4068,37 @@ class TaleaRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 4/8
                         c'4
-                        c'16 \repeatTie [
-                        c'8. ]
+                        c'16
+                        \repeatTie
+                        [
+                        c'8.
+                        ]
                     }   % measure
                     {   % measure
                         \time 3/8
-                        c'8. \repeatTie [
-                        c'8. ]
+                        c'8.
+                        \repeatTie
+                        [
+                        c'8.
+                        ]
                     }   % measure
                     {   % measure
                         \time 4/8
-                        c'4 \repeatTie
-                        c'16 \repeatTie [
-                        c'8. ]
+                        c'4
+                        \repeatTie
+                        c'16
+                        \repeatTie
+                        [
+                        c'8.
+                        ]
                     }   % measure
                     {   % measure
                         \time 3/8
-                        c'8. \repeatTie [
-                        c'8. ]
+                        c'8.
+                        \repeatTie
+                        [
+                        c'8.
+                        ]
                     }   % measure
                 }
 
@@ -3789,25 +4131,34 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 4/8
-                        c'4 ~
+                        c'4
+                        ~
                         c'16
                         r8.
                     }   % measure
                     {   % measure
                         \time 3/8
-                        c'8. ~ [
-                        c'8. ~ ]
+                        c'8.
+                        ~
+                        [
+                        c'8.
+                        ~
+                        ]
                     }   % measure
                     {   % measure
                         \time 4/8
-                        c'4 ~
+                        c'4
+                        ~
                         c'16
                         r8.
                     }   % measure
                     {   % measure
                         \time 3/8
-                        c'8. ~ [
-                        c'8. ]
+                        c'8.
+                        ~
+                        [
+                        c'8.
+                        ]
                     }   % measure
                 }
 
@@ -3861,42 +4212,54 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 1/4
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
                         \times 2/3 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
                         \times 2/3 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
                         \times 2/3 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                 }
@@ -3930,45 +4293,57 @@ class TaleaRhythmMaker(RhythmMaker):
                 {
                     {   % measure
                         \time 1/4
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 4/3 {
-                            c'16 [
                             c'16
-                            c'16 ]
+                            [
+                            c'16
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 4/3 {
-                            c'16 [
                             c'16
-                            c'16 ]
+                            [
+                            c'16
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
-                        c'16 [
+                        c'16
+                        [
                         c'16
                         c'16
-                        c'16 ]
+                        c'16
+                        ]
                     }   % measure
                     {   % measure
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 4/3 {
-                            c'16 [
                             c'16
-                            c'16 ]
+                            [
+                            c'16
+                            c'16
+                            ]
                         }
                     }   % measure
                 }
@@ -4006,8 +4381,10 @@ class TaleaRhythmMaker(RhythmMaker):
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 1/1 {
-                            c'8. [
-                            c'8. ]
+                            c'8.
+                            [
+                            c'8.
+                            ]
                         }
                     }   % measure
                     {   % measure
@@ -4021,8 +4398,10 @@ class TaleaRhythmMaker(RhythmMaker):
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 1/1 {
-                            c'8. [
-                            c'8. ]
+                            c'8.
+                            [
+                            c'8.
+                            ]
                         }
                     }   % measure
                     {   % measure
@@ -4065,8 +4444,10 @@ class TaleaRhythmMaker(RhythmMaker):
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 1/1 {
-                            c'8. [
-                            c'8. ]
+                            c'8.
+                            [
+                            c'8.
+                            ]
                         }
                     }   % measure
                     {   % measure
@@ -4081,8 +4462,10 @@ class TaleaRhythmMaker(RhythmMaker):
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 1/1 {
-                            c'8. [
-                            c'8. ]
+                            c'8.
+                            [
+                            c'8.
+                            ]
                         }
                     }   % measure
                     {   % measure
@@ -4129,8 +4512,11 @@ class TaleaRhythmMaker(RhythmMaker):
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 1/1 {
-                            c'8. [
-                            c'8. ~ ]
+                            c'8.
+                            [
+                            c'8.
+                            ~
+                            ]
                         }
                     }   % measure
                     {   % measure
@@ -4138,15 +4524,19 @@ class TaleaRhythmMaker(RhythmMaker):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 1/1 {
                             c'4
-                            c'4 ~
+                            c'4
+                            ~
                         }
                     }   % measure
                     {   % measure
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 1/1 {
-                            c'8. [
-                            c'8. ~ ]
+                            c'8.
+                            [
+                            c'8.
+                            ~
+                            ]
                         }
                     }   % measure
                     {   % measure
@@ -4194,31 +4584,42 @@ class TaleaRhythmMaker(RhythmMaker):
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 1/1 {
-                            c'8. ~ [
-                            c'8. ~ ]
+                            c'8.
+                            ~
+                            [
+                            c'8.
+                            ~
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 1/1 {
-                            c'4 ~
-                            c'4 ~
+                            c'4
+                            ~
+                            c'4
+                            ~
                         }
                     }   % measure
                     {   % measure
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 1/1 {
-                            c'8. ~ [
-                            c'8. ~ ]
+                            c'8.
+                            ~
+                            [
+                            c'8.
+                            ~
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 1/1 {
-                            c'4 ~
+                            c'4
+                            ~
                             c'4
                         }
                     }   % measure
@@ -4256,8 +4657,10 @@ class TaleaRhythmMaker(RhythmMaker):
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 6/7 {
-                            c'8. [
-                            c'8. ]
+                            c'8.
+                            [
+                            c'8.
+                            ]
                             r16
                         }
                     }   % measure
@@ -4275,8 +4678,11 @@ class TaleaRhythmMaker(RhythmMaker):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 6/7 {
                             r8.
-                            c'8. [
-                            c'16 ~ ]
+                            c'8.
+                            [
+                            c'16
+                            ~
+                            ]
                         }
                     }   % measure
                     {   % measure
@@ -4319,8 +4725,10 @@ class TaleaRhythmMaker(RhythmMaker):
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 6/7 {
-                            c'8. [
-                            c'8. ]
+                            c'8.
+                            [
+                            c'8.
+                            ]
                             r16
                         }
                     }   % measure
@@ -4336,8 +4744,11 @@ class TaleaRhythmMaker(RhythmMaker):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 6/7 {
                             r8.
-                            c'8. [
-                            c'16 ~ ]
+                            c'8.
+                            [
+                            c'16
+                            ~
+                            ]
                         }
                     }   % measure
                     {   % measure

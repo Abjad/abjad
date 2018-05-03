@@ -11,9 +11,12 @@ def test_spannertools_Glissando_01():
         r'''
         \new Staff
         {
-            c'8 \glissando
-            cs'8 \glissando
-            d'8 \glissando
+            c'8
+            \glissando
+            cs'8
+            \glissando
+            d'8
+            \glissando
             ef'8
             e'8
             f'8

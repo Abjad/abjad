@@ -25,25 +25,25 @@ class Label(abctools.AbjadObject):
                 \new Staff
                 {
                     c'4
-                        ^ \markup {
-                            \small
-                                C4
-                            }
+                    ^ \markup {
+                        \small
+                            C4
+                        }
                     e'4
-                        ^ \markup {
-                            \small
-                                E4
-                            }
+                    ^ \markup {
+                        \small
+                            E4
+                        }
                     d'4
-                        ^ \markup {
-                            \small
-                                D4
-                            }
+                    ^ \markup {
+                        \small
+                            D4
+                        }
                     f'4
-                        ^ \markup {
-                            \small
-                                F4
-                            }
+                    ^ \markup {
+                        \small
+                            F4
+                        }
                 }
 
         ..  container:: example expression
@@ -77,25 +77,25 @@ class Label(abctools.AbjadObject):
                 \new Staff
                 {
                     c'4
-                        ^ \markup {
-                            \small
-                                C4
-                            }
+                    ^ \markup {
+                        \small
+                            C4
+                        }
                     e'4
-                        ^ \markup {
-                            \small
-                                E4
-                            }
+                    ^ \markup {
+                        \small
+                            E4
+                        }
                     d'4
-                        ^ \markup {
-                            \small
-                                D4
-                            }
+                    ^ \markup {
+                        \small
+                            D4
+                        }
                     f'4
-                        ^ \markup {
-                            \small
-                                F4
-                            }
+                    ^ \markup {
+                        \small
+                            F4
+                        }
                 }
 
     ..  container:: example
@@ -115,25 +115,25 @@ class Label(abctools.AbjadObject):
                 \new Staff
                 {
                     c'4
-                        ^ \markup {
-                            \small
-                                1/4
-                            }
+                    ^ \markup {
+                        \small
+                            1/4
+                        }
                     e'4
-                        ^ \markup {
-                            \small
-                                1/4
-                            }
+                    ^ \markup {
+                        \small
+                            1/4
+                        }
                     d'4
-                        ^ \markup {
-                            \small
-                                1/4
-                            }
+                    ^ \markup {
+                        \small
+                            1/4
+                        }
                     f'4
-                        ^ \markup {
-                            \small
-                                1/4
-                            }
+                    ^ \markup {
+                        \small
+                            1/4
+                        }
                 }
 
         ..  container:: example expression
@@ -167,25 +167,25 @@ class Label(abctools.AbjadObject):
                 \new Staff
                 {
                     c'4
-                        ^ \markup {
-                            \small
-                                1/4
-                            }
+                    ^ \markup {
+                        \small
+                            1/4
+                        }
                     e'4
-                        ^ \markup {
-                            \small
-                                1/4
-                            }
+                    ^ \markup {
+                        \small
+                            1/4
+                        }
                     d'4
-                        ^ \markup {
-                            \small
-                                1/4
-                            }
+                    ^ \markup {
+                        \small
+                            1/4
+                        }
                     f'4
-                        ^ \markup {
-                            \small
-                                1/4
-                            }
+                    ^ \markup {
+                        \small
+                            1/4
+                        }
                 }
 
     '''
@@ -406,7 +406,8 @@ class Label(abctools.AbjadObject):
                         \once \override Dots.color = #red
                         \once \override NoteHead.color = #red
                         \once \override Stem.color = #red
-                        cs'8. [
+                        cs'8.
+                        [
                         \once \override Dots.color = #red
                         \once \override Rest.color = #red
                         r8.
@@ -417,7 +418,8 @@ class Label(abctools.AbjadObject):
                         \once \override Dots.color = #red
                         \once \override NoteHead.color = #red
                         \once \override Stem.color = #red
-                        <c' cs' a'>8. ]
+                        <c' cs' a'>8.
+                        ]
                     }
 
             ..  container:: example expression
@@ -437,7 +439,8 @@ class Label(abctools.AbjadObject):
                         \once \override Dots.color = #red
                         \once \override NoteHead.color = #red
                         \once \override Stem.color = #red
-                        cs'8. [
+                        cs'8.
+                        [
                         \once \override Dots.color = #red
                         \once \override Rest.color = #red
                         r8.
@@ -448,7 +451,8 @@ class Label(abctools.AbjadObject):
                         \once \override Dots.color = #red
                         \once \override NoteHead.color = #red
                         \once \override Stem.color = #red
-                        <c' cs' a'>8. ]
+                        <c' cs' a'>8.
+                        ]
                     }
 
         Returns none.
@@ -685,25 +689,25 @@ class Label(abctools.AbjadObject):
                     \new Staff
                     {
                         c'8
-                            ^ \markup {
-                                \small
-                                    c'
-                                }
+                        ^ \markup {
+                            \small
+                                c'
+                            }
                         d'8
-                            ^ \markup {
-                                \small
-                                    d'
-                                }
+                        ^ \markup {
+                            \small
+                                d'
+                            }
                         e'8
-                            ^ \markup {
-                                \small
-                                    e'
-                                }
+                        ^ \markup {
+                            \small
+                                e'
+                            }
                         f'8
-                            ^ \markup {
-                                \small
-                                    f'
-                                }
+                        ^ \markup {
+                            \small
+                                f'
+                            }
                     }
 
                 >>> abjad.label(staff).remove_markup()
@@ -733,25 +737,25 @@ class Label(abctools.AbjadObject):
                     \new Staff
                     {
                         c'8
-                            ^ \markup {
-                                \small
-                                    c'
-                                }
+                        ^ \markup {
+                            \small
+                                c'
+                            }
                         d'8
-                            ^ \markup {
-                                \small
-                                    d'
-                                }
+                        ^ \markup {
+                            \small
+                                d'
+                            }
                         e'8
-                            ^ \markup {
-                                \small
-                                    e'
-                                }
+                        ^ \markup {
+                            \small
+                                e'
+                            }
                         f'8
-                            ^ \markup {
-                                \small
-                                    f'
-                                }
+                        ^ \markup {
+                            \small
+                                f'
+                            }
                     }
 
                 >>> expression = abjad.label().remove_markup()
@@ -804,35 +808,35 @@ class Label(abctools.AbjadObject):
                         \new Staff
                         {
                             c'8
-                                ^ \markup {
-                                    \tiny
-                                        0
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    0
+                                }
                             d'4
-                                ^ \markup {
-                                    \tiny
-                                        1
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    1
+                                }
                             e'16
-                                ^ \markup {
-                                    \tiny
-                                        3
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    3
+                                }
                             f'16
-                                ^ \markup {
-                                    \tiny
-                                        4
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    4
+                                }
                         }
                         \new Staff
                         {
                             \clef "alto"
                             g4
                             f4
-                                ^ \markup {
-                                    \tiny
-                                        2
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    2
+                                }
                         }
                         \new Staff
                         {
@@ -862,35 +866,35 @@ class Label(abctools.AbjadObject):
                         \new Staff
                         {
                             c'8
-                                ^ \markup {
-                                    \tiny
-                                        0
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    0
+                                }
                             d'4
-                                ^ \markup {
-                                    \tiny
-                                        1
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    1
+                                }
                             e'16
-                                ^ \markup {
-                                    \tiny
-                                        3
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    3
+                                }
                             f'16
-                                ^ \markup {
-                                    \tiny
-                                        4
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    4
+                                }
                         }
                         \new Staff
                         {
                             \clef "alto"
                             g4
                             f4
-                                ^ \markup {
-                                    \tiny
-                                        2
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    2
+                                }
                         }
                         \new Staff
                         {
@@ -925,60 +929,60 @@ class Label(abctools.AbjadObject):
                         \new Staff
                         {
                             c'8
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                0
-                                                -5
-                                                -24
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            0
+                                            -5
+                                            -24
+                                        }
+                                }
                             d'4
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                2
-                                                -5
-                                                -24
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            2
+                                            -5
+                                            -24
+                                        }
+                                }
                             e'16
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                4
-                                                -7
-                                                -24
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            4
+                                            -7
+                                            -24
+                                        }
+                                }
                             f'16
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                5
-                                                -7
-                                                -24
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            5
+                                            -7
+                                            -24
+                                        }
+                                }
                         }
                         \new Staff
                         {
                             \clef "alto"
                             g4
                             f4
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                2
-                                                -7
-                                                -24
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            2
+                                            -7
+                                            -24
+                                        }
+                                }
                         }
                         \new Staff
                         {
@@ -1009,60 +1013,60 @@ class Label(abctools.AbjadObject):
                         \new Staff
                         {
                             c'8
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                0
-                                                -5
-                                                -24
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            0
+                                            -5
+                                            -24
+                                        }
+                                }
                             d'4
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                2
-                                                -5
-                                                -24
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            2
+                                            -5
+                                            -24
+                                        }
+                                }
                             e'16
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                4
-                                                -7
-                                                -24
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            4
+                                            -7
+                                            -24
+                                        }
+                                }
                             f'16
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                5
-                                                -7
-                                                -24
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            5
+                                            -7
+                                            -24
+                                        }
+                                }
                         }
                         \new Staff
                         {
                             \clef "alto"
                             g4
                             f4
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                2
-                                                -7
-                                                -24
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            2
+                                            -7
+                                            -24
+                                        }
+                                }
                         }
                         \new Staff
                         {
@@ -1096,58 +1100,58 @@ class Label(abctools.AbjadObject):
                         \new Staff
                         {
                             c'8
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                7
-                                                0
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            7
+                                            0
+                                        }
+                                }
                             d'4
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                7
-                                                2
-                                                0
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            7
+                                            2
+                                            0
+                                        }
+                                }
                             e'16
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                5
-                                                4
-                                                0
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            5
+                                            4
+                                            0
+                                        }
+                                }
                             f'16
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                5
-                                                0
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            5
+                                            0
+                                        }
+                                }
                         }
                         \new Staff
                         {
                             \clef "alto"
                             g4
                             f4
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                5
-                                                2
-                                                0
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            5
+                                            2
+                                            0
+                                        }
+                                }
                         }
                         \new Staff
                         {
@@ -1178,58 +1182,58 @@ class Label(abctools.AbjadObject):
                         \new Staff
                         {
                             c'8
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                7
-                                                0
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            7
+                                            0
+                                        }
+                                }
                             d'4
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                7
-                                                2
-                                                0
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            7
+                                            2
+                                            0
+                                        }
+                                }
                             e'16
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                5
-                                                4
-                                                0
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            5
+                                            4
+                                            0
+                                        }
+                                }
                             f'16
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                5
-                                                0
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            5
+                                            0
+                                        }
+                                }
                         }
                         \new Staff
                         {
                             \clef "alto"
                             g4
                             f4
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                5
-                                                2
-                                                0
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            5
+                                            2
+                                            0
+                                        }
+                                }
                         }
                         \new Staff
                         {
@@ -1263,55 +1267,55 @@ class Label(abctools.AbjadObject):
                         \new Staff
                         {
                             c'8
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                15
-                                                12
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            15
+                                            12
+                                        }
+                                }
                             d'4
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                16
-                                                12
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            16
+                                            12
+                                        }
+                                }
                             e'16
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                17
-                                                11
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            17
+                                            11
+                                        }
+                                }
                             f'16
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                18
-                                                11
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            18
+                                            11
+                                        }
+                                }
                         }
                         \new Staff
                         {
                             \clef "alto"
                             g4
                             f4
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                16
-                                                11
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            16
+                                            11
+                                        }
+                                }
                         }
                         \new Staff
                         {
@@ -1342,55 +1346,55 @@ class Label(abctools.AbjadObject):
                         \new Staff
                         {
                             c'8
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                15
-                                                12
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            15
+                                            12
+                                        }
+                                }
                             d'4
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                16
-                                                12
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            16
+                                            12
+                                        }
+                                }
                             e'16
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                17
-                                                11
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            17
+                                            11
+                                        }
+                                }
                             f'16
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                18
-                                                11
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            18
+                                            11
+                                        }
+                                }
                         }
                         \new Staff
                         {
                             \clef "alto"
                             g4
                             f4
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                16
-                                                11
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            16
+                                            11
+                                        }
+                                }
                         }
                         \new Staff
                         {
@@ -1424,55 +1428,55 @@ class Label(abctools.AbjadObject):
                         \new Staff
                         {
                             c'8
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                12
-                                                7
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            12
+                                            7
+                                        }
+                                }
                             d'4
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                2
-                                                7
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            2
+                                            7
+                                        }
+                                }
                             e'16
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                4
-                                                5
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            4
+                                            5
+                                        }
+                                }
                             f'16
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                5
-                                                5
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            5
+                                            5
+                                        }
+                                }
                         }
                         \new Staff
                         {
                             \clef "alto"
                             g4
                             f4
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                2
-                                                5
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            2
+                                            5
+                                        }
+                                }
                         }
                         \new Staff
                         {
@@ -1503,55 +1507,55 @@ class Label(abctools.AbjadObject):
                         \new Staff
                         {
                             c'8
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                12
-                                                7
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            12
+                                            7
+                                        }
+                                }
                             d'4
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                2
-                                                7
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            2
+                                            7
+                                        }
+                                }
                             e'16
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                4
-                                                5
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            4
+                                            5
+                                        }
+                                }
                             f'16
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                5
-                                                5
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            5
+                                            5
+                                        }
+                                }
                         }
                         \new Staff
                         {
                             \clef "alto"
                             g4
                             f4
-                                ^ \markup {
-                                    \tiny
-                                        \column
-                                            {
-                                                2
-                                                5
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            2
+                                            5
+                                        }
+                                }
                         }
                         \new Staff
                         {
@@ -1585,40 +1589,40 @@ class Label(abctools.AbjadObject):
                         \new Staff
                         {
                             c'8
-                                ^ \markup {
+                            ^ \markup {
+                                \tiny
                                     \tiny
-                                        \tiny
-                                            1000020
-                                    }
+                                        1000020
+                                }
                             d'4
-                                ^ \markup {
+                            ^ \markup {
+                                \tiny
                                     \tiny
-                                        \tiny
-                                            0010020
-                                    }
+                                        0010020
+                                }
                             e'16
-                                ^ \markup {
+                            ^ \markup {
+                                \tiny
                                     \tiny
-                                        \tiny
-                                            0100110
-                                    }
+                                        0100110
+                                }
                             f'16
-                                ^ \markup {
+                            ^ \markup {
+                                \tiny
                                     \tiny
-                                        \tiny
-                                            1000020
-                                    }
+                                        1000020
+                                }
                         }
                         \new Staff
                         {
                             \clef "alto"
                             g4
                             f4
-                                ^ \markup {
+                            ^ \markup {
+                                \tiny
                                     \tiny
-                                        \tiny
-                                            0011010
-                                    }
+                                        0011010
+                                }
                         }
                         \new Staff
                         {
@@ -1649,40 +1653,40 @@ class Label(abctools.AbjadObject):
                         \new Staff
                         {
                             c'8
-                                ^ \markup {
+                            ^ \markup {
+                                \tiny
                                     \tiny
-                                        \tiny
-                                            1000020
-                                    }
+                                        1000020
+                                }
                             d'4
-                                ^ \markup {
+                            ^ \markup {
+                                \tiny
                                     \tiny
-                                        \tiny
-                                            0010020
-                                    }
+                                        0010020
+                                }
                             e'16
-                                ^ \markup {
+                            ^ \markup {
+                                \tiny
                                     \tiny
-                                        \tiny
-                                            0100110
-                                    }
+                                        0100110
+                                }
                             f'16
-                                ^ \markup {
+                            ^ \markup {
+                                \tiny
                                     \tiny
-                                        \tiny
-                                            1000020
-                                    }
+                                        1000020
+                                }
                         }
                         \new Staff
                         {
                             \clef "alto"
                             g4
                             f4
-                                ^ \markup {
+                            ^ \markup {
+                                \tiny
                                     \tiny
-                                        \tiny
-                                            0011010
-                                    }
+                                        0011010
+                                }
                         }
                         \new Staff
                         {
@@ -1716,50 +1720,50 @@ class Label(abctools.AbjadObject):
                         \new Staff
                         {
                             c'8
-                                ^ \markup {
-                                    \tiny
-                                        \line
-                                            {
-                                                "SC(2-5){0, 5}"
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(2-5){0, 5}"
+                                        }
+                                }
                             d'4
-                                ^ \markup {
-                                    \tiny
-                                        \line
-                                            {
-                                                "SC(3-9){0, 2, 7}"
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(3-9){0, 2, 7}"
+                                        }
+                                }
                             e'16
-                                ^ \markup {
-                                    \tiny
-                                        \line
-                                            {
-                                                "SC(3-4){0, 1, 5}"
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(3-4){0, 1, 5}"
+                                        }
+                                }
                             f'16
-                                ^ \markup {
-                                    \tiny
-                                        \line
-                                            {
-                                                "SC(2-5){0, 5}"
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(2-5){0, 5}"
+                                        }
+                                }
                         }
                         \new Staff
                         {
                             \clef "alto"
                             g4
                             f4
-                                ^ \markup {
-                                    \tiny
-                                        \line
-                                            {
-                                                "SC(3-7){0, 2, 5}"
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(3-7){0, 2, 5}"
+                                        }
+                                }
                         }
                         \new Staff
                         {
@@ -1790,50 +1794,50 @@ class Label(abctools.AbjadObject):
                         \new Staff
                         {
                             c'8
-                                ^ \markup {
-                                    \tiny
-                                        \line
-                                            {
-                                                "SC(2-5){0, 5}"
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(2-5){0, 5}"
+                                        }
+                                }
                             d'4
-                                ^ \markup {
-                                    \tiny
-                                        \line
-                                            {
-                                                "SC(3-9){0, 2, 7}"
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(3-9){0, 2, 7}"
+                                        }
+                                }
                             e'16
-                                ^ \markup {
-                                    \tiny
-                                        \line
-                                            {
-                                                "SC(3-4){0, 1, 5}"
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(3-4){0, 1, 5}"
+                                        }
+                                }
                             f'16
-                                ^ \markup {
-                                    \tiny
-                                        \line
-                                            {
-                                                "SC(2-5){0, 5}"
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(2-5){0, 5}"
+                                        }
+                                }
                         }
                         \new Staff
                         {
                             \clef "alto"
                             g4
                             f4
-                                ^ \markup {
-                                    \tiny
-                                        \line
-                                            {
-                                                "SC(3-7){0, 2, 5}"
-                                            }
-                                    }
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(3-7){0, 2, 5}"
+                                        }
+                                }
                         }
                         \new Staff
                         {
@@ -1973,26 +1977,29 @@ class Label(abctools.AbjadObject):
                     \new Staff
                     {
                         c'4.
-                            ^ \markup {
-                                \small
-                                    3/8
-                                }
-                        d'8 ~
-                            ^ \markup {
-                                \small
-                                    1/2
-                                }
+                        ^ \markup {
+                            \small
+                                3/8
+                            }
+                        d'8
+                        ~
+                        ^ \markup {
+                            \small
+                                1/2
+                            }
                         d'4.
-                        e'16 [
-                            ^ \markup {
-                                \small
-                                    1/16
-                                }
-                        ef'16 ]
-                            ^ \markup {
-                                \small
-                                    1/16
-                                }
+                        e'16
+                        [
+                        ^ \markup {
+                            \small
+                                1/16
+                            }
+                        ef'16
+                        ]
+                        ^ \markup {
+                            \small
+                                1/16
+                            }
                     }
 
             ..  container:: example expression
@@ -2008,26 +2015,29 @@ class Label(abctools.AbjadObject):
                     \new Staff
                     {
                         c'4.
-                            ^ \markup {
-                                \small
-                                    3/8
-                                }
-                        d'8 ~
-                            ^ \markup {
-                                \small
-                                    1/2
-                                }
+                        ^ \markup {
+                            \small
+                                3/8
+                            }
+                        d'8
+                        ~
+                        ^ \markup {
+                            \small
+                                1/2
+                            }
                         d'4.
-                        e'16 [
-                            ^ \markup {
-                                \small
-                                    1/16
-                                }
-                        ef'16 ]
-                            ^ \markup {
-                                \small
-                                    1/16
-                                }
+                        e'16
+                        [
+                        ^ \markup {
+                            \small
+                                1/16
+                            }
+                        ef'16
+                        ]
+                        ^ \markup {
+                            \small
+                                1/16
+                            }
                     }
 
         ..  container:: example
@@ -2046,26 +2056,29 @@ class Label(abctools.AbjadObject):
                     \new Staff
                     {
                         c'4.
-                            ^ \markup {
-                                \small
-                                    6/16
-                                }
-                        d'8 ~
-                            ^ \markup {
-                                \small
-                                    8/16
-                                }
+                        ^ \markup {
+                            \small
+                                6/16
+                            }
+                        d'8
+                        ~
+                        ^ \markup {
+                            \small
+                                8/16
+                            }
                         d'4.
-                        e'16 [
-                            ^ \markup {
-                                \small
-                                    1/16
-                                }
-                        ef'16 ]
-                            ^ \markup {
-                                \small
-                                    1/16
-                                }
+                        e'16
+                        [
+                        ^ \markup {
+                            \small
+                                1/16
+                            }
+                        ef'16
+                        ]
+                        ^ \markup {
+                            \small
+                                1/16
+                            }
                     }
 
             ..  container:: example expression
@@ -2081,26 +2094,29 @@ class Label(abctools.AbjadObject):
                     \new Staff
                     {
                         c'4.
-                            ^ \markup {
-                                \small
-                                    6/16
-                                }
-                        d'8 ~
-                            ^ \markup {
-                                \small
-                                    8/16
-                                }
+                        ^ \markup {
+                            \small
+                                6/16
+                            }
+                        d'8
+                        ~
+                        ^ \markup {
+                            \small
+                                8/16
+                            }
                         d'4.
-                        e'16 [
-                            ^ \markup {
-                                \small
-                                    1/16
-                                }
-                        ef'16 ]
-                            ^ \markup {
-                                \small
-                                    1/16
-                                }
+                        e'16
+                        [
+                        ^ \markup {
+                            \small
+                                1/16
+                            }
+                        ef'16
+                        ]
+                        ^ \markup {
+                            \small
+                                1/16
+                            }
                     }
 
         Returns none.
@@ -2141,26 +2157,28 @@ class Label(abctools.AbjadObject):
                     }
                     {
                         <c' bf'>8
-                            ^ \markup {
-                                \small
-                                    0
-                                }
+                        ^ \markup {
+                            \small
+                                0
+                            }
                         <g' a'>4
-                            ^ \markup {
-                                \small
-                                    1
-                                }
-                        af'8 ~
-                            ^ \markup {
-                                \small
-                                    2
-                                }
+                        ^ \markup {
+                            \small
+                                1
+                            }
                         af'8
-                        gf'8 ~
-                            ^ \markup {
-                                \small
-                                    3
-                                }
+                        ~
+                        ^ \markup {
+                            \small
+                                2
+                            }
+                        af'8
+                        gf'8
+                        ~
+                        ^ \markup {
+                            \small
+                                3
+                            }
                         gf'4
                     }
 
@@ -2182,26 +2200,28 @@ class Label(abctools.AbjadObject):
                     }
                     {
                         <c' bf'>8
-                            ^ \markup {
-                                \small
-                                    0
-                                }
+                        ^ \markup {
+                            \small
+                                0
+                            }
                         <g' a'>4
-                            ^ \markup {
-                                \small
-                                    1
-                                }
-                        af'8 ~
-                            ^ \markup {
-                                \small
-                                    2
-                                }
+                        ^ \markup {
+                            \small
+                                1
+                            }
                         af'8
-                        gf'8 ~
-                            ^ \markup {
-                                \small
-                                    3
-                                }
+                        ~
+                        ^ \markup {
+                            \small
+                                2
+                            }
+                        af'8
+                        gf'8
+                        ~
+                        ^ \markup {
+                            \small
+                                3
+                            }
                         gf'4
                     }
 
@@ -2227,26 +2247,28 @@ class Label(abctools.AbjadObject):
                     {
                         <c' bf'>8
                         <g' a'>4
-                        af'8 ~
-                            ^ \markup {
-                                \small
-                                    0
-                                }
                         af'8
-                            ^ \markup {
-                                \small
-                                    1
-                                }
-                        gf'8 ~
-                            ^ \markup {
-                                \small
-                                    2
-                                }
+                        ~
+                        ^ \markup {
+                            \small
+                                0
+                            }
+                        af'8
+                        ^ \markup {
+                            \small
+                                1
+                            }
+                        gf'8
+                        ~
+                        ^ \markup {
+                            \small
+                                2
+                            }
                         gf'4
-                            ^ \markup {
-                                \small
-                                    3
-                                }
+                        ^ \markup {
+                            \small
+                                3
+                            }
                     }
 
             ..  container:: example expression
@@ -2270,26 +2292,28 @@ class Label(abctools.AbjadObject):
                     {
                         <c' bf'>8
                         <g' a'>4
-                        af'8 ~
-                            ^ \markup {
-                                \small
-                                    0
-                                }
                         af'8
-                            ^ \markup {
-                                \small
-                                    1
-                                }
-                        gf'8 ~
-                            ^ \markup {
-                                \small
-                                    2
-                                }
+                        ~
+                        ^ \markup {
+                            \small
+                                0
+                            }
+                        af'8
+                        ^ \markup {
+                            \small
+                                1
+                            }
+                        gf'8
+                        ~
+                        ^ \markup {
+                            \small
+                                2
+                            }
                         gf'4
-                            ^ \markup {
-                                \small
-                                    3
-                                }
+                        ^ \markup {
+                            \small
+                                3
+                            }
                     }
 
         ..  container:: example
@@ -2313,18 +2337,20 @@ class Label(abctools.AbjadObject):
                     }
                     {
                         <c' bf'>8
-                            ^ \markup {
-                                \small
-                                    0
-                                }
+                        ^ \markup {
+                            \small
+                                0
+                            }
                         <g' a'>4
-                            ^ \markup {
-                                \small
-                                    1
-                                }
-                        af'8 ~
+                        ^ \markup {
+                            \small
+                                1
+                            }
                         af'8
-                        gf'8 ~
+                        ~
+                        af'8
+                        gf'8
+                        ~
                         gf'4
                     }
 
@@ -2348,18 +2374,20 @@ class Label(abctools.AbjadObject):
                     }
                     {
                         <c' bf'>8
-                            ^ \markup {
-                                \small
-                                    0
-                                }
+                        ^ \markup {
+                            \small
+                                0
+                            }
                         <g' a'>4
-                            ^ \markup {
-                                \small
-                                    1
-                                }
-                        af'8 ~
+                        ^ \markup {
+                            \small
+                                1
+                            }
                         af'8
-                        gf'8 ~
+                        ~
+                        af'8
+                        gf'8
+                        ~
                         gf'4
                     }
 
@@ -2384,35 +2412,37 @@ class Label(abctools.AbjadObject):
                     }
                     {
                         <c' bf'>8
-                            ^ \markup {
-                                \small
-                                    0
-                                }
+                        ^ \markup {
+                            \small
+                                0
+                            }
                         <g' a'>4
-                            ^ \markup {
-                                \small
-                                    1
-                                }
-                        af'8 ~
-                            ^ \markup {
-                                \small
-                                    2
-                                }
+                        ^ \markup {
+                            \small
+                                1
+                            }
                         af'8
-                            ^ \markup {
-                                \small
-                                    3
-                                }
-                        gf'8 ~
-                            ^ \markup {
-                                \small
-                                    4
-                                }
+                        ~
+                        ^ \markup {
+                            \small
+                                2
+                            }
+                        af'8
+                        ^ \markup {
+                            \small
+                                3
+                            }
+                        gf'8
+                        ~
+                        ^ \markup {
+                            \small
+                                4
+                            }
                         gf'4
-                            ^ \markup {
-                                \small
-                                    5
-                                }
+                        ^ \markup {
+                            \small
+                                5
+                            }
                     }
 
             ..  container:: example expression
@@ -2435,35 +2465,37 @@ class Label(abctools.AbjadObject):
                     }
                     {
                         <c' bf'>8
-                            ^ \markup {
-                                \small
-                                    0
-                                }
+                        ^ \markup {
+                            \small
+                                0
+                            }
                         <g' a'>4
-                            ^ \markup {
-                                \small
-                                    1
-                                }
-                        af'8 ~
-                            ^ \markup {
-                                \small
-                                    2
-                                }
+                        ^ \markup {
+                            \small
+                                1
+                            }
                         af'8
-                            ^ \markup {
-                                \small
-                                    3
-                                }
-                        gf'8 ~
-                            ^ \markup {
-                                \small
-                                    4
-                                }
+                        ~
+                        ^ \markup {
+                            \small
+                                2
+                            }
+                        af'8
+                        ^ \markup {
+                            \small
+                                3
+                            }
+                        gf'8
+                        ~
+                        ^ \markup {
+                            \small
+                                4
+                            }
                         gf'4
-                            ^ \markup {
-                                \small
-                                    5
-                                }
+                        ^ \markup {
+                            \small
+                                5
+                            }
                     }
 
         ..  container:: example
@@ -2489,37 +2521,37 @@ class Label(abctools.AbjadObject):
                     {
                         \times 2/3 {
                             c'8
-                                ^ \markup {
-                                    \small
-                                        0
-                                    }
+                            ^ \markup {
+                                \small
+                                    0
+                                }
                             d'8
                             e'8
                         }
                         \times 2/3 {
                             c'8
-                                ^ \markup {
-                                    \small
-                                        1
-                                    }
+                            ^ \markup {
+                                \small
+                                    1
+                                }
                             d'8
                             e'8
                         }
                         \times 2/3 {
                             c'8
-                                ^ \markup {
-                                    \small
-                                        2
-                                    }
+                            ^ \markup {
+                                \small
+                                    2
+                                }
                             d'8
                             e'8
                         }
                         \times 2/3 {
                             c'8
-                                ^ \markup {
-                                    \small
-                                        3
-                                    }
+                            ^ \markup {
+                                \small
+                                    3
+                                }
                             d'8
                             e'8
                         }
@@ -2547,37 +2579,37 @@ class Label(abctools.AbjadObject):
                     {
                         \times 2/3 {
                             c'8
-                                ^ \markup {
-                                    \small
-                                        0
-                                    }
+                            ^ \markup {
+                                \small
+                                    0
+                                }
                             d'8
                             e'8
                         }
                         \times 2/3 {
                             c'8
-                                ^ \markup {
-                                    \small
-                                        1
-                                    }
+                            ^ \markup {
+                                \small
+                                    1
+                                }
                             d'8
                             e'8
                         }
                         \times 2/3 {
                             c'8
-                                ^ \markup {
-                                    \small
-                                        2
-                                    }
+                            ^ \markup {
+                                \small
+                                    2
+                                }
                             d'8
                             e'8
                         }
                         \times 2/3 {
                             c'8
-                                ^ \markup {
-                                    \small
-                                        3
-                                    }
+                            ^ \markup {
+                                \small
+                                    3
+                                }
                             d'8
                             e'8
                         }
@@ -2627,13 +2659,20 @@ class Label(abctools.AbjadObject):
                         \override TextScript.staff-padding = #4
                     }
                     {
-                        c'4 ^ \markup { +aug15 }
-                        cs'''4 ^ \markup { -M9 }
-                        b'4 ^ \markup { -aug9 }
-                        af4 ^ \markup { -m7 }
-                        bf,4 ^ \markup { +aug1 }
-                        b,4 ^ \markup { +m14 }
-                        a'4 ^ \markup { +m2 }
+                        c'4
+                        ^ \markup { +aug15 }
+                        cs'''4
+                        ^ \markup { -M9 }
+                        b'4
+                        ^ \markup { -aug9 }
+                        af4
+                        ^ \markup { -m7 }
+                        bf,4
+                        ^ \markup { +aug1 }
+                        b,4
+                        ^ \markup { +m14 }
+                        a'4
+                        ^ \markup { +m2 }
                         bf'4
                     }
 
@@ -2657,13 +2696,20 @@ class Label(abctools.AbjadObject):
                         \override TextScript.staff-padding = #4
                     }
                     {
-                        c'4 ^ \markup { +aug15 }
-                        cs'''4 ^ \markup { -M9 }
-                        b'4 ^ \markup { -aug9 }
-                        af4 ^ \markup { -m7 }
-                        bf,4 ^ \markup { +aug1 }
-                        b,4 ^ \markup { +m14 }
-                        a'4 ^ \markup { +m2 }
+                        c'4
+                        ^ \markup { +aug15 }
+                        cs'''4
+                        ^ \markup { -M9 }
+                        b'4
+                        ^ \markup { -aug9 }
+                        af4
+                        ^ \markup { -m7 }
+                        bf,4
+                        ^ \markup { +aug1 }
+                        b,4
+                        ^ \markup { +m14 }
+                        a'4
+                        ^ \markup { +m2 }
                         bf'4
                     }
 
@@ -2691,13 +2737,20 @@ class Label(abctools.AbjadObject):
                         \override TextScript.staff-padding = #4
                     }
                     {
-                        c'4 ^ \markup { +aug8 }
-                        cs'''4 ^ \markup { -M2 }
-                        b'4 ^ \markup { -aug2 }
-                        af4 ^ \markup { -m7 }
-                        bf,4 ^ \markup { aug1 }
-                        b,4 ^ \markup { +m7 }
-                        a'4 ^ \markup { +m2 }
+                        c'4
+                        ^ \markup { +aug8 }
+                        cs'''4
+                        ^ \markup { -M2 }
+                        b'4
+                        ^ \markup { -aug2 }
+                        af4
+                        ^ \markup { -m7 }
+                        bf,4
+                        ^ \markup { aug1 }
+                        b,4
+                        ^ \markup { +m7 }
+                        a'4
+                        ^ \markup { +m2 }
                         bf'4
                     }
 
@@ -2722,13 +2775,20 @@ class Label(abctools.AbjadObject):
                         \override TextScript.staff-padding = #4
                     }
                     {
-                        c'4 ^ \markup { +aug8 }
-                        cs'''4 ^ \markup { -M2 }
-                        b'4 ^ \markup { -aug2 }
-                        af4 ^ \markup { -m7 }
-                        bf,4 ^ \markup { aug1 }
-                        b,4 ^ \markup { +m7 }
-                        a'4 ^ \markup { +m2 }
+                        c'4
+                        ^ \markup { +aug8 }
+                        cs'''4
+                        ^ \markup { -M2 }
+                        b'4
+                        ^ \markup { -aug2 }
+                        af4
+                        ^ \markup { -m7 }
+                        bf,4
+                        ^ \markup { aug1 }
+                        b,4
+                        ^ \markup { +m7 }
+                        a'4
+                        ^ \markup { +m2 }
                         bf'4
                     }
 
@@ -2756,13 +2816,20 @@ class Label(abctools.AbjadObject):
                         \override TextScript.staff-padding = #4
                     }
                     {
-                        c'4 ^ \markup { +25 }
-                        cs'''4 ^ \markup { -14 }
-                        b'4 ^ \markup { -15 }
-                        af4 ^ \markup { -10 }
-                        bf,4 ^ \markup { +1 }
-                        b,4 ^ \markup { +22 }
-                        a'4 ^ \markup { +1 }
+                        c'4
+                        ^ \markup { +25 }
+                        cs'''4
+                        ^ \markup { -14 }
+                        b'4
+                        ^ \markup { -15 }
+                        af4
+                        ^ \markup { -10 }
+                        bf,4
+                        ^ \markup { +1 }
+                        b,4
+                        ^ \markup { +22 }
+                        a'4
+                        ^ \markup { +1 }
                         bf'4
                     }
 
@@ -2787,13 +2854,20 @@ class Label(abctools.AbjadObject):
                         \override TextScript.staff-padding = #4
                     }
                     {
-                        c'4 ^ \markup { +25 }
-                        cs'''4 ^ \markup { -14 }
-                        b'4 ^ \markup { -15 }
-                        af4 ^ \markup { -10 }
-                        bf,4 ^ \markup { +1 }
-                        b,4 ^ \markup { +22 }
-                        a'4 ^ \markup { +1 }
+                        c'4
+                        ^ \markup { +25 }
+                        cs'''4
+                        ^ \markup { -14 }
+                        b'4
+                        ^ \markup { -15 }
+                        af4
+                        ^ \markup { -10 }
+                        bf,4
+                        ^ \markup { +1 }
+                        b,4
+                        ^ \markup { +22 }
+                        a'4
+                        ^ \markup { +1 }
                         bf'4
                     }
 
@@ -2822,13 +2896,20 @@ class Label(abctools.AbjadObject):
                         \override TextScript.staff-padding = #4
                     }
                     {
-                        c'4 ^ \markup { +1 }
-                        cs'''4 ^ \markup { -2 }
-                        b'4 ^ \markup { -3 }
-                        af4 ^ \markup { -10 }
-                        bf,4 ^ \markup { +1 }
-                        b,4 ^ \markup { +10 }
-                        a'4 ^ \markup { +1 }
+                        c'4
+                        ^ \markup { +1 }
+                        cs'''4
+                        ^ \markup { -2 }
+                        b'4
+                        ^ \markup { -3 }
+                        af4
+                        ^ \markup { -10 }
+                        bf,4
+                        ^ \markup { +1 }
+                        b,4
+                        ^ \markup { +10 }
+                        a'4
+                        ^ \markup { +1 }
                         bf'4
                     }
 
@@ -2853,13 +2934,20 @@ class Label(abctools.AbjadObject):
                         \override TextScript.staff-padding = #4
                     }
                     {
-                        c'4 ^ \markup { +1 }
-                        cs'''4 ^ \markup { -2 }
-                        b'4 ^ \markup { -3 }
-                        af4 ^ \markup { -10 }
-                        bf,4 ^ \markup { +1 }
-                        b,4 ^ \markup { +10 }
-                        a'4 ^ \markup { +1 }
+                        c'4
+                        ^ \markup { +1 }
+                        cs'''4
+                        ^ \markup { -2 }
+                        b'4
+                        ^ \markup { -3 }
+                        af4
+                        ^ \markup { -10 }
+                        bf,4
+                        ^ \markup { +1 }
+                        b,4
+                        ^ \markup { +10 }
+                        a'4
+                        ^ \markup { +1 }
                         bf'4
                     }
 
@@ -2888,13 +2976,20 @@ class Label(abctools.AbjadObject):
                         \override TextScript.staff-padding = #4
                     }
                     {
-                        c'4 ^ \markup { 1 }
-                        cs'''4 ^ \markup { 2 }
-                        b'4 ^ \markup { 3 }
-                        af4 ^ \markup { 2 }
-                        bf,4 ^ \markup { 1 }
-                        b,4 ^ \markup { 2 }
-                        a'4 ^ \markup { 1 }
+                        c'4
+                        ^ \markup { 1 }
+                        cs'''4
+                        ^ \markup { 2 }
+                        b'4
+                        ^ \markup { 3 }
+                        af4
+                        ^ \markup { 2 }
+                        bf,4
+                        ^ \markup { 1 }
+                        b,4
+                        ^ \markup { 2 }
+                        a'4
+                        ^ \markup { 1 }
                         bf'4
                     }
 
@@ -2919,13 +3014,20 @@ class Label(abctools.AbjadObject):
                         \override TextScript.staff-padding = #4
                     }
                     {
-                        c'4 ^ \markup { 1 }
-                        cs'''4 ^ \markup { 2 }
-                        b'4 ^ \markup { 3 }
-                        af4 ^ \markup { 2 }
-                        bf,4 ^ \markup { 1 }
-                        b,4 ^ \markup { 2 }
-                        a'4 ^ \markup { 1 }
+                        c'4
+                        ^ \markup { 1 }
+                        cs'''4
+                        ^ \markup { 2 }
+                        b'4
+                        ^ \markup { 3 }
+                        af4
+                        ^ \markup { 2 }
+                        bf,4
+                        ^ \markup { 1 }
+                        b,4
+                        ^ \markup { 2 }
+                        a'4
+                        ^ \markup { 1 }
                         bf'4
                     }
 
@@ -2985,27 +3087,28 @@ class Label(abctools.AbjadObject):
                     }
                     {
                         <a d' fs'>4
-                            ^ \markup {
-                                \small
-                                    \column
-                                        {
-                                            fs'
-                                            d'
-                                            a
-                                        }
-                                }
-                        g'4 ~
-                            ^ \markup {
-                                \small
-                                    g'
-                                }
+                        ^ \markup {
+                            \small
+                                \column
+                                    {
+                                        fs'
+                                        d'
+                                        a
+                                    }
+                            }
+                        g'4
+                        ~
+                        ^ \markup {
+                            \small
+                                g'
+                            }
                         g'8
                         r8
                         fs''4
-                            ^ \markup {
-                                \small
-                                    fs''
-                                }
+                        ^ \markup {
+                            \small
+                                fs''
+                            }
                     }
 
             ..  container:: example expression
@@ -3026,27 +3129,28 @@ class Label(abctools.AbjadObject):
                     }
                     {
                         <a d' fs'>4
-                            ^ \markup {
-                                \small
-                                    \column
-                                        {
-                                            fs'
-                                            d'
-                                            a
-                                        }
-                                }
-                        g'4 ~
-                            ^ \markup {
-                                \small
-                                    g'
-                                }
+                        ^ \markup {
+                            \small
+                                \column
+                                    {
+                                        fs'
+                                        d'
+                                        a
+                                    }
+                            }
+                        g'4
+                        ~
+                        ^ \markup {
+                            \small
+                                g'
+                            }
                         g'8
                         r8
                         fs''4
-                            ^ \markup {
-                                \small
-                                    fs''
-                                }
+                        ^ \markup {
+                            \small
+                                fs''
+                            }
                     }
 
         ..  container:: example
@@ -3070,27 +3174,28 @@ class Label(abctools.AbjadObject):
                     }
                     {
                         <a d' fs'>4
-                            ^ \markup {
-                                \small
-                                    \column
-                                        {
-                                            "F#4"
-                                            D4
-                                            A3
-                                        }
-                                }
-                        g'4 ~
-                            ^ \markup {
-                                \small
-                                    G4
-                                }
+                        ^ \markup {
+                            \small
+                                \column
+                                    {
+                                        "F#4"
+                                        D4
+                                        A3
+                                    }
+                            }
+                        g'4
+                        ~
+                        ^ \markup {
+                            \small
+                                G4
+                            }
                         g'8
                         r8
                         fs''4
-                            ^ \markup {
-                                \small
-                                    "F#5"
-                                }
+                        ^ \markup {
+                            \small
+                                "F#5"
+                            }
                     }
 
             ..  container:: example expression
@@ -3111,27 +3216,28 @@ class Label(abctools.AbjadObject):
                     }
                     {
                         <a d' fs'>4
-                            ^ \markup {
-                                \small
-                                    \column
-                                        {
-                                            "F#4"
-                                            D4
-                                            A3
-                                        }
-                                }
-                        g'4 ~
-                            ^ \markup {
-                                \small
-                                    G4
-                                }
+                        ^ \markup {
+                            \small
+                                \column
+                                    {
+                                        "F#4"
+                                        D4
+                                        A3
+                                    }
+                            }
+                        g'4
+                        ~
+                        ^ \markup {
+                            \small
+                                G4
+                            }
                         g'8
                         r8
                         fs''4
-                            ^ \markup {
-                                \small
-                                    "F#5"
-                                }
+                        ^ \markup {
+                            \small
+                                "F#5"
+                            }
                     }
 
         ..  container:: example
@@ -3156,27 +3262,28 @@ class Label(abctools.AbjadObject):
                     }
                     {
                         <a d' fs'>4
-                            ^ \markup {
-                                \small
-                                    \column
-                                        {
-                                            6
-                                            2
-                                            -3
-                                        }
-                                }
-                        g'4 ~
-                            ^ \markup {
-                                \small
-                                    7
-                                }
+                        ^ \markup {
+                            \small
+                                \column
+                                    {
+                                        6
+                                        2
+                                        -3
+                                    }
+                            }
+                        g'4
+                        ~
+                        ^ \markup {
+                            \small
+                                7
+                            }
                         g'8
                         r8
                         fs''4
-                            ^ \markup {
-                                \small
-                                    18
-                                }
+                        ^ \markup {
+                            \small
+                                18
+                            }
                     }
 
             ..  container:: example expression
@@ -3198,27 +3305,28 @@ class Label(abctools.AbjadObject):
                     }
                     {
                         <a d' fs'>4
-                            ^ \markup {
-                                \small
-                                    \column
-                                        {
-                                            6
-                                            2
-                                            -3
-                                        }
-                                }
-                        g'4 ~
-                            ^ \markup {
-                                \small
-                                    7
-                                }
+                        ^ \markup {
+                            \small
+                                \column
+                                    {
+                                        6
+                                        2
+                                        -3
+                                    }
+                            }
+                        g'4
+                        ~
+                        ^ \markup {
+                            \small
+                                7
+                            }
                         g'8
                         r8
                         fs''4
-                            ^ \markup {
-                                \small
-                                    18
-                                }
+                        ^ \markup {
+                            \small
+                                18
+                            }
                     }
 
         ..  container:: example
@@ -3243,27 +3351,28 @@ class Label(abctools.AbjadObject):
                     }
                     {
                         <a d' fs'>4
-                            ^ \markup {
-                                \small
-                                    \column
-                                        {
-                                            6
-                                            2
-                                            9
-                                        }
-                                }
-                        g'4 ~
-                            ^ \markup {
-                                \small
-                                    7
-                                }
+                        ^ \markup {
+                            \small
+                                \column
+                                    {
+                                        6
+                                        2
+                                        9
+                                    }
+                            }
+                        g'4
+                        ~
+                        ^ \markup {
+                            \small
+                                7
+                            }
                         g'8
                         r8
                         fs''4
-                            ^ \markup {
-                                \small
-                                    6
-                                }
+                        ^ \markup {
+                            \small
+                                6
+                            }
                     }
 
             ..  container:: example expression
@@ -3285,27 +3394,28 @@ class Label(abctools.AbjadObject):
                     }
                     {
                         <a d' fs'>4
-                            ^ \markup {
-                                \small
-                                    \column
-                                        {
-                                            6
-                                            2
-                                            9
-                                        }
-                                }
-                        g'4 ~
-                            ^ \markup {
-                                \small
-                                    7
-                                }
+                        ^ \markup {
+                            \small
+                                \column
+                                    {
+                                        6
+                                        2
+                                        9
+                                    }
+                            }
+                        g'4
+                        ~
+                        ^ \markup {
+                            \small
+                                7
+                            }
                         g'8
                         r8
                         fs''4
-                            ^ \markup {
-                                \small
-                                    6
-                                }
+                        ^ \markup {
+                            \small
+                                6
+                            }
                     }
 
         ..  container:: example
@@ -3338,28 +3448,32 @@ class Label(abctools.AbjadObject):
                         \override TextScript.staff-padding = #2
                     }
                     {
-                        df''4 \startGroup
-                            ^ \markup {
-                                \small
-                                    df''
-                                }
-                        c''4 \stopGroup
-                            ^ \markup {
-                                \small
-                                    c''
-                                }
+                        df''4
+                        \startGroup
+                        ^ \markup {
+                            \small
+                                df''
+                            }
+                        c''4
+                        \stopGroup
+                        ^ \markup {
+                            \small
+                                c''
+                            }
                         f'4
                         fs'4
-                        d''4 \startGroup
-                            ^ \markup {
-                                \small
-                                    d''
-                                }
-                        ds''4 \stopGroup
-                            ^ \markup {
-                                \small
-                                    ds''
-                                }
+                        d''4
+                        \startGroup
+                        ^ \markup {
+                            \small
+                                d''
+                            }
+                        ds''4
+                        \stopGroup
+                        ^ \markup {
+                            \small
+                                ds''
+                            }
                     }
 
             ..  container:: example expression
@@ -3388,28 +3502,32 @@ class Label(abctools.AbjadObject):
                         \override TextScript.staff-padding = #2
                     }
                     {
-                        df''4 \startGroup
-                            ^ \markup {
-                                \small
-                                    df''
-                                }
-                        c''4 \stopGroup
-                            ^ \markup {
-                                \small
-                                    c''
-                                }
+                        df''4
+                        \startGroup
+                        ^ \markup {
+                            \small
+                                df''
+                            }
+                        c''4
+                        \stopGroup
+                        ^ \markup {
+                            \small
+                                c''
+                            }
                         f'4
                         fs'4
-                        d''4 \startGroup
-                            ^ \markup {
-                                \small
-                                    d''
-                                }
-                        ds''4 \stopGroup
-                            ^ \markup {
-                                \small
-                                    ds''
-                                }
+                        d''4
+                        \startGroup
+                        ^ \markup {
+                            \small
+                                d''
+                            }
+                        ds''4
+                        \stopGroup
+                        ^ \markup {
+                            \small
+                                ds''
+                            }
                     }
 
         ..  container:: example
@@ -3442,28 +3560,32 @@ class Label(abctools.AbjadObject):
                         \override TextScript.staff-padding = #2
                     }
                     {
-                        df''4 \startGroup
-                            ^ \markup {
-                                \small
-                                    13
-                                }
-                        c''4 \stopGroup
-                            ^ \markup {
-                                \small
-                                    12
-                                }
+                        df''4
+                        \startGroup
+                        ^ \markup {
+                            \small
+                                13
+                            }
+                        c''4
+                        \stopGroup
+                        ^ \markup {
+                            \small
+                                12
+                            }
                         f'4
                         fs'4
-                        d''4 \startGroup
-                            ^ \markup {
-                                \small
-                                    14
-                                }
-                        ds''4 \stopGroup
-                            ^ \markup {
-                                \small
-                                    15
-                                }
+                        d''4
+                        \startGroup
+                        ^ \markup {
+                            \small
+                                14
+                            }
+                        ds''4
+                        \stopGroup
+                        ^ \markup {
+                            \small
+                                15
+                            }
                     }
 
             ..  container:: example expression
@@ -3493,28 +3615,32 @@ class Label(abctools.AbjadObject):
                         \override TextScript.staff-padding = #2
                     }
                     {
-                        df''4 \startGroup
-                            ^ \markup {
-                                \small
-                                    13
-                                }
-                        c''4 \stopGroup
-                            ^ \markup {
-                                \small
-                                    12
-                                }
+                        df''4
+                        \startGroup
+                        ^ \markup {
+                            \small
+                                13
+                            }
+                        c''4
+                        \stopGroup
+                        ^ \markup {
+                            \small
+                                12
+                            }
                         f'4
                         fs'4
-                        d''4 \startGroup
-                            ^ \markup {
-                                \small
-                                    14
-                                }
-                        ds''4 \stopGroup
-                            ^ \markup {
-                                \small
-                                    15
-                                }
+                        d''4
+                        \startGroup
+                        ^ \markup {
+                            \small
+                                14
+                            }
+                        ds''4
+                        \stopGroup
+                        ^ \markup {
+                            \small
+                                15
+                            }
                     }
 
         ..  container:: example
@@ -3548,28 +3674,32 @@ class Label(abctools.AbjadObject):
                         \override TextScript.staff-padding = #2
                     }
                     {
-                        df''4 \startGroup
-                            ^ \markup {
-                                \small
-                                    1
-                                }
-                        c''4 \stopGroup
-                            ^ \markup {
-                                \small
-                                    0
-                                }
+                        df''4
+                        \startGroup
+                        ^ \markup {
+                            \small
+                                1
+                            }
+                        c''4
+                        \stopGroup
+                        ^ \markup {
+                            \small
+                                0
+                            }
                         f'4
                         fs'4
-                        d''4 \startGroup
-                            ^ \markup {
-                                \small
-                                    2
-                                }
-                        ds''4 \stopGroup
-                            ^ \markup {
-                                \small
-                                    3
-                                }
+                        d''4
+                        \startGroup
+                        ^ \markup {
+                            \small
+                                2
+                            }
+                        ds''4
+                        \stopGroup
+                        ^ \markup {
+                            \small
+                                3
+                            }
                     }
 
             ..  container:: example expression
@@ -3599,28 +3729,32 @@ class Label(abctools.AbjadObject):
                         \override TextScript.staff-padding = #2
                     }
                     {
-                        df''4 \startGroup
-                            ^ \markup {
-                                \small
-                                    1
-                                }
-                        c''4 \stopGroup
-                            ^ \markup {
-                                \small
-                                    0
-                                }
+                        df''4
+                        \startGroup
+                        ^ \markup {
+                            \small
+                                1
+                            }
+                        c''4
+                        \stopGroup
+                        ^ \markup {
+                            \small
+                                0
+                            }
                         f'4
                         fs'4
-                        d''4 \startGroup
-                            ^ \markup {
-                                \small
-                                    2
-                                }
-                        ds''4 \stopGroup
-                            ^ \markup {
-                                \small
-                                    3
-                                }
+                        d''4
+                        \startGroup
+                        ^ \markup {
+                            \small
+                                2
+                            }
+                        ds''4
+                        \stopGroup
+                        ^ \markup {
+                            \small
+                                3
+                            }
                     }
 
         Returns none.
@@ -3714,29 +3848,33 @@ class Label(abctools.AbjadObject):
                         \override TextScript.staff-padding = #2
                     }
                     {
-                        df''8 \startGroup
-                            ^ \markup {
-                                \tiny
-                                    \line
-                                        {
-                                            "SC(4-3){0, 1, 3, 4}"
-                                        }
-                                }
+                        df''8
+                        \startGroup
+                        ^ \markup {
+                            \tiny
+                                \line
+                                    {
+                                        "SC(4-3){0, 1, 3, 4}"
+                                    }
+                            }
                         c''8
                         bf'8
-                        a'8 \stopGroup
+                        a'8
+                        \stopGroup
                         f'4.
-                        fs'8 \startGroup
-                            ^ \markup {
-                                \tiny
-                                    \line
-                                        {
-                                            "SC(4-20){0, 1, 5, 8}"
-                                        }
-                                }
+                        fs'8
+                        \startGroup
+                        ^ \markup {
+                            \tiny
+                                \line
+                                    {
+                                        "SC(4-20){0, 1, 5, 8}"
+                                    }
+                            }
                         g'8
                         b'8
-                        d''2. \stopGroup
+                        d''2.
+                        \stopGroup
                     }
 
             ..  container:: example expression
@@ -3766,29 +3904,33 @@ class Label(abctools.AbjadObject):
                         \override TextScript.staff-padding = #2
                     }
                     {
-                        df''8 \startGroup
-                            ^ \markup {
-                                \tiny
-                                    \line
-                                        {
-                                            "SC(4-3){0, 1, 3, 4}"
-                                        }
-                                }
+                        df''8
+                        \startGroup
+                        ^ \markup {
+                            \tiny
+                                \line
+                                    {
+                                        "SC(4-3){0, 1, 3, 4}"
+                                    }
+                            }
                         c''8
                         bf'8
-                        a'8 \stopGroup
+                        a'8
+                        \stopGroup
                         f'4.
-                        fs'8 \startGroup
-                            ^ \markup {
-                                \tiny
-                                    \line
-                                        {
-                                            "SC(4-20){0, 1, 5, 8}"
-                                        }
-                                }
+                        fs'8
+                        \startGroup
+                        ^ \markup {
+                            \tiny
+                                \line
+                                    {
+                                        "SC(4-20){0, 1, 5, 8}"
+                                    }
+                            }
                         g'8
                         b'8
-                        d''2. \stopGroup
+                        d''2.
+                        \stopGroup
                     }
 
         ..  container:: example
@@ -3823,29 +3965,33 @@ class Label(abctools.AbjadObject):
                         \override TextScript.staff-padding = #2
                     }
                     {
-                        df''8 \startGroup
-                            ^ \markup {
-                                \tiny
-                                    \line
-                                        {
-                                            "SC(4-6){0, 1, 3, 4}"
-                                        }
-                                }
+                        df''8
+                        \startGroup
+                        ^ \markup {
+                            \tiny
+                                \line
+                                    {
+                                        "SC(4-6){0, 1, 3, 4}"
+                                    }
+                            }
                         c''8
                         bf'8
-                        a'8 \stopGroup
+                        a'8
+                        \stopGroup
                         f'4.
-                        fs'8 \startGroup
-                            ^ \markup {
-                                \tiny
-                                    \line
-                                        {
-                                            "SC(4-16){0, 1, 5, 8}"
-                                        }
-                                }
+                        fs'8
+                        \startGroup
+                        ^ \markup {
+                            \tiny
+                                \line
+                                    {
+                                        "SC(4-16){0, 1, 5, 8}"
+                                    }
+                            }
                         g'8
                         b'8
-                        d''2. \stopGroup
+                        d''2.
+                        \stopGroup
                     }
 
             ..  container:: example expression
@@ -3876,29 +4022,33 @@ class Label(abctools.AbjadObject):
                         \override TextScript.staff-padding = #2
                     }
                     {
-                        df''8 \startGroup
-                            ^ \markup {
-                                \tiny
-                                    \line
-                                        {
-                                            "SC(4-6){0, 1, 3, 4}"
-                                        }
-                                }
+                        df''8
+                        \startGroup
+                        ^ \markup {
+                            \tiny
+                                \line
+                                    {
+                                        "SC(4-6){0, 1, 3, 4}"
+                                    }
+                            }
                         c''8
                         bf'8
-                        a'8 \stopGroup
+                        a'8
+                        \stopGroup
                         f'4.
-                        fs'8 \startGroup
-                            ^ \markup {
-                                \tiny
-                                    \line
-                                        {
-                                            "SC(4-16){0, 1, 5, 8}"
-                                        }
-                                }
+                        fs'8
+                        \startGroup
+                        ^ \markup {
+                            \tiny
+                                \line
+                                    {
+                                        "SC(4-16){0, 1, 5, 8}"
+                                    }
+                            }
                         g'8
                         b'8
-                        d''2. \stopGroup
+                        d''2.
+                        \stopGroup
                     }
 
         ..  container:: example
@@ -3932,29 +4082,33 @@ class Label(abctools.AbjadObject):
                         \override TextScript.staff-padding = #2
                     }
                     {
-                        df''8 \startGroup
-                            ^ \markup {
-                                \tiny
-                                    \line
-                                        {
-                                            "SC(4-6){0, 1, 3, 4}"
-                                        }
-                                }
+                        df''8
+                        \startGroup
+                        ^ \markup {
+                            \tiny
+                                \line
+                                    {
+                                        "SC(4-6){0, 1, 3, 4}"
+                                    }
+                            }
                         c''8
                         bf'8
-                        a'8 \stopGroup
+                        a'8
+                        \stopGroup
                         f'4.
-                        fs'8 \startGroup
-                            ^ \markup {
-                                \tiny
-                                    \line
-                                        {
-                                            "SC(4-16){0, 1, 5, 8}"
-                                        }
-                                }
+                        fs'8
+                        \startGroup
+                        ^ \markup {
+                            \tiny
+                                \line
+                                    {
+                                        "SC(4-16){0, 1, 5, 8}"
+                                    }
+                            }
                         g'8
                         b'8
-                        d''2. \stopGroup
+                        d''2.
+                        \stopGroup
                     }
 
             ..  container:: example expression
@@ -3985,29 +4139,33 @@ class Label(abctools.AbjadObject):
                         \override TextScript.staff-padding = #2
                     }
                     {
-                        df''8 \startGroup
-                            ^ \markup {
-                                \tiny
-                                    \line
-                                        {
-                                            "SC(4-6){0, 1, 3, 4}"
-                                        }
-                                }
+                        df''8
+                        \startGroup
+                        ^ \markup {
+                            \tiny
+                                \line
+                                    {
+                                        "SC(4-6){0, 1, 3, 4}"
+                                    }
+                            }
                         c''8
                         bf'8
-                        a'8 \stopGroup
+                        a'8
+                        \stopGroup
                         f'4.
-                        fs'8 \startGroup
-                            ^ \markup {
-                                \tiny
-                                    \line
-                                        {
-                                            "SC(4-16){0, 1, 5, 8}"
-                                        }
-                                }
+                        fs'8
+                        \startGroup
+                        ^ \markup {
+                            \tiny
+                                \line
+                                    {
+                                        "SC(4-16){0, 1, 5, 8}"
+                                    }
+                            }
                         g'8
                         b'8
-                        d''2. \stopGroup
+                        d''2.
+                        \stopGroup
                     }
 
         Returns none.
@@ -4072,12 +4230,17 @@ class Label(abctools.AbjadObject):
                     }
                     {
                         \times 2/3 {
-                            c'4 ^ \markup { 0 }
-                            d'4 ^ \markup { 1/6 }
-                            e'4 ~ ^ \markup { 1/3 }
+                            c'4
+                            ^ \markup { 0 }
+                            d'4
+                            ^ \markup { 1/6 }
+                            e'4
+                            ~
+                            ^ \markup { 1/3 }
                         }
                         e'4
-                        ef'4 ^ \markup { 3/4 }
+                        ef'4
+                        ^ \markup { 3/4 }
                     }
 
             ..  container:: example expression
@@ -4103,12 +4266,17 @@ class Label(abctools.AbjadObject):
                     }
                     {
                         \times 2/3 {
-                            c'4 ^ \markup { 0 }
-                            d'4 ^ \markup { 1/6 }
-                            e'4 ~ ^ \markup { 1/3 }
+                            c'4
+                            ^ \markup { 0 }
+                            d'4
+                            ^ \markup { 1/6 }
+                            e'4
+                            ~
+                            ^ \markup { 1/3 }
                         }
                         e'4
-                        ef'4 ^ \markup { 3/4 }
+                        ef'4
+                        ^ \markup { 3/4 }
                     }
 
         ..  container:: example
@@ -4141,10 +4309,14 @@ class Label(abctools.AbjadObject):
                         }
                         {
                             \tempo 4=60
-                            c'2 ^ \markup { 0'00'' }
-                            d'2 ^ \markup { 0'02'' }
-                            e'2 ^ \markup { 0'04'' }
-                            f'2 ^ \markup { 0'06'' }
+                            c'2
+                            ^ \markup { 0'00'' }
+                            d'2
+                            ^ \markup { 0'02'' }
+                            e'2
+                            ^ \markup { 0'04'' }
+                            f'2
+                            ^ \markup { 0'06'' }
                         }
                     >>
 
@@ -4175,10 +4347,14 @@ class Label(abctools.AbjadObject):
                         }
                         {
                             \tempo 4=60
-                            c'2 ^ \markup { 0'00'' }
-                            d'2 ^ \markup { 0'02'' }
-                            e'2 ^ \markup { 0'04'' }
-                            f'2 ^ \markup { 0'06'' }
+                            c'2
+                            ^ \markup { 0'00'' }
+                            d'2
+                            ^ \markup { 0'02'' }
+                            e'2
+                            ^ \markup { 0'04'' }
+                            f'2
+                            ^ \markup { 0'06'' }
                         }
                     >>
 
@@ -4215,25 +4391,25 @@ class Label(abctools.AbjadObject):
                     {
                         \tempo 4=60
                         c'2
-                            ^ \markup {
-                                \make-dark-cyan
-                                    0'00''
-                                }
+                        ^ \markup {
+                            \make-dark-cyan
+                                0'00''
+                            }
                         d'2
-                            ^ \markup {
-                                \make-dark-cyan
-                                    0'02''
-                                }
+                        ^ \markup {
+                            \make-dark-cyan
+                                0'02''
+                            }
                         e'2
-                            ^ \markup {
-                                \make-dark-cyan
-                                    0'04''
-                                }
+                        ^ \markup {
+                            \make-dark-cyan
+                                0'04''
+                            }
                         f'2
-                            ^ \markup {
-                                \make-dark-cyan
-                                    0'06''
-                                }
+                        ^ \markup {
+                            \make-dark-cyan
+                                0'06''
+                            }
                     }
                 >>
 
@@ -4266,25 +4442,25 @@ class Label(abctools.AbjadObject):
                     {
                         \tempo 4=60
                         c'2
-                            ^ \markup {
-                                \make-dark-cyan
-                                    0'00''
-                                }
+                        ^ \markup {
+                            \make-dark-cyan
+                                0'00''
+                            }
                         d'2
-                            ^ \markup {
-                                \make-dark-cyan
-                                    0'02''
-                                }
+                        ^ \markup {
+                            \make-dark-cyan
+                                0'02''
+                            }
                         e'2
-                            ^ \markup {
-                                \make-dark-cyan
-                                    0'04''
-                                }
+                        ^ \markup {
+                            \make-dark-cyan
+                                0'04''
+                            }
                         f'2
-                            ^ \markup {
-                                \make-dark-cyan
-                                    0'06''
-                                }
+                        ^ \markup {
+                            \make-dark-cyan
+                                0'06''
+                            }
                     }
                 >>
 

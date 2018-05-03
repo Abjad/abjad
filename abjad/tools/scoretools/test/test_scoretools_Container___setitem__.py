@@ -14,9 +14,14 @@ def test_scoretools_Container___setitem___01():
         r'''
         \new Voice
         {
-            c'8 [ \glissando
-            d'8 ] \glissando
-            e'8 \glissando
+            c'8
+            [
+            \glissando
+            d'8
+            ]
+            \glissando
+            e'8
+            \glissando
             f'8
         }
         '''
@@ -28,9 +33,14 @@ def test_scoretools_Container___setitem___01():
         r'''
         \new Voice
         {
-            c'8 [ \glissando
-            c''8 ] \glissando
-            e'8 \glissando
+            c'8
+            [
+            \glissando
+            c''8
+            ]
+            \glissando
+            e'8
+            \glissando
             f'8
         }
         '''
@@ -52,9 +62,14 @@ def test_scoretools_Container___setitem___02():
         r'''
         \new Voice
         {
-            c'8 [ \glissando
-            d'8 ] \glissando
-            e'8 \glissando
+            c'8
+            [
+            \glissando
+            d'8
+            ]
+            \glissando
+            e'8
+            \glissando
             f'8
         }
         '''
@@ -66,13 +81,20 @@ def test_scoretools_Container___setitem___02():
         r'''
         \new Voice
         {
-            c'8 [ \glissando
+            c'8
+            [
+            \glissando
             {
-                c'16 \glissando
-                c'16 \glissando
-                c'16 ] \glissando
+                c'16
+                \glissando
+                c'16
+                \glissando
+                c'16
+                ]
+                \glissando
             }
-            e'8 \glissando
+            e'8
+            \glissando
             f'8
         }
         '''
@@ -94,12 +116,17 @@ def test_scoretools_Container___setitem___03():
         \new Voice
         {
             {
-                c'8 [ \glissando
-                d'8 \glissando
+                c'8
+                [
+                \glissando
+                d'8
+                \glissando
             }
             {
-                e'8 \glissando
-                f'8 ]
+                e'8
+                \glissando
+                f'8
+                ]
             }
         }
         '''
@@ -112,10 +139,14 @@ def test_scoretools_Container___setitem___03():
         \new Voice
         {
             {
-                c'8 [ \glissando
-                d'8 \glissando
+                c'8
+                [
+                \glissando
+                d'8
+                \glissando
             }
-            c''8 ]
+            c''8
+            ]
         }
         '''
         )
@@ -137,12 +168,17 @@ def test_scoretools_Container___setitem___04():
         \new Voice
         {
             {
-                c'8 [ \glissando
-                d'8 \glissando
+                c'8
+                [
+                \glissando
+                d'8
+                \glissando
             }
             {
-                e'8 \glissando
-                f'8 ]
+                e'8
+                \glissando
+                f'8
+                ]
             }
         }
         '''
@@ -155,13 +191,19 @@ def test_scoretools_Container___setitem___04():
         \new Voice
         {
             {
-                c'8 [ \glissando
-                d'8 \glissando
+                c'8
+                [
+                \glissando
+                d'8
+                \glissando
             }
             \times 2/3 {
-                c'8 \glissando
-                d'8 \glissando
-                e'8 ]
+                c'8
+                \glissando
+                d'8
+                \glissando
+                e'8
+                ]
             }
         }
         '''
@@ -183,12 +225,17 @@ def test_scoretools_Container___setitem___05():
         \new Voice
         {
             {
-                c'8 [ \glissando
-                d'8 \glissando
+                c'8
+                [
+                \glissando
+                d'8
+                \glissando
             }
             {
-                e'8 \glissando
-                f'8 ]
+                e'8
+                \glissando
+                f'8
+                ]
             }
         }
         '''
@@ -201,10 +248,14 @@ def test_scoretools_Container___setitem___05():
         \new Voice
         {
             {
-                c'8 [ \glissando
-                d'8 \glissando
+                c'8
+                [
+                \glissando
+                d'8
+                \glissando
             }
-            c''8 ]
+            c''8
+            ]
         }
         '''
         )
@@ -226,14 +277,16 @@ def test_scoretools_Container___setitem___06():
         \new Voice
         {
             {
-                c'8 [
+                c'8
+                [
                 d'8
                 e'8
                 f'8
             }
             {
                 g'8
-                a'8 ]
+                a'8
+                ]
                 b'8
                 c''8
             }
@@ -248,10 +301,12 @@ def test_scoretools_Container___setitem___06():
         \new Voice
         {
             {
-                c'8 [
+                c'8
+                [
                 d'8
                 e'8
-                f'8 ]
+                f'8
+                ]
             }
             r2
         }
@@ -277,9 +332,11 @@ def test_scoretools_Container___setitem___07():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             d'8
-            e'8 ]
+            e'8
+            ]
         }
         '''
         )
@@ -291,9 +348,11 @@ def test_scoretools_Container___setitem___07():
         r'''
         \new Voice
         {
-            f'8 [
+            f'8
+            [
             g'8
-            a'8 ]
+            a'8
+            ]
         }
         '''
         )
@@ -304,9 +363,11 @@ def test_scoretools_Container___setitem___07():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             g'8
-            e'8 ]
+            e'8
+            ]
         }
         '''
         )
@@ -317,8 +378,10 @@ def test_scoretools_Container___setitem___07():
         r'''
         \new Voice
         {
-            f'8 [
-            a'8 ]
+            f'8
+            [
+            a'8
+            ]
         }
         '''
         )
@@ -341,9 +404,11 @@ def test_scoretools_Container___setitem___08():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             d'8
-            e'8 ]
+            e'8
+            ]
         }
         '''
         )
@@ -359,10 +424,15 @@ def test_scoretools_Container___setitem___08():
         r'''
         \new Voice
         {
-            f'8 \glissando
+            f'8
+            \glissando
             {
-                g'8 \glissando (
-                a'8 ) \glissando
+                g'8
+                \glissando
+                (
+                a'8
+                )
+                \glissando
             }
             b'8
         }
@@ -375,12 +445,16 @@ def test_scoretools_Container___setitem___08():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             {
-                g'8 (
-                a'8 )
+                g'8
+                (
+                a'8
+                )
             }
-            e'8 ]
+            e'8
+            ]
         }
         '''
         )
@@ -391,7 +465,8 @@ def test_scoretools_Container___setitem___08():
         r'''
         \new Voice
         {
-            f'8 \glissando
+            f'8
+            \glissando
             b'8
         }
         '''
@@ -437,11 +512,13 @@ def test_scoretools_Container___setitem___10():
         r'''
         \new Staff
         {
-            c'8 [
+            c'8
+            [
             d'8
             g'8
             e'8
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )
@@ -470,10 +547,12 @@ def test_scoretools_Container___setitem___11():
         r'''
         \new Staff
         {
-            c'8 [
+            c'8
+            [
             d'8
             g'8
-            a'8 ]
+            a'8
+            ]
         }
         '''
         )
@@ -484,12 +563,14 @@ def test_scoretools_Container___setitem___11():
         r'''
         \new Staff
         {
-            c'8 [
+            c'8
+            [
             d'8
             e'8
             f'8
             g'8
-            a'8 ]
+            a'8
+            ]
         }
         '''
         )
@@ -511,9 +592,11 @@ def test_scoretools_Container___setitem___12():
         r'''
         \new Staff
         {
-            c'8 [
+            c'8
+            [
             c''8
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )
@@ -535,11 +618,13 @@ def test_scoretools_Container___setitem___13():
         r'''
         \new Staff
         {
-            c'8 [
+            c'8
+            [
             b'8
             a'8
             g'8
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )
@@ -558,12 +643,14 @@ def test_scoretools_Container___setitem___14():
         \new Staff
         {
             {
-                c'8 [
+                c'8
+                [
                 d'8
             }
             {
                 e'8
-                f'8 ]
+                f'8
+                ]
             }
         }
         '''
@@ -576,11 +663,13 @@ def test_scoretools_Container___setitem___14():
         r'''
         \new Staff
         {
-            c'8 [
+            c'8
+            [
             d'8
             {
                 e'8
-                f'8 ]
+                f'8
+                ]
             }
         }
         '''
@@ -602,12 +691,14 @@ def test_scoretools_Container___setitem___15():
         \new Staff
         {
             {
-                c'8 [
+                c'8
+                [
                 d'8
             }
             {
                 e'8
-                f'8 ]
+                f'8
+                ]
             }
         }
         '''
@@ -621,11 +712,13 @@ def test_scoretools_Container___setitem___15():
         {
             c'8
             {
-                d'8 [
+                d'8
+                [
             }
             {
                 e'8
-                f'8 ]
+                f'8
+                ]
             }
         }
         '''
@@ -650,12 +743,14 @@ def test_scoretools_Container___setitem___16():
         \new Staff
         {
             {
-                c'8 [
+                c'8
+                [
                 d'8
             }
             {
                 e'8
-                f'8 ]
+                f'8
+                ]
             }
         }
         '''
@@ -672,8 +767,10 @@ def test_scoretools_Container___setitem___16():
             {
             }
             {
-                e'8 [
-                f'8 ]
+                e'8
+                [
+                f'8
+                ]
             }
         }
         '''
@@ -695,12 +792,14 @@ def test_scoretools_Container___setitem___17():
         \new Staff
         {
             {
-                c'8 [
+                c'8
+                [
                 d'8
             }
             {
                 e'8
-                f'8 ]
+                f'8
+                ]
             }
         }
         '''
@@ -720,7 +819,9 @@ def test_scoretools_Container___setitem___17():
                 e'8
             }
             {
-                f'8 [ ]
+                f'8
+                [
+                ]
             }
         }
         '''
@@ -741,10 +842,12 @@ def test_scoretools_Container___setitem___18():
         \new Voice
         {
             r8
-            c'8 [
+            c'8
+            [
             d'8
             e'8
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )
@@ -754,10 +857,12 @@ def test_scoretools_Container___setitem___18():
         \new Voice
         {
             r8
-            c'8 [
+            c'8
+            [
             d'8
             e'8
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )
@@ -776,10 +881,12 @@ def test_scoretools_Container___setitem___19():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             d'8
             e'8
-            f'8 ]
+            f'8
+            ]
             r8
         }
         '''
@@ -811,8 +918,10 @@ def test_scoretools_Container___setitem___20():
             c'8
             {
                 {
-                    d'8 [
-                    e'8 ]
+                    d'8
+                    [
+                    e'8
+                    ]
                 }
             }
             f'8
@@ -860,8 +969,10 @@ def test_scoretools_Container___setitem___20():
             c'8
             {
                 {
-                    d'8 [
-                    e'8 ]
+                    d'8
+                    [
+                    e'8
+                    ]
                 }
             }
             f'8
@@ -889,8 +1000,10 @@ def test_scoretools_Container___setitem___20():
     assert format(inner_container) == abjad.String.normalize(
         r'''
         {
-            d'8 [
-            e'8 ]
+            d'8
+            [
+            e'8
+            ]
         }
         '''
         )
@@ -926,7 +1039,8 @@ def test_scoretools_Container___setitem___21():
         r'''
         \new Staff
         {
-            c'8 [
+            c'8
+            [
             a'8
             {
                 b'8
@@ -935,7 +1049,8 @@ def test_scoretools_Container___setitem___21():
                 g'8
             }
             fs'8
-            f'8 ]
+            f'8
+            ]
         }
         ''',
         )

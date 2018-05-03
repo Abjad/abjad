@@ -16,11 +16,16 @@ def test_scoretools_Container__get_spanners_that_dominate_component_pair_01():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            c'8 [ (
+            c'8
+            [
+            (
             \startTrillSpan
             d'8
             e'8
-            f'8 ] ) \stopTrillSpan
+            f'8
+            ]
+            )
+            \stopTrillSpan
         }
         '''
         )
@@ -49,11 +54,16 @@ def test_scoretools_Container__get_spanners_that_dominate_component_pair_02():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            c'8 [ (
+            c'8
+            [
+            (
             \startTrillSpan
             d'8
             e'8
-            f'8 ] ) \stopTrillSpan
+            f'8
+            ]
+            )
+            \stopTrillSpan
         }
         '''
         )

@@ -17,10 +17,12 @@ def test_scoretools_Inspection_get_indicators_01():
         {
             \slurDotted
             \slurUp
-            c'8 (
+            c'8
+            (
             d'8
             e'8
-            f'8 )
+            f'8
+            )
         }
         '''
         ), format(staff)
@@ -47,10 +49,12 @@ def test_scoretools_Inspection_get_indicators_02():
         {
             % beginning of note content
             \slurDotted
-            c'8 (
+            c'8
+            (
             d'8
             e'8
-            f'8 )
+            f'8
+            )
         }
         '''
         ), format(staff)
@@ -74,7 +78,8 @@ def test_scoretools_Inspection_get_indicators_03():
         \new Staff
         {
             \clef "treble"
-            c'8 \p
+            c'8
+            \p
             d'8
             e'8
             f'8

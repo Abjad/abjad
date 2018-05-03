@@ -13,14 +13,18 @@ def test_spannertools_ComplexBeam_direction_01():
         {
             \set stemLeftBeamCount = 0
             \set stemRightBeamCount = 2
-            c'16 ^ [
+            c'16
+            ^ [
             \set stemLeftBeamCount = 2
             \set stemRightBeamCount = 2
-            e'16 ]
+            e'16
+            ]
             r16
             \set stemLeftBeamCount = 2
             \set stemRightBeamCount = 0
-            f'16 ^ [ ]
+            f'16
+            ^ [
+            ]
             g'2
         }
         '''
@@ -39,14 +43,18 @@ def test_spannertools_ComplexBeam_direction_02():
         {
             \set stemLeftBeamCount = 0
             \set stemRightBeamCount = 2
-            c'16 _ [
+            c'16
+            _ [
             \set stemLeftBeamCount = 2
             \set stemRightBeamCount = 2
-            e'16 ]
+            e'16
+            ]
             r16
             \set stemLeftBeamCount = 2
             \set stemRightBeamCount = 0
-            f'16 _ [ ]
+            f'16
+            _ [
+            ]
             g'2
         }
         '''

@@ -21,10 +21,12 @@ class HorizontalBracketSpanner(Spanner):
                 \consists Horizontal_bracket_engraver
             }
             {
-                c'4 \startGroup
+                c'4
+                \startGroup
                 d'4
                 e'4
-                f'4 \stopGroup
+                f'4
+                \stopGroup
             }
 
     Formats LilyPond ``\startGroup`` command on first leaf in spanner.

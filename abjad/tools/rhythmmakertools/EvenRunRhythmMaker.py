@@ -28,10 +28,12 @@ class EvenRunRhythmMaker(RhythmMaker):
                 {   % measure
                     \time 4/8
                     {
-                        c'8 [
+                        c'8
+                        [
                         c'8
                         c'8
-                        c'8 ]
+                        c'8
+                        ]
                     }
                 }   % measure
                 {   % measure
@@ -218,30 +220,36 @@ class EvenRunRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 4/8
                         {
-                            c'8 [
+                            c'8
+                            [
                             c'8
                             c'8
-                            c'8 ]
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/4
                         {
-                            c'8 [
+                            c'8
+                            [
                             c'8
                             c'8
                             c'8
                             c'8
-                            c'8 ]
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 2/4
                         {
-                            c'8 [
+                            c'8
+                            [
                             c'8
                             c'8
-                            c'8 ]
+                            c'8
+                            ]
                         }
                     }   % measure
                 }
@@ -279,10 +287,12 @@ class EvenRunRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 4/8
                         {
-                            c'8 [
+                            c'8
+                            [
                             c'8
                             c'8
-                            c'8 ]
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
@@ -332,34 +342,40 @@ class EvenRunRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 4/8
                         {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/4
                         {
-                            c'8 [
+                            c'8
+                            [
                             c'8
                             c'8
                             c'8
                             c'8
-                            c'8 ]
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 2/4
                         {
-                            c'8 [
+                            c'8
+                            [
                             c'8
                             c'8
-                            c'8 ]
+                            c'8
+                            ]
                         }
                     }   % measure
                 }
@@ -394,7 +410,8 @@ class EvenRunRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 4/8
                         {
-                            c'32 [
+                            c'32
+                            [
                             c'32
                             c'32
                             c'32
@@ -409,13 +426,15 @@ class EvenRunRhythmMaker(RhythmMaker):
                             c'32
                             c'32
                             c'32
-                            c'32 ]
+                            c'32
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/4
                         {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
@@ -426,20 +445,23 @@ class EvenRunRhythmMaker(RhythmMaker):
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 2/4
                         {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                 }
@@ -488,35 +510,43 @@ class EvenRunRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 5/8
                         {
-                            c'8 [
+                            c'8
+                            [
                             c'8
                             c'8
                             c'8
-                            c'8 ]
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/8
                         {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/8
                         {
-                            c'8 [
+                            c'8
+                            [
                             c'8
                             c'8
-                            c'8 ]
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 2/8
                         {
-                            c'8 [
-                            c'8 ]
+                            c'8
+                            [
+                            c'8
+                            ]
                         }
                     }   % measure
                 }
@@ -548,35 +578,46 @@ class EvenRunRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 5/8
                         {
-                            c'8 [
+                            c'8
+                            [
                             c'8
                             c'8
                             c'8
-                            c'8 ~ ]
+                            c'8
+                            ~
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/8
                         {
-                            c'8 [
                             c'8
-                            c'8 ~ ]
+                            [
+                            c'8
+                            c'8
+                            ~
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/8
                         {
-                            c'8 [
+                            c'8
+                            [
                             c'8
                             c'8
-                            c'8 ~ ]
+                            c'8
+                            ~
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 2/8
                         {
-                            c'8 [
-                            c'8 ]
+                            c'8
+                            [
+                            c'8
+                            ]
                         }
                     }   % measure
                 }
@@ -609,35 +650,45 @@ class EvenRunRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 5/8
                         {
-                            c'8 [
+                            c'8
+                            [
                             c'8
                             c'8
                             c'8
-                            c'8 ~ ]
+                            c'8
+                            ~
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/8
                         {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/8
                         {
-                            c'8 [
+                            c'8
+                            [
                             c'8
                             c'8
-                            c'8 ~ ]
+                            c'8
+                            ~
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 2/8
                         {
-                            c'8 [
-                            c'8 ]
+                            c'8
+                            [
+                            c'8
+                            ]
                         }
                     }   % measure
                 }

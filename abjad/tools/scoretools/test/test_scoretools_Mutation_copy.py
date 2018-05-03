@@ -23,7 +23,9 @@ def test_scoretools_Mutation_copy_01():
         {
             {   % measure
                 \time 2/8
-                c'8 [ (
+                c'8
+                [
+                (
                 \startTrillSpan
                 d'8
             }   % measure
@@ -33,7 +35,10 @@ def test_scoretools_Mutation_copy_01():
             }   % measure
             {   % measure
                 g'8
-                a'8 ] ) \stopTrillSpan
+                a'8
+                ]
+                )
+                \stopTrillSpan
             }   % measure
         }
         '''
@@ -46,9 +51,14 @@ def test_scoretools_Mutation_copy_01():
         r'''
         \new Voice
         {
-            e'8 [ (
+            e'8
+            [
+            (
             \startTrillSpan
-            f'8 ] ) \stopTrillSpan
+            f'8
+            ]
+            )
+            \stopTrillSpan
         }
         '''
         )
@@ -75,7 +85,9 @@ def test_scoretools_Mutation_copy_02():
         {
             {   % measure
                 \time 2/8
-                c'8 [ (
+                c'8
+                [
+                (
                 \startTrillSpan
                 d'8
             }   % measure
@@ -85,7 +97,10 @@ def test_scoretools_Mutation_copy_02():
             }   % measure
             {   % measure
                 g'8
-                a'8 ] ) \stopTrillSpan
+                a'8
+                ]
+                )
+                \stopTrillSpan
             }   % measure
         }
         '''
@@ -100,9 +115,14 @@ def test_scoretools_Mutation_copy_02():
         {
             {   % measure
                 \time 2/8
-                e'8 [ (
+                e'8
+                [
+                (
                 \startTrillSpan
-                f'8 ] ) \stopTrillSpan
+                f'8
+                ]
+                )
+                \stopTrillSpan
             }   % measure
         }
         '''
@@ -130,7 +150,9 @@ def test_scoretools_Mutation_copy_03():
         {
             {   % measure
                 \time 2/8
-                c'8 [ (
+                c'8
+                [
+                (
                 \startTrillSpan
                 d'8
             }   % measure
@@ -140,7 +162,10 @@ def test_scoretools_Mutation_copy_03():
             }   % measure
             {   % measure
                 g'8
-                a'8 ] ) \stopTrillSpan
+                a'8
+                ]
+                )
+                \stopTrillSpan
             }   % measure
         }
         '''
@@ -153,10 +178,15 @@ def test_scoretools_Mutation_copy_03():
         r'''
         \new Voice
         {
-            f'8 [ (
+            f'8
+            [
+            (
             \startTrillSpan
             g'8
-            a'8 ] ) \stopTrillSpan
+            a'8
+            ]
+            )
+            \stopTrillSpan
         }
         '''
         )
@@ -180,7 +210,9 @@ def test_scoretools_Mutation_copy_04():
         {
             {   % measure
                 \time 2/8
-                c'8 [ (
+                c'8
+                [
+                (
                 d'8
             }   % measure
             {   % measure
@@ -193,7 +225,9 @@ def test_scoretools_Mutation_copy_04():
             }   % measure
             {   % measure
                 b'8
-                c''8 ] )
+                c''8
+                ]
+                )
             }   % measure
         }
         '''
@@ -248,7 +282,9 @@ def test_scoretools_Mutation_copy_05():
         {
             {   % measure
                 \time 2/8
-                c'8 [ (
+                c'8
+                [
+                (
                 d'8
             }   % measure
             {   % measure
@@ -261,7 +297,9 @@ def test_scoretools_Mutation_copy_05():
             }   % measure
             {   % measure
                 b'8
-                c''8 ] )
+                c''8
+                ]
+                )
             }   % measure
         }
         '''
@@ -312,7 +350,9 @@ def test_scoretools_Mutation_copy_06():
         {
             {   % measure
                 \time 2/8
-                c'8 [ (
+                c'8
+                [
+                (
                 d'8
             }   % measure
             {   % measure
@@ -325,7 +365,9 @@ def test_scoretools_Mutation_copy_06():
             }   % measure
             {   % measure
                 b'8
-                c''8 ] )
+                c''8
+                ]
+                )
             }   % measure
         }
         '''
@@ -369,7 +411,9 @@ def test_scoretools_Mutation_copy_07():
         {
             {   % measure
                 \time 2/8
-                c'8 [ (
+                c'8
+                [
+                (
                 d'8
             }   % measure
             {   % measure
@@ -382,7 +426,9 @@ def test_scoretools_Mutation_copy_07():
             }   % measure
             {   % measure
                 b'8
-                c''8 ] )
+                c''8
+                ]
+                )
             }   % measure
         }
         '''
@@ -426,10 +472,12 @@ def test_scoretools_Mutation_copy_08():
         r'''
         \new Staff
         {
-            c'8 \<
+            c'8
+            \<
             cs'8
             d'8
-            ef'8 \!
+            ef'8
+            \!
             e'8
             f'8
             fs'8
@@ -445,18 +493,22 @@ def test_scoretools_Mutation_copy_08():
         r'''
         \new Staff
         {
-            c'8 \<
+            c'8
+            \<
             cs'8
             d'8
-            ef'8 \!
+            ef'8
+            \!
             e'8
             f'8
             fs'8
             g'8
-            c'8 \<
+            c'8
+            \<
             cs'8
             d'8
-            ef'8 \!
+            ef'8
+            \!
         }
         '''
         )

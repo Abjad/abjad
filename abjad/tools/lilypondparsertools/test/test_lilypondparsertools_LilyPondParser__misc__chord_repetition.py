@@ -52,12 +52,16 @@ def test_lilypondparsertools_LilyPondParser__misc__chord_repetition_02():
         r'''
         \new Staff
         {
-            <c' e' g'>8 \p
             <c' e' g'>8
-            <c' e' g'>4 -\staccatissimo
-            <c' e' g'>8. ^ \markup { text }
+            \p
+            <c' e' g'>8
+            <c' e' g'>4
+            -\staccatissimo
+            <c' e' g'>8.
+            ^ \markup { text }
             <c' e' g'>16
-            <c' e' g'>4 -\staccatissimo
+            <c' e' g'>4
+            -\staccatissimo
         }
         '''
         )

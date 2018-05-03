@@ -20,7 +20,8 @@ def test_rhythmmakertools_NoteRhythmMaker___call___01():
         {
             {   % measure
                 \time 5/16
-                c'4 ~
+                c'4
+                ~
                 c'16
             }   % measure
             {   % measure
@@ -55,7 +56,8 @@ def test_rhythmmakertools_NoteRhythmMaker___call___02():
         {
             {   % measure
                 \time 5/16
-                c'16 ~
+                c'16
+                ~
                 c'4
             }   % measure
             {   % measure

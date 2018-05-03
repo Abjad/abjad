@@ -18,12 +18,14 @@ def test_scoretools_Mutation_splice_01():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             d'8
             e'8
             c'8
             d'8
-            e'8 ]
+            e'8
+            ]
         }
         '''
         )
@@ -45,10 +47,12 @@ def test_scoretools_Mutation_splice_02():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             d'8
             dqs'8
-            e'8 ]
+            e'8
+            ]
         }
         '''
         )
@@ -76,14 +80,16 @@ def test_scoretools_Mutation_splice_03():
         \new Voice
         {
             \times 2/3 {
-                c'8 [
+                c'8
+                [
                 d'8
                 e'8
             }
             \times 2/3 {
                 c'8
                 d'8
-                e'8 ]
+                e'8
+                ]
             }
         }
         '''
@@ -111,13 +117,15 @@ def test_scoretools_Mutation_splice_04():
         \new Voice
         {
             {
-                c'8 [
+                c'8
+                [
                 c'8
             }
             dqs'8
             {
                 c'8
-                c'8 ]
+                c'8
+                ]
             }
         }
         '''
@@ -144,9 +152,11 @@ def test_scoretools_Mutation_splice_05():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             d'8
-            e'8 ]
+            e'8
+            ]
             c'8
             d'8
             e'8
@@ -175,10 +185,12 @@ def test_scoretools_Mutation_splice_06():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             d'8
             dqs'8
-            e'8 ]
+            e'8
+            ]
         }
         '''
         )
@@ -205,12 +217,14 @@ def test_scoretools_Mutation_splice_07():
         r'''
         \new Voice
         {
-            c'16 [
+            c'16
+            [
             d'16
             e'16
             c'8
             d'8
-            e'8 ]
+            e'8
+            ]
         }
         '''
         )
@@ -236,10 +250,12 @@ def test_scoretools_Mutation_splice_08():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             dqf'8
             d'8
-            e'8 ]
+            e'8
+            ]
         }
         '''
         )
@@ -268,14 +284,16 @@ def test_scoretools_Mutation_splice_09():
         \new Voice
         {
             \times 2/3 {
-                c'8 [
+                c'8
+                [
                 d'8
                 e'8
             }
             \times 2/3 {
                 c'8
                 d'8
-                e'8 ]
+                e'8
+                ]
             }
         }
         '''
@@ -304,13 +322,15 @@ def test_scoretools_Mutation_splice_10():
         \new Voice
         {
             {
-                c'8 [
+                c'8
+                [
                 d'8
             }
             dqs'8
             {
                 e'8
-                f'8 ]
+                f'8
+                ]
             }
         }
         '''
@@ -341,9 +361,11 @@ def test_scoretools_Mutation_splice_11():
             c'16
             d'16
             e'16
-            c'8 [
+            c'8
+            [
             d'8
-            e'8 ]
+            e'8
+            ]
         }
         '''
         )
@@ -369,10 +391,12 @@ def test_scoretools_Mutation_splice_12():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             dqf'8
             d'8
-            e'8 ]
+            e'8
+            ]
         }
         '''
         )

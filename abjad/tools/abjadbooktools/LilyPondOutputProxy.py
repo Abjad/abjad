@@ -218,14 +218,9 @@ class LilyPondOutputProxy(ImageOutputProxy):
         import abjad
         from abjad.tools import abjadbooktools
         result = []
-        if self.strict is True:
-            format_specification = 'lilypond:strict'
-        elif self.strict is not False and isinstance(self.strict, int):
-            format_specification = 'lilypond:strict'
-        else:
-            format_specification = 'lilypond'
+        assert self.strict is not False, repr(self.strict)
         try:
-            code = format(self.payload, format_specification)
+            code = format(self.payload, 'lilypond')
             if isinstance(self.strict, int):
                 code = abjad.LilyPondFormatManager.align_tags(
                     code,

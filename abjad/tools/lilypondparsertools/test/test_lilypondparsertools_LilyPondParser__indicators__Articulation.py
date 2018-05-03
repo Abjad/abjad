@@ -25,13 +25,20 @@ def test_lilypondparsertools_LilyPondParser__indicators__Articulation_01():
         r'''
         \new Staff
         {
-            c''4 ^\marcato
-            c''4 _\stopped
-            c''4 -\tenuto
-            c''4 -\staccatissimo
-            c''4 -\accent
-            c''4 -\staccato
-            c''2 -\portato
+            c''4
+            ^\marcato
+            c''4
+            _\stopped
+            c''4
+            -\tenuto
+            c''4
+            -\staccatissimo
+            c''4
+            -\accent
+            c''4
+            -\staccato
+            c''2
+            -\portato
         }
         '''
         )
@@ -100,10 +107,14 @@ def test_lilypondparsertools_LilyPondParser__indicators__Articulation_03():
     assert format(target) == abjad.String.normalize(
         r'''
         {
-            c''4 -\staccato
-            c''4 -\mordent
-            b'2 -\turn
-            c''1 -\fermata
+            c''4
+            -\staccato
+            c''4
+            -\mordent
+            b'2
+            -\turn
+            c''1
+            -\fermata
         }
         '''
         )

@@ -123,11 +123,13 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___05():
         \new Voice
         {
             \override Beam.positions = #'(4 . 4)
-            c'8 [
+            c'8
+            [
             d'8
             e'8
             \revert Beam.positions
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )
@@ -238,11 +240,14 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___10():
         \new Voice
         {
             \override DynamicLineSpanner.staff-padding = #4
-            c'8 \< \p
+            c'8
+            \<
+            \p
             d'8
             e'8
             \revert DynamicLineSpanner.staff-padding
-            f'8 \f
+            f'8
+            \f
         }
         '''
         )
@@ -292,11 +297,14 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___12():
         \new Staff
         {
             \override DynamicText.thickness = #3
-            c'8 \f [
+            c'8
+            \f
+            [
             d'8
             e'8
             \revert DynamicText.thickness
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )
@@ -370,9 +378,12 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___15():
         \new Voice
         {
             \override Glissando.thickness = #3
-            c'8 \glissando
-            d'8 \glissando
-            e'8 \glissando
+            c'8
+            \glissando
+            d'8
+            \glissando
+            e'8
+            \glissando
             \revert Glissando.thickness
             f'8
         }
@@ -795,7 +806,8 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___33():
     assert format(note) == abjad.String.normalize(
         r'''
         \once \override Script.color = #red
-        c'4 -\staccato
+        c'4
+        -\staccato
         '''
         )
 
@@ -844,13 +856,15 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___35():
             \override Score.SpacingSpanner.strict-grace-spacing = ##t
             \override Score.SpacingSpanner.strict-note-spacing = ##t
             \override Score.SpacingSpanner.uniform-stretching = ##t
-            c'8 [
+            c'8
+            [
             d'8
             e'8
             \revert Score.SpacingSpanner.strict-grace-spacing
             \revert Score.SpacingSpanner.strict-note-spacing
             \revert Score.SpacingSpanner.uniform-stretching
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )
@@ -882,7 +896,8 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___36():
                 \override Score.SpacingSpanner.strict-grace-spacing = ##t
                 \override Score.SpacingSpanner.strict-note-spacing = ##t
                 \override Score.SpacingSpanner.uniform-stretching = ##t
-                c'8 [
+                c'8
+                [
                 d'8
             }   % measure
             {   % measure
@@ -890,7 +905,8 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___36():
                 \revert Score.SpacingSpanner.strict-grace-spacing
                 \revert Score.SpacingSpanner.strict-note-spacing
                 \revert Score.SpacingSpanner.uniform-stretching
-                f'8 ]
+                f'8
+                ]
             }   % measure
         }
         '''
@@ -1160,11 +1176,13 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___46():
         \new Staff
         {
             \override TextSpanner.font-shape = #'italic
-            c'8 \startTextSpan
+            c'8
+            \startTextSpan
             c'8
             c'8
             \revert TextSpanner.font-shape
-            c'8 \stopTextSpan
+            c'8
+            \stopTextSpan
         }
         '''
         )
@@ -1300,7 +1318,8 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___52():
             d'8
             e'8
             \revert TrillSpanner.color
-            f'8 \stopTrillSpan
+            f'8
+            \stopTrillSpan
         }
         '''
         )
@@ -1323,10 +1342,12 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___53():
             \override TupletBracket.direction = #down
         }
         {
-            c'8 [
+            c'8
+            [
             d'8
             e'8
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )
@@ -1347,11 +1368,13 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___54():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             \once \override TupletBracket.direction = #down
             d'8
             e'8
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )
@@ -1398,10 +1421,12 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___56():
             \override TupletNumber.fraction = ##t
         }
         {
-            c'8 [
+            c'8
+            [
             d'8
             e'8
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )
@@ -1422,11 +1447,13 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___57():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             \once \override TupletNumber.fraction = ##t
             d'8
             e'8
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )
@@ -1451,10 +1478,12 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___58():
             \override TupletNumber.text = \markup { 6:4 }
         }
         {
-            c'8 [
+            c'8
+            [
             d'8
             e'8
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )

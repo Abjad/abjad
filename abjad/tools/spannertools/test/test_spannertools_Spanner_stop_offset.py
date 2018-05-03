@@ -14,9 +14,14 @@ def test_spannertools_Spanner_stop_offset_01():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            c'8 \glissando
-            d'8 [ \glissando
-            e'8 ] \glissando
+            c'8
+            \glissando
+            d'8
+            [
+            \glissando
+            e'8
+            ]
+            \glissando
             f'8
         }
         '''

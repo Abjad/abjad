@@ -79,7 +79,8 @@ class Iteration(abctools.AbjadObject):
                     <<
                         \new Staff
                         {
-                            c''4 ~
+                            c''4
+                            ~
                             c''8
                             d''8
                             r4
@@ -88,10 +89,12 @@ class Iteration(abctools.AbjadObject):
                         \new Staff
                         {
                             r8
-                            g'4. ~
+                            g'4.
+                            ~
                             g'8
                             r16
-                            f'8. ~
+                            f'8.
+                            ~
                             f'8
                         }
                     >>
@@ -134,7 +137,8 @@ class Iteration(abctools.AbjadObject):
                     <<
                         \new Staff
                         {
-                            c''4 ~
+                            c''4
+                            ~
                             c''8
                             d''8
                             r4
@@ -143,10 +147,12 @@ class Iteration(abctools.AbjadObject):
                         \new Staff
                         {
                             r8
-                            g'4. ~
+                            g'4.
+                            ~
                             g'8
                             r16
-                            f'8. ~
+                            f'8.
+                            ~
                             f'8
                         }
                     >>
@@ -190,7 +196,8 @@ class Iteration(abctools.AbjadObject):
                     >>> abjad.f(voice)
                     \new Voice
                     {
-                        c'8 [
+                        c'8
+                        [
                         \grace {
                             cf''16
                             bf'16
@@ -202,7 +209,8 @@ class Iteration(abctools.AbjadObject):
                             gf'16
                         }
                         e'8
-                        f'8 ]
+                        f'8
+                        ]
                     }
 
             ..  container:: example
@@ -759,7 +767,8 @@ class Iteration(abctools.AbjadObject):
                     >>> abjad.f(voice)
                     \new Voice
                     {
-                        c'8 [
+                        c'8
+                        [
                         \grace {
                             cf''16
                             bf'16
@@ -771,7 +780,8 @@ class Iteration(abctools.AbjadObject):
                             gf'16
                         }
                         e'8
-                        f'8 ]
+                        f'8
+                        ]
                     }
 
             ..  container:: example
@@ -807,7 +817,8 @@ class Iteration(abctools.AbjadObject):
                     >>> abjad.f(voice)
                     \new Voice
                     {
-                        c'8 [
+                        c'8
+                        [
                         \grace {
                             cf''16
                             bf'16
@@ -819,7 +830,8 @@ class Iteration(abctools.AbjadObject):
                             gf'16
                         }
                         e'8
-                        f'8 ]
+                        f'8
+                        ]
                     }
 
             ..  container:: example
@@ -1062,7 +1074,8 @@ class Iteration(abctools.AbjadObject):
                     >>> abjad.f(voice)
                     \new Voice
                     {
-                        c'8 [
+                        c'8
+                        [
                         \grace {
                             cf''16
                             bf'16
@@ -1074,7 +1087,8 @@ class Iteration(abctools.AbjadObject):
                             gf'16
                         }
                         e'8
-                        f'8 ]
+                        f'8
+                        ]
                     }
 
             ..  container:: example
@@ -1109,7 +1123,8 @@ class Iteration(abctools.AbjadObject):
                     >>> abjad.f(voice)
                     \new Voice
                     {
-                        c'8 [
+                        c'8
+                        [
                         \grace {
                             cf''16
                             bf'16
@@ -1121,7 +1136,8 @@ class Iteration(abctools.AbjadObject):
                             gf'16
                         }
                         e'8
-                        f'8 ]
+                        f'8
+                        ]
                     }
 
             ..  container:: example
@@ -1152,7 +1168,8 @@ class Iteration(abctools.AbjadObject):
                     >>> abjad.f(voice)
                     \new Voice
                     {
-                        c'8 [
+                        c'8
+                        [
                         \grace {
                             cf''16
                             bf'16
@@ -1164,7 +1181,8 @@ class Iteration(abctools.AbjadObject):
                             gf'16
                         }
                         e'8
-                        f'8 ]
+                        f'8
+                        ]
                     }
 
             ..  container:: example
@@ -1341,13 +1359,15 @@ class Iteration(abctools.AbjadObject):
                     >>> abjad.f(staff)
                     \new Staff
                     {
-                        c'4 ~
+                        c'4
+                        ~
                         \times 2/3 {
                             c'16
                             d'8
                         }
                         e'8
-                        f'4 ~
+                        f'4
+                        ~
                         f'16
                     }
 
@@ -1376,13 +1396,15 @@ class Iteration(abctools.AbjadObject):
                     >>> abjad.f(staff)
                     \new Staff
                     {
-                        c'4 ~
+                        c'4
+                        ~
                         \times 2/3 {
                             c'16
                             d'8
                         }
                         e'8
-                        f'4 ~
+                        f'4
+                        ~
                         f'16
                     }
 
@@ -1413,13 +1435,15 @@ class Iteration(abctools.AbjadObject):
                     >>> abjad.f(staff)
                     \new Staff
                     {
-                        c'4 ~
+                        c'4
+                        ~
                         \times 2/3 {
                             c'16
                             d'8
                         }
                         e'8
-                        f'4 ~
+                        f'4
+                        ~
                         f'16
                     }
 
@@ -1448,13 +1472,15 @@ class Iteration(abctools.AbjadObject):
                     >>> abjad.f(staff)
                     \new Staff
                     {
-                        c'4 ~
+                        c'4
+                        ~
                         \times 2/3 {
                             c'16
                             d'8
                         }
                         e'8
-                        f'4 ~
+                        f'4
+                        ~
                         f'16
                     }
 
@@ -1487,7 +1513,8 @@ class Iteration(abctools.AbjadObject):
                     >>> abjad.f(voice)
                     \new Voice
                     {
-                        c'8 [
+                        c'8
+                        [
                         \grace {
                             cf''16
                             bf'16
@@ -1499,7 +1526,8 @@ class Iteration(abctools.AbjadObject):
                             gf'16
                         }
                         e'8
-                        f'8 ]
+                        f'8
+                        ]
                     }
 
             ..  container:: example
@@ -1531,13 +1559,15 @@ class Iteration(abctools.AbjadObject):
                     >>> abjad.f(staff)
                     \new Staff
                     {
-                        c'4 ~
+                        c'4
+                        ~
                         \times 2/3 {
                             c'16
                             d'8
                         }
                         e'8
-                        f'4 ~
+                        f'4
+                        ~
                         f'16
                     }
 
@@ -1568,10 +1598,14 @@ class Iteration(abctools.AbjadObject):
                     >>> abjad.f(voice)
                     \new Voice
                     {
-                        c'8 ~ [
-                        c'8 ~
                         c'8
-                        d'8 ]
+                        ~
+                        [
+                        c'8
+                        ~
+                        c'8
+                        d'8
+                        ]
                     }
 
             ..  container:: example
@@ -1775,10 +1809,12 @@ class Iteration(abctools.AbjadObject):
                     >>> abjad.f(staff)
                     \new Staff
                     {
-                        c'8 [
+                        c'8
+                        [
                         d'8
                         e'8
-                        f'8 ]
+                        f'8
+                        ]
                     }
 
             ..  container:: example
@@ -1807,10 +1843,12 @@ class Iteration(abctools.AbjadObject):
                     >>> abjad.f(staff)
                     \new Staff
                     {
-                        c'8 [
+                        c'8
+                        [
                         d'8
                         e'8
-                        f'8 ]
+                        f'8
+                        ]
                     }
 
             ..  container:: example
@@ -1926,15 +1964,21 @@ class Iteration(abctools.AbjadObject):
                     >>> abjad.f(staff)
                     \new Staff
                     {
-                        c'8 [ (
+                        c'8
+                        [
+                        (
                         d'8
                         e'8
-                        f'8 )
-                        g'8 (
+                        f'8
+                        )
+                        g'8
+                        (
                         a'8
                         f'8
                         b'8
-                        c''8 ] )
+                        c''8
+                        ]
+                        )
                     }
 
             ..  container:: example
@@ -1963,15 +2007,21 @@ class Iteration(abctools.AbjadObject):
                     >>> abjad.f(staff)
                     \new Staff
                     {
-                        c'8 [ (
+                        c'8
+                        [
+                        (
                         d'8
                         e'8
-                        f'8 )
-                        g'8 (
+                        f'8
+                        )
+                        g'8
+                        (
                         a'8
                         f'8
                         b'8
-                        c''8 ] )
+                        c''8
+                        ]
+                        )
                     }
 
             ..  container:: example
@@ -2114,14 +2164,16 @@ class Iteration(abctools.AbjadObject):
                     >>> abjad.f(voice)
                     \new Voice
                     {
-                        c'8 [
+                        c'8
+                        [
                         \grace {
                             cf''16
                             bf'16
                         }
                         d'8
                         e'8
-                        f'8 ]
+                        f'8
+                        ]
                     }
 
             ..  container:: example

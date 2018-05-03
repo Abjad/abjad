@@ -77,14 +77,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         }
                     \times 1/1 {
                         \once \override Beam.grow-direction = #right
-                        c'16 * 61/32 [
+                        c'16 * 61/32
+                        [
                         c'16 * 115/64
                         c'16 * 49/32
                         c'16 * 5/4
                         c'16 * 33/32
                         c'16 * 57/64
                         c'16 * 13/16
-                        c'16 * 25/32 ]
+                        c'16 * 25/32
+                        ]
                     }
                     \revert TupletNumber.text
                 }   % measure
@@ -128,11 +130,13 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         }
                     \times 1/1 {
                         \once \override Beam.grow-direction = #right
-                        c'16 * 117/64 [
+                        c'16 * 117/64
+                        [
                         c'16 * 99/64
                         c'16 * 69/64
                         c'16 * 13/16
-                        c'16 * 47/64 ]
+                        c'16 * 47/64
+                        ]
                     }
                     \revert TupletNumber.text
                 }   % measure
@@ -177,14 +181,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         }
                     \times 1/1 {
                         \once \override Beam.grow-direction = #right
-                        c'16 * 61/32 [
+                        c'16 * 61/32
+                        [
                         c'16 * 115/64
                         c'16 * 49/32
                         c'16 * 5/4
                         c'16 * 33/32
                         c'16 * 57/64
                         c'16 * 13/16
-                        c'16 * 25/32 ]
+                        c'16 * 25/32
+                        ]
                     }
                     \revert TupletNumber.text
                 }   % measure
@@ -228,11 +234,13 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         }
                     \times 1/1 {
                         \once \override Beam.grow-direction = #right
-                        c'16 * 117/64 [
+                        c'16 * 117/64
+                        [
                         c'16 * 99/64
                         c'16 * 69/64
                         c'16 * 13/16
-                        c'16 * 47/64 ]
+                        c'16 * 47/64
+                        ]
                     }
                     \revert TupletNumber.text
                 }   % measure
@@ -310,7 +318,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         }
                     \times 1/1 {
                         \once \override Beam.grow-direction = #left
-                        c'16 * 45/64 [
+                        c'16 * 45/64
+                        [
                         c'16 * 23/32
                         c'16 * 25/32
                         c'16 * 55/64
@@ -318,7 +327,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         c'16 * 75/64
                         c'16 * 89/64
                         c'16 * 103/64
-                        c'16 * 113/64 ]
+                        c'16 * 113/64
+                        ]
                     }
                     \revert TupletNumber.text
                 }   % measure
@@ -362,12 +372,14 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         }
                     \times 1/1 {
                         \once \override Beam.grow-direction = #left
-                        c'16 * 5/8 [
+                        c'16 * 5/8
+                        [
                         c'16 * 43/64
                         c'16 * 51/64
                         c'16 * 65/64
                         c'16 * 85/64
-                        c'16 * 25/16 ]
+                        c'16 * 25/16
+                        ]
                     }
                     \revert TupletNumber.text
                 }   % measure
@@ -412,7 +424,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         }
                     \times 1/1 {
                         \once \override Beam.grow-direction = #left
-                        c'16 * 45/64 [
+                        c'16 * 45/64
+                        [
                         c'16 * 23/32
                         c'16 * 25/32
                         c'16 * 55/64
@@ -420,7 +433,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         c'16 * 75/64
                         c'16 * 89/64
                         c'16 * 103/64
-                        c'16 * 113/64 ]
+                        c'16 * 113/64
+                        ]
                     }
                     \revert TupletNumber.text
                 }   % measure
@@ -464,12 +478,14 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         }
                     \times 1/1 {
                         \once \override Beam.grow-direction = #left
-                        c'16 * 5/8 [
+                        c'16 * 5/8
+                        [
                         c'16 * 43/64
                         c'16 * 51/64
                         c'16 * 65/64
                         c'16 * 85/64
-                        c'16 * 25/16 ]
+                        c'16 * 25/16
+                        ]
                     }
                     \revert TupletNumber.text
                 }   % measure
@@ -942,14 +958,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 61/32 [
+                            c'16 * 61/32
+                            [
                             c'16 * 115/64
                             c'16 * 49/32
                             c'16 * 5/4
                             c'16 * 33/32
                             c'16 * 57/64
                             c'16 * 13/16
-                            c'16 * 25/32 ]
+                            c'16 * 25/32
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -993,11 +1011,13 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 117/64 [
+                            c'16 * 117/64
+                            [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
-                            c'16 * 47/64 ]
+                            c'16 * 47/64
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -1042,14 +1062,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 61/32 [
+                            c'16 * 61/32
+                            [
                             c'16 * 115/64
                             c'16 * 49/32
                             c'16 * 5/4
                             c'16 * 33/32
                             c'16 * 57/64
                             c'16 * 13/16
-                            c'16 * 25/32 ]
+                            c'16 * 25/32
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -1093,11 +1115,13 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 117/64 [
+                            c'16 * 117/64
+                            [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
-                            c'16 * 47/64 ]
+                            c'16 * 47/64
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -1177,7 +1201,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         \times 1/1 {
                             \set stemLeftBeamCount = 0
                             \set stemRightBeamCount = 2
-                            c'16 * 61/32 [
+                            c'16 * 61/32
+                            [
                             \set stemLeftBeamCount = 2
                             \set stemRightBeamCount = 2
                             c'16 * 115/64
@@ -1379,7 +1404,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             \set stemLeftBeamCount = 2
                             \set stemRightBeamCount = 0
-                            c'16 * 47/64 ]
+                            c'16 * 47/64
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -1700,14 +1726,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 61/32 [
+                            c'16 * 61/32
+                            [
                             c'16 * 115/64
                             c'16 * 49/32
                             c'16 * 5/4
                             c'16 * 33/32
                             c'16 * 57/64
                             c'16 * 13/16
-                            c'16 * 25/32 ]
+                            c'16 * 25/32
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -1751,11 +1779,13 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 117/64 [
+                            c'16 * 117/64
+                            [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
-                            c'16 * 47/64 ]
+                            c'16 * 47/64
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -1800,14 +1830,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 61/32 [
+                            c'16 * 61/32
+                            [
                             c'16 * 115/64
                             c'16 * 49/32
                             c'16 * 5/4
                             c'16 * 33/32
                             c'16 * 57/64
                             c'16 * 13/16
-                            c'16 * 25/32 ]
+                            c'16 * 25/32
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -1851,11 +1883,13 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 117/64 [
+                            c'16 * 117/64
+                            [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
-                            c'16 * 47/64 ]
+                            c'16 * 47/64
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -1938,14 +1972,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 61/32 [
+                            c'16 * 61/32
+                            [
                             c'16 * 115/64
                             c'16 * 49/32
                             c'16 * 5/4
                             c'16 * 33/32
                             c'16 * 57/64
                             c'16 * 13/16
-                            c'16 * 25/32 ]
+                            c'16 * 25/32
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -1994,14 +2030,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 61/32 [
+                            c'16 * 61/32
+                            [
                             c'16 * 115/64
                             c'16 * 49/32
                             c'16 * 5/4
                             c'16 * 33/32
                             c'16 * 57/64
                             c'16 * 13/16
-                            c'16 * 25/32 ]
+                            c'16 * 25/32
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -2091,14 +2129,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 61/32 [
+                            c'16 * 61/32
+                            [
                             c'16 * 115/64
                             c'16 * 49/32
                             c'16 * 5/4
                             c'16 * 33/32
                             c'16 * 57/64
                             c'16 * 13/16
-                            c'16 * 25/32 ]
+                            c'16 * 25/32
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -2142,11 +2182,13 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 117/64 [
+                            c'16 * 117/64
+                            [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
-                            c'16 * 47/64 ]
+                            c'16 * 47/64
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -2191,14 +2233,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 61/32 [
+                            c'16 * 61/32
+                            [
                             c'16 * 115/64
                             c'16 * 49/32
                             c'16 * 5/4
                             c'16 * 33/32
                             c'16 * 57/64
                             c'16 * 13/16
-                            c'16 * 25/32 ]
+                            c'16 * 25/32
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -2242,11 +2286,13 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 117/64 [
+                            c'16 * 117/64
+                            [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
-                            c'16 * 47/64 ]
+                            c'16 * 47/64
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -2331,14 +2377,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 61/32 [
+                            c'16 * 61/32
+                            [
                             c'16 * 115/64
                             c'16 * 49/32
                             c'16 * 5/4
                             c'16 * 33/32
                             c'16 * 57/64
                             c'16 * 13/16
-                            c'16 * 25/32 ]
+                            c'16 * 25/32
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -2382,12 +2430,14 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #left
-                            c'16 * 5/8 [
+                            c'16 * 5/8
+                            [
                             c'16 * 43/64
                             c'16 * 51/64
                             c'16 * 65/64
                             c'16 * 85/64
-                            c'16 * 25/16 ]
+                            c'16 * 25/16
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -2432,14 +2482,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 61/32 [
+                            c'16 * 61/32
+                            [
                             c'16 * 115/64
                             c'16 * 49/32
                             c'16 * 5/4
                             c'16 * 33/32
                             c'16 * 57/64
                             c'16 * 13/16
-                            c'16 * 25/32 ]
+                            c'16 * 25/32
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -2483,12 +2535,14 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #left
-                            c'16 * 5/8 [
+                            c'16 * 5/8
+                            [
                             c'16 * 43/64
                             c'16 * 51/64
                             c'16 * 65/64
                             c'16 * 85/64
-                            c'16 * 25/16 ]
+                            c'16 * 25/16
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -2567,14 +2621,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 61/32 [
+                            c'16 * 61/32
+                            [
                             c'16 * 115/64
                             c'16 * 49/32
                             c'16 * 5/4
                             c'16 * 33/32
                             c'16 * 57/64
                             c'16 * 13/16
-                            c'16 * 25/32 ]
+                            c'16 * 25/32
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -2618,11 +2674,13 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 117/64 [
+                            c'16 * 117/64
+                            [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
-                            c'16 * 47/64 ]
+                            c'16 * 47/64
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -2733,7 +2791,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \override RhythmicStaff.Stem.stemlet-length = 0.75
-                            r16 * 61/32 [
+                            r16 * 61/32
+                            [
                             c'16 * 115/64
                             c'16 * 49/32
                             c'16 * 5/4
@@ -2741,7 +2800,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 57/64
                             c'16 * 13/16
                             \revert RhythmicStaff.Stem.stemlet-length
-                            c'16 * 25/32 ]
+                            c'16 * 25/32
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -2786,13 +2846,15 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         \times 1/1 {
                             \override RhythmicStaff.Stem.stemlet-length = 0.75
                             \once \override Beam.grow-direction = #left
-                            c'16 * 5/8 [
+                            c'16 * 5/8
+                            [
                             c'16 * 43/64
                             c'16 * 51/64
                             c'16 * 65/64
                             c'16 * 85/64
                             \revert RhythmicStaff.Stem.stemlet-length
-                            c'16 * 25/16 ]
+                            c'16 * 25/16
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -2838,7 +2900,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         \times 1/1 {
                             \override RhythmicStaff.Stem.stemlet-length = 0.75
                             \once \override Beam.grow-direction = #right
-                            c'16 * 61/32 [
+                            c'16 * 61/32
+                            [
                             c'16 * 115/64
                             c'16 * 49/32
                             c'16 * 5/4
@@ -2846,7 +2909,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 57/64
                             c'16 * 13/16
                             \revert RhythmicStaff.Stem.stemlet-length
-                            c'16 * 25/32 ]
+                            c'16 * 25/32
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -2891,13 +2955,15 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         \times 1/1 {
                             \override RhythmicStaff.Stem.stemlet-length = 0.75
                             \once \override Beam.grow-direction = #left
-                            c'16 * 5/8 [
+                            c'16 * 5/8
+                            [
                             c'16 * 43/64
                             c'16 * 51/64
                             c'16 * 65/64
                             c'16 * 85/64
                             \revert RhythmicStaff.Stem.stemlet-length
-                            r16 * 25/16 ]
+                            r16 * 25/16
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -2989,7 +3055,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         \times 1/1 {
                             \override RhythmicStaff.Stem.stemlet-length = 0.75
                             \once \override Beam.grow-direction = #right
-                            c'16 * 61/32 [
+                            c'16 * 61/32
+                            [
                             c'16 * 115/64
                             r16 * 49/32
                             c'16 * 5/4
@@ -2997,7 +3064,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             r16 * 57/64
                             c'16 * 13/16
                             \revert RhythmicStaff.Stem.stemlet-length
-                            c'16 * 25/32 ]
+                            c'16 * 25/32
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -3041,13 +3109,15 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \override RhythmicStaff.Stem.stemlet-length = 0.75
-                            r16 * 5/8 [
+                            r16 * 5/8
+                            [
                             c'16 * 43/64
                             c'16 * 51/64
                             r16 * 65/64
                             c'16 * 85/64
                             \revert RhythmicStaff.Stem.stemlet-length
-                            c'16 * 25/16 ]
+                            c'16 * 25/16
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -3092,7 +3162,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \override RhythmicStaff.Stem.stemlet-length = 0.75
-                            r16 * 61/32 [
+                            r16 * 61/32
+                            [
                             c'16 * 115/64
                             c'16 * 49/32
                             r16 * 5/4
@@ -3100,7 +3171,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 57/64
                             r16 * 13/16
                             \revert RhythmicStaff.Stem.stemlet-length
-                            c'16 * 25/32 ]
+                            c'16 * 25/32
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -3145,13 +3217,15 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         \times 1/1 {
                             \override RhythmicStaff.Stem.stemlet-length = 0.75
                             \once \override Beam.grow-direction = #left
-                            c'16 * 5/8 [
+                            c'16 * 5/8
+                            [
                             r16 * 43/64
                             c'16 * 51/64
                             c'16 * 65/64
                             r16 * 85/64
                             \revert RhythmicStaff.Stem.stemlet-length
-                            c'16 * 25/16 ]
+                            c'16 * 25/16
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -3245,14 +3319,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 61/32 [
+                            c'16 * 61/32
+                            [
                             c'16 * 115/64
                             c'16 * 49/32
                             c'16 * 5/4
                             c'16 * 33/32
                             c'16 * 57/64
                             c'16 * 13/16
-                            c'16 * 25/32 ]
+                            c'16 * 25/32
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -3296,11 +3372,13 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 117/64 [
+                            c'16 * 117/64
+                            [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
-                            c'16 * 47/64 ]
+                            c'16 * 47/64
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -3345,14 +3423,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 61/32 [
+                            c'16 * 61/32
+                            [
                             c'16 * 115/64
                             c'16 * 49/32
                             c'16 * 5/4
                             c'16 * 33/32
                             c'16 * 57/64
                             c'16 * 13/16
-                            c'16 * 25/32 ]
+                            c'16 * 25/32
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -3396,11 +3476,13 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 117/64 [
+                            c'16 * 117/64
+                            [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
-                            c'16 * 47/64 ]
+                            c'16 * 47/64
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -3481,14 +3563,17 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 61/32 [
+                            c'16 * 61/32
+                            [
                             c'16 * 115/64
                             c'16 * 49/32
                             c'16 * 5/4
                             c'16 * 33/32
                             c'16 * 57/64
                             c'16 * 13/16
-                            c'16 * 25/32 ~ ]
+                            c'16 * 25/32
+                            ~
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -3532,11 +3617,14 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 117/64 [
+                            c'16 * 117/64
+                            [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
-                            c'16 * 47/64 ~ ]
+                            c'16 * 47/64
+                            ~
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -3581,14 +3669,17 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 61/32 [
+                            c'16 * 61/32
+                            [
                             c'16 * 115/64
                             c'16 * 49/32
                             c'16 * 5/4
                             c'16 * 33/32
                             c'16 * 57/64
                             c'16 * 13/16
-                            c'16 * 25/32 ~ ]
+                            c'16 * 25/32
+                            ~
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -3632,11 +3723,13 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 117/64 [
+                            c'16 * 117/64
+                            [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
-                            c'16 * 47/64 ]
+                            c'16 * 47/64
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -3721,14 +3814,17 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 61/32 [
+                            c'16 * 61/32
+                            [
                             c'16 * 115/64
                             c'16 * 49/32
                             c'16 * 5/4
                             c'16 * 33/32
                             c'16 * 57/64
                             c'16 * 13/16
-                            c'16 * 25/32 ~ ]
+                            c'16 * 25/32
+                            ~
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -3772,11 +3868,13 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 117/64 [
+                            c'16 * 117/64
+                            [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
-                            c'16 * 47/64 ]
+                            c'16 * 47/64
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -3821,14 +3919,17 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 61/32 [
+                            c'16 * 61/32
+                            [
                             c'16 * 115/64
                             c'16 * 49/32
                             c'16 * 5/4
                             c'16 * 33/32
                             c'16 * 57/64
                             c'16 * 13/16
-                            c'16 * 25/32 ~ ]
+                            c'16 * 25/32
+                            ~
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -3872,11 +3973,13 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 117/64 [
+                            c'16 * 117/64
+                            [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
-                            c'16 * 47/64 ]
+                            c'16 * 47/64
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -3966,14 +4069,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 61/32 [
+                            c'16 * 61/32
+                            [
                             c'16 * 115/64
                             c'16 * 49/32
                             c'16 * 5/4
                             c'16 * 33/32
                             c'16 * 57/64
                             c'16 * 13/16
-                            c'16 * 25/32 ]
+                            c'16 * 25/32
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -4017,11 +4122,13 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 117/64 [
+                            c'16 * 117/64
+                            [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
-                            c'16 * 47/64 ]
+                            c'16 * 47/64
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -4066,14 +4173,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 61/32 [
+                            c'16 * 61/32
+                            [
                             c'16 * 115/64
                             c'16 * 49/32
                             c'16 * 5/4
                             c'16 * 33/32
                             c'16 * 57/64
                             c'16 * 13/16
-                            c'16 * 25/32 ]
+                            c'16 * 25/32
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -4117,11 +4226,13 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             }
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 117/64 [
+                            c'16 * 117/64
+                            [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
-                            c'16 * 47/64 ]
+                            c'16 * 47/64
+                            ]
                         }
                         \revert TupletNumber.text
                     }   % measure
@@ -4166,14 +4277,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 61/32 [
+                            c'16 * 61/32
+                            [
                             c'16 * 115/64
                             c'16 * 49/32
                             c'16 * 5/4
                             c'16 * 33/32
                             c'16 * 57/64
                             c'16 * 13/16
-                            c'16 * 25/32 ]
+                            c'16 * 25/32
+                            ]
                         }
                     }   % measure
                     {   % measure
@@ -4181,11 +4294,13 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 117/64 [
+                            c'16 * 117/64
+                            [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
-                            c'16 * 47/64 ]
+                            c'16 * 47/64
+                            ]
                         }
                     }   % measure
                     {   % measure
@@ -4193,14 +4308,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 61/32 [
+                            c'16 * 61/32
+                            [
                             c'16 * 115/64
                             c'16 * 49/32
                             c'16 * 5/4
                             c'16 * 33/32
                             c'16 * 57/64
                             c'16 * 13/16
-                            c'16 * 25/32 ]
+                            c'16 * 25/32
+                            ]
                         }
                     }   % measure
                     {   % measure
@@ -4208,11 +4325,13 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 1/1 {
                             \once \override Beam.grow-direction = #right
-                            c'16 * 117/64 [
+                            c'16 * 117/64
+                            [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
-                            c'16 * 47/64 ]
+                            c'16 * 47/64
+                            ]
                         }
                     }   % measure
                 }

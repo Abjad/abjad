@@ -30,12 +30,15 @@ class Hairpin(Spanner):
             \new Voice
             {
                 r8
-                d'8 \< \p
+                d'8
+                \<
+                \p
                 e'8
                 f'8
                 g'8
                 a'8
-                b'8 \f
+                b'8
+                \f
                 r8
             }
 
@@ -66,12 +69,15 @@ class Hairpin(Spanner):
             \new Voice
             {
                 r8
-                d'8 \> \f
+                d'8
+                \>
+                \f
                 e'8
                 f'8
                 g'8
                 a'8
-                b'8 \p
+                b'8
+                \p
                 r8
             }
 
@@ -106,8 +112,11 @@ class Hairpin(Spanner):
             \new Voice
             {
                 \once \override Hairpin.circled-tip = ##t
-                c'2. \> \f
-                r4 \!
+                c'2.
+                \>
+                \f
+                r4
+                \!
             }
 
         >>> for leaf in abjad.select(voice).leaves():
@@ -129,8 +138,11 @@ class Hairpin(Spanner):
             \new Voice
             {
                 \once \override Hairpin.circled-tip = ##t
-                c'2. \> \f
-                r4 \!
+                c'2.
+                \>
+                \f
+                r4
+                \!
             }
 
         >>> for leaf in abjad.select(voice).leaves():
@@ -160,15 +172,24 @@ class Hairpin(Spanner):
             >>> abjad.f(voice)
             \new Voice
             {
-                c'8 \p \<
+                c'8
+                \p
+                \<
                 d'8
-                e'8 \f \>
+                e'8
+                \f
+                \>
                 f'8
-                c'8 \p \<
+                c'8
+                \p
+                \<
                 d'8
-                e'8 \f \>
+                e'8
+                \f
+                \>
                 f'8
-                c'8 \p
+                c'8
+                \p
             }
 
         >>> for leaf in abjad.select(voice).leaves():
@@ -202,7 +223,9 @@ class Hairpin(Spanner):
             \new Voice
             {
                 r8
-                d'8 \< _ #(make-dynamic-script
+                d'8
+                \<
+                _ #(make-dynamic-script
                     (markup
                         #:whiteout
                         #:line (
@@ -218,7 +241,8 @@ class Hairpin(Spanner):
                 f'8
                 g'8
                 a'8
-                b'8 _ #(make-dynamic-script
+                b'8
+                _ #(make-dynamic-script
                     (markup
                         #:whiteout
                         #:line (
@@ -727,15 +751,24 @@ class Hairpin(Spanner):
                     }
                     {
                         \voiceOne
-                        e'8 \< \mf
+                        e'8
+                        \<
+                        \mf
                         f'8
-                        g'8 \f \>
-                        a'8
-                        f'8 \mf \<
                         g'8
-                        a'8 \f \>
+                        \f
+                        \>
+                        a'8
+                        f'8
+                        \mf
+                        \<
+                        g'8
+                        a'8
+                        \f
+                        \>
                         b'8
-                        g'8 \mf
+                        g'8
+                        \mf
                     }
                     \new Voice
                     \with
@@ -744,9 +777,13 @@ class Hairpin(Spanner):
                     }
                     {
                         \voiceTwo
-                        c'2 \< \pp
-                        b2 ~
-                        b8 \p
+                        c'2
+                        \<
+                        \pp
+                        b2
+                        ~
+                        b8
+                        \p
                     }
                 >>
 
@@ -823,7 +860,7 @@ class Hairpin(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -906,7 +943,7 @@ class Hairpin(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -990,7 +1027,7 @@ class Hairpin(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -1075,7 +1112,7 @@ class Hairpin(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -1159,7 +1196,7 @@ class Hairpin(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -1242,7 +1279,7 @@ class Hairpin(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -1326,7 +1363,7 @@ class Hairpin(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -1411,7 +1448,7 @@ class Hairpin(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -1496,7 +1533,7 @@ class Hairpin(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -1581,7 +1618,7 @@ class Hairpin(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -1670,7 +1707,7 @@ class Hairpin(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -1763,7 +1800,7 @@ class Hairpin(Spanner):
                 }
 
             >>> container = abjad.Container([segment_1, segment_2])
-            >>> text = format(container, 'lilypond:strict')
+            >>> text = format(container, 'lilypond')
             >>> text = abjad.LilyPondFormatManager.left_shift_tags(text, 50)
             >>> job = abjad.Job.join_broken_spanners(text)
             >>> text = job()
@@ -1824,12 +1861,15 @@ class Hairpin(Spanner):
                 \new Voice
                 {
                     r8
-                    d'8 \< \p
+                    d'8
+                    \<
+                    \p
                     e'8
                     f'8
                     g'8
                     a'8
-                    b'8 \f
+                    b'8
+                    \f
                     r8
                 }
 
@@ -1856,12 +1896,15 @@ class Hairpin(Spanner):
                 \new Voice
                 {
                     r8
-                    d'8 ^ \< ^ \p
+                    d'8
+                    ^ \<
+                    ^ \p
                     e'8
                     f'8
                     g'8
                     a'8
-                    b'8 ^ \f
+                    b'8
+                    ^ \f
                     r8
                 }
 
@@ -1888,12 +1931,15 @@ class Hairpin(Spanner):
                 \new Voice
                 {
                     r8
-                    d'8 \< \p
+                    d'8
+                    \<
+                    \p
                     e'8
                     f'8
                     g'8
                     a'8
-                    b'8 \f
+                    b'8
+                    \f
                     r8
                 }
 
@@ -1920,12 +1966,15 @@ class Hairpin(Spanner):
                 \new Voice
                 {
                     r8
-                    d'8 \< \p
+                    d'8
+                    \<
+                    \p
                     e'8
                     f'8
                     g'8
                     a'8
-                    b'8 \f
+                    b'8
+                    \f
                     r8
                 }
 
@@ -1957,12 +2006,15 @@ class Hairpin(Spanner):
             \new Voice
             {
                 r8
-                d'8 \< \appena_udibile
+                d'8
+                \<
+                \appena_udibile
                 e'8
                 f'8
                 g'8
                 a'8
-                b'8 \f
+                b'8
+                \f
                 r8
             }
 
@@ -1991,12 +2043,15 @@ class Hairpin(Spanner):
                 \new Voice
                 {
                     r8
-                    d'8 \< _ #(make-dynamic-script (markup #:whiteout #:normal-text #:italic "barely audible"))
+                    d'8
+                    \<
+                    _ #(make-dynamic-script (markup #:whiteout #:normal-text #:italic "barely audible"))
                     e'8
                     f'8
                     g'8
                     a'8
-                    b'8 \f
+                    b'8
+                    \f
                     r8
                 }
 
@@ -2023,12 +2078,15 @@ class Hairpin(Spanner):
             \new Voice
             {
                 r8
-                d'8 \< \barely_audible
+                d'8
+                \<
+                \barely_audible
                 e'8
                 f'8
                 g'8
                 a'8
-                b'8 \f
+                b'8
+                \f
                 r8
             }
 
@@ -2052,12 +2110,15 @@ class Hairpin(Spanner):
                 \new Voice
                 {
                     r8
-                    d'8 \< \p
+                    d'8
+                    \<
+                    \p
                     e'8
                     f'8
                     g'8
                     a'8
-                    b'8 \f
+                    b'8
+                    \f
                     r8
                 }
 
@@ -2093,12 +2154,15 @@ class Hairpin(Spanner):
                 \new Voice
                 {
                     r8
-                    d'8 \< \p
+                    d'8
+                    \<
+                    \p
                     e'8
                     f'8
                     g'8
                     a'8
-                    b'8 _ #(make-dynamic-script (markup #:whiteout #:normal-text #:italic "extremely loud"))
+                    b'8
+                    _ #(make-dynamic-script (markup #:whiteout #:normal-text #:italic "extremely loud"))
                     r8
                 }
 
@@ -2125,12 +2189,15 @@ class Hairpin(Spanner):
             \new Voice
             {
                 r8
-                d'8 \< \p
+                d'8
+                \<
+                \p
                 e'8
                 f'8
                 g'8
                 a'8
-                b'8 \extremely_loud
+                b'8
+                \extremely_loud
                 r8
             }
 
@@ -2154,12 +2221,15 @@ class Hairpin(Spanner):
                 \new Voice
                 {
                     r8
-                    d'8 \< \p
+                    d'8
+                    \<
+                    \p
                     e'8
                     f'8
                     g'8
                     a'8
-                    b'8 \f
+                    b'8
+                    \f
                     r8
                 }
 
@@ -2200,15 +2270,24 @@ class Hairpin(Spanner):
                     \override DynamicLineSpanner.staff-padding = #4
                 }
                 {
-                    c'8 \< \p
+                    c'8
+                    \<
+                    \p
                     d'8
-                    e'8 \f \>
+                    e'8
+                    \f
+                    \>
                     f'8
-                    c'8 \p \<
+                    c'8
+                    \p
+                    \<
                     d'8
-                    e'8 \f \>
+                    e'8
+                    \f
+                    \>
                     f'8
-                    c'8 \p
+                    c'8
+                    \p
                 }
 
             >>> for leaf in abjad.select(voice).leaves():
@@ -2246,7 +2325,9 @@ class Hairpin(Spanner):
                     \override DynamicLineSpanner.staff-padding = #4
                 }
                 {
-                    c'8 \< _ #(make-dynamic-script
+                    c'8
+                    \<
+                    _ #(make-dynamic-script
                         (markup
                             #:whiteout
                             #:line (
@@ -2259,7 +2340,8 @@ class Hairpin(Spanner):
                             )
                         )
                     d'8
-                    e'8 _ #(make-dynamic-script
+                    e'8
+                    _ #(make-dynamic-script
                         (markup
                             #:whiteout
                             #:line (
@@ -2270,9 +2352,11 @@ class Hairpin(Spanner):
                                 #:general-align Y -2 #:normal-text #:larger "”"
                                 )
                             )
-                        ) \>
+                        )
+                    \>
                     f'8
-                    c'8 _ #(make-dynamic-script
+                    c'8
+                    _ #(make-dynamic-script
                         (markup
                             #:whiteout
                             #:line (
@@ -2283,9 +2367,11 @@ class Hairpin(Spanner):
                                 #:general-align Y -2 #:normal-text #:larger "”"
                                 )
                             )
-                        ) \<
+                        )
+                    \<
                     d'8
-                    e'8 _ #(make-dynamic-script
+                    e'8
+                    _ #(make-dynamic-script
                         (markup
                             #:whiteout
                             #:line (
@@ -2296,9 +2382,11 @@ class Hairpin(Spanner):
                                 #:general-align Y -2 #:normal-text #:larger "”"
                                 )
                             )
-                        ) \>
+                        )
+                    \>
                     f'8
-                    c'8 _ #(make-dynamic-script
+                    c'8
+                    _ #(make-dynamic-script
                         (markup
                             #:whiteout
                             #:line (
@@ -2347,17 +2435,23 @@ class Hairpin(Spanner):
                 }
                 {
                     \once \override Hairpin.circled-tip = ##t
-                    c'8 \> \f
+                    c'8
+                    \>
+                    \f
                     d'8
                     e'8
                     \once \override Hairpin.circled-tip = ##t
-                    r8 \!
+                    r8
+                    \!
                     r8
                     \once \override Hairpin.circled-tip = ##t
-                    f'8 \! \<
+                    f'8
+                    \!
+                    \<
                     e'8
                     d'8
-                    c'8 \f
+                    c'8
+                    \f
                 }
 
             >>> for leaf in abjad.select(voice).leaves():

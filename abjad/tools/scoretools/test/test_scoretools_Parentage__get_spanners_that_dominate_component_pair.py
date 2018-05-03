@@ -21,17 +21,23 @@ def test_scoretools_Parentage__get_spanners_that_dominate_component_pair_01():
         \new Voice
         {
             {
-                c'8 [
+                c'8
+                [
                 \startTrillSpan
                 d'8
             }
             {
-                e'8 \glissando
-                f'8 ] \glissando
+                e'8
+                \glissando
+                f'8
+                ]
+                \glissando
             }
             {
-                g'8 \glissando
-                a'8 \stopTrillSpan
+                g'8
+                \glissando
+                a'8
+                \stopTrillSpan
             }
         }
         '''
@@ -61,17 +67,23 @@ def test_scoretools_Parentage__get_spanners_that_dominate_component_pair_02():
         \new Voice
         {
             {
-                c'8 [
+                c'8
+                [
                 \startTrillSpan
                 d'8
             }
             {
-                e'8 \glissando
-                f'8 ] \glissando
+                e'8
+                \glissando
+                f'8
+                ]
+                \glissando
             }
             {
-                g'8 \glissando
-                a'8 \stopTrillSpan
+                g'8
+                \glissando
+                a'8
+                \stopTrillSpan
             }
         }
         '''
@@ -103,17 +115,23 @@ def test_scoretools_Parentage__get_spanners_that_dominate_component_pair_03():
         \new Voice
         {
             {
-                c'8 [
+                c'8
+                [
                 \startTrillSpan
                 d'8
             }
             {
-                e'8 \glissando
-                f'8 ] \glissando
+                e'8
+                \glissando
+                f'8
+                ]
+                \glissando
             }
             {
-                g'8 \glissando
-                a'8 \stopTrillSpan
+                g'8
+                \glissando
+                a'8
+                \stopTrillSpan
             }
         }
         '''
@@ -145,17 +163,23 @@ def test_scoretools_Parentage__get_spanners_that_dominate_component_pair_04():
         \new Voice
         {
             {
-                c'8 [
+                c'8
+                [
                 \startTrillSpan
                 d'8
             }
             {
-                e'8 \glissando
-                f'8 ] \glissando
+                e'8
+                \glissando
+                f'8
+                ]
+                \glissando
             }
             {
-                g'8 \glissando
-                a'8 \stopTrillSpan
+                g'8
+                \glissando
+                a'8
+                \stopTrillSpan
             }
         }
         '''

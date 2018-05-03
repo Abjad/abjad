@@ -128,8 +128,7 @@ class Container(Component):
 
     ..  container:: example
 
-        Conventional (nonstrict) formatting positions format contributions to
-        the right of leaves:
+        Formatting positions contributions strictly one-per-line:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(abjad.Articulation('^'), staff[0])
@@ -138,18 +137,6 @@ class Container(Component):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
-        \new Staff
-        {
-            c'4 :16 -\marcato ^ \markup { Allegro }
-            d'4
-            e'4
-            f'4
-        }
-
-        Strict formatting positions contributions strictly one-per-line. Use to
-        comment-tag output line right ends:
-
-        >>> abjad.f(staff, strict=True)
         \new Staff
         {
             c'4
@@ -230,14 +217,16 @@ class Container(Component):
                 \new Voice
                 {
                     \times 2/3 {
-                        c'4 (
+                        c'4
+                        (
                         d'4
                         e'4
                     }
                     \times 2/3 {
                         e'4
                         d'4
-                        c'4 )
+                        c'4
+                        )
                     }
                 }
 
@@ -254,9 +243,11 @@ class Container(Component):
                 \new Voice
                 {
                     \times 2/3 {
-                        e'4 (
+                        e'4
+                        (
                         d'4
-                        c'4 )
+                        c'4
+                        )
                     }
                 }
 
@@ -542,31 +533,25 @@ class Container(Component):
         result.append(('comments', bundle.closing.comments))
         return self._format_slot_contributions_with_indent(result)
 
-    def _format_content_pieces(self, strict=False):
+    def _format_content_pieces(self):
         import abjad
         indent = abjad.LilyPondFormatManager.indent
         result = []
-        if strict is True:
-            format_specification = 'lilypond:strict'
-        elif strict is not False and isinstance(strict, int):
-            format_specification = 'lilypond:strict'
-        else:
-            format_specification = 'lilypond'
         for component in self.components:
             string = component.__format__(
-                format_specification=format_specification
+                format_specification='lilypond'
                 )
             parts = string.split('\n')
             result.extend(parts)
         result = [indent + _ for _ in result]
         return result
 
-    def _format_contents_slot(self, bundle, strict=False):
+    def _format_contents_slot(self, bundle):
         result = []
         result.append(
             [
                 ('contents', '_contents'),
-                self._format_content_pieces(strict=strict)
+                self._format_content_pieces()
                 ])
         return tuple(result)
 
@@ -1461,9 +1446,11 @@ class Container(Component):
 
                 >>> abjad.f(container)
                 {
-                    c'4 (
+                    c'4
+                    (
                     d'4
-                    f'4 )
+                    f'4
+                    )
                 }
 
             >>> container.append(abjad.Note("e'4"))
@@ -1473,9 +1460,11 @@ class Container(Component):
 
                 >>> abjad.f(container)
                 {
-                    c'4 (
+                    c'4
+                    (
                     d'4
-                    f'4 )
+                    f'4
+                    )
                     e'4
                 }
 
@@ -1500,9 +1489,11 @@ class Container(Component):
 
                 >>> abjad.f(container)
                 {
-                    c'4 (
+                    c'4
+                    (
                     d'4
-                    f'4 )
+                    f'4
+                    )
                 }
 
             >>> notes = [abjad.Note("e'32"), abjad.Note("d'32"), abjad.Note("e'16")]
@@ -1513,9 +1504,11 @@ class Container(Component):
 
                 >>> abjad.f(container)
                 {
-                    c'4 (
+                    c'4
+                    (
                     d'4
-                    f'4 )
+                    f'4
+                    )
                     e'32
                     d'32
                     e'16
@@ -1591,7 +1584,8 @@ class Container(Component):
 
                 >>> abjad.f(container)
                 {
-                    fs16 _ (
+                    fs16
+                    _ (
                     cs'16
                     e'16
                     a'16
@@ -1602,7 +1596,8 @@ class Container(Component):
                     fs'16
                     e'16
                     cs'16
-                    fs16 )
+                    fs16
+                    )
                 }
 
             >>> container.insert(-4, abjad.Note("e'4"), fracture_spanners=False)
@@ -1612,7 +1607,8 @@ class Container(Component):
 
                 >>> abjad.f(container)
                 {
-                    fs16 _ (
+                    fs16
+                    _ (
                     cs'16
                     e'16
                     a'16
@@ -1624,7 +1620,8 @@ class Container(Component):
                     fs'16
                     e'16
                     cs'16
-                    fs16 )
+                    fs16
+                    )
                 }
 
         ..  container:: example
@@ -1643,7 +1640,8 @@ class Container(Component):
 
                 >>> abjad.f(container)
                 {
-                    fs16 _ (
+                    fs16
+                    _ (
                     cs'16
                     e'16
                     a'16
@@ -1654,7 +1652,8 @@ class Container(Component):
                     fs'16
                     e'16
                     cs'16
-                    fs16 )
+                    fs16
+                    )
                 }
 
             >>> container.insert(-4, abjad.Note("e'4"), fracture_spanners=True)
@@ -1664,19 +1663,23 @@ class Container(Component):
 
                 >>> abjad.f(container)
                 {
-                    fs16 _ (
+                    fs16
+                    _ (
                     cs'16
                     e'16
                     a'16
                     cs''16
                     e''16
                     cs''16
-                    a'16 )
+                    a'16
+                    )
                     e'4
-                    fs'16 _ (
+                    fs'16
+                    _ (
                     e'16
                     cs'16
-                    fs16 )
+                    fs16
+                    )
                 }
 
         '''
@@ -1716,9 +1719,11 @@ class Container(Component):
 
                 >>> abjad.f(container)
                 {
-                    c'4 (
+                    c'4
+                    (
                     d'4
-                    f'4 )
+                    f'4
+                    )
                     e'4
                 }
 
@@ -1730,9 +1735,11 @@ class Container(Component):
 
                 >>> abjad.f(container)
                 {
-                    c'4 (
+                    c'4
+                    (
                     d'4
-                    f'4 )
+                    f'4
+                    )
                 }
 
         Returns component.
@@ -1755,9 +1762,11 @@ class Container(Component):
 
                 >>> abjad.f(container)
                 {
-                    c'4 (
+                    c'4
+                    (
                     d'4
-                    f'4 )
+                    f'4
+                    )
                     e'4
                 }
 
@@ -1772,8 +1781,10 @@ class Container(Component):
 
                 >>> abjad.f(container)
                 {
-                    c'4 (
-                    d'4 )
+                    c'4
+                    (
+                    d'4
+                    )
                     e'4
                 }
 

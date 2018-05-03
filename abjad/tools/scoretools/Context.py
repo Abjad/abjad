@@ -216,12 +216,12 @@ class Context(Container):
             result.append(string)
         return result
 
-    def _get_format_pieces(self, strict=False):
-        return self._format_component(pieces=True, strict=strict)
+    def _get_format_pieces(self):
+        return self._format_component(pieces=True)
 
-    def _get_lilypond_format(self, strict=False):
+    def _get_lilypond_format(self):
         self._update_now(indicators=True)
-        return self._format_component(strict=strict)
+        return self._format_component()
 
     def _get_persistent_wrappers(self):
         import abjad

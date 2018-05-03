@@ -19,7 +19,8 @@ def test_scoretools_LogicalTie__fuse_leaves_by_immediate_parent_01():
         {
             {   % measure
                 \time 2/8
-                c'4 ~
+                c'4
+                ~
             }   % measure
             {   % measure
                 c'4
@@ -44,9 +45,12 @@ def test_scoretools_LogicalTie__fuse_leaves_by_immediate_parent_02():
         r'''
         \new Staff
         {
-            c'8 ~
-            c'8 ~
-            c'8 ~
+            c'8
+            ~
+            c'8
+            ~
+            c'8
+            ~
             c'8
         }
         '''

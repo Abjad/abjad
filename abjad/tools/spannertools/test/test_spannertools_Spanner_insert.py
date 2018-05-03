@@ -17,8 +17,10 @@ def test_spannertools_Spanner_insert_01():
         r'''
         \new Voice
         {
-            c'8 [
-            d'8 ]
+            c'8
+            [
+            d'8
+            ]
             e'8
             f'8
         }
@@ -49,8 +51,10 @@ def test_spannertools_Spanner_insert_02():
                 d'8
             }
             {
-                e'8 [
-                f'8 ]
+                e'8
+                [
+                f'8
+                ]
             }
             {
                 g'8
@@ -68,11 +72,13 @@ def test_spannertools_Spanner_insert_02():
         {
             {
                 c'8
-                d'8 [
+                d'8
+                [
             }
             {
                 e'8
-                f'8 ]
+                f'8
+                ]
             }
             {
                 g'8

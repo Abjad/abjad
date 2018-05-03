@@ -214,20 +214,23 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override NoteHead.color = #red
                     \once \override Stem.color = #red
                     c'8
-                    d'8 ~
+                    d'8
+                    ~
                     \once \override Accidental.color = #blue
                     \once \override Beam.color = #blue
                     \once \override Dots.color = #blue
                     \once \override NoteHead.color = #blue
                     \once \override Stem.color = #blue
                     d'8
-                    e'8 ~
+                    e'8
+                    ~
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
                     \once \override NoteHead.color = #red
                     \once \override Stem.color = #red
-                    e'8 ~
+                    e'8
+                    ~
                     e'8
                     \once \override Dots.color = #blue
                     \once \override Rest.color = #blue
@@ -282,20 +285,23 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override NoteHead.color = #red
                     \once \override Stem.color = #red
                     c'8
-                    d'8 ~
+                    d'8
+                    ~
                     d'8
                     \once \override Accidental.color = #blue
                     \once \override Beam.color = #blue
                     \once \override Dots.color = #blue
                     \once \override NoteHead.color = #blue
                     \once \override Stem.color = #blue
-                    e'8 ~
+                    e'8
+                    ~
                     \once \override Accidental.color = #blue
                     \once \override Beam.color = #blue
                     \once \override Dots.color = #blue
                     \once \override NoteHead.color = #blue
                     \once \override Stem.color = #blue
-                    e'8 ~
+                    e'8
+                    ~
                     \once \override Accidental.color = #blue
                     \once \override Beam.color = #blue
                     \once \override Dots.color = #blue
@@ -353,20 +359,23 @@ class Selection(AbjadValueObject, collections.Sequence):
             }
             {
                 c'8
-                d'8 ~
+                d'8
+                ~
                 \once \override Accidental.color = #blue
                 \once \override Beam.color = #blue
                 \once \override Dots.color = #blue
                 \once \override NoteHead.color = #blue
                 \once \override Stem.color = #blue
                 d'8
-                e'8 ~
+                e'8
+                ~
                 \once \override Accidental.color = #red
                 \once \override Beam.color = #red
                 \once \override Dots.color = #red
                 \once \override NoteHead.color = #red
                 \once \override Stem.color = #red
-                e'8 ~
+                e'8
+                ~
                 e'8
                 r8
                 f'8
@@ -1338,7 +1347,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             bf'16
                             <a'' b''>16
                             c'16
-                            <d' e'>4 ~
+                            <d' e'>4
+                            ~
                             <d' e'>16
                         }
                         \times 8/9 {
@@ -1346,7 +1356,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             bf'16
                             <a'' b''>16
                             d'16
-                            <e' fs'>4 ~
+                            <e' fs'>4
+                            ~
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
@@ -1355,7 +1366,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             bf'16
                             <a'' b''>16
                             e'16
-                            <fs' gs'>4 ~
+                            <fs' gs'>4
+                            ~
                             \once \override Accidental.color = #green
                             \once \override Beam.color = #green
                             \once \override Dots.color = #green
@@ -1458,7 +1470,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \once \override Dots.color = #blue
                             \once \override NoteHead.color = #blue
                             \once \override Stem.color = #blue
-                            <d' e'>4 ~
+                            <d' e'>4
+                            ~
                             \once \override Accidental.color = #red
                             \once \override Beam.color = #red
                             \once \override Dots.color = #red
@@ -1481,7 +1494,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \once \override Dots.color = #red
                             \once \override NoteHead.color = #red
                             \once \override Stem.color = #red
-                            <e' fs'>4 ~
+                            <e' fs'>4
+                            ~
                             \once \override Accidental.color = #blue
                             \once \override Beam.color = #blue
                             \once \override Dots.color = #blue
@@ -1505,7 +1519,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \once \override Dots.color = #blue
                             \once \override NoteHead.color = #blue
                             \once \override Stem.color = #blue
-                            <fs' gs'>4 ~
+                            <fs' gs'>4
+                            ~
                             \once \override Accidental.color = #red
                             \once \override Beam.color = #red
                             \once \override Dots.color = #red
@@ -1583,7 +1598,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #blue
                     \once \override NoteHead.color = #blue
                     \once \override Stem.color = #blue
-                    d'8 ~
+                    d'8
+                    ~
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -1595,7 +1611,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #blue
                     \once \override NoteHead.color = #blue
                     \once \override Stem.color = #blue
-                    e'16 ~
+                    e'16
+                    ~
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -2027,7 +2044,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override NoteHead.color = #red
                     \once \override Stem.color = #red
                     c'8
-                    d'8 ~
+                    d'8
+                    ~
                     d'8
                     e'8
                     r8
@@ -2036,7 +2054,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #blue
                     \once \override NoteHead.color = #blue
                     \once \override Stem.color = #blue
-                    <c' e' g'>8 ~
+                    <c' e' g'>8
+                    ~
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -2097,7 +2116,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override NoteHead.color = #red
                     \once \override Stem.color = #red
                     c'8
-                    d'8 ~
+                    d'8
+                    ~
                     d'8
                     \once \override Accidental.color = #blue
                     \once \override Beam.color = #blue
@@ -2111,7 +2131,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #red
                     \once \override NoteHead.color = #red
                     \once \override Stem.color = #red
-                    <c' e' g'>8 ~
+                    <c' e' g'>8
+                    ~
                     \once \override Accidental.color = #blue
                     \once \override Beam.color = #blue
                     \once \override Dots.color = #blue
@@ -2168,7 +2189,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override NoteHead.color = #red
                     \once \override Stem.color = #red
                     c'8
-                    d'8 ~
+                    d'8
+                    ~
                     d'8
                     e'8
                     r8
@@ -2177,7 +2199,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #blue
                     \once \override NoteHead.color = #blue
                     \once \override Stem.color = #blue
-                    <c' e' g'>8 ~
+                    <c' e' g'>8
+                    ~
                     \once \override Accidental.color = #blue
                     \once \override Beam.color = #blue
                     \once \override Dots.color = #blue
@@ -2405,7 +2428,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             bf'16
                             <a'' b''>16
                             c'16
-                            <d' e'>4 ~
+                            <d' e'>4
+                            ~
                             <d' e'>16
                         }
                         \times 8/9 {
@@ -2420,7 +2444,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             bf'16
                             <a'' b''>16
                             d'16
-                            <e' fs'>4 ~
+                            <e' fs'>4
+                            ~
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
@@ -2436,7 +2461,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             bf'16
                             <a'' b''>16
                             e'16
-                            <fs' gs'>4 ~
+                            <fs' gs'>4
+                            ~
                             <fs' gs'>16
                         }
                     }   % measure
@@ -2518,7 +2544,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             bf'16
                             <a'' b''>16
                             c'16
-                            <d' e'>4 ~
+                            <d' e'>4
+                            ~
                             <d' e'>16
                         }
                         \times 8/9 {
@@ -2533,7 +2560,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             bf'16
                             <a'' b''>16
                             d'16
-                            <e' fs'>4 ~
+                            <e' fs'>4
+                            ~
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
@@ -2549,7 +2577,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             bf'16
                             <a'' b''>16
                             e'16
-                            <fs' gs'>4 ~
+                            <fs' gs'>4
+                            ~
                             <fs' gs'>16
                         }
                     }   % measure
@@ -2611,7 +2640,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #green
                     \once \override NoteHead.color = #green
                     \once \override Stem.color = #green
-                    c'8 ~
+                    c'8
+                    ~
                     \once \override Accidental.color = #green
                     \once \override Beam.color = #green
                     \once \override Dots.color = #green
@@ -2642,7 +2672,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #green
                     \once \override NoteHead.color = #green
                     \once \override Stem.color = #green
-                    d'8 ~
+                    d'8
+                    ~
                     \once \override Accidental.color = #green
                     \once \override Beam.color = #green
                     \once \override Dots.color = #green
@@ -2785,7 +2816,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #blue
                     \once \override NoteHead.color = #blue
                     \once \override Stem.color = #blue
-                    <c' e' g'>8 ~
+                    <c' e' g'>8
+                    ~
                     \once \override Accidental.color = #blue
                     \once \override Beam.color = #blue
                     \once \override Dots.color = #blue
@@ -2940,9 +2972,11 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #red
                     \once \override NoteHead.color = #red
                     \once \override Stem.color = #red
-                    d'8 ~
+                    d'8
+                    ~
                     d'16
-                    e'16 ~
+                    e'16
+                    ~
                     e'8
                     f'4
                     \once \override Accidental.color = #blue
@@ -3012,7 +3046,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #red
                     \once \override NoteHead.color = #red
                     \once \override Stem.color = #red
-                    c'8 ~
+                    c'8
+                    ~
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -3043,7 +3078,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #red
                     \once \override NoteHead.color = #red
                     \once \override Stem.color = #red
-                    d'8 ~
+                    d'8
+                    ~
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -3129,7 +3165,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #red
                     \once \override NoteHead.color = #red
                     \once \override Stem.color = #red
-                    c'8 ~
+                    c'8
+                    ~
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -3160,7 +3197,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #red
                     \once \override NoteHead.color = #red
                     \once \override Stem.color = #red
-                    d'8 ~
+                    d'8
+                    ~
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -3264,7 +3302,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #red
                     \once \override NoteHead.color = #red
                     \once \override Stem.color = #red
-                    c'4 ~
+                    c'4
+                    ~
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -3276,7 +3315,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #blue
                     \once \override NoteHead.color = #blue
                     \once \override Stem.color = #blue
-                    d'16 ~
+                    d'16
+                    ~
                     \once \override Accidental.color = #blue
                     \once \override Beam.color = #blue
                     \once \override Dots.color = #blue
@@ -3294,7 +3334,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #blue
                     \once \override NoteHead.color = #blue
                     \once \override Stem.color = #blue
-                    e'4 ~
+                    e'4
+                    ~
                     \once \override Accidental.color = #blue
                     \once \override Beam.color = #blue
                     \once \override Dots.color = #blue
@@ -3306,7 +3347,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #red
                     \once \override NoteHead.color = #red
                     \once \override Stem.color = #red
-                    f'16 ~
+                    f'16
+                    ~
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -3382,7 +3424,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #red
                     \once \override NoteHead.color = #red
                     \once \override Stem.color = #red
-                    c'4 ~
+                    c'4
+                    ~
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -3394,7 +3437,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #red
                     \once \override NoteHead.color = #red
                     \once \override Stem.color = #red
-                    d'16 ~
+                    d'16
+                    ~
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -3412,7 +3456,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #red
                     \once \override NoteHead.color = #red
                     \once \override Stem.color = #red
-                    e'4 ~
+                    e'4
+                    ~
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -3424,7 +3469,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #red
                     \once \override NoteHead.color = #red
                     \once \override Stem.color = #red
-                    f'16 ~
+                    f'16
+                    ~
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -3992,7 +4038,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #red
                     \once \override NoteHead.color = #red
                     \once \override Stem.color = #red
-                    c'4 ~
+                    c'4
+                    ~
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -4004,7 +4051,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #blue
                     \once \override NoteHead.color = #blue
                     \once \override Stem.color = #blue
-                    d'16 ~
+                    d'16
+                    ~
                     \once \override Accidental.color = #blue
                     \once \override Beam.color = #blue
                     \once \override Dots.color = #blue
@@ -4022,7 +4070,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #red
                     \once \override NoteHead.color = #red
                     \once \override Stem.color = #red
-                    e'4 ~
+                    e'4
+                    ~
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -4034,7 +4083,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #blue
                     \once \override NoteHead.color = #blue
                     \once \override Stem.color = #blue
-                    f'16 ~
+                    f'16
+                    ~
                     \once \override Accidental.color = #blue
                     \once \override Beam.color = #blue
                     \once \override Dots.color = #blue
@@ -4117,7 +4167,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             bf'16
                             <a'' b''>16
                             c'16
-                            <d' e'>4 ~
+                            <d' e'>4
+                            ~
                             <d' e'>16
                         }
                         \times 8/9 {
@@ -4125,7 +4176,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             bf'16
                             <a'' b''>16
                             d'16
-                            <e' fs'>4 ~
+                            <e' fs'>4
+                            ~
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
@@ -4134,7 +4186,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             bf'16
                             <a'' b''>16
                             e'16
-                            <fs' gs'>4 ~
+                            <fs' gs'>4
+                            ~
                             \once \override Accidental.color = #green
                             \once \override Beam.color = #green
                             \once \override Dots.color = #green
@@ -4837,7 +4890,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override Dots.color = #blue
                         \once \override NoteHead.color = #blue
                         \once \override Stem.color = #blue
-                        d'8 ~
+                        d'8
+                        ~
                         d'8
                     }
                     e'8
@@ -4850,7 +4904,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override Dots.color = #red
                         \once \override NoteHead.color = #red
                         \once \override Stem.color = #red
-                        d'8 ~
+                        d'8
+                        ~
                         d'8
                         \once \override Accidental.color = #blue
                         \once \override Beam.color = #blue
@@ -4919,7 +4974,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override NoteHead.color = #red
                         \once \override Stem.color = #red
                         c'8
-                        d'8 ~
+                        d'8
+                        ~
                         \once \override Accidental.color = #blue
                         \once \override Beam.color = #blue
                         \once \override Dots.color = #blue
@@ -4932,7 +4988,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     r8
                     e'8
                     \times 2/3 {
-                        d'8 ~
+                        d'8
+                        ~
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
                         \once \override Dots.color = #red
@@ -5000,7 +5057,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override Dots.color = #red
                         \once \override NoteHead.color = #red
                         \once \override Stem.color = #red
-                        <c' e' g'>8 ~
+                        <c' e' g'>8
+                        ~
                         <c' e' g'>8
                         d'8
                     }
@@ -5015,7 +5073,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override Dots.color = #blue
                         \once \override NoteHead.color = #blue
                         \once \override Stem.color = #blue
-                        <c' d'>8 ~
+                        <c' d'>8
+                        ~
                         <c' d'>8
                     }
                 }
@@ -5105,7 +5164,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #blue
                     \once \override NoteHead.color = #blue
                     \once \override Stem.color = #blue
-                    d'8 ~
+                    d'8
+                    ~
                     {
                         \once \override Accidental.color = #blue
                         \once \override Beam.color = #blue
@@ -5127,7 +5187,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override Dots.color = #red
                         \once \override NoteHead.color = #red
                         \once \override Stem.color = #red
-                        f'8 ~
+                        f'8
+                        ~
                     }
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
@@ -5194,7 +5255,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #blue
                     \once \override NoteHead.color = #blue
                     \once \override Stem.color = #blue
-                    d'8 ~
+                    d'8
+                    ~
                     {
                         \once \override Accidental.color = #blue
                         \once \override Beam.color = #blue
@@ -5214,7 +5276,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override Dots.color = #blue
                         \once \override NoteHead.color = #blue
                         \once \override Stem.color = #blue
-                        f'8 ~
+                        f'8
+                        ~
                     }
                     \once \override Accidental.color = #blue
                     \once \override Beam.color = #blue
@@ -5275,7 +5338,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #red
                     \once \override NoteHead.color = #red
                     \once \override Stem.color = #red
-                    d'8 ~
+                    d'8
+                    ~
                     {
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
@@ -5290,7 +5354,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override Dots.color = #blue
                         \once \override NoteHead.color = #blue
                         \once \override Stem.color = #blue
-                        f'8 ~
+                        f'8
+                        ~
                     }
                     \once \override Accidental.color = #blue
                     \once \override Beam.color = #blue
@@ -5367,7 +5432,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override Dots.color = #red
                         \once \override NoteHead.color = #red
                         \once \override Stem.color = #red
-                        e'8 ~
+                        e'8
+                        ~
                     }
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
@@ -5375,7 +5441,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override NoteHead.color = #red
                     \once \override Stem.color = #red
                     e'8
-                    f'8 ~
+                    f'8
+                    ~
                     \times 2/3 {
                         f'8
                         \once \override Accidental.color = #blue
@@ -5389,7 +5456,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override Dots.color = #blue
                         \once \override NoteHead.color = #blue
                         \once \override Stem.color = #blue
-                        a'8 ~
+                        a'8
+                        ~
                     }
                     \once \override Accidental.color = #blue
                     \once \override Beam.color = #blue
@@ -5397,7 +5465,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override NoteHead.color = #blue
                     \once \override Stem.color = #blue
                     a'8
-                    b'8 ~
+                    b'8
+                    ~
                     \times 2/3 {
                         b'8
                         \once \override Accidental.color = #red
@@ -5465,10 +5534,12 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \times 2/3 {
                         c'8
                         d'8
-                        e'8 ~
+                        e'8
+                        ~
                     }
                     e'8
-                    f'8 ~
+                    f'8
+                    ~
                     \times 2/3 {
                         f'8
                         \once \override Accidental.color = #red
@@ -5482,7 +5553,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                         \once \override Dots.color = #red
                         \once \override NoteHead.color = #red
                         \once \override Stem.color = #red
-                        a'8 ~
+                        a'8
+                        ~
                     }
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
@@ -5490,7 +5562,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override NoteHead.color = #red
                     \once \override Stem.color = #red
                     a'8
-                    b'8 ~
+                    b'8
+                    ~
                     \times 2/3 {
                         b'8
                         \once \override Accidental.color = #blue
@@ -5854,7 +5927,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             bf'16
                             <a'' b''>16
                             c'16
-                            <d' e'>4 ~
+                            <d' e'>4
+                            ~
                             <d' e'>16
                         }
                         \times 8/9 {
@@ -5862,7 +5936,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             bf'16
                             <a'' b''>16
                             d'16
-                            <e' fs'>4 ~
+                            <e' fs'>4
+                            ~
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
@@ -5876,7 +5951,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \once \override NoteHead.color = #green
                             \once \override Stem.color = #green
                             e'16
-                            <fs' gs'>4 ~
+                            <fs' gs'>4
+                            ~
                             <fs' gs'>16
                         }
                     }   % measure
@@ -5968,7 +6044,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \once \override NoteHead.color = #blue
                             \once \override Stem.color = #blue
                             c'16
-                            <d' e'>4 ~
+                            <d' e'>4
+                            ~
                             <d' e'>16
                         }
                         \times 8/9 {
@@ -5986,7 +6063,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \once \override NoteHead.color = #blue
                             \once \override Stem.color = #blue
                             d'16
-                            <e' fs'>4 ~
+                            <e' fs'>4
+                            ~
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
@@ -6005,7 +6083,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \once \override NoteHead.color = #blue
                             \once \override Stem.color = #blue
                             e'16
-                            <fs' gs'>4 ~
+                            <fs' gs'>4
+                            ~
                             <fs' gs'>16
                         }
                     }   % measure
@@ -8045,7 +8124,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             bf'16
                             <a'' b''>16
                             c'16
-                            <d' e'>4 ~
+                            <d' e'>4
+                            ~
                             <d' e'>16
                         }
                         \times 8/9 {
@@ -8053,7 +8133,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             bf'16
                             <a'' b''>16
                             d'16
-                            <e' fs'>4 ~
+                            <e' fs'>4
+                            ~
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
@@ -8064,7 +8145,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             bf'16
                             <a'' b''>16
                             e'16
-                            <fs' gs'>4 ~
+                            <fs' gs'>4
+                            ~
                             <fs' gs'>16
                         }
                     }   % measure
@@ -8142,7 +8224,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             bf'16
                             <a'' b''>16
                             c'16
-                            <d' e'>4 ~
+                            <d' e'>4
+                            ~
                             <d' e'>16
                         }
                         \times 8/9 {
@@ -8152,7 +8235,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             bf'16
                             <a'' b''>16
                             d'16
-                            <e' fs'>4 ~
+                            <e' fs'>4
+                            ~
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
@@ -8163,7 +8247,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             bf'16
                             <a'' b''>16
                             e'16
-                            <fs' gs'>4 ~
+                            <fs' gs'>4
+                            ~
                             <fs' gs'>16
                         }
                     }   % measure
@@ -8234,7 +8319,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             c'16
                             c'16
                             c'16
-                            <d' e'>4 ~
+                            <d' e'>4
+                            ~
                             <d' e'>16
                         }
                         \times 8/9 {
@@ -8242,7 +8328,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             d'16
                             d'16
                             d'16
-                            <e' fs'>4 ~
+                            <e' fs'>4
+                            ~
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
@@ -8271,7 +8358,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \once \override Dots.color = #green
                             \once \override NoteHead.color = #green
                             \once \override Stem.color = #green
-                            <fs' gs'>4 ~
+                            <fs' gs'>4
+                            ~
                             \once \override Accidental.color = #green
                             \once \override Beam.color = #green
                             \once \override Dots.color = #green
@@ -8372,7 +8460,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \once \override Dots.color = #red
                             \once \override NoteHead.color = #red
                             \once \override Stem.color = #red
-                            <d' e'>4 ~
+                            <d' e'>4
+                            ~
                             \once \override Accidental.color = #red
                             \once \override Beam.color = #red
                             \once \override Dots.color = #red
@@ -8405,7 +8494,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \once \override Dots.color = #blue
                             \once \override NoteHead.color = #blue
                             \once \override Stem.color = #blue
-                            <e' fs'>4 ~
+                            <e' fs'>4
+                            ~
                             \once \override Accidental.color = #blue
                             \once \override Beam.color = #blue
                             \once \override Dots.color = #blue
@@ -8439,7 +8529,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \once \override Dots.color = #red
                             \once \override NoteHead.color = #red
                             \once \override Stem.color = #red
-                            <fs' gs'>4 ~
+                            <fs' gs'>4
+                            ~
                             \once \override Accidental.color = #red
                             \once \override Beam.color = #red
                             \once \override Dots.color = #red
@@ -8636,7 +8727,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             bf'16
                             <a'' b''>16
                             c'16
-                            <d' e'>4 ~
+                            <d' e'>4
+                            ~
                             <d' e'>16
                         }
                         \times 8/9 {
@@ -8644,7 +8736,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             bf'16
                             <a'' b''>16
                             d'16
-                            <e' fs'>4 ~
+                            <e' fs'>4
+                            ~
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
@@ -8675,7 +8768,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \once \override Dots.color = #green
                             \once \override NoteHead.color = #green
                             \once \override Stem.color = #green
-                            <fs' gs'>4 ~
+                            <fs' gs'>4
+                            ~
                             \once \override Accidental.color = #green
                             \once \override Beam.color = #green
                             \once \override Dots.color = #green
@@ -8778,7 +8872,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \once \override Dots.color = #red
                             \once \override NoteHead.color = #red
                             \once \override Stem.color = #red
-                            <d' e'>4 ~
+                            <d' e'>4
+                            ~
                             \once \override Accidental.color = #red
                             \once \override Beam.color = #red
                             \once \override Dots.color = #red
@@ -8813,7 +8908,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \once \override Dots.color = #blue
                             \once \override NoteHead.color = #blue
                             \once \override Stem.color = #blue
-                            <e' fs'>4 ~
+                            <e' fs'>4
+                            ~
                             \once \override Accidental.color = #blue
                             \once \override Beam.color = #blue
                             \once \override Dots.color = #blue
@@ -8849,7 +8945,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                             \once \override Dots.color = #red
                             \once \override NoteHead.color = #red
                             \once \override Stem.color = #red
-                            <fs' gs'>4 ~
+                            <fs' gs'>4
+                            ~
                             \once \override Accidental.color = #red
                             \once \override Beam.color = #red
                             \once \override Dots.color = #red
@@ -9011,7 +9108,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #red
                     \once \override Rest.color = #red
                     r8
-                    d'8 ~
+                    d'8
+                    ~
                     \once \override Accidental.color = #blue
                     \once \override Beam.color = #blue
                     \once \override Dots.color = #blue
@@ -9023,7 +9121,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #blue
                     \once \override NoteHead.color = #blue
                     \once \override Stem.color = #blue
-                    e'8 ~
+                    e'8
+                    ~
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -9102,17 +9201,21 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override NoteHead.color = #red
                     \once \override Stem.color = #red
                     \set Staff.pedalSustainStyle = #'mixed
-                    c'8 \sustainOn
+                    c'8
+                    \sustainOn
                     \once \override Dots.color = #red
                     \once \override Rest.color = #red
-                    r8 \sustainOff
+                    r8
+                    \sustainOff
                     \once \override Accidental.color = #blue
                     \once \override Beam.color = #blue
                     \once \override Dots.color = #blue
                     \once \override NoteHead.color = #blue
                     \once \override Stem.color = #blue
                     \set Staff.pedalSustainStyle = #'mixed
-                    d'8 ~ \sustainOn
+                    d'8
+                    ~
+                    \sustainOn
                     \once \override Accidental.color = #blue
                     \once \override Beam.color = #blue
                     \once \override Dots.color = #blue
@@ -9125,7 +9228,10 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override NoteHead.color = #red
                     \once \override Stem.color = #red
                     \set Staff.pedalSustainStyle = #'mixed
-                    e'8 ~ \sustainOff \sustainOn
+                    e'8
+                    ~
+                    \sustainOff
+                    \sustainOn
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -9134,14 +9240,17 @@ class Selection(AbjadValueObject, collections.Sequence):
                     e'8
                     \once \override Dots.color = #red
                     \once \override Rest.color = #red
-                    r8 \sustainOff
+                    r8
+                    \sustainOff
                     \once \override Accidental.color = #blue
                     \once \override Beam.color = #blue
                     \once \override Dots.color = #blue
                     \once \override NoteHead.color = #blue
                     \once \override Stem.color = #blue
                     \set Staff.pedalSustainStyle = #'mixed
-                    f'8 \sustainOn \sustainOff
+                    f'8
+                    \sustainOn
+                    \sustainOff
                 }
 
         Returns new selection (or expression).
@@ -9304,7 +9413,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #blue
                     \once \override NoteHead.color = #blue
                     \once \override Stem.color = #blue
-                    d'8 ~
+                    d'8
+                    ~
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
                     \once \override Dots.color = #red
@@ -9316,7 +9426,8 @@ class Selection(AbjadValueObject, collections.Sequence):
                     \once \override Dots.color = #red
                     \once \override NoteHead.color = #red
                     \once \override Stem.color = #red
-                    e'8 ~
+                    e'8
+                    ~
                     e'8
                     \once \override Dots.color = #blue
                     \once \override Rest.color = #blue

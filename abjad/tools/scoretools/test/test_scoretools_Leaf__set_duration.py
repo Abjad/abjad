@@ -13,8 +13,10 @@ def test_scoretools_Leaf__set_duration_01():
         r'''
         \new Voice
         {
-            c'8 [
-            d'8 ]
+            c'8
+            [
+            d'8
+            ]
             e'8
             f'8
         }
@@ -27,9 +29,12 @@ def test_scoretools_Leaf__set_duration_01():
         r'''
         \new Voice
         {
-            c'8 [
-            d'8 ~
-            d'32 ]
+            c'8
+            [
+            d'8
+            ~
+            d'32
+            ]
             e'8
             f'8
         }
@@ -53,8 +58,11 @@ def test_scoretools_Leaf__set_duration_02():
         r'''
         \new Voice
         {
-            c'8 ~ [
-            c'8 ]
+            c'8
+            ~
+            [
+            c'8
+            ]
             c'8
             c'8
         }
@@ -67,9 +75,13 @@ def test_scoretools_Leaf__set_duration_02():
         r'''
         \new Voice
         {
-            c'8 ~ [
-            c'8 ~
-            c'32 ]
+            c'8
+            ~
+            [
+            c'8
+            ~
+            c'32
+            ]
             c'8
             c'8
         }
@@ -92,8 +104,10 @@ def test_scoretools_Leaf__set_duration_03():
         r'''
         \new Voice
         {
-            c'8 [
-            d'8 ]
+            c'8
+            [
+            d'8
+            ]
             e'8
             f'8
         }
@@ -106,8 +120,10 @@ def test_scoretools_Leaf__set_duration_03():
         r'''
         \new Voice
         {
-            c'8 [
-            d'8. ]
+            c'8
+            [
+            d'8.
+            ]
             e'8
             f'8
         }
@@ -130,8 +146,10 @@ def test_scoretools_Leaf__set_duration_04():
         r'''
         \new Voice
         {
-            c'8 [
-            d'8 ]
+            c'8
+            [
+            d'8
+            ]
             e'8
             f'8
         }
@@ -144,11 +162,14 @@ def test_scoretools_Leaf__set_duration_04():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
-                d'8 ~
-                d'32 ]
+                d'8
+                ~
+                d'32
+                ]
             }
             e'8
             f'8
@@ -172,8 +193,10 @@ def test_scoretools_Leaf__set_duration_05():
         r'''
         \new Voice
         {
-            c'8 [
-            d'8 ]
+            c'8
+            [
+            d'8
+            ]
             e'8
             f'8
         }
@@ -186,10 +209,12 @@ def test_scoretools_Leaf__set_duration_05():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
-                d'8 ]
+                d'8
+                ]
             }
             e'8
             f'8
@@ -297,9 +322,11 @@ def test_scoretools_Leaf__set_duration_11():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             r8
-            e'8 ]
+            e'8
+            ]
             f'8
         }
         '''
@@ -311,10 +338,12 @@ def test_scoretools_Leaf__set_duration_11():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             r8
             r32
-            e'8 ]
+            e'8
+            ]
             f'8
         }
         '''

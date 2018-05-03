@@ -9,13 +9,18 @@ def test_scoretools_Selection__withdraw_from_crossing_spanners_01():
 
     voice = abjad.Voice(r'''
         {
-            c'8 [
+            c'8
+            [
             \startTrillSpan
-            d'8 ]
+            d'8
+            ]
         }
         {
-            e'8 (
-            f'8 ) \stopTrillSpan
+            e'8
+            (
+            f'8
+            )
+            \stopTrillSpan
         }
         ''')
 
@@ -24,13 +29,18 @@ def test_scoretools_Selection__withdraw_from_crossing_spanners_01():
         \new Voice
         {
             {
-                c'8 [
+                c'8
+                [
                 \startTrillSpan
-                d'8 ]
+                d'8
+                ]
             }
             {
-                e'8 (
-                f'8 ) \stopTrillSpan
+                e'8
+                (
+                f'8
+                )
+                \stopTrillSpan
             }
         }
         '''
@@ -44,13 +54,18 @@ def test_scoretools_Selection__withdraw_from_crossing_spanners_01():
         \new Voice
         {
             {
-                c'8 [
+                c'8
+                [
                 \startTrillSpan
-                d'8 ]
+                d'8
+                ]
             }
             {
-                e'8 (
-                f'8 ) \stopTrillSpan
+                e'8
+                (
+                f'8
+                )
+                \stopTrillSpan
             }
         }
         '''
@@ -65,13 +80,18 @@ def test_scoretools_Selection__withdraw_from_crossing_spanners_02():
 
     voice = abjad.Voice(r'''
         {
-            c'8 [
+            c'8
+            [
             \startTrillSpan
-            d'8 ]
+            d'8
+            ]
         }
         {
-            e'8 (
-            f'8 ) \stopTrillSpan
+            e'8
+            (
+            f'8
+            )
+            \stopTrillSpan
         }
         ''')
 
@@ -80,13 +100,18 @@ def test_scoretools_Selection__withdraw_from_crossing_spanners_02():
         \new Voice
         {
             {
-                c'8 [
+                c'8
+                [
                 \startTrillSpan
-                d'8 ]
+                d'8
+                ]
             }
             {
-                e'8 (
-                f'8 ) \stopTrillSpan
+                e'8
+                (
+                f'8
+                )
+                \stopTrillSpan
             }
         }
         '''
@@ -99,13 +124,18 @@ def test_scoretools_Selection__withdraw_from_crossing_spanners_02():
         \new Voice
         {
             {
-                c'8 [
-                d'8 ]
+                c'8
+                [
+                d'8
+                ]
             }
             {
-                e'8 (
+                e'8
+                (
                 \startTrillSpan
-                f'8 ) \stopTrillSpan
+                f'8
+                )
+                \stopTrillSpan
             }
         }
         '''
@@ -122,13 +152,18 @@ def test_scoretools_Selection__withdraw_from_crossing_spanners_03():
 
     voice = abjad.Voice(r'''
         {
-            c'8 [
+            c'8
+            [
             \startTrillSpan
-            d'8 ]
+            d'8
+            ]
         }
         {
-            e'8 (
-            f'8 ) \stopTrillSpan
+            e'8
+            (
+            f'8
+            )
+            \stopTrillSpan
         }
         ''')
 
@@ -137,13 +172,18 @@ def test_scoretools_Selection__withdraw_from_crossing_spanners_03():
         \new Voice
         {
             {
-                c'8 [
+                c'8
+                [
                 \startTrillSpan
-                d'8 ]
+                d'8
+                ]
             }
             {
-                e'8 (
-                f'8 ) \stopTrillSpan
+                e'8
+                (
+                f'8
+                )
+                \stopTrillSpan
             }
         }
         '''

@@ -161,7 +161,8 @@ class WellformednessManager(AbjadObject):
             >>> staff.append(abjad.Container())
 
             >>> abjad.f(staff)
-            \new Staff {
+            \new Staff
+            {
                 c'4
                 d'4
                 e'4
@@ -437,7 +438,8 @@ class WellformednessManager(AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set Staff.instrumentName = \markup { Violin }
                     \set Staff.shortInstrumentName = \markup { Vn. }
                     \clef "alto"
@@ -484,7 +486,8 @@ class WellformednessManager(AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set Staff.instrumentName = \markup { Violin }
                     \set Staff.shortInstrumentName = \markup { Vn. }
                     \clef "percussion"
@@ -584,7 +587,8 @@ class WellformednessManager(AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
+                \new Staff
+                {
                     \set Staff.instrumentName = \markup { Violin }
                     \set Staff.shortInstrumentName = \markup { Vn. }
                     c'8
@@ -641,11 +645,16 @@ class WellformednessManager(AbjadObject):
             >>> abjad.attach(abjad.Beam(), staff[2:])
 
             >>> abjad.f(staff)
-            \new Staff {
-                c'8 [
+            \new Staff
+            {
+                c'8
+                [
                 d'8
-                e'8 ] [
-                f'8 ]
+                e'8
+                ]
+                [
+                f'8
+                ]
             }
 
             >>> manager = abjad.WellformednessManager()
@@ -803,11 +812,16 @@ class WellformednessManager(AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
-                    c'4 \startTrillSpan
+                \new Staff
+                {
+                    c'4
+                    \startTrillSpan
                     d'4
-                    e'4 \stopTrillSpan \startTrillSpan
-                    f'4 \stopTrillSpan
+                    e'4
+                    \stopTrillSpan
+                    \startTrillSpan
+                    f'4
+                    \stopTrillSpan
                 }
 
             >>> abjad.inspect(staff).is_well_formed()
@@ -825,11 +839,16 @@ class WellformednessManager(AbjadObject):
             ..  docs::
 
                 >>> abjad.f(staff)
-                \new Staff {
-                    c'4 \startTrillSpan \startTrillSpan
+                \new Staff
+                {
+                    c'4
+                    \startTrillSpan
+                    \startTrillSpan
                     d'4
                     e'4
-                    f'4 \stopTrillSpan \stopTrillSpan
+                    f'4
+                    \stopTrillSpan
+                    \stopTrillSpan
                 }
 
             >>> agent = abjad.inspect(staff)

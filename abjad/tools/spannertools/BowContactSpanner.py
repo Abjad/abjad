@@ -67,7 +67,9 @@ class BowContactSpanner(Spanner):
                                 4
                     }
                 \clef "percussion"
-                c'4. ^\downbow \glissando
+                c'4.
+                ^\downbow
+                \glissando
                 \once \override NoteHead.Y-offset = 1.0
                 \once \override NoteHead.stencil = #ly:text-interface::print
                 \once \override NoteHead.text = \markup {
@@ -77,7 +79,9 @@ class BowContactSpanner(Spanner):
                                 3
                                 4
                     }
-                c'8 ^\upbow \glissando
+                c'8
+                ^\upbow
+                \glissando
                 \times 2/3 {
                     \once \override NoteHead.Y-offset = 0.0
                     \once \override NoteHead.stencil = #ly:text-interface::print
@@ -88,7 +92,9 @@ class BowContactSpanner(Spanner):
                                     1
                                     2
                         }
-                    c'4 ^\downbow \glissando
+                    c'4
+                    ^\downbow
+                    \glissando
                     \once \override Glissando.style = #'zigzag
                     \once \override NoteHead.Y-offset = 2.0
                     \once \override NoteHead.stencil = #ly:text-interface::print
@@ -99,7 +105,9 @@ class BowContactSpanner(Spanner):
                                     1
                                     1
                         }
-                    c'4 ^\upbow \glissando
+                    c'4
+                    ^\upbow
+                    \glissando
                     \once \override NoteHead.Y-offset = -2.0
                     \once \override NoteHead.stencil = #ly:text-interface::print
                     \once \override NoteHead.text = \markup {
@@ -176,7 +184,9 @@ class BowContactSpanner(Spanner):
                                 3
                                 4
                     }
-                c'4 ^\upbow \glissando
+                c'4
+                ^\upbow
+                \glissando
                 \once \override NoteHead.Y-offset = 0.0
                 \once \override NoteHead.stencil = #ly:text-interface::print
                 \once \override NoteHead.text = \markup {

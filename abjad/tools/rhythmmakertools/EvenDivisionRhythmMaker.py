@@ -95,47 +95,57 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/3 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 6/6 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/3 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 6/6 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/3 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                 }
@@ -167,60 +177,70 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 6/6 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 6/7 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 6/8 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 6/6 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 6/7 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                 }
@@ -513,35 +533,43 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/3 {
                             r8
-                            c'8 [
-                            c'8 ]
+                            c'8
+                            [
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 4/4 {
-                            c'8 [
+                            c'8
+                            [
                             c'8
                             c'8
-                            c'8 ]
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/3 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 4/4 {
-                            c'8 [
-                            c'8 ]
+                            c'8
+                            [
+                            c'8
+                            ]
                             r8
                             r8
                         }
@@ -568,10 +596,12 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 7/7 {
                             r8
-                            c'8 [
+                            c'8
+                            [
                             c'8
                             c'8
-                            c'8 ]
+                            c'8
+                            ]
                             r8
                             r8
                         }
@@ -607,8 +637,10 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/3 {
                             r8
-                            c'8 [
-                            c'8 ]
+                            c'8
+                            [
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
@@ -616,9 +648,11 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 4/4 {
                             r8
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
@@ -626,8 +660,10 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/3 {
                             r8
-                            c'8 [
-                            c'8 ]
+                            c'8
+                            [
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
@@ -635,9 +671,11 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 4/4 {
                             r8
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                 }
@@ -676,7 +714,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 4/8
                         \times 2/3 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
@@ -687,14 +726,16 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
@@ -703,13 +744,15 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/8
                         \times 2/3 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
@@ -720,14 +763,16 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
@@ -736,7 +781,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                 }
@@ -770,7 +816,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 4/8
                         \times 4/6 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
@@ -781,14 +828,16 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
@@ -797,13 +846,15 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/8
                         \times 4/6 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
@@ -814,14 +865,16 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
@@ -830,7 +883,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                 }
@@ -859,7 +913,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 4/8
                         \times 8/12 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
@@ -870,14 +925,16 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
@@ -886,13 +943,15 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/8
                         \times 8/12 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
@@ -903,14 +962,16 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
@@ -919,7 +980,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                 }
@@ -948,7 +1010,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 4/8
                         \times 16/24 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
@@ -959,14 +1022,16 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
@@ -975,13 +1040,15 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/8
                         \times 16/24 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
@@ -992,14 +1059,16 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
@@ -1008,7 +1077,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                 }
@@ -1039,7 +1109,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 4/8
                         \times 8/12 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
@@ -1050,14 +1121,16 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 6/10 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
@@ -1066,13 +1139,15 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/8
                         \times 8/12 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
@@ -1083,14 +1158,16 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 6/10 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
@@ -1099,7 +1176,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                 }
@@ -1141,28 +1219,33 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \time 3/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/3 {
-                            c'16 [
                             c'16
-                            c'16 ]
+                            [
+                            c'16
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 6/6 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/4
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 12/12 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
@@ -1173,7 +1256,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                 }
@@ -1210,21 +1294,25 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/3 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/4
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 6/6 {
-                            c'8 [
+                            c'8
+                            [
                             c'8
                             c'8
                             c'8
                             c'8
-                            c'8 ]
+                            c'8
+                            ]
                         }
                     }   % measure
                 }
@@ -1360,38 +1448,46 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \time 4/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 4/4 {
-                            c'8 [
+                            c'8
+                            [
                             c'8
                             c'8
-                            c'8 ]
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/3 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 4/4 {
-                            c'8 [
+                            c'8
+                            [
                             c'8
                             c'8
-                            c'8 ]
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/3 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                 }
@@ -1427,9 +1523,11 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/3 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
@@ -1440,9 +1538,11 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/3 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                 }
@@ -1478,9 +1578,11 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/3 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
@@ -1491,9 +1593,11 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/3 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                 }
@@ -1606,37 +1710,45 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \time 2/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 2/2 {
-                            c'16 [
-                            c'16 ]
+                            c'16
+                            [
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/3 {
-                            c'16 [
                             c'16
-                            c'16 ]
+                            [
+                            c'16
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 4/4 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 5/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 5/4 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                 }
@@ -1674,36 +1786,44 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \time 2/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 2/2 {
-                            c'16 [
-                            c'16 ]
+                            c'16
+                            [
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/2 {
-                            c'16 [
-                            c'16 ]
+                            c'16
+                            [
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 4/3 {
-                            c'16 [
                             c'16
-                            c'16 ]
+                            [
+                            c'16
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 5/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 5/5 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                 }
@@ -1741,36 +1861,44 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \time 2/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 2/2 {
-                            c'16 [
-                            c'16 ]
+                            c'16
+                            [
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/3 {
-                            c'16 [
                             c'16
-                            c'16 ]
+                            [
+                            c'16
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 4/4 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 5/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 5/3 {
-                            c'16 [
                             c'16
-                            c'16 ]
+                            [
+                            c'16
+                            c'16
+                            ]
                         }
                     }   % measure
                 }
@@ -1808,35 +1936,43 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \time 2/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 2/2 {
-                            c'16 [
-                            c'16 ]
+                            c'16
+                            [
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/2 {
-                            c'16 [
-                            c'16 ]
+                            c'16
+                            [
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 4/3 {
-                            c'16 [
                             c'16
-                            c'16 ]
+                            [
+                            c'16
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 5/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 5/4 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                 }
@@ -1874,38 +2010,46 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \time 2/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 2/2 {
-                            c'16 [
-                            c'16 ]
+                            c'16
+                            [
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/3 {
-                            c'16 [
                             c'16
-                            c'16 ]
+                            [
+                            c'16
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 4/4 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 5/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 5/5 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                 }
@@ -1942,41 +2086,49 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 2/16
                         \times 2/3 {
-                            c'16 [
                             c'16
-                            c'16 ]
+                            [
+                            c'16
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/4 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/16
                         \times 4/5 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 5/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 5/6 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                 }
@@ -2014,43 +2166,51 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \time 2/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 2/2 {
-                            c'16 [
-                            c'16 ]
+                            c'16
+                            [
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/16
                         \times 4/6 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 5/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 5/7 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                 }
@@ -2087,44 +2247,52 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                     {   % measure
                         \time 2/16
                         \times 2/3 {
-                            c'16 [
                             c'16
-                            c'16 ]
+                            [
+                            c'16
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/3 {
-                            c'16 [
                             c'16
-                            c'16 ]
+                            [
+                            c'16
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/16
                         \times 4/7 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 5/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 5/8 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                 }
@@ -2163,35 +2331,42 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \time 2/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 2/2 {
-                            c'16 [
-                            c'16 ]
+                            c'16
+                            [
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/4 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 4/4 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 5/16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 5/9 {
-                            c'16 [
+                            c'16
+                            [
                             c'16
                             c'16
                             c'16
@@ -2199,7 +2374,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                             c'16
                             c'16
                             c'16
-                            c'16 ]
+                            c'16
+                            ]
                         }
                     }   % measure
                 }
@@ -2236,38 +2412,46 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \time 4/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 4/4 {
-                            c'8 [
+                            c'8
+                            [
                             c'8
                             c'8
-                            c'8 ]
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/3 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 4/4 {
-                            c'8 [
+                            c'8
+                            [
                             c'8
                             c'8
-                            c'8 ]
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/3 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                 }
@@ -2300,8 +2484,10 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 4/4 {
                             r8
-                            c'8 [
-                            c'8 ]
+                            c'8
+                            [
+                            c'8
+                            ]
                             r8
                         }
                     }   % measure
@@ -2309,8 +2495,10 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/3 {
-                            c'8 [
-                            c'8 ]
+                            c'8
+                            [
+                            c'8
+                            ]
                             r8
                         }
                     }   % measure
@@ -2318,8 +2506,10 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \time 4/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 4/4 {
-                            c'8 [
-                            c'8 ]
+                            c'8
+                            [
+                            c'8
+                            ]
                             r8
                             c'8
                         }
@@ -2365,8 +2555,10 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \time 4/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 4/4 {
-                            c'8 [
-                            c'8 ]
+                            c'8
+                            [
+                            c'8
+                            ]
                             r8
                             r8
                         }
@@ -2395,8 +2587,10 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/3 {
                             r8
-                            c'8 [
-                            c'8 ]
+                            c'8
+                            [
+                            c'8
+                            ]
                         }
                     }   % measure
                 }
@@ -2428,38 +2622,49 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \time 4/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 4/4 {
-                            c'8 [
+                            c'8
+                            [
                             c'8
                             c'8
-                            c'8 ~ ]
+                            c'8
+                            ~
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/3 {
-                            c'8 [
                             c'8
-                            c'8 ~ ]
+                            [
+                            c'8
+                            c'8
+                            ~
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 4/4 {
-                            c'8 [
+                            c'8
+                            [
                             c'8
                             c'8
-                            c'8 ~ ]
+                            c'8
+                            ~
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/3 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                 }
@@ -2490,9 +2695,11 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \time 4/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 4/4 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                             r8
                         }
                     }   % measure
@@ -2501,27 +2708,35 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/3 {
                             r8
-                            c'8 [
-                            c'8 ~ ]
+                            c'8
+                            [
+                            c'8
+                            ~
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \time 4/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 4/4 {
-                            c'8 [
-                            c'8 ]
+                            c'8
+                            [
+                            c'8
+                            ]
                             r8
-                            c'8 ~
+                            c'8
+                            ~
                         }
                     }   % measure
                     {   % measure
                         \time 3/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/3 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                 }

@@ -117,15 +117,15 @@ class OctavationSpanner(Spanner):
             ..  docs::
 
                 >>> abjad.f(measure)
-                    {   % measure
-                        \time 4/8
-                        \ottava #1
-                        c'''8
-                        d'''8
-                        ef'''8
-                        f'''8
-                        \ottava #0
-                    }   % measure
+                {   % measure
+                    \time 4/8
+                    \ottava #1
+                    c'''8
+                    d'''8
+                    ef'''8
+                    f'''8
+                    \ottava #0
+                }   % measure
 
         Adjusts start and stop according to the diatonic pitch number of
         the maximum pitch in spanner.

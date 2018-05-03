@@ -94,11 +94,10 @@ class Component(AbjadObject):
         import abjad
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
-        elif format_specification == 'lilypond:strict':
-            return self._get_lilypond_format(strict=True)
         elif format_specification == 'storage':
             return abjad.StorageFormatManager(self).get_storage_format()
-        return str(self)
+        raise ValueError(repr(format_specification))
+        #return str(self)
 
     def __getnewargs__(self):
         r'''Gets new arguments.
@@ -228,7 +227,7 @@ class Component(AbjadObject):
     def _format_closing_slot(self, bundle):
         pass
 
-    def _format_component(self, pieces=False, strict=False):
+    def _format_component(self, pieces=False):
         import abjad
         result = []
         bundle = abjad.LilyPondFormatManager.bundle_format_contributions(self)
@@ -236,7 +235,7 @@ class Component(AbjadObject):
         result.extend(self._format_before_slot(bundle))
         result.extend(self._format_open_brackets_slot(bundle))
         result.extend(self._format_opening_slot(bundle))
-        result.extend(self._format_contents_slot(bundle, strict=strict))
+        result.extend(self._format_contents_slot(bundle))
         result.extend(self._format_closing_slot(bundle))
         result.extend(self._format_close_brackets_slot(bundle))
         result.extend(self._format_after_slot(bundle))
@@ -249,7 +248,7 @@ class Component(AbjadObject):
         else:
             return '\n'.join(contributions)
 
-    def _format_contents_slot(self, bundle, strict=False):
+    def _format_contents_slot(self, bundle):
         pass
 
     def _format_open_brackets_slot(self, bundle):
@@ -398,8 +397,8 @@ class Component(AbjadObject):
             result.extend(contributions)
         return result
 
-    def _get_format_pieces(self, strict=False):
-        return self._format_component(pieces=True, strict=strict)
+    def _get_format_pieces(self):
+        return self._format_component(pieces=True)
 
     def _get_format_specification(self):
         import abjad
@@ -476,9 +475,9 @@ class Component(AbjadObject):
         result = tuple(result)
         return result
 
-    def _get_lilypond_format(self, strict=False):
+    def _get_lilypond_format(self):
         self._update_now(indicators=True)
-        return self._format_component(strict=strict)
+        return self._format_component()
 
     def _get_lineage(self):
         import abjad

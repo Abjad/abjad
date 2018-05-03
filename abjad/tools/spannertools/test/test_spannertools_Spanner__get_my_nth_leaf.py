@@ -17,12 +17,14 @@ def test_spannertools_Spanner__get_my_nth_leaf_01():
         {
             {   % measure
                 \time 2/8
-                c'8 [
+                c'8
+                [
                 d'8
             }   % measure
             {   % measure
                 e'8
-                f'8 ]
+                f'8
+                ]
             }   % measure
         }
         '''

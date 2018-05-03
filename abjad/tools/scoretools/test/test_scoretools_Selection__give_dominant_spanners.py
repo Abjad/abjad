@@ -21,10 +21,16 @@ def test_scoretools_Selection__give_dominant_spanners_01():
         r'''
         \new Voice
         {
-            c'8 [ \<
-            d'8 ] (
-            e'8 )
-            f'8 \!
+            c'8
+            [
+            \<
+            d'8
+            ]
+            (
+            e'8
+            )
+            f'8
+            \!
         }
         '''
         )
@@ -37,9 +43,11 @@ def test_scoretools_Selection__give_dominant_spanners_01():
         r'''
         \new Voice
         {
-            c'16 [
             c'16
-            c'16 ]
+            [
+            c'16
+            c'16
+            ]
         }
         '''
         )
@@ -53,10 +61,14 @@ def test_scoretools_Selection__give_dominant_spanners_01():
         r'''
         \new Voice
         {
-            c'8 [ \<
-            d'8 ]
+            c'8
+            [
+            \<
+            d'8
+            ]
             e'8
-            f'8 \!
+            f'8
+            \!
         }
         '''
         )
@@ -69,9 +81,13 @@ def test_scoretools_Selection__give_dominant_spanners_01():
         r'''
         \new Voice
         {
-            c'16 [ (
             c'16
-            c'16 ] )
+            [
+            (
+            c'16
+            c'16
+            ]
+            )
         }
         '''
         )

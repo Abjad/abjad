@@ -17,10 +17,12 @@ class PianoPedalSpanner(Spanner):
             \new Staff
             {
                 \set Staff.pedalSustainStyle = #'mixed
-                c'8 \sustainOn
+                c'8
+                \sustainOn
                 d'8
                 e'8
-                f'8 \sustainOff
+                f'8
+                \sustainOff
             }
 
     Formats LilyPond ``\sustainOn``, ``\sosenutoOn`` or ``\unaCorda`` on first
@@ -126,10 +128,12 @@ class PianoPedalSpanner(Spanner):
                 \new Staff
                 {
                     \set Staff.pedalSustainStyle = #'mixed
-                    c'8 \sustainOn
+                    c'8
+                    \sustainOn
                     d'8
                     e'8
-                    f'8 \sustainOff
+                    f'8
+                    \sustainOff
                 }
 
             >>> spanner.kind
@@ -150,10 +154,12 @@ class PianoPedalSpanner(Spanner):
                 \new Staff
                 {
                     \set Staff.pedalSustainStyle = #'mixed
-                    c'8 \sostenutoOn
+                    c'8
+                    \sostenutoOn
                     d'8
                     e'8
-                    f'8 \sostenutoOff
+                    f'8
+                    \sostenutoOff
                 }
 
             >>> spanner.kind
@@ -174,10 +180,12 @@ class PianoPedalSpanner(Spanner):
                 \new Staff
                 {
                     \set Staff.pedalSustainStyle = #'mixed
-                    c'8 \unaCorda
+                    c'8
+                    \unaCorda
                     d'8
                     e'8
-                    f'8 \treCorde
+                    f'8
+                    \treCorde
                 }
 
             >>> spanner.kind
@@ -206,10 +214,12 @@ class PianoPedalSpanner(Spanner):
                 \new Staff
                 {
                     \set Staff.pedalSustainStyle = #'mixed
-                    c'8 \sustainOn
+                    c'8
+                    \sustainOn
                     d'8
                     e'8
-                    f'8 \sustainOff
+                    f'8
+                    \sustainOff
                 }
 
             >>> spanner.style
@@ -230,10 +240,12 @@ class PianoPedalSpanner(Spanner):
                 \new Staff
                 {
                     \set Staff.pedalSustainStyle = #'bracket
-                    c'8 \sustainOn
+                    c'8
+                    \sustainOn
                     d'8
                     e'8
-                    f'8 \sustainOff
+                    f'8
+                    \sustainOff
                 }
 
             >>> spanner.style
@@ -254,10 +266,12 @@ class PianoPedalSpanner(Spanner):
                 \new Staff
                 {
                     \set Staff.pedalSustainStyle = #'text
-                    c'8 \sustainOn
+                    c'8
+                    \sustainOn
                     d'8
                     e'8
-                    f'8 \sustainOff
+                    f'8
+                    \sustainOff
                 }
 
             >>> spanner.style

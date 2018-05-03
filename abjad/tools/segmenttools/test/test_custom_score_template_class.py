@@ -149,10 +149,12 @@ def test_custom_score_template_class_02():
                 {
                     \new CustomVoice
                     {
-                        c'4 (
+                        c'4
+                        (
                         d'4
                         e'4
-                        f'4 )
+                        f'4
+                        )
                     }
                 }
             >>

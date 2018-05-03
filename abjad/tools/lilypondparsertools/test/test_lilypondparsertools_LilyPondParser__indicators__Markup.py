@@ -11,7 +11,8 @@ def test_lilypondparsertools_LilyPondParser__indicators__Markup_01():
         r'''
         \new Staff
         {
-            c'1 ^ \markup { hello! }
+            c'1
+            ^ \markup { hello! }
         }
         '''
         )
@@ -36,12 +37,12 @@ def test_lilypondparsertools_LilyPondParser__indicators__Markup_02():
         \new Staff
         {
             c'4
-                _ \markup {
-                    X
-                    Y
-                    Z
-                    "a b c"
-                    }
+            _ \markup {
+                X
+                Y
+                Z
+                "a b c"
+                }
         }
         '''
         )
@@ -70,7 +71,9 @@ def test_lilypondparsertools_LilyPondParser__indicators__Markup_03():
         r'''
         \new Staff
         {
-            c'4 -\staccato ^ \markup { hello }
+            c'4
+            -\staccato
+            ^ \markup { hello }
             d'4
         }
         '''

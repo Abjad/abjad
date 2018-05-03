@@ -185,10 +185,12 @@ def test_scoretools_Rest___init___12():
         r'''
         \new Voice
         {
-            r8 [
+            r8
+            [
             r8
             r8
-            r8 ]
+            r8
+            ]
         }
         '''
         )

@@ -25,16 +25,20 @@ class BeamSpecifier(AbjadValueObject):
                 autoBeaming = ##f
             }
             {
-                c'8 [
+                c'8
+                [
                 c'8
                 c'16
-                c'16 ]
-                c'16 [
+                c'16
+                ]
+                c'16
+                [
                 c'16
                 c'8
                 c'8
                 c'8
-                c'8 ]
+                c'8
+                ]
             }
 
     '''
@@ -190,16 +194,20 @@ class BeamSpecifier(AbjadValueObject):
                     autoBeaming = ##f
                 }
                 {
-                    c'8 [
+                    c'8
+                    [
                     c'8
                     c'16
-                    c'16 ]
-                    c'16 [
+                    c'16
+                    ]
+                    c'16
+                    [
                     c'16
                     c'8
                     c'8
                     c'8
-                    c'8 ]
+                    c'8
+                    ]
                 }
 
         ..  container:: example
@@ -228,7 +236,8 @@ class BeamSpecifier(AbjadValueObject):
                 {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 1
-                    c'8 [
+                    c'8
+                    [
                     \set stemLeftBeamCount = 1
                     \set stemRightBeamCount = 1
                     c'8
@@ -246,14 +255,17 @@ class BeamSpecifier(AbjadValueObject):
                     c'16
                     \set stemLeftBeamCount = 1
                     \set stemRightBeamCount = 1
-                    c'8 ]
+                    c'8
+                    ]
                     r8
                     \set stemLeftBeamCount = 1
                     \set stemRightBeamCount = 1
-                    c'8 [
+                    c'8
+                    [
                     \set stemLeftBeamCount = 1
                     \set stemRightBeamCount = 0
-                    c'8 ]
+                    c'8
+                    ]
                 }
 
         ..  container:: example
@@ -282,7 +294,8 @@ class BeamSpecifier(AbjadValueObject):
                 {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 1
-                    c'8 [
+                    c'8
+                    [
                     \set stemLeftBeamCount = 1
                     \set stemRightBeamCount = 1
                     c'8
@@ -307,7 +320,8 @@ class BeamSpecifier(AbjadValueObject):
                     c'8
                     \set stemLeftBeamCount = 1
                     \set stemRightBeamCount = 0
-                    c'8 ]
+                    c'8
+                    ]
                 }
 
         ..  container:: example
@@ -387,16 +401,22 @@ class BeamSpecifier(AbjadValueObject):
                     autoBeaming = ##f
                 }
                 {
-                    c'8 [
+                    c'8
+                    [
                     c'8
                     c'16
-                    c'16 ]
-                    c'16 [
                     c'16
-                    c'8 ]
+                    ]
+                    c'16
+                    [
+                    c'16
+                    c'8
+                    ]
                     r8
-                    c'8 [
-                    c'8 ]
+                    c'8
+                    [
+                    c'8
+                    ]
                 }
 
         ..  container:: example
@@ -423,16 +443,20 @@ class BeamSpecifier(AbjadValueObject):
                     autoBeaming = ##f
                 }
                 {
-                    c'8 [
+                    c'8
+                    [
                     c'8
                     c'16
-                    c'16 ]
-                    c'16 [
+                    c'16
+                    ]
+                    c'16
+                    [
                     c'16
                     c'8
                     r8
                     c'8
-                    c'8 ]
+                    c'8
+                    ]
                 }
 
         ..  container:: example
@@ -474,16 +498,22 @@ class BeamSpecifier(AbjadValueObject):
                     autoBeaming = ##f
                 }
                 {
-                    c'8 [
+                    c'8
+                    [
                     c'8
                     c'16
-                    c'16 ]
-                    c'16 [
                     c'16
-                    c'8 ]
+                    ]
+                    c'16
+                    [
+                    c'16
+                    c'8
+                    ]
                     r8
-                    c'8 [
-                    c'8 ]
+                    c'8
+                    [
+                    c'8
+                    ]
                 }
 
         ..  container:: example
@@ -509,16 +539,20 @@ class BeamSpecifier(AbjadValueObject):
                     autoBeaming = ##f
                 }
                 {
-                    c'8 [
+                    c'8
+                    [
                     c'8
                     c'16
-                    c'16 ]
-                    c'16 [
+                    c'16
+                    ]
+                    c'16
+                    [
                     c'16
                     c'8
                     r8
                     c'8
-                    c'8 ]
+                    c'8
+                    ]
                 }
 
         ..  container:: example
@@ -544,16 +578,20 @@ class BeamSpecifier(AbjadValueObject):
                     autoBeaming = ##f
                 }
                 {
-                    c'8 [
+                    c'8
+                    [
                     c'8
                     c'16
-                    c'16 ]
-                    c'16 [
+                    c'16
+                    ]
+                    c'16
+                    [
                     c'16
                     c'8
                     s8
                     c'8
-                    c'8 ]
+                    c'8
+                    ]
                 }
 
         ..  container:: example
@@ -600,11 +638,14 @@ class BeamSpecifier(AbjadValueObject):
                 {
                     \set stemLeftBeamCount = 0
                     \set stemRightBeamCount = 1
-                    c'8 [ ]
+                    c'8
+                    [
+                    ]
                     r8
                     \set stemLeftBeamCount = 2
                     \set stemRightBeamCount = 2
-                    c'16 [
+                    c'16
+                    [
                     \set stemLeftBeamCount = 2
                     \set stemRightBeamCount = 1
                     c'16
@@ -616,14 +657,17 @@ class BeamSpecifier(AbjadValueObject):
                     c'16
                     \set stemLeftBeamCount = 1
                     \set stemRightBeamCount = 1
-                    c'8 ]
+                    c'8
+                    ]
                     r8
                     \set stemLeftBeamCount = 1
                     \set stemRightBeamCount = 1
-                    c'8 [
+                    c'8
+                    [
                     \set stemLeftBeamCount = 1
                     \set stemRightBeamCount = 0
-                    c'8 ]
+                    c'8
+                    ]
                 }
 
         ..  container:: example
@@ -653,14 +697,18 @@ class BeamSpecifier(AbjadValueObject):
                 {
                     c'8
                     r8
-                    c'16 [
+                    c'16
+                    [
                     c'16
                     c'16
                     c'16
-                    c'8 ]
+                    c'8
+                    ]
                     r8
-                    c'8 [
-                    c'8 ]
+                    c'8
+                    [
+                    c'8
+                    ]
                 }
 
         Set to true, false or none.
@@ -698,16 +746,20 @@ class BeamSpecifier(AbjadValueObject):
                     autoBeaming = ##f
                 }
                 {
-                    c'8 [
+                    c'8
+                    [
                     c'8
                     c'16
-                    c'16 ]
-                    c'16 [
+                    c'16
+                    ]
+                    c'16
+                    [
                     c'16
                     c'8
                     r8
                     c'8
-                    c'8 ]
+                    c'8
+                    ]
                 }
 
         ..  container:: example
@@ -735,19 +787,23 @@ class BeamSpecifier(AbjadValueObject):
                 }
                 {
                     \override Staff.Stem.stemlet-length = 2
-                    c'8 [
+                    c'8
+                    [
                     c'8
                     c'16
                     \revert Staff.Stem.stemlet-length
-                    c'16 ]
+                    c'16
+                    ]
                     \override Staff.Stem.stemlet-length = 2
-                    c'16 [
+                    c'16
+                    [
                     c'16
                     c'8
                     r8
                     c'8
                     \revert Staff.Stem.stemlet-length
-                    c'8 ]
+                    c'8
+                    ]
                 }
 
         Stemlets appear only when `beam_rests` is set to true.

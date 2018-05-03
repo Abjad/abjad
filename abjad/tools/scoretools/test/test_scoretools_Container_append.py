@@ -15,8 +15,10 @@ def test_scoretools_Container_append_01():
         r'''
         \new Voice
         {
-            c'8 [
-            d'8 ]
+            c'8
+            [
+            d'8
+            ]
             {
                 e'8
                 f'8
@@ -40,9 +42,11 @@ def test_scoretools_Container_append_02():
     assert format(tuplet) == abjad.String.normalize(
         r'''
         \times 4/7 {
-            c'8 [
+            c'8
+            [
             d'8
-            e'8 ]
+            e'8
+            ]
             f'16
         }
         '''
@@ -77,9 +81,11 @@ def test_scoretools_Container_append_04():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             d'8
-            e'8 ]
+            e'8
+            ]
         }
         '''
         )
@@ -92,10 +98,12 @@ def test_scoretools_Container_append_04():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             d'8
             e'8
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )
@@ -106,9 +114,11 @@ def test_scoretools_Container_append_04():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             d'8
-            e'8 ]
+            e'8
+            ]
             f'8
         }
         '''
@@ -120,9 +130,11 @@ def test_scoretools_Container_append_04():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             d'8
-            e'8 ]
+            e'8
+            ]
         }
         '''
         )
@@ -143,10 +155,12 @@ def test_scoretools_Container_append_05():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             d'8
             e'8
-            f'8 ]
+            f'8
+            ]
         }
         '''
         )
@@ -157,9 +171,11 @@ def test_scoretools_Container_append_05():
         r'''
         \new Voice
         {
-            c'8 [
+            c'8
+            [
             e'8
-            f'8 ]
+            f'8
+            ]
             d'8
         }
         '''

@@ -225,8 +225,10 @@ class TupletSpecifier(AbjadValueObject):
                     {   % measure
                         \time 2/16
                         \times 4/5 {
-                            c'32 [
-                            c'8 ]
+                            c'32
+                            [
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
@@ -285,8 +287,10 @@ class TupletSpecifier(AbjadValueObject):
                     {   % measure
                         \time 2/16
                         \times 4/5 {
-                            c'32 [
-                            c'8 ]
+                            c'32
+                            [
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
@@ -343,8 +347,10 @@ class TupletSpecifier(AbjadValueObject):
                     {   % measure
                         \time 2/16
                         \times 4/5 {
-                            c'32 [
-                            c'8 ]
+                            c'32
+                            [
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
@@ -400,8 +406,10 @@ class TupletSpecifier(AbjadValueObject):
                     {   % measure
                         \time 2/16
                         \times 4/5 {
-                            c'32 [
-                            c'8 ]
+                            c'32
+                            [
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
@@ -457,8 +465,10 @@ class TupletSpecifier(AbjadValueObject):
                     {   % measure
                         \time 2/16
                         \times 8/10 {
-                            c'32 [
-                            c'8 ]
+                            c'32
+                            [
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
@@ -516,8 +526,10 @@ class TupletSpecifier(AbjadValueObject):
                     {   % measure
                         \time 2/16
                         \times 8/10 {
-                            c'32 [
-                            c'8 ]
+                            c'32
+                            [
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
@@ -573,8 +585,10 @@ class TupletSpecifier(AbjadValueObject):
                     {   % measure
                         \time 2/16
                         \times 12/15 {
-                            c'32 [
-                            c'8 ]
+                            c'32
+                            [
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
@@ -630,8 +644,10 @@ class TupletSpecifier(AbjadValueObject):
                     {   % measure
                         \time 2/16
                         \times 4/5 {
-                            c'32 [
-                            c'8 ]
+                            c'32
+                            [
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
@@ -707,23 +723,29 @@ class TupletSpecifier(AbjadValueObject):
                     {   % measure
                         \time 2/8
                         \times 2/3 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \times 2/3 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \times 2/3 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                 }
@@ -758,23 +780,29 @@ class TupletSpecifier(AbjadValueObject):
                     {   % measure
                         \time 2/8
                         \times 2/3 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \times 2/3 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \times 2/3 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                 }
@@ -813,25 +841,31 @@ class TupletSpecifier(AbjadValueObject):
                         \time 2/8
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 2/3 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 2/3 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                     {   % measure
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 2/3 {
-                            c'8 [
                             c'8
-                            c'8 ]
+                            [
+                            c'8
+                            c'8
+                            ]
                         }
                     }   % measure
                 }

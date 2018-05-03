@@ -22,7 +22,7 @@ class StringQuartetScoreTemplate(ScoreTemplate):
                 {
                     \context Voice = "First Violin Voice"
                     {
-                        \set Staff.instrumentName = \markup { Violin }   %! ST1
+                        \set Staff.instrumentName = \markup { Violin } %! ST1
                         \set Staff.shortInstrumentName = \markup { Vn. } %! ST1
                         \clef "treble" %! ST3
                         s1
@@ -33,7 +33,7 @@ class StringQuartetScoreTemplate(ScoreTemplate):
                 {
                     \context Voice = "Second Violin Voice"
                     {
-                        \set Staff.instrumentName = \markup { Violin }   %! ST1
+                        \set Staff.instrumentName = \markup { Violin } %! ST1
                         \set Staff.shortInstrumentName = \markup { Vn. } %! ST1
                         \clef "treble" %! ST3
                         s1
@@ -44,7 +44,7 @@ class StringQuartetScoreTemplate(ScoreTemplate):
                 {
                     \context Voice = "Viola Voice"
                     {
-                        \set Staff.instrumentName = \markup { Viola }    %! ST1
+                        \set Staff.instrumentName = \markup { Viola } %! ST1
                         \set Staff.shortInstrumentName = \markup { Va. } %! ST1
                         \clef "alto" %! ST3
                         s1
@@ -55,7 +55,7 @@ class StringQuartetScoreTemplate(ScoreTemplate):
                 {
                     \context Voice = "Cello Voice"
                     {
-                        \set Staff.instrumentName = \markup { Cello }    %! ST1
+                        \set Staff.instrumentName = \markup { Cello } %! ST1
                         \set Staff.shortInstrumentName = \markup { Vc. } %! ST1
                         \clef "bass" %! ST3
                         s1

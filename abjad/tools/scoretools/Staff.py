@@ -42,7 +42,8 @@ class Staff(Context):
                         r8
                         c'16
                         c'16
-                        bf'4 ~
+                        bf'4
+                        ~
                         bf'16
                         r16
                     }
@@ -52,7 +53,8 @@ class Staff(Context):
                     \times 9/10 {
                         bf'16
                         e''16
-                        e''4 ~
+                        e''4
+                        ~
                         e''16
                         r16
                         fs''16

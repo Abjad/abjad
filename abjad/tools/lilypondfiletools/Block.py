@@ -60,9 +60,9 @@ class Block(AbjadObject):
         import abjad
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
-        elif format_specification == 'storage':
+        else:
+            assert format_specification == 'storage'
             return abjad.StorageFormatManager(self).get_storage_format()
-        return str(self)
 
     def __getitem__(self, name):
         r'''Gets item with `name`.
@@ -125,7 +125,7 @@ class Block(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _format_item(self, item, depth=1, strict=False):
+    def _format_item(self, item, depth=1):
         import abjad
         indent = abjad.LilyPondFormatManager.indent * depth
         result = []
@@ -133,7 +133,7 @@ class Block(AbjadObject):
             result.append(indent + '{')
             depth_ = depth + 1
             for x in item:
-                pieces = self._format_item(x, depth=depth_, strict=strict)
+                pieces = self._format_item(x, depth=depth_)
                 result.extend(pieces)
             result.append(indent + '}')
         elif isinstance(item, str):
@@ -141,14 +141,14 @@ class Block(AbjadObject):
             result.append(string)
         elif '_get_format_pieces' in dir(item):
             try:
-                pieces = item._get_format_pieces(strict=strict)
+                pieces = item._get_format_pieces()
             except TypeError:
                 pieces = item._get_format_pieces()
             pieces = (indent + item for item in pieces)
             result.extend(pieces)
         return result
 
-    def _get_format_pieces(self, strict=False):
+    def _get_format_pieces(self):
         import abjad
         indent = abjad.LilyPondFormatManager.indent
         result = []
@@ -168,7 +168,7 @@ class Block(AbjadObject):
                 continue
             if isinstance(item, (abjad.Leaf, abjad.Markup)):
                 item = [item]
-            result.extend(self._format_item(item, strict=strict))
+            result.extend(self._format_item(item))
         formatted_attributes = self._get_formatted_user_attributes()
         formatted_attributes = [indent + _ for _ in formatted_attributes]
         result.extend(formatted_attributes)
@@ -231,8 +231,8 @@ class Block(AbjadObject):
             result.extend(formatted_value[1:])
         return result
 
-    def _get_lilypond_format(self, strict=False):
-        return '\n'.join(self._get_format_pieces(strict=strict))
+    def _get_lilypond_format(self):
+        return '\n'.join(self._get_format_pieces())
 
     ### PUBLIC PROPERTIES ###
 

@@ -12,11 +12,16 @@ class StemTremoloSpanner(Spanner):
         >>> abjad.f(staff)
         \new Staff
         {
-            c'32 :256
-            d'16. :128
-            e'8 :64
-            f'4. :32
-            g'4. :32
+            c'32
+            :256
+            d'16.
+            :128
+            e'8
+            :64
+            f'4.
+            :32
+            g'4.
+            :32
         }
 
     '''

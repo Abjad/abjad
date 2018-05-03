@@ -203,8 +203,6 @@ class LilyPondFile(AbjadObject):
 
         ..  container:: example
 
-            Conventional (nonstrict) formatting:
-
             >>> staff = abjad.Staff("c'8 d' e' f'")
             >>> abjad.attach(abjad.Articulation('.'), staff[0])
             >>> abjad.attach(abjad.Markup('Allegro'), staff[0])
@@ -238,44 +236,14 @@ class LilyPondFile(AbjadObject):
                 }
             }
 
-            Strict formatting:
-
-            >>> abjad.f(lilypond_file, strict=True)
-            \language "english"
-            <BLANKLINE>
-            \header {}
-            <BLANKLINE>
-            \layout {}
-            <BLANKLINE>
-            \paper {}
-            <BLANKLINE>
-            \score {
-                {
-                    \new Score
-                    <<
-                        \new Staff
-                        {
-                            c'8
-                            -\staccato
-                            - \markup { Allegro }
-                            d'8
-                            e'8
-                            f'8
-                        }
-                    >>
-                }
-            }
-
         Returns string.
         '''
         import abjad
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
-        elif format_specification == 'lilypond:strict':
-            return self._get_lilypond_format(strict=True)
-        elif format_specification == 'storage':
+        else:
+            assert format_specification == 'storage'
             return abjad.StorageFormatManager(self).get_storage_format()
-        return str(self)
 
     def __getitem__(self, name):
         r'''Gets item with `name`.
@@ -483,7 +451,7 @@ class LilyPondFile(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _get_format_pieces(self, strict=False):
+    def _get_format_pieces(self):
         import abjad
         result = []
         if self.date_time_token is not None:
@@ -505,18 +473,18 @@ class LilyPondFile(AbjadObject):
             result.append(string)
         result.extend(self._get_formatted_includes())
         result.extend(self._get_formatted_scheme_settings())
-        result.extend(self._get_formatted_blocks(strict=strict))
+        result.extend(self._get_formatted_blocks())
         return result
 
     ### PRIVATE METHODS ###
 
-    def _get_formatted_blocks(self, strict=False):
+    def _get_formatted_blocks(self):
         result = []
         for item in self.items:
             if ('_get_lilypond_format' in dir(item) and
                 not isinstance(item, str)):
                 try:
-                    string = item._get_lilypond_format(strict=strict)
+                    string = item._get_lilypond_format()
                 except TypeError:
                     string = item._get_lilypond_format()
                 if string:
@@ -573,8 +541,8 @@ class LilyPondFile(AbjadObject):
             result = ['\n'.join(result)]
         return result
 
-    def _get_lilypond_format(self, strict=False):
-        return '\n\n'.join(self._get_format_pieces(strict=strict))
+    def _get_lilypond_format(self):
+        return '\n\n'.join(self._get_format_pieces())
 
     @staticmethod
     def _make_global_context_block(

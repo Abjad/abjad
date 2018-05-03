@@ -17,7 +17,8 @@ def test_scoretools_Mutation_swap_01():
         \new Voice
         {
             {
-                c'8 [
+                c'8
+                [
                 d'8
             }
             {
@@ -26,7 +27,8 @@ def test_scoretools_Mutation_swap_01():
             }
             {
                 g'8
-                a'8 ]
+                a'8
+                ]
             }
         }
         '''
@@ -41,14 +43,16 @@ def test_scoretools_Mutation_swap_01():
         {
             \tweak text #tuplet-number::calc-fraction-text
             \times 3/4 {
-                c'8 [
+                c'8
+                [
                 d'8
                 e'8
                 f'8
             }
             {
                 g'8
-                a'8 ]
+                a'8
+                ]
             }
         }
         '''
@@ -74,16 +78,23 @@ def test_scoretools_Mutation_swap_02():
         \context Voice = "foo"
         {
             {
-                c'8 [ \glissando
-                d'8 \glissando
+                c'8
+                [
+                \glissando
+                d'8
+                \glissando
             }
             {
-                e'8 \glissando
-                f'8 \glissando
+                e'8
+                \glissando
+                f'8
+                \glissando
             }
             {
-                g'8 \glissando
-                a'8 ]
+                g'8
+                \glissando
+                a'8
+                ]
             }
         }
         '''
@@ -98,17 +109,24 @@ def test_scoretools_Mutation_swap_02():
         \context Voice = "foo"
         {
             {
-                c'8 [ \glissando
-                d'8 \glissando
+                c'8
+                [
+                \glissando
+                d'8
+                \glissando
             }
             \context Voice = "foo"
             {
-                e'8 \glissando
-                f'8 \glissando
+                e'8
+                \glissando
+                f'8
+                \glissando
             }
             {
-                g'8 \glissando
-                a'8 ]
+                g'8
+                \glissando
+                a'8
+                ]
             }
         }
         '''
@@ -133,16 +151,23 @@ def test_scoretools_Mutation_swap_03():
         \new Voice
         {
             {
-                c'8 [ \glissando
-                d'8 \glissando
+                c'8
+                [
+                \glissando
+                d'8
+                \glissando
             }
             {
-                e'8 \glissando
-                f'8 \glissando
+                e'8
+                \glissando
+                f'8
+                \glissando
             }
             {
-                g'8 \glissando
-                a'8 ]
+                g'8
+                \glissando
+                a'8
+                ]
             }
         }
         '''
@@ -157,17 +182,24 @@ def test_scoretools_Mutation_swap_03():
         \new Voice
         {
             {
-                c'8 [ \glissando
-                d'8 \glissando
+                c'8
+                [
+                \glissando
+                d'8
+                \glissando
             }
             \tweak text #tuplet-number::calc-fraction-text
             \times 3/4 {
-                e'8 \glissando
-                f'8 \glissando
+                e'8
+                \glissando
+                f'8
+                \glissando
             }
             {
-                g'8 \glissando
-                a'8 ]
+                g'8
+                \glissando
+                a'8
+                ]
             }
         }
         '''
@@ -219,7 +251,8 @@ def test_scoretools_Mutation_swap_06():
         \new Voice
         {
             {
-                c'8 [
+                c'8
+                [
                 d'8
             }
             {
@@ -228,7 +261,8 @@ def test_scoretools_Mutation_swap_06():
             }
             {
                 g'8
-                a'8 ]
+                a'8
+                ]
             }
         }
         '''

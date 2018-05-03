@@ -10,11 +10,15 @@ def test_spannertools_MultipartBeam___format___01():
     assert format(container) == abjad.String.normalize(
         r'''
         {
-            c'8 [
-            d'8 ]
+            c'8
+            [
+            d'8
+            ]
             r8
-            e'8 [
-            f'8 ]
+            e'8
+            [
+            f'8
+            ]
             g'4
         }
         '''
