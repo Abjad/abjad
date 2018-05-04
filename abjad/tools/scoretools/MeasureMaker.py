@@ -74,8 +74,9 @@ class MeasureMaker(AbjadValueObject):
                 multiplier = abjad.Multiplier(duration)
             abjad.attach(multiplier, skip)
             measure[:] = [skip]
-            for spanner in measure._get_spanners():
-                spanner._remove(measure)
+            # REMOVE: spanners attach only to leaves:
+            #for spanner in measure._get_spanners():
+            #    spanner._remove(measure)
         return abjad.select(measures)
 
     ### PUBLIC PROPERTIES ###

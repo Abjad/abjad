@@ -1,8 +1,9 @@
 import os
 import webbrowser
 from abjad.tools import systemtools
-from abjad.tools.documentationtools.DocumentationManager import DocumentationManager
-from abjad.tools.commandlinetools.CommandlineScript import CommandlineScript
+from abjad.tools.documentationtools.DocumentationManager import \
+    DocumentationManager
+from .CommandlineScript import CommandlineScript
 
 
 class BuildApiScript(CommandlineScript):

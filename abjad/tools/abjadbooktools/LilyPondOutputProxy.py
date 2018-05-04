@@ -2,9 +2,11 @@ import copy
 import os
 import subprocess
 from abjad.tools import documentationtools
-from abjad.tools import systemtools
 from abjad.tools import lilypondfiletools
-from abjad.tools.abjadbooktools.ImageOutputProxy import ImageOutputProxy
+from abjad.tools import systemtools
+from .ImageOutputProxy import ImageOutputProxy
+from .ImageRenderSpecifier import ImageRenderSpecifier
+from .abjad_output_block import abjad_output_block
 
 
 class LilyPondOutputProxy(ImageOutputProxy):
@@ -18,18 +20,8 @@ class LilyPondOutputProxy(ImageOutputProxy):
     abjad.abjadbooktools.LilyPondOutputProxy(
         abjad.LilyPondFile(
             comments=[],
-            global_staff_size=12,
             includes=[],
             items=[
-                abjad.Block(
-                    name='header',
-                    ),
-                abjad.Block(
-                    name='layout',
-                    ),
-                abjad.Block(
-                    name='paper',
-                    ),
                 abjad.Block(
                     name='score',
                     ),
@@ -42,7 +34,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
         )
 
     >>> proxy.as_latex(relative_output_directory='assets')
-    ['\\noindent\\includegraphics{assets/lilypond-d68b813dd2ff6ac422fcdfb7a6b5f3a2.pdf}']
+    ['\\noindent\\includegraphics{assets/lilypond-d3ecbde01b2f252633e28953dae06eea.pdf}']
 
     """
 
@@ -63,7 +55,6 @@ class LilyPondOutputProxy(ImageOutputProxy):
         image_render_specifier=None,
         strict=None,
         ):
-        from abjad.tools import abjadbooktools
         ImageOutputProxy.__init__(
             self,
             image_layout_specifier=image_layout_specifier,
@@ -71,23 +62,22 @@ class LilyPondOutputProxy(ImageOutputProxy):
             )
         payload = copy.deepcopy(payload)
         if image_render_specifier is None:
-            image_render_specifier = abjadbooktools.ImageRenderSpecifier()
-        if (
-            not image_render_specifier.stylesheet and
-            not image_render_specifier.no_stylesheet
-            ):
-            payload = documentationtools.make_reference_manual_lilypond_file(
-                payload)
+            image_render_specifier = ImageRenderSpecifier()
+        if (not image_render_specifier.stylesheet and
+            not image_render_specifier.no_stylesheet):
+            payload = lilypondfiletools.LilyPondFile.new(payload)
         lilypond_file = payload
         assert isinstance(lilypond_file, lilypondfiletools.LilyPondFile)
+        if lilypond_file.header_block:
+            if getattr(lilypond_file.header_block, 'tagline') is False:
+                # default.ily stylesheet already sets tagline = ##f
+                delattr(lilypond_file.header_block, 'tagline')
+            if lilypond_file.header_block.empty():
+                lilypond_file.items.remove(lilypond_file.header_block)
         if lilypond_file.layout_block and lilypond_file.layout_block.empty():
             lilypond_file.items.remove(lilypond_file.layout_block)
         if lilypond_file.paper_block and lilypond_file.paper_block.empty():
             lilypond_file.items.remove(lilypond_file.paper_block)
-        if lilypond_file.header_block is None:
-            header_block = lilypondfiletools.Block(name='header')
-            lilypond_file.items.insert(0, header_block)
-        lilypond_file.header_block.tagline = False
         lilypond_file._date_time_token = None
         token = lilypondfiletools.LilyPondVersionToken("2.19.0")
         lilypond_file._lilypond_version_token = token
@@ -122,7 +112,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
             print(format(self.payload))
             raise AssertionError
         assert systemtools.IOManager.find_executable('pdfcrop')
-        command = 'pdfcrop {path} {path}'.format(path=pdf_file_path)
+        command = f'pdfcrop {pdf_file_path} {pdf_file_path}'
         process = subprocess.Popen(
             command,
             shell=True,
@@ -174,37 +164,9 @@ class LilyPondOutputProxy(ImageOutputProxy):
             \version "2.19.0"
             \language "english"
         <BLANKLINE>
-            #(set-global-staff-size 12)
-        <BLANKLINE>
-            \header {
-                tagline = ##f
-            }
-        <BLANKLINE>
-            \layout {
-                indent = #0
-                ragged-right = ##t
-                \context {
-                    \Score
-                    \remove Bar_number_engraver
-                    \override SpacingSpanner.strict-grace-spacing = ##t
-                    \override SpacingSpanner.strict-note-spacing = ##t
-                    \override SpacingSpanner.uniform-stretching = ##t
-                    \override TupletBracket.bracket-visibility = ##t
-                    \override TupletBracket.minimum-length = #3
-                    \override TupletBracket.padding = #2
-                    \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                    \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                    proportionalNotationDuration = #(ly:make-moment 1 24)
-                    tupletFullLength = ##t
-                }
-            }
-        <BLANKLINE>
-            \paper {
-                left-margin = 1\in
-            }
-        <BLANKLINE>
             \score {
-                \new Staff {
+                \new Staff
+                {
                     c'4
                     d'4
                     e'4
@@ -215,14 +177,12 @@ class LilyPondOutputProxy(ImageOutputProxy):
 
         Returns list of docutils nodes.
         """
-        import abjad
-        from abjad.tools import abjadbooktools
         result = []
         assert self.strict is not False, repr(self.strict)
         try:
             code = format(self.payload, 'lilypond')
             if isinstance(self.strict, int):
-                code = abjad.LilyPondFormatManager.align_tags(
+                code = systemtools.LilyPondFormatManager.align_tags(
                     code,
                     self.strict,
                     )
@@ -231,11 +191,11 @@ class LilyPondOutputProxy(ImageOutputProxy):
                     realign = self.strict
                 else:
                     realign = None
-                code = abjad.LilyPondFormatManager.left_shift_tags(
+                code = systemtools.LilyPondFormatManager.left_shift_tags(
                     code,
                     realign=realign,
                     )
-            node = abjadbooktools.abjad_output_block(code, code)
+            node = abjad_output_block(code, code)
             node['image_layout_specifier'] = self.image_layout_specifier
             node['image_render_specifier'] = self.image_render_specifier
             node['renderer'] = 'lilypond'

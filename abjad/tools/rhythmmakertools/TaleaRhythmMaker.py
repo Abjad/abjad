@@ -3,8 +3,8 @@ from abjad.tools.datastructuretools.Duration import Duration
 from abjad.tools.datastructuretools.OrderedDict import OrderedDict
 from abjad.tools.datastructuretools.Pattern import Pattern
 from .BeamSpecifier import BeamSpecifier
-from .DurationSpecifier import DurationSpecifier
 from .BurnishSpecifier import BurnishSpecifier
+from .DurationSpecifier import DurationSpecifier
 from .RhythmMaker import RhythmMaker
 from .Talea import Talea
 from .TieSpecifier import TieSpecifier

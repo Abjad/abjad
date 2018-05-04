@@ -21,6 +21,7 @@ from abjad.tools.topleveltools.inspect import inspect
 from abjad.tools.topleveltools.override import override
 from abjad.tools.topleveltools.select import select
 from abjad.tools.topleveltools.setting import setting
+from abjad.tools.topleveltools.tweak import tweak
 abjad_tags = Tags()
 
 
@@ -43,6 +44,7 @@ class Spanner(AbjadObject, collections.Sequence):
         '_left_broken',
         '_lilypond_grob_name_manager',
         '_lilypond_setting_name_manager',
+        '_lilypond_tweak_manager',
         '_right_broken',
         '_tag',
         '_wrappers',
@@ -63,6 +65,7 @@ class Spanner(AbjadObject, collections.Sequence):
         self._leaves: typing.List[Leaf] = []
         self._left_broken = None
         self._lilypond_setting_name_manager = None
+        self._lilypond_tweak_manager = None
         self._right_broken = None
         self._tag = None
         self._wrappers: typing.List[Wrapper] = []
@@ -93,6 +96,7 @@ class Spanner(AbjadObject, collections.Sequence):
             new._lilypond_grob_name_manager = copy.copy(override(self))
         if getattr(self, '_lilypond_setting_name_manager', None) is not None:
             new._lilypond_setting_name_manager = copy.copy(setting(self))
+        if getattr(self, '_lilypond_tweak_manager', None) is not None: new._lilypond_tweak_manager = copy.copy(tweak(self))
         self._copy_keyword_args(new)
         return new
 
@@ -154,14 +158,14 @@ class Spanner(AbjadObject, collections.Sequence):
             leaves = select(leaves)
             if not leaves.are_contiguous_logical_voice():
                 raise Exception(type(self), leaves)
-        leaf._spanners.add(self)
+        leaf._append_spanner(self)
         self._leaves.append(leaf)
 
     def _append_left(self, leaf):
         leaves = [leaf] + self[:1]
         leaves = select(leaves)
         assert leaves.are_contiguous_logical_voice()
-        leaf._spanners.add(self)
+        leaf._append_spanner(self)
         self._leaves.insert(0, leaf)
 
     def _apply_overrides(self, overrides):
@@ -258,7 +262,7 @@ class Spanner(AbjadObject, collections.Sequence):
     def _block_leaf(self, leaf):
         r'''Not composer-safe.
         '''
-        leaf._spanners.remove(self)
+        leaf._remove_spanner(self)
 
     def _constrain_contiguity(self):
         r'''Not composer-safe.
@@ -373,6 +377,8 @@ class Spanner(AbjadObject, collections.Sequence):
                 once=False,
                 )
             bundle.grob_overrides.extend(contributions)
+            contributions = tweak(self)._list_format_contributions()
+            bundle.right.spanner_starts.extend(contributions)
         return bundle
 
     def _get_compact_summary(self):
@@ -510,7 +516,7 @@ class Spanner(AbjadObject, collections.Sequence):
             message = 'spanners attach only to leaves: {!s}.'
             message = message.format(leaf)
             raise Exception(message)
-        leaf._spanners.add(self)
+        leaf._append_spanner(self)
         self._leaves.insert(i, leaf)
 
     def _is_exterior_leaf(self, leaf):
@@ -627,7 +633,7 @@ class Spanner(AbjadObject, collections.Sequence):
     def _unblock_leaf(self, leaf):
         r'''Not composer-safe.
         '''
-        leaf._spanners.add(self)
+        leaf._append_spanner(self)
 
     def _unconstrain_contiguity(self):
         r'''Not composer-safe.

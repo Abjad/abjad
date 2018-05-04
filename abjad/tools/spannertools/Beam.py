@@ -54,6 +54,42 @@ class Beam(Spanner):
 
     ..  container:: example
 
+        Tweaks beam positions:
+
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'2")
+        >>> abjad.setting(staff).auto_beaming = False
+        >>> beam = abjad.Beam()
+        >>> abjad.tweak(beam).positions = (3, 3)
+        >>> abjad.attach(beam, staff[:2])
+        >>> beam = abjad.Beam()
+        >>> abjad.tweak(beam).positions = (3, 3)
+        >>> abjad.attach(beam, staff[2:4])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            \with
+            {
+                autoBeaming = ##f
+            }
+            {
+                c'8
+                - \tweak positions #'(3 . 3)
+                [
+                d'8
+                ]
+                e'8
+                - \tweak positions #'(3 . 3)
+                [
+                f'8
+                ]
+                g'2
+            }
+
+    ..  container:: example
+
         Spanners can be tagged:
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'2")

@@ -224,11 +224,11 @@ class Wrapper(AbjadValueObject):
             >>> abjad.attach(spanner, old_staff[:])
             >>> spanner.attach(abjad.Markup('pont.'), old_staff[0])
             >>> abjad.f(old_staff)
-            \new Staff {
-                \once \override TextSpanner.Y-extent = ##f
-                \once \override TextSpanner.bound-details.left-broken.text = ##f
-                \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                \once \override TextSpanner.bound-details.left.text = \markup {
+            \new Staff
+            {
+                c'4
+                - \tweak Y-extent ##f
+                - \tweak bound-details.left.text \markup {
                     \concat
                         {
                             pont.
@@ -236,15 +236,18 @@ class Wrapper(AbjadValueObject):
                                 #0.25
                         }
                     }
-                \once \override TextSpanner.bound-details.right-broken.padding = 0
-                \once \override TextSpanner.bound-details.right-broken.text = ##f
-                \once \override TextSpanner.bound-details.right.padding = 1.5
-                \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                \once \override TextSpanner.dash-period = 0
-                c'4 \startTextSpan
+                - \tweak dash-period 0
+                - \tweak bound-details.left-broken.text ##f
+                - \tweak bound-details.left.stencil-align-dir-y #center
+                - \tweak bound-details.right-broken.padding 0
+                - \tweak bound-details.right-broken.text ##f
+                - \tweak bound-details.right.padding 1.5
+                - \tweak bound-details.right.stencil-align-dir-y #center
+                \startTextSpan
                 d'4
                 e'4
-                f'4 \stopTextSpan
+                f'4
+                \stopTextSpan
             }
 
             >>> leaf = old_staff[0]
@@ -260,11 +263,11 @@ class Wrapper(AbjadValueObject):
 
             >>> new_staff = abjad.mutate(old_staff).copy()
             >>> abjad.f(new_staff)
-            \new Staff {
-                \once \override TextSpanner.Y-extent = ##f
-                \once \override TextSpanner.bound-details.left-broken.text = ##f
-                \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                \once \override TextSpanner.bound-details.left.text = \markup {
+            \new Staff
+            {
+                c'4
+                - \tweak Y-extent ##f
+                - \tweak bound-details.left.text \markup {
                     \concat
                         {
                             pont.
@@ -272,15 +275,18 @@ class Wrapper(AbjadValueObject):
                                 #0.25
                         }
                     }
-                \once \override TextSpanner.bound-details.right-broken.padding = 0
-                \once \override TextSpanner.bound-details.right-broken.text = ##f
-                \once \override TextSpanner.bound-details.right.padding = 1.5
-                \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                \once \override TextSpanner.dash-period = 0
-                c'4 \startTextSpan
+                - \tweak dash-period 0
+                - \tweak bound-details.left-broken.text ##f
+                - \tweak bound-details.left.stencil-align-dir-y #center
+                - \tweak bound-details.right-broken.padding 0
+                - \tweak bound-details.right-broken.text ##f
+                - \tweak bound-details.right.padding 1.5
+                - \tweak bound-details.right.stencil-align-dir-y #center
+                \startTextSpan
                 d'4
                 e'4
-                f'4 \stopTextSpan
+                f'4
+                \stopTextSpan
             }
 
             >>> leaf = new_staff[0]

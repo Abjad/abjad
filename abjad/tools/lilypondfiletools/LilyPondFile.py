@@ -3,6 +3,31 @@ import copy
 import inspect
 import pathlib
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.indicatortools.LilyPondLiteral import LilyPondLiteral
+from abjad.tools.pitchtools.NamedPitch import NamedPitch
+from abjad.tools.scoretools.Component import Component
+from abjad.tools.scoretools.Container import Container
+from abjad.tools.scoretools.Context import Context
+from abjad.tools.scoretools.MeasureMaker import MeasureMaker
+from abjad.tools.scoretools.Note import Note
+from abjad.tools.scoretools.Score import Score
+from abjad.tools.scoretools.Selection import Selection
+from abjad.tools.scoretools.Staff import Staff
+from abjad.tools.scoretools.Voice import Voice
+from abjad.tools.schemetools.Scheme import Scheme
+from abjad.tools.schemetools.SpacingVector import SpacingVector
+from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
+from abjad.tools.topleveltools.attach import attach
+from abjad.tools.topleveltools.inspect import inspect as abjad_inspect
+from abjad.tools.topleveltools.iterate import iterate
+from abjad.tools.topleveltools.mutate import mutate
+from abjad.tools.topleveltools.override import override
+from abjad.tools.topleveltools.sequence import sequence
+from .Block import Block
+from .ContextBlock import ContextBlock
+from .DateTimeToken import DateTimeToken
+from .LilyPondLanguageToken import LilyPondLanguageToken
+from .LilyPondVersionToken import LilyPondVersionToken
 
 
 class LilyPondFile(AbjadObject):
@@ -16,8 +41,8 @@ class LilyPondFile(AbjadObject):
         ...     'Parts shown here for positioning.',
         ...     ]
         >>> includes = [
-        ...     'external-settings-file-1.ly',
-        ...     'external-settings-file-2.ly',
+        ...     'external-settings-file-1.ily',
+        ...     'external-settings-file-2.ily',
         ...     ]
         >>> lilypond_file = abjad.LilyPondFile.new(
         ...     music=staff,
@@ -44,8 +69,8 @@ class LilyPondFile(AbjadObject):
             \version "2.19.0"
             \language "english"
 
-            \include "external-settings-file-1.ly"
-            \include "external-settings-file-2.ly"
+            \include "external-settings-file-1.ily"
+            \include "external-settings-file-2.ily"
 
             #(set-default-paper-size "a5" 'portrait)
             #(set-global-staff-size 16)
@@ -100,13 +125,12 @@ class LilyPondFile(AbjadObject):
         lilypond_version_token=None,
         use_relative_includes=None,
         ):
-        from abjad.tools import lilypondfiletools
         comments = comments or ()
         comments = tuple(comments)
         self._comments = comments
         self._date_time_token = None
         if bool(date_time_token):
-            self._date_time_token = lilypondfiletools.DateTimeToken()
+            self._date_time_token = DateTimeToken()
         self._default_paper_size = default_paper_size
         self._global_staff_size = global_staff_size
         includes = list(includes or [])
@@ -115,11 +139,11 @@ class LilyPondFile(AbjadObject):
         self._items = list(items or [])
         self._lilypond_language_token = None
         if lilypond_language_token is not False:
-            token = lilypondfiletools.LilyPondLanguageToken()
+            token = LilyPondLanguageToken()
             self._lilypond_language_token = token
         self._lilypond_version_token = None
         if lilypond_version_token is not False:
-            token = lilypondfiletools.LilyPondVersionToken()
+            token = LilyPondVersionToken()
             self._lilypond_version_token = token
         self._use_relative_includes = use_relative_includes
 
@@ -213,7 +237,9 @@ class LilyPondFile(AbjadObject):
             >>> abjad.f(lilypond_file)
             \language "english"
             <BLANKLINE>
-            \header {}
+            \header {
+                tagline = ##f
+            }
             <BLANKLINE>
             \layout {}
             <BLANKLINE>
@@ -238,12 +264,11 @@ class LilyPondFile(AbjadObject):
 
         Returns string.
         '''
-        import abjad
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
         else:
             assert format_specification == 'storage'
-            return abjad.StorageFormatManager(self).get_storage_format()
+            return StorageFormatManager(self).get_storage_format()
 
     def __getitem__(self, name):
         r'''Gets item with `name`.
@@ -370,17 +395,16 @@ class LilyPondFile(AbjadObject):
 
         Raises key error when no item with `name` is found.
         '''
-        import abjad
         if not isinstance(name, str):
             if inspect.isclass(name):
-                assert issubclass(name, abjad.Component), repr(name)
+                assert issubclass(name, Component), repr(name)
             else:
-                assert isinstance(name, abjad.Component), repr(name)
+                assert isinstance(name, Component), repr(name)
         score = None
         if self.score_block and self.score_block.items:
             items = self.score_block.items
-            for container in abjad.iterate(items).components(abjad.Container):
-                if isinstance(container, abjad.Context):
+            for container in iterate(items).components(Container):
+                if isinstance(container, Context):
                     score = container
                     break
         if isinstance(name, str):
@@ -393,27 +417,27 @@ class LilyPondFile(AbjadObject):
                 context = score[name]
                 return context
             raise KeyError(f'can not find item with name {name!r}.')
-        elif isinstance(name, abjad.Component):
+        elif isinstance(name, Component):
             for item in self.items:
                 if item is name:
                     return item
             if score is not None:
                 if score is name:
                     return score
-                prototype = abjad.Context
-                for context in abjad.iterate(score).components(prototype):
+                prototype = Context
+                for context in iterate(score).components(prototype):
                     if context is name:
                         return context
             raise KeyError(f'can not find {name}.')
-        elif inspect.isclass(name) and issubclass(name, abjad.Component):
+        elif inspect.isclass(name) and issubclass(name, Component):
             for item in self.items:
                 if isinstance(item, name):
                     return item
             if score is not None:
                 if isinstance(score, name):
                     return score
-                prototype = abjad.Context
-                for context in abjad.iterate(score).components(prototype):
+                prototype = Context
+                for context in iterate(score).components(prototype):
                     if isinstance(context, name):
                         return context
             raise KeyError(f'can not find item of class {name}.')
@@ -452,18 +476,17 @@ class LilyPondFile(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _get_format_pieces(self):
-        import abjad
         result = []
         if self.date_time_token is not None:
-            string = '% {}'.format(self.date_time_token)
+            string = f'% {self.date_time_token}'
             result.append(string)
         result.extend(self._get_formatted_comments())
         includes = []
         if self.lilypond_version_token is not None:
-            string = '{}'.format(self.lilypond_version_token)
+            string = f'{self.lilypond_version_token}'
             includes.append(string)
         if self.lilypond_language_token is not None:
-            string = '{}'.format(self.lilypond_language_token)
+            string = f'{self.lilypond_language_token}'
             includes.append(string)
         includes = '\n'.join(includes)
         if includes:
@@ -500,10 +523,10 @@ class LilyPondFile(AbjadObject):
                 not isinstance(comment, str)):
                 lilypond_format = format(comment)
                 if lilypond_format:
-                    string = '% {}'.format(comment)
+                    string = f'% {comment}'
                     result.append(string)
             else:
-                string = '% {!s}'.format(comment)
+                string = f'% {comment!s}'
                 result.append(string)
         if result:
             result = ['\n'.join(result)]
@@ -513,10 +536,10 @@ class LilyPondFile(AbjadObject):
         result = []
         for include in self.includes:
             if isinstance(include, str):
-                string = r'\include "{}"'.format(include)
+                string = rf'\include "{include}"'
                 result.append(string)
             elif isinstance(include, pathlib.Path):
-                string = r'\include "{!s}"'.format(include)
+                string = rf'\include "{include!s}"'
                 result.append(string)
             else:
                 result.append(format(include))
@@ -529,13 +552,11 @@ class LilyPondFile(AbjadObject):
         default_paper_size = self.default_paper_size
         if default_paper_size is not None:
             dimension, orientation = default_paper_size
-            string = "#(set-default-paper-size \"{}\" '{})"
-            string = string.format(dimension, orientation)
+            string = f"#(set-default-paper-size \"{dimension}\" '{orientation})"
             result.append(string)
         global_staff_size = self.global_staff_size
         if global_staff_size is not None:
-            string = '#(set-global-staff-size {})'
-            string = string.format(global_staff_size)
+            string = f'#(set-global-staff-size {global_staff_size})'
             result.append(string)
         if result:
             result = ['\n'.join(result)]
@@ -550,34 +571,33 @@ class LilyPondFile(AbjadObject):
         minimum_distance=10,
         padding=4,
         ):
-        import abjad
         assert isinstance(font_size, (int, float))
         assert isinstance(padding, (int, float))
-        block = abjad.ContextBlock(
+        block = ContextBlock(
             type_='Engraver_group',
             name='GlobalContext',
             )
         block.consists_commands.append('Axis_group_engraver')
         block.consists_commands.append('Time_signature_engraver')
-        time_signature_grob = abjad.override(block).time_signature
+        time_signature_grob = override(block).time_signature
         time_signature_grob.X_extent = (0, 0)
-        time_signature_grob.X_offset = abjad.Scheme(
+        time_signature_grob.X_offset = Scheme(
             'ly:self-alignment-interface::x-aligned-on-self'
             )
         time_signature_grob.Y_extent = (0, 0)
         time_signature_grob.break_align_symbol = False
-        time_signature_grob.break_visibility = abjad.Scheme(
+        time_signature_grob.break_visibility = Scheme(
             'end-of-line-invisible',
             )
         time_signature_grob.font_size = font_size
-        time_signature_grob.self_alignment_X = abjad.Scheme('center')
-        spacing_vector = abjad.SpacingVector(
+        time_signature_grob.self_alignment_X = Scheme('center')
+        spacing_vector = SpacingVector(
             0,
             minimum_distance,
             padding,
             0,
             )
-        grob = abjad.override(block).vertical_axis_group
+        grob = override(block).vertical_axis_group
         grob.default_staff_staff_spacing = spacing_vector
         return block
 
@@ -674,9 +694,8 @@ class LilyPondFile(AbjadObject):
 
         Returns block or none.
         '''
-        from abjad.tools import lilypondfiletools
         for item in self.items:
-            if isinstance(item, lilypondfiletools.Block):
+            if isinstance(item, Block):
                 if item.name == 'header':
                     return item
 
@@ -769,9 +788,8 @@ class LilyPondFile(AbjadObject):
 
         Returns block or none.
         '''
-        from abjad.tools import lilypondfiletools
         for item in self.items:
-            if isinstance(item, lilypondfiletools.Block):
+            if isinstance(item, Block):
                 if item.name == 'layout':
                     return item
 
@@ -824,9 +842,8 @@ class LilyPondFile(AbjadObject):
 
         Returns block or none.
         '''
-        from abjad.tools import lilypondfiletools
         for item in self.items:
-            if isinstance(item, lilypondfiletools.Block):
+            if isinstance(item, Block):
                 if item.name == 'paper':
                     return item
 
@@ -845,9 +862,8 @@ class LilyPondFile(AbjadObject):
 
         Returns block or none.
         '''
-        from abjad.tools import lilypondfiletools
         for item in self.items:
-            if isinstance(item, lilypondfiletools.Block):
+            if isinstance(item, Block):
                 if item.name == 'score':
                     return item
 
@@ -871,217 +887,6 @@ class LilyPondFile(AbjadObject):
         return self._use_relative_includes
 
     ### PUBLIC METHODS ###
-
-    @classmethod
-    def floating(class_, music=None):
-        r'''Makes basic LilyPond file.
-
-        ..  container:: example
-
-            >>> score = abjad.Score()
-            >>> global_context = abjad.Context(
-            ...     lilypond_type='GlobalContext',
-            ...     )
-            >>> durations = [(2, 8), (3, 8), (4, 8)]
-            >>> maker = abjad.MeasureMaker()
-            >>> measures = maker(durations)
-            >>> global_context.extend(measures)
-            >>> score.append(global_context)
-            >>> staff = abjad.Staff()
-            >>> staff.append(abjad.Measure((2, 8), "c'8 ( d'8 )"))
-            >>> staff.append(abjad.Measure((3, 8), "e'8 ( f'8  g'8 )"))
-            >>> staff.append(abjad.Measure((4, 8), "fs'4 ( e'8 d'8 )"))
-            >>> score.append(staff)
-            >>> lilypond_file = abjad.LilyPondFile.floating(score)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ::
-
-                >>> abjad.f(lilypond_file) # doctest: +SKIP
-                % 2014-01-07 18:22
-
-                \version "2.19.0"
-                \language "english"
-
-                #(set-default-paper-size "letter" 'portrait)
-                #(set-global-staff-size 12)
-
-                \header {}
-
-                \layout {
-                    \accidentalStyle forget
-                    indent = #0
-                    ragged-right = ##t
-                    \context {
-                        \name GlobalContext
-                        \type Engraver_group
-                        \consists Axis_group_engraver
-                        \consists Time_signature_engraver
-                        \override TimeSignature.X-extent = #'(0 . 0)
-                        \override TimeSignature.X-offset = #ly:self-alignment-interface::x-aligned-on-self
-                        \override TimeSignature.Y-extent = #'(0 . 0)
-                        \override TimeSignature.break-align-symbol = ##f
-                        \override TimeSignature.break-visibility = #end-of-line-invisible
-                        \override TimeSignature.font-size = #1
-                        \override TimeSignature.self-alignment-X = #center
-                        \override VerticalAxisGroup.default-staff-staff-spacing = #'((basic-distance . 0) (minimum-distance . 12) (padding . 6) (stretchability . 0))
-                    }
-                    \context {
-                        \Score
-                        \remove Bar_number_engraver
-                        \accepts GlobalContext
-                        \override Beam.breakable = ##t
-                        \override SpacingSpanner.strict-grace-spacing = ##t
-                        \override SpacingSpanner.strict-note-spacing = ##t
-                        \override SpacingSpanner.uniform-stretching = ##t
-                        \override TupletBracket.bracket-visibility = ##t
-                        \override TupletBracket.minimum-length = #3
-                        \override TupletBracket.padding = #2
-                        \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                        \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                        autoBeaming = ##f
-                        proportionalNotationDuration = #(ly:make-moment 1 32)
-                        tupletFullLength = ##t
-                    }
-                    \context {
-                        \StaffGroup
-                    }
-                    \context {
-                        \Staff
-                        \remove Time_signature_engraver
-                    }
-                    \context {
-                        \RhythmicStaff
-                        \remove Time_signature_engraver
-                    }
-                }
-
-                \paper {
-                    left-margin = #20
-                    system-system-spacing = #'((basic-distance . 0) (minimum-distance . 0) (padding . 12) (stretchability . 0))
-                }
-
-                \score {
-                    \new Score <<
-                        \new GlobalContext {
-                            {   % measure
-                                \time 2/8
-                                s1 * 1/4
-                            }   % measure
-                            {   % measure
-                                \time 3/8
-                                s1 * 3/8
-                            }   % measure
-                            {   % measure
-                                \time 4/8
-                                s1 * 1/2
-                            }   % measure
-                        }
-                        \new Staff {
-                            {   % measure
-                                \time 2/8
-                                c'8 (
-                                d'8 )
-                            }   % measure
-                            {   % measure
-                                \time 3/8
-                                e'8 (
-                                f'8
-                                g'8 )
-                            }   % measure
-                            {   % measure
-                                \time 4/8
-                                fs'4 (
-                                e'8
-                                d'8 )
-                            }   % measure
-                        }
-                    >>
-                }
-
-            ..  docs::
-
-                >>> block = lilypond_file.layout_block.items[1]
-                >>> abjad.f(block)
-                \context {
-                    \name GlobalContext
-                    \type Engraver_group
-                    \consists Axis_group_engraver
-                    \consists Time_signature_engraver
-                    \override TimeSignature.X-extent = #'(0 . 0)
-                    \override TimeSignature.X-offset = #ly:self-alignment-interface::x-aligned-on-self
-                    \override TimeSignature.Y-extent = #'(0 . 0)
-                    \override TimeSignature.break-align-symbol = ##f
-                    \override TimeSignature.break-visibility = #end-of-line-invisible
-                    \override TimeSignature.font-size = #1
-                    \override TimeSignature.self-alignment-X = #center
-                    \override VerticalAxisGroup.default-staff-staff-spacing = #'((basic-distance . 0) (minimum-distance . 10) (padding . 6) (stretchability . 0))
-                }
-
-        Makes LilyPond file.
-
-        Wraps `music` in LilyPond ``\score`` block.
-
-        Adds LilyPond ``\header``, ``\layout``, ``\paper`` and ``\score``
-        blocks to LilyPond file.
-
-        Defines layout settings for custom ``\GlobalContext``.
-
-        (Note that you must create and populate an Abjad context with name
-        equal to ``'GlobalContext'`` in order for
-        ``\GlobalContext`` layout settings to apply.)
-
-        Applies many file, layout and paper settings.
-
-        Returns LilyPond file.
-        '''
-        import abjad
-        lilypond_file = LilyPondFile.new(
-            music=music,
-            default_paper_size=('letter', 'portrait'),
-            global_staff_size=16,
-            )
-        lilypond_file.paper_block.left_margin = 20
-        vector = abjad.SpacingVector(0, 0, 12, 0)
-        lilypond_file.paper_block.system_system_spacing = vector
-        lilypond_file.layout_block.indent = 0
-        lilypond_file.layout_block.ragged_right = True
-        command = abjad.LilyPondLiteral(r'\accidentalStyle forget')
-        lilypond_file.layout_block.items.append(command)
-        block = LilyPondFile._make_global_context_block(
-            font_size=1,
-            padding=6,
-            )
-        lilypond_file.layout_block.items.append(block)
-        block = abjad.ContextBlock(source_lilypond_type='Score')
-        lilypond_file.layout_block.items.append(block)
-        block.accepts_commands.append('GlobalContext')
-        block.remove_commands.append('Bar_number_engraver')
-        abjad.override(block).beam.breakable = True
-        abjad.override(block).spacing_spanner.strict_grace_spacing = True
-        abjad.override(block).spacing_spanner.strict_note_spacing = True
-        abjad.override(block).spacing_spanner.uniform_stretching = True
-        abjad.override(block).tuplet_bracket.bracket_visibility = True
-        abjad.override(block).tuplet_bracket.padding = 2
-        scheme = abjad.Scheme('ly:spanner::set-spacing-rods')
-        abjad.override(block).tuplet_bracket.springs_and_rods = scheme
-        abjad.override(block).tuplet_bracket.minimum_length = 3
-        scheme = abjad.Scheme('tuplet-number::calc-fraction-text')
-        abjad.override(block).tuplet_number.text = scheme
-        abjad.setting(block).autoBeaming = False
-        moment = abjad.SchemeMoment((1, 24))
-        abjad.setting(block).proportionalNotationDuration = moment
-        abjad.setting(block).tupletFullLength = True
-        # provided as a stub position for user customization
-        block = abjad.ContextBlock(source_lilypond_type='StaffGroup')
-        lilypond_file.layout_block.items.append(block)
-        block = abjad.ContextBlock(source_lilypond_type='Staff')
-        lilypond_file.layout_block.items.append(block)
-        block.remove_commands.append('Time_signature_engraver')
-        block = abjad.ContextBlock(source_lilypond_type='RhythmicStaff')
-        lilypond_file.layout_block.items.append(block)
-        block.remove_commands.append('Time_signature_engraver')
-        return lilypond_file
 
     @classmethod
     def new(
@@ -1147,8 +952,7 @@ class LilyPondFile(AbjadObject):
 
         Returns LilyPond file.
         '''
-        from abjad.tools import lilypondfiletools
-        if isinstance(music, lilypondfiletools.LilyPondFile):
+        if isinstance(music, LilyPondFile):
             return music
         lilypond_file = class_(
             date_time_token=date_time_token,
@@ -1156,16 +960,17 @@ class LilyPondFile(AbjadObject):
             comments=comments,
             includes=includes,
             items=[
-                lilypondfiletools.Block(name='header'),
-                lilypondfiletools.Block(name='layout'),
-                lilypondfiletools.Block(name='paper'),
-                lilypondfiletools.Block(name='score'),
+                Block(name='header'),
+                Block(name='layout'),
+                Block(name='paper'),
+                Block(name='score'),
                 ],
             global_staff_size=global_staff_size,
             lilypond_language_token=lilypond_language_token,
             lilypond_version_token=lilypond_version_token,
             use_relative_includes=use_relative_includes,
             )
+        lilypond_file.header_block.tagline = False
         if music is not None:
             lilypond_file.score_block.items.append(music)
         return lilypond_file
@@ -1550,25 +1355,24 @@ class LilyPondFile(AbjadObject):
 
         Returns LilyPond file.
         '''
-        import abjad
         if isinstance(selections, list):
             for selection in selections:
-                if not isinstance(selection, abjad.Selection):
-                    message = 'must be selection: {!r}.'
-                    message = message.format(selection)
+                if not isinstance(selection, Selection):
+                    message = f'must be selection: {selection!r}.'
                     raise TypeError(message)
         elif isinstance(selections, dict):
             for selection in selections.values():
-                if not isinstance(selection, abjad.Selection):
-                    message = 'must be selection: {!r}.'
-                    message = message.format(selection)
+                if not isinstance(selection, Selection):
+                    message = f'must be selection: {selection!r}.'
                     raise TypeError(message)
         else:
-            message = 'must be list or dictionary: {!r}.'
-            message = message.format(selections)
+            message = f'must be list or dictionary: {selections!r}.'
             raise TypeError(message)
-        score = abjad.Score()
-        lilypond_file = abjad.LilyPondFile.floating(score)
+        score = Score()
+        lilypond_file = LilyPondFile.new(
+            score,
+            includes=['default.ily', 'rhythm-maker-docs.ily'],
+            )
         if pitched_staff is None:
             if isinstance(selections, list):
                 selections_ = selections
@@ -1576,31 +1380,31 @@ class LilyPondFile(AbjadObject):
                 selections_ = selections.values()
             else:
                 raise TypeError(selections)
-            for note in abjad.iterate(selections_).leaves(abjad.Note):
-                if note.written_pitch != abjad.NamedPitch("c'"):
+            for note in iterate(selections_).leaves(Note):
+                if note.written_pitch != NamedPitch("c'"):
                     pitched_staff = True
                     break
         if isinstance(selections, list):
             if divisions is None:
-                duration = abjad.inspect(selections).get_duration()
+                duration = abjad_inspect(selections).get_duration()
                 divisions = [duration]
             time_signatures = time_signatures or divisions
-            maker = abjad.MeasureMaker(implicit_scaling=implicit_scaling)
+            maker = MeasureMaker(implicit_scaling=implicit_scaling)
             measures = maker(time_signatures)
             if pitched_staff:
-                staff = abjad.Staff(measures)
+                staff = Staff(measures)
             else:
-                staff = abjad.Staff(measures, lilypond_type='RhythmicStaff')
-            selections = abjad.sequence(selections).flatten(depth=-1)
+                staff = Staff(measures, lilypond_type='RhythmicStaff')
+            selections = sequence(selections).flatten(depth=-1)
             selections_ = copy.deepcopy(selections)
             try:
-                agent = abjad.mutate(staff)
+                agent = mutate(staff)
                 measures = agent.replace_measure_contents(selections)
             except StopIteration:
                 if pitched_staff:
-                    staff = abjad.Staff(selections_)
+                    staff = Staff(selections_)
                 else:
-                    staff = abjad.Staff(
+                    staff = Staff(
                         selections_,
                         lilypond_type='RhythmicStaff',
                         )
@@ -1608,9 +1412,9 @@ class LilyPondFile(AbjadObject):
             voices = []
             for voice_name in sorted(selections):
                 selections_ = selections[voice_name]
-                selections_ = abjad.sequence(selections_).flatten(depth=-1)
+                selections_ = sequence(selections_).flatten(depth=-1)
                 selections_ = copy.deepcopy(selections_)
-                voice = abjad.Voice(selections_, name=voice_name)
+                voice = Voice(selections_, name=voice_name)
                 if attach_lilypond_voice_commands:
                     voice_name_to_command_string = {
                         'Voice 1': 'voiceOne',
@@ -1622,22 +1426,22 @@ class LilyPondFile(AbjadObject):
                         voice_name,
                         )
                     if command_string:
-                        command = abjad.LilyPondLiteral('\\' + command_string)
-                        abjad.attach(command, voice)
+                        command = LilyPondLiteral('\\' + command_string)
+                        attach(command, voice)
                 voices.append(voice)
-            staff = abjad.Staff(voices, is_simultaneous=True)
+            staff = Staff(voices, is_simultaneous=True)
             if divisions is None:
-                duration = abjad.inspect(staff).get_duration()
+                duration = abjad_inspect(staff).get_duration()
                 divisions = [duration]
         else:
-            message = 'must be list or dictionary of selections: {!r}.'
-            message = message.format(selections)
+            message = 'must be list or dictionary of selections:'
+            message += f' {selections!r}.'
             raise TypeError(message)
         score.append(staff)
         assert isinstance(divisions, collections.Sequence), repr(divisions)
         time_signatures = time_signatures or divisions
-        context = abjad.scoretools.Context(lilypond_type='GlobalContext')
-        maker = abjad.MeasureMaker(implicit_scaling=implicit_scaling)
+        context = Context(lilypond_type='GlobalContext')
+        maker = MeasureMaker(implicit_scaling=implicit_scaling)
         measures = maker(time_signatures)
         context.extend(measures)
         score.insert(0, context)

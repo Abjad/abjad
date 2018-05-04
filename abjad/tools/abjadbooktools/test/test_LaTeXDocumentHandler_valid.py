@@ -24,38 +24,44 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
     expected_valid_path = os.path.join(test_directory, 'expected_valid.tex')
     with open(expected_valid_path, 'r') as file_pointer:
         expected_valid_contents = file_pointer.read().rstrip()
+    # NOTE: filenames must appear in alphabetical order for tests to pass!
+    #       Reorder when changing hashkeys!
+    #       Use hex order (with a-f after 0-9).
     expected_asset_names = (
         'graphviz-31410f5aefd17473e91ebc219ddff36e.dot',
         'graphviz-31410f5aefd17473e91ebc219ddff36e.pdf',
-        'lilypond-159af81bc32aca4b263146c9052b99ec.ly',
-        'lilypond-159af81bc32aca4b263146c9052b99ec.pdf',
-        'lilypond-71f63c1f11f143bb0f7a2f7ddbc77d75.ly',
-        'lilypond-71f63c1f11f143bb0f7a2f7ddbc77d75.pdf',
-        'lilypond-9e8d4612a88db8a2f31e974c78fc915d.ly',
-        'lilypond-9e8d4612a88db8a2f31e974c78fc915d.pdf',
-        'lilypond-d68b813dd2ff6ac422fcdfb7a6b5f3a2.ly',
-        'lilypond-d68b813dd2ff6ac422fcdfb7a6b5f3a2.pdf',
-        'lilypond-fe5d1d78512d19b7f51b96c2ce9180f9.ly',
-        'lilypond-fe5d1d78512d19b7f51b96c2ce9180f9.pdf',
+        'lilypond-083d0fee82447554abe774beecddec5d.ly',
+        'lilypond-083d0fee82447554abe774beecddec5d.pdf',
+        'lilypond-4296e8f4e63a8d4646a441f14ec2cbf1.ly',
+        'lilypond-4296e8f4e63a8d4646a441f14ec2cbf1.pdf',
+        'lilypond-5af429d4d8ec9363c325eb63be7fd97f.ly',
+        'lilypond-5af429d4d8ec9363c325eb63be7fd97f.pdf',
+        'lilypond-c2c99b4946903c7f3d324af1a82a52f3.ly',
+        'lilypond-c2c99b4946903c7f3d324af1a82a52f3.pdf',
+        'lilypond-d3ecbde01b2f252633e28953dae06eea.ly',
+        'lilypond-d3ecbde01b2f252633e28953dae06eea.pdf',
         )
 
     stylesheet_path = os.path.join(test_directory, 'stylesheet.ily')
     expected_styled_path = os.path.join(test_directory, 'expected_styled.tex')
     with open(expected_styled_path, 'r') as file_pointer:
         expected_styled_contents = file_pointer.read().rstrip()
+    # NOTE: filenames must appear in alphabetical order for tests to pass!
+    #       Reorder when changing hashkeys!
+    #       Use hex order (with a-f after 0-9).
     styled_asset_names =(
         'graphviz-31410f5aefd17473e91ebc219ddff36e.dot',
         'graphviz-31410f5aefd17473e91ebc219ddff36e.pdf',
-        'lilypond-29a694fcaa88ad2e66126db254f6e44c.ly',
-        'lilypond-29a694fcaa88ad2e66126db254f6e44c.pdf',
-        'lilypond-4f0001093f4a9de61a1f620353888218.ly',
-        'lilypond-4f0001093f4a9de61a1f620353888218.pdf',
-        'lilypond-60a8aa65d1dc86d7b3b3396d1dd25fa6.ly',
-        'lilypond-60a8aa65d1dc86d7b3b3396d1dd25fa6.pdf',
-        'lilypond-65404525b3a554691b49772ace1d914c.ly',
-        'lilypond-65404525b3a554691b49772ace1d914c.pdf',
-        'lilypond-8d473a765e713b5eb5d0a95f35161666.ly',
-        'lilypond-8d473a765e713b5eb5d0a95f35161666.pdf',
+        'lilypond-14463b9f591e108d75c484d50a774bcf.ly',
+        'lilypond-14463b9f591e108d75c484d50a774bcf.pdf',
+        'lilypond-4046a5a421974373bc0ce276292d197a.ly',
+        'lilypond-4046a5a421974373bc0ce276292d197a.pdf',
+        'lilypond-810787b0fbb6aaebefda585b48682ab4.ly',
+        'lilypond-810787b0fbb6aaebefda585b48682ab4.pdf',
+        'lilypond-9525588d8fad504c34201efaf3bb5f18.ly',
+        'lilypond-9525588d8fad504c34201efaf3bb5f18.pdf',
+        'lilypond-eb26c8d836ad790ef3f3c19b5dbd0885.ly',
+        'lilypond-eb26c8d836ad790ef3f3c19b5dbd0885.pdf',
         )
 
     configuration_path = os.path.join(test_directory, 'configuration.cfg')

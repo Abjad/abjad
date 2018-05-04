@@ -19,7 +19,7 @@ here call a *cell*:
 
 ..  abjad::
     :hide:
-    :stylesheet: non-proportional.ly
+    :stylesheet: literature-examples.ly
 
     cell = abjad.Staff([ligeti.make_desordre_cell([1, 2, 3])])
     show(cell)
@@ -114,7 +114,7 @@ Finally we combine the two voices in a simultaneous container:
 This results in the complete *Désordre* *cell*:
 
 ..  abjad::
-    :stylesheet: non-proportional.ly
+    :stylesheet: literature-examples.ly
     
     cell = abjad.Staff([container])
     show(cell)
@@ -145,7 +145,7 @@ simple lists of lists of numbers to generate the full structure.  To construct
 a Ligeti measure we would call the function like so:
 
 ..  abjad::
-    :stylesheet: non-proportional.ly
+    :stylesheet: literature-examples.ly
 
     pitches = [[0, 4, 7], [0, 4, 7, 9], [4, 7, 9, 11]]
     measure = ligeti.make_desordre_measure(pitches)
@@ -164,7 +164,7 @@ function and puts them inside a Staff.  As with measures, we can now create
 full measure sequences with this new function:
 
 ..  abjad::
-    :stylesheet: non-proportional.ly
+    :stylesheet: literature-examples.ly
 
     pitches = [[[-1, 4, 5], [-1, 4, 5, 7, 9]], [[0, 7, 9], [-1, 4, 5, 7, 9]]]
     staff = ligeti.make_desordre_staff(pitches)
@@ -218,10 +218,10 @@ The final result:
 
 ..  abjad::
 
-    lilypond_file = abjad.documentationtools.make_ligeti_example_lilypond_file(score)
+    lilypond_file = ligeti.make_desordre_lilypond_file(score)
 
 ..  abjad::
-    :stylesheet: non-proportional.ly
+    :stylesheet: literature-examples.ly
 
     show(lilypond_file)
 

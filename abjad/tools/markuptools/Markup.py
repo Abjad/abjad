@@ -535,7 +535,6 @@ class Markup(AbjadValueObject):
         '''
         import abjad
         lilypond_file = abjad.LilyPondFile.new()
-        lilypond_file.header_block.tagline = False
         markup = new(self, direction=None)
         lilypond_file.items.append(markup)
         return lilypond_file

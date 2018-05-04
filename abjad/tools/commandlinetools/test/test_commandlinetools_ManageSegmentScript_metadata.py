@@ -55,18 +55,24 @@ class Test(ScorePackageScriptTestCase):
             <BLANKLINE>
             \include "../../stylesheets/stylesheet.ily"
             <BLANKLINE>
-            \header {}
+            \header {
+                tagline = ##f
+            }
             <BLANKLINE>
             \layout {}
             <BLANKLINE>
             \paper {}
             <BLANKLINE>
             \score {
-                \context Score = "String Quartet Score" <<
-                    \context StaffGroup = "String Quartet Staff Group" <<
+                \context Score = "String Quartet Score"
+                    <<
+                    \context StaffGroup = "String Quartet Staff Group"
+                    <<
                         \tag #'first-violin
-                        \context Staff = "First Violin Staff" {
-                            \context Voice = "First Violin Voice" {
+                        \context Staff = "First Violin Staff"
+                        {
+                            \context Voice = "First Violin Voice"
+                            {
                                 {   % measure
                                     \time 4/4
                                     \set Staff.instrumentName = \markup { Violin }   %! ST1
@@ -78,8 +84,10 @@ class Test(ScorePackageScriptTestCase):
                             }
                         }
                         \tag #'second-violin
-                        \context Staff = "Second Violin Staff" {
-                            \context Voice = "Second Violin Voice" {
+                        \context Staff = "Second Violin Staff"
+                        {
+                            \context Voice = "Second Violin Voice"
+                            {
                                 {   % measure
                                     \time 4/4
                                     \set Staff.instrumentName = \markup { Violin }   %! ST1
@@ -91,8 +99,10 @@ class Test(ScorePackageScriptTestCase):
                             }
                         }
                         \tag #'viola
-                        \context Staff = "Viola Staff" {
-                            \context Voice = "Viola Voice" {
+                        \context Staff = "Viola Staff"
+                        {
+                            \context Voice = "Viola Voice"
+                            {
                                 {   % measure
                                     \time 4/4
                                     \set Staff.instrumentName = \markup { Viola }   %! ST1
@@ -104,8 +114,10 @@ class Test(ScorePackageScriptTestCase):
                             }
                         }
                         \tag #'cello
-                        \context Staff = "Cello Staff" {
-                            \context Voice = "Cello Voice" {
+                        \context Staff = "Cello Staff"
+                        {
+                            \context Voice = "Cello Voice"
+                            {
                                 {   % measure
                                     \time 4/4
                                     \set Staff.instrumentName = \markup { Cello }   %! ST1

@@ -201,7 +201,6 @@ class PitchSet(Set):
             )
         score = abjad.Score([staff_group])
         lilypond_file = abjad.LilyPondFile.new(score)
-        lilypond_file.header_block.tagline = False
         return lilypond_file
 
     ### PRIVATE PROPERTIES ###

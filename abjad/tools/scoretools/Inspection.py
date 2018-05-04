@@ -1,5 +1,10 @@
 import collections
+import typing
 from abjad.tools import abctools
+from abjad.tools.exceptiontools import ExtraSpannerError
+from abjad.tools.spannertools.Spanner import Spanner
+from abjad.tools.topleveltools.inspect import inspect
+from .Container import Container
 
 
 class Inspection(abctools.AbjadObject):
@@ -1019,8 +1024,14 @@ class Inspection(abctools.AbjadObject):
             grace_notes=grace_notes,
             )
 
-    def get_piecewise(self, prototype=None, default=None, unwrap=True):
-        r'''Gets piecewise indicators.
+    def get_piecewise(
+        self,
+        spanner,
+        prototype=None,
+        default=None,
+        unwrap=True,
+        ):
+        r'''Gets piecewise indicators for ``spanner``.
 
         ..  container:: example
 
@@ -1044,10 +1055,9 @@ class Inspection(abctools.AbjadObject):
                     \override TextSpanner.staff-padding = #2
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text = \markup {
+                    c'4
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \concat
                             {
                                 pont.
@@ -1055,12 +1065,15 @@ class Inspection(abctools.AbjadObject):
                                     #0.25
                             }
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 0.5
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right.text = \markup {
+                    - \tweak arrow-width 0.25
+                    - \tweak dash-fraction 1
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right.arrow ##t
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 0.5
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.right.text \markup {
                         \concat
                             {
                                 \hspace
@@ -1068,8 +1081,6 @@ class Inspection(abctools.AbjadObject):
                                 ord.
                             }
                         }
-                    \once \override TextSpanner.dash-fraction = 1
-                    c'4
                     \startTextSpan
                     d'4
                     e'4
@@ -1078,7 +1089,7 @@ class Inspection(abctools.AbjadObject):
                 }
 
             >>> for leaf in staff:
-            ...     leaf, abjad.inspect(leaf).get_piecewise(abjad.Markup)
+            ...     leaf, abjad.inspect(leaf).get_piecewise(spanner, abjad.Markup)
             ...
             (Note("c'4"), Markup(contents=['pont.']))
             (Note("d'4"), None)
@@ -1087,9 +1098,11 @@ class Inspection(abctools.AbjadObject):
 
         Returns indicator or default.
         '''
+        import abjad
+        assert isinstance(spanner, abjad.Spanner)
         wrappers = self.wrappers(prototype=prototype)
         wrappers = wrappers or []
-        wrappers = [_ for _ in wrappers if _.spanner is not None]
+        wrappers = [_ for _ in wrappers if _.spanner is spanner]
         if not wrappers:
             return default
         if len(wrappers) == 1:
@@ -1098,8 +1111,9 @@ class Inspection(abctools.AbjadObject):
             else:
                 return wrappers[0]
         if 1 < len(wrappers):
-            message = 'multiple indicators attached to client.'
-            raise Exception(message)
+            name = prototype.__name__
+            client = str(self.client)
+            raise Exception(f'multiple {name} attached to {client}.')
 
     def get_pitches(self):
         r'''Gets pitches.
@@ -1179,15 +1193,15 @@ class Inspection(abctools.AbjadObject):
         Returns spanner or default.
         '''
         spanners = self.client._get_spanners(prototype=prototype)
+        assert isinstance(spanners, list), repr(spanners)
         if not spanners:
             return default
         elif len(spanners) == 1:
-            return list(spanners)[0]
+            return spanners[0]
         else:
-            message = 'multiple spanners attached to client.'
-            raise Exception(message)
+            raise ExtraSpannerError
 
-    def get_spanners(self, prototype=None):
+    def get_spanners(self, prototype=None) -> typing.List[Spanner]:
         r'''Gets spanners.
 
         ..  container:: example
@@ -1224,22 +1238,21 @@ class Inspection(abctools.AbjadObject):
             >>> beams
             [Beam("c'8, d'8"), Beam("e'8, f'8")]
 
-        Returns list.
         '''
-        import abjad
+        if isinstance(self.client, Container):
+            return []
         if hasattr(self.client, 'get_spanners'):
-            return list(self.client.get_spanners(prototype=prototype))
+            return self.client.get_spanners(prototype=prototype)
         if hasattr(self.client, '_get_spanners'):
-            return list(self.client._get_spanners(prototype=prototype))
+            return self.client._get_spanners(prototype=prototype)
         assert isinstance(self.client, collections.Iterable), repr(self.client)
-        result, known_ids = [], set()
+        known_ids: typing.List[int] = []
+        result = []
         for item in self.client:
-            for spanner in abjad.inspect(item).get_spanners(
-                prototype=prototype,
-                ):
+            for spanner in inspect(item).get_spanners(prototype=prototype):
                 id_ = id(spanner)
                 if id_ not in known_ids:
-                    known_ids.add(id_)
+                    known_ids.append(id_)
                     result.append(spanner)
         return result
 
@@ -1541,18 +1554,14 @@ class Inspection(abctools.AbjadObject):
 
         Returns vertical moment.
         '''
-        return self.client._get_vertical_moment(
-            governor=governor,
-            )
+        return self.client._get_vertical_moment(governor=governor)
 
     def get_vertical_moment_at(self, offset):
         r'''Gets vertical moment at `offset`.
 
         Returns vertical moment.
         '''
-        return self.client._get_vertical_moment_at(
-            offset,
-            )
+        return self.client._get_vertical_moment_at(offset)
 
     def has_effective_indicator(self, prototype=None):
         r'''Is true when client has effective indicator. Otherwise false.

@@ -428,7 +428,6 @@ class PitchRange(AbjadValueObject):
         abjad.override(score).glissando.thickness = 2
         abjad.override(score).time_signature.stencil = False
         lilypond_file = abjad.LilyPondFile.new(score)
-        lilypond_file.header_block.tagline = False
         return lilypond_file
 
     def __lt__(self, argument):

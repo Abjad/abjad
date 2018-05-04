@@ -1,3 +1,7 @@
+from abjad.tools.lilypondnametools.LilyPondTweakManager import \
+    LilyPondTweakManager
+
+
 def tweak(argument):
     r'''Makes LilyPond tweak manager.
 
@@ -145,9 +149,62 @@ def tweak(argument):
         >>> abjad.tweak(markup_1)
         LilyPondTweakManager(('color', 'red'))
 
+    ..  container:: example
+
+        Tweaks text spanner:
+
+        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+        >>> spanner = abjad.TextSpanner()
+        >>> abjad.attach(spanner, staff[:])
+        >>> spanner.attach(abjad.Markup('pont.').upright(), spanner[0])
+        >>> spanner.attach(abjad.Markup('tasto').upright(), spanner[-1])
+        >>> abjad.tweak(spanner).staff_padding = 2.5
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+                - \tweak staff-padding #2.5
+                - \tweak Y-extent ##f
+                - \tweak bound-details.left.text \markup {
+                    \concat
+                        {
+                            \upright
+                                pont.
+                            \hspace
+                                #0.25
+                        }
+                    }
+                - \tweak dash-period 0
+                - \tweak bound-details.left-broken.text ##f
+                - \tweak bound-details.left.stencil-align-dir-y #center
+                - \tweak bound-details.right-broken.padding 0
+                - \tweak bound-details.right-broken.text ##f
+                - \tweak bound-details.right.padding 1.5
+                - \tweak bound-details.right.stencil-align-dir-y #center
+                - \tweak bound-details.right.text \markup {
+                    \concat
+                        {
+                            \hspace
+                                #1.0
+                            \upright
+                                tasto
+                        }
+                    }
+                \startTextSpan
+                d'4
+                e'4
+                f'4
+                \stopTextSpan
+            }
+
     '''
-    from abjad.tools import lilypondnametools
-    if getattr(argument, '_lilypond_tweak_manager', None) is None:
-        manager = lilypondnametools.LilyPondTweakManager()
-        argument._lilypond_tweak_manager = manager
+    if not hasattr(argument, '_lilypond_tweak_manager'):
+        name = type(argument).__name__
+        raise NotImplementedError(f'{name} does not allow tweaks (yet).')
+    if argument._lilypond_tweak_manager is None:
+        argument._lilypond_tweak_manager = LilyPondTweakManager()
     return argument._lilypond_tweak_manager

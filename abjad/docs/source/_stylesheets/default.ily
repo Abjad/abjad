@@ -1,5 +1,8 @@
 \version "2.19.0"
 
+#(ly:set-option 'relative-includes #t)
+\include "text-spanner-id.ily"
+
 #(set-global-staff-size 18)
 
 \header {
@@ -7,8 +10,8 @@
 }
 
 \layout {
-    indent = #0
-    ragged-right = ##t
+
+    % SCORE
     \context {
         \Score
         \remove Bar_number_engraver
@@ -53,14 +56,24 @@
         proportionalNotationDuration = #(ly:make-moment 1 20)
         tupletFullLength = ##t
     }
+
+    % VOICE
+    \context {
+        \Voice
+        \remove Text_spanner_engraver
+        \consists \alternateTextSpannerEngraver
+    }
+
 }
 
 \paper {
     evenFooterMarkup = ##f
     evenHeaderMarkup = ##f
+    indent = #0
     left-margin = 1\in
     oddFooterMarkup = ##f
     oddHeaderMarkup = ##f
     print-first-page-number = ##f
     print-page-number = ##f
+    ragged-right = ##t
 }

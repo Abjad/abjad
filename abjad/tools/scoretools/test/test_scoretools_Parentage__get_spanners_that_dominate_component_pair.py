@@ -46,7 +46,7 @@ def test_scoretools_Parentage__get_spanners_that_dominate_component_pair_01():
     receipt = voice._get_spanners_that_dominate_component_pair(None, voice[0])
 
     assert len(receipt) == 0
-    assert receipt == set([])
+    assert receipt == []
 
 
 def test_scoretools_Parentage__get_spanners_that_dominate_component_pair_02():
@@ -189,4 +189,4 @@ def test_scoretools_Parentage__get_spanners_that_dominate_component_pair_04():
     receipt = voice._get_spanners_that_dominate_component_pair(*pair)
 
     assert len(receipt) == 0
-    assert receipt == set([])
+    assert receipt == []

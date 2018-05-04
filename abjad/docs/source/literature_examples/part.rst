@@ -70,7 +70,7 @@ give them a 6/4 time signature, just so they line up properly.
         abjad.attach(markup, descent[0])
 
 ..  abjad::
-    :stylesheet: non-proportional.ly
+    :stylesheet: literature-examples.ly
 
     staff = abjad.Staff(sequence(descents).flatten())
     time_signature = abjad.TimeSignature((6, 4))
@@ -88,7 +88,7 @@ Let's look at the second violins too:
         abjad.attach(markup, descent[0])
 
 ..  abjad::
-    :stylesheet: non-proportional.ly
+    :stylesheet: literature-examples.ly
 
     staff = abjad.Staff(sequence(descents).flatten())
     time_signature = abjad.TimeSignature((6, 4))
@@ -108,7 +108,7 @@ the bar lines accidentally:
         abjad.attach(markup, descent[0])
 
 ..  abjad::
-    :stylesheet: non-proportional.ly
+    :stylesheet: literature-examples.ly
 
     staff = abjad.Staff(abjad.sequence(descents).flatten())
     shards = abjad.mutate(staff[:]).split([(3, 2)], cyclic=True)

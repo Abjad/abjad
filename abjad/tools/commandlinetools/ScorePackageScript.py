@@ -11,7 +11,7 @@ import subprocess
 import traceback
 from abjad.tools import systemtools
 from abjad.tools import datastructuretools
-from abjad.tools.commandlinetools.CommandlineScript import CommandlineScript
+from .CommandlineScript import CommandlineScript
 
 
 class ScorePackageScript(CommandlineScript):

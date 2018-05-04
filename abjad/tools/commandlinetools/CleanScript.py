@@ -1,6 +1,6 @@
 import os
 import shutil
-from abjad.tools.commandlinetools.CommandlineScript import CommandlineScript
+from .CommandlineScript import CommandlineScript
 
 
 class CleanScript(CommandlineScript):

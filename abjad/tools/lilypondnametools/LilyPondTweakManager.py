@@ -1,5 +1,5 @@
-from abjad.tools.lilypondnametools.LilyPondNameManager \
-    import LilyPondNameManager
+from abjad.tools.systemtools.LilyPondFormatManager import LilyPondFormatManager
+from .LilyPondNameManager import LilyPondNameManager
 
 
 class LilyPondTweakManager(LilyPondNameManager):
@@ -9,8 +9,7 @@ class LilyPondTweakManager(LilyPondNameManager):
     ### PRIVATE METHODS ###
 
     def _list_format_contributions(self):
-        from abjad.tools import systemtools
-        manager = systemtools.LilyPondFormatManager
+        manager = LilyPondFormatManager
         result = []
         for attribute_pair in self._get_attribute_pairs():
             assert len(attribute_pair) == 2, repr(attribute_pair)

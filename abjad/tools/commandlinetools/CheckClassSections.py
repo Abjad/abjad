@@ -7,7 +7,7 @@ Could be extended to check for other similar errors as needed.
 
 import os
 import sys
-from abjad.tools.commandlinetools.CommandlineScript import CommandlineScript
+from .CommandlineScript import CommandlineScript
 
 
 class CheckClassSections(CommandlineScript):

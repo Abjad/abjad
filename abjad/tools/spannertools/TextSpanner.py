@@ -34,10 +34,9 @@ class TextSpanner(Spanner):
                 \override TextSpanner.staff-padding = #2.5
             }
             {
-                \once \override TextSpanner.Y-extent = ##f
-                \once \override TextSpanner.bound-details.left-broken.text = ##f
-                \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                \once \override TextSpanner.bound-details.left.text = \markup {
+                c'4
+                - \tweak Y-extent ##f
+                - \tweak bound-details.left.text \markup {
                     \concat
                         {
                             \upright
@@ -46,12 +45,13 @@ class TextSpanner(Spanner):
                                 #0.25
                         }
                     }
-                \once \override TextSpanner.bound-details.right-broken.padding = 0
-                \once \override TextSpanner.bound-details.right-broken.text = ##f
-                \once \override TextSpanner.bound-details.right.padding = 1.5
-                \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                \once \override TextSpanner.dash-period = 0
-                c'4
+                - \tweak dash-period 0
+                - \tweak bound-details.left-broken.text ##f
+                - \tweak bound-details.left.stencil-align-dir-y #center
+                - \tweak bound-details.right-broken.padding 0
+                - \tweak bound-details.right-broken.text ##f
+                - \tweak bound-details.right.padding 1.5
+                - \tweak bound-details.right.stencil-align-dir-y #center
                 \startTextSpan
                 d'4
                 e'4
@@ -75,14 +75,16 @@ class TextSpanner(Spanner):
                 \override TextSpanner.staff-padding = #2.5
             }
             {
-                \once \override TextSpanner.Y-extent = ##f
-                \once \override TextSpanner.bound-details.left-broken.text = ##f
-                \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                \once \override TextSpanner.bound-details.right-broken.padding = 0
-                \once \override TextSpanner.bound-details.right-broken.text = ##f
-                \once \override TextSpanner.bound-details.right.padding = 1.5
-                \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                \once \override TextSpanner.bound-details.right.text = \markup {
+                c'4
+                - \tweak Y-extent ##f
+                - \tweak dash-period 0
+                - \tweak bound-details.left-broken.text ##f
+                - \tweak bound-details.left.stencil-align-dir-y #center
+                - \tweak bound-details.right-broken.padding 0
+                - \tweak bound-details.right-broken.text ##f
+                - \tweak bound-details.right.padding 1.5
+                - \tweak bound-details.right.stencil-align-dir-y #center
+                - \tweak bound-details.right.text \markup {
                     \concat
                         {
                             \hspace
@@ -91,8 +93,6 @@ class TextSpanner(Spanner):
                                 tasto
                         }
                     }
-                \once \override TextSpanner.dash-period = 0
-                c'4
                 \startTextSpan
                 d'4
                 e'4
@@ -117,10 +117,9 @@ class TextSpanner(Spanner):
                 \override TextSpanner.staff-padding = #2.5
             }
             {
-                \once \override TextSpanner.Y-extent = ##f
-                \once \override TextSpanner.bound-details.left-broken.text = ##f
-                \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                \once \override TextSpanner.bound-details.left.text = \markup {
+                c'4
+                - \tweak Y-extent ##f
+                - \tweak bound-details.left.text \markup {
                     \concat
                         {
                             \upright
@@ -129,11 +128,14 @@ class TextSpanner(Spanner):
                                 #0.25
                         }
                     }
-                \once \override TextSpanner.bound-details.right-broken.padding = 0
-                \once \override TextSpanner.bound-details.right-broken.text = ##f
-                \once \override TextSpanner.bound-details.right.padding = 1.5
-                \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                \once \override TextSpanner.bound-details.right.text = \markup {
+                - \tweak dash-period 0
+                - \tweak bound-details.left-broken.text ##f
+                - \tweak bound-details.left.stencil-align-dir-y #center
+                - \tweak bound-details.right-broken.padding 0
+                - \tweak bound-details.right-broken.text ##f
+                - \tweak bound-details.right.padding 1.5
+                - \tweak bound-details.right.stencil-align-dir-y #center
+                - \tweak bound-details.right.text \markup {
                     \concat
                         {
                             \hspace
@@ -142,8 +144,6 @@ class TextSpanner(Spanner):
                                 tasto
                         }
                     }
-                \once \override TextSpanner.dash-period = 0
-                c'4
                 \startTextSpan
                 d'4
                 e'4
@@ -169,10 +169,9 @@ class TextSpanner(Spanner):
                 \override TextSpanner.staff-padding = #2.5
             }
             {
-                \once \override TextSpanner.Y-extent = ##f
-                \once \override TextSpanner.arrow-width = 0.25
-                \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                \once \override TextSpanner.bound-details.left.text = \markup {
+                c'4
+                - \tweak Y-extent ##f
+                - \tweak bound-details.left.text \markup {
                     \concat
                         {
                             \upright
@@ -181,12 +180,15 @@ class TextSpanner(Spanner):
                                 #0.25
                         }
                     }
-                \once \override TextSpanner.bound-details.right-broken.padding = 0
-                \once \override TextSpanner.bound-details.right-broken.text = ##f
-                \once \override TextSpanner.bound-details.right.arrow = ##t
-                \once \override TextSpanner.bound-details.right.padding = 0.5
-                \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                \once \override TextSpanner.bound-details.right.text = \markup {
+                - \tweak arrow-width 0.25
+                - \tweak dash-fraction 1
+                - \tweak bound-details.left.stencil-align-dir-y #center
+                - \tweak bound-details.right.arrow ##t
+                - \tweak bound-details.right-broken.padding 0
+                - \tweak bound-details.right-broken.text ##f
+                - \tweak bound-details.right.padding 0.5
+                - \tweak bound-details.right.stencil-align-dir-y #center
+                - \tweak bound-details.right.text \markup {
                     \concat
                         {
                             \hspace
@@ -195,8 +197,6 @@ class TextSpanner(Spanner):
                                 tasto
                         }
                     }
-                \once \override TextSpanner.dash-fraction = 1
-                c'4
                 \startTextSpan
                 d'4
                 e'4
@@ -229,10 +229,9 @@ class TextSpanner(Spanner):
                 \override TextSpanner.staff-padding = #2.5
             }
             {
-                \once \override TextSpanner.Y-extent = ##f
-                \once \override TextSpanner.arrow-width = 0.25
-                \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                \once \override TextSpanner.bound-details.left.text = \markup {
+                c'4
+                - \tweak Y-extent ##f
+                - \tweak bound-details.left.text \markup {
                     \concat
                         {
                             \upright
@@ -241,18 +240,19 @@ class TextSpanner(Spanner):
                                 #0.25
                         }
                     }
-                \once \override TextSpanner.bound-details.right-broken.padding = 0
-                \once \override TextSpanner.bound-details.right-broken.text = ##f
-                \once \override TextSpanner.bound-details.right.arrow = ##t
-                \once \override TextSpanner.bound-details.right.padding = 0.5
-                \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                \once \override TextSpanner.dash-fraction = 1
-                c'4
+                - \tweak arrow-width 0.25
+                - \tweak dash-fraction 1
+                - \tweak bound-details.left.stencil-align-dir-y #center
+                - \tweak bound-details.right.arrow ##t
+                - \tweak bound-details.right-broken.padding 0
+                - \tweak bound-details.right-broken.text ##f
+                - \tweak bound-details.right.padding 0.5
+                - \tweak bound-details.right.stencil-align-dir-y #center
                 \startTextSpan
-                \once \override TextSpanner.Y-extent = ##f
-                \once \override TextSpanner.arrow-width = 0.25
-                \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                \once \override TextSpanner.bound-details.left.text = \markup {
+                d'4
+                \stopTextSpan
+                - \tweak Y-extent ##f
+                - \tweak bound-details.left.text \markup {
                     \concat
                         {
                             \upright
@@ -261,19 +261,19 @@ class TextSpanner(Spanner):
                                 #0.25
                         }
                     }
-                \once \override TextSpanner.bound-details.right-broken.padding = 0
-                \once \override TextSpanner.bound-details.right-broken.text = ##f
-                \once \override TextSpanner.bound-details.right.arrow = ##t
-                \once \override TextSpanner.bound-details.right.padding = 0.5
-                \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                \once \override TextSpanner.dash-fraction = 1
-                d'4
-                \stopTextSpan
+                - \tweak arrow-width 0.25
+                - \tweak dash-fraction 1
+                - \tweak bound-details.left.stencil-align-dir-y #center
+                - \tweak bound-details.right.arrow ##t
+                - \tweak bound-details.right-broken.padding 0
+                - \tweak bound-details.right-broken.text ##f
+                - \tweak bound-details.right.padding 0.5
+                - \tweak bound-details.right.stencil-align-dir-y #center
                 \startTextSpan
-                \once \override TextSpanner.Y-extent = ##f
-                \once \override TextSpanner.arrow-width = 0.25
-                \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                \once \override TextSpanner.bound-details.left.text = \markup {
+                e'4
+                \stopTextSpan
+                - \tweak Y-extent ##f
+                - \tweak bound-details.left.text \markup {
                     \concat
                         {
                             \upright
@@ -282,12 +282,15 @@ class TextSpanner(Spanner):
                                 #0.25
                         }
                     }
-                \once \override TextSpanner.bound-details.right-broken.padding = 0
-                \once \override TextSpanner.bound-details.right-broken.text = ##f
-                \once \override TextSpanner.bound-details.right.arrow = ##t
-                \once \override TextSpanner.bound-details.right.padding = 0.5
-                \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                \once \override TextSpanner.bound-details.right.text = \markup {
+                - \tweak arrow-width 0.25
+                - \tweak dash-fraction 1
+                - \tweak bound-details.left.stencil-align-dir-y #center
+                - \tweak bound-details.right.arrow ##t
+                - \tweak bound-details.right-broken.padding 0
+                - \tweak bound-details.right-broken.text ##f
+                - \tweak bound-details.right.padding 0.5
+                - \tweak bound-details.right.stencil-align-dir-y #center
+                - \tweak bound-details.right.text \markup {
                     \concat
                         {
                             \hspace
@@ -296,9 +299,6 @@ class TextSpanner(Spanner):
                                 four
                         }
                     }
-                \once \override TextSpanner.dash-fraction = 1
-                e'4
-                \stopTextSpan
                 \startTextSpan
                 f'4
                 \stopTextSpan
@@ -327,10 +327,9 @@ class TextSpanner(Spanner):
                 \override TextSpanner.staff-padding = #2.5
             }
             {
-                \once \override TextSpanner.Y-extent = ##f
-                \once \override TextSpanner.arrow-width = 0.25
-                \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                \once \override TextSpanner.bound-details.left.text = \markup {
+                c'4
+                - \tweak Y-extent ##f
+                - \tweak bound-details.left.text \markup {
                     \concat
                         {
                             \upright
@@ -339,18 +338,19 @@ class TextSpanner(Spanner):
                                 #0.75
                         }
                     }
-                \once \override TextSpanner.bound-details.right-broken.padding = 0
-                \once \override TextSpanner.bound-details.right-broken.text = ##f
-                \once \override TextSpanner.bound-details.right.arrow = ##t
-                \once \override TextSpanner.bound-details.right.padding = 1
-                \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                \once \override TextSpanner.dash-fraction = 1
-                c'4
+                - \tweak arrow-width 0.25
+                - \tweak dash-fraction 1
+                - \tweak bound-details.left.stencil-align-dir-y #center
+                - \tweak bound-details.right.arrow ##t
+                - \tweak bound-details.right-broken.padding 0
+                - \tweak bound-details.right-broken.text ##f
+                - \tweak bound-details.right.padding 1
+                - \tweak bound-details.right.stencil-align-dir-y #center
                 \startTextSpan
-                \once \override TextSpanner.Y-extent = ##f
-                \once \override TextSpanner.arrow-width = 0.25
-                \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                \once \override TextSpanner.bound-details.left.text = \markup {
+                d'4
+                \stopTextSpan
+                - \tweak Y-extent ##f
+                - \tweak bound-details.left.text \markup {
                     \concat
                         {
                             \upright
@@ -359,19 +359,19 @@ class TextSpanner(Spanner):
                                 #0.75
                         }
                     }
-                \once \override TextSpanner.bound-details.right-broken.padding = 0
-                \once \override TextSpanner.bound-details.right-broken.text = ##f
-                \once \override TextSpanner.bound-details.right.arrow = ##t
-                \once \override TextSpanner.bound-details.right.padding = 1
-                \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                \once \override TextSpanner.dash-fraction = 1
-                d'4
-                \stopTextSpan
+                - \tweak arrow-width 0.25
+                - \tweak dash-fraction 1
+                - \tweak bound-details.left.stencil-align-dir-y #center
+                - \tweak bound-details.right.arrow ##t
+                - \tweak bound-details.right-broken.padding 0
+                - \tweak bound-details.right-broken.text ##f
+                - \tweak bound-details.right.padding 1
+                - \tweak bound-details.right.stencil-align-dir-y #center
                 \startTextSpan
-                \once \override TextSpanner.Y-extent = ##f
-                \once \override TextSpanner.arrow-width = 0.25
-                \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                \once \override TextSpanner.bound-details.left.text = \markup {
+                e'4
+                \stopTextSpan
+                - \tweak Y-extent ##f
+                - \tweak bound-details.left.text \markup {
                     \concat
                         {
                             \upright
@@ -380,12 +380,15 @@ class TextSpanner(Spanner):
                                 #0.75
                         }
                     }
-                \once \override TextSpanner.bound-details.right-broken.padding = 0
-                \once \override TextSpanner.bound-details.right-broken.text = ##f
-                \once \override TextSpanner.bound-details.right.arrow = ##t
-                \once \override TextSpanner.bound-details.right.padding = 1
-                \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                \once \override TextSpanner.bound-details.right.text = \markup {
+                - \tweak arrow-width 0.25
+                - \tweak dash-fraction 1
+                - \tweak bound-details.left.stencil-align-dir-y #center
+                - \tweak bound-details.right.arrow ##t
+                - \tweak bound-details.right-broken.padding 0
+                - \tweak bound-details.right-broken.text ##f
+                - \tweak bound-details.right.padding 1
+                - \tweak bound-details.right.stencil-align-dir-y #center
+                - \tweak bound-details.right.text \markup {
                     \concat
                         {
                             \hspace
@@ -394,9 +397,6 @@ class TextSpanner(Spanner):
                                 four
                         }
                     }
-                \once \override TextSpanner.dash-fraction = 1
-                e'4
-                \stopTextSpan
                 \startTextSpan
                 f'4
                 \stopTextSpan
@@ -430,10 +430,9 @@ class TextSpanner(Spanner):
             }
             {
                 \once \override TextScript.color = #blue
-                \once \override TextSpanner.Y-extent = ##f
-                \once \override TextSpanner.arrow-width = 0.25
-                \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                \once \override TextSpanner.bound-details.left.text = \markup {
+                c'4
+                - \tweak Y-extent ##f
+                - \tweak bound-details.left.text \markup {
                     \concat
                         {
                             \upright
@@ -442,12 +441,15 @@ class TextSpanner(Spanner):
                                 #0.25
                         }
                     }
-                \once \override TextSpanner.bound-details.right-broken.padding = 0
-                \once \override TextSpanner.bound-details.right-broken.text = ##f
-                \once \override TextSpanner.bound-details.right.arrow = ##t
-                \once \override TextSpanner.bound-details.right.padding = 0.5
-                \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                \once \override TextSpanner.bound-details.right.text = \markup {
+                - \tweak arrow-width 0.25
+                - \tweak dash-fraction 1
+                - \tweak bound-details.left.stencil-align-dir-y #center
+                - \tweak bound-details.right.arrow ##t
+                - \tweak bound-details.right-broken.padding 0
+                - \tweak bound-details.right-broken.text ##f
+                - \tweak bound-details.right.padding 0.5
+                - \tweak bound-details.right.stencil-align-dir-y #center
+                - \tweak bound-details.right.text \markup {
                     \concat
                         {
                             \hspace
@@ -456,8 +458,6 @@ class TextSpanner(Spanner):
                                 pont.
                         }
                     }
-                \once \override TextSpanner.dash-fraction = 1
-                c'4
                 \startTextSpan
                 ^ \markup {
                     \italic
@@ -532,33 +532,33 @@ class TextSpanner(Spanner):
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = self._get_basic_lilypond_format_bundle(component)
-        markup = inspect(component).get_piecewise(Markup, None)
-        line_segment = inspect(component).get_piecewise(LineSegment, None)
+        markup = inspect(component).get_piecewise(self, Markup, None)
+        line_segment = inspect(component).get_piecewise(self, LineSegment, None)
         if self._should_format_last_leaf_markup(component):
-            last_leaf_markup = inspect(self[-1]).get_piecewise(Markup)
+            last_leaf_markup = inspect(self[-1]).get_piecewise(self, Markup)
         else:
             last_leaf_markup = None
         indicators = (markup, line_segment, last_leaf_markup)
         has_indicators = any(_ is not None for _ in indicators)
         if not has_indicators:
             if component is self[0]:
-                bundle.right.spanner_starts.append(self._start_command())
                 if self._wrappers:
-                    string = r'\once \override TextSpanner.Y-extent = ##f'
-                    bundle.grob_overrides.append(string)
+                    string = r'- \tweak Y-extent ##f'
+                    bundle.right.spanner_starts.append(string)
                     line_segment = self._make_invisible_line_segment()
-                    overrides = line_segment._get_lilypond_grob_overrides()
-                    bundle.grob_overrides.extend(overrides)
+                    tweaks = line_segment._get_lilypond_grob_overrides(
+                        tweaks=True)
+                    bundle.right.spanner_starts.extend(tweaks)
+                bundle.right.spanner_starts.append(self._start_command())
             if component is self[-1]:
                 bundle.right.spanner_stops.append(self._stop_command())
             return bundle
         if has_indicators and not component is self[0]:
             bundle.right.spanner_stops.append(self._stop_command())
         if not component is self[-1]:
-            bundle.right.spanner_starts.append(self._start_command())
             if self._wrappers:
-                string = r'\once \override TextSpanner.Y-extent = ##f'
-                bundle.grob_overrides.append(string)
+                string = r'- \tweak Y-extent ##f'
+                bundle.right.spanner_starts.append(string)
             if line_segment is None:
                 line_segment = self._make_invisible_line_segment()
             if markup is not None:
@@ -576,10 +576,10 @@ class TextSpanner(Spanner):
                         ),
                     value=markup,
                     )
-                string = override.override_string
-                bundle.grob_overrides.append(string)
-            overrides = line_segment._get_lilypond_grob_overrides()
-            bundle.grob_overrides.extend(overrides)
+                string = override.tweak_string
+                bundle.right.spanner_starts.append(string)
+            tweaks = line_segment._get_lilypond_grob_overrides(tweaks=True)
+            bundle.right.spanner_starts.extend(tweaks)
         if last_leaf_markup is not None:
             right_hspace = line_segment.right_padding or 0
             # optical correction to draw last markup left:
@@ -599,8 +599,11 @@ class TextSpanner(Spanner):
                     ),
                 value=last_leaf_markup,
                 )
-            string = override.override_string
-            bundle.grob_overrides.append(string)
+            string = override.tweak_string
+            bundle.right.spanner_starts.append(string)
+        # all tweaks must appear immediately before start command:
+        if not component is self[-1]:
+            bundle.right.spanner_starts.append(self._start_command())
         return bundle
 
     @staticmethod
@@ -617,14 +620,14 @@ class TextSpanner(Spanner):
             )
 
     def _should_format_last_leaf_markup(self, component):
-        if inspect(self[-1]).get_piecewise(Markup, None) is None:
+        if inspect(self[-1]).get_piecewise(self, Markup, None) is None:
             return
         leaf = None
         for leaf in reversed(self[:-1]):
-            markup = inspect(leaf).get_piecewise(Markup, None)
+            markup = inspect(leaf).get_piecewise(self, Markup, None)
             if markup is not None:
                 break
-            line_segment = inspect(leaf).get_piecewise(LineSegment, None)
+            line_segment = inspect(leaf).get_piecewise(self, LineSegment, None)
             if line_segment is not None:
                 break
         return component is leaf
@@ -659,59 +662,176 @@ class TextSpanner(Spanner):
     def lilypond_id(self) -> typing.Optional[int]:
         r'''Gets LilyPond ID.
 
-        ..  todo:: finish integration.
-
         ..  container:: example
 
-            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-            >>> spanner = abjad.TextSpanner(lilypond_id=1)
-            >>> abjad.attach(spanner, staff[:])
-            >>> spanner.attach(abjad.Markup('ord.').upright(), spanner[0])
-            >>> spanner.attach(abjad.ArrowLineSegment(), spanner[0])
-            >>> spanner.attach(abjad.Markup('pont.').upright(), spanner[-1])
-            >>> abjad.override(staff).text_spanner.staff_padding = 2.5
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
 
-            >>> abjad.f(staff)
-            \new Staff
-            \with
-            {
-                \override TextSpanner.staff-padding = #2.5
-            }
-            {
-                \once \override TextSpanner.Y-extent = ##f
-                \once \override TextSpanner.arrow-width = 0.25
-                \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                \once \override TextSpanner.bound-details.left.text = \markup {
-                    \concat
-                        {
-                            \upright
-                                ord.
-                            \hspace
-                                #0.25
+            >>> spanner_1 = abjad.TextSpanner(lilypond_id=1)
+            >>> abjad.attach(spanner_1, staff[:])
+            >>> spanner_1.attach(abjad.Markup('ord.').upright(), spanner_1[0])
+            >>> spanner_1.attach(abjad.ArrowLineSegment(), spanner_1[0])
+            >>> spanner_1.attach(abjad.Markup('pont.').upright(), spanner_1[-1])
+            >>> abjad.tweak(spanner_1).staff_padding = 2.5
+
+            >>> spanner = abjad.TextSpanner()
+            >>> abjad.attach(spanner, staff[:])
+            >>> spanner.attach(abjad.Markup('A').upright(), spanner[0])
+            >>> spanner.attach(abjad.ArrowLineSegment(), spanner[0])
+            >>> spanner.attach(abjad.Markup('B').upright(), spanner[-1])
+            >>> abjad.tweak(spanner).staff_padding = 5
+
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'4
+                    - \tweak staff-padding #2.5
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
+                        \concat
+                            {
+                                \upright
+                                    ord.
+                                \hspace
+                                    #0.25
+                            }
                         }
-                    }
-                \once \override TextSpanner.bound-details.right-broken.padding = 0
-                \once \override TextSpanner.bound-details.right-broken.text = ##f
-                \once \override TextSpanner.bound-details.right.arrow = ##t
-                \once \override TextSpanner.bound-details.right.padding = 0.5
-                \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                \once \override TextSpanner.bound-details.right.text = \markup {
-                    \concat
-                        {
-                            \hspace
-                                #0.0
-                            \upright
-                                pont.
+                    - \tweak arrow-width 0.25
+                    - \tweak dash-fraction 1
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right.arrow ##t
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 0.5
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.right.text \markup {
+                        \concat
+                            {
+                                \hspace
+                                    #0.0
+                                \upright
+                                    pont.
+                            }
                         }
-                    }
-                \once \override TextSpanner.dash-fraction = 1
-                c'4
-                \startTextSpanOne
-                d'4
-                e'4
-                f'4
-                \stopTextSpanOne
-            }
+                    \startTextSpanOne
+                    - \tweak staff-padding #5
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
+                        \concat
+                            {
+                                \upright
+                                    A
+                                \hspace
+                                    #0.25
+                            }
+                        }
+                    - \tweak arrow-width 0.25
+                    - \tweak dash-fraction 1
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right.arrow ##t
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 0.5
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.right.text \markup {
+                        \concat
+                            {
+                                \hspace
+                                    #0.0
+                                \upright
+                                    B
+                            }
+                        }
+                    \startTextSpan
+                    d'4
+                    e'4
+                    fs'4
+                    \stopTextSpanOne
+                    \stopTextSpan
+                }
+
+            Simultaneous text spanners can be freely positioned vertically as
+            shown below only when Y-extent is set to false; Abjad text spanners
+            set Y-extent to false for this reason:
+           
+            >>> abjad.tweak(spanner_1).staff_padding = 5
+            >>> abjad.tweak(spanner).staff_padding = 2.5
+
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'4
+                    - \tweak staff-padding #5
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
+                        \concat
+                            {
+                                \upright
+                                    ord.
+                                \hspace
+                                    #0.25
+                            }
+                        }
+                    - \tweak arrow-width 0.25
+                    - \tweak dash-fraction 1
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right.arrow ##t
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 0.5
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.right.text \markup {
+                        \concat
+                            {
+                                \hspace
+                                    #0.0
+                                \upright
+                                    pont.
+                            }
+                        }
+                    \startTextSpanOne
+                    - \tweak staff-padding #2.5
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
+                        \concat
+                            {
+                                \upright
+                                    A
+                                \hspace
+                                    #0.25
+                            }
+                        }
+                    - \tweak arrow-width 0.25
+                    - \tweak dash-fraction 1
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right.arrow ##t
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 0.5
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.right.text \markup {
+                        \concat
+                            {
+                                \hspace
+                                    #0.0
+                                \upright
+                                    B
+                            }
+                        }
+                    \startTextSpan
+                    d'4
+                    e'4
+                    fs'4
+                    \stopTextSpanOne
+                    \stopTextSpan
+                }
 
         '''
         return self._lilypond_id

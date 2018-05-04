@@ -514,8 +514,8 @@ class LeafMaker(AbjadValueObject):
         result = []
         for duration_group in duration_groups:
             # get factors in denominator of duration group other than 1, 2.
-            factors = set(
-                abjad.mathtools.factors(duration_group[0].denominator))
+            factors = abjad.mathtools.factors(duration_group[0].denominator)
+            factors = set(factors)
             factors.discard(1)
             factors.discard(2)
             current_pitches = pitches[0:len(duration_group)]

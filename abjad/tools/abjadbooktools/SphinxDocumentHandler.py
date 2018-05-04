@@ -151,7 +151,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             os.makedirs(image_directory)
         if not os.path.exists(stylesheets_directory):
             os.makedirs(stylesheets_directory)
-        default_stylesheet = os.path.join(stylesheets_directory, 'default.ly')
+        default_stylesheet = os.path.join(stylesheets_directory, 'default.ily')
         if not os.path.exists(default_stylesheet):
             with open(default_stylesheet, 'w') as file_pointer:
                 file_pointer.write('')
@@ -389,7 +389,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         return code_blocks
 
     def get_default_stylesheet(self):
-        return 'default.ly'
+        return 'default.ily'
 
     @staticmethod
     def interpret_code_blocks(app, document):

@@ -18,7 +18,7 @@ few measure from Bartók's *Mikrokosmos*.
 
 ..  abjad::
     :hide:
-    :stylesheet: non-proportional.ly
+    :stylesheet: literature-examples.ly
 
     from abjad.demos import bartok
     score = bartok.make_bartok_score()
@@ -52,7 +52,7 @@ of Ligeti's *Désordre*.
 
 ..  abjad::
     :hide:
-    :stylesheet: non-proportional.ly
+    :stylesheet: literature-examples.ly
 
     from abjad.demos import ligeti
     top = [
@@ -78,7 +78,7 @@ of Ligeti's *Désordre*.
         [[-6, 1, 3], [-6, -4, -2, 1, 3]],
         ]
     score = ligeti.make_desordre_score([top, bottom])
-    lilypond_file = abjad.documentationtools.make_ligeti_example_lilypond_file(score)
+    lilypond_file = ligeti.make_desordre_lilypond_file(score)
     show(lilypond_file)
 
 ..  toctree::

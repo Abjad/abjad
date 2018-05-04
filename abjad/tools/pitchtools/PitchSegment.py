@@ -190,7 +190,6 @@ class PitchSegment(Segment):
             abjad.attach(abjad.Multiplier(1, 8), leaf)
         abjad.override(score).rest.transparent = True
         lilypond_file = abjad.LilyPondFile.new(score)
-        lilypond_file.header_block.tagline = False
         return lilypond_file
 
     def __repr__(self):

@@ -27,7 +27,31 @@ class Slur(Spanner):
 
     ..  container:: example
 
-        Requires at least two leaves:
+        Tweaks slur color:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> slur = abjad.Slur()
+        >>> abjad.tweak(slur).color = 'red'
+        >>> abjad.attach(slur, staff[:])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+                - \tweak color #red
+                (
+                d'4
+                e'4
+                f'4
+                )
+            }
+
+    ..  container:: example
+
+        Raises exception on fewer than two leaves:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(abjad.Slur(), staff[:1])
@@ -37,9 +61,6 @@ class Slur(Spanner):
           Requires at least two leaves.
           Not just Note("c'4").
 
-    Formats LilyPond ``(`` command on first leaf in spanner.
-
-    Formats LilyPond ``)`` command on last leaf in spanner.
     '''
 
     ### CLASS VARIABLES ###
