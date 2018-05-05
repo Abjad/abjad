@@ -4,6 +4,7 @@ sudo: false
 
 env:
   global:
+  - LILYPOND_URL="http://lilypond.org/downloads/binaries/linux-64/"
   - LILYPOND_VERSION=2.19.65
 
 matrix:
@@ -32,8 +33,8 @@ addons:
     - texlive-xetex
 
 before_install:
-- wget -q http://download.linuxaudio.org/lilypond/binaries/linux-64/lilypond-$LILYPOND_VERSION-1.linux-64.sh
-- sh lilypond-$LILYPOND_VERSION-1.linux-64.sh --batch
+- wget -q ${LILYPOND_URL}lilypond-${LILYPOND_VERSION}-1.linux-64.sh
+- sh lilypond-${LILYPOND_VERSION}-1.linux-64.sh --batch
 - export PATH=/home/travis/bin:$PATH
 - pip install -U pip
 - pip install coverage
