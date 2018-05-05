@@ -8,3 +8,4 @@ roman
 six
 sphinx
 sphinx-rtd-theme
+uqbar

@@ -65,6 +65,7 @@ extras_require = {
         'sphinx-rtd-theme',
         'sphinx_autodoc_typehints>=1.2.5',
         'PyPDF2',
+        'uqbar>=0.2.9',
         ],
     'ipython': [
         'ipython',
