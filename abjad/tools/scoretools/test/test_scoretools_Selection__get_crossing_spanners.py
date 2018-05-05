@@ -36,10 +36,10 @@ def test_scoretools_Selection__get_crossing_spanners_01():
         )
 
     spanners = abjad.select(voice)._get_crossing_spanners()
-    assert spanners == set([])
+    assert spanners == []
 
     spanners = abjad.select(leaves)._get_crossing_spanners()
-    assert spanners == set([])
+    assert spanners == []
 
     spanners = voice[:1]._get_crossing_spanners()
     assert len(spanners) == 1

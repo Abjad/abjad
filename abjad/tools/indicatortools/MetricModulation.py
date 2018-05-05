@@ -811,7 +811,6 @@ class MetricModulation(AbjadValueObject):
         '''
         import abjad
         lilypond_file = abjad.LilyPondFile.new()
-        lilypond_file.header_block.tagline = False
         lilypond_file.items.append(self._get_markup())
         return lilypond_file
 

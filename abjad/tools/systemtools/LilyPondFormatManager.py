@@ -46,8 +46,9 @@ class LilyPondFormatManager(AbjadObject):
         for parent in parentage:
             wrappers_ = abjad.inspect(parent).wrappers()
             wrappers.extend(wrappers_)
-            wrappers_ = parent._get_spanner_indicators(unwrap=False)
-            wrappers.extend(wrappers_)
+            if hasattr(parent, '_spanners'):
+                wrappers_ = parent._get_spanner_indicators(unwrap=False)
+                wrappers.extend(wrappers_)
         up_markup_wrappers = []
         down_markup_wrappers = []
         neutral_markup_wrappers = []
@@ -265,9 +266,10 @@ class LilyPondFormatManager(AbjadObject):
     @staticmethod
     def _populate_spanner_format_contributions(component, bundle):
         import abjad
+        if not hasattr(component, '_spanners'):
+            return
         pairs = []
-        parentage = abjad.inspect(component).get_parentage()
-        for spanner in abjad.inspect(parentage).get_spanners():
+        for spanner in abjad.inspect(component).get_spanners():
             spanner_bundle = spanner._get_lilypond_format_bundle(component)
             spanner_bundle.tag_format_contributions(
                 spanner._tag,

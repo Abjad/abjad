@@ -389,7 +389,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            The ``default.ly`` stylesheet included in all Abjad API examples
+            The ``default.ily`` stylesheet included in all Abjad API examples
             includes the following:
             
             ``\override TupletNumber.text = #tuplet-number::calc-fraction-text``

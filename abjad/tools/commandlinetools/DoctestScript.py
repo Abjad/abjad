@@ -1,11 +1,11 @@
 import doctest
+import io
 import importlib
 import os
 import sys
 from abjad.tools import datastructuretools
 from abjad.tools import systemtools
-from abjad.tools.commandlinetools.CommandlineScript import CommandlineScript
-from io import StringIO
+from .CommandlineScript import CommandlineScript
 
 
 class DoctestScript(CommandlineScript):
@@ -133,7 +133,7 @@ class DoctestScript(CommandlineScript):
             for file_path in sorted(file_paths):
                 total_modules += 1
                 relative_path = os.path.relpath(file_path)
-                string_buffer = StringIO()
+                string_buffer = io.StringIO()
                 with systemtools.RedirectedStreams(stdout=string_buffer):
                     failure_count, test_count = doctest.testfile(
                         file_path,

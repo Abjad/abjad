@@ -1,4 +1,6 @@
+from abjad.tools import schemetools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.schemetools.Scheme import Scheme
 
 
 class LilyPondGrobOverride(AbjadValueObject):
@@ -250,15 +252,13 @@ class LilyPondGrobOverride(AbjadValueObject):
 
         Returns tuple of strings.
         '''
-        from abjad.tools import schemetools
         result = []
         if self.once:
             result.append(r'\once')
         result.append(r'\override')
         result.append(self._override_property_path_string)
         result.append('=')
-        value_pieces = schemetools.Scheme.format_embedded_scheme_value(
-            self.value)
+        value_pieces = Scheme.format_embedded_scheme_value(self.value)
         value_pieces = value_pieces.split('\n')
         result.append(value_pieces[0])
         result[:] = [' '.join(result)]
@@ -335,6 +335,27 @@ class LilyPondGrobOverride(AbjadValueObject):
         Returns string.
         '''
         return '\n'.join(self.revert_format_pieces)
+
+    @property
+    def tweak_string(self):
+        r'''Gets LilyPond grob override \tweak string.
+
+        >>> override = abjad.LilyPondGrobOverride(
+        ...     grob_name='Glissando',
+        ...     property_path='style',
+        ...     value=abjad.SchemeSymbol('zigzag'),
+        ...     )
+        >>> override.tweak_string
+        "- \\tweak style #'zigzag"
+
+        Returns string.
+        '''
+        result = [r'- \tweak']
+        string = '.'.join(self.property_path)
+        result.append(string)
+        string = Scheme.format_embedded_scheme_value(self.value)
+        result.append(string)
+        return ' '.join(result)
 
     @property
     def value(self):

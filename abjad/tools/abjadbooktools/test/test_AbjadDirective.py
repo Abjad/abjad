@@ -81,7 +81,7 @@ class AbjadDirectiveTests(unittest.TestCase):
     def test_4(self):
         source = textwrap.dedent('''
         ..  abjad::
-            :stylesheet: non-proportional.ly
+            :stylesheet: rhythm-maker-docs.ily
 
             abjad.show(Note("c'4"))
         ''')
@@ -90,7 +90,7 @@ class AbjadDirectiveTests(unittest.TestCase):
         expected = abjad.String.normalize(
             r'''
             <document source="test">
-                <abjad_input_block stylesheet="non-proportional.ly">
+                <abjad_input_block stylesheet="rhythm-maker-docs.ily">
                     <literal_block xml:space="preserve">
                         abjad.show(Note("c'4"))
             ''')
@@ -100,7 +100,7 @@ class AbjadDirectiveTests(unittest.TestCase):
         source = textwrap.dedent('''
         ..  abjad::
             :no-stylesheet:
-            :stylesheet: non-proportional.ly
+            :stylesheet: rhythm-maker-docs.ily
 
             abjad.show(Note("c'4"))
         ''')

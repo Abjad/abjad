@@ -3,7 +3,7 @@ import os
 import pathlib
 import sys
 from abjad.tools import datastructuretools
-from abjad.tools.commandlinetools.ScorePackageScript import ScorePackageScript
+from .ScorePackageScript import ScorePackageScript
 
 
 class ManageScoreScript(ScorePackageScript):

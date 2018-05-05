@@ -2203,6 +2203,7 @@ class MetronomeMarkSpanner(Spanner):
         #
         if self._should_format_last_leaf_markup(leaf):
             last_leaf_metronome_mark = abjad.inspect(self[-1]).get_piecewise(
+                self,
                 abjad.MetronomeMark,
                 )
         else:
@@ -2323,16 +2324,19 @@ class MetronomeMarkSpanner(Spanner):
     def _get_piecewise_wrappers(self, leaf):
         import abjad
         metronome_mark = abjad.inspect(leaf).get_piecewise(
+            self,
             abjad.MetronomeMark,
             default=None,
             unwrap=False,
             )
         tempo_trend = abjad.inspect(leaf).get_piecewise(
+            self,
             (abjad.Accelerando, abjad.Ritardando),
             default=None,
             unwrap=False,
             )
         metric_modulation = abjad.inspect(leaf).get_piecewise(
+            self,
             abjad.MetricModulation,
             default=None,
             unwrap=False,
@@ -2414,7 +2418,7 @@ class MetronomeMarkSpanner(Spanner):
     def _should_format_last_leaf_markup(self, leaf):
         import abjad
         prototype = abjad.MetronomeMark
-        if abjad.inspect(self[-1]).get_piecewise(prototype, None) is None:
+        if abjad.inspect(self[-1]).get_piecewise(self, prototype, None) is None:
             return False
         prototype = (
             abjad.Accelerando,
@@ -2426,7 +2430,11 @@ class MetronomeMarkSpanner(Spanner):
         for leaf_ in reversed(self[:-1]):
             has_indicator = False
             for class_ in prototype:
-                indicator = abjad.inspect(leaf_).get_piecewise(class_, None)
+                indicator = abjad.inspect(leaf_).get_piecewise(
+                    self,
+                    class_,
+                    None,
+                    )
                 if indicator is not None:
                     has_indicator = True
                     break

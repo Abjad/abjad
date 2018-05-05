@@ -5,7 +5,7 @@ import subprocess
 import sys
 from abjad.tools import datastructuretools
 from abjad.tools import systemtools
-from abjad.tools.commandlinetools.ScorePackageScript import ScorePackageScript
+from .ScorePackageScript import ScorePackageScript
 
 
 class ManageBuildTargetScript(ScorePackageScript):

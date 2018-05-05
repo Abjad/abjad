@@ -134,34 +134,26 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                     >>> for note in staff:
                     ...     abjad.show(note)
                     ...
-                <abjad_output_block image_layout_specifier="True" image_render_specifier="ImageRenderSpecifier(stylesheet='default.ly')" renderer="lilypond" xml:space="preserve">
+                <abjad_output_block image_layout_specifier="True" image_render_specifier="ImageRenderSpecifier(stylesheet='default.ily')" renderer="lilypond" xml:space="preserve">
                     \version "2.19.0"
                     \language "english"
 
                     #(ly:set-option 'relative-includes #t)
 
-                    \include "default.ly"
-
-                    \header {
-                        tagline = ##f
-                    }
+                    \include "default.ily"
 
                     \score {
                         {
                             c'1
                         }
                     }
-                <abjad_output_block image_layout_specifier="True" image_render_specifier="ImageRenderSpecifier(stylesheet='default.ly')" renderer="lilypond" xml:space="preserve">
+                <abjad_output_block image_layout_specifier="True" image_render_specifier="ImageRenderSpecifier(stylesheet='default.ily')" renderer="lilypond" xml:space="preserve">
                     \version "2.19.0"
                     \language "english"
 
                     #(ly:set-option 'relative-includes #t)
 
-                    \include "default.ly"
-
-                    \header {
-                        tagline = ##f
-                    }
+                    \include "default.ily"
 
                     \score {
                         {
@@ -206,10 +198,6 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                     \version "2.19.0"
                     \language "english"
 
-                    \header {
-                        tagline = ##f
-                    }
-
                     \score {
                         {
                             c'1
@@ -218,10 +206,6 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                 <abjad_output_block image_layout_specifier="True" image_render_specifier="ImageRenderSpecifier(no_stylesheet=True)" renderer="lilypond" xml:space="preserve">
                     \version "2.19.0"
                     \language "english"
-
-                    \header {
-                        tagline = ##f
-                    }
 
                     \score {
                         {
@@ -524,17 +508,13 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             r"""
             <document source="test">
                 <block_quote>
-                    <abjad_output_block image_layout_specifier="ImageLayoutSpecifier(pages=(1, 2, 3, 4), with_columns=2)" image_render_specifier="ImageRenderSpecifier(no_trim=True, stylesheet='default.ly')" renderer="lilypond" xml:space="preserve">
+                    <abjad_output_block image_layout_specifier="ImageLayoutSpecifier(pages=(1, 2, 3, 4), with_columns=2)" image_render_specifier="ImageRenderSpecifier(no_trim=True, stylesheet='default.ily')" renderer="lilypond" xml:space="preserve">
                         \version "2.19.0"
                         \language "english"
 
                         #(ly:set-option 'relative-includes #t)
 
-                        \include "default.ly"
-
-                        \header {
-                            tagline = ##f
-                        }
+                        \include "default.ily"
 
                         \score {
                             \new Staff

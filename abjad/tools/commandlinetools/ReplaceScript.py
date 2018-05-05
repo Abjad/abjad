@@ -1,7 +1,7 @@
 import fnmatch
 import os
 import re
-from abjad.tools.commandlinetools.CommandlineScript import CommandlineScript
+from .CommandlineScript import CommandlineScript
 
 
 class ReplaceScript(CommandlineScript):

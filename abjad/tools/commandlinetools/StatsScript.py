@@ -2,7 +2,7 @@ import inspect
 import os
 import types
 from abjad.tools import datastructuretools
-from abjad.tools.commandlinetools.CommandlineScript import CommandlineScript
+from .CommandlineScript import CommandlineScript
 
 
 class StatsScript(CommandlineScript):

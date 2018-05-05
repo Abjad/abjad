@@ -4,7 +4,7 @@ import platform
 import os
 import subprocess
 from abjad.tools import systemtools
-from abjad.tools.abjadbooktools.ImageOutputProxy import ImageOutputProxy
+from .ImageOutputProxy import ImageOutputProxy
 
 
 class GraphvizOutputProxy(ImageOutputProxy):

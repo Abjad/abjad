@@ -3,7 +3,7 @@ import os
 import sys
 import traceback
 from abjad.tools import systemtools
-from abjad.tools.commandlinetools.ScorePackageScript import ScorePackageScript
+from .ScorePackageScript import ScorePackageScript
 
 
 class ManageMaterialScript(ScorePackageScript):

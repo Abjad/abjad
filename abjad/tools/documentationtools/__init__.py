@@ -21,10 +21,6 @@ from .list_all_classes import list_all_classes
 from .list_all_functions import list_all_functions
 from .list_all_ide_classes import list_all_ide_classes
 from .list_all_ide_functions import list_all_ide_functions
-from .make_ligeti_example_lilypond_file import make_ligeti_example_lilypond_file
-from .make_reference_manual_graphviz_graph import make_reference_manual_graphviz_graph
-from .make_reference_manual_lilypond_file import make_reference_manual_lilypond_file
-from .make_text_alignment_example_lilypond_file import make_text_alignment_example_lilypond_file
 from .yield_all_classes import yield_all_classes
 from .yield_all_functions import yield_all_functions
 from .yield_all_modules import yield_all_modules

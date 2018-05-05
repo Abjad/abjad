@@ -174,7 +174,6 @@ class Articulation(AbjadValueObject):
         articulation = copy.copy(self)
         abjad.attach(articulation, note)
         lilypond_file = abjad.LilyPondFile.new(note)
-        lilypond_file.header_block.tagline = False
         return lilypond_file
 
     def __str__(self):

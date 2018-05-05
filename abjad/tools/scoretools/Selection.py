@@ -2,9 +2,15 @@ import collections
 import copy
 import inspect
 import itertools
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.exceptiontools import ExtraSpannerError
 from abjad.tools.exceptiontools import MissingSpannerError
-from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.systemtools.FormatSpecification import FormatSpecification
+from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
+from abjad.tools.topleveltools.inspect import inspect as abjad_inspect
+from abjad.tools.topleveltools.iterate import iterate
+from .Component import Component
+from .Leaf import Leaf
 
 
 class Selection(AbjadValueObject, collections.Sequence):
@@ -108,10 +114,9 @@ class Selection(AbjadValueObject, collections.Sequence):
     ### INITIALIZER ###
 
     def __init__(self, items=None):
-        import abjad
         if items is None:
             items = []
-        if isinstance(items, abjad.Component):
+        if isinstance(items, Component):
             items = [items]
         items = tuple(items)
         self._check(items)
@@ -157,10 +162,10 @@ class Selection(AbjadValueObject, collections.Sequence):
 
         Returns string.
         '''
-        import abjad
         if format_specification in ('', 'storage'):
-            return abjad.StorageFormatManager(self).get_storage_format()
-        return str(self)
+            return StorageFormatManager(self).get_storage_format()
+        raise ValueError(repr(format_specification))
+        #return str(self)
 
     def __getitem__(self, argument):
         r'''Gets item, slice or pattern `argument` in selection.
@@ -455,7 +460,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         components = abjad.mutate(self).copy()
         staff = abjad.Staff(components)
         found_different_pitch = False
-        for pitch in abjad.iterate(staff).pitches():
+        for pitch in iterate(staff).pitches():
             if pitch != abjad.NamedPitch("c'"):
                 found_different_pitch = True
                 break
@@ -463,7 +468,6 @@ class Selection(AbjadValueObject, collections.Sequence):
             staff.lilypond_type = 'RhythmicStaff'
         score = abjad.Score([staff])
         lilypond_file = abjad.LilyPondFile.new(score)
-        lilypond_file.header_block.tagline = False
         return lilypond_file
 
     def __len__(self):
@@ -487,7 +491,6 @@ class Selection(AbjadValueObject, collections.Sequence):
 
         Returns string.
         '''
-        import abjad
         return super(Selection, self).__repr__()
 
     def __setstate__(self, state):
@@ -504,8 +507,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         import abjad
         assert len(self) == 2
         left_leaf, right_leaf = self
-        assert isinstance(left_leaf, abjad.Leaf), left_leaf
-        assert isinstance(right_leaf, abjad.Leaf), right_leaf
+        assert isinstance(left_leaf, Leaf), left_leaf
+        assert isinstance(right_leaf, Leaf), right_leaf
         left_logical_tie = left_leaf._get_logical_tie()
         right_logical_tie = right_leaf._get_logical_tie()
         if left_logical_tie == right_logical_tie:
@@ -540,12 +543,9 @@ class Selection(AbjadValueObject, collections.Sequence):
 
     @staticmethod
     def _check(items):
-        import abjad
         for item in items:
-            if not isinstance(item, (abjad.Component, abjad.Selection)):
-                message = 'components / selections only: {!r}.'
-                message = message.format(items)
-                raise TypeError(message)
+            if not isinstance(item, (Component, Selection)):
+                raise TypeError(f'components / selections only: {items!r}.')
 
     @classmethod
     def _components(
@@ -557,12 +557,11 @@ class Selection(AbjadValueObject, collections.Sequence):
         trim=None,
         grace_notes=None,
         ):
-        import abjad
-        prototype = prototype or abjad.Component
+        prototype = prototype or Component
         if not isinstance(prototype, tuple):
             prototype = (prototype,)
         result = []
-        generator = abjad.iterate(argument).components(
+        generator = iterate(argument).components(
             prototype,
             grace_notes=grace_notes,
             )
@@ -590,11 +589,11 @@ class Selection(AbjadValueObject, collections.Sequence):
         new_components = type(self)(new_components)
         # find spanners and piecewise indicators
         spanner_to_pairs = abjad.OrderedDict()
-        for i, component in enumerate(abjad.iterate(self).components()):
-            for spanner in abjad.inspect(component).get_spanners():
+        for i, component in enumerate(iterate(self).components()):
+            for spanner in abjad_inspect(component).get_spanners():
                 pairs = spanner_to_pairs.setdefault(spanner, [])
                 wrappers = []
-                for wrapper in abjad.inspect(component).wrappers():
+                for wrapper in abjad_inspect(component).wrappers():
                     if wrapper.spanner is spanner:
                         wrappers.append(wrapper)
                 if wrappers:
@@ -615,7 +614,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 pair = (new_spanner, wrapper)
                 pairs.append(pair)
         # add new components to new spanners
-        new_components_ = abjad.iterate(new_components).components()
+        new_components_ = iterate(new_components).components()
         for i, new_component in enumerate(new_components_):
             for pair in index_to_pairs.get(i, []):
                 new_spanner, wrapper = pair
@@ -640,7 +639,6 @@ class Selection(AbjadValueObject, collections.Sequence):
             raise Exception(message)
 
     def _fuse_leaves(self):
-        import abjad
         assert self.are_leaves()
         assert self.are_contiguous_logical_voice()
         leaves = self
@@ -715,8 +713,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         assert isinstance(first, abjad.Tuplet)
         new_tuplet = abjad.Tuplet(first_multiplier, [])
         wrapped = False
-        if (abjad.inspect(self[0]).get_parentage().root is not
-            abjad.inspect(self[-1]).get_parentage().root):
+        if (abjad_inspect(self[0]).get_parentage().root is not
+            abjad_inspect(self[-1]).get_parentage().root):
             dummy_container = abjad.Container(self)
             wrapped = True
         abjad.mutate(self).swap(new_tuplet)
@@ -725,13 +723,12 @@ class Selection(AbjadValueObject, collections.Sequence):
         return new_tuplet
 
     def _get_component(self, prototype=None, n=0, recurse=True):
-        import abjad
-        prototype = prototype or (abjad.Component,)
+        prototype = prototype or (Component,)
         if not isinstance(prototype, tuple):
             prototype = (prototype,)
         if 0 <= n:
             if recurse:
-                components = abjad.iterate(self).components(prototype)
+                components = iterate(self).components(prototype)
             else:
                 components = self.items
             for i, x in enumerate(components):
@@ -739,7 +736,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                     return x
         else:
             if recurse:
-                components = abjad.iterate(self).components(
+                components = iterate(self).components(
                     prototype, reverse=True)
             else:
                 components = reversed(self.items)
@@ -757,17 +754,24 @@ class Selection(AbjadValueObject, collections.Sequence):
         In other words, there is some intersection -- but not total
         intersection -- between the components of P and C.
         '''
-        import abjad
         assert self.are_contiguous_logical_voice()
-        all_components = set(abjad.iterate(self).components())
-        contained_spanners = set()
-        for component in abjad.iterate(self).components():
-            contained_spanners.update(component._get_spanners())
-        crossing_spanners = set([])
+        all_components = set(iterate(self).components())
+        contained_spanners = []
+        for leaf in iterate(self).leaves():
+            spanners = leaf._get_spanners()
+            contained_spanners.extend(spanners)
+        ids = []
+        contained_spanners_ = []
         for spanner in contained_spanners:
-            spanner_components = set(spanner[:])
+            if id(spanner) not in ids:
+                contained_spanners_.append(spanner)
+            ids.append(id(spanner))
+        contained_spanners = contained_spanners_
+        crossing_spanners = []
+        for contained_spanner in contained_spanners:
+            spanner_components = set(contained_spanner[:])
             if not spanner_components.issubset(all_components):
-                crossing_spanners.add(spanner)
+                crossing_spanners.append(contained_spanner)
         return crossing_spanners
 
     def _get_dominant_spanners(self):
@@ -782,7 +786,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         score components.
         '''
         assert self.are_contiguous_logical_voice()
-        receipt = set([])
+        receipt = []
         if len(self) == 0:
             return receipt
         first, last = self[0], self[-1]
@@ -790,30 +794,29 @@ class Selection(AbjadValueObject, collections.Sequence):
         stop_components = last._get_descendants_stopping_with()
         stop_components = set(stop_components)
         for component in start_components:
-            for spanner in component._get_spanners():
-                if set(spanner[:]) & stop_components != set([]):
-                    index = spanner._index(component)
-                    receipt.add((spanner, index))
+            if isinstance(component, Leaf):
+                for spanner in component._get_spanners():
+                    if set(spanner[:]) & stop_components != set():
+                        index = spanner._index(component)
+                        receipt.append((spanner, index))
         return receipt
 
     def _get_format_specification(self):
-        import abjad
         values = []
         if self.items:
             values = [list(self.items)]
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             storage_format_args_values=values,
             )
 
     def _get_offset_lists(self):
-        import abjad
         start_offsets, stop_offsets = [], []
         for component in self:
             start_offsets.append(
-                abjad.inspect(component).get_timespan().start_offset)
+                abjad_inspect(component).get_timespan().start_offset)
             stop_offsets.append(
-                abjad.inspect(component).get_timespan().stop_offset)
+                abjad_inspect(component).get_timespan().stop_offset)
         return start_offsets, stop_offsets
 
     def _get_parent_and_start_stop_indices(self):
@@ -833,13 +836,11 @@ class Selection(AbjadValueObject, collections.Sequence):
     def _get_spanner(self, prototype=None):
         spanners = self._get_spanners(prototype=prototype)
         if not spanners:
-            message = 'no spanners found.'
-            raise MissingSpannerError(message)
+            raise MissingSpannerError
         elif len(spanners) == 1:
             return spanners.pop()
         else:
-            message = 'multiple spanners found.'
-            raise ExtraSpannerError(message)
+            raise ExtraSpannerError
 
     def _get_spanners(self, prototype=None):
         import abjad
@@ -847,10 +848,13 @@ class Selection(AbjadValueObject, collections.Sequence):
         if not isinstance(prototype, tuple):
             prototype = (prototype, )
         assert isinstance(prototype, tuple)
-        result = set()
-        for component in self:
-            spanners = component._get_spanners(prototype)
-            result.update(spanners)
+        result, ids = [], []
+        for leaf in self:
+            spanners = leaf._get_spanners(prototype)
+            for spanner in spanners:
+                if id(spanner) not in ids:
+                    result.append(spanner)
+                ids.append(id(spanner))
         return result
 
     @staticmethod
@@ -912,18 +916,18 @@ class Selection(AbjadValueObject, collections.Sequence):
         import abjad
         result_ = []
         for item in result:
-            if isinstance(item, abjad.Component):
-                logical_tie = abjad.inspect(item).get_logical_tie()
+            if isinstance(item, Component):
+                logical_tie = abjad_inspect(item).get_logical_tie()
                 if head == (item is logical_tie.head):
                     result_.append(item)
                 else:
                     pass
             elif isinstance(item, abjad.Selection):
-                if not all(isinstance(_, abjad.Component) for _ in item):
+                if not all(isinstance(_, Component) for _ in item):
                     raise NotImplementedError(item)
                 selection = []
                 for component in item:
-                    logical_tie = abjad.inspect(component).get_logical_tie()
+                    logical_tie = abjad_inspect(component).get_logical_tie()
                     if head == logical_tie.head:
                         selection.append(item)
                     else:
@@ -938,7 +942,7 @@ class Selection(AbjadValueObject, collections.Sequence):
     def _iterate_components(self, recurse=True, reverse=False):
         import abjad
         if recurse:
-            return abjad.iterate(self).components()
+            return iterate(self).components()
         else:
             return self._iterate_top_level_components(reverse=reverse)
 
@@ -961,18 +965,18 @@ class Selection(AbjadValueObject, collections.Sequence):
         import abjad
         result_ = []
         for item in result:
-            if isinstance(item, abjad.Component):
-                logical_tie = abjad.inspect(item).get_logical_tie()
+            if isinstance(item, Component):
+                logical_tie = abjad_inspect(item).get_logical_tie()
                 if tail == (item is logical_tie.tail):
                     result_.append(item)
                 else:
                     pass
             elif isinstance(item, abjad.Selection):
-                if not all(isinstance(_, abjad.Component) for _ in item):
+                if not all(isinstance(_, Component) for _ in item):
                     raise NotImplementedError(item)
                 selection = []
                 for component in item:
-                    logical_tie = abjad.inspect(component).get_logical_tie()
+                    logical_tie = abjad_inspect(component).get_logical_tie()
                     if tail == logical_tie.tail:
                         selection.append(item)
                     else:
@@ -992,11 +996,11 @@ class Selection(AbjadValueObject, collections.Sequence):
         result_ = []
         found_good_component = False
         for item in result:
-            if isinstance(item, abjad.Component):
+            if isinstance(item, Component):
                 if not isinstance(item, trim):
                     found_good_component = True
             elif isinstance(item, abjad.Selection):
-                if not all(isinstance(_, abjad.Component) for _ in item):
+                if not all(isinstance(_, Component) for _ in item):
                     raise NotImplementedError(item)
                 selection = []
                 for component in item:
@@ -1012,11 +1016,11 @@ class Selection(AbjadValueObject, collections.Sequence):
         result__ = []
         found_good_component = False
         for item in reversed(result_):
-            if isinstance(item, abjad.Component):
+            if isinstance(item, Component):
                 if not isinstance(item, trim):
                     found_good_component = True
             elif isinstance(item, abjad.Selection):
-                if not all(isinstance(_, abjad.Component) for _ in item):
+                if not all(isinstance(_, Component) for _ in item):
                     raise NotImplementedError(item)
                 selection = []
                 for component in reversed(item):
@@ -1065,7 +1069,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             for component in components_including_children:
                 if component in spanner_components:
                     crossing_spanner._leaves.remove(component)
-                    component._spanners.discard(crossing_spanner)
+                    component._remove_spanner(crossing_spanner)
 
     ### PUBLIC PROPERTIES ###
 
@@ -1105,7 +1109,7 @@ class Selection(AbjadValueObject, collections.Sequence):
             return self._update_expression(inspect.currentframe())
         if not isinstance(self, collections.Iterable):
             return False
-        prototype = prototype or (abjad.Component,)
+        prototype = prototype or (Component,)
         if not isinstance(prototype, tuple):
             prototype = (prototype, )
         assert isinstance(prototype, tuple)
@@ -1117,23 +1121,23 @@ class Selection(AbjadValueObject, collections.Sequence):
                 if not isinstance(component, prototype):
                     all_are_orphans_of_correct_type = False
                     break
-                if not abjad.inspect(component).get_parentage().is_orphan:
+                if not abjad_inspect(component).get_parentage().is_orphan:
                     all_are_orphans_of_correct_type = False
                     break
             if all_are_orphans_of_correct_type:
                 return True
         if not allow_orphans:
-            if any(abjad.inspect(x).get_parentage().is_orphan for x in self):
+            if any(abjad_inspect(x).get_parentage().is_orphan for x in self):
                 return False
         first = self[0]
         if not isinstance(first, prototype):
             return False
-        first_parentage = abjad.inspect(first).get_parentage()
+        first_parentage = abjad_inspect(first).get_parentage()
         first_logical_voice = first_parentage.logical_voice
         first_root = first_parentage.root
         previous = first
         for current in self[1:]:
-            current_parentage = abjad.inspect(current).get_parentage()
+            current_parentage = abjad_inspect(current).get_parentage()
             current_logical_voice = current_parentage.logical_voice
             # false if wrong type of component found
             if not isinstance(current, prototype):
@@ -1161,7 +1165,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        return all(isinstance(_, abjad.Leaf) for _ in self)
+        return all(isinstance(_, Leaf) for _ in self)
 
     def are_logical_voice(self, prototype=None, allow_orphans=True):
         r'''Is true when items in selection are all components in the same
@@ -1182,7 +1186,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        prototype = prototype or (abjad.Component,)
+        prototype = prototype or (Component,)
         if not isinstance(prototype, tuple):
             prototype = (prototype, )
         assert isinstance(prototype, tuple)
@@ -1194,7 +1198,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 if not isinstance(component, prototype):
                     all_are_orphans_of_correct_type = False
                     break
-                if not abjad.inspect(component).get_parentage().is_orphan:
+                if not abjad_inspect(component).get_parentage().is_orphan:
                     all_are_orphans_of_correct_type = False
                     break
             if all_are_orphans_of_correct_type:
@@ -1203,12 +1207,12 @@ class Selection(AbjadValueObject, collections.Sequence):
         if not isinstance(first, prototype):
             return False
         orphan_components = True
-        if not abjad.inspect(first).get_parentage().is_orphan:
+        if not abjad_inspect(first).get_parentage().is_orphan:
             orphan_components = False
         same_logical_voice = True
-        first_signature = abjad.inspect(first).get_parentage().logical_voice
+        first_signature = abjad_inspect(first).get_parentage().logical_voice
         for component in self[1:]:
-            parentage = abjad.inspect(component).get_parentage()
+            parentage = abjad_inspect(component).get_parentage()
             if not parentage.is_orphan:
                 orphan_components = False
             if not allow_orphans and orphan_components:
@@ -1243,7 +1247,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        prototype = prototype or (abjad.Component, )
+        prototype = prototype or (Component, )
         if not isinstance(prototype, tuple):
             prototype = (prototype, )
         assert isinstance(prototype, tuple)
@@ -1255,7 +1259,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 if not isinstance(component, prototype):
                     all_are_orphans_of_correct_type = False
                     break
-                if not abjad.inspect(component).get_parentage().is_orphan:
+                if not abjad_inspect(component).get_parentage().is_orphan:
                     all_are_orphans_of_correct_type = False
                     break
             if all_are_orphans_of_correct_type:
@@ -1275,7 +1279,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         for current in self[1:]:
             if not isinstance(current, prototype):
                 return False
-            if not abjad.inspect(current).get_parentage().is_orphan:
+            if not abjad_inspect(current).get_parentage().is_orphan:
                 orphan_components = False
             if current._parent is not first_parent:
                 same_parent = False
@@ -1633,7 +1637,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        generator = abjad.iterate(self).components(
+        generator = iterate(self).components(
             prototype=prototype,
             reverse=reverse,
             grace_notes=grace_notes,
@@ -3234,8 +3238,8 @@ class Selection(AbjadValueObject, collections.Sequence):
         result, selection = [], []
         selection.extend(self[:1])
         for item in self[1:]:
-            this_timespan = abjad.inspect(selection[-1]).get_timespan()
-            that_timespan = abjad.inspect(item).get_timespan()
+            this_timespan = abjad_inspect(selection[-1]).get_timespan()
+            that_timespan = abjad_inspect(item).get_timespan()
             if this_timespan.stop_offset == that_timespan.start_offset:
                 selection.append(item)
             else:
@@ -3369,7 +3373,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         def predicate(argument):
-            return abjad.inspect(argument).get_duration()
+            return abjad_inspect(argument).get_duration()
         return self.group_by(predicate)
 
     def group_by_length(self):
@@ -3491,7 +3495,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         def predicate(argument):
-            if isinstance(argument, abjad.Leaf):
+            if isinstance(argument, Leaf):
                 return 1
             return len(argument)
         return self.group_by(predicate)
@@ -3967,11 +3971,11 @@ class Selection(AbjadValueObject, collections.Sequence):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         def _get_first_component(argument):
-            if isinstance(argument, abjad.Component):
+            if isinstance(argument, Component):
                 return argument
             else:
                 component = argument[0]
-                assert isinstance(component, abjad.Component)
+                assert isinstance(component, Component)
                 return component
         def _get_measure_number(argument):
             first_component = _get_first_component(argument)
@@ -5087,7 +5091,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         if pitched:
             prototype = (abjad.Chord, abjad.Note)
         elif prototype is None:
-            prototype = abjad.Leaf
+            prototype = Leaf
         return self._components(
             self,
             prototype=prototype,
@@ -5586,7 +5590,7 @@ class Selection(AbjadValueObject, collections.Sequence):
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        generator = abjad.iterate(self).logical_ties(
+        generator = iterate(self).logical_ties(
             nontrivial=nontrivial,
             pitched=pitched,
             reverse=reverse,
@@ -7796,7 +7800,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                 break
             component_duration = component._get_duration()
             if in_seconds:
-                component_duration = abjad.inspect(component).get_duration(
+                component_duration = abjad_inspect(component).get_duration(
                     in_seconds=True)
             candidate_duration = cumulative_duration + component_duration
             if candidate_duration < target_duration:
@@ -7821,12 +7825,12 @@ class Selection(AbjadValueObject, collections.Sequence):
                     part = [component]
                     if in_seconds:
                         cumulative_duration = sum([
-                            abjad.inspect(_).get_duration(in_seconds=True)
+                            abjad_inspect(_).get_duration(in_seconds=True)
                             for _ in part
                             ])
                     else:
                         cumulative_duration = sum([
-                            abjad.inspect(_).get_duration() for _ in part
+                            abjad_inspect(_).get_duration() for _ in part
                             ])
                     current_duration_index += 1
                     try:
@@ -8656,12 +8660,12 @@ class Selection(AbjadValueObject, collections.Sequence):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         result = []
-        for component in abjad.iterate(self).components(abjad.Component):
-            parentage = abjad.inspect(component).get_parentage()
+        for component in iterate(self).components(Component):
+            parentage = abjad_inspect(component).get_parentage()
             for component_ in parentage:
                 if isinstance(component_, abjad.Context):
                     break
-                parent = abjad.inspect(component_).get_parentage().parent
+                parent = abjad_inspect(component_).get_parentage().parent
                 if isinstance(parent, abjad.Context) or parent is None:
                     if component_ not in result:
                         result.append(component_)

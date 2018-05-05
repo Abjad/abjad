@@ -206,7 +206,6 @@ class MarkupList(TypedList):
         for name in ('layout', 'paper', 'score'):
             block = lilypond_file[name]
             lilypond_file.items.remove(block)
-        lilypond_file.header_block.tagline = False
         markup = abjad.Markup.column(list(self))
         lilypond_file.items.append(markup)
         return lilypond_file

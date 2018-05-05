@@ -126,7 +126,6 @@ class PitchClassSet(Set):
         staff = abjad.Staff([voice])
         score = abjad.Score([staff])
         lilypond_file = abjad.LilyPondFile.new(score)
-        lilypond_file.header_block.tagline = False
         return lilypond_file
 
     def __str__(self):

@@ -490,15 +490,14 @@ class NamedPitch(Pitch):
         contributions = []
         if self.arrow is None:
             return contributions
-        override_string = r'\once \override Accidental.stencil ='
-        override_string += ' #ly:text-interface::print'
-        contributions.append(override_string)
-        string = 'accidentals.{}.arrow{}'
-        string = string.format(self.accidental.name, str(self.arrow).lower())
-        override_string = r'\once \override Accidental.text ='
-        override_string += r' \markup {{ \musicglyph #"{}" }}'
-        override_string = override_string.format(string)
-        contributions.append(override_string)
+        string = r'\once \override Accidental.stencil ='
+        string += ' #ly:text-interface::print'
+        contributions.append(string)
+        glyph = f'accidentals.{self.accidental.name}'
+        glyph += f'.arrow{str(self.arrow).lower()}'
+        string = r'\once \override Accidental.text ='
+        string += rf' \markup {{ \musicglyph #"{glyph}" }}'
+        contributions.append(string)
         return contributions
 
     def _parse_name(self):

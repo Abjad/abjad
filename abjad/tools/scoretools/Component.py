@@ -1,10 +1,8 @@
 import abc
 import bisect
 import copy
-from abjad.tools.exceptiontools import ExtraSpannerError
 from abjad.tools.exceptiontools import MissingMetronomeMarkError
 from abjad.tools.exceptiontools import MissingMeasureError
-from abjad.tools.exceptiontools import MissingSpannerError
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.datastructuretools import Right
 
@@ -24,7 +22,6 @@ class Component(AbjadObject):
         '_offsets_are_current',
         '_offsets_in_seconds_are_current',
         '_parent',
-        '_spanners',
         '_start_offset',
         '_start_offset_in_seconds',
         '_stop_offset',
@@ -46,7 +43,6 @@ class Component(AbjadObject):
         self._lilypond_grob_name_manager = None
         self._parent = None
         self._lilypond_setting_name_manager = None
-        self._spanners = set()
         self._start_offset = None
         self._start_offset_in_seconds = None
         self._stop_offset = None
@@ -113,7 +109,6 @@ class Component(AbjadObject):
         '''
         import abjad
         lilypond_file = abjad.LilyPondFile.new(self)
-        lilypond_file.header_block.tagline = False
         return lilypond_file
 
     def __mul__(self, n):
@@ -192,12 +187,6 @@ class Component(AbjadObject):
             if component in parentage:
                 return True
         return False
-
-    def _detach_spanners(self, prototype=None):
-        spanners = self._get_spanners(prototype=prototype)
-        for spanner in spanners:
-            spanner._sever_all_leaves()
-        return spanners
 
     def _extract(self, scale_contents=False):
         import abjad
@@ -599,54 +588,6 @@ class Component(AbjadObject):
                     if 0 <= index + n:
                         return self._parent[index + n]
 
-    def _get_spanner(self, prototype=None):
-        spanners = self._get_spanners(prototype=prototype)
-        if not spanners:
-            message = 'no spanner found.'
-            raise MissingSpannerError(message)
-        elif len(spanners) == 1:
-            return spanners.pop()
-        else:
-            message = 'multiple spanners found: {!r}'.format(spanners)
-            raise ExtraSpannerError(message)
-
-    def _get_spanner_indicators(self, prototype=None, unwrap=True):
-        indicators = []
-        for spanner in self._get_spanners():
-            indicators_ = spanner._get_indicators(
-                prototype=prototype,
-                unwrap=unwrap,
-                )
-            indicators.extend(indicators_)
-        return indicators
-
-    def _get_spanners(self, prototype=None):
-        import abjad
-        prototype = prototype or (abjad.Spanner,)
-        if not isinstance(prototype, tuple):
-            prototype = (prototype, )
-        spanner_items = prototype[:]
-        prototype, spanner_objects = [], []
-        for spanner_item in spanner_items:
-            if isinstance(spanner_item, type):
-                prototype.append(spanner_item)
-            elif isinstance(spanner_item, abjad.Spanner):
-                spanner_objects.append(spanner_item)
-            else:
-                message = 'must be spanner class or spanner object: {!r}'
-                message = message.format(spanner_item)
-        prototype = tuple(prototype)
-        spanner_objects = tuple(spanner_objects)
-        matching_spanners = set()
-        components = (self,)
-        for component in components:
-            for spanner in set(component._spanners):
-                if isinstance(spanner, prototype):
-                    matching_spanners.add(spanner)
-                elif any(spanner == x for x in spanner_objects):
-                    matching_spanners.add(spanner)
-        return matching_spanners
-
     def _get_timespan(self, in_seconds=False):
         import abjad
         if in_seconds:
@@ -679,10 +620,6 @@ class Component(AbjadObject):
     def _has_indicator(self, prototype=None):
         indicators = self._get_indicators(prototype=prototype)
         return bool(indicators)
-
-    def _has_spanner(self, prototype=None):
-        spanners = self._get_spanners(prototype=prototype)
-        return bool(spanners)
 
     def _is_immediate_temporal_successor_of(self, component):
         temporal_successors = []
@@ -828,7 +765,7 @@ class Component(AbjadObject):
                         leaves = abjad.select(component).leaves()
                         for leaf in reversed(leaves):
                             spanner._insert(insert_index, leaf)
-                            leaf._spanners.add(spanner)
+                            leaf._append_spanner(spanner)
             selection = abjad.select(self)
             parent, start, stop = \
                 selection._get_parent_and_start_stop_indices()
@@ -852,13 +789,13 @@ class Component(AbjadObject):
                             index = spanner._index(component)
                             break
                     else:
-                        message = 'no component in spanner at offset.'
-                        raise ValueError(message)
+                        raise ValueError('no component in spanner at offset.')
                     for component in reversed(components):
                         leaves = abjad.select(component).leaves()
                         for leaf in reversed(leaves):
                             spanner._insert(index, leaf)
-                            component._spanners.add(spanner)
+                            if isinstance(component, abjad.Leaf):
+                                component._append_spanner(spanner)
             selection = abjad.select(self)
             parent, start, stop = \
                 selection._get_parent_and_start_stop_indices()

@@ -30,7 +30,9 @@ class Test(ScorePackageScriptTestCase):
 
         \include "../../stylesheets/stylesheet.ily"
 
-        \header {}
+        \header {
+            tagline = ##f
+        }
 
         \layout {}
 
@@ -105,7 +107,9 @@ class Test(ScorePackageScriptTestCase):
             illustration_ly_path, abjad.String.normalize(r'''
             \language "english"
 
-            \header {}
+            \header {
+                tagline = ##f
+            }
 
             \layout {}
 

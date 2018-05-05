@@ -112,7 +112,6 @@ class Pitch(AbjadValueObject):
         staff.append(note)
         abjad.override(staff).time_signature.stencil = False
         lilypond_file = abjad.lilypondfiletools.LilyPondFile.new(staff)
-        lilypond_file.header_block.tagline = False
         return lilypond_file
 
     @abc.abstractmethod

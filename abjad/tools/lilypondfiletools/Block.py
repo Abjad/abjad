@@ -1,4 +1,7 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.systemtools.LilyPondFormatManager import \
+    LilyPondFormatManager
+from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
 
 
 class Block(AbjadObject):
@@ -45,24 +48,41 @@ class Block(AbjadObject):
     def __init__(self, name='score'):
         assert isinstance(name, str), repr(name)
         self._name = name
-        escaped_name = r'\{}'.format(name)
+        escaped_name = rf'\{name}'
         self._escaped_name = escaped_name
         self._items = []
         self._public_attribute_names = []
 
     ### SPECIAL METHODS ###
 
+    def __delattr__(self, name) -> None:
+        r'''Deletes block attribute with ``name``.
+
+        ..  container:: example
+
+            >>> header_block = abjad.Block(name='header')
+            >>> header_block.tagline = False
+            >>> header_block.tagline
+            False
+
+            >>> delattr(header_block, 'tagline')
+            >>> hasattr(header_block, 'tagline')
+            False
+
+        '''
+        self._public_attribute_names.remove(name)
+        object.__delattr__(self, name)
+
     def __format__(self, format_specification=''):
         r'''Formats block.
 
         Returns string.
         '''
-        import abjad
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
         else:
             assert format_specification == 'storage'
-            return abjad.StorageFormatManager(self).get_storage_format()
+            return StorageFormatManager(self).get_storage_format()
 
     def __getitem__(self, name):
         r'''Gets item with `name`.
@@ -126,8 +146,7 @@ class Block(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _format_item(self, item, depth=1):
-        import abjad
-        indent = abjad.LilyPondFormatManager.indent * depth
+        indent = LilyPondFormatManager.indent * depth
         result = []
         if isinstance(item, (list, tuple)):
             result.append(indent + '{')
@@ -150,7 +169,7 @@ class Block(AbjadObject):
 
     def _get_format_pieces(self):
         import abjad
-        indent = abjad.LilyPondFormatManager.indent
+        indent = LilyPondFormatManager.indent
         result = []
         if (not self._get_formatted_user_attributes() and
             not getattr(self, 'contexts', None) and

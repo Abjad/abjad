@@ -707,23 +707,24 @@ class Container(Component):
         a zero-length slice between components, as in staff[2:2].
         '''
         if left is None or right is None:
-            return set([])
+            return []
         left_descendants = inspect(left).get_descendants()
         left_contained = inspect(left_descendants).get_spanners()
         right_descendants = inspect(right).get_descendants()
         right_contained = inspect(right_descendants).get_spanners()
         dominant_spanners = set(left_contained) & set(right_contained)
+        dominant_spanners = list(dominant_spanners)
         right_start_offset = inspect(right).get_timespan().start_offset
         components_after_gap = []
         for component in inspect(right).get_lineage():
             if inspect(component).get_timespan().start_offset == right_start_offset:
                 components_after_gap.append(component)
-        receipt = set([])
+        receipt = []
         for spanner in dominant_spanners:
             for component in components_after_gap:
                 if component in spanner:
                     index = spanner._index(component)
-                    receipt.add((spanner, index))
+                    receipt.append((spanner, index))
                     continue
         return receipt
 
@@ -741,31 +742,15 @@ class Container(Component):
                 left = self._get_sibling(-1)
             if right is None:
                 right = self._get_sibling(1)
-            spanners_receipt = \
-                self._get_spanners_that_dominate_component_pair(left, right)
+            spanners_receipt = self._get_spanners_that_dominate_component_pair(
+                left,
+                right,
+                )
         else:
             selection = self[start:stop]
             spanners_receipt = selection._get_dominant_spanners()
+        assert isinstance(spanners_receipt, list), repr(spanners_receipt)
         return spanners_receipt
-
-    def _get_spanners_that_span_slice(self, start, stop):
-        if start == stop:
-            if start == 0:
-                left = None
-            else:
-                left = self[start - 1]
-            if len(self) <= stop:
-                right = None
-            else:
-                right = self[stop]
-            if left is None:
-                left = self._get_sibling(-1)
-            if right is None:
-                right = self._get_sibling(1)
-            print(left, right)
-        else:
-            selection = self[start:stop]
-            print(selection)
 
     def _initialize_components(self, components):
         if (isinstance(components, collections.Iterable) and
@@ -844,8 +829,8 @@ class Container(Component):
             i = spanner._index(self)
             spanner._components.__setitem__(slice(i, i + 1), self[:])
             for component in self:
-                component._spanners.add(spanner)
-            self._spanners.discard(spanner)
+                component._append_spanner(spanner)
+            self._remove_spanner(spanner)
         return self
 
     def _parse_string(self, string):
@@ -957,7 +942,7 @@ class Container(Component):
                 leaves = select(component).leaves()
                 for leaf in reversed(leaves):
                     spanner._insert(index, leaf)
-                    leaf._spanners.add(spanner)
+                    leaf._append_spanner(spanner)
         for indicator in argument_indicators:
             if hasattr(indicator, '_update_effective_context'):
                 indicator._update_effective_context()

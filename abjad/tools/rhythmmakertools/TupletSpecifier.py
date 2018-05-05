@@ -696,7 +696,7 @@ class TupletSpecifier(AbjadValueObject):
 
         ..  container:: example
 
-            The ``default.ly`` stylesheet included in all Abjad API examples
+            The ``defaulti.ly`` stylesheet included in all Abjad API examples
             includes the following:
             
             ``\override TupletNumber.text = #tuplet-number::calc-fraction-text``
