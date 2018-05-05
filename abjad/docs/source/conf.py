@@ -25,8 +25,10 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
     'sphinx_autodoc_typehints',
-    'uqbar.sphinx.api',
     'abjad.docs.ext.abjadbook',
+    'uqbar.sphinx.api',
+    'uqbar.sphinx.inheritance',
+    'uqbar.sphinx.style',
     ]
 master_doc = 'index'
 project = u'Abjad'
