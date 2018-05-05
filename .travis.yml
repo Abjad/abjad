@@ -57,7 +57,6 @@ script:
 - coverage run -a `which pytest`
 - mypy --version
 - mypy abjad
-- coverage run -a abjad/scr/ajv api -R
 
 after_success:
 - pip install coveralls

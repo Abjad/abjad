@@ -1,6 +1,5 @@
 from .CommandlineScript import CommandlineScript
 from .AbjDevScript import AbjDevScript
-from .BuildApiScript import BuildApiScript
 from .CheckClassSections import CheckClassSections
 from .CleanScript import CleanScript
 from .DoctestScript import DoctestScript
