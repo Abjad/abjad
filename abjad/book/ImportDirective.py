@@ -29,9 +29,9 @@ class ImportDirective(Directive):
     def run(self):
         r'''Executes the directive.
         '''
-        from abjad.tools import abjadbooktools
+        import abjad.book
         path = self.arguments[0]
-        block = abjadbooktools.abjad_import_block()
+        block = abjad.book.abjad_import_block()
         block['path'] = path
         if 'hide' in self.options:
             block['hide'] = True

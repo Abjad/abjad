@@ -15,7 +15,7 @@ ignored_classes = (
     )
 
 ignored_package_names = (
-    'abjadbooktools',
+    'abjad.book',
     'graphtools',
     'systemtools',
     )

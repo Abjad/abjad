@@ -71,12 +71,12 @@ class AbjadDirective(Directive):
     def run(self):
         r'''Executes the directive.
         '''
-        from abjad.tools import abjadbooktools
+        import abjad.book
         self.assert_has_content()
         code = u'\n'.join(self.content)
         literal = literal_block(code, code)
         literal.line = self.content_offset  # set the content line number
-        block = abjadbooktools.abjad_input_block(code, literal)
+        block = abjad.book.abjad_input_block(code, literal)
         # Only set flags if true, for a thinner node repr.
         if 'allow-exceptions' in self.options:
             block['allow-exceptions'] = True

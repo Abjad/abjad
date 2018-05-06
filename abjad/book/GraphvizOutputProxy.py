@@ -10,12 +10,12 @@ from .ImageOutputProxy import ImageOutputProxy
 class GraphvizOutputProxy(ImageOutputProxy):
     r'''A Graphviz output proxy.
 
-    >>> from abjad.tools import abjadbooktools
+    >>> import abjad.book
     >>> meter = abjad.Meter((4, 4))
-    >>> proxy = abjadbooktools.GraphvizOutputProxy(meter)
+    >>> proxy = abjad.book.GraphvizOutputProxy(meter)
     >>> print(format(proxy))
     ...
-    abjad.abjadbooktools.GraphvizOutputProxy(
+    abjad.book.GraphvizOutputProxy(
         abjad.graphtools.GraphvizGraph(
             attributes={
                 'bgcolor': 'transparent',
@@ -274,9 +274,9 @@ class GraphvizOutputProxy(ImageOutputProxy):
         ):
         r'''Creates a docutils node representation of the output proxy.
 
-        >>> from abjad.tools import abjadbooktools
+        >>> import abjad.book
         >>> meter = abjad.Meter((4, 4))
-        >>> proxy = abjadbooktools.GraphvizOutputProxy(meter)
+        >>> proxy = abjad.book.GraphvizOutputProxy(meter)
         >>> for node in proxy.as_docutils():
         ...     print(node.pformat())
         ...
@@ -350,11 +350,11 @@ class GraphvizOutputProxy(ImageOutputProxy):
 
         Returns list of docutils nodes.
         '''
-        from abjad.tools import abjadbooktools
+        import abjad.book
         result = []
         try:
             code = str(self.payload)
-            node = abjadbooktools.abjad_output_block(code, code)
+            node = abjad.book.abjad_output_block(code, code)
             node['image_layout_specifier'] = self.image_layout_specifier
             node['image_render_specifier'] = self.image_render_specifier
             node['layout'] = self.layout

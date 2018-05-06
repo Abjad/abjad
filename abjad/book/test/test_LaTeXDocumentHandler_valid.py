@@ -3,7 +3,7 @@ import os
 import platform
 import shutil
 import unittest
-from abjad.tools import abjadbooktools
+import abjad.book
 
 
 @unittest.skipIf(
@@ -85,14 +85,14 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
             file_pointer.write(self.source_valid_contents)
 
     def test_clean(self):
-        document_handler = abjadbooktools.LaTeXDocumentHandler.from_path(
+        document_handler = abjad.book.LaTeXDocumentHandler.from_path(
             input_file_path=self.source_valid_path)
         document_handler()
         with open(self.source_valid_path, 'r') as file_pointer:
             target_valid_contents = file_pointer.read()
         assert abjad.String.normalize(str(target_valid_contents)) == \
             abjad.String.normalize(str(self.expected_valid_contents))
-        document_handler = abjadbooktools.LaTeXDocumentHandler.from_path(
+        document_handler = abjad.book.LaTeXDocumentHandler.from_path(
             input_file_path=self.source_valid_path)
         document_handler(clean=True)
         with open(self.source_valid_path, 'r') as file_pointer:
@@ -100,11 +100,11 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
         assert target_valid_contents == self.source_valid_contents
 
     def test_configured(self):
-        configuration = abjadbooktools.AbjadBookScript()._read_config(
+        configuration = abjad.book.AbjadBookScript()._read_config(
             self.configuration_path)
         assert not os.path.exists(self.target_valid_path)
         assert not os.path.exists(self.assets_directory)
-        document_handler = abjadbooktools.LaTeXDocumentHandler.from_path(
+        document_handler = abjad.book.LaTeXDocumentHandler.from_path(
             input_file_path=self.source_valid_path)
         document_handler(
             configuration=configuration,
@@ -121,7 +121,7 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
     def test_double_source(self):
         assert not os.path.exists(self.target_valid_path)
         assert not os.path.exists(self.assets_directory)
-        document_handler = abjadbooktools.LaTeXDocumentHandler.from_path(
+        document_handler = abjad.book.LaTeXDocumentHandler.from_path(
             input_file_path=self.source_valid_path)
         document_handler(output_file_path=self.target_valid_path)
         assert os.path.exists(self.target_valid_path)
@@ -134,7 +134,7 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
 
     def test_return_source(self):
         assert not os.path.exists(self.assets_directory)
-        document_handler = abjadbooktools.LaTeXDocumentHandler.from_path(
+        document_handler = abjad.book.LaTeXDocumentHandler.from_path(
             input_file_path=self.source_valid_path)
         target_valid_contents = document_handler(return_source=True)
         assert target_valid_contents == self.expected_valid_contents
@@ -142,7 +142,7 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
 
     def test_single_source(self):
         assert not os.path.exists(self.assets_directory)
-        document_handler = abjadbooktools.LaTeXDocumentHandler.from_path(
+        document_handler = abjad.book.LaTeXDocumentHandler.from_path(
             input_file_path=self.source_valid_path)
         document_handler()
         assert os.path.exists(self.source_valid_path)
@@ -155,7 +155,7 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
 
     def test_single_source_rebuild(self):
         assert not os.path.exists(self.assets_directory)
-        document_handler = abjadbooktools.LaTeXDocumentHandler.from_path(
+        document_handler = abjad.book.LaTeXDocumentHandler.from_path(
             input_file_path=self.source_valid_path)
         document_handler()
         assert os.path.exists(self.source_valid_path)
@@ -165,7 +165,7 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
         assert target_valid_contents == self.expected_valid_contents
         assert tuple(sorted(os.listdir(self.assets_directory))) == \
             self.expected_asset_names
-        document_handler = abjadbooktools.LaTeXDocumentHandler.from_path(
+        document_handler = abjad.book.LaTeXDocumentHandler.from_path(
             input_file_path=self.source_valid_path)
         document_handler()
         assert os.path.exists(self.source_valid_path)
@@ -179,7 +179,7 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
     def test_skip_rendering(self):
         assert not os.path.exists(self.target_valid_path)
         assert not os.path.exists(self.assets_directory)
-        document_handler = abjadbooktools.LaTeXDocumentHandler.from_path(
+        document_handler = abjad.book.LaTeXDocumentHandler.from_path(
             input_file_path=self.source_valid_path)
         document_handler(
             output_file_path=self.target_valid_path,
@@ -198,7 +198,7 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
     def test_stylesheet(self):
         assert not os.path.exists(self.target_valid_path)
         assert not os.path.exists(self.assets_directory)
-        document_handler = abjadbooktools.LaTeXDocumentHandler.from_path(
+        document_handler = abjad.book.LaTeXDocumentHandler.from_path(
             input_file_path=self.source_valid_path)
         document_handler(
             output_file_path=self.target_valid_path,

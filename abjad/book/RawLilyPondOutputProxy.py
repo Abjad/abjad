@@ -8,11 +8,11 @@ class RawLilyPondOutputProxy(ImageOutputProxy):
     r"""
     A raw LilyPond output proxy.
 
-    >>> from abjad.tools import abjadbooktools
+    >>> import abjad.book
     >>> raw_lilypond = '{ c d e f }'
-    >>> proxy = abjadbooktools.RawLilyPondOutputProxy(raw_lilypond)
+    >>> proxy = abjad.book.RawLilyPondOutputProxy(raw_lilypond)
     >>> print(format(proxy))
-    abjad.abjadbooktools.RawLilyPondOutputProxy(
+    abjad.book.RawLilyPondOutputProxy(
         '\\version "2.19.0"\n\n{ c d e f }'
         )
 
@@ -36,7 +36,7 @@ class RawLilyPondOutputProxy(ImageOutputProxy):
         image_render_specifier=None,
         **options
         ):
-        from abjad.tools import abjadbooktools
+        import abjad.book
         ImageOutputProxy.__init__(
             self,
             image_layout_specifier=image_layout_specifier,
@@ -44,7 +44,7 @@ class RawLilyPondOutputProxy(ImageOutputProxy):
             **options
             )
         if image_render_specifier is None:
-            image_render_specifier = abjadbooktools.ImageRenderSpecifier()
+            image_render_specifier = abjad.book.ImageRenderSpecifier()
         preamble = []
         if not payload.startswith(r'\version'):
             preamble.extend([r'\version "2.19.0"', ''])

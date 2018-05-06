@@ -1,18 +1,18 @@
 import inspect
 import pytest
-from abjad.tools import abjadbooktools
+import abjad.book
 from abjad.tools import datastructuretools
 from abjad.tools import documentationtools
 from abjad.tools import systemtools
 
 
 ignored_classes = (
-    abjadbooktools.CodeBlock,
-    abjadbooktools.CodeOutputProxy,
-    abjadbooktools.GraphvizOutputProxy,
-    abjadbooktools.LilyPondBlock,
-    abjadbooktools.LilyPondOutputProxy,
-    abjadbooktools.RawLilyPondOutputProxy,
+    abjad.book.CodeBlock,
+    abjad.book.CodeOutputProxy,
+    abjad.book.GraphvizOutputProxy,
+    abjad.book.LilyPondBlock,
+    abjad.book.LilyPondOutputProxy,
+    abjad.book.RawLilyPondOutputProxy,
     datastructuretools.Expression,
     systemtools.FormatSpecification,
     systemtools.StorageFormatManager,

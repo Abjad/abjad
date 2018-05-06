@@ -2,7 +2,7 @@ import importlib
 import inspect
 import pytest
 import abjad
-from abjad.tools import abjadbooktools
+import abjad.book
 from abjad.tools import documentationtools
 from abjad.tools import lilypondparsertools
 from abjad.tools import metertools
@@ -12,10 +12,10 @@ from abjad.tools import tonalanalysistools
 
 
 ignored_classes = (
-    abjadbooktools.CodeBlock,
-    abjadbooktools.CodeOutputProxy,
-    abjadbooktools.GraphvizOutputProxy,
-    abjadbooktools.LilyPondOutputProxy,
+    abjad.book.CodeBlock,
+    abjad.book.CodeOutputProxy,
+    abjad.book.GraphvizOutputProxy,
+    abjad.book.LilyPondOutputProxy,
     segmenttools.Path,
     systemtools.StorageFormatManager,
     systemtools.FormatSpecification,
@@ -43,10 +43,10 @@ def test_abjad___format___01(class_):
 
 
 ignored_classes = (
-    abjadbooktools.CodeBlock,
-    abjadbooktools.CodeOutputProxy,
-    abjadbooktools.GraphvizOutputProxy,
-    abjadbooktools.LilyPondOutputProxy,
+    abjad.book.CodeBlock,
+    abjad.book.CodeOutputProxy,
+    abjad.book.GraphvizOutputProxy,
+    abjad.book.LilyPondOutputProxy,
     segmenttools.Path,
     metertools.Meter,
     tonalanalysistools.RootedChordClass,
@@ -68,8 +68,8 @@ def test_abjad___format___02(class_):
         return
     environment = abjad.__dict__.copy()
     environment.update(abjad.demos.__dict__)
-    environment['abjadbooktools'] = importlib.import_module(
-        'abjad.tools.abjadbooktools')
+    environment['abjad.book'] = importlib.import_module(
+        'abjad.book')
     environment['abjad'] = abjad
     instance_one = class_()
     instance_one_format = format(instance_one, 'storage')
@@ -86,18 +86,18 @@ ignored_classes = (
     abjad.Path,
     abjad.Tags,
     abjad.TestCase,
-    abjadbooktools.AbjadDirective,
-    abjadbooktools.AbjadDoctestDirective,
-    abjadbooktools.CodeBlock,
-    abjadbooktools.CodeOutputProxy,
-    abjadbooktools.GraphvizOutputProxy,
-    abjadbooktools.ImportDirective,
-    abjadbooktools.LilyPondBlock,
-    abjadbooktools.LilyPondOutputProxy,
-    abjadbooktools.RawLilyPondOutputProxy,
-    abjadbooktools.RevealDirective,
-    abjadbooktools.ShellDirective,
-    abjadbooktools.ThumbnailDirective,
+    abjad.book.AbjadDirective,
+    abjad.book.AbjadDoctestDirective,
+    abjad.book.CodeBlock,
+    abjad.book.CodeOutputProxy,
+    abjad.book.GraphvizOutputProxy,
+    abjad.book.ImportDirective,
+    abjad.book.LilyPondBlock,
+    abjad.book.LilyPondOutputProxy,
+    abjad.book.RawLilyPondOutputProxy,
+    abjad.book.RevealDirective,
+    abjad.book.ShellDirective,
+    abjad.book.ThumbnailDirective,
     lilypondparsertools.SyntaxNode,
     )
 

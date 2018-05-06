@@ -1,14 +1,14 @@
 import abjad
 import unittest
-from abjad.tools import abjadbooktools
+import abjad.book
 
 
 class CodeBlockTests(unittest.TestCase):
 
     def test_as_docutils_01(self):
-        code_block = abjadbooktools.CodeBlock(())
+        code_block = abjad.book.CodeBlock(())
         code_block.output_proxies.append(
-            abjadbooktools.CodeOutputProxy(
+            abjad.book.CodeOutputProxy(
                 (
                     '>>> for i in range(4):',
                     '...     print(i)',
@@ -48,14 +48,14 @@ class CodeBlockTests(unittest.TestCase):
 
     def test_from_docutils_abjad_import_block_01(self):
         source = '''
-        ..  import:: abjad.tools.abjadbooktools:example_function
+        ..  import:: abjad.book:example_function
         '''
         source = abjad.String.normalize(source)
-        document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
+        document = abjad.book.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
-        result = abjadbooktools.CodeBlock.from_docutils_abjad_import_block(block)
+        result = abjad.book.CodeBlock.from_docutils_abjad_import_block(block)
         assert format(result) == abjad.String.normalize(r"""
-            abjad.abjadbooktools.CodeBlock(
+            abjad.book.CodeBlock(
                 (
                     'def example_function(argument):',
                     "    r'''This is a multiline docstring.",
@@ -71,24 +71,22 @@ class CodeBlockTests(unittest.TestCase):
                     '    print(argument)',
                     "    print('Leaving example function.')",
                     ),
-                executed_lines=(
-                    'from abjad.tools.abjadbooktools import example_function',
-                    ),
+                executed_lines=('from abjad.book import example_function',),
                 starting_line_number=1,
                 )
             """)
 
     def test_from_docutils_abjad_import_block_02(self):
         source = '''
-        ..  import:: abjad.tools.abjadbooktools:example_function
+        ..  import:: abjad.book:example_function
             :hide:
         '''
         source = abjad.String.normalize(source)
-        document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
+        document = abjad.book.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
-        result = abjadbooktools.CodeBlock.from_docutils_abjad_import_block(block)
+        result = abjad.book.CodeBlock.from_docutils_abjad_import_block(block)
         assert format(result) == abjad.String.normalize(r"""
-            abjad.abjadbooktools.CodeBlock(
+            abjad.book.CodeBlock(
                 (
                     'def example_function(argument):',
                     "    r'''This is a multiline docstring.",
@@ -104,12 +102,10 @@ class CodeBlockTests(unittest.TestCase):
                     '    print(argument)',
                     "    print('Leaving example function.')",
                     ),
-                code_block_specifier=abjad.abjadbooktools.CodeBlockSpecifier(
+                code_block_specifier=abjad.book.CodeBlockSpecifier(
                     hide=True,
                     ),
-                executed_lines=(
-                    'from abjad.tools.abjadbooktools import example_function',
-                    ),
+                executed_lines=('from abjad.book import example_function',),
                 starting_line_number=1,
                 )
             """)
@@ -123,11 +119,11 @@ class CodeBlockTests(unittest.TestCase):
                 note.written_pitch = "ds,"
         '''
         source = abjad.String.normalize(source)
-        document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
+        document = abjad.book.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
-        result = abjadbooktools.CodeBlock.from_docutils_abjad_input_block(block)
+        result = abjad.book.CodeBlock.from_docutils_abjad_input_block(block)
         assert format(result) == abjad.String.normalize(r"""
-            abjad.abjadbooktools.CodeBlock(
+            abjad.book.CodeBlock(
                 (
                     'note = Note("c\'4")',
                     'if True:',
@@ -147,17 +143,17 @@ class CodeBlockTests(unittest.TestCase):
                 note.written_pitch = "ds,"
         '''
         source = abjad.String.normalize(source)
-        document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
+        document = abjad.book.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
-        result = abjadbooktools.CodeBlock.from_docutils_abjad_input_block(block)
+        result = abjad.book.CodeBlock.from_docutils_abjad_input_block(block)
         assert format(result) == abjad.String.normalize(r"""
-            abjad.abjadbooktools.CodeBlock(
+            abjad.book.CodeBlock(
                 (
                     'note = Note("c\'4")',
                     'if True:',
                     '    note.written_pitch = "ds,"',
                     ),
-                code_block_specifier=abjad.abjadbooktools.CodeBlockSpecifier(
+                code_block_specifier=abjad.book.CodeBlockSpecifier(
                     allow_exceptions=True,
                     ),
                 starting_line_number=3,
@@ -172,12 +168,12 @@ class CodeBlockTests(unittest.TestCase):
             Hello, world!
         '''
         source = abjad.String.normalize(source)
-        document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
+        document = abjad.book.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
-        result = abjadbooktools.CodeBlock.from_docutils_literal_block(block)
-        assert result == abjadbooktools.CodeBlock(
+        result = abjad.book.CodeBlock.from_docutils_literal_block(block)
+        assert result == abjad.book.CodeBlock(
             ("print('Hello, world!')",),
-            code_block_specifier=abjadbooktools.CodeBlockSpecifier(
+            code_block_specifier=abjad.book.CodeBlockSpecifier(
                 allow_exceptions=True,
                 ),
             starting_line_number=3,

@@ -13,11 +13,11 @@ class LilyPondOutputProxy(ImageOutputProxy):
     r"""
     A LilyPond output proxy.
 
-    >>> from abjad.tools import abjadbooktools
+    >>> import abjad.book
     >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-    >>> proxy = abjadbooktools.LilyPondOutputProxy(staff)
+    >>> proxy = abjad.book.LilyPondOutputProxy(staff)
     >>> print(format(proxy))
-    abjad.abjadbooktools.LilyPondOutputProxy(
+    abjad.book.LilyPondOutputProxy(
         abjad.LilyPondFile(
             comments=[],
             includes=[],
@@ -154,9 +154,9 @@ class LilyPondOutputProxy(ImageOutputProxy):
         r"""
         Creates a docutils node representation of the output proxy.
 
-        >>> from abjad.tools import abjadbooktools
+        >>> import abjad.book
         >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-        >>> proxy = abjadbooktools.LilyPondOutputProxy(staff)
+        >>> proxy = abjad.book.LilyPondOutputProxy(staff)
         >>> for node in proxy.as_docutils():
         ...     print(node.pformat())
         ...

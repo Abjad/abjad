@@ -1,7 +1,7 @@
 import abjad
 import platform
 import unittest
-from abjad.tools import abjadbooktools
+import abjad.book
 
 
 @unittest.skipIf(
@@ -16,15 +16,15 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
         input_file_contents = [
             '',
             '\\begin{comment}',
-            '<abjadextract abjad.tools.abjadbooktools:example_function \>',
+            '<abjadextract abjad.book:example_function \>',
             '\\end{comment}',
             '',
             ]
-        document_handler = abjadbooktools.LaTeXDocumentHandler()
+        document_handler = abjad.book.LaTeXDocumentHandler()
         input_blocks = document_handler.collect_input_blocks(input_file_contents)
         code_block = tuple(input_blocks.values())[0]
         assert code_block.executed_lines == (
-            'from abjad.tools.abjadbooktools import example_function',
+            'from abjad.book import example_function',
             )
         assert code_block.input_file_contents == (
             'def example_function(argument):',
@@ -45,7 +45,7 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
     def test_abjadextract_2(self):
         input_file_contents = [
             '\\begin{comment}',
-            '<abjadextract abjad.tools.abjadbooktools:example_function \>',
+            '<abjadextract abjad.book:example_function \>',
             '\\end{comment}',
             '',
             '\\begin{comment}',
@@ -60,14 +60,14 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
             '</abjad>',
             '\\end{comment}',
             ]
-        document_handler = abjadbooktools.LaTeXDocumentHandler(
+        document_handler = abjad.book.LaTeXDocumentHandler(
             input_file_contents=input_file_contents,
             )
         rebuilt_source = document_handler(return_source=True)
         assert rebuilt_source == abjad.String.normalize(
             """
             \\begin{comment}
-            <abjadextract abjad.tools.abjadbooktools:example_function \\>
+            <abjadextract abjad.book:example_function \\>
             \\end{comment}
 
             %%% ABJADBOOK START %%%
@@ -124,7 +124,7 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
     def test_abjadextract_3(self):
         input_file_contents = [
             '\\begin{comment}',
-            '<abjadextract abjad.tools.abjadbooktools:example_function \>[hide=true]',
+            '<abjadextract abjad.book:example_function \>[hide=true]',
             '\\end{comment}',
             '',
             '\\begin{comment}',
@@ -139,14 +139,14 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
             '</abjad>',
             '\\end{comment}',
             ]
-        document_handler = abjadbooktools.LaTeXDocumentHandler(
+        document_handler = abjad.book.LaTeXDocumentHandler(
             input_file_contents=input_file_contents,
             )
         rebuilt_source = document_handler(return_source=True)
         assert rebuilt_source == abjad.String.normalize(
             """
             \\begin{comment}
-            <abjadextract abjad.tools.abjadbooktools:example_function \\>[hide=true]
+            <abjadextract abjad.book:example_function \\>[hide=true]
             \\end{comment}
 
             \\begin{comment}

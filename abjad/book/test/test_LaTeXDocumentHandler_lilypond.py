@@ -1,7 +1,7 @@
 import abjad
 import platform
 import unittest
-from abjad.tools import abjadbooktools
+import abjad.book
 
 
 @unittest.skipIf(
@@ -36,24 +36,24 @@ class TestCase(unittest.TestCase):
     ''').split('\n')
 
     def test_lilypond_1(self):
-        document_handler = abjadbooktools.LaTeXDocumentHandler()
+        document_handler = abjad.book.LaTeXDocumentHandler()
         input_blocks = document_handler.collect_input_blocks(
             self.input_file_contents)
         assert input_blocks == {
-            (3, 5): abjadbooktools.LilyPondBlock(
+            (3, 5): abjad.book.LilyPondBlock(
                 (
                     "{ c'4 d'4 e'4 f'4 }",
                     ),
                 starting_line_number=5,
                 ),
-            (11, 16): abjadbooktools.LilyPondBlock(
+            (11, 16): abjad.book.LilyPondBlock(
                 (
                     '{',
                     "    b'1",
                     "    fs'1",
                     '}',
                     ),
-                image_render_specifier=abjadbooktools.ImageRenderSpecifier(
+                image_render_specifier=abjad.book.ImageRenderSpecifier(
                     stylesheet='quux.ily',
                     ),
                 starting_line_number=16,
@@ -61,7 +61,7 @@ class TestCase(unittest.TestCase):
             }
 
     def test_lilypond_2(self):
-        document_handler = abjadbooktools.LaTeXDocumentHandler(
+        document_handler = abjad.book.LaTeXDocumentHandler(
             input_file_contents=self.input_file_contents,
             )
         rebuilt_source = document_handler(return_source=True)

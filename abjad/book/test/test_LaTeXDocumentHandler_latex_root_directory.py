@@ -3,7 +3,7 @@ import os
 import platform
 import shutil
 import unittest
-from abjad.tools import abjadbooktools
+import abjad.book
 
 
 @unittest.skipIf(
@@ -69,7 +69,7 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
         assets_directory = 'ExamplePaper/assets'
         input_file_path = 'ExamplePaper/chapters/chapter-1/section-2.tex'
         latex_root_directory = 'ExamplePaper'
-        document_handler = abjadbooktools.LaTeXDocumentHandler(
+        document_handler = abjad.book.LaTeXDocumentHandler(
             assets_directory=assets_directory,
             input_file_contents=input_file_contents,
             input_file_path=input_file_path,
@@ -98,7 +98,7 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
     def test_latex_root_directory_2(self):
         assert not os.path.exists(self.target_path)
         assert not os.path.exists(self.assets_directory)
-        document_handler = abjadbooktools.LaTeXDocumentHandler.from_path(
+        document_handler = abjad.book.LaTeXDocumentHandler.from_path(
             input_file_path=self.source_path,
             assets_directory=self.assets_directory,
             latex_root_directory=self.test_directory,

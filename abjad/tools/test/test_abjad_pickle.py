@@ -1,7 +1,7 @@
 import inspect
 import pickle
 import pytest
-from abjad.tools import abjadbooktools
+import abjad.book
 from abjad.tools import documentationtools
 from abjad.tools import lilypondparsertools
 from abjad.tools import quantizationtools
@@ -12,10 +12,10 @@ from abjad.tools import tonalanalysistools
 
 
 ignored_classes = (
-    abjadbooktools.CodeBlock,
-    abjadbooktools.CodeOutputProxy,
-    abjadbooktools.GraphvizOutputProxy,
-    abjadbooktools.LilyPondOutputProxy,
+    abjad.book.CodeBlock,
+    abjad.book.CodeOutputProxy,
+    abjad.book.GraphvizOutputProxy,
+    abjad.book.LilyPondOutputProxy,
     documentationtools.InheritanceGraph,
     lilypondparsertools.LilyPondParser,
     lilypondparsertools.SchemeParser,

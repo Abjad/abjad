@@ -5,8 +5,8 @@ import abjad.cli
 class AbjadBookScript(abjad.cli.CommandlineScript):
     r'''Entry point script for abjad-book.
 
-    >>> from abjad.tools import abjadbooktools
-    >>> script = abjadbooktools.AbjadBookScript()
+    >>> import abjad.book
+    >>> script = abjad.book.AbjadBookScript()
     >>> print(script.formatted_help)
     usage: abjad-book [-h] [--version] [-c] [-o OUTPUT_FILE_PATH] [-s] [-v]
                         [-y STYLESHEET] [-a ASSETS_DIRECTORY]
@@ -51,7 +51,7 @@ class AbjadBookScript(abjad.cli.CommandlineScript):
     ### PRIVATE METHODS ###
 
     def _process_args(self, arguments):
-        from abjad.tools import abjadbooktools
+        import abjad.book
         assets_directory = arguments.assets_directory
         clean = arguments.clean
         configuration = self._read_config(arguments.config)
@@ -64,7 +64,7 @@ class AbjadBookScript(abjad.cli.CommandlineScript):
         if 1 < len(input_file_path):
             document_handlers = []
             for path in input_file_path:
-                document_handler = abjadbooktools.LaTeXDocumentHandler.from_path(
+                document_handler = abjad.book.LaTeXDocumentHandler.from_path(
                     input_file_path=path,
                     assets_directory=assets_directory,
                     latex_root_directory=latex_root_directory,
@@ -79,7 +79,7 @@ class AbjadBookScript(abjad.cli.CommandlineScript):
                     verbose=verbose,
                     )
         else:
-            document_handler = abjadbooktools.LaTeXDocumentHandler.from_path(
+            document_handler = abjad.book.LaTeXDocumentHandler.from_path(
                 input_file_path=input_file_path[0],
                 assets_directory=assets_directory,
                 latex_root_directory=latex_root_directory,

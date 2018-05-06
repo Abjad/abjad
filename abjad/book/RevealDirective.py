@@ -24,8 +24,8 @@ class RevealDirective(Directive):
     def run(self):
         r'''Executes the directive.
         '''
-        from abjad.tools import abjadbooktools
-        block = abjadbooktools.abjad_reveal_block()
+        import abjad.book
+        block = abjad.book.abjad_reveal_block()
         block['reveal-label'] = self.arguments[0]
         set_source_info(self, block)
         return [block]

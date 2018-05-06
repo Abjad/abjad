@@ -43,8 +43,8 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
     ... That's it!
     ... '''
 
-    >>> from abjad.tools import abjadbooktools
-    >>> document_handler = abjadbooktools.LaTeXDocumentHandler(
+    >>> import abjad.book
+    >>> document_handler = abjad.book.LaTeXDocumentHandler(
     ...     input_file_contents=input_file_contents,
     ...     input_file_path='test.tex.raw',
     ...     assets_directory='images',
@@ -95,7 +95,7 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
         verbose=None,
         ):
         import abjad
-        from abjad.tools import abjadbooktools
+        import abjad.book
         configuration = configuration or {}
         if output_file_path:
             output_file_path = os.path.abspath(output_file_path)
@@ -118,7 +118,7 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
         self._errored = False
         namespace = abjad.__dict__.copy()
         namespace['abjad'] = abjad
-        console = abjadbooktools.AbjadBookConsole(
+        console = abjad.book.AbjadBookConsole(
             document_handler=self,
             locals=namespace,
             )
@@ -154,18 +154,18 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
     ### PUBLIC METHODS ###
 
     def collect_asset_output_proxies(self, input_blocks):
-        from abjad.tools import abjadbooktools
+        import abjad.book
         asset_output_proxies = []
         for code_block in input_blocks.values():
             for output_proxy in code_block.output_proxies:
-                if isinstance(output_proxy, abjadbooktools.CodeOutputProxy):
+                if isinstance(output_proxy, abjad.book.CodeOutputProxy):
                     continue
                 asset_output_proxies.append(output_proxy)
         return asset_output_proxies
 
     def collect_input_blocks(self, input_file_contents, stylesheet=None):
         import abjad
-        from abjad.tools import abjadbooktools
+        import abjad.book
         input_blocks = collections.OrderedDict()
         in_input_block = False
         starting_line_number = None
@@ -190,7 +190,7 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
                     starting_line_number = i
                 elif line.strip().startswith('<abjadextract '):
                     starting_line_number = stopping_line_number = i
-                    code_block = abjadbooktools.CodeBlock.from_latex_abjadextract_block(
+                    code_block = abjad.book.CodeBlock.from_latex_abjadextract_block(
                         line,
                         starting_line_number=i,
                         **current_block_options
@@ -218,7 +218,7 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
                 current_block_lines = abjad.String.normalize(
                     current_block_lines)
                 current_block_lines = current_block_lines.split('\n')
-                code_block = abjadbooktools.CodeBlock.from_latex_abjad_block(
+                code_block = abjad.book.CodeBlock.from_latex_abjad_block(
                     current_block_lines,
                     starting_line_number=i,
                     **current_block_options
@@ -240,7 +240,7 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
                 current_block_lines = abjad.String.normalize(
                     current_block_lines)
                 current_block_lines = current_block_lines.split('\n')
-                code_block = abjadbooktools.LilyPondBlock.from_latex_lilypond_block(
+                code_block = abjad.book.LilyPondBlock.from_latex_lilypond_block(
                     current_block_lines,
                     starting_line_number=i,
                     **current_block_options

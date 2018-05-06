@@ -79,41 +79,41 @@ class SphinxDocumentHandler(abctools.AbjadObject):
 
     @staticmethod
     def setup_sphinx_extension(app):
-        from abjad.tools import abjadbooktools
+        import abjad.book
         app.add_config_value('abjadbook_ignored_documents', (), 'env')
         app.add_config_value('abjadbook_console_module_names', (), 'env')
-        app.add_directive('abjad', abjadbooktools.AbjadDirective)
-        app.add_directive('docs', abjadbooktools.AbjadDoctestDirective)
-        app.add_directive('import', abjadbooktools.ImportDirective)
-        app.add_directive('reveal', abjadbooktools.RevealDirective)
-        app.add_directive('shell', abjadbooktools.ShellDirective)
-        app.add_directive('thumbnail', abjadbooktools.ThumbnailDirective)
+        app.add_directive('abjad', abjad.book.AbjadDirective)
+        app.add_directive('docs', abjad.book.AbjadDoctestDirective)
+        app.add_directive('import', abjad.book.ImportDirective)
+        app.add_directive('reveal', abjad.book.RevealDirective)
+        app.add_directive('shell', abjad.book.ShellDirective)
+        app.add_directive('thumbnail', abjad.book.ThumbnailDirective)
         app.add_javascript('abjad.js')
         app.add_javascript('copybutton.js')
         app.add_javascript('ga.js')
         app.add_stylesheet('abjad.css')
         app.add_node(
-            abjadbooktools.abjad_import_block,
+            abjad.book.abjad_import_block,
             html=[SphinxDocumentHandler.visit_abjad_import_block, None],
             latex=[SphinxDocumentHandler.visit_abjad_import_block, None],
             )
         app.add_node(
-            abjadbooktools.abjad_input_block,
+            abjad.book.abjad_input_block,
             html=[SphinxDocumentHandler.visit_abjad_input_block, None],
             latex=[SphinxDocumentHandler.visit_abjad_input_block, None],
             )
         app.add_node(
-            abjadbooktools.abjad_output_block,
+            abjad.book.abjad_output_block,
             html=[SphinxDocumentHandler.visit_abjad_output_block_html, None],
             latex=[SphinxDocumentHandler.visit_abjad_output_block_latex, None],
             )
         app.add_node(
-            abjadbooktools.abjad_reveal_block,
+            abjad.book.abjad_reveal_block,
             html=[SphinxDocumentHandler.visit_abjad_reveal_block, None],
             latex=[SphinxDocumentHandler.visit_abjad_reveal_block, None],
             )
         app.add_node(
-            abjadbooktools.abjad_thumbnail_block,
+            abjad.book.abjad_thumbnail_block,
             html=[SphinxDocumentHandler.visit_abjad_thumbnail_block_html, None],
             latex=[SphinxDocumentHandler.visit_abjad_thumbnail_block_latex, None],
             )
@@ -326,24 +326,24 @@ class SphinxDocumentHandler(abctools.AbjadObject):
     def collect_abjad_input_blocks(self, document):
         def is_valid_node(node):
             prototype = (
-                abjadbooktools.abjad_import_block,
-                abjadbooktools.abjad_input_block,
-                abjadbooktools.abjad_reveal_block,
+                abjad.book.abjad_import_block,
+                abjad.book.abjad_input_block,
+                abjad.book.abjad_reveal_block,
                 )
             return isinstance(node, prototype)
-        from abjad.tools import abjadbooktools
+        import abjad.book
         code_blocks = collections.OrderedDict()
         labels = {}
         for block in document.traverse(is_valid_node):
-            if isinstance(block, abjadbooktools.abjad_import_block):
+            if isinstance(block, abjad.book.abjad_import_block):
                 code_block = \
-                    abjadbooktools.CodeBlock.from_docutils_abjad_import_block(block)
+                    abjad.book.CodeBlock.from_docutils_abjad_import_block(block)
                 if block.get('reveal-label', None):
                     labels[block.get('reveal-label')] = code_block
                 code_blocks[block] = code_block
-            elif isinstance(block, abjadbooktools.abjad_input_block):
+            elif isinstance(block, abjad.book.abjad_input_block):
                 code_block = \
-                    abjadbooktools.CodeBlock.from_docutils_abjad_input_block(block)
+                    abjad.book.CodeBlock.from_docutils_abjad_input_block(block)
                 if block.get('reveal-label', None):
                     labels[block.get('reveal-label')] = code_block
                 code_blocks[block] = code_block
@@ -352,7 +352,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 if code_block is not None:
                     code_block_specifier = code_block.code_block_specifier
                     if code_block_specifier is None:
-                        code_block_specifier = abjadbooktools.CodeBlockSpecifier()
+                        code_block_specifier = abjad.book.CodeBlockSpecifier()
                     code_block_specifier = new(
                         code_block_specifier,
                         hide=False,
@@ -372,7 +372,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 nodes.doctest_block,
                 )
             return isinstance(node, prototype)
-        from abjad.tools import abjadbooktools
+        import abjad.book
         should_process = False
         code_blocks = collections.OrderedDict()
         for block in document.traverse(is_valid_node):
@@ -383,7 +383,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 if self._topleveltools_pattern.search(line) is not None:
                     should_process = True
             code_block = \
-                abjadbooktools.CodeBlock.from_docutils_literal_block(block)
+                abjad.book.CodeBlock.from_docutils_literal_block(block)
             code_blocks[block] = code_block
         if renderable_only and not should_process:
             code_blocks.clear()
@@ -395,7 +395,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
     @staticmethod
     def interpret_code_blocks(app, document):
         import abjad
-        from abjad.tools import abjadbooktools
+        import abjad.book
         if SphinxDocumentHandler.should_ignore_document(app, document):
             print()
             message = '    [abjad-book] ignoring'
@@ -411,12 +411,12 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 module = importlib.import_module(module_name)
                 namespace[module_name] = module
                 namespace.update(module.__dict__)
-            abjad_console = abjadbooktools.AbjadBookConsole(
+            abjad_console = abjad.book.AbjadBookConsole(
                 document_handler=handler,
                 locals=namespace.copy(),
                 )
             literal_blocks = handler.collect_python_literal_blocks(document)
-            literal_console = abjadbooktools.AbjadBookConsole(
+            literal_console = abjad.book.AbjadBookConsole(
                 document_handler=handler,
                 locals=namespace.copy(),
                 )
@@ -428,7 +428,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 handler.rebuild_document(document, literal_blocks)
             abjad_console.restore_topleveltools_dict()
             literal_console.restore_topleveltools_dict()
-        except abjadbooktools.AbjadBookError as e:
+        except abjad.book.AbjadBookError as e:
             print()
             print(e.args[0])
         except Exception:
@@ -460,18 +460,18 @@ class SphinxDocumentHandler(abctools.AbjadObject):
 
     @staticmethod
     def parse_rst(rst_string):
-        from abjad.tools import abjadbooktools
+        import abjad.book
         parser = Parser()
         directives.register_directive(
-            'abjad', abjadbooktools.AbjadDirective,
+            'abjad', abjad.book.AbjadDirective,
             )
         directives.register_directive(
-            'import', abjadbooktools.ImportDirective,
+            'import', abjad.book.ImportDirective,
             )
         directives.register_directive(
-            'reveal', abjadbooktools.RevealDirective,
+            'reveal', abjad.book.RevealDirective,
             )
-        directives.register_directive('shell', abjadbooktools.ShellDirective)
+        directives.register_directive('shell', abjad.book.ShellDirective)
         settings = OptionParser(components=(Parser,)).get_default_values()
         document = new_document('test', settings)
         parser.parse(rst_string, document)
@@ -671,14 +671,14 @@ class SphinxDocumentHandler(abctools.AbjadObject):
 
     @staticmethod
     def render_png_image(self, node):
-        from abjad.tools import abjadbooktools
+        import abjad.book
         # Get all file and path parts.
         image_layout_specifier = node.get('image_layout_specifier', None)
         if image_layout_specifier is None:
-            image_layout_specifier = abjadbooktools.ImageLayoutSpecifier()
+            image_layout_specifier = abjad.book.ImageLayoutSpecifier()
         image_render_specifier = node.get('image_render_specifier', None)
         if image_render_specifier is None:
-            image_render_specifier = abjadbooktools.ImageRenderSpecifier()
+            image_render_specifier = abjad.book.ImageRenderSpecifier()
         pages = image_layout_specifier.pages
 
         target_extension = '.png'
@@ -743,14 +743,14 @@ class SphinxDocumentHandler(abctools.AbjadObject):
 
     @staticmethod
     def render_svg_image(self, node):
-        from abjad.tools import abjadbooktools
+        import abjad.book
         # Get all file and path parts.
         image_layout_specifier = node.get('image_layout_specifier', None)
         if image_layout_specifier is None:
-            image_layout_specifier = abjadbooktools.ImageLayoutSpecifier()
+            image_layout_specifier = abjad.book.ImageLayoutSpecifier()
         image_render_specifier = node.get('image_render_specifier', None)
         if image_render_specifier is None:
-            image_render_specifier = abjadbooktools.ImageRenderSpecifier()
+            image_render_specifier = abjad.book.ImageRenderSpecifier()
         pages = image_layout_specifier.pages
 
         target_extension = '.svg'
@@ -831,13 +831,13 @@ class SphinxDocumentHandler(abctools.AbjadObject):
 
     @staticmethod
     def visit_abjad_output_block_html(self, node):
-        from abjad.tools import abjadbooktools
+        import abjad.book
         image_layout_specifier = node.get('image_layout_specifier', None)
         if image_layout_specifier is None:
-            image_layout_specifier = abjadbooktools.ImageLayoutSpecifier()
+            image_layout_specifier = abjad.book.ImageLayoutSpecifier()
         image_render_specifier = node.get('image_render_specifier', None)
         if image_render_specifier is None:
-            image_render_specifier = abjadbooktools.ImageRenderSpecifier()
+            image_render_specifier = abjad.book.ImageRenderSpecifier()
         if node['renderer'] not in ('graphviz', 'lilypond'):
             raise nodes.SkipNode
         absolute_image_directory = os.path.join(

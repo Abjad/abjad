@@ -58,7 +58,7 @@ tuplet ratio rather than a single number.
 
 How does this happen? Our notation examples are generated as part of
 Abjad's doc-building process via a custom `Sphinx`_ extension housed in
-Abjad's :py:mod:`abjadbooktools <abjad.tools.abjadbooktools>` subpackage.
+Abjad's :py:mod:`abjad.book <abjad.book>` subpackage.
 To get the look-and-feel we want for our examples, we include a default
 :download:`stylesheet <_stylesheets/default.ily>` in each generated file.
 

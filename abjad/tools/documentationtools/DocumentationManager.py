@@ -27,7 +27,7 @@ class DocumentationManager(abctools.AbjadObject):
 
     lineage_graph_addresses = (
         'abjad',
-        'abjad.tools.abjadbooktools',
+        'abjad.book',
         'ide',
         )
 
@@ -424,13 +424,13 @@ class DocumentationManager(abctools.AbjadObject):
         return document
 
     def _get_ignored_classes(self):
-        from abjad.tools import abjadbooktools
+        import abjad.book
         ignored_classes = set([
-            abjadbooktools.abjad_import_block,
-            abjadbooktools.abjad_input_block,
-            abjadbooktools.abjad_output_block,
-            abjadbooktools.abjad_reveal_block,
-            abjadbooktools.abjad_thumbnail_block,
+            abjad.book.abjad_import_block,
+            abjad.book.abjad_input_block,
+            abjad.book.abjad_output_block,
+            abjad.book.abjad_reveal_block,
+            abjad.book.abjad_thumbnail_block,
             systemtools.TestCase,
             ])
         return ignored_classes

@@ -30,13 +30,13 @@ class LilyPondBlock(abctools.AbjadValueObject):
         starting_line_number=None,
         **options
         ):
-        from abjad.tools import abjadbooktools
+        import abjad.book
         self._image_layout_specifier = image_layout_specifier
         self._image_render_specifier = image_render_specifier
         self._source_lines = tuple(input_file_contents)
         self._starting_line_number = starting_line_number
         self._output_proxies = [
-            abjadbooktools.RawLilyPondOutputProxy(
+            abjad.book.RawLilyPondOutputProxy(
                 payload='\n'.join(input_file_contents),
                 image_layout_specifier=image_layout_specifier,
                 image_render_specifier=image_render_specifier,
@@ -53,7 +53,7 @@ class LilyPondBlock(abctools.AbjadValueObject):
         output_directory=None,
         relative_output_directory=None,
         ):
-        from abjad.tools import abjadbooktools
+        import abjad.book
         result = []
         configuration = configuration or {}
         latex_configuration = configuration.get('latex', {})
@@ -76,10 +76,10 @@ class LilyPondBlock(abctools.AbjadValueObject):
                     relative_output_directory=relative_output_directory,
                     )
                 string = '\n'.join(lines)
-                if isinstance(output_proxy, abjadbooktools.ImageOutputProxy):
+                if isinstance(output_proxy, abjad.book.ImageOutputProxy):
                     if i < len(self.output_proxies) - 1:
                         next_proxy = self.output_proxies[i + 1]
-                        if isinstance(next_proxy, abjadbooktools.ImageOutputProxy):
+                        if isinstance(next_proxy, abjad.book.ImageOutputProxy):
                             string += r'\\'
                 result.append(string)
             after = latex_configuration.get('after-code-block', ())
@@ -96,14 +96,14 @@ class LilyPondBlock(abctools.AbjadValueObject):
         starting_line_number=None,
         **options
         ):
-        from abjad.tools import abjadbooktools
+        import abjad.book
         cleaned_options = {}
         for key, value in options.items():
             key = key.replace('-', '_')
             cleaned_options[key] = value
-        image_layout_specifier, cleaned_options = abjadbooktools.ImageLayoutSpecifier.from_options(
+        image_layout_specifier, cleaned_options = abjad.book.ImageLayoutSpecifier.from_options(
             **cleaned_options)
-        image_render_specifier, cleaned_options = abjadbooktools.ImageRenderSpecifier.from_options(
+        image_render_specifier, cleaned_options = abjad.book.ImageRenderSpecifier.from_options(
             **cleaned_options)
         code_block = cls(
             image_layout_specifier=image_layout_specifier,

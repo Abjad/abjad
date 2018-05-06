@@ -25,8 +25,8 @@ class ThumbnailDirective(Directive):
     def run(self):
         r'''Executes the directive.
         '''
-        from abjad.tools import abjadbooktools
-        node = abjadbooktools.abjad_thumbnail_block()
+        import abjad.book
+        node = abjad.book.abjad_thumbnail_block()
         node['classes'] += self.options.get('class', '')
         node['group'] = self.options.get('group', '')
         node['title'] = self.options.get('title', '')

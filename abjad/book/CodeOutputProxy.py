@@ -5,15 +5,15 @@ from docutils import nodes
 class CodeOutputProxy(abctools.AbjadValueObject):
     r'''A code output proxy.
 
-    >>> from abjad.tools import abjadbooktools
-    >>> proxy = abjadbooktools.CodeOutputProxy([
+    >>> import abjad.book
+    >>> proxy = abjad.book.CodeOutputProxy([
     ...     ">>> print('Hello, world!')",
     ...     'Hello, world!',
     ...     '>>> 1 + 1',
     ...     '2',
     ...     ])
     >>> print(format(proxy))
-    abjad.abjadbooktools.CodeOutputProxy(
+    abjad.book.CodeOutputProxy(
         (
             ">>> print('Hello, world!')",
             'Hello, world!',

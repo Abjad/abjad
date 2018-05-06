@@ -1,13 +1,13 @@
 import abjad
 import textwrap
 import unittest
-from abjad.tools import abjadbooktools
+import abjad.book
 
 
 class ImportDirectiveTests(unittest.TestCase):
 
     def setUp(self):
-        self.handler = abjadbooktools.SphinxDocumentHandler
+        self.handler = abjad.book.SphinxDocumentHandler
 
     def test_1(self):
         source = textwrap.dedent('''

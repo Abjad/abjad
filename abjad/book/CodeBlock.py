@@ -80,7 +80,7 @@ class CodeBlock(abctools.AbjadValueObject):
         output_directory=None,
         relative_output_directory=None,
         ):
-        from abjad.tools import abjadbooktools
+        import abjad.book
         result = []
         configuration = configuration or {}
         latex_configuration = configuration.get('latex', {})
@@ -104,10 +104,10 @@ class CodeBlock(abctools.AbjadValueObject):
                     relative_output_directory=relative_output_directory,
                     )
                 string = '\n'.join(lines)
-                if isinstance(output_proxy, abjadbooktools.ImageOutputProxy):
+                if isinstance(output_proxy, abjad.book.ImageOutputProxy):
                     if i < len(output_proxies) - 1:
                         next_proxy = output_proxies[i + 1]
-                        if isinstance(next_proxy, abjadbooktools.ImageOutputProxy):
+                        if isinstance(next_proxy, abjad.book.ImageOutputProxy):
                             string += r'\\'
                 result.append(string)
             after = latex_configuration.get('after-code-block', ())
@@ -118,15 +118,15 @@ class CodeBlock(abctools.AbjadValueObject):
         return result
 
     def filter_output_proxies(self):
-        from abjad.tools import abjadbooktools
+        import abjad.book
         code_block_specifier = self.code_block_specifier
         if code_block_specifier is None:
-            code_block_specifier = abjadbooktools.CodeBlockSpecifier()
+            code_block_specifier = abjad.book.CodeBlockSpecifier()
         output_proxies = list(self.output_proxies)
         if code_block_specifier.hide:
             output_proxies = [
                 _ for _ in output_proxies
-                if not isinstance(_, abjadbooktools.CodeOutputProxy)
+                if not isinstance(_, abjad.book.CodeOutputProxy)
                 ]
         return output_proxies
 
@@ -135,7 +135,7 @@ class CodeBlock(abctools.AbjadValueObject):
 
     @staticmethod
     def from_docutils_abjad_import_block(block):
-        from abjad.tools import abjadbooktools
+        import abjad.book
         code_address = block['path']
         module_name, sep, attr_name = code_address.rpartition(':')
         module = importlib.import_module(module_name)
@@ -152,12 +152,12 @@ class CodeBlock(abctools.AbjadValueObject):
             key = key.replace('-', '_')
             cleaned_options[key] = value
         code_block_specifier, cleaned_options = \
-            abjadbooktools.CodeBlockSpecifier.from_options(**cleaned_options)
+            abjad.book.CodeBlockSpecifier.from_options(**cleaned_options)
         image_layout_specifier, cleaned_options = \
-            abjadbooktools.ImageLayoutSpecifier.from_options(**cleaned_options)
+            abjad.book.ImageLayoutSpecifier.from_options(**cleaned_options)
         image_render_specifier, cleaned_options = \
-            abjadbooktools.ImageRenderSpecifier.from_options(**cleaned_options)
-        code_block = abjadbooktools.CodeBlock(
+            abjad.book.ImageRenderSpecifier.from_options(**cleaned_options)
+        code_block = abjad.book.CodeBlock(
             code_block_specifier=code_block_specifier,
             executed_lines=executed_lines,
             image_layout_specifier=image_layout_specifier,
@@ -169,7 +169,7 @@ class CodeBlock(abctools.AbjadValueObject):
 
     @staticmethod
     def from_docutils_abjad_input_block(block):
-        from abjad.tools import abjadbooktools
+        import abjad.book
         literal_block = block[0]
         text_node = literal_block[0]
         input_file_contents = tuple(text_node.splitlines())
@@ -178,12 +178,12 @@ class CodeBlock(abctools.AbjadValueObject):
             key = key.replace('-', '_')
             cleaned_options[key] = value
         code_block_specifier, cleaned_options = \
-            abjadbooktools.CodeBlockSpecifier.from_options(**cleaned_options)
+            abjad.book.CodeBlockSpecifier.from_options(**cleaned_options)
         image_layout_specifier, cleaned_options = \
-            abjadbooktools.ImageLayoutSpecifier.from_options(**cleaned_options)
+            abjad.book.ImageLayoutSpecifier.from_options(**cleaned_options)
         image_render_specifier, cleaned_options = \
-            abjadbooktools.ImageRenderSpecifier.from_options(**cleaned_options)
-        code_block = abjadbooktools.CodeBlock(
+            abjad.book.ImageRenderSpecifier.from_options(**cleaned_options)
+        code_block = abjad.book.CodeBlock(
             code_block_specifier=code_block_specifier,
             image_layout_specifier=image_layout_specifier,
             image_render_specifier=image_render_specifier,
@@ -194,7 +194,7 @@ class CodeBlock(abctools.AbjadValueObject):
 
     @staticmethod
     def from_docutils_literal_block(block):
-        from abjad.tools import abjadbooktools
+        import abjad.book
         input_file_contents = []
         for line in block[0].splitlines():
             if line.startswith(('>>>', '...')):
@@ -204,10 +204,10 @@ class CodeBlock(abctools.AbjadValueObject):
         while not document_source and getattr(parent, 'parent'):
             document_source = getattr(parent, 'source', None)
             parent = parent.parent
-        code_block_specifier = abjadbooktools.CodeBlockSpecifier(
+        code_block_specifier = abjad.book.CodeBlockSpecifier(
             allow_exceptions=True,
             )
-        code_block = abjadbooktools.CodeBlock(
+        code_block = abjad.book.CodeBlock(
             code_block_specifier=code_block_specifier,
             document_source=document_source,
             input_file_contents=input_file_contents,
@@ -221,18 +221,18 @@ class CodeBlock(abctools.AbjadValueObject):
         starting_line_number=None,
         **options
         ):
-        from abjad.tools import abjadbooktools
+        import abjad.book
         cleaned_options = {}
         for key, value in options.items():
             key = key.replace('-', '_')
             cleaned_options[key] = value
         code_block_specifier, cleaned_options = \
-            abjadbooktools.CodeBlockSpecifier.from_options(**cleaned_options)
+            abjad.book.CodeBlockSpecifier.from_options(**cleaned_options)
         image_layout_specifier, cleaned_options = \
-            abjadbooktools.ImageLayoutSpecifier.from_options(**cleaned_options)
+            abjad.book.ImageLayoutSpecifier.from_options(**cleaned_options)
         image_render_specifier, cleaned_options = \
-            abjadbooktools.ImageRenderSpecifier.from_options(**cleaned_options)
-        code_block = abjadbooktools.CodeBlock(
+            abjad.book.ImageRenderSpecifier.from_options(**cleaned_options)
+        code_block = abjad.book.CodeBlock(
             code_block_specifier=code_block_specifier,
             image_layout_specifier=image_layout_specifier,
             image_render_specifier=image_render_specifier,
@@ -247,7 +247,7 @@ class CodeBlock(abctools.AbjadValueObject):
         starting_line_number=None,
         **options
         ):
-        from abjad.tools import abjadbooktools
+        import abjad.book
         code_address = source_line.partition('<abjadextract ')[-1].split()[0]
         module_name, sep, attr_name = code_address.rpartition(':')
         module = importlib.import_module(module_name)
@@ -263,12 +263,12 @@ class CodeBlock(abctools.AbjadValueObject):
             key = key.replace('-', '_')
             cleaned_options[key] = value
         code_block_specifier, cleaned_options = \
-            abjadbooktools.CodeBlockSpecifier.from_options(**cleaned_options)
+            abjad.book.CodeBlockSpecifier.from_options(**cleaned_options)
         image_layout_specifier, cleaned_options = \
-            abjadbooktools.ImageLayoutSpecifier.from_options(**cleaned_options)
+            abjad.book.ImageLayoutSpecifier.from_options(**cleaned_options)
         image_render_specifier, cleaned_options = \
-            abjadbooktools.ImageRenderSpecifier.from_options(**cleaned_options)
-        code_block = abjadbooktools.CodeBlock(
+            abjad.book.ImageRenderSpecifier.from_options(**cleaned_options)
+        code_block = abjad.book.CodeBlock(
             code_block_specifier=code_block_specifier,
             executed_lines=executed_lines,
             image_layout_specifier=image_layout_specifier,
@@ -279,10 +279,10 @@ class CodeBlock(abctools.AbjadValueObject):
         return code_block
 
     def interpret(self, console):
-        from abjad.tools import abjadbooktools
+        import abjad.book
         code_block_specifier = self.code_block_specifier
         if code_block_specifier is None:
-            code_block_specifier = abjadbooktools.CodeBlockSpecifier()
+            code_block_specifier = abjad.book.CodeBlockSpecifier()
         self._console = console
         is_incomplete_statement = False
         input_file_contents = self.input_file_contents
@@ -292,7 +292,7 @@ class CodeBlock(abctools.AbjadValueObject):
         if self.executed_lines:
             for executed_line in self.executed_lines:
                 is_incomplete_statement = console.push(executed_line)
-            code_output_proxy = abjadbooktools.CodeOutputProxy(
+            code_output_proxy = abjad.book.CodeOutputProxy(
                 input_file_contents,
                 code_block_specifier=self.code_block_specifier,
                 )
@@ -320,7 +320,7 @@ class CodeBlock(abctools.AbjadValueObject):
         if code_block_specifier.hide:
             self.output_proxies[:] = [
                 _ for _ in self.output_proxies
-                if not isinstance(_, abjadbooktools.CodeOutputProxy)
+                if not isinstance(_, abjad.book.CodeOutputProxy)
                 ]
         self._console = None
 
@@ -329,7 +329,7 @@ class CodeBlock(abctools.AbjadValueObject):
         self.output_proxies.append(asset_output_proxy)
 
     def push_code_output_proxy(self):
-        from abjad.tools import abjadbooktools
+        import abjad.book
         strip_prompt = None
         if self.code_block_specifier is not None:
             strip_prompt = self.code_block_specifier.strip_prompt
@@ -342,7 +342,7 @@ class CodeBlock(abctools.AbjadValueObject):
                 ]
             while not self.current_lines[-1]:
                 self.current_lines.pop()
-        code_output_proxy = abjadbooktools.CodeOutputProxy(
+        code_output_proxy = abjad.book.CodeOutputProxy(
             self.current_lines,
             code_block_specifier=self.code_block_specifier,
             )
@@ -350,7 +350,7 @@ class CodeBlock(abctools.AbjadValueObject):
         self.current_lines[:] = []
 
     def push_line_to_console(self, line, console, line_number):
-        from abjad.tools import abjadbooktools
+        import abjad.book
         allow_exceptions = None
         if self.code_block_specifier is not None:
             allow_exceptions = self.code_block_specifier.allow_exceptions
@@ -371,7 +371,7 @@ class CodeBlock(abctools.AbjadValueObject):
                 message = bold(red(message))
                 message += '\n    '
                 message = message + '\n    '.join(self.current_lines)
-                raise abjadbooktools.AbjadBookError(message)
+                raise abjad.book.AbjadBookError(message)
         return is_incomplete_statement
 
     def setup_capture_hooks(self, console):
@@ -421,7 +421,7 @@ class CodeBlock(abctools.AbjadValueObject):
         ):
         r'''Proxies Abjad's toplevel `graph()` function.
         '''
-        from abjad.tools import abjadbooktools
+        import abjad.book
         graph = argument.__graph__(**keywords)
         if graph_attributes:
             graph.attributes.update(graph_attributes)
@@ -429,7 +429,7 @@ class CodeBlock(abctools.AbjadValueObject):
             graph.node_attributes.update(node_attributes)
         if edge_attributes:
             graph.edge_attributes.update(edge_attributes)
-        output_proxy = abjadbooktools.GraphvizOutputProxy(
+        output_proxy = abjad.book.GraphvizOutputProxy(
             graph,
             layout=layout,
             image_layout_specifier=self.image_layout_specifier,
@@ -464,7 +464,7 @@ class CodeBlock(abctools.AbjadValueObject):
     def show(self, argument, return_timing=False, **keywords):
         r'''Proxies Abjad's toplevel `show()` function.
         '''
-        from abjad.tools import abjadbooktools
+        import abjad.book
         strict = keywords.pop('strict', None)
         illustration = argument.__illustrate__(**keywords)
         default_stylesheet = None
@@ -476,13 +476,13 @@ class CodeBlock(abctools.AbjadValueObject):
             default_stylesheet = handler.get_default_stylesheet()
         image_render_specifier = self.image_render_specifier
         if image_render_specifier is None:
-            image_render_specifier = abjadbooktools.ImageRenderSpecifier()
+            image_render_specifier = abjad.book.ImageRenderSpecifier()
         if image_render_specifier.stylesheet is None:
             image_render_specifier = new(
                 image_render_specifier,
                 stylesheet=default_stylesheet,
                 )
-        output_proxy = abjadbooktools.LilyPondOutputProxy(
+        output_proxy = abjad.book.LilyPondOutputProxy(
             illustration,
             image_layout_specifier=self.image_layout_specifier,
             image_render_specifier=image_render_specifier,
