@@ -30,7 +30,7 @@ class Test(ScorePackageScriptTestCase):
         pdf_path = material_path.joinpath('illustration.pdf')
         assert pdf_path.exists()
         pdf_path.unlink()
-        script = abjad.commandlinetools.ManageMaterialScript()
+        script = abjad.cli.ManageMaterialScript()
         command = ['--render', 'test_material']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):

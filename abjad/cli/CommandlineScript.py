@@ -128,13 +128,13 @@ class CommandlineScript(abctools.AbjadObject):
     def list_commandline_script_classes():
         r'''Returns a list of all developer script classes.
         '''
+        import abjad.cli
         from abjad.tools import abjadbooktools
-        from abjad.tools import commandlinetools
         tools_package_paths = []
         tools_package_paths.extend(abjadbooktools.__path__)
-        tools_package_paths.extend(commandlinetools.__path__)
+        tools_package_paths.extend(abjad.cli.__path__)
         script_classes = []
-        base_class = commandlinetools.CommandlineScript
+        base_class = abjad.cli.CommandlineScript
         for tools_package_path in tools_package_paths:
             generator = documentationtools.yield_all_classes(
                 code_root=tools_package_path,

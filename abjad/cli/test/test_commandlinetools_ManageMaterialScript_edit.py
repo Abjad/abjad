@@ -9,12 +9,12 @@ except ImportError:
 
 class Test(ScorePackageScriptTestCase):
 
-    @mock.patch('abjad.commandlinetools.ScorePackageScript._call_subprocess')
+    @mock.patch('abjad.cli.ScorePackageScript._call_subprocess')
     def test_success(self, call_subprocess_mock):
         call_subprocess_mock.return_value = 0
         self.create_score()
         material_path = self.create_material('test_material')
-        script = abjad.commandlinetools.ManageMaterialScript()
+        script = abjad.cli.ManageMaterialScript()
         command = ['--edit', 'test_material']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):

@@ -32,7 +32,7 @@ class Test(ScorePackageScriptTestCase):
         pdf_path = segment_path.joinpath('illustration.pdf')
         assert pdf_path.exists()
         pdf_path.unlink()
-        script = abjad.commandlinetools.ManageSegmentScript()
+        script = abjad.cli.ManageSegmentScript()
         command = ['--render', 'test_segment']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):

@@ -53,7 +53,7 @@ class TestCase(abjad.TestCase):
         shutil.rmtree(str(self.doctest_path))
 
     def test_both(self):
-        script = abjad.commandlinetools.DoctestScript()
+        script = abjad.cli.DoctestScript()
         command = [str(self.doctest_path)]
         with abjad.TemporaryDirectoryChange(str(self.test_path)):
             with abjad.RedirectedStreams(stdout=self.string_io):
@@ -86,7 +86,7 @@ class TestCase(abjad.TestCase):
         self.compare_strings(expected, script_output)
 
     def test_diff(self):
-        script = abjad.commandlinetools.DoctestScript()
+        script = abjad.cli.DoctestScript()
         command = ['--diff', str(self.failing_module_path)]
         with abjad.TemporaryDirectoryChange(str(self.test_path)):
             with abjad.RedirectedStreams(stdout=self.string_io):
@@ -117,7 +117,7 @@ class TestCase(abjad.TestCase):
         self.compare_strings(expected, script_output)
 
     def test_fail(self):
-        script = abjad.commandlinetools.DoctestScript()
+        script = abjad.cli.DoctestScript()
         command = [str(self.failing_module_path)]
         with abjad.TemporaryDirectoryChange(str(self.test_path)):
             with abjad.RedirectedStreams(stdout=self.string_io):
@@ -149,7 +149,7 @@ class TestCase(abjad.TestCase):
         self.compare_strings(expected, script_output)
 
     def test_pass(self):
-        script = abjad.commandlinetools.DoctestScript()
+        script = abjad.cli.DoctestScript()
         command = [str(self.passing_module_path)]
         with abjad.TemporaryDirectoryChange(str(self.test_path)):
             with abjad.RedirectedStreams(stdout=self.string_io):

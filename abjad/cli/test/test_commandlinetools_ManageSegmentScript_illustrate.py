@@ -82,7 +82,7 @@ class Test(ScorePackageScriptTestCase):
 
             segment_maker = FaultySegmentMaker()
             '''))
-        script = abjad.commandlinetools.ManageSegmentScript()
+        script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
@@ -135,7 +135,7 @@ class Test(ScorePackageScriptTestCase):
         segment_path = self.create_segment('test_segment')
         definition_path = segment_path.joinpath('definition.py')
         definition_path.unlink()
-        script = abjad.commandlinetools.ManageSegmentScript()
+        script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
@@ -174,7 +174,7 @@ class Test(ScorePackageScriptTestCase):
 
             segment_maker = FaultySegmentMaker()
             '''))
-        script = abjad.commandlinetools.ManageSegmentScript()
+        script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
@@ -199,7 +199,7 @@ class Test(ScorePackageScriptTestCase):
         definition_path = segment_path.joinpath('definition.py')
         with open(str(definition_path), 'a') as file_pointer:
             file_pointer.write('\n\nfailure = 1 / 0\n')
-        script = abjad.commandlinetools.ManageSegmentScript()
+        script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
@@ -221,7 +221,7 @@ class Test(ScorePackageScriptTestCase):
         self.create_segment('segment_one')
         self.create_segment('segment_two')
         self.create_segment('segment_three')
-        script = abjad.commandlinetools.ManageSegmentScript()
+        script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', '*']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
@@ -284,7 +284,7 @@ class Test(ScorePackageScriptTestCase):
         self.create_segment('segment_one')
         self.create_segment('segment_two')
         self.create_segment('segment_three')
-        script = abjad.commandlinetools.ManageSegmentScript()
+        script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'segment_t*']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
@@ -335,7 +335,7 @@ class Test(ScorePackageScriptTestCase):
     def test_success_one_segment(self, open_file_mock):
         self.create_score()
         self.create_segment('test_segment')
-        script = abjad.commandlinetools.ManageSegmentScript()
+        script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):

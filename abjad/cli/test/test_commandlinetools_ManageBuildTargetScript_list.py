@@ -6,7 +6,7 @@ class Test(ScorePackageScriptTestCase):
 
     def test_list(self):
         self.create_score()
-        script = abjad.commandlinetools.ManageBuildTargetScript()
+        script = abjad.cli.ManageBuildTargetScript()
         command = ['--new', 'big-version']
         with abjad.TemporaryDirectoryChange(str(self.score_path)):
             try:

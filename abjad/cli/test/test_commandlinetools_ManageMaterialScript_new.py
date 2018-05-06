@@ -39,7 +39,7 @@ class Test(ScorePackageScriptTestCase):
 
     def test_internal_path(self):
         self.create_score()
-        script = abjad.commandlinetools.ManageMaterialScript()
+        script = abjad.cli.ManageMaterialScript()
         command = ['--new', 'test_material']
         internal_path = self.score_path.joinpath('test_score', 'builds')
         assert internal_path.exists()
@@ -57,7 +57,7 @@ class Test(ScorePackageScriptTestCase):
 
     def test_success(self):
         self.create_score()
-        script = abjad.commandlinetools.ManageMaterialScript()
+        script = abjad.cli.ManageMaterialScript()
         command = ['--new', 'test_material']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):

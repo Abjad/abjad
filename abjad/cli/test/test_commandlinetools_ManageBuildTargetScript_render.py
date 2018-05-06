@@ -40,7 +40,7 @@ class Test(ScorePackageScriptTestCase):
         self.illustrate_segments()
         self.collect_segments()
         self.create_build_target()
-        script = abjad.commandlinetools.ManageBuildTargetScript()
+        script = abjad.cli.ManageBuildTargetScript()
         command = ['--render', 'letter-portrait']
         #with abjad.RedirectedStreams(stdout=self.string_io):
         with abjad.TemporaryDirectoryChange(str(self.score_path)):
@@ -69,7 +69,7 @@ class Test(ScorePackageScriptTestCase):
         self.illustrate_segments()
         self.collect_segments()
         target_path = self.create_build_target()
-        script = abjad.commandlinetools.ManageBuildTargetScript()
+        script = abjad.cli.ManageBuildTargetScript()
         command = [
             '--render', 'letter-portrait',
             '--back-cover',
@@ -101,7 +101,7 @@ class Test(ScorePackageScriptTestCase):
         self.illustrate_segments()
         self.collect_segments()
         target_path = self.create_build_target()
-        script = abjad.commandlinetools.ManageBuildTargetScript()
+        script = abjad.cli.ManageBuildTargetScript()
         command = [
             '--render', 'letter-portrait',
             '--front-cover',
@@ -133,7 +133,7 @@ class Test(ScorePackageScriptTestCase):
         self.illustrate_segments()
         self.collect_segments()
         target_path = self.create_build_target()
-        script = abjad.commandlinetools.ManageBuildTargetScript()
+        script = abjad.cli.ManageBuildTargetScript()
         command = [
             '--render', 'letter-portrait',
             '--music',
@@ -171,7 +171,7 @@ class Test(ScorePackageScriptTestCase):
         self.illustrate_segments()
         self.collect_segments()
         target_path = self.create_build_target()
-        script = abjad.commandlinetools.ManageBuildTargetScript()
+        script = abjad.cli.ManageBuildTargetScript()
         command = [
             '--render', 'letter-portrait',
             '--parts',
@@ -203,7 +203,7 @@ class Test(ScorePackageScriptTestCase):
         self.illustrate_segments()
         self.collect_segments()
         target_path = self.create_build_target()
-        script = abjad.commandlinetools.ManageBuildTargetScript()
+        script = abjad.cli.ManageBuildTargetScript()
         command = [
             '--render', 'letter-portrait',
             '--preface',

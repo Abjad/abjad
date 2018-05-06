@@ -27,7 +27,7 @@ class Test(ScorePackageScriptTestCase):
 
     def test_exists(self):
         self.create_score()
-        script = abjad.commandlinetools.ManageBuildTargetScript()
+        script = abjad.cli.ManageBuildTargetScript()
         command = ['--new']
         with abjad.TemporaryDirectoryChange(str(self.score_path)):
             try:
@@ -45,7 +45,7 @@ class Test(ScorePackageScriptTestCase):
 
     def test_explicit(self):
         self.create_score()
-        script = abjad.commandlinetools.ManageBuildTargetScript()
+        script = abjad.cli.ManageBuildTargetScript()
         command = [
             '--new',
             '--paper-size', 'a3',
@@ -79,7 +79,7 @@ class Test(ScorePackageScriptTestCase):
 
     def test_force_replace(self):
         self.create_score()
-        script = abjad.commandlinetools.ManageBuildTargetScript()
+        script = abjad.cli.ManageBuildTargetScript()
         command = ['-f', '--new']
         with abjad.TemporaryDirectoryChange(str(self.score_path)):
             try:
@@ -99,7 +99,7 @@ class Test(ScorePackageScriptTestCase):
 
     def test_implicit(self):
         self.create_score()
-        script = abjad.commandlinetools.ManageBuildTargetScript()
+        script = abjad.cli.ManageBuildTargetScript()
         command = ['--new']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
@@ -279,7 +279,7 @@ class Test(ScorePackageScriptTestCase):
 
     def test_internal_path(self):
         self.create_score()
-        script = abjad.commandlinetools.ManageBuildTargetScript()
+        script = abjad.cli.ManageBuildTargetScript()
         command = ['--new']
         internal_path = self.score_path.joinpath('test_score', 'builds')
         assert internal_path.exists()
@@ -297,7 +297,7 @@ class Test(ScorePackageScriptTestCase):
 
     def test_named(self):
         self.create_score()
-        script = abjad.commandlinetools.ManageBuildTargetScript()
+        script = abjad.cli.ManageBuildTargetScript()
         command = [
             '--new',
             'World Premiere Version',

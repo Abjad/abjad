@@ -241,7 +241,7 @@ class TestCheckClassSections(unittest.TestCase):
         with abjad.TemporaryDirectoryChange(str(test_working_directory)):
             with abjad.RedirectedStreams(stdout=self.string_io):
                 with self.assertRaises(SystemExit) as context_manager:
-                    script = abjad.commandlinetools.CheckClassSections()
+                    script = abjad.cli.CheckClassSections()
                     script(command)
         # Normalize script output for sane diffs
         script_output = self.ansi_escape.sub('', self.string_io.getvalue())

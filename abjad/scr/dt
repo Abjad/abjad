@@ -1,9 +1,0 @@
-#! /usr/bin/env python
-
-
-if __name__ == '__main__':
-    import sys
-    from abjad.tools import commandlinetools
-    script = commandlinetools.RunDoctestsScript()
-    arguments = sys.argv[1:]
-    script(arguments)

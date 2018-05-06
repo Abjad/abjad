@@ -20,14 +20,14 @@ class Test(ScorePackageScriptTestCase):
         with open(file_name, 'w') as file_pointer:
             file_pointer.write(contents)
 
-    @mock.patch('abjad.commandlinetools.ScorePackageScript._call_subprocess')
+    @mock.patch('abjad.cli.ScorePackageScript._call_subprocess')
     def test_success(self, call_subprocess_mock):
         call_subprocess_mock.return_value = 0
         self.create_score()
         self.create_segment('segment_a')
         self.create_segment('segment_b')
         self.create_segment('segment_c')
-        script = abjad.commandlinetools.ManageSegmentScript()
+        script = abjad.cli.ManageSegmentScript()
         command = ['--stage']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):

@@ -10,7 +10,7 @@ class Test(ScorePackageScriptTestCase):
         self.create_material('bar')
         self.create_material('baz')
         self.create_material('quux')
-        script = abjad.commandlinetools.ManageMaterialScript()
+        script = abjad.cli.ManageMaterialScript()
         command = ['--list']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
@@ -28,7 +28,7 @@ class Test(ScorePackageScriptTestCase):
 
     def test_list_materials_no_materials(self):
         self.create_score()
-        script = abjad.commandlinetools.ManageMaterialScript()
+        script = abjad.cli.ManageMaterialScript()
         command = ['--list']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):

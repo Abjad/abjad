@@ -3,6 +3,5 @@ def run_ajv():
 
     One-line wrapper around AbjDevScript.
     '''
-    from abjad.tools import commandlinetools
-
-    commandlinetools.AbjDevScript()()
+    import abjad
+    abjad.cli.AbjDevScript()()

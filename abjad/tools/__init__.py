@@ -8,7 +8,6 @@ from .import lilypondfiletools
 from .import schemetools
 from .import markuptools
 from .import documentationtools
-from .import commandlinetools
 from .import exceptiontools
 from .import graphtools
 from .import indicatortools

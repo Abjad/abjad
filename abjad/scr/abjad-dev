@@ -1,6 +1,0 @@
-#! /usr/bin/env python
-
-
-if __name__ == '__main__':
-    from abjad.tools.commandlinetools._run_abjdev import _run_abjdev
-    _run_abjdev()

@@ -10,7 +10,7 @@ class Test(ScorePackageScriptTestCase):
         self.create_segment('segment_one')
         self.create_segment('segment_two')
         self.create_segment('segment_three')
-        script = abjad.commandlinetools.ManageSegmentScript()
+        script = abjad.cli.ManageSegmentScript()
         command = ['--list']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
@@ -27,7 +27,7 @@ class Test(ScorePackageScriptTestCase):
 
     def test_list_segments_no_segments(self):
         self.create_score()
-        script = abjad.commandlinetools.ManageSegmentScript()
+        script = abjad.cli.ManageSegmentScript()
         command = ['--list']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
@@ -45,7 +45,7 @@ class Test(ScorePackageScriptTestCase):
         self.create_segment('segment_one')
         self.create_segment('segment_two')
         self.create_segment('segment_three')
-        script = abjad.commandlinetools.ManageSegmentScript()
+        script = abjad.cli.ManageSegmentScript()
         segment_names = script._read_segments_list_json(
             self.score_path,
             verbose=False,

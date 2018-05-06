@@ -33,7 +33,7 @@ class Test(ScorePackageScriptTestCase):
         self.create_segment('segment_two')
         self.create_segment('segment_three')
         self.illustrate_segments()
-        collect_script = abjad.commandlinetools.ManageSegmentScript()
+        collect_script = abjad.cli.ManageSegmentScript()
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:

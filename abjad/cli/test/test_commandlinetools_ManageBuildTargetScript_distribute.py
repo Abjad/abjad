@@ -30,7 +30,7 @@ class Test(ScorePackageScriptTestCase):
         self.illustrate_segments()
         self.collect_segments()
         self.create_build_target()
-        script = abjad.commandlinetools.ManageBuildTargetScript()
+        script = abjad.cli.ManageBuildTargetScript()
         command = ['--render', 'letter-portrait']
         with abjad.TemporaryDirectoryChange(str(self.score_path)):
             try:

@@ -53,7 +53,7 @@ class Test(ScorePackageScriptTestCase):
             test_material = lilypondfiletools.LilyPondFile.new()
             test_material.items.append(r'\this-does-not-exist')
             '''))
-        script = abjad.commandlinetools.ManageMaterialScript()
+        script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', 'test_material']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
@@ -93,7 +93,7 @@ class Test(ScorePackageScriptTestCase):
         material_path = self.create_material('test_material')
         definition_path = material_path.joinpath('definition.py')
         definition_path.unlink()
-        script = abjad.commandlinetools.ManageMaterialScript()
+        script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', 'test_material']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
@@ -117,7 +117,7 @@ class Test(ScorePackageScriptTestCase):
             file_pointer.write(abjad.String.normalize(r'''
             test_material = None
             '''))
-        script = abjad.commandlinetools.ManageMaterialScript()
+        script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', 'test_material']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
@@ -149,7 +149,7 @@ class Test(ScorePackageScriptTestCase):
 
             test_material = Foo()
             '''))
-        script = abjad.commandlinetools.ManageMaterialScript()
+        script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', 'test_material']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
@@ -171,7 +171,7 @@ class Test(ScorePackageScriptTestCase):
         definition_path = material_path.joinpath('definition.py')
         with open(str(definition_path), 'a') as file_pointer:
             file_pointer.write('\n\nfailure = 1 / 0\n')
-        script = abjad.commandlinetools.ManageMaterialScript()
+        script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', 'test_material']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
@@ -190,7 +190,7 @@ class Test(ScorePackageScriptTestCase):
         self.create_material('material_one')
         self.create_material('material_two')
         self.create_material('material_three')
-        script = abjad.commandlinetools.ManageMaterialScript()
+        script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', '*']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
@@ -241,7 +241,7 @@ class Test(ScorePackageScriptTestCase):
         self.create_material('material_one')
         self.create_material('material_two')
         self.create_material('material_three')
-        script = abjad.commandlinetools.ManageMaterialScript()
+        script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', 'material_t*']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
@@ -283,7 +283,7 @@ class Test(ScorePackageScriptTestCase):
     def test_success_one_material(self, open_file_mock):
         self.create_score()
         self.create_material('test_material')
-        script = abjad.commandlinetools.ManageMaterialScript()
+        script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', 'test_material']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):

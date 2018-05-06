@@ -2,7 +2,6 @@ import abjad
 import pathlib
 import shutil
 import sys
-from abjad import commandlinetools
 
 
 class ScorePackageScriptTestCase(abjad.TestCase):
@@ -125,7 +124,7 @@ class ScorePackageScriptTestCase(abjad.TestCase):
     ### UTILITY METHODS ###
 
     def collect_segments(self):
-        script = commandlinetools.ManageSegmentScript()
+        script = abjad.cli.ManageSegmentScript()
         command = ['--collect']
         with abjad.TemporaryDirectoryChange(str(self.score_path)):
             script(command)
@@ -135,7 +134,7 @@ class ScorePackageScriptTestCase(abjad.TestCase):
         force=False,
         expect_error=False,
         ):
-        script = commandlinetools.ManageBuildTargetScript()
+        script = abjad.cli.ManageBuildTargetScript()
         command = ['--new']
         if force:
             command.insert(0, '-f')
@@ -157,7 +156,7 @@ class ScorePackageScriptTestCase(abjad.TestCase):
         force=False,
         expect_error=False,
         ):
-        script = commandlinetools.ManageMaterialScript()
+        script = abjad.cli.ManageMaterialScript()
         command = ['--new', material_name]
         if force:
             command.insert(0, '-f')
@@ -178,7 +177,7 @@ class ScorePackageScriptTestCase(abjad.TestCase):
             )
 
     def create_score(self, force=False, expect_error=False):
-        script = commandlinetools.ManageScoreScript()
+        script = abjad.cli.ManageScoreScript()
         command = [
             '--new',
             'Test Score',
@@ -208,7 +207,7 @@ class ScorePackageScriptTestCase(abjad.TestCase):
         force=False,
         expect_error=False,
         ):
-        script = commandlinetools.ManageSegmentScript()
+        script = abjad.cli.ManageSegmentScript()
         command = ['--new', segment_name]
         if force:
             command.insert(0, '-f')
@@ -229,7 +228,7 @@ class ScorePackageScriptTestCase(abjad.TestCase):
             )
 
     def illustrate_material(self, material_name):
-        script = commandlinetools.ManageMaterialScript()
+        script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', material_name]
         with abjad.TemporaryDirectoryChange(str(self.score_path)):
             try:
@@ -238,7 +237,7 @@ class ScorePackageScriptTestCase(abjad.TestCase):
                 raise RuntimeError('SystemExit: {}'.format(e.code))
 
     def illustrate_segment(self, segment_name):
-        script = commandlinetools.ManageSegmentScript()
+        script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', segment_name]
         with abjad.TemporaryDirectoryChange(str(self.score_path)):
             try:
@@ -247,7 +246,7 @@ class ScorePackageScriptTestCase(abjad.TestCase):
                 raise RuntimeError('SystemExit: {}'.format(e.code))
 
     def illustrate_segments(self):
-        script = commandlinetools.ManageSegmentScript()
+        script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', '*']
         with abjad.TemporaryDirectoryChange(str(self.score_path)):
             script(command)

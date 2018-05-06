@@ -41,7 +41,7 @@ class Test(ScorePackageScriptTestCase):
 
     def test_internal_path(self):
         self.create_score()
-        script = abjad.commandlinetools.ManageSegmentScript()
+        script = abjad.cli.ManageSegmentScript()
         command = ['--new', 'test_segment']
         internal_path = self.score_path.joinpath('test_score', 'builds')
         assert internal_path.exists()
@@ -61,7 +61,7 @@ class Test(ScorePackageScriptTestCase):
 
     def test_success(self):
         self.create_score()
-        script = abjad.commandlinetools.ManageSegmentScript()
+        script = abjad.cli.ManageSegmentScript()
         try:
             names = script._read_segments_list_json(
                 self.score_path,
