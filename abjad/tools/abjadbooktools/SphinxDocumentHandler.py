@@ -133,6 +133,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         string = datastructuretools.String.normalize('\n'.join(lines))
         if string:
             lines[:] = string.split('\n')
+        lines.append('')
 
     @staticmethod
     def on_builder_inited(app):

@@ -60,11 +60,11 @@ extras_require = {
         ],
     'development': [
         'mypy',
-        'pytest>=3.0.0',
-        'sphinx>=1.6.0',
-        'sphinx-rtd-theme',
-        'sphinx_autodoc_typehints>=1.2.5',
-        'PyPDF2',
+        'pytest>=3.5.0',
+        'sphinx>=1.7.0',
+        'sphinx-rtd-theme>0.3.0',
+        'sphinx_autodoc_typehints>=1.3.0',
+        'PyPDF2>=1.26.0',
         'uqbar>=0.2.9',
         ],
     'ipython': [

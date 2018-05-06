@@ -2,7 +2,8 @@ from .TreeNode import TreeNode
 
 
 class TreeContainer(TreeNode):
-    r'''Tree container.
+    '''
+    Tree container.
 
     Inner node in a generalized tree data structure.
 
@@ -18,7 +19,6 @@ class TreeContainer(TreeNode):
             TreeNode(),
             )
         )
-
     '''
 
     ### CLASS VARIABLES ###
