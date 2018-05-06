@@ -2,7 +2,6 @@ from .CommandlineScript import CommandlineScript
 from .AbjDevScript import AbjDevScript
 from .CheckClassSections import CheckClassSections
 from .CleanScript import CleanScript
-from .DoctestScript import DoctestScript
 from .ScorePackageScript import ScorePackageScript
 from .ManageBuildTargetScript import ManageBuildTargetScript
 from .ManageMaterialScript import ManageMaterialScript
