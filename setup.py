@@ -76,7 +76,7 @@ extras_require = {
 entry_points = {
     'console_scripts': [
         'abjad = abjad.tools.systemtools.run_abjad:run_abjad',
-        'ajv = abjad.tools.commandlinetools.run_ajv:run_ajv',
+        'ajv = abjad.cli.run_ajv:run_ajv',
         ]
     }
 
