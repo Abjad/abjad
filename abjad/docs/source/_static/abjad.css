@@ -1,10 +1,3 @@
-p.rubric {
-    margin-top: 0;
-    font-weight: 700;
-    font-family: "Roboto Slab","ff-tisa-web-pro","Georgia",Arial,sans-serif;
-    font-size: 150%;
-    }
-
 div.example,
 p.graphviz {
     -moz-border-radius: 2px;
@@ -24,29 +17,6 @@ p.graphviz {
 
 div.example :last-child {
     margin-bottom: 0;
-    }
-
-tt.attribute {
-    color: #fff;
-    font-size: 0.75em;
-    margin: 0 1em 0 0;
-    padding: 0.5em;
-    }
-
-tt.abstract {
-    background-color: #666;
-    }
-
-tt.classmethod {
-    background-color: #c96;
-    }
-
-tt.inherited {
-    background-color: #6cc;
-    }
-
-tt.staticmethod {
-    background-color: #69c;
     }
 
 .table-row {
