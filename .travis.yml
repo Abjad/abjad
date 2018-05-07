@@ -34,6 +34,7 @@ addons:
 
 before_install:
 - printenv | sort
+- python -m site --user-site
 - wget -q ${LILYPOND_URL}lilypond-${LILYPOND_VERSION}-1.linux-64.sh
 - sh lilypond-${LILYPOND_VERSION}-1.linux-64.sh --batch
 - pip install -U pip coverage
@@ -43,7 +44,7 @@ before_install:
 
 install:
 # install without development dependencies.
-- pip install --user -e .
+- pip install -e .
 # make a non-accessible ~/.abjad/ when testing for read-only filesystems.
 - if [[ $TRAVIS_READ_ONLY == 'true' ]]; then mkdir ~/.abjad; chmod 000 ~/.abjad; fi
 # echo the configuration file path to debug read-only-filesystem handling
