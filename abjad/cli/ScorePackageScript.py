@@ -11,33 +11,23 @@ import subprocess
 import traceback
 from abjad.tools import systemtools
 from abjad.tools import datastructuretools
-from .CommandlineScript import CommandlineScript
+from uqbar.cli import CLI
 
 
-class ScorePackageScript(CommandlineScript):
+class ScorePackageScript(CLI):
     '''
     Abstract base class for score-package scripts.
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_build_path',
-        '_cwd',
-        '_distribution_path',
-        '_materials_path',
-        '_root_parent_path',
-        '_score_package_path',
-        '_score_repository_path',
-        '_segments_path',
-        )
-
     _name_re = re.compile('^[a-z][a-z0-9_]*$')
+    config_name = '.abjadrc'
 
     ### INITIALIZER ###
 
     def __init__(self):
-        CommandlineScript.__init__(self)
+        CLI.__init__(self)
         self._cwd = self._get_current_working_directory()
         self._score_package_path = None
         self._score_repository_path = None

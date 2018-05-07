@@ -18,9 +18,8 @@ class ManageScoreScript(ScorePackageScript):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
-
     alias = 'score'
+    config_name = '.abjadrc'
     short_description = 'Manage score packages.'
 
     ### PRIVATE METHODS ###

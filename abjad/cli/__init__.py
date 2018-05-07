@@ -1,4 +1,3 @@
-from .CommandlineScript import CommandlineScript
 from .AbjDevScript import AbjDevScript
 from .CheckClassSections import CheckClassSections
 from .CleanScript import CleanScript
