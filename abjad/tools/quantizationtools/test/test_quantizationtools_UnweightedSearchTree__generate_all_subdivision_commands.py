@@ -36,7 +36,7 @@ def test_quantizationtools_UnweightedSearchTree__generate_all_subdivision_comman
         ((0, (1, 1, 1, 1, 1)),)
         )
 
-    new_q_grid = copy.copy(q_grid)
+    new_q_grid = copy.deepcopy(q_grid)
     q_event_proxies = new_q_grid.subdivide_leaves(commands[0])
     new_q_grid.fit_q_events(q_event_proxies)
     new_q_grid.sort_q_events_by_index()
@@ -52,7 +52,7 @@ def test_quantizationtools_UnweightedSearchTree__generate_all_subdivision_comman
         ((0, (1, 1, 1)), (1, (1, 1, 1)))
         )
 
-    new_q_grid = copy.copy(q_grid)
+    new_q_grid = copy.deepcopy(q_grid)
     q_event_proxies = new_q_grid.subdivide_leaves(commands[1])
     new_q_grid.fit_q_events(q_event_proxies)
     new_q_grid.sort_q_events_by_index()

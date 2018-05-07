@@ -42,7 +42,7 @@ class SearchTree(AbjadObject):
         new_q_grids = []
         commands = self._generate_all_subdivision_commands(q_grid)
         for command in commands:
-            new_q_grid = copy.copy(q_grid)
+            new_q_grid = copy.deepcopy(q_grid)
             q_events = new_q_grid.subdivide_leaves(command)
             new_q_grid.fit_q_events(q_events)
             new_q_grids.append(new_q_grid)

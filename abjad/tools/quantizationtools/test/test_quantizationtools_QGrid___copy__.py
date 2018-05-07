@@ -5,7 +5,7 @@ from abjad.tools import quantizationtools
 
 def test_quantizationtools_QGrid___copy___01():
     q_grid = quantizationtools.QGrid()
-    copied = copy.copy(q_grid)
+    copied = copy.deepcopy(q_grid)
     assert format(q_grid) == format(copied)
     assert q_grid != copied
     assert q_grid is not copied

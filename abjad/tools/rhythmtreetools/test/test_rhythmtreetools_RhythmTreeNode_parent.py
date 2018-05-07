@@ -1,4 +1,3 @@
-import abjad
 import pytest
 from abjad.tools import rhythmtreetools
 
@@ -26,4 +25,5 @@ def test_rhythmtreetools_RhythmTreeNode_parent_01():
     assert subcontainer.parent is container
     assert container.parent is None
 
-    pytest.raises(AssertionError, 'subcontainer.append(container)')
+    with pytest.raises(ValueError):
+        subcontainer.append(container)

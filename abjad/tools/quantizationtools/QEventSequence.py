@@ -530,7 +530,7 @@ class QEventSequence(AbjadObject):
             prototype = abjad.MetronomeMark
             assert leaves[0]._get_effective(prototype) is not None
         elif isinstance(tempo, abjad.MetronomeMark):
-            tempo = copy.copy(tempo)
+            tempo = copy.deepcopy(tempo)
         elif isinstance(tempo, tuple):
             tempo = abjad.MetronomeMark(*tempo)
         else:

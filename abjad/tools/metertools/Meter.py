@@ -340,7 +340,7 @@ class Meter(AbjadValueObject):
                 root = parsed[0]
             else:
                 root = argument
-            for node in root.nodes:
+            for node in [root] + list(root.depth_first()):
                 assert node.prolation == 1
             numerator = root.preprolated_duration.numerator
             denominator = root.preprolated_duration.denominator
@@ -612,7 +612,10 @@ class Meter(AbjadValueObject):
                 },
             )
         node_mapping = {}
-        for node in self._root_node.nodes:
+        root = self._root_node
+        nodes = [root] + list(root.depth_first())
+        leaves = [_ for _ in nodes if not hasattr(_, 'children')]
+        for node in nodes:
             graphviz_node = uqbar.graphs.Node()
             graphviz_node.attributes['label'] = str(node.preprolated_duration)
             if isinstance(node, rhythmtreetools.RhythmTreeContainer):
@@ -626,7 +629,6 @@ class Meter(AbjadValueObject):
                     node_mapping[node.parent],
                     node_mapping[node],
                     )
-        leaves = self._root_node.leaves
         offset = leaves[0].start_offset
         offset_subgraph = uqbar.graphs.Graph(
             name='cluster_offsets',
@@ -1209,7 +1211,7 @@ class Meter(AbjadValueObject):
         inventory = []
         all_offsets = set()
         all_offsets.add(abjad.Offset(self.numerator, self.denominator))
-        for depth, nodes in sorted(self.root_node.depthwise_inventory.items()):
+        for depth, nodes in sorted(self.root_node._depthwise_inventory.items()):
             for node in nodes:
                 all_offsets.add(abjad.Offset(node.start_offset))
             inventory.append(tuple(sorted(all_offsets)))
