@@ -1,9 +1,17 @@
+.PHONY: docs build
+
+build:
+	python setup.py sdist
+
 clean:
-	rm -Rif Abjad.egg-info/
+	find . -name '*.pyc' | xargs rm -Rif
+	find . -name '*egg-info' | xargs rm -Rif
+	find . -name __pycache__ | xargs rm -Rif
 	rm -Rif build/
 	rm -Rif dist/
 
 release:
+	make clean
 	make -C abjad/docs upload
-	python setup.py sdist
-	twine upload dist/*
+	make build
+	twine upload dist/abjad*.tar.gz
