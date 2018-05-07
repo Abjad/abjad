@@ -33,8 +33,6 @@ addons:
     - texlive-xetex
 
 before_install:
-- printenv | sort
-- python -m site --user-site
 - wget -q ${LILYPOND_URL}lilypond-${LILYPOND_VERSION}-1.linux-64.sh
 - sh lilypond-${LILYPOND_VERSION}-1.linux-64.sh --batch
 - pip install -U pip coverage
@@ -53,13 +51,14 @@ install:
 - rm -Rif ~/.abjad
 - abjad/scr/devel/prime-parser-tables
 # then install development and ipython dependencies.
-- pip install --user -e .[development,ipython]
+- pip install -e .[development,ipython]
 # install accelerated dependencies if requested
 - if [[ $ACCELERATED == true ]]; then pip install -e .[accelerated]; fi
 
 script:
 - coverage run -a `which pytest`
 - mypy --version
+- export MYPYPATH=`python -c 'import pathlib, uqbar; print(pathlib.Path(uqbar.__path__[0]).parent)'`
 - mypy abjad
 
 after_success:
