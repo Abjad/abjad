@@ -1,8 +1,12 @@
 from .Spanner import Spanner
+from abjad.tools.lilypondnametools.LilyPondContextSetting import \
+    LilyPondContextSetting
+from abjad.tools.schemetools.SchemeSymbol import SchemeSymbol
 
 
 class PianoPedalSpanner(Spanner):
-    r'''Piano pedal spanner.
+    r'''
+    Piano pedal spanner.
 
     ..  container:: example
 
@@ -55,20 +59,15 @@ class PianoPedalSpanner(Spanner):
 
     def __init__(
         self,
-        kind='sustain',
-        overrides=None,
-        style='mixed',
-        ):
-        Spanner.__init__(self, overrides=overrides)
+        kind: str = 'sustain',
+        style: str = 'mixed',
+        ) -> None:
+        Spanner.__init__(self)
         if kind not in list(self._kinds.keys()):
-            message = 'kind must be in {!r}.'
-            message = message.format(list(self._kinds.keys()))
-            raise ValueError(message)
+            raise ValueError(f'kind must be in {list(self._kinds.keys())!r}.')
         self._kind = kind
         if style not in self._styles:
-            message = 'style must be in {!r}.'
-            message = message.format(self._styles)
-            raise ValueError(message)
+            raise ValueError(f'style must be in {self._styles!r}.')
         self._style = style
 
     ### PRIVATE METHODS ###
@@ -78,11 +77,10 @@ class PianoPedalSpanner(Spanner):
         new._style = self.style
 
     def _get_lilypond_format_bundle(self, leaf):
-        import abjad
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         if self._is_my_only_leaf(leaf):
-            style = abjad.SchemeSymbol(self.style)
-            context_setting = abjad.lilypondnametools.LilyPondContextSetting(
+            style = SchemeSymbol(self.style)
+            context_setting = LilyPondContextSetting(
                 lilypond_type='Staff',
                 context_property='pedalSustainStyle',
                 value=style,
@@ -93,8 +91,8 @@ class PianoPedalSpanner(Spanner):
             string = self._kinds[self.kind][1]
             bundle.right.spanner_starts.append(string)
         elif leaf is self[0]:
-            style = abjad.SchemeSymbol(self.style)
-            context_setting = abjad.lilypondnametools.LilyPondContextSetting(
+            style = SchemeSymbol(self.style)
+            context_setting = LilyPondContextSetting(
                 lilypond_type='Staff',
                 context_property='pedalSustainStyle',
                 value=style,
@@ -110,8 +108,9 @@ class PianoPedalSpanner(Spanner):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def kind(self):
-        r'''Gets kind of piano pedal spanner.
+    def kind(self) -> str:
+        r'''
+        Gets kind of piano pedal spanner.
 
         ..  container:: example
 
@@ -196,8 +195,9 @@ class PianoPedalSpanner(Spanner):
         return self._kind
 
     @property
-    def style(self):
-        r'''Gets style of piano pedal spanner.
+    def style(self) -> str:
+        r'''
+        Gets style of piano pedal spanner.
 
         ..  container:: example
 

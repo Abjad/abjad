@@ -1,13 +1,13 @@
-from abjad.tools.lilypondnametools.LilyPondNameManager \
-    import LilyPondNameManager
+from abjad.tools.datastructuretools.String import String
+from abjad.tools.systemtools.LilyPondFormatManager import LilyPondFormatManager
+from .LilyPondNameManager import LilyPondNameManager
 
 
 class LilyPondGrobNameManager(LilyPondNameManager):
-    '''LilyPond grob name manager.
+    '''
+    LilyPond grob name manager.
 
     ..  container:: example
-
-        Initializes with toplevel override function:
 
         >>> note = abjad.Note("c'4")
         >>> abjad.override(note)
@@ -17,8 +17,9 @@ class LilyPondGrobNameManager(LilyPondNameManager):
 
     ### SPECIAL METHODS ###
 
-    def __getattr__(self, name):
-        r'''Gets LilyPond name manager keyed to `name`.
+    def __getattr__(self, name) -> LilyPondNameManager:
+        r'''
+        Gets LilyPond name manager keyed to ``name``.
 
         ..  container:: example
 
@@ -49,42 +50,39 @@ class LilyPondGrobNameManager(LilyPondNameManager):
             LilyPondNameManager(('color', 'red'))
 
         '''
-        import abjad
-        from abjad import ly
-        from abjad.tools import lilypondnametools
-        camel_name = abjad.String(name).to_upper_camel_case()
+        from abjad.ly import contexts
+        from abjad.ly import grob_interfaces
+        camel_name = String(name).to_upper_camel_case()
         if name.startswith('_'):
             try:
                 return vars(self)[name]
             except KeyError:
-                message = '{!r} object has no attribute: {!r}.'
-                message = message.format(type(self).__name__, name)
+                type_name = type(self).__name__
+                message = '{type_name!r} object has no attribute: {name!r}.'
                 raise AttributeError(message)
-        elif camel_name in ly.contexts:
+        elif camel_name in contexts:
             try:
                 return vars(self)['_' + name]
             except KeyError:
-                context = lilypondnametools.LilyPondGrobNameManager()
+                context = LilyPondGrobNameManager()
                 vars(self)['_' + name] = context
                 return context
-        elif camel_name in ly.grob_interfaces:
+        elif camel_name in grob_interfaces:
             try:
                 return vars(self)[name]
             except KeyError:
-                vars(self)[name] = lilypondnametools.LilyPondNameManager()
+                vars(self)[name] = LilyPondNameManager()
                 return vars(self)[name]
         else:
             try:
                 return vars(self)[name]
             except KeyError:
-                message = '{!r} object has no attribute: {!r}.'
-                message = message.format(type(self).__name__, name)
+                type_name = type(self).__name__
+                message = '{type_name!r} object has no attribute: {name!r}.'
                 raise AttributeError(message)
 
-    def __setattr__(self, attribute, value):
-        r'''Sets attribute `attribute` of grob name manager to `value`.
-
-        Returns none.
+    def __setattr__(self, attribute, value) -> None:
+        r'''Sets attribute ``attribute`` of grob name manager to ``value``.
         '''
         # make sure attribute name is valid grob name before setting value
         object.__setattr__(self, attribute, value)
@@ -92,10 +90,9 @@ class LilyPondGrobNameManager(LilyPondNameManager):
     ### PRIVATE METHODS ###
 
     def _get_attribute_tuples(self):
-        import abjad
         result = []
         for name, value in vars(self).items():
-            if type(value) is abjad.LilyPondNameManager:
+            if type(value) is LilyPondNameManager:
                 grob, grob_proxy = name, value
                 pairs = iter(vars(grob_proxy).items())
                 for attribute, value in pairs:
@@ -116,8 +113,7 @@ class LilyPondGrobNameManager(LilyPondNameManager):
         return tuple(result)
 
     def _list_format_contributions(self, contribution_type, once=False):
-        from abjad.tools import systemtools
-        manager = systemtools.LilyPondFormatManager
+        manager = LilyPondFormatManager
         assert contribution_type in ('override', 'revert')
         result = []
         for attribute_tuple in self._get_attribute_tuples():
@@ -132,8 +128,7 @@ class LilyPondGrobNameManager(LilyPondNameManager):
                 attribute = attribute_tuple[2]
                 value = attribute_tuple[3]
             else:
-                message = 'invalid attribute tuple: {!r}.'
-                message = message.format(attribute_tuple)
+                message = 'invalid attribute tuple: {attribute_tuple!r}.'
                 raise ValueError(message)
             if contribution_type == 'override':
                 override_string = manager.make_lilypond_override_string(

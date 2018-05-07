@@ -1,8 +1,13 @@
+import typing
+from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
+from abjad.tools.scoretools.Measure import Measure
+from abjad.tools.topleveltools.inspect import inspect
 from .ComplexBeam import ComplexBeam
 
 
 class MeasuredComplexBeam(ComplexBeam):
-    r'''Measured complex beam.
+    r'''
+    Measured complex beam.
 
     ..  container:: example
 
@@ -65,33 +70,31 @@ class MeasuredComplexBeam(ComplexBeam):
 
     def __init__(
         self,
-        direction=None,
-        isolated_nib_direction=False,
-        overrides=None,
-        span_beam_count=1,
-        ):
+        direction: OrdinalConstant = None,
+        isolated_nib_direction: typing.Union[bool, OrdinalConstant] = False,
+        span_beam_count: int = 1,
+        ) -> None:
         ComplexBeam.__init__(
             self,
             direction=direction,
             isolated_nib_direction=isolated_nib_direction,
-            overrides=overrides,
             )
-        assert isinstance(span_beam_count, (int, type(None)))
+        if span_beam_count is not None:
+            assert isinstance(span_beam_count, int)
         self._span_beam_count = span_beam_count
 
     ### PRIVATE METHODS ###
 
     def _add_beam_counts(self, leaf, bundle):
-        import abjad
         left, right = None, None
         #if leaf.beam.beamable:
         if self._is_beamable(leaf):
             if self._is_exterior_leaf(leaf):
                 left, right = self._get_left_right_for_exterior_leaf(leaf)
-            elif abjad.inspect(leaf).get_parentage(
-                include_self=False).get_first(abjad.Measure) is not None:
-                measure = abjad.inspect(leaf).get_parentage(
-                    include_self=False).get_first(abjad.Measure)
+            elif inspect(leaf).get_parentage(
+                include_self=False).get_first(Measure) is not None:
+                measure = inspect(leaf).get_parentage(
+                    include_self=False).get_first(Measure)
                 # leaf at beginning of measure
                 if measure._is_one_of_my_first_leaves(leaf):
                     assert isinstance(self.span_beam_count, int)
@@ -105,10 +108,10 @@ class MeasuredComplexBeam(ComplexBeam):
             else:
                 left, right = self._get_left_right_for_interior_leaf(leaf)
             if left is not None:
-                string = r'\set stemLeftBeamCount = {}'.format(left)
+                string = rf'\set stemLeftBeamCount = {left}'
                 bundle.before.commands.append(string)
             if right is not None:
-                string = r'\set stemRightBeamCount = {}'.format(right)
+                string = rf'\set stemRightBeamCount = {right}'
                 bundle.before.commands.append(string)
 
     def _copy_keyword_args(self, new):
@@ -118,8 +121,9 @@ class MeasuredComplexBeam(ComplexBeam):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def span_beam_count(self):
-        r'''Gets number of span beams between adjacent measures.
+    def span_beam_count(self) -> int:
+        r'''
+        Gets number of span beams between adjacent measures.
 
         ..  container:: example
 
@@ -153,6 +157,5 @@ class MeasuredComplexBeam(ComplexBeam):
             >>> beam.span_beam_count
             2
 
-        Returns nonnegative integer or none.
         '''
         return self._span_beam_count

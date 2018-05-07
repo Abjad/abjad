@@ -26,9 +26,12 @@ abjad_tags = Tags()
 
 
 class Spanner(AbjadObject, collections.Sequence):
-    '''Spanner.
+    r'''
+    Spanner.
 
     Any object that stretches horizontally and encompasses leaves.
+
+    Usually at the context of the voice (not staff or higher).
 
     Examples include beams, slurs, hairpins and trills.
     '''
@@ -54,11 +57,8 @@ class Spanner(AbjadObject, collections.Sequence):
 
     def __init__(
         self,
-        overrides: OrderedDict = None,
         ) -> None:
-        overrides = overrides or OrderedDict()
         self._contiguity_constraint = 'logical voice'
-        self._apply_overrides(overrides)
         self._deactivate = None
         self._ignore_attachment_test = None
         self._ignore_before_attach = None
@@ -96,7 +96,8 @@ class Spanner(AbjadObject, collections.Sequence):
             new._lilypond_grob_name_manager = copy.copy(override(self))
         if getattr(self, '_lilypond_setting_name_manager', None) is not None:
             new._lilypond_setting_name_manager = copy.copy(setting(self))
-        if getattr(self, '_lilypond_tweak_manager', None) is not None: new._lilypond_tweak_manager = copy.copy(tweak(self))
+        if getattr(self, '_lilypond_tweak_manager', None) is not None:
+            new._lilypond_tweak_manager = copy.copy(tweak(self))
         self._copy_keyword_args(new)
         return new
 
@@ -168,18 +169,6 @@ class Spanner(AbjadObject, collections.Sequence):
         leaf._append_spanner(self)
         self._leaves.insert(0, leaf)
 
-    def _apply_overrides(self, overrides):
-        import abjad
-        namespace = abjad.__dict__.copy()
-        manager = override(self)
-        for key, value in overrides.items():
-            grob_name, attribute = key.split('__', 1)
-            grob_manager = getattr(manager, grob_name)
-            if isinstance(value, str):
-                if 'markuptools' in value or 'schemetools' in value:
-                    value = eval(value, namespace, namespace)
-            setattr(grob_manager, attribute, value)
-
     def _at_least_two_leaves(self, argument):
         leaves = select(argument).leaves()
         if 1 < len(leaves):
@@ -211,12 +200,14 @@ class Spanner(AbjadObject, collections.Sequence):
     def _attach_piecewise(
         self,
         indicator,
-        leaf,
-        alternate=None,
-        deactivate=None,
-        tag=None,
-        wrapper=None,
-        ):
+        leaf: Leaf,
+        alternate: typing.Tuple[str, str] = None,
+        deactivate: bool = None,
+        tag: typing.Union[str, Tag] = None,
+        wrapper: bool = None,
+        ) -> typing.Optional[Wrapper]:
+        if deactivate is not None:
+            assert isinstance(deactivate, bool)
         if leaf not in self:
             raise Exception(f'must be leaf in spanner: {leaf!r}.')
         if isinstance(indicator, Wrapper):
@@ -243,6 +234,7 @@ class Spanner(AbjadObject, collections.Sequence):
         self._wrappers.append(wrapper_)
         if wrapper:
             return wrapper_
+        return None
 
     def _attachment_test(self, argument):
         return isinstance(argument, Leaf)
@@ -409,8 +401,6 @@ class Spanner(AbjadObject, collections.Sequence):
             values = []
         else:
             values = [self._get_compact_summary()]
-        if 'overrides' in names and not self.overrides:
-            names.remove('overrides')
         return FormatSpecification(
             client=self,
             repr_is_indented=False,
@@ -651,15 +641,3 @@ class Spanner(AbjadObject, collections.Sequence):
                 message = f'spanners attach only to leaves (not {leaf!s}).'
                 raise Exception(message)
         return select(self._leaves)
-
-    @property
-    def overrides(self) -> OrderedDict:
-        r'''Gets overrides.
-        '''
-        manager = override(self)
-        overrides = OrderedDict()
-        for attribute_tuple in manager._get_attribute_tuples():
-            attribute = '__'.join(attribute_tuple[:-1])
-            value = attribute_tuple[-1]
-            overrides[attribute] = value
-        return overrides

@@ -1,8 +1,12 @@
+import typing
+from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
+from abjad.tools.datastructuretools.String import String
 from .Spanner import Spanner
 
 
 class Slur(Spanner):
-    r'''Slur.
+    r'''
+    Slur.
 
     ..  container:: example
 
@@ -73,12 +77,10 @@ class Slur(Spanner):
 
     def __init__(
         self,
-        direction=None,
-        overrides=None,
-        ):
-        import abjad
-        Spanner.__init__(self, overrides=overrides)
-        direction = abjad.String.to_tridirectional_lilypond_symbol(direction)
+        direction: typing.Union[str, OrdinalConstant] = None,
+        ) -> None:
+        Spanner.__init__(self)
+        direction = String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction
 
     ### PRIVATE METHODS ###
@@ -95,7 +97,7 @@ class Slur(Spanner):
             pass
         elif leaf is self[0]:
             if self.direction is not None:
-                string = '{} ('.format(self.direction)
+                string = f'{self.direction} ('
             else:
                 string = '('
             bundle.right.spanner_starts.append(string)
@@ -107,8 +109,9 @@ class Slur(Spanner):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def direction(self):
-        r'''Gets direction.
+    def direction(self) -> typing.Optional[String]:
+        r'''
+        Gets direction.
 
         ..  container:: example
 
@@ -176,10 +179,5 @@ class Slur(Spanner):
                     )
                 }
 
-        Defaults to none.
-
-        Set to up, down or none.
-
-        Returns up, down or none.
         '''
         return self._direction

@@ -1,8 +1,10 @@
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class Repeat(AbjadValueObject):
-    r'''Repeat.
+    r'''
+    Repeat.
 
     ..  container:: example
 
@@ -79,7 +81,11 @@ class Repeat(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, repeat_count=2, repeat_type='volta'):
+    def __init__(
+        self,
+        repeat_count: int = 2,
+        repeat_type: str = 'volta',
+        ) -> None:
         repeat_count = int(repeat_count)
         assert 1 < repeat_count
         self._repeat_count = repeat_count
@@ -88,8 +94,9 @@ class Repeat(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __str__(self):
-        r'''Gets string representation of repeat.
+    def __str__(self) -> str:
+        r'''
+        Gets string representation of repeat.
 
         ..  container:: example
 
@@ -105,12 +112,8 @@ class Repeat(AbjadValueObject):
             >>> str(abjad.Repeat(repeat_type='unfold'))
             '\\repeat unfold 2'
 
-        Returns string.
         '''
-        return r'\repeat {} {}'.format(
-            self.repeat_type,
-            self.repeat_count,
-            )
+        return rf'\repeat {self.repeat_type} {self.repeat_count}'
 
     ### PRIVATE METHODS ###
 
@@ -118,8 +121,7 @@ class Repeat(AbjadValueObject):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        import abjad
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         bundle.before.commands.append(self._get_lilypond_format())
         return bundle
 
@@ -127,7 +129,8 @@ class Repeat(AbjadValueObject):
 
     @property
     def context(self):
-        r'''Gets (historically conventional) context.
+        '''
+        Gets (historically conventional) context.
 
         ..  container:: example
 
@@ -144,16 +147,15 @@ class Repeat(AbjadValueObject):
             >>> repeat = abjad.Repeat(repeat_type='unfold')
             >>> repeat.context
             'Score'
-
-        Returns ``'Score'``.
 
         Override with ``abjad.attach(..., context='...')``.
         '''
         return self._context
 
     @property
-    def repeat_count(self):
-        r'''Gets repeat count of repeat.
+    def repeat_count(self) -> int:
+        '''
+        Gets repeat count of repeat.
 
         ..  container:: example
 
@@ -171,17 +173,13 @@ class Repeat(AbjadValueObject):
             >>> repeat.repeat_count
             2
 
-        Defaults to 2.
-
-        Set to positive integer.
-
-        Returns positive integer.
         '''
         return self._repeat_count
 
     @property
-    def repeat_type(self):
-        r'''Gets repeat type of repeat.
+    def repeat_type(self) -> str:
+        '''
+        Gets repeat type of repeat.
 
         ..  container:: example
 
@@ -199,10 +197,5 @@ class Repeat(AbjadValueObject):
             >>> repeat.repeat_type
             'unfold'
 
-        Defaults to ``'volta'``.
-
-        Set to known string.
-
-        Returns string.
         '''
         return self._repeat_type

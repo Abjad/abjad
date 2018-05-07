@@ -1,7 +1,8 @@
 import sphinx_rtd_theme
-from sphinx.highlighting import PygmentsBridge
-from pygments.formatters.latex import LatexFormatter
+import sys
 from abjad import abjad_configuration
+from pygments.formatters.latex import LatexFormatter
+from sphinx.highlighting import PygmentsBridge
 
 class CustomLatexFormatter(LatexFormatter):
     def __init__(self, **options):
@@ -15,6 +16,7 @@ PygmentsBridge.latex_formatter = CustomLatexFormatter
 add_function_parentheses = True
 copyright = u'2008-2018, Trevor Bača & Josiah Wolf Oberholtzer'
 exclude_patterns = []
+
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
@@ -22,12 +24,13 @@ extensions = [
     'sphinx.ext.graphviz',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
+    'sphinx_autodoc_typehints',
     'uqbar.sphinx.api',
     'uqbar.sphinx.inheritance',
     'uqbar.sphinx.style',
-    'sphinx_autodoc_typehints',
     'abjadext.book.sphinx',
     ]
+
 master_doc = 'index'
 project = u'Abjad'
 pygments_style = 'sphinx'
@@ -57,7 +60,7 @@ htmlhelp_basename = 'Abjaddoc'
 latex_elements = {
     'inputenc': r'\usepackage[utf8x]{inputenc}',
     'utf8extra': '',
-    'papersize': 'a4paper',
+    'papersize': 'letterpaper',
     'pointsize': '10pt',
     'preamble': r'''
     \usepackage{upquote}
@@ -68,6 +71,7 @@ latex_elements = {
     \hypersetup{unicode=true}
     ''',
     }
+
 latex_documents = [
     (
         'index',
@@ -84,6 +88,7 @@ latex_documents = [
         'manual',
         ),
     ]
+
 #latex_use_parts = True
 latex_toplevel_sectioning = 'chapter' # just guessing?
 
@@ -94,7 +99,7 @@ man_pages = [
         'index',
         'abjad',
         u'Abjad Documentation',
-        [u'2008-2017, Trevor Bača & Josiah Wolf Oberholtzer'],
+        [u'2008-2018, Trevor Bača & Josiah Wolf Oberholtzer'],
         1,
         )
     ]
@@ -106,7 +111,7 @@ texinfo_documents = [
         'index',
         'Abjad',
         u'Abjad Documentation',
-        u'2008-2017, Trevor Bača & Josiah Wolf Oberholtzer',
+        u'2008-2018, Trevor Bača & Josiah Wolf Oberholtzer',
         'Abjad',
         'One line description of project.',
         'Miscellaneous',

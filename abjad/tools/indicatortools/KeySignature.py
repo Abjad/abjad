@@ -1,8 +1,12 @@
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
+from abjad.tools.systemtools.FormatSpecification import FormatSpecification
+from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class KeySignature(AbjadValueObject):
-    r'''Key signature.
+    r'''
+    Key signature.
 
     ..  container:: example
 
@@ -61,15 +65,16 @@ class KeySignature(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, tonic='c', mode='major'):
-        import abjad
-        self._tonic = abjad.NamedPitchClass(tonic)
-        self._mode = abjad.tonalanalysistools.Mode(mode)
+    def __init__(self, tonic: str = 'c', mode: str = 'major') -> None:
+        from abjad.tools.tonalanalysistools.Mode import Mode
+        self._tonic = NamedPitchClass(tonic)
+        self._mode = Mode(mode)
 
     ### SPECIAL METHODS ###
 
-    def __str__(self):
-        r'''Gets string representation of key signature.
+    def __str__(self) -> str:
+        '''
+        Gets string representation of key signature.
 
         ..  container:: example
 
@@ -85,22 +90,20 @@ class KeySignature(AbjadValueObject):
             >>> str(abjad.KeySignature('e', 'minor'))
             'e-minor'
 
-        Returns string.
         '''
-        return '{!s}-{!s}'.format(self.tonic, self.mode)
+        return f'{self.tonic!s}-{self.mode!s}'
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _contents_repr_string(self):
-        return '{!r}, {!r}'.format(self.tonic, self.mode)
+        return f'{self.tonic!r}, {self.mode!r}'
 
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        import abjad
         values = [self.tonic, self.mode]
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_is_indented=False,
@@ -108,19 +111,19 @@ class KeySignature(AbjadValueObject):
             )
 
     def _get_lilypond_format(self):
-        return r'\key {!s} \{!s}'.format(self.tonic, self.mode)
+        return rf'\key {self.tonic!s} \{self.mode!s}'
 
     def _get_lilypond_format_bundle(self, component=None):
-        import abjad
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         bundle.before.commands.append(self._get_lilypond_format())
         return bundle
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def context(self):
-        r'''Gets (historically conventional) context.
+    def context(self) -> str:
+        '''
+        Gets (historically conventional) context.
 
         ..  container:: example
 
@@ -138,15 +141,14 @@ class KeySignature(AbjadValueObject):
             >>> key_signature.context
             'Staff'
 
-        Returns ``'Staff'``.
-
         Override with ``abjad.attach(..., context='...')``.
         '''
         return self._context
 
     @property
     def mode(self):
-        r'''Gets mode of key signature.
+        '''
+        Gets mode of key signature.
 
         ..  container:: example
 
@@ -169,8 +171,9 @@ class KeySignature(AbjadValueObject):
         return self._mode
 
     @property
-    def name(self):
-        r'''Gets name of key signature.
+    def name(self) -> str:
+        '''
+        Gets name of key signature.
 
         ..  container:: example
 
@@ -188,17 +191,17 @@ class KeySignature(AbjadValueObject):
             >>> key_signature.name
             'e minor'
 
-        Returns string.
         '''
         if self.mode.mode_name == 'major':
             tonic = str(self.tonic).upper()
         else:
             tonic = str(self.tonic)
-        return '{!s} {!s}'.format(tonic, self.mode.mode_name)
+        return f'{tonic!s} {self.mode.mode_name!s}'
 
     @property
-    def persistent(self):
-        r'''Is true.
+    def persistent(self) -> bool:
+        '''
+        Is true.
 
         ..  container:: example
 
@@ -206,14 +209,13 @@ class KeySignature(AbjadValueObject):
             True
 
         Class constant.
-
-        Returns true.
         '''
         return self._persistent
 
     @property
-    def redraw(self):
-        r'''Is true.
+    def redraw(self) -> bool:
+        '''
+        Is true.
 
         ..  container:: example
 
@@ -221,14 +223,13 @@ class KeySignature(AbjadValueObject):
             True
 
         Class constant.
-
-        Returns true.
         '''
         return self._redraw
 
     @property
-    def tonic(self):
-        r'''Gets tonic of key signature.
+    def tonic(self) -> NamedPitchClass:
+        '''
+        Gets tonic of key signature.
 
         ..  container:: example
 
@@ -246,6 +247,5 @@ class KeySignature(AbjadValueObject):
             >>> key_signature.tonic
             NamedPitchClass('e')
 
-        Returns named pitch-class.
         '''
         return self._tonic

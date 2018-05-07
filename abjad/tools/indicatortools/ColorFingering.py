@@ -1,10 +1,17 @@
 import functools
+import typing
+from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.datastructuretools import Up
+from abjad.tools.markuptools.Markup import Markup
+from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.tools.topleveltools.new import new
 
 
 @functools.total_ordering
 class ColorFingering(AbjadValueObject):
-    r'''Color fingering.
+    r'''
+    Color fingering.
 
     ..  container:: example
 
@@ -68,36 +75,38 @@ class ColorFingering(AbjadValueObject):
 
     def __init__(
         self,
-        number=None,
-        ):
-        import abjad
+        number: int = None,
+        ) -> None:
         if number is not None:
-            assert abjad.mathtools.is_positive_integer(number)
+            assert mathtools.is_positive_integer(number)
         self._number = number
 
     ### SPECIAL METHODS ##
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification='') -> str:
         r'''Formats color fingering.
 
         Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
         Interprets `''` equal to `'storage'`.
 
-        >>> fingering = abjad.ColorFingering(1)
-        >>> abjad.f(fingering)
-        abjad.ColorFingering(
-            number=1,
-            )
+        ..  container:: example
 
-        Returns string.
+            >>> fingering = abjad.ColorFingering(1)
+            >>> abjad.f(fingering)
+            abjad.ColorFingering(
+                number=1,
+                )
+
         '''
         if format_specification == 'lilypond':
             return self._get_lilypond_format()
-        superclass = super(ColorFingering, self)
-        return superclass.__format__(format_specification=format_specification)
+        return super(ColorFingering, self).__format__(
+            format_specification=format_specification
+            )
 
-    def __lt__(self, argument):
-        r'''Is true if `argument` is a color fingering and the number of this color
+    def __lt__(self, argument) -> bool:
+        '''
+        Is true if `argument` is a color fingering and the number of this color
         fingering is less than that of `argument`.
 
         ..  container:: example
@@ -127,10 +136,9 @@ class ColorFingering(AbjadValueObject):
             >>> fingering_3 < fingering_3
             False
 
-        Returns true or false.
         '''
         if isinstance(argument, type(self)):
-            return self.number < argument.number
+            return (self.number or 0) < (argument.number or 0)
         raise TypeError('unorderable types')
 
     ### PRIVATE PROPERTIES ###
@@ -145,10 +153,9 @@ class ColorFingering(AbjadValueObject):
         return format(self.markup, 'lilypond')
 
     def _get_lilypond_format_bundle(self, component=None):
-        import abjad
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         markup = self.markup
-        markup = abjad.new(markup, direction=abjad.Up)
+        markup = new(markup, direction=Up)
         markup_format_pieces = markup._get_format_pieces()
         bundle.right.markup.extend(markup_format_pieces)
         return bundle
@@ -156,8 +163,9 @@ class ColorFingering(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def markup(self):
-        r'''Gets markup of color fingering.
+    def markup(self) -> typing.Optional[Markup]:
+        r'''
+        Gets markup of color fingering.
 
         ..  container:: example
 
@@ -189,20 +197,19 @@ class ColorFingering(AbjadValueObject):
                 }
             >>> abjad.show(fingering.markup) # doctest: +SKIP
 
-        Returns markup.
         '''
-        import abjad
         if self.number is None:
-            return
-        markup = abjad.Markup(str(self.number))
+            return None
+        markup = Markup(str(self.number))
         markup = markup.finger()
         markup = markup.circle()
         markup = markup.override(('circle-padding', 0.25))
         return markup
 
     @property
-    def number(self):
-        r'''Gets number of color fingering.
+    def number(self) -> typing.Optional[int]:
+        '''
+        Gets number of color fingering.
 
         ..  container:: example
 
@@ -220,6 +227,5 @@ class ColorFingering(AbjadValueObject):
             >>> fingering.number
             2
 
-        Returns positive integer.
         '''
         return self._number

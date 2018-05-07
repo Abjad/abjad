@@ -1,8 +1,15 @@
+import typing
+from abjad.tools.pitchtools.NamedInterval import NamedInterval
+from abjad.tools.pitchtools.NamedPitch import NamedPitch
+from abjad.tools.schemetools.Scheme import Scheme
+from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.tools.topleveltools.override import override
 from .Spanner import Spanner
 
 
 class TrillSpanner(Spanner):
-    r'''Trill spanner.
+    r'''
+    Trill spanner.
 
     ..  container:: example
 
@@ -98,23 +105,23 @@ class TrillSpanner(Spanner):
 
     def __init__(
         self,
-        interval=None,
-        is_harmonic=None,
-        overrides=None,
-        pitch=None,
-        ):
-        import abjad
-        Spanner.__init__(self, overrides=overrides)
+        interval: typing.Union[str, NamedInterval] = None,
+        is_harmonic: bool = None,
+        pitch: typing.Union[str, NamedPitch] = None,
+        ) -> None:
+        Spanner.__init__(self)
         if interval is not None and pitch is not None:
-            message = 'only pitch or interval, not both: {!r} + {!r}.'
-            message = message.format(interval, pitch)
+            message = 'only pitch or interval, not both:'
+            message += f' {interval!r} + {pitch!r}.'
             raise Exception(message)
+        if interval is not None:
+            interval = NamedInterval(interval)
         self._interval = interval
         if is_harmonic is not None:
             is_harmonic = bool(is_harmonic)
         self._is_harmonic = is_harmonic
         if pitch is not None:
-            pitch = abjad.NamedPitch(pitch)
+            pitch = NamedPitch(pitch)
         self._pitch = pitch
 
     ### PRIVATE METHODS ###
@@ -124,15 +131,14 @@ class TrillSpanner(Spanner):
         new._pitch = self.pitch
 
     def _get_lilypond_format_bundle(self, leaf):
-        import abjad
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         if len(self) == 1 and self._left_broken:
             strings = [r'\stopTrillSpan']
             strings = self._tag_show(strings)
             bundle.right.spanner_stops.extend(strings)
             return bundle
         if leaf is self[0]:
-            strings = abjad.override(self)._list_format_contributions(
+            strings = override(self)._list_format_contributions(
                 'override',
                 once=False,
                 )
@@ -162,11 +168,11 @@ class TrillSpanner(Spanner):
                 if self.is_harmonic:
                     string = '(lambda (grob) (grob-interpret-markup grob'
                     string += r' #{ \markup \musicglyph #"noteheads.s0harmonic" #}))'
-                    scheme = abjad.Scheme(string, verbatim=True)
+                    scheme = Scheme(string, verbatim=True)
                     # TODO: use strings instead of override interface:
-                    abjad.override(leaf).trill_pitch_head.stencil = scheme
+                    override(leaf).trill_pitch_head.stencil = scheme
         if leaf is self[-1]:
-            manager = abjad.override(self)
+            manager = override(self)
             strings = manager._list_format_contributions('revert')
             if self._right_broken:
                 strings = self._tag_hide(strings)
@@ -181,7 +187,8 @@ class TrillSpanner(Spanner):
     ### PUBLIC PROPERTIES ###
 
     def cross_segment_examples(self):
-        r'''Cross-segment examples.
+        r'''
+        Cross-segment examples.
 
         ..  container:: example
 
@@ -455,8 +462,9 @@ class TrillSpanner(Spanner):
         pass
 
     @property
-    def interval(self):
-        r'''Gets interval of trill.
+    def interval(self) -> typing.Optional[NamedInterval]:
+        r'''
+        Gets interval of trill.
 
         ..  container:: example
 
@@ -517,9 +525,9 @@ class TrillSpanner(Spanner):
         return self._interval
 
     @property
-    def is_harmonic(self):
-        r'''Is true when trill pitch note-head should print as a white diamond.
-        Otherwise false.
+    def is_harmonic(self) -> typing.Optional[bool]:
+        r'''
+        Is true when trill pitch note-head is harmonic.
 
         ..  container:: example
 
@@ -557,8 +565,9 @@ class TrillSpanner(Spanner):
         return self._is_harmonic
 
     @property
-    def pitch(self):
-        r'''Gets optional pitch of trill spanner.
+    def pitch(self) -> typing.Optional[NamedPitch]:
+        r'''
+        Gets pitch.
 
         ..  container:: example
 
@@ -623,8 +632,9 @@ class TrillSpanner(Spanner):
         return self._pitch
 
     @property
-    def written_pitch(self):
-        r'''Gets written pitch of trill spanner.
+    def written_pitch(self) -> typing.Optional[NamedPitch]:
+        r'''
+        Gets written pitch of trill spanner.
 
         ..  container:: example
 

@@ -4,13 +4,18 @@ from abjad.tools.datastructuretools.OrderedDict import OrderedDict
 from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
 from abjad.tools.datastructuretools.String import String
 from abjad.tools.indicatortools.Dynamic import Dynamic
+from abjad.tools.scoretools.Chord import Chord
+from abjad.tools.scoretools.Leaf import Leaf
+from abjad.tools.scoretools.Note import Note
+from abjad.tools.systemtools.Tag import Tag
 from abjad.tools.systemtools.Wrapper import Wrapper
 from abjad.tools.topleveltools.inspect import inspect
 from abjad.tools.topleveltools.select import select
 
 
 class Hairpin(Spanner):
-    r'''Hairpin.
+    r'''
+    Hairpin.
 
     ..  note:: Conventional (nonpiecewise) hairpins are deprecated.
         Use piecewise hairpins instead.
@@ -297,12 +302,11 @@ class Hairpin(Spanner):
         descriptor: str = None,
         context: str = None,
         direction: OrdinalConstant = None,
-        overrides: OrderedDict = None,
         start_dynamic_is_textual: bool = None,
         stop_dynamic_is_textual: bool = None,
         trim: bool = None,
         ) -> None:
-        Spanner.__init__(self, overrides=overrides)
+        Spanner.__init__(self)
         if context is not None:
             assert isinstance(context, str), repr(context)
         self._context = context
@@ -342,7 +346,8 @@ class Hairpin(Spanner):
             self._stop_dynamic = None
 
     def __eq__(self, argument) -> bool:
-        r'''Is true when hairpin equals `argument`.
+        r'''
+        Is true when hairpin equals ``argument``.
 
         ..  container:: example
 
@@ -387,7 +392,10 @@ class Hairpin(Spanner):
         return False
 
     def __hash__(self) -> int:
-        r'''Hashes hairpin.
+        '''
+        Hashes hairpin.
+
+        Redefined in tandem with __eq__.
         '''
         return super(Hairpin, self).__hash__()
 
@@ -481,10 +489,9 @@ class Hairpin(Spanner):
         bundle.right.spanner_stops.extend(strings)
 
     def _attachment_test_all(self, argument):
-        import abjad
-        if isinstance(argument, (abjad.Chord, abjad.Note)):
+        if isinstance(argument, (Chord, Note)):
             return True
-        assert all(isinstance(_, abjad.Leaf) for _ in argument)
+        assert all(isinstance(_, Leaf) for _ in argument)
         if self.trim:
             leaves = select(argument).leaves(trim=True)
         else:
@@ -501,7 +508,6 @@ class Hairpin(Spanner):
         new._trim = self.trim
 
     def _get_lilypond_format_bundle(self, leaf):
-        import abjad
         if self.descriptor is None:
             return self._get_piecewise_lilypond_format_bundle(leaf)
         direction_string = ''
@@ -510,7 +516,7 @@ class Hairpin(Spanner):
                 self.direction)
             direction_string = f'{direction_string} '
         bundle = self._get_basic_lilypond_format_bundle(leaf)
-        if len(self) == 1 and isinstance(self[0], (abjad.Chord, abjad.Note)):
+        if len(self) == 1 and isinstance(self[0], (Chord, Note)):
             string = rf'{direction_string}\{self.start_dynamic.name}'
             bundle.right.spanner_starts.append(string)
             return bundle
@@ -546,13 +552,13 @@ class Hairpin(Spanner):
                             string = r'\!'
                             bundle.right.spanner_stops.append(string)
         else:
-            if self._is_my_first(leaf, (abjad.Chord, abjad.Note)):
+            if self._is_my_first(leaf, (Chord, Note)):
                 string = rf'{direction_string}\{self.shape_string}'
                 bundle.right.spanner_starts.append(string)
                 if (self.start_dynamic and self.start_dynamic.name != 'niente'):
                     string = rf'{direction_string}\{self.start_dynamic.name}'
                     bundle.right.spanner_starts.append(string)
-            if self._is_my_last(leaf, (abjad.Chord, abjad.Note)):
+            if self._is_my_last(leaf, (Chord, Note)):
                 if (self.stop_dynamic and self.stop_dynamic.name != 'niente'):
                     string = rf'{direction_string}\{self.stop_dynamic.name}'
                     bundle.right.spanner_stops.append(string)
@@ -609,7 +615,8 @@ class Hairpin(Spanner):
 
     @staticmethod
     def _is_hairpin_token(argument):
-        r'''Is true when `argument` is hairpin token.
+        '''
+        Is true when ``argument`` is hairpin token.
 
         >>> abjad.Hairpin._is_hairpin_token(('', '<', ''))
         True
@@ -709,7 +716,8 @@ class Hairpin(Spanner):
 
     @property
     def context(self) -> typing.Optional[str]:
-        r'''Gets context name (for piecewise attach).
+        r'''
+        Gets context name (for piecewise attach).
 
         ..  container:: example
 
@@ -811,7 +819,8 @@ class Hairpin(Spanner):
         return self._context
 
     def cross_segment_examples(self):
-        r'''Cross-segment examples.
+        r'''
+        Cross-segment examples.
 
         ..  container:: example
 
@@ -1846,7 +1855,8 @@ class Hairpin(Spanner):
 
     @property
     def descriptor(self) -> typing.Optional[str]:
-        r'''Gets descriptor.
+        r'''
+        Gets descriptor.
 
         ..  container:: example
 
@@ -1881,7 +1891,8 @@ class Hairpin(Spanner):
 
     @property
     def direction(self) -> typing.Optional[String]:
-        r'''Gets direction.
+        r'''
+        Gets direction.
 
         ..  container:: example
 
@@ -1916,7 +1927,8 @@ class Hairpin(Spanner):
 
     @property
     def shape_string(self) -> str:
-        r'''Gets shape string.
+        r'''
+        Gets shape string.
 
         ..  container:: example
 
@@ -1951,7 +1963,8 @@ class Hairpin(Spanner):
 
     @property
     def start_dynamic(self) -> typing.Optional[Dynamic]:
-        r'''Gets start dynamic.
+        r'''
+        Gets start dynamic.
 
         ..  container:: example
 
@@ -1986,7 +1999,8 @@ class Hairpin(Spanner):
 
     @property
     def start_dynamic_is_textual(self) -> typing.Optional[bool]:
-        r'''Is true when start dynamic is textual.
+        r'''
+        Is true when start dynamic is textual.
 
         ..  container:: example
 
@@ -2095,7 +2109,8 @@ class Hairpin(Spanner):
 
     @property
     def stop_dynamic(self) -> typing.Optional[Dynamic]:
-        r'''Gets stop dynamic.
+        r'''
+        Gets stop dynamic.
 
         ..  container:: example
 
@@ -2130,7 +2145,8 @@ class Hairpin(Spanner):
 
     @property
     def stop_dynamic_is_textual(self) -> typing.Optional[bool]:
-        r'''Is true when stop dynamic is textual.
+        r'''
+        Is true when stop dynamic is textual.
 
         ..  container:: example
 
@@ -2206,7 +2222,8 @@ class Hairpin(Spanner):
 
     @property
     def trim(self) -> typing.Optional[bool]:
-        r'''Is true when hairpin trims edge-rests.
+        r'''
+        Is true when hairpin trims edge-rests.
 
         ..  container:: example
 
@@ -2241,12 +2258,13 @@ class Hairpin(Spanner):
     def attach(
         self,
         indicator,
-        leaf,
-        deactivate=None,
-        tag=None,
-        wrapper=None,
+        leaf: Leaf,
+        deactivate: bool = None,
+        tag: typing.Union[str, Tag] = None,
+        wrapper: bool = None,
         ) -> typing.Optional[Wrapper]:
-        r'''Attaches `indicator` to `leaf` in spanner.
+        r'''
+        Attaches ``indicator`` to ``leaf`` in spanner.
 
         ..  container:: example
 

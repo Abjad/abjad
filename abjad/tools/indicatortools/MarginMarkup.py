@@ -1,9 +1,13 @@
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.markuptools.Markup import Markup
+from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.tools.topleveltools.new import new
 
 
 class MarginMarkup(AbjadValueObject):
-    r'''Margin markup.
+    r'''
+    Margin markup.
 
     ..  container:: example
 
@@ -61,9 +65,10 @@ class MarginMarkup(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, argument):
-        r'''Is true when `argument` is margin markup with context and markup
-        equal to those of this margin markup.
+    def __eq__(self, argument) -> bool:
+        '''
+        Is true when `argument` is margin markup with context and markup equal
+        to those of this margin markup.
 
         ..  container:: example
 
@@ -101,7 +106,6 @@ class MarginMarkup(AbjadValueObject):
             >>> margin_markup_3 == margin_markup_3
             True
 
-        Returns true or false.
         '''
         if not isinstance(argument, type(self)):
             return False
@@ -109,8 +113,10 @@ class MarginMarkup(AbjadValueObject):
             return True
         return False
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         r'''Hashes margin markup.
+
+        Redefined in tandem with __eq__.
 
         ..  container:: example
 
@@ -123,7 +129,6 @@ class MarginMarkup(AbjadValueObject):
             >>> isinstance(hash_, int)
             True
 
-        Returns integer.
         '''
         return super(MarginMarkup, self).__hash__()
 
@@ -141,11 +146,10 @@ class MarginMarkup(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format(self, context=None):
-        import abjad
         result = []
         markup = self.markup
         if markup.direction is not None:
-            markup = abjad.new(
+            markup = new(
                 markup,
                 direction=None,
                 )
@@ -163,8 +167,7 @@ class MarginMarkup(AbjadValueObject):
         return result
 
     def _get_lilypond_format_bundle(self, component=None):
-        import abjad
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         slot = bundle.get(self.format_slot)
         slot.commands.extend(self._get_lilypond_format())
         return bundle
@@ -172,34 +175,34 @@ class MarginMarkup(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def context(self):
-        r'''Gets default context of margin markup.
+    def context(self) -> str:
+        '''
+        Gets default context of margin markup.
 
         ..  container:: example
 
             >>> abjad.MarginMarkup().context
             'Staff'
 
-        Returns string.
         '''
         return self._context
 
     @property
-    def format_slot(self):
-        r'''Gets format slot.
+    def format_slot(self) -> str:
+        '''
+        Gets format slot.
 
         ..  container:: example
 
             >>> abjad.MarginMarkup().format_slot
             'before'
 
-        Returns string.
         '''
         return self._format_slot
 
     @property
-    def latent(self):
-        r'''Is true.
+    def latent(self) -> bool:
+        '''Is true.
 
         ..  container::
 
@@ -210,22 +213,20 @@ class MarginMarkup(AbjadValueObject):
             True
 
         Class constant.
-
-        Returns true.
         '''
         return self._latent
 
     @property
-    def markup(self):
-        r'''Gets (instrument name) markup.
-
-        Returns markup.
+    def markup(self) -> typing.Optional[Markup]:
+        '''
+        Gets (instrument name) markup.
         '''
         return self._markup
 
     @property
-    def persistent(self):
-        r'''Is true.
+    def persistent(self) -> bool:
+        '''
+        Is true.
 
         ..  container:: example
 
@@ -236,14 +237,13 @@ class MarginMarkup(AbjadValueObject):
             True
 
         Class constant.
-
-        Returns true.
         '''
         return self._persistent
 
     @property
-    def redraw(self):
-        r'''Is true.
+    def redraw(self) -> bool:
+        '''
+        Is true.
 
         ..  container:: example
 
@@ -254,7 +254,5 @@ class MarginMarkup(AbjadValueObject):
             True
 
         Class constant.
-
-        Returns true.
         '''
         return self._redraw

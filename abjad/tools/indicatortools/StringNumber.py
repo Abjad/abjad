@@ -1,9 +1,11 @@
 import collections
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class StringNumber(AbjadValueObject):
-    r'''String number.
+    '''
+    String number.
 
     ..  container:: example
 
@@ -39,22 +41,25 @@ class StringNumber(AbjadValueObject):
 
     def __init__(
         self,
-        numbers=None,
-        ):
-        numbers = numbers or ()
-        if isinstance(numbers, type(self)):
-            numbers = numbers.numbers
-        elif not isinstance(numbers, collections.Sequence):
-            numbers = (numbers,)
-        numbers = tuple(int(x) for x in numbers)
-        assert all(0 < x < 7 for x in numbers)
-        self._numbers = tuple(numbers)
+        numbers: typing.Union[int, typing.Iterable[int]] = None,
+        ) -> None:
+        if numbers is None:
+            numbers_: typing.Tuple[int, ...] = ()
+        elif isinstance(numbers, int):
+            numbers_ = (numbers,)
+        else:
+            numbers_ = tuple(numbers)
+        assert isinstance(numbers_, tuple), repr(numbers_)
+        numbers_ = tuple(int(_) for _ in numbers_)
+        assert all(0 < _ < 7 for _ in numbers_)
+        self._numbers = numbers_
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def numbers(self):
-        r'''Gets numbers of string number indicator:
+    def numbers(self) -> typing.Tuple[int, ...]:
+        '''
+        Gets numbers.
 
         ..  container:: example
 
@@ -64,25 +69,17 @@ class StringNumber(AbjadValueObject):
             >>> indicator.numbers
             (1,)
 
-        ..  container:: example
-
-            Strings II and III:
-
             >>> indicator = abjad.StringNumber((2, 3))
             >>> indicator.numbers
             (2, 3)
 
-        Set to tuple of zero or more positive integers.
-
-        Defaults to empty tuple.
-
-        Returns tuple of zero or more positive integers.
         '''
         return self._numbers
 
     @property
-    def roman_numerals(self):
-        r'''Gets roman numerals of string number indicator.
+    def roman_numerals(self) -> typing.Tuple[str, ...]:
+        '''
+        Gets roman numerals of string number indicator.
 
         ..  container:: example
 
@@ -100,11 +97,10 @@ class StringNumber(AbjadValueObject):
             >>> indicator.roman_numerals
             ('ii', 'iii')
 
-        Returns tuple of zero or more strings.
         '''
         numerals = ('i', 'ii', 'iii', 'iv', 'v', 'vi')
         result = []
-        for x in self.numbers:
-            numeral = numerals[x - 1]
+        for number in self.numbers:
+            numeral = numerals[number - 1]
             result.append(numeral)
         return tuple(result)

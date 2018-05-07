@@ -1,8 +1,23 @@
+import typing
+from abjad.tools.datastructuretools import Down
+from abjad.tools.datastructuretools import Up
+from abjad.tools.indicatortools.Articulation import Articulation
+from abjad.tools.indicatortools.BowContactPoint import BowContactPoint
+from abjad.tools.indicatortools.BowMotionTechnique import BowMotionTechnique
+from abjad.tools.lilypondnametools.LilyPondGrobOverride import \
+    LilyPondGrobOverride
+from abjad.tools.schemetools.Scheme import Scheme
+from abjad.tools.schemetools.SchemeSymbol import SchemeSymbol
+from abjad.tools.scoretools.Leaf import Leaf
+from abjad.tools.systemtools.Tag import Tag
+from abjad.tools.systemtools.Wrapper import Wrapper
+from abjad.tools.topleveltools.inspect import inspect
 from .Spanner import Spanner
 
 
 class BowContactSpanner(Spanner):
-    r'''Bow contact spanner.
+    r'''
+    Bow contact spanner.
 
     ..  container:: example
 
@@ -207,11 +222,6 @@ class BowContactSpanner(Spanner):
 
     __slots__ = ()
 
-    ### INITIALIZER ###
-
-    def __init__(self, overrides=None):
-        Spanner.__init__(self, overrides=overrides)
-
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format_bundle(self, leaf):
@@ -244,13 +254,9 @@ class BowContactSpanner(Spanner):
         return bundle
 
     def _get_piecewise(self, leaf):
-        import abjad
-        bow_contact_point = abjad.inspect(leaf).get_indicator(
-            abjad.BowContactPoint,
-            None,
-            )
-        bow_motion_technique = abjad.inspect(leaf).get_indicator(
-            abjad.BowMotionTechnique,
+        bow_contact_point = inspect(leaf).get_indicator(BowContactPoint, None)
+        bow_motion_technique = inspect(leaf).get_indicator(
+            BowMotionTechnique,
             None,
             )
         return (
@@ -263,18 +269,17 @@ class BowContactSpanner(Spanner):
         bow_contact_point=None,
         bundle=None,
         ):
-        import abjad
         if bow_contact_point is None:
             return
-        override_ = abjad.LilyPondGrobOverride(
+        override_ = LilyPondGrobOverride(
             grob_name='NoteHead',
             once=True,
             property_path='stencil',
-            value=abjad.Scheme('ly:text-interface::print'),
+            value=Scheme('ly:text-interface::print'),
             )
         string = override_.override_string
         bundle.grob_overrides.append(string)
-        override_ = abjad.LilyPondGrobOverride(
+        override_ = LilyPondGrobOverride(
             grob_name='NoteHead',
             once=True,
             property_path='text',
@@ -283,7 +288,7 @@ class BowContactSpanner(Spanner):
         string = override_.override_string
         bundle.grob_overrides.append(string)
         y_offset = float((4 * bow_contact_point.contact_point) - 2)
-        override_ = abjad.LilyPondGrobOverride(
+        override_ = LilyPondGrobOverride(
             grob_name='NoteHead',
             once=True,
             property_path='Y-offset',
@@ -298,62 +303,58 @@ class BowContactSpanner(Spanner):
         leaf=None,
         bundle=None,
         ):
-        import abjad
         cautionary_change = False
         direction_change = None
-        next_leaf = abjad.inspect(leaf).get_leaf(1)
+        next_leaf = inspect(leaf).get_leaf(1)
         this_contact_point = bow_contact_point
         if this_contact_point is None:
             return
-        next_contact_point = abjad.inspect(next_leaf).get_indicator(
-            abjad.BowContactPoint)
+        next_contact_point = inspect(next_leaf).get_indicator(BowContactPoint)
         if next_contact_point is None:
             return
-        previous_leaf = abjad.inspect(leaf).get_leaf(-1)
+        previous_leaf = inspect(leaf).get_leaf(-1)
         previous_contact_point = None
         if previous_leaf is not None:
-            agent = abjad.inspect(previous_leaf)
-            previous_contact_points = agent.get_indicators(
-                abjad.BowContactPoint
-                )
+            agent = inspect(previous_leaf)
+            previous_contact_points = agent.get_indicators(BowContactPoint)
             if previous_contact_points:
                 previous_contact_point = previous_contact_points[0]
         if (leaf is self[0] or
             previous_contact_point is None or
             previous_contact_point.contact_point is None):
             if this_contact_point < next_contact_point:
-                direction_change = abjad.Down
+                direction_change = Down
             elif next_contact_point < this_contact_point:
-                direction_change = abjad.Up
+                direction_change = Up
         else:
-            previous_leaf = abjad.inspect(leaf).get_leaf(-1)
-            agent = abjad.inspect(previous_leaf)
-            previous_contact_point = agent.get_indicator(abjad.BowContactPoint)
+            previous_leaf = inspect(leaf).get_leaf(-1)
+            agent = inspect(previous_leaf)
+            previous_contact_point = agent.get_indicator(BowContactPoint)
             if (previous_contact_point < this_contact_point and
                 next_contact_point < this_contact_point):
-                direction_change = abjad.Up
+                direction_change = Up
             elif (this_contact_point < previous_contact_point and
                 this_contact_point < next_contact_point):
-                direction_change = abjad.Down
+                direction_change = Down
             elif (this_contact_point == previous_contact_point):
                 if this_contact_point < next_contact_point:
                     cautionary_change = True
-                    direction_change = abjad.Down
+                    direction_change = Down
                 elif next_contact_point < this_contact_point:
                     cautionary_change = True
-                    direction_change = abjad.Up
+                    direction_change = Up
         if direction_change is None:
             return
         if cautionary_change:
-            if direction_change == abjad.Up:
+            if direction_change == Up:
                 string = r'^ \parenthesize \upbow'
-            elif direction_change == abjad.Down:
+            elif direction_change == Down:
                 string = r'^ \parenthesize \downbow'
         else:
-            if direction_change == abjad.Up:
-                articulation = abjad.Articulation('upbow', abjad.Up)
-            elif direction_change == abjad.Down:
-                articulation = abjad.Articulation('downbow', abjad.Up)
+            if direction_change == Up:
+                articulation = Articulation('upbow', Up)
+            elif direction_change == Down:
+                articulation = Articulation('downbow', Up)
             string = str(articulation)
         bundle.right.articulations.append(string)
 
@@ -362,10 +363,9 @@ class BowContactSpanner(Spanner):
         bow_motion_technique=None,
         bundle=None,
         ):
-        import abjad
         if bow_motion_technique is not None:
-            style = abjad.SchemeSymbol(bow_motion_technique.glissando_style)
-            override_ = abjad.LilyPondGrobOverride(
+            style = SchemeSymbol(bow_motion_technique.glissando_style)
+            override_ = LilyPondGrobOverride(
                 grob_name='Glissando',
                 once=True,
                 property_path='style',
@@ -378,9 +378,8 @@ class BowContactSpanner(Spanner):
         self,
         bundle=None,
         ):
-        import abjad
-        style = abjad.SchemeSymbol('cross')
-        override_ = abjad.LilyPondGrobOverride(
+        style = SchemeSymbol('cross')
+        override_ = LilyPondGrobOverride(
             grob_name='NoteHead',
             once=True,
             property_path='style',
@@ -390,19 +389,20 @@ class BowContactSpanner(Spanner):
         bundle.grob_overrides.append(string)
 
     def _next_leaf_is_bowed(self, leaf):
-        import abjad
+        from abjad.tools.scoretools.MultimeasureRest import MultimeasureRest
+        from abjad.tools.scoretools.Rest import Rest
+        from abjad.tools.scoretools.Skip import Skip
         if leaf is self[-1]:
             return False
         prototype = (
-            abjad.MultimeasureRest,
-            abjad.Rest,
-            abjad.Skip,
+            MultimeasureRest,
+            Rest,
+            Skip,
             )
-        next_leaf = abjad.inspect(leaf).get_leaf(1)
+        next_leaf = inspect(leaf).get_leaf(1)
         if next_leaf is None or isinstance(next_leaf, prototype):
             return False
-        next_contact_point = abjad.inspect(next_leaf).get_indicator(
-            abjad.BowContactPoint)
+        next_contact_point = inspect(next_leaf).get_indicator(BowContactPoint)
         if next_contact_point is None:
             return False
         elif next_contact_point.contact_point is None:
@@ -411,11 +411,18 @@ class BowContactSpanner(Spanner):
 
     ### PUBLIC METHODS ###
 
-    def attach(self, indicator, leaf, deactivate=None, tag=None, wrapper=None):
-        r'''Attaches `indicator` to `leaf` in spanner.
+    def attach(
+        self,
+        indicator: typing.Union[BowContactPoint, BowMotionTechnique],
+        leaf: Leaf,
+        deactivate: bool = None,
+        tag: typing.Union[str, Tag] = None,
+        wrapper: bool = None,
+        ) -> typing.Optional[Wrapper]:
         '''
-        superclass = super(BowContactSpanner, self)
-        return superclass._attach_piecewise(
+        Attaches ``indicator`` to ``leaf`` in spanner.
+        '''
+        return super(BowContactSpanner, self)._attach_piecewise(
             indicator,
             leaf,
             deactivate=deactivate,

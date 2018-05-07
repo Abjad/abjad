@@ -1,8 +1,15 @@
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
+from abjad.tools.datastructuretools import Center
+from abjad.tools.datastructuretools import Down
+from abjad.tools.datastructuretools import Up
+from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class Arpeggio(AbjadValueObject):
-    r'''Arpeggio.
+    r'''
+    Arpeggio.
 
     ..  container:: example
 
@@ -45,10 +52,9 @@ class Arpeggio(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, direction=None):
-        import abjad
+    def __init__(self, direction: OrdinalConstant = None) -> None:
         if direction is not None:
-            assert direction in (abjad.Up, abjad.Down, abjad.Center)
+            assert direction in (Up, Down, Center)
         self._direction = direction
 
     ### PRIVATE METHODS ###
@@ -57,11 +63,10 @@ class Arpeggio(AbjadValueObject):
         return r'\arpeggio'
 
     def _get_lilypond_format_bundle(self, component=None):
-        import abjad
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         bundle.right.articulations.append(r'\arpeggio')
-        if self.direction in (abjad.Up, abjad.Down):
-            if self.direction == abjad.Up:
+        if self.direction in (Up, Down):
+            if self.direction == Up:
                 command = r'\arpeggioArrowUp'
             else:
                 command = r'\arpeggioArrowDown'
@@ -71,8 +76,9 @@ class Arpeggio(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def direction(self):
-        r'''Gets direction of arpeggio.
+    def direction(self) -> typing.Optional[OrdinalConstant]:
+        '''
+        Gets direction of arpeggio.
 
         ..  container:: example
 
@@ -90,6 +96,5 @@ class Arpeggio(AbjadValueObject):
             >>> arpeggio.direction
             Down
 
-        Returns ordinal constant or none.
         '''
         return self._direction

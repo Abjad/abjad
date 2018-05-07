@@ -1,8 +1,11 @@
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
 
 
 class Tremolo(AbjadValueObject):
-    r'''Tremolo (of exactly two notes).
+    r'''
+    Tremolo (of exactly two notes).
 
     ..  container:: example
 
@@ -54,18 +57,23 @@ class Tremolo(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, beam_count=3, is_slurred=None):
+    def __init__(
+        self,
+        beam_count: int = 3,
+        is_slurred: bool = None,
+        ) -> None:
         assert isinstance(beam_count, int), repr(beam_count)
         assert 0 < beam_count, repr(beam_count)
         self._beam_count = beam_count
-        prototype = (type(None), type(True))
-        assert isinstance(is_slurred, prototype), repr(is_slurred)
+        if is_slurred is not None:
+            is_slurred = bool(is_slurred)
         self._is_slurred = is_slurred
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *arguments):
-        r'''Copies tremolo.
+    def __copy__(self, *arguments) -> 'Tremolo':
+        '''
+        Copies tremolo.
 
         ..  container:: example
 
@@ -81,13 +89,12 @@ class Tremolo(AbjadValueObject):
             >>> tremolo_1 is not tremolo_2
             True
 
-        Returns new tremolo.
         '''
-        superclass = super(Tremolo, self)
-        return superclass.__copy__(*arguments)
+        return super(Tremolo, self).__copy__(*arguments)
 
-    def __format__(self, format_specification=''):
-        r'''Formats stem tremolo.
+    def __format__(self, format_specification='') -> str:
+        '''
+        Formats stem tremolo.
 
         ..  container:: example
 
@@ -109,47 +116,35 @@ class Tremolo(AbjadValueObject):
                 beam_count=3,
                 )
 
-        Returns string.
         '''
-        from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager(self).get_storage_format()
-        elif format_specification == 'lilypond':
-            message = 'no LilyPond format available.'
-            raise Exception(message)
-        else:
-            message = "format_specification must be 'storage' or ''."
-            raise Exception(message)
+            return StorageFormatManager(self).get_storage_format()
+        assert format_specification == 'lilypond'
+        raise Exception('no LilyPond format available.')
 
-    def __str__(self):
-        r'''Gets string representation of tremolo.
+    def __str__(self) -> str:
+        '''
+        Gets string representation of tremolo.
 
         ..  container:: example
-
-            With two beams:
 
             >>> tremolo = abjad.Tremolo(beam_count=2)
             >>> str(tremolo)
             'Tremolo(beam_count=2)'
 
-        ..  container:: example
-
-            With three beams:
-
             >>> tremolo = abjad.Tremolo(beam_count=3)
             >>> str(tremolo)
             'Tremolo(beam_count=3)'
 
-        Returns string.
         '''
-        superclass = super(Tremolo, self)
-        return superclass.__str__()
+        return super(Tremolo, self).__str__()
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def beam_count(self):
-        r'''Gets beam count of tremolo.
+    def beam_count(self) -> int:
+        r'''
+        Gets beam count of tremolo.
 
         ..  container:: example
 
@@ -185,17 +180,13 @@ class Tremolo(AbjadValueObject):
                 cs'32 e'32
                 }
 
-        Set to positive integer.
-
-        Defaults to 3.
-
-        Returns positive integer.
         '''
         return self._beam_count
 
     @property
-    def is_slurred(self):
-        r'''Is true when tremolo is slurred. Otherwise false.
+    def is_slurred(self) -> typing.Optional[bool]:
+        r'''
+        Is true when tremolo is slurred.
 
         ..  container:: example
 
@@ -231,10 +222,5 @@ class Tremolo(AbjadValueObject):
                 cs'32 \( e'32 \)
                 }
 
-        Set to true or false.
-
-        Defaults to false.
-
-        Returns true or false.
         '''
         return self._is_slurred

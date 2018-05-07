@@ -1,9 +1,14 @@
-from .LineSegment import LineSegment
+import typing
 from abjad.tools.datastructuretools import Center
+from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
+from abjad.tools.markuptools.Markup import Markup
+from .LineSegment import LineSegment
+Number = typing.Union[int, float]
 
 
 class ArrowLineSegment(LineSegment):
-    r'''Arrow line segment.
+    r'''
+    Arrow line segment.
 
     ..  container:: example
 
@@ -92,25 +97,25 @@ class ArrowLineSegment(LineSegment):
 
     def __init__(
         self,
-        arrow_width=0.25,
-        dash_fraction=1,
-        dash_period=None,
-        left_broken_padding=None,
-        #left_broken_text=False,
-        left_broken_text=None,
-        left_hspace=0.25,
-        left_padding=None,
-        left_stencil_align_direction_y=Center,
-        right_arrow=True,
-        right_broken_arrow=None,
-        right_broken_padding=0,
-        right_broken_text=False,
-        right_padding=0.5,
-        right_stencil_align_direction_y=Center,
-        style=None,
-        ):
-        superclass = super(ArrowLineSegment, self)
-        superclass.__init__(
+        arrow_width: Number = 0.25,
+        dash_fraction: Number = 1,
+        dash_period: Number = None,
+        left_broken_padding: Number = None,
+        left_broken_text: typing.Union[bool, str, Markup] = None,
+        left_hspace: Number = 0.25,
+        left_padding: Number = None,
+        left_stencil_align_direction_y: typing.Union[
+            Number, OrdinalConstant, None] = Center,
+        right_arrow: bool = True,
+        right_broken_arrow: bool = None,
+        right_broken_padding: Number = 0,
+        right_broken_text: typing.Union[bool, str, Markup] = False,
+        right_padding: Number = 0.5,
+        right_stencil_align_direction_y: typing.Union[
+            Number, OrdinalConstant, None] = Center,
+        style: str = None,
+        ) -> None:
+        super(ArrowLineSegment, self).__init__(
             arrow_width=arrow_width,
             dash_fraction=dash_fraction,
             dash_period=dash_period,
@@ -130,15 +135,16 @@ class ArrowLineSegment(LineSegment):
 
     ### PRIVATE METHODS ###
 
-    r'''No _get_lilypond_format(), _get_lilypond_format_bundle()
+    '''No _get_lilypond_format(), _get_lilypond_format_bundle()
     because class is used only by piecewise spanner.
     '''
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def arrow_width(self):
-        r'''Gets arrow width of arrow.
+    def arrow_width(self) -> typing.Optional[Number]:
+        r'''
+        Gets arrow width of arrow.
 
         ..  container:: example
 
@@ -341,15 +347,13 @@ class ArrowLineSegment(LineSegment):
             Results in very wide arrow head.
 
         Defaults to ``0.25``.
-
-        Returns integer or float.
         '''
-        superclass = super(ArrowLineSegment, self)
-        return superclass.arrow_width
+        return super(ArrowLineSegment, self).arrow_width
 
     @property
-    def dash_fraction(self):
-        r'''Gets dash fraction of arrow.
+    def dash_fraction(self) -> typing.Optional[Number]:
+        r'''
+        Gets dash fraction of arrow.
 
         ..  container:: example
 
@@ -549,15 +553,13 @@ class ArrowLineSegment(LineSegment):
                 }
 
         Defaults to ``1``.
-
-        Returns integer or float.
         '''
-        superclass = super(ArrowLineSegment, self)
-        return superclass.dash_fraction
+        return super(ArrowLineSegment, self).dash_fraction
 
     @property
-    def dash_period(self):
-        r'''Gets dash period of arrow.
+    def dash_period(self) -> typing.Optional[Number]:
+        r'''
+        Gets dash period of arrow.
 
         ..  container:: example
 
@@ -770,15 +772,13 @@ class ArrowLineSegment(LineSegment):
             Results in coarse dashes.
 
         Defaults to none.
-
-        Returns integer or float.
         '''
-        superclass = super(ArrowLineSegment, self)
-        return superclass.dash_period
+        return super(ArrowLineSegment, self).dash_period
 
     @property
-    def left_broken_text(self):
-        r'''Gets left broken text of arrow.
+    def left_broken_text(self) -> typing.Union[bool, str, Markup, None]:
+        r'''
+        Gets left broken text of arrow.
 
         ..  container:: example
 
@@ -998,14 +998,13 @@ class ArrowLineSegment(LineSegment):
                         \stopTextSpan
                     }
 
-        Set to markup, boolean or none.
         '''
         return self._left_broken_text
 
     @property
-    def right_broken_arrow(self):
-        r'''Is true when arrow should appear immediately before line break.
-        Otherwise false.
+    def right_broken_arrow(self) -> typing.Optional[bool]:
+        r'''
+        Is true when arrow should appear immediately before line break.
 
         ..  container:: example
 
@@ -1214,13 +1213,13 @@ class ArrowLineSegment(LineSegment):
                         \stopTextSpan
                     }
 
-        Set to true, false or none.
         '''
         return self._right_broken_arrow
 
     @property
-    def style(self):
-        r'''Gets style of arrow.
+    def style(self) -> typing.Optional[str]:
+        r'''
+        Gets style of arrow.
 
         ..  container:: example
 
@@ -1485,9 +1484,5 @@ class ArrowLineSegment(LineSegment):
                     \stopTextSpan
                 }
 
-        Defaults to none.
-
-        Returns string or none.
         '''
-        superclass = super(ArrowLineSegment, self)
-        return superclass.style
+        return super(ArrowLineSegment, self).style

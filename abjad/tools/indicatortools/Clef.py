@@ -1,8 +1,15 @@
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.pitchtools.NamedPitch import NamedPitch
+from abjad.tools.pitchtools.StaffPosition import StaffPosition
+from abjad.tools.systemtools.FormatSpecification import FormatSpecification
+from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.tools.topleveltools.iterate import iterate
 
 
 class Clef(AbjadValueObject):
-    r'''Clef.
+    r'''
+    Clef.
 
     ..  container:: example
 
@@ -188,27 +195,25 @@ class Clef(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, name='treble', hide=None):
-        import abjad
+    def __init__(self, name: str = 'treble', hide: bool = None) -> None:
         if isinstance(name, str):
             self._name = name
         elif isinstance(name, type(self)):
             self._name = name.name
         else:
-            message = 'can not initialize clef: {!r}.'
-            message = message.format(name)
-            raise TypeError(message)
+            raise TypeError('can not initialize clef: {name!r}.')
         if hide is not None:
             hide = bool(hide)
         self._hide = hide
         middle_c_position = self._calculate_middle_c_position(self._name)
-        middle_c_position = abjad.StaffPosition(middle_c_position)
+        middle_c_position = StaffPosition(middle_c_position)
         self._middle_c_position = middle_c_position
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification=''):
-        r'''Formats clef.
+    def __format__(self, format_specification='') -> str:
+        r'''
+        Formats clef.
 
         Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
         Interprets `''` equal to `'storage'`.
@@ -229,8 +234,9 @@ class Clef(AbjadValueObject):
         '''
         if format_specification == 'lilypond':
             return self._get_lilypond_format()
-        superclass = super(Clef, self)
-        return superclass.__format__(format_specification=format_specification)
+        return super(Clef, self).__format__(
+            format_specification=format_specification,
+            )
 
     ### PRIVATE PROPERTIES ###
 
@@ -267,24 +273,22 @@ class Clef(AbjadValueObject):
         return self._clef_name_to_middle_c_position[base_name] + alteration
 
     def _clef_name_to_staff_position_zero(self, clef_name):
-        import abjad
         return {
-            'treble': abjad.NamedPitch('B4'),
-            'alto': abjad.NamedPitch('C4'),
-            'tenor': abjad.NamedPitch('A3'),
-            'bass': abjad.NamedPitch('D3'),
-            'french': abjad.NamedPitch('D5'),
-            'soprano': abjad.NamedPitch('G4'),
-            'mezzosoprano': abjad.NamedPitch('E4'),
-            'baritone': abjad.NamedPitch('F3'),
-            'varbaritone': abjad.NamedPitch('F3'),
+            'treble': NamedPitch('B4'),
+            'alto': NamedPitch('C4'),
+            'tenor': NamedPitch('A3'),
+            'bass': NamedPitch('D3'),
+            'french': NamedPitch('D5'),
+            'soprano': NamedPitch('G4'),
+            'mezzosoprano': NamedPitch('E4'),
+            'baritone': NamedPitch('F3'),
+            'varbaritone': NamedPitch('F3'),
             'percussion': None,
             'tab': None,
             }[clef_name]
 
     def _get_format_specification(self):
-        import abjad
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             self,
             repr_is_indented=False,
             storage_format_args_values=[self.name],
@@ -292,11 +296,10 @@ class Clef(AbjadValueObject):
             )
 
     def _get_lilypond_format(self):
-        return r'\clef "{}"'.format(self._name)
+        return rf'\clef "{self.name}"'
 
     def _get_lilypond_format_bundle(self, component=None):
-        import abjad
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         if not self.hide:
             bundle.opening.commands.append(self._get_lilypond_format())
         return bundle
@@ -308,8 +311,9 @@ class Clef(AbjadValueObject):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def from_selection(selection):
-        r'''Makes clef from `selection`.
+    def from_selection(selection) -> 'Clef':
+        '''
+        Makes clef from `selection`.
 
         ..  container:: example
 
@@ -322,22 +326,20 @@ class Clef(AbjadValueObject):
             Choses between treble and bass based on minimal number of ledger
             lines.
 
-        Returns new clef.
         '''
-        import abjad
-        pitches = abjad.iterate(selection).pitches()
+        pitches = iterate(selection).pitches()
         diatonic_pitch_numbers = [
             pitch._get_diatonic_pitch_number() for pitch in pitches
             ]
         max_diatonic_pitch_number = max(diatonic_pitch_numbers)
         min_diatonic_pitch_number = min(diatonic_pitch_numbers)
-        lowest_treble_line_pitch = abjad.NamedPitch('E4')
+        lowest_treble_line_pitch = NamedPitch('E4')
         lowest_treble_line_diatonic_pitch_number = \
             lowest_treble_line_pitch._get_diatonic_pitch_number()
         candidate_steps_below_treble = \
             lowest_treble_line_diatonic_pitch_number - \
             min_diatonic_pitch_number
-        highest_bass_line_pitch = abjad.NamedPitch('A3')
+        highest_bass_line_pitch = NamedPitch('A3')
         highest_bass_line_diatonic_pitch_number = \
             highest_bass_line_pitch._get_diatonic_pitch_number()
         candidate_steps_above_bass = \
@@ -350,8 +352,9 @@ class Clef(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def context(self):
-        r'''Gets (historically conventional) context.
+    def context(self) -> str:
+        '''
+        Gets (historically conventional) context.
 
         ..  container:: example
 
@@ -359,15 +362,14 @@ class Clef(AbjadValueObject):
             >>> clef.context
             'Staff'
 
-        Returns ``'Staff'``.
-
         Override with ``abjad.attach(..., context='...')``.
         '''
         return self._context
 
     @property
-    def hide(self):
-        r'''Is true when clef should not appear in output (but should still
+    def hide(self) -> typing.Optional[bool]:
+        r'''
+        Is true when clef should not appear in output (but should still
         determine effective clef).
 
         ..  container:: example
@@ -395,17 +397,13 @@ class Clef(AbjadValueObject):
             (Note("e'4"), Clef('alto', hide=True))
             (Note("f'4"), Clef('alto', hide=True))
 
-        Set to true, false or none.
-
-        Defaults to none.
-        
-        Returns true, false or none.
         '''
         return self._hide
 
     @property
-    def middle_c_position(self):
-        r'''Gets middle C position of clef.
+    def middle_c_position(self) -> int:
+        '''
+        Gets middle C position of clef.
 
         ..  container:: example
 
@@ -421,13 +419,13 @@ class Clef(AbjadValueObject):
             >>> abjad.Clef('alto').middle_c_position
             StaffPosition(0)
 
-        Returns nonnegative integer staff position.
         '''
         return self._middle_c_position
 
     @property
-    def name(self):
-        r'''Gets name of clef.
+    def name(self) -> str:
+        '''
+        Gets name of clef.
 
         ..  container:: example
 
@@ -443,13 +441,13 @@ class Clef(AbjadValueObject):
             >>> abjad.Clef('alto').name
             'alto'
 
-        Returns string.
         '''
         return self._name
 
     @property
-    def persistent(self):
-        r'''Is true.
+    def persistent(self) -> bool:
+        '''
+        Is true.
 
         ..  container:: example
 
@@ -457,14 +455,13 @@ class Clef(AbjadValueObject):
             True
 
         Class constant.
-        
-        Returns true.
         '''
         return self._persistent
         
     @property
-    def redraw(self):
-        r'''Is true.
+    def redraw(self) -> bool:
+        '''
+        Is true.
 
         ..  container:: example
 
@@ -472,7 +469,5 @@ class Clef(AbjadValueObject):
             True
 
         Class constant.
-
-        Returns true.
         '''
         return self._redraw

@@ -1,9 +1,9 @@
 from abjad import Fraction
 
 
-def is_nonnegative_integer_power_of_two(argument):
-    r'''Is true when `argument` is a nonnegative integer power of 2.
-    Otherwise false.
+def is_nonnegative_integer_power_of_two(argument) -> bool:
+    '''
+    Is true when `argument` is a nonnegative integer power of 2.
 
     ..  container:: example
 
@@ -21,7 +21,6 @@ def is_nonnegative_integer_power_of_two(argument):
         8 True
         9 False
 
-    Returns true or false.
     '''
     if isinstance(argument, int):
         return not bool(argument & (argument - 1))

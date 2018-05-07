@@ -1,9 +1,11 @@
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.datastructuretools import Right
+from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class PageBreak(AbjadValueObject):
-    r'''Page break.
+    r'''
+    Page break.
 
     ..  container:: example
 
@@ -43,7 +45,7 @@ class PageBreak(AbjadValueObject):
 
     ### INITIALIZER ##
 
-    def __init__(self, format_slot='closing'):
+    def __init__(self, format_slot: str = 'closing') -> None:
         assert isinstance(format_slot, str), repr(format_slot)
         self._format_slot = format_slot
 
@@ -53,8 +55,7 @@ class PageBreak(AbjadValueObject):
         return r'\pageBreak'
 
     def _get_lilypond_format_bundle(self, component=None):
-        import abjad
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         slot = bundle.get(self.format_slot)
         slot.commands.append(self._get_lilypond_format())
         return bundle
@@ -62,21 +63,22 @@ class PageBreak(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def context(self):
-        r'''Returns ``'Score'``.
+    def context(self) -> str:
+        '''
+        Is ``'Score'``.
 
         ..  container:: example
 
             >>> abjad.PageBreak().context
             'Score'
 
-        Returns ``'Score'``.
         '''
         return self._context
 
     @property
-    def format_slot(self):
-        r'''Gets format slot.
+    def format_slot(self) -> str:
+        r'''
+        Gets format slot.
 
         ..  container:: example
 
@@ -119,6 +121,5 @@ class PageBreak(AbjadValueObject):
                 f'4
             }
 
-        Returns string.
         '''
         return self._format_slot

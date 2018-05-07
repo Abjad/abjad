@@ -1,10 +1,14 @@
 import functools
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.datastructuretools.Multiplier import Multiplier
+from abjad.tools.markuptools.Markup import Markup
 
 
 @functools.total_ordering
 class BowContactPoint(AbjadValueObject):
-    r'''Bow contact point.
+    '''
+    Bow contact point.
 
     ..  container:: example
 
@@ -42,19 +46,20 @@ class BowContactPoint(AbjadValueObject):
 
     def __init__(
         self,
-        contact_point=None,
-        ):
-        import abjad
+        contact_point: typing.Tuple[int, int] = None
+        ) -> None:
+        contact_point_ = None
         if contact_point is not None:
-            contact_point = abjad.Multiplier(contact_point)
-            assert 0 <= contact_point <= 1
-        self._contact_point = contact_point
+            contact_point_ = Multiplier(contact_point)
+            assert 0 <= contact_point_ <= 1
+        self._contact_point = contact_point_
 
     ### SPECIAL METHODS ###
 
-    def __lt__(self, argument):
-        r'''Is true if `argument` is a bow contact point and this bow contact point
-        is less than `argument`.
+    def __lt__(self, argument) -> bool:
+        '''
+        Is true if `argument` is a bow contact point and this bow contact
+        point is less than `argument`.
 
         ..  container:: example
 
@@ -83,17 +88,19 @@ class BowContactPoint(AbjadValueObject):
             >>> point_3 < point_3
             False
 
-        Returns true or false.
         '''
         if isinstance(argument, type(self)):
-            return self.contact_point < argument.contact_point
+            self_contact_point = self.contact_point or 0
+            argument_contact_point = argument.contact_point or 0
+            return self_contact_point < argument_contact_point
         raise TypeError('unorderable types')
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def contact_point(self):
-        r'''Gets contact point of bow contact point.
+    def contact_point(self) -> typing.Optional[Multiplier]:
+        '''
+        Gets contact point of bow contact point.
 
         ..  container:: example
 
@@ -111,13 +118,13 @@ class BowContactPoint(AbjadValueObject):
             >>> point.contact_point
             Multiplier(3, 5)
 
-        Returns multiplier.
         '''
         return self._contact_point
 
     @property
-    def markup(self):
-        r'''Gets markup of bow contact point.
+    def markup(self) -> Markup:
+        r'''
+        Gets markup of bow contact point.
 
         ..  container:: example
 
@@ -149,12 +156,14 @@ class BowContactPoint(AbjadValueObject):
                 }
             >>> abjad.show(indicator.markup) # doctest: +SKIP
 
-        Returns markup.
         '''
-        import abjad
-        markup = abjad.Markup.fraction(
-            self.contact_point.numerator,
-            self.contact_point.denominator,
+        if self.contact_point is None:
+            contact_point = Multiplier(0, 1)
+        else:
+            contact_point = self.contact_point
+        markup = Markup.fraction(
+            contact_point.numerator,
+            contact_point.denominator,
             )
         markup = markup.vcenter()
         markup = markup.center_align()

@@ -1,8 +1,11 @@
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class LilyPondComment(AbjadValueObject):
-    r'''LilyPond comment.
+    r'''
+    LilyPond comment.
 
     ..  container:: example
 
@@ -57,7 +60,11 @@ class LilyPondComment(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, string=None, format_slot='before'):
+    def __init__(
+        self,
+        string: str = None,
+        format_slot: str = 'before',
+        ) -> None:
         if isinstance(string, type(self)):
             argument = string
             string = argument.string
@@ -70,8 +77,9 @@ class LilyPondComment(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __str__(self):
-        r'''Gets string representation of LilyPond comment.
+    def __str__(self) -> str:
+        '''
+        Gets string representation of LilyPond comment.
 
         ..  container:: example
 
@@ -89,9 +97,8 @@ class LilyPondComment(AbjadValueObject):
             >>> str(comment)
             '% yet another comment'
 
-        Returns string.
         '''
-        return r'% {}'.format(self.string)
+        return rf'% {self.string}'
 
     ### PRIVATE PROPERTIES ###
 
@@ -105,8 +112,7 @@ class LilyPondComment(AbjadValueObject):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        import abjad
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         format_slot = bundle.get(self.format_slot)
         format_slot.comments.append(self._get_lilypond_format())
         return bundle
@@ -114,8 +120,9 @@ class LilyPondComment(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def string(self):
-        r'''Gets string.
+    def string(self) -> str:
+        '''
+        Gets string.
 
         ..  container:: example
 
@@ -133,13 +140,13 @@ class LilyPondComment(AbjadValueObject):
             >>> comment.string
             'yet another comment'
 
-        Returns string.
         '''
         return self._string
 
     @property
-    def format_slot(self):
-        r'''Format slot of LilyPond comment.
+    def format_slot(self) -> str:
+        '''
+        Format slot of LilyPond comment.
 
         ..  container:: example
 
@@ -157,33 +164,27 @@ class LilyPondComment(AbjadValueObject):
             >>> comment.format_slot
             'before'
 
-        Defaults to ``'before'``.
-
-        Set to allowable format slot string.
-
-        Returns string.
         '''
         return self._format_slot
 
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def list_allowable_format_slots():
-        r'''Lists allowable format slots.
+    def list_allowable_format_slots() -> typing.Tuple[str, ...]:
+        '''
+        Lists allowable format slots.
 
         ..  container:: example
 
-            Default:
+            >>> commands = abjad.LilyPondComment.list_allowable_format_slots()
+            >>> for command in commands:
+            ...     command
+            ...
+            'after'
+            'before'
+            'closing'
+            'opening'
+            'right'
 
-                >>> commands = abjad.LilyPondComment.list_allowable_format_slots()
-                >>> for command in commands:
-                ...     command
-                'after'
-                'before'
-                'closing'
-                'opening'
-                'right'
-
-        Returns tuple of strings.
         '''
         return LilyPondComment._allowable_format_slots

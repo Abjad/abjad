@@ -3,12 +3,13 @@ from .LilyPondNameManager import LilyPondNameManager
 
 
 class LilyPondTweakManager(LilyPondNameManager):
-    '''LilyPond tweak manager.
+    '''
+    LilyPond tweak manager.
     '''
 
     ### PRIVATE METHODS ###
 
-    def _list_format_contributions(self):
+    def _list_format_contributions(self, hyphen=True):
         manager = LilyPondFormatManager
         result = []
         for attribute_pair in self._get_attribute_pairs():
@@ -17,6 +18,7 @@ class LilyPondTweakManager(LilyPondNameManager):
             string = manager.make_lilypond_tweak_string(
                 attribute_name,
                 attribute_value,
+                hyphen=hyphen,
                 )
             result.append(string)
         result.sort()

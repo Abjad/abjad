@@ -1,8 +1,10 @@
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.markuptools.Markup import Markup
 
 
 class StringContactPoint(AbjadValueObject):
-    r'''String contact point.
+    '''
+    String contact point.
 
     ..  container:: example
 
@@ -62,8 +64,8 @@ class StringContactPoint(AbjadValueObject):
 
     def __init__(
         self,
-        contact_point='ordinario',
-        ):
+        contact_point: str = 'ordinario',
+        ) -> None:
         contact_point = str(contact_point)
         assert contact_point in self._contact_points
         self._contact_point = contact_point
@@ -71,8 +73,9 @@ class StringContactPoint(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def contact_point(self):
-        r'''Gets contact point of string contact point.
+    def contact_point(self) -> str:
+        '''
+        Gets contact point of string contact point.
 
         ..  container:: example
 
@@ -91,16 +94,13 @@ class StringContactPoint(AbjadValueObject):
             'sul tasto'
 
         Set to known string.
-
-        Defaults to ``'ordinario'``.
-
-        Returns known string.
         '''
         return self._contact_point
 
     @property
-    def markup(self):
-        r'''Gets markup of string contact point.
+    def markup(self) -> Markup:
+        r'''
+        Gets markup of string contact point.
 
         ..  container:: example
 
@@ -132,24 +132,22 @@ class StringContactPoint(AbjadValueObject):
                         S.T.
                     }
 
-        Returns abbreviation markup.
         '''
-        import abjad
-        markup = self._contact_point_abbreviations[self.contact_point]
-        markup = markup.title()
-        markup = abjad.Markup(markup)
+        string = self._contact_point_abbreviations[self.contact_point]
+        string = string.title()
+        markup = Markup(string)
         markup = markup.caps()
         return markup
 
     @property
-    def persistent(self):
-        r'''Is true.
+    def persistent(self) -> bool:
+        '''
+        Is true.
 
         ..  container:: example
 
             >>> abjad.StringContactPoint('sul tasto').persistent
             True
 
-        Returns true.
         '''
         return self._persistent

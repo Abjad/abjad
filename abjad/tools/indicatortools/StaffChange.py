@@ -1,9 +1,12 @@
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.datastructuretools import Right
+from abjad.tools.schemetools.Scheme import Scheme
+from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class StaffChange(AbjadValueObject):
-    r'''Staff change.
+    r'''
+    Staff change.
 
     ..  container:: example
 
@@ -56,18 +59,17 @@ class StaffChange(AbjadValueObject):
     ### INITIALIZER ###
 
     def __init__(self, staff=None):
-        import abjad
-        if not isinstance(staff, (abjad.Staff, type(None))):
-            message = 'staff change input value {!r}'
-            message += ' must be staff instance.'
-            message.format(staff)
-            raise TypeError(message)
+        from abjad.tools.scoretools.Staff import Staff
+        if staff is not None:
+            if not isinstance(staff, Staff):
+                raise TypeError(f'must be staff: {staff!r}.')
         self._staff = staff
 
     ### SPECIAL METHODS ###
 
-    def __str__(self):
-        r'''Gets string representation of staff change.
+    def __str__(self) -> str:
+        r'''
+        Gets string representation of staff change.
 
         ..  container:: example
 
@@ -86,14 +88,11 @@ class StaffChange(AbjadValueObject):
             >>> print(str(staff_change))
             \change Staff = LHStaff
 
-        Returns string.
         '''
-        from abjad.tools import schemetools
         if self.staff is None:
             return r'\change Staff = ##f'
-        return r'\change Staff = {}'.format(
-            schemetools.Scheme.format_scheme_value(self.staff.name),
-            )
+        value = Scheme.format_scheme_value(self.staff.name)
+        return rf'\change Staff = {value}'
 
     ### PRIVATE PROPERTIES ###
 
@@ -107,16 +106,16 @@ class StaffChange(AbjadValueObject):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        import abjad
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         bundle.opening.commands.append(self._get_lilypond_format())
         return bundle
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def context(self):
-        r'''Returns ``'Staff'``.
+    def context(self) -> str:
+        '''
+        Gets ``'Staff'``.
 
         ..  container:: example
 
@@ -135,13 +134,13 @@ class StaffChange(AbjadValueObject):
             >>> staff_change.context
             'Staff'
 
-        Returns ``'Staff'``.
         '''
         return self._context
 
     @property
     def staff(self):
-        r'''Gets staff of staff change.
+        '''
+        Gets staff of staff change.
 
         ..  container:: example
 
@@ -159,10 +158,6 @@ class StaffChange(AbjadValueObject):
             >>> staff_change = abjad.StaffChange(staff=lh_staff)
             >>> staff_change.staff
             Staff('s2', name='LHStaff')
-
-        Set to staff or none.
-
-        Defaults to none.
 
         Returns staff or none.
         '''

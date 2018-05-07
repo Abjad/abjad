@@ -1,9 +1,15 @@
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.datastructuretools import Center
+from abjad.tools.datastructuretools import Down
 from abjad.tools.datastructuretools import Up
+from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
+from abjad.tools.markuptools.Markup import Markup
+from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class KeyCluster(AbjadValueObject):
-    r'''Key cluster.
+    r'''
+    Key cluster.
 
     ..  container:: example
 
@@ -49,24 +55,22 @@ class KeyCluster(AbjadValueObject):
 
     def __init__(
         self,
-        include_black_keys=True,
-        include_white_keys=True,
-        hide=False,
-        markup_direction=Up,
-        ):
-        import abjad
+        include_black_keys: bool = True,
+        include_white_keys: bool = True,
+        hide: bool = False,
+        markup_direction: OrdinalConstant = Up,
+        ) -> None:
         assert include_black_keys or include_white_keys
         self._include_black_keys = bool(include_black_keys)
         self._include_white_keys = bool(include_white_keys)
-        assert markup_direction in (abjad.Up, abjad.Center, abjad.Down)
+        assert markup_direction in (Up, Center, Down)
         self._markup_direction = markup_direction
         self._hide = bool(hide)
 
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format_bundle(self, component=None):
-        import abjad
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         bundle.grob_overrides.append(
             '\\once \\override Accidental.stencil = ##f\n'
             '\\once \\override AccidentalCautionary.stencil = ##f\n'
@@ -83,7 +87,7 @@ class KeyCluster(AbjadValueObject):
                 string = r'\center-align \flat'
             else:
                 string = r'\center-align \natural'
-            markup = abjad.Markup(
+            markup = Markup(
                 string,
                 direction=self.markup_direction,
                 )
@@ -94,8 +98,9 @@ class KeyCluster(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def hide(self):
-        r'''Is true if key cluster hidees key markup.
+    def hide(self) -> bool:
+        r'''
+        Is true if key cluster hidees key markup.
 
         ..  container:: example
 
@@ -151,13 +156,13 @@ class KeyCluster(AbjadValueObject):
 
         ..  todo:: Remove?
 
-        Set to true or false.
         '''
         return self._hide
 
     @property
-    def include_black_keys(self):
-        r'''Is true if key cluster includes black keys.
+    def include_black_keys(self) -> bool:
+        r'''
+        Is true if key cluster includes black keys.
 
         ..  container:: example
 
@@ -221,13 +226,13 @@ class KeyCluster(AbjadValueObject):
 
         ..  todo:: Rename to ``include_flat_markup``.
 
-        Set to true or false.
         '''
         return self._include_black_keys
 
     @property
-    def include_white_keys(self):
-        r'''Is true if key cluster includes white keys.
+    def include_white_keys(self) -> bool:
+        r'''
+        Is true if key cluster includes white keys.
 
         ..  container:: example
 
@@ -291,13 +296,13 @@ class KeyCluster(AbjadValueObject):
 
         ..  todo:: Rename to ``include_natural_markup``.
 
-        Set to true or false.
         '''
         return self._include_white_keys
 
     @property
-    def markup_direction(self):
-        r'''Gets markup direction.
+    def markup_direction(self) -> OrdinalConstant:
+        r'''
+        Gets markup direction.
 
         ..  container:: example
 
@@ -363,6 +368,5 @@ class KeyCluster(AbjadValueObject):
                             }
                     }
 
-        Set to up, down or center.
         '''
         return self._markup_direction

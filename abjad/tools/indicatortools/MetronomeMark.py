@@ -1,15 +1,31 @@
 import collections
+import fractions
 import functools
 import math
 import numbers
-from abjad.tools.exceptiontools import ImpreciseMetronomeMarkError
+import typing
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.datastructuretools import Down
+from abjad.tools.datastructuretools.Duration import Duration
+from abjad.tools.datastructuretools.Multiplier import Multiplier
+from abjad.tools.exceptiontools import ImpreciseMetronomeMarkError
+from abjad.tools.markuptools.Markup import Markup
+from abjad.tools.mathtools.Enumerator import Enumerator
+from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
+from abjad.tools.mathtools.Ratio import Ratio
+from abjad.tools.schemetools.Scheme import Scheme
+from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
+from abjad.tools.topleveltools.new import new
+from abjad.tools.topleveltools.sequence import sequence
+Number = typing.Union[int, float]
 
 
 @functools.total_ordering
 class MetronomeMark(AbjadValueObject):
-    r'''MetronomeMark.
+    r'''
+    MetronomeMark.
 
     ..  container:: example
 
@@ -222,31 +238,31 @@ class MetronomeMark(AbjadValueObject):
 
     def __init__(
         self,
-        reference_duration=None,
-        units_per_minute=None,
-        textual_indication=None,
-        custom_markup=None,
-        hide=None,
-        ):
-        import abjad
+        reference_duration: typing.Union[
+            Duration, typing.Tuple[int, int]] = None,
+        units_per_minute: Number = None,
+        textual_indication: Markup = None,
+        custom_markup: Markup = None,
+        hide: bool = None,
+        ) -> None:
         assert isinstance(textual_indication, (str, type(None)))
         arguments = (reference_duration, units_per_minute, textual_indication)
         if all(_ is None for _ in arguments):
             reference_duration = (1, 4)
             units_per_minute = 60
         if reference_duration:
-            reference_duration = abjad.Duration(reference_duration)
+            reference_duration = Duration(reference_duration)
         prototype = (
             int,
             float,
-            abjad.Fraction,
+            fractions.Fraction,
             collections.Sequence,
             type(None),
             )
         assert isinstance(units_per_minute, prototype)
         if isinstance(units_per_minute, collections.Sequence):
             assert len(units_per_minute) == 2
-            prototype = (int, float, abjad.Duration)
+            prototype = (int, float, Duration)
             assert all(isinstance(x, prototype) for x in units_per_minute)
             units_per_minute = tuple(sorted(units_per_minute))
         if isinstance(units_per_minute, float):
@@ -256,8 +272,7 @@ class MetronomeMark(AbjadValueObject):
         self._textual_indication = textual_indication
         self._units_per_minute = units_per_minute
         if custom_markup is not None:
-            assert isinstance(custom_markup, abjad.Markup), repr(
-                custom_markup)
+            assert isinstance(custom_markup, Markup), repr(custom_markup)
         self._custom_markup = custom_markup
         if hide is not None:
             hide = bool(hide)
@@ -265,8 +280,9 @@ class MetronomeMark(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __add__(self, argument):
-        r'''Adds metronome mark to `argument`.
+    def __add__(self, argument) -> typing.Optional['MetronomeMark']:
+        '''
+        Adds metronome mark to ``argument``.
 
         ..  container:: example
 
@@ -304,42 +320,46 @@ class MetronomeMark(AbjadValueObject):
 
         ..  container:: example
 
-            Raises type error when `argument` is not a metronome mark:
+            Raises type error when ``argument`` is not a metronome mark:
 
             >>> abjad.MetronomeMark((1, 4), 60) + 90
             Traceback (most recent call last):
                 ...
             TypeError: 90
 
-        Returns new metronome mark or none.
         '''
-        import abjad
         if not isinstance(argument, type(self)):
             raise TypeError(argument)
         if self.is_imprecise or argument.is_imprecise:
             raise ImpreciseMetronomeMarkError
+        assert isinstance(self.quarters_per_minute, fractions.Fraction)
+        assert isinstance(argument.quarters_per_minute, fractions.Fraction)
+        assert isinstance(self.reference_duration, Duration)
+        assert isinstance(argument.reference_duration, Duration)
         new_quarters_per_minute = \
             self.quarters_per_minute + argument.quarters_per_minute
         minimum_denominator = min((
             self.reference_duration.denominator,
             argument.reference_duration.denominator,
             ))
-        nonreduced_fraction = abjad.NonreducedFraction(
-            new_quarters_per_minute / 4)
+        nonreduced_fraction = NonreducedFraction(new_quarters_per_minute / 4)
         nonreduced_fraction = nonreduced_fraction.with_denominator(
             minimum_denominator)
         new_units_per_minute, new_reference_duration_denominator = \
             nonreduced_fraction.pair
-        new_reference_duration = abjad.Duration(
-            1, new_reference_duration_denominator)
+        new_reference_duration = Duration(
+            1,
+            new_reference_duration_denominator
+            )
         metronome_mark = type(self)(
             new_reference_duration,
             new_units_per_minute,
             )
         return metronome_mark
 
-    def __div__(self, argument):
-        r'''Divides metronome mark by `argument`.
+    def __div__(self, argument) -> 'MetronomeMark':
+        '''
+        Divides metronome mark by ``argument``.
 
         ..  container:: example
 
@@ -355,27 +375,28 @@ class MetronomeMark(AbjadValueObject):
             >>> abjad.MetronomeMark((1, 4), 60) / abjad.MetronomeMark((1, 4), 40)
             Multiplier(3, 2)
 
-        Returns new metronome mark or multiplier.
         '''
-        import abjad
         if self.is_imprecise:
             raise ImpreciseMetronomeMarkError
         if getattr(argument, 'is_imprecise', False):
             raise ImpreciseMetronomeMarkError
+        assert isinstance(self.quarters_per_minute, fractions.Fraction)
+
         if isinstance(argument, type(self)):
+            assert isinstance(argument.quarters_per_minute, fractions.Fraction)
             result = self.quarters_per_minute / argument.quarters_per_minute
-            return abjad.Multiplier(result)
+            return Multiplier(result)
         elif isinstance(argument, numbers.Number):
+            assert isinstance(self.units_per_minute, numbers.Number)
             units_per_minute = self.units_per_minute / argument
-            result = abjad.new(self, units_per_minute=units_per_minute)
+            result = new(self, units_per_minute=units_per_minute)
             return result
         else:
-            message = 'must be number or metronome mark: {!r}.'
-            message = message.format(argument)
-            raise TypeError(message)
+            raise TypeError(f'must be number or metronome mark: {argument!r}.')
 
-    def __eq__(self, argument):
-        r'''Is true when metronome mark equals `argument`.
+    def __eq__(self, argument) -> bool:
+        '''
+        Is true when metronome mark equals ``argument``.
 
         ..  container:: example
 
@@ -411,12 +432,12 @@ class MetronomeMark(AbjadValueObject):
             >>> mark_1 == mark_3
             False
 
-        Returns true or false.
         '''
         return super(MetronomeMark, self).__eq__(argument)
 
-    def __format__(self, format_specification=''):
-        r'''Formats metronome mark.
+    def __format__(self, format_specification='') -> str:
+        r'''
+        Formats metronome mark.
 
         Set `format_specification` to `''`', `'lilypond'` or `'storage'`.
         Interprets `''` equal to `'storage'`.
@@ -453,35 +474,35 @@ class MetronomeMark(AbjadValueObject):
                     ),
                 )
 
-        Returns string.
         '''
-        from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager(self).get_storage_format()
-        elif format_specification == 'lilypond':
-            return self._get_lilypond_format()
-        return str(self)
+            return StorageFormatManager(self).get_storage_format()
+        assert format_specification == 'lilypond'
+        return self._get_lilypond_format()
 
-    def __hash__(self):
-        r'''Hashes metronome mark.
+    def __hash__(self) -> int:
+        '''
+        Hashes metronome mark.
 
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
+        Redefined in tandem with __eq__.
         '''
         return AbjadValueObject.__hash__(self)
 
-    def __lt__(self, argument):
-        r'''Is true when `argument` is a metronome mark with quarters per
-        minute greater than that of this metronome mark. Otherwise false.
-
-        Returns true or false.
+    def __lt__(self, argument) -> bool:
+        '''
+        Is true when ``argument`` is a metronome mark with quarters per
+        minute greater than that of this metronome mark.
         '''
         assert isinstance(argument, type(self)), repr(argument)
-        return self.quarters_per_minute < argument.quarters_per_minute
+        self_quarters_per_minute = self.quarters_per_minute or 0
+        argument_quarters_per_minute = argument.quarters_per_minute or 0
+        assert isinstance(self_quarters_per_minute, numbers.Number)
+        assert isinstance(argument_quarters_per_minute, numbers.Number)
+        return self_quarters_per_minute < argument_quarters_per_minute
 
-    def __mul__(self, multiplier):
-        r'''Multiplies metronome mark by `multiplier`.
+    def __mul__(self, multiplier) -> typing.Optional['MetronomeMark']:
+        '''
+        Multiplies metronome mark by ``multiplier``.
 
         ..  container:: example
 
@@ -499,23 +520,23 @@ class MetronomeMark(AbjadValueObject):
             >>> 3 * mark
             MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=252)
 
-        Returns new metronome mark.
         '''
-        import abjad
-        if not isinstance(multiplier, (int, float, abjad.Duration)):
-            return
+        if not isinstance(multiplier, (int, float, Duration)):
+            return None
         if self.is_imprecise:
             raise ImpreciseMetronomeMarkError
+        assert isinstance(self.units_per_minute, numbers.Number)
         new_units_per_minute = multiplier * self.units_per_minute
-        new_reference_duration = abjad.Duration(self.reference_duration)
+        new_reference_duration = Duration(self.reference_duration)
         metronome_mark = type(self)(
             reference_duration=new_reference_duration,
             units_per_minute=new_units_per_minute,
             )
         return metronome_mark
 
-    def __radd__(self, argument):
-        r'''Adds `argument` to metronome mark.
+    def __radd__(self, argument) -> typing.Optional['MetronomeMark']:
+        '''
+        Adds ``argument`` to metronome mark.
 
         ..  container:: example
 
@@ -553,21 +574,21 @@ class MetronomeMark(AbjadValueObject):
 
         ..  container:: example
 
-            Raises type error when `argument` is not a metronome mark:
+            Raises type error when ``argument`` is not a metronome mark:
 
             >>> 90 + abjad.MetronomeMark((1, 4), 60)
             Traceback (most recent call last):
                 ...
             TypeError: 90
 
-        Returns new metronome mark or none.
         '''
         if not isinstance(argument, type(self)):
             raise TypeError(argument)
         return argument.__add__(self)
 
-    def __rmul__(self, multiplier):
-        r'''Multiplies `multiplier` by metronome mark.
+    def __rmul__(self, multiplier) -> typing.Optional['MetronomeMark']:
+        '''
+        Multiplies ``multiplier`` by metronome mark.
 
         ..  container::: example
 
@@ -585,23 +606,23 @@ class MetronomeMark(AbjadValueObject):
             >>> mark * 3
             MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=252)
 
-        Returns new metronome mark.
         '''
-        import abjad
-        if not isinstance(multiplier, (int, float, abjad.Duration)):
-            return
+        if not isinstance(multiplier, (int, float, Duration)):
+            return None
         if self.is_imprecise:
             raise ImpreciseMetronomeMarkError
+        assert isinstance(self.units_per_minute, numbers.Number)
         new_units_per_minute = multiplier * self.units_per_minute
-        new_reference_duration = abjad.Duration(self.reference_duration)
+        new_reference_duration = Duration(self.reference_duration)
         metronome_mark = type(self)(
             reference_duration=new_reference_duration,
             units_per_minute=new_units_per_minute,
             )
         return metronome_mark
 
-    def __str__(self):
-        r'''Gets string representation of metronome mark.
+    def __str__(self) -> str:
+        '''
+        Gets string representation of metronome mark.
 
         ..  container:: example
 
@@ -627,26 +648,21 @@ class MetronomeMark(AbjadValueObject):
             >>> str(mark)
             '4=90-96'
 
-        Returns string.
         '''
-        import abjad
-        #return self._equation or self.textual_indication
         if self.textual_indication is not None:
             string = self.textual_indication
         elif isinstance(self.units_per_minute, (int, float)):
-            string = '{}={}'
-            string = string.format(self._dotted, self.units_per_minute)
-        elif (isinstance(self.units_per_minute, abjad.Fraction) and
+            string = f'{self._dotted}={self.units_per_minute}'
+        elif (isinstance(self.units_per_minute, fractions.Fraction) and
             not mathtools.is_integer_equivalent_number(self.units_per_minute)):
-            integer_part = int(self.units_per_minute)
+            integer_part = int(float(self.units_per_minute))
             remainder = self.units_per_minute - integer_part
-            remainder = abjad.Fraction(remainder)
-            string = '{}={}+{}'
-            string = string.format(self._dotted, integer_part, remainder)
-        elif (isinstance(self.units_per_minute, abjad.Fraction) and
+            remainder = fractions.Fraction(remainder)
+            string = f'{self._dotted}={integer_part}+{remainder}'
+        elif (isinstance(self.units_per_minute, fractions.Fraction) and
             mathtools.is_integer_equivalent_number(self.units_per_minute)):
             string = '{}={}'
-            integer = int(self.units_per_minute)
+            integer = int(float(self.units_per_minute))
             string = string.format(self._dotted, integer)
         elif isinstance(self.units_per_minute, tuple):
             string = '{}={}-{}'
@@ -656,13 +672,12 @@ class MetronomeMark(AbjadValueObject):
                 self.units_per_minute[1],
                 )
         else:
-            message = 'unknown: {!r}.'
-            message = message.format(self.units_per_minute)
-            raise TypeError(message)
+            raise TypeError(f'unknown: {self.units_per_minute!r}.')
         return string
 
-    def __sub__(self, argument):
-        r'''Subtracts `argument` from metronome mark.
+    def __sub__(self, argument) -> 'MetronomeMark':
+        '''
+        Subtracts ``argument`` from metronome mark.
 
         ..  container:: example
 
@@ -693,37 +708,39 @@ class MetronomeMark(AbjadValueObject):
                 ...
             abjad.tools.exceptiontools.ImpreciseMetronomeMarkError.ImpreciseMetronomeMarkError
 
-        Returns new metronome mark.
         '''
-        import abjad
         if not isinstance(argument, type(self)):
-            message = 'must be metronome mark: {!r}.'
-            message = message.format(argument)
-            raise Exception(message)
+            raise Exception('must be metronome mark: {argument!r}.')
         if self.is_imprecise or argument.is_imprecise:
             raise ImpreciseMetronomeMarkError
+        assert isinstance(self.quarters_per_minute, numbers.Number)
+        assert isinstance(argument.quarters_per_minute, numbers.Number)
+        assert isinstance(self.reference_duration, Duration)
+        assert isinstance(argument.reference_duration, Duration)
         new_quarters_per_minute = self.quarters_per_minute - \
             argument.quarters_per_minute
         minimum_denominator = min((
             self.reference_duration.denominator,
             argument.reference_duration.denominator,
             ))
-        nonreduced_fraction = abjad.NonreducedFraction(
-            new_quarters_per_minute / 4)
+        nonreduced_fraction = NonreducedFraction(new_quarters_per_minute / 4)
         nonreduced_fraction = nonreduced_fraction.with_denominator(
             minimum_denominator)
         new_units_per_minute, new_reference_duration_denominator = \
             nonreduced_fraction.pair
-        new_reference_duration = abjad.Duration(
-            1, new_reference_duration_denominator)
+        new_reference_duration = Duration(
+            1,
+            new_reference_duration_denominator,
+            )
         metronome_mark = type(self)(
             reference_duration=new_reference_duration,
             units_per_minute=new_units_per_minute,
             )
         return metronome_mark
 
-    def __truediv__(self, argument):
-        r'''Divides metronome mark by `argument`.
+    def __truediv__(self, argument) -> 'MetronomeMark':
+        '''
+        Divides metronome mark by ``argument``.
 
         Operator required by Python 3.
 
@@ -743,7 +760,6 @@ class MetronomeMark(AbjadValueObject):
             ...     )
             Multiplier(3, 2)
 
-        Returns new metronome mark.
         '''
         return self.__div__(argument)
 
@@ -755,7 +771,6 @@ class MetronomeMark(AbjadValueObject):
 
     @property
     def _equation(self):
-        import abjad
         if self.reference_duration is None:
             return
         if isinstance(self.units_per_minute, tuple):
@@ -766,42 +781,39 @@ class MetronomeMark(AbjadValueObject):
                 self.units_per_minute[1],
                 )
             return string
-        elif isinstance(self.units_per_minute, (float, abjad.Fraction)):
+        elif isinstance(self.units_per_minute, (float, fractions.Fraction)):
             markup = MetronomeMark.make_tempo_equation_markup(
                 self.reference_duration,
                 self.units_per_minute,
                 )
             string = str(markup)
             return string
-        string = '{}={}'
-        string = string.format(self._dotted, self.units_per_minute)
+        string = f'{self._dotted}={self.units_per_minute}'
         return string
 
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format(self):
-        import abjad
         text, equation = None, None
         if self.textual_indication is not None:
             text = self.textual_indication
-            text = abjad.Scheme.format_scheme_value(text)
+            text = Scheme.format_scheme_value(text)
         if (self.reference_duration is not None and
             self.units_per_minute is not None):
             equation = self._equation
         if self.custom_markup is not None:
-            return r'\tempo {}'.format(self.custom_markup)
+            return rf'\tempo {self.custom_markup}'
         elif text and equation:
-            return r'\tempo {} {}'.format(text, equation)
+            return rf'\tempo {text} {equation}'
         elif equation:
-            return r'\tempo {}'.format(equation)
+            return rf'\tempo {equation}'
         elif text:
-            return r'\tempo {}'.format(text)
+            return rf'\tempo {text}'
         else:
             return r'\tempo \default'
 
     def _get_lilypond_format_bundle(self, component=None):
-        import abjad
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         if not self.hide:
             bundle.before.commands.append(self._get_lilypond_format())
         return bundle
@@ -811,22 +823,21 @@ class MetronomeMark(AbjadValueObject):
         reference_duration = reference_duration or self.reference_duration
         maker = abjad.NoteMaker()
         selection = maker([0], [reference_duration])
-        markup = abjad.Duration._to_score_markup(selection)
+        markup = Duration._to_score_markup(selection)
         return markup
 
     def _get_markup(self, stem_height=1):
-        import abjad
         if self.custom_markup is not None:
             return self.custom_markup
         duration_log = int(math.log(self.reference_duration.denominator, 2))
-        lhs = abjad.Markup.note_by_number(
+        lhs = Markup.note_by_number(
             duration_log,
             self.reference_duration.dot_count,
             stem_height,
             )
-        lhs = lhs.general_align('Y', abjad.Down).fontsize(-6)
-        equals = abjad.Markup('=')
-        units = abjad.Markup(self.units_per_minute)
+        lhs = lhs.general_align('Y', Down).fontsize(-6)
+        equals = Markup('=')
+        units = Markup(self.units_per_minute)
         rhs = equals + units
         rhs = rhs.upright()
         markup = lhs + rhs
@@ -835,8 +846,9 @@ class MetronomeMark(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def custom_markup(self):
-        r'''Gets custom markup of metronome mark.
+    def custom_markup(self) -> typing.Optional[Markup]:
+        r'''
+        Gets custom markup of metronome mark.
 
         ..  container:: example
 
@@ -916,17 +928,13 @@ class MetronomeMark(AbjadValueObject):
                     }
                 >>
 
-        Set to markup or none.
-
-        Defaults to none.
-
-        Returns markup or none.
         '''
         return self._custom_markup
 
     @property
-    def context(self):
-        r'''Gets (historically conventional) context.
+    def context(self) -> str:
+        '''
+        Gets (historically conventional) context.
 
         ..  container:: example
 
@@ -944,15 +952,14 @@ class MetronomeMark(AbjadValueObject):
             >>> mark.context
             'Score'
 
-        Returns ``'Score'``.
-
         Override with ``abjad.attach(..., context='...')``.
         '''
         return self._context
 
     @property
-    def hide(self):
-        r'''Is true when metronome mark should not appear in output (but
+    def hide(self) -> typing.Optional[bool]:
+        r'''
+        Is true when metronome mark should not appear in output (but
         should still determine effective metronome mark).
 
         ..  container:: example
@@ -990,18 +997,14 @@ class MetronomeMark(AbjadValueObject):
             (Note("e'4"), MetronomeMark(textual_indication='Allegro', hide=True))
             (Note("f'4"), MetronomeMark(textual_indication='Allegro', hide=True))
 
-        Set to true, false or none.
-
-        Defaults to none.
-
-        Returns true, false or none.
         '''
         return self._hide
 
     @property
-    def is_imprecise(self):
-        r'''Is true if metronome mark is entirely textual or if metronome
-        mark's units_per_minute is a range. Otherwise false.
+    def is_imprecise(self) -> bool:
+        '''
+        Is true if metronome mark is entirely textual or if metronome
+        mark's units_per_minute is a range.
 
         ..  container:: example
 
@@ -1025,7 +1028,6 @@ class MetronomeMark(AbjadValueObject):
             >>> abjad.MetronomeMark((1, 4), 60).is_imprecise
             False
 
-        Returns true or false.
         '''
         if self.reference_duration is not None:
             if self.units_per_minute is not None:
@@ -1034,21 +1036,23 @@ class MetronomeMark(AbjadValueObject):
         return True
 
     @property
-    def persistent(self):
-        r'''Is ``'abjad.MetronomeMark'``.
+    def persistent(self) -> str:
+        '''
+        Is ``'abjad.MetronomeMark'``.
 
         ..  container:: example
 
             >>> abjad.MetronomeMark((1, 8), 52).persistent
             'abjad.MetronomeMark'
 
-        Returns ``'abjad.MetronomeMark'``.
         '''
         return self._persistent
 
     @property
-    def quarters_per_minute(self):
-        r'''Gets metronome mark quarters per minute.
+    def quarters_per_minute(self) -> typing.Union[
+        tuple, None, fractions.Fraction]:
+        '''
+        Gets metronome mark quarters per minute.
 
         ..  container:: example
 
@@ -1080,22 +1084,22 @@ class MetronomeMark(AbjadValueObject):
 
         Returns fraction otherwise.
         '''
-        import abjad
         if self.is_imprecise:
             return None
         if isinstance(self.units_per_minute, tuple):
-            low = abjad.Duration(1, 4) / self.reference_duration * \
+            low = Duration(1, 4) / self.reference_duration * \
                 self.units_per_minute[0]
-            high = abjad.Duration(1, 4) / self.reference_duration * \
+            high = Duration(1, 4) / self.reference_duration * \
                 self.units_per_minute[1]
             return (low, high)
-        result = abjad.Duration(1, 4) / self.reference_duration * \
+        result = Duration(1, 4) / self.reference_duration * \
             self.units_per_minute
-        return abjad.Fraction(result)
+        return fractions.Fraction(result)
 
     @property
-    def reference_duration(self):
-        r'''Gets reference duration of metronome mark.
+    def reference_duration(self) -> typing.Optional[Duration]:
+        '''
+        Gets reference duration of metronome mark.
 
         ..  container:: example
 
@@ -1113,13 +1117,13 @@ class MetronomeMark(AbjadValueObject):
             >>> mark.reference_duration
             Duration(1, 4)
 
-        Returns duration.
         '''
         return self._reference_duration
 
     @property
-    def textual_indication(self):
-        r'''Gets optional textual indication of metronome mark.
+    def textual_indication(self) -> typing.Optional[str]:
+        '''
+        Gets optional textual indication of metronome mark.
 
         ..  container:: example
 
@@ -1137,13 +1141,14 @@ class MetronomeMark(AbjadValueObject):
             >>> mark.textual_indication is None
             True
 
-        Returns string or none.
         '''
         return self._textual_indication
 
     @property
-    def units_per_minute(self):
-        r'''Gets units per minute of metronome mark.
+    def units_per_minute(self) -> typing.Union[
+        int, float, fractions.Fraction, None]:
+        '''
+        Gets units per minute of metronome mark.
 
         ..  container:: example
 
@@ -1167,18 +1172,14 @@ class MetronomeMark(AbjadValueObject):
             >>> mark.units_per_minute
             Fraction(181, 2)
 
-        Set to number or none.
-
-        Defaults to none
-
-        Returns number or none.
         '''
         return self._units_per_minute
 
     ### PUBLIC METHODS ###
 
-    def duration_to_milliseconds(self, duration):
-        r'''Gets millisecond value of `duration` under a given metronome mark.
+    def duration_to_milliseconds(self, duration) -> Duration:
+        '''
+        Gets millisecond value of ``duration`` under a given metronome mark.
 
         ..  container:: example
 
@@ -1196,22 +1197,15 @@ class MetronomeMark(AbjadValueObject):
             >>> mark.duration_to_milliseconds((3, 8))
             Duration(1500, 1)
 
-        Returns duration.
         '''
-        import abjad
-        duration = abjad.Duration(duration)
-        # TODO: rewrite formula without line breaks;
-        #       use two or three temporary variables instead.
-        whole_note_duration = 1000 \
-            * abjad.Multiplier(
-                self.reference_duration.denominator,
-                self.reference_duration.numerator,
-                ) \
-            * abjad.Multiplier(
-                60,
-                self.units_per_minute,
-                )
-        return abjad.Duration(duration * whole_note_duration)
+        assert isinstance(self.reference_duration, Duration)
+        denominator = self.reference_duration.denominator
+        numerator = self.reference_duration.numerator
+        whole_note_duration = 1000
+        whole_note_duration *= Multiplier(denominator, numerator)
+        whole_note_duration *= Multiplier(60, self.units_per_minute)
+        duration = Duration(duration)
+        return Duration(duration * whole_note_duration)
 
     def list_related_tempos(
         self,
@@ -1219,7 +1213,8 @@ class MetronomeMark(AbjadValueObject):
         maximum_denominator=None,
         integer_tempos_only=False,
         ):
-        r'''Lists related tempos.
+        r'''
+        Lists related tempos.
 
         ..  container:: example
 
@@ -1233,7 +1228,7 @@ class MetronomeMark(AbjadValueObject):
             ...     )
 
             >>> for tempo, ratio in pairs:
-            ...     string = '{!s}\t{!s}'.format(tempo, ratio)
+            ...     string = f'{tempo!s}\t{ratio!s}'
             ...     print(string)
             4=29        1:2
             4=33+1/7    4:7
@@ -1271,7 +1266,7 @@ class MetronomeMark(AbjadValueObject):
             ...     )
 
             >>> for tempo, ratio in pairs:
-            ...     string = '{!s}\t{!s}'.format(tempo, ratio)
+            ...     string = f'{tempo!s}\t{ratio!s}'
             ...     print(string)
             4=29	1:2
             4=58	1:1
@@ -1282,19 +1277,18 @@ class MetronomeMark(AbjadValueObject):
 
         Returns list of tempo / ratio pairs.
         '''
-        import abjad
         allowable_numerators = range(1, maximum_numerator + 1)
         allowable_denominators = range(1, maximum_denominator + 1)
         numbers = [allowable_numerators, allowable_denominators]
-        enumerator = mathtools.Enumerator(numbers)
+        enumerator = Enumerator(numbers)
         pairs = enumerator.yield_outer_product()
-        multipliers = [abjad.Multiplier(_) for _ in pairs]
+        multipliers = [Multiplier(_) for _ in pairs]
         multipliers = [
             _ for _ in multipliers
-            if abjad.Fraction(1, 2) <= _ <= abjad.Fraction(2)
+            if fractions.Fraction(1, 2) <= _ <= fractions.Fraction(2)
             ]
         multipliers.sort()
-        multipliers = abjad.sequence(multipliers).remove_repeats()
+        multipliers = sequence(multipliers).remove_repeats()
         pairs = []
         for multiplier in multipliers:
             new_units_per_minute = multiplier * self.units_per_minute
@@ -1305,14 +1299,15 @@ class MetronomeMark(AbjadValueObject):
                 reference_duration=self.reference_duration,
                 units_per_minute=new_units_per_minute,
                 )
-            ratio = mathtools.Ratio(multiplier.pair)
+            ratio = Ratio(multiplier.pair)
             pair = (metronome_mark, ratio)
             pairs.append(pair)
         return pairs
 
     @staticmethod
     def make_tempo_equation_markup(reference_duration, units_per_minute):
-        r'''Makes tempo equation markup.
+        r'''
+        Makes tempo equation markup.
 
         ..  container:: example
 
@@ -1664,7 +1659,7 @@ class MetronomeMark(AbjadValueObject):
         else:
             maker = abjad.NoteMaker()
             selection = maker([0], [reference_duration])
-        lhs_score_markup = abjad.Duration._to_score_markup(selection)
+        lhs_score_markup = Duration._to_score_markup(selection)
         lhs_score_markup = lhs_score_markup.scale((0.75, 0.75))
         equal_markup = abjad.Markup('=')
         if (isinstance(units_per_minute, abjad.Fraction) and
@@ -1679,7 +1674,8 @@ class MetronomeMark(AbjadValueObject):
         return markup
 
     def rewrite_duration(self, duration, metronome_mark):
-        r'''Rewrites `duration` under `metronome_mark`.
+        r'''
+        Rewrites `duration` under `metronome_mark`.
 
         ..  container:: example
 
@@ -1718,7 +1714,7 @@ class MetronomeMark(AbjadValueObject):
         Returns duration.
         '''
         import abjad
-        duration = abjad.Duration(duration)
+        duration = Duration(duration)
         tempo_ratio = metronome_mark / self
         new_duration = tempo_ratio * duration
         return new_duration

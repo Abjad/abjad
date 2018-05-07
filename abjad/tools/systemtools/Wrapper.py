@@ -5,7 +5,8 @@ from .Tag import Tag
 
 
 class Wrapper(AbjadValueObject):
-    r'''Wrapper.
+    r'''
+    Wrapper.
 
     ..  container:: example
 
@@ -122,19 +123,23 @@ class Wrapper(AbjadValueObject):
 
     def __init__(
         self,
-        alternate=None,
-        annotation=None,
+        alternate: typing.Tuple[str, str] = None,
+        annotation: str = None,
         component=None,
-        context=None,
-        deactivate=None,
+        context: str = None,
+        deactivate: bool = None,
         indicator=None,
-        left_broken=None,
-        right_broken=None,
+        left_broken: bool = None,
+        right_broken: bool = None,
         spanner=None,
-        synthetic_offset=None,
-        tag=None,
-        ):
-        import abjad
+        synthetic_offset: int = None,
+        tag: typing.Union[str, Tag] = None,
+        ) -> None:
+        from abjad.tools.datastructuretools.Enumeration import Enumeration
+        from abjad.tools.datastructuretools.Offset import Offset
+        from abjad.tools.scoretools.Component import Component
+        from abjad.tools.scoretools.Context import Context
+        from abjad.tools.spannertools.Spanner import Spanner
         assert not isinstance(indicator, type(self)), repr(indicator)
         if alternate is not None:
             assert isinstance(alternate, tuple) and len(alternate) == 2
@@ -143,23 +148,20 @@ class Wrapper(AbjadValueObject):
             assert isinstance(annotation, str), repr(annotation)
         self._annotation = annotation
         if component is not None:
-            prototype = (abjad.Component, abjad.Spanner)
-            assert isinstance(component, prototype)
+            assert isinstance(component, (Component, Spanner))
         self._component = component
         if deactivate is not None:
             deactivate = bool(deactivate)
         if context is not None:
-            if isinstance(context, type):
-                assert issubclass(context, abjad.Context)
-            else:
-                prototype = (abjad.Context, str)
-                assert isinstance(context, prototype), repr(context)
+            assert isinstance(context, str), repr(context)
         self._context = context
-        self._deactivate: bool = deactivate
+        if deactivate is not None:
+            deactivate = bool(deactivate)
+        self._deactivate = deactivate
         self._effective_context = None
         self._indicator = indicator
         if spanner is not None:
-            assert isinstance(spanner, abjad.Spanner)
+            assert isinstance(spanner, Spanner)
         self._spanner = spanner
         if left_broken is not None:
             left_broken = bool(left_broken)
@@ -172,17 +174,18 @@ class Wrapper(AbjadValueObject):
             raise Exception('set right_broken only with spanners.')
         self._right_broken = right_broken
         if synthetic_offset is not None:
-            synthetic_offset = abjad.Offset(synthetic_offset)
+            synthetic_offset = Offset(synthetic_offset)
         self._synthetic_offset = synthetic_offset
-        if isinstance(tag, abjad.Enumeration):
-            tag = tag.name
+        if tag is not None:
+            assert isinstance(tag, (str, Tag))
         tag = Tag(tag)
         self._tag: Tag = tag
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self):
-        r'''Copies indicator wrapper.
+    def __copy__(self, *arguments) -> 'Wrapper':
+        r'''
+        Copies indicator wrapper.
 
         ..  container:: example
 
@@ -650,9 +653,7 @@ class Wrapper(AbjadValueObject):
                     component.lilypond_type == context):
                     return component
         else:
-            message = 'must be context or string: {!r}.'
-            message = message.format(context)
-            raise TypeError(message)
+            raise TypeError('must be context or string: {context!r}.')
 
     def _get_effective_context(self):
         if self.component is not None:
@@ -692,7 +693,7 @@ class Wrapper(AbjadValueObject):
         if isinstance(self.indicator, abjad.TimeSignature):
             if isinstance(self.component, abjad.Measure):
                 return result
-        result = [r'%%% {} %%%'.format(_) for _ in result]
+        result = [rf'%%% {_} %%%' for _ in result]
         return result
 
     def _get_format_specification(self):
@@ -806,8 +807,9 @@ class Wrapper(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def alternate(self):
-        r'''Gets alternate tagging information.
+    def alternate(self) -> typing.Optional[typing.Tuple[str, str]]:
+        '''
+        Gets alternate tagging information.
 
         Set only by ``MetronomeMarkSpanner.attach(..., alternate=None)``
         keyword.
@@ -817,8 +819,9 @@ class Wrapper(AbjadValueObject):
         return self._alternate
 
     @property
-    def annotation(self):
-        r'''Gets indicator wrapper annotation.
+    def annotation(self) -> typing.Optional[str]:
+        '''
+        Gets indicator wrapper annotation.
 
         ..  container:: example
 
@@ -837,35 +840,35 @@ class Wrapper(AbjadValueObject):
             >>> abjad.inspect(note).get_annotation('foo')
             Articulation('accent', Up)
 
-        Returns string or none.
         '''
         return self._annotation
 
     @property
     def component(self):
-        r'''Gets start component of indicator wrapper.
+        '''
+        Gets start component of indicator wrapper.
 
         Returns component.
         '''
-        import abjad
-        if isinstance(self._component, abjad.Spanner):
+        from abjad.tools.spannertools.Spanner import Spanner
+        if isinstance(self._component, Spanner):
             if self._component:
                 return self._component[0]
             else:
-                return
+                return None
         return self._component
 
     @property
-    def context(self):
-        r'''Gets context of indicator wrapper.
-
-        Returns context or string.
+    def context(self) -> typing.Optional[str]:
+        '''
+        Gets context of indicator wrapper.
         '''
         return self._context
 
     @property
     def deactivate(self) -> typing.Optional[bool]:
-        r'''Is true when wrapper deactivates tag.
+        '''
+        Is true when wrapper deactivates tag.
         '''
         assert self._deactivate in (True, False, None)
         return self._deactivate
@@ -876,36 +879,30 @@ class Wrapper(AbjadValueObject):
         self._deactivate: typing.Optional[bool] = argument
 
     @property
-    def indicator(self):
-        r'''Gets indicator of indicator wrapper.
-
-        Returns indicator.
+    def indicator(self) -> typing.Any:
+        '''
+        Gets indicator of indicator wrapper.
         '''
         return self._indicator
 
     @property
-    def left_broken(self):
-        r'''Is true when spanner is left-open.
-
-        Defaults to none.
-
-        Set to true, false or none.
+    def left_broken(self) -> typing.Optional[bool]:
+        '''
+        Is true when spanner is left-open.
         '''
         return self._left_broken
 
     @property
-    def right_broken(self):
-        r'''Is true when spanner is right-open.
-
-        Defaults to none.
-
-        Set to true, false or none.
+    def right_broken(self) -> typing.Optional[bool]:
+        '''
+        Is true when spanner is right-open.
         '''
         return self._right_broken
 
     @property
     def spanner(self):
-        r'''Gets wrapper spanner.
+        '''
+        Gets wrapper spanner.
 
         Returns spanner or none.
         '''
@@ -913,23 +910,23 @@ class Wrapper(AbjadValueObject):
 
     @property
     def start_offset(self):
-        r'''Gets start offset of indicator wrapper.
+        '''
+        Gets start offset of indicator wrapper.
 
         This is either the wrapper's synthetic offset or the start offset of
         the wrapper's component.
 
         Returns offset.
         '''
-        import abjad
+        from abjad.tools.topleveltools.inspect import inspect
         if self._synthetic_offset is not None:
             return self._synthetic_offset
-        return abjad.inspect(self._component).get_timespan().start_offset
+        return inspect(self._component).get_timespan().start_offset
 
     @property
     def synthetic_offset(self):
-        r'''Gets synthetic offset of indicator wrapper.
-
-        Synthetic offset is optional.
+        '''
+        Gets synthetic offset of indicator wrapper.
 
         Returns offset or none.
         '''
@@ -937,7 +934,8 @@ class Wrapper(AbjadValueObject):
 
     @property
     def tag(self) -> Tag:
-        r'''Gets and sets tag.
+        '''
+        Gets and sets tag.
         '''
         assert isinstance(self._tag, Tag), repr(self._tag)
         return self._tag
