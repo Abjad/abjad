@@ -42,7 +42,7 @@ before_install:
 
 install:
 # install without development dependencies.
-- pip install -e .
+- pip install --user -e .
 # make a non-accessible ~/.abjad/ when testing for read-only filesystems.
 - if [[ $TRAVIS_READ_ONLY == 'true' ]]; then mkdir ~/.abjad; chmod 000 ~/.abjad; fi
 # echo the configuration file path to debug read-only-filesystem handling
@@ -51,7 +51,7 @@ install:
 - rm -Rif ~/.abjad
 - abjad/scr/devel/prime-parser-tables
 # then install development and ipython dependencies.
-- pip install -e .[development,ipython]
+- pip install --user -e .[development,ipython]
 # install accelerated dependencies if requested
 - if [[ $ACCELERATED == true ]]; then pip install -e .[accelerated]; fi
 
