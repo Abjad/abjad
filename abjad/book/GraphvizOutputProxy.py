@@ -3,6 +3,7 @@ import hashlib
 import platform
 import os
 import subprocess
+import uqbar.graphs
 from abjad.tools import systemtools
 from .ImageOutputProxy import ImageOutputProxy
 
@@ -16,179 +17,79 @@ class GraphvizOutputProxy(ImageOutputProxy):
     >>> print(format(proxy))
     ...
     abjad.book.GraphvizOutputProxy(
-        abjad.graphtools.GraphvizGraph(
-            attributes={
-                'bgcolor': 'transparent',
-                'fontname': 'Arial',
-                'penwidth': 2,
-                'truecolor': True,
-                },
-            children=(
-                abjad.graphtools.GraphvizNode(
-                    attributes={
-                        'label': '4/4',
-                        'shape': 'triangle',
-                        },
-                    ),
-                abjad.graphtools.GraphvizNode(
-                    attributes={
-                        'label': '1/4',
-                        'shape': 'box',
-                        },
-                    ),
-                abjad.graphtools.GraphvizNode(
-                    attributes={
-                        'label': '1/4',
-                        'shape': 'box',
-                        },
-                    ),
-                abjad.graphtools.GraphvizNode(
-                    attributes={
-                        'label': '1/4',
-                        'shape': 'box',
-                        },
-                    ),
-                abjad.graphtools.GraphvizNode(
-                    attributes={
-                        'label': '1/4',
-                        'shape': 'box',
-                        },
-                    ),
-                abjad.graphtools.GraphvizSubgraph(
-                    attributes={
-                        'style': 'rounded',
-                        },
-                    children=(
-                        abjad.graphtools.GraphvizNode(
-                            attributes={
-                                'color': 'white',
-                                'fillcolor': 'black',
-                                'fontcolor': 'white',
-                                'fontname': 'Arial bold',
-                                'shape': 'Mrecord',
-                                'style': 'filled',
-                                },
-                            children=(
-                                abjad.graphtools.GraphvizGroup(
-                                    children=(
-                                        abjad.graphtools.GraphvizField(
-                                            label='0',
-                                            ),
-                                        abjad.graphtools.GraphvizField(
-                                            label='++',
-                                            ),
-                                        ),
-                                    ),
-                                ),
-                            ),
-                        abjad.graphtools.GraphvizNode(
-                            attributes={
-                                'color': 'white',
-                                'fillcolor': 'black',
-                                'fontcolor': 'white',
-                                'fontname': 'Arial bold',
-                                'shape': 'Mrecord',
-                                'style': 'filled',
-                                },
-                            children=(
-                                abjad.graphtools.GraphvizGroup(
-                                    children=(
-                                        abjad.graphtools.GraphvizField(
-                                            label='1/4',
-                                            ),
-                                        abjad.graphtools.GraphvizField(
-                                            label='+',
-                                            ),
-                                        ),
-                                    ),
-                                ),
-                            ),
-                        abjad.graphtools.GraphvizNode(
-                            attributes={
-                                'color': 'white',
-                                'fillcolor': 'black',
-                                'fontcolor': 'white',
-                                'fontname': 'Arial bold',
-                                'shape': 'Mrecord',
-                                'style': 'filled',
-                                },
-                            children=(
-                                abjad.graphtools.GraphvizGroup(
-                                    children=(
-                                        abjad.graphtools.GraphvizField(
-                                            label='1/2',
-                                            ),
-                                        abjad.graphtools.GraphvizField(
-                                            label='+',
-                                            ),
-                                        ),
-                                    ),
-                                ),
-                            ),
-                        abjad.graphtools.GraphvizNode(
-                            attributes={
-                                'color': 'white',
-                                'fillcolor': 'black',
-                                'fontcolor': 'white',
-                                'fontname': 'Arial bold',
-                                'shape': 'Mrecord',
-                                'style': 'filled',
-                                },
-                            children=(
-                                abjad.graphtools.GraphvizGroup(
-                                    children=(
-                                        abjad.graphtools.GraphvizField(
-                                            label='3/4',
-                                            ),
-                                        abjad.graphtools.GraphvizField(
-                                            label='+',
-                                            ),
-                                        ),
-                                    ),
-                                ),
-                            ),
-                        abjad.graphtools.GraphvizNode(
-                            attributes={
-                                'shape': 'Mrecord',
-                                },
-                            children=(
-                                abjad.graphtools.GraphvizGroup(
-                                    children=(
-                                        abjad.graphtools.GraphvizField(
-                                            label='1',
-                                            ),
-                                        abjad.graphtools.GraphvizField(
-                                            label='++',
-                                            ),
-                                        ),
-                                    ),
-                                ),
-                            ),
-                        ),
-                    edge_attributes={
-                        },
-                    is_cluster=True,
-                    name='cluster_offsets',
-                    node_attributes={
-                        },
-                    ),
-                ),
-            edge_attributes={
-                'penwidth': 2,
-                },
-            is_digraph=True,
-            name='G',
-            node_attributes={
-                'fontname': 'Arial',
-                'fontsize': 12,
-                'penwidth': 2,
-                },
-            ),
+        <uqbar.graphs.Graph.Graph object at 0x...>,
         layout='dot',
         )
 
+    >>> print(format(proxy.payload, 'graphviz'))
+    digraph G {
+        graph [bgcolor=transparent,
+            fontname=Arial,
+            penwidth=2,
+            truecolor=true];
+        node [fontname=Arial,
+            fontsize=12,
+            penwidth=2];
+        edge [penwidth=2];
+        node_0 [label="4/4",
+            shape=triangle];
+        node_1 [label="1/4",
+            shape=box];
+        node_2 [label="1/4",
+            shape=box];
+        node_3 [label="1/4",
+            shape=box];
+        node_4 [label="1/4",
+            shape=box];
+        subgraph cluster_offsets {
+            graph [style=rounded];
+            node_5_0 [color=white,
+                fillcolor=black,
+                fontcolor=white,
+                fontname="Arial bold",
+                label="{ <f_0_0> 0 | <f_0_1> ++ }",
+                shape=Mrecord,
+                style=filled];
+            node_5_1 [color=white,
+                fillcolor=black,
+                fontcolor=white,
+                fontname="Arial bold",
+                label="{ <f_0_0> 1/4 | <f_0_1> + }",
+                shape=Mrecord,
+                style=filled];
+            node_5_2 [color=white,
+                fillcolor=black,
+                fontcolor=white,
+                fontname="Arial bold",
+                label="{ <f_0_0> 1/2 | <f_0_1> + }",
+                shape=Mrecord,
+                style=filled];
+            node_5_3 [color=white,
+                fillcolor=black,
+                fontcolor=white,
+                fontname="Arial bold",
+                label="{ <f_0_0> 3/4 | <f_0_1> + }",
+                shape=Mrecord,
+                style=filled];
+            node_5_4 [label="{ <f_0_0> 1 | <f_0_1> ++ }",
+                shape=Mrecord];
+        }
+        node_0 -> node_1;
+        node_0 -> node_2;
+        node_0 -> node_3;
+        node_0 -> node_4;
+        node_1 -> node_5_0 [style=dotted];
+        node_1 -> node_5_1 [style=dotted];
+        node_2 -> node_5_1 [style=dotted];
+        node_2 -> node_5_2 [style=dotted];
+        node_3 -> node_5_2 [style=dotted];
+        node_3 -> node_5_3 [style=dotted];
+        node_4 -> node_5_3 [style=dotted];
+        node_4 -> node_5_4 [style=dotted];
+    }
+
     >>> proxy.as_latex(relative_output_directory='assets')
-    ['\\noindent\\includegraphics{assets/graphviz-31410f5aefd17473e91ebc219ddff36e.pdf}']
+    ['\\noindent\\includegraphics{assets/graphviz-a20bf977ab8d78c92f80a64305ccbe7b.pdf}']
 
     '''
 
@@ -214,8 +115,10 @@ class GraphvizOutputProxy(ImageOutputProxy):
             image_layout_specifier=image_layout_specifier,
             image_render_specifier=image_render_specifier,
             )
-        graphviz_graph = copy.deepcopy(payload.__graph__())
-        self._payload = graphviz_graph
+        if not isinstance(payload, uqbar.graphs.Graph):
+            payload = payload.__graph__()
+        payload = copy.deepcopy(payload)
+        self._payload = payload
         self._layout = layout
 
     ### PRIVATE METHODS ###
@@ -228,7 +131,7 @@ class GraphvizOutputProxy(ImageOutputProxy):
             temporary_directory,
             self.file_name_without_extension + '.dot',
             )
-        source = str(self.payload)
+        source = format(self.payload, 'graphviz')
         with open(dot_file_path, 'w') as file_pointer:
             file_pointer.write(source)
         pdf_file_path = os.path.join(
@@ -300,7 +203,7 @@ class GraphvizOutputProxy(ImageOutputProxy):
                     shape=box];
                 node_4 [label="1/4",
                     shape=box];
-                subgraph cluster_cluster_offsets {
+                subgraph cluster_offsets {
                     graph [style=rounded];
                     node_5_0 [color=white,
                         fillcolor=black,
@@ -353,7 +256,7 @@ class GraphvizOutputProxy(ImageOutputProxy):
         import abjad.book
         result = []
         try:
-            code = str(self.payload)
+            code = format(self.payload, 'graphviz')
             node = abjad.book.abjad_output_block(code, code)
             node['image_layout_specifier'] = self.image_layout_specifier
             node['image_render_specifier'] = self.image_render_specifier
@@ -383,7 +286,7 @@ class GraphvizOutputProxy(ImageOutputProxy):
 
         Returns string.
         '''
-        payload = '\n'.join(str(self.payload))
+        payload = '\n'.join(format(self.payload, 'graphviz'))
         md5 = hashlib.md5(payload.encode()).hexdigest()
         return '-'.join((self.file_name_prefix, md5))
 

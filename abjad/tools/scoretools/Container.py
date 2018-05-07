@@ -1,5 +1,6 @@
 import collections
 import typing
+import uqbar.graphs
 from .Component import Component
 from .Selection import Selection
 from abjad.tools.datastructuretools import Left
@@ -318,14 +319,13 @@ class Container(Component):
 
         Returns Graphviz graph.
         '''
-        import abjad
         def recurse(component, leaf_cluster):
             component_node = component._as_graphviz_node()
             node_mapping[component] = component_node
             node_order = [component_node.name]
             if isinstance(component, Container):
                 graph.append(component_node)
-                this_leaf_cluster = abjad.graphtools.GraphvizSubgraph(
+                this_leaf_cluster = uqbar.graphs.Graph(
                     name=component_node.name,
                     attributes={
                         'color': 'grey75',
@@ -340,7 +340,7 @@ class Container(Component):
                     child_node, child_node_order = recurse(
                         child, this_leaf_cluster)
                     pending_node_order.extend(child_node_order)
-                    edge = abjad.graphtools.GraphvizEdge()
+                    edge = uqbar.graphs.Edge()
                     edge.attach(component_node, child_node)
                 if all_are_leaves:
                     pending_node_order.reverse()
@@ -351,9 +351,10 @@ class Container(Component):
                 leaf_cluster.append(component_node)
             return component_node, node_order
 
+        import abjad
         node_order = []
         node_mapping = {}
-        graph = abjad.graphtools.GraphvizGraph(
+        graph = uqbar.graphs.Graph(
             name='G',
             attributes={
                 'style': 'rounded',
@@ -365,7 +366,7 @@ class Container(Component):
                 'shape': 'none',
                 },
             )
-        leaf_cluster = abjad.graphtools.GraphvizSubgraph(name='leaves')
+        leaf_cluster = uqbar.graphs.Graph(name='leaves')
         component_node, node_order = recurse(self, leaf_cluster)
         if len(leaf_cluster) == 1:
             graph.append(leaf_cluster[0])
@@ -378,7 +379,7 @@ class Container(Component):
             for component_one, component_two in pairs:
                 node_one = node_mapping[component_one]
                 node_two = node_mapping[component_two]
-                edge = abjad.graphtools.GraphvizEdge(
+                edge = uqbar.graphs.Edge(
                     attributes={
                         'constraint': False,
                         'penwidth': 5,
@@ -470,9 +471,9 @@ class Container(Component):
         import abjad
         node = Component._as_graphviz_node(self)
         node[0].append(
-            abjad.graphtools.GraphvizTableRow([
-                abjad.graphtools.GraphvizTableCell(
-                    label=type(self).__name__,
+            uqbar.graphs.TableRow([
+                uqbar.graphs.TableCell(
+                    type(self).__name__,
                     attributes={'border': 0},
                     ),
                 ])

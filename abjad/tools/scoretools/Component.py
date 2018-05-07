@@ -1,6 +1,7 @@
 import abc
 import bisect
 import copy
+import uqbar.graphs
 from abjad.tools.exceptiontools import MissingMetronomeMarkError
 from abjad.tools.exceptiontools import MissingMeasureError
 from abjad.tools.abctools.AbjadObject import AbjadObject
@@ -152,17 +153,17 @@ class Component(AbjadObject):
             name = '{}_{}'.format(class_name, score_index)
         else:
             name = class_name
-        node = abjad.graphtools.GraphvizNode(
+        node = uqbar.graphs.Node(
             name=name,
             attributes={
                 'margin': 0.05,
+                'style': 'rounded',
                 },
             )
-        table = abjad.graphtools.GraphvizTable(
+        table = uqbar.graphs.Table(
             attributes={
                 'border': 2,
                 'cellpadding': 5,
-                'style': 'rounded',
                 },
             )
         node.append(table)

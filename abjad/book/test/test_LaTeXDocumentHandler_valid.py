@@ -28,8 +28,8 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
     #       Reorder when changing hashkeys!
     #       Use hex order (with a-f after 0-9).
     expected_asset_names = (
-        'graphviz-31410f5aefd17473e91ebc219ddff36e.dot',
-        'graphviz-31410f5aefd17473e91ebc219ddff36e.pdf',
+        'graphviz-a20bf977ab8d78c92f80a64305ccbe7b.dot',
+        'graphviz-a20bf977ab8d78c92f80a64305ccbe7b.pdf',
         'lilypond-083d0fee82447554abe774beecddec5d.ly',
         'lilypond-083d0fee82447554abe774beecddec5d.pdf',
         'lilypond-4296e8f4e63a8d4646a441f14ec2cbf1.ly',
@@ -50,8 +50,8 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
     #       Reorder when changing hashkeys!
     #       Use hex order (with a-f after 0-9).
     styled_asset_names =(
-        'graphviz-31410f5aefd17473e91ebc219ddff36e.dot',
-        'graphviz-31410f5aefd17473e91ebc219ddff36e.pdf',
+        'graphviz-a20bf977ab8d78c92f80a64305ccbe7b.dot',
+        'graphviz-a20bf977ab8d78c92f80a64305ccbe7b.pdf',
         'lilypond-14463b9f591e108d75c484d50a774bcf.ly',
         'lilypond-14463b9f591e108d75c484d50a774bcf.pdf',
         'lilypond-4046a5a421974373bc0ce276292d197a.ly',

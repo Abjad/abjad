@@ -1,4 +1,4 @@
-from abjad.tools import graphtools
+import uqbar.graphs
 from abjad.tools import scoretools
 from abjad.tools import spannertools
 from abjad.tools.datastructuretools.TreeContainer import TreeContainer
@@ -244,12 +244,12 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
         return result
 
     def __graph__(self, **keywords):
-        r'''The GraphvizGraph representation of the RhythmTreeContainer:
+        r'''The Graph representation of the RhythmTreeContainer:
 
         >>> rtm = '(1 (1 (2 (1 1 1)) 2))'
         >>> tree = abjad.rhythmtreetools.RhythmTreeParser()(rtm)[0]
         >>> graph = tree.__graph__()
-        >>> print(str(graph))
+        >>> print(format(graph, 'graphviz'))
         digraph G {
             graph [bgcolor=transparent,
                 truecolor=true];
@@ -277,9 +277,9 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
 
         >>> topleveltools.graph(graph) # doctest: +SKIP
 
-        Return `GraphvizGraph` instance.
+        Return `Graph` instance.
         '''
-        graph = graphtools.GraphvizGraph(
+        graph = uqbar.graphs.Graph(
             name='G',
             attributes={
                 'bgcolor': 'transparent',
@@ -288,7 +288,7 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
             )
         node_mapping = {}
         for node in self.nodes:
-            graphviz_node = graphtools.GraphvizNode()
+            graphviz_node = uqbar.graphs.Node()
             graphviz_node.attributes['label'] = str(node.preprolated_duration)
             if isinstance(node, type(self)):
                 graphviz_node.attributes['shape'] = 'triangle'
@@ -297,7 +297,7 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
             graph.append(graphviz_node)
             node_mapping[node] = graphviz_node
             if node.parent is not None:
-                graphtools.GraphvizEdge().attach(
+                uqbar.graphs.Edge().attach(
                     node_mapping[node.parent],
                     node_mapping[node],
                     )
