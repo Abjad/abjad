@@ -18,7 +18,7 @@ few measure from Bartók's *Mikrokosmos*.
 
 ..  abjad::
     :hide:
-    :stylesheet: literature-examples.ly
+    :stylesheet: literature-examples.ily
 
     from abjad.demos import bartok
     score = bartok.make_bartok_score()
@@ -52,7 +52,7 @@ of Ligeti's *Désordre*.
 
 ..  abjad::
     :hide:
-    :stylesheet: literature-examples.ly
+    :stylesheet: literature-examples.ily
 
     from abjad.demos import ligeti
     top = [

@@ -94,7 +94,7 @@ measures carry with them a lot of information pertaining to musical notation.
 
 ..  abjad::
     :hide:
-    :stylesheet: literature-examples.ly
+    :stylesheet: literature-examples.ily
 
     score = make_bartok_score()
     show(score)
