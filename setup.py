@@ -66,7 +66,7 @@ extras_require = {
         'mypy',
         'pytest>=3.5.0',
         'PyPDF2>=1.26.0',
-        'uqbar>=0.2.9',
+        'uqbar>=0.2.10',
         ],
     'ipython': [
         'ipython',
