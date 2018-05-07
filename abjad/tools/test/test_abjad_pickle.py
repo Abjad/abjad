@@ -16,7 +16,6 @@ ignored_classes = (
     abjad.book.CodeOutputProxy,
     abjad.book.GraphvizOutputProxy,
     abjad.book.LilyPondOutputProxy,
-    documentationtools.InheritanceGraph,
     lilypondparsertools.LilyPondParser,
     lilypondparsertools.SchemeParser,
     lilypondparsertools.ReducedLyParser,

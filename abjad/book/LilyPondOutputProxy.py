@@ -1,7 +1,6 @@
 import copy
 import os
 import subprocess
-from abjad.tools import documentationtools
 from abjad.tools import lilypondfiletools
 from abjad.tools import systemtools
 from .ImageOutputProxy import ImageOutputProxy
