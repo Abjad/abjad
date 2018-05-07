@@ -32,7 +32,7 @@ Key points:
             attributes=dict(
                 bgcolor='transparent',
                 color='lightslategrey',
-                output_order='edgesfirst',
+                outputorder='edgesfirst',
                 overlap='prism',
                 penwidth=2,
                 root='Global',
