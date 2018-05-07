@@ -1,8 +1,8 @@
 import configparser
-import abjad.cli
+from abjad.cli.CommandlineScript import CommandlineScript
 
 
-class AbjadBookScript(abjad.cli.CommandlineScript):
+class AbjadBookScript(CommandlineScript):
     r'''Entry point script for abjad-book.
 
     >>> import abjad.book
