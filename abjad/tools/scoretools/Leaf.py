@@ -1,5 +1,6 @@
 import abc
 import copy
+import uqbar.graphs
 from abjad.tools.datastructuretools.Duration import Duration
 from abjad.tools.datastructuretools.Multiplier import Multiplier
 from abjad.tools.indicatortools.MetronomeMark import MetronomeMark
@@ -85,22 +86,21 @@ class Leaf(Component):
         self._spanners.append(spanner)
 
     def _as_graphviz_node(self):
-        import abjad
         lilypond_format = self._get_compact_representation()
         lilypond_format = lilypond_format.replace('<', '&lt;')
         lilypond_format = lilypond_format.replace('>', '&gt;')
         node = Component._as_graphviz_node(self)
         node[0].extend([
-            abjad.graphtools.GraphvizTableRow([
-                abjad.graphtools.GraphvizTableCell(
-                    label=type(self).__name__,
+            uqbar.graphs.TableRow([
+                uqbar.graphs.TableCell(
+                    type(self).__name__,
                     attributes={'border': 0},
                     ),
                 ]),
-            abjad.graphtools.GraphvizTableHorizontalRule(),
-            abjad.graphtools.GraphvizTableRow([
-                abjad.graphtools.GraphvizTableCell(
-                    label=lilypond_format,
+            uqbar.graphs.HRule(),
+            uqbar.graphs.TableRow([
+                uqbar.graphs.TableCell(
+                    lilypond_format,
                     attributes={'border': 0},
                     ),
                 ]),

@@ -308,7 +308,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                                 shape=box];
                             node_2 [label="1/4",
                                 shape=box];
-                            subgraph cluster_cluster_offsets {
+                            subgraph cluster_offsets {
                                 graph [style=rounded];
                                 node_3_0 [color=white,
                                     fillcolor=black,
@@ -368,7 +368,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                                 shape=box];
                             node_3 [label="1/4",
                                 shape=box];
-                            subgraph cluster_cluster_offsets {
+                            subgraph cluster_offsets {
                                 graph [style=rounded];
                                 node_4_0 [color=white,
                                     fillcolor=black,

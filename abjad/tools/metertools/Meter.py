@@ -1,10 +1,10 @@
-from abjad.tools import datastructuretools
 from abjad.tools import indicatortools
 from abjad.tools import mathtools
 from abjad.tools import rhythmtreetools
 from abjad.tools import scoretools
 from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+import uqbar.graphs
 
 
 class Meter(AbjadValueObject):
@@ -433,7 +433,7 @@ class Meter(AbjadValueObject):
 
             ..  docs::
 
-                >>> print(str(meter_graph))
+                >>> print(format(meter_graph, 'graphviz'))
                 digraph G {
                     graph [bgcolor=transparent,
                         fontname=Arial,
@@ -465,7 +465,7 @@ class Meter(AbjadValueObject):
                         shape=box];
                     node_10 [label="1/4",
                         shape=box];
-                    subgraph cluster_cluster_offsets {
+                    subgraph cluster_offsets {
                         graph [style=rounded];
                         node_11_0 [color=white,
                             fillcolor=black,
@@ -547,7 +547,6 @@ class Meter(AbjadValueObject):
 
         Returns Graphviz graph.
         '''
-        import abjad
         def make_offset_node(
             offset,
             leaf_one=None,
@@ -555,7 +554,7 @@ class Meter(AbjadValueObject):
             is_last=False,
             ):
             if not is_last:
-                offset_node = abjad.graphtools.GraphvizNode(
+                offset_node = uqbar.graphs.Node(
                     attributes={
                         'shape': 'Mrecord',
                         'style': 'filled',
@@ -566,35 +565,36 @@ class Meter(AbjadValueObject):
                         },
                     )
             else:
-                offset_node = abjad.graphtools.GraphvizNode(
+                offset_node = uqbar.graphs.Node(
                     attributes={
                         'shape': 'Mrecord',
                         },
                     )
-            offset_field = abjad.graphtools.GraphvizField(
+            offset_field = uqbar.graphs.RecordField(
                 label=str(offset),
                 )
-            weight_field = abjad.graphtools.GraphvizField(
+            weight_field = uqbar.graphs.RecordField(
                 label='+' * offsets[offset],
                 )
-            group = abjad.graphtools.GraphvizGroup()
+            group = uqbar.graphs.RecordGroup()
             group.extend([offset_field, weight_field])
             offset_node.append(group)
             offset_subgraph.append(offset_node)
             leaf_one_node = node_mapping[leaf_one]
-            edge = abjad.graphtools.GraphvizEdge(
+            edge = uqbar.graphs.Edge(
                 attributes={'style': 'dotted'},
                 )
             edge.attach(leaf_one_node, offset_node)
             if leaf_two:
                 leaf_two_node = node_mapping[leaf_two]
-                edge = abjad.graphtools.GraphvizEdge(
+                edge = uqbar.graphs.Edge(
                     attributes={'style': 'dotted'},
                     )
                 edge.attach(leaf_two_node, offset_node)
+        import abjad
         offsets = abjad.MetricAccentKernel.count_offsets(
             abjad.sequence(self.depthwise_offset_inventory).flatten(depth=-1))
-        graph = abjad.graphtools.GraphvizGraph(
+        graph = uqbar.graphs.Graph(
             name='G',
             attributes={
                 'bgcolor': 'transparent',
@@ -613,7 +613,7 @@ class Meter(AbjadValueObject):
             )
         node_mapping = {}
         for node in self._root_node.nodes:
-            graphviz_node = abjad.graphtools.GraphvizNode()
+            graphviz_node = uqbar.graphs.Node()
             graphviz_node.attributes['label'] = str(node.preprolated_duration)
             if isinstance(node, rhythmtreetools.RhythmTreeContainer):
                 graphviz_node.attributes['shape'] = 'triangle'
@@ -622,13 +622,13 @@ class Meter(AbjadValueObject):
             graph.append(graphviz_node)
             node_mapping[node] = graphviz_node
             if node.parent is not None:
-                abjad.graphtools.GraphvizEdge().attach(
+                uqbar.graphs.Edge().attach(
                     node_mapping[node.parent],
                     node_mapping[node],
                     )
         leaves = self._root_node.leaves
         offset = leaves[0].start_offset
-        offset_subgraph = abjad.graphtools.GraphvizSubgraph(
+        offset_subgraph = uqbar.graphs.Graph(
             name='cluster_offsets',
             attributes={
                 'style': 'rounded',

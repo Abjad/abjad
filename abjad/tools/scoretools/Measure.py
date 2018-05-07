@@ -229,15 +229,15 @@ class Measure(Container):
             self.time_signature.denominator,
             )
         node[0].extend([
-            abjad.graphtools.GraphvizTableRow([
-                abjad.graphtools.GraphvizTableCell(
+            uqbar.graphs.TableRow([
+                uqbar.graphs.TableCell(
                     label=type(self).__name__,
                     attributes={'border': 0},
                     ),
                 ]),
-            abjad.graphtools.GraphvizTableHorizontalRule(),
-            abjad.graphtools.GraphvizTableRow([
-                abjad.graphtools.GraphvizTableCell(
+            uqbar.graphs.HRule(),
+            uqbar.graphs.TableRow([
+                uqbar.graphs.TableCell(
                     label=str(fraction),
                     attributes={'border': 0},
                     ),

@@ -133,15 +133,15 @@ class Tuplet(Container):
         import abjad
         node = abjad.Component._as_graphviz_node(self)
         node[0].extend([
-            abjad.graphtools.GraphvizTableRow([
-                abjad.graphtools.GraphvizTableCell(
+            uqbar.graphs.TableRow([
+                uqbar.graphs.TableCell(
                     label=type(self).__name__,
                     attributes={'border': 0},
                     ),
                 ]),
-            abjad.graphtools.GraphvizTableHorizontalRule(),
-            abjad.graphtools.GraphvizTableRow([
-                abjad.graphtools.GraphvizTableCell(
+            uqbar.graphs.HRule(),
+            uqbar.graphs.TableRow([
+                uqbar.graphs.TableCell(
                     label='* {!s}'.format(self.multiplier),
                     attributes={'border': 0},
                     ),

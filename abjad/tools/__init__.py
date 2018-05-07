@@ -1,6 +1,5 @@
 from .import systemtools
 from .import abctools
-from .import systemtools
 from .import mathtools
 from .import topleveltools
 from .import datastructuretools
@@ -9,7 +8,6 @@ from .import schemetools
 from .import markuptools
 from .import documentationtools
 from .import exceptiontools
-from .import graphtools
 from .import indicatortools
 from .import instrumenttools
 from .import lilypondnametools
