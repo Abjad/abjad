@@ -113,11 +113,11 @@ you're in when you run the following command:
     building [html]: targets for 1131 source files that are out of date
     updating environment: 1131 added, 0 changed, 0 removed
     reading sources... [  1%] api/demos/part/PartCantusScoreTemplate/PartCantusScore
-    reading sources... [  4%] api/tools/abjadbooktools/AbjadBookProcessor/AbjadBookP
-    reading sources... [  4%] api/tools/abjadbooktools/AbjadBookScript/AbjadBookScri
-    reading sources... [  4%] api/tools/abjadbooktools/HTMLOutputFormat/HTMLOutputFo
-    reading sources... [  4%] api/tools/abjadbooktools/LaTeXOutputFormat/LaTeXOutput
-    reading sources... [  4%] api/tools/abjadbooktools/ReSTOutputFormat/ReSTOutputFo
+    reading sources... [  4%] api/tools/abjad.book/AbjadBookProcessor/AbjadBookP
+    reading sources... [  4%] api/tools/abjad.book/AbjadBookScript/AbjadBookScri
+    reading sources... [  4%] api/tools/abjad.book/HTMLOutputFormat/HTMLOutputFo
+    reading sources... [  4%] api/tools/abjad.book/LaTeXOutputFormat/LaTeXOutput
+    reading sources... [  4%] api/tools/abjad.book/ReSTOutputFormat/ReSTOutputFo
     reading sources... [  5%] api/tools/scoretools/Chord/Chord                      
     ...
     ...

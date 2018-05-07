@@ -24,8 +24,11 @@ extensions = [
     'sphinx.ext.graphviz',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
-    'sphinx_autodoc_typehints',
+    'uqbar.sphinx.api',
+    'uqbar.sphinx.inheritance',
+    'uqbar.sphinx.style',
     'abjad.docs.ext.abjadbook',
+    'sphinx_autodoc_typehints',
     ]
 master_doc = 'index'
 project = u'Abjad'
@@ -123,3 +126,12 @@ intersphinx_mapping = {
     'http://www.sphinx-doc.org/en/stable/': None,
     }
 todo_include_todos = True
+
+uqbar_api_title = 'Abjad API'
+uqbar_api_source_paths = ['abjad']
+uqbar_api_root_documenter_class = 'uqbar.apis.SummarizingRootDocumenter'
+uqbar_api_module_documenter_class = 'uqbar.apis.SummarizingModuleDocumenter'
+uqbar_api_member_documenter_classes = [
+    'uqbar.apis.FunctionDocumenter',
+    'uqbar.apis.SummarizingClassDocumenter',
+    ]

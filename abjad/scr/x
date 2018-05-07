@@ -1,8 +1,0 @@
-#! /usr/bin/env python
-
-
-if __name__ == '__main__':
-    import subprocess
-    import sys
-    arguments = ['pytest', '-x'] + sys.argv[1:]
-    subprocess.call(arguments, shell=True)

@@ -5,7 +5,6 @@ from abjad.tools import documentationtools
 from abjad.tools import lilypondfiletools
 from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from abjad.tools.documentationtools import InheritanceGraph
 
 
 ignored_classes = (

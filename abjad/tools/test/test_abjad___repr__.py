@@ -1,7 +1,7 @@
 import abjad
 import inspect
 import pytest
-from abjad.tools import abjadbooktools
+import abjad.book
 from abjad.tools import documentationtools
 
 
@@ -12,18 +12,18 @@ ignored_classes = (
     abjad.StorageFormatManager,
     abjad.Tags,
     abjad.TestCase,
-    abjadbooktools.AbjadDirective,
-    abjadbooktools.CodeBlock,
-    abjadbooktools.CodeOutputProxy,
-    abjadbooktools.AbjadDoctestDirective,
-    abjadbooktools.GraphvizOutputProxy,
-    abjadbooktools.ImportDirective,
-    abjadbooktools.LilyPondBlock,
-    abjadbooktools.LilyPondOutputProxy,
-    abjadbooktools.RawLilyPondOutputProxy,
-    abjadbooktools.RevealDirective,
-    abjadbooktools.ShellDirective,
-    abjadbooktools.ThumbnailDirective,
+    abjad.book.AbjadDirective,
+    abjad.book.CodeBlock,
+    abjad.book.CodeOutputProxy,
+    abjad.book.AbjadDoctestDirective,
+    abjad.book.GraphvizOutputProxy,
+    abjad.book.ImportDirective,
+    abjad.book.LilyPondBlock,
+    abjad.book.LilyPondOutputProxy,
+    abjad.book.RawLilyPondOutputProxy,
+    abjad.book.RevealDirective,
+    abjad.book.ShellDirective,
+    abjad.book.ThumbnailDirective,
     )
 
 classes = documentationtools.list_all_abjad_classes(

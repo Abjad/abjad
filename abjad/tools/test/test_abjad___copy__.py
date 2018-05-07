@@ -1,17 +1,17 @@
 import copy
 import inspect
 import pytest
-from abjad.tools import abjadbooktools
+import abjad.book
 from abjad.tools import documentationtools
 from abjad.tools import scoretools
 from abjad.tools import systemtools
 
 
 ignored_classes = (
-    abjadbooktools.CodeBlock,
-    abjadbooktools.CodeOutputProxy,
-    abjadbooktools.GraphvizOutputProxy,
-    abjadbooktools.LilyPondOutputProxy,
+    abjad.book.CodeBlock,
+    abjad.book.CodeOutputProxy,
+    abjad.book.GraphvizOutputProxy,
+    abjad.book.LilyPondOutputProxy,
     systemtools.StorageFormatManager,
     systemtools.FormatSpecification,
     )

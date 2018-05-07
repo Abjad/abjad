@@ -69,7 +69,7 @@ well as beams, slurs, ties, and articulations.
     f(staff)
 
 ..  abjad::
-    :stylesheet: literature-examples.ly
+    :stylesheet: literature-examples.ily
 
     show(staff)
 
@@ -225,7 +225,7 @@ container's opening curly brace.
 Now let's take a look at the code that puts our score together:
 
 ..  abjad::
-    :stylesheet: literature-examples.ly
+    :stylesheet: literature-examples.ily
 
     score = mozart.make_mozart_score()
     show(score)
@@ -280,7 +280,7 @@ name, change the global staff size, paper size, staff spacing and so forth.
 And now the final result:
 
 ..  abjad::
-    :stylesheet: literature-examples.ly
+    :stylesheet: literature-examples.ily
 
     show(lilypond_file)
 

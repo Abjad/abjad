@@ -52,6 +52,7 @@ classifiers = [
 install_requires = [
     'ply',
     'roman',
+    'uqbar>=0.2.10',
     ]
 
 extras_require = {
@@ -60,11 +61,8 @@ extras_require = {
         ],
     'development': [
         'mypy',
-        'pytest>=3.0.0',
-        'sphinx>=1.6.0',
-        'sphinx-rtd-theme',
-        'sphinx_autodoc_typehints>=1.2.5',
-        'PyPDF2',
+        'pytest>=3.5.0',
+        'PyPDF2>=1.26.0',
         ],
     'ipython': [
         'ipython',
@@ -75,7 +73,7 @@ extras_require = {
 entry_points = {
     'console_scripts': [
         'abjad = abjad.tools.systemtools.run_abjad:run_abjad',
-        'ajv = abjad.tools.commandlinetools.run_ajv:run_ajv',
+        'ajv = abjad.cli.run_ajv:run_ajv',
         ]
     }
 
