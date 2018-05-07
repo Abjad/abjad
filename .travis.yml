@@ -58,7 +58,6 @@ install:
 script:
 - coverage run -a `which pytest`
 - mypy --version
-- export MYPYPATH=`python -c 'import pathlib, uqbar; print(pathlib.Path(uqbar.__path__[0]).parent)'`
 - mypy abjad
 
 after_success:
