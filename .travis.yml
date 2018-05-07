@@ -33,6 +33,7 @@ addons:
     - texlive-xetex
 
 before_install:
+- printenv | sort
 - wget -q ${LILYPOND_URL}lilypond-${LILYPOND_VERSION}-1.linux-64.sh
 - sh lilypond-${LILYPOND_VERSION}-1.linux-64.sh --batch
 - pip install -U pip coverage
