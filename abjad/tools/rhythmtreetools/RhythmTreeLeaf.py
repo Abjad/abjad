@@ -69,8 +69,8 @@ class RhythmTreeLeaf(RhythmTreeMixin, TreeNode):
     def __graph__(self, **keywords):
         r'''Graphviz graph of rhythm tree leaf.
         '''
-        graph = graphtools.Graph(name='G')
-        node = graphtools.Node(
+        graph = uqbar.graphs.Graph(name='G')
+        node = uqbar.graphs.Node(
             attributes={
                 'label': str(self.preprolated_duration),
                 'shape': 'box'
