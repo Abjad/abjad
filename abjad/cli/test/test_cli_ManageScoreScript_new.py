@@ -1,9 +1,9 @@
-import abjad
 import json
 import os
 import platform
 import pytest
 import shutil
+import uqbar.io
 from base import ScorePackageScriptTestCase
 from io import StringIO
 
@@ -12,10 +12,10 @@ class Test(ScorePackageScriptTestCase):
 
     def test_exists(self):
         string_io = StringIO()
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             pytest.helpers.create_score(self.test_directory_path)
         assert self.score_path.exists()
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             pytest.helpers.create_score(
                 self.test_directory_path, expect_error=True)
         assert self.score_path.exists()
@@ -35,10 +35,10 @@ class Test(ScorePackageScriptTestCase):
 
     def test_force_replace(self):
         string_io = StringIO()
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             pytest.helpers.create_score(self.test_directory_path)
         assert self.score_path.exists()
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             pytest.helpers.create_score(self.test_directory_path, force=True)
         assert self.score_path.exists()
         shutil.rmtree(str(self.score_path))
@@ -58,7 +58,7 @@ class Test(ScorePackageScriptTestCase):
 
     def test_success(self):
         string_io = StringIO()
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             pytest.helpers.create_score(self.test_directory_path)
         assert self.score_path.exists()
         expected_files = [

@@ -73,7 +73,7 @@ class Test(ScorePackageScriptTestCase):
             '''))
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
@@ -130,7 +130,7 @@ class Test(ScorePackageScriptTestCase):
         definition_path.unlink()
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
@@ -173,7 +173,7 @@ class Test(ScorePackageScriptTestCase):
             '''))
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
@@ -202,7 +202,7 @@ class Test(ScorePackageScriptTestCase):
             file_pointer.write('\n\nfailure = 1 / 0\n')
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
@@ -228,7 +228,7 @@ class Test(ScorePackageScriptTestCase):
         pytest.helpers.create_segment(self.test_directory_path, 'segment_three')
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', '*']
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     script(command)
@@ -295,7 +295,7 @@ class Test(ScorePackageScriptTestCase):
         pytest.helpers.create_segment(self.test_directory_path, 'segment_three')
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'segment_t*']
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     script(command)
@@ -350,7 +350,7 @@ class Test(ScorePackageScriptTestCase):
         pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     script(command)

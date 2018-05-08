@@ -29,7 +29,7 @@ class Test(ScorePackageScriptTestCase):
             '''))
         script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', 'test_material']
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
@@ -73,7 +73,7 @@ class Test(ScorePackageScriptTestCase):
         definition_path.unlink()
         script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', 'test_material']
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
@@ -101,7 +101,7 @@ class Test(ScorePackageScriptTestCase):
             '''))
         script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', 'test_material']
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
@@ -137,7 +137,7 @@ class Test(ScorePackageScriptTestCase):
             '''))
         script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', 'test_material']
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
@@ -163,7 +163,7 @@ class Test(ScorePackageScriptTestCase):
             file_pointer.write('\n\nfailure = 1 / 0\n')
         script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', 'test_material']
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
@@ -189,7 +189,7 @@ class Test(ScorePackageScriptTestCase):
             self.test_directory_path, 'material_three')
         script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', '*']
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     script(command)
@@ -241,7 +241,7 @@ class Test(ScorePackageScriptTestCase):
         pytest.helpers.create_material(self.test_directory_path, 'material_three')
         script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', 'material_t*']
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     script(command)
@@ -297,7 +297,7 @@ class Test(ScorePackageScriptTestCase):
         pytest.helpers.create_material(self.test_directory_path, 'test_material')
         script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', 'test_material']
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     script(command)

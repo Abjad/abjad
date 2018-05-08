@@ -19,7 +19,7 @@ class Test(ScorePackageScriptTestCase):
             self.test_directory_path, 'test_segment')
         script = abjad.cli.ManageSegmentScript()
         command = ['--edit', 'test_segment']
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     script(command)

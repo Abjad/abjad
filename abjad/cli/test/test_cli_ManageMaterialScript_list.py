@@ -16,7 +16,7 @@ class Test(ScorePackageScriptTestCase):
         pytest.helpers.create_material(self.test_directory_path, 'quux')
         script = abjad.cli.ManageMaterialScript()
         command = ['--list']
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
@@ -38,7 +38,7 @@ class Test(ScorePackageScriptTestCase):
         pytest.helpers.create_score(self.test_directory_path)
         script = abjad.cli.ManageMaterialScript()
         command = ['--list']
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)

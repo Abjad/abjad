@@ -19,7 +19,7 @@ class Test(ScorePackageScriptTestCase):
                 script(command)
             except SystemExit:
                 raise RuntimeError('SystemExit')
-            with abjad.RedirectedStreams(stdout=string_io):
+            with uqbar.io.RedirectedStreams(stdout=string_io):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 1
@@ -40,7 +40,7 @@ class Test(ScorePackageScriptTestCase):
             '--paper-size', 'a3',
             '--orientation', 'landscape',
         ]
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     script(command)
@@ -79,7 +79,7 @@ class Test(ScorePackageScriptTestCase):
                 script(command)
             except SystemExit:
                 raise RuntimeError('SystemExit')
-            with abjad.RedirectedStreams(stdout=string_io):
+            with uqbar.io.RedirectedStreams(stdout=string_io):
                 try:
                     script(command)
                 except SystemExit:
@@ -118,7 +118,7 @@ class Test(ScorePackageScriptTestCase):
         pytest.helpers.create_score(self.test_directory_path)
         script = abjad.cli.ManageBuildTargetScript()
         command = ['--new']
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     script(command)
@@ -308,7 +308,7 @@ class Test(ScorePackageScriptTestCase):
         command = ['--new']
         internal_path = self.score_path.joinpath('test_score', 'builds')
         assert internal_path.exists()
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(str(internal_path)):
                 try:
                     script(command)
@@ -333,7 +333,7 @@ class Test(ScorePackageScriptTestCase):
             '--paper-size', 'a3',
             '--orientation', 'landscape',
         ]
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     script(command)

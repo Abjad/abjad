@@ -22,7 +22,7 @@ class Test(ScorePackageScriptTestCase):
         pdf_path.unlink()
         script = abjad.cli.ManageMaterialScript()
         command = ['--render', 'test_material']
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     script(command)

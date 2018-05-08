@@ -18,7 +18,7 @@ class Test(ScorePackageScriptTestCase):
             self.test_directory_path, 'test_material')
         script = abjad.cli.ManageMaterialScript()
         command = ['--edit', 'test_material']
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     script(command)

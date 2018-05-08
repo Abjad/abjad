@@ -14,7 +14,7 @@ class Test(ScorePackageScriptTestCase):
         pytest.helpers.create_score(self.test_directory_path)
         pytest.helpers.create_material(
             self.test_directory_path, 'test_material')
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             pytest.helpers.create_material(
                 self.test_directory_path, 'test_material', expect_error=True)
         pytest.helpers.compare_strings(
@@ -30,7 +30,7 @@ class Test(ScorePackageScriptTestCase):
         pytest.helpers.create_score(self.test_directory_path)
         pytest.helpers.create_material(
             self.test_directory_path, 'test_material')
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             pytest.helpers.create_material(
                 self.test_directory_path, 'test_material', force=True)
         pytest.helpers.compare_strings(
@@ -49,7 +49,7 @@ class Test(ScorePackageScriptTestCase):
         command = ['--new', 'test_material']
         internal_path = self.score_path.joinpath('test_score', 'builds')
         assert internal_path.exists()
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(internal_path):
                 try:
                     script(command)
@@ -69,7 +69,7 @@ class Test(ScorePackageScriptTestCase):
         pytest.helpers.create_score(self.test_directory_path)
         script = abjad.cli.ManageMaterialScript()
         command = ['--new', 'test_material']
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     script(command)

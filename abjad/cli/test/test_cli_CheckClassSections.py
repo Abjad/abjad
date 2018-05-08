@@ -225,7 +225,7 @@ class TestCheckClassSections(unittest.TestCase):
         string_io = StringIO()
         # cd into test_working_directory and run the script with commands
         with uqbar.io.DirectoryChange(str(test_working_directory)):
-            with abjad.RedirectedStreams(stdout=string_io):
+            with uqbar.io.RedirectedStreams(stdout=string_io):
                 with pytest.raises(SystemExit) as exception_info:
                     script = abjad.cli.CheckClassSections()
                     script(command)
@@ -258,7 +258,7 @@ class TestCheckClassSections(unittest.TestCase):
             test_modules, self.subdirectory
         )
         pytest.helpers.compare_strings(expected=expected, actual=script_output)
-        self.assertEqual(exit_code, 1)
+        assert exit_code == 1
 
     def test_method_in_properties(self):
         expected = normalize('''
@@ -282,7 +282,7 @@ class TestCheckClassSections(unittest.TestCase):
             test_modules, self.subdirectory
         )
         pytest.helpers.compare_strings(expected=expected, actual=script_output)
-        self.assertEqual(exit_code, 1)
+        assert exit_code == 1
 
     def test_property_in_methods(self):
         expected = normalize('''
@@ -306,7 +306,7 @@ class TestCheckClassSections(unittest.TestCase):
             test_modules, self.subdirectory
         )
         pytest.helpers.compare_strings(expected=expected, actual=script_output)
-        self.assertEqual(exit_code, 1)
+        assert exit_code == 1
 
     def test_multiple_errors_in_file(self):
         expected = normalize('''
@@ -331,7 +331,7 @@ class TestCheckClassSections(unittest.TestCase):
             test_modules, self.subdirectory
         )
         pytest.helpers.compare_strings(expected=expected, actual=script_output)
-        self.assertEqual(exit_code, 1)
+        assert exit_code == 1
 
     def test_non_property_decorators_in_methods_passes(self):
         expected = normalize('''
@@ -350,7 +350,7 @@ class TestCheckClassSections(unittest.TestCase):
             test_modules, self.subdirectory
         )
         pytest.helpers.compare_strings(expected=expected, actual=script_output)
-        self.assertEqual(exit_code, 0)
+        assert exit_code == 0
 
     def test_multiple_classes_in_one_module(self):
         expected = normalize('''
@@ -368,7 +368,7 @@ class TestCheckClassSections(unittest.TestCase):
             test_modules, self.subdirectory
         )
         pytest.helpers.compare_strings(expected=expected, actual=script_output)
-        self.assertEqual(exit_code, 0)
+        assert exit_code == 0
 
     def test_passing_case(self):
         expected = normalize('''
@@ -386,7 +386,7 @@ class TestCheckClassSections(unittest.TestCase):
             test_modules, self.subdirectory
         )
         pytest.helpers.compare_strings(expected=expected, actual=script_output)
-        self.assertEqual(exit_code, 0)
+        assert exit_code == 0
 
     def test_passing_case_without_passing_path(self):
         expected = normalize('''
@@ -405,7 +405,7 @@ class TestCheckClassSections(unittest.TestCase):
             working_directory=self.subdirectory
         )
         pytest.helpers.compare_strings(expected=expected, actual=script_output)
-        self.assertEqual(exit_code, 0)
+        assert exit_code == 0
 
     def test_passing_file_instead_of_dir(self):
         expected = normalize('''
@@ -424,4 +424,4 @@ class TestCheckClassSections(unittest.TestCase):
             script_args=self.test_passing_module_path
         )
         pytest.helpers.compare_strings(expected=expected, actual=script_output)
-        self.assertEqual(exit_code, 0)
+        assert exit_code == 0

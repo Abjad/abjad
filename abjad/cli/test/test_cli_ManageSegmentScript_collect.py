@@ -20,7 +20,7 @@ class Test(ScorePackageScriptTestCase):
             self.test_directory_path, 'segment_three')
         pytest.helpers.illustrate_segments(self.test_directory_path)
         collect_script = abjad.cli.ManageSegmentScript()
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     collect_script(['--collect'])

@@ -31,7 +31,7 @@ class Test(ScorePackageScriptTestCase):
         pytest.helpers.create_segment(self.test_directory_path, 'segment_c')
         script = abjad.cli.ManageSegmentScript()
         command = ['--stage']
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     script(command)
@@ -53,7 +53,7 @@ class Test(ScorePackageScriptTestCase):
         )
         call_subprocess_mock.side_effect = self.side_effect
         string_io = StringIO()
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     script(command)

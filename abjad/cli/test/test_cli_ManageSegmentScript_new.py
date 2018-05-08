@@ -13,7 +13,7 @@ class Test(ScorePackageScriptTestCase):
         string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
         pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             pytest.helpers.create_segment(
                 self.test_directory_path, 'test_segment', expect_error=True)
         pytest.helpers.compare_strings(
@@ -28,7 +28,7 @@ class Test(ScorePackageScriptTestCase):
         string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
         pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             pytest.helpers.create_segment(
                 self.test_directory_path, 'test_segment', force=True)
         pytest.helpers.compare_strings(
@@ -48,7 +48,7 @@ class Test(ScorePackageScriptTestCase):
         command = ['--new', 'test_segment']
         internal_path = self.score_path.joinpath('test_score', 'builds')
         assert internal_path.exists()
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(str(internal_path)):
                 try:
                     script(command)
@@ -78,7 +78,7 @@ class Test(ScorePackageScriptTestCase):
         except SystemExit:
             raise RuntimeError('SystemExit')
         command = ['--new', 'test_segment']
-        with abjad.RedirectedStreams(stdout=string_io):
+        with uqbar.io.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     script(command)
