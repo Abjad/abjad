@@ -1,11 +1,12 @@
 import fnmatch
 import os
 import re
-from .CommandlineScript import CommandlineScript
+from uqbar.cli import CLI
 
 
-class ReplaceScript(CommandlineScript):
-    r'''Replaces text in files recursively.
+class ReplaceScript(CLI):
+    '''
+    Replaces text in files recursively.
 
     ..  shell::
 
@@ -22,9 +23,8 @@ class ReplaceScript(CommandlineScript):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
-
     alias = 'replace'
+    config_name = '.abjadrc'
     short_description = 'Replace text.'
 
     ### PRIVATE METHODS ###

@@ -18,9 +18,8 @@ class ManageMaterialScript(ScorePackageScript):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
-
     alias = 'material'
+    config_name = '.abjadrc'
     short_description = 'Manage score package materials.'
 
     ### PRIVATE METHODS ###

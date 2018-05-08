@@ -2,11 +2,12 @@ import inspect
 import os
 import types
 from abjad.tools import datastructuretools
-from .CommandlineScript import CommandlineScript
+from uqbar.cli import CLI
 
 
-class StatsScript(CommandlineScript):
-    r'''Builds statistics about a codebase.
+class StatsScript(CLI):
+    '''
+    Builds statistics about a codebase.
 
     ..  shell::
 
@@ -16,9 +17,8 @@ class StatsScript(CommandlineScript):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
-
     alias = 'stats'
+    config_name = '.abjadrc'
     short_description = 'Build statistics about Python modules in PATH.'
 
     ### PRIVATE METHODS ###

@@ -1,11 +1,12 @@
 import os
 import shutil
-from .CommandlineScript import CommandlineScript
+from uqbar.cli import CLI
 
 
-class CleanScript(CommandlineScript):
-    r'''Removes *.pyc, *.swp files and __pycache__ and tmp* directories
-    recursively in a path.
+class CleanScript(CLI):
+    '''
+    Removes *.pyc, *.swp files and __pycache__ and tmp* directories recursively
+    in a path.
 
     ..  shell::
 
@@ -15,9 +16,8 @@ class CleanScript(CommandlineScript):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
-
     alias = 'clean'
+    config_name = '.abjadrc'
     short_description = (
         'Clean *.pyc, *.swp, .cache,  __pycache__ and tmp* '
         'files and folders from PATH.'

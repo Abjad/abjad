@@ -18,9 +18,8 @@ class ManageSegmentScript(ScorePackageScript):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
-
     alias = 'segment'
+    config_name = '.abjadrc'
     short_description = 'Manage score package segments.'
 
     ### PRIVATE METHODS ###
