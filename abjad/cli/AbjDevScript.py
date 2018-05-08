@@ -55,12 +55,12 @@ class AbjDevScript(CLIAggregator):
         except ImportError:
             pass
         try:
-            import abjadext.book
+            import abjadext.book  # type: ignore
             classes.extend(scan_module(abjadext.book))
         except ImportError:
             pass
         try:
-            import abjadext.cli
+            import abjadext.cli  # type: ignore
             classes.extend(scan_module(abjadext.cli))
         except ImportError:
             pass
