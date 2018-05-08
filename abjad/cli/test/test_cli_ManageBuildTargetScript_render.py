@@ -49,7 +49,11 @@ class Test(ScorePackageScriptTestCase):
                 script(command)
             except SystemExit:
                 raise RuntimeError('SystemExit')
-        self.compare_path_contents(self.build_path, expected_files)
+        pytest.helpers.compare_path_contents(
+            self.build_path,
+            expected_files,
+            self.test_directory_path,
+        )
         assert open_file_mock.called
 
     @mock.patch('abjad.IOManager.open_file')
@@ -83,7 +87,11 @@ class Test(ScorePackageScriptTestCase):
                 script(command)
             except SystemExit:
                 raise RuntimeError('SystemExit')
-        self.compare_path_contents(target_path, expected_files)
+        pytest.helpers.compare_path_contents(
+            target_path,
+            expected_files,
+            self.test_directory_path,
+        )
         assert open_file_mock.called
 
     @mock.patch('abjad.IOManager.open_file')
@@ -117,7 +125,11 @@ class Test(ScorePackageScriptTestCase):
                 script(command)
             except SystemExit:
                 raise RuntimeError('SystemExit')
-        self.compare_path_contents(target_path, expected_files)
+        pytest.helpers.compare_path_contents(
+            target_path,
+            expected_files,
+            self.test_directory_path,
+        )
         assert open_file_mock.called
 
     @mock.patch('abjad.IOManager.open_file')
@@ -151,7 +163,11 @@ class Test(ScorePackageScriptTestCase):
                 script(command)
             except SystemExit:
                 raise RuntimeError('SystemExit')
-        self.compare_path_contents(target_path, expected_files)
+        pytest.helpers.compare_path_contents(
+            target_path,
+            expected_files,
+            self.test_directory_path,
+        )
         assert open_file_mock.called
 
     @mock.patch('abjad.IOManager.open_file')
@@ -188,7 +204,11 @@ class Test(ScorePackageScriptTestCase):
                 script(command)
             except SystemExit:
                 raise RuntimeError('SystemExit')
-        self.compare_path_contents(target_path, expected_files)
+        pytest.helpers.compare_path_contents(
+            target_path,
+            expected_files,
+            self.test_directory_path,
+        )
         assert open_file_mock.called
 
     @mock.patch('abjad.IOManager.open_file')
@@ -222,5 +242,9 @@ class Test(ScorePackageScriptTestCase):
                 script(command)
             except SystemExit:
                 raise RuntimeError('SystemExit')
-        self.compare_path_contents(target_path, expected_files)
+        pytest.helpers.compare_path_contents(
+            target_path,
+            expected_files,
+            self.test_directory_path,
+        )
         assert open_file_mock.called

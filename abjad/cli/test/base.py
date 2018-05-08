@@ -142,21 +142,3 @@ class ScorePackageScriptTestCase(unittest.TestCase):
             expected=expected_contents,
             actual=contents,
         )
-
-    def compare_path_contents(self, path_to_search, expected_files):
-        actual_files = sorted(
-            str(path.relative_to(self.test_directory_path))
-            for path in sorted(path_to_search.glob('**/*.*'))
-            if '__pycache__' not in path.parts and
-            path.suffix != '.pyc'
-        )
-        pytest.helpers.compare_strings(
-            actual='\n'.join(str(_) for _ in actual_files),
-            expected='\n'.join(str(_) for _ in expected_files),
-        )
-
-    # ### PUBLIC PROPERTIES ### #
-
-    @property
-    def test_directory_path(self):
-        return pathlib.Path(__file__).parent

@@ -57,7 +57,8 @@ class Test(ScorePackageScriptTestCase):
                 parts-violin-ii.pdf --> letter-portrait-parts-violin-ii.pdf
             ''',
         )
-        self.compare_path_contents(
+        pytest.helpers.compare_path_contents(
             self.distribution_path,
             expected_files,
+            self.test_directory_path,
         )

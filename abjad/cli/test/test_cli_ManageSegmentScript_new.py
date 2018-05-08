@@ -107,7 +107,11 @@ class Test(ScorePackageScriptTestCase):
                 _.replace('/', os.path.sep)
                 for _ in expected_files
             ]
-        self.compare_path_contents(self.segments_path, expected_files)
+        pytest.helpers.compare_path_contents(
+            self.segments_path,
+            expected_files,
+            self.test_directory_path,
+        )
         try:
             names = script._read_segments_list_json(
                 self.score_path,

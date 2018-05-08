@@ -316,7 +316,11 @@ class Test(ScorePackageScriptTestCase):
                 Illustrated test_score/materials/test_material/
             '''.replace('/', os.path.sep),
         )
-        self.compare_path_contents(self.materials_path, expected_files)
+        pytest.helpers.compare_path_contents(
+            self.materials_path,
+            expected_files,
+            self.test_directory_path,
+        )
         illustration_path = self.materials_path.joinpath(
             'test_material', 'illustration.ly')
         self.compare_lilypond_contents(

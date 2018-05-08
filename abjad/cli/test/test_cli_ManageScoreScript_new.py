@@ -101,7 +101,11 @@ class Test(ScorePackageScriptTestCase):
                 _.replace('/', os.path.sep)
                 for _ in expected_files
             ]
-        self.compare_path_contents(self.score_path, expected_files)
+        pytest.helpers.compare_path_contents(
+            self.score_path,
+            expected_files,
+            self.test_directory_path,
+        )
         score_metadata_path = self.score_path.joinpath(
             self.score_path.name, 'metadata.json')
         assert score_metadata_path.exists()

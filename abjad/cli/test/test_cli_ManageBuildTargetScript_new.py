@@ -132,7 +132,11 @@ class Test(ScorePackageScriptTestCase):
                 Created test_score/builds/letter-portrait
             '''.replace('/', os.path.sep),
         )
-        self.compare_path_contents(self.build_path, expected_files)
+        pytest.helpers.compare_path_contents(
+            self.build_path,
+            expected_files,
+            self.test_directory_path,
+        )
         path = self.build_path.joinpath('letter-portrait', 'music.ly')
         self.compare_lilypond_contents(path, r'''
             \language "english"

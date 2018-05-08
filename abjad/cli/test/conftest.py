@@ -56,6 +56,20 @@ def paths(tmpdir):
 
 
 @pytest.helpers.register
+def compare_path_contents(path_to_search, expected_files, test_path):
+    actual_files = sorted(
+        str(path.relative_to(test_path))
+        for path in sorted(path_to_search.glob('**/*.*'))
+        if '__pycache__' not in path.parts and
+        path.suffix != '.pyc'
+    )
+    pytest.helpers.compare_strings(
+        actual='\n'.join(str(_) for _ in actual_files),
+        expected='\n'.join(str(_) for _ in expected_files),
+    )
+
+
+@pytest.helpers.register
 def compare_strings(*, expected='', actual=''):
     actual = uqbar.strings.normalize(ansi_escape.sub('', actual))
     expected = uqbar.strings.normalize(ansi_escape.sub('', expected))

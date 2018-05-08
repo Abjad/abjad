@@ -53,7 +53,11 @@ class Test(ScorePackageScriptTestCase):
                 _.replace('/', os.path.sep)
                 for _ in expected_files
             ]
-        self.compare_path_contents(self.build_path, expected_files)
+        pytest.helpers.compare_path_contents(
+            self.build_path,
+            expected_files,
+            self.test_directory_path,
+        )
         path = self.build_path.joinpath('segments.ily')
         self.compare_lilypond_contents(path, r'''
         {
