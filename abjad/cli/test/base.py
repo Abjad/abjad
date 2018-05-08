@@ -77,58 +77,7 @@ class ScorePackageScriptTestCase(unittest.TestCase):
                     script(command)
                 except SystemExit:
                     raise RuntimeError('SystemExit')
-        return self.build_path.joinpath('letter-portrait')
-
-    def create_material(
-        self,
-        material_name='test_material',
-        force=False,
-        expect_error=False,
-    ):
-        script = abjad.cli.ManageMaterialScript()
-        command = ['--new', material_name]
-        if force:
-            command.insert(0, '-f')
-        with uqbar.io.DirectoryChange(self.score_path):
-            if expect_error:
-                with pytest.raises(SystemExit) as exception_info:
-                    script(command)
-                assert exception_info.value.code == 1
-            else:
-                try:
-                    script(command)
-                except SystemExit:
-                    raise RuntimeError('SystemExit')
-        return self.score_path.joinpath(
-            self.score_path.name,
-            'materials',
-            material_name,
-            )
-
-    def create_score(self, force=False, expect_error=False):
-        script = abjad.cli.ManageScoreScript()
-        command = [
-            '--new',
-            'Test Score',
-            '-y', '2016',
-            '-n', 'Josiah Wolf Oberholtzer',
-            '-e', 'josiah.oberholtzer@gmail.com',
-            '-g', 'josiah-wolf-oberholtzer',
-            '-l', 'consort',
-            '-w', 'www.josiahwolfoberholtzer.com',
-            ]
-        if force:
-            command.insert(0, '-f')
-        with uqbar.io.DirectoryChange(self.test_directory_path):
-            if expect_error:
-                with pytest.raises(SystemExit) as exception_info:
-                    script(command)
-                assert exception_info.value.code == 1
-            else:
-                try:
-                    script(command)
-                except SystemExit:
-                    raise RuntimeError('SystemExit')
+        return self.build_path / 'letter-portrait'
 
     def create_segment(
         self,

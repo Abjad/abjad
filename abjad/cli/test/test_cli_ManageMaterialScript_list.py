@@ -7,10 +7,10 @@ class Test(ScorePackageScriptTestCase):
 
     def test_list_materials(self):
         pytest.helpers.create_score(self.test_directory_path)
-        self.create_material('foo')
-        self.create_material('bar')
-        self.create_material('baz')
-        self.create_material('quux')
+        pytest.helpers.create_material(self.test_directory_path, 'foo')
+        pytest.helpers.create_material(self.test_directory_path, 'bar')
+        pytest.helpers.create_material(self.test_directory_path, 'baz')
+        pytest.helpers.create_material(self.test_directory_path, 'quux')
         script = abjad.cli.ManageMaterialScript()
         command = ['--list']
         with abjad.RedirectedStreams(stdout=self.string_io):

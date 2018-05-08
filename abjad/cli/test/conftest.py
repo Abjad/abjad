@@ -53,6 +53,31 @@ def paths(tmpdir):
 
 
 @pytest.helpers.register
+def create_material(
+    test_directory_path,
+    material_name='test_material',
+    force=False,
+    expect_error=False,
+):
+    script = abjad.cli.ManageMaterialScript()
+    command = ['--new', material_name]
+    if force:
+        command.insert(0, '-f')
+    score_path = test_directory_path / package_name
+    with uqbar.io.DirectoryChange(score_path):
+        if expect_error:
+            with pytest.raises(SystemExit) as exception_info:
+                script(command)
+            assert exception_info.value.code == 1
+        else:
+            try:
+                script(command)
+            except SystemExit:
+                raise RuntimeError('SystemExit')
+    return score_path / package_name / 'materials' / material_name
+
+
+@pytest.helpers.register
 def create_score(test_directory_path, force=False, expect_error=False):
     script = abjad.cli.ManageScoreScript()
     command = [

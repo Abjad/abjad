@@ -11,7 +11,7 @@ class Test(ScorePackageScriptTestCase):
     def test_success(self, call_subprocess_mock):
         call_subprocess_mock.return_value = 0
         pytest.helpers.create_score(self.test_directory_path)
-        material_path = self.create_material('test_material')
+        material_path = pytest.helpers.create_material(self.test_directory_path, 'test_material')
         script = abjad.cli.ManageMaterialScript()
         command = ['--edit', 'test_material']
         with abjad.RedirectedStreams(stdout=self.string_io):

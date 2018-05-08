@@ -19,9 +19,9 @@ class Test(ScorePackageScriptTestCase):
 
     def test_exists(self):
         pytest.helpers.create_score(self.test_directory_path)
-        self.create_material('test_material')
+        pytest.helpers.create_material(self.test_directory_path, 'test_material')
         with abjad.RedirectedStreams(stdout=self.string_io):
-            self.create_material('test_material', expect_error=True)
+            pytest.helpers.create_material(self.test_directory_path, 'test_material', expect_error=True)
         self.compare_captured_output(r'''
             Creating material subpackage 'test_material' ...
                 Path exists: test_score/materials/test_material
@@ -29,9 +29,9 @@ class Test(ScorePackageScriptTestCase):
 
     def test_force_replace(self):
         pytest.helpers.create_score(self.test_directory_path)
-        self.create_material('test_material')
+        pytest.helpers.create_material(self.test_directory_path, 'test_material')
         with abjad.RedirectedStreams(stdout=self.string_io):
-            self.create_material('test_material', force=True)
+            pytest.helpers.create_material(self.test_directory_path, 'test_material', force=True)
         self.compare_captured_output(r'''
             Creating material subpackage 'test_material' ...
                 Reading test_score/metadata.json ... OK!

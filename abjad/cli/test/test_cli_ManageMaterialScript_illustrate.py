@@ -41,7 +41,7 @@ class Test(ScorePackageScriptTestCase):
         Handle failing LilyPond rendering.
         """
         pytest.helpers.create_score(self.test_directory_path)
-        material_path = self.create_material('test_material')
+        material_path = pytest.helpers.create_material(self.test_directory_path, 'test_material')
         definition_path = material_path.joinpath('definition.py')
         with open(str(definition_path), 'w') as file_pointer:
             file_pointer.write(abjad.String.normalize(r'''
@@ -88,7 +88,7 @@ class Test(ScorePackageScriptTestCase):
         Handle missing definition.
         """
         pytest.helpers.create_score(self.test_directory_path)
-        material_path = self.create_material('test_material')
+        material_path = pytest.helpers.create_material(self.test_directory_path, 'test_material')
         definition_path = material_path.joinpath('definition.py')
         definition_path.unlink()
         script = abjad.cli.ManageMaterialScript()
@@ -109,7 +109,7 @@ class Test(ScorePackageScriptTestCase):
         Handle un-illustrables.
         """
         pytest.helpers.create_score(self.test_directory_path)
-        material_path = self.create_material('test_material')
+        material_path = pytest.helpers.create_material(self.test_directory_path, 'test_material')
         definition_path = material_path.joinpath('definition.py')
         with open(str(definition_path), 'w') as file_pointer:
             file_pointer.write(abjad.String.normalize(r'''
@@ -134,7 +134,7 @@ class Test(ScorePackageScriptTestCase):
         Handle exceptions inside the Python module on __call__().
         """
         pytest.helpers.create_score(self.test_directory_path)
-        material_path = self.create_material('test_material')
+        material_path = pytest.helpers.create_material(self.test_directory_path, 'test_material')
         definition_path = material_path.joinpath('definition.py')
         with open(str(definition_path), 'w') as file_pointer:
             file_pointer.write(abjad.String.normalize(r'''
@@ -165,7 +165,7 @@ class Test(ScorePackageScriptTestCase):
         Handle exceptions inside the Python module on import.
         """
         pytest.helpers.create_score(self.test_directory_path)
-        material_path = self.create_material('test_material')
+        material_path = pytest.helpers.create_material(self.test_directory_path, 'test_material')
         definition_path = material_path.joinpath('definition.py')
         with open(str(definition_path), 'a') as file_pointer:
             file_pointer.write('\n\nfailure = 1 / 0\n')
@@ -185,9 +185,9 @@ class Test(ScorePackageScriptTestCase):
     @mock.patch('abjad.IOManager.open_file')
     def test_success_all_materials(self, open_file_mock):
         pytest.helpers.create_score(self.test_directory_path)
-        self.create_material('material_one')
-        self.create_material('material_two')
-        self.create_material('material_three')
+        pytest.helpers.create_material(self.test_directory_path, 'material_one')
+        pytest.helpers.create_material(self.test_directory_path, 'material_two')
+        pytest.helpers.create_material(self.test_directory_path, 'material_three')
         script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', '*']
         with abjad.RedirectedStreams(stdout=self.string_io):
@@ -236,9 +236,9 @@ class Test(ScorePackageScriptTestCase):
     @mock.patch('abjad.IOManager.open_file')
     def test_success_filtered_materials(self, open_file_mock):
         pytest.helpers.create_score(self.test_directory_path)
-        self.create_material('material_one')
-        self.create_material('material_two')
-        self.create_material('material_three')
+        pytest.helpers.create_material(self.test_directory_path, 'material_one')
+        pytest.helpers.create_material(self.test_directory_path, 'material_two')
+        pytest.helpers.create_material(self.test_directory_path, 'material_three')
         script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', 'material_t*']
         with abjad.RedirectedStreams(stdout=self.string_io):
@@ -280,7 +280,7 @@ class Test(ScorePackageScriptTestCase):
     @mock.patch('abjad.IOManager.open_file')
     def test_success_one_material(self, open_file_mock):
         pytest.helpers.create_score(self.test_directory_path)
-        self.create_material('test_material')
+        pytest.helpers.create_material(self.test_directory_path, 'test_material')
         script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', 'test_material']
         with abjad.RedirectedStreams(stdout=self.string_io):
