@@ -22,6 +22,12 @@ package_name = 'test_score'
 
 # ### FIXTURES ### #
 
+@pytest.fixture
+def call_subprocess_mock():
+    patcher = mock.patch('abjad.cli.ScorePackageScript._call_subprocess')
+    yield patcher.start()
+    patcher.stop()
+
 
 @pytest.fixture
 def open_file_mock():
