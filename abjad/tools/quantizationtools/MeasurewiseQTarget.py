@@ -31,7 +31,7 @@ class MeasurewiseQTarget(QTarget):
         for beat in q_target_measure.beats:
             measure.extend(beat.q_grid(beat.beatspan))
         if attach_tempos:
-            tempo = copy.copy(q_target_measure.tempo)
+            tempo = copy.deepcopy(q_target_measure.tempo)
             #abjad.attach(tempo, measure)
             leaf = abjad.inspect(measure).get_leaf(0)
             abjad.attach(tempo, leaf)
@@ -45,7 +45,7 @@ class MeasurewiseQTarget(QTarget):
                 measure.extend(beat.q_grid(beat.beatspan))
             if ((q_target_measure_two.tempo != q_target_measure_one.tempo) and
                 attach_tempos):
-                tempo = copy.copy(q_target_measure_two.tempo)
+                tempo = copy.deepcopy(q_target_measure_two.tempo)
                 #abjad.attach(tempo, measure)
                 leaf = abjad.inspect(measure).get_leaf(0)
                 abjad.attach(tempo, leaf)

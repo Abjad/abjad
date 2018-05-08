@@ -1,10 +1,10 @@
+import uqbar.containers
 import uqbar.graphs
 from abjad.tools import scoretools
-from abjad.tools.datastructuretools.TreeNode import TreeNode
 from abjad.tools.rhythmtreetools.RhythmTreeMixin import RhythmTreeMixin
 
 
-class RhythmTreeLeaf(RhythmTreeMixin, TreeNode):
+class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
     r'''Rhythm-tree leaf.
 
     ..  container:: example
@@ -12,10 +12,7 @@ class RhythmTreeLeaf(RhythmTreeMixin, TreeNode):
         >>> leaf = abjad.rhythmtreetools.RhythmTreeLeaf(
         ...     preprolated_duration=5, is_pitched=True)
         >>> leaf
-        RhythmTreeLeaf(
-            preprolated_duration=Duration(5, 1),
-            is_pitched=True
-            )
+        RhythmTreeLeaf(preprolated_duration=Duration(5, 1), is_pitched=True)
 
     ..  container:: example
 
@@ -43,7 +40,7 @@ class RhythmTreeLeaf(RhythmTreeMixin, TreeNode):
         is_pitched=True,
         name=None,
         ):
-        TreeNode.__init__(self, name=name)
+        uqbar.containers.UniqueTreeNode.__init__(self, name=name)
         RhythmTreeMixin.__init__(self, preprolated_duration=preprolated_duration)
         self.is_pitched = is_pitched
 

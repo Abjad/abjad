@@ -24,7 +24,7 @@ def test_quantizationtools_QGridContainer___copy___01():
             quantizationtools.QGridLeaf(preprolated_duration=2)
         ])
 
-    copied = copy.copy(tree)
+    copied = copy.deepcopy(tree)
 
     assert format(tree) == format(copied)
     assert tree is not copied

@@ -1,4 +1,5 @@
 import abc
+import typing
 from abjad import Fraction
 from abjad.tools import abctools
 from abjad.tools import datastructuretools
@@ -6,8 +7,13 @@ from abjad.tools import mathtools
 
 
 class RhythmTreeMixin(abctools.AbjadObject):
-    r'''Abstract rhythm-tree node.
     '''
+    Abstract rhythm-tree node.
+    '''
+
+    ### CLASS VARIABLES ###
+
+    _state_flag_names: typing.Tuple[str, ...] = ('_offsets_are_current',)
 
     ### INITIALIZER ###
 
@@ -30,7 +36,6 @@ class RhythmTreeMixin(abctools.AbjadObject):
     ### PRIVATE METHODS ###
 
     def _update_offsets_of_entire_tree(self):
-        import abjad
         def recurse(container, current_offset):
             container._offset = current_offset
             container._offsets_are_current = True
@@ -42,14 +47,12 @@ class RhythmTreeMixin(abctools.AbjadObject):
                     child._offsets_are_current = True
                     current_offset += child.duration
             return current_offset
+        import abjad
         offset = abjad.Offset(0)
         root = self.root
-        try:
-            children = self.children
-            has_children = True
-        except AttributeError:
-            has_children = False
-        if root is self and not has_children:
+        if root is None:
+            root = self
+        if root is self and not hasattr(self, 'children'):
             self._offset = offset
             self._offsets_are_current = True
         else:
@@ -66,8 +69,17 @@ class RhythmTreeMixin(abctools.AbjadObject):
         raise NotImplementedError
 
     @property
-    def _state_flag_names(self):
-        return ('_offsets_are_current',)
+    def _depthwise_inventory(self):
+        def recurse(node):
+            if node.depth not in inventory:
+                inventory[node.depth] = []
+            inventory[node.depth].append(node)
+            if getattr(node, 'children', None) is not None:
+                for child in node.children:
+                    recurse(child)
+        inventory = {}
+        recurse(self)
+        return inventory
 
     ### PUBLIC PROPERTIES ###
 
@@ -200,8 +212,7 @@ class RhythmTreeMixin(abctools.AbjadObject):
         '''
         import abjad
         prolations = [abjad.Multiplier(1)]
-        improper_parentage = self.improper_parentage
-        pairs = abjad.sequence(improper_parentage).nwise()
+        pairs = abjad.sequence(self.parentage).nwise()
         for child, parent in pairs:
             prolations.append(abjad.Multiplier(
                 parent.preprolated_duration, parent._get_contents_duration()))

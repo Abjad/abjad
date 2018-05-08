@@ -130,7 +130,7 @@ class QGrid(AbjadObject):
         Returns new q-grid.
         '''
         root_node, next_downbeat = self._root_node, self._next_downbeat
-        return type(self)(copy.copy(root_node), copy.copy(next_downbeat))
+        return type(self)(copy.deepcopy(root_node), copy.deepcopy(next_downbeat))
 
     def __eq__(self, argument):
         r'''True if `argument` is a q-grid with root node and next downbeat

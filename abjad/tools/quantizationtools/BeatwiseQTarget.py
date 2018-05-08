@@ -36,7 +36,7 @@ class BeatwiseQTarget(QTarget):
             leaves = select(attachment_target).leaves()
             if isinstance(attachment_target, abjad.Container):
                 attachment_target = leaves[0]
-            tempo = copy.copy(beat.tempo)
+            tempo = copy.deepcopy(beat.tempo)
             attach(tempo, attachment_target)
         voice.extend(components)
 
@@ -48,7 +48,7 @@ class BeatwiseQTarget(QTarget):
                 leaves = select(attachment_target).leaves()
                 if isinstance(attachment_target, abjad.Container):
                     attachment_target = leaves[0]
-                tempo = copy.copy(beat_two.tempo)
+                tempo = copy.deepcopy(beat_two.tempo)
                 attach(tempo, attachment_target)
             voice.extend(components)
 

@@ -1,11 +1,11 @@
+import uqbar.containers
 import uqbar.graphs
 from abjad.tools import scoretools
 from abjad.tools import spannertools
-from abjad.tools.datastructuretools.TreeContainer import TreeContainer
 from abjad.tools.rhythmtreetools.RhythmTreeMixin import RhythmTreeMixin
 
 
-class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
+class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeContainer):
     r'''Rhythm-tree container.
 
     ..  container:: example
@@ -19,6 +19,7 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
 
         >>> abjad.f(container)
         abjad.rhythmtreetools.RhythmTreeContainer(
+            children=(),
             preprolated_duration=abjad.Duration(1, 1),
             )
 
@@ -106,7 +107,7 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
     ### INITIALIZER ###
 
     def __init__(self, children=None, preprolated_duration=1, name=None):
-        TreeContainer.__init__(self, name=name)
+        uqbar.containers.UniqueTreeContainer.__init__(self, name=name)
         RhythmTreeMixin.__init__(self, preprolated_duration=preprolated_duration)
         if isinstance(children, (list, str, tuple)):
             self.extend(children)
@@ -287,7 +288,9 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
                 },
             )
         node_mapping = {}
-        for node in self.nodes:
+        nodes = [self]
+        nodes.extend(self.depth_first())
+        for node in nodes:
             graphviz_node = uqbar.graphs.Node()
             graphviz_node.attributes['label'] = str(node.preprolated_duration)
             if isinstance(node, type(self)):
@@ -322,76 +325,29 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
             self.duration.denominator,
             )
 
-    def __setitem__(self, i, argument):
-        r'''Set `argument` in self at nonnegative integer index `i`,
-        or set `argument` in self at slice i.
-        Replace contents of `self[i]` with `argument`.
-        Attach parentage to contents of `argument`,
-        and detach parentage of any replaced nodes.
+    ### PRIVATE METHODS ###
 
-        >>> a = abjad.rhythmtreetools.RhythmTreeContainer()
-        >>> b = abjad.rhythmtreetools.RhythmTreeLeaf()
-        >>> c = abjad.rhythmtreetools.RhythmTreeLeaf()
-
-        >>> a.append(b)
-        >>> b.parent is a
-        True
-
-        >>> a.children == (b,)
-        True
-
-        >>> a[0] = c
-
-        >>> c.parent is a
-        True
-
-        >>> b.parent is None
-        True
-
-        >>> a.children == (c,)
-        True
-
-        Return `None`.
-        '''
+    def _prepare_setitem_single(self, expr):
         from abjad.tools.rhythmtreetools.RhythmTreeParser \
             import RhythmTreeParser
+        if isinstance(expr, str):
+            expr = RhythmTreeParser()(expr)[0]
+            assert len(expr) == 1
+            expr = expr[0]
+        return expr
 
-        proper_parentage = self.proper_parentage
-
-        if isinstance(i, int):
-            if isinstance(argument, str):
-                argument = RhythmTreeParser()(argument)[0]
-                assert len(argument) == 1
-                argument = argument[0]
-            else:
-                assert isinstance(argument, self._node_class)
-            old = self[i]
-            assert argument not in proper_parentage
-            old._set_parent(None)
-            argument._set_parent(self)
-            self._children.insert(i, argument)
-        else:
-            if isinstance(argument, str):
-                argument = RhythmTreeParser()(argument)
-            elif isinstance(argument, list) and len(argument) == 1 and \
-                isinstance(argument[0], str):
-                argument = RhythmTreeParser()(argument[0])
-            else:
-                assert all(isinstance(x, self._node_class) for x in argument)
-            if i.start == i.stop and i.start is not None \
-                and i.stop is not None and i.start <= -len(self):
-                start, stop = 0, 0
-            else:
-                start, stop, stride = i.indices(len(self))
-            old = self[start:stop]
-            for node in argument:
-                assert node not in proper_parentage
-            for node in old:
-                node._set_parent(None)
-            for node in argument:
-                node._set_parent(self)
-            self._children.__setitem__(slice(start, start), argument)
-        self._mark_entire_tree_for_later_update()
+    def _prepare_setitem_multiple(self, expr):
+        from abjad.tools.rhythmtreetools.RhythmTreeParser \
+            import RhythmTreeParser
+        if isinstance(expr, str):
+            expr = RhythmTreeParser()(expr)
+        elif (
+            isinstance(expr, list) and
+            len(expr) == 1 and
+            isinstance(expr[0], str)
+        ):
+            expr = RhythmTreeParser()(expr[0])
+        return expr
 
     ### PRIVATE PROPERTIES ###
 

@@ -1,9 +1,9 @@
+import uqbar.containers
 from abjad.tools import systemtools
-from abjad.tools.datastructuretools.TreeNode import TreeNode
 from abjad.tools.rhythmtreetools.RhythmTreeMixin import RhythmTreeMixin
 
 
-class QGridLeaf(RhythmTreeMixin, TreeNode):
+class QGridLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
     r'''Q-grid leaf.
 
     ..  container:: example
@@ -27,7 +27,7 @@ class QGridLeaf(RhythmTreeMixin, TreeNode):
         is_divisible=True,
         ):
         from abjad.tools import quantizationtools
-        TreeNode.__init__(self)
+        uqbar.containers.UniqueTreeNode.__init__(self)
         RhythmTreeMixin.__init__(self, preprolated_duration)
         if q_event_proxies is None:
             self._q_event_proxies = []

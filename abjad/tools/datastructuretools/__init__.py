@@ -37,8 +37,6 @@ from .PitchInequality import PitchInequality
 from .Sequence import Sequence
 from .SortedCollection import SortedCollection
 from .String import String
-from .TreeNode import TreeNode
-from .TreeContainer import TreeContainer
 from .TypedCounter import TypedCounter
 from .TypedFrozenset import TypedFrozenset
 from .TypedList import TypedList

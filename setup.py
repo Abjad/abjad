@@ -52,7 +52,7 @@ classifiers = [
 install_requires = [
     'ply',
     'roman',
-    'uqbar>=0.2.10',
+    'uqbar>=0.2.11',
     ]
 
 extras_require = {

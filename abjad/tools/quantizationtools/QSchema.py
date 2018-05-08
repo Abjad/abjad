@@ -36,7 +36,7 @@ class QSchema(AbjadObject):
     @abc.abstractmethod
     def __init__(self, *arguments, **keywords):
         if 1 == len(arguments) and isinstance(arguments[0], type(self)):
-            items = copy.copy(arguments[0].items)
+            items = copy.deepcopy(arguments[0].items)
         elif 1 == len(arguments) and isinstance(arguments[0], dict):
             items = list(arguments[0].items())
             if mathtools.all_are_pairs_of_types(items, int, dict):
