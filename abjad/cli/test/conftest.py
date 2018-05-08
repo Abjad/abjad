@@ -65,6 +65,24 @@ def collect_segments(test_directory_path):
 
 
 @pytest.helpers.register
+def compare_lilypond_contents(ly_path, expected_contents):
+    expected_contents = uqbar.strings.normalize(expected_contents)
+    with open(str(ly_path), 'r') as file_pointer:
+        contents = file_pointer.read()
+    if ly_path.suffix == '.ly':
+        contents = contents.splitlines()
+        while 'version' not in contents[0]:
+            contents.pop(0)
+        contents.pop(0)
+        contents = '\n'.join(contents)
+    contents = uqbar.strings.normalize(contents)
+    pytest.helpers.compare_strings(
+        expected=expected_contents,
+        actual=contents,
+    )
+
+
+@pytest.helpers.register
 def compare_path_contents(path_to_search, expected_files, test_path):
     actual_files = sorted(
         str(path.relative_to(test_path))

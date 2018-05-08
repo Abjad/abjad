@@ -50,7 +50,7 @@ class Test(ScorePackageScriptTestCase):
             self.test_directory_path, 'test_segment')
         pytest.helpers.illustrate_segment(self.test_directory_path, 'test_segment')
         illustration_path = segment_path.joinpath('illustration.ly')
-        self.compare_lilypond_contents(
+        pytest.helpers.compare_lilypond_contents(
             illustration_path,
             r'''
             \language "english"

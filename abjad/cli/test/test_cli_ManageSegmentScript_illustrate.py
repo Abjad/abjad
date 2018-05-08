@@ -95,7 +95,7 @@ class Test(ScorePackageScriptTestCase):
         )
         illustration_ly_path = segment_path.joinpath('illustration.ly')
         assert illustration_ly_path.exists()
-        self.compare_lilypond_contents(
+        pytest.helpers.compare_lilypond_contents(
             illustration_ly_path, normalize(r'''
             \language "english"
 
@@ -395,7 +395,7 @@ class Test(ScorePackageScriptTestCase):
         )
         illustration_path = self.segments_path.joinpath(
             'test_segment', 'illustration.ly')
-        self.compare_lilypond_contents(
+        pytest.helpers.compare_lilypond_contents(
             illustration_path,
             self.expected_illustration_contents,
         )

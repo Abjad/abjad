@@ -1,11 +1,8 @@
 import pathlib
-import pytest
 import re
 import shutil
 import sys
 import unittest
-import uqbar.io
-import uqbar.strings
 
 
 class ScorePackageScriptTestCase(unittest.TestCase):
@@ -44,39 +41,3 @@ class ScorePackageScriptTestCase(unittest.TestCase):
                 continue
             if path.startswith('test_score'):
                 del(sys.modules[path])
-
-    # ### PUBLIC METHODS ### #
-
-    def compare_captured_output(self, actual, expected):
-        actual = self.ansi_escape.sub('', actual)
-        actual = uqbar.strings.normalize(actual)
-        expected = uqbar.strings.normalize(expected)
-        pytest.helpers.compare_strings(
-            expected=expected,
-            actual=actual,
-        )
-
-    def compare_file_contents(self, path, expected_contents):
-        expected_contents = uqbar.strings.normalize(expected_contents)
-        with open(str(path), 'r') as file_pointer:
-            contents = uqbar.strings.normalize(file_pointer.read())
-        pytest.helpers.compare_strings(
-            actual=contents,
-            expected=expected_contents,
-        )
-
-    def compare_lilypond_contents(self, ly_path, expected_contents):
-        expected_contents = uqbar.strings.normalize(expected_contents)
-        with open(str(ly_path), 'r') as file_pointer:
-            contents = file_pointer.read()
-        if ly_path.suffix == '.ly':
-            contents = contents.splitlines()
-            while 'version' not in contents[0]:
-                contents.pop(0)
-            contents.pop(0)
-            contents = '\n'.join(contents)
-        contents = uqbar.strings.normalize(contents)
-        pytest.helpers.compare_strings(
-            expected=expected_contents,
-            actual=contents,
-        )

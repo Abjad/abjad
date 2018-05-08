@@ -59,7 +59,7 @@ class Test(ScorePackageScriptTestCase):
             self.test_directory_path,
         )
         path = self.build_path.joinpath('segments.ily')
-        self.compare_lilypond_contents(path, r'''
+        pytest.helpers.compare_lilypond_contents(path, r'''
         {
             \include "../segments/segment-one.ily"
             \include "../segments/segment-two.ily"
@@ -67,7 +67,7 @@ class Test(ScorePackageScriptTestCase):
         }
         '''.replace('/', os.path.sep))
         path = self.build_path.joinpath('segments', 'segment-one.ily')
-        self.compare_lilypond_contents(path, r'''
+        pytest.helpers.compare_lilypond_contents(path, r'''
         \context Score = "Example Score" <<
             \context Staff = "Example Staff" {
                 \context Voice = "Example Voice" {
@@ -80,7 +80,7 @@ class Test(ScorePackageScriptTestCase):
         >>
         ''')
         path = self.build_path.joinpath('segments', 'segment-two.ily')
-        self.compare_lilypond_contents(path, r'''
+        pytest.helpers.compare_lilypond_contents(path, r'''
         \context Score = "Example Score" <<
             \context Staff = "Example Staff" {
                 \context Voice = "Example Voice" {
@@ -93,7 +93,7 @@ class Test(ScorePackageScriptTestCase):
         >>
         ''')
         path = self.build_path.joinpath('segments', 'segment-three.ily')
-        self.compare_lilypond_contents(path, r'''
+        pytest.helpers.compare_lilypond_contents(path, r'''
         \context Score = "Example Score" <<
             \context Staff = "Example Staff" {
                 \context Voice = "Example Voice" {

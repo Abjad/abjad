@@ -55,7 +55,7 @@ class Test(ScorePackageScriptTestCase):
             '''.replace('/', os.path.sep),
         )
         path = self.build_path.joinpath('a3-landscape', 'score.tex')
-        self.compare_lilypond_contents(path, r'''
+        pytest.helpers.compare_lilypond_contents(path, r'''
             \documentclass{article}
             \usepackage[papersize={420mm, 297mm}]{geometry}
             \usepackage{pdfpages}
@@ -138,7 +138,7 @@ class Test(ScorePackageScriptTestCase):
             self.test_directory_path,
         )
         path = self.build_path.joinpath('letter-portrait', 'music.ly')
-        self.compare_lilypond_contents(path, r'''
+        pytest.helpers.compare_lilypond_contents(path, r'''
             \language "english"
 
             #(ly:set-option 'relative-includes #t)
@@ -158,7 +158,7 @@ class Test(ScorePackageScriptTestCase):
             }
         ''')
         path = self.build_path.joinpath('letter-portrait', 'parts.ly')
-        self.compare_lilypond_contents(path, r'''
+        pytest.helpers.compare_lilypond_contents(path, r'''
             \language "english"
 
             #(ly:set-option 'relative-includes #t)
@@ -171,7 +171,7 @@ class Test(ScorePackageScriptTestCase):
             \include "../parts.ily"
         ''')
         path = self.build_path.joinpath('letter-portrait', 'score.tex')
-        self.compare_lilypond_contents(path, r'''
+        pytest.helpers.compare_lilypond_contents(path, r'''
             \documentclass{article}
             \usepackage[papersize={8.5in, 11.0in}]{geometry}
             \usepackage{pdfpages}
@@ -185,7 +185,7 @@ class Test(ScorePackageScriptTestCase):
             \end{document}
         ''')
         path = self.build_path.joinpath('letter-portrait', 'front-cover.tex')
-        self.compare_lilypond_contents(path, r"""
+        pytest.helpers.compare_lilypond_contents(path, r"""
         \documentclass[11pt]{report}
         <BLANKLINE>
         \usepackage[T1]{fontenc}
@@ -253,7 +253,7 @@ class Test(ScorePackageScriptTestCase):
         \end{document}
         """)
         path = self.build_path.joinpath('letter-portrait', 'back-cover.tex')
-        self.compare_lilypond_contents(path, r'''
+        pytest.helpers.compare_lilypond_contents(path, r'''
         \documentclass[11pt]{report}
 
         \usepackage[utf8]{inputenc}
