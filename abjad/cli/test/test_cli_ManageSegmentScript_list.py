@@ -7,7 +7,7 @@ from base import ScorePackageScriptTestCase
 class Test(ScorePackageScriptTestCase):
 
     def test_list_segments(self):
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         self.create_segment('segment_one')
         self.create_segment('segment_two')
         self.create_segment('segment_three')
@@ -27,7 +27,7 @@ class Test(ScorePackageScriptTestCase):
         '''.replace('/', os.path.sep))
 
     def test_list_segments_no_segments(self):
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         script = abjad.cli.ManageSegmentScript()
         command = ['--list']
         with abjad.RedirectedStreams(stdout=self.string_io):
@@ -42,7 +42,7 @@ class Test(ScorePackageScriptTestCase):
         '''.replace('/', os.path.sep))
 
     def test_list_segments_unstaged(self):
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         self.create_segment('segment_one')
         self.create_segment('segment_two')
         self.create_segment('segment_three')

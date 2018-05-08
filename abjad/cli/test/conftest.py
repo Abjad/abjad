@@ -1,16 +1,22 @@
+import abjad.cli
 import pathlib
 import pytest
 import shutil
 import sys
 import types
-from uqbar.strings import normalize
+import uqbar.io
+import uqbar.strings
 
 
 pytest_plugins = ['helpers_namespace']
 
 
+# ### DATA ### #
+
 package_name = 'test_score'
 
+
+# ### FIXTURES ### #
 
 @pytest.fixture
 def paths(tmpdir):
@@ -43,9 +49,39 @@ def paths(tmpdir):
             del(sys.modules[path])
 
 
+# ### HELPERS ### #
+
+
+@pytest.helpers.register
+def create_score(test_directory_path, force=False, expect_error=False):
+    script = abjad.cli.ManageScoreScript()
+    command = [
+        '--new',
+        'Test Score',
+        '-y', '2016',
+        '-n', 'Josiah Wolf Oberholtzer',
+        '-e', 'josiah.oberholtzer@gmail.com',
+        '-g', 'josiah-wolf-oberholtzer',
+        '-l', 'consort',
+        '-w', 'www.josiahwolfoberholtzer.com',
+        ]
+    if force:
+        command.insert(0, '-f')
+    with uqbar.io.DirectoryChange(test_directory_path):
+        if expect_error:
+            with pytest.raises(SystemExit) as exception_info:
+                script(command)
+            assert exception_info.value.code == 1
+        else:
+            try:
+                script(command)
+            except SystemExit:
+                raise RuntimeError('SystemExit')
+
+
 @pytest.helpers.register
 def get_fancy_parts_code():
-    return normalize(r"""
+    return uqbar.strings.normalize(r"""
         \book {
             \bookOutputSuffix "cello"
             \score {
@@ -79,7 +115,7 @@ def get_fancy_parts_code():
 
 @pytest.helpers.register
 def get_fancy_segment_maker_code():
-    return normalize(r"""
+    return uqbar.strings.normalize(r"""
         import abjad
 
         class SegmentMaker(abjad.AbjadObject):

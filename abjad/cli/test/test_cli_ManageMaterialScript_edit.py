@@ -1,10 +1,8 @@
 import abjad
+import pytest
 from abjad import abjad_configuration
 from base import ScorePackageScriptTestCase
-try:
-    from unittest import mock
-except ImportError:
-    import mock
+from unittest import mock
 
 
 class Test(ScorePackageScriptTestCase):
@@ -12,7 +10,7 @@ class Test(ScorePackageScriptTestCase):
     @mock.patch('abjad.cli.ScorePackageScript._call_subprocess')
     def test_success(self, call_subprocess_mock):
         call_subprocess_mock.return_value = 0
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         material_path = self.create_material('test_material')
         script = abjad.cli.ManageMaterialScript()
         command = ['--edit', 'test_material']

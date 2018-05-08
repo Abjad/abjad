@@ -1,16 +1,14 @@
 import json
+import pytest
 from base import ScorePackageScriptTestCase
-try:
-    from unittest import mock
-except ImportError:
-    import mock
+from unittest import mock
 
 
 class Test(ScorePackageScriptTestCase):
 
     @mock.patch('abjad.IOManager.open_file')
     def test_1(self, open_file_mock):
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         self.install_fancy_segment_maker()
         path_1 = self.create_segment('segment_one')
         path_2 = self.create_segment('segment_two')
@@ -43,7 +41,7 @@ class Test(ScorePackageScriptTestCase):
 
     @mock.patch('abjad.IOManager.open_file')
     def test_2(self, open_file_mock):
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         self.install_fancy_segment_maker()
         segment_path = self.create_segment('test_segment')
         self.illustrate_segment('test_segment')

@@ -1,11 +1,12 @@
 import abjad
+import pytest
 from base import ScorePackageScriptTestCase
 
 
 class Test(ScorePackageScriptTestCase):
 
     def test_list(self):
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         script = abjad.cli.ManageBuildTargetScript()
         command = ['--new', 'big-version']
         with abjad.TemporaryDirectoryChange(str(self.score_path)):

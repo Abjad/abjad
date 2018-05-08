@@ -1,6 +1,7 @@
 import abjad
 import os
 import platform
+import pytest
 from base import ScorePackageScriptTestCase
 
 
@@ -18,7 +19,7 @@ class Test(ScorePackageScriptTestCase):
         expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
 
     def test_exists(self):
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         self.create_segment('test_segment')
         with abjad.RedirectedStreams(stdout=self.string_io):
             self.create_segment('test_segment', expect_error=True)
@@ -28,7 +29,7 @@ class Test(ScorePackageScriptTestCase):
         '''.replace('/', os.path.sep))
 
     def test_force_replace(self):
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         self.create_segment('test_segment')
         with abjad.RedirectedStreams(stdout=self.string_io):
             self.create_segment('test_segment', force=True)
@@ -40,7 +41,7 @@ class Test(ScorePackageScriptTestCase):
         '''.replace('/', os.path.sep))
 
     def test_internal_path(self):
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         script = abjad.cli.ManageSegmentScript()
         command = ['--new', 'test_segment']
         internal_path = self.score_path.joinpath('test_score', 'builds')
@@ -60,7 +61,7 @@ class Test(ScorePackageScriptTestCase):
         '''.replace('/', os.path.sep))
 
     def test_success(self):
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         script = abjad.cli.ManageSegmentScript()
         try:
             names = script._read_segments_list_json(

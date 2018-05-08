@@ -1,11 +1,9 @@
 import abjad
 import os
 import platform
+import pytest
 from base import ScorePackageScriptTestCase
-try:
-    from unittest import mock
-except ImportError:
-    import mock
+from unittest import mock
 
 
 class Test(ScorePackageScriptTestCase):
@@ -28,7 +26,7 @@ class Test(ScorePackageScriptTestCase):
 
     @mock.patch('abjad.IOManager.open_file')
     def test_success(self, open_file_mock):
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         self.create_segment('segment_one')
         self.create_segment('segment_two')
         self.create_segment('segment_three')

@@ -1,7 +1,8 @@
 import abjad
+import json
 import os
 import platform
-import json
+import pytest
 import shutil
 from base import ScorePackageScriptTestCase
 
@@ -49,13 +50,13 @@ class Test(ScorePackageScriptTestCase):
 
     def test_exists(self):
         with abjad.RedirectedStreams(stdout=self.string_io):
-            self.create_score()
+            pytest.helpers.create_score(self.test_directory_path)
         assert self.score_path.exists()
         with abjad.RedirectedStreams(stdout=self.string_io):
-            self.create_score(expect_error=True)
+            pytest.helpers.create_score(self.test_directory_path, expect_error=True)
         assert self.score_path.exists()
         shutil.rmtree(str(self.score_path))
-        for path in self.test_path.iterdir():
+        for path in self.test_directory_path.iterdir():
             assert path in self.directory_items
         self.compare_captured_output(r'''
             Creating score package 'Test Score'...
@@ -67,13 +68,13 @@ class Test(ScorePackageScriptTestCase):
 
     def test_force_replace(self):
         with abjad.RedirectedStreams(stdout=self.string_io):
-            self.create_score()
+            pytest.helpers.create_score(self.test_directory_path)
         assert self.score_path.exists()
         with abjad.RedirectedStreams(stdout=self.string_io):
-            self.create_score(force=True)
+            pytest.helpers.create_score(self.test_directory_path, force=True)
         assert self.score_path.exists()
         shutil.rmtree(str(self.score_path))
-        for path in self.test_path.iterdir():
+        for path in self.test_directory_path.iterdir():
             assert path in self.directory_items
         self.compare_captured_output(r'''
             Creating score package 'Test Score'...
@@ -86,7 +87,7 @@ class Test(ScorePackageScriptTestCase):
 
     def test_success(self):
         with abjad.RedirectedStreams(stdout=self.string_io):
-            self.create_score()
+            pytest.helpers.create_score(self.test_directory_path)
         assert self.score_path.exists()
         self.compare_path_contents(self.score_path, self.expected_files)
         score_metadata_path = self.score_path.joinpath(
@@ -104,7 +105,7 @@ class Test(ScorePackageScriptTestCase):
             'year': 2016,
             }
         shutil.rmtree(str(self.score_path))
-        for path in self.test_path.iterdir():
+        for path in self.test_directory_path.iterdir():
             assert path in self.directory_items
         self.compare_captured_output(r'''
             Creating score package 'Test Score'...

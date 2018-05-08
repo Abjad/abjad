@@ -7,14 +7,15 @@ import re
 import shutil
 import unittest
 from io import StringIO
+from uqbar.strings import normalize
 
 
 class TestCheckClassSections(unittest.TestCase):
 
     ansi_escape = re.compile(r'\x1b[^m]*m')
-    test_path = pathlib.Path(__file__).parent
+    test_directory_path = pathlib.Path(__file__).parent
     temp_test_dir_name = 'temp_test_dir'
-    subdirectory = test_path.joinpath(temp_test_dir_name)
+    subdirectory = test_directory_path.joinpath(temp_test_dir_name)
 
     # Specific test case file contents
     test_bad_header_order_module_path = subdirectory.joinpath(
@@ -38,7 +39,7 @@ class TestCheckClassSections(unittest.TestCase):
     test_non_property_decorators_module_path = subdirectory.joinpath(
         'NonPropertyDecorators.py'
         )
-    test_bad_header_order_module_contents = abjad.String.normalize(r'''
+    test_bad_header_order_module_contents = normalize(r'''
     class BadHeaders:
         ### CLASS VARIABLES ###
         ### CONSTRUCTOR ###
@@ -50,7 +51,7 @@ class TestCheckClassSections(unittest.TestCase):
         ### PRIVATE PROPERTIES ###
         # ^ Properties are out of order
     ''')
-    test_property_in_methods_module_contents = abjad.String.normalize(r'''
+    test_property_in_methods_module_contents = normalize(r'''
     class PropertyInMethods:
         ### CLASS VARIABLES ###
         ### CONSTRUCTOR ###
@@ -64,7 +65,7 @@ class TestCheckClassSections(unittest.TestCase):
         ### PRIVATE PROPERTIES ###
         ### PUBLIC PROPERTIES ###
     ''')
-    test_method_in_properties_module_contents = abjad.String.normalize(r'''
+    test_method_in_properties_module_contents = normalize(r'''
     class MethodInProperties:
         ### CLASS VARIABLES ###
         ### CONSTRUCTOR ###
@@ -77,7 +78,7 @@ class TestCheckClassSections(unittest.TestCase):
         def i_dont_belong_here(self):
             pass
     ''')
-    test_multiple_errors_in_file_module_contents = abjad.String.normalize(r'''
+    test_multiple_errors_in_file_module_contents = normalize(r'''
     class MultipleErrors:
         ### CLASS VARIABLES ###
         ### CONSTRUCTOR ###
@@ -96,7 +97,7 @@ class TestCheckClassSections(unittest.TestCase):
         def i_dont_belong_here(self):
             pass
     ''')
-    test_multiple_classes_in_one_module_contents = abjad.String.normalize(r'''
+    test_multiple_classes_in_one_module_contents = normalize(r'''
     class GoodClassOne:
         ### CLASS VARIABLES ###
         ### CONSTRUCTOR ###
@@ -118,7 +119,7 @@ class TestCheckClassSections(unittest.TestCase):
         ### PUBLIC PROPERTIES ###
         pass
     ''')
-    test_non_property_decorators_module_contents = abjad.String.normalize(r'''
+    test_non_property_decorators_module_contents = normalize(r'''
     class NonPropertyDecoratorsInMethods:
         ### CLASS VARIABLES ###
         ### CONSTRUCTOR ###
@@ -141,7 +142,7 @@ class TestCheckClassSections(unittest.TestCase):
         ### PRIVATE PROPERTIES ###
         ### PUBLIC PROPERTIES ###
     ''')
-    test_passing_module_contents = abjad.String.normalize(r'''
+    test_passing_module_contents = normalize(r'''
     class PassingClass:
         ### CLASS VARIABLES ###
         x = 5
@@ -174,7 +175,7 @@ class TestCheckClassSections(unittest.TestCase):
             pass
     ''')
 
-    ### TEST HELPER METHODS ###
+    # ### TEST HELPER METHODS ### #
 
     def compare_strings(self, expected, actual):
         example = argparse.Namespace()
@@ -210,7 +211,7 @@ class TestCheckClassSections(unittest.TestCase):
         CheckClassSections.
 
         `working_directory` is an optional directory to run the script from.
-        if none is passed, `self.test_path` is used.
+        if none is passed, `self.test_directory_path` is used.
 
         This method actually touches the file system, creating a temporary
         directory at `self.temp_test_dir_name` and creating temporary
@@ -230,7 +231,7 @@ class TestCheckClassSections(unittest.TestCase):
         if working_directory:
             test_working_directory = working_directory
         else:
-            test_working_directory = self.test_path
+            test_working_directory = self.test_directory_path
         # Create temporary testing modules
         if not self.subdirectory.exists():
             self.subdirectory.mkdir()
@@ -246,25 +247,24 @@ class TestCheckClassSections(unittest.TestCase):
                     script(command)
         # Normalize script output for sane diffs
         script_output = self.ansi_escape.sub('', self.string_io.getvalue())
-        script_output = abjad.String.normalize(script_output)
+        script_output = normalize(script_output)
         return (script_output, exception_info.value.code)
 
-    ### TEST CASES ###
+    # ### TEST CASES ### #
 
     def test_bad_header_order(self):
-        expected = abjad.String.normalize('''
-Recursively scanning {} for errors...
-Errors in {}:
-Lines [8]: BAD HEADER ORDER
-===============================================================================
-1 total files checked.
-0 passed.
-1 failed.
-        '''.format(
+        expected = normalize('''
+            Recursively scanning {} for errors...
+            Errors in {}:
+            Lines [8]: BAD HEADER ORDER
+            ===============================================================================
+            1 total files checked.
+            0 passed.
+            1 failed.
+            ''').format(
                 self.temp_test_dir_name,
                 self.test_bad_header_order_module_path,
              )
-        )
         test_modules = [
             (self.test_bad_header_order_module_path,
              self.test_bad_header_order_module_contents),
@@ -277,19 +277,18 @@ Lines [8]: BAD HEADER ORDER
         self.assertEqual(exit_code, 1)
 
     def test_method_in_properties(self):
-        expected = abjad.String.normalize('''
-Recursively scanning {} for errors...
-Errors in {}:
-Lines [9]: METHOD IN PROPERTIES SECTION
-===============================================================================
-1 total files checked.
-0 passed.
-1 failed.
-        '''.format(
+        expected = normalize('''
+            Recursively scanning {} for errors...
+            Errors in {}:
+            Lines [9]: METHOD IN PROPERTIES SECTION
+            ===============================================================================
+            1 total files checked.
+            0 passed.
+            1 failed.
+            ''').format(
                 self.temp_test_dir_name,
                 self.test_method_in_properties_module_path,
              )
-        )
         test_modules = [
             (self.test_method_in_properties_module_path,
              self.test_method_in_properties_module_contents),
@@ -302,19 +301,18 @@ Lines [9]: METHOD IN PROPERTIES SECTION
         self.assertEqual(exit_code, 1)
 
     def test_property_in_methods(self):
-        expected = abjad.String.normalize('''
-Recursively scanning {} for errors...
-Errors in {}:
-Lines [7]: PROPERTY IN METHODS SECTION
-===============================================================================
-1 total files checked.
-0 passed.
-1 failed.
-        '''.format(
+        expected = normalize('''
+            Recursively scanning {} for errors...
+            Errors in {}:
+            Lines [7]: PROPERTY IN METHODS SECTION
+            ===============================================================================
+            1 total files checked.
+            0 passed.
+            1 failed.
+            ''').format(
                 self.temp_test_dir_name,
                 self.test_property_in_methods_module_path,
             )
-        )
         test_modules = [
             (self.test_property_in_methods_module_path,
              self.test_property_in_methods_module_contents),
@@ -327,20 +325,19 @@ Lines [7]: PROPERTY IN METHODS SECTION
         self.assertEqual(exit_code, 1)
 
     def test_multiple_errors_in_file(self):
-        expected = abjad.String.normalize('''
-Recursively scanning {} for errors...
-Errors in {}:
-Lines [15]: METHOD IN PROPERTIES SECTION
-Lines [7, 10]: PROPERTY IN METHODS SECTION
-===============================================================================
-1 total files checked.
-0 passed.
-1 failed.
-        '''.format(
+        expected = normalize('''
+            Recursively scanning {} for errors...
+            Errors in {}:
+            Lines [15]: METHOD IN PROPERTIES SECTION
+            Lines [7, 10]: PROPERTY IN METHODS SECTION
+            ===============================================================================
+            1 total files checked.
+            0 passed.
+            1 failed.
+            ''').format(
                 self.temp_test_dir_name,
                 self.test_multiple_errors_in_file_module_path,
             )
-        )
         test_modules = [
             (self.test_multiple_errors_in_file_module_path,
              self.test_multiple_errors_in_file_module_contents),
@@ -353,15 +350,13 @@ Lines [7, 10]: PROPERTY IN METHODS SECTION
         self.assertEqual(exit_code, 1)
 
     def test_non_property_decorators_in_methods_passes(self):
-        expected = abjad.String.normalize('''
-Recursively scanning {} for errors...
-1 total files checked.
-1 passed.
-0 failed.
-        '''.format(
-                self.temp_test_dir_name,
+        expected = normalize('''
+            Recursively scanning {} for errors...
+            1 total files checked.
+            1 passed.
+            0 failed.
+            '''.format(self.temp_test_dir_name)
             )
-        )
         test_modules = [
             (self.test_non_property_decorators_module_path,
              self.test_non_property_decorators_module_contents),
@@ -374,13 +369,12 @@ Recursively scanning {} for errors...
         self.assertEqual(exit_code, 0)
 
     def test_multiple_classes_in_one_module(self):
-        expected = abjad.String.normalize('''
-Recursively scanning {} for errors...
-1 total files checked.
-1 passed.
-0 failed.
-        '''.format(self.temp_test_dir_name)
-        )
+        expected = normalize('''
+            Recursively scanning {} for errors...
+            1 total files checked.
+            1 passed.
+            0 failed.
+            ''').format(self.temp_test_dir_name)
         test_modules = [
             (self.test_multiple_classes_in_one_module_path,
              self.test_multiple_classes_in_one_module_contents)
@@ -393,13 +387,12 @@ Recursively scanning {} for errors...
         self.assertEqual(exit_code, 0)
 
     def test_passing_case(self):
-        expected = abjad.String.normalize('''
-Recursively scanning {} for errors...
-1 total files checked.
-1 passed.
-0 failed.
-        '''.format(self.temp_test_dir_name)
-        )
+        expected = normalize('''
+            Recursively scanning {} for errors...
+            1 total files checked.
+            1 passed.
+            0 failed.
+            ''').format(self.temp_test_dir_name)
         test_modules = [
             (self.test_passing_module_path,
              self.test_passing_module_contents)
@@ -412,13 +405,12 @@ Recursively scanning {} for errors...
         self.assertEqual(exit_code, 0)
 
     def test_passing_case_without_passing_path(self):
-        expected = abjad.String.normalize('''
-Recursively scanning current working directory for errors...
-1 total files checked.
-1 passed.
-0 failed.
-        '''.format(self.temp_test_dir_name)
-        )
+        expected = normalize('''
+            Recursively scanning current working directory for errors...
+            1 total files checked.
+            1 passed.
+            0 failed.
+            ''').format(self.temp_test_dir_name)
         test_modules = [
             (self.test_passing_module_path,
              self.test_passing_module_contents)
@@ -432,13 +424,12 @@ Recursively scanning current working directory for errors...
         self.assertEqual(exit_code, 0)
 
     def test_passing_file_instead_of_dir(self):
-        expected = abjad.String.normalize('''
-Scanning {} for errors...
-1 total files checked.
-1 passed.
-0 failed.
-        '''.format(self.test_passing_module_path)
-        )
+        expected = normalize('''
+            Scanning {} for errors...
+            1 total files checked.
+            1 passed.
+            0 failed.
+            ''').format(self.test_passing_module_path)
         test_modules = [
             (self.test_passing_module_path,
              self.test_passing_module_contents)

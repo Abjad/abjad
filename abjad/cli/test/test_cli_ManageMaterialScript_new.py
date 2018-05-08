@@ -1,6 +1,7 @@
 import abjad
 import os
 import platform
+import pytest
 from base import ScorePackageScriptTestCase
 
 
@@ -17,7 +18,7 @@ class Test(ScorePackageScriptTestCase):
         expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
 
     def test_exists(self):
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         self.create_material('test_material')
         with abjad.RedirectedStreams(stdout=self.string_io):
             self.create_material('test_material', expect_error=True)
@@ -27,7 +28,7 @@ class Test(ScorePackageScriptTestCase):
         '''.replace('/', os.path.sep))
 
     def test_force_replace(self):
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         self.create_material('test_material')
         with abjad.RedirectedStreams(stdout=self.string_io):
             self.create_material('test_material', force=True)
@@ -38,7 +39,7 @@ class Test(ScorePackageScriptTestCase):
         '''.replace('/', os.path.sep))
 
     def test_internal_path(self):
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         script = abjad.cli.ManageMaterialScript()
         command = ['--new', 'test_material']
         internal_path = self.score_path.joinpath('test_score', 'builds')
@@ -56,7 +57,7 @@ class Test(ScorePackageScriptTestCase):
         '''.replace('/', os.path.sep))
 
     def test_success(self):
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         script = abjad.cli.ManageMaterialScript()
         command = ['--new', 'test_material']
         with abjad.RedirectedStreams(stdout=self.string_io):

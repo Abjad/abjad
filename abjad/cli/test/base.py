@@ -17,8 +17,8 @@ class ScorePackageScriptTestCase(unittest.TestCase):
 
     ansi_escape = re.compile(r'\x1b[^m]*m')
 
-    test_path = pathlib.Path(__file__).parent
-    score_path = test_path.joinpath('test_score')
+    test_directory_path = pathlib.Path(__file__).parent
+    score_path = test_directory_path.joinpath('test_score')
     build_path = score_path.joinpath('test_score', 'builds')
     distribution_path = score_path.joinpath('test_score', 'distribution')
     materials_path = score_path.joinpath('test_score', 'materials')
@@ -30,13 +30,13 @@ class ScorePackageScriptTestCase(unittest.TestCase):
     def setUp(self):
         if self.score_path.exists():
             shutil.rmtree(self.score_path)
-        self.directory_items = set(self.test_path.iterdir())
+        self.directory_items = set(self.test_directory_path.iterdir())
         sys.path.insert(0, str(self.score_path))
         self.string_io = StringIO()
 
     def tearDown(self):
         self.string_io.close()
-        for path in sorted(self.test_path.iterdir()):
+        for path in sorted(self.test_directory_path.iterdir()):
             if path in self.directory_items:
                 continue
             if path.is_file():
@@ -119,7 +119,7 @@ class ScorePackageScriptTestCase(unittest.TestCase):
             ]
         if force:
             command.insert(0, '-f')
-        with uqbar.io.DirectoryChange(self.test_path):
+        with uqbar.io.DirectoryChange(self.test_directory_path):
             if expect_error:
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
@@ -217,7 +217,7 @@ class ScorePackageScriptTestCase(unittest.TestCase):
 
     def compare_path_contents(self, path_to_search, expected_files):
         actual_files = sorted(
-            str(path.relative_to(self.test_path))
+            str(path.relative_to(self.test_directory_path))
             for path in sorted(path_to_search.glob('**/*.*'))
             if '__pycache__' not in path.parts and
             path.suffix != '.pyc'
@@ -253,5 +253,5 @@ class ScorePackageScriptTestCase(unittest.TestCase):
     # ### PUBLIC PROPERTIES ### #
 
     @property
-    def test_path(self):
+    def test_directory_path(self):
         return pathlib.Path(__file__).parent

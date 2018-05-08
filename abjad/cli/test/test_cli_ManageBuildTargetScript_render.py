@@ -1,11 +1,9 @@
 import abjad
 import os
 import platform
+import pytest
 from base import ScorePackageScriptTestCase
-try:
-    from unittest import mock
-except ImportError:
-    import mock
+from unittest import mock
 
 
 class Test(ScorePackageScriptTestCase):
@@ -35,14 +33,13 @@ class Test(ScorePackageScriptTestCase):
             ]
         if platform.system().lower() == 'windows':
             expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         self.create_segment('test_segment')
         self.illustrate_segments()
         self.collect_segments()
         self.create_build_target()
         script = abjad.cli.ManageBuildTargetScript()
         command = ['--render', 'letter-portrait']
-        #with abjad.RedirectedStreams(stdout=self.string_io):
         with abjad.TemporaryDirectoryChange(str(self.score_path)):
             try:
                 script(command)
@@ -64,7 +61,7 @@ class Test(ScorePackageScriptTestCase):
             ]
         if platform.system().lower() == 'windows':
             expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         self.create_segment('test_segment')
         self.illustrate_segments()
         self.collect_segments()
@@ -74,7 +71,6 @@ class Test(ScorePackageScriptTestCase):
             '--render', 'letter-portrait',
             '--back-cover',
             ]
-        #with abjad.RedirectedStreams(stdout=self.string_io):
         with abjad.TemporaryDirectoryChange(str(self.score_path)):
             try:
                 script(command)
@@ -96,7 +92,7 @@ class Test(ScorePackageScriptTestCase):
             ]
         if platform.system().lower() == 'windows':
             expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         self.create_segment('test_segment')
         self.illustrate_segments()
         self.collect_segments()
@@ -106,7 +102,6 @@ class Test(ScorePackageScriptTestCase):
             '--render', 'letter-portrait',
             '--front-cover',
             ]
-        #with abjad.RedirectedStreams(stdout=self.string_io):
         with abjad.TemporaryDirectoryChange(str(self.score_path)):
             try:
                 script(command)
@@ -128,7 +123,7 @@ class Test(ScorePackageScriptTestCase):
             ]
         if platform.system().lower() == 'windows':
             expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         self.create_segment('test_segment')
         self.illustrate_segments()
         self.collect_segments()
@@ -138,7 +133,6 @@ class Test(ScorePackageScriptTestCase):
             '--render', 'letter-portrait',
             '--music',
             ]
-        #with abjad.RedirectedStreams(stdout=self.string_io):
         with abjad.TemporaryDirectoryChange(str(self.score_path)):
             try:
                 script(command)
@@ -165,7 +159,7 @@ class Test(ScorePackageScriptTestCase):
             expected_files = [
                 _.replace('/', os.path.sep) for _ in expected_files
                 ]
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         self.install_fancy_segment_maker()
         self.create_segment('test_segment')
         self.illustrate_segments()
@@ -176,7 +170,6 @@ class Test(ScorePackageScriptTestCase):
             '--render', 'letter-portrait',
             '--parts',
             ]
-        #with abjad.RedirectedStreams(stdout=self.string_io):
         with abjad.TemporaryDirectoryChange(str(self.score_path)):
             try:
                 script(command)
@@ -197,8 +190,11 @@ class Test(ScorePackageScriptTestCase):
             'test_score/test_score/builds/letter-portrait/score.tex',
             ]
         if platform.system().lower() == 'windows':
-            expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
-        self.create_score()
+            expected_files = [
+                _.replace('/', os.path.sep)
+                for _ in expected_files
+                ]
+        pytest.helpers.create_score(self.test_directory_path)
         self.create_segment('test_segment')
         self.illustrate_segments()
         self.collect_segments()
@@ -208,7 +204,6 @@ class Test(ScorePackageScriptTestCase):
             '--render', 'letter-portrait',
             '--preface',
             ]
-        #with abjad.RedirectedStreams(stdout=self.string_io):
         with abjad.TemporaryDirectoryChange(str(self.score_path)):
             try:
                 script(command)

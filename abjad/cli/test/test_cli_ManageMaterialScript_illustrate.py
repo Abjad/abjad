@@ -40,7 +40,7 @@ class Test(ScorePackageScriptTestCase):
         """
         Handle failing LilyPond rendering.
         """
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         material_path = self.create_material('test_material')
         definition_path = material_path.joinpath('definition.py')
         with open(str(definition_path), 'w') as file_pointer:
@@ -87,7 +87,7 @@ class Test(ScorePackageScriptTestCase):
         """
         Handle missing definition.
         """
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         material_path = self.create_material('test_material')
         definition_path = material_path.joinpath('definition.py')
         definition_path.unlink()
@@ -108,7 +108,7 @@ class Test(ScorePackageScriptTestCase):
         """
         Handle un-illustrables.
         """
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         material_path = self.create_material('test_material')
         definition_path = material_path.joinpath('definition.py')
         with open(str(definition_path), 'w') as file_pointer:
@@ -133,7 +133,7 @@ class Test(ScorePackageScriptTestCase):
         """
         Handle exceptions inside the Python module on __call__().
         """
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         material_path = self.create_material('test_material')
         definition_path = material_path.joinpath('definition.py')
         with open(str(definition_path), 'w') as file_pointer:
@@ -164,7 +164,7 @@ class Test(ScorePackageScriptTestCase):
         """
         Handle exceptions inside the Python module on import.
         """
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         material_path = self.create_material('test_material')
         definition_path = material_path.joinpath('definition.py')
         with open(str(definition_path), 'a') as file_pointer:
@@ -184,7 +184,7 @@ class Test(ScorePackageScriptTestCase):
 
     @mock.patch('abjad.IOManager.open_file')
     def test_success_all_materials(self, open_file_mock):
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         self.create_material('material_one')
         self.create_material('material_two')
         self.create_material('material_three')
@@ -235,7 +235,7 @@ class Test(ScorePackageScriptTestCase):
 
     @mock.patch('abjad.IOManager.open_file')
     def test_success_filtered_materials(self, open_file_mock):
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         self.create_material('material_one')
         self.create_material('material_two')
         self.create_material('material_three')
@@ -279,7 +279,7 @@ class Test(ScorePackageScriptTestCase):
 
     @mock.patch('abjad.IOManager.open_file')
     def test_success_one_material(self, open_file_mock):
-        self.create_score()
+        pytest.helpers.create_score(self.test_directory_path)
         self.create_material('test_material')
         script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', 'test_material']
