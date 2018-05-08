@@ -4,6 +4,7 @@ import platform
 import pytest
 from base import ScorePackageScriptTestCase
 from unittest import mock
+from uqbar.strings import normalize
 
 
 class Test(ScorePackageScriptTestCase):
@@ -20,7 +21,7 @@ class Test(ScorePackageScriptTestCase):
     if platform.system().lower() == 'windows':
         expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
 
-    expected_illustration_contents = abjad.String.normalize(
+    expected_illustration_contents = normalize(
         r'''
         \language "english"
 
@@ -44,7 +45,7 @@ class Test(ScorePackageScriptTestCase):
         material_path = pytest.helpers.create_material(self.test_directory_path, 'test_material')
         definition_path = material_path.joinpath('definition.py')
         with open(str(definition_path), 'w') as file_pointer:
-            file_pointer.write(abjad.String.normalize(r'''
+            file_pointer.write(normalize(r'''
             from abjad.tools import lilypondfiletools
 
 
@@ -69,7 +70,7 @@ class Test(ScorePackageScriptTestCase):
         illustration_ly_path = material_path.joinpath('illustration.ly')
         assert illustration_ly_path.exists()
         self.compare_lilypond_contents(
-            illustration_ly_path, abjad.String.normalize(r'''
+            illustration_ly_path, normalize(r'''
             \language "english"
 
             \header {
@@ -112,7 +113,7 @@ class Test(ScorePackageScriptTestCase):
         material_path = pytest.helpers.create_material(self.test_directory_path, 'test_material')
         definition_path = material_path.joinpath('definition.py')
         with open(str(definition_path), 'w') as file_pointer:
-            file_pointer.write(abjad.String.normalize(r'''
+            file_pointer.write(normalize(r'''
             test_material = None
             '''))
         script = abjad.cli.ManageMaterialScript()
@@ -137,7 +138,7 @@ class Test(ScorePackageScriptTestCase):
         material_path = pytest.helpers.create_material(self.test_directory_path, 'test_material')
         definition_path = material_path.joinpath('definition.py')
         with open(str(definition_path), 'w') as file_pointer:
-            file_pointer.write(abjad.String.normalize(r'''
+            file_pointer.write(normalize(r'''
             from abjad.tools import abctools
 
 

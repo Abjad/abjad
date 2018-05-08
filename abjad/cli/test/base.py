@@ -8,6 +8,7 @@ import sys
 import unittest
 import types
 import uqbar.io
+import uqbar.strings
 from io import StringIO
 
 
@@ -115,18 +116,18 @@ class ScorePackageScriptTestCase(unittest.TestCase):
 
     def compare_captured_output(self, expected):
         actual = self.ansi_escape.sub('', self.string_io.getvalue())
-        actual = abjad.String.normalize(actual)
-        expected = abjad.String.normalize(expected)
+        actual = uqbar.strings.normalize(actual)
+        expected = uqbar.strings.normalize(expected)
         self.compare_strings(expected, actual)
 
     def compare_file_contents(self, path, expected_contents):
-        expected_contents = abjad.String.normalize(expected_contents)
+        expected_contents = uqbar.strings.normalize(expected_contents)
         with open(str(path), 'r') as file_pointer:
-            contents = abjad.String.normalize(file_pointer.read())
+            contents = uqbar.strings.normalize(file_pointer.read())
         self.compare_strings(expected_contents, contents)
 
     def compare_lilypond_contents(self, ly_path, expected_contents):
-        expected_contents = abjad.String.normalize(expected_contents)
+        expected_contents = uqbar.strings.normalize(expected_contents)
         with open(str(ly_path), 'r') as file_pointer:
             contents = file_pointer.read()
         if ly_path.suffix == '.ly':
@@ -135,7 +136,7 @@ class ScorePackageScriptTestCase(unittest.TestCase):
                 contents.pop(0)
             contents.pop(0)
             contents = '\n'.join(contents)
-        contents = abjad.String.normalize(contents)
+        contents = uqbar.strings.normalize(contents)
         self.compare_strings(expected_contents, contents)
 
     def compare_path_contents(self, path_to_search, expected_files):
@@ -151,8 +152,8 @@ class ScorePackageScriptTestCase(unittest.TestCase):
             )
 
     def compare_strings(self, expected, actual):
-        actual = self.normalize(self.ansi_escape.sub('', actual))
-        expected = self.normalize(self.ansi_escape.sub('', expected))
+        actual = uqbar.strings.normalize(self.ansi_escape.sub('', actual))
+        expected = uqbar.strings.normalize(self.ansi_escape.sub('', expected))
         example = types.SimpleNamespace()
         example.want = expected
         output_checker = doctest.OutputChecker()
@@ -165,9 +166,6 @@ class ScorePackageScriptTestCase(unittest.TestCase):
         if not success:
             diff = output_checker.output_difference(example, actual, flags)
             raise Exception(diff)
-
-    def normalize(self, string):
-        return abjad.String.normalize(string)
 
     def reset_string_io(self):
         self.string_io.close()

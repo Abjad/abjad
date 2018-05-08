@@ -3,6 +3,7 @@ import os
 import pytest
 from abjad import abjad_configuration
 from base import ScorePackageScriptTestCase
+from uqbar.strings import normalize
 from unittest import mock
 
 
@@ -10,7 +11,7 @@ class Test(ScorePackageScriptTestCase):
 
     def side_effect(self, command, **keywords):
         _, file_name = command.split()
-        contents = abjad.String.normalize('''
+        contents = normalize('''
         segment_c
         segment_b
         segment_a
