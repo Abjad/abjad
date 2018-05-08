@@ -34,7 +34,7 @@ class Test(ScorePackageScriptTestCase):
         if platform.system().lower() == 'windows':
             expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
         pytest.helpers.create_score(self.test_directory_path)
-        self.create_segment('test_segment')
+        pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         self.illustrate_segments()
         self.collect_segments()
         self.create_build_target()
@@ -62,7 +62,7 @@ class Test(ScorePackageScriptTestCase):
         if platform.system().lower() == 'windows':
             expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
         pytest.helpers.create_score(self.test_directory_path)
-        self.create_segment('test_segment')
+        pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         self.illustrate_segments()
         self.collect_segments()
         target_path = self.create_build_target()
@@ -93,7 +93,7 @@ class Test(ScorePackageScriptTestCase):
         if platform.system().lower() == 'windows':
             expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
         pytest.helpers.create_score(self.test_directory_path)
-        self.create_segment('test_segment')
+        pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         self.illustrate_segments()
         self.collect_segments()
         target_path = self.create_build_target()
@@ -124,7 +124,7 @@ class Test(ScorePackageScriptTestCase):
         if platform.system().lower() == 'windows':
             expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
         pytest.helpers.create_score(self.test_directory_path)
-        self.create_segment('test_segment')
+        pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         self.illustrate_segments()
         self.collect_segments()
         target_path = self.create_build_target()
@@ -161,7 +161,7 @@ class Test(ScorePackageScriptTestCase):
                 ]
         pytest.helpers.create_score(self.test_directory_path)
         self.install_fancy_segment_maker()
-        self.create_segment('test_segment')
+        pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         self.illustrate_segments()
         self.collect_segments()
         target_path = self.create_build_target()
@@ -195,7 +195,7 @@ class Test(ScorePackageScriptTestCase):
                 for _ in expected_files
                 ]
         pytest.helpers.create_score(self.test_directory_path)
-        self.create_segment('test_segment')
+        pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         self.illustrate_segments()
         self.collect_segments()
         target_path = self.create_build_target()

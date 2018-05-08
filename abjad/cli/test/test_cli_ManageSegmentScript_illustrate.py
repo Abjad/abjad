@@ -55,7 +55,7 @@ class Test(ScorePackageScriptTestCase):
         Handle failing LilyPond rendering.
         """
         pytest.helpers.create_score(self.test_directory_path)
-        segment_path = self.create_segment('test_segment')
+        segment_path = pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         definition_path = segment_path.joinpath('definition.py')
         with open(str(definition_path), 'w') as file_pointer:
             file_pointer.write(abjad.String.normalize(r'''
@@ -130,7 +130,7 @@ class Test(ScorePackageScriptTestCase):
         Handle missing definition.
         """
         pytest.helpers.create_score(self.test_directory_path)
-        segment_path = self.create_segment('test_segment')
+        segment_path = pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         definition_path = segment_path.joinpath('definition.py')
         definition_path.unlink()
         script = abjad.cli.ManageSegmentScript()
@@ -154,7 +154,7 @@ class Test(ScorePackageScriptTestCase):
         Handle exceptions inside the Python module on __call__().
         """
         pytest.helpers.create_score(self.test_directory_path)
-        segment_path = self.create_segment('test_segment')
+        segment_path = pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         definition_path = segment_path.joinpath('definition.py')
         with open(str(definition_path), 'w') as file_pointer:
             file_pointer.write(abjad.String.normalize(r'''
@@ -193,7 +193,7 @@ class Test(ScorePackageScriptTestCase):
         Handle exceptions inside the Python module on import.
         """
         pytest.helpers.create_score(self.test_directory_path)
-        segment_path = self.create_segment('test_segment')
+        segment_path = pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         definition_path = segment_path.joinpath('definition.py')
         with open(str(definition_path), 'a') as file_pointer:
             file_pointer.write('\n\nfailure = 1 / 0\n')
@@ -216,9 +216,9 @@ class Test(ScorePackageScriptTestCase):
     @mock.patch('abjad.IOManager.open_file')
     def test_success_all_segments(self, open_file_mock):
         pytest.helpers.create_score(self.test_directory_path)
-        self.create_segment('segment_one')
-        self.create_segment('segment_two')
-        self.create_segment('segment_three')
+        pytest.helpers.create_segment(self.test_directory_path, 'segment_one')
+        pytest.helpers.create_segment(self.test_directory_path, 'segment_two')
+        pytest.helpers.create_segment(self.test_directory_path, 'segment_three')
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', '*']
         with abjad.RedirectedStreams(stdout=self.string_io):
@@ -279,9 +279,9 @@ class Test(ScorePackageScriptTestCase):
     @mock.patch('abjad.IOManager.open_file')
     def test_success_filtered_segments(self, open_file_mock):
         pytest.helpers.create_score(self.test_directory_path)
-        self.create_segment('segment_one')
-        self.create_segment('segment_two')
-        self.create_segment('segment_three')
+        pytest.helpers.create_segment(self.test_directory_path, 'segment_one')
+        pytest.helpers.create_segment(self.test_directory_path, 'segment_two')
+        pytest.helpers.create_segment(self.test_directory_path, 'segment_three')
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'segment_t*']
         with abjad.RedirectedStreams(stdout=self.string_io):
@@ -332,7 +332,7 @@ class Test(ScorePackageScriptTestCase):
     @mock.patch('abjad.IOManager.open_file')
     def test_success_one_segment(self, open_file_mock):
         pytest.helpers.create_score(self.test_directory_path)
-        self.create_segment('test_segment')
+        pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
         with abjad.RedirectedStreams(stdout=self.string_io):

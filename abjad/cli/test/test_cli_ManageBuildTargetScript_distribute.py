@@ -24,7 +24,7 @@ class Test(ScorePackageScriptTestCase):
     def test_success(self, open_file_mock):
         pytest.helpers.create_score(self.test_directory_path)
         self.install_fancy_segment_maker()
-        self.create_segment('test_segment')
+        pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         self.illustrate_segments()
         self.collect_segments()
         self.create_build_target()

@@ -12,7 +12,7 @@ class Test(ScorePackageScriptTestCase):
     def test_success(self, call_subprocess_mock):
         call_subprocess_mock.return_value = 0
         pytest.helpers.create_score(self.test_directory_path)
-        segment_path = self.create_segment('test_segment')
+        segment_path = pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         script = abjad.cli.ManageSegmentScript()
         command = ['--edit', 'test_segment']
         with abjad.RedirectedStreams(stdout=self.string_io):

@@ -20,9 +20,9 @@ class Test(ScorePackageScriptTestCase):
 
     def test_exists(self):
         pytest.helpers.create_score(self.test_directory_path)
-        self.create_segment('test_segment')
+        pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         with abjad.RedirectedStreams(stdout=self.string_io):
-            self.create_segment('test_segment', expect_error=True)
+            pytest.helpers.create_segment(self.test_directory_path, 'test_segment', expect_error=True)
         self.compare_captured_output(r'''
             Creating segment subpackage 'test_segment' ...
                 Path exists: test_score/segments/test_segment
@@ -30,9 +30,9 @@ class Test(ScorePackageScriptTestCase):
 
     def test_force_replace(self):
         pytest.helpers.create_score(self.test_directory_path)
-        self.create_segment('test_segment')
+        pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         with abjad.RedirectedStreams(stdout=self.string_io):
-            self.create_segment('test_segment', force=True)
+            pytest.helpers.create_segment(self.test_directory_path, 'test_segment', force=True)
         self.compare_captured_output(r'''
             Creating segment subpackage 'test_segment' ...
                 Reading test_score/metadata.json ... OK!

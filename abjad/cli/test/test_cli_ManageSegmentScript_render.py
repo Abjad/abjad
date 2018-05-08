@@ -25,7 +25,7 @@ class Test(ScorePackageScriptTestCase):
     @mock.patch('abjad.IOManager.open_file')
     def test_success_one_segment(self, open_file_mock):
         pytest.helpers.create_score(self.test_directory_path)
-        segment_path = self.create_segment('test_segment')
+        segment_path = pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         self.illustrate_segment('test_segment')
         pdf_path = segment_path.joinpath('illustration.pdf')
         assert pdf_path.exists()

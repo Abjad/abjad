@@ -79,32 +79,6 @@ class ScorePackageScriptTestCase(unittest.TestCase):
                     raise RuntimeError('SystemExit')
         return self.build_path / 'letter-portrait'
 
-    def create_segment(
-        self,
-        segment_name='test_segment',
-        force=False,
-        expect_error=False,
-    ):
-        script = abjad.cli.ManageSegmentScript()
-        command = ['--new', segment_name]
-        if force:
-            command.insert(0, '-f')
-        with uqbar.io.DirectoryChange(self.score_path):
-            if expect_error:
-                with pytest.raises(SystemExit) as exception_info:
-                    script(command)
-                assert exception_info.value.code == 1
-            else:
-                try:
-                    script(command)
-                except SystemExit:
-                    raise RuntimeError('SystemExit')
-        return self.score_path.joinpath(
-            self.score_path.name,
-            'segments',
-            segment_name,
-            )
-
     def illustrate_material(self, material_name):
         script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', material_name]

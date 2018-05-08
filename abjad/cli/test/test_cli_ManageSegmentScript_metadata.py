@@ -10,9 +10,9 @@ class Test(ScorePackageScriptTestCase):
     def test_1(self, open_file_mock):
         pytest.helpers.create_score(self.test_directory_path)
         self.install_fancy_segment_maker()
-        path_1 = self.create_segment('segment_one')
-        path_2 = self.create_segment('segment_two')
-        path_3 = self.create_segment('segment_three')
+        path_1 = pytest.helpers.create_segment(self.test_directory_path, 'segment_one')
+        path_2 = pytest.helpers.create_segment(self.test_directory_path, 'segment_two')
+        path_3 = pytest.helpers.create_segment(self.test_directory_path, 'segment_three')
         self.illustrate_segments()
         with open(str(path_1.joinpath('metadata.json')), 'r') as file_pointer:
             metadata_1 = json.loads(file_pointer.read())
@@ -43,7 +43,7 @@ class Test(ScorePackageScriptTestCase):
     def test_2(self, open_file_mock):
         pytest.helpers.create_score(self.test_directory_path)
         self.install_fancy_segment_maker()
-        segment_path = self.create_segment('test_segment')
+        segment_path = pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         self.illustrate_segment('test_segment')
         illustration_path = segment_path.joinpath('illustration.ly')
         self.compare_lilypond_contents(

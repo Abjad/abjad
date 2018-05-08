@@ -27,9 +27,9 @@ class Test(ScorePackageScriptTestCase):
     @mock.patch('abjad.IOManager.open_file')
     def test_success(self, open_file_mock):
         pytest.helpers.create_score(self.test_directory_path)
-        self.create_segment('segment_one')
-        self.create_segment('segment_two')
-        self.create_segment('segment_three')
+        pytest.helpers.create_segment(self.test_directory_path, 'segment_one')
+        pytest.helpers.create_segment(self.test_directory_path, 'segment_two')
+        pytest.helpers.create_segment(self.test_directory_path, 'segment_three')
         self.illustrate_segments()
         collect_script = abjad.cli.ManageSegmentScript()
         with abjad.RedirectedStreams(stdout=self.string_io):
