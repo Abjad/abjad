@@ -1,12 +1,10 @@
 import abjad
-import doctest
 import pathlib
 import pytest
 import re
 import shutil
 import sys
 import unittest
-import types
 import uqbar.io
 import uqbar.strings
 
@@ -115,13 +113,19 @@ class ScorePackageScriptTestCase(unittest.TestCase):
         actual = self.ansi_escape.sub('', actual)
         actual = uqbar.strings.normalize(actual)
         expected = uqbar.strings.normalize(expected)
-        pytest.helpers.compare_strings(expected, actual)
+        pytest.helpers.compare_strings(
+            expected=expected,
+            actual=actual,
+        )
 
     def compare_file_contents(self, path, expected_contents):
         expected_contents = uqbar.strings.normalize(expected_contents)
         with open(str(path), 'r') as file_pointer:
             contents = uqbar.strings.normalize(file_pointer.read())
-        pytest.helpers.compare_strings(expected_contents, contents)
+        pytest.helpers.compare_strings(
+            actual=contents,
+            expected=expected_contents,
+        )
 
     def compare_lilypond_contents(self, ly_path, expected_contents):
         expected_contents = uqbar.strings.normalize(expected_contents)
@@ -134,7 +138,10 @@ class ScorePackageScriptTestCase(unittest.TestCase):
             contents.pop(0)
             contents = '\n'.join(contents)
         contents = uqbar.strings.normalize(contents)
-        pytest.helpers.compare_strings(expected_contents, contents)
+        pytest.helpers.compare_strings(
+            expected=expected_contents,
+            actual=contents,
+        )
 
     def compare_path_contents(self, path_to_search, expected_files):
         actual_files = sorted(
@@ -142,11 +149,11 @@ class ScorePackageScriptTestCase(unittest.TestCase):
             for path in sorted(path_to_search.glob('**/*.*'))
             if '__pycache__' not in path.parts and
             path.suffix != '.pyc'
-            )
+        )
         pytest.helpers.compare_strings(
-            '\n'.join(str(_) for _ in actual_files),
-            '\n'.join(str(_) for _ in expected_files),
-            )
+            actual='\n'.join(str(_) for _ in actual_files),
+            expected='\n'.join(str(_) for _ in expected_files),
+        )
 
     # ### PUBLIC PROPERTIES ### #
 

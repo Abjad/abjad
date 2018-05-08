@@ -93,7 +93,8 @@ class Test(ScorePackageScriptTestCase):
                     script(command)
                 assert exception_info.value.code == 1
         pytest.helpers.compare_strings(
-            r'''
+            actual=string_io.getvalue(),
+            expected=r'''
             Illustration candidates: 'test_segment' ...
                 Reading test_score/segments/metadata.json ... OK!
             Illustrating test_score/segments/test_segment/
@@ -105,7 +106,6 @@ class Test(ScorePackageScriptTestCase):
                 Writing test_score/segments/test_segment/illustration.ly ... OK!
                 Writing test_score/segments/test_segment/illustration.pdf ... Failed!
             '''.replace('/', os.path.sep),
-            string_io.getvalue(),
         )
         illustration_ly_path = segment_path.joinpath('illustration.ly')
         assert illustration_ly_path.exists()
@@ -150,7 +150,8 @@ class Test(ScorePackageScriptTestCase):
                     script(command)
                 assert exception_info.value.code == 1
         pytest.helpers.compare_strings(
-            r'''
+            actual=string_io.getvalue(),
+            expected=r'''
             Illustration candidates: 'test_segment' ...
                 Reading test_score/segments/metadata.json ... OK!
             Illustrating test_score/segments/test_segment/
@@ -158,7 +159,6 @@ class Test(ScorePackageScriptTestCase):
                 Reading test_score/segments/test_segment/metadata.json ... JSON does not exist.
                 Importing test_score.segments.test_segment.definition
             '''.replace('/', os.path.sep),
-            string_io.getvalue(),
         )
 
     def test_python_error_on_illustrate(self):
@@ -193,7 +193,8 @@ class Test(ScorePackageScriptTestCase):
                     script(command)
                 assert exception_info.value.code == 1
         pytest.helpers.compare_strings(
-            r'''
+            actual=string_io.getvalue(),
+            expected=r'''
             Illustration candidates: 'test_segment' ...
                 Reading test_score/segments/metadata.json ... OK!
             Illustrating test_score/segments/test_segment/
@@ -201,7 +202,6 @@ class Test(ScorePackageScriptTestCase):
                 Reading test_score/segments/test_segment/metadata.json ... JSON does not exist.
                 Importing test_score.segments.test_segment.definition
             '''.replace('/', os.path.sep),
-            string_io.getvalue(),
         )
 
     def test_python_error_on_import(self):
@@ -222,7 +222,8 @@ class Test(ScorePackageScriptTestCase):
                     script(command)
                 assert exception_info.value.code == 1
         pytest.helpers.compare_strings(
-            r'''
+            actual=string_io.getvalue(),
+            expected=r'''
             Illustration candidates: 'test_segment' ...
                 Reading test_score/segments/metadata.json ... OK!
             Illustrating test_score/segments/test_segment/
@@ -230,7 +231,6 @@ class Test(ScorePackageScriptTestCase):
                 Reading test_score/segments/test_segment/metadata.json ... JSON does not exist.
                 Importing test_score.segments.test_segment.definition
             '''.replace('/', os.path.sep),
-            string_io.getvalue(),
         )
 
     @mock.patch('abjad.IOManager.open_file')
@@ -249,7 +249,8 @@ class Test(ScorePackageScriptTestCase):
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
         pytest.helpers.compare_strings(
-            r'''
+            actual=string_io.getvalue(),
+            expected=r'''
             Illustration candidates: '*' ...
                 Reading test_score/segments/metadata.json ... OK!
             Illustrating test_score/segments/segment_one/
@@ -285,7 +286,6 @@ class Test(ScorePackageScriptTestCase):
                     LilyPond runtime: ... second...
                 Illustrated test_score/segments/segment_three/
             '''.replace('/', os.path.sep),
-            string_io.getvalue(),
         )
         assert self.segments_path.joinpath(
             'segment_one',
@@ -316,7 +316,8 @@ class Test(ScorePackageScriptTestCase):
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
         pytest.helpers.compare_strings(
-            r'''
+            actual=string_io.getvalue(),
+            expected=r'''
             Illustration candidates: 'segment_t*' ...
                 Reading test_score/segments/metadata.json ... OK!
             Illustrating test_score/segments/segment_two/
@@ -342,7 +343,6 @@ class Test(ScorePackageScriptTestCase):
                     LilyPond runtime: ... second...
                 Illustrated test_score/segments/segment_three/
             '''.replace('/', os.path.sep),
-            string_io.getvalue(),
         )
         assert not self.segments_path.joinpath(
             'segment_one',
@@ -371,7 +371,8 @@ class Test(ScorePackageScriptTestCase):
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
         pytest.helpers.compare_strings(
-            r'''
+            actual=string_io.getvalue(),
+            expected=r'''
             Illustration candidates: 'test_segment' ...
                 Reading test_score/segments/metadata.json ... OK!
             Illustrating test_score/segments/test_segment/
@@ -385,7 +386,6 @@ class Test(ScorePackageScriptTestCase):
                     LilyPond runtime: ... second...
                 Illustrated test_score/segments/test_segment/
             '''.replace('/', os.path.sep),
-            string_io.getvalue(),
         )
         self.compare_path_contents(self.segments_path, self.expected_files)
         illustration_path = self.segments_path.joinpath(

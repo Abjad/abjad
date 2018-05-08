@@ -257,7 +257,7 @@ class TestCheckClassSections(unittest.TestCase):
         script_output, exit_code = self.run_script_on_modules(
             test_modules, self.subdirectory
         )
-        pytest.helpers.compare_strings(expected, script_output)
+        pytest.helpers.compare_strings(expected=expected, actual=script_output)
         self.assertEqual(exit_code, 1)
 
     def test_method_in_properties(self):
@@ -281,7 +281,7 @@ class TestCheckClassSections(unittest.TestCase):
         script_output, exit_code = self.run_script_on_modules(
             test_modules, self.subdirectory
         )
-        pytest.helpers.compare_strings(expected, script_output)
+        pytest.helpers.compare_strings(expected=expected, actual=script_output)
         self.assertEqual(exit_code, 1)
 
     def test_property_in_methods(self):
@@ -305,7 +305,7 @@ class TestCheckClassSections(unittest.TestCase):
         script_output, exit_code = self.run_script_on_modules(
             test_modules, self.subdirectory
         )
-        pytest.helpers.compare_strings(expected, script_output)
+        pytest.helpers.compare_strings(expected=expected, actual=script_output)
         self.assertEqual(exit_code, 1)
 
     def test_multiple_errors_in_file(self):
@@ -330,7 +330,7 @@ class TestCheckClassSections(unittest.TestCase):
         script_output, exit_code = self.run_script_on_modules(
             test_modules, self.subdirectory
         )
-        pytest.helpers.compare_strings(expected, script_output)
+        pytest.helpers.compare_strings(expected=expected, actual=script_output)
         self.assertEqual(exit_code, 1)
 
     def test_non_property_decorators_in_methods_passes(self):
@@ -349,7 +349,7 @@ class TestCheckClassSections(unittest.TestCase):
         script_output, exit_code = self.run_script_on_modules(
             test_modules, self.subdirectory
         )
-        pytest.helpers.compare_strings(expected, script_output)
+        pytest.helpers.compare_strings(expected=expected, actual=script_output)
         self.assertEqual(exit_code, 0)
 
     def test_multiple_classes_in_one_module(self):
@@ -367,7 +367,7 @@ class TestCheckClassSections(unittest.TestCase):
         script_output, exit_code = self.run_script_on_modules(
             test_modules, self.subdirectory
         )
-        pytest.helpers.compare_strings(expected, script_output)
+        pytest.helpers.compare_strings(expected=expected, actual=script_output)
         self.assertEqual(exit_code, 0)
 
     def test_passing_case(self):
@@ -385,7 +385,7 @@ class TestCheckClassSections(unittest.TestCase):
         script_output, exit_code = self.run_script_on_modules(
             test_modules, self.subdirectory
         )
-        pytest.helpers.compare_strings(expected, script_output)
+        pytest.helpers.compare_strings(expected=expected, actual=script_output)
         self.assertEqual(exit_code, 0)
 
     def test_passing_case_without_passing_path(self):
@@ -404,7 +404,7 @@ class TestCheckClassSections(unittest.TestCase):
             test_modules,
             working_directory=self.subdirectory
         )
-        pytest.helpers.compare_strings(expected, script_output)
+        pytest.helpers.compare_strings(expected=expected, actual=script_output)
         self.assertEqual(exit_code, 0)
 
     def test_passing_file_instead_of_dir(self):
@@ -423,5 +423,5 @@ class TestCheckClassSections(unittest.TestCase):
             test_modules,
             script_args=self.test_passing_module_path
         )
-        pytest.helpers.compare_strings(expected, script_output)
+        pytest.helpers.compare_strings(expected=expected, actual=script_output)
         self.assertEqual(exit_code, 0)

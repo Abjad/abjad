@@ -5,7 +5,6 @@ import pytest
 import uqbar.io
 from base import ScorePackageScriptTestCase
 from io import StringIO
-from uqbar.strings import normalize
 
 
 class Test(ScorePackageScriptTestCase):
@@ -29,11 +28,11 @@ class Test(ScorePackageScriptTestCase):
             pytest.helpers.create_material(
                 self.test_directory_path, 'test_material', expect_error=True)
         pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
             expected=r'''
             Creating material subpackage 'test_material' ...
                 Path exists: test_score/materials/test_material
             '''.replace('/', os.path.sep),
-            actual=string_io.getvalue(),
         )
 
     def test_force_replace(self):
@@ -45,12 +44,12 @@ class Test(ScorePackageScriptTestCase):
             pytest.helpers.create_material(
                 self.test_directory_path, 'test_material', force=True)
         pytest.helpers.compare_strings(
-            r'''
+            actual=string_io.getvalue(),
+            expected=r'''
             Creating material subpackage 'test_material' ...
                 Reading test_score/metadata.json ... OK!
                 Created test_score/materials/test_material/
             '''.replace('/', os.path.sep),
-            actual=string_io.getvalue(),
         )
 
     def test_internal_path(self):
@@ -67,12 +66,12 @@ class Test(ScorePackageScriptTestCase):
                 except SystemExit:
                     raise RuntimeError('SystemExit')
         pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
             expected=r'''
             Creating material subpackage 'test_material' ...
                 Reading test_score/metadata.json ... OK!
                 Created test_score/materials/test_material/
             '''.replace('/', os.path.sep),
-            actual=string_io.getvalue(),
         )
 
     def test_success(self):
