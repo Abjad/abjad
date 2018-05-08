@@ -24,7 +24,6 @@ ignored_classes = (
     abjad.Path,
     abjad.StorageFormatManager,
     abjad.Tags,
-    abjad.TestCase,
     abjad.book.AbjadDirective,
     abjad.book.CodeBlock,
     abjad.book.CodeOutputProxy,

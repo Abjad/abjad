@@ -85,7 +85,6 @@ ignored_classes = (
     abjad.Enumeration,
     abjad.Path,
     abjad.Tags,
-    abjad.TestCase,
     abjad.book.AbjadDirective,
     abjad.book.AbjadDoctestDirective,
     abjad.book.CodeBlock,
