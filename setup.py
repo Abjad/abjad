@@ -60,9 +60,10 @@ extras_require = {
         'quicktions>=1.3',
         ],
     'development': [
-        'mypy',
-        'pytest>=3.5.0',
         'PyPDF2>=1.26.0',
+        'mypy',
+        'pytest-helpers-namespace',
+        'pytest>=3.5.0',
         ],
     'ipython': [
         'ipython',
