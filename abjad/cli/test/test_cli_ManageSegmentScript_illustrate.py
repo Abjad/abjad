@@ -11,34 +11,6 @@ from uqbar.strings import normalize
 
 class Test(ScorePackageScriptTestCase):
 
-    expected_illustration_contents = normalize(
-        r'''
-        \language "english"
-
-        \include "../../stylesheets/stylesheet.ily"
-
-        \header {
-            tagline = ##f
-        }
-
-        \layout {}
-
-        \paper {}
-
-        \score {
-            \context Score = "Example Score" <<
-                \context Staff = "Example Staff" {
-                    \context Voice = "Example Voice" {
-                        c'4 (
-                        d'4
-                        e'4
-                        f'4 )
-                    }
-                }
-            >>
-        }
-        ''')
-
     def test_lilypond_error(self):
         r"""
         Handle failing LilyPond rendering.
@@ -397,5 +369,31 @@ class Test(ScorePackageScriptTestCase):
             'test_segment', 'illustration.ly')
         pytest.helpers.compare_lilypond_contents(
             illustration_path,
-            self.expected_illustration_contents,
+            normalize(
+                r'''
+                \language "english"
+
+                \include "../../stylesheets/stylesheet.ily"
+
+                \header {
+                    tagline = ##f
+                }
+
+                \layout {}
+
+                \paper {}
+
+                \score {
+                    \context Score = "Example Score" <<
+                        \context Staff = "Example Staff" {
+                            \context Voice = "Example Voice" {
+                                c'4 (
+                                d'4
+                                e'4
+                                f'4 )
+                            }
+                        }
+                    >>
+                }
+            '''),
         )

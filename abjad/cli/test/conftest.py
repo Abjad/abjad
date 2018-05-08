@@ -8,6 +8,7 @@ import sys
 import types
 import uqbar.io
 import uqbar.strings
+from unittest import mock
 
 
 pytest_plugins = ['helpers_namespace']
@@ -20,6 +21,14 @@ package_name = 'test_score'
 
 
 # ### FIXTURES ### #
+
+
+@pytest.fixture
+def open_file_mock():
+    patcher = mock.patch('abjad.IOManager.open_file')
+    yield patcher.start()
+    patcher.stop()
+
 
 @pytest.fixture
 def paths(tmpdir):
