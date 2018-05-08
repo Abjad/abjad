@@ -1,8 +1,10 @@
 import abjad
 import pytest
 import os
+import uqbar.io
 from base import ScorePackageScriptTestCase
 from io import StringIO
+from uqbar.strings import normalize
 
 
 class Test(ScorePackageScriptTestCase):
@@ -17,11 +19,11 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageSegmentScript()
         command = ['--list']
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 2
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
             Available segments:
                 Reading test_score/segments/metadata.json ... OK!
                 segment_one   [1]
@@ -35,11 +37,11 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageSegmentScript()
         command = ['--list']
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 2
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
             Available segments:
                 Reading test_score/segments/metadata.json ... JSON does not exist.
                 No segments available.
@@ -56,20 +58,20 @@ class Test(ScorePackageScriptTestCase):
         segment_names = script._read_segments_list_json(
             self.score_path,
             verbose=False,
-            )
+        )
         segment_names.remove('segment_two')
         script._write_segments_list_json(
             segment_names,
             score_path=self.score_path,
             verbose=False,
-            )
+        )
         command = ['--list']
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 2
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
             Available segments:
                 Reading test_score/segments/metadata.json ... OK!
                 segment_one   [1]

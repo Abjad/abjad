@@ -2,9 +2,11 @@ import abjad
 import os
 import platform
 import pytest
+import uqbar.io
 from base import ScorePackageScriptTestCase
 from io import StringIO
 from unittest import mock
+from uqbar.strings import normalize
 
 
 class Test(ScorePackageScriptTestCase):
@@ -18,7 +20,7 @@ class Test(ScorePackageScriptTestCase):
         'test_score/test_score/segments/test_segment/illustration.ly',
         'test_score/test_score/segments/test_segment/illustration.pdf',
         'test_score/test_score/segments/test_segment/metadata.json',
-        ]
+    ]
 
     if platform.system().lower() == 'windows':
         expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
@@ -36,12 +38,12 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageSegmentScript()
         command = ['--render', 'test_segment']
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
         Rendering candidates: 'test_segment' ...
             Reading test_score/segments/metadata.json ... OK!
         Rendering test_score/segments/test_segment/

@@ -2,8 +2,10 @@ import abjad
 import os
 import platform
 import pytest
+import uqbar.io
 from base import ScorePackageScriptTestCase
 from io import StringIO
+from uqbar.strings import normalize
 
 
 class Test(ScorePackageScriptTestCase):
@@ -22,7 +24,7 @@ class Test(ScorePackageScriptTestCase):
         'test_score/test_score/builds/parts.ily',
         'test_score/test_score/builds/segments.ily',
         'test_score/test_score/builds/segments/.gitignore',
-        ]
+    ]
 
     if platform.system().lower() == 'windows':
         expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
@@ -32,7 +34,7 @@ class Test(ScorePackageScriptTestCase):
         pytest.helpers.create_score(self.test_directory_path)
         script = abjad.cli.ManageBuildTargetScript()
         command = ['--new']
-        with abjad.TemporaryDirectoryChange(str(self.score_path)):
+        with uqbar.io.DirectoryChange(str(self.score_path)):
             try:
                 script(command)
             except SystemExit:
@@ -41,7 +43,7 @@ class Test(ScorePackageScriptTestCase):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 1
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
         Creating build target 'letter-portrait' (8.5in x 11.0in)
             Path exists: test_score/builds/letter-portrait
         '''.replace('/', os.path.sep))
@@ -54,14 +56,14 @@ class Test(ScorePackageScriptTestCase):
             '--new',
             '--paper-size', 'a3',
             '--orientation', 'landscape',
-            ]
+        ]
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit:
                     raise RuntimeError('SystemExit')
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
         Creating build target 'a3-landscape' (297mm x 420mm)
             Reading test_score/metadata.json ... OK!
             Created test_score/builds/a3-landscape
@@ -86,7 +88,7 @@ class Test(ScorePackageScriptTestCase):
         pytest.helpers.create_score(self.test_directory_path)
         script = abjad.cli.ManageBuildTargetScript()
         command = ['-f', '--new']
-        with abjad.TemporaryDirectoryChange(str(self.score_path)):
+        with uqbar.io.DirectoryChange(str(self.score_path)):
             try:
                 script(command)
             except SystemExit:
@@ -96,7 +98,7 @@ class Test(ScorePackageScriptTestCase):
                     script(command)
                 except SystemExit:
                     raise RuntimeError('SystemExit')
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
         Creating build target 'letter-portrait' (8.5in x 11.0in)
             Reading test_score/metadata.json ... OK!
             Created test_score/builds/letter-portrait
@@ -108,12 +110,12 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageBuildTargetScript()
         command = ['--new']
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit:
                     raise RuntimeError('SystemExit')
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
         Creating build target 'letter-portrait' (8.5in x 11.0in)
             Reading test_score/metadata.json ... OK!
             Created test_score/builds/letter-portrait
@@ -291,12 +293,12 @@ class Test(ScorePackageScriptTestCase):
         internal_path = self.score_path.joinpath('test_score', 'builds')
         assert internal_path.exists()
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(internal_path)):
+            with uqbar.io.DirectoryChange(str(internal_path)):
                 try:
                     script(command)
                 except SystemExit:
                     raise RuntimeError('SystemExit')
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
         Creating build target 'letter-portrait' (8.5in x 11.0in)
             Reading test_score/metadata.json ... OK!
             Created test_score/builds/letter-portrait
@@ -311,14 +313,14 @@ class Test(ScorePackageScriptTestCase):
             'World Premiere Version',
             '--paper-size', 'a3',
             '--orientation', 'landscape',
-            ]
+        ]
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit:
                     raise RuntimeError('SystemExit')
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
         Creating build target 'world-premiere-version' (297mm x 420mm)
             Reading test_score/metadata.json ... OK!
             Created test_score/builds/world-premiere-version

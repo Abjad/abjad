@@ -1,11 +1,12 @@
 import abjad
 import os
 import pytest
+import uqbar.io
 from abjad import abjad_configuration
 from base import ScorePackageScriptTestCase
-from uqbar.strings import normalize
-from unittest import mock
 from io import StringIO
+from unittest import mock
+from uqbar.strings import normalize
 
 
 class Test(ScorePackageScriptTestCase):
@@ -31,12 +32,12 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageSegmentScript()
         command = ['--stage']
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
         Staging segments:
             Reading test_score/segments/metadata.json ... OK!
         Staged:
@@ -46,16 +47,16 @@ class Test(ScorePackageScriptTestCase):
         '''.replace('/', os.path.sep))
         call_subprocess_mock.assert_called_with(
             '{} segments.txt'.format(abjad_configuration.get_text_editor()),
-            )
+        )
         call_subprocess_mock.side_effect = self.side_effect
         string_io = StringIO()
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
         Staging segments:
             Reading test_score/segments/metadata.json ... OK!
             Writing test_score/segments/metadata.json
@@ -66,4 +67,4 @@ class Test(ScorePackageScriptTestCase):
         '''.replace('/', os.path.sep))
         call_subprocess_mock.assert_called_with(
             '{} segments.txt'.format(abjad_configuration.get_text_editor()),
-            )
+        )

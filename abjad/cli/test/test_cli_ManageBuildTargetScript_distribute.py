@@ -2,9 +2,11 @@ import abjad
 import os
 import platform
 import pytest
+import uqbar.io
 from base import ScorePackageScriptTestCase
 from io import StringIO
 from unittest import mock
+from uqbar.strings import normalize
 
 
 class Test(ScorePackageScriptTestCase):
@@ -16,7 +18,7 @@ class Test(ScorePackageScriptTestCase):
         'test_score/test_score/distribution/letter-portrait/letter-portrait-parts-violin-i.pdf',
         'test_score/test_score/distribution/letter-portrait/letter-portrait-parts-violin-ii.pdf',
         'test_score/test_score/distribution/letter-portrait/letter-portrait-score.pdf',
-        ]
+    ]
 
     if platform.system().lower() == 'windows':
         expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
@@ -32,19 +34,19 @@ class Test(ScorePackageScriptTestCase):
         self.create_build_target()
         script = abjad.cli.ManageBuildTargetScript()
         command = ['--render', 'letter-portrait']
-        with abjad.TemporaryDirectoryChange(str(self.score_path)):
+        with uqbar.io.DirectoryChange(str(self.score_path)):
             try:
                 script(command)
             except SystemExit:
                 raise RuntimeError('SystemExit')
         command = ['--distribute', 'letter-portrait']
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit:
                     raise RuntimeError('SystemExit')
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
         Distributing 'letter-portrait'
             score.pdf --> letter-portrait-score.pdf
             parts-cello.pdf --> letter-portrait-parts-cello.pdf
@@ -55,4 +57,4 @@ class Test(ScorePackageScriptTestCase):
         self.compare_path_contents(
             self.distribution_path,
             self.expected_files,
-            )
+        )

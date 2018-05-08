@@ -2,10 +2,11 @@ import pytest
 import abjad
 import os
 import platform
-from uqbar.strings import normalize
+import uqbar.io
 from base import ScorePackageScriptTestCase
 from io import StringIO
 from unittest import mock
+from uqbar.strings import normalize
 
 
 class Test(ScorePackageScriptTestCase):
@@ -19,7 +20,7 @@ class Test(ScorePackageScriptTestCase):
         'test_score/test_score/segments/test_segment/illustration.ly',
         'test_score/test_score/segments/test_segment/illustration.pdf',
         'test_score/test_score/segments/test_segment/metadata.json',
-        ]
+    ]
 
     if platform.system().lower() == 'windows':
         expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
@@ -87,11 +88,11 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 1
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
             Illustration candidates: 'test_segment' ...
                 Reading test_score/segments/metadata.json ... OK!
             Illustrating test_score/segments/test_segment/
@@ -141,11 +142,11 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 1
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
             Illustration candidates: 'test_segment' ...
                 Reading test_score/segments/metadata.json ... OK!
             Illustrating test_score/segments/test_segment/
@@ -181,11 +182,11 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 1
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
             Illustration candidates: 'test_segment' ...
                 Reading test_score/segments/metadata.json ... OK!
             Illustrating test_score/segments/test_segment/
@@ -207,11 +208,11 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 1
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
             Illustration candidates: 'test_segment' ...
                 Reading test_score/segments/metadata.json ... OK!
             Illustrating test_score/segments/test_segment/
@@ -230,12 +231,12 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', '*']
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
             Illustration candidates: '*' ...
                 Reading test_score/segments/metadata.json ... OK!
             Illustrating test_score/segments/segment_one/
@@ -274,15 +275,15 @@ class Test(ScorePackageScriptTestCase):
         assert self.segments_path.joinpath(
             'segment_one',
             'illustration.pdf',
-            ).exists()
+        ).exists()
         assert self.segments_path.joinpath(
             'segment_two',
             'illustration.pdf',
-            ).exists()
+        ).exists()
         assert self.segments_path.joinpath(
             'segment_three',
             'illustration.pdf',
-            ).exists()
+        ).exists()
 
     @mock.patch('abjad.IOManager.open_file')
     def test_success_filtered_segments(self, open_file_mock):
@@ -294,12 +295,12 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'segment_t*']
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
             Illustration candidates: 'segment_t*' ...
                 Reading test_score/segments/metadata.json ... OK!
             Illustrating test_score/segments/segment_two/
@@ -328,15 +329,15 @@ class Test(ScorePackageScriptTestCase):
         assert not self.segments_path.joinpath(
             'segment_one',
             'illustration.pdf',
-            ).exists()
+        ).exists()
         assert self.segments_path.joinpath(
             'segment_two',
             'illustration.pdf',
-            ).exists()
+        ).exists()
         assert self.segments_path.joinpath(
             'segment_three',
             'illustration.pdf',
-            ).exists()
+        ).exists()
 
     @mock.patch('abjad.IOManager.open_file')
     def test_success_one_segment(self, open_file_mock):
@@ -346,12 +347,12 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
             Illustration candidates: 'test_segment' ...
                 Reading test_score/segments/metadata.json ... OK!
             Illustrating test_score/segments/test_segment/
@@ -371,4 +372,4 @@ class Test(ScorePackageScriptTestCase):
         self.compare_lilypond_contents(
             illustration_path,
             self.expected_illustration_contents,
-            )
+        )

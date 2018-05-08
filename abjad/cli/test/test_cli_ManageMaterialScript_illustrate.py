@@ -2,6 +2,7 @@ import abjad
 import os
 import platform
 import pytest
+import uqbar.io
 from base import ScorePackageScriptTestCase
 from io import StringIO
 from unittest import mock
@@ -17,7 +18,7 @@ class Test(ScorePackageScriptTestCase):
         'test_score/test_score/materials/test_material/definition.py',
         'test_score/test_score/materials/test_material/illustration.ly',
         'test_score/test_score/materials/test_material/illustration.pdf',
-        ]
+    ]
 
     if platform.system().lower() == 'windows':
         expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
@@ -36,7 +37,7 @@ class Test(ScorePackageScriptTestCase):
 
         \markup { "An example illustrable material." }
         '''
-        )
+    )
 
     def test_lilypond_error(self):
         """
@@ -57,11 +58,11 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', 'test_material']
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 1
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
             Illustration candidates: 'test_material' ...
             Illustrating test_score/materials/test_material/
                 Importing test_score.materials.test_material.definition
@@ -98,11 +99,11 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', 'test_material']
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 1
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
             Illustration candidates: 'test_material' ...
             Illustrating test_score/materials/test_material/
                 Importing test_score.materials.test_material.definition
@@ -123,11 +124,11 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', 'test_material']
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 1
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
             Illustration candidates: 'test_material' ...
             Illustrating test_score/materials/test_material/
                 Importing test_score.materials.test_material.definition
@@ -156,11 +157,11 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', 'test_material']
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 1
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
             Illustration candidates: 'test_material' ...
             Illustrating test_score/materials/test_material/
                 Importing test_score.materials.test_material.definition
@@ -179,11 +180,11 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', 'test_material']
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 1
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
             Illustration candidates: 'test_material' ...
             Illustrating test_score/materials/test_material/
                 Importing test_score.materials.test_material.definition
@@ -202,12 +203,12 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', '*']
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
             Illustration candidates: '*' ...
             Illustrating test_score/materials/material_one/
                 Importing test_score.materials.material_one.definition
@@ -231,18 +232,15 @@ class Test(ScorePackageScriptTestCase):
                     LilyPond runtime: ... second...
                 Illustrated test_score/materials/material_two/
         '''.replace('/', os.path.sep))
-        assert self.materials_path.joinpath(
-            'material_one',
-            'illustration.pdf',
-            ).exists()
-        assert self.materials_path.joinpath(
-            'material_two',
-            'illustration.pdf',
-            ).exists()
-        assert self.materials_path.joinpath(
-            'material_three',
-            'illustration.pdf',
-            ).exists()
+        assert (
+            self.materials_path / 'material_one' / 'illustration.pdf'
+        ).exists()
+        assert (
+            self.materials_path / 'material_two' / 'illustration.pdf'
+        ).exists()
+        assert (
+            self.materials_path / 'material_three' / 'illustration.pdf'
+        ).exists()
 
     @mock.patch('abjad.IOManager.open_file')
     def test_success_filtered_materials(self, open_file_mock):
@@ -254,12 +252,12 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', 'material_t*']
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
             Illustration candidates: 'material_t*' ...
             Illustrating test_score/materials/material_three/
                 Importing test_score.materials.material_three.definition
@@ -276,18 +274,15 @@ class Test(ScorePackageScriptTestCase):
                     LilyPond runtime: ... second...
                 Illustrated test_score/materials/material_two/
         '''.replace('/', os.path.sep))
-        assert not self.materials_path.joinpath(
-            'material_one',
-            'illustration.pdf',
-            ).exists()
-        assert self.materials_path.joinpath(
-            'material_two',
-            'illustration.pdf',
-            ).exists()
-        assert self.materials_path.joinpath(
-            'material_three',
-            'illustration.pdf',
-            ).exists()
+        assert not (
+            self.materials_path / 'material_one' / 'illustration.pdf'
+        ).exists()
+        assert (
+            self.materials_path / 'material_two' / 'illustration.pdf'
+        ).exists()
+        assert (
+            self.materials_path / 'material_three' / 'illustration.pdf'
+        ).exists()
 
     @mock.patch('abjad.IOManager.open_file')
     def test_success_one_material(self, open_file_mock):
@@ -297,12 +292,12 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', 'test_material']
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
             Illustration candidates: 'test_material' ...
             Illustrating test_score/materials/test_material/
                 Importing test_score.materials.test_material.definition
@@ -318,4 +313,4 @@ class Test(ScorePackageScriptTestCase):
         self.compare_lilypond_contents(
             illustration_path,
             self.expected_illustration_contents,
-            )
+        )

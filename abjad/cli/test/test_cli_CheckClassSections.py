@@ -6,6 +6,7 @@ import pytest
 import re
 import shutil
 import unittest
+import uqbar.io
 from io import StringIO
 from uqbar.strings import normalize
 
@@ -193,7 +194,6 @@ class TestCheckClassSections(unittest.TestCase):
 
     def tearDown(self):
         shutil.rmtree(str(self.subdirectory))
-        string_io.close()
 
     def run_script_on_modules(
         self,
@@ -240,7 +240,7 @@ class TestCheckClassSections(unittest.TestCase):
                 file_pointer.write(case[1])
         string_io = StringIO()
         # cd into test_working_directory and run the script with commands
-        with abjad.TemporaryDirectoryChange(str(test_working_directory)):
+        with uqbar.io.DirectoryChange(str(test_working_directory)):
             with abjad.RedirectedStreams(stdout=string_io):
                 with pytest.raises(SystemExit) as exception_info:
                     script = abjad.cli.CheckClassSections()

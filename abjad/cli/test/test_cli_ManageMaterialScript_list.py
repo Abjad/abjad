@@ -1,7 +1,9 @@
 import abjad
 import pytest
+import uqbar.io
 from base import ScorePackageScriptTestCase
 from io import StringIO
+from uqbar.strings import normalize
 
 
 class Test(ScorePackageScriptTestCase):
@@ -16,11 +18,11 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageMaterialScript()
         command = ['--list']
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 2
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
         Available materials:
             Markup:
                 bar [Markup]
@@ -35,11 +37,11 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageMaterialScript()
         command = ['--list']
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 2
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
         Available materials:
             No materials available.
         ''')

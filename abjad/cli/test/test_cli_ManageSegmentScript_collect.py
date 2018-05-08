@@ -2,9 +2,11 @@ import abjad
 import os
 import platform
 import pytest
+import uqbar.io
 from base import ScorePackageScriptTestCase
 from io import StringIO
 from unittest import mock
+from uqbar.strings import normalize
 
 
 class Test(ScorePackageScriptTestCase):
@@ -20,7 +22,7 @@ class Test(ScorePackageScriptTestCase):
         'test_score/test_score/builds/segments/segment-one.ily',
         'test_score/test_score/builds/segments/segment-three.ily',
         'test_score/test_score/builds/segments/segment-two.ily',
-        ]
+    ]
 
     if platform.system().lower() == 'windows':
         expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
@@ -36,12 +38,12 @@ class Test(ScorePackageScriptTestCase):
         self.illustrate_segments()
         collect_script = abjad.cli.ManageSegmentScript()
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 try:
                     collect_script(['--collect'])
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
         Collecting segments:
             segments/segment_one/illustration.ly --> builds/segments/segment-one.ily
             segments/segment_three/illustration.ly --> builds/segments/segment-three.ily

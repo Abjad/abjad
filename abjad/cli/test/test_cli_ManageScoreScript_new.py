@@ -6,6 +6,7 @@ import pytest
 import shutil
 from base import ScorePackageScriptTestCase
 from io import StringIO
+from uqbar.strings import normalize
 
 
 class Test(ScorePackageScriptTestCase):
@@ -44,7 +45,7 @@ class Test(ScorePackageScriptTestCase):
         'test_score/test_score/tools/ScoreTemplate.py',
         'test_score/test_score/tools/SegmentMaker.py',
         'test_score/test_score/tools/__init__.py',
-        ]
+    ]
 
     if platform.system().lower() == 'windows':
         expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
@@ -61,7 +62,7 @@ class Test(ScorePackageScriptTestCase):
         shutil.rmtree(str(self.score_path))
         for path in self.test_directory_path.iterdir():
             assert path in self.directory_items
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
             Creating score package 'Test Score'...
                 Writing test_score/metadata.json
                 Created test_score/
@@ -80,7 +81,7 @@ class Test(ScorePackageScriptTestCase):
         shutil.rmtree(str(self.score_path))
         for path in self.test_directory_path.iterdir():
             assert path in self.directory_items
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
             Creating score package 'Test Score'...
                 Writing test_score/metadata.json
                 Created test_score/
@@ -108,11 +109,11 @@ class Test(ScorePackageScriptTestCase):
             'composer_website': 'www.josiahwolfoberholtzer.com',
             'title': 'Test Score',
             'year': 2016,
-            }
+        }
         shutil.rmtree(str(self.score_path))
         for path in self.test_directory_path.iterdir():
             assert path in self.directory_items
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
             Creating score package 'Test Score'...
                 Writing test_score/metadata.json
                 Created test_score/

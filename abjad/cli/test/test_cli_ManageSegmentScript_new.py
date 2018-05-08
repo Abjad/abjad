@@ -2,8 +2,10 @@ import abjad
 import os
 import platform
 import pytest
+import uqbar.io
 from base import ScorePackageScriptTestCase
 from io import StringIO
+from uqbar.strings import normalize
 
 
 class Test(ScorePackageScriptTestCase):
@@ -14,7 +16,7 @@ class Test(ScorePackageScriptTestCase):
         'test_score/test_score/segments/metadata.json',
         'test_score/test_score/segments/test_segment/__init__.py',
         'test_score/test_score/segments/test_segment/definition.py',
-        ]
+    ]
 
     if platform.system().lower() == 'windows':
         expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
@@ -26,7 +28,7 @@ class Test(ScorePackageScriptTestCase):
         with abjad.RedirectedStreams(stdout=string_io):
             pytest.helpers.create_segment(
                 self.test_directory_path, 'test_segment', expect_error=True)
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
             Creating segment subpackage 'test_segment' ...
                 Path exists: test_score/segments/test_segment
         '''.replace('/', os.path.sep))
@@ -38,7 +40,7 @@ class Test(ScorePackageScriptTestCase):
         with abjad.RedirectedStreams(stdout=string_io):
             pytest.helpers.create_segment(
                 self.test_directory_path, 'test_segment', force=True)
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
             Creating segment subpackage 'test_segment' ...
                 Reading test_score/metadata.json ... OK!
                 Reading test_score/segments/metadata.json ... OK!
@@ -53,12 +55,12 @@ class Test(ScorePackageScriptTestCase):
         internal_path = self.score_path.joinpath('test_score', 'builds')
         assert internal_path.exists()
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(internal_path)):
+            with uqbar.io.DirectoryChange(str(internal_path)):
                 try:
                     script(command)
                 except SystemExit:
                     raise RuntimeError('SystemExit')
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
             Creating segment subpackage 'test_segment' ...
                 Reading test_score/metadata.json ... OK!
                 Reading test_score/segments/metadata.json ... JSON does not exist.
@@ -74,18 +76,18 @@ class Test(ScorePackageScriptTestCase):
             names = script._read_segments_list_json(
                 self.score_path,
                 verbose=False,
-                )
+            )
             assert names == []
         except SystemExit:
             raise RuntimeError('SystemExit')
         command = ['--new', 'test_segment']
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit:
                     raise RuntimeError('SystemExit')
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
             Creating segment subpackage 'test_segment' ...
                 Reading test_score/metadata.json ... OK!
                 Reading test_score/segments/metadata.json ... JSON does not exist.
@@ -98,7 +100,7 @@ class Test(ScorePackageScriptTestCase):
             names = script._read_segments_list_json(
                 self.score_path,
                 verbose=False,
-                )
+            )
             assert names == ['test_segment']
         except SystemExit:
             raise RuntimeError('SystemExit')

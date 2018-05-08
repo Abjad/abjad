@@ -2,9 +2,11 @@ import abjad
 import os
 import platform
 import pytest
+import uqbar.io
 from base import ScorePackageScriptTestCase
 from io import StringIO
 from unittest import mock
+from uqbar.strings import normalize
 
 
 class Test(ScorePackageScriptTestCase):
@@ -16,7 +18,7 @@ class Test(ScorePackageScriptTestCase):
         'test_score/test_score/materials/test_material/definition.py',
         'test_score/test_score/materials/test_material/illustration.ly',
         'test_score/test_score/materials/test_material/illustration.pdf',
-        ]
+    ]
 
     if platform.system().lower() == 'windows':
         expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
@@ -34,12 +36,12 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageMaterialScript()
         command = ['--render', 'test_material']
         with abjad.RedirectedStreams(stdout=string_io):
-            with abjad.TemporaryDirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
-        self.compare_captured_output(r'''
+        assert normalize(string_io.getvalue()) == normalize(r'''
         Rendering candidates: 'test_material' ...
         Rendering test_score/materials/test_material/
             Writing test_score/materials/test_material/illustration.pdf ... OK!

@@ -2,6 +2,7 @@ import abjad
 import os
 import platform
 import pytest
+import uqbar.io
 from base import ScorePackageScriptTestCase
 from unittest import mock
 
@@ -30,12 +31,12 @@ class Test(ScorePackageScriptTestCase):
             'test_score/test_score/builds/segments.ily',
             'test_score/test_score/builds/segments/.gitignore',
             'test_score/test_score/builds/segments/test-segment.ily',
-            ]
+        ]
         if platform.system().lower() == 'windows':
             expected_files = [
                 _.replace('/', os.path.sep)
                 for _ in expected_files
-                ]
+            ]
         pytest.helpers.create_score(self.test_directory_path)
         pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         self.illustrate_segments()
@@ -43,7 +44,7 @@ class Test(ScorePackageScriptTestCase):
         self.create_build_target()
         script = abjad.cli.ManageBuildTargetScript()
         command = ['--render', 'letter-portrait']
-        with abjad.TemporaryDirectoryChange(str(self.score_path)):
+        with uqbar.io.DirectoryChange(str(self.score_path)):
             try:
                 script(command)
             except SystemExit:
@@ -61,12 +62,12 @@ class Test(ScorePackageScriptTestCase):
             'test_score/test_score/builds/letter-portrait/parts.ly',
             'test_score/test_score/builds/letter-portrait/preface.tex',
             'test_score/test_score/builds/letter-portrait/score.tex',
-            ]
+        ]
         if platform.system().lower() == 'windows':
             expected_files = [
                 _.replace('/', os.path.sep)
                 for _ in expected_files
-                ]
+            ]
         pytest.helpers.create_score(self.test_directory_path)
         pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         self.illustrate_segments()
@@ -76,8 +77,8 @@ class Test(ScorePackageScriptTestCase):
         command = [
             '--render', 'letter-portrait',
             '--back-cover',
-            ]
-        with abjad.TemporaryDirectoryChange(str(self.score_path)):
+        ]
+        with uqbar.io.DirectoryChange(str(self.score_path)):
             try:
                 script(command)
             except SystemExit:
@@ -95,12 +96,12 @@ class Test(ScorePackageScriptTestCase):
             'test_score/test_score/builds/letter-portrait/parts.ly',
             'test_score/test_score/builds/letter-portrait/preface.tex',
             'test_score/test_score/builds/letter-portrait/score.tex',
-            ]
+        ]
         if platform.system().lower() == 'windows':
             expected_files = [
                 _.replace('/', os.path.sep)
                 for _ in expected_files
-                ]
+            ]
         pytest.helpers.create_score(self.test_directory_path)
         pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         self.illustrate_segments()
@@ -110,8 +111,8 @@ class Test(ScorePackageScriptTestCase):
         command = [
             '--render', 'letter-portrait',
             '--front-cover',
-            ]
-        with abjad.TemporaryDirectoryChange(str(self.score_path)):
+        ]
+        with uqbar.io.DirectoryChange(str(self.score_path)):
             try:
                 script(command)
             except SystemExit:
@@ -129,12 +130,12 @@ class Test(ScorePackageScriptTestCase):
             'test_score/test_score/builds/letter-portrait/parts.ly',
             'test_score/test_score/builds/letter-portrait/preface.tex',
             'test_score/test_score/builds/letter-portrait/score.tex',
-            ]
+        ]
         if platform.system().lower() == 'windows':
             expected_files = [
                 _.replace('/', os.path.sep)
                 for _ in expected_files
-                ]
+            ]
         pytest.helpers.create_score(self.test_directory_path)
         pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         self.illustrate_segments()
@@ -144,8 +145,8 @@ class Test(ScorePackageScriptTestCase):
         command = [
             '--render', 'letter-portrait',
             '--music',
-            ]
-        with abjad.TemporaryDirectoryChange(str(self.score_path)):
+        ]
+        with uqbar.io.DirectoryChange(str(self.score_path)):
             try:
                 script(command)
             except SystemExit:
@@ -166,11 +167,11 @@ class Test(ScorePackageScriptTestCase):
             'test_score/test_score/builds/letter-portrait/parts.ly',
             'test_score/test_score/builds/letter-portrait/preface.tex',
             'test_score/test_score/builds/letter-portrait/score.tex',
-            ]
+        ]
         if platform.system().lower() == 'windows':
             expected_files = [
                 _.replace('/', os.path.sep) for _ in expected_files
-                ]
+            ]
         pytest.helpers.create_score(self.test_directory_path)
         self.install_fancy_segment_maker()
         pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
@@ -181,8 +182,8 @@ class Test(ScorePackageScriptTestCase):
         command = [
             '--render', 'letter-portrait',
             '--parts',
-            ]
-        with abjad.TemporaryDirectoryChange(str(self.score_path)):
+        ]
+        with uqbar.io.DirectoryChange(str(self.score_path)):
             try:
                 script(command)
             except SystemExit:
@@ -200,12 +201,12 @@ class Test(ScorePackageScriptTestCase):
             'test_score/test_score/builds/letter-portrait/preface.pdf',
             'test_score/test_score/builds/letter-portrait/preface.tex',
             'test_score/test_score/builds/letter-portrait/score.tex',
-            ]
+        ]
         if platform.system().lower() == 'windows':
             expected_files = [
                 _.replace('/', os.path.sep)
                 for _ in expected_files
-                ]
+            ]
         pytest.helpers.create_score(self.test_directory_path)
         pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         self.illustrate_segments()
@@ -215,8 +216,8 @@ class Test(ScorePackageScriptTestCase):
         command = [
             '--render', 'letter-portrait',
             '--preface',
-            ]
-        with abjad.TemporaryDirectoryChange(str(self.score_path)):
+        ]
+        with uqbar.io.DirectoryChange(str(self.score_path)):
             try:
                 script(command)
             except SystemExit:

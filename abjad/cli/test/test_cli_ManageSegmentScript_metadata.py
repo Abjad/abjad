@@ -28,19 +28,19 @@ class Test(ScorePackageScriptTestCase):
             'measure_count': 1,
             'segment_count': 3,
             'segment_number': 1,
-            }
+        }
         assert metadata_2 == {
             'first_bar_number': 2,
             'measure_count': 1,
             'segment_count': 3,
             'segment_number': 2,
-            }
+        }
         assert metadata_3 == {
             'first_bar_number': 3,
             'measure_count': 1,
             'segment_count': 3,
             'segment_number': 3,
-            }
+        }
 
     @mock.patch('abjad.IOManager.open_file')
     def test_2(self, open_file_mock):
@@ -133,5 +133,4 @@ class Test(ScorePackageScriptTestCase):
                     >>
                 >>
             }
-            '''
-            )
+            ''')
