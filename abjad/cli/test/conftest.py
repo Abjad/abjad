@@ -56,6 +56,15 @@ def paths(tmpdir):
 
 
 @pytest.helpers.register
+def collect_segments(test_directory_path):
+    script = abjad.cli.ManageSegmentScript()
+    command = ['--collect']
+    score_path = test_directory_path / package_name
+    with uqbar.io.DirectoryChange(score_path):
+        script(command)
+
+
+@pytest.helpers.register
 def compare_path_contents(path_to_search, expected_files, test_path):
     actual_files = sorted(
         str(path.relative_to(test_path))
@@ -85,6 +94,30 @@ def compare_strings(*, expected='', actual=''):
     if not success:
         diff = output_checker.output_difference(example, actual, flags)
         raise Exception(diff)
+
+
+@pytest.helpers.register
+def create_build_target(
+    test_directory_path,
+    force=False,
+    expect_error=False,
+):
+    script = abjad.cli.ManageBuildTargetScript()
+    command = ['--new']
+    if force:
+        command.insert(0, '-f')
+    score_path = test_directory_path / package_name
+    with uqbar.io.DirectoryChange(score_path):
+        if expect_error:
+            with pytest.raises(SystemExit) as exception_info:
+                script(command)
+            assert exception_info.value.code == 1
+        else:
+            try:
+                script(command)
+            except SystemExit:
+                raise RuntimeError('SystemExit')
+    return score_path / package_name / 'builds' / 'letter-portrait'
 
 
 @pytest.helpers.register
@@ -162,6 +195,39 @@ def create_segment(
             except SystemExit:
                 raise RuntimeError('SystemExit')
     return score_path / package_name / 'segments' / segment_name
+
+
+@pytest.helpers.register
+def illustrate_material(test_directory_path, material_name):
+    script = abjad.cli.ManageMaterialScript()
+    command = ['--illustrate', material_name]
+    score_path = test_directory_path / package_name
+    with uqbar.io.DirectoryChange(score_path):
+        try:
+            script(command)
+        except SystemExit as e:
+            raise RuntimeError('SystemExit: {}'.format(e.code))
+
+
+@pytest.helpers.register
+def illustrate_segment(test_directory_path, segment_name):
+    script = abjad.cli.ManageSegmentScript()
+    command = ['--illustrate', segment_name]
+    score_path = test_directory_path / package_name
+    with uqbar.io.DirectoryChange(score_path):
+        try:
+            script(command)
+        except SystemExit as e:
+            raise RuntimeError('SystemExit: {}'.format(e.code))
+
+
+@pytest.helpers.register
+def illustrate_segments(test_directory_path):
+    script = abjad.cli.ManageSegmentScript()
+    command = ['--illustrate', '*']
+    score_path = test_directory_path / package_name
+    with uqbar.io.DirectoryChange(score_path):
+        script(command)
 
 
 @pytest.helpers.register

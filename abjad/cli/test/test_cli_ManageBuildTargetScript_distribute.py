@@ -29,9 +29,9 @@ class Test(ScorePackageScriptTestCase):
         pytest.helpers.create_score(self.test_directory_path)
         self.install_fancy_segment_maker()
         pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
-        self.illustrate_segments()
-        self.collect_segments()
-        self.create_build_target()
+        pytest.helpers.illustrate_segments(self.test_directory_path)
+        pytest.helpers.collect_segments(self.test_directory_path)
+        pytest.helpers.create_build_target(self.test_directory_path)
         script = abjad.cli.ManageBuildTargetScript()
         command = ['--render', 'letter-portrait']
         with uqbar.io.DirectoryChange(self.score_path):

@@ -16,7 +16,7 @@ class Test(ScorePackageScriptTestCase):
         pytest.helpers.create_score(self.test_directory_path)
         material_path = pytest.helpers.create_material(
             self.test_directory_path, 'test_material')
-        self.illustrate_material('test_material')
+        pytest.helpers.illustrate_material(self.test_directory_path, 'test_material')
         pdf_path = material_path.joinpath('illustration.pdf')
         assert pdf_path.exists()
         pdf_path.unlink()

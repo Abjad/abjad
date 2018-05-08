@@ -48,55 +48,38 @@ class ScorePackageScriptTestCase(unittest.TestCase):
 
     # ### UTILITY METHODS ### #
 
-    def collect_segments(self):
+    def collect_segments(test_directory_path):
         script = abjad.cli.ManageSegmentScript()
         command = ['--collect']
-        with uqbar.io.DirectoryChange(self.score_path):
+        score_path = test_directory_path / package_name
+        with uqbar.io.DirectoryChange(score_path):
             script(command)
 
-    def create_build_target(
-        self,
-        force=False,
-        expect_error=False,
-    ):
-        script = abjad.cli.ManageBuildTargetScript()
-        command = ['--new']
-        if force:
-            command.insert(0, '-f')
-        with uqbar.io.DirectoryChange(self.score_path):
-            if expect_error:
-                with pytest.raises(SystemExit) as exception_info:
-                    script(command)
-                assert exception_info.value.code == 1
-            else:
-                try:
-                    script(command)
-                except SystemExit:
-                    raise RuntimeError('SystemExit')
-        return self.build_path / 'letter-portrait'
-
-    def illustrate_material(self, material_name):
+    def illustrate_material(test_directory_path, material_name):
         script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', material_name]
-        with uqbar.io.DirectoryChange(self.score_path):
+        score_path = test_directory_path / package_name
+        with uqbar.io.DirectoryChange(score_path):
             try:
                 script(command)
             except SystemExit as e:
                 raise RuntimeError('SystemExit: {}'.format(e.code))
 
-    def illustrate_segment(self, segment_name):
+    def illustrate_segment(test_directory_path, segment_name):
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', segment_name]
-        with uqbar.io.DirectoryChange(self.score_path):
+        score_path = test_directory_path / package_name
+        with uqbar.io.DirectoryChange(score_path):
             try:
                 script(command)
             except SystemExit as e:
                 raise RuntimeError('SystemExit: {}'.format(e.code))
 
-    def illustrate_segments(self):
+    def illustrate_segments(test_directory_path):
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', '*']
-        with uqbar.io.DirectoryChange(self.score_path):
+        score_path = test_directory_path / package_name
+        with uqbar.io.DirectoryChange(score_path):
             script(command)
 
     def install_fancy_segment_maker(self):

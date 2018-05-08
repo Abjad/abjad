@@ -18,7 +18,7 @@ class Test(ScorePackageScriptTestCase):
         pytest.helpers.create_segment(self.test_directory_path, 'segment_two')
         pytest.helpers.create_segment(
             self.test_directory_path, 'segment_three')
-        self.illustrate_segments()
+        pytest.helpers.illustrate_segments(self.test_directory_path)
         collect_script = abjad.cli.ManageSegmentScript()
         with abjad.RedirectedStreams(stdout=string_io):
             with uqbar.io.DirectoryChange(self.score_path):

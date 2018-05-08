@@ -16,7 +16,7 @@ class Test(ScorePackageScriptTestCase):
             self.test_directory_path, 'segment_two')
         path_3 = pytest.helpers.create_segment(
             self.test_directory_path, 'segment_three')
-        self.illustrate_segments()
+        pytest.helpers.illustrate_segments(self.test_directory_path)
         with open(str(path_1.joinpath('metadata.json')), 'r') as file_pointer:
             metadata_1 = json.loads(file_pointer.read())
         with open(str(path_2.joinpath('metadata.json')), 'r') as file_pointer:
@@ -48,7 +48,7 @@ class Test(ScorePackageScriptTestCase):
         self.install_fancy_segment_maker()
         segment_path = pytest.helpers.create_segment(
             self.test_directory_path, 'test_segment')
-        self.illustrate_segment('test_segment')
+        pytest.helpers.illustrate_segment(self.test_directory_path, 'test_segment')
         illustration_path = segment_path.joinpath('illustration.ly')
         self.compare_lilypond_contents(
             illustration_path,
