@@ -10,18 +10,6 @@ from unittest import mock
 
 class Test(ScorePackageScriptTestCase):
 
-    expected_files = [
-        'test_score/test_score/materials/.gitignore',
-        'test_score/test_score/materials/__init__.py',
-        'test_score/test_score/materials/test_material/__init__.py',
-        'test_score/test_score/materials/test_material/definition.py',
-        'test_score/test_score/materials/test_material/illustration.ly',
-        'test_score/test_score/materials/test_material/illustration.pdf',
-    ]
-
-    if platform.system().lower() == 'windows':
-        expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
-
     @mock.patch('abjad.IOManager.open_file')
     def test_success_one_material(self, open_file_mock):
         string_io = StringIO()
@@ -50,4 +38,17 @@ class Test(ScorePackageScriptTestCase):
                 Rendered test_score/materials/test_material/
             '''.replace('/', os.path.sep),
         )
-        self.compare_path_contents(self.materials_path, self.expected_files)
+        expected_files = [
+            'test_score/test_score/materials/.gitignore',
+            'test_score/test_score/materials/__init__.py',
+            'test_score/test_score/materials/test_material/__init__.py',
+            'test_score/test_score/materials/test_material/definition.py',
+            'test_score/test_score/materials/test_material/illustration.ly',
+            'test_score/test_score/materials/test_material/illustration.pdf',
+        ]
+        if platform.system().lower() == 'windows':
+            expected_files = [
+                _.replace('/', os.path.sep)
+                for _ in expected_files
+            ]
+        self.compare_path_contents(self.materials_path, expected_files)

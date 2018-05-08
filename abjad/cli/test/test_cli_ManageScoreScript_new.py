@@ -10,45 +10,6 @@ from io import StringIO
 
 class Test(ScorePackageScriptTestCase):
 
-    expected_files = [
-        'test_score/.gitignore',
-        'test_score/.travis.yml',
-        'test_score/README.md',
-        'test_score/requirements.txt',
-        'test_score/setup.cfg',
-        'test_score/setup.py',
-        'test_score/test_score/__init__.py',
-        'test_score/test_score/__metadata__.py',
-        'test_score/test_score/builds/.gitignore',
-        'test_score/test_score/builds/assets/.gitignore',
-        'test_score/test_score/builds/assets/instrumentation.tex',
-        'test_score/test_score/builds/assets/performance-notes.tex',
-        'test_score/test_score/builds/parts.ily',
-        'test_score/test_score/builds/segments.ily',
-        'test_score/test_score/builds/segments/.gitignore',
-        'test_score/test_score/distribution/.gitignore',
-        'test_score/test_score/etc/.gitignore',
-        'test_score/test_score/materials/.gitignore',
-        'test_score/test_score/materials/__init__.py',
-        'test_score/test_score/metadata.json',
-        'test_score/test_score/segments/.gitignore',
-        'test_score/test_score/segments/__init__.py',
-        'test_score/test_score/stylesheets/.gitignore',
-        'test_score/test_score/stylesheets/nonfirst-segment.ily',
-        'test_score/test_score/stylesheets/parts.ily',
-        'test_score/test_score/stylesheets/stylesheet.ily',
-        'test_score/test_score/test/.gitignore',
-        'test_score/test_score/test/test_materials.py',
-        'test_score/test_score/test/test_segments.py',
-        'test_score/test_score/tools/.gitignore',
-        'test_score/test_score/tools/ScoreTemplate.py',
-        'test_score/test_score/tools/SegmentMaker.py',
-        'test_score/test_score/tools/__init__.py',
-    ]
-
-    if platform.system().lower() == 'windows':
-        expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
-
     def test_exists(self):
         string_io = StringIO()
         with abjad.RedirectedStreams(stdout=string_io):
@@ -100,7 +61,47 @@ class Test(ScorePackageScriptTestCase):
         with abjad.RedirectedStreams(stdout=string_io):
             pytest.helpers.create_score(self.test_directory_path)
         assert self.score_path.exists()
-        self.compare_path_contents(self.score_path, self.expected_files)
+        expected_files = [
+            'test_score/.gitignore',
+            'test_score/.travis.yml',
+            'test_score/README.md',
+            'test_score/requirements.txt',
+            'test_score/setup.cfg',
+            'test_score/setup.py',
+            'test_score/test_score/__init__.py',
+            'test_score/test_score/__metadata__.py',
+            'test_score/test_score/builds/.gitignore',
+            'test_score/test_score/builds/assets/.gitignore',
+            'test_score/test_score/builds/assets/instrumentation.tex',
+            'test_score/test_score/builds/assets/performance-notes.tex',
+            'test_score/test_score/builds/parts.ily',
+            'test_score/test_score/builds/segments.ily',
+            'test_score/test_score/builds/segments/.gitignore',
+            'test_score/test_score/distribution/.gitignore',
+            'test_score/test_score/etc/.gitignore',
+            'test_score/test_score/materials/.gitignore',
+            'test_score/test_score/materials/__init__.py',
+            'test_score/test_score/metadata.json',
+            'test_score/test_score/segments/.gitignore',
+            'test_score/test_score/segments/__init__.py',
+            'test_score/test_score/stylesheets/.gitignore',
+            'test_score/test_score/stylesheets/nonfirst-segment.ily',
+            'test_score/test_score/stylesheets/parts.ily',
+            'test_score/test_score/stylesheets/stylesheet.ily',
+            'test_score/test_score/test/.gitignore',
+            'test_score/test_score/test/test_materials.py',
+            'test_score/test_score/test/test_segments.py',
+            'test_score/test_score/tools/.gitignore',
+            'test_score/test_score/tools/ScoreTemplate.py',
+            'test_score/test_score/tools/SegmentMaker.py',
+            'test_score/test_score/tools/__init__.py',
+        ]
+        if platform.system().lower() == 'windows':
+            expected_files = [
+                _.replace('/', os.path.sep)
+                for _ in expected_files
+            ]
+        self.compare_path_contents(self.score_path, expected_files)
         score_metadata_path = self.score_path.joinpath(
             self.score_path.name, 'metadata.json')
         assert score_metadata_path.exists()

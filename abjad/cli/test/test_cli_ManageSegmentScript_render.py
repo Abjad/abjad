@@ -10,20 +10,6 @@ from unittest import mock
 
 class Test(ScorePackageScriptTestCase):
 
-    expected_files = [
-        'test_score/test_score/segments/.gitignore',
-        'test_score/test_score/segments/__init__.py',
-        'test_score/test_score/segments/metadata.json',
-        'test_score/test_score/segments/test_segment/__init__.py',
-        'test_score/test_score/segments/test_segment/definition.py',
-        'test_score/test_score/segments/test_segment/illustration.ly',
-        'test_score/test_score/segments/test_segment/illustration.pdf',
-        'test_score/test_score/segments/test_segment/metadata.json',
-    ]
-
-    if platform.system().lower() == 'windows':
-        expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
-
     @mock.patch('abjad.IOManager.open_file')
     def test_success_one_segment(self, open_file_mock):
         string_io = StringIO()
@@ -53,4 +39,19 @@ class Test(ScorePackageScriptTestCase):
             '''.replace('/', os.path.sep),
             actual=string_io.getvalue(),
         )
-        self.compare_path_contents(self.segments_path, self.expected_files)
+        expected_files = [
+            'test_score/test_score/segments/.gitignore',
+            'test_score/test_score/segments/__init__.py',
+            'test_score/test_score/segments/metadata.json',
+            'test_score/test_score/segments/test_segment/__init__.py',
+            'test_score/test_score/segments/test_segment/definition.py',
+            'test_score/test_score/segments/test_segment/illustration.ly',
+            'test_score/test_score/segments/test_segment/illustration.pdf',
+            'test_score/test_score/segments/test_segment/metadata.json',
+        ]
+        if platform.system().lower() == 'windows':
+            expected_files = [
+                _.replace('/', os.path.sep)
+                for _ in expected_files
+            ]
+        self.compare_path_contents(self.segments_path, expected_files)

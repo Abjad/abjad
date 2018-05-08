@@ -9,16 +9,6 @@ from io import StringIO
 
 class Test(ScorePackageScriptTestCase):
 
-    expected_files = [
-        'test_score/test_score/materials/.gitignore',
-        'test_score/test_score/materials/__init__.py',
-        'test_score/test_score/materials/test_material/__init__.py',
-        'test_score/test_score/materials/test_material/definition.py',
-    ]
-
-    if platform.system().lower() == 'windows':
-        expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
-
     def test_exists(self):
         string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
@@ -94,4 +84,15 @@ class Test(ScorePackageScriptTestCase):
             '''.replace('/', os.path.sep),
         )
         assert self.materials_path.joinpath('test_material').exists()
-        self.compare_path_contents(self.materials_path, self.expected_files)
+        expected_files = [
+            'test_score/test_score/materials/.gitignore',
+            'test_score/test_score/materials/__init__.py',
+            'test_score/test_score/materials/test_material/__init__.py',
+            'test_score/test_score/materials/test_material/definition.py',
+        ]
+        if platform.system().lower() == 'windows':
+            expected_files = [
+                _.replace('/', os.path.sep)
+                for _ in expected_files
+            ]
+        self.compare_path_contents(self.materials_path, expected_files)

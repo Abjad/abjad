@@ -9,25 +9,6 @@ from io import StringIO
 
 class Test(ScorePackageScriptTestCase):
 
-    expected_files = [
-        'test_score/test_score/builds/.gitignore',
-        'test_score/test_score/builds/assets/.gitignore',
-        'test_score/test_score/builds/assets/instrumentation.tex',
-        'test_score/test_score/builds/assets/performance-notes.tex',
-        'test_score/test_score/builds/letter-portrait/back-cover.tex',
-        'test_score/test_score/builds/letter-portrait/front-cover.tex',
-        'test_score/test_score/builds/letter-portrait/music.ly',
-        'test_score/test_score/builds/letter-portrait/parts.ly',
-        'test_score/test_score/builds/letter-portrait/preface.tex',
-        'test_score/test_score/builds/letter-portrait/score.tex',
-        'test_score/test_score/builds/parts.ily',
-        'test_score/test_score/builds/segments.ily',
-        'test_score/test_score/builds/segments/.gitignore',
-    ]
-
-    if platform.system().lower() == 'windows':
-        expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
-
     def test_exists(self):
         string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
@@ -113,6 +94,26 @@ class Test(ScorePackageScriptTestCase):
         )
 
     def test_implicit(self):
+        expected_files = [
+            'test_score/test_score/builds/.gitignore',
+            'test_score/test_score/builds/assets/.gitignore',
+            'test_score/test_score/builds/assets/instrumentation.tex',
+            'test_score/test_score/builds/assets/performance-notes.tex',
+            'test_score/test_score/builds/letter-portrait/back-cover.tex',
+            'test_score/test_score/builds/letter-portrait/front-cover.tex',
+            'test_score/test_score/builds/letter-portrait/music.ly',
+            'test_score/test_score/builds/letter-portrait/parts.ly',
+            'test_score/test_score/builds/letter-portrait/preface.tex',
+            'test_score/test_score/builds/letter-portrait/score.tex',
+            'test_score/test_score/builds/parts.ily',
+            'test_score/test_score/builds/segments.ily',
+            'test_score/test_score/builds/segments/.gitignore',
+        ]
+        if platform.system().lower() == 'windows':
+            expected_files = [
+                _.replace('/', os.path.sep)
+                for _ in expected_files
+            ]
         string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
         script = abjad.cli.ManageBuildTargetScript()
@@ -131,7 +132,7 @@ class Test(ScorePackageScriptTestCase):
                 Created test_score/builds/letter-portrait
             '''.replace('/', os.path.sep),
         )
-        self.compare_path_contents(self.build_path, self.expected_files)
+        self.compare_path_contents(self.build_path, expected_files)
         path = self.build_path.joinpath('letter-portrait', 'music.ly')
         self.compare_lilypond_contents(path, r'''
             \language "english"

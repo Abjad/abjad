@@ -9,17 +9,6 @@ from io import StringIO
 
 class Test(ScorePackageScriptTestCase):
 
-    expected_files = [
-        'test_score/test_score/segments/.gitignore',
-        'test_score/test_score/segments/__init__.py',
-        'test_score/test_score/segments/metadata.json',
-        'test_score/test_score/segments/test_segment/__init__.py',
-        'test_score/test_score/segments/test_segment/definition.py',
-    ]
-
-    if platform.system().lower() == 'windows':
-        expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
-
     def test_exists(self):
         string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
@@ -106,7 +95,19 @@ class Test(ScorePackageScriptTestCase):
             '''.replace('/', os.path.sep),
         )
         assert self.segments_path.joinpath('test_segment').exists()
-        self.compare_path_contents(self.segments_path, self.expected_files)
+        expected_files = [
+            'test_score/test_score/segments/.gitignore',
+            'test_score/test_score/segments/__init__.py',
+            'test_score/test_score/segments/metadata.json',
+            'test_score/test_score/segments/test_segment/__init__.py',
+            'test_score/test_score/segments/test_segment/definition.py',
+        ]
+        if platform.system().lower() == 'windows':
+            expected_files = [
+                _.replace('/', os.path.sep)
+                for _ in expected_files
+            ]
+        self.compare_path_contents(self.segments_path, expected_files)
         try:
             names = script._read_segments_list_json(
                 self.score_path,

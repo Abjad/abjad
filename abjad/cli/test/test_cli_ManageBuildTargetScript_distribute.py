@@ -10,20 +10,21 @@ from unittest import mock
 
 class Test(ScorePackageScriptTestCase):
 
-    expected_files = [
-        'test_score/test_score/distribution/.gitignore',
-        'test_score/test_score/distribution/letter-portrait/letter-portrait-parts-cello.pdf',
-        'test_score/test_score/distribution/letter-portrait/letter-portrait-parts-viola.pdf',
-        'test_score/test_score/distribution/letter-portrait/letter-portrait-parts-violin-i.pdf',
-        'test_score/test_score/distribution/letter-portrait/letter-portrait-parts-violin-ii.pdf',
-        'test_score/test_score/distribution/letter-portrait/letter-portrait-score.pdf',
-    ]
-
-    if platform.system().lower() == 'windows':
-        expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
-
     @mock.patch('abjad.IOManager.open_file')
     def test_success(self, open_file_mock):
+        expected_files = [
+            'test_score/test_score/distribution/.gitignore',
+            'test_score/test_score/distribution/letter-portrait/letter-portrait-parts-cello.pdf',
+            'test_score/test_score/distribution/letter-portrait/letter-portrait-parts-viola.pdf',
+            'test_score/test_score/distribution/letter-portrait/letter-portrait-parts-violin-i.pdf',
+            'test_score/test_score/distribution/letter-portrait/letter-portrait-parts-violin-ii.pdf',
+            'test_score/test_score/distribution/letter-portrait/letter-portrait-score.pdf',
+        ]
+        if platform.system().lower() == 'windows':
+            expected_files = [
+                _.replace('/', os.path.sep)
+                for _ in expected_files
+            ]
         string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
         self.install_fancy_segment_maker()
@@ -58,5 +59,5 @@ class Test(ScorePackageScriptTestCase):
         )
         self.compare_path_contents(
             self.distribution_path,
-            self.expected_files,
+            expected_files,
         )

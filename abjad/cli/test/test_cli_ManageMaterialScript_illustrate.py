@@ -11,34 +11,6 @@ from uqbar.strings import normalize
 
 class Test(ScorePackageScriptTestCase):
 
-    expected_files = [
-        'test_score/test_score/materials/.gitignore',
-        'test_score/test_score/materials/__init__.py',
-        'test_score/test_score/materials/test_material/__init__.py',
-        'test_score/test_score/materials/test_material/definition.py',
-        'test_score/test_score/materials/test_material/illustration.ly',
-        'test_score/test_score/materials/test_material/illustration.pdf',
-    ]
-
-    if platform.system().lower() == 'windows':
-        expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
-
-    expected_illustration_contents = normalize(
-        r'''
-        \language "english"
-
-        \header {
-            tagline = ##f
-        }
-
-        \layout {}
-
-        \paper {}
-
-        \markup { "An example illustrable material." }
-        '''
-    )
-
     def test_lilypond_error(self):
         """
         Handle failing LilyPond rendering.
@@ -307,6 +279,19 @@ class Test(ScorePackageScriptTestCase):
 
     @mock.patch('abjad.IOManager.open_file')
     def test_success_one_material(self, open_file_mock):
+        expected_files = [
+            'test_score/test_score/materials/.gitignore',
+            'test_score/test_score/materials/__init__.py',
+            'test_score/test_score/materials/test_material/__init__.py',
+            'test_score/test_score/materials/test_material/definition.py',
+            'test_score/test_score/materials/test_material/illustration.ly',
+            'test_score/test_score/materials/test_material/illustration.pdf',
+        ]
+        if platform.system().lower() == 'windows':
+            expected_files = [
+                _.replace('/', os.path.sep)
+                for _ in expected_files
+            ]
         string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
         pytest.helpers.create_material(self.test_directory_path, 'test_material')
@@ -331,10 +316,24 @@ class Test(ScorePackageScriptTestCase):
                 Illustrated test_score/materials/test_material/
             '''.replace('/', os.path.sep),
         )
-        self.compare_path_contents(self.materials_path, self.expected_files)
+        self.compare_path_contents(self.materials_path, expected_files)
         illustration_path = self.materials_path.joinpath(
             'test_material', 'illustration.ly')
         self.compare_lilypond_contents(
             illustration_path,
-            self.expected_illustration_contents,
+            normalize(
+                r'''
+                \language "english"
+
+                \header {
+                    tagline = ##f
+                }
+
+                \layout {}
+
+                \paper {}
+
+                \markup { "An example illustrable material." }
+                '''
+            ),
         )

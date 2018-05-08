@@ -10,22 +10,6 @@ from unittest import mock
 
 class Test(ScorePackageScriptTestCase):
 
-    expected_files = [
-        'test_score/test_score/builds/.gitignore',
-        'test_score/test_score/builds/assets/.gitignore',
-        'test_score/test_score/builds/assets/instrumentation.tex',
-        'test_score/test_score/builds/assets/performance-notes.tex',
-        'test_score/test_score/builds/parts.ily',
-        'test_score/test_score/builds/segments.ily',
-        'test_score/test_score/builds/segments/.gitignore',
-        'test_score/test_score/builds/segments/segment-one.ily',
-        'test_score/test_score/builds/segments/segment-three.ily',
-        'test_score/test_score/builds/segments/segment-two.ily',
-    ]
-
-    if platform.system().lower() == 'windows':
-        expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
-
     @mock.patch('abjad.IOManager.open_file')
     def test_success(self, open_file_mock):
         string_io = StringIO()
@@ -52,7 +36,24 @@ class Test(ScorePackageScriptTestCase):
                 Reading test_score/segments/metadata.json ... OK!
             '''.replace('/', os.path.sep),
         )
-        self.compare_path_contents(self.build_path, self.expected_files)
+        expected_files = [
+            'test_score/test_score/builds/.gitignore',
+            'test_score/test_score/builds/assets/.gitignore',
+            'test_score/test_score/builds/assets/instrumentation.tex',
+            'test_score/test_score/builds/assets/performance-notes.tex',
+            'test_score/test_score/builds/parts.ily',
+            'test_score/test_score/builds/segments.ily',
+            'test_score/test_score/builds/segments/.gitignore',
+            'test_score/test_score/builds/segments/segment-one.ily',
+            'test_score/test_score/builds/segments/segment-three.ily',
+            'test_score/test_score/builds/segments/segment-two.ily',
+        ]
+        if platform.system().lower() == 'windows':
+            expected_files = [
+                _.replace('/', os.path.sep)
+                for _ in expected_files
+            ]
+        self.compare_path_contents(self.build_path, expected_files)
         path = self.build_path.joinpath('segments.ily')
         self.compare_lilypond_contents(path, r'''
         {

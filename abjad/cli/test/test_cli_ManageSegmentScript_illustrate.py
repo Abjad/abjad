@@ -11,20 +11,6 @@ from uqbar.strings import normalize
 
 class Test(ScorePackageScriptTestCase):
 
-    expected_files = [
-        'test_score/test_score/segments/.gitignore',
-        'test_score/test_score/segments/__init__.py',
-        'test_score/test_score/segments/metadata.json',
-        'test_score/test_score/segments/test_segment/__init__.py',
-        'test_score/test_score/segments/test_segment/definition.py',
-        'test_score/test_score/segments/test_segment/illustration.ly',
-        'test_score/test_score/segments/test_segment/illustration.pdf',
-        'test_score/test_score/segments/test_segment/metadata.json',
-    ]
-
-    if platform.system().lower() == 'windows':
-        expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
-
     expected_illustration_contents = normalize(
         r'''
         \language "english"
@@ -387,7 +373,22 @@ class Test(ScorePackageScriptTestCase):
                 Illustrated test_score/segments/test_segment/
             '''.replace('/', os.path.sep),
         )
-        self.compare_path_contents(self.segments_path, self.expected_files)
+        expected_files = [
+            'test_score/test_score/segments/.gitignore',
+            'test_score/test_score/segments/__init__.py',
+            'test_score/test_score/segments/metadata.json',
+            'test_score/test_score/segments/test_segment/__init__.py',
+            'test_score/test_score/segments/test_segment/definition.py',
+            'test_score/test_score/segments/test_segment/illustration.ly',
+            'test_score/test_score/segments/test_segment/illustration.pdf',
+            'test_score/test_score/segments/test_segment/metadata.json',
+        ]
+        if platform.system().lower() == 'windows':
+            expected_files = [
+                _.replace('/', os.path.sep)
+                for _ in expected_files
+            ]
+        self.compare_path_contents(self.segments_path, expected_files)
         illustration_path = self.segments_path.joinpath(
             'test_segment', 'illustration.ly')
         self.compare_lilypond_contents(
