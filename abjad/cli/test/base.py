@@ -69,9 +69,9 @@ class ScorePackageScriptTestCase(unittest.TestCase):
             command.insert(0, '-f')
         with uqbar.io.DirectoryChange(self.score_path):
             if expect_error:
-                with self.assertRaises(SystemExit) as context_manager:
+                with pytest.raises(SystemExit) as exception_info:
                     script(command)
-                assert context_manager.exception.code == 1
+                assert exception_info.value.code == 1
             else:
                 try:
                     script(command)
@@ -91,9 +91,9 @@ class ScorePackageScriptTestCase(unittest.TestCase):
             command.insert(0, '-f')
         with uqbar.io.DirectoryChange(self.score_path):
             if expect_error:
-                with self.assertRaises(SystemExit) as context_manager:
+                with pytest.raises(SystemExit) as exception_info:
                     script(command)
-                assert context_manager.exception.code == 1
+                assert exception_info.value.code == 1
             else:
                 try:
                     script(command)
@@ -121,9 +121,9 @@ class ScorePackageScriptTestCase(unittest.TestCase):
             command.insert(0, '-f')
         with uqbar.io.DirectoryChange(self.test_path):
             if expect_error:
-                with self.assertRaises(SystemExit) as context_manager:
+                with pytest.raises(SystemExit) as exception_info:
                     script(command)
-                assert context_manager.exception.code == 1
+                assert exception_info.value.code == 1
             else:
                 try:
                     script(command)
@@ -142,9 +142,9 @@ class ScorePackageScriptTestCase(unittest.TestCase):
             command.insert(0, '-f')
         with uqbar.io.DirectoryChange(self.score_path):
             if expect_error:
-                with self.assertRaises(SystemExit) as context_manager:
+                with pytest.raises(SystemExit) as exception_info:
                     script(command)
-                assert context_manager.exception.code == 1
+                assert exception_info.value.code == 1
             else:
                 try:
                     script(command)

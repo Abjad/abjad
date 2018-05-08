@@ -1,11 +1,9 @@
+import pytest
 import abjad
 import os
 import platform
 from base import ScorePackageScriptTestCase
-try:
-    from unittest import mock
-except ImportError:
-    import mock
+from unittest import mock
 
 
 class Test(ScorePackageScriptTestCase):
@@ -86,9 +84,9 @@ class Test(ScorePackageScriptTestCase):
         command = ['--illustrate', 'test_segment']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
-                with self.assertRaises(SystemExit) as context_manager:
+                with pytest.raises(SystemExit) as exception_info:
                     script(command)
-                assert context_manager.exception.code == 1
+                assert exception_info.value.code == 1
         self.compare_captured_output(r'''
             Illustration candidates: 'test_segment' ...
                 Reading test_score/segments/metadata.json ... OK!
@@ -139,9 +137,9 @@ class Test(ScorePackageScriptTestCase):
         command = ['--illustrate', 'test_segment']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
-                with self.assertRaises(SystemExit) as context_manager:
+                with pytest.raises(SystemExit) as exception_info:
                     script(command)
-                assert context_manager.exception.code == 1
+                assert exception_info.value.code == 1
         self.compare_captured_output(r'''
             Illustration candidates: 'test_segment' ...
                 Reading test_score/segments/metadata.json ... OK!
@@ -178,9 +176,9 @@ class Test(ScorePackageScriptTestCase):
         command = ['--illustrate', 'test_segment']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
-                with self.assertRaises(SystemExit) as context_manager:
+                with pytest.raises(SystemExit) as exception_info:
                     script(command)
-                assert context_manager.exception.code == 1
+                assert exception_info.value.code == 1
         self.compare_captured_output(r'''
             Illustration candidates: 'test_segment' ...
                 Reading test_score/segments/metadata.json ... OK!
@@ -203,9 +201,9 @@ class Test(ScorePackageScriptTestCase):
         command = ['--illustrate', 'test_segment']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
-                with self.assertRaises(SystemExit) as context_manager:
+                with pytest.raises(SystemExit) as exception_info:
                     script(command)
-                assert context_manager.exception.code == 1
+                assert exception_info.value.code == 1
         self.compare_captured_output(r'''
             Illustration candidates: 'test_segment' ...
                 Reading test_score/segments/metadata.json ... OK!

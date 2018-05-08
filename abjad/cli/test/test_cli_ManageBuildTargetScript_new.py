@@ -1,6 +1,7 @@
 import abjad
 import os
 import platform
+import pytest
 from base import ScorePackageScriptTestCase
 
 
@@ -35,9 +36,9 @@ class Test(ScorePackageScriptTestCase):
             except SystemExit:
                 raise RuntimeError('SystemExit')
             with abjad.RedirectedStreams(stdout=self.string_io):
-                with self.assertRaises(SystemExit) as context_manager:
+                with pytest.raises(SystemExit) as exception_info:
                     script(command)
-                assert context_manager.exception.code == 1
+                assert exception_info.value.code == 1
         self.compare_captured_output(r'''
         Creating build target 'letter-portrait' (8.5in x 11.0in)
             Path exists: test_score/builds/letter-portrait

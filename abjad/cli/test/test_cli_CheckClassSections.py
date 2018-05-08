@@ -1,10 +1,11 @@
 import abjad
 import argparse
 import doctest
+import pathlib
+import pytest
 import re
 import shutil
 import unittest
-import pathlib
 from io import StringIO
 
 
@@ -198,7 +199,7 @@ class TestCheckClassSections(unittest.TestCase):
         modules,
         script_args=None,
         working_directory=None
-        ):
+    ):
         r'''Return the output and exit code of CheckClassSections
         when run against `modules`.
 
@@ -240,13 +241,13 @@ class TestCheckClassSections(unittest.TestCase):
         # cd into test_working_directory and run the script with commands
         with abjad.TemporaryDirectoryChange(str(test_working_directory)):
             with abjad.RedirectedStreams(stdout=self.string_io):
-                with self.assertRaises(SystemExit) as context_manager:
+                with pytest.raises(SystemExit) as exception_info:
                     script = abjad.cli.CheckClassSections()
                     script(command)
         # Normalize script output for sane diffs
         script_output = self.ansi_escape.sub('', self.string_io.getvalue())
         script_output = abjad.String.normalize(script_output)
-        return (script_output, context_manager.exception.code)
+        return (script_output, exception_info.value.code)
 
     ### TEST CASES ###
 
