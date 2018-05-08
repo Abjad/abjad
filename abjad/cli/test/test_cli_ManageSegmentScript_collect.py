@@ -6,7 +6,6 @@ import uqbar.io
 from base import ScorePackageScriptTestCase
 from io import StringIO
 from unittest import mock
-from uqbar.strings import normalize
 
 
 class Test(ScorePackageScriptTestCase):
@@ -43,13 +42,16 @@ class Test(ScorePackageScriptTestCase):
                     collect_script(['--collect'])
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
-        Collecting segments:
-            segments/segment_one/illustration.ly --> builds/segments/segment-one.ily
-            segments/segment_three/illustration.ly --> builds/segments/segment-three.ily
-            segments/segment_two/illustration.ly --> builds/segments/segment-two.ily
-            Reading test_score/segments/metadata.json ... OK!
-        '''.replace('/', os.path.sep))
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''
+            Collecting segments:
+                segments/segment_one/illustration.ly --> builds/segments/segment-one.ily
+                segments/segment_three/illustration.ly --> builds/segments/segment-three.ily
+                segments/segment_two/illustration.ly --> builds/segments/segment-two.ily
+                Reading test_score/segments/metadata.json ... OK!
+            '''.replace('/', os.path.sep),
+        )
         self.compare_path_contents(self.build_path, self.expected_files)
         path = self.build_path.joinpath('segments.ily')
         self.compare_lilypond_contents(path, r'''

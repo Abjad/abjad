@@ -46,14 +46,17 @@ class Test(ScorePackageScriptTestCase):
                     script(command)
                 except SystemExit:
                     raise RuntimeError('SystemExit')
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
-        Distributing 'letter-portrait'
-            score.pdf --> letter-portrait-score.pdf
-            parts-cello.pdf --> letter-portrait-parts-cello.pdf
-            parts-viola.pdf --> letter-portrait-parts-viola.pdf
-            parts-violin-i.pdf --> letter-portrait-parts-violin-i.pdf
-            parts-violin-ii.pdf --> letter-portrait-parts-violin-ii.pdf
-        ''')
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''
+            Distributing 'letter-portrait'
+                score.pdf --> letter-portrait-score.pdf
+                parts-cello.pdf --> letter-portrait-parts-cello.pdf
+                parts-viola.pdf --> letter-portrait-parts-viola.pdf
+                parts-violin-i.pdf --> letter-portrait-parts-violin-i.pdf
+                parts-violin-ii.pdf --> letter-portrait-parts-violin-ii.pdf
+            ''',
+        )
         self.compare_path_contents(
             self.distribution_path,
             self.expected_files,

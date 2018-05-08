@@ -37,9 +37,12 @@ class Test(ScorePackageScriptTestCase):
                     script(command)
                 except SystemExit:
                     raise RuntimeError('SystemExit')
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
-        Available build targets:
-            big-version
-            medium-version
-            small-version
-        ''')
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''
+            Available build targets:
+                big-version
+                medium-version
+                small-version
+            ''',
+        )

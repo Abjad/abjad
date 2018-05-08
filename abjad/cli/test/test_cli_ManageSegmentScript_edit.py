@@ -6,7 +6,6 @@ from abjad import abjad_configuration
 from base import ScorePackageScriptTestCase
 from io import StringIO
 from unittest import mock
-from uqbar.strings import normalize
 
 
 class Test(ScorePackageScriptTestCase):
@@ -26,10 +25,13 @@ class Test(ScorePackageScriptTestCase):
                     script(command)
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
-        Edit candidates: 'test_segment' ...
-            Reading test_score/segments/metadata.json ... OK!
-        '''.replace('/', os.path.sep))
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''
+            Edit candidates: 'test_segment' ...
+                Reading test_score/segments/metadata.json ... OK!
+            '''.replace('/', os.path.sep),
+        )
         definition_path = segment_path.joinpath('definition.py')
         command = '{} {!s}'.format(
             abjad_configuration.get_text_editor(),

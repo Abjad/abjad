@@ -43,12 +43,15 @@ class Test(ScorePackageScriptTestCase):
                     script(command)
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
-        Rendering candidates: 'test_segment' ...
-            Reading test_score/segments/metadata.json ... OK!
-        Rendering test_score/segments/test_segment/
-            Writing test_score/segments/test_segment/illustration.pdf ... OK!
-                LilyPond runtime: ... second...
-            Rendered test_score/segments/test_segment/
-        '''.replace('/', os.path.sep))
+        pytest.helpers.compare_strings(
+            expected=r'''
+            Rendering candidates: 'test_segment' ...
+                Reading test_score/segments/metadata.json ... OK!
+            Rendering test_score/segments/test_segment/
+                Writing test_score/segments/test_segment/illustration.pdf ... OK!
+                    LilyPond runtime: ... second...
+                Rendered test_score/segments/test_segment/
+            '''.replace('/', os.path.sep),
+            actual=string_io.getvalue(),
+        )
         self.compare_path_contents(self.segments_path, self.expected_files)

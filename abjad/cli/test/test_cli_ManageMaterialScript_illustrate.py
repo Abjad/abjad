@@ -62,14 +62,17 @@ class Test(ScorePackageScriptTestCase):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 1
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''
             Illustration candidates: 'test_material' ...
             Illustrating test_score/materials/test_material/
                 Importing test_score.materials.test_material.definition
                     Abjad runtime: ... second...
                 Writing test_score/materials/test_material/illustration.ly ... OK!
                 Writing test_score/materials/test_material/illustration.pdf ... Failed!
-        '''.replace('/', os.path.sep))
+            '''.replace('/', os.path.sep),
+        )
         illustration_ly_path = material_path.joinpath('illustration.ly')
         assert illustration_ly_path.exists()
         self.compare_lilypond_contents(
@@ -103,11 +106,14 @@ class Test(ScorePackageScriptTestCase):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 1
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
-            Illustration candidates: 'test_material' ...
-            Illustrating test_score/materials/test_material/
-                Importing test_score.materials.test_material.definition
-        '''.replace('/', os.path.sep))
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''
+                Illustration candidates: 'test_material' ...
+                Illustrating test_score/materials/test_material/
+                    Importing test_score.materials.test_material.definition
+            '''.replace('/', os.path.sep),
+        )
 
     def test_python_cannot_illustrate(self):
         """
@@ -128,12 +134,15 @@ class Test(ScorePackageScriptTestCase):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 1
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''
             Illustration candidates: 'test_material' ...
             Illustrating test_score/materials/test_material/
                 Importing test_score.materials.test_material.definition
                 Cannot illustrate material of type NoneType.
-        '''.replace('/', os.path.sep))
+            '''.replace('/', os.path.sep),
+        )
 
     def test_python_error_on_illustrate(self):
         """
@@ -161,11 +170,14 @@ class Test(ScorePackageScriptTestCase):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 1
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''
             Illustration candidates: 'test_material' ...
             Illustrating test_score/materials/test_material/
                 Importing test_score.materials.test_material.definition
-        '''.replace('/', os.path.sep))
+            '''.replace('/', os.path.sep),
+        )
 
     def test_python_error_on_import(self):
         """
@@ -184,11 +196,14 @@ class Test(ScorePackageScriptTestCase):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 1
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''
             Illustration candidates: 'test_material' ...
             Illustrating test_score/materials/test_material/
                 Importing test_score.materials.test_material.definition
-        '''.replace('/', os.path.sep))
+            '''.replace('/', os.path.sep),
+        )
 
     @mock.patch('abjad.IOManager.open_file')
     def test_success_all_materials(self, open_file_mock):
@@ -208,7 +223,9 @@ class Test(ScorePackageScriptTestCase):
                     script(command)
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''
             Illustration candidates: '*' ...
             Illustrating test_score/materials/material_one/
                 Importing test_score.materials.material_one.definition
@@ -231,7 +248,8 @@ class Test(ScorePackageScriptTestCase):
                 Writing test_score/materials/material_two/illustration.pdf ... OK!
                     LilyPond runtime: ... second...
                 Illustrated test_score/materials/material_two/
-        '''.replace('/', os.path.sep))
+            '''.replace('/', os.path.sep),
+        )
         assert (
             self.materials_path / 'material_one' / 'illustration.pdf'
         ).exists()
@@ -257,7 +275,9 @@ class Test(ScorePackageScriptTestCase):
                     script(command)
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''
             Illustration candidates: 'material_t*' ...
             Illustrating test_score/materials/material_three/
                 Importing test_score.materials.material_three.definition
@@ -273,7 +293,8 @@ class Test(ScorePackageScriptTestCase):
                 Writing test_score/materials/material_two/illustration.pdf ... OK!
                     LilyPond runtime: ... second...
                 Illustrated test_score/materials/material_two/
-        '''.replace('/', os.path.sep))
+            '''.replace('/', os.path.sep),
+        )
         assert not (
             self.materials_path / 'material_one' / 'illustration.pdf'
         ).exists()
@@ -297,7 +318,9 @@ class Test(ScorePackageScriptTestCase):
                     script(command)
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''
             Illustration candidates: 'test_material' ...
             Illustrating test_score/materials/test_material/
                 Importing test_score.materials.test_material.definition
@@ -306,7 +329,8 @@ class Test(ScorePackageScriptTestCase):
                 Writing test_score/materials/test_material/illustration.pdf ... OK!
                     LilyPond runtime: ... second...
                 Illustrated test_score/materials/test_material/
-        '''.replace('/', os.path.sep))
+            '''.replace('/', os.path.sep),
+        )
         self.compare_path_contents(self.materials_path, self.expected_files)
         illustration_path = self.materials_path.joinpath(
             'test_material', 'illustration.ly')

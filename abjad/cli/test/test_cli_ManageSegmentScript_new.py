@@ -28,10 +28,13 @@ class Test(ScorePackageScriptTestCase):
         with abjad.RedirectedStreams(stdout=string_io):
             pytest.helpers.create_segment(
                 self.test_directory_path, 'test_segment', expect_error=True)
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''
             Creating segment subpackage 'test_segment' ...
                 Path exists: test_score/segments/test_segment
-        '''.replace('/', os.path.sep))
+            '''.replace('/', os.path.sep),
+        )
 
     def test_force_replace(self):
         string_io = StringIO()
@@ -40,12 +43,15 @@ class Test(ScorePackageScriptTestCase):
         with abjad.RedirectedStreams(stdout=string_io):
             pytest.helpers.create_segment(
                 self.test_directory_path, 'test_segment', force=True)
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''
             Creating segment subpackage 'test_segment' ...
                 Reading test_score/metadata.json ... OK!
                 Reading test_score/segments/metadata.json ... OK!
                 Created test_score/segments/test_segment/
-        '''.replace('/', os.path.sep))
+            '''.replace('/', os.path.sep),
+        )
 
     def test_internal_path(self):
         string_io = StringIO()
@@ -60,13 +66,16 @@ class Test(ScorePackageScriptTestCase):
                     script(command)
                 except SystemExit:
                     raise RuntimeError('SystemExit')
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''
             Creating segment subpackage 'test_segment' ...
                 Reading test_score/metadata.json ... OK!
                 Reading test_score/segments/metadata.json ... JSON does not exist.
                 Writing test_score/segments/metadata.json
                 Created test_score/segments/test_segment/
-        '''.replace('/', os.path.sep))
+            '''.replace('/', os.path.sep),
+        )
 
     def test_success(self):
         string_io = StringIO()
@@ -87,13 +96,16 @@ class Test(ScorePackageScriptTestCase):
                     script(command)
                 except SystemExit:
                     raise RuntimeError('SystemExit')
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''
             Creating segment subpackage 'test_segment' ...
                 Reading test_score/metadata.json ... OK!
                 Reading test_score/segments/metadata.json ... JSON does not exist.
                 Writing test_score/segments/metadata.json
                 Created test_score/segments/test_segment/
-        '''.replace('/', os.path.sep))
+            '''.replace('/', os.path.sep),
+        )
         assert self.segments_path.joinpath('test_segment').exists()
         self.compare_path_contents(self.segments_path, self.expected_files)
         try:

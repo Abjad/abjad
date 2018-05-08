@@ -4,7 +4,6 @@ import os
 import uqbar.io
 from base import ScorePackageScriptTestCase
 from io import StringIO
-from uqbar.strings import normalize
 
 
 class Test(ScorePackageScriptTestCase):
@@ -23,13 +22,16 @@ class Test(ScorePackageScriptTestCase):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 2
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''
             Available segments:
                 Reading test_score/segments/metadata.json ... OK!
                 segment_one   [1]
                 segment_two   [2]
                 segment_three [3]
-        '''.replace('/', os.path.sep))
+            '''.replace('/', os.path.sep),
+        )
 
     def test_list_segments_no_segments(self):
         string_io = StringIO()
@@ -41,11 +43,14 @@ class Test(ScorePackageScriptTestCase):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 2
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''
             Available segments:
                 Reading test_score/segments/metadata.json ... JSON does not exist.
                 No segments available.
-        '''.replace('/', os.path.sep))
+            '''.replace('/', os.path.sep),
+        )
 
     def test_list_segments_unstaged(self):
         string_io = StringIO()
@@ -71,10 +76,13 @@ class Test(ScorePackageScriptTestCase):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 2
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''
             Available segments:
                 Reading test_score/segments/metadata.json ... OK!
                 segment_one   [1]
                 segment_three [2]
                 segment_two
-        '''.replace('/', os.path.sep))
+            '''.replace('/', os.path.sep),
+        )

@@ -37,14 +37,17 @@ class Test(ScorePackageScriptTestCase):
                     script(command)
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
-        Staging segments:
-            Reading test_score/segments/metadata.json ... OK!
-        Staged:
-            segment_a
-            segment_b
-            segment_c
-        '''.replace('/', os.path.sep))
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''
+            Staging segments:
+                Reading test_score/segments/metadata.json ... OK!
+            Staged:
+                segment_a
+                segment_b
+                segment_c
+            '''.replace('/', os.path.sep),
+        )
         call_subprocess_mock.assert_called_with(
             '{} segments.txt'.format(abjad_configuration.get_text_editor()),
         )
@@ -56,15 +59,18 @@ class Test(ScorePackageScriptTestCase):
                     script(command)
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
-        Staging segments:
-            Reading test_score/segments/metadata.json ... OK!
-            Writing test_score/segments/metadata.json
-        Staged:
-            segment_c
-            segment_b
-            segment_a
-        '''.replace('/', os.path.sep))
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''
+            Staging segments:
+                Reading test_score/segments/metadata.json ... OK!
+                Writing test_score/segments/metadata.json
+            Staged:
+                segment_c
+                segment_b
+                segment_a
+            '''.replace('/', os.path.sep),
+        )
         call_subprocess_mock.assert_called_with(
             '{} segments.txt'.format(abjad_configuration.get_text_editor()),
         )

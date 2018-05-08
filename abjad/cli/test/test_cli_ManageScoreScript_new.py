@@ -62,13 +62,16 @@ class Test(ScorePackageScriptTestCase):
         shutil.rmtree(str(self.score_path))
         for path in self.test_directory_path.iterdir():
             assert path in self.directory_items
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''
             Creating score package 'Test Score'...
                 Writing test_score/metadata.json
                 Created test_score/
             Creating score package 'Test Score'...
                 Directory test_score already exists.
-        '''.replace('/', os.path.sep))
+            '''.replace('/', os.path.sep),
+        )
 
     def test_force_replace(self):
         string_io = StringIO()
@@ -81,14 +84,17 @@ class Test(ScorePackageScriptTestCase):
         shutil.rmtree(str(self.score_path))
         for path in self.test_directory_path.iterdir():
             assert path in self.directory_items
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''
             Creating score package 'Test Score'...
                 Writing test_score/metadata.json
                 Created test_score/
             Creating score package 'Test Score'...
                 Writing test_score/metadata.json
                 Created test_score/
-        '''.replace('/', os.path.sep))
+            '''.replace('/', os.path.sep),
+        )
 
     def test_success(self):
         string_io = StringIO()
@@ -113,8 +119,11 @@ class Test(ScorePackageScriptTestCase):
         shutil.rmtree(str(self.score_path))
         for path in self.test_directory_path.iterdir():
             assert path in self.directory_items
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''
             Creating score package 'Test Score'...
                 Writing test_score/metadata.json
                 Created test_score/
-        '''.replace('/', os.path.sep))
+            '''.replace('/', os.path.sep),
+        )

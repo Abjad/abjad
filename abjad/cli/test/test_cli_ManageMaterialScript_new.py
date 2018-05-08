@@ -28,10 +28,13 @@ class Test(ScorePackageScriptTestCase):
         with abjad.RedirectedStreams(stdout=string_io):
             pytest.helpers.create_material(
                 self.test_directory_path, 'test_material', expect_error=True)
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
+        pytest.helpers.compare_strings(
+            expected=r'''
             Creating material subpackage 'test_material' ...
                 Path exists: test_score/materials/test_material
-        '''.replace('/', os.path.sep))
+            '''.replace('/', os.path.sep),
+            actual=string_io.getvalue(),
+        )
 
     def test_force_replace(self):
         string_io = StringIO()
@@ -41,11 +44,14 @@ class Test(ScorePackageScriptTestCase):
         with abjad.RedirectedStreams(stdout=string_io):
             pytest.helpers.create_material(
                 self.test_directory_path, 'test_material', force=True)
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
+        pytest.helpers.compare_strings(
+            r'''
             Creating material subpackage 'test_material' ...
                 Reading test_score/metadata.json ... OK!
                 Created test_score/materials/test_material/
-        '''.replace('/', os.path.sep))
+            '''.replace('/', os.path.sep),
+            actual=string_io.getvalue(),
+        )
 
     def test_internal_path(self):
         string_io = StringIO()
@@ -55,16 +61,19 @@ class Test(ScorePackageScriptTestCase):
         internal_path = self.score_path.joinpath('test_score', 'builds')
         assert internal_path.exists()
         with abjad.RedirectedStreams(stdout=string_io):
-            with uqbar.io.DirectoryChange(str(internal_path)):
+            with uqbar.io.DirectoryChange(internal_path):
                 try:
                     script(command)
                 except SystemExit:
                     raise RuntimeError('SystemExit')
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
+        pytest.helpers.compare_strings(
+            expected=r'''
             Creating material subpackage 'test_material' ...
                 Reading test_score/metadata.json ... OK!
                 Created test_score/materials/test_material/
-        '''.replace('/', os.path.sep))
+            '''.replace('/', os.path.sep),
+            actual=string_io.getvalue(),
+        )
 
     def test_success(self):
         string_io = StringIO()
@@ -77,10 +86,13 @@ class Test(ScorePackageScriptTestCase):
                     script(command)
                 except SystemExit:
                     raise RuntimeError('SystemExit')
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''
             Creating material subpackage 'test_material' ...
                 Reading test_score/metadata.json ... OK!
                 Created test_score/materials/test_material/
-        '''.replace('/', os.path.sep))
+            '''.replace('/', os.path.sep),
+        )
         assert self.materials_path.joinpath('test_material').exists()
         self.compare_path_contents(self.materials_path, self.expected_files)

@@ -22,14 +22,17 @@ class Test(ScorePackageScriptTestCase):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 2
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
-        Available materials:
-            Markup:
-                bar [Markup]
-                baz [Markup]
-                foo [Markup]
-                quux [Markup]
-        ''')
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''
+            Available materials:
+                Markup:
+                    bar [Markup]
+                    baz [Markup]
+                    foo [Markup]
+                    quux [Markup]
+            ''',
+        )
 
     def test_list_materials_no_materials(self):
         string_io = StringIO()
@@ -41,7 +44,10 @@ class Test(ScorePackageScriptTestCase):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 2
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
-        Available materials:
-            No materials available.
-        ''')
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''
+            Available materials:
+                No materials available.
+            ''',
+        )

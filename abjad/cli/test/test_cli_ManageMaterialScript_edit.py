@@ -25,9 +25,10 @@ class Test(ScorePackageScriptTestCase):
                     script(command)
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
-        pytest.helpers.compare_strings(string_io.getvalue(), r'''
-        Edit candidates: 'test_material' ...
-        ''')
+        pytest.helpers.compare_strings(
+            actual=string_io.getvalue(),
+            expected=r'''Edit candidates: 'test_material' ...''',
+        )
         definition_path = material_path.joinpath('definition.py')
         command = '{} {!s}'.format(
             abjad_configuration.get_text_editor(),

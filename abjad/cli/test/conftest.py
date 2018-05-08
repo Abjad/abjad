@@ -56,7 +56,7 @@ def paths(tmpdir):
 
 
 @pytest.helpers.register
-def compare_strings(expected, actual):
+def compare_strings(*, expected='', actual=''):
     actual = uqbar.strings.normalize(ansi_escape.sub('', actual))
     expected = uqbar.strings.normalize(ansi_escape.sub('', expected))
     example = types.SimpleNamespace()
