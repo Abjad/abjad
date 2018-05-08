@@ -6,7 +6,6 @@ import pytest
 import shutil
 from base import ScorePackageScriptTestCase
 from io import StringIO
-from uqbar.strings import normalize
 
 
 class Test(ScorePackageScriptTestCase):

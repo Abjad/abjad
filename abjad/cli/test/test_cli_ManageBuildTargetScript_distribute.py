@@ -6,7 +6,6 @@ import uqbar.io
 from base import ScorePackageScriptTestCase
 from io import StringIO
 from unittest import mock
-from uqbar.strings import normalize
 
 
 class Test(ScorePackageScriptTestCase):

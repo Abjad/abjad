@@ -5,7 +5,6 @@ from abjad import abjad_configuration
 from base import ScorePackageScriptTestCase
 from io import StringIO
 from unittest import mock
-from uqbar.strings import normalize
 
 
 class Test(ScorePackageScriptTestCase):
