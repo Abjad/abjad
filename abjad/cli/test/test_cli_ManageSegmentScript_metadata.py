@@ -9,7 +9,7 @@ class Test(ScorePackageScriptTestCase):
     @mock.patch('abjad.IOManager.open_file')
     def test_1(self, open_file_mock):
         pytest.helpers.create_score(self.test_directory_path)
-        self.install_fancy_segment_maker()
+        pytest.helpers.install_fancy_segment_maker(self.test_directory_path)
         path_1 = pytest.helpers.create_segment(
             self.test_directory_path, 'segment_one')
         path_2 = pytest.helpers.create_segment(
@@ -45,7 +45,7 @@ class Test(ScorePackageScriptTestCase):
     @mock.patch('abjad.IOManager.open_file')
     def test_2(self, open_file_mock):
         pytest.helpers.create_score(self.test_directory_path)
-        self.install_fancy_segment_maker()
+        pytest.helpers.install_fancy_segment_maker(self.test_directory_path)
         segment_path = pytest.helpers.create_segment(
             self.test_directory_path, 'test_segment')
         pytest.helpers.illustrate_segment(self.test_directory_path, 'test_segment')

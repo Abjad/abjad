@@ -1,4 +1,3 @@
-import abjad
 import pathlib
 import pytest
 import re
@@ -45,50 +44,6 @@ class ScorePackageScriptTestCase(unittest.TestCase):
                 continue
             if path.startswith('test_score'):
                 del(sys.modules[path])
-
-    # ### UTILITY METHODS ### #
-
-    def collect_segments(test_directory_path):
-        script = abjad.cli.ManageSegmentScript()
-        command = ['--collect']
-        score_path = test_directory_path / package_name
-        with uqbar.io.DirectoryChange(score_path):
-            script(command)
-
-    def illustrate_material(test_directory_path, material_name):
-        script = abjad.cli.ManageMaterialScript()
-        command = ['--illustrate', material_name]
-        score_path = test_directory_path / package_name
-        with uqbar.io.DirectoryChange(score_path):
-            try:
-                script(command)
-            except SystemExit as e:
-                raise RuntimeError('SystemExit: {}'.format(e.code))
-
-    def illustrate_segment(test_directory_path, segment_name):
-        script = abjad.cli.ManageSegmentScript()
-        command = ['--illustrate', segment_name]
-        score_path = test_directory_path / package_name
-        with uqbar.io.DirectoryChange(score_path):
-            try:
-                script(command)
-            except SystemExit as e:
-                raise RuntimeError('SystemExit: {}'.format(e.code))
-
-    def illustrate_segments(test_directory_path):
-        script = abjad.cli.ManageSegmentScript()
-        command = ['--illustrate', '*']
-        score_path = test_directory_path / package_name
-        with uqbar.io.DirectoryChange(score_path):
-            script(command)
-
-    def install_fancy_segment_maker(self):
-        segment_maker_path = self.tools_path.joinpath('SegmentMaker.py')
-        with segment_maker_path.open('w') as file_pointer:
-            file_pointer.write(pytest.helpers.get_fancy_segment_maker_code())
-        parts_path = self.build_path.joinpath('parts.ily')
-        with parts_path.open('w') as file_pointer:
-            file_pointer.write(pytest.helpers.get_fancy_parts_code())
 
     # ### PUBLIC METHODS ### #
 

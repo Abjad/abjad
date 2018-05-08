@@ -27,7 +27,7 @@ class Test(ScorePackageScriptTestCase):
             ]
         string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
-        self.install_fancy_segment_maker()
+        pytest.helpers.install_fancy_segment_maker(self.test_directory_path)
         pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         pytest.helpers.illustrate_segments(self.test_directory_path)
         pytest.helpers.collect_segments(self.test_directory_path)
