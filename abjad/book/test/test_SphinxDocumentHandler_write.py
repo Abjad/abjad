@@ -2,7 +2,6 @@ import abjad
 import docutils
 import os
 import posixpath
-import platform
 import shutil
 import unittest
 import abjad.book
