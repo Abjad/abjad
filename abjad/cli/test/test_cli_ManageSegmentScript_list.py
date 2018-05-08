@@ -1,4 +1,5 @@
 import abjad
+import pytest
 import os
 from base import ScorePackageScriptTestCase
 
@@ -14,9 +15,9 @@ class Test(ScorePackageScriptTestCase):
         command = ['--list']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
-                with self.assertRaises(SystemExit) as context_manager:
+                with pytest.raises(SystemExit) as exception_info:
                     script(command)
-                assert context_manager.exception.code == 2
+                assert exception_info.value.code == 2
         self.compare_captured_output(r'''
             Available segments:
                 Reading test_score/segments/metadata.json ... OK!
@@ -31,9 +32,9 @@ class Test(ScorePackageScriptTestCase):
         command = ['--list']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
-                with self.assertRaises(SystemExit) as context_manager:
+                with pytest.raises(SystemExit) as exception_info:
                     script(command)
-                assert context_manager.exception.code == 2
+                assert exception_info.value.code == 2
         self.compare_captured_output(r'''
             Available segments:
                 Reading test_score/segments/metadata.json ... JSON does not exist.
@@ -59,9 +60,9 @@ class Test(ScorePackageScriptTestCase):
         command = ['--list']
         with abjad.RedirectedStreams(stdout=self.string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
-                with self.assertRaises(SystemExit) as context_manager:
+                with pytest.raises(SystemExit) as exception_info:
                     script(command)
-                assert context_manager.exception.code == 2
+                assert exception_info.value.code == 2
         self.compare_captured_output(r'''
             Available segments:
                 Reading test_score/segments/metadata.json ... OK!
