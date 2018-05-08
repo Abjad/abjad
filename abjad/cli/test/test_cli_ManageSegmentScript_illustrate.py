@@ -88,11 +88,11 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
         with abjad.RedirectedStreams(stdout=string_io):
-            with uqbar.io.DirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(self.score_path):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 1
-        assert normalize(string_io.getvalue()) == normalize(r'''
+        pytest.helpers.compare_strings(string_io.getvalue(), r'''
             Illustration candidates: 'test_segment' ...
                 Reading test_score/segments/metadata.json ... OK!
             Illustrating test_score/segments/test_segment/
@@ -142,11 +142,11 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
         with abjad.RedirectedStreams(stdout=string_io):
-            with uqbar.io.DirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(self.score_path):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 1
-        assert normalize(string_io.getvalue()) == normalize(r'''
+        pytest.helpers.compare_strings(string_io.getvalue(), r'''
             Illustration candidates: 'test_segment' ...
                 Reading test_score/segments/metadata.json ... OK!
             Illustrating test_score/segments/test_segment/
@@ -182,11 +182,11 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
         with abjad.RedirectedStreams(stdout=string_io):
-            with uqbar.io.DirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(self.score_path):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 1
-        assert normalize(string_io.getvalue()) == normalize(r'''
+        pytest.helpers.compare_strings(string_io.getvalue(), r'''
             Illustration candidates: 'test_segment' ...
                 Reading test_score/segments/metadata.json ... OK!
             Illustrating test_score/segments/test_segment/
@@ -208,11 +208,11 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
         with abjad.RedirectedStreams(stdout=string_io):
-            with uqbar.io.DirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(self.score_path):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 1
-        assert normalize(string_io.getvalue()) == normalize(r'''
+        pytest.helpers.compare_strings(string_io.getvalue(), r'''
             Illustration candidates: 'test_segment' ...
                 Reading test_score/segments/metadata.json ... OK!
             Illustrating test_score/segments/test_segment/
@@ -231,12 +231,12 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', '*']
         with abjad.RedirectedStreams(stdout=string_io):
-            with uqbar.io.DirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     script(command)
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
-        assert normalize(string_io.getvalue()) == normalize(r'''
+        pytest.helpers.compare_strings(string_io.getvalue(), r'''
             Illustration candidates: '*' ...
                 Reading test_score/segments/metadata.json ... OK!
             Illustrating test_score/segments/segment_one/
@@ -295,12 +295,12 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'segment_t*']
         with abjad.RedirectedStreams(stdout=string_io):
-            with uqbar.io.DirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     script(command)
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
-        assert normalize(string_io.getvalue()) == normalize(r'''
+        pytest.helpers.compare_strings(string_io.getvalue(), r'''
             Illustration candidates: 'segment_t*' ...
                 Reading test_score/segments/metadata.json ... OK!
             Illustrating test_score/segments/segment_two/
@@ -347,12 +347,12 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
         with abjad.RedirectedStreams(stdout=string_io):
-            with uqbar.io.DirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     script(command)
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
-        assert normalize(string_io.getvalue()) == normalize(r'''
+        pytest.helpers.compare_strings(string_io.getvalue(), r'''
             Illustration candidates: 'test_segment' ...
                 Reading test_score/segments/metadata.json ... OK!
             Illustrating test_score/segments/test_segment/

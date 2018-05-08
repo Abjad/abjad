@@ -34,19 +34,19 @@ class Test(ScorePackageScriptTestCase):
         self.create_build_target()
         script = abjad.cli.ManageBuildTargetScript()
         command = ['--render', 'letter-portrait']
-        with uqbar.io.DirectoryChange(str(self.score_path)):
+        with uqbar.io.DirectoryChange(self.score_path):
             try:
                 script(command)
             except SystemExit:
                 raise RuntimeError('SystemExit')
         command = ['--distribute', 'letter-portrait']
         with abjad.RedirectedStreams(stdout=string_io):
-            with uqbar.io.DirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     script(command)
                 except SystemExit:
                     raise RuntimeError('SystemExit')
-        assert normalize(string_io.getvalue()) == normalize(r'''
+        pytest.helpers.compare_strings(string_io.getvalue(), r'''
         Distributing 'letter-portrait'
             score.pdf --> letter-portrait-score.pdf
             parts-cello.pdf --> letter-portrait-parts-cello.pdf

@@ -28,7 +28,7 @@ class Test(ScorePackageScriptTestCase):
         with abjad.RedirectedStreams(stdout=string_io):
             pytest.helpers.create_material(
                 self.test_directory_path, 'test_material', expect_error=True)
-        assert normalize(string_io.getvalue()) == normalize(r'''
+        pytest.helpers.compare_strings(string_io.getvalue(), r'''
             Creating material subpackage 'test_material' ...
                 Path exists: test_score/materials/test_material
         '''.replace('/', os.path.sep))
@@ -41,7 +41,7 @@ class Test(ScorePackageScriptTestCase):
         with abjad.RedirectedStreams(stdout=string_io):
             pytest.helpers.create_material(
                 self.test_directory_path, 'test_material', force=True)
-        assert normalize(string_io.getvalue()) == normalize(r'''
+        pytest.helpers.compare_strings(string_io.getvalue(), r'''
             Creating material subpackage 'test_material' ...
                 Reading test_score/metadata.json ... OK!
                 Created test_score/materials/test_material/
@@ -60,7 +60,7 @@ class Test(ScorePackageScriptTestCase):
                     script(command)
                 except SystemExit:
                     raise RuntimeError('SystemExit')
-        assert normalize(string_io.getvalue()) == normalize(r'''
+        pytest.helpers.compare_strings(string_io.getvalue(), r'''
             Creating material subpackage 'test_material' ...
                 Reading test_score/metadata.json ... OK!
                 Created test_score/materials/test_material/
@@ -72,12 +72,12 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageMaterialScript()
         command = ['--new', 'test_material']
         with abjad.RedirectedStreams(stdout=string_io):
-            with uqbar.io.DirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     script(command)
                 except SystemExit:
                     raise RuntimeError('SystemExit')
-        assert normalize(string_io.getvalue()) == normalize(r'''
+        pytest.helpers.compare_strings(string_io.getvalue(), r'''
             Creating material subpackage 'test_material' ...
                 Reading test_score/metadata.json ... OK!
                 Created test_score/materials/test_material/

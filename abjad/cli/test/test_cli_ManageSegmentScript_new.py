@@ -28,7 +28,7 @@ class Test(ScorePackageScriptTestCase):
         with abjad.RedirectedStreams(stdout=string_io):
             pytest.helpers.create_segment(
                 self.test_directory_path, 'test_segment', expect_error=True)
-        assert normalize(string_io.getvalue()) == normalize(r'''
+        pytest.helpers.compare_strings(string_io.getvalue(), r'''
             Creating segment subpackage 'test_segment' ...
                 Path exists: test_score/segments/test_segment
         '''.replace('/', os.path.sep))
@@ -40,7 +40,7 @@ class Test(ScorePackageScriptTestCase):
         with abjad.RedirectedStreams(stdout=string_io):
             pytest.helpers.create_segment(
                 self.test_directory_path, 'test_segment', force=True)
-        assert normalize(string_io.getvalue()) == normalize(r'''
+        pytest.helpers.compare_strings(string_io.getvalue(), r'''
             Creating segment subpackage 'test_segment' ...
                 Reading test_score/metadata.json ... OK!
                 Reading test_score/segments/metadata.json ... OK!
@@ -60,7 +60,7 @@ class Test(ScorePackageScriptTestCase):
                     script(command)
                 except SystemExit:
                     raise RuntimeError('SystemExit')
-        assert normalize(string_io.getvalue()) == normalize(r'''
+        pytest.helpers.compare_strings(string_io.getvalue(), r'''
             Creating segment subpackage 'test_segment' ...
                 Reading test_score/metadata.json ... OK!
                 Reading test_score/segments/metadata.json ... JSON does not exist.
@@ -82,12 +82,12 @@ class Test(ScorePackageScriptTestCase):
             raise RuntimeError('SystemExit')
         command = ['--new', 'test_segment']
         with abjad.RedirectedStreams(stdout=string_io):
-            with uqbar.io.DirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     script(command)
                 except SystemExit:
                     raise RuntimeError('SystemExit')
-        assert normalize(string_io.getvalue()) == normalize(r'''
+        pytest.helpers.compare_strings(string_io.getvalue(), r'''
             Creating segment subpackage 'test_segment' ...
                 Reading test_score/metadata.json ... OK!
                 Reading test_score/segments/metadata.json ... JSON does not exist.

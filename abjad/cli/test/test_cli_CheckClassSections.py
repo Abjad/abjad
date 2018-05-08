@@ -1,6 +1,4 @@
 import abjad
-import argparse
-import doctest
 import pathlib
 import pytest
 import re
@@ -21,25 +19,25 @@ class TestCheckClassSections(unittest.TestCase):
     # Specific test case file contents
     test_bad_header_order_module_path = subdirectory.joinpath(
         'BadHeaderOrder.py'
-        )
+    )
     test_property_in_methods_module_path = subdirectory.joinpath(
         'PropInMethods.py'
-        )
+    )
     test_method_in_properties_module_path = subdirectory.joinpath(
         'MethodInProps.py'
-        )
+    )
     test_multiple_errors_in_file_module_path = subdirectory.joinpath(
         'MultipleErrors.py'
-        )
+    )
     test_multiple_classes_in_one_module_path = subdirectory.joinpath(
         'MultipleClasses.py'
-        )
+    )
     test_passing_module_path = subdirectory.joinpath(
         'GoodClass.py'
-        )
+    )
     test_non_property_decorators_module_path = subdirectory.joinpath(
         'NonPropertyDecorators.py'
-        )
+    )
     test_bad_header_order_module_contents = normalize(r'''
     class BadHeaders:
         ### CLASS VARIABLES ###
@@ -178,20 +176,6 @@ class TestCheckClassSections(unittest.TestCase):
 
     # ### TEST HELPER METHODS ### #
 
-    def compare_strings(self, expected, actual):
-        example = argparse.Namespace()
-        example.want = expected
-        output_checker = doctest.OutputChecker()
-        flags = (
-            doctest.NORMALIZE_WHITESPACE |
-            doctest.ELLIPSIS |
-            doctest.REPORT_NDIFF
-            )
-        success = output_checker.check_output(expected, actual, flags)
-        if not success:
-            diff = output_checker.output_difference(example, actual, flags)
-            raise Exception(diff)
-
     def tearDown(self):
         shutil.rmtree(str(self.subdirectory))
 
@@ -261,19 +245,19 @@ class TestCheckClassSections(unittest.TestCase):
             1 total files checked.
             0 passed.
             1 failed.
-            ''').format(
-                self.temp_test_dir_name,
-                self.test_bad_header_order_module_path,
-             )
+        ''').format(
+            self.temp_test_dir_name,
+            self.test_bad_header_order_module_path,
+        )
         test_modules = [
             (self.test_bad_header_order_module_path,
              self.test_bad_header_order_module_contents),
-             ]
+        ]
         # Run test
         script_output, exit_code = self.run_script_on_modules(
             test_modules, self.subdirectory
-            )
-        self.compare_strings(expected, script_output)
+        )
+        pytest.helpers.compare_strings(expected, script_output)
         self.assertEqual(exit_code, 1)
 
     def test_method_in_properties(self):
@@ -285,19 +269,19 @@ class TestCheckClassSections(unittest.TestCase):
             1 total files checked.
             0 passed.
             1 failed.
-            ''').format(
-                self.temp_test_dir_name,
-                self.test_method_in_properties_module_path,
-             )
+        ''').format(
+            self.temp_test_dir_name,
+            self.test_method_in_properties_module_path,
+        )
         test_modules = [
             (self.test_method_in_properties_module_path,
              self.test_method_in_properties_module_contents),
-            ]
+        ]
         # Run test
         script_output, exit_code = self.run_script_on_modules(
             test_modules, self.subdirectory
-            )
-        self.compare_strings(expected, script_output)
+        )
+        pytest.helpers.compare_strings(expected, script_output)
         self.assertEqual(exit_code, 1)
 
     def test_property_in_methods(self):
@@ -309,19 +293,19 @@ class TestCheckClassSections(unittest.TestCase):
             1 total files checked.
             0 passed.
             1 failed.
-            ''').format(
-                self.temp_test_dir_name,
-                self.test_property_in_methods_module_path,
-            )
+        ''').format(
+            self.temp_test_dir_name,
+            self.test_property_in_methods_module_path,
+        )
         test_modules = [
             (self.test_property_in_methods_module_path,
              self.test_property_in_methods_module_contents),
-             ]
+        ]
         # Run test
         script_output, exit_code = self.run_script_on_modules(
             test_modules, self.subdirectory
-            )
-        self.compare_strings(expected, script_output)
+        )
+        pytest.helpers.compare_strings(expected, script_output)
         self.assertEqual(exit_code, 1)
 
     def test_multiple_errors_in_file(self):
@@ -334,19 +318,19 @@ class TestCheckClassSections(unittest.TestCase):
             1 total files checked.
             0 passed.
             1 failed.
-            ''').format(
-                self.temp_test_dir_name,
-                self.test_multiple_errors_in_file_module_path,
-            )
+        ''').format(
+            self.temp_test_dir_name,
+            self.test_multiple_errors_in_file_module_path,
+        )
         test_modules = [
             (self.test_multiple_errors_in_file_module_path,
              self.test_multiple_errors_in_file_module_contents),
-             ]
+        ]
         # Run test
         script_output, exit_code = self.run_script_on_modules(
             test_modules, self.subdirectory
-            )
-        self.compare_strings(expected, script_output)
+        )
+        pytest.helpers.compare_strings(expected, script_output)
         self.assertEqual(exit_code, 1)
 
     def test_non_property_decorators_in_methods_passes(self):
@@ -356,16 +340,16 @@ class TestCheckClassSections(unittest.TestCase):
             1 passed.
             0 failed.
             '''.format(self.temp_test_dir_name)
-            )
+        )
         test_modules = [
             (self.test_non_property_decorators_module_path,
              self.test_non_property_decorators_module_contents),
-             ]
+        ]
         # Run test
         script_output, exit_code = self.run_script_on_modules(
             test_modules, self.subdirectory
-            )
-        self.compare_strings(expected, script_output)
+        )
+        pytest.helpers.compare_strings(expected, script_output)
         self.assertEqual(exit_code, 0)
 
     def test_multiple_classes_in_one_module(self):
@@ -374,16 +358,16 @@ class TestCheckClassSections(unittest.TestCase):
             1 total files checked.
             1 passed.
             0 failed.
-            ''').format(self.temp_test_dir_name)
+        ''').format(self.temp_test_dir_name)
         test_modules = [
             (self.test_multiple_classes_in_one_module_path,
              self.test_multiple_classes_in_one_module_contents)
-            ]
+        ]
         # Run test
         script_output, exit_code = self.run_script_on_modules(
             test_modules, self.subdirectory
-            )
-        self.compare_strings(expected, script_output)
+        )
+        pytest.helpers.compare_strings(expected, script_output)
         self.assertEqual(exit_code, 0)
 
     def test_passing_case(self):
@@ -392,16 +376,16 @@ class TestCheckClassSections(unittest.TestCase):
             1 total files checked.
             1 passed.
             0 failed.
-            ''').format(self.temp_test_dir_name)
+        ''').format(self.temp_test_dir_name)
         test_modules = [
             (self.test_passing_module_path,
              self.test_passing_module_contents)
-            ]
+        ]
         # Run test
         script_output, exit_code = self.run_script_on_modules(
             test_modules, self.subdirectory
-            )
-        self.compare_strings(expected, script_output)
+        )
+        pytest.helpers.compare_strings(expected, script_output)
         self.assertEqual(exit_code, 0)
 
     def test_passing_case_without_passing_path(self):
@@ -410,17 +394,17 @@ class TestCheckClassSections(unittest.TestCase):
             1 total files checked.
             1 passed.
             0 failed.
-            ''').format(self.temp_test_dir_name)
+        ''').format(self.temp_test_dir_name)
         test_modules = [
             (self.test_passing_module_path,
              self.test_passing_module_contents)
-            ]
+        ]
         # Run test
         script_output, exit_code = self.run_script_on_modules(
             test_modules,
             working_directory=self.subdirectory
-            )
-        self.compare_strings(expected, script_output)
+        )
+        pytest.helpers.compare_strings(expected, script_output)
         self.assertEqual(exit_code, 0)
 
     def test_passing_file_instead_of_dir(self):
@@ -429,15 +413,15 @@ class TestCheckClassSections(unittest.TestCase):
             1 total files checked.
             1 passed.
             0 failed.
-            ''').format(self.test_passing_module_path)
+        ''').format(self.test_passing_module_path)
         test_modules = [
             (self.test_passing_module_path,
              self.test_passing_module_contents)
-            ]
+        ]
         # Run test
         script_output, exit_code = self.run_script_on_modules(
             test_modules,
             script_args=self.test_passing_module_path
-            )
-        self.compare_strings(expected, script_output)
+        )
+        pytest.helpers.compare_strings(expected, script_output)
         self.assertEqual(exit_code, 0)

@@ -1,6 +1,8 @@
 import abjad.cli
+import doctest
 import pathlib
 import pytest
+import re
 import shutil
 import sys
 import types
@@ -13,6 +15,7 @@ pytest_plugins = ['helpers_namespace']
 
 # ### DATA ### #
 
+ansi_escape = re.compile(r'\x1b[^m]*m')
 package_name = 'test_score'
 
 
@@ -36,7 +39,7 @@ def paths(tmpdir):
         materials_path=materials_path,
         segments_path=segments_path,
         tools_path=tools_path,
-        )
+    )
     if score_path.exists():
         shutil.rmtree(score_path)
     sys.path.insert(0, str(score_path))
@@ -50,6 +53,24 @@ def paths(tmpdir):
 
 
 # ### HELPERS ### #
+
+
+@pytest.helpers.register
+def compare_strings(expected, actual):
+    actual = uqbar.strings.normalize(ansi_escape.sub('', actual))
+    expected = uqbar.strings.normalize(ansi_escape.sub('', expected))
+    example = types.SimpleNamespace()
+    example.want = expected
+    output_checker = doctest.OutputChecker()
+    flags = (
+        doctest.NORMALIZE_WHITESPACE |
+        doctest.ELLIPSIS |
+        doctest.REPORT_NDIFF
+    )
+    success = output_checker.check_output(expected, actual, flags)
+    if not success:
+        diff = output_checker.output_difference(example, actual, flags)
+        raise Exception(diff)
 
 
 @pytest.helpers.register
@@ -89,7 +110,7 @@ def create_score(test_directory_path, force=False, expect_error=False):
         '-g', 'josiah-wolf-oberholtzer',
         '-l', 'consort',
         '-w', 'www.josiahwolfoberholtzer.com',
-        ]
+    ]
     if force:
         command.insert(0, '-f')
     with uqbar.io.DirectoryChange(test_directory_path):

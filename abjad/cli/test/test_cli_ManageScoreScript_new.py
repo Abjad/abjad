@@ -62,7 +62,7 @@ class Test(ScorePackageScriptTestCase):
         shutil.rmtree(str(self.score_path))
         for path in self.test_directory_path.iterdir():
             assert path in self.directory_items
-        assert normalize(string_io.getvalue()) == normalize(r'''
+        pytest.helpers.compare_strings(string_io.getvalue(), r'''
             Creating score package 'Test Score'...
                 Writing test_score/metadata.json
                 Created test_score/
@@ -81,7 +81,7 @@ class Test(ScorePackageScriptTestCase):
         shutil.rmtree(str(self.score_path))
         for path in self.test_directory_path.iterdir():
             assert path in self.directory_items
-        assert normalize(string_io.getvalue()) == normalize(r'''
+        pytest.helpers.compare_strings(string_io.getvalue(), r'''
             Creating score package 'Test Score'...
                 Writing test_score/metadata.json
                 Created test_score/
@@ -113,7 +113,7 @@ class Test(ScorePackageScriptTestCase):
         shutil.rmtree(str(self.score_path))
         for path in self.test_directory_path.iterdir():
             assert path in self.directory_items
-        assert normalize(string_io.getvalue()) == normalize(r'''
+        pytest.helpers.compare_strings(string_io.getvalue(), r'''
             Creating score package 'Test Score'...
                 Writing test_score/metadata.json
                 Created test_score/

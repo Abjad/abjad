@@ -38,12 +38,12 @@ class Test(ScorePackageScriptTestCase):
         self.illustrate_segments()
         collect_script = abjad.cli.ManageSegmentScript()
         with abjad.RedirectedStreams(stdout=string_io):
-            with uqbar.io.DirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     collect_script(['--collect'])
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
-        assert normalize(string_io.getvalue()) == normalize(r'''
+        pytest.helpers.compare_strings(string_io.getvalue(), r'''
         Collecting segments:
             segments/segment_one/illustration.ly --> builds/segments/segment-one.ily
             segments/segment_three/illustration.ly --> builds/segments/segment-three.ily

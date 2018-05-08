@@ -34,7 +34,7 @@ class Test(ScorePackageScriptTestCase):
         pytest.helpers.create_score(self.test_directory_path)
         script = abjad.cli.ManageBuildTargetScript()
         command = ['--new']
-        with uqbar.io.DirectoryChange(str(self.score_path)):
+        with uqbar.io.DirectoryChange(self.score_path):
             try:
                 script(command)
             except SystemExit:
@@ -43,7 +43,7 @@ class Test(ScorePackageScriptTestCase):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 1
-        assert normalize(string_io.getvalue()) == normalize(r'''
+        pytest.helpers.compare_strings(string_io.getvalue(), r'''
         Creating build target 'letter-portrait' (8.5in x 11.0in)
             Path exists: test_score/builds/letter-portrait
         '''.replace('/', os.path.sep))
@@ -58,12 +58,12 @@ class Test(ScorePackageScriptTestCase):
             '--orientation', 'landscape',
         ]
         with abjad.RedirectedStreams(stdout=string_io):
-            with uqbar.io.DirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     script(command)
                 except SystemExit:
                     raise RuntimeError('SystemExit')
-        assert normalize(string_io.getvalue()) == normalize(r'''
+        pytest.helpers.compare_strings(string_io.getvalue(), r'''
         Creating build target 'a3-landscape' (297mm x 420mm)
             Reading test_score/metadata.json ... OK!
             Created test_score/builds/a3-landscape
@@ -88,7 +88,7 @@ class Test(ScorePackageScriptTestCase):
         pytest.helpers.create_score(self.test_directory_path)
         script = abjad.cli.ManageBuildTargetScript()
         command = ['-f', '--new']
-        with uqbar.io.DirectoryChange(str(self.score_path)):
+        with uqbar.io.DirectoryChange(self.score_path):
             try:
                 script(command)
             except SystemExit:
@@ -98,7 +98,7 @@ class Test(ScorePackageScriptTestCase):
                     script(command)
                 except SystemExit:
                     raise RuntimeError('SystemExit')
-        assert normalize(string_io.getvalue()) == normalize(r'''
+        pytest.helpers.compare_strings(string_io.getvalue(), r'''
         Creating build target 'letter-portrait' (8.5in x 11.0in)
             Reading test_score/metadata.json ... OK!
             Created test_score/builds/letter-portrait
@@ -110,12 +110,12 @@ class Test(ScorePackageScriptTestCase):
         script = abjad.cli.ManageBuildTargetScript()
         command = ['--new']
         with abjad.RedirectedStreams(stdout=string_io):
-            with uqbar.io.DirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     script(command)
                 except SystemExit:
                     raise RuntimeError('SystemExit')
-        assert normalize(string_io.getvalue()) == normalize(r'''
+        pytest.helpers.compare_strings(string_io.getvalue(), r'''
         Creating build target 'letter-portrait' (8.5in x 11.0in)
             Reading test_score/metadata.json ... OK!
             Created test_score/builds/letter-portrait
@@ -298,7 +298,7 @@ class Test(ScorePackageScriptTestCase):
                     script(command)
                 except SystemExit:
                     raise RuntimeError('SystemExit')
-        assert normalize(string_io.getvalue()) == normalize(r'''
+        pytest.helpers.compare_strings(string_io.getvalue(), r'''
         Creating build target 'letter-portrait' (8.5in x 11.0in)
             Reading test_score/metadata.json ... OK!
             Created test_score/builds/letter-portrait
@@ -315,12 +315,12 @@ class Test(ScorePackageScriptTestCase):
             '--orientation', 'landscape',
         ]
         with abjad.RedirectedStreams(stdout=string_io):
-            with uqbar.io.DirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     script(command)
                 except SystemExit:
                     raise RuntimeError('SystemExit')
-        assert normalize(string_io.getvalue()) == normalize(r'''
+        pytest.helpers.compare_strings(string_io.getvalue(), r'''
         Creating build target 'world-premiere-version' (297mm x 420mm)
             Reading test_score/metadata.json ... OK!
             Created test_score/builds/world-premiere-version

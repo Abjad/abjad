@@ -115,13 +115,13 @@ class ScorePackageScriptTestCase(unittest.TestCase):
         actual = self.ansi_escape.sub('', actual)
         actual = uqbar.strings.normalize(actual)
         expected = uqbar.strings.normalize(expected)
-        self.compare_strings(expected, actual)
+        pytest.helpers.compare_strings(expected, actual)
 
     def compare_file_contents(self, path, expected_contents):
         expected_contents = uqbar.strings.normalize(expected_contents)
         with open(str(path), 'r') as file_pointer:
             contents = uqbar.strings.normalize(file_pointer.read())
-        self.compare_strings(expected_contents, contents)
+        pytest.helpers.compare_strings(expected_contents, contents)
 
     def compare_lilypond_contents(self, ly_path, expected_contents):
         expected_contents = uqbar.strings.normalize(expected_contents)
@@ -134,7 +134,7 @@ class ScorePackageScriptTestCase(unittest.TestCase):
             contents.pop(0)
             contents = '\n'.join(contents)
         contents = uqbar.strings.normalize(contents)
-        self.compare_strings(expected_contents, contents)
+        pytest.helpers.compare_strings(expected_contents, contents)
 
     def compare_path_contents(self, path_to_search, expected_files):
         actual_files = sorted(
@@ -143,26 +143,10 @@ class ScorePackageScriptTestCase(unittest.TestCase):
             if '__pycache__' not in path.parts and
             path.suffix != '.pyc'
             )
-        self.compare_strings(
+        pytest.helpers.compare_strings(
             '\n'.join(str(_) for _ in actual_files),
             '\n'.join(str(_) for _ in expected_files),
             )
-
-    def compare_strings(self, expected, actual):
-        actual = uqbar.strings.normalize(self.ansi_escape.sub('', actual))
-        expected = uqbar.strings.normalize(self.ansi_escape.sub('', expected))
-        example = types.SimpleNamespace()
-        example.want = expected
-        output_checker = doctest.OutputChecker()
-        flags = (
-            doctest.NORMALIZE_WHITESPACE |
-            doctest.ELLIPSIS |
-            doctest.REPORT_NDIFF
-            )
-        success = output_checker.check_output(expected, actual, flags)
-        if not success:
-            diff = output_checker.output_difference(example, actual, flags)
-            raise Exception(diff)
 
     # ### PUBLIC PROPERTIES ### #
 

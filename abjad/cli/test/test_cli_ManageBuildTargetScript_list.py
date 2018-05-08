@@ -13,31 +13,31 @@ class Test(ScorePackageScriptTestCase):
         pytest.helpers.create_score(self.test_directory_path)
         script = abjad.cli.ManageBuildTargetScript()
         command = ['--new', 'big-version']
-        with uqbar.io.DirectoryChange(str(self.score_path)):
+        with uqbar.io.DirectoryChange(self.score_path):
             try:
                 script(command)
             except SystemExit:
                 raise RuntimeError('SystemExit')
         command = ['--new', 'medium-version']
-        with uqbar.io.DirectoryChange(str(self.score_path)):
+        with uqbar.io.DirectoryChange(self.score_path):
             try:
                 script(command)
             except SystemExit:
                 raise RuntimeError('SystemExit')
         command = ['--new', 'small-version']
-        with uqbar.io.DirectoryChange(str(self.score_path)):
+        with uqbar.io.DirectoryChange(self.score_path):
             try:
                 script(command)
             except SystemExit:
                 raise RuntimeError('SystemExit')
         command = ['--list']
         with abjad.RedirectedStreams(stdout=string_io):
-            with uqbar.io.DirectoryChange(str(self.score_path)):
+            with uqbar.io.DirectoryChange(self.score_path):
                 try:
                     script(command)
                 except SystemExit:
                     raise RuntimeError('SystemExit')
-        assert normalize(string_io.getvalue()) == normalize(r'''
+        pytest.helpers.compare_strings(string_io.getvalue(), r'''
         Available build targets:
             big-version
             medium-version

@@ -44,7 +44,7 @@ class Test(ScorePackageScriptTestCase):
         self.create_build_target()
         script = abjad.cli.ManageBuildTargetScript()
         command = ['--render', 'letter-portrait']
-        with uqbar.io.DirectoryChange(str(self.score_path)):
+        with uqbar.io.DirectoryChange(self.score_path):
             try:
                 script(command)
             except SystemExit:
@@ -78,7 +78,7 @@ class Test(ScorePackageScriptTestCase):
             '--render', 'letter-portrait',
             '--back-cover',
         ]
-        with uqbar.io.DirectoryChange(str(self.score_path)):
+        with uqbar.io.DirectoryChange(self.score_path):
             try:
                 script(command)
             except SystemExit:
@@ -112,7 +112,7 @@ class Test(ScorePackageScriptTestCase):
             '--render', 'letter-portrait',
             '--front-cover',
         ]
-        with uqbar.io.DirectoryChange(str(self.score_path)):
+        with uqbar.io.DirectoryChange(self.score_path):
             try:
                 script(command)
             except SystemExit:
@@ -146,7 +146,7 @@ class Test(ScorePackageScriptTestCase):
             '--render', 'letter-portrait',
             '--music',
         ]
-        with uqbar.io.DirectoryChange(str(self.score_path)):
+        with uqbar.io.DirectoryChange(self.score_path):
             try:
                 script(command)
             except SystemExit:
@@ -183,7 +183,7 @@ class Test(ScorePackageScriptTestCase):
             '--render', 'letter-portrait',
             '--parts',
         ]
-        with uqbar.io.DirectoryChange(str(self.score_path)):
+        with uqbar.io.DirectoryChange(self.score_path):
             try:
                 script(command)
             except SystemExit:
@@ -217,7 +217,7 @@ class Test(ScorePackageScriptTestCase):
             '--render', 'letter-portrait',
             '--preface',
         ]
-        with uqbar.io.DirectoryChange(str(self.score_path)):
+        with uqbar.io.DirectoryChange(self.score_path):
             try:
                 script(command)
             except SystemExit:
