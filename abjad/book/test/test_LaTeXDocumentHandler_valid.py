@@ -1,15 +1,10 @@
 import abjad
 import os
-import platform
 import shutil
 import unittest
 import abjad.book
 
 
-@unittest.skipIf(
-    platform.python_implementation() != 'CPython',
-    'Only for CPython.',
-    )
 class TestLaTeXDocumentHandler(unittest.TestCase):
 
     maxDiff = None
@@ -191,10 +186,6 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
             target_valid_contents = file_pointer.read()
         assert target_valid_contents == self.expected_valid_contents
 
-    @unittest.skipIf(
-        platform.system() == 'Windows',
-        'Windows path-handling woes.'
-        )
     def test_stylesheet(self):
         assert not os.path.exists(self.target_valid_path)
         assert not os.path.exists(self.assets_directory)

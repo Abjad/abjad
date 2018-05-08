@@ -1,13 +1,8 @@
 import abjad
-import platform
 import unittest
 import abjad.book
 
 
-@unittest.skipIf(
-    platform.python_implementation() != 'CPython',
-    'Only for CPython.',
-    )
 class TestLaTeXDocumentHandler_syntax_error(unittest.TestCase):
 
     maxDiff = None

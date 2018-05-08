@@ -1,11 +1,9 @@
 import abjad
-import platform
 import textwrap
 import unittest
 import abjad.book
 
 
-@unittest.skipIf(platform.system() == 'Windows', 'No "echo" on Windows')
 class ShellDirectiveTests(unittest.TestCase):
 
     def setUp(self):

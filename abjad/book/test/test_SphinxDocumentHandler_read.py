@@ -1,14 +1,9 @@
 import abjad
-import platform
 import unittest
 import sys
 import abjad.book
 
 
-@unittest.skipIf(
-    platform.python_implementation() != 'CPython',
-    'Only for CPython.',
-    )
 class SphinxDocumentHandlerTests(unittest.TestCase):
 
     class Namespace(object):
@@ -107,10 +102,6 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             """)
         assert actual == target
 
-    @unittest.skipIf(
-        sys.version[0] != '3',
-        'Only for Python 3',
-        )
     def test_on_doctree_read_02(self):
         source = r'''
         ..  abjad::
@@ -166,10 +157,6 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             """)
         assert actual == target
 
-    @unittest.skipIf(
-        sys.version[0] != '3',
-        'Only for Python 3',
-        )
     def test_on_doctree_read_03(self):
         source = r'''
         ..  abjad::
@@ -218,10 +205,6 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             """)
         assert actual == target
 
-    @unittest.skipIf(
-        sys.version[0] != '3',
-        'Only for Python 3',
-        )
     def test_on_doctree_read_04(self):
         source = r'''
         ..  container:: example
