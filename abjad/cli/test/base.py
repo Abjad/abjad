@@ -1,7 +1,9 @@
 import abjad
 import pathlib
+import pytest
 import shutil
 import sys
+import uqbar.io
 
 
 class ScorePackageScriptTestCase(abjad.TestCase):
@@ -15,93 +17,13 @@ class ScorePackageScriptTestCase(abjad.TestCase):
     materials_path = score_path.joinpath('test_score', 'materials')
     segments_path = score_path.joinpath('test_score', 'segments')
     tools_path = score_path.joinpath('test_score', 'tools')
-    fancy_parts_code = abjad.String.normalize(r"""
-    \book {
-        \bookOutputSuffix "cello"
-        \score {
-            \keepWithTag #'(time cello)
-            \include "../segments.ily"
-        }
-    }
-    \book {
-        \bookOutputSuffix "viola"
-        \score {
-            \keepWithTag #'(viola)
-            \include "../segments.ily"
-        }
-    }
-    \book {
-        \bookOutputSuffix "violin-i"
-        \score {
-            \keepWithTag #'(first-violin)
-            \include "../segments.ily"
-        }
-    }
-    \book {
-        \bookOutputSuffix "violin-ii"
-        \score {
-            \keepWithTag #'(second-violin)
-            \include "../segments.ily"
-        }
-    }
-    """)
-    fancy_segment_maker_code = abjad.String.normalize(r"""
-        import abjad
 
-        class SegmentMaker(abjad.AbjadObject):
-
-            ### INITIALIZER ###
-
-            def __init__(self, measure_count=1):
-                measure_count = int(measure_count)
-                assert 0 < measure_count
-                self.measure_count = measure_count
-                self.score_template = abjad.StringQuartetScoreTemplate()
-
-            ### PUBLIC METHODS ###
-
-            def run(
-                self,
-                metadata=None,
-                previous_metadata=None,
-                ):
-                self.metadata = metadata
-                score = self.score_template()
-                for i in range(self.measure_count):
-                    for voice in abjad.iterate(score).components(abjad.Voice):
-                        measure = abjad.Measure((4, 4), "c'1")
-                        voice.append(measure)
-                self.score_template.attach_defaults(score)
-                lilypond_file = abjad.LilyPondFile.new(
-                    score,
-                    includes=['../../stylesheets/stylesheet.ily'],
-                    )
-                first_bar_number = metadata.get('first_bar_number', 1)
-                if 1 < first_bar_number:
-                    abjad.setting(score).current_bar_number = first_bar_number
-                segment_number = metadata.get('segment_number', 1)
-                segment_count = metadata.get('segment_count', 1)
-                if 1 < segment_number:
-                    rehearsal_mark = abjad.RehearsalMark()
-                    for voice in abjad.iterate(score).components(abjad.Voice):
-                        for leaf in abjad.iterate(voice).leaves():
-                            abjad.attach(rehearsal_mark, leaf)
-                            break
-                if segment_count <= segment_number:
-                    score.add_final_bar_line(
-                        abbreviation='|.',
-                        to_each_voice=True,
-                        )
-                metadata['measure_count'] = self.measure_count
-                return lilypond_file
-    """)
-
-    ### TEST LIFECYCLE ###
+    # ### TEST LIFECYCLE ### #
 
     def setUp(self):
         super(ScorePackageScriptTestCase, self).setUp()
         if self.score_path.exists():
-            shutil.rmtree(str(self.score_path))
+            shutil.rmtree(self.score_path)
         self.directory_items = set(self.test_path.iterdir())
         sys.path.insert(0, str(self.score_path))
 
@@ -113,7 +35,7 @@ class ScorePackageScriptTestCase(abjad.TestCase):
             if path.is_file():
                 path.unlink()
             else:
-                shutil.rmtree(str(path))
+                shutil.rmtree(path)
         sys.path.remove(str(self.score_path))
         for path, module in tuple(sys.modules.items()):
             if not path or not module:
@@ -121,24 +43,24 @@ class ScorePackageScriptTestCase(abjad.TestCase):
             if path.startswith('test_score'):
                 del(sys.modules[path])
 
-    ### UTILITY METHODS ###
+    # ### UTILITY METHODS ### #
 
     def collect_segments(self):
         script = abjad.cli.ManageSegmentScript()
         command = ['--collect']
-        with abjad.TemporaryDirectoryChange(str(self.score_path)):
+        with uqbar.io.DirectoryChange(self.score_path):
             script(command)
 
     def create_build_target(
         self,
         force=False,
         expect_error=False,
-        ):
+    ):
         script = abjad.cli.ManageBuildTargetScript()
         command = ['--new']
         if force:
             command.insert(0, '-f')
-        with abjad.TemporaryDirectoryChange(str(self.score_path)):
+        with uqbar.io.DirectoryChange(self.score_path):
             if expect_error:
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
@@ -155,12 +77,12 @@ class ScorePackageScriptTestCase(abjad.TestCase):
         material_name='test_material',
         force=False,
         expect_error=False,
-        ):
+    ):
         script = abjad.cli.ManageMaterialScript()
         command = ['--new', material_name]
         if force:
             command.insert(0, '-f')
-        with abjad.TemporaryDirectoryChange(str(self.score_path)):
+        with uqbar.io.DirectoryChange(self.score_path):
             if expect_error:
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
@@ -190,7 +112,7 @@ class ScorePackageScriptTestCase(abjad.TestCase):
             ]
         if force:
             command.insert(0, '-f')
-        with abjad.TemporaryDirectoryChange(str(self.test_path)):
+        with uqbar.io.DirectoryChange(self.test_path):
             if expect_error:
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
@@ -206,12 +128,12 @@ class ScorePackageScriptTestCase(abjad.TestCase):
         segment_name='test_segment',
         force=False,
         expect_error=False,
-        ):
+    ):
         script = abjad.cli.ManageSegmentScript()
         command = ['--new', segment_name]
         if force:
             command.insert(0, '-f')
-        with abjad.TemporaryDirectoryChange(str(self.score_path)):
+        with uqbar.io.DirectoryChange(self.score_path):
             if expect_error:
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
@@ -230,7 +152,7 @@ class ScorePackageScriptTestCase(abjad.TestCase):
     def illustrate_material(self, material_name):
         script = abjad.cli.ManageMaterialScript()
         command = ['--illustrate', material_name]
-        with abjad.TemporaryDirectoryChange(str(self.score_path)):
+        with uqbar.io.DirectoryChange(self.score_path):
             try:
                 script(command)
             except SystemExit as e:
@@ -239,7 +161,7 @@ class ScorePackageScriptTestCase(abjad.TestCase):
     def illustrate_segment(self, segment_name):
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', segment_name]
-        with abjad.TemporaryDirectoryChange(str(self.score_path)):
+        with uqbar.io.DirectoryChange(self.score_path):
             try:
                 script(command)
             except SystemExit as e:
@@ -248,13 +170,13 @@ class ScorePackageScriptTestCase(abjad.TestCase):
     def illustrate_segments(self):
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', '*']
-        with abjad.TemporaryDirectoryChange(str(self.score_path)):
+        with uqbar.io.DirectoryChange(self.score_path):
             script(command)
 
     def install_fancy_segment_maker(self):
         segment_maker_path = self.tools_path.joinpath('SegmentMaker.py')
-        with open(str(segment_maker_path), 'w') as file_pointer:
-            file_pointer.write(self.fancy_segment_maker_code)
+        with segment_maker_path.open('w') as file_pointer:
+            file_pointer.write(pytest.helpers.get_fancy_segment_maker_code())
         parts_path = self.build_path.joinpath('parts.ily')
-        with open(str(parts_path), 'w') as file_pointer:
-            file_pointer.write(self.fancy_parts_code)
+        with parts_path.open('w') as file_pointer:
+            file_pointer.write(pytest.helpers.get_fancy_parts_code())
