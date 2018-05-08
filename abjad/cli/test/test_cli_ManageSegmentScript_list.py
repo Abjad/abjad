@@ -2,18 +2,21 @@ import abjad
 import pytest
 import os
 from base import ScorePackageScriptTestCase
+from io import StringIO
 
 
 class Test(ScorePackageScriptTestCase):
 
     def test_list_segments(self):
+        string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
         pytest.helpers.create_segment(self.test_directory_path, 'segment_one')
         pytest.helpers.create_segment(self.test_directory_path, 'segment_two')
-        pytest.helpers.create_segment(self.test_directory_path, 'segment_three')
+        pytest.helpers.create_segment(
+            self.test_directory_path, 'segment_three')
         script = abjad.cli.ManageSegmentScript()
         command = ['--list']
-        with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
@@ -27,10 +30,11 @@ class Test(ScorePackageScriptTestCase):
         '''.replace('/', os.path.sep))
 
     def test_list_segments_no_segments(self):
+        string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
         script = abjad.cli.ManageSegmentScript()
         command = ['--list']
-        with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
@@ -42,10 +46,12 @@ class Test(ScorePackageScriptTestCase):
         '''.replace('/', os.path.sep))
 
     def test_list_segments_unstaged(self):
+        string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
         pytest.helpers.create_segment(self.test_directory_path, 'segment_one')
         pytest.helpers.create_segment(self.test_directory_path, 'segment_two')
-        pytest.helpers.create_segment(self.test_directory_path, 'segment_three')
+        pytest.helpers.create_segment(
+            self.test_directory_path, 'segment_three')
         script = abjad.cli.ManageSegmentScript()
         segment_names = script._read_segments_list_json(
             self.score_path,
@@ -58,7 +64,7 @@ class Test(ScorePackageScriptTestCase):
             verbose=False,
             )
         command = ['--list']
-        with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)

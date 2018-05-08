@@ -9,7 +9,6 @@ import unittest
 import types
 import uqbar.io
 import uqbar.strings
-from io import StringIO
 
 
 class ScorePackageScriptTestCase(unittest.TestCase):
@@ -33,10 +32,8 @@ class ScorePackageScriptTestCase(unittest.TestCase):
             shutil.rmtree(self.score_path)
         self.directory_items = set(self.test_directory_path.iterdir())
         sys.path.insert(0, str(self.score_path))
-        self.string_io = StringIO()
 
     def tearDown(self):
-        self.string_io.close()
         for path in sorted(self.test_directory_path.iterdir()):
             if path in self.directory_items:
                 continue
@@ -114,8 +111,8 @@ class ScorePackageScriptTestCase(unittest.TestCase):
 
     # ### PUBLIC METHODS ### #
 
-    def compare_captured_output(self, expected):
-        actual = self.ansi_escape.sub('', self.string_io.getvalue())
+    def compare_captured_output(self, actual, expected):
+        actual = self.ansi_escape.sub('', actual)
         actual = uqbar.strings.normalize(actual)
         expected = uqbar.strings.normalize(expected)
         self.compare_strings(expected, actual)
@@ -166,10 +163,6 @@ class ScorePackageScriptTestCase(unittest.TestCase):
         if not success:
             diff = output_checker.output_difference(example, actual, flags)
             raise Exception(diff)
-
-    def reset_string_io(self):
-        self.string_io.close()
-        self.string_io = StringIO()
 
     # ### PUBLIC PROPERTIES ### #
 

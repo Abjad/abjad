@@ -3,6 +3,7 @@ import os
 import platform
 import pytest
 from base import ScorePackageScriptTestCase
+from io import StringIO
 from unittest import mock
 
 
@@ -22,6 +23,7 @@ class Test(ScorePackageScriptTestCase):
 
     @mock.patch('abjad.IOManager.open_file')
     def test_success(self, open_file_mock):
+        string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
         self.install_fancy_segment_maker()
         pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
@@ -36,7 +38,7 @@ class Test(ScorePackageScriptTestCase):
             except SystemExit:
                 raise RuntimeError('SystemExit')
         command = ['--distribute', 'letter-portrait']
-        with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)

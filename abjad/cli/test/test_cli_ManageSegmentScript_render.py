@@ -3,6 +3,7 @@ import os
 import platform
 import pytest
 from base import ScorePackageScriptTestCase
+from io import StringIO
 from unittest import mock
 
 
@@ -24,15 +25,17 @@ class Test(ScorePackageScriptTestCase):
 
     @mock.patch('abjad.IOManager.open_file')
     def test_success_one_segment(self, open_file_mock):
+        string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
-        segment_path = pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
+        segment_path = pytest.helpers.create_segment(
+            self.test_directory_path, 'test_segment')
         self.illustrate_segment('test_segment')
         pdf_path = segment_path.joinpath('illustration.pdf')
         assert pdf_path.exists()
         pdf_path.unlink()
         script = abjad.cli.ManageSegmentScript()
         command = ['--render', 'test_segment']
-        with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)

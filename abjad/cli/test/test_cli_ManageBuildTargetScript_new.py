@@ -3,6 +3,7 @@ import os
 import platform
 import pytest
 from base import ScorePackageScriptTestCase
+from io import StringIO
 
 
 class Test(ScorePackageScriptTestCase):
@@ -27,6 +28,7 @@ class Test(ScorePackageScriptTestCase):
         expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
 
     def test_exists(self):
+        string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
         script = abjad.cli.ManageBuildTargetScript()
         command = ['--new']
@@ -35,7 +37,7 @@ class Test(ScorePackageScriptTestCase):
                 script(command)
             except SystemExit:
                 raise RuntimeError('SystemExit')
-            with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.RedirectedStreams(stdout=string_io):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
                 assert exception_info.value.code == 1
@@ -45,6 +47,7 @@ class Test(ScorePackageScriptTestCase):
         '''.replace('/', os.path.sep))
 
     def test_explicit(self):
+        string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
         script = abjad.cli.ManageBuildTargetScript()
         command = [
@@ -52,7 +55,7 @@ class Test(ScorePackageScriptTestCase):
             '--paper-size', 'a3',
             '--orientation', 'landscape',
             ]
-        with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)
@@ -79,6 +82,7 @@ class Test(ScorePackageScriptTestCase):
         ''')
 
     def test_force_replace(self):
+        string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
         script = abjad.cli.ManageBuildTargetScript()
         command = ['-f', '--new']
@@ -87,7 +91,7 @@ class Test(ScorePackageScriptTestCase):
                 script(command)
             except SystemExit:
                 raise RuntimeError('SystemExit')
-            with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.RedirectedStreams(stdout=string_io):
                 try:
                     script(command)
                 except SystemExit:
@@ -99,10 +103,11 @@ class Test(ScorePackageScriptTestCase):
         '''.replace('/', os.path.sep))
 
     def test_implicit(self):
+        string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
         script = abjad.cli.ManageBuildTargetScript()
         command = ['--new']
-        with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)
@@ -279,12 +284,13 @@ class Test(ScorePackageScriptTestCase):
         ''')
 
     def test_internal_path(self):
+        string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
         script = abjad.cli.ManageBuildTargetScript()
         command = ['--new']
         internal_path = self.score_path.joinpath('test_score', 'builds')
         assert internal_path.exists()
-        with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=string_io):
             with abjad.TemporaryDirectoryChange(str(internal_path)):
                 try:
                     script(command)
@@ -297,6 +303,7 @@ class Test(ScorePackageScriptTestCase):
         '''.replace('/', os.path.sep))
 
     def test_named(self):
+        string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
         script = abjad.cli.ManageBuildTargetScript()
         command = [
@@ -305,7 +312,7 @@ class Test(ScorePackageScriptTestCase):
             '--paper-size', 'a3',
             '--orientation', 'landscape',
             ]
-        with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)

@@ -1,11 +1,13 @@
 import abjad
 import pytest
 from base import ScorePackageScriptTestCase
+from io import StringIO
 
 
 class Test(ScorePackageScriptTestCase):
 
     def test_list_materials(self):
+        string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
         pytest.helpers.create_material(self.test_directory_path, 'foo')
         pytest.helpers.create_material(self.test_directory_path, 'bar')
@@ -13,7 +15,7 @@ class Test(ScorePackageScriptTestCase):
         pytest.helpers.create_material(self.test_directory_path, 'quux')
         script = abjad.cli.ManageMaterialScript()
         command = ['--list']
-        with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
@@ -28,10 +30,11 @@ class Test(ScorePackageScriptTestCase):
         ''')
 
     def test_list_materials_no_materials(self):
+        string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
         script = abjad.cli.ManageMaterialScript()
         command = ['--list']
-        with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)

@@ -3,6 +3,7 @@ import os
 import platform
 import pytest
 from base import ScorePackageScriptTestCase
+from io import StringIO
 from unittest import mock
 
 
@@ -26,13 +27,15 @@ class Test(ScorePackageScriptTestCase):
 
     @mock.patch('abjad.IOManager.open_file')
     def test_success(self, open_file_mock):
+        string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
         pytest.helpers.create_segment(self.test_directory_path, 'segment_one')
         pytest.helpers.create_segment(self.test_directory_path, 'segment_two')
-        pytest.helpers.create_segment(self.test_directory_path, 'segment_three')
+        pytest.helpers.create_segment(
+            self.test_directory_path, 'segment_three')
         self.illustrate_segments()
         collect_script = abjad.cli.ManageSegmentScript()
-        with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     collect_script(['--collect'])

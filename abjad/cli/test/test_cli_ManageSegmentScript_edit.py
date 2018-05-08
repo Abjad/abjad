@@ -3,6 +3,7 @@ import os
 import pytest
 from abjad import abjad_configuration
 from base import ScorePackageScriptTestCase
+from io import StringIO
 from unittest import mock
 
 
@@ -10,12 +11,14 @@ class Test(ScorePackageScriptTestCase):
 
     @mock.patch('abjad.cli.ScorePackageScript._call_subprocess')
     def test_success(self, call_subprocess_mock):
+        string_io = StringIO()
         call_subprocess_mock.return_value = 0
         pytest.helpers.create_score(self.test_directory_path)
-        segment_path = pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
+        segment_path = pytest.helpers.create_segment(
+            self.test_directory_path, 'test_segment')
         script = abjad.cli.ManageSegmentScript()
         command = ['--edit', 'test_segment']
-        with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)

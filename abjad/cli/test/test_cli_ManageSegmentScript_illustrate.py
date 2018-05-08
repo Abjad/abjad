@@ -4,6 +4,7 @@ import os
 import platform
 from uqbar.strings import normalize
 from base import ScorePackageScriptTestCase
+from io import StringIO
 from unittest import mock
 
 
@@ -55,8 +56,10 @@ class Test(ScorePackageScriptTestCase):
         r"""
         Handle failing LilyPond rendering.
         """
+        string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
-        segment_path = pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
+        segment_path = pytest.helpers.create_segment(
+            self.test_directory_path, 'test_segment')
         definition_path = segment_path.joinpath('definition.py')
         with open(str(definition_path), 'w') as file_pointer:
             file_pointer.write(normalize(r'''
@@ -83,7 +86,7 @@ class Test(ScorePackageScriptTestCase):
             '''))
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
-        with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
@@ -130,13 +133,14 @@ class Test(ScorePackageScriptTestCase):
         """
         Handle missing definition.
         """
+        string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
         segment_path = pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         definition_path = segment_path.joinpath('definition.py')
         definition_path.unlink()
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
-        with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
@@ -154,6 +158,7 @@ class Test(ScorePackageScriptTestCase):
         """
         Handle exceptions inside the Python module on __call__().
         """
+        string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
         segment_path = pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         definition_path = segment_path.joinpath('definition.py')
@@ -175,7 +180,7 @@ class Test(ScorePackageScriptTestCase):
             '''))
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
-        with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
@@ -193,6 +198,7 @@ class Test(ScorePackageScriptTestCase):
         """
         Handle exceptions inside the Python module on import.
         """
+        string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
         segment_path = pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         definition_path = segment_path.joinpath('definition.py')
@@ -200,7 +206,7 @@ class Test(ScorePackageScriptTestCase):
             file_pointer.write('\n\nfailure = 1 / 0\n')
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
-        with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with pytest.raises(SystemExit) as exception_info:
                     script(command)
@@ -216,13 +222,14 @@ class Test(ScorePackageScriptTestCase):
 
     @mock.patch('abjad.IOManager.open_file')
     def test_success_all_segments(self, open_file_mock):
+        string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
         pytest.helpers.create_segment(self.test_directory_path, 'segment_one')
         pytest.helpers.create_segment(self.test_directory_path, 'segment_two')
         pytest.helpers.create_segment(self.test_directory_path, 'segment_three')
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', '*']
-        with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)
@@ -279,13 +286,14 @@ class Test(ScorePackageScriptTestCase):
 
     @mock.patch('abjad.IOManager.open_file')
     def test_success_filtered_segments(self, open_file_mock):
+        string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
         pytest.helpers.create_segment(self.test_directory_path, 'segment_one')
         pytest.helpers.create_segment(self.test_directory_path, 'segment_two')
         pytest.helpers.create_segment(self.test_directory_path, 'segment_three')
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'segment_t*']
-        with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)
@@ -332,11 +340,12 @@ class Test(ScorePackageScriptTestCase):
 
     @mock.patch('abjad.IOManager.open_file')
     def test_success_one_segment(self, open_file_mock):
+        string_io = StringIO()
         pytest.helpers.create_score(self.test_directory_path)
         pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         script = abjad.cli.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
-        with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)

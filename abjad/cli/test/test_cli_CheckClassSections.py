@@ -193,7 +193,7 @@ class TestCheckClassSections(unittest.TestCase):
 
     def tearDown(self):
         shutil.rmtree(str(self.subdirectory))
-        self.string_io.close()
+        string_io.close()
 
     def run_script_on_modules(
         self,
@@ -238,15 +238,15 @@ class TestCheckClassSections(unittest.TestCase):
         for case in modules:
             with open(str(case[0]), 'w') as file_pointer:
                 file_pointer.write(case[1])
-        self.string_io = StringIO()
+        string_io = StringIO()
         # cd into test_working_directory and run the script with commands
         with abjad.TemporaryDirectoryChange(str(test_working_directory)):
-            with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.RedirectedStreams(stdout=string_io):
                 with pytest.raises(SystemExit) as exception_info:
                     script = abjad.cli.CheckClassSections()
                     script(command)
         # Normalize script output for sane diffs
-        script_output = self.ansi_escape.sub('', self.string_io.getvalue())
+        script_output = self.ansi_escape.sub('', string_io.getvalue())
         script_output = normalize(script_output)
         return (script_output, exception_info.value.code)
 

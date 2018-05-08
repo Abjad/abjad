@@ -2,6 +2,7 @@ import abjad
 import pytest
 from abjad import abjad_configuration
 from base import ScorePackageScriptTestCase
+from io import StringIO
 from unittest import mock
 
 
@@ -9,12 +10,14 @@ class Test(ScorePackageScriptTestCase):
 
     @mock.patch('abjad.cli.ScorePackageScript._call_subprocess')
     def test_success(self, call_subprocess_mock):
+        string_io = StringIO()
         call_subprocess_mock.return_value = 0
         pytest.helpers.create_score(self.test_directory_path)
-        material_path = pytest.helpers.create_material(self.test_directory_path, 'test_material')
+        material_path = pytest.helpers.create_material(
+            self.test_directory_path, 'test_material')
         script = abjad.cli.ManageMaterialScript()
         command = ['--edit', 'test_material']
-        with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=string_io):
             with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)

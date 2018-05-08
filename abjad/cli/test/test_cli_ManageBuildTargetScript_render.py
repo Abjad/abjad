@@ -32,7 +32,10 @@ class Test(ScorePackageScriptTestCase):
             'test_score/test_score/builds/segments/test-segment.ily',
             ]
         if platform.system().lower() == 'windows':
-            expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
+            expected_files = [
+                _.replace('/', os.path.sep)
+                for _ in expected_files
+                ]
         pytest.helpers.create_score(self.test_directory_path)
         pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         self.illustrate_segments()
@@ -60,7 +63,10 @@ class Test(ScorePackageScriptTestCase):
             'test_score/test_score/builds/letter-portrait/score.tex',
             ]
         if platform.system().lower() == 'windows':
-            expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
+            expected_files = [
+                _.replace('/', os.path.sep)
+                for _ in expected_files
+                ]
         pytest.helpers.create_score(self.test_directory_path)
         pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         self.illustrate_segments()
@@ -91,7 +97,10 @@ class Test(ScorePackageScriptTestCase):
             'test_score/test_score/builds/letter-portrait/score.tex',
             ]
         if platform.system().lower() == 'windows':
-            expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
+            expected_files = [
+                _.replace('/', os.path.sep)
+                for _ in expected_files
+                ]
         pytest.helpers.create_score(self.test_directory_path)
         pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         self.illustrate_segments()
@@ -122,7 +131,10 @@ class Test(ScorePackageScriptTestCase):
             'test_score/test_score/builds/letter-portrait/score.tex',
             ]
         if platform.system().lower() == 'windows':
-            expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
+            expected_files = [
+                _.replace('/', os.path.sep)
+                for _ in expected_files
+                ]
         pytest.helpers.create_score(self.test_directory_path)
         pytest.helpers.create_segment(self.test_directory_path, 'test_segment')
         self.illustrate_segments()

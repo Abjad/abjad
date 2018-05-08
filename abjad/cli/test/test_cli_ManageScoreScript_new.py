@@ -5,6 +5,7 @@ import platform
 import pytest
 import shutil
 from base import ScorePackageScriptTestCase
+from io import StringIO
 
 
 class Test(ScorePackageScriptTestCase):
@@ -49,11 +50,13 @@ class Test(ScorePackageScriptTestCase):
         expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
 
     def test_exists(self):
-        with abjad.RedirectedStreams(stdout=self.string_io):
+        string_io = StringIO()
+        with abjad.RedirectedStreams(stdout=string_io):
             pytest.helpers.create_score(self.test_directory_path)
         assert self.score_path.exists()
-        with abjad.RedirectedStreams(stdout=self.string_io):
-            pytest.helpers.create_score(self.test_directory_path, expect_error=True)
+        with abjad.RedirectedStreams(stdout=string_io):
+            pytest.helpers.create_score(
+                self.test_directory_path, expect_error=True)
         assert self.score_path.exists()
         shutil.rmtree(str(self.score_path))
         for path in self.test_directory_path.iterdir():
@@ -67,10 +70,11 @@ class Test(ScorePackageScriptTestCase):
         '''.replace('/', os.path.sep))
 
     def test_force_replace(self):
-        with abjad.RedirectedStreams(stdout=self.string_io):
+        string_io = StringIO()
+        with abjad.RedirectedStreams(stdout=string_io):
             pytest.helpers.create_score(self.test_directory_path)
         assert self.score_path.exists()
-        with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=string_io):
             pytest.helpers.create_score(self.test_directory_path, force=True)
         assert self.score_path.exists()
         shutil.rmtree(str(self.score_path))
@@ -86,7 +90,8 @@ class Test(ScorePackageScriptTestCase):
         '''.replace('/', os.path.sep))
 
     def test_success(self):
-        with abjad.RedirectedStreams(stdout=self.string_io):
+        string_io = StringIO()
+        with abjad.RedirectedStreams(stdout=string_io):
             pytest.helpers.create_score(self.test_directory_path)
         assert self.score_path.exists()
         self.compare_path_contents(self.score_path, self.expected_files)
