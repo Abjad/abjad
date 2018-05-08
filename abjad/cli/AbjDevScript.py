@@ -29,6 +29,9 @@ class AbjDevScript(CLIAggregator):
 
     @property
     def cli_classes(self):
+        """
+        Lists CLI classes for aggregation.
+        """
         import abjad.book
         import abjad.cli
         classes = []
