@@ -63,7 +63,6 @@ sustain = SustainMask.sustain
 from abjad._version import __version_info__, __version__
 del _version
 
-from abjad import book
 from abjad import cli
 from abjad import demos
 from abjad import ly
