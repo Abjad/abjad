@@ -1,5 +1,7 @@
+import copy
 import os
 import subprocess
+import uqbar.graphs
 
 
 def graph(
@@ -132,8 +134,12 @@ def graph(
     if isinstance(argument, str):
         graphviz_format = argument
     else:
-        assert hasattr(argument, '__graph__')
-        graphviz_graph = argument.__graph__(**keywords)
+        if hasattr(argument, '__graph__'):
+            graphviz_graph = argument.__graph__(**keywords)
+        elif isinstance(argument, uqbar.graphs.Graph):
+            graphviz_graph = copy.deepcopy(argument)
+        else:
+            raise TypeError('Cannot graph {!r}'.format(type(argument)))
         if graph_attributes:
             graphviz_graph.attributes.update(graph_attributes)
         if node_attributes:
