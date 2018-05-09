@@ -1,9 +1,7 @@
-import sys
 import sphinx_rtd_theme
 from sphinx.highlighting import PygmentsBridge
 from pygments.formatters.latex import LatexFormatter
 from abjad import abjad_configuration
-
 
 class CustomLatexFormatter(LatexFormatter):
     def __init__(self, **options):
@@ -27,8 +25,8 @@ extensions = [
     'uqbar.sphinx.api',
     'uqbar.sphinx.inheritance',
     'uqbar.sphinx.style',
-    'abjad.docs.ext.abjadbook',
     'sphinx_autodoc_typehints',
+    'abjadext.book.sphinx',
     ]
 master_doc = 'index'
 project = u'Abjad'
