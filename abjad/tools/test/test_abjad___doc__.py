@@ -40,7 +40,6 @@ ignored_classes = (
     rhythmtreetools.RhythmTreeParser,
     abjad.StorageFormatManager,
     abjad.FormatSpecification,
-    abjad.TestCase,
     )
 
 classes = documentationtools.list_all_abjad_classes(

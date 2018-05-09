@@ -3,3 +3,4 @@
 --ignore-dir=abjad/.mypy_cache/
 --ignore-dir=Abjad.egg-info/
 --ignore-dir=.mypy_cache/
+--ignore-dir=.pytest_cache/

@@ -1,5 +1,4 @@
 import abjad
-import functools
 import inspect
 import pytest
 import abjad.book
@@ -13,7 +12,6 @@ ignored_classes = (
     abjad.Path,
     abjad.StorageFormatManager,
     abjad.Tags,
-    abjad.TestCase,
     abjad.book.AbjadDirective,
     abjad.book.CodeBlock,
     abjad.book.CodeOutputProxy,
@@ -31,6 +29,7 @@ ignored_classes = (
 classes = documentationtools.list_all_abjad_classes(
     ignored_classes=ignored_classes,
     )
+
 
 @pytest.mark.parametrize('class_', classes)
 def test_abjad___init___01(class_):

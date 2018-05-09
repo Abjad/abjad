@@ -1,5 +1,4 @@
 from .AbjDevScript import AbjDevScript
-from .CheckClassSections import CheckClassSections
 from .CleanScript import CleanScript
 from .ScorePackageScript import ScorePackageScript
 from .ManageBuildTargetScript import ManageBuildTargetScript

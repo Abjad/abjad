@@ -1,13 +1,65 @@
-import abjad
+import json
 import os
 import platform
-import json
+import pytest
 import shutil
-from base import ScorePackageScriptTestCase
+import uqbar.io
+from io import StringIO
 
 
-class Test(ScorePackageScriptTestCase):
+def test_exists(paths):
+    string_io = StringIO()
+    with uqbar.io.RedirectedStreams(stdout=string_io):
+        pytest.helpers.create_score(paths.test_directory_path)
+    assert paths.score_path.exists()
+    with uqbar.io.RedirectedStreams(stdout=string_io):
+        pytest.helpers.create_score(
+            paths.test_directory_path, expect_error=True)
+    assert paths.score_path.exists()
+    shutil.rmtree(str(paths.score_path))
+    for path in paths.test_directory_path.iterdir():
+        assert path in paths.directory_items
+    pytest.helpers.compare_strings(
+        actual=string_io.getvalue(),
+        expected=r'''
+        Creating score package 'Test Score'...
+            Writing test_score/metadata.json
+            Created test_score/
+        Creating score package 'Test Score'...
+            Directory test_score already exists.
+        '''.replace('/', os.path.sep),
+    )
 
+
+def test_force_replace(paths):
+    string_io = StringIO()
+    with uqbar.io.RedirectedStreams(stdout=string_io):
+        pytest.helpers.create_score(paths.test_directory_path)
+    assert paths.score_path.exists()
+    with uqbar.io.RedirectedStreams(stdout=string_io):
+        pytest.helpers.create_score(paths.test_directory_path, force=True)
+    assert paths.score_path.exists()
+    shutil.rmtree(str(paths.score_path))
+    for path in paths.test_directory_path.iterdir():
+        assert path in paths.directory_items
+    pytest.helpers.compare_strings(
+        actual=string_io.getvalue(),
+        expected=r'''
+        Creating score package 'Test Score'...
+            Writing test_score/metadata.json
+            Created test_score/
+        Creating score package 'Test Score'...
+            Writing test_score/metadata.json
+            Created test_score/
+        '''.replace('/', os.path.sep),
+    )
+
+
+def test_success(paths):
+    string_io = StringIO()
+    with uqbar.io.RedirectedStreams(stdout=string_io):
+        pytest.helpers.create_score(paths.test_directory_path)
+    assert paths.score_path.exists()
     expected_files = [
         'test_score/.gitignore',
         'test_score/.travis.yml',
@@ -42,72 +94,39 @@ class Test(ScorePackageScriptTestCase):
         'test_score/test_score/tools/ScoreTemplate.py',
         'test_score/test_score/tools/SegmentMaker.py',
         'test_score/test_score/tools/__init__.py',
-        ]
-
+    ]
     if platform.system().lower() == 'windows':
-        expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
-
-    def test_exists(self):
-        with abjad.RedirectedStreams(stdout=self.string_io):
-            self.create_score()
-        assert self.score_path.exists()
-        with abjad.RedirectedStreams(stdout=self.string_io):
-            self.create_score(expect_error=True)
-        assert self.score_path.exists()
-        shutil.rmtree(str(self.score_path))
-        for path in self.test_path.iterdir():
-            assert path in self.directory_items
-        self.compare_captured_output(r'''
-            Creating score package 'Test Score'...
-                Writing test_score/metadata.json
-                Created test_score/
-            Creating score package 'Test Score'...
-                Directory test_score already exists.
-        '''.replace('/', os.path.sep))
-
-    def test_force_replace(self):
-        with abjad.RedirectedStreams(stdout=self.string_io):
-            self.create_score()
-        assert self.score_path.exists()
-        with abjad.RedirectedStreams(stdout=self.string_io):
-            self.create_score(force=True)
-        assert self.score_path.exists()
-        shutil.rmtree(str(self.score_path))
-        for path in self.test_path.iterdir():
-            assert path in self.directory_items
-        self.compare_captured_output(r'''
-            Creating score package 'Test Score'...
-                Writing test_score/metadata.json
-                Created test_score/
-            Creating score package 'Test Score'...
-                Writing test_score/metadata.json
-                Created test_score/
-        '''.replace('/', os.path.sep))
-
-    def test_success(self):
-        with abjad.RedirectedStreams(stdout=self.string_io):
-            self.create_score()
-        assert self.score_path.exists()
-        self.compare_path_contents(self.score_path, self.expected_files)
-        score_metadata_path = self.score_path.joinpath(
-            self.score_path.name, 'metadata.json')
-        assert score_metadata_path.exists()
-        with open(str(score_metadata_path), 'r') as file_pointer:
-            metadata = json.loads(file_pointer.read())
-        assert metadata == {
-            'composer_email': 'josiah.oberholtzer@gmail.com',
-            'composer_github': 'josiah-wolf-oberholtzer',
-            'composer_library': 'consort',
-            'composer_name': 'Josiah Wolf Oberholtzer',
-            'composer_website': 'www.josiahwolfoberholtzer.com',
-            'title': 'Test Score',
-            'year': 2016,
-            }
-        shutil.rmtree(str(self.score_path))
-        for path in self.test_path.iterdir():
-            assert path in self.directory_items
-        self.compare_captured_output(r'''
-            Creating score package 'Test Score'...
-                Writing test_score/metadata.json
-                Created test_score/
-        '''.replace('/', os.path.sep))
+        expected_files = [
+            _.replace('/', os.path.sep)
+            for _ in expected_files
+        ]
+    pytest.helpers.compare_path_contents(
+        paths.score_path,
+        expected_files,
+        paths.test_directory_path,
+    )
+    score_metadata_path = paths.score_path.joinpath(
+        paths.score_path.name, 'metadata.json')
+    assert score_metadata_path.exists()
+    with open(str(score_metadata_path), 'r') as file_pointer:
+        metadata = json.loads(file_pointer.read())
+    assert metadata == {
+        'composer_email': 'josiah.oberholtzer@gmail.com',
+        'composer_github': 'josiah-wolf-oberholtzer',
+        'composer_library': 'consort',
+        'composer_name': 'Josiah Wolf Oberholtzer',
+        'composer_website': 'www.josiahwolfoberholtzer.com',
+        'title': 'Test Score',
+        'year': 2016,
+    }
+    shutil.rmtree(str(paths.score_path))
+    for path in paths.test_directory_path.iterdir():
+        assert path in paths.directory_items
+    pytest.helpers.compare_strings(
+        actual=string_io.getvalue(),
+        expected=r'''
+        Creating score package 'Test Score'...
+            Writing test_score/metadata.json
+            Created test_score/
+        '''.replace('/', os.path.sep),
+    )
