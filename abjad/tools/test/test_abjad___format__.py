@@ -2,7 +2,6 @@ import importlib
 import inspect
 import pytest
 import abjad
-import abjad.book
 from abjad.tools import documentationtools
 from abjad.tools import lilypondparsertools
 from abjad.tools import metertools
@@ -12,10 +11,6 @@ from abjad.tools import tonalanalysistools
 
 
 ignored_classes = (
-    abjad.book.CodeBlock,
-    abjad.book.CodeOutputProxy,
-    abjad.book.GraphvizOutputProxy,
-    abjad.book.LilyPondOutputProxy,
     segmenttools.Path,
     systemtools.StorageFormatManager,
     systemtools.FormatSpecification,
@@ -43,10 +38,6 @@ def test_abjad___format___01(class_):
 
 
 ignored_classes = (
-    abjad.book.CodeBlock,
-    abjad.book.CodeOutputProxy,
-    abjad.book.GraphvizOutputProxy,
-    abjad.book.LilyPondOutputProxy,
     segmenttools.Path,
     metertools.Meter,
     tonalanalysistools.RootedChordClass,
@@ -68,8 +59,6 @@ def test_abjad___format___02(class_):
         return
     environment = abjad.__dict__.copy()
     environment.update(abjad.demos.__dict__)
-    environment['abjad.book'] = importlib.import_module(
-        'abjad.book')
     environment['abjad'] = abjad
     instance_one = class_()
     instance_one_format = format(instance_one, 'storage')
@@ -85,18 +74,6 @@ ignored_classes = (
     abjad.Enumeration,
     abjad.Path,
     abjad.Tags,
-    abjad.book.AbjadDirective,
-    abjad.book.AbjadDoctestDirective,
-    abjad.book.CodeBlock,
-    abjad.book.CodeOutputProxy,
-    abjad.book.GraphvizOutputProxy,
-    abjad.book.ImportDirective,
-    abjad.book.LilyPondBlock,
-    abjad.book.LilyPondOutputProxy,
-    abjad.book.RawLilyPondOutputProxy,
-    abjad.book.RevealDirective,
-    abjad.book.ShellDirective,
-    abjad.book.ThumbnailDirective,
     lilypondparsertools.SyntaxNode,
     )
 

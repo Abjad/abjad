@@ -48,12 +48,6 @@ class AbjDevScript(CLIAggregator):
             return classes
         import abjad.cli
         classes = scan_module(abjad.cli)
-        # TODO: Remove this once abjad.book is externalized as abjadext.book:
-        try:
-            import abjad.book
-            classes.append(abjad.book.AbjadBookScript)
-        except ImportError:
-            pass
         try:
             import abjadext.book  # type: ignore
             classes.extend(scan_module(abjadext.book))
