@@ -669,7 +669,7 @@ class StorageFormatManager(AbjadValueObject):
 
     def get_tools_package_name(self):
         parts = self._get_module_path_parts(self._client)
-        if parts[0] in ('abjad', 'ide'):
+        if parts[0] in ('abjad', 'abjadext', 'ide'):
             for part in reversed(parts):
                 if part == parts[-1]:
                     continue
