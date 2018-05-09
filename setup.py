@@ -56,18 +56,12 @@ install_requires = [
     ]
 
 extras_require = {
-    'accelerated': [
-        'quicktions>=1.3',
-        ],
-    'development': [
-        'PyPDF2>=1.26.0',
-        'mypy',
-        'pytest>=3.5.0',
-        ],
-    'ipython': [
-        'ipython',
-        'jupyter',
-        ],
+    'accelerated': ['quicktions>=1.3'],
+    'book': ['abjad-ext-book >= 3.0.0, < 3.1.0'],
+    'cli': ['abjad-ext-cli >= 3.0.0, < 3.1.0'],
+    'ipython': ['abjad-ext-ipython >= 3.0.0, < 3.1.0'],
+    'sphinx': ['abjad-ext-sphinx >= 3.0.0, < 3.1.0'],
+    'test': ['mypy', 'pytest>=3.5.0'],
     }
 
 entry_points = {

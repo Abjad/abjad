@@ -51,7 +51,7 @@ install:
 - rm -Rif ~/.abjad
 - abjad/scr/devel/prime-parser-tables
 # then install development and ipython dependencies.
-- pip install -e .[development,ipython]
+- pip install -e .[test]
 # install accelerated dependencies if requested
 - if [[ $ACCELERATED == true ]]; then pip install -e .[accelerated]; fi
 

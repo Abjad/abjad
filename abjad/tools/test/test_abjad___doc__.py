@@ -1,8 +1,6 @@
 import abjad
 import inspect
-import platform
 import pytest
-import abjad.book
 from abjad.tools import documentationtools
 from abjad.tools import lilypondparsertools
 from abjad.tools import rhythmtreetools
@@ -27,11 +25,6 @@ ignored_names = (
     )
 
 ignored_classes = (
-    abjad.book.CodeBlock,
-    abjad.book.ImageOutputProxy,
-    abjad.book.LaTeXDocumentHandler,
-    abjad.book.LilyPondBlock,
-    abjad.book.SphinxDocumentHandler,
     abjad.Enumeration,
     lilypondparsertools.LilyPondLexicalDefinition,
     lilypondparsertools.LilyPondSyntacticalDefinition,
