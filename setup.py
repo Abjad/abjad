@@ -60,7 +60,6 @@ extras_require = {
     'book': ['abjad-ext-book >= 3.0.0, < 3.1.0'],
     'cli': ['abjad-ext-cli >= 3.0.0, < 3.1.0'],
     'ipython': ['abjad-ext-ipython >= 3.0.0, < 3.1.0'],
-    'sphinx': ['abjad-ext-sphinx >= 3.0.0, < 3.1.0'],
     'test': ['mypy', 'pytest>=3.5.0'],
     }
 
