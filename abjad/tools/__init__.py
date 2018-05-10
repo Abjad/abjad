@@ -17,7 +17,6 @@ from .import spannertools
 from .import lilypondparsertools
 from .import rhythmtreetools
 from .import metertools
-from .import quantizationtools
 from .import rhythmmakertools
 from .import segmenttools
 from .import timespantools

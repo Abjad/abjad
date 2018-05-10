@@ -3,7 +3,6 @@ import inspect
 import pytest
 from abjad.tools import documentationtools
 from abjad.tools import lilypondparsertools
-from abjad.tools import quantizationtools
 from abjad.tools import rhythmtreetools
 from abjad.tools import scoretools
 from abjad.tools import systemtools
@@ -14,7 +13,6 @@ ignored_classes = (
     lilypondparsertools.LilyPondParser,
     lilypondparsertools.ReducedLyParser,
     lilypondparsertools.SchemeParser,
-    quantizationtools.ParallelJobHandlerWorker,
     rhythmtreetools.RhythmTreeParser,
     systemtools.RedirectedStreams,
     systemtools.StorageFormatManager,
