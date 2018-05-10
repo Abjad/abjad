@@ -130,18 +130,8 @@ todo_include_todos = True
 uqbar_api_title = 'Abjad API'
 uqbar_api_source_paths = ['abjad']
 try:
-    import abjadext
-    for abjadext_path in sorted(abjadext.__path__):
-        abjadext_path = pathlib.Path(abjadext_path)
-        for extension_path in sorted(abjadext_path.iterdir()):
-            if (
-                extension_path.name.startswith(('.', '_')) or
-                not extension_path.is_dir() or
-                not (extension_path / '__init__.py').exists()
-            ):
-                continue
-            module_path = 'abjadext.{}'.format(extension_path.name)
-            uqbar_api_source_paths.append(module_path)
+    import abjadext  # noqa
+    uqbar_api_source_paths.append('abjadext')
 except ImportError:
     pass
 uqbar_api_root_documenter_class = 'uqbar.apis.SummarizingRootDocumenter'
