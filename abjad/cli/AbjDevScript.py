@@ -1,4 +1,6 @@
+import importlib
 import inspect
+import pathlib
 from uqbar.cli import CLI, CLIAggregator
 
 
@@ -49,13 +51,19 @@ class AbjDevScript(CLIAggregator):
         import abjad.cli
         classes = scan_module(abjad.cli)
         try:
-            import abjadext.book  # type: ignore
-            classes.extend(scan_module(abjadext.book))
-        except ImportError:
-            pass
-        try:
-            import abjadext.cli  # type: ignore
-            classes.extend(scan_module(abjadext.cli))
+            import abjadext
+            for abjadext_path in abjadext.__path__:
+                abjadext_path = pathlib.Path(abjadext_path)
+                for path in abjadext_path.iterdir():
+                    if (
+                        path.name.startswith(('.', '_')) or
+                        not path.is_dir() or
+                        not (path / '__init__.py').exists()
+                    ):
+                        continue
+                    module_name = 'abjadext.{}'.format(path.name)
+                    module = importlib.import_module(module_name)
+                    classes.extend(scan_module(module))
         except ImportError:
             pass
         classes.sort(key=lambda x: x.__name__)
