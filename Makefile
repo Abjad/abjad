@@ -10,8 +10,12 @@ clean:
 	rm -Rif build/
 	rm -Rif dist/
 
+docs:
+	make -C abjad/docs html
+
 release:
 	make clean
-	make -C abjad/docs upload
+	make docs
 	make build
-	twine upload dist/abjad*.tar.gz
+	make -C abjad/docs upload
+	twine upload dist/*.tar.gz
