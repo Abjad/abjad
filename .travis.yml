@@ -44,7 +44,8 @@ script:
 - mypy --version
 - mypy abjad
 - pip install --quiet -e .[book,cli,ipython]
+- ajv --help
 
 after_success:
-- pip install coveralls
+- pip install --quiet coveralls
 - coveralls
