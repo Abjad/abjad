@@ -43,7 +43,7 @@ script:
 - coverage run -a `which pytest`
 - mypy --version
 - mypy abjad
-- pip install -e .[book,cli,ipython]
+- pip install --quiet -e .[book,cli,ipython]
 
 after_success:
 - pip install coveralls
