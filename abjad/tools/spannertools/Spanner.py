@@ -1,11 +1,9 @@
 import collections
 import copy
 import typing
+from abjad import Left, Right
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from abjad.tools.datastructuretools import Left
-from abjad.tools.datastructuretools import Right
 from abjad.tools.datastructuretools.Duration import Duration
-from abjad.tools.datastructuretools.OrderedDict import OrderedDict
 from abjad.tools.scoretools.Leaf import Leaf
 from abjad.tools.scoretools.Selection import Selection
 from abjad.tools.systemtools.LilyPondFormatManager import LilyPondFormatManager
@@ -16,7 +14,6 @@ from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
 from abjad.tools.systemtools.Tag import Tag
 from abjad.tools.timespantools.Timespan import Timespan
-from abjad.tools.topleveltools.attach import attach
 from abjad.tools.topleveltools.inspect import inspect
 from abjad.tools.topleveltools.override import override
 from abjad.tools.topleveltools.select import select
@@ -322,9 +319,9 @@ class Spanner(AbjadObject, collections.Sequence):
         '''
         if i < 0:
             i = len(self) + i
-        if direction == Left:
+        if direction is Left:
             return self._fracture_left(i)
-        elif direction == Right:
+        elif direction is Right:
             return self._fracture_right(i)
         elif direction is None:
             left = self._copy(self[:i])

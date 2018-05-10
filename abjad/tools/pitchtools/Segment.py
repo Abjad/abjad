@@ -1,10 +1,10 @@
 import abc
 import collections
 import types
+from abjad import Up
 from abjad.tools import mathtools
 from abjad.tools import systemtools
 from abjad.tools.datastructuretools.TypedTuple import TypedTuple
-from abjad.tools.datastructuretools import Up
 
 
 class Segment(TypedTuple):

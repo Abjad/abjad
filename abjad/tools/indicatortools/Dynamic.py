@@ -1,8 +1,7 @@
 import typing
+from abjad import Down, Up
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.datastructuretools import Down
-from abjad.tools.datastructuretools import Up
 from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
 from abjad.tools.datastructuretools.String import String
 from abjad.tools.mathtools.Infinity import Infinity

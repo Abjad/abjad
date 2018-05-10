@@ -1,5 +1,5 @@
 import typing
-from abjad.tools.datastructuretools import Center
+from abjad import Center
 from abjad.tools.datastructuretools.OrderedDict import OrderedDict
 from abjad.tools.indicatortools.LineSegment import LineSegment
 from abjad.tools.lilypondnametools.LilyPondGrobOverride import \

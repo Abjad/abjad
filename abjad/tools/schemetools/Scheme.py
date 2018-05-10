@@ -328,7 +328,10 @@ class Scheme(AbjadValueObject):
         r'''Formats `value` as an embedded Scheme value.
         '''
         import abjad
-        if isinstance(value, abjad.OrdinalConstant):
+        if isinstance(value, (
+            abjad.HorizontalAlignment,
+            abjad.VerticalAlignment,
+            )):
             result = '#' + repr(value).lower()
         else:
             result = Scheme.format_scheme_value(

@@ -1,7 +1,7 @@
 import collections
 import typing
+from abjad import Up
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.datastructuretools import Up
 from abjad.tools.datastructuretools.Duration import Duration
 from abjad.tools.markuptools.Markup import Markup
 from abjad.tools.mathtools.Ratio import Ratio

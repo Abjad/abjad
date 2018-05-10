@@ -1,7 +1,5 @@
+from abjad import Center, Down, Up
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.datastructuretools import Center
-from abjad.tools.datastructuretools import Down
-from abjad.tools.datastructuretools import Up
 from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
 from abjad.tools.markuptools.Markup import Markup
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle

@@ -1,11 +1,7 @@
-import typing
+from abjad import Center, Down, Right, Up
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
 from abjad.tools.datastructuretools.String import String
-from abjad.tools.datastructuretools import Center
-from abjad.tools.datastructuretools import Down
-from abjad.tools.datastructuretools import Right
-from abjad.tools.datastructuretools import Up
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 

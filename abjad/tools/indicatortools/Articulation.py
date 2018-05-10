@@ -1,10 +1,7 @@
 import copy
 import typing
+from abjad import Center, Down, Up, VerticalAlignment
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.datastructuretools import Center
-from abjad.tools.datastructuretools import Down
-from abjad.tools.datastructuretools import Up
-from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
 from abjad.tools.datastructuretools.String import String
 from abjad.tools.systemtools.FormatSpecification import FormatSpecification
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
@@ -141,7 +138,7 @@ class Articulation(AbjadValueObject):
     def __init__(
         self,
         name: str = None,
-        direction: typing.Union[str, OrdinalConstant] = None,
+        direction: typing.Union[str, VerticalAlignment] = None,
         ) -> None:
         if isinstance(name, type(self)):
             argument = name
@@ -155,7 +152,7 @@ class Articulation(AbjadValueObject):
         self._name = name
         direction_ = String.to_tridirectional_ordinal_constant(direction)
         if direction_ is not None:
-            assert isinstance(direction_, OrdinalConstant), repr(direction_)
+            assert isinstance(direction_, VerticalAlignment), repr(direction_)
             assert direction_ in (Up, Down, Center), repr(direction_)
         self._direction = direction_
         self._format_slot = 'right'
@@ -235,7 +232,7 @@ class Articulation(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def direction(self) -> typing.Optional[OrdinalConstant]:
+    def direction(self) -> typing.Optional[VerticalAlignment]:
         '''
         Gets direction of articulation.
 

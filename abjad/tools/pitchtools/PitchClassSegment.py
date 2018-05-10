@@ -1,8 +1,8 @@
 import inspect
+from abjad import Up
 from abjad.tools import systemtools
 from abjad.tools.pitchtools.Segment import Segment
 from abjad.tools.topleveltools import new
-from abjad.tools.datastructuretools import Up
 
 
 class PitchClassSegment(Segment):

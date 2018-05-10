@@ -1,8 +1,8 @@
 import collections
+from abjad import Left, Right
 from abjad.tools import markuptools
 from abjad.tools.datastructuretools.TypedList import TypedList
 from abjad.tools.datastructuretools import Infinity
-from abjad.tools.datastructuretools import Left
 from abjad.tools.datastructuretools import NegativeInfinity
 from abjad.tools.topleveltools.new import new
 
@@ -1033,7 +1033,7 @@ class TimespanList(TypedList):
         Returns new timespan list.
         '''
         import abjad
-        assert anchor in (abjad.Left, abjad.Right)
+        assert anchor in (Left, Right)
         if minimum is not None:
             minimum = abjad.Duration(minimum)
         if maximum is not None:
@@ -1043,7 +1043,7 @@ class TimespanList(TypedList):
         timespans = type(self)()
         for timespan in self:
             if minimum is not None and timespan.duration < minimum:
-                if anchor == abjad.Left:
+                if anchor is Left:
                     new_timespan = timespan.set_duration(minimum)
                 else:
                     new_start_offset = timespan.stop_offset - minimum
@@ -1053,7 +1053,7 @@ class TimespanList(TypedList):
                         stop_offset=timespan.stop_offset,
                         )
             elif maximum is not None and maximum < timespan.duration:
-                if anchor == abjad.Left:
+                if anchor is Left:
                     new_timespan = timespan.set_duration(maximum)
                 else:
                     new_start_offset = timespan.stop_offset - maximum

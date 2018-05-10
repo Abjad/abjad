@@ -1,6 +1,7 @@
 import copy
+from abjad import Left, Right
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.datastructuretools import Left, Infinity, NegativeInfinity
+from abjad.tools.datastructuretools import Infinity, NegativeInfinity
 
 
 class Timespan(AbjadValueObject):
@@ -1216,7 +1217,7 @@ class Timespan(AbjadValueObject):
         new_stop_offset = abjad.Offset(
             int(round(self._stop_offset / multiplier)) * multiplier)
         if (new_start_offset == new_stop_offset) and must_be_well_formed:
-            if anchor == abjad.Left:
+            if anchor is Left:
                 new_stop_offset = new_stop_offset + multiplier
             else:
                 new_start_offset = new_start_offset - multiplier
@@ -1252,10 +1253,10 @@ class Timespan(AbjadValueObject):
         multiplier = abjad.Multiplier(multiplier)
         assert 0 < multiplier
         new_duration = multiplier * self.duration
-        if anchor == abjad.Left:
+        if anchor == Left:
             new_start_offset = self._start_offset
             new_stop_offset = self._start_offset + new_duration
-        elif anchor == abjad.Right:
+        elif anchor == Right:
             new_stop_offset = self._stop_offset
             new_start_offset = self._stop_offset - new_duration
         else:

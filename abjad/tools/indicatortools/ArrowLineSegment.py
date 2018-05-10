@@ -1,5 +1,5 @@
 import typing
-from abjad.tools.datastructuretools import Center
+from abjad import Center
 from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
 from abjad.tools.markuptools.Markup import Markup
 from .LineSegment import LineSegment

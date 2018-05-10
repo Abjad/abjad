@@ -1,12 +1,11 @@
 import pathlib
 import re
-import roman # type: ignore
+import roman  # type: ignore
 import six
-import sys
 import textwrap
 import typing
 import unicodedata
-from abjad.tools import mathtools
+from abjad import Center, Down, Up
 from .OrdinalConstant import OrdinalConstant
 from .TypedList import TypedList
 
@@ -1442,8 +1441,6 @@ class String(str):
             'down'
 
         '''
-        from abjad.tools.datastructuretools import Down
-        from abjad.tools.datastructuretools import Up
         lookup = {
             1: 'up',
             -1: 'down',
@@ -1477,8 +1474,6 @@ class String(str):
             '_'
 
         '''
-        from abjad.tools.datastructuretools import Down
-        from abjad.tools.datastructuretools import Up
         lookup = {
             1: '^',
             -1: '_',
@@ -1738,9 +1733,6 @@ class String(str):
             True
 
         '''
-        from abjad.tools.datastructuretools import Center
-        from abjad.tools.datastructuretools import Down
-        from abjad.tools.datastructuretools import Up
         lookup = {
             Up: 'up',
             '^': 'up',
@@ -1809,9 +1801,6 @@ class String(str):
             True
 
         '''
-        from abjad.tools.datastructuretools import Center
-        from abjad.tools.datastructuretools import Down
-        from abjad.tools.datastructuretools import Up
         lookup = {
             Up: '^',
             '^': '^',
@@ -1873,9 +1862,6 @@ class String(str):
             True
 
         '''
-        from abjad.tools.datastructuretools import Center
-        from abjad.tools.datastructuretools import Down
-        from abjad.tools.datastructuretools import Up
         lookup = {
             Up: Up,
             '^': Up,

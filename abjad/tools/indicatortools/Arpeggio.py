@@ -1,9 +1,7 @@
 import typing
+from abjad import Center, Down, Up
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
-from abjad.tools.datastructuretools import Center
-from abjad.tools.datastructuretools import Down
-from abjad.tools.datastructuretools import Up
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
@@ -66,7 +64,7 @@ class Arpeggio(AbjadValueObject):
         bundle = LilyPondFormatBundle()
         bundle.right.articulations.append(r'\arpeggio')
         if self.direction in (Up, Down):
-            if self.direction == Up:
+            if self.direction is Up:
                 command = r'\arpeggioArrowUp'
             else:
                 command = r'\arpeggioArrowDown'

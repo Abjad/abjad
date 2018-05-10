@@ -1,6 +1,6 @@
 import typing
+from abjad import Right
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.datastructuretools import Right
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 Number = typing.Union[int, float]
 

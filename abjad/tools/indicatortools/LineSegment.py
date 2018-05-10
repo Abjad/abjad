@@ -1,6 +1,6 @@
 import typing
+from abjad import Center
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.datastructuretools import Center
 from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
 from abjad.tools.lilypondnametools.LilyPondGrobOverride import \
     LilyPondGrobOverride

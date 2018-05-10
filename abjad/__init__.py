@@ -10,6 +10,103 @@ try:
 except ImportError:
     pass
 
+
+import enum
+
+class Amount(enum.IntEnum):
+    Less = -1
+    Exact = 0
+    More = 1
+
+    def __repr__(self):
+        return self.name
+
+    def __ge__(self, other):
+        if self.__class__ is other.__class__:
+            return self.value >= other.value
+        return NotImplemented
+
+    def __gt__(self, other):
+        if self.__class__ is other.__class__:
+            return self.value > other.value
+        return NotImplemented
+
+    def __le__(self, other):
+        if self.__class__ is other.__class__:
+            return self.value <= other.value
+        return NotImplemented
+
+    def __lt__(self, other):
+        if self.__class__ is other.__class__:
+            return self.value < other.value
+        return NotImplemented
+
+
+Less = Amount.Less
+Exact = Amount.Exact
+More = Amount.More
+
+class Comparison(enum.IntEnum):
+    Identity = 0
+
+    def __repr__(self):
+        return self.name
+
+Identity = Comparison.Identity
+
+class HorizontalAlignment(enum.IntEnum):
+    Left = -1
+    Both = 0
+    Right = 1
+
+    def __repr__(self):
+        return self.name
+
+    def __str__(self):
+        return self.name.lower()
+
+    def __ge__(self, other):
+        if self.__class__ is other.__class__:
+            return self.value >= other.value
+        return NotImplemented
+
+    def __gt__(self, other):
+        if self.__class__ is other.__class__:
+            return self.value > other.value
+        return NotImplemented
+
+    def __le__(self, other):
+        if self.__class__ is other.__class__:
+            return self.value <= other.value
+        return NotImplemented
+
+    def __lt__(self, other):
+        if self.__class__ is other.__class__:
+            return self.value < other.value
+        return NotImplemented
+
+Left = HorizontalAlignment.Left
+Both = HorizontalAlignment.Both
+Right = HorizontalAlignment.Right
+
+class VerticalAlignment(enum.IntEnum):
+    Down = -1
+    Center = 0
+    Up = 1
+
+    def __repr__(self):
+        return self.name
+
+    def __str__(self):
+        return self.name.lower()
+
+Down = VerticalAlignment.Down
+Center = VerticalAlignment.Center
+Up = VerticalAlignment.Up
+
+del enum
+
+
 # ensure that the ~/.abjad directory and friends are setup
 # and instantiate Abjad's configuration singleton
 from abjad.tools.systemtools.AbjadConfiguration import AbjadConfiguration

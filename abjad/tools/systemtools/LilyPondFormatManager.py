@@ -1,3 +1,4 @@
+from abjad import Up, Down, Left, Right, Center
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -72,9 +73,9 @@ class LilyPondFormatManager(AbjadObject):
                 continue
             # store markup wrappers
             elif isinstance(wrapper.indicator, abjad.Markup):
-                if wrapper.indicator.direction == abjad.Up:
+                if wrapper.indicator.direction is Up:
                     up_markup_wrappers.append(wrapper)
-                elif wrapper.indicator.direction == abjad.Down:
+                elif wrapper.indicator.direction is Down:
                     down_markup_wrappers.append(wrapper)
                 elif wrapper.indicator.direction in (abjad.Center, None):
                     neutral_markup_wrappers.append(wrapper)
@@ -396,8 +397,7 @@ class LilyPondFormatManager(AbjadObject):
             pass
         elif argument in (True, False):
             argument = abjad.Scheme(argument)
-        elif argument in (
-            abjad.Up, abjad.Down, abjad.Left, abjad.Right, abjad.Center):
+        elif argument in (Up, Down, Left, Right, Center):
             argument = abjad.Scheme(repr(argument).lower())
         elif isinstance(argument, int) or isinstance(argument, float):
             argument = abjad.Scheme(argument)

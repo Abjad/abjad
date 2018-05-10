@@ -1,10 +1,6 @@
 import typing
 from abjad.tools import mathtools
-from abjad.tools.datastructuretools import Center
-from abjad.tools.datastructuretools import Down
-from abjad.tools.datastructuretools import Left
-from abjad.tools.datastructuretools import Right
-from abjad.tools.datastructuretools import Up
+from abjad import Center, Down, Left, Right, Up
 from abjad.tools.datastructuretools.Duration import Duration
 from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
 from abjad.tools.datastructuretools.String import String

@@ -2,6 +2,7 @@ import collections
 import copy
 import inspect
 import itertools
+from abjad import Exact, Less, More
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.exceptiontools import ExtraSpannerError
 from abjad.tools.exceptiontools import MissingSpannerError
@@ -7817,10 +7818,10 @@ class Selection(AbjadValueObject, collections.Sequence):
                 except IndexError:
                     break
             elif target_duration < candidate_duration:
-                if fill == abjad.Exact:
+                if fill is Exact:
                     message = 'must partition exactly.'
                     raise Exception(message)
-                elif fill == abjad.Less:
+                elif fill is Less:
                     result.append(part)
                     part = [component]
                     if in_seconds:
@@ -7845,7 +7846,7 @@ class Selection(AbjadValueObject, collections.Sequence):
                             cumulative_duration,
                             )
                         raise Exception(message)
-                elif fill == abjad.More:
+                elif fill is More:
                     part.append(component)
                     result.append(part)
                     part = []

@@ -1,15 +1,12 @@
 import collections
 import numbers
+from abjad import Center, Down, Fraction, Up
 from abjad.tools import mathtools
 from abjad.tools import schemetools
 from abjad.tools.topleveltools import new
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.markuptools.MarkupCommand import MarkupCommand
 from abjad.tools.markuptools.Postscript import Postscript
-try:
-    from quicktions import Fraction  # type: ignore
-except ImportError:
-    from fractions import Fraction
 
 
 class Markup(AbjadValueObject):
@@ -1384,11 +1381,11 @@ class Markup(AbjadValueObject):
         contents = self._parse_markup_command_argument(self)
         axis = abjad.Scheme(axis)
         # TODO: make schemetools.Scheme(Up) work
-        if direction == abjad.Up:
+        if direction is Up:
             direction = abjad.Scheme('UP')
-        elif direction == abjad.Down:
+        elif direction is Down:
             direction = abjad.Scheme('DOWN')
-        elif direction == abjad.Center:
+        elif direction is Center:
             direction = abjad.Scheme('CENTER')
         elif isinstance(direction, numbers.Number):
             direction = abjad.Scheme(str(direction))

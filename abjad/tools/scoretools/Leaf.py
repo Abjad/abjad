@@ -1,6 +1,7 @@
 import abc
 import copy
 import uqbar.graphs
+from abjad import Left, Right
 from abjad.tools.datastructuretools.Duration import Duration
 from abjad.tools.datastructuretools.Multiplier import Multiplier
 from abjad.tools.indicatortools.MetronomeMark import MetronomeMark
@@ -538,20 +539,20 @@ class Leaf(Component):
             first_selection = result_selections[0]
             for spanner in abjad.inspect(first_selection[-1]).get_spanners():
                 index = spanner._index(first_selection[-1])
-                spanner._fracture(index, direction=abjad.Right)
+                spanner._fracture(index, direction=Right)
             last_selection = result_selections[-1]
             for spanner in abjad.inspect(last_selection[0]).get_spanners():
                 index = spanner._index(last_selection[0])
-                spanner._fracture(index, direction=abjad.Left)
+                spanner._fracture(index, direction=Left)
             for middle_selection in result_selections[1:-1]:
                 spanners = abjad.inspect(middle_selection[0]).get_spanners()
                 for spanner in spanners:
                     index = spanner._index(middle_selection[0])
-                    spanner._fracture(index, direction=abjad.Left)
+                    spanner._fracture(index, direction=Left)
                 spanners = abjad.inspect(middle_selection[-1]).get_spanners()
                 for spanner in spanners:
                     index = spanner._index(middle_selection[-1])
-                    spanner._fracture(index, direction=abjad.Right)
+                    spanner._fracture(index, direction=Right)
         # move indicators
         first_result_leaf = result_leaves[0]
         last_result_leaf = result_leaves[-1]
@@ -559,10 +560,10 @@ class Leaf(Component):
             if isinstance(indicator, Multiplier):
                 continue
             detach(indicator, self)
-            direction = getattr(indicator, '_time_orientation', abjad.Left)
-            if direction == abjad.Left:
+            direction = getattr(indicator, '_time_orientation', Left)
+            if direction is Left:
                 attach(indicator, first_result_leaf)
-            elif direction == abjad.Right:
+            elif direction == Right:
                 attach(indicator, last_result_leaf)
             else:
                 raise ValueError(direction)
