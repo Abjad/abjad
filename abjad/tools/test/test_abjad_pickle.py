@@ -3,7 +3,6 @@ import pickle
 import pytest
 from abjad.tools import documentationtools
 from abjad.tools import lilypondparsertools
-from abjad.tools import quantizationtools
 from abjad.tools import rhythmtreetools
 from abjad.tools import scoretools
 from abjad.tools import systemtools
@@ -14,7 +13,6 @@ ignored_classes = (
     lilypondparsertools.LilyPondParser,
     lilypondparsertools.SchemeParser,
     lilypondparsertools.ReducedLyParser,
-    quantizationtools.ParallelJobHandlerWorker,
     rhythmtreetools.RhythmTreeParser,
     scoretools.Selection,
     scoretools.Descendants,
