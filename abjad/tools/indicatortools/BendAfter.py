@@ -1,5 +1,5 @@
 import typing
-from abjad import Right
+from abjad import Right, HorizontalAlignment
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 Number = typing.Union[int, float]
@@ -49,7 +49,7 @@ class BendAfter(AbjadValueObject):
 
     _format_slot = 'right'
 
-    _time_orientation = Right
+    _time_orientation: HorizontalAlignment = HorizontalAlignment.Right
 
     ### INITIALIZER ###
 

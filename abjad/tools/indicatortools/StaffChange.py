@@ -1,4 +1,4 @@
-from abjad import Right
+from abjad import HorizontalAlignment, Right
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.schemetools.Scheme import Scheme
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
@@ -54,7 +54,7 @@ class StaffChange(AbjadValueObject):
 
     _format_slot = 'opening'
 
-    _time_orientation = Right
+    _time_orientation: HorizontalAlignment = Right
 
     ### INITIALIZER ###
 

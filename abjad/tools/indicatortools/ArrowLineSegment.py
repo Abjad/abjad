@@ -1,6 +1,5 @@
 import typing
-from abjad import Center
-from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
+from abjad import Center, VerticalAlignment
 from abjad.tools.markuptools.Markup import Markup
 from .LineSegment import LineSegment
 Number = typing.Union[int, float]
@@ -105,14 +104,14 @@ class ArrowLineSegment(LineSegment):
         left_hspace: Number = 0.25,
         left_padding: Number = None,
         left_stencil_align_direction_y: typing.Union[
-            Number, OrdinalConstant, None] = Center,
+            Number, VerticalAlignment, None] = Center,
         right_arrow: bool = True,
         right_broken_arrow: bool = None,
         right_broken_padding: Number = 0,
         right_broken_text: typing.Union[bool, str, Markup] = False,
         right_padding: Number = 0.5,
         right_stencil_align_direction_y: typing.Union[
-            Number, OrdinalConstant, None] = Center,
+            Number, VerticalAlignment, None] = Center,
         style: str = None,
         ) -> None:
         super(ArrowLineSegment, self).__init__(

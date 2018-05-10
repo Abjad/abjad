@@ -1,6 +1,5 @@
-from abjad import Center, Down, Up
+from abjad import Center, Down, Up, VerticalAlignment
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
 from abjad.tools.markuptools.Markup import Markup
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
@@ -56,7 +55,7 @@ class KeyCluster(AbjadValueObject):
         include_black_keys: bool = True,
         include_white_keys: bool = True,
         hide: bool = False,
-        markup_direction: OrdinalConstant = Up,
+        markup_direction: VerticalAlignment = Up,
         ) -> None:
         assert include_black_keys or include_white_keys
         self._include_black_keys = bool(include_black_keys)
@@ -298,7 +297,7 @@ class KeyCluster(AbjadValueObject):
         return self._include_white_keys
 
     @property
-    def markup_direction(self) -> OrdinalConstant:
+    def markup_direction(self) -> VerticalAlignment:
         r'''
         Gets markup direction.
 

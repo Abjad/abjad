@@ -5,8 +5,7 @@ import six
 import textwrap
 import typing
 import unicodedata
-from abjad import Center, Down, Up
-from .OrdinalConstant import OrdinalConstant
+from abjad import Center, Down, Up, VerticalAlignment
 from .TypedList import TypedList
 
 
@@ -1830,7 +1829,7 @@ class String(str):
     @staticmethod
     def to_tridirectional_ordinal_constant(
         argument,
-        ) -> typing.Union[None, OrdinalConstant, 'String']:
+        ) -> typing.Union[None, VerticalAlignment, 'String']:
         r'''Changes `argument` to tridirectional ordinal constant.
 
         ..  container:: example
