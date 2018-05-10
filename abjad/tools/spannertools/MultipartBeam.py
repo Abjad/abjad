@@ -344,3 +344,29 @@ class MultipartBeam(Beam):
 
         '''
         return self._stemlet_length
+
+    ### PUBLIC METHODS ###
+
+    def start_command(self) -> typing.Optional[str]:
+        '''
+        Gets start command.
+
+        ..  container:: example
+
+            >>> abjad.MultipartBeam().start_command()
+            '['
+
+        '''
+        return super(MultipartBeam, self).start_command()
+
+    def stop_command(self) -> typing.Optional[str]:
+        '''
+        Gets stop command.
+
+        ..  container:: example
+
+            >>> abjad.MultipartBeam().stop_command()
+            ']'
+
+        '''
+        return super(MultipartBeam, self).stop_command()

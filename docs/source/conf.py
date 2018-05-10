@@ -16,7 +16,7 @@ PygmentsBridge.latex_formatter = CustomLatexFormatter
 ### CORE ###
 
 add_function_parentheses = True
-copyright = u'2008-2018, Trevor Bača & Josiah Wolf Oberholtzer'
+copyright = '2008-2018, Trevor Bača & Josiah Wolf Oberholtzer'
 exclude_patterns = []
 
 extensions = [
@@ -34,7 +34,7 @@ extensions = [
     ]
 
 master_doc = 'index'
-project = u'Abjad'
+project = 'Abjad'
 pygments_style = 'sphinx'
 release = abjad_configuration.get_abjad_version_string()
 source_suffix = '.rst'
@@ -78,15 +78,15 @@ latex_documents = [
     (
         'index',
         'Abjad.tex',
-        u'Abjad Documentation',
-        u'Trevor Bača & Josiah Wolf Oberholtzer',
+        'Abjad Documentation',
+        'Trevor Bača & Josiah Wolf Oberholtzer',
         'manual',
         ),
     (
         'api/index',
         'AbjadAPI.tex',
-        u'Abjad API',
-        u'Trevor Bača & Josiah Wolf Oberholtzer',
+        'Abjad API',
+        'Trevor Bača & Josiah Wolf Oberholtzer',
         'manual',
         ),
     ]
@@ -100,8 +100,8 @@ man_pages = [
     (
         'index',
         'abjad',
-        u'Abjad Documentation',
-        [u'2008-2018, Trevor Bača & Josiah Wolf Oberholtzer'],
+        'Abjad Documentation',
+        ['2008-2018, Trevor Bača & Josiah Wolf Oberholtzer'],
         1,
         )
     ]
@@ -112,8 +112,8 @@ texinfo_documents = [
     (
         'index',
         'Abjad',
-        u'Abjad Documentation',
-        u'2008-2018, Trevor Bača & Josiah Wolf Oberholtzer',
+        'Abjad Documentation',
+        '2008-2018, Trevor Bača & Josiah Wolf Oberholtzer',
         'Abjad',
         'One line description of project.',
         'Miscellaneous',

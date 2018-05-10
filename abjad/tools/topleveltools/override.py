@@ -26,10 +26,31 @@ def override(argument):
 
     ..  container:: example
 
+        Specify grob context like this:
+
+        >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
+        >>> abjad.override(staff[0]).staff.staff_symbol.color = 'blue'
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                \once \override Staff.StaffSymbol.color = #blue
+                c'4
+                e'4
+                d'4
+                f'4
+            }
+
+    ..  container:: example
+
         Returns LilyPond grob name manager:
 
+        >>> staff = abjad.Staff("c'4 e' d' f'")
         >>> abjad.override(staff)
-        LilyPondGrobNameManager(('staff_symbol', LilyPondNameManager(('color', 'red'))))
+        LilyPondGrobNameManager()
 
     '''
     from abjad.tools import lilypondnametools

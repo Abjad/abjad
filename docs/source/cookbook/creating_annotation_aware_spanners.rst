@@ -75,11 +75,11 @@ Key points:
 
         def _get_lilypond_format_bundle(self, leaf):
             lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
-            if self._is_my_only_leaf(leaf):
+            if self._is_my_only(leaf):
                 return lilypond_format_bundle
-            if self._is_my_first_leaf(leaf):
+            if leaf is self[0]:
                 self._apply_spanner_start_overrides(lilypond_format_bundle)
-            if self._is_my_last_leaf(leaf):
+            if leaf is self[-1]:
                 self._apply_spanner_stop_overrides(lilypond_format_bundle)
                 return lilypond_format_bundle
             prototype = (abjad.Chord, abjad.Note)
@@ -147,8 +147,8 @@ Avoiding orphan and final leaves
 ..  abjad::
 
     for leaf in staff:
-        is_first = spanner._is_my_first_leaf(leaf)
-        is_last = spanner._is_my_last_leaf(leaf)
+        is_first = leaf is spanner[0]
+        is_last = leaf is spanner[-1]
         print(repr(leaf), is_first, is_last)
 
 ..  abjad::
@@ -158,7 +158,7 @@ Avoiding orphan and final leaves
 
         def _get_lilypond_format_bundle(self, leaf):
             lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
-            if self._is_my_last_leaf(leaf) or self._is_my_only_leaf(leaf):
+            if leaf is self[-1] or self._is_my_only(leaf):
                 return lilypond_format_bundle
             lilypond_format_bundle.right.spanner_starts.append(r'\glissando')
             return lilypond_format_bundle
@@ -187,7 +187,7 @@ Avoiding silences
 
         def _get_lilypond_format_bundle(self, leaf):
             lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
-            if self._is_my_last_leaf(leaf) or self._is_my_only_leaf(leaf):
+            if leaf is self[-1] or self._is_my_only(leaf):
                 return lilypond_format_bundle
             prototype = (abjad.Chord, abjad.Note)
             next_leaf = abjad.inspect(leaf).get_leaf(1)
@@ -251,9 +251,9 @@ Integrating overrides during formatting
 
         def _get_lilypond_format_bundle(self, leaf):
             lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
-            if self._is_my_only_leaf(leaf):
+            if self._is_my_only(leaf):
                 return lilypond_format_bundle
-            if self._is_my_first_leaf(leaf):
+            if leaf is self[0]:
                 grob_override = abjad.LilyPondGrobOverride(
                     grob_name='Glissando',
                     property_path='style',
@@ -261,7 +261,7 @@ Integrating overrides during formatting
                     )
                 override_string = grob_override.override_string
                 lilypond_format_bundle.grob_overrides.append(override_string)
-            if self._is_my_last_leaf(leaf):
+            if leaf is self[-1]:
                 grob_override = abjad.LilyPondGrobOverride(
                     grob_name='Glissando',
                     property_path='style',
@@ -329,9 +329,9 @@ Making the spanner annotation-aware
 
         def _get_lilypond_format_bundle(self, leaf):
             lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
-            if self._is_my_only_leaf(leaf):
+            if self._is_my_only(leaf):
                 return lilypond_format_bundle
-            if self._is_my_first_leaf(leaf):
+            if leaf is self[0]:
                 grob_override = abjad.LilyPondGrobOverride(
                     grob_name='Glissando',
                     property_path='style',
@@ -339,7 +339,7 @@ Making the spanner annotation-aware
                     )
                 override_string = grob_override.override_string
                 lilypond_format_bundle.grob_overrides.append(override_string)
-            if self._is_my_last_leaf(leaf):
+            if leaf is self[-1]:
                 grob_override = abjad.LilyPondGrobOverride(
                     grob_name='Glissando',
                     property_path='style',

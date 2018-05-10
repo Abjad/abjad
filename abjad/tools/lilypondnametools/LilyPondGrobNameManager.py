@@ -1,3 +1,4 @@
+import typing
 from abjad.tools.datastructuretools.String import String
 from abjad.tools.systemtools.LilyPondFormatManager import LilyPondFormatManager
 from .LilyPondNameManager import LilyPondNameManager
@@ -9,6 +10,9 @@ class LilyPondGrobNameManager(LilyPondNameManager):
 
     ..  container:: example
 
+        LilyPondGrobNameManager instances are created by the
+        ``abjad.override()`` factory function:
+
         >>> note = abjad.Note("c'4")
         >>> abjad.override(note)
         LilyPondGrobNameManager()
@@ -17,38 +21,37 @@ class LilyPondGrobNameManager(LilyPondNameManager):
 
     ### SPECIAL METHODS ###
 
-    def __getattr__(self, name) -> LilyPondNameManager:
+    def __getattr__(self, name) -> typing.Union[
+        LilyPondNameManager, 'LilyPondGrobNameManager'
+        ]:
         r'''
-        Gets LilyPond name manager keyed to ``name``.
+        Gets LilyPondNameManager (or LilyPondGrobNameManager) keyed to 
+        `name``.
 
         ..  container:: example
+
+            Somewhat confusingly, getting a grob name returns a
+            LilyPondNameManager:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> abjad.override(staff).note_head.color = 'red'
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.override(staff[0]).note_head
+            LilyPondNameManager()
 
-            ..  docs::
+            While getting a context name returns a LilyPondGrobNameManager:
 
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override NoteHead.color = #red
-                }
-                {
-                    c'4
-                    d'4
-                    e'4
-                    f'4
-                }
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.override(staff[0]).staff
+            LilyPondGrobNameManager()
 
-        ..  container:: example
+            Which can then be deferenced to get a LilyPondNameManager:
 
-            Returns LilyPond name manager:
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.override(staff[0]).staff.note_head
+            LilyPondNameManager()
 
-            >>> abjad.override(staff).note_head
-            LilyPondNameManager(('color', 'red'))
-
+        Note that the dot-chained user syntax is unproblematic. But the class
+        of each manager returned in the chain is likely to be surprising at
+        first encounter.
         '''
         from abjad.ly import contexts
         from abjad.ly import grob_interfaces
@@ -78,11 +81,12 @@ class LilyPondGrobNameManager(LilyPondNameManager):
                 return vars(self)[name]
             except KeyError:
                 type_name = type(self).__name__
-                message = '{type_name!r} object has no attribute: {name!r}.'
+                message = f'{type_name!r} object has no attribute: {name!r}.'
                 raise AttributeError(message)
 
     def __setattr__(self, attribute, value) -> None:
-        r'''Sets attribute ``attribute`` of grob name manager to ``value``.
+        '''
+        Sets attribute ``attribute`` of grob name manager to ``value``.
         '''
         # make sure attribute name is valid grob name before setting value
         object.__setattr__(self, attribute, value)
@@ -147,15 +151,4 @@ class LilyPondGrobNameManager(LilyPondNameManager):
                     )
                 result.append(revert_string)
         result.sort()
-        return result
-
-    def _make_override_dictionary(self):
-        result = {}
-        grob_override_tuples = self._get_attribute_tuples()
-        for grob_override_tuple in grob_override_tuples:
-            most = '__'.join(grob_override_tuple[:-1])
-            value = grob_override_tuple[-1]
-            attribute = '_tools_package_qualified_repr'
-            value = getattr(value, attribute, repr(value))
-            result[most] = value
         return result

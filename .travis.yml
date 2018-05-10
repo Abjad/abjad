@@ -3,18 +3,18 @@ language: python
 sudo: false
 
 env:
-  global:
-  - LILYPOND_URL="http://lilypond.org/downloads/binaries/linux-64/"
-  - LILYPOND_VERSION=2.19.65
+    global:
+        - LILYPOND_URL="http://lilypond.org/downloads/binaries/linux-64/"
+        - LILYPOND_VERSION=2.19.65
 
 matrix:
-  include:
-  - python: "3.6"
-    env: ACCELERATED=false
-  - python: "3.6"
-    env: ACCELERATED=true
-  - python: "3.7-dev"
-    env: ACCELERATED=true
+    include:
+        - python: "3.6"
+            env: ACCELERATED=false
+        - python: "3.6"
+            env: ACCELERATED=true
+        - python: "3.7-dev"
+            env: ACCELERATED=true
 
 before_install:
 - wget -q ${LILYPOND_URL}lilypond-${LILYPOND_VERSION}-1.linux-64.sh
@@ -25,27 +25,26 @@ before_install:
 - export PATH=/home/travis/bin:$PATH
 
 install:
-# install without development dependencies.
-- pip install -e .
-# make a non-accessible ~/.abjad/ when testing for read-only filesystems.
-- if [[ $TRAVIS_READ_ONLY == 'true' ]]; then mkdir ~/.abjad; chmod 000 ~/.abjad; fi
-# echo the configuration file path to debug read-only-filesystem handling
-- python -c "import abjad; print(abjad.abjad_configuration.configuration_file_path)"
-# remove the read-only .abjad folder, prime the parser
-- rm -Rif ~/.abjad
-- abjad/scr/devel/prime-parser-tables
-# then install development and ipython dependencies.
-- pip install -e .[test]
-# install accelerated dependencies if requested
-- if [[ $ACCELERATED == true ]]; then pip install -e .[accelerated]; fi
+    # install without development dependencies.
+    - pip install -e .
+    # make a non-accessible ~/.abjad/ when testing for read-only filesystems.
+    - if [[ $TRAVIS_READ_ONLY == 'true' ]]; then mkdir ~/.abjad; chmod 000 ~/.abjad; fi
+    # echo the configuration file path to debug read-only-filesystem handling
+    - python -c "import abjad; print(abjad.abjad_configuration.configuration_file_path)"
+    # remove the read-only .abjad folder, prime the parser
+    - rm -Rif ~/.abjad
+    - abjad/scr/devel/prime-parser-tables
+    # then install development and ipython dependencies.
+    - pip install -e .[test]
+    # install accelerated dependencies if requested
+    - if [[ $ACCELERATED == true ]]; then pip install -e .[accelerated]; fi
 
 script:
-- coverage run -a `which pytest`
-- mypy --version
-- mypy abjad
-- pip install --quiet -e .[book,cli,ipython,nauert]
-- ajv --help
+    - coverage run -a `which pytest`
+    - mypy abjad
+    - pip install --quiet -e .[book,cli,ipython,nauert]
+    - ajv --help
 
 after_success:
-- pip install --quiet coveralls
-- coveralls
+    - pip install --quiet coveralls
+    - coveralls

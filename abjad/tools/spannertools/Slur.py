@@ -73,6 +73,10 @@ class Slur(Spanner):
         '_direction',
         )
 
+    _start_command = '('
+
+    _stop_command = ')'
+
     ### INITIALIZER ###
 
     def __init__(
@@ -93,7 +97,7 @@ class Slur(Spanner):
 
     def _get_lilypond_format_bundle(self, leaf):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
-        if self._is_my_only_leaf(leaf):
+        if self._is_my_only(leaf):
             pass
         elif leaf is self[0]:
             if self.direction is not None:
@@ -181,3 +185,29 @@ class Slur(Spanner):
 
         '''
         return self._direction
+
+    ### PUBLIC METHODS ###
+
+    def start_command(self) -> typing.Optional[str]:
+        '''
+        Gets start command.
+
+        ..  container:: example
+
+            >>> abjad.Slur().start_command()
+            '('
+
+        '''
+        return super(Slur, self).start_command()
+
+    def stop_command(self) -> typing.Optional[str]:
+        '''
+        Gets stop command.
+
+        ..  container:: example
+
+            >>> abjad.Slur().stop_command()
+            ')'
+
+        '''
+        return super(Slur, self).stop_command()

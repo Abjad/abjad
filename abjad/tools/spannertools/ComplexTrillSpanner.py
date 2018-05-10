@@ -81,6 +81,10 @@ class ComplexTrillSpanner(Spanner):
         '_interval',
         )
 
+    _start_command = r'\startTrillSpan'
+
+    _stop_command = r'\stopTrillSpan'
+
     ### INITIALIZER ###
 
     def __init__(
@@ -188,3 +192,29 @@ class ComplexTrillSpanner(Spanner):
 
         '''
         return self._interval
+
+    ### PUBLIC METHODS ###
+
+    def start_command(self) -> typing.Optional[str]:
+        r'''
+        Gets start command.
+
+        ..  container:: example
+
+            >>> abjad.ComplexTrillSpanner().start_command()
+            '\\startTrillSpan'
+
+        '''
+        return super(ComplexTrillSpanner, self).start_command()
+
+    def stop_command(self) -> typing.Optional[str]:
+        r'''
+        Gets stop command.
+
+        ..  container:: example
+
+            >>> abjad.ComplexTrillSpanner().stop_command()
+            '\\stopTrillSpan'
+
+        '''
+        return super(ComplexTrillSpanner, self).stop_command()

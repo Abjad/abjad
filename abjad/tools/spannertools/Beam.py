@@ -152,14 +152,19 @@ class Beam(Spanner):
         '_stemlet_length',
         )
 
+    _start_command = '['
+
+    _stop_command = ']'
+
     ### INITIALIZER ###
 
     def __init__(
         self,
         direction: typing.Union[str, VerticalAlignment] = None,
+        leak: bool = None,
         stemlet_length: Number = None,
         ) -> None:
-        Spanner.__init__(self)
+        Spanner.__init__(self, leak=leak)
         direction = String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction
         self._stemlet_length = stemlet_length
@@ -193,21 +198,16 @@ class Beam(Spanner):
     def _get_lilypond_format_bundle(self, leaf):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         if leaf is self[0]:
-            if self.direction is not None:
-                string = f'{self.direction} ['
-            else:
-                string = '['
+            string = self.start_command()
             bundle.right.spanner_starts.append(string)
         if leaf is self[-1]:
-            string = ']'
+            string = self.stop_command()
             if leaf is self[0]:
                 bundle.right.spanner_starts.append(string)
             else:
                 bundle.right.spanner_stops.append(string)
         self._add_stemlet_length(leaf, bundle)
         return bundle
-
-    ### PUBLIC METHODS ###
 
     @staticmethod
     def _is_beamable(argument, beam_rests=False) -> bool:
@@ -311,6 +311,69 @@ class Beam(Spanner):
         return self._direction
         
     @property
+    def leak(self):
+        r'''
+        Is true when beam leaks one leaf to the right with LilyPond empty chord
+        ``<>`` construct.
+
+        ..  container:: example
+
+            Without leak:
+
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'2")
+            >>> abjad.setting(staff).auto_beaming = False
+            >>> beam = abjad.Beam()
+            >>> abjad.attach(beam, staff[:3])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                \with
+                {
+                    autoBeaming = ##f
+                }
+                {
+                    c'8
+                    [
+                    d'8
+                    e'8
+                    ]
+                    f'8
+                    g'2
+                }
+
+            With leak:
+
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'2")
+            >>> abjad.setting(staff).auto_beaming = False
+            >>> beam = abjad.Beam(leak=True)
+            >>> abjad.attach(beam, staff[:3])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                \with
+                {
+                    autoBeaming = ##f
+                }
+                {
+                    c'8
+                    [
+                    d'8
+                    e'8
+                    <> ]
+                    f'8
+                    g'2
+                }
+
+        '''
+        return super(Beam, self).leak
+
+    @property
     def stemlet_length(self) -> typing.Optional[Number]:
         r'''
         Gets stemlet length.
@@ -348,3 +411,45 @@ class Beam(Spanner):
 
         '''
         return self._stemlet_length
+
+    ### PUBLIC METHODS ###
+
+    def start_command(self) -> typing.Optional[str]:
+        '''
+        Gets start command.
+
+        ..  container:: example
+
+            >>> abjad.Beam().start_command()
+            '['
+
+            With direction:
+
+            >>> abjad.Beam(direction=abjad.Up).start_command()
+            '^ ['
+
+        '''
+        string = super(Beam, self).start_command()
+        if self.direction:
+            string = f'{self.direction} {string}'
+        return string
+
+    def stop_command(self) -> typing.Optional[str]:
+        '''
+        Gets stop command.
+
+        ..  container:: example
+
+            >>> abjad.Beam().stop_command()
+            ']'
+
+            Leaked to the right:
+
+            >>> abjad.Beam(leak=True).stop_command()
+            '<> ]'
+
+        '''
+        string = super(Beam, self).stop_command()
+        if self.leak:
+            string = f'{self._empty_chord} {string}'
+        return string

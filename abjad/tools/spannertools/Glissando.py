@@ -69,6 +69,8 @@ class Glissando(Spanner):
         '_style',
         )
 
+    _start_command = r'\glissando'
+
     ### INITIALIZER ###
 
     def __init__(
@@ -434,6 +436,7 @@ class Glissando(Spanner):
         '''
         return self._allow_ties
 
+    @property
     def cross_segment_examples(self):
         r'''
         Cross-segment examples.
@@ -720,6 +723,18 @@ class Glissando(Spanner):
         pass
 
     @property
+    def leak(self) -> None:
+        '''
+        Glissando does not implement ``leak``.
+        
+        The LilyPond ``\glissando`` command is unary instead of matchfix.
+
+        This means that there is no ``\stopGlissando`` command to leak to the
+        right.
+        '''
+        pass
+
+    @property
     def parenthesize_repeats(self) -> typing.Optional[bool]:
         r'''
         Is true when glissando should parenthesize repeated pitches.
@@ -899,3 +914,29 @@ class Glissando(Spanner):
 
         '''
         return self._style
+
+    ## PUBLIC METHODS ###
+
+    def start_command(self) -> typing.Optional[str]:
+        r'''
+        Gets start command.
+
+        ..  container:: example
+
+            >>> abjad.Glissando().start_command()
+            '\\glissando'
+
+        '''
+        return super(Glissando, self).start_command()
+
+    def stop_command(self) -> typing.Optional[str]:
+        '''
+        Gets stop command.
+
+        ..  container:: example
+
+            >>> abjad.Glissando().stop_command() is None
+            True
+
+        '''
+        return super(Glissando, self).stop_command()
