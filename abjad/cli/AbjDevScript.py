@@ -51,7 +51,7 @@ class AbjDevScript(CLIAggregator):
         import abjad.cli
         classes = scan_module(abjad.cli)
         try:
-            import abjadext
+            import abjadext  # type: ignore
             for abjadext_path in abjadext.__path__:
                 abjadext_path = pathlib.Path(abjadext_path)
                 for extension_path in abjadext_path.iterdir():
