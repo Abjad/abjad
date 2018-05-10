@@ -1,9 +1,11 @@
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.datastructuretools import Right
+from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class LineBreak(AbjadValueObject):
-    r'''Line break.
+    r'''
+    Line break.
 
     ..  container:: example
 
@@ -38,7 +40,7 @@ class LineBreak(AbjadValueObject):
 
     ### INITIALIZER ##
 
-    def __init__(self, format_slot='closing'):
+    def __init__(self, format_slot: str = 'closing') -> None:
         assert isinstance(format_slot, str), repr(format_slot)
         self._format_slot = format_slot
 
@@ -48,8 +50,7 @@ class LineBreak(AbjadValueObject):
         return r'\break'
 
     def _get_lilypond_format_bundle(self, component=None):
-        import abjad
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         slot = bundle.get(self.format_slot)
         slot.commands.append(self._get_lilypond_format())
         return bundle
@@ -57,21 +58,22 @@ class LineBreak(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def context(self):
-        r'''Returns ``'Score'``.
+    def context(self) -> str:
+        '''
+        Returns ``'Score'``.
 
         ..  container:: example
 
             >>> abjad.LineBreak().context
             'Score'
 
-        Returns ``'Score'``.
         '''
         return self._context
 
     @property
-    def format_slot(self):
-        r'''Gets format slot.
+    def format_slot(self) -> str:
+        r'''
+        Gets format slot.
 
         ..  container:: example
 

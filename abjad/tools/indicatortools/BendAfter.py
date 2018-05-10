@@ -1,9 +1,13 @@
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.datastructuretools import Right
+from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
+Number = typing.Union[int, float]
 
 
 class BendAfter(AbjadValueObject):
-    r'''Fall or doit.
+    r'''
+    Fall or doit.
 
     ..  container:: example
 
@@ -18,7 +22,7 @@ class BendAfter(AbjadValueObject):
 
             >>> abjad.f(note)
             c'4
-            - \bendAfter #'-4.0
+            - \bendAfter #'-4
 
     ..  container:: example
 
@@ -33,14 +37,7 @@ class BendAfter(AbjadValueObject):
 
             >>> abjad.f(note)
             c'4
-            - \bendAfter #'2.0
-
-    ..  container:: example
-
-        Initializes from other bend:
-
-        >>> abjad.BendAfter(abjad.BendAfter(16))
-        BendAfter(bend_amount=16.0)
+            - \bendAfter #'2
 
     '''
 
@@ -56,25 +53,23 @@ class BendAfter(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, bend_amount=-4):
-        if isinstance(bend_amount, type(self)):
-            bend_amount = bend_amount.bend_amount
-        bend_amount = float(bend_amount)
+    def __init__(self, bend_amount: Number = -4) -> None:
+        assert isinstance(bend_amount, (int, float)), repr(bend_amount)
         self._bend_amount = bend_amount
 
     ### SPECIAL METHODS ###
 
-    def __str__(self):
-        r'''Gets string representation of bend after.
+    def __str__(self) -> str:
+        r'''
+        Gets string representation of bend after.
 
         ..  container:: example
 
             >>> str(abjad.BendAfter())
-            "- \\bendAfter #'-4.0"
+            "- \\bendAfter #'-4"
 
-        Returns string.
         '''
-        return r"- \bendAfter #'{}".format(self.bend_amount)
+        return rf"- \bendAfter #'{self.bend_amount}"
 
     ### PRIVATE PROPERTIES ###
 
@@ -88,16 +83,16 @@ class BendAfter(AbjadValueObject):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        import abjad
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         bundle.right.articulations.append(self._get_lilypond_format())
         return bundle
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def bend_amount(self):
-        r'''Gets bend amount of bend after.
+    def bend_amount(self) -> Number:
+        '''
+        Gets bend amount of bend after.
 
         ..  container:: example
 
@@ -105,16 +100,15 @@ class BendAfter(AbjadValueObject):
 
             >>> bend = abjad.BendAfter(-4)
             >>> bend.bend_amount
-            -4.0
+            -4
 
         ..  container:: example
 
             Doit:
 
-            >>> bend = abjad.BendAfter(2)
+            >>> bend = abjad.BendAfter(2.5)
             >>> bend.bend_amount
-            2.0
+            2.5
 
-        Returns float.
         '''
         return self._bend_amount

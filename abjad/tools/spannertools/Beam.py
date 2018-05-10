@@ -1,8 +1,15 @@
+import typing
+from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
+from abjad.tools.datastructuretools.String import String
+from abjad.tools.topleveltools.inspect import inspect
+from abjad.tools.topleveltools.new import new
 from .Spanner import Spanner
+Number = typing.Union[int, float]
 
 
 class Beam(Spanner):
-    r'''Beam.
+    r'''
+    Beam.
 
     ..  container:: example
 
@@ -149,32 +156,30 @@ class Beam(Spanner):
 
     def __init__(
         self,
-        direction=None,
-        overrides=None,
-        stemlet_length=None,
-        ):
-        import abjad
-        Spanner.__init__(self, overrides=overrides)
-        direction = abjad.String.to_tridirectional_lilypond_symbol(direction)
+        direction: typing.Union[str, OrdinalConstant] = None,
+        stemlet_length: Number = None,
+        ) -> None:
+        Spanner.__init__(self)
+        direction = String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction
         self._stemlet_length = stemlet_length
 
     ### PRIVATE METHODS ###
 
     def _add_stemlet_length(self, leaf, bundle):
-        import abjad
+        from abjad.tools.scoretools.Staff import Staff
         if self.stemlet_length is None:
             return
         if leaf is self[0]:
-            parentage = abjad.inspect(leaf).get_parentage()
-            staff = parentage.get_first(abjad.Staff)
+            parentage = inspect(leaf).get_parentage()
+            staff = parentage.get_first(Staff)
             lilypond_type = staff.lilypond_type
             string = r'\override {}.Stem.stemlet-length = {}'
             string = string.format(lilypond_type, self.stemlet_length)
             bundle.before.commands.append(string)
         if leaf is self[-1]:
-            parentage = abjad.inspect(leaf).get_parentage()
-            staff = parentage.get_first(abjad.Staff)
+            parentage = inspect(leaf).get_parentage()
+            staff = parentage.get_first(Staff)
             lilypond_type = staff.lilypond_type
             string = r'\revert {}.Stem.stemlet-length'
             string = string.format(lilypond_type, self.stemlet_length)
@@ -189,7 +194,7 @@ class Beam(Spanner):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         if leaf is self[0]:
             if self.direction is not None:
-                string = '{} ['.format(self.direction)
+                string = f'{self.direction} ['
             else:
                 string = '['
             bundle.right.spanner_starts.append(string)
@@ -205,8 +210,9 @@ class Beam(Spanner):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def _is_beamable(argument, beam_rests=False):
-        '''Is true when `argument` is a beamable component. Otherwise false.
+    def _is_beamable(argument, beam_rests=False) -> bool:
+        '''
+        Is true when ``argument`` is a beamable component.
 
         ..  container:: example
 
@@ -277,17 +283,19 @@ class Beam(Spanner):
             >>> abjad.Beam._is_beamable(rest, beam_rests=True)
             True
 
-        Returns true or false.
         '''
-        import abjad
-        prototype = (abjad.Note, abjad.Chord)
-        if isinstance(argument, prototype):
+        from abjad.tools.scoretools.Chord import Chord
+        from abjad.tools.scoretools.MultimeasureRest import MultimeasureRest
+        from abjad.tools.scoretools.Note import Note
+        from abjad.tools.scoretools.Rest import Rest
+        from abjad.tools.scoretools.Skip import Skip
+        if isinstance(argument, (Chord, Note)):
             if 0 < argument.written_duration.flag_count:
                 return True
         prototype = (
-            abjad.MultimeasureRest,
-            abjad.Rest,
-            abjad.Skip,
+            MultimeasureRest,
+            Rest,
+            Skip,
             )
         if beam_rests and isinstance(argument, prototype):
             return True
@@ -296,20 +304,16 @@ class Beam(Spanner):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def direction(self):
-        r'''Gets direction.
-
-        Defaults to none.
-
-        Set to up, down or none.
-
-        Returns up, down or none.
+    def direction(self) -> typing.Optional[String]:
+        '''
+        Gets direction.
         '''
         return self._direction
         
     @property
-    def stemlet_length(self):
-        r'''Gets stemlet length.
+    def stemlet_length(self) -> typing.Optional[Number]:
+        r'''
+        Gets stemlet length.
 
         ..  container:: example
 
@@ -342,10 +346,5 @@ class Beam(Spanner):
                     g'2
                 }
 
-        Defaults to none.
-
-        Set to nonnegative integer, float or none.
-
-        Returns nonnegative integer, float or none.
         '''
         return self._stemlet_length

@@ -1,8 +1,12 @@
+import typing
+from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
 from .Beam import Beam
+Number = typing.Union[int, float]
 
 
 class MultipartBeam(Beam):
-    r'''Multipart beam.
+    r'''
+    Multipart beam.
 
     Beams together everything that can be beamed and ignores everything else.
 
@@ -78,15 +82,13 @@ class MultipartBeam(Beam):
 
     def __init__(
         self,
-        beam_rests=False,
-        direction=None,
-        overrides=None,
-        stemlet_length=None,
-        ):
+        beam_rests: bool = False,
+        direction: OrdinalConstant = None,
+        stemlet_length: Number = None,
+        ) -> None:
         Beam.__init__(
             self,
             direction=direction,
-            overrides=overrides,
             stemlet_length=stemlet_length,
             )
         self._beam_rests = bool(beam_rests)
@@ -102,7 +104,7 @@ class MultipartBeam(Beam):
             return bundle
         direction_string = ''
         if self.direction is not None:
-            direction_string = '{} '.format(self.direction)
+            direction_string = f'{self.direction} '
         beamable_leaf_count = 0
         for leaf_ in self.leaves:
             if self._is_beamable(leaf_, beam_rests=self.beam_rests):
@@ -122,7 +124,7 @@ class MultipartBeam(Beam):
                         next_leaf,
                         beam_rests=self.beam_rests,
                         ):
-                        start_piece = '{}['.format(direction_string)
+                        start_piece = f'{direction_string}['
             else:
                 if previous_leaf is not None:
                     if not self._is_beamable(
@@ -133,7 +135,7 @@ class MultipartBeam(Beam):
                             next_leaf,
                             beam_rests=self.beam_rests,
                             ):
-                            start_piece = '{}['.format(direction_string)
+                            start_piece = f'{direction_string}['
             if leaf is self[-1]:
                 if previous_leaf is not None:
                     if self._is_beamable(
@@ -166,8 +168,9 @@ class MultipartBeam(Beam):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def beam_rests(self):
-        r'''Is true when beam should include rests. Otherwise false.
+    def beam_rests(self) -> typing.Optional[bool]:
+        r'''
+        Is true when beam should include rests. Otherwise false.
 
         ..  container:: example
 
@@ -295,17 +298,13 @@ class MultipartBeam(Beam):
 
             LilyPond beams all (internal) skips.
 
-        Defaults to false.
-
-        Set to true or false.
-
-        Returns true of false.
         '''
         return self._beam_rests
 
     @property
-    def stemlet_length(self):
-        r'''Gets stemlet length.
+    def stemlet_length(self) -> typing.Optional[Number]:
+        r'''
+        Gets stemlet length.
 
         ..  container:: example
 
@@ -343,10 +342,5 @@ class MultipartBeam(Beam):
                     ]
                 }
 
-        Defaults to none.
-
-        Set to nonnegative integer, float or none.
-
-        Returns nonnegative integer, float or none.
         '''
         return self._stemlet_length

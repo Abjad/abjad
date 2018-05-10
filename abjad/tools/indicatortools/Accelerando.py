@@ -1,8 +1,14 @@
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.datastructuretools import Up
+from abjad.tools.markuptools.Markup import Markup
+from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.tools.topleveltools.new import new
 
 
 class Accelerando(AbjadValueObject):
-    r'''Accelerando.
+    r'''
+    Accelerando.
 
     ..  container:: example
 
@@ -53,16 +59,16 @@ class Accelerando(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, markup=None):
-        import abjad
+    def __init__(self, markup: Markup = None) -> None:
         if markup is not None:
-            assert isinstance(markup, abjad.Markup)
+            assert isinstance(markup, Markup), repr(markup)
         self._markup = markup
 
     ### SPECIAL METHODS ###
 
-    def __str__(self):
-        r'''Gets string representation of accelerando.
+    def __str__(self) -> str:
+        r'''
+        Gets string representation of accelerando.
 
         ..  container:: example
 
@@ -92,7 +98,6 @@ class Accelerando(AbjadValueObject):
                     }
                 }
 
-        Returns string.
         '''
         return str(self._get_markup())
 
@@ -102,22 +107,19 @@ class Accelerando(AbjadValueObject):
     def _contents_repr_string(self):
         return str(self)
 
-    @property
-    def _default_markup(self):
-        from abjad.tools import markuptools
-        contents = r'\large \upright accel.'
-        return markuptools.Markup(contents=contents)
-
     ### PRIVATE METHODS ###
+
+    def _default_markup(self):
+        contents = r'\large \upright accel.'
+        return Markup(contents=contents)
 
     def _get_lilypond_format(self):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        import abjad
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         markup = self._get_markup()
-        markup = abjad.new(markup, direction=abjad.Up)
+        markup = new(markup, direction=Up)
         markup_format_pieces = markup._get_format_pieces()
         bundle.right.markup.extend(markup_format_pieces)
         return bundle
@@ -125,28 +127,28 @@ class Accelerando(AbjadValueObject):
     def _get_markup(self):
         if self.markup is not None:
             return self.markup
-        return self._default_markup
+        return self._default_markup()
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def context(self):
-        r'''Gets (historically conventional) context.
+    def context(self) -> str:
+        '''
+        Gets (historically conventional) context.
 
         ..  container:: example
 
             >>> abjad.Accelerando().context
             'Score'
 
-        Returns ``'Score'``.
-
         Override with ``abjad.attach(..., context='...')``.
         '''
         return self._context
 
     @property
-    def markup(self):
-        r'''Gets markup of accelerando.
+    def markup(self) -> typing.Optional[Markup]:
+        r'''
+        Gets markup of accelerando.
 
         ..  container:: example
 
@@ -163,19 +165,18 @@ class Accelerando(AbjadValueObject):
                     }
                 }
 
-        Returns markup or none.
         '''
         return self._markup
 
     @property
-    def persistent(self):
-        r'''Is ``'abjad.MetronomeMark'``.
+    def persistent(self) -> str:
+        '''
+        Is ``'abjad.MetronomeMark'``.
 
         ..  container:: example
 
             >>> abjad.Accelerando().persistent
             'abjad.MetronomeMark'
 
-        Returns ``'abjad.MetronomeMark'``.
         '''
         return self._persistent

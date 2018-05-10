@@ -1,8 +1,11 @@
+import typing
+from abjad.tools.pitchtools.PitchSegment import PitchSegment
 from .Spanner import Spanner
 
 
 class OctavationSpanner(Spanner):
-    r'''Octavation spanner.
+    r'''
+    Octavation spanner.
 
     ..  container:: example
 
@@ -63,17 +66,15 @@ class OctavationSpanner(Spanner):
 
     def __init__(
         self,
-        overrides=None,
-        start=1,
-        stop=0,
-        ):
-        Spanner.__init__(
-            self,
-            overrides=overrides,
-            )
-        assert isinstance(start, (int, type(None)))
+        start: typing.Optional[int] = 1,
+        stop: typing.Optional[int] = 0,
+        ) -> None:
+        Spanner.__init__(self)
+        if start is not None:
+            assert isinstance(start, int)
         self._start = start
-        assert isinstance(stop, (int, type(None)))
+        if stop is not None:
+            assert isinstance(stop, int)
         self._stop = stop
 
     ### PRIVATE METHODS ###
@@ -85,24 +86,60 @@ class OctavationSpanner(Spanner):
     def _get_lilypond_format_bundle(self, leaf):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         if leaf is self[0]:
-            string = r'\ottava #{}'.format(self.start)
+            string = rf'\ottava #{self.start}'
             bundle.before.commands.append(string)
         if leaf is self[-1]:
-            string = r'\ottava #{}'.format(self.stop)
+            string = rf'\ottava #{self.stop}'
             bundle.after.commands.append(string)
         return bundle
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def start(self) -> typing.Optional[int]:
+        '''
+        Gets octavation start.
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = abjad.OctavationSpanner(start=1)
+            >>> abjad.attach(spanner, staff[:])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            >>> spanner.start
+            1
+
+        '''
+        return self._start
+
+    @property
+    def stop(self) -> typing.Optional[int]:
+        '''
+        Gets octavation stop.
+
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> spanner = abjad.OctavationSpanner(start=2, stop=1)
+        >>> abjad.attach(spanner, staff[:])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        >>> spanner.stop
+        1
+
+        '''
+        return self._stop
 
     ### PUBLIC METHODS ###
 
     # TODO: add two or three more examples to better show what's going on
     def adjust_automatically(
         self,
-        ottava_breakpoint=None,
-        quindecisima_breakpoint=None,
-        ):
-        r"""Adjusts octavation spanner start and stop
-        automatically according to `ottava_breakpoint`
-        and `quindecisima_breakpoint`.
+        ottava_breakpoint: int = None,
+        quindecisima_breakpoint: int = None,
+        ) -> None:
+        r"""
+        Adjusts octavation spanner start and stop automatically according to
+        ``ottava_breakpoint`` and ``quindecisima_breakpoint``.
 
         ..  container:: example
 
@@ -129,11 +166,8 @@ class OctavationSpanner(Spanner):
 
         Adjusts start and stop according to the diatonic pitch number of
         the maximum pitch in spanner.
-
-        Returns none.
         """
-        import abjad
-        pitches = abjad.PitchSegment.from_selection(self)
+        pitches = PitchSegment.from_selection(self)
         max_pitch = max(pitches)
         max_numbered_diatonic_pitch = max_pitch._get_diatonic_pitch_number()
         if ottava_breakpoint is not None:
@@ -144,39 +178,3 @@ class OctavationSpanner(Spanner):
                 if quindecisima_breakpoint is not None:
                     if quindecisima_breakpoint <= max_numbered_diatonic_pitch:
                         self._start = 2
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def start(self):
-        r'''Gets octavation start.
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-            >>> spanner = abjad.OctavationSpanner(start=1)
-            >>> abjad.attach(spanner, staff[:])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            >>> spanner.start
-            1
-
-        Returns integer or none.
-        '''
-        return self._start
-
-    @property
-    def stop(self):
-        r'''Gets octavation stop.
-
-        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-        >>> spanner = abjad.OctavationSpanner(start=2, stop=1)
-        >>> abjad.attach(spanner, staff[:])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        >>> spanner.stop
-        1
-
-        Returns integer or none.
-        '''
-        return self._stop

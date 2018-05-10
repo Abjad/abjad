@@ -1,9 +1,18 @@
 import collections
+import typing
+from abjad.tools.datastructuretools.Duration import Duration
+from abjad.tools.datastructuretools.Offset import Offset
+from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
+from abjad.tools.scoretools.Leaf import Leaf
+from abjad.tools.topleveltools.inspect import inspect
+from abjad.tools.topleveltools.sequence import sequence
 from .ComplexBeam import ComplexBeam
+Number = typing.Union[int, float]
 
 
 class DuratedComplexBeam(ComplexBeam):
-    r'''Durated complex beam.
+    r'''
+    Durated complex beam.
 
     ..  container:: example
 
@@ -107,36 +116,34 @@ class DuratedComplexBeam(ComplexBeam):
 
     def __init__(
         self,
-        beam_rests=None,
-        direction=None,
-        durations=None,
-        isolated_nib_direction=False,
-        nibs_towards_nonbeamable_components=True,
-        overrides=None,
-        span_beam_count=1,
-        stemlet_length=None,
-        ):
+        beam_rests: bool = None,
+        direction: typing.Union[str, OrdinalConstant] = None,
+        durations: typing.Iterable[Duration] = None,
+        isolated_nib_direction: typing.Union[bool, OrdinalConstant] = False,
+        nibs_towards_nonbeamable_components: bool = True,
+        span_beam_count: int = 1,
+        stemlet_length: Number = None,
+        ) -> None:
         ComplexBeam.__init__(
             self,
             beam_rests=beam_rests,
             direction=direction,
             isolated_nib_direction=isolated_nib_direction,
-            overrides=overrides,
             stemlet_length=stemlet_length,
             )
         durations = self._coerce_durations(durations)
-        self._durations = durations
+        self._durations: typing.Tuple[Duration, ...] = durations
         assert isinstance(nibs_towards_nonbeamable_components, bool)
         self._nibs_towards_nonbeamable_components = \
             nibs_towards_nonbeamable_components
-        assert isinstance(span_beam_count, (int, type(None)))
+        if span_beam_count is not None:
+            assert isinstance(span_beam_count, int)
         self._span_beam_count = span_beam_count
 
     ### PRIVATE METHODS ###
 
     def _add_beam_counts(self, leaf, bundle):
-        import abjad
-        if (not isinstance(leaf, abjad.Leaf) or not self._is_beamable(leaf)):
+        if (not isinstance(leaf, Leaf) or not self._is_beamable(leaf)):
             left, right = None, None
         elif self._is_exterior_leaf(leaf):
             left, right = self._get_left_right_for_exterior_leaf(leaf)
@@ -145,7 +152,7 @@ class DuratedComplexBeam(ComplexBeam):
             if self.nibs_towards_nonbeamable_components:
                 right = self.span_beam_count
             else:
-                next_leaf = abjad.inspect(leaf).get_leaf(1)
+                next_leaf = inspect(leaf).get_leaf(1)
                 if self._is_beamable(
                     next_leaf,
                     beam_rests=self.beam_rests,
@@ -157,7 +164,7 @@ class DuratedComplexBeam(ComplexBeam):
             if self.nibs_towards_nonbeamable_components:
                 left = self.span_beam_count
             else:
-                previous_leaf = abjad.inspect(leaf).get_leaf(-1)
+                previous_leaf = inspect(leaf).get_leaf(-1)
                 if self._is_beamable(
                     previous_leaf,
                     beam_rests=self.beam_rests,
@@ -170,20 +177,18 @@ class DuratedComplexBeam(ComplexBeam):
             assert self._is_interior_leaf(leaf)
             left, right = self._get_left_right_for_interior_leaf(leaf)
         if left is not None:
-            string = r'\set stemLeftBeamCount = {}'.format(left)
+            string = rf'\set stemLeftBeamCount = {left}'
             bundle.before.commands.append(string)
         if right is not None:
-            string = r'\set stemRightBeamCount = {}'.format(right)
+            string = rf'\set stemRightBeamCount = {right}'
             bundle.before.commands.append(string)
 
     @staticmethod
-    def _coerce_durations(durations):
-        import abjad
+    def _coerce_durations(durations) -> typing.Tuple[Duration, ...]:
         durations = durations or []
         assert isinstance(durations, collections.Iterable)
-        durations = [abjad.Duration(x) for x in durations]
-        durations = tuple(durations)
-        return durations
+        durations = [Duration(_) for _ in durations]
+        return tuple(durations)
 
     def _copy_keyword_args(self, new):
         ComplexBeam._copy_keyword_args(self, new)
@@ -192,14 +197,13 @@ class DuratedComplexBeam(ComplexBeam):
         new._span_beam_count = self.span_beam_count
 
     def _fracture_left(self, i):
-        import abjad
         self, left, right = ComplexBeam._fracture_left(self, i)
         weights = [
-            abjad.inspect(left).get_duration(),
-            abjad.inspect(right).get_duration(),
+            inspect(left).get_duration(),
+            inspect(right).get_duration(),
             ]
         assert sum(self.durations) == sum(weights)
-        split_durations = abjad.sequence(self.durations)
+        split_durations = sequence(self.durations)
         split_durations = split_durations.split(
             weights,
             cyclic=False,
@@ -211,14 +215,13 @@ class DuratedComplexBeam(ComplexBeam):
         return self, left, right
 
     def _fracture_right(self, i):
-        import abjad
         self, left, right = ComplexBeam._fracture_right(self, i)
         weights = [
-            abjad.inspect(left).get_duration(),
-            abjad.inspect(right).get_duration(),
+            inspect(left).get_duration(),
+            inspect(right).get_duration(),
             ]
         assert sum(self.durations) == sum(weights)
-        split_durations = abjad.sequence(self.durations)
+        split_durations = sequence(self.durations)
         split_durations = split_durations.split(
             weights,
             cyclic=False,
@@ -230,10 +233,9 @@ class DuratedComplexBeam(ComplexBeam):
         return self, left, right
 
     def _get_span_beam_offsets(self):
-        import abjad
         offsets = []
         if self.durations:
-            offset = abjad.Offset(self.durations[0])
+            offset = Offset(self.durations[0])
             offsets.append(offset)
             for duration in self.durations[1:]:
                 offset = offsets[-1] + duration
@@ -258,9 +260,9 @@ class DuratedComplexBeam(ComplexBeam):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def beam_rests(self):
-        r'''Is true when beam should include rests and skips.
-        Otherwise false.
+    def beam_rests(self) -> typing.Optional[bool]:
+        r'''
+        Is true when beam should include rests and skips.
 
         ..  container:: example
 
@@ -401,18 +403,13 @@ class DuratedComplexBeam(ComplexBeam):
                     ]
                 }
 
-        Defaults to none.
-
-        Set to true, false or none.
-
-        Returns true, false or none.
         '''
-        superclass = super(DuratedComplexBeam, self)
-        return superclass.beam_rests
+        return super(DuratedComplexBeam, self).beam_rests
 
     @property
-    def durations(self):
-        r'''Gets durations.
+    def durations(self) -> typing.Tuple[Duration, ...]:
+        r'''
+        Gets durations.
 
         ..  container:: example
 
@@ -493,19 +490,14 @@ class DuratedComplexBeam(ComplexBeam):
             Test ensures that leaf groups format correctly when they contain
             only one leaf.
 
-        Defaults to none.
-
-        Set to durations or none.
-
-        Returns tuple of durations or none.
         '''
         return self._durations
 
     @property
-    def nibs_towards_nonbeamable_components(self):
-        r'''Is true when when spanner should render nibs pointing towards
+    def nibs_towards_nonbeamable_components(self) -> typing.Optional[bool]:
+        r'''
+        Is true when when spanner should render nibs pointing towards
         nonbeamable components included in spanner.
-        Otherwise false.
 
         ..  container:: example
 
@@ -581,17 +573,13 @@ class DuratedComplexBeam(ComplexBeam):
                     ]
                 }
 
-        Defaults to true.
-
-        Set to true or false.
-
-        Returns true or false.
         '''
         return self._nibs_towards_nonbeamable_components
 
     @property
-    def span_beam_count(self):
-        r'''Gets span beam count.
+    def span_beam_count(self) -> int:
+        r'''
+        Gets span beam count.
 
         ..  container:: example
 
@@ -704,17 +692,13 @@ class DuratedComplexBeam(ComplexBeam):
             >>> beam.span_beam_count
             0
 
-        Defaults to ``1``.
-
-        Set to nonnegative integer.
-
-        Returns nonnegative integer.
         '''
         return self._span_beam_count
 
     @property
-    def stemlet_length(self):
-        r'''Gets stemlet length.
+    def stemlet_length(self) -> typing.Optional[Number]:
+        r'''
+        Gets stemlet length.
 
         ..  container:: example
 
@@ -761,10 +745,5 @@ class DuratedComplexBeam(ComplexBeam):
                     ]
                 }
 
-        Defaults to none.
-
-        Set to nonnegative integer, float or none.
-
-        Returns nonnegative integer, float or none.
         '''
         return self._stemlet_length

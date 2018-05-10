@@ -1,9 +1,11 @@
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.datastructuretools import Right
+from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class Staccato(AbjadValueObject):
-    r'''Staccato.
+    r'''
+    Staccato.
 
     ..  container:: example
 
@@ -57,33 +59,23 @@ class Staccato(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_direction',
         )
 
     _format_slot = Right
 
     _time_orientation = Right
 
-    ### INITIALIZER ###
-
-    def __init__(self, direction=None):
-        import abjad
-        direction = abjad.String.to_tridirectional_ordinal_constant(direction)
-        directions = (abjad.Up, abjad.Down, abjad.Center, None)
-        assert direction in directions, repr(direction)
-        self._direction = direction
-
     ### SPECIAL METHODS ###
 
-    def __str__(self):
-        r'''Gets string representation of staccato.
+    def __str__(self) -> str:
+        r'''
+        Gets string representation of staccato.
 
         ..  container:: example
 
             >>> str(abjad.Staccato())
             '\\staccato'
 
-        Returns string.
         '''
         return r'\staccato'
 
@@ -99,7 +91,6 @@ class Staccato(AbjadValueObject):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        import abjad
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         bundle.after.commands.append(self._get_lilypond_format())
         return bundle

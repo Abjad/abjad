@@ -1,9 +1,11 @@
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.datastructuretools import Right
+from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class BreathMark(AbjadValueObject):
-    r'''Breath mark.
+    r'''
+    Breath mark.
 
     ..  container:: example
 
@@ -64,15 +66,15 @@ class BreathMark(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __str__(self):
-        r'''Gets string representation of breath mark.
+    def __str__(self) -> str:
+        r'''
+        Gets string representation of breath mark.
 
         ..  container:: example
 
             >>> str(abjad.BreathMark())
             '\\breathe'
 
-        Returns string.
         '''
         return r'\breathe'
 
@@ -88,7 +90,6 @@ class BreathMark(AbjadValueObject):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        import abjad
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         bundle.after.commands.append(self._get_lilypond_format())
         return bundle

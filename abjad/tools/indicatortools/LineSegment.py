@@ -1,15 +1,22 @@
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.datastructuretools import Center
+from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
+from abjad.tools.lilypondnametools.LilyPondGrobOverride import \
+    LilyPondGrobOverride
+from abjad.tools.markuptools.Markup import Markup
+from abjad.tools.schemetools.Scheme import Scheme
 from abjad.tools.systemtools.LilyPondFormatManager import LilyPondFormatManager
+Number = typing.Union[int, float]
 
 
 class LineSegment(AbjadValueObject):
-    r'''Line segment.
+    '''
+    Line segment.
 
     Line segments format as text spanners.
 
     ..  container:: example
-
-        Default line segment:
 
         >>> line_segment = abjad.LineSegment()
         >>> abjad.f(line_segment)
@@ -47,23 +54,25 @@ class LineSegment(AbjadValueObject):
 
     def __init__(
         self,
-        arrow_width=None,
-        dash_fraction=None,
-        dash_period=None,
-        left_broken_padding=None,
-        left_broken_text=None,
-        left_hspace=None,
-        left_padding=None,
-        left_stencil_align_direction_y=None,
-        right_arrow=None,
-        right_broken_arrow=None,
-        right_broken_padding=None,
-        right_broken_text=None,
-        right_padding=None,
-        right_stencil_align_direction_y=None,
-        right_text=None,
-        style=None,
-        ):
+        arrow_width: Number = None,
+        dash_fraction: Number = None,
+        dash_period: Number = None,
+        left_broken_padding: Number = None,
+        left_broken_text: typing.Union[bool, str, Markup] = None,
+        left_hspace: Number = None,
+        left_padding: Number = None,
+        left_stencil_align_direction_y: typing.Union[
+            Number, OrdinalConstant] = None,
+        right_arrow: bool = None,
+        right_broken_arrow: bool = None,
+        right_broken_padding: Number = None,
+        right_broken_text: typing.Union[bool, str, Markup] = None,
+        right_padding: Number = None,
+        right_stencil_align_direction_y: typing.Union[
+            Number, OrdinalConstant] = None,
+        right_text: typing.Union[bool, str, Markup] = None,
+        style: str = None,
+        ) -> None:
         self._arrow_width = arrow_width
         self._dash_fraction = dash_fraction
         self._dash_period = dash_period
@@ -84,10 +93,9 @@ class LineSegment(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_lilypond_grob_overrides(self, tweaks=False):
-        import abjad
         overrides = []
         if self.arrow_width is not None:
-            override = abjad.LilyPondGrobOverride(
+            override = LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 once=True,
                 property_path=(
@@ -96,11 +104,11 @@ class LineSegment(AbjadValueObject):
                 value=self.arrow_width,
                 )
             if tweaks is True:
-                overrides.append(override.tweak_string)
+                overrides.append(override.tweak_string())
             else:
                 overrides.append(override.override_string)
         if self.dash_fraction is not None:
-            override = abjad.LilyPondGrobOverride(
+            override = LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 once=True,
                 property_path=(
@@ -109,11 +117,11 @@ class LineSegment(AbjadValueObject):
                 value=self.dash_fraction,
                 )
             if tweaks is True:
-                overrides.append(override.tweak_string)
+                overrides.append(override.tweak_string())
             else:
                 overrides.append(override.override_string)
         if self.dash_period is not None:
-            override = abjad.LilyPondGrobOverride(
+            override = LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 once=True,
                 property_path=(
@@ -122,11 +130,11 @@ class LineSegment(AbjadValueObject):
                 value=self.dash_period,
                 )
             if tweaks is True:
-                overrides.append(override.tweak_string)
+                overrides.append(override.tweak_string())
             else:
                 overrides.append(override.override_string)
         if self.left_broken_padding is not None:
-            override = abjad.LilyPondGrobOverride(
+            override = LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 once=True,
                 property_path=(
@@ -137,11 +145,11 @@ class LineSegment(AbjadValueObject):
                 value=self.left_broken_padding,
                 )
             if tweaks is True:
-                overrides.append(override.tweak_string)
+                overrides.append(override.tweak_string())
             else:
                 overrides.append(override.override_string)
         if self.left_broken_text is not None:
-            override = abjad.LilyPondGrobOverride(
+            override = LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 once=True,
                 property_path=(
@@ -152,11 +160,11 @@ class LineSegment(AbjadValueObject):
                 value=self.left_broken_text,
                 )
             if tweaks is True:
-                overrides.append(override.tweak_string)
+                overrides.append(override.tweak_string())
             else:
                 overrides.append(override.override_string)
         if self.left_padding is not None:
-            override = abjad.LilyPondGrobOverride(
+            override = LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 once=True,
                 property_path=(
@@ -167,11 +175,11 @@ class LineSegment(AbjadValueObject):
                 value=self.left_padding,
                 )
             if tweaks is True:
-                overrides.append(override.tweak_string)
+                overrides.append(override.tweak_string())
             else:
                 overrides.append(override.override_string)
         if self.left_stencil_align_direction_y is not None:
-            override = abjad.LilyPondGrobOverride(
+            override = LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 once=True,
                 property_path=(
@@ -182,11 +190,11 @@ class LineSegment(AbjadValueObject):
                 value=self.left_stencil_align_direction_y,
                 )
             if tweaks is True:
-                overrides.append(override.tweak_string)
+                overrides.append(override.tweak_string())
             else:
                 overrides.append(override.override_string)
         if self.right_arrow is not None:
-            override = abjad.LilyPondGrobOverride(
+            override = LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 once=True,
                 property_path=(
@@ -197,11 +205,11 @@ class LineSegment(AbjadValueObject):
                 value=self.right_arrow,
                 )
             if tweaks is True:
-                overrides.append(override.tweak_string)
+                overrides.append(override.tweak_string())
             else:
                 overrides.append(override.override_string)
         if self.right_broken_arrow is not None:
-            override = abjad.LilyPondGrobOverride(
+            override = LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 once=True,
                 property_path=(
@@ -212,11 +220,11 @@ class LineSegment(AbjadValueObject):
                 value=self.right_broken_arrow,
                 )
             if tweaks is True:
-                overrides.append(override.tweak_string)
+                overrides.append(override.tweak_string())
             else:
                 overrides.append(override.override_string)
         if self.right_broken_padding is not None:
-            override = abjad.LilyPondGrobOverride(
+            override = LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 once=True,
                 property_path=(
@@ -227,11 +235,11 @@ class LineSegment(AbjadValueObject):
                 value=self.right_broken_padding,
                 )
             if tweaks is True:
-                overrides.append(override.tweak_string)
+                overrides.append(override.tweak_string())
             else:
                 overrides.append(override.override_string)
         if self.right_broken_text is not None:
-            override = abjad.LilyPondGrobOverride(
+            override = LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 once=True,
                 property_path=(
@@ -242,11 +250,11 @@ class LineSegment(AbjadValueObject):
                 value=self.right_broken_text,
                 )
             if tweaks is True:
-                overrides.append(override.tweak_string)
+                overrides.append(override.tweak_string())
             else:
                 overrides.append(override.override_string)
         if self.right_padding is not None:
-            override = abjad.LilyPondGrobOverride(
+            override = LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 once=True,
                 property_path=(
@@ -257,11 +265,11 @@ class LineSegment(AbjadValueObject):
                 value=self.right_padding,
                 )
             if tweaks is True:
-                overrides.append(override.tweak_string)
+                overrides.append(override.tweak_string())
             else:
                 overrides.append(override.override_string)
         if self.right_stencil_align_direction_y is not None:
-            override = abjad.LilyPondGrobOverride(
+            override = LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 once=True,
                 property_path=(
@@ -272,11 +280,11 @@ class LineSegment(AbjadValueObject):
                 value=self.right_stencil_align_direction_y,
                 )
             if tweaks is True:
-                overrides.append(override.tweak_string)
+                overrides.append(override.tweak_string())
             else:
                 overrides.append(override.override_string)
         if self.right_text is not None:
-            override = abjad.LilyPondGrobOverride(
+            override = LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 once=True,
                 property_path=(
@@ -287,12 +295,12 @@ class LineSegment(AbjadValueObject):
                 value=self.right_text,
                 )
             if tweaks is True:
-                overrides.append(override.tweak_string)
+                overrides.append(override.tweak_string())
             else:
                 overrides.append(override.override_string)
         if self.style is not None:
-            style = abjad.Scheme(self.style, quoting="'")
-            override = abjad.LilyPondGrobOverride(
+            style = Scheme(self.style, quoting="'")
+            override = LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 once=True,
                 property_path=(
@@ -301,7 +309,7 @@ class LineSegment(AbjadValueObject):
                 value=style,
                 )
             if tweaks is True:
-                overrides.append(override.tweak_string)
+                overrides.append(override.tweak_string())
             else:
                 overrides.append(override.override_string)
         assert all(isinstance(_, str) for _ in overrides)
@@ -310,130 +318,114 @@ class LineSegment(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def arrow_width(self):
-        r'''Gets arrow width of line segment.
-
-        Returns float or none.
+    def arrow_width(self) -> typing.Optional[Number]:
+        '''
+        Gets arrow width of line segment.
         '''
         return self._arrow_width
 
     @property
-    def dash_fraction(self):
-        r'''Gets dash fraction of line segment.
-
-        Returns float or none.
+    def dash_fraction(self) -> typing.Optional[Number]:
+        '''
+        Gets dash fraction of line segment.
         '''
         return self._dash_fraction
 
     @property
-    def dash_period(self):
-        r'''Gets dash period of line segment.
-
-        Returns float or none.
+    def dash_period(self) -> typing.Optional[Number]:
+        '''Gets dash period of line segment.
         '''
         return self._dash_period
 
     @property
-    def left_broken_padding(self):
-        r'''Gets left broken padding of line segment.
-
-        Returns float or none.
+    def left_broken_padding(self) -> typing.Optional[Number]:
+        '''
+        Gets left broken padding of line segment.
         '''
         return self._left_broken_padding
 
     @property
-    def left_broken_text(self):
-        r'''Gets left broken text of line segment.
-
-        Returns markup, false or none.
+    def left_broken_text(self) -> typing.Union[bool, str, Markup, None]:
+        '''
+        Gets left broken text of line segment.
         '''
         return self._left_broken_text
 
     @property
-    def left_hspace(self):
-        r'''Gets left hspace of line segment.
-
-        Returns float or none.
+    def left_hspace(self) -> typing.Optional[Number]:
+        '''
+        Gets left hspace of line segment.
         '''
         return self._left_hspace
 
     @property
-    def left_padding(self):
-        r'''Gets left padding of line segment.
-
-        Returns float or none.
+    def left_padding(self) -> typing.Optional[Number]:
+        '''
+        Gets left padding of line segment.
         '''
         return self._left_padding
 
     @property
-    def left_stencil_align_direction_y(self):
-        r'''Gets left stencil align direction Y of line segment.
-
-        Returns float or none.
+    def left_stencil_align_direction_y(self) -> typing.Union[
+        Number, OrdinalConstant, None]:
+        '''
+        Gets left stencil align direction Y of line segment.
         '''
         return self._left_stencil_align_direction_y
 
     @property
-    def right_arrow(self):
-        r'''Is true when right end of line segment carries an arrow.
-        Otherwise false.
-
-        Returns true, false or none.
+    def right_arrow(self) -> typing.Optional[bool]:
+        '''
+        Is true when right end of line segment carries an arrow.
         '''
         return self._right_arrow
 
     @property
-    def right_broken_arrow(self):
-        r'''Gets right broken arrow of line segment.
-
-        Returns float or none.
+    def right_broken_arrow(self) -> typing.Optional[bool]:
+        '''
+        Gets right broken arrow of line segment.
         '''
         return self._right_broken_arrow
 
     @property
-    def right_broken_padding(self):
-        r'''Gets right broken padding of line segment.
-
-        Returns float or none.
+    def right_broken_padding(self) -> typing.Optional[Number]:
+        '''
+        Gets right broken padding of line segment.
         '''
         return self._right_broken_padding
 
     @property
-    def right_broken_text(self):
-        r'''Gets right broken text of line segment.
-
-        Returns float or none.
+    def right_broken_text(self) -> typing.Union[bool, str, Markup, None]:
+        '''
+        Gets right broken text of line segment.
         '''
         return self._right_broken_text
 
     @property
-    def right_padding(self):
-        r'''Gets right padding of line segment.
-
-        Returns float or none.
+    def right_padding(self) -> typing.Optional[Number]:
+        '''
+        Gets right padding of line segment.
         '''
         return self._right_padding
 
     @property
-    def right_stencil_align_direction_y(self):
-        r'''Gets right stencil align direction Y of line segment.
-
-        Returns float or none.
+    def right_stencil_align_direction_y(self) -> typing.Union[
+        Number, OrdinalConstant, None]:
+        '''
+        Gets right stencil align direction Y of line segment.
         '''
         return self._right_stencil_align_direction_y
 
     @property
-    def right_text(self):
-        r'''Gets right text.
-
-        Returns markup or none.
+    def right_text(self) -> typing.Union[bool, str, Markup, None]:
+        '''
+        Gets right text.
         '''
         return self._right_text
 
     @property
-    def style(self):
-        r'''Gets style of line segment.
-
-        Returns string or none.
+    def style(self) -> typing.Optional[str]:
+        '''
+        Gets style of line segment.
         '''
         return self._style

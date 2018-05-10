@@ -1,8 +1,14 @@
+import typing
+from abjad.tools.datastructuretools import Left
+from abjad.tools.datastructuretools import Right
+from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
 from .Beam import Beam
+Number = typing.Union[int, float]
 
 
 class ComplexBeam(Beam):
-    r'''Complex beam.
+    r'''
+    Complex beam.
 
     ..  container:: example
 
@@ -69,23 +75,20 @@ class ComplexBeam(Beam):
 
     def __init__(
         self,
-        beam_rests=None,
-        direction=None,
-        isolated_nib_direction=None,
-        overrides=None,
-        stemlet_length=None,
-        ):
-        import abjad
+        beam_rests: bool = None,
+        direction: typing.Union[str, OrdinalConstant] = None,
+        isolated_nib_direction: typing.Union[bool, OrdinalConstant] = None,
+        stemlet_length: Number = None,
+        ) -> None:
         Beam.__init__(
             self,
             direction=direction,
-            overrides=overrides,
             stemlet_length=stemlet_length,
             )
         if beam_rests is not None:
             beam_rests = bool(beam_rests)
         self._beam_rests = beam_rests
-        prototype = (abjad.Left, abjad.Right, True, False, None)
+        prototype = (Left, Right, True, False, None)
         assert isolated_nib_direction in prototype
         self._isolated_nib_direction = isolated_nib_direction
 
@@ -282,9 +285,9 @@ class ComplexBeam(Beam):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def beam_rests(self):
-        r'''Is true when beam should include rests and skips.
-        Otherwise false.
+    def beam_rests(self) -> typing.Optional[bool]:
+        r'''
+        Is true when beam should include rests and skips.
 
         ..  container:: example
 
@@ -415,8 +418,10 @@ class ComplexBeam(Beam):
         return self._beam_rests
 
     @property
-    def isolated_nib_direction(self):
-        r'''Gets directed treatment to apply to lone nibs.
+    def isolated_nib_direction(self) -> typing.Union[
+        bool, OrdinalConstant, None]:
+        r'''
+        Gets directed treatment to apply to lone nibs.
 
         ..  container:: example
 
@@ -505,9 +510,9 @@ class ComplexBeam(Beam):
         return self._isolated_nib_direction
 
     @property
-    def stemlet_length(self):
-
-        r'''Gets stemlet length.
+    def stemlet_length(self) -> typing.Optional[Number]:
+        r'''
+        Gets stemlet length.
 
         ..  container:: example
 
@@ -548,10 +553,5 @@ class ComplexBeam(Beam):
                     g'2
                 }
 
-        Defaults to none.
-
-        Set to nonnegative integer, float or none.
-
-        Returns nonnegative integer, float or none.
         '''
         return self._stemlet_length

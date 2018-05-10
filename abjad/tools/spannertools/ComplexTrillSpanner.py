@@ -1,8 +1,20 @@
+import typing
+from abjad.tools.markuptools.Markup import Markup
+from abjad.tools.lilypondnametools.LilyPondGrobOverride import \
+    LilyPondGrobOverride
+from abjad.tools.pitchtools.NamedInterval import NamedInterval
+from abjad.tools.scoretools.MultimeasureRest import MultimeasureRest
+from abjad.tools.scoretools.Chord import Chord
+from abjad.tools.scoretools.Note import Note
+from abjad.tools.scoretools.Rest import Rest
+from abjad.tools.scoretools.Skip import Skip
+from abjad.tools.topleveltools.inspect import inspect
 from .Spanner import Spanner
 
 
 class ComplexTrillSpanner(Spanner):
-    r'''Complex trill spanner.
+    r'''
+    Complex trill spanner.
 
     ..  container:: example
 
@@ -73,14 +85,13 @@ class ComplexTrillSpanner(Spanner):
 
     def __init__(
         self,
-        interval=None,
-        overrides=None,
-        ):
-        import abjad
-        Spanner.__init__(self, overrides=overrides)
+        interval: str = None,
+        ) -> None:
+        Spanner.__init__(self)
+        interval_ = None
         if interval is not None:
-            interval = abjad.NamedInterval(interval)
-        self._interval = interval
+            interval_ = NamedInterval(interval)
+        self._interval = interval_
 
     ### PRIVATE METHODS ###
 
@@ -88,22 +99,21 @@ class ComplexTrillSpanner(Spanner):
         new._interval = self.interval
 
     def _get_lilypond_format_bundle(self, leaf):
-        import abjad
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         prototype = (
-            abjad.Rest,
-            abjad.MultimeasureRest,
-            abjad.Skip,
+            Rest,
+            MultimeasureRest,
+            Skip,
             )
         if isinstance(leaf, prototype):
             return bundle
-        logical_tie = abjad.inspect(leaf).get_logical_tie()
+        logical_tie = inspect(leaf).get_logical_tie()
         if leaf is logical_tie.head:
             previous_leaf = leaf._get_leaf(-1)
             if (previous_leaf is not None and
                 not isinstance(previous_leaf, prototype) and
-                abjad.inspect(previous_leaf).get_spanners(type(self))):
-                grob_override = abjad.LilyPondGrobOverride(
+                inspect(previous_leaf).get_spanners(type(self))):
+                grob_override = LilyPondGrobOverride(
                     grob_name='TrillSpanner',
                     once=True,
                     property_path=(
@@ -111,22 +121,22 @@ class ComplexTrillSpanner(Spanner):
                         'left',
                         'text',
                         ),
-                    value=abjad.Markup(r'\null'),
+                    value=Markup(r'\null'),
                     )
                 string = grob_override.override_string
                 bundle.grob_overrides.append(string)
             if self.interval is not None:
                 string = r'\pitchedTrill'
                 bundle.opening.spanners.append(string)
-                if isinstance(leaf, abjad.Note):
+                if isinstance(leaf, Note):
                     written_pitch = leaf.written_pitch
-                elif isinstance(leaf, abjad.Chord):
+                elif isinstance(leaf, Chord):
                     if 0 < self.interval.semitones:
                         written_pitch = max(leaf.written_pitches)
                     elif self.interval.semitones < 0:
                         written_pitch = min(leaf.written_pitches)
                 trill_pitch = written_pitch.transpose(self.interval)
-                string = r'\startTrillSpan {!s}'.format(trill_pitch)
+                string = rf'\startTrillSpan {trill_pitch!s}'
             else:
                 string = r'\startTrillSpan'
             bundle.right.trill_pitches.append(string)
@@ -143,8 +153,9 @@ class ComplexTrillSpanner(Spanner):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def interval(self):
-        r'''Gets optional interval of trill spanner.
+    def interval(self) -> typing.Optional[NamedInterval]:
+        r'''
+        Gets optional interval of trill spanner.
 
         ..  container:: example
 

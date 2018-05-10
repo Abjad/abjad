@@ -1,9 +1,17 @@
 import collections
+import typing
+from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.datastructuretools.Duration import Duration
+from abjad.tools.datastructuretools.Multiplier import Multiplier
+from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
+from abjad.tools.systemtools.FormatSpecification import FormatSpecification
+from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
 
 
 class TimeSignature(AbjadValueObject):
-    r'''Time signature.
+    r'''
+    Time signature.
 
     ..  container:: example
 
@@ -118,10 +126,10 @@ class TimeSignature(AbjadValueObject):
 
     def __init__(
         self,
-        pair=(4, 4),
-        partial=None,
-        hide=None,
-        ):
+        pair: typing.Tuple[int, int] = (4, 4),
+        partial: Duration = None,
+        hide: bool = None,
+        ) -> None:
         import abjad
         pair = getattr(pair, 'pair', pair)
         assert isinstance(pair, collections.Iterable), repr(pair)
@@ -129,26 +137,28 @@ class TimeSignature(AbjadValueObject):
         numerator, denominator = pair
         assert isinstance(numerator, int), repr(numerator)
         assert isinstance(denominator, int), repr(denominator)
-        self._numerator = numerator
-        self._denominator = denominator
+        self._numerator: int = numerator
+        self._denominator: int = denominator
         if partial is not None:
-            partial = abjad.Duration(partial)
-        self._partial = partial
+            partial = Duration(partial)
+        self._partial: typing.Optional[Duration] = partial
         if partial is not None:
             self._partial_repr_string = ', partial=%r' % self._partial
         else:
             self._partial_repr_string = ''
-        assert isinstance(hide, (bool, type(None))), repr(hide)
-        self._hide = hide
+        if hide is not None:
+            hide = bool(hide)
+        self._hide: typing.Optional[bool] = hide
         self._multiplier = self.implied_prolation
-        self._has_non_power_of_two_denominator = \
-            not abjad.mathtools.is_nonnegative_integer_power_of_two(
-                self.denominator)
+        result = mathtools.is_nonnegative_integer_power_of_two(self.denominator)
+        assert isinstance(result, bool)
+        self._has_non_power_of_two_denominator: bool = not(result)
 
     ### SPECIAL METHODS ###
 
-    def __add__(self, argument):
-        r'''Adds time signature to `argument`.
+    def __add__(self, argument) -> 'TimeSignature':
+        '''
+        Adds time signature to ``argument``.
 
         ..  container:: example
 
@@ -166,18 +176,14 @@ class TimeSignature(AbjadValueObject):
 
             Returns new time signature in terms of greatest denominator.
 
-        Returns new time signature.
         '''
-        import abjad
         if not isinstance(argument, type(self)):
-            message = 'must be time signature: {!r}.'
-            message = message.format(argument)
-            raise Exception(message)
-        nonreduced_1 = abjad.NonreducedFraction(
+            raise Exception('must be time signature: {argument!r}.')
+        nonreduced_1 = NonreducedFraction(
             self.numerator,
             self.denominator,
             )
-        nonreduced_2 = abjad.NonreducedFraction(
+        nonreduced_2 = NonreducedFraction(
             argument.numerator,
             argument.denominator,
             )
@@ -188,23 +194,20 @@ class TimeSignature(AbjadValueObject):
             ))
         return result
 
-    def __copy__(self, *arguments):
-        r'''Copies time signature.
-
-        Returns new time signature.
+    def __copy__(self, *arguments) -> 'TimeSignature':
+        '''Copies time signature.
         '''
         return type(self)(
             (self.numerator, self.denominator),
             partial=self.partial,
             )
 
-    def __eq__(self, argument):
-        r'''Is true when `argument` is a time signature with numerator and
-        denominator equal to this time signature. Also true when `argument` is
-        a tuple with first and second elements equal to numerator and
-        denominator of this time signature. Otherwise false.
-
-        Returns true or false.
+    def __eq__(self, argument) -> bool:
+        '''
+        Is true when ``argument`` is a time signature with numerator and
+        denominator equal to this time signature. Also true when ``argument``
+        is a tuple with first and second elements equal to numerator and
+        denominator of this time signature.
         '''
         # custom definition retained only bc tests currently break with super()
         if isinstance(argument, type(self)):
@@ -215,114 +218,105 @@ class TimeSignature(AbjadValueObject):
         else:
             return False
 
-    def __format__(self, format_specification=''):
-        r'''Formats time signature.
+    def __format__(self, format_specification='') -> str:
+        '''
+        Formats time signature.
 
         ..  container:: example
 
             >>> print(format(abjad.TimeSignature((3, 8))))
             abjad.TimeSignature((3, 8))
 
-        Returns string.
         '''
-        import abjad
         if format_specification in ('', 'storage'):
-            return abjad.StorageFormatManager(self).get_storage_format()
-        elif format_specification == 'lilypond':
-            return self._get_lilypond_format()
-        return str(self)
+            return StorageFormatManager(self).get_storage_format()
+        assert format_specification == 'lilypond'
+        return self._get_lilypond_format()
 
-    def __ge__(self, argument):
-        r'''Is true when duration of time signature is greater than or equal to
-        duration of `argument`. Otherwise false.
-
-        Returns true or false.
+    def __ge__(self, argument) -> bool:
+        '''
+        Is true when duration of time signature is greater than or equal to
+        duration of ``argument``.
         '''
         if isinstance(argument, type(self)):
             return self.duration >= argument.duration
         else:
             raise TypeError(argument)
 
-    def __gt__(self, argument):
-        r'''Is true when duration of time signature is greater than duration of
-        `argument`. Otherwise false.
-
-        Returns true or false.
+    def __gt__(self, argument) -> bool:
+        '''
+        Is true when duration of time signature is greater than duration of
+        ``argument``.
         '''
         if isinstance(argument, type(self)):
             return self.duration > argument.duration
         else:
             raise TypeError(argument)
 
-    def __hash__(self):
-        r'''Hashes time signature.
+    def __hash__(self) -> int:
+        '''Hashes time signature.
 
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
+        Redefined in tandem with __eq__.
         '''
         return super(TimeSignature, self).__hash__()
 
-    def __le__(self, argument):
-        r'''Is true when duration of time signature is less than duration of
-        `argument`. Otherwise false.
-
-        Returns true or false.
+    def __le__(self, argument) -> bool:
+        '''
+        Is true when duration of time signature is less than duration of
+        ``argument``.
         '''
         if isinstance(argument, type(self)):
             return self.duration <= argument.duration
         else:
             raise TypeError(argument)
 
-    def __lt__(self, argument):
-        r'''Is true when duration of time signature is less than duration of
-        `argument`. Otherwise false.
-
-        Returns booelan.
+    def __lt__(self, argument) -> bool:
+        '''
+        Is true when duration of time signature is less than duration of
+        ``argument``.
         '''
         if isinstance(argument, type(self)):
             return self.duration < argument.duration
         else:
             raise TypeError(argument)
 
-    def __radd__(self, argument):
-        r'''Adds `argument` to time signature.
+    def __radd__(self, argument) -> 'TimeSignature':
+        '''
+        Adds ``argument`` to time signature.
 
         ..  container:: example
 
             >>> abjad.TimeSignature((3, 8)) + abjad.TimeSignature((4, 4))
             TimeSignature((11, 8))
 
-        Returns new time signature.
         '''
         return self.__add__(argument)
 
-    def __str__(self):
-        r'''Gets string representation of time signature.
+    def __str__(self) -> str:
+        '''
+        Gets string representation of time signature.
 
         ..  container:: example
 
             >>> str(abjad.TimeSignature((3, 8)))
             '3/8'
 
-        Returns string.
         '''
-        return '{}/{}'.format(self.numerator, self.denominator)
+        return f'{self.numerator}/{self.denominator}'
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _contents_repr_string(self):
-        return '{}/{}'.format(self.numerator, self.denominator)
+        return f'{self.numerator}/{self.denominator}'
 
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        import abjad
         storage_format_is_indented = False
         if self.partial is not None or self.hide is not None:
             storage_format_is_indented = True
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_args_values=[self.pair],
@@ -334,34 +328,27 @@ class TimeSignature(AbjadValueObject):
         if self.hide:
             return []
         elif self.partial is None:
-            return r'\time {}/{}'.format(
-                int(self.numerator),
-                int(self.denominator),
-                )
+            return rf'\time {self.numerator}/{self.denominator}'
         else:
             result = []
             duration_string = self.partial.lilypond_duration_string
-            partial_directive = r'\partial {}'.format(duration_string)
+            partial_directive = rf'\partial {duration_string}'
             result.append(partial_directive)
-            string = r'\time {}/{}'.format(
-                int(self.numerator),
-                int(self.denominator),
-                )
+            string = rf'\time {self.numerator}/{self.denominator}'
             result.append(string)
             return result
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def context(self):
-        r'''Gets (historically conventional) context.
+    def context(self) -> str:
+        '''
+        Gets (historically conventional) context.
 
         ..  container:: example
 
             >>> abjad.TimeSignature((3, 8)).context
             'Staff'
-
-        Returns ``'Staff'``.
 
         ..  todo:: Should return ``'Score'``.
 
@@ -370,38 +357,35 @@ class TimeSignature(AbjadValueObject):
         return self._context
 
     @property
-    def denominator(self):
-        r'''Gets denominator of time signature:
+    def denominator(self) -> int:
+        '''
+        Gets denominator of time signature:
 
         ..  container:: example
 
             >>> abjad.TimeSignature((3, 8)).denominator
             8
 
-        Set to positive integer.
-
-        Returns positive integer.
         '''
         return self._denominator
 
     @property
-    def duration(self):
-        r'''Gets duration of time signature.
+    def duration(self) -> Duration:
+        '''
+        Gets duration of time signature.
 
         ..  container:: example
 
             >>> abjad.TimeSignature((3, 8)).duration
             Duration(3, 8)
 
-        Returns duration.
         '''
-        import abjad
-        return abjad.Duration(self.numerator, self.denominator)
+        return Duration(self.numerator, self.denominator)
 
     @property
-    def has_non_power_of_two_denominator(self):
-        r'''Is true when time signature has non-power-of-two denominator.
-        Otherwise false.
+    def has_non_power_of_two_denominator(self) -> bool:
+        '''
+        Is true when time signature has non-power-of-two denominator.
 
         ..  container:: example
 
@@ -419,13 +403,13 @@ class TimeSignature(AbjadValueObject):
             >>> time_signature.has_non_power_of_two_denominator
             False
 
-        Returns true or false.
         '''
         return self._has_non_power_of_two_denominator
 
     @property
-    def hide(self):
-        r'''Is true when time signature should not appear in output (but should
+    def hide(self) -> typing.Optional[bool]:
+        r'''
+        Is true when time signature should not appear in output (but should
         still determine effective time signature).
 
         ..  container:: example
@@ -456,17 +440,13 @@ class TimeSignature(AbjadValueObject):
             (Note("e'4"), TimeSignature((2, 4), hide=True))
             (Note("f'4"), TimeSignature((2, 4), hide=True))
 
-        Set to true, false or none.
-
-        Defaults to none.
-
-        Returns true, false or none.
         '''
         return self._hide
 
     @property
-    def implied_prolation(self):
-        '''Gets implied prolation of time signature.
+    def implied_prolation(self) -> Multiplier:
+        '''
+        Gets implied prolation of time signature.
 
         ..  container:: example
 
@@ -483,93 +463,89 @@ class TimeSignature(AbjadValueObject):
             >>> abjad.TimeSignature((7, 12)).implied_prolation
             Multiplier(2, 3)
 
-        Returns multiplier.
         '''
-        import abjad
-        dummy_duration = abjad.Duration(1, self.denominator)
+        dummy_duration = Duration(1, self.denominator)
         return dummy_duration.implied_prolation
 
     @property
-    def numerator(self):
-        r'''Gets numerator of time signature.
+    def numerator(self) -> int:
+        '''
+        Gets numerator of time signature.
 
         ..  container:: example
 
             >>> abjad.TimeSignature((3, 8)).numerator
             3
 
-        Set to positive integer.
-
-        Returns positive integer.
         '''
         return self._numerator
 
     @property
-    def pair(self):
-        '''Gets numerator / denominator pair corresponding to time siganture.
+    def pair(self) -> typing.Tuple[int, int]:
+        '''
+        Gets numerator / denominator pair corresponding to time siganture.
 
         ..  container:: example
 
             >>> abjad.TimeSignature((3, 8)).pair
             (3, 8)
 
-        Returns pair.
         '''
         return (self.numerator, self.denominator)
 
     @property
-    def partial(self):
-        r'''Gets duration of pick-up to time signature.
+    def partial(self) -> typing.Optional[Duration]:
+        '''
+        Gets duration of pick-up to time signature.
 
         ..  container:: example
 
             >>> abjad.TimeSignature((3, 8)).partial is None
             True
 
-        Set to duration or none.
-
-        Defaults to none.
-
-        Returns duration or none.
         '''
         return self._partial
 
     @property
-    def persistent(self):
-        r'''Is true.
+    def persistent(self) -> bool:
+        '''
+        Is true.
 
         ..  container:: example
 
             >>> abjad.TimeSignature((3, 8)).persistent
             True
 
-        Returns true.
         '''
         return self._persistent
 
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def from_string(string):
-        r'''Makes new time signature from fraction `string`.
+    def from_string(string) -> 'TimeSignature':
+        '''
+        Makes new time signature from fraction ``string``.
 
         ..  container:: example
 
             >>> abjad.TimeSignature.from_string('6/8')
             TimeSignature((6, 8))
 
-        Returns new time signature.
         '''
         assert isinstance(string, str), repr(string)
         parts = string.split('/')
         assert len(parts) == 2, repr(parts)
-        parts = [int(_) for _ in parts]
-        numerator, denominator = parts
+        numbers = [int(_) for _ in parts]
+        numerator, denominator = numbers
         return TimeSignature((numerator, denominator))
 
-    def with_power_of_two_denominator(self, contents_multiplier=1):
-        r'''Makes new time signature equivalent to current
-        time signature with power-of-two denominator.
+    def with_power_of_two_denominator(
+        self,
+        contents_multiplier=1,
+        ) -> 'TimeSignature':
+        '''
+        Makes new time signature equivalent to current time signature with
+        power-of-two denominator.
 
         ..  container:: example
 
@@ -579,21 +555,19 @@ class TimeSignature(AbjadValueObject):
             >>> time_signature.with_power_of_two_denominator()
             TimeSignature((2, 8))
 
-        Returns new time signature.
         '''
-        import abjad
-        contents_multiplier = abjad.Multiplier(contents_multiplier)
-        contents_multiplier = abjad.Multiplier(contents_multiplier)
+        contents_multiplier = Multiplier(contents_multiplier)
+        contents_multiplier = Multiplier(contents_multiplier)
         non_power_of_two_denominator = self.denominator
-        if contents_multiplier == abjad.Multiplier(1):
+        if contents_multiplier == Multiplier(1):
             power_of_two_denominator = \
-                abjad.mathtools.greatest_power_of_two_less_equal(
+                mathtools.greatest_power_of_two_less_equal(
                     non_power_of_two_denominator)
         else:
             power_of_two_denominator = \
-                abjad.mathtools.greatest_power_of_two_less_equal(
+                mathtools.greatest_power_of_two_less_equal(
                     non_power_of_two_denominator, 1)
-        non_power_of_two_pair = abjad.NonreducedFraction(self.pair)
+        non_power_of_two_pair = NonreducedFraction(self.pair)
         power_of_two_fraction = non_power_of_two_pair.with_denominator(
             power_of_two_denominator)
         power_of_two_pair = power_of_two_fraction.pair

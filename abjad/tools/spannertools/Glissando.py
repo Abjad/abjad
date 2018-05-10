@@ -1,10 +1,15 @@
 import typing
 from abjad.tools.datastructuretools.OrderedDict import OrderedDict
+from abjad.tools.indicatortools.BendAfter import BendAfter
+from abjad.tools.scoretools.Chord import Chord
+from abjad.tools.scoretools.Note import Note
+from abjad.tools.topleveltools.inspect import inspect
 from .Spanner import Spanner
 
 
 class Glissando(Spanner):
-    r'''Glissando.
+    r'''
+    Glissando.
 
     ..  container:: example
 
@@ -46,7 +51,7 @@ class Glissando(Spanner):
                 c'8
                 \glissando
                 d'8
-                - \bendAfter #'-4.0
+                - \bendAfter #'-4
                 e'8
                 \glissando
                 f'8
@@ -70,12 +75,11 @@ class Glissando(Spanner):
         self,
         allow_repeats: bool = None,
         allow_ties: bool = None,
-        overrides: OrderedDict = None,
         parenthesize_repeats: bool = None,
         stems: bool = None,
         style: str = None,
         ) -> None:
-        Spanner.__init__(self, overrides=overrides)
+        Spanner.__init__(self)
         if allow_repeats is not None:
             allow_repeats = bool(allow_repeats)
         self._allow_repeats = allow_repeats
@@ -101,16 +105,15 @@ class Glissando(Spanner):
         new._parenthesize_repeats = self.parenthesize_repeats
 
     def _get_lilypond_format_bundle(self, leaf):
-        import abjad
         bundle = self._get_basic_lilypond_format_bundle(leaf)
-        prototype = (abjad.Chord, abjad.Note)
+        prototype = (Chord, Note)
         should_attach_glissando = False
         if leaf is not self[0]:
             if self.parenthesize_repeats:
                 if not self._previous_leaf_changes_current_pitch(leaf):
                     self._parenthesize_leaf(leaf)
         tag = False
-        if abjad.inspect(leaf).has_indicator(abjad.BendAfter):
+        if inspect(leaf).has_indicator(BendAfter):
             pass
         elif leaf is self[-1]:
             if self._right_broken:
@@ -168,43 +171,39 @@ class Glissando(Spanner):
 
     @staticmethod
     def _is_last_in_tie_chain(leaf):
-        import abjad
-        logical_tie = abjad.inspect(leaf).get_logical_tie()
+        logical_tie = inspect(leaf).get_logical_tie()
         return leaf is logical_tie[-1]
 
     @staticmethod
     def _next_leaf_changes_current_pitch(leaf):
-        import abjad
-        next_leaf = abjad.inspect(leaf).get_leaf(n=1)
-        if (isinstance(leaf, abjad.Note) and
-            isinstance(next_leaf, abjad.Note) and
+        next_leaf = inspect(leaf).get_leaf(n=1)
+        if (isinstance(leaf, Note) and
+            isinstance(next_leaf, Note) and
             leaf.written_pitch == next_leaf.written_pitch):
             return False
-        elif (isinstance(leaf, abjad.Chord) and
-            isinstance(next_leaf, abjad.Chord) and
+        elif (isinstance(leaf, Chord) and
+            isinstance(next_leaf, Chord) and
             leaf.written_pitches == next_leaf.written_pitches):
             return False
         return True
 
     @staticmethod
     def _parenthesize_leaf(leaf):
-        import abjad
-        if isinstance(leaf, abjad.Note):
+        if isinstance(leaf, Note):
             leaf.note_head.is_parenthesized = True
-        elif isinstance(leaf, abjad.Chord):
+        elif isinstance(leaf, Chord):
             for note_head in leaf.note_heads:
                 note_head.is_parenthesized = True
 
     @staticmethod
     def _previous_leaf_changes_current_pitch(leaf):
-        import abjad
-        previous_leaf = abjad.inspect(leaf).get_leaf(n=-1)
-        if (isinstance(leaf, abjad.Note) and
-            isinstance(previous_leaf, abjad.Note) and
+        previous_leaf = inspect(leaf).get_leaf(n=-1)
+        if (isinstance(leaf, Note) and
+            isinstance(previous_leaf, Note) and
             leaf.written_pitch == previous_leaf.written_pitch):
             return False
-        elif (isinstance(leaf, abjad.Chord) and
-            isinstance(previous_leaf, abjad.Chord) and
+        elif (isinstance(leaf, Chord) and
+            isinstance(previous_leaf, Chord) and
             leaf.written_pitches == previous_leaf.written_pitches):
             return False
         return True
@@ -213,8 +212,8 @@ class Glissando(Spanner):
 
     @property
     def allow_repeats(self) -> typing.Optional[bool]:
-        r'''Is true when glissando should allow repeated pitches.
-        Otherwise false.
+        r'''
+        Is true when glissando should allow repeated pitches.
 
         ..  container:: example
 
@@ -325,7 +324,8 @@ class Glissando(Spanner):
 
     @property
     def allow_ties(self) -> typing.Optional[bool]:
-        r'''Is true when glissando should allow ties. Otherwise false.
+        r'''
+        Is true when glissando should allow ties.
 
         ..  container:: example
 
@@ -435,7 +435,8 @@ class Glissando(Spanner):
         return self._allow_ties
 
     def cross_segment_examples(self):
-        r'''Cross-segment examples.
+        r'''
+        Cross-segment examples.
 
         ..  container:: example
 
@@ -720,8 +721,8 @@ class Glissando(Spanner):
 
     @property
     def parenthesize_repeats(self) -> typing.Optional[bool]:
-        r'''Is true when glissando should parenthesize repeated pitches.
-        Otherwise false.
+        r'''
+        Is true when glissando should parenthesize repeated pitches.
 
         ..  container:: example
 
@@ -832,7 +833,8 @@ class Glissando(Spanner):
 
     @property
     def stems(self) -> typing.Optional[bool]:
-        r'''Is true when glissando formats stems-only timing marks non nonedge
+        r'''
+        Is true when glissando formats stems-only timing marks non nonedge
         leaves.
 
         ..  container:: example
@@ -869,7 +871,8 @@ class Glissando(Spanner):
 
     @property
     def style(self) -> typing.Optional[str]:
-        r'''Gets style.
+        r'''
+        Gets style.
 
         ..  container:: example
 

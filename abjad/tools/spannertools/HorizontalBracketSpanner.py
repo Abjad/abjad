@@ -1,8 +1,11 @@
+import typing
+from abjad.tools.markuptools.Markup import Markup
 from .Spanner import Spanner
 
 
 class HorizontalBracketSpanner(Spanner):
-    r'''Horizontal bracket spanner.
+    r'''
+    Horizontal bracket spanner.
 
     ..  container:: example
 
@@ -29,9 +32,6 @@ class HorizontalBracketSpanner(Spanner):
                 \stopGroup
             }
 
-    Formats LilyPond ``\startGroup`` command on first leaf in spanner.
-
-    Formats LilyPond ``\stopGroup`` command on last leaf in spanner.
     '''
 
     ### CLASS VARIABLES ###
@@ -44,13 +44,11 @@ class HorizontalBracketSpanner(Spanner):
 
     def __init__(
         self,
-        overrides=None,
-        markup=None,
-        ):
-        import abjad
-        Spanner.__init__(self, overrides=overrides)
+        markup: Markup = None,
+        ) -> None:
+        Spanner.__init__(self)
         if markup is not None:
-            markup = abjad.Markup(markup)
+            assert isinstance(markup, Markup)
         self._markup = markup
 
     ### PRIVATE METHODS ###
@@ -66,8 +64,9 @@ class HorizontalBracketSpanner(Spanner):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def markup(self):
-        r'''Gets horizonal bracket spanner markup.
+    def markup(self) -> typing.Optional[Markup]:
+        r'''
+        Gets horizonal bracket spanner markup.
 
         ..  container:: example
 
@@ -87,8 +86,5 @@ class HorizontalBracketSpanner(Spanner):
             >>> spanner.markup is None
             True
 
-        Set to markup or none.
-
-        Returns markup or none.
         '''
         return self._markup

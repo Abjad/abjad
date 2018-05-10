@@ -1,6 +1,5 @@
 import typing
 from .Spanner import Spanner
-from abjad.tools.datastructuretools import Center
 from abjad.tools.datastructuretools import Down
 from abjad.tools.indicatortools.Accelerando import Accelerando
 from abjad.tools.indicatortools.ArrowLineSegment import ArrowLineSegment
@@ -12,7 +11,6 @@ from abjad.tools.markuptools.Markup import Markup
 from abjad.tools.schemetools.SchemeColor import SchemeColor
 from abjad.tools.segmenttools.Tags import Tags
 from abjad.tools.systemtools.LilyPondFormatManager import LilyPondFormatManager
-from abjad.tools.systemtools.Wrapper import Wrapper
 from abjad.tools.topleveltools.inspect import inspect
 from abjad.tools.topleveltools.new import new
 Number = typing.Union[int, float]
@@ -2402,11 +2400,11 @@ class MetronomeMarkSpanner(Spanner):
             dash_period=1.5,
             #left_broken_text=False,
             left_hspace=0.25,
-            left_stencil_align_direction_y=Center,
+            left_stencil_align_direction_y=abjad.Center,
             right_broken_padding=0,
             right_broken_text=False,
             right_padding=1.5,
-            right_stencil_align_direction_y=Center,
+            right_stencil_align_direction_y=abjad.Center,
             )
 
     def _make_invisible_line_segment(self):
@@ -2414,11 +2412,11 @@ class MetronomeMarkSpanner(Spanner):
             dash_period=0,
             #left_broken_text=False,
             left_hspace=0.25,
-            left_stencil_align_direction_y=Center,
+            left_stencil_align_direction_y=abjad.Center,
             right_broken_padding=0,
             right_broken_text=False,
             right_padding=1.5,
-            right_stencil_align_direction_y=Center,
+            right_stencil_align_direction_y=abjad.Center,
             )
 
     def _should_format_last_leaf_markup(self, leaf):
@@ -2555,8 +2553,7 @@ class MetronomeMarkSpanner(Spanner):
 
     @property
     def cross_segment_examples(self):
-        r'''
-        Cross-segment examples.
+        r'''Cross-segment examples.
 
         ..  container:: example
 
@@ -4954,9 +4951,8 @@ class MetronomeMarkSpanner(Spanner):
         pass
 
     @property
-    def left_broken_padding(self) -> typing.Optional[Number]:
-        r'''
-        Gets left broken padding of metronome mark spanner.
+    def left_broken_padding(self):
+        r'''Gets left broken padding of metronome mark spanner.
 
         ..  container:: example
 
@@ -5200,8 +5196,7 @@ class MetronomeMarkSpanner(Spanner):
 
     @property
     def left_broken_text(self) -> typing.Union[bool, Markup]:
-        r'''
-        Gets left broken text of metronome mark spanner.
+        r'''Gets left broken text of metronome mark spanner.
 
         ..  container:: example
 
@@ -5578,16 +5573,16 @@ class MetronomeMarkSpanner(Spanner):
         return self._left_broken_text
 
     @property
-    def left_hspace(self) -> typing.Optional[Number]:
-        r'''
-        Gets left hspace.
+    def left_hspace(self):
+        r'''Gets left hspace.
+
+        Set to a number or none.
         '''
         return self._left_hspace
 
     @property
-    def parenthesize(self) -> typing.Optional[bool]:
-        r'''
-        Is true when spanner starts with parenthesized metronome mark.
+    def parenthesize(self):
+        r'''Is true when spanner starts with parenthesized metronome mark.
 
         ..  container:: example
 
@@ -5906,20 +5901,25 @@ class MetronomeMarkSpanner(Spanner):
                     }
                 >>
 
+        Defaults to false.
+
+        Set to true, false or none.
         '''
         return self._parenthesize
 
     @property
-    def right_padding(self) -> typing.Optional[Number]:
-        r'''
-        Gets right padding.
+    def right_padding(self):
+        r'''Gets right padding.
+
+        Set to a number or none.
         '''
         return self._right_padding
 
     @property
-    def stem_height(self) -> typing.Optional[Number]:
-        r'''
-        Gets stem height.
+    def stem_height(self):
+        r'''Gets stem height.
+
+        Set to a number.
         '''
         return self._stem_height
 
@@ -5933,9 +5933,8 @@ class MetronomeMarkSpanner(Spanner):
         deactivate=None,
         tag=None,
         wrapper=None,
-        ) -> typing.Optional[Wrapper]:
-        r'''
-        Attaches ``indicator`` to ``leaf`` in spanner.
+        ):
+        r'''Attaches `indicator` to `leaf` in spanner.
 
         ..  container:: example
 
@@ -6270,7 +6269,8 @@ class MetronomeMarkSpanner(Spanner):
                 )
 
         '''
-        return super(MetronomeMarkSpanner, self)._attach_piecewise(
+        superclass = super(MetronomeMarkSpanner, self)
+        return superclass._attach_piecewise(
             indicator,
             leaf,
             alternate=alternate,

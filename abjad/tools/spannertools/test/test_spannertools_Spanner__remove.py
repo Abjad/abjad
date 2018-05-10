@@ -116,13 +116,8 @@ def test_spannertools_Spanner__remove_03():
     r'''Remove works only on references and not on equality.
     '''
 
-    class MockSpanner(abjad.Spanner):
-
-        def __init__(self, leaves=None):
-            abjad.Spanner.__init__(self, leaves)
-
     note = abjad.Note("c'4")
-    spanner = MockSpanner()
+    spanner = abjad.Spanner()
     abjad.attach(spanner, abjad.select(abjad.Note("c'4")))
 
     assert pytest.raises(Exception, 'spanner._remove(note)')

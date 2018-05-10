@@ -12,7 +12,8 @@ from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class Dynamic(AbjadValueObject):
-    r'''Dynamic.
+    r'''
+    Dynamic.
 
     ..  container:: example
 
@@ -264,7 +265,8 @@ class Dynamic(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument) -> bool:
-        r'''Is true when ``argument`` equals dynamic.
+        '''
+        Is true when ``argument`` equals dynamic.
 
         ..  container:: example
 
@@ -301,7 +303,8 @@ class Dynamic(AbjadValueObject):
         return False
 
     def __format__(self, format_specification='') -> str:
-        r'''Formats dynamic.
+        r'''
+        Formats dynamic.
 
         ..  container:: example
 
@@ -330,7 +333,10 @@ class Dynamic(AbjadValueObject):
             )
 
     def __hash__(self) -> int:
-        r'''Hashes dynamic.
+        '''
+        Hashes dynamic.
+
+        Redefined in tandem with __eq__.
         '''
         return super(Dynamic, self).__hash__()
 
@@ -441,7 +447,8 @@ class Dynamic(AbjadValueObject):
 
     @property
     def command(self) -> typing.Optional[str]:
-        r'''Gets explicit command.
+        r'''
+        Gets explicit command.
 
         ..  container:: example
 
@@ -458,7 +465,8 @@ class Dynamic(AbjadValueObject):
 
     @property
     def context(self) -> str:
-        r'''Returns (historically conventional) context ``'Voice'``.
+        '''
+        Returns (historically conventional) context ``'Voice'``.
 
         ..  container:: example
 
@@ -473,7 +481,8 @@ class Dynamic(AbjadValueObject):
 
     @property
     def direction(self) -> typing.Optional[OrdinalConstant]:
-        r'''Gets direction for effort dynamics only.
+        '''
+        Gets direction for effort dynamics only.
 
         ..  container:: example
 
@@ -497,7 +506,8 @@ class Dynamic(AbjadValueObject):
 
     @property
     def effort(self) -> typing.Optional[bool]:
-        r'''Is true when double quotes enclose dynamic.
+        r'''
+        Is true when double quotes enclose dynamic.
 
         ..  container:: example
 
@@ -658,8 +668,9 @@ class Dynamic(AbjadValueObject):
 
     @property
     def hide(self) -> typing.Optional[bool]:
-        r'''Is true when dynamic should not appear in output (but should
-        still determine effective dynamic).
+        r'''
+        Is true when dynamic should not appear in output (but should still
+        determine effective dynamic).
 
         ..  container:: example
 
@@ -691,7 +702,8 @@ class Dynamic(AbjadValueObject):
 
     @property
     def name(self) -> str:
-        r'''Gets name.
+        r'''
+        Gets name.
 
         ..  container:: example
 
@@ -744,7 +756,8 @@ class Dynamic(AbjadValueObject):
 
     @property
     def name_is_textual(self) -> typing.Optional[bool]:
-        r'''Is true when name is textual.
+        r'''
+        Is true when name is textual.
 
         ..  container:: example
 
@@ -834,7 +847,8 @@ class Dynamic(AbjadValueObject):
     @property
     #def ordinal(self) -> typing.Union[int, Infinity, NegativeInfinity]:
     def ordinal(self):
-        r'''Gets ordinal.
+        '''
+        Gets ordinal.
 
         ..  container:: example
 
@@ -899,7 +913,8 @@ class Dynamic(AbjadValueObject):
 
     @property
     def persistent(self) -> bool:
-        r'''Is true.
+        '''
+        Is true.
 
         ..  container:: example
 
@@ -911,7 +926,8 @@ class Dynamic(AbjadValueObject):
 
     @property
     def sforzando(self) -> typing.Optional[bool]:
-        r'''Is true when dynamic name begins in s- and ends in -z.
+        '''
+        Is true when dynamic name begins in s- and ends in -z.
 
         ..  container:: example
 
@@ -933,7 +949,6 @@ class Dynamic(AbjadValueObject):
             >>> abjad.Dynamic('rfz').sforzando
             False
 
-        Returns true or false.
         '''
         if self._sforzando is not None:
             return self._sforzando
@@ -947,7 +962,8 @@ class Dynamic(AbjadValueObject):
 
     @staticmethod
     def composite_dynamic_name_to_steady_state_dynamic_name(name) -> str:
-        r'''Changes composite `name` to steady state dynamic name.
+        '''
+        Changes composite ``name`` to steady state dynamic name.
 
         ..  container:: example
 
@@ -966,7 +982,8 @@ class Dynamic(AbjadValueObject):
     #    int, Infinity, NegativeInfinity,
     #    ]:
     def dynamic_name_to_dynamic_ordinal(name):
-        r'''Changes `name` to dynamic ordinal.
+        '''
+        Changes ``name`` to dynamic ordinal.
 
         ..  container:: example
 
@@ -986,7 +1003,8 @@ class Dynamic(AbjadValueObject):
 
     @staticmethod
     def dynamic_ordinal_to_dynamic_name(dynamic_ordinal) -> str:
-        r'''Changes `dynamic_ordinal` to dynamic name.
+        '''
+        Changes ``dynamic_ordinal`` to dynamic name.
 
         ..  container:: example
 
@@ -1005,7 +1023,8 @@ class Dynamic(AbjadValueObject):
 
     @staticmethod
     def is_dynamic_name(argument) -> bool:
-        r'''Is true when `argument` is dynamic name.
+        '''
+        Is true when ``argument`` is dynamic name.
 
         ..  container:: example
 

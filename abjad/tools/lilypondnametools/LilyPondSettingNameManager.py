@@ -1,14 +1,13 @@
-from abjad.tools import datastructuretools
-from abjad.tools.lilypondnametools.LilyPondNameManager \
-    import LilyPondNameManager
+import typing
+from abjad.tools.datastructuretools.String import String
+from .LilyPondNameManager import LilyPondNameManager
 
 
 class LilyPondSettingNameManager(LilyPondNameManager):
-    '''LilyPond setting name manager.
+    '''
+    LilyPond setting name manager.
 
     ..  container:: example
-
-        Initializes with toplevel function:
 
         >>> note = abjad.Note("c'4")
         >>> abjad.setting(note)
@@ -18,8 +17,9 @@ class LilyPondSettingNameManager(LilyPondNameManager):
 
     ### SPECIAL METHODS ###
 
-    def __getattr__(self, name):
-        r'''Gets arbitrary object keyed to `name`.
+    def __getattr__(self, name:str) -> typing.Any:
+        r'''
+        Gets arbitrary object keyed to ``name``.
 
         ..  container:: example
 
@@ -44,44 +44,42 @@ class LilyPondSettingNameManager(LilyPondNameManager):
 
         ..  container:: example
 
-            Returns arbitrary object keyed to `name`:
+            Returns arbitrary object keyed to ``name``:
 
             >>> abjad.setting(staff).instrument_name
             Markup(contents=['Vn. I'])
 
         '''
-        from abjad import ly
-        from abjad.tools import lilypondnametools
-        camel_name = datastructuretools.String(name).to_upper_camel_case()
+        from abjad.ly import contexts
+        camel_name = String(name).to_upper_camel_case()
         if name.startswith('_'):
             try:
                 return vars(self)[name]
             except KeyError:
-                message = '{!r} object has no attribute: {!r}.'
-                message = message.format(type(self).__name__, name)
+                type_name = type(self).__name__
+                message = '{type_name!r} object has no attribute: {name!r}.'
                 raise AttributeError(message)
-        elif camel_name in ly.contexts:
+        elif camel_name in contexts:
             try:
                 return vars(self)['_' + name]
             except KeyError:
-                context = lilypondnametools.LilyPondNameManager()
+                context = LilyPondNameManager()
                 vars(self)['_' + name] = context
                 return context
         else:
             try:
                 return vars(self)[name]
             except KeyError:
-                message = '{!r} object has no attribute: {!r}.'
-                message = message.format(type(self).__name__, name)
+                type_name = type(self).__name__
+                message = '{type_name!r} object has no attribute: {name!r}.'
                 raise AttributeError(message)
 
     ### PRIVATE METHODS ###
 
     def _get_attribute_tuples(self):
-        from abjad.tools import lilypondnametools
         result = []
         for name, value in vars(self).items():
-            if type(value) is lilypondnametools.LilyPondNameManager:
+            if type(value) is LilyPondNameManager:
                 prefixed_context_name = name
                 lilypond_type = prefixed_context_name.strip('_')
                 context_proxy = value

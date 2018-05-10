@@ -1,9 +1,13 @@
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.markuptools.Markup import Markup
+from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.tools.topleveltools.new import new
 
 
 class StartMarkup(AbjadValueObject):
-    r'''Start markup.
+    r'''
+    Start markup.
 
     ..  container:: example
 
@@ -51,8 +55,8 @@ class StartMarkup(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, argument):
-        r'''Is true when `argument` is start markup with context and markup
+    def __eq__(self, argument) -> bool:
+        r'''Is true when ``argument`` is start markup with context and markup
         equal to those of this start markup.
 
         ..  container:: example
@@ -91,7 +95,6 @@ class StartMarkup(AbjadValueObject):
             >>> start_markup_3 == start_markup_3
             True
 
-        Returns true or false.
         '''
         if not isinstance(argument, type(self)):
             return False
@@ -99,7 +102,7 @@ class StartMarkup(AbjadValueObject):
             return True
         return False
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         r'''Hashes start markup.
 
         ..  container:: example
@@ -113,7 +116,7 @@ class StartMarkup(AbjadValueObject):
             >>> isinstance(hash_, int)
             True
 
-        Returns integer.
+        Redefined in tandem with __eq__.
         '''
         return super(StartMarkup, self).__hash__()
 
@@ -131,11 +134,10 @@ class StartMarkup(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format(self, context=None):
-        import abjad
         result = []
         markup = self.markup
         if markup.direction is not None:
-            markup = abjad.new(
+            markup = new(
                 markup,
                 direction=None,
                 )
@@ -151,8 +153,7 @@ class StartMarkup(AbjadValueObject):
         return result
 
     def _get_lilypond_format_bundle(self, component=None):
-        import abjad
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         slot = bundle.get(self.format_slot)
         slot.commands.extend(self._get_lilypond_format())
         return bundle
@@ -160,35 +161,33 @@ class StartMarkup(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def context(self):
-        r'''Gets default context of start markup.
+    def context(self) -> str:
+        '''
+        Gets default context of start markup.
 
         ..  container:: example
 
             >>> abjad.StartMarkup().context
             'Staff'
 
-        Returns string.
         '''
         return self._context
 
     @property
-    def format_slot(self):
-        r'''Gets format slot.
+    def format_slot(self) -> str:
+        '''Gets format slot.
 
         ..  container:: example
 
             >>> abjad.StartMarkup().format_slot
             'before'
 
-        Returns string.
         '''
         return self._format_slot
 
     @property
-    def markup(self):
-        r'''Gets (instrument name) markup.
-
-        Returns markup.
+    def markup(self) -> typing.Optional[Markup]:
+        '''
+        Gets (instrument name) markup.
         '''
         return self._markup

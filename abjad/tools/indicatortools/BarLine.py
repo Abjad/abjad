@@ -1,8 +1,12 @@
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.systemtools.FormatSpecification import FormatSpecification
+from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class BarLine(AbjadValueObject):
-    r'''Bar line.
+    r'''
+    Bar line.
 
     ..  container:: example
 
@@ -42,7 +46,7 @@ class BarLine(AbjadValueObject):
 
     ### INITIALIZER ##
 
-    def __init__(self, abbreviation='|'):
+    def __init__(self, abbreviation: str = '|') -> None:
         assert isinstance(abbreviation, str), repr(abbreviation)
         self._abbreviation = abbreviation
 
@@ -55,27 +59,26 @@ class BarLine(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        import abjad
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             storage_format_is_indented=False,
             storage_format_args_values=[self.abbreviation],
             )
 
     def _get_lilypond_format(self):
-        return r'\bar "{}"'.format(self.abbreviation)
+        return rf'\bar "{self.abbreviation}"'
 
     def _get_lilypond_format_bundle(self, component=None):
-        import abjad
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         bundle.after.commands.append(self._get_lilypond_format())
         return bundle
 
     ## PUBLIC PROPERTIES ##
 
     @property
-    def abbreviation(self):
-        r'''Gets abbreviation of bar line.
+    def abbreviation(self) -> str:
+        r'''
+        Gets abbreviation.
 
         ..  container:: example
 
@@ -83,21 +86,19 @@ class BarLine(AbjadValueObject):
             >>> bar_line.abbreviation
             '|.'
 
-        Returns string.
         '''
         return self._abbreviation
 
     @property
-    def context(self):
-        r'''Gets (historically conventional) context.
+    def context(self) -> str:
+        r'''
+        Gets (historically conventional) context.
 
         ..  container:: example
 
             >>> bar_line = abjad.BarLine('|.')
             >>> bar_line.context
             'Staff'
-
-        Returns ``'Staff'``
 
         ..  todo:: Should return ``'Score'``.
 

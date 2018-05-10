@@ -1,9 +1,11 @@
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.datastructuretools import Right
+from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class LaissezVibrer(AbjadValueObject):
-    r'''Laissez vibrer.
+    r'''
+    Laissez vibrer.
 
     ..  container:: example
 
@@ -30,8 +32,9 @@ class LaissezVibrer(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __str__(self):
-        r'''Gets string representation of laissez vibrer indicator.
+    def __str__(self) -> str:
+        r'''
+        Gets string representation of laissez vibrer indicator.
 
         ..  container:: example
 
@@ -40,7 +43,6 @@ class LaissezVibrer(AbjadValueObject):
             >>> str(abjad.LaissezVibrer())
             '\\laissezVibrer'
 
-        Returns string.
         '''
         return r'\laissezVibrer'
 
@@ -50,7 +52,6 @@ class LaissezVibrer(AbjadValueObject):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        import abjad
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         bundle.right.articulations.append(self._get_lilypond_format())
         return bundle

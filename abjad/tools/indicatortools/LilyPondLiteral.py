@@ -1,8 +1,13 @@
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.systemtools.FormatSpecification import FormatSpecification
+from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
 
 
 class LilyPondLiteral(AbjadValueObject):
-    r'''LilyPond literal.
+    r'''
+    LilyPond literal.
 
     ..  container:: example
 
@@ -141,24 +146,25 @@ class LilyPondLiteral(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, argument='', format_slot='opening'):
+    def __init__(
+        self,
+        argument: typing.Union[str, typing.List[str]] = '',
+        format_slot: str = 'opening',
+        ) -> None:
         self._argument = argument
         assert format_slot in self._allowable_format_slots, repr(format_slot)
         self._format_slot = format_slot
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification=''):
-        r'''Formats LilyPond literal.
-
-        Returns string.
+    def __format__(self, format_specification='') -> str:
         '''
-        import abjad
+        Formats LilyPond literal.
+        '''
         if format_specification in ('', 'storage'):
-            return abjad.StorageFormatManager(self).get_storage_format()
-        elif format_specification == 'lilypond':
-            return self.argument
-        return str(self)
+            return StorageFormatManager(self).get_storage_format()
+        assert format_specification == 'lilypond'
+        return str(self.argument)
 
     ### PRIVATE METHODS ###
 
@@ -169,11 +175,10 @@ class LilyPondLiteral(AbjadValueObject):
         return self.argument[:]
 
     def _get_format_specification(self):
-        import abjad
         names = []
         if not self.format_slot == 'opening':
             names.append('format_slot')
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             storage_format_args_values=[self.argument],
             storage_format_kwargs_names=names,
@@ -181,41 +186,18 @@ class LilyPondLiteral(AbjadValueObject):
             )
 
     def _get_lilypond_format_bundle(self, component=None):
-        import abjad
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         format_slot = bundle.get(self.format_slot)
         pieces = self._get_format_pieces()
         format_slot.commands.extend(pieces)
         return bundle
 
-    ### PUBLIC METHODS ###
-
-    @staticmethod
-    def list_allowable_format_slots():
-        r'''Lists allowable format slots.
-
-        ..  container:: example
-
-                >>> for slot in abjad.LilyPondLiteral.list_allowable_format_slots():
-                ...     slot
-                ...
-                'absolute_after'
-                'absolute_before'
-                'after'
-                'before'
-                'closing'
-                'opening'
-                'right'
-
-        Returns tuple.
-        '''
-        return LilyPondLiteral._allowable_format_slots
-
     ### PUBLIC PROPERTIES ###
 
     @property
-    def argument(self):
-        r'''Gets argument of LilyPond literal.
+    def argument(self) -> typing.Union[str, typing.List[str]]:
+        r'''
+        Gets argument of LilyPond literal.
 
         ..  container:: example
 
@@ -223,13 +205,13 @@ class LilyPondLiteral(AbjadValueObject):
             >>> literal.argument
             '\\slurDotted'
 
-        Returns string or list of string.
         '''
         return self._argument
 
     @property
-    def format_slot(self):
-        r'''Gets format slot of LilyPond literal.
+    def format_slot(self) -> str:
+        '''
+        Gets format slot of LilyPond literal.
 
         ..  container:: example
 
@@ -237,8 +219,28 @@ class LilyPondLiteral(AbjadValueObject):
             >>> literal.format_slot
             'opening'
 
-        Defaults to `'opening'`.
-
-        Returns string.
         '''
         return self._format_slot
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def list_allowable_format_slots() -> typing.Tuple[str, ...]:
+        '''
+        Lists allowable format slots.
+
+        ..  container:: example
+
+            >>> for slot in abjad.LilyPondLiteral.list_allowable_format_slots():
+            ...     slot
+            ...
+            'absolute_after'
+            'absolute_before'
+            'after'
+            'before'
+            'closing'
+            'opening'
+            'right'
+
+        '''
+        return LilyPondLiteral._allowable_format_slots

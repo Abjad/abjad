@@ -496,12 +496,11 @@ class LilyPondFormatManager(AbjadObject):
         return result
 
     @staticmethod
-    def make_lilypond_tweak_string(attribute, value, grob=None):
+    def make_lilypond_tweak_string(attribute, value, grob=None, hyphen=True):
         r'''Makes Lilypond \tweak string.
 
         Returns string.
         '''
-        from abjad.tools.datastructuretools.String import String
         if grob is not None:
             grob = String(grob).to_upper_camel_case()
             grob += '.'
@@ -509,9 +508,10 @@ class LilyPondFormatManager(AbjadObject):
             grob = ''
         attribute = LilyPondFormatManager.format_lilypond_attribute(attribute)
         value = LilyPondFormatManager.format_lilypond_value(value)
-        result = r'- \tweak {}{} {}'
-        result = result.format(grob, attribute, value)
-        return result
+        string = rf'\tweak {grob}{attribute} {value}'
+        if hyphen:
+            string = '- ' + string
+        return string
 
     @staticmethod
     def report_spanner_format_contributions(spanner):

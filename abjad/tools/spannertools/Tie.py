@@ -1,9 +1,22 @@
+import typing
+from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
 from abjad.tools.datastructuretools.String import String
+from abjad.tools.scoretools.Chord import Chord
+from abjad.tools.scoretools.Component import Component
+from abjad.tools.scoretools.MultimeasureRest import MultimeasureRest
+from abjad.tools.scoretools.Note import Note
+from abjad.tools.scoretools.Rest import Rest
+from abjad.tools.scoretools.Skip import Skip
+from abjad.tools.topleveltools.detach import detach
+from abjad.tools.topleveltools.inspect import inspect
+from abjad.tools.topleveltools.iterate import iterate
+from abjad.tools.topleveltools.sequence import sequence
 from .Spanner import Spanner
 
 
 class Tie(Spanner):
-    r'''Tie.
+    r'''
+    Tie.
 
     ..  container:: example
 
@@ -145,11 +158,10 @@ class Tie(Spanner):
 
     def __init__(
         self,
-        direction=None,
-        overrides=None,
+        direction: typing.Union[str, OrdinalConstant] = None,
         repeat: bool = None,
         ) -> None:
-        Spanner.__init__(self, overrides=overrides)
+        Spanner.__init__(self)
         direction = String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction
         self._repeat = repeat
@@ -157,26 +169,24 @@ class Tie(Spanner):
     ### PRIVATE METHODS ###
 
     def _attachment_test(self, component):
-        import abjad
         if self._ignore_attachment_test:
             return True
-        if not isinstance(component, (abjad.Chord, abjad.Note)):
+        if not isinstance(component, (Chord, Note)):
             return False
-        if abjad.inspect(component).has_spanner(abjad.Tie):
+        if inspect(component).has_spanner(Tie):
             return False
         return True
 
     def _attachment_test_all(self, component_expression):
-        import abjad
         if self._ignore_attachment_test:
             return True
         written_pitches = []
-        if isinstance(component_expression, abjad.Component):
+        if isinstance(component_expression, Component):
             component_expression = [component_expression]
         for component in component_expression:
-            if isinstance(component, abjad.Note):
+            if isinstance(component, Note):
                 written_pitches.append(set([component.written_pitch.number]))
-            elif isinstance(component, abjad.Chord):
+            elif isinstance(component, Chord):
                 numbers = [_.number for _ in component.written_pitches]
                 written_pitches.append(set(numbers))
             else:
@@ -184,29 +194,27 @@ class Tie(Spanner):
                     'Can only tie notes and chords.',
                     f'Not {component!r}.',
                     ]
-        for pair in abjad.sequence(written_pitches).nwise():
+        for pair in sequence(written_pitches).nwise():
             if not set.intersection(*pair):
                 return [f'Pitch {pair[0]} does not equal pitch {pair[1]}.']
         return True
 
     def _before_attach(self, argument):
-        import abjad
         if self._ignore_before_attach:
             return
-        for leaf in abjad.iterate(argument).leaves():
-            abjad.detach(Tie, leaf)
+        for leaf in iterate(argument).leaves():
+            detach(Tie, leaf)
 
     def _copy_keyword_args(self, new):
         new._direction = self.direction
         new._repeat = self.repeat
 
     def _get_lilypond_format_bundle(self, leaf):
-        import abjad
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         silent = (
-            abjad.MultimeasureRest,
-            abjad.Rest,
-            abjad.Skip,
+            MultimeasureRest,
+            Rest,
+            Skip,
             )
         if isinstance(leaf, silent):
             return bundle
@@ -215,7 +223,7 @@ class Tie(Spanner):
                 if not self._right_broken:
                     return bundle
                 elif self.direction is not None:
-                    strings = ['{} ~'.format(self.direction)]
+                    strings = [f'{self.direction} ~']
                 else:
                     strings = ['~']
                 strings = self._tag_show(strings)
@@ -223,7 +231,7 @@ class Tie(Spanner):
             elif isinstance(leaf._get_leaf(1), silent):
                 return bundle
             elif self.direction is not None:
-                strings = ['{} ~'.format(self.direction)]
+                strings = [f'{self.direction} ~']
                 bundle.right.spanners.extend(strings)
             else:
                 strings = ['~']
@@ -233,13 +241,13 @@ class Tie(Spanner):
                 if not self._left_broken:
                     return bundle
                 elif self.direction is not None:
-                    strings = [r'{} \repeatTie'.format(self.direction)]
+                    strings = [r'{self.direction} \repeatTie']
                 else:
                     strings = [r'\repeatTie']
                 strings = self._tag_show(strings)
                 bundle.right.spanners.extend(strings)
             elif self.direction is not None:
-                strings = [r'{} \repeatTie'.format(self.direction)]
+                strings = [rf'{self.direction} \repeatTie']
                 bundle.right.spanners.extend(strings)
             else:
                 strings = [r'\repeatTie']
@@ -249,7 +257,8 @@ class Tie(Spanner):
     ### PUBLIC PROPERTIES ###
 
     def cross_segment_examples(self):
-        r'''Cross-segment examples.
+        r'''
+        Cross-segment examples.
 
         ..  container:: example
 
@@ -791,8 +800,9 @@ class Tie(Spanner):
         pass
 
     @property
-    def direction(self):
-        r'''Gets direction.
+    def direction(self) -> typing.Optional[String]:
+        r'''
+        Gets direction.
 
         ..  container:: example
 
@@ -872,17 +882,13 @@ class Tie(Spanner):
             >>> tie.direction is None
             True
 
-        Defaults to none.
-
-        Set to up, down or none.
-
-        Returns up, down or none.
         '''
         return self._direction
 
     @property
-    def repeat(self):
-        r'''Is true when tie should use the LilyPond ``\repeatTie`` command.
+    def repeat(self) -> typing.Optional[bool]:
+        r'''
+        Is true when tie should use the LilyPond ``\repeatTie`` command.
 
         ..  container:: example
 
@@ -905,6 +911,5 @@ class Tie(Spanner):
                     ^ \repeatTie
                 }
 
-        Returns true, false or none.
         '''
         return self._repeat

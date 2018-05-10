@@ -1,9 +1,20 @@
 import copy
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.datastructuretools import Center
+from abjad.tools.datastructuretools import Down
+from abjad.tools.datastructuretools import Up
+from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
+from abjad.tools.datastructuretools.String import String
+from abjad.tools.systemtools.FormatSpecification import FormatSpecification
+from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
+from abjad.tools.topleveltools.attach import attach
 
 
 class Articulation(AbjadValueObject):
-    r'''Articulation.
+    r'''
+    Articulation.
 
     ..  container:: example
 
@@ -36,7 +47,7 @@ class Articulation(AbjadValueObject):
 
     .. container:: example
 
-        Use `attach()` to attach articulations to notes, rests or chords:
+        Use ``attach()`` to attach articulations to notes, rests or chords:
 
         >>> note = abjad.Note("c'4")
         >>> articulation = abjad.Articulation('staccato')
@@ -64,8 +75,7 @@ class Articulation(AbjadValueObject):
         '_name',
         )
 
-    # this causes unnecessary coupling to changeable lilypond codebase
-    # and is discouraged
+    # TODO: derive dynamically from LilyPond codebase
     _articulations_supported = (
         'accent',
         'marcato',
@@ -115,8 +125,7 @@ class Articulation(AbjadValueObject):
         '_',
         )
 
-    # this causes unnecessary coupling to changeable lilypond codebase
-    # and is discouraged
+    # TODO: derive dynamically from LilyPond codebase
     _shortcut_to_word = {
         '^': 'marcato',
         '+': 'stopped',
@@ -129,8 +138,11 @@ class Articulation(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, name=None, direction=None):
-        import abjad
+    def __init__(
+        self,
+        name: str = None,
+        direction: typing.Union[str, OrdinalConstant] = None,
+        ) -> None:
         if isinstance(name, type(self)):
             argument = name
             name = argument.name
@@ -140,58 +152,54 @@ class Articulation(AbjadValueObject):
             direction, name = name.split('\\')
             direction = direction.strip()
             name = name.strip()
-        direction = abjad.String.to_tridirectional_ordinal_constant(direction)
-        directions = (abjad.Up, abjad.Down, abjad.Center, None)
-        assert direction in directions, repr(direction)
         self._name = name
-        self._direction = direction
+        direction_ = String.to_tridirectional_ordinal_constant(direction)
+        if direction_ is not None:
+            assert isinstance(direction_, OrdinalConstant), repr(direction_)
+            assert direction_ in (Up, Down, Center), repr(direction_)
+        self._direction = direction_
         self._format_slot = 'right'
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification=''):
+    def __format__(self, format_specification='') -> str:
         r'''Formats articulation.
 
-        Set `format_specification` to `''`, `'lilypond`' or `'storage'`.
+        Set ``format_specification`` to `''`, `'lilypond`' or `'storage'`.
         Interprets `''` equal to `'storage'`.
-
-        Returns string.
         '''
-        import abjad
         if format_specification in ('', 'storage'):
-            return abjad.StorageFormatManager(self).get_storage_format()
-        elif format_specification == 'lilypond':
+            return StorageFormatManager(self).get_storage_format()
+        else:
+            assert format_specification == 'lilypond'
             return self._get_lilypond_format()
-        return str(self)
 
     def __illustrate__(self):
         r'''Illustrates articulation.
 
         Returns LilyPond file.
         '''
-        import abjad
         note = abjad.Note("c'4")
         articulation = copy.copy(self)
-        abjad.attach(articulation, note)
+        attach(articulation, note)
         lilypond_file = abjad.LilyPondFile.new(note)
         return lilypond_file
 
-    def __str__(self):
+    def __str__(self) -> str:
         r'''Gets string representation of articulation.
-
-        Returns string.
         '''
-        import abjad
         if self.name:
             string = self._shortcut_to_word.get(self.name)
             if not string:
                 string = self.name
             if self.direction is None:
-                direction = '-'
+                direction = String('-')
             else:
-                direction = abjad.String.to_tridirectional_lilypond_symbol(
+                direction_ = String.to_tridirectional_lilypond_symbol(
                     self.direction)
-            return '{}\{}'.format(direction, string)
+                assert isinstance(direction_, String), repr(direction)
+                direction = direction_
+            return f'{direction}\{string}'
         else:
             return ''
 
@@ -200,18 +208,17 @@ class Articulation(AbjadValueObject):
     @property
     def _contents_repr_string(self):
         if self.direction is not None:
-            return '{!r}, {!r}'.format(self.name, self.direction)
+            return f'{self.name!r}, {self.direction!r}'
         else:
             return repr(self.name)
 
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        import abjad
         values = [self.name]
         if self.direction is not None:
             values.append(self.direction)
-        return abjad.FormatSpecification(
+        return FormatSpecification(
             client=self,
             storage_format_args_values=values,
             storage_format_is_indented=False,
@@ -221,16 +228,16 @@ class Articulation(AbjadValueObject):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        import abjad
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         bundle.right.articulations.append(self._get_lilypond_format())
         return bundle
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def direction(self):
-        r'''Gets direction of articulation.
+    def direction(self) -> typing.Optional[OrdinalConstant]:
+        '''
+        Gets direction of articulation.
 
         ..  container:: example
 
@@ -248,13 +255,13 @@ class Articulation(AbjadValueObject):
             >>> articulation.direction
             Up
 
-        Returns ordinal constant or none.
         '''
         return self._direction
 
     @property
-    def name(self):
-        r'''Gets name of articulation.
+    def name(self) -> str:
+        '''
+        Gets name of articulation.
 
         ..  container:: example
 
@@ -272,6 +279,5 @@ class Articulation(AbjadValueObject):
             >>> articulation.name
             'tenuto'
 
-        Returns string.
         '''
         return self._name

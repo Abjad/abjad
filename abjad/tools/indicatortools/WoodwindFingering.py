@@ -1,9 +1,15 @@
 import collections
+import typing
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.markuptools.MarkupCommand import MarkupCommand
+from abjad.tools.schemetools.Scheme import Scheme
+from abjad.tools.schemetools.SchemePair import SchemePair
+from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
 
 
 class WoodwindFingering(AbjadObject):
-    r'''Woodwind fingering.
+    r'''
+    Woodwind fingering.
 
     ..  container:: example
 
@@ -144,7 +150,7 @@ class WoodwindFingering(AbjadObject):
         >>> fingering = abjad.WoodwindFingering(
         ...     'clarinet',
         ...     center_column=('one', 'two', 'three', 'four'),
-        ...     left_hand=('R','cis'),
+        ...     left_hand=('R', 'cis'),
         ...     right_hand=('fis',),
         ...     )
         >>> diagram = fingering()
@@ -201,29 +207,28 @@ class WoodwindFingering(AbjadObject):
 
     def __init__(
         self,
-        name=None,
-        center_column=None,
-        left_hand=None,
-        right_hand=None,
-        ):
+        name: typing.Union[str, 'WoodwindFingering'] = 'flute',
+        center_column: typing.Iterable = None,
+        left_hand: typing.Iterable = None,
+        right_hand: typing.Iterable = None,
+        ) -> None:
         assert isinstance(center_column, (type(None), collections.Iterable))
         assert isinstance(left_hand, (type(None), collections.Iterable))
         assert isinstance(right_hand, (type(None), collections.Iterable))
         # initialize from a string and up to three lists
-        name = name or 'flute'
         if isinstance(name, str):
             assert name in self._valid_names
             self._name = name
             if center_column is None:
-                self._center_column = ()
+                self._center_column: typing.Tuple[str, ...] = ()
             else:
                 self._center_column = tuple(center_column)
             if left_hand is None:
-                self._left_hand = ()
+                self._left_hand: typing.Tuple[str, ...] = ()
             else:
                 self._left_hand = tuple(left_hand)
             if right_hand is None:
-                self._right_hand = ()
+                self._right_hand: typing.Tuple[str, ...] = ()
             else:
                 self._right_hand = tuple(right_hand)
         # initialize from WoodwindDiagram with up to three overriding lists
@@ -241,49 +246,177 @@ class WoodwindFingering(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self):
-        '''Calls woodwind fingering.
-
-        Returns markup command.
+    def __call__(self) -> MarkupCommand:
         '''
-        import abjad
+        Calls woodwind fingering.
+        '''
         key_groups_as_scheme = []
-        cc_scheme_pair = abjad.SchemePair(('cc', self._center_column))
+        cc_scheme_pair = SchemePair(('cc', self._center_column))
         key_groups_as_scheme.append(cc_scheme_pair)
-        lh_scheme_pair = abjad.SchemePair(('lh', self._left_hand))
+        lh_scheme_pair = SchemePair(('lh', self._left_hand))
         key_groups_as_scheme.append(lh_scheme_pair)
-        rh_scheme_pair = abjad.SchemePair(('rh', self._right_hand))
+        rh_scheme_pair = SchemePair(('rh', self._right_hand))
         key_groups_as_scheme.append(rh_scheme_pair)
-        key_groups_as_scheme = abjad.Scheme(
+        key_groups_as_scheme_ = Scheme(
             key_groups_as_scheme,
             quoting="'",
             )
-        instrument_as_scheme = abjad.Scheme(self._name, quoting="'")
-        return abjad.MarkupCommand(
+        instrument_as_scheme = Scheme(self._name, quoting="'")
+        return MarkupCommand(
             'woodwind-diagram',
             instrument_as_scheme,
-            key_groups_as_scheme,
+            key_groups_as_scheme_,
             )
 
-    def __format__(self, format_specification=''):
-        r'''Formats woodwind fingering.
-
-        Set `format_specification` to `''` or `'storage'`.
-
-        Returns string.
+    def __format__(self, format_specification='') -> str:
         '''
-        from abjad.tools import systemtools
+        Formats woodwind fingering.
+
+        Set ``format_specification`` to `''` or `'storage'`.
+        '''
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager(self).get_storage_format()
-        return str(self)
+            return StorageFormatManager(self).get_storage_format()
+        raise ValueError(format_specification)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _valid_names(self):
+        return (
+            'piccolo',
+            'flute',
+            'oboe',
+            'clarinet',
+            'bass-clarinet',
+            'saxophone',
+            'bassoon',
+            'contrabassoon',
+            )
 
     ### PUBLIC METHODS ###
 
-    def print_guide(self):
-        r'''Print read-only string containing instrument's valid key strings,
+    def print_guide(self) -> None:
+        '''
+        Print read-only string containing instrument's valid key strings,
         instrument diagram, and syntax explanation.
 
-        Returns string.
+        ..  container:: example
+
+            >>> center_column = ('one', 'two', 'three', 'five')
+            >>> left_hand = ('R', 'thumb')
+            >>> right_hand = ('e',)
+            >>> woodwind_fingering = abjad.WoodwindFingering(
+            ...     name='clarinet',
+            ...     center_column=center_column,
+            ...     left_hand=left_hand,
+            ...     right_hand=right_hand,
+            ...     )
+
+            >>> woodwind_fingering.print_guide()
+            list of valid key strings for clarinet:
+            <BLANKLINE>
+            cc
+            possibilities for one:
+            (one oneT one1qT oneT1q one1q one1qT1h one1hT1q one1qT3q one3qT1q one1qTF oneFT1q one1hT oneT1h one1h one1hT3q one3qT1h one1hTF oneFT1h one3qT oneT3q one3q one3qTF oneFT3q oneFT oneF)
+            possibilities for two:
+            (two twoT two1qT twoT1q two1q two1qT1h two1hT1q two1qT3q two3qT1q two1qTF twoFT1q two1hT twoT1h two1h two1hT3q two3qT1h two1hTF twoFT1h two3qT twoT3q two3q two3qTF twoFT3q twoFT twoF)
+            possibilities for three:
+            (three threeT three1qT threeT1q three1q three1qT1h three1hT1q three1qT3q three3qT1q three1qTF threeFT1q three1hT threeT1h three1h three1hT3q three3qT1h three1hTF threeFT1h three3qT threeT3q three3q three3qTF threeFT3q threeFT threeF)
+            possibilities for four:
+            (four fourT four1qT fourT1q four1q four1qT1h four1hT1q four1qT3q four3qT1q four1qTF fourFT1q four1hT fourT1h four1h four1hT3q four3qT1h four1hTF fourFT1h four3qT fourT3q four3q four3qTF fourFT3q fourFT fourF)
+            possibilities for five:
+            (five fiveT five1qT fiveT1q five1q five1qT1h five1hT1q five1qT3q five3qT1q five1qTF fiveFT1q five1hT fiveT1h five1h five1hT3q five3qT1h five1hTF fiveFT1h five3qT fiveT3q five3q five3qTF fiveFT3q fiveFT fiveF)
+            possibilities for six:
+            (six sixT six1qT sixT1q six1q six1qT1h six1hT1q six1qT3q six3qT1q six1qTF sixFT1q six1hT sixT1h six1h six1hT3q six3qT1h six1hTF sixFT1h six3qT sixT3q six3q six3qTF sixFT3q sixFT sixF)
+            possibilities for h:
+            (h hT h1qT hT1q h1q h1qT1h h1hT1q h1qT3q h3qT1q h1qTF hFT1q h1hT hT1h h1h h1hT3q h3qT1h h1hTF hFT1h h3qT hT3q h3q h3qTF hFT3q hFT hF)
+            <BLANKLINE>
+            lh
+            possibilities for thumb:
+            (thumb thumbT)
+            possibilities for R:
+            (R RT)
+            possibilities for a:
+            (a aT)
+            possibilities for gis:
+            (gis gisT)
+            possibilities for ees:
+            (ees eesT)
+            possibilities for cis:
+            (cis cisT)
+            possibilities for f:
+            (f fT)
+            possibilities for e:
+            (e eT)
+            possibilities for fis:
+            (fis fisT)
+            <BLANKLINE>
+            rh
+            possibilities for one:
+            (one oneT)
+            possibilities for two:
+            (two twoT)
+            possibilities for three:
+            (three threeT)
+            possibilities for four:
+            (four fourT)
+            possibilities for b:
+            (b bT)
+            possibilities for fis:
+            (fis fisT)
+            possibilities for gis:
+            (gis gisT)
+            possibilities for e:
+            (e eT)
+            possibilities for f:
+            (f fT)
+            <BLANKLINE>
+            diagram syntax
+            <BLANKLINE>
+            Lilypond woodwind diagram syntax divides an instrument into keyholes and keys.
+            Keyholes belong to the central column (cc) group.
+            Keys belong to either left-hand (lh) or right-hand (rh) groups.
+            In Abjad's diagrams, central column (cc) keyholes appear along a central dotted line.
+            Keys are grouped relative to the presence or absence of a dividing horizontal line:
+            If a horizontal line divides a side of the diagram,
+            keys above the line are left-hand keys (lh),
+            and those below are right-hand keys (rh).
+            If no horizontal line appears, all keys on that side of the diagram are left-hand keys (lh).
+            A key located along the central dotted line will be grouped
+            according to the playing hand of the nearest keyhole fingers.
+            <BLANKLINE>
+            To draw half- or quarter-covered keys, and to draw trills,
+            refer to the comprehensive list of possible key strings that precedes this explanation.
+            <BLANKLINE>
+            <BLANKLINE>
+                        a  gis
+                R        |
+                        one
+                thumb    h
+                        two
+                        |  ees
+            --------- three
+                        |
+                    one | cis
+                    two |    f
+                three | e
+                    four |    fis
+                        |
+                        four
+                        |
+                        five
+                    b |
+                        six
+                fis    |
+                    gis |
+                e      |
+                    f  |
+            <BLANKLINE>
+            clarinet
+            as modeled in LilyPond by Mike Solomon
+            diagram explanation and key string index above
+            <BLANKLINE>
+
         '''
         if self._name == 'clarinet':
             lines = [
@@ -393,107 +526,98 @@ class WoodwindFingering(AbjadObject):
                 ]
             for line in lines:
                 print(line)
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _valid_names(self):
-        return (
-            'piccolo',
-            'flute',
-            'oboe',
-            'clarinet',
-            'bass-clarinet',
-            'saxophone',
-            'bassoon',
-            'contrabassoon',
-            )
+        return None
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def center_column(self):
-        r'''Tuple of contents of key strings in center
-        column key group:
+    def center_column(self) -> typing.Tuple[str, ...]:
+        '''
+        Gets tuple of contents of key strings in center column key group.
 
-        >>> center_column = ('one', 'two', 'three', 'five')
-        >>> left_hand = ('R', 'thumb')
-        >>> right_hand = ('e',)
-        >>> woodwind_fingering = abjad.WoodwindFingering(
-        ...     name='clarinet',
-        ...     center_column=center_column,
-        ...     left_hand=left_hand,
-        ...     right_hand=right_hand,
-        ...     )
+        ..  container:: example
 
-        >>> woodwind_fingering.center_column
-        ('one', 'two', 'three', 'five')
+            >>> center_column = ('one', 'two', 'three', 'five')
+            >>> left_hand = ('R', 'thumb')
+            >>> right_hand = ('e',)
+            >>> woodwind_fingering = abjad.WoodwindFingering(
+            ...     name='clarinet',
+            ...     center_column=center_column,
+            ...     left_hand=left_hand,
+            ...     right_hand=right_hand,
+            ...     )
 
-        Returns tuple.
+            >>> woodwind_fingering.center_column
+            ('one', 'two', 'three', 'five')
+
         '''
         return self._center_column
 
     @property
-    def left_hand(self):
-        r'''Tuple of contents of key strings in left
-        hand key group:
+    def left_hand(self) -> typing.Tuple[str, ...]:
+        '''
+        Gets tuple of contents of key strings in left hand key group.
 
-        >>> center_column = ('one', 'two', 'three', 'five')
-        >>> left_hand = ('R', 'thumb')
-        >>> right_hand = ('e',)
-        >>> woodwind_fingering = abjad.WoodwindFingering(
-        ...     name='clarinet',
-        ...     center_column=center_column,
-        ...     left_hand=left_hand,
-        ...     right_hand=right_hand,
-        ...     )
+        ..  container:: example
 
-        >>> woodwind_fingering.left_hand
-        ('R', 'thumb')
+            >>> center_column = ('one', 'two', 'three', 'five')
+            >>> left_hand = ('R', 'thumb')
+            >>> right_hand = ('e',)
+            >>> woodwind_fingering = abjad.WoodwindFingering(
+            ...     name='clarinet',
+            ...     center_column=center_column,
+            ...     left_hand=left_hand,
+            ...     right_hand=right_hand,
+            ...     )
 
-        Returns tuple.
+            >>> woodwind_fingering.left_hand
+            ('R', 'thumb')
+
         '''
         return self._left_hand
 
     @property
-    def name(self):
-        r'''String of valid woodwind instrument name:
+    def name(self) -> str:
+        '''
+        Gets woodwind name.
 
-        >>> center_column = ('one', 'two', 'three', 'five')
-        >>> left_hand = ('R', 'thumb')
-        >>> right_hand = ('e',)
-        >>> woodwind_fingering = abjad.WoodwindFingering(
-        ...     name='clarinet',
-        ...     center_column=center_column,
-        ...     left_hand=left_hand,
-        ...     right_hand=right_hand,
-        ...     )
+        ..  container:: example
 
-        >>> woodwind_fingering.name
-        'clarinet'
+            >>> center_column = ('one', 'two', 'three', 'five')
+            >>> left_hand = ('R', 'thumb')
+            >>> right_hand = ('e',)
+            >>> woodwind_fingering = abjad.WoodwindFingering(
+            ...     name='clarinet',
+            ...     center_column=center_column,
+            ...     left_hand=left_hand,
+            ...     right_hand=right_hand,
+            ...     )
 
-        Returns string.
+            >>> woodwind_fingering.name
+            'clarinet'
+
         '''
         return self._name
 
     @property
-    def right_hand(self):
-        r'''Tuple of contents of key strings in right
-        hand key group:
+    def right_hand(self) -> typing.Tuple[str, ...]:
+        '''
+        Gets tuple of contents of key strings in right hand key group.
 
-        >>> center_column = ('one', 'two', 'three', 'five')
-        >>> left_hand = ('R', 'thumb')
-        >>> right_hand = ('e',)
-        >>> woodwind_fingering = abjad.WoodwindFingering(
-        ...     name='clarinet',
-        ...     center_column=center_column,
-        ...     left_hand=left_hand,
-        ...     right_hand=right_hand,
-        ...     )
+        ..  container:: example
 
-        >>> woodwind_fingering.right_hand
-        ('e',)
+            >>> center_column = ('one', 'two', 'three', 'five')
+            >>> left_hand = ('R', 'thumb')
+            >>> right_hand = ('e',)
+            >>> woodwind_fingering = abjad.WoodwindFingering(
+            ...     name='clarinet',
+            ...     center_column=center_column,
+            ...     left_hand=left_hand,
+            ...     right_hand=right_hand,
+            ...     )
 
-        Returns tuple.
+            >>> woodwind_fingering.right_hand
+            ('e',)
+
         '''
         return self._right_hand

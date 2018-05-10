@@ -1,17 +1,22 @@
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.schemetools.Scheme import Scheme
 
 
 class LilyPondContextSetting(AbjadValueObject):
-    r'''LilyPond context setting.
+    r'''
+    LilyPond context setting.
 
-    >>> context_setting = abjad.lilypondnametools.LilyPondContextSetting(
-    ...    lilypond_type='Score',
-    ...    context_property='autoBeaming',
-    ...    value=False,
-    ...    )
+    ..  container:: example
 
-    >>> print('\n'.join(context_setting.format_pieces))
-    \set Score.autoBeaming = ##f
+        >>> context_setting = abjad.LilyPondContextSetting(
+        ...    lilypond_type='Score',
+        ...    context_property='autoBeaming',
+        ...    value=False,
+        ...    )
+
+        >>> print('\n'.join(context_setting.format_pieces))
+        \set Score.autoBeaming = ##f
 
     '''
 
@@ -30,11 +35,11 @@ class LilyPondContextSetting(AbjadValueObject):
 
     def __init__(
         self,
-        lilypond_type=None,
-        context_property='autoBeaming',
-        is_unset=False,
-        value=False,
-        ):
+        lilypond_type: str = None,
+        context_property: str = 'autoBeaming',
+        is_unset: bool = False,
+        value: typing.Any = False,
+        ) -> None:
         if lilypond_type is not None:
             lilypond_type = str(lilypond_type)
         self._lilypond_type = lilypond_type
@@ -47,16 +52,18 @@ class LilyPondContextSetting(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, argument):
-        r'''Is true when `argument` is a LilyPond context setting with
+    def __eq__(self, argument) -> bool:
+        '''
+        Is true when `argument` is a LilyPond context setting with
         equivalent keyword values.
         '''
         return super(LilyPondContextSetting, self).__eq__(argument)
 
-    def __hash__(self):
-        r'''Hashes LilyPond context setting.
+    def __hash__(self) -> int:
+        '''
+        Hashes LilyPond context setting.
 
-        Returns integer.
+        Redefined in tandem with __eq__.
         '''
         return super(LilyPondContextSetting, self).__hash__()
 
@@ -72,44 +79,36 @@ class LilyPondContextSetting(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def lilypond_type(self):
-        r'''Optional LilyPond context name.
-
-        Returns string or none.
+    def lilypond_type(self) -> typing.Optional[str]:
+        '''
+        Gets LilyPond of context.
         '''
         return self._lilypond_type
 
     @property
-    def context_property(self):
-        r'''LilyPond context property name.
-
-        Returns string.
+    def context_property(self) -> str:
+        '''
+        Gets LilyPond context property name.
         '''
         return self._context_property
 
     @property
-    def format_pieces(self):
-        r'''Gets LilyPond context setting \set or \unset format pieces.
-
-        Returns tuple of strings.
+    def format_pieces(self) -> typing.Tuple[str, ...]:
+        r'''
+        Gets LilyPond context setting \set or \unset format pieces.
         '''
-        from abjad.tools import schemetools
         result = []
         if not self.is_unset:
             result.append(r'\set')
         else:
             result.append(r'\unset')
         if self.lilypond_type is not None:
-            string = '{}.{}'.format(
-                self.lilypond_type,
-                self.context_property,
-                )
+            string = f'{self.lilypond_type}.{self.context_property}'
             result.append(string)
         else:
             result.append(self.context_property)
         result.append('=')
-        value_pieces = schemetools.Scheme.format_embedded_scheme_value(
-            self.value)
+        value_pieces = Scheme.format_embedded_scheme_value(self.value)
         value_pieces = value_pieces.split('\n')
         result.append(value_pieces[0])
         result[:] = [' '.join(result)]
@@ -117,17 +116,15 @@ class LilyPondContextSetting(AbjadValueObject):
         return tuple(result)
 
     @property
-    def is_unset(self):
-        r'''Is true if context setting unsets its value. Otherwise false.
-
-        Returns boolean or none.
+    def is_unset(self) -> typing.Optional[bool]:
+        '''
+        Is true if context setting unsets its value.
         '''
         return self._is_unset
 
     @property
-    def value(self):
-        r'''Value of LilyPond context setting.
-
-        Returns arbitrary object.
+    def value(self) -> typing.Any:
+        '''
+        Gets value of LilyPond context setting.
         '''
         return self._value

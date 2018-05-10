@@ -1,8 +1,11 @@
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class Fermata(AbjadValueObject):
-    r'''Fermata.
+    r'''
+    Fermata.
 
     ..  container:: example
 
@@ -109,14 +112,15 @@ class Fermata(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, command='fermata'):
+    def __init__(self, command: str = 'fermata') -> None:
         assert command in self._allowable_commands, repr(command)
         self._command = command
 
     ### SPECIAL METHODS ###
 
-    def __str__(self):
-        r'''Gets string representation of fermata.
+    def __str__(self) -> str:
+        r'''
+        Gets string representation of fermata.
 
         ..  container:: example
 
@@ -134,7 +138,7 @@ class Fermata(AbjadValueObject):
 
         Returns string.
         '''
-        return r'\{}'.format(self.command)
+        return rf'\{self.command}'
 
     ### PRIVATE PROPERTIES ###
 
@@ -148,16 +152,16 @@ class Fermata(AbjadValueObject):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        import abjad
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         bundle.right.articulations.append(self._get_lilypond_format())
         return bundle
 
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def list_allowable_commands():
-        r'''Lists allowable commands:
+    def list_allowable_commands() -> typing.Tuple[str, ...]:
+        '''
+        Lists allowable commands:
 
         ..  container:: example
 
@@ -171,15 +175,15 @@ class Fermata(AbjadValueObject):
             'shortfermata'
             'verylongfermata'
 
-        Returns tuple of strings.
         '''
         return Fermata._allowable_commands
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def command(self):
-        r'''Gets command of fermata.
+    def command(self) -> typing.Optional[str]:
+        '''
+        Gets command of fermata.
 
         ..  container:: example
 
@@ -197,13 +201,13 @@ class Fermata(AbjadValueObject):
             >>> fermata.command
             'longfermata'
 
-        Returns string.
         '''
         return self._command
 
     @property
-    def context(self):
-        r'''Gets (historically conventional) context.
+    def context(self) -> str:
+        '''
+        Gets (historically conventional) context.
 
         ..  container:: example
 
@@ -220,8 +224,6 @@ class Fermata(AbjadValueObject):
             >>> fermata = abjad.Fermata('longfermata')
             >>> fermata.context
             'Score'
-
-        Returns ``'Score'``.
 
         Override with ``abjad.attach(..., context='...')``.
         '''

@@ -1,8 +1,10 @@
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class BowMotionTechnique(AbjadValueObject):
-    r'''Bow motion technique.
+    '''
+    Bow motion technique.
 
     ..  container:: example
 
@@ -48,23 +50,23 @@ class BowMotionTechnique(AbjadValueObject):
 
     def __init__(
         self,
-        technique_name=None,
-        ):
+        technique_name: str = None,
+        ) -> None:
         assert technique_name in self._valid_technique_names
         self._technique_name = technique_name
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def glissando_style(self):
-        r'''Gets glissando style of bow motion technique.
+    def glissando_style(self) -> str:
+        '''
+        Gets glissando style of bow motion technique.
 
         ..  container:: example
 
             >>> abjad.BowMotionTechnique('jete').glissando_style
             'dotted-line'
 
-        Returns string.
         '''
         if self.technique_name == 'circular':
             return 'zigzag'
@@ -73,27 +75,27 @@ class BowMotionTechnique(AbjadValueObject):
         return 'line'
 
     @property
-    def persistent(self):
-        r'''Is true.
+    def persistent(self) -> bool:
+        '''
+        Is true.
 
         ..  container:: example
 
             >>> abjad.BowMotionTechnique('jete').persistent
             True
 
-        Returns true.
         '''
         return self._persistent
 
     @property
-    def technique_name(self):
-        r'''Gets technique name of bow motion technique.
+    def technique_name(self) -> typing.Optional[str]:
+        '''
+        Gets technique name of bow motion technique.
 
         ..  container:: example
 
             >>> abjad.BowMotionTechnique('jete').technique_name
             'jete'
 
-        Returns string.
         '''
         return self._technique_name

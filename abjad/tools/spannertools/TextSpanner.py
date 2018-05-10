@@ -14,7 +14,8 @@ from .Spanner import Spanner
 
 
 class TextSpanner(Spanner):
-    r'''Text spanner.
+    r'''
+    Text spanner.
 
     ..  container:: example
 
@@ -515,9 +516,8 @@ class TextSpanner(Spanner):
     def __init__(
         self,
         lilypond_id: int = None,
-        overrides: OrderedDict = None,
         ) -> None:
-        Spanner.__init__(self, overrides=overrides)
+        Spanner.__init__(self)
         if lilypond_id is not None:
             assert lilypond_id in self._lilypond_ids, repr(lilypond_id)
         self._lilypond_id = lilypond_id
@@ -533,7 +533,11 @@ class TextSpanner(Spanner):
     def _get_lilypond_format_bundle(self, component=None):
         bundle = self._get_basic_lilypond_format_bundle(component)
         markup = inspect(component).get_piecewise(self, Markup, None)
-        line_segment = inspect(component).get_piecewise(self, LineSegment, None)
+        line_segment = inspect(
+            component).get_piecewise(self,
+            LineSegment,
+            None,
+            )
         if self._should_format_last_leaf_markup(component):
             last_leaf_markup = inspect(self[-1]).get_piecewise(self, Markup)
         else:
@@ -576,7 +580,7 @@ class TextSpanner(Spanner):
                         ),
                     value=markup,
                     )
-                string = override.tweak_string
+                string = override.tweak_string()
                 bundle.right.spanner_starts.append(string)
             tweaks = line_segment._get_lilypond_grob_overrides(tweaks=True)
             bundle.right.spanner_starts.extend(tweaks)
@@ -599,7 +603,7 @@ class TextSpanner(Spanner):
                     ),
                 value=last_leaf_markup,
                 )
-            string = override.tweak_string
+            string = override.tweak_string()
             bundle.right.spanner_starts.append(string)
         # all tweaks must appear immediately before start command:
         if not component is self[-1]:
@@ -660,7 +664,8 @@ class TextSpanner(Spanner):
 
     @property
     def lilypond_id(self) -> typing.Optional[int]:
-        r'''Gets LilyPond ID.
+        r'''
+        Gets LilyPond ID.
 
         ..  container:: example
 
@@ -836,72 +841,6 @@ class TextSpanner(Spanner):
         '''
         return self._lilypond_id
 
-    @property
-    def overrides(self) -> OrderedDict:
-        r'''Gets text spanner overrides.
-
-        ..  container:: example
-
-            REGRESSION: Red spanner reverts color before default spanner
-            begins:
-
-            >>> staff = abjad.Staff("c'4 d' e' f' c' d' e' f'")
-            >>> text_spanner_1 = abjad.TextSpanner()
-            >>> markup = abjad.Markup('red').italic().bold()
-            >>> abjad.override(text_spanner_1).text_spanner.bound_details__left__text = markup
-            >>> abjad.override(text_spanner_1).text_spanner.bound_details__left__stencil_align_dir_y = 0
-            >>> abjad.override(text_spanner_1).text_spanner.bound_details__right__padding = 1
-            >>> abjad.override(text_spanner_1).text_spanner.color = 'red'
-            >>> abjad.attach(text_spanner_1, staff[:4])
-            >>> text_spanner_2 = abjad.TextSpanner()
-            >>> markup = abjad.Markup('default').italic().bold()
-            >>> abjad.override(text_spanner_2).text_spanner.bound_details__left__text = markup
-            >>> abjad.override(text_spanner_2).text_spanner.bound_details__left__stencil_align_dir_y = 0
-            >>> abjad.attach(text_spanner_2, staff[-5:])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    \override TextSpanner.bound-details.left.stencil-align-dir-y = #0
-                    \override TextSpanner.bound-details.left.text = \markup {
-                        \bold
-                            \italic
-                                red
-                        }
-                    \override TextSpanner.bound-details.right.padding = #1
-                    \override TextSpanner.color = #red
-                    c'4
-                    \startTextSpan
-                    d'4
-                    e'4
-                    \revert TextSpanner.bound-details.left.stencil-align-dir-y
-                    \revert TextSpanner.bound-details.left.text
-                    \revert TextSpanner.bound-details.right.padding
-                    \revert TextSpanner.color
-                    \override TextSpanner.bound-details.left.stencil-align-dir-y = #0
-                    \override TextSpanner.bound-details.left.text = \markup {
-                        \bold
-                            \italic
-                                default
-                        }
-                    f'4
-                    \stopTextSpan
-                    \startTextSpan
-                    c'4
-                    d'4
-                    e'4
-                    \revert TextSpanner.bound-details.left.stencil-align-dir-y
-                    \revert TextSpanner.bound-details.left.text
-                    f'4
-                    \stopTextSpan
-                }
-
-        '''
-        return super(TextSpanner, self).overrides
-
     ### PUBLIC METHODS ###
 
     def attach(
@@ -909,10 +848,11 @@ class TextSpanner(Spanner):
         indicator: typing.Union[LineSegment, Markup, Wrapper], 
         leaf: Leaf,
         deactivate: bool = None,
-        tag: Tag = None,
+        tag: typing.Union[str, Tag] = None,
         wrapper: bool = None,
         ) -> typing.Optional[Wrapper]:
-        r'''Attaches ``indicator`` to ``leaf`` in spanner.
+        '''
+        Attaches ``indicator`` to ``leaf`` in spanner.
         '''
         prototype = (LineSegment, Markup, Wrapper)
         assert isinstance(indicator, prototype), repr(indicator)

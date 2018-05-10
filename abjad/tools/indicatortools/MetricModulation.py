@@ -1,9 +1,19 @@
 import collections
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.datastructuretools import Up
+from abjad.tools.datastructuretools.Duration import Duration
+from abjad.tools.markuptools.Markup import Markup
+from abjad.tools.mathtools.Ratio import Ratio
+from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
+from abjad.tools.topleveltools.inspect import inspect
+from abjad.tools.topleveltools.new import new
+from abjad.tools.topleveltools.select import select
 
 
 class MetricModulation(AbjadValueObject):
-    r'''Metric modulation.
+    r'''
+    Metric modulation.
 
     ..  container:: example
 
@@ -596,29 +606,30 @@ class MetricModulation(AbjadValueObject):
         self,
         left_rhythm=None,
         right_rhythm=None,
-        left_markup=None,
-        right_markup=None,
-        ):
-        import abjad
-        left_rhythm = left_rhythm or abjad.Note('c4')
-        right_rhythm = right_rhythm or abjad.Note('c4')
+        left_markup: Markup = None,
+        right_markup: Markup = None,
+        ) -> None:
+        from abjad.tools.scoretools.Note import Note
+        left_rhythm = left_rhythm or Note('c4')
+        right_rhythm = right_rhythm or Note('c4')
         left_rhythm = self._initialize_rhythm(left_rhythm)
         self._left_rhythm = left_rhythm
         right_rhythm = self._initialize_rhythm(right_rhythm)
         self._right_rhythm = right_rhythm
         self._right_rhythm = right_rhythm
         if left_markup is not None:
-            assert isinstance(left_markup, abjad.Markup)
+            assert isinstance(left_markup, Markup)
         self._left_markup = left_markup
         if right_markup is not None:
-            assert isinstance(right_markup, abjad.Markup)
+            assert isinstance(right_markup, Markup)
         self._right_markup = right_markup
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, argument):
-        r'''Is true when `argument` is another metric modulation with the same
-        ratio as this metric modulation. Otherwise false.
+    def __eq__(self, argument) -> bool:
+        '''
+        Is true when `argument` is another metric modulation with the same
+        ratio as this metric modulation.
 
         ..  container:: example
 
@@ -665,7 +676,6 @@ class MetricModulation(AbjadValueObject):
             >>> metric_modulation_3 == metric_modulation_3
             True
 
-        Returns true or false.
         '''
         # custom definition because input rhythms don't compare:
         if isinstance(argument, type(self)):
@@ -673,8 +683,9 @@ class MetricModulation(AbjadValueObject):
                 return True
         return False
 
-    def __format__(self, format_specification=''):
-        r'''Formats metric modulation.
+    def __format__(self, format_specification='') -> str:
+        '''
+        Formats metric modulation.
 
         ..  container:: example
 
@@ -699,23 +710,22 @@ class MetricModulation(AbjadValueObject):
 
         Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
         Interprets `''` equal to `'storage'`.
-
-        Returns string.
         '''
-        superclass = super(MetricModulation, self)
-        return superclass.__format__(format_specification=format_specification)
+        return super(MetricModulation, self).__format__(
+            format_specification=format_specification
+            )
 
-    def __hash__(self):
-        r'''Hashes metric modulation.
+    def __hash__(self) -> int:
+        '''
+        Hashes metric modulation.
 
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
+        Redefined in tandem with __eq__.
         '''
         return super(MetricModulation, self).__hash__()
 
     def __illustrate__(self):
-        r'''Illustrates metric modulation.
+        r'''
+        Illustrates metric modulation.
 
         ..  container:: example
 
@@ -814,8 +824,9 @@ class MetricModulation(AbjadValueObject):
         lilypond_file.items.append(self._get_markup())
         return lilypond_file
 
-    def __str__(self):
-        r'''Gets string representation of metric modulation.
+    def __str__(self) -> str:
+        r'''
+        Gets string representation of metric modulation.
 
         ..  container:: example
 
@@ -902,7 +913,6 @@ class MetricModulation(AbjadValueObject):
                         }
                 }
 
-        Returns string.
         '''
         return str(self._get_markup())
 
@@ -915,34 +925,31 @@ class MetricModulation(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_left_markup(self):
-        import abjad
         if self.left_markup is not None:
             return self.left_markup
-        markup = abjad.Duration._to_score_markup(self.left_rhythm)
+        markup = Duration._to_score_markup(self.left_rhythm)
         return markup
 
     def _get_lilypond_format(self):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        import abjad
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         markup = self._get_markup()
-        markup = abjad.new(markup, direction=abjad.Up)
+        markup = new(markup, direction=Up)
         markup_format_pieces = markup._get_format_pieces()
         bundle.right.markup.extend(markup_format_pieces)
         return bundle
 
     def _get_markup(self, music_scale_pair=(0.75, 0.75)):
-        import abjad
         if music_scale_pair is not None:
             assert isinstance(music_scale_pair, collections.Iterable)
             music_scale_pair = tuple(music_scale_pair)
         left_markup = self._get_left_markup()
         if music_scale_pair:
             left_markup = left_markup.scale(music_scale_pair)
-        equal = abjad.Markup('=')
-        right_space = abjad.Markup.hspace(-0.5)
+        equal = Markup('=')
+        right_space = Markup.hspace(-0.5)
         right_markup = self._get_right_markup()
         if music_scale_pair:
             right_markup = right_markup.scale(music_scale_pair)
@@ -950,16 +957,15 @@ class MetricModulation(AbjadValueObject):
         return markup
 
     def _get_right_markup(self):
-        import abjad
         if self.right_markup is not None:
             return self.right_markup
-        markup = abjad.Duration._to_score_markup(self.right_rhythm)
+        markup = Duration._to_score_markup(self.right_rhythm)
         return markup
 
     def _initialize_rhythm(self, rhythm):
         import abjad
         if isinstance(rhythm, abjad.Component):
-            selection = abjad.select([rhythm])
+            selection = select([rhythm])
         elif isinstance(rhythm, abjad.Selection):
             selection = rhythm
         else:
@@ -972,8 +978,9 @@ class MetricModulation(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def context(self):
-        r'''Gets (historically conventional) context.
+    def context(self) -> str:
+        '''
+        Gets (historically conventional) context.
 
         ..  container:: example
 
@@ -984,15 +991,14 @@ class MetricModulation(AbjadValueObject):
             >>> metric_modulation.context
             'Score'
 
-        Returns ``'Score'``.
-
         Override with ``abjad.attach(..., context='...')``.
         '''
         return self._context
 
     @property
-    def left_markup(self):
-        r'''Gets left markup of metric modulation.
+    def left_markup(self) -> typing.Optional[Markup]:
+        '''
+        Gets left markup of metric modulation.
 
         ..  container:: example
 
@@ -1002,13 +1008,13 @@ class MetricModulation(AbjadValueObject):
             ...     )
             >>> metric_modulation.left_markup
 
-        Returns markup or none.
         '''
         return self._left_markup
 
     @property
     def left_rhythm(self):
-        r'''Gets left rhythm of metric modulation.
+        '''
+        Gets left rhythm of metric modulation.
 
         ..  container:: example
 
@@ -1024,8 +1030,9 @@ class MetricModulation(AbjadValueObject):
         return self._left_rhythm
 
     @property
-    def persistent(self):
-        r'''Is ``'abjad.MetronomeMark'``.
+    def persistent(self) -> str:
+        '''
+        Is ``'abjad.MetronomeMark'``.
 
         ..  container:: example
 
@@ -1036,13 +1043,13 @@ class MetricModulation(AbjadValueObject):
             >>> metric_modulation.persistent
             'abjad.MetronomeMark'
 
-        Returns ``'abjad.MetronomeMark'``.
         '''
         return self._persistent
 
     @property
-    def ratio(self):
-        r'''Gets ratio of metric modulation.
+    def ratio(self) -> Ratio:
+        '''
+        Gets ratio of metric modulation.
 
         ..  container:: example
 
@@ -1053,17 +1060,15 @@ class MetricModulation(AbjadValueObject):
             >>> metric_modulation.ratio
             Ratio((2, 3))
 
-        Returns ratio.
         '''
-        import abjad
-        left_duration = abjad.inspect(self.left_rhythm).get_duration()
-        right_duration = abjad.inspect(self.right_rhythm).get_duration()
+        left_duration = inspect(self.left_rhythm).get_duration()
+        right_duration = inspect(self.right_rhythm).get_duration()
         duration = left_duration / right_duration
-        ratio = abjad.Ratio(duration.pair)
+        ratio = Ratio(duration.pair)
         return ratio
 
     @property
-    def right_markup(self):
+    def right_markup(self) -> typing.Optional[Markup]:
         r'''Gets right markup of metric modulation.
 
         ..  container:: example
@@ -1074,13 +1079,13 @@ class MetricModulation(AbjadValueObject):
             ...     )
             >>> metric_modulation.right_markup
 
-        Returns markup or none.
         '''
         return self._right_markup
 
     @property
     def right_rhythm(self):
-        r'''Gets right tempo of metric modulation.
+        '''
+        Gets right tempo of metric modulation.
 
         ..  container:: example
 
@@ -1091,6 +1096,5 @@ class MetricModulation(AbjadValueObject):
             >>> metric_modulation.right_rhythm
             Selection([Note("c'4.")])
 
-        Returns selection.
         '''
         return self._right_rhythm

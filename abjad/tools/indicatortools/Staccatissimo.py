@@ -1,9 +1,17 @@
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
+from abjad.tools.datastructuretools.String import String
+from abjad.tools.datastructuretools import Center
+from abjad.tools.datastructuretools import Down
 from abjad.tools.datastructuretools import Right
+from abjad.tools.datastructuretools import Up
+from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class Staccatissimo(AbjadValueObject):
-    r'''Staccatissimo.
+    r'''
+    Staccatissimo.
 
     ..  container:: example
 
@@ -66,16 +74,17 @@ class Staccatissimo(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, direction=None):
-        import abjad
-        direction = abjad.String.to_tridirectional_ordinal_constant(direction)
-        directions = (abjad.Up, abjad.Down, abjad.Center, None)
-        assert direction in directions, repr(direction)
-        self._direction = direction
+    def __init__(self, direction: OrdinalConstant = None) -> None:
+        direction_ = String.to_tridirectional_ordinal_constant(direction)
+        if direction_ is not None:
+            assert isinstance(direction_, OrdinalConstant), repr(direction_)
+            directions = (Up, Down, Center, None)
+            assert direction_ in directions, repr(direction_)
+        self._direction = direction_
 
     ### SPECIAL METHODS ###
 
-    def __str__(self):
+    def __str__(self) -> str:
         r'''Gets string representation of staccatissimo.
 
         ..  container:: example
@@ -83,7 +92,6 @@ class Staccatissimo(AbjadValueObject):
             >>> str(abjad.Staccatissimo())
             '\\staccatissimo'
 
-        Returns string.
         '''
         return r'\staccatissimo'
 
@@ -99,7 +107,6 @@ class Staccatissimo(AbjadValueObject):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        import abjad
-        bundle = abjad.LilyPondFormatBundle()
+        bundle = LilyPondFormatBundle()
         bundle.after.commands.append(self._get_lilypond_format())
         return bundle
