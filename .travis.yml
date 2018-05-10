@@ -16,22 +16,6 @@ matrix:
   - python: "3.7-dev"
     env: ACCELERATED=false
 
-addons:
-  apt:
-    packages:
-    - ghostscript
-    - graphviz
-    - imagemagick
-    - lmodern
-    - pgf
-    - texlive
-    - texlive-extra-utils
-    - texlive-fonts-recommended
-    - texlive-latex-extra
-    - texlive-latex-recommended
-    - texlive-pictures
-    - texlive-xetex
-
 before_install:
 - wget -q ${LILYPOND_URL}lilypond-${LILYPOND_VERSION}-1.linux-64.sh
 - sh lilypond-${LILYPOND_VERSION}-1.linux-64.sh --batch
