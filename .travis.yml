@@ -14,7 +14,7 @@ matrix:
   - python: "3.6"
     env: ACCELERATED=true
   - python: "3.7-dev"
-    env: ACCELERATED=false
+    env: ACCELERATED=true
 
 before_install:
 - wget -q ${LILYPOND_URL}lilypond-${LILYPOND_VERSION}-1.linux-64.sh
