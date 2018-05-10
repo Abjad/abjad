@@ -913,3 +913,45 @@ class Tie(Spanner):
 
         '''
         return self._repeat
+
+    ### PUBLIC METHODS ###
+
+    def start_command(self) -> typing.Optional[str]:
+        '''
+        Gets start command.
+
+        ..  container:: example
+
+            >>> abjad.Tie().start_command()
+            '~'
+
+        ..  container:: example
+
+            >>> abjad.Tie(repeat=True).start_command()
+            ''
+
+        '''
+        if self.repeat:
+            return ''
+        else:
+            return '~'
+
+    def stop_command(self) -> typing.Optional[str]:
+        r'''
+        Gets stop command.
+
+        ..  container:: example
+
+            >>> abjad.Tie().stop_command()
+            ''
+
+        ..  container:: example
+
+            >>> abjad.Tie(repeat=True).stop_command()
+            '\\repeatTie'
+
+        '''
+        if self.repeat:
+            return r'\repeatTie'
+        else:
+            return ''

@@ -7,6 +7,8 @@ from abjad.tools.indicatortools.LineSegment import LineSegment
 from abjad.tools.indicatortools.MetricModulation import MetricModulation
 from abjad.tools.indicatortools.MetronomeMark import MetronomeMark
 from abjad.tools.indicatortools.Ritardando import Ritardando
+from abjad.tools.lilypondnametools.LilyPondGrobOverride import \
+    LilyPondGrobOverride
 from abjad.tools.markuptools.Markup import Markup
 from abjad.tools.schemetools.SchemeColor import SchemeColor
 from abjad.tools.segmenttools.Tags import Tags
@@ -2010,6 +2012,10 @@ class MetronomeMarkSpanner(Spanner):
         '_stem_height',
         )
 
+    _start_command = r'\startTextSpan'
+
+    _stop_command = r'\stopTextSpan'
+
     ### INITIALIZER ###
 
     def __init__(
@@ -2051,6 +2057,7 @@ class MetronomeMarkSpanner(Spanner):
         ):
         last_leaf_wrapper = inspect(self[-1]).wrapper(MetronomeMark)
         assert last_leaf_wrapper.indicator is last_leaf_metronome_mark
+
         last_leaf_markup = last_leaf_metronome_mark._get_markup(
             stem_height=self.stem_height,
             )
@@ -2063,9 +2070,17 @@ class MetronomeMarkSpanner(Spanner):
             [right_hspace, last_leaf_markup],
             )
         last_leaf_markup = new(last_leaf_markup, direction=None)
-        pieces = last_leaf_markup._get_format_pieces()
-        piece = r'\once \override TextSpanner.bound-details.right.text ='
-        pieces.insert(0, piece)
+        override = LilyPondGrobOverride(
+            grob_name='TextSpanner',
+            once=True,
+            property_path=(
+                'bound-details',
+                'right',
+                'text',
+                ),
+            value=last_leaf_markup,
+            )
+        pieces = override.override_string.split('\n')
         tag = last_leaf_wrapper.tag
         deactivate = last_leaf_wrapper.deactivate
         if self._right_broken:
@@ -2084,10 +2099,17 @@ class MetronomeMarkSpanner(Spanner):
             color, tag = alternate
             color = SchemeColor(color)
             last_leaf_markup = last_leaf_markup.with_color(color)
-            pieces = last_leaf_markup._get_format_pieces()
-            piece = r'\once \override'
-            piece += ' TextSpanner.bound-details.right.text ='
-            pieces.insert(0, piece)
+            override = LilyPondGrobOverride(
+                grob_name='TextSpanner',
+                once=True,
+                property_path=(
+                    'bound-details',
+                    'right',
+                    'text',
+                    ),
+                value=last_leaf_markup,
+                )
+            pieces = override.override_string.split('\n')
             if self._right_broken:
                 tag_ = abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS
                 tag = tag.append(tag_)
@@ -2101,28 +2123,51 @@ class MetronomeMarkSpanner(Spanner):
 
     def _add_left_broken_text(self, bundle, current_tempo_trend):
         if self.left_broken_text is False:
-            string = r'\once \override'
-            string += ' TextSpanner.bound-details.left-broken.text = ##f'
+            override = LilyPondGrobOverride(
+                grob_name='TextSpanner',
+                once=True,
+                property_path=(
+                    'bound-details',
+                    'left-broken',
+                    'text',
+                    ),
+                value=False,
+                )
+            string = override.override_string
             bundle.grob_overrides.append(string)
         elif self.left_broken_text is True and current_tempo_trend is not None:
             markup = current_tempo_trend._get_markup()
             markup = markup.parenthesize()
             markup = markup.override(('padding', 0.45))
             markup = markup + markup.hspace(self.left_hspace)
-            pieces = markup._get_format_pieces()
-            piece = r'\once \override'
-            piece += ' TextSpanner.bound-details.left-broken.text ='
-            pieces.insert(0, piece)
+            override = LilyPondGrobOverride(
+                grob_name='TextSpanner',
+                once=True,
+                property_path=(
+                    'bound-details',
+                    'left-broken',
+                    'text',
+                    ),
+                value=markup,
+                )
+            pieces = override.override_string.split('\n')
             if self._right_broken and leaf is self[-1]:
                 pieces = self._tag_show(pieces)
             string = '\n'.join(pieces)
             bundle.grob_overrides.append(string)
         elif isinstance(self.left_broken_text, Markup):
             markup = self.left_broken_text
-            pieces = markup._get_format_pieces()
-            piece = r'\once \override'
-            piece += ' TextSpanner.bound-details.left-broken.text ='
-            pieces.insert(0, piece)
+            override = LilyPondGrobOverride(
+                grob_name='TextSpanner',
+                once=True,
+                property_path=(
+                    'bound-details',
+                    'left-broken',
+                    'text',
+                    ),
+                value=markup,
+                )
+            pieces = override.override_string.split('\n')
             if self._right_broken and leaf is self[-1]:
                 pieces = self._tag_show(pieces)
             string = '\n'.join(pieces)
@@ -2130,11 +2175,12 @@ class MetronomeMarkSpanner(Spanner):
 
     def _add_no_indicators(self, bundle, leaf):
         if leaf is self[0]:
-            strings = [r'\startTextSpan']
+            strings = [self.start_command()]
             if self._left_broken:
                 strings = self._tag_hide(strings)
             bundle.right.spanner_starts.extend(strings)
-            strings = [r'\once \override TextSpanner.Y-extent = ##f']
+            override = self._y_extent_false()
+            strings = [override.override_string]
             if self._left_broken:
                 strings = self._tag_hide(strings)
             bundle.grob_overrides.extend(strings)
@@ -2143,12 +2189,14 @@ class MetronomeMarkSpanner(Spanner):
                 line_segment,
                 right_padding=self.right_padding,
                 )
+            # TODO: tweaks instead of overrides
+            #strings = line_segment._get_lilypond_grob_overrides(tweaks=True)
             strings = line_segment._get_lilypond_grob_overrides()
             if self._left_broken:
                 strings = self._tag_hide(strings)
             bundle.grob_overrides.extend(strings)
         if leaf is self[-1]:
-            strings = [r'\stopTextSpan']
+            strings = [self.stop_command()]
             if self._right_broken:
                 strings = self._tag_hide(strings)
             bundle.right.spanner_stops.extend(strings)
@@ -2243,26 +2291,27 @@ class MetronomeMarkSpanner(Spanner):
         #
         if has_indicators and leaf is not self[0]:
             if self._right_broken and leaf is self[-1]:
-                strings = [r'\stopTextSpan', r'\startTextSpan']
+                strings = [self.stop_command(), self.start_command()]
                 strings = self._tag_show(strings)
                 bundle.right.spanner_stops.extend(strings)
-            strings = [r'\stopTextSpan']
+            strings = [self.stop_command()]
             bundle.right.spanner_stops.extend(strings)
         #
         if (leaf is not self[-1] or
             (self._right_broken and leaf is self[-1])):
-            strings = [r'\startTextSpan']
+            strings = [self.start_command()]
             if self._right_broken and leaf is self[-1]:
                 pass
             else:
                 bundle.right.spanner_starts.extend(strings)
             #
             if self._left_broken and leaf is self[0]:
-                strings = [r'\stopTextSpan']
+                strings = [self.stop_command()]
                 strings = self._tag_show(strings)
                 bundle.right.spanner_starts.extend(strings)
             #
-            strings = [r'\once \override TextSpanner.Y-extent = ##f']
+            override = self._y_extent_false()
+            strings = [override.override_string]
             if self._right_broken and leaf is self[-1]:
                 strings = self._tag_show(strings)
             bundle.grob_overrides.extend(strings)
@@ -2287,6 +2336,8 @@ class MetronomeMarkSpanner(Spanner):
                     line_segment,
                     right_padding=self.right_padding,
                     )
+                # TODO: tweaks instead of overrides
+                #strings = line_segment._get_lilypond_grob_overrides(tweaks=True)
                 strings = line_segment._get_lilypond_grob_overrides()
                 if (leaf is self[0] and
                     self._left_broken and
@@ -2297,6 +2348,8 @@ class MetronomeMarkSpanner(Spanner):
                         line_segment,
                         right_padding=self.right_padding,
                         )
+                    # TODO: tweaks instead of overrides
+                    #strings_ = line_segment._get_lilypond_grob_overrides(tweaks=True)
                     strings_ = line_segment._get_lilypond_grob_overrides()
                     strings_ = self._tag_show(strings_)
                     strings.extend(strings_)
@@ -2306,6 +2359,8 @@ class MetronomeMarkSpanner(Spanner):
                     line_segment,
                     right_padding=self.right_padding,
                     )
+                # TODO: tweaks instead of overrides
+                #strings = line_segment._get_lilypond_grob_overrides(tweaks=True)
                 strings = line_segment._get_lilypond_grob_overrides()
                 #
                 if self._right_broken is True and leaf is self[-1]:
@@ -2317,6 +2372,8 @@ class MetronomeMarkSpanner(Spanner):
                         line_segment,
                         right_padding=self.right_padding,
                         )
+                    # TODO: tweaks instead of overrides
+                    #strings_ = line_segment._get_lilypond_grob_overrides(tweaks=True)
                     strings_ = line_segment._get_lilypond_grob_overrides()
                     strings_ = self._tag_show(strings_)
                     strings.extend(strings_)
@@ -2458,9 +2515,17 @@ class MetronomeMarkSpanner(Spanner):
             getattr(current_metric_modulation_wrapper, 'indicator', None),
             )
         markup = markup + markup.hspace(self.left_hspace)
-        pieces = markup._get_format_pieces()
-        piece = r'\once \override TextSpanner.bound-details.left.text ='
-        pieces.insert(0, piece)
+        override = LilyPondGrobOverride(
+            grob_name='TextSpanner',
+            once=True,
+            property_path=(
+                'bound-details',
+                'left',
+                'text',
+                ),
+            value=markup,
+            )
+        pieces = override.override_string.split('\n')
         tag = current_metronome_mark_wrapper.tag
         deactivate = current_metronome_mark_wrapper.deactivate
         if self._right_broken and leaf is self[-1]:
@@ -2480,9 +2545,17 @@ class MetronomeMarkSpanner(Spanner):
             color, tag = alternate
             color = SchemeColor(color)
             markup = markup.with_color(color)
-            pieces = markup._get_format_pieces()
-            piece = r'\once \override TextSpanner.bound-details.left.text ='
-            pieces.insert(0, piece)
+            override = LilyPondGrobOverride(
+                grob_name='TextSpanner',
+                once=True,
+                property_path=(
+                    'bound-details',
+                    'left',
+                    'text',
+                    ),
+                value=markup,
+                )
+            pieces = override.override_string.split('\n')
             if self._right_broken and leaf is self[-1]:
                 tag_ = abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS
                 tag = tag.append(tag_)
@@ -2513,9 +2586,17 @@ class MetronomeMarkSpanner(Spanner):
         else:
             markup = current_tempo_trend_wrapper.indicator._get_markup()
             markup = markup + markup.hspace(self.left_hspace)
-        pieces = markup._get_format_pieces()
-        piece = r'\once \override TextSpanner.bound-details.left.text ='
-        pieces.insert(0, piece)
+        override = LilyPondGrobOverride(
+            grob_name='TextSpanner',
+            once=True,
+            property_path=(
+                'bound-details',
+                'left',
+                'text',
+                ),
+            value=markup,
+            )
+        pieces = override.override_string.split('\n')
         tag = current_tempo_trend_wrapper.tag
         deactivate = current_tempo_trend_wrapper.deactivate
         if self._right_broken and leaf is self[-1]:
@@ -2535,9 +2616,17 @@ class MetronomeMarkSpanner(Spanner):
             color, tag = alternate
             color = SchemeColor(color)
             markup = markup.with_color(color)
-            pieces = markup._get_format_pieces()
-            piece = r'\once \override TextSpanner.bound-details.left.text ='
-            pieces.insert(0, piece)
+            override = LilyPondGrobOverride(
+                grob_name='TextSpanner',
+                once=True,
+                property_path=(
+                    'bound-details',
+                    'left',
+                    'text',
+                    ),
+                value=markup,
+                )
+            pieces = override.override_string.split('\n')
             if self._right_broken and leaf is self[-1]:
                 tag_ = abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS
                 tag = tag.append(tag_)
@@ -2550,6 +2639,17 @@ class MetronomeMarkSpanner(Spanner):
             string = '\n'.join(pieces)
             bundle.grob_overrides.append(string)
 
+    @staticmethod
+    def _y_extent_false():
+        return LilyPondGrobOverride(
+            grob_name='TextSpanner',
+            once=True,
+            property_path=(
+                'Y-extent',
+                ),
+            value=False,
+            )
+            
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -4060,8 +4160,7 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.padding = 1
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right.text = %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \markup {                                     %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    \once \override TextSpanner.bound-details.right.text = \markup { %! HIDE_TO_JOIN_BROKEN_SPANNERS
                         \concat                                   %! HIDE_TO_JOIN_BROKEN_SPANNERS
                             {                                     %! HIDE_TO_JOIN_BROKEN_SPANNERS
                                 \hspace                           %! HIDE_TO_JOIN_BROKEN_SPANNERS
@@ -4093,8 +4192,7 @@ class MetronomeMarkSpanner(Spanner):
                 %@% \once \override TextSpanner.Y-extent = ##f    %! SHOW_TO_JOIN_BROKEN_SPANNERS
                 %@% \once \override TextSpanner.arrow-width = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS
                 %@% \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.left.text = %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \markup {                                     %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% \once \override TextSpanner.bound-details.left.text = \markup { %! SHOW_TO_JOIN_BROKEN_SPANNERS
                 %@%     \fontsize                                 %! SHOW_TO_JOIN_BROKEN_SPANNERS
                 %@%         #-6                                   %! SHOW_TO_JOIN_BROKEN_SPANNERS
                 %@%         \general-align                        %! SHOW_TO_JOIN_BROKEN_SPANNERS
@@ -4206,8 +4304,7 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.bound-details.right-broken.text = ##f
                         \once \override TextSpanner.bound-details.right.padding = 1
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    %%% \once \override TextSpanner.bound-details.right.text = %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \markup {                                 %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% \once \override TextSpanner.bound-details.right.text = \markup { %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%%     \concat                               %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%%         {                                 %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%%             \hspace                       %! HIDE_TO_JOIN_BROKEN_SPANNERS
@@ -4239,8 +4336,7 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.Y-extent = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                         \once \override TextSpanner.arrow-width = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                         \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.left.text = %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \markup {                                 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        \once \override TextSpanner.bound-details.left.text = \markup { %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                             \fontsize                             %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                                 #-6                               %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                                 \general-align                    %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
@@ -4281,8 +4377,7 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.bound-details.left-broken.text = ##f
                         \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        \once \override TextSpanner.bound-details.left.text = \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -4345,8 +4440,7 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.padding = 1
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right.text = %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \markup {                                     %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    \once \override TextSpanner.bound-details.right.text = \markup { %! HIDE_TO_JOIN_BROKEN_SPANNERS
                         \concat                                   %! HIDE_TO_JOIN_BROKEN_SPANNERS
                             {                                     %! HIDE_TO_JOIN_BROKEN_SPANNERS
                                 \hspace                           %! HIDE_TO_JOIN_BROKEN_SPANNERS
@@ -4378,8 +4472,7 @@ class MetronomeMarkSpanner(Spanner):
                 %@% \once \override TextSpanner.Y-extent = ##f    %! SHOW_TO_JOIN_BROKEN_SPANNERS
                 %@% \once \override TextSpanner.arrow-width = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS
                 %@% \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.left.text = %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \markup {                                     %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% \once \override TextSpanner.bound-details.left.text = \markup { %! SHOW_TO_JOIN_BROKEN_SPANNERS
                 %@%     \fontsize                                 %! SHOW_TO_JOIN_BROKEN_SPANNERS
                 %@%         #-6                                   %! SHOW_TO_JOIN_BROKEN_SPANNERS
                 %@%         \general-align                        %! SHOW_TO_JOIN_BROKEN_SPANNERS
@@ -4499,8 +4592,7 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.bound-details.right-broken.text = ##f
                         \once \override TextSpanner.bound-details.right.padding = 1
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    %%% \once \override TextSpanner.bound-details.right.text = %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \markup {                                 %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% \once \override TextSpanner.bound-details.right.text = \markup { %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%%     \concat                               %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%%         {                                 %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%%             \hspace                       %! HIDE_TO_JOIN_BROKEN_SPANNERS
@@ -4532,8 +4624,7 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.Y-extent = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                         \once \override TextSpanner.arrow-width = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                         \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.left.text = %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \markup {                                 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        \once \override TextSpanner.bound-details.left.text = \markup { %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                             \fontsize                             %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                                 #-6                               %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                                 \general-align                    %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
@@ -4584,8 +4675,7 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.Y-extent = ##f
                         \once \override TextSpanner.bound-details.left-broken.text = ##f
                         \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        \once \override TextSpanner.bound-details.left.text = \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -4646,8 +4736,7 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.padding = 1
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right.text = %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \markup {                                     %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    \once \override TextSpanner.bound-details.right.text = \markup { %! HIDE_TO_JOIN_BROKEN_SPANNERS
                         \concat                                   %! HIDE_TO_JOIN_BROKEN_SPANNERS
                             {                                     %! HIDE_TO_JOIN_BROKEN_SPANNERS
                                 \hspace                           %! HIDE_TO_JOIN_BROKEN_SPANNERS
@@ -4678,8 +4767,7 @@ class MetronomeMarkSpanner(Spanner):
                     e'4
                 %@% \once \override TextSpanner.Y-extent = ##f    %! SHOW_TO_JOIN_BROKEN_SPANNERS
                 %@% \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.left.text = %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \markup {                                     %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% \once \override TextSpanner.bound-details.left.text = \markup { %! SHOW_TO_JOIN_BROKEN_SPANNERS
                 %@%     \fontsize                                 %! SHOW_TO_JOIN_BROKEN_SPANNERS
                 %@%         #-6                                   %! SHOW_TO_JOIN_BROKEN_SPANNERS
                 %@%         \general-align                        %! SHOW_TO_JOIN_BROKEN_SPANNERS
@@ -4816,8 +4904,7 @@ class MetronomeMarkSpanner(Spanner):
                         \once \override TextSpanner.bound-details.right-broken.text = ##f
                         \once \override TextSpanner.bound-details.right.padding = 1
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    %%% \once \override TextSpanner.bound-details.right.text = %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \markup {                                 %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% \once \override TextSpanner.bound-details.right.text = \markup { %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%%     \concat                               %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%%         {                                 %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%%             \hspace                       %! HIDE_TO_JOIN_BROKEN_SPANNERS
@@ -4848,8 +4935,7 @@ class MetronomeMarkSpanner(Spanner):
                         e'4
                         \once \override TextSpanner.Y-extent = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                         \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.left.text = %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \markup {                                 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        \once \override TextSpanner.bound-details.left.text = \markup { %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                             \fontsize                             %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                                 #-6                               %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                                 \general-align                    %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
@@ -4912,8 +4998,7 @@ class MetronomeMarkSpanner(Spanner):
                     %%% \once \override TextSpanner.bound-details.right-broken.text = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%% \once \override TextSpanner.bound-details.right.padding = 1 %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%% \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                        \once \override TextSpanner.bound-details.right.text =
-                        \markup {
+                        \once \override TextSpanner.bound-details.right.text = \markup {
                             \concat
                                 {
                                     \hspace
@@ -6129,8 +6214,7 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text = %! RED:M1
-                    \markup {                                 %! RED:M1
+                    \once \override TextSpanner.bound-details.left.text = \markup { %! RED:M1
                         \fontsize                             %! RED:M1
                             #-6                               %! RED:M1
                             \general-align                    %! RED:M1
@@ -6160,8 +6244,7 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.Y-extent = ##f
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text = %! BLUE
-                    \markup {                                 %! BLUE
+                    \once \override TextSpanner.bound-details.left.text = \markup { %! BLUE
                         \fontsize                             %! BLUE
                             #-6                               %! BLUE
                             \general-align                    %! BLUE
@@ -6187,8 +6270,7 @@ class MetronomeMarkSpanner(Spanner):
                     e'4.
                     \stopTextSpan
                     \startTextSpan
-                %@% \once \override TextSpanner.bound-details.left.text = %! YELLOW
-                %@% \markup {                                 %! YELLOW
+                %@% \once \override TextSpanner.bound-details.left.text = \markup { %! YELLOW
                 %@%     \fontsize                             %! YELLOW
                 %@%         #-6                               %! YELLOW
                 %@%         \general-align                    %! YELLOW
@@ -6213,8 +6295,7 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.padding = 1
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right.text =
-                    \markup {
+                    \once \override TextSpanner.bound-details.right.text = \markup {
                         \concat
                             {
                                 \hspace
@@ -6277,3 +6358,27 @@ class MetronomeMarkSpanner(Spanner):
             tag=tag,
             wrapper=wrapper,
             )
+
+    def start_command(self) -> typing.Optional[str]:
+        r'''
+        Gets start command.
+
+        ..  container:: example
+
+            >>> abjad.MetronomeMarkSpanner().start_command()
+            '\\startTextSpan'
+
+        '''
+        return super(MetronomeMarkSpanner, self).start_command()
+
+    def stop_command(self) -> typing.Optional[str]:
+        r'''
+        Gets stop command.
+
+        ..  container:: example
+
+            >>> abjad.MetronomeMarkSpanner().stop_command()
+            '\\stopTextSpan'
+
+        '''
+        return super(MetronomeMarkSpanner, self).stop_command()

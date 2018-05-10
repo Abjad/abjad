@@ -747,3 +747,29 @@ class DuratedComplexBeam(ComplexBeam):
 
         '''
         return self._stemlet_length
+
+    ### PUBLIC METHODS ###
+
+    def start_command(self) -> typing.Optional[str]:
+        '''
+        Gets start command.
+
+        ..  container:: example
+
+            >>> abjad.DuratedComplexBeam().start_command()
+            '['
+
+        '''
+        return super(DuratedComplexBeam, self).start_command()
+
+    def stop_command(self) -> typing.Optional[str]:
+        '''
+        Gets stop command.
+
+        ..  container:: example
+
+            >>> abjad.DuratedComplexBeam().stop_command()
+            ']'
+
+        '''
+        return super(DuratedComplexBeam, self).stop_command()

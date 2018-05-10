@@ -1,4 +1,3 @@
-import collections
 import copy
 import typing
 from abjad import Left, Right
@@ -22,8 +21,8 @@ from abjad.tools.topleveltools.tweak import tweak
 abjad_tags = Tags()
 
 
-class Spanner(AbjadObject, collections.Sequence):
-    r'''
+class Spanner(AbjadObject):
+    '''
     Spanner.
 
     Any object that stretches horizontally and encompasses leaves.
@@ -40,6 +39,7 @@ class Spanner(AbjadObject, collections.Sequence):
         '_deactivate',
         '_ignore_attachment_test',
         '_ignore_before_attach',
+        '_leak',
         '_leaves',
         '_left_broken',
         '_lilypond_grob_name_manager',
@@ -50,17 +50,28 @@ class Spanner(AbjadObject, collections.Sequence):
         '_wrappers',
         )
 
+    _empty_chord = '<>'
+
+    _start_command: typing.Optional[str] = None
+
+    _stop_command: typing.Optional[str] = None
+
     ### INITIALIZER ###
 
     def __init__(
         self,
+        leak: bool = None,
         ) -> None:
         self._contiguity_constraint = 'logical voice'
         self._deactivate = None
         self._ignore_attachment_test = None
         self._ignore_before_attach = None
+        if leak is not None:
+            leak = bool(leak)
+        self._leak = leak
         self._leaves: typing.List[Leaf] = []
         self._left_broken = None
+        self._lilypond_grob_name_manager = None
         self._lilypond_setting_name_manager = None
         self._lilypond_tweak_manager = None
         self._right_broken = None
@@ -69,11 +80,9 @@ class Spanner(AbjadObject, collections.Sequence):
 
     ### SPECIAL METHODS ###
 
-    def __contains__(self, argument):
-        r'''Is true when spanner contains `argument`.
-        Otherwise false.
-
-        Returns true or false.
+    def __contains__(self, argument) -> bool:
+        '''
+        Is true when spanner contains ``argument``.
         '''
         for leaf in self.leaves:
             if leaf is argument:
@@ -81,12 +90,12 @@ class Spanner(AbjadObject, collections.Sequence):
         else:
             return False
 
+    #def __copy__(self, *arguments) -> 'Spanner':
     def __copy__(self, *arguments):
-        r'''Copies spanner.
+        '''
+        Copies spanner.
 
         Does not copy spanner leaves.
-
-        Returns new spanner.
         '''
         new = type(self)(*self.__getnewargs__())
         if getattr(self, '_lilypond_grob_name_manager', None) is not None:
@@ -98,27 +107,26 @@ class Spanner(AbjadObject, collections.Sequence):
         self._copy_keyword_args(new)
         return new
 
-    def __getitem__(self, argument):
-        r'''Gets item or slice identified by `argument`.
-
-        Returns leaf.
+    def __getitem__(self, argument) -> typing.Union[Leaf, Selection]:
+        '''
+        Gets leaf or selection identified by ``argument``.
         '''
         if isinstance(argument, slice):
             leaves = self.leaves.__getitem__(argument)
             return select(leaves)
         return self.leaves.__getitem__(argument)
 
-    def __getnewargs__(self):
-        r'''Gets new arguments of spanner.
+    def __getnewargs__(self) -> typing.Tuple:
+        '''
+        Gets new arguments.
 
         Returns empty tuple.
         '''
-        return ()
+        return (self.leak,)
 
-    def __getstate__(self):
-        r'''Gets state of spanner.
-
-        Returns dictionary.
+    def __getstate__(self) -> dict:
+        '''
+        Gets state of spanner.
         '''
         state = {}
         for class_ in type(self).__mro__:
@@ -126,31 +134,44 @@ class Spanner(AbjadObject, collections.Sequence):
                 state[slot] = getattr(self, slot, None)
         return state
 
-    def __len__(self):
-        r'''Gets number of leaves in spanner.
+    def __iter__(self) -> typing.Iterator:
+        '''
+        Iterates leaves in spanner.
+        '''
+        return iter(self.leaves)
 
-        Returns nonnegative integer.
+    def __len__(self) -> int:
+        '''
+        Gets number of leaves in spanner.
         '''
         return len(self.leaves)
 
-    def __lt__(self, argument):
-        r'''Is true when spanner is less than `argument`. Otherwise false.
+    def __lt__(self, argument) -> bool:
+        '''
+        Is true when spanner is less than ``argument``.
 
         Trivial comparison to allow doctests to work.
-
-        Returns true or false.
         '''
         assert isinstance(argument, Spanner), repr(argument)
         return repr(self) < repr(argument)
 
     ### PRIVATE METHODS ###
 
+    def _add_direction(self, string):
+        if self.direction:
+            string = f'{self.direction} {string}'
+        return string
+
+    def _add_leak(self, string):
+        if self.leak:
+            string = f'{self._empty_chord} {string}'
+        return string
+
     def _append(self, leaf):
         if self._ignore_attachment_test:
             pass
         elif not self._attachment_test(leaf):
-            message = f'can not attach {self!r} to {leaf!r}.'
-            raise Exception(message)
+            raise Exception(f'can not attach {self!r} to {leaf!r}.')
         if self._contiguity_constraint == 'logical voice':
             leaves = self[-1:] + [leaf]
             leaves = select(leaves)
@@ -243,25 +264,29 @@ class Spanner(AbjadObject, collections.Sequence):
         pass
 
     def _block_all_leaves(self):
-        r'''Not composer-safe.
+        '''
+        Not composer-safe.
         '''
         for leaf in self:
             self._block_leaf(leaf)
 
     def _block_leaf(self, leaf):
-        r'''Not composer-safe.
+        '''
+        Not composer-safe.
         '''
         leaf._remove_spanner(self)
 
     def _constrain_contiguity(self):
-        r'''Not composer-safe.
+        '''
+        Not composer-safe.
         '''
         self._contiguity_constraint = 'logical_voice'
 
     def _copy(self, leaves):
-        r'''Returns copy of spanner with `leaves`.
+        '''
+        Returns copy of spanner with ``leaves``.
 
-        `leaves` must already be contained in spanner.
+        ``leaves`` must already be contained in spanner.
         '''
         my_leaf = self._leaves[:]
         self._leaves = []
@@ -309,11 +334,12 @@ class Spanner(AbjadObject, collections.Sequence):
         return []
 
     def _fracture(self, i, direction=None):
-        r'''Fractures spanner at `direction` of leaf at index `i`.
+        '''
+        Fractures spanner at ``direction`` of leaf at index ``i``.
 
-        Valid values for `direction` are ``Left``, ``Right`` and ``None``.
+        Valid values for ``direction`` are ``Left``, ``Right`` and ``None``.
 
-        Set `direction=None` to fracture on both left and right sides.
+        Set ``direction=None`` to fracture on both left and right sides.
 
         Returns tuple of original, left and right spanners.
         '''
@@ -330,8 +356,7 @@ class Spanner(AbjadObject, collections.Sequence):
             self._block_all_leaves()
             return self, left, center, right
         else:
-            message = 'direction {!r} must be left, right or none.'
-            message = message.format(direction)
+            message = f'direction {direction!r} must be left, right or none.'
             raise ValueError(message)
 
     def _fracture_left(self, i):
@@ -379,7 +404,7 @@ class Spanner(AbjadObject, collections.Sequence):
             left = ', '.join([str(_) for _ in self[:2]])
             right = ', '.join([str(_) for _ in self[-2:]])
             number = len(self) - 4
-            middle = ', ... [{}] ..., '.format(number)
+            middle = f', ... [{number}] ..., '
             return left + middle + right
 
     def _get_duration(self, in_seconds=False):
@@ -497,19 +522,18 @@ class Spanner(AbjadObject, collections.Sequence):
         return self._leaves.index(leaf)
 
     def _insert(self, i, leaf):
-        r'''Not composer-safe.
+        '''
+        Not composer-safe.
         '''
         if not isinstance(leaf, Leaf):
-            message = 'spanners attach only to leaves: {!s}.'
-            message = message.format(leaf)
-            raise Exception(message)
+            raise Exception(f'spanners attach only to leaves: {leaf!s}.')
         leaf._append_spanner(self)
         self._leaves.insert(i, leaf)
 
     def _is_exterior_leaf(self, leaf):
-        r'''True if leaf is first or last in spanner.
-        True if next leaf or previous leaf is none.
-        Otherwise false.
+        '''
+        Is true if leaf is first or last in spanner.
+        Is true if next leaf or previous leaf is none.
         '''
         if leaf is self[0]:
             return True
@@ -533,37 +557,21 @@ class Spanner(AbjadObject, collections.Sequence):
             return True
         return False
 
-    def _is_my_first(self, leaf, prototype):
-        leaves = [_ for _ in self if isinstance(_, prototype)]
-        return (leaves and leaves[0] is leaf)
-
-    def _is_my_first_leaf(self, leaf):
-        return (self.leaves and self.leaves[0] is leaf)
-
-    def _is_my_last(self, leaf, prototype):
-        leaves = [_ for _ in self if isinstance(_, prototype)]
-        return (leaves and leaves[-1] is leaf)
-
-    def _is_my_last_leaf(self, leaf):
-        return (self.leaves and self.leaves[-1] is leaf)
-
-    def _is_my_only(self, leaf, prototype):
-        leaves = [_ for _ in self if isinstance(_, prototype)]
-        return (leaves and len(leaves) == 1 and leaves[0] is leaf)
-
-    def _is_my_only_leaf(self, leaf):
-        return len(self) == 1 and self.leaves[0] is leaf
+    def _is_my_only(self, leaf):
+        return len(self) == 1 and leaf is self[0]
 
     def _is_trending(self, leaf):
         return False
 
     def _remove(self, leaf):
-        r'''Not composer-safe.
+        '''
+        Not composer-safe.
         '''
         self._sever_leaf(leaf)
 
     def _remove_leaf(self, leaf):
-        r'''Not composer-safe.
+        '''
+        Not composer-safe.
         '''
         for i, leaf_ in enumerate(self.leaves):
             if leaf_ is leaf:
@@ -573,14 +581,16 @@ class Spanner(AbjadObject, collections.Sequence):
             raise ValueError(f'{leaf!r} not in spanner.')
 
     def _sever_all_leaves(self):
-        r'''Not composer-safe.
+        '''
+        Not composer-safe.
         '''
         for i in reversed(range(len(self))):
             leaf = self[i]
             self._sever_leaf(leaf)
 
     def _sever_leaf(self, leaf):
-        r'''Not composer-safe.
+        '''
+        Not composer-safe.
         '''
         self._block_leaf(leaf)
         self._remove_leaf(leaf)
@@ -612,29 +622,73 @@ class Spanner(AbjadObject, collections.Sequence):
             )
 
     def _unblock_all_leaves(self):
-        r'''Not composer-safe.
+        '''
+        Not composer-safe.
         '''
         for leaf in self:
             self._unblock_leaf(leaf)
 
     def _unblock_leaf(self, leaf):
-        r'''Not composer-safe.
+        '''
+        Not composer-safe.
         '''
         leaf._append_spanner(self)
 
     def _unconstrain_contiguity(self):
-        r'''Not composer-safe.
+        '''
+        Not composer-safe.
         '''
         self._contiguity_constraint = None
 
     ### PUBLIC PROPERTIES ###
 
     @property
+    def leak(self) -> typing.Optional[bool]:
+        '''
+        Is true when spanner stop command leaks one leaf to the right with
+        LilyPond empty chord ``<>`` construct.
+        '''
+        return self._leak
+
+    @property
     def leaves(self) -> Selection:
-        r'''Gets leaves in spanner.
+        '''
+        Gets leaves in spanner.
         '''
         for leaf in self._leaves:
             if not isinstance(leaf, Leaf):
                 message = f'spanners attach only to leaves (not {leaf!s}).'
                 raise Exception(message)
         return select(self._leaves)
+
+    ### PUBLC METHODS ###
+
+    def index(self, leaf: Leaf) -> int:
+        '''
+        Gets index of ``leaf`` in spanner.
+        '''
+        return self.leaves.index(leaf)
+        
+    def start_command(self) -> typing.Optional[str]:
+        '''
+        Gets start command.
+
+        ..  container:: example
+
+            >>> abjad.Spanner().start_command() is None
+            True
+
+        '''
+        return self._start_command
+
+    def stop_command(self) -> typing.Optional[str]:
+        '''
+        Gets stop command.
+
+        ..  container:: example
+
+            >>> abjad.Spanner().stop_command() is None
+            True
+
+        '''
+        return self._stop_command

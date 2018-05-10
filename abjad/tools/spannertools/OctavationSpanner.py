@@ -34,8 +34,8 @@ class OctavationSpanner(Spanner):
         Spans one note:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> octavation_spanner = abjad.OctavationSpanner(start=1)
-        >>> abjad.attach(octavation_spanner, staff[:1])
+        >>> spanner = abjad.OctavationSpanner(start=1)
+        >>> abjad.attach(spanner, staff[:1])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -66,15 +66,13 @@ class OctavationSpanner(Spanner):
 
     def __init__(
         self,
-        start: typing.Optional[int] = 1,
-        stop: typing.Optional[int] = 0,
+        start: int = 1,
+        stop: int = 0,
         ) -> None:
         Spanner.__init__(self)
-        if start is not None:
-            assert isinstance(start, int)
+        assert isinstance(start, int)
         self._start = start
-        if stop is not None:
-            assert isinstance(stop, int)
+        assert isinstance(stop, int)
         self._stop = stop
 
     ### PRIVATE METHODS ###
@@ -86,14 +84,32 @@ class OctavationSpanner(Spanner):
     def _get_lilypond_format_bundle(self, leaf):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         if leaf is self[0]:
-            string = rf'\ottava #{self.start}'
+            string = self.start_command()
             bundle.before.commands.append(string)
         if leaf is self[-1]:
-            string = rf'\ottava #{self.stop}'
+            string = self.stop_command()
             bundle.after.commands.append(string)
         return bundle
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def leak(self) -> None:
+        r'''
+        Octavation spanner does not implement ``leak``.
+
+        Most LilyPond spanners are controlled by a pair of matching start- and
+        stop-commands that LilyPond treats as LilyPond postevents.
+
+        By contrast the LilyPond ``\ottava`` command is unary. (This is also
+        true of the LilyPond ``\glissando`` command.)
+
+        The LilyPond ``\ottava`` command is also a LilyPond event (that
+        LilyPond demans appear before a note, rest or chord) rather than a
+        LilyPond postevent (that LilyPond demands appear after a note, rest or
+        chord).
+        '''
+        pass
 
     @property
     def start(self) -> typing.Optional[int]:
@@ -144,7 +160,7 @@ class OctavationSpanner(Spanner):
         ..  container:: example
 
             >>> measure = abjad.Measure((4, 8), "c'''8 d'''8 ef'''8 f'''8")
-            >>> octavation = abjad.OctavationSpanner()
+            >>> octavation = abjad.OctavationSpanner(start=1)
             >>> abjad.attach(octavation, measure[:])
             >>> abjad.show(measure) # doctest: +SKIP
 
@@ -178,3 +194,29 @@ class OctavationSpanner(Spanner):
                 if quindecisima_breakpoint is not None:
                     if quindecisima_breakpoint <= max_numbered_diatonic_pitch:
                         self._start = 2
+                        
+    ### PUBLIC METHODS ###
+
+    def start_command(self) -> typing.Optional[str]:
+        r'''
+        Gets start command.
+
+        ..  container:: example
+
+            >>> abjad.OctavationSpanner(start=1).start_command()
+            '\\ottava #1'
+
+        '''
+        return rf'\ottava #{self.start}'
+
+    def stop_command(self) -> typing.Optional[str]:
+        r'''
+        Gets stop command.
+
+        ..  container:: example
+
+            >>> abjad.OctavationSpanner(start=1).stop_command()
+            '\\ottava #0'
+
+        '''
+        return rf'\ottava #{self.stop}'

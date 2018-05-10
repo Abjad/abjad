@@ -76,11 +76,13 @@ class ComplexBeam(Beam):
         beam_rests: bool = None,
         direction: typing.Union[str, VerticalAlignment] = None,
         isolated_nib_direction: typing.Union[bool, HorizontalAlignment] = None,
+        leak: bool = None,
         stemlet_length: Number = None,
         ) -> None:
         Beam.__init__(
             self,
             direction=direction,
+            leak=leak,
             stemlet_length=stemlet_length,
             )
         if beam_rests is not None:
@@ -94,7 +96,7 @@ class ComplexBeam(Beam):
 
     def _add_beam_counts(self, leaf, bundle):
         if self._is_beamable(leaf, beam_rests=self.beam_rests):
-            if self._is_my_only_leaf(leaf):
+            if self._is_my_only(leaf):
                 left, right = self._get_left_right_for_lone_leaf(leaf)
             elif self._is_exterior_leaf(leaf):
                 left, right = self._get_left_right_for_exterior_leaf(leaf)
@@ -112,13 +114,10 @@ class ComplexBeam(Beam):
             previous_leaf = leaf._get_leaf(-1)
             next_leaf = leaf._get_leaf(1)
             # isolated_nib_direction
-            if self._is_my_only_leaf(leaf):
+            if self._is_my_only(leaf):
                 if self.isolated_nib_direction:
-                    if self.direction is not None:
-                        string = '{} ['.format(self.direction)
-                        bundle.right.spanner_starts.append(string)
-                    else:
-                        bundle.right.spanner_starts.append('[')
+                    string = self.start_command()
+                    bundle.right.spanner_starts.append(string)
             # otherwise
             elif (leaf is self[0] or
                 not previous_leaf or
@@ -127,30 +126,29 @@ class ComplexBeam(Beam):
                     beam_rests=self.beam_rests,
                     )
                 ):
-                if self.direction is not None:
-                    string = '{} ['.format(self.direction)
-                    bundle.right.spanner_starts.append(string)
-                else:
-                    bundle.right.spanner_starts.append('[')
+                string = self.start_command()
+                bundle.right.spanner_starts.append(string)
             # isolated_nib_direction
-            if self._is_my_only_leaf(leaf):
+            if self._is_my_only(leaf):
                 if self.isolated_nib_direction:
-                    for string in bundle.right.spanner_starts:
-                        if '[' in string:
-                            bundle.right.spanner_starts.append(']')
+                    string = self.stop_command()
+                    for spanner_start in bundle.right.spanner_starts:
+                        if '[' in spanner_start:
+                            bundle.right.spanner_starts.append(string)
                             break
                     else:
-                        bundle.right.spanner_stops.append(']')
+                        bundle.right.spanner_stops.append(string)
             # otherwise
             elif (leaf is self[-1] or
                 not next_leaf or
                 not self._is_beamable(next_leaf, beam_rests=self.beam_rests)):
-                for string in bundle.right.spanner_starts:
-                    if '[' in string:
-                        bundle.right.spanner_starts.append(']')
+                string = self.stop_command()
+                for spanner_start in bundle.right.spanner_starts:
+                    if '[' in spanner_start:
+                        bundle.right.spanner_starts.append(string)
                         break
                 else:
-                    bundle.right.spanner_stops.append(']')
+                    bundle.right.spanner_stops.append(string)
 
     def _copy_keyword_args(self, new):
         Beam._copy_keyword_args(self, new)
@@ -161,7 +159,7 @@ class ComplexBeam(Beam):
         r'''Gets left and right flag counts for exterior leaf in spanner.
         '''
         # isolated_nib_direction
-        if self._is_my_only_leaf(leaf):
+        if self._is_my_only(leaf):
             left, right = self._get_left_right_for_lone_leaf(leaf)
         # first
         elif leaf is self[0] or not leaf._get_leaf(-1):
@@ -506,6 +504,81 @@ class ComplexBeam(Beam):
         return self._isolated_nib_direction
 
     @property
+    def leak(self):
+        r'''
+        Is true when beam leaks one leaf to the right with LilyPond empty chord
+        ``<>`` construct.
+
+        ..  container:: example
+
+            Without leak:
+
+            >>> staff = abjad.Staff("c'16 e'16 r16 f'16 g'2")
+            >>> abjad.setting(staff).auto_beaming = False
+            >>> beam = abjad.ComplexBeam(beam_rests=True)
+            >>> abjad.attach(beam, staff[:3])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                \with
+                {
+                    autoBeaming = ##f
+                }
+                {
+                    \set stemLeftBeamCount = 0
+                    \set stemRightBeamCount = 2
+                    c'16
+                    [
+                    \set stemLeftBeamCount = 2
+                    \set stemRightBeamCount = 2
+                    e'16
+                    \set stemLeftBeamCount = 2
+                    \set stemRightBeamCount = 0
+                    r16
+                    ]
+                    f'16
+                    g'2
+                }
+
+            With leak:
+
+            >>> staff = abjad.Staff("c'16 e'16 r16 f'16 g'2")
+            >>> abjad.setting(staff).auto_beaming = False
+            >>> beam = abjad.ComplexBeam(beam_rests=True, leak=True)
+            >>> abjad.attach(beam, staff[:3])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                \with
+                {
+                    autoBeaming = ##f
+                }
+                {
+                    \set stemLeftBeamCount = 0
+                    \set stemRightBeamCount = 2
+                    c'16
+                    [
+                    \set stemLeftBeamCount = 2
+                    \set stemRightBeamCount = 2
+                    e'16
+                    \set stemLeftBeamCount = 2
+                    \set stemRightBeamCount = 0
+                    r16
+                    <> ]
+                    f'16
+                    g'2
+                }
+
+        '''
+        return super(ComplexBeam, self).leak
+
+    @property
     def stemlet_length(self) -> typing.Optional[Number]:
         r'''
         Gets stemlet length.
@@ -551,3 +624,39 @@ class ComplexBeam(Beam):
 
         '''
         return self._stemlet_length
+
+    ### PUBLIC METHODS ###
+
+    def start_command(self) -> typing.Optional[str]:
+        '''
+        Gets start command.
+
+        ..  container:: example
+
+            >>> abjad.ComplexBeam().start_command()
+            '['
+
+            With direction:
+
+            >>> abjad.ComplexBeam(direction=abjad.Up).start_command()
+            '^ ['
+
+        '''
+        return super(ComplexBeam, self).start_command()
+
+    def stop_command(self) -> typing.Optional[str]:
+        '''
+        Gets stop command.
+
+        ..  container:: example
+
+            >>> abjad.ComplexBeam().stop_command()
+            ']'
+
+            With leak:
+
+            >>> abjad.ComplexBeam(leak=True).stop_command()
+            '<> ]'
+
+        '''
+        return super(ComplexBeam, self).stop_command()

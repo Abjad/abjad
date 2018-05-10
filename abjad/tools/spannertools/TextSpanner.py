@@ -515,9 +515,10 @@ class TextSpanner(Spanner):
 
     def __init__(
         self,
+        leak: bool = None,
         lilypond_id: int = None,
         ) -> None:
-        Spanner.__init__(self)
+        Spanner.__init__(self, leak=leak)
         if lilypond_id is not None:
             assert lilypond_id in self._lilypond_ids, repr(lilypond_id)
         self._lilypond_id = lilypond_id
@@ -547,7 +548,9 @@ class TextSpanner(Spanner):
         if not has_indicators:
             if component is self[0]:
                 if self._wrappers:
-                    string = r'- \tweak Y-extent ##f'
+                    override = self._y_extent_false()
+                    #string = r'- \tweak Y-extent ##f'
+                    string = override.tweak_string()
                     bundle.right.spanner_starts.append(string)
                     line_segment = self._make_invisible_line_segment()
                     tweaks = line_segment._get_lilypond_grob_overrides(
@@ -555,13 +558,15 @@ class TextSpanner(Spanner):
                     bundle.right.spanner_starts.extend(tweaks)
                 bundle.right.spanner_starts.append(self._start_command())
             if component is self[-1]:
-                bundle.right.spanner_stops.append(self._stop_command())
+                bundle.right.spanner_stops.append(self.stop_command())
             return bundle
         if has_indicators and not component is self[0]:
-            bundle.right.spanner_stops.append(self._stop_command())
+            bundle.right.spanner_stops.append(self.stop_command())
         if not component is self[-1]:
             if self._wrappers:
-                string = r'- \tweak Y-extent ##f'
+                override = self._y_extent_false()
+                string = override.tweak_string()
+                #string = r'- \tweak Y-extent ##f'
                 bundle.right.spanner_starts.append(string)
             if line_segment is None:
                 line_segment = self._make_invisible_line_segment()
@@ -572,7 +577,6 @@ class TextSpanner(Spanner):
                     markup = Markup.concat([markup, left_hspace])
                 override = LilyPondGrobOverride(
                     grob_name='TextSpanner',
-                    once=True,
                     property_path=(
                         'bound-details',
                         'left',
@@ -595,7 +599,6 @@ class TextSpanner(Spanner):
             last_leaf_markup = new(last_leaf_markup, direction=None)
             override = LilyPondGrobOverride(
                 grob_name='TextSpanner',
-                once=True,
                 property_path=(
                     'bound-details',
                     'right',
@@ -660,7 +663,138 @@ class TextSpanner(Spanner):
         else:
             raise ValueError(self.lilypond_id)
 
+    @staticmethod
+    def _y_extent_false():
+        return LilyPondGrobOverride(
+            grob_name='TextSpanner',
+            once=True,
+            property_path=(
+                'Y-extent',
+                ),
+            value=False,
+            )
+
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def leak(self) -> typing.Optional[bool]:
+        r'''
+        Is true when spanner leaks one leaf to the right.
+
+        ..  container:: example
+
+            Without leak:
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 r4")
+            >>> spanner = abjad.TextSpanner()
+            >>> abjad.attach(spanner, staff[:-1])
+            >>> spanner.attach(abjad.Markup('pont.').upright(), spanner[0])
+            >>> spanner.attach(abjad.ArrowLineSegment(), spanner[0])
+            >>> spanner.attach(abjad.Markup('tasto').upright(), spanner[-1])
+            >>> abjad.override(staff).text_spanner.staff_padding = 2.5
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                \with
+                {
+                    \override TextSpanner.staff-padding = #2.5
+                }
+                {
+                    c'4
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
+                        \concat
+                            {
+                                \upright
+                                    pont.
+                                \hspace
+                                    #0.25
+                            }
+                        }
+                    - \tweak arrow-width 0.25
+                    - \tweak dash-fraction 1
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right.arrow ##t
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 0.5
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.right.text \markup {
+                        \concat
+                            {
+                                \hspace
+                                    #0.0
+                                \upright
+                                    tasto
+                            }
+                        }
+                    \startTextSpan
+                    d'4
+                    e'4
+                    \stopTextSpan
+                    r4
+                }
+
+            With leak:
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 r4")
+            >>> spanner = abjad.TextSpanner(leak=True)
+            >>> abjad.attach(spanner, staff[:-1])
+            >>> spanner.attach(abjad.Markup('pont.').upright(), spanner[0])
+            >>> spanner.attach(abjad.ArrowLineSegment(), spanner[0])
+            >>> spanner.attach(abjad.Markup('tasto').upright(), spanner[-1])
+            >>> abjad.override(staff).text_spanner.staff_padding = 2.5
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                \with
+                {
+                    \override TextSpanner.staff-padding = #2.5
+                }
+                {
+                    c'4
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
+                        \concat
+                            {
+                                \upright
+                                    pont.
+                                \hspace
+                                    #0.25
+                            }
+                        }
+                    - \tweak arrow-width 0.25
+                    - \tweak dash-fraction 1
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right.arrow ##t
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 0.5
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.right.text \markup {
+                        \concat
+                            {
+                                \hspace
+                                    #0.0
+                                \upright
+                                    tasto
+                            }
+                        }
+                    \startTextSpan
+                    d'4
+                    e'4
+                    <> \stopTextSpan
+                    r4
+                }
+
+        '''
+        return super(TextSpanner, self).leak
 
     @property
     def lilypond_id(self) -> typing.Optional[int]:
@@ -866,3 +1000,34 @@ class TextSpanner(Spanner):
             tag=tag,
             wrapper=wrapper,
             )
+
+    def start_command(self) -> typing.Optional[str]:
+        r'''
+        Gets start command.
+
+        ..  container:: example
+
+            >>> abjad.TextSpanner().start_command()
+            '\\startTextSpan'
+
+        '''
+        return self._start_command()
+
+    def stop_command(self) -> typing.Optional[str]:
+        r'''
+        Gets stop command.
+
+        ..  container:: example
+
+            >>> abjad.TextSpanner().stop_command()
+            '\\stopTextSpan'
+
+            With leak:
+
+            >>> abjad.TextSpanner(leak=True).stop_command()
+            '<> \\stopTextSpan'
+
+        '''
+        string = self._stop_command()
+        string = self._add_leak(string)
+        return string
