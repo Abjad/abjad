@@ -420,7 +420,7 @@ class ComplexBeam(Beam):
     @property
     def isolated_nib_direction(self) -> typing.Union[
         bool, OrdinalConstant, None]:
-        '''
+        r'''
         Gets directed treatment to apply to lone nibs.
 
         ..  container:: example
