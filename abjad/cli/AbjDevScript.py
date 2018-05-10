@@ -54,14 +54,14 @@ class AbjDevScript(CLIAggregator):
             import abjadext
             for abjadext_path in abjadext.__path__:
                 abjadext_path = pathlib.Path(abjadext_path)
-                for path in abjadext_path.iterdir():
+                for extension_path in abjadext_path.iterdir():
                     if (
-                        path.name.startswith(('.', '_')) or
-                        not path.is_dir() or
-                        not (path / '__init__.py').exists()
+                        extension_path.name.startswith(('.', '_')) or
+                        not extension_path.is_dir() or
+                        not (extension_path / '__init__.py').exists()
                     ):
                         continue
-                    module_name = 'abjadext.{}'.format(path.name)
+                    module_name = 'abjadext.{}'.format(extension_path.name)
                     module = importlib.import_module(module_name)
                     classes.extend(scan_module(module))
         except ImportError:

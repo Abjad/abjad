@@ -238,7 +238,7 @@ Configuring the graph's attributes
 ..  abjad::
 
     context_graph.attributes.update(
-        output_order='edgesfirst',
+        outputorder='edgesfirst',
         overlap='prism',
         root='Global',
         splines='spline',
