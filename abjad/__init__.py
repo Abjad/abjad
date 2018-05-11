@@ -80,6 +80,8 @@ class VerticalAlignment(uqbar.enums.StrictEnumeration):
     Down = -1
     Center = 0
     Up = 1
+    Default = 0  # aliases Center
+    Neutral = 0  # aliases Center
 
     def __format__(self, format_spec):
         """
