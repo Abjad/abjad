@@ -1,4 +1,5 @@
 import typing
+import uqbar.objects
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.datastructuretools.OrderedDict import OrderedDict
@@ -52,13 +53,12 @@ class SegmentMaker(AbjadObject):
     def __eq__(self, expr):
         r'''Is true if `expr` is a segment-maker with equivalent properties.
         '''
-        return TestManager.compare_objects(self, expr)
+        return uqbar.objects.compare_objects(self, expr)
 
     def __hash__(self):
         r'''Hashes segment-maker.
         '''
-        hash_values = StorageFormatManager(self).get_hash_values()
-        return hash(hash_values)
+        return uqbar.objects.get_hash(self)
 
     def __illustrate__(self, **keywords) -> LilyPondFile:
         r'''Illustrates segment-maker.

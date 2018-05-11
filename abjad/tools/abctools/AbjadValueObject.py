@@ -18,8 +18,7 @@ class AbjadValueObject(AbjadObject):
 
         Returns new Abjad value object.
         '''
-        import abjad
-        return abjad.new(self)
+        return uqbar.objects.new(self)
 
     def __eq__(self, argument):
         r'''Is true when all initialization values of Abjad value object equal
