@@ -1,6 +1,7 @@
 import abc
 import functools
 import re
+import uqbar.objects
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -54,12 +55,22 @@ class Interval(AbjadValueObject):
         '''
         return type(self)(abs(self.number))
 
+    def __eq__(self, argument):
+        return uqbar.objects.compare_objects(self, argument, coerce=True)
+
     def __float__(self):
         r'''Coerce to float.
 
         Returns float.
         '''
         return float(self.number)
+
+    def __hash__(self):
+        r'''Hashes interval.
+
+        Returns integer.
+        '''
+        return uqbar.objects.get_hash(self)
 
     @abc.abstractmethod
     def __lt__(self, argument):

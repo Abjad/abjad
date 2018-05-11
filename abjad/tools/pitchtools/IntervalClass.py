@@ -1,5 +1,6 @@
 import abc
 import functools
+import uqbar.objects
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -26,6 +27,16 @@ class IntervalClass(AbjadValueObject):
         Returns new interval-class.
         '''
         return type(self)(abs(self._number))
+
+    def __eq__(self, argument):
+        return uqbar.objects.compare_objects(self, argument, coerce=True)
+
+    def __hash__(self):
+        r'''Hashes interval-class.
+
+        Returns integer.
+        '''
+        return uqbar.objects.get_hash(self)
 
     @abc.abstractmethod
     def __lt__(self, argument):

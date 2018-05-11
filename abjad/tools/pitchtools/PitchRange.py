@@ -3,6 +3,7 @@ import copy
 import functools
 import numbers
 import re
+import uqbar.objects
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.pitchtools.Pitch import Pitch
 
@@ -324,7 +325,7 @@ class PitchRange(AbjadValueObject):
 
         Returns true or false.
         '''
-        return super(PitchRange, self).__eq__(argument)
+        return uqbar.objects.compare_objects(self, argument, coerce=True)
 
     def __format__(self, format_specification=''):
         r'''Formats pitch range.

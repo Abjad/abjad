@@ -1,6 +1,7 @@
 import abc
 import functools
 import re
+import uqbar.objects
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.pitchtools.Accidental import Accidental
 
@@ -175,6 +176,9 @@ class PitchClass(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
+    def __eq__(self, argument):
+        return uqbar.objects.compare_objects(self, argument, coerce=True)
+
     def __float__(self):
         r'''Coerce to float.
 
@@ -192,6 +196,13 @@ class PitchClass(AbjadValueObject):
         return super(PitchClass, self).__format__(
             format_specification=format_specification
             )
+
+    def __hash__(self):
+        r'''Hashes pitch-class.
+
+        Returns integer.
+        '''
+        return uqbar.objects.get_hash(self)
 
     @abc.abstractmethod
     def __lt__(self, argument):

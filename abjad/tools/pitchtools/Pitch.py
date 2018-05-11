@@ -3,6 +3,7 @@ import functools
 import math
 import numbers
 import re
+import uqbar.objects
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.pitchtools.Accidental import Accidental
 from abjad.tools.pitchtools.Octave import Octave
@@ -76,6 +77,9 @@ class Pitch(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
+    def __eq__(self, argument):
+        return uqbar.objects.compare_objects(self, argument, coerce=True)
+
     def __float__(self):
         r'''Coerce to float.
 
@@ -96,6 +100,13 @@ class Pitch(AbjadValueObject):
         elif format_specification == 'storage':
             return abjad.StorageFormatManager(self).get_storage_format()
         return str(self)
+
+    def __hash__(self):
+        r'''Hashes pitch.
+
+        Returns integer.
+        '''
+        return uqbar.objects.get_hash(self)
 
     def __illustrate__(self):
         r'''Illustrates pitch.
