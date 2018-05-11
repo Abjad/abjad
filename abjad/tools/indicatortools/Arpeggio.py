@@ -1,7 +1,6 @@
 import typing
-from abjad import Center, Down, Up
+from abjad import Center, Down, Up, VerticalAlignment
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
@@ -50,7 +49,7 @@ class Arpeggio(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, direction: OrdinalConstant = None) -> None:
+    def __init__(self, direction: VerticalAlignment = None) -> None:
         if direction is not None:
             assert direction in (Up, Down, Center)
         self._direction = direction
@@ -74,7 +73,7 @@ class Arpeggio(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def direction(self) -> typing.Optional[OrdinalConstant]:
+    def direction(self) -> typing.Optional[VerticalAlignment]:
         '''
         Gets direction of arpeggio.
 

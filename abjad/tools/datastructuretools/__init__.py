@@ -1,5 +1,3 @@
-from .OrdinalConstant import OrdinalConstant
-
 from abjad.tools import mathtools  # noqa
 Infinity = mathtools.Infinity()
 NegativeInfinity = mathtools.NegativeInfinity()

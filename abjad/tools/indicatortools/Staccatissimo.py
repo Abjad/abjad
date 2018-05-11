@@ -1,6 +1,5 @@
-from abjad import Center, Down, Right, Up, HorizontalAlignment
+from abjad import Center, Down, Right, Up, HorizontalAlignment, VerticalAlignment
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
 from abjad.tools.datastructuretools.String import String
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
@@ -70,10 +69,10 @@ class Staccatissimo(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, direction: OrdinalConstant = None) -> None:
+    def __init__(self, direction: VerticalAlignment = None) -> None:
         direction_ = String.to_tridirectional_ordinal_constant(direction)
         if direction_ is not None:
-            assert isinstance(direction_, OrdinalConstant), repr(direction_)
+            assert isinstance(direction_, VerticalAlignment), repr(direction_)
             directions = (Up, Down, Center, None)
             assert direction_ in directions, repr(direction_)
         self._direction = direction_
