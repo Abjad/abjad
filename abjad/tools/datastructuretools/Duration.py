@@ -389,6 +389,9 @@ class Duration(Fraction):
         return type(self), (self.numerator, self.denominator)
 
     def __repr__(self):
+        """
+        Gets interpreter representation of duration.
+        """
         return '{}({}, {})'.format(
             type(self).__name__,
             self.numerator,

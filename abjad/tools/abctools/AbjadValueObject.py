@@ -34,4 +34,4 @@ class AbjadValueObject(AbjadObject):
 
         Returns integer.
         '''
-        return uqbar.objects.get_object_hash(self)
+        return uqbar.objects.get_hash(self)

@@ -219,6 +219,22 @@ class Scheme(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
+    def __eq__(self, other):
+        """
+        Check equality.
+        """
+        if not isinstance(other, type(self)):
+            return False
+        if not self._value == other._value:
+            return False
+        if not self._quoting == other._quoting:
+            return False
+        if not self._force_quotes == other._force_quotes:
+            return False
+        if not self._verbatim == other._verbatim:
+            return False
+        return True
+
     def __format__(self, format_specification=''):
         r'''Formats scheme.
 
@@ -250,6 +266,18 @@ class Scheme(AbjadValueObject):
         elif format_specification == 'storage':
             return systemtools.StorageFormatManager(self).get_storage_format()
         return str(self)
+
+    def __hash__(self):
+        """
+        Hashes Scheme.
+        """
+        return hash((
+            type(self),
+            self._value,
+            self._quoting,
+            self._force_quotes,
+            self._verbatim,
+            ))
 
     def __str__(self):
         r'''String representation of scheme object.

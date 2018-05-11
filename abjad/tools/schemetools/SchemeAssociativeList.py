@@ -44,4 +44,4 @@ class SchemeAssociativeList(Scheme):
                 message = message.format(item)
                 raise TypeError(message)
             pairs.append(pair)
-        Scheme.__init__(self, value=pairs, quoting="'")
+        Scheme.__init__(self, value=tuple(pairs), quoting="'")

@@ -26,8 +26,9 @@ class SchemeVectorConstant(Scheme):
 
     ### INITIALIZER ###
 
-    def __init__(self, value=[]):
-        Scheme.__init__(self, value, quoting="'#")
+    def __init__(self, value=None):
+        value = value or []
+        Scheme.__init__(self, tuple(value), quoting="'#")
 
     ### PRIVATE METHODS ###
 

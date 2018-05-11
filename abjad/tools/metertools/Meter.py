@@ -395,7 +395,13 @@ class Meter(AbjadValueObject):
 
         Returns true or false.
         '''
-        return super(Meter, self).__eq__(argument)
+        if not isinstance(argument, type(self)):
+            return False
+        if not self._decrease_monotonic == argument._decrease_monotonic:
+            return False
+        if not self._preferred_boundary_depth == argument._preferred_boundary_depth:
+            return False
+        return True
 
     def __format__(self, format_specification=''):
         r'''Formats meter.
@@ -650,7 +656,12 @@ class Meter(AbjadValueObject):
 
         Returns integer.
         '''
-        return super(Meter, self).__hash__()
+        return hash((
+            type(self),
+            self.rtm_format,
+            self._decrease_monotonic,
+            self._preferred_boundary_depth,
+            ))
 
     def __iter__(self):
         r'''Iterates meter.
