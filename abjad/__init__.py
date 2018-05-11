@@ -12,9 +12,10 @@ except ImportError:
     pass
 
 
-import enum  # noqa
+import uqbar.enums  # noqa
 
-class Enumeration(enum.Enum):
+
+class Enumeration(uqbar.enums.IntEnumeration):
     """
     Enumeration.
     """
@@ -28,28 +29,8 @@ class Enumeration(enum.Enum):
     def __str__(self):
         return self.name.lower()
 
-    def __ge__(self, other):
-        if self.__class__ is other.__class__:
-            return self.value >= other.value
-        return NotImplemented
 
-    def __gt__(self, other):
-        if self.__class__ is other.__class__:
-            return self.value > other.value
-        return NotImplemented
-
-    def __le__(self, other):
-        if self.__class__ is other.__class__:
-            return self.value <= other.value
-        return NotImplemented
-
-    def __lt__(self, other):
-        if self.__class__ is other.__class__:
-            return self.value < other.value
-        return NotImplemented
-
-
-class Amount(Enumeration):
+class Comparison(uqbar.enums.StrictEnumeration):
     """
     Enumeration of amount comparisons.
     """
@@ -57,21 +38,22 @@ class Amount(Enumeration):
     Exact = 0
     More = 1
 
-Less = Amount.Less
-Exact = Amount.Exact
-More = Amount.More
+    def __format__(self, format_spec):
+        return repr(self)
+
+    def __repr__(self):
+        return self.name
+
+    def __str__(self):
+        return self.name
 
 
-class Identity(Enumeration):
-    """
-    Enumeration of identities.
-    """
-    Identity = 0
-
-Identity = Identity.Identity
+Less = Comparison.Less
+Exact = Comparison.Exact
+More = Comparison.More
 
 
-class HorizontalAlignment(Enumeration):
+class HorizontalAlignment(uqbar.enums.StrictEnumeration):
     """
     Enumeration of horizontal alignments.
     """
@@ -79,13 +61,19 @@ class HorizontalAlignment(Enumeration):
     Both = 0
     Right = 1
 
+    def __repr__(self):
+        return self.name
+
+    def __str__(self):
+        return self.name.lower()
+
 
 Left = HorizontalAlignment.Left
 Both = HorizontalAlignment.Both
 Right = HorizontalAlignment.Right
 
 
-class VerticalAlignment(Enumeration):
+class VerticalAlignment(uqbar.enums.StrictEnumeration):
     """
     Enumeration of vertical alignments.
     """
@@ -105,11 +93,32 @@ class VerticalAlignment(Enumeration):
             }[self]
         return repr(self)
 
+    def __repr__(self):
+        return self.name
+
+    def __str__(self):
+        return self.name.lower()
+
+    @classmethod
+    def from_expr(cls, expr):
+        lilypond_symbols = {
+            '^': cls.Up,
+            '-': cls.Center,
+            '_': cls.Down,
+        }
+        result = lilypond_symbols.get(expr)
+        if result is not None:
+            return result
+        return super().from_expr(expr)
+
+
 Down = VerticalAlignment.Down
 Center = VerticalAlignment.Center
 Up = VerticalAlignment.Up
 
-del enum
+
+del uqbar.enums
+del uqbar
 
 
 # ensure that the ~/.abjad directory and friends are setup
