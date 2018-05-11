@@ -258,7 +258,6 @@ class Markup(AbjadValueObject):
         self,
         contents=None,
         direction=None,
-        literal=None,
         stack_priority=0,
         ):
         import abjad

@@ -52,7 +52,7 @@ class Infinity(AbjadValueObject):
 
         Returns true or false.
         '''
-        return super(Infinity, self).__eq__(argument)
+        return self._value == argument
 
     def __float__(self):
         r'''Convert infinity to float.
@@ -82,7 +82,7 @@ class Infinity(AbjadValueObject):
 
         Returns integer.
         '''
-        return super(Infinity, self).__hash__()
+        return hash(type(self))
 
     def __le__(self, argument):
         r'''Is true when `argument` is infinite. Otherwise false.

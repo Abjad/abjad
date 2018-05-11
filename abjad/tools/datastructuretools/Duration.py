@@ -12,7 +12,7 @@ except ImportError:
     from fractions import Fraction
 
 
-class Duration(AbjadObject, Fraction):
+class Duration(Fraction):
     r'''Duration.
 
     ..  container:: example
@@ -253,9 +253,8 @@ class Duration(AbjadObject, Fraction):
 
         Returns string.
         '''
-        import abjad
         if format_specification in ('', 'storage'):
-            return abjad.StorageFormatManager(self).get_storage_format()
+            return repr(self)
         return str(self)
 
     def __ge__(self, argument):
@@ -388,6 +387,13 @@ class Duration(AbjadObject, Fraction):
         r'''Documentation required.
         '''
         return type(self), (self.numerator, self.denominator)
+
+    def __repr__(self):
+        return '{}({}, {})'.format(
+            type(self).__name__,
+            self.numerator,
+            self.denominator,
+            )
 
     def __rmod__(self, *arguments):
         r'''Documentation required.

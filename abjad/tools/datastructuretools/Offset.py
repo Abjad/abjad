@@ -66,10 +66,7 @@ class Offset(Duration):
 
         >>> offset = abjad.Offset((3, 16), grace_displacement=(-1, 16))
         >>> abjad.Offset(offset)
-        Offset(
-            (3, 16),
-            grace_displacement=Duration(-1, 16)
-            )
+        Offset((3, 16), grace_displacement=Duration(-1, 16))
 
     ..  container:: example
 
@@ -152,16 +149,10 @@ class Offset(Duration):
             >>> offset_2 = copy.copy(offset_1)
 
             >>> offset_1
-            Offset(
-                (1, 4),
-                grace_displacement=Duration(-1, 16)
-                )
+            Offset((1, 4), grace_displacement=Duration(-1, 16))
 
             >>> offset_2
-            Offset(
-                (1, 4),
-                grace_displacement=Duration(-1, 16)
-                )
+            Offset((1, 4), grace_displacement=Duration(-1, 16))
 
             >>> offset_1 == offset_2
             True
@@ -189,16 +180,10 @@ class Offset(Duration):
             >>> offset_2 = copy.deepcopy(offset_1)
 
             >>> offset_1
-            Offset(
-                (1, 4),
-                grace_displacement=Duration(-1, 16)
-                )
+            Offset((1, 4), grace_displacement=Duration(-1, 16))
 
             >>> offset_2
-            Offset(
-                (1, 4),
-                grace_displacement=Duration(-1, 16)
-                )
+            Offset((1, 4), grace_displacement=Duration(-1, 16))
 
             >>> offset_1 == offset_2
             True
@@ -557,13 +542,17 @@ class Offset(Duration):
             Gets interpreter representation of offset with grace displacement:
 
             >>> abjad.Offset(1, 4, grace_displacement=(-1, 16))
-            Offset(
-                (1, 4),
-                grace_displacement=Duration(-1, 16)
-                )
+            Offset((1, 4), grace_displacement=Duration(-1, 16))
 
         '''
-        return super(Offset, self).__repr__()
+        if self.grace_displacement is None:
+            return super(Offset, self).__repr__()
+        return '{}(({}, {}), grace_displacement={!r})'.format(
+            type(self).__name__,
+            self.numerator,
+            self.denominator,
+            self.grace_displacement,
+            )
 
     def __sub__(self, argument):
         '''Offset taken from offset returns duration:
@@ -592,24 +581,6 @@ class Offset(Duration):
             return self - argument
 
     ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        from abjad.tools.systemtools.FormatSpecification import \
-            FormatSpecification
-        is_indented = False
-        names = []
-        values = [self.numerator, self.denominator]
-        if self._get_grace_displacement():
-            is_indented = True
-            names = ['grace_displacement']
-            values = [(self.numerator, self.denominator)]
-        return FormatSpecification(
-            client=self,
-            repr_is_indented=is_indented,
-            storage_format_args_values=values,
-            storage_format_is_indented=is_indented,
-            storage_format_kwargs_names=names,
-            )
 
     def _get_grace_displacement(self):
         import abjad

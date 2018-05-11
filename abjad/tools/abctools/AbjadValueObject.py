@@ -1,4 +1,5 @@
 from .AbjadObject import AbjadObject
+import uqbar.objects
 
 
 class AbjadValueObject(AbjadObject):
@@ -26,19 +27,11 @@ class AbjadValueObject(AbjadObject):
 
         Returns true or false.
         '''
-        import abjad
-        return abjad.TestManager.compare_objects(self, argument)
+        return uqbar.objects.compare_objects(self, argument)
 
     def __hash__(self):
         r'''Hashes Abjad value object.
 
         Returns integer.
         '''
-        from abjad.tools import systemtools
-        hash_values = systemtools.StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            message = 'unhashable type: {}'.format(self)
-            raise TypeError(message)
-        return result
+        return uqbar.objects.get_object_hash(self)
