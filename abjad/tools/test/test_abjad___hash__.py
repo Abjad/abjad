@@ -5,7 +5,6 @@ from abjad.tools import documentationtools
 
 
 ignored_classes = (
-    abjad.Enumeration,
     abjad.FormatSpecification,
     abjad.Path,
     abjad.StorageFormatManager,

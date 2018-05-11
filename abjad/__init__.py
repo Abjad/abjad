@@ -15,21 +15,6 @@ except ImportError:
 import uqbar.enums  # noqa
 
 
-class Enumeration(uqbar.enums.IntEnumeration):
-    """
-    Enumeration.
-    """
-
-    def __format__(self, format_spec):
-        return repr(self)
-
-    def __repr__(self):
-        return self.name
-
-    def __str__(self):
-        return self.name.lower()
-
-
 class Comparison(uqbar.enums.StrictEnumeration):
     """
     Enumeration of amount comparisons.

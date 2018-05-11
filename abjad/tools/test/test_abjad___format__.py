@@ -71,7 +71,6 @@ def test_abjad___format___02(class_):
 
 ignored_classes = (
     abjad.Measure,
-    abjad.Enumeration,
     abjad.Path,
     abjad.Tags,
     lilypondparsertools.SyntaxNode,

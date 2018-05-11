@@ -7,7 +7,6 @@ from abjad.tools import mathtools
 
 
 ignored_classes = (
-    abjad.Enumeration,
     abjad.FormatSpecification,
     abjad.Path,
     abjad.StorageFormatManager,

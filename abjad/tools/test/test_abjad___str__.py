@@ -18,7 +18,6 @@ _allowed_to_be_empty_string = (
     )
 
 ignored_classes = (
-    abjad.Enumeration,
     abjad.FormatSpecification,
     abjad.Path,
     abjad.StorageFormatManager,

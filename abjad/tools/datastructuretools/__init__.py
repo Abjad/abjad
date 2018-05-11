@@ -7,7 +7,6 @@ from .CyclicTuple import CyclicTuple
 from .Duration import Duration
 from .Inequality import Inequality
 from .DurationInequality import DurationInequality
-from .Enumeration import Enumeration
 from .Expression import Expression
 from .LengthInequality import LengthInequality
 from .Multiplier import Multiplier
