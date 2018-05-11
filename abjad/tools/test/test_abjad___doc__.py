@@ -25,7 +25,6 @@ ignored_names = (
     )
 
 ignored_classes = (
-    abjad.Enumeration,
     lilypondparsertools.LilyPondLexicalDefinition,
     lilypondparsertools.LilyPondSyntacticalDefinition,
     lilypondparsertools.ReducedLyParser,

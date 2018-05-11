@@ -3,8 +3,7 @@ import typing
 import uqbar.graphs
 from .Component import Component
 from .Selection import Selection
-from abjad.tools.datastructuretools import Left
-from abjad.tools.datastructuretools import Right
+from abjad import Left, Right
 from abjad.tools.datastructuretools.Duration import Duration
 from abjad.tools.exceptiontools.ParentageError import ParentageError
 from abjad.tools.topleveltools.inspect import inspect

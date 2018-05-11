@@ -60,17 +60,17 @@ class ScoreTemplate(abctools.AbjadValueObject):
 
     def __illustrate__(
         self,
-        default_paper_size: str = None,
-        global_staff_size: int = None,
-        includes: typing.List[str] = None,
-        ) -> LilyPondFile:
+        default_paper_size=None,
+        global_staff_size=None,
+        includes=None,
+        ):
         r'''Illustrates score template.
         '''
-        score = self()
+        score: Score = self()
         for voice in iterate(score).components(Voice):
             voice.append(Skip(1))
         self.attach_defaults(score)
-        lilypond_file = score.__illustrate__()
+        lilypond_file: LilyPondFile = score.__illustrate__()
         lilypond_file = new(
             lilypond_file,
             default_paper_size=default_paper_size,

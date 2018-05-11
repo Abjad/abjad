@@ -135,7 +135,6 @@ class Wrapper(AbjadValueObject):
         synthetic_offset: int = None,
         tag: typing.Union[str, Tag] = None,
         ) -> None:
-        from abjad.tools.datastructuretools.Enumeration import Enumeration
         from abjad.tools.datastructuretools.Offset import Offset
         from abjad.tools.scoretools.Component import Component
         from abjad.tools.scoretools.Context import Context

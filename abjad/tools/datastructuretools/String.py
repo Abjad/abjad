@@ -1,13 +1,11 @@
 import pathlib
 import re
-import roman # type: ignore
+import roman  # type: ignore
 import six
-import sys
 import textwrap
 import typing
 import unicodedata
-from abjad.tools import mathtools
-from .OrdinalConstant import OrdinalConstant
+from abjad import Center, Down, Up, VerticalAlignment
 from .TypedList import TypedList
 
 
@@ -1442,21 +1440,13 @@ class String(str):
             'down'
 
         '''
-        from abjad.tools.datastructuretools import Down
-        from abjad.tools.datastructuretools import Up
-        lookup = {
-            1: 'up',
-            -1: 'down',
-            Up: 'up',
-            Down: 'down',
-            '^': 'up',
-            '_': 'down',
-            'up': 'up',
-            'down': 'down'
-            }
-        if argument in lookup:
-            return String(lookup[argument])
-        raise ValueError(repr(argument))
+        try:
+            alignment = VerticalAlignment.from_expr(argument)
+        except Exception:
+            raise ValueError(repr(argument))
+        if alignment is VerticalAlignment.Center:
+            raise ValueError(repr(argument))
+        return String(alignment)
 
     @staticmethod
     def to_bidirectional_lilypond_symbol(argument) -> 'String':
@@ -1464,34 +1454,26 @@ class String(str):
 
         ..  container:: example
 
-            >>> abjad.String.to_tridirectional_lilypond_symbol(abjad.Up)
+            >>> abjad.String.to_bidirectional_lilypond_symbol(abjad.Up)
             '^'
 
-            >>> abjad.String.to_tridirectional_lilypond_symbol(abjad.Down)
+            >>> abjad.String.to_bidirectional_lilypond_symbol(abjad.Down)
             '_'
 
-            >>> abjad.String.to_tridirectional_lilypond_symbol(1)
+            >>> abjad.String.to_bidirectional_lilypond_symbol(1)
             '^'
 
-            >>> abjad.String.to_tridirectional_lilypond_symbol(-1)
+            >>> abjad.String.to_bidirectional_lilypond_symbol(-1)
             '_'
 
         '''
-        from abjad.tools.datastructuretools import Down
-        from abjad.tools.datastructuretools import Up
-        lookup = {
-            1: '^',
-            -1: '_',
-            Up: '^',
-            Down: '_',
-            'up': '^',
-            'down': '_',
-            '^': '^',
-            '_': '_',
-            }
-        if argument in lookup:
-            return String(lookup[argument])
-        raise ValueError(repr(argument))
+        try:
+            alignment = VerticalAlignment.from_expr(argument)
+        except Exception:
+            raise ValueError(repr(argument))
+        if alignment is VerticalAlignment.Center:
+            raise ValueError(repr(argument))
+        return String(format(alignment, 'lilypond'))
 
     def to_dash_case(self) -> 'String':
         r'''Changes string to dash case.
@@ -1738,30 +1720,13 @@ class String(str):
             True
 
         '''
-        from abjad.tools.datastructuretools import Center
-        from abjad.tools.datastructuretools import Down
-        from abjad.tools.datastructuretools import Up
-        lookup = {
-            Up: 'up',
-            '^': 'up',
-            'up': 'up',
-            1: 'up',
-            Down: 'down',
-            '_': 'down',
-            'down': 'down',
-            -1: 'down',
-            Center: 'center',
-            '-': 'center',
-            0: 'center',
-            'center': 'center',
-            'default': 'center',
-            'neutral': 'center',
-            }
         if argument is None:
             return None
-        elif argument in lookup:
-            return String(lookup[argument])
-        raise ValueError(repr(argument))
+        try:
+            alignment = VerticalAlignment.from_expr(argument)
+        except Exception:
+            raise ValueError(repr(argument))
+        return String(alignment)
 
     @staticmethod
     def to_tridirectional_lilypond_symbol(
@@ -1809,39 +1774,18 @@ class String(str):
             True
 
         '''
-        from abjad.tools.datastructuretools import Center
-        from abjad.tools.datastructuretools import Down
-        from abjad.tools.datastructuretools import Up
-        lookup = {
-            Up: '^',
-            '^': '^',
-            'up': '^',
-            1: '^',
-            Down: '_',
-            '_': '_',
-            'down': '_',
-            -1: '_',
-            Center: '-',
-            '-': '-',
-            0: '-',
-            'center': '-',
-            'default': '-',
-            'neutral': '-',
-            }
         if argument is None:
             return None
-        elif argument in lookup:
-            result = lookup[argument]
-            if isinstance(result, str):
-                return String(result)
-            else:
-                return result
-        raise ValueError(repr(argument))
+        try:
+            alignment = VerticalAlignment.from_expr(argument)
+        except Exception:
+            raise ValueError(repr(argument))
+        return String(format(alignment, 'lilypond'))
 
     @staticmethod
     def to_tridirectional_ordinal_constant(
         argument,
-        ) -> typing.Union[None, OrdinalConstant, 'String']:
+        ) -> typing.Union[None, VerticalAlignment, 'String']:
         r'''Changes `argument` to tridirectional ordinal constant.
 
         ..  container:: example
@@ -1873,34 +1817,9 @@ class String(str):
             True
 
         '''
-        from abjad.tools.datastructuretools import Center
-        from abjad.tools.datastructuretools import Down
-        from abjad.tools.datastructuretools import Up
-        lookup = {
-            Up: Up,
-            '^': Up,
-            'up': Up,
-            1: Up,
-            Down: Down,
-            '_': Down,
-            'down': Down,
-            -1: Down,
-            Center: Center,
-            '-': Center,
-            0: Center,
-            'center': Center,
-            'default': Center,
-            'neutral': Center,
-            }
         if argument is None:
             return None
-        elif argument in lookup:
-            result = lookup[argument]
-            if isinstance(result, str):
-                return String(result)
-            else:
-                return result
-        raise ValueError(f'unrecognized expression: {argument!r}.')
+        return VerticalAlignment.from_expr(argument)
 
     def to_upper_camel_case(self) -> 'String':
         r'''Changes string to upper camel case.

@@ -7,9 +7,9 @@ except ImportError:
 import functools
 import math
 import typing
+from abjad import Down
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.datastructuretools import Down
 from abjad.tools.datastructuretools.Duration import Duration
 from abjad.tools.datastructuretools.Multiplier import Multiplier
 from abjad.tools.exceptiontools import ImpreciseMetronomeMarkError

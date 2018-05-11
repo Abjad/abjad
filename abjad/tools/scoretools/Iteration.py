@@ -1,4 +1,5 @@
 import collections
+from abjad import Left, Right
 from abjad.tools import abctools
 
 
@@ -233,7 +234,8 @@ class Iteration(abctools.AbjadObject):
         Returns generator.
         '''
         import abjad
-        direction = direction or abjad.Left
+        if direction is None:
+            direction = Left
         def _next_node_depth_first(component, total):
             r'''If client has unvisited components, return next unvisited
             component in client.
@@ -297,7 +299,7 @@ class Iteration(abctools.AbjadObject):
             queue.pop()
             return node, rank
         def _advance_node_depth_first(node, rank, direction):
-            if direction == abjad.Left:
+            if direction is Left:
                 node, rank = _next_node_depth_first(node, rank)
             else:
                 node, rank = _previous_node_depth_first(node, rank)
@@ -670,9 +672,9 @@ class Iteration(abctools.AbjadObject):
         parentage = abjad.inspect(self.client).get_parentage()
         logical_voice = parentage.logical_voice
         if reverse:
-            direction = abjad.Right
+            direction = Right
         else:
-            direction = abjad.Left
+            direction = Left
         for component in abjad.iterate(self.client)._depth_first(
             capped=False,
             direction=direction,

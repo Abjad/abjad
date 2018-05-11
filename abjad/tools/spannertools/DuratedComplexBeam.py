@@ -1,8 +1,8 @@
 import collections
 import typing
+from abjad import HorizontalAlignment, VerticalAlignment
 from abjad.tools.datastructuretools.Duration import Duration
 from abjad.tools.datastructuretools.Offset import Offset
-from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
 from abjad.tools.scoretools.Leaf import Leaf
 from abjad.tools.topleveltools.inspect import inspect
 from abjad.tools.topleveltools.sequence import sequence
@@ -117,9 +117,9 @@ class DuratedComplexBeam(ComplexBeam):
     def __init__(
         self,
         beam_rests: bool = None,
-        direction: typing.Union[str, OrdinalConstant] = None,
+        direction: typing.Union[str, VerticalAlignment] = None,
         durations: typing.Iterable[Duration] = None,
-        isolated_nib_direction: typing.Union[bool, OrdinalConstant] = False,
+        isolated_nib_direction: typing.Union[bool, HorizontalAlignment] = False,
         nibs_towards_nonbeamable_components: bool = True,
         span_beam_count: int = 1,
         stemlet_length: Number = None,

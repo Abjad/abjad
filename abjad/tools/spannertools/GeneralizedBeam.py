@@ -1,12 +1,7 @@
 import typing
 from abjad.tools import mathtools
-from abjad.tools.datastructuretools import Center
-from abjad.tools.datastructuretools import Down
-from abjad.tools.datastructuretools import Left
-from abjad.tools.datastructuretools import Right
-from abjad.tools.datastructuretools import Up
+from abjad import Center, Down, HorizontalAlignment, Left, Right, Up, VerticalAlignment
 from abjad.tools.datastructuretools.Duration import Duration
-from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
 from abjad.tools.datastructuretools.String import String
 from abjad.tools.lilypondnametools.LilyPondContextSetting import \
     LilyPondContextSetting
@@ -147,9 +142,9 @@ class GeneralizedBeam(Spanner):
         durations: typing.Iterable[Duration] = None,
         include_long_duration_notes: bool = False,
         include_long_duration_rests: bool = False,
-        isolated_nib_direction: OrdinalConstant = None,
+        isolated_nib_direction: HorizontalAlignment = None,
         use_stemlets: bool = False,
-        vertical_direction: OrdinalConstant = None,
+        vertical_direction: VerticalAlignment = None,
         ) -> None:
         Spanner.__init__(self)
         durations_ = None
@@ -371,7 +366,7 @@ class GeneralizedBeam(Spanner):
         return self._include_long_duration_rests
 
     @property
-    def isolated_nib_direction(self) -> typing.Optional[OrdinalConstant]:
+    def isolated_nib_direction(self) -> typing.Optional[HorizontalAlignment]:
         '''
         Gets direction of isolated nibs.
         '''
@@ -385,7 +380,7 @@ class GeneralizedBeam(Spanner):
         return self._use_stemlets
 
     @property
-    def vertical_direction(self) -> typing.Optional[OrdinalConstant]:
+    def vertical_direction(self) -> typing.Optional[VerticalAlignment]:
         '''
         Gets vertical direction of beam.
         '''

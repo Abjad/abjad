@@ -2,10 +2,10 @@ import abc
 import bisect
 import copy
 import uqbar.graphs
+from abjad import Down, Right, Up
 from abjad.tools.exceptiontools import MissingMetronomeMarkError
 from abjad.tools.exceptiontools import MissingMeasureError
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from abjad.tools.datastructuretools import Right
 
 
 class Component(AbjadObject):
@@ -476,10 +476,10 @@ class Component(AbjadObject):
     def _get_markup(self, direction=None):
         import abjad
         markup = self._get_indicators(abjad.Markup)
-        if direction == abjad.Up:
-            return tuple(x for x in markup if x.direction == abjad.Up)
-        elif direction == abjad.Down:
-            return tuple(x for x in markup if x.direction == abjad.Down)
+        if direction is Up:
+            return tuple(x for x in markup if x.direction is Up)
+        elif direction is Down:
+            return tuple(x for x in markup if x.direction is Down)
         return markup
 
     def _get_next_measure(self):
@@ -746,7 +746,7 @@ class Component(AbjadObject):
         import abjad
         assert all(isinstance(x, abjad.Component) for x in components)
         selection = abjad.select(self)
-        if direction == abjad.Right:
+        if direction is abjad.Right:
             if grow_spanners:
                 insert_offset = abjad.inspect(self).get_timespan().stop_offset
                 receipt = selection._get_dominant_spanners()

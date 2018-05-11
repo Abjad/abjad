@@ -1,4 +1,5 @@
 import abjad
+import enum
 import inspect
 import pytest
 from abjad.tools import documentationtools
@@ -6,7 +7,6 @@ from abjad.tools import mathtools
 
 
 ignored_classes = (
-    abjad.Enumeration,
     abjad.FormatSpecification,
     abjad.Path,
     abjad.StorageFormatManager,
@@ -30,7 +30,7 @@ def test_abjad___init___01(class_):
 
 valid_types = (
     bool,
-    abjad.OrdinalConstant,
+    enum.Enum,
     abjad.Duration,
     float,
     int,

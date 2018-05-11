@@ -1,8 +1,8 @@
 import functools
 import typing
+from abjad import Up
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.datastructuretools import Up
 from abjad.tools.markuptools.Markup import Markup
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.tools.topleveltools.new import new

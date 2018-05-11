@@ -1,7 +1,5 @@
 import typing
-from abjad.tools.datastructuretools import Left
-from abjad.tools.datastructuretools import Right
-from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
+from abjad import HorizontalAlignment, Left, Right, VerticalAlignment
 from .Beam import Beam
 Number = typing.Union[int, float]
 
@@ -76,8 +74,8 @@ class ComplexBeam(Beam):
     def __init__(
         self,
         beam_rests: bool = None,
-        direction: typing.Union[str, OrdinalConstant] = None,
-        isolated_nib_direction: typing.Union[bool, OrdinalConstant] = None,
+        direction: typing.Union[str, VerticalAlignment] = None,
+        isolated_nib_direction: typing.Union[bool, HorizontalAlignment] = None,
         stemlet_length: Number = None,
         ) -> None:
         Beam.__init__(
@@ -253,13 +251,12 @@ class ComplexBeam(Beam):
     def _get_left_right_for_lone_leaf(self, leaf):
         r'''Gets left and right flag counts for only leaf in spanner.
         '''
-        import abjad
         current_flag_count = leaf.written_duration.flag_count
         left, right = None, None
-        if self.isolated_nib_direction == abjad.Left:
+        if self.isolated_nib_direction is Left:
             left = current_flag_count
             right = 0
-        elif self.isolated_nib_direction == abjad.Right:
+        elif self.isolated_nib_direction is Right:
             left = 0
             right = current_flag_count
         elif self.isolated_nib_direction is True:
@@ -275,7 +272,6 @@ class ComplexBeam(Beam):
         return left, right
 
     def _get_lilypond_format_bundle(self, leaf):
-        import abjad
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         self._add_stemlet_length(leaf, bundle)
         self._add_beam_counts(leaf, bundle)
@@ -419,7 +415,7 @@ class ComplexBeam(Beam):
 
     @property
     def isolated_nib_direction(self) -> typing.Union[
-        bool, OrdinalConstant, None]:
+        bool, HorizontalAlignment, None]:
         r'''
         Gets directed treatment to apply to lone nibs.
 

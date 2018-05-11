@@ -1,3 +1,4 @@
+from abjad import Left, Right
 from abjad.tools import abctools
 from abjad.tools import datastructuretools
 from abjad.tools import indicatortools
@@ -265,13 +266,13 @@ class ReducedLyParser(abctools.Parser):
         r'''beam : BRACKET_L
         '''
         import abjad
-        p[0] = (abjad.Beam, abjad.Left)
+        p[0] = (abjad.Beam, Left)
 
     def p_beam__BRACKET_R(self, p):
         r'''beam : BRACKET_R
         '''
         import abjad
-        p[0] = (abjad.Beam, abjad.Right)
+        p[0] = (abjad.Beam, Right)
 
     def p_chord_body__chord_pitches(self, p):
         r'''chord_body : chord_pitches
@@ -496,13 +497,13 @@ class ReducedLyParser(abctools.Parser):
         r'''slur : PAREN_L
         '''
         import abjad
-        p[0] = (abjad.Slur, abjad.Left)
+        p[0] = (abjad.Slur, Left)
 
     def p_slur__PAREN_R(self, p):
         r'''slur : PAREN_R
         '''
         import abjad
-        p[0] = (abjad.Slur, abjad.Right)
+        p[0] = (abjad.Slur, Right)
 
     def p_start__EMPTY(self, p):
         r'''start :
@@ -526,7 +527,7 @@ class ReducedLyParser(abctools.Parser):
         r'''tie : TILDE
         '''
         import abjad
-        p[0] = (abjad.Tie, abjad.Left)
+        p[0] = (abjad.Tie, Left)
 
     def p_tuplet__FRACTION__container(self, p):
         r'''tuplet : FRACTION container
@@ -553,10 +554,10 @@ class ReducedLyParser(abctools.Parser):
             for current_class, directions in span_events.items():
                 starting, stopping = [], []
                 for direction in directions:
-                    if direction == abjad.Left:
-                        starting.append(abjad.Left)
+                    if direction is Left:
+                        starting.append(Left)
                     else:
-                        stopping.append(abjad.Right)
+                        stopping.append(Right)
 
                 # apply undirected events immediately,
                 # and do not maintain a reference to them

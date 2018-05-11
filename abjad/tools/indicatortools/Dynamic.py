@@ -1,9 +1,7 @@
 import typing
+from abjad import Down, Up, VerticalAlignment
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.datastructuretools import Down
-from abjad.tools.datastructuretools import Up
-from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
 from abjad.tools.datastructuretools.String import String
 from abjad.tools.mathtools.Infinity import Infinity
 from abjad.tools.mathtools.NegativeInfinity import NegativeInfinity
@@ -222,7 +220,7 @@ class Dynamic(AbjadValueObject):
         self,
         name: typing.Union[str, 'Dynamic'] = 'f',
         command: str = None,
-        direction: OrdinalConstant = None,
+        direction: VerticalAlignment = None,
         hide: bool = None,
         name_is_textual: bool = None,
         ordinal: typing.Union[int, Infinity, NegativeInfinity] = None,
@@ -480,7 +478,7 @@ class Dynamic(AbjadValueObject):
         return self._context
 
     @property
-    def direction(self) -> typing.Optional[OrdinalConstant]:
+    def direction(self) -> typing.Optional[VerticalAlignment]:
         '''
         Gets direction for effort dynamics only.
 

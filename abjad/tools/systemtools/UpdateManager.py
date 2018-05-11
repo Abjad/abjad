@@ -1,5 +1,7 @@
+from abjad import Left
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.exceptiontools import MissingMetronomeMarkError
+
 
 class UpdateManager(AbjadObject):
     '''Update manager.
@@ -43,7 +45,7 @@ class UpdateManager(AbjadObject):
             capped=True,
             unique=True,
             forbid=None,
-            direction=abjad.Left,
+            direction=Left,
             )
         return components
 

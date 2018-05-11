@@ -1,8 +1,8 @@
 import collections
 import inspect
+from abjad import Up
 from abjad.tools import abctools
 from abjad.tools import schemetools
-from abjad.tools.datastructuretools import Up
 
 
 class Label(abctools.AbjadObject):
@@ -1952,7 +1952,7 @@ class Label(abctools.AbjadObject):
                 raise TypeError(message)
             if label is not None:
                 label = label.tiny()
-                if direction == abjad.Up:
+                if direction is Up:
                     leaf = vertical_moment.start_leaves[0]
                 else:
                     leaf = vertical_moment.start_leaves[-1]

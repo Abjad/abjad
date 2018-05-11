@@ -1,6 +1,6 @@
 import typing
-from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
 from .Beam import Beam
+from abjad import VerticalAlignment
 Number = typing.Union[int, float]
 
 
@@ -83,7 +83,7 @@ class MultipartBeam(Beam):
     def __init__(
         self,
         beam_rests: bool = False,
-        direction: OrdinalConstant = None,
+        direction: VerticalAlignment = None,
         stemlet_length: Number = None,
         ) -> None:
         Beam.__init__(

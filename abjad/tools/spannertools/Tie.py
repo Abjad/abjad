@@ -1,5 +1,5 @@
 import typing
-from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
+from abjad import VerticalAlignment
 from abjad.tools.datastructuretools.String import String
 from abjad.tools.scoretools.Chord import Chord
 from abjad.tools.scoretools.Component import Component
@@ -158,7 +158,7 @@ class Tie(Spanner):
 
     def __init__(
         self,
-        direction: typing.Union[str, OrdinalConstant] = None,
+        direction: typing.Union[str, VerticalAlignment] = None,
         repeat: bool = None,
         ) -> None:
         Spanner.__init__(self)

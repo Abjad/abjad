@@ -1,7 +1,6 @@
 import typing
+from abjad import Center, VerticalAlignment
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.datastructuretools import Center
-from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
 from abjad.tools.lilypondnametools.LilyPondGrobOverride import \
     LilyPondGrobOverride
 from abjad.tools.markuptools.Markup import Markup
@@ -62,14 +61,14 @@ class LineSegment(AbjadValueObject):
         left_hspace: Number = None,
         left_padding: Number = None,
         left_stencil_align_direction_y: typing.Union[
-            Number, OrdinalConstant] = None,
+            Number, VerticalAlignment] = None,
         right_arrow: bool = None,
         right_broken_arrow: bool = None,
         right_broken_padding: Number = None,
         right_broken_text: typing.Union[bool, str, Markup] = None,
         right_padding: Number = None,
         right_stencil_align_direction_y: typing.Union[
-            Number, OrdinalConstant] = None,
+            Number, VerticalAlignment] = None,
         right_text: typing.Union[bool, str, Markup] = None,
         style: str = None,
         ) -> None:
@@ -367,7 +366,7 @@ class LineSegment(AbjadValueObject):
 
     @property
     def left_stencil_align_direction_y(self) -> typing.Union[
-        Number, OrdinalConstant, None]:
+        Number, VerticalAlignment, None]:
         '''
         Gets left stencil align direction Y of line segment.
         '''
@@ -410,7 +409,7 @@ class LineSegment(AbjadValueObject):
 
     @property
     def right_stencil_align_direction_y(self) -> typing.Union[
-        Number, OrdinalConstant, None]:
+        Number, VerticalAlignment, None]:
         '''
         Gets right stencil align direction Y of line segment.
         '''

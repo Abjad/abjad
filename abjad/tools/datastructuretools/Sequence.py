@@ -4,9 +4,9 @@ import itertools
 import math
 import numbers
 import sys
+from abjad import Exact, Less, More
 from abjad.tools import abctools
 from abjad.tools import mathtools
-from abjad.tools.datastructuretools import Exact
 from abjad.tools.systemtools.Signature import Signature
 
 
@@ -809,7 +809,6 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
         overhang,
         reversed_,
         ):
-        import abjad
         indicator = [str(_) for _ in counts]
         indicator = ', '.join(indicator)
         if cyclic:
@@ -822,7 +821,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
             indicator = 'R' + indicator
         if overhang is True:
             indicator += '+'
-        elif overhang == abjad.Exact:
+        elif overhang is Exact:
             indicator += '!'
         return indicator
 
@@ -3316,9 +3315,9 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
         if part:
             if overhang is True:
                 result.append(part)
-            elif overhang == abjad.Exact and len(part) == count:
+            elif overhang is Exact and len(part) == count:
                 result.append(part)
-            elif overhang == abjad.Exact and len(part) != count:
+            elif overhang is Exact and len(part) != count:
                 message = 'sequence does not partition exactly.'
                 raise Exception(message)
         if reversed_:
@@ -3443,7 +3442,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
         parts = self.partition_by_counts(
             counts,
             cyclic=False,
-            overhang=abjad.Exact,
+            overhang=Exact,
             )
         return type(self)(parts)
 
@@ -3828,7 +3827,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
         Returns nested sequence.
         '''
         import abjad
-        if allow_part_weights == abjad.Exact:
+        if allow_part_weights is Exact:
             candidate = type(self)(self)
             candidate = candidate.split(
                 weights,
@@ -3841,7 +3840,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
             else:
                 message = 'can not partition exactly.'
                 raise Exception(message)
-        elif allow_part_weights == abjad.More:
+        elif allow_part_weights is More:
             if not cyclic:
                 return Sequence._partition_sequence_once_by_weights_at_least(
                     self,
@@ -3854,7 +3853,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
                     weights,
                     overhang=overhang,
                     )
-        elif allow_part_weights == abjad.Less:
+        elif allow_part_weights is Less:
             if not cyclic:
                 return Sequence._partition_sequence_once_by_weights_at_most(
                     self,
@@ -4243,7 +4242,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
         import abjad
         assert isinstance(weight, numbers.Number), repr(weight)
         assert 0 <= weight
-        if allow_total == abjad.Exact:
+        if allow_total is Exact:
             sequence_weight = abjad.mathtools.weight(self)
             complete_repetitions = int(
                 math.ceil(float(weight) / float(sequence_weight))
@@ -4268,7 +4267,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
                         break
                 else:
                     break
-        elif allow_total == abjad.Less:
+        elif allow_total is Less:
             items = [self[0]]
             i = 1
             while abjad.mathtools.weight(items) < weight:
@@ -4277,7 +4276,7 @@ class Sequence(abctools.AbjadValueObject, collections.Sequence):
             if weight < abjad.mathtools.weight(items):
                 items = items[:-1]
             return type(self)(items)
-        elif allow_total == abjad.More:
+        elif allow_total is More:
             items = [self[0]]
             i = 1
             while abjad.mathtools.weight(items) < weight:

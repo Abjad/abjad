@@ -1,6 +1,5 @@
 import typing
-from abjad.tools.datastructuretools import Down
-from abjad.tools.datastructuretools import Up
+from abjad import Down, Up
 from abjad.tools.indicatortools.Articulation import Articulation
 from abjad.tools.indicatortools.BowContactPoint import BowContactPoint
 from abjad.tools.indicatortools.BowMotionTechnique import BowMotionTechnique
@@ -346,14 +345,14 @@ class BowContactSpanner(Spanner):
         if direction_change is None:
             return
         if cautionary_change:
-            if direction_change == Up:
+            if direction_change is Up:
                 string = r'^ \parenthesize \upbow'
-            elif direction_change == Down:
+            elif direction_change is Down:
                 string = r'^ \parenthesize \downbow'
         else:
-            if direction_change == Up:
+            if direction_change is Up:
                 articulation = Articulation('upbow', Up)
-            elif direction_change == Down:
+            elif direction_change is Down:
                 articulation = Articulation('downbow', Up)
             string = str(articulation)
         bundle.right.articulations.append(string)

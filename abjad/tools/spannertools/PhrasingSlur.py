@@ -1,5 +1,5 @@
 import typing
-from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
+from abjad import VerticalAlignment
 from abjad.tools.datastructuretools.String import String
 from .Spanner import Spanner
 
@@ -58,7 +58,7 @@ class PhrasingSlur(Spanner):
 
     def __init__(
         self,
-        direction: typing.Union[str, OrdinalConstant] = None,
+        direction: typing.Union[str, VerticalAlignment] = None,
         ) -> None:
         Spanner.__init__(self)
         direction_ = String.to_tridirectional_lilypond_symbol(direction)

@@ -1,5 +1,5 @@
+from abjad import Right, HorizontalAlignment
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.datastructuretools import Right
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
@@ -41,7 +41,7 @@ class PageBreak(AbjadValueObject):
 
     _context = 'Score'
 
-    _time_orientation = Right
+    _time_orientation: HorizontalAlignment = HorizontalAlignment.Right
 
     ### INITIALIZER ##
 

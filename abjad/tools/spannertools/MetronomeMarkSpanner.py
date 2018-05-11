@@ -1,7 +1,6 @@
 import typing
 from .Spanner import Spanner
-from abjad.tools.datastructuretools import Center
-from abjad.tools.datastructuretools import Down
+from abjad import Center, Down
 from abjad.tools.indicatortools.Accelerando import Accelerando
 from abjad.tools.indicatortools.ArrowLineSegment import ArrowLineSegment
 from abjad.tools.indicatortools.LineSegment import LineSegment
