@@ -103,7 +103,13 @@ class Timespan(AbjadValueObject):
 
         Returns true or false.
         '''
-        return super(Timespan, self).__eq__(argument)
+        if not isinstance(argument, type(self)):
+            return False
+        if self.start_offset != argument.start_offset:
+            return False
+        if self.stop_offset != argument.stop_offset:
+            return False
+        return True
 
     def __format__(self, format_specification=''):
         r'''Formats timespan.
@@ -195,7 +201,11 @@ class Timespan(AbjadValueObject):
 
         Returns integer.
         '''
-        return super(Timespan, self).__hash__()
+        return hash((
+            type(self),
+            self.start_offset,
+            self.stop_offset,
+            ))
 
     def __illustrate__(self, range_=None, scale=None):
         r'''Illustrates timespan.
