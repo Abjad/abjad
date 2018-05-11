@@ -56,6 +56,9 @@ class Interval(AbjadValueObject):
         return type(self)(abs(self.number))
 
     def __eq__(self, argument):
+        """
+        Check equality.
+        """
         return uqbar.objects.compare_objects(self, argument, coerce=True)
 
     def __float__(self):

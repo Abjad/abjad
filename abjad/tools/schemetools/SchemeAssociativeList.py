@@ -12,10 +12,10 @@ class SchemeAssociativeList(Scheme):
         ...     ])
         >>> abjad.f(scheme_alist)
         abjad.SchemeAssociativeList(
-            [
+            (
                 abjad.SchemePair(('space', 2)),
                 abjad.SchemePair(('padding', 0.5)),
-                ]
+                )
             )
 
         >>> print(format(scheme_alist))

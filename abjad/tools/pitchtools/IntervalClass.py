@@ -29,6 +29,9 @@ class IntervalClass(AbjadValueObject):
         return type(self)(abs(self._number))
 
     def __eq__(self, argument):
+        """
+        Check equality.
+        """
         return uqbar.objects.compare_objects(self, argument, coerce=True)
 
     def __hash__(self):
