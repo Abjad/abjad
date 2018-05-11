@@ -4,22 +4,29 @@ if 'topleveltools' in os.path.abspath('.'):
     raise Exception(message)
 del os
 
-from fractions import Fraction
+
+from fractions import Fraction  # noqa
 try:
     from quicktions import Fraction  # type: ignore
 except ImportError:
     pass
 
 
-import enum
+import enum  # noqa
 
-class Amount(enum.IntEnum):
-    Less = -1
-    Exact = 0
-    More = 1
+class Enumeration(enum.Enum):
+    """
+    Enumeration.
+    """
+
+    def __format__(self, format_spec):
+        return repr(self)
 
     def __repr__(self):
         return self.name
+
+    def __str__(self):
+        return self.name.lower()
 
     def __ge__(self, other):
         if self.__class__ is other.__class__:
@@ -41,64 +48,62 @@ class Amount(enum.IntEnum):
             return self.value < other.value
         return NotImplemented
 
+
+class Amount(Enumeration):
+    """
+    Enumeration of amount comparisons.
+    """
+    Less = -1
+    Exact = 0
+    More = 1
 
 Less = Amount.Less
 Exact = Amount.Exact
 More = Amount.More
 
-class Comparison(enum.IntEnum):
+
+class Identity(Enumeration):
+    """
+    Enumeration of identities.
+    """
     Identity = 0
 
-    def __repr__(self):
-        return self.name
+Identity = Identity.Identity
 
-Identity = Comparison.Identity
 
-class HorizontalAlignment(enum.IntEnum):
+class HorizontalAlignment(Enumeration):
+    """
+    Enumeration of horizontal alignments.
+    """
     Left = -1
     Both = 0
     Right = 1
 
-    def __repr__(self):
-        return self.name
-
-    def __str__(self):
-        return self.name.lower()
-
-    def __ge__(self, other):
-        if self.__class__ is other.__class__:
-            return self.value >= other.value
-        return NotImplemented
-
-    def __gt__(self, other):
-        if self.__class__ is other.__class__:
-            return self.value > other.value
-        return NotImplemented
-
-    def __le__(self, other):
-        if self.__class__ is other.__class__:
-            return self.value <= other.value
-        return NotImplemented
-
-    def __lt__(self, other):
-        if self.__class__ is other.__class__:
-            return self.value < other.value
-        return NotImplemented
 
 Left = HorizontalAlignment.Left
 Both = HorizontalAlignment.Both
 Right = HorizontalAlignment.Right
 
-class VerticalAlignment(enum.IntEnum):
+
+class VerticalAlignment(Enumeration):
+    """
+    Enumeration of vertical alignments.
+    """
     Down = -1
     Center = 0
     Up = 1
 
-    def __repr__(self):
-        return self.name
-
-    def __str__(self):
-        return self.name.lower()
+    def __format__(self, format_spec):
+        """
+        Formats vertical alignment as ``storage`` or ``lilypond``.
+        """
+        if format_spec == 'lilypond':
+            return {
+                self.Down: '_',
+                self.Up: '^',
+                self.Center: '-',
+            }[self]
+        return repr(self)
 
 Down = VerticalAlignment.Down
 Center = VerticalAlignment.Center
