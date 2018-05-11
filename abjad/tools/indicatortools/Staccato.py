@@ -61,9 +61,9 @@ class Staccato(AbjadValueObject):
     __slots__ = (
         )
 
-    _format_slot: HorizontalAlignment = Right
+    _format_slot: HorizontalAlignment = HorizontalAlignment.Right
 
-    _time_orientation: HorizontalAlignment = Right
+    _time_orientation: HorizontalAlignment = HorizontalAlignment.Right
 
     ### SPECIAL METHODS ###
 

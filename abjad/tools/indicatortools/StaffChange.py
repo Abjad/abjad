@@ -54,7 +54,7 @@ class StaffChange(AbjadValueObject):
 
     _format_slot = 'opening'
 
-    _time_orientation: HorizontalAlignment = Right
+    _time_orientation: HorizontalAlignment = HorizontalAlignment.Right
 
     ### INITIALIZER ###
 

@@ -1,4 +1,4 @@
-from abjad import Center, Down, Right, Up
+from abjad import Center, Down, Right, Up, HorizontalAlignment
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
 from abjad.tools.datastructuretools.String import String
@@ -64,9 +64,9 @@ class Staccatissimo(AbjadValueObject):
         '_direction',
         )
 
-    _format_slot = Right
+    _format_slot: HorizontalAlignment = HorizontalAlignment.Right
 
-    _time_orientation = Right
+    _time_orientation: HorizontalAlignment = HorizontalAlignment.Right
 
     ### INITIALIZER ###
 

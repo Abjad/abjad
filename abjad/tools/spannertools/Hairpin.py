@@ -1,7 +1,6 @@
 import typing
 from .Spanner import Spanner
-from abjad.tools.datastructuretools.OrderedDict import OrderedDict
-from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
+from abjad import VerticalAlignment
 from abjad.tools.datastructuretools.String import String
 from abjad.tools.indicatortools.Dynamic import Dynamic
 from abjad.tools.scoretools.Chord import Chord
@@ -301,7 +300,7 @@ class Hairpin(Spanner):
         self,
         descriptor: str = None,
         context: str = None,
-        direction: OrdinalConstant = None,
+        direction: VerticalAlignment = None,
         start_dynamic_is_textual: bool = None,
         stop_dynamic_is_textual: bool = None,
         trim: bool = None,

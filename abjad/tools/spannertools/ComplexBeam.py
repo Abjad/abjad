@@ -1,6 +1,5 @@
 import typing
-from abjad import Left, Right
-from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
+from abjad import HorizontalAlignment, Left, Right, VerticalAlignment
 from .Beam import Beam
 Number = typing.Union[int, float]
 
@@ -75,8 +74,8 @@ class ComplexBeam(Beam):
     def __init__(
         self,
         beam_rests: bool = None,
-        direction: typing.Union[str, OrdinalConstant] = None,
-        isolated_nib_direction: typing.Union[bool, OrdinalConstant] = None,
+        direction: typing.Union[str, VerticalAlignment] = None,
+        isolated_nib_direction: typing.Union[bool, HorizontalAlignment] = None,
         stemlet_length: Number = None,
         ) -> None:
         Beam.__init__(
@@ -416,7 +415,7 @@ class ComplexBeam(Beam):
 
     @property
     def isolated_nib_direction(self) -> typing.Union[
-        bool, OrdinalConstant, None]:
+        bool, HorizontalAlignment, None]:
         r'''
         Gets directed treatment to apply to lone nibs.
 

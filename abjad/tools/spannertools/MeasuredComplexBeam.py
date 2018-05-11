@@ -1,5 +1,5 @@
 import typing
-from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
+from abjad import HorizontalAlignment, VerticalAlignment
 from abjad.tools.scoretools.Measure import Measure
 from abjad.tools.topleveltools.inspect import inspect
 from .ComplexBeam import ComplexBeam
@@ -70,8 +70,8 @@ class MeasuredComplexBeam(ComplexBeam):
 
     def __init__(
         self,
-        direction: OrdinalConstant = None,
-        isolated_nib_direction: typing.Union[bool, OrdinalConstant] = False,
+        direction: VerticalAlignment = None,
+        isolated_nib_direction: typing.Union[bool, HorizontalAlignment] = False,
         span_beam_count: int = 1,
         ) -> None:
         ComplexBeam.__init__(

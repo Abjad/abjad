@@ -66,7 +66,8 @@ class ScoreTemplate(abctools.AbjadValueObject):
         ) -> LilyPondFile:
         r'''Illustrates score template.
         '''
-        score = self()
+        import abjad
+        score: abjad.Score = self()
         for voice in iterate(score).components(Voice):
             voice.append(Skip(1))
         self.attach_defaults(score)

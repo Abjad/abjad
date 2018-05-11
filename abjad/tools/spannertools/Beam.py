@@ -1,5 +1,5 @@
 import typing
-from abjad.tools.datastructuretools.OrdinalConstant import OrdinalConstant
+from abjad import VerticalAlignment
 from abjad.tools.datastructuretools.String import String
 from abjad.tools.topleveltools.inspect import inspect
 from abjad.tools.topleveltools.new import new
@@ -156,7 +156,7 @@ class Beam(Spanner):
 
     def __init__(
         self,
-        direction: typing.Union[str, OrdinalConstant] = None,
+        direction: typing.Union[str, VerticalAlignment] = None,
         stemlet_length: Number = None,
         ) -> None:
         Spanner.__init__(self)
