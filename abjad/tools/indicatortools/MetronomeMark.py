@@ -8,11 +8,11 @@ import functools
 import math
 import typing
 from abjad import Down
+from abjad.exceptions import ImpreciseMetronomeMarkError
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.datastructuretools.Duration import Duration
 from abjad.tools.datastructuretools.Multiplier import Multiplier
-from abjad.tools.exceptiontools import ImpreciseMetronomeMarkError
 from abjad.tools.markuptools.Markup import Markup
 from abjad.tools.mathtools.Enumerator import Enumerator
 from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
@@ -310,7 +310,7 @@ class MetronomeMark(AbjadValueObject):
             >>> mark_1 + mark_2
             Traceback (most recent call last):
                 ...
-            abjad.tools.exceptiontools.ImpreciseMetronomeMarkError.ImpreciseMetronomeMarkError
+            abjad.exceptions.ImpreciseMetronomeMarkError
 
         ..  container:: example
 
@@ -321,7 +321,7 @@ class MetronomeMark(AbjadValueObject):
             >>> mark_1 + mark_2
             Traceback (most recent call last):
                 ...
-            abjad.tools.exceptiontools.ImpreciseMetronomeMarkError.ImpreciseMetronomeMarkError
+            abjad.exceptions.ImpreciseMetronomeMarkError
 
         ..  container:: example
 
@@ -563,7 +563,7 @@ class MetronomeMark(AbjadValueObject):
             >>> mark_1 + mark_2
             Traceback (most recent call last):
                 ...
-            abjad.tools.exceptiontools.ImpreciseMetronomeMarkError.ImpreciseMetronomeMarkError
+            abjad.exceptions.ImpreciseMetronomeMarkError
 
         ..  container:: example
 
@@ -574,7 +574,7 @@ class MetronomeMark(AbjadValueObject):
             >>> mark_1 + mark_2
             Traceback (most recent call last):
                 ...
-            abjad.tools.exceptiontools.ImpreciseMetronomeMarkError.ImpreciseMetronomeMarkError
+            abjad.exceptions.ImpreciseMetronomeMarkError
 
         ..  container:: example
 
@@ -710,7 +710,7 @@ class MetronomeMark(AbjadValueObject):
             >>> mark_1 - mark_2
             Traceback (most recent call last):
                 ...
-            abjad.tools.exceptiontools.ImpreciseMetronomeMarkError.ImpreciseMetronomeMarkError
+            abjad.exceptions.ImpreciseMetronomeMarkError
 
         '''
         if not isinstance(argument, type(self)):

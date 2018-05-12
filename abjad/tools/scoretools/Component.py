@@ -3,8 +3,8 @@ import bisect
 import copy
 import uqbar.graphs
 from abjad import Down, Right, Up
-from abjad.tools.exceptiontools import MissingMetronomeMarkError
-from abjad.tools.exceptiontools import MissingMeasureError
+from abjad.exceptions import MissingMetronomeMarkError
+from abjad.exceptions import MissingMeasureError
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 

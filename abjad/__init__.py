@@ -114,6 +114,9 @@ from abjad.tools.systemtools.AbjadConfiguration import AbjadConfiguration
 abjad_configuration = AbjadConfiguration()
 del AbjadConfiguration
 
+
+from abjad.exceptions import *
+
 # import all tools packages
 from abjad.tools import *
 from abjad.tools.abctools import *
@@ -124,7 +127,6 @@ index_all = Pattern.index_all
 index_first = Pattern.index_first
 index_last = Pattern.index_last
 
-from abjad.tools.exceptiontools import *
 from abjad.tools.indicatortools import *
 from abjad.tools.instrumenttools import *
 from abjad.tools.lilypondfiletools import *

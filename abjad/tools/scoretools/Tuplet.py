@@ -2,7 +2,7 @@ import math
 import typing
 from .Container import Container
 from .Leaf import Leaf
-from abjad.tools.exceptiontools import AssignabilityError
+from abjad.exceptions import AssignabilityError
 from abjad.tools.datastructuretools.Duration import Duration
 from abjad.tools.datastructuretools.Multiplier import Multiplier
 from abjad.tools.topleveltools.inspect import inspect

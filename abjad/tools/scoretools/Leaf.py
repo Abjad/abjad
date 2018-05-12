@@ -2,12 +2,12 @@ import abc
 import copy
 import uqbar.graphs
 from abjad import Left, Right
+from abjad.exceptions import AssignabilityError
+from abjad.exceptions import MissingMetronomeMarkError
+from abjad.exceptions import MissingSpannerError
 from abjad.tools.datastructuretools.Duration import Duration
 from abjad.tools.datastructuretools.Multiplier import Multiplier
 from abjad.tools.indicatortools.MetronomeMark import MetronomeMark
-from abjad.tools.exceptiontools import AssignabilityError
-from abjad.tools.exceptiontools import MissingMetronomeMarkError
-from abjad.tools.exceptiontools import MissingSpannerError
 from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
 from abjad.tools.mathtools.Ratio import Ratio
 from abjad.tools.systemtools.LilyPondFormatManager import LilyPondFormatManager

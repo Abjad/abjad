@@ -3,9 +3,9 @@ import copy
 import inspect
 import itertools
 from abjad import Exact, Less, More
+from abjad.exceptions import ExtraSpannerError
+from abjad.exceptions import MissingSpannerError
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.exceptiontools import ExtraSpannerError
-from abjad.tools.exceptiontools import MissingSpannerError
 from abjad.tools.systemtools.FormatSpecification import FormatSpecification
 from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
 from abjad.tools.topleveltools.inspect import inspect as abjad_inspect
