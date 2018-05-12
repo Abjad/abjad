@@ -50,7 +50,7 @@ class PersistenceManager(abctools.AbjadObject):
             >>> for x in persist(staff).as_ly('~/example.ly'): # doctest: +SKIP
             ...     x
             ...
-            '/Users/josiah/Desktop/test.ly'
+            '/Users/josiah/Desktop/example.ly'
             0.04491996765136719
 
         Returns output path and elapsed formatting time when LilyPond output is
