@@ -27,7 +27,7 @@ class Rotation(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, n=0, period=None, stravinsky=None):
+    def __init__(self, *, n=0, period=None, stravinsky=None):
         self._n = int(n)
         if period is not None:
             period = abs(int(period))

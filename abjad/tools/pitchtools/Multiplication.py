@@ -25,7 +25,7 @@ class Multiplication(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, n=1):
+    def __init__(self, *, n=1):
         self._n = n
 
     ### SPECIAL METHODS ###

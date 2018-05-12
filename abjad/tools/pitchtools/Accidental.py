@@ -191,7 +191,7 @@ class Accidental(AbjadValueObject):
 
     ### INITIALIZER ##
 
-    def __init__(self, name='', arrow=None):
+    def __init__(self, name='', *, arrow=None):
         import abjad
         if name is None:
             semitones = 0

@@ -475,7 +475,7 @@ class Label(abctools.AbjadObject):
                 >>> chord = abjad.Chord([12, 14, 18, 21, 23], (1, 4))
                 >>> pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]]
                 >>> colors = ['red', 'blue', 'green']
-                >>> color_map = abjad.ColorMap(colors, pitches)
+                >>> color_map = abjad.ColorMap(colors=colors, pitch_iterables=pitches)
                 >>> abjad.label(chord).color_note_heads(color_map)
                 >>> abjad.show(chord) # doctest: +SKIP
 
@@ -500,7 +500,7 @@ class Label(abctools.AbjadObject):
                 >>> chord = abjad.Chord([12, 14, 18, 21, 23], (1, 4))
                 >>> pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]]
                 >>> colors = ['red', 'blue', 'green']
-                >>> color_map = abjad.ColorMap(colors, pitches)
+                >>> color_map = abjad.ColorMap(colors=colors, pitch_iterables=pitches)
                 >>> expression = abjad.label().color_note_heads(color_map)
                 >>> expression(chord)
                 >>> abjad.show(chord) # doctest: +SKIP

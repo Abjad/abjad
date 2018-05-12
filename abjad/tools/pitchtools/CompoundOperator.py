@@ -33,7 +33,7 @@ class CompoundOperator(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, operators=None, show_identity_operators=None):
+    def __init__(self, operators=None, *, show_identity_operators=None):
         if operators is not None:
             if not isinstance(operators, collections.Sequence):
                 operators = (operators,)

@@ -25,7 +25,7 @@ class Inversion(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, axis=None):
+    def __init__(self, *, axis=None):
         from abjad.tools import pitchtools
         if axis is not None:
             axis = pitchtools.NamedPitch(axis)

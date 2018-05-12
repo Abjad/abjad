@@ -966,6 +966,7 @@ class SetClass(AbjadValueObject):
         self,
         cardinality=1,
         rank=1,
+        *,
         lex_rank=None,
         transposition_only=None,
         ):
