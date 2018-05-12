@@ -47,6 +47,7 @@ class Piano(Instrument):
 
     def __init__(
         self,
+        *,
         name='piano',
         short_name='pf.',
         markup=None,

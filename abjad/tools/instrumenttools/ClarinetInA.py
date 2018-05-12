@@ -38,6 +38,7 @@ class ClarinetInA(Instrument):
 
     def __init__(
         self,
+        *,
         name='clarinet in A',
         short_name=r'cl. A \natural',
         markup=None,

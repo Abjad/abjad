@@ -46,6 +46,7 @@ class Accordion(Instrument):
 
     def __init__(
         self,
+        *,
         name='accordion',
         short_name='acc.',
         markup=None,

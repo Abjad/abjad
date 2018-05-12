@@ -36,6 +36,7 @@ class TenorVoice(Instrument):
 
     def __init__(
         self,
+        *,
         name='tenor',
         short_name='ten.',
         markup=None,

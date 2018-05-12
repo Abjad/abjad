@@ -34,6 +34,7 @@ class Piccolo(Instrument):
 
     def __init__(
         self,
+        *,
         name='piccolo',
         short_name='picc.',
         markup=None,

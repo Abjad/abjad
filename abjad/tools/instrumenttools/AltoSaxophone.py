@@ -34,6 +34,7 @@ class AltoSaxophone(Instrument):
 
     def __init__(
         self,
+        *,
         name='alto saxophone',
         short_name='alt. sax.',
         markup=None,

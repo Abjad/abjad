@@ -34,6 +34,7 @@ class Glockenspiel(Instrument):
 
     def __init__(
         self,
+        *,
         name='glockenspiel',
         short_name='gkspl.',
         markup=None,

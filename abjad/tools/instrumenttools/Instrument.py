@@ -93,6 +93,7 @@ class Instrument(AbjadValueObject):
 
     def __init__(
         self,
+        *,
         allowable_clefs=None,
         context=None,
         hide=None,

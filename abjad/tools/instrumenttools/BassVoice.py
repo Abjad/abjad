@@ -37,6 +37,7 @@ class BassVoice(Instrument):
 
     def __init__(
         self,
+        *,
         name='bass',
         short_name='bass',
         markup=None,

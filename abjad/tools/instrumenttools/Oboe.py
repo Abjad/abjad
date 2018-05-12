@@ -34,6 +34,7 @@ class Oboe(Instrument):
 
     def __init__(
         self,
+        *,
         name='oboe',
         short_name='ob.',
         markup=None,

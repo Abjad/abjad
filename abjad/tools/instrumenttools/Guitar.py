@@ -36,6 +36,7 @@ class Guitar(Instrument):
 
     def __init__(
         self,
+        *,
         name='guitar',
         short_name='gt.',
         markup=None,

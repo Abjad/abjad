@@ -39,6 +39,7 @@ class Viola(Instrument):
 
     def __init__(
         self,
+        *,
         name='viola',
         short_name='va.',
         markup=None,
