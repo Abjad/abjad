@@ -1147,6 +1147,7 @@ class MetronomeMark(AbjadValueObject):
         '''
         return self._textual_indication
 
+    # TODO: restrict units_per_minute to inf, fraction and NOT float
     @property
     def units_per_minute(self) -> typing.Union[int, float, Fraction, None]:
         '''
