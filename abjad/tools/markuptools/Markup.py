@@ -89,7 +89,7 @@ class Markup(AbjadValueObject):
         Markup can be tagged:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup = abjad.Markup('Allegro', abjad.Up).italic()
+        >>> markup = abjad.Markup('Allegro', direction=abjad.Up).italic()
         >>> abjad.attach(markup, staff[0], tag='RED:M1')
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -142,7 +142,7 @@ class Markup(AbjadValueObject):
         Markup can be deactively tagged:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup = abjad.Markup('Allegro', abjad.Up).italic()
+        >>> markup = abjad.Markup('Allegro', direction=abjad.Up).italic()
         >>> abjad.attach(
         ...     markup,
         ...     staff[0],
@@ -205,8 +205,8 @@ class Markup(AbjadValueObject):
         the second italic markup is attached:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup_1 = abjad.Markup('Allegro', abjad.Up).italic()
-        >>> markup_2 = abjad.Markup('non troppo', abjad.Up).italic()
+        >>> markup_1 = abjad.Markup('Allegro', direction=abjad.Up).italic()
+        >>> markup_2 = abjad.Markup('non troppo', direction=abjad.Up).italic()
         >>> abjad.attach(markup_1, staff[0])
         >>> abjad.attach(markup_2, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -257,6 +257,7 @@ class Markup(AbjadValueObject):
     def __init__(
         self,
         contents=None,
+        *,
         direction=None,
         stack_priority=0,
         ):
@@ -368,8 +369,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        superclass = super(Markup, self)
-        return superclass.__copy__(*arguments)
+        import abjad
+        return abjad.new(self)
 
     def __eq__(self, argument):
         r'''Is true markup equals `argument`.
@@ -1347,7 +1348,7 @@ class Markup(AbjadValueObject):
             With Abjad direction constant:
 
             >>> markup = abjad.Markup('Allegro assai')
-            >>> markup = markup.general_align('Y', abjad.Up)
+            >>> markup = markup.general_align('Y', direction=abjad.Up)
             >>> abjad.f(markup)
             \markup {
                 \general-align
