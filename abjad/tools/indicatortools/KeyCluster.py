@@ -52,6 +52,7 @@ class KeyCluster(AbjadValueObject):
 
     def __init__(
         self,
+        *,
         include_black_keys: bool = True,
         include_white_keys: bool = True,
         hide: bool = False,

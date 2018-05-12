@@ -604,6 +604,7 @@ class MetricModulation(AbjadValueObject):
 
     def __init__(
         self,
+        *,
         left_rhythm=None,
         right_rhythm=None,
         left_markup: Markup = None,

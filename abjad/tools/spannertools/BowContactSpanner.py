@@ -351,9 +351,9 @@ class BowContactSpanner(Spanner):
                 string = r'^ \parenthesize \downbow'
         else:
             if direction_change is Up:
-                articulation = Articulation('upbow', Up)
+                articulation = Articulation('upbow', direction=Up)
             elif direction_change is Down:
-                articulation = Articulation('downbow', Up)
+                articulation = Articulation('downbow', direction=Up)
             string = str(articulation)
         bundle.right.articulations.append(string)
 

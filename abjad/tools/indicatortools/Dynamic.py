@@ -219,6 +219,7 @@ class Dynamic(AbjadValueObject):
     def __init__(
         self,
         name: typing.Union[str, 'Dynamic'] = 'f',
+        *,
         command: str = None,
         direction: VerticalAlignment = None,
         hide: bool = None,

@@ -69,7 +69,11 @@ class Staccatissimo(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, direction: VerticalAlignment = None) -> None:
+    def __init__(
+        self,
+        *,
+        direction: VerticalAlignment = None,
+        ) -> None:
         direction_ = String.to_tridirectional_ordinal_constant(direction)
         if direction_ is not None:
             assert isinstance(direction_, VerticalAlignment), repr(direction_)

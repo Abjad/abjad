@@ -53,6 +53,7 @@ class LineSegment(AbjadValueObject):
 
     def __init__(
         self,
+        *,
         arrow_width: Number = None,
         dash_fraction: Number = None,
         dash_period: Number = None,

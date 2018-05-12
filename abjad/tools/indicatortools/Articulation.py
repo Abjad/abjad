@@ -39,7 +39,7 @@ class Articulation(AbjadValueObject):
 
         Initializes with direction:
 
-        >>> abjad.Articulation('staccato', abjad.Up)
+        >>> abjad.Articulation('staccato', direction=abjad.Up)
         Articulation('staccato', Up)
 
     .. container:: example
@@ -138,6 +138,7 @@ class Articulation(AbjadValueObject):
     def __init__(
         self,
         name: str = None,
+        *,
         direction: typing.Union[str, VerticalAlignment] = None,
         ) -> None:
         if isinstance(name, type(self)):

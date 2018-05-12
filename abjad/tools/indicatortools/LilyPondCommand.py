@@ -63,6 +63,7 @@ class LilyPondCommand(AbjadValueObject):
         self,
         name: str = None,
         format_slot: str = 'opening',
+        *,
         prefix: str = '\\',
         ) -> None:
         name = name or 'slurDotted'

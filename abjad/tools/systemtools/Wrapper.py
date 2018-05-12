@@ -11,7 +11,7 @@ class Wrapper(AbjadValueObject):
     ..  container:: example
 
         >>> component = abjad.Note("c'4")
-        >>> articulation = abjad.Articulation('accent', abjad.Up)
+        >>> articulation = abjad.Articulation('accent', direction=abjad.Up)
         >>> abjad.attach(articulation, component)
         >>> wrapper = abjad.inspect(component).wrapper()
 
@@ -825,7 +825,7 @@ class Wrapper(AbjadValueObject):
         ..  container:: example
 
             >>> note = abjad.Note("c'4")
-            >>> articulation = abjad.Articulation('accent', abjad.Up)
+            >>> articulation = abjad.Articulation('accent', direction=abjad.Up)
             >>> abjad.attach(articulation, note)
             >>> wrapper = abjad.inspect(note).wrapper()
             >>> wrapper.annotation is None
@@ -834,7 +834,7 @@ class Wrapper(AbjadValueObject):
         ..  container:: example
 
             >>> note = abjad.Note("c'4")
-            >>> articulation = abjad.Articulation('accent', abjad.Up)
+            >>> articulation = abjad.Articulation('accent', direction=abjad.Up)
             >>> abjad.annotate(note, 'foo', articulation)
             >>> abjad.inspect(note).get_annotation('foo')
             Articulation('accent', Up)

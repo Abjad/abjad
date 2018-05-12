@@ -49,7 +49,11 @@ class Arpeggio(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, direction: VerticalAlignment = None) -> None:
+    def __init__(
+        self,
+        *,
+        direction: VerticalAlignment = None,
+        ) -> None:
         if direction is not None:
             assert direction in (Up, Down, Center)
         self._direction = direction

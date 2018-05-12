@@ -96,6 +96,7 @@ class ArrowLineSegment(LineSegment):
 
     def __init__(
         self,
+        *,
         arrow_width: Number = 0.25,
         dash_fraction: Number = 1,
         dash_period: Number = None,

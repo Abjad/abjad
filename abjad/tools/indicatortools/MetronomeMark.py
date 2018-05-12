@@ -245,6 +245,7 @@ class MetronomeMark(AbjadValueObject):
             Duration, typing.Tuple[int, int]] = None,
         units_per_minute: Number = None,
         textual_indication: Markup = None,
+        *,
         custom_markup: Markup = None,
         hide: bool = None,
         ) -> None:
