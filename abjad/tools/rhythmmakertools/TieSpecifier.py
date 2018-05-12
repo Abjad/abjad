@@ -23,6 +23,7 @@ class TieSpecifier(AbjadValueObject):
 
     def __init__(
         self,
+        *,
         repeat_ties=None,
         strip_ties=None,
         tie_across_divisions=None,

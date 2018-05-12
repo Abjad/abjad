@@ -152,6 +152,7 @@ class SilenceMask(AbjadValueObject):
     def __init__(
         self,
         pattern=None,
+        *,
         template=None,
         use_multimeasure_rests=None,
         ):

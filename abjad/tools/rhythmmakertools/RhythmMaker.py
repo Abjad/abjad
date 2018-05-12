@@ -34,6 +34,7 @@ class RhythmMaker(AbjadValueObject):
 
     def __init__(
         self,
+        *,
         beam_specifier=None,
         logical_tie_masks=None,
         division_masks=None,

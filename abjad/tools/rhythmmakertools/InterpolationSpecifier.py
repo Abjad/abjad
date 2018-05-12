@@ -21,6 +21,7 @@ class InterpolationSpecifier(AbjadValueObject):
 
     def __init__(
         self,
+        *,
         start_duration=(1, 8),
         stop_duration=(1, 16),
         written_duration=(1, 16),

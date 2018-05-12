@@ -67,6 +67,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     def __init__(
         self,
+        *,
         beam_specifier=None,
         duration_specifier=None,
         exponent=None,

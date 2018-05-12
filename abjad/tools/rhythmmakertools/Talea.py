@@ -44,6 +44,7 @@ class Talea(AbjadValueObject):
 
     def __init__(
         self,
+        *,
         counts: typing.Iterable[int] = (1,),
         denominator: int = 16,
         preamble: typing.List[int] = None,

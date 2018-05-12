@@ -97,6 +97,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
     def __init__(
         self,
+        *,
         talea=None,
         beam_specifier=None,
         burnish_specifier=None,

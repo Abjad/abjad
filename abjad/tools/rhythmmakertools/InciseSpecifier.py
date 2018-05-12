@@ -51,6 +51,7 @@ class InciseSpecifier(AbjadValueObject):
 
     def __init__(
         self,
+        *,
         prefix_talea=None,
         prefix_counts=None,
         suffix_talea=None,

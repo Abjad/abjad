@@ -41,6 +41,7 @@ class TupletSpecifier(AbjadValueObject):
 
     def __init__(
         self,
+        *,
         avoid_dots: bool = None,
         denominator: typing.Union[str, Duration, int] = None,
         diminution: bool = True,

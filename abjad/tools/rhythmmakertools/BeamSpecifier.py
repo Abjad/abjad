@@ -62,6 +62,7 @@ class BeamSpecifier(AbjadValueObject):
 
     def __init__(
         self,
+        *,
         beam_each_division=True,
         beam_divisions_together=None,
         beam_rests=None,

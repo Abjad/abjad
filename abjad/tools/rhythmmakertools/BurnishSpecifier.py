@@ -102,6 +102,7 @@ class BurnishSpecifier(AbjadValueObject):
 
     def __init__(
         self,
+        *,
         left_classes=None,
         middle_classes=None,
         right_classes=None,
