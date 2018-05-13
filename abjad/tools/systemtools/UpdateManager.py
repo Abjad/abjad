@@ -4,10 +4,11 @@ from abjad.exceptions import MissingMetronomeMarkError
 
 
 class UpdateManager(AbjadObject):
-    '''Update manager.
+    """
+    Update manager.
 
     Updates start offset, stop offsets and indicators everywhere in score.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -49,12 +50,61 @@ class UpdateManager(AbjadObject):
             )
         return components
 
+    def _make_metronome_mark_map(self, score_root):
+        from abjad.tools.datastructuretools.Multiplier import Multiplier
+        from abjad.tools.datastructuretools.Offset import Offset
+        from abjad.tools.datastructuretools.Sequence import Sequence
+        from abjad.tools.indicatortools.MetronomeMark import MetronomeMark
+        from abjad.tools.timespantools.AnnotatedTimespan import \
+            AnnotatedTimespan
+        from abjad.tools.timespantools.TimespanList import TimespanList
+        pairs = []
+        all_stop_offsets = set()
+        for component in self._iterate_entire_score(score_root):
+            indicators = component._get_indicators(MetronomeMark)
+            if len(indicators) == 1:
+                metronome_mark = indicators[0]
+                if not metronome_mark.is_imprecise:
+                    pair = (component._start_offset, metronome_mark)
+                    pairs.append(pair)
+            if component._stop_offset is not None:
+                all_stop_offsets.add(component._stop_offset)
+        pairs.sort(key=lambda _:_[0])
+        if not pairs:
+            return
+        if pairs[0][0] != 0:
+            return
+        score_stop_offset = max(all_stop_offsets)
+        timespans = TimespanList()
+        clocktime_rate = MetronomeMark((1, 4), 60)
+        clocktime_start_offset = Offset(0)
+        for left, right in Sequence(pairs).nwise(wrapped=True):
+            metronome_mark = left[-1]
+            start_offset = left[0]
+            stop_offset = right[0]
+            # last timespan
+            if stop_offset == 0:
+                stop_offset = score_stop_offset
+            duration = stop_offset - start_offset
+            multiplier = Multiplier(60, metronome_mark.units_per_minute)
+            clocktime_duration = duration / metronome_mark.reference_duration
+            clocktime_duration *= multiplier
+            timespan = AnnotatedTimespan(
+                start_offset=start_offset,
+                stop_offset=stop_offset,
+                annotation=(clocktime_start_offset, clocktime_duration),
+                )
+            timespans.append(timespan)
+            clocktime_start_offset += clocktime_duration
+        return timespans
+
     def _update_all_indicators(self, score_root):
-        r'''Updating indicators does not update offsets.
+        """
+        Updating indicators does not update offsets.
         On the other hand, getting an effective indicator does update
         offsets when at least one indicator of the appropriate type
         attaches to score.
-        '''
+        """
         import abjad
         components = self._iterate_entire_score(score_root)
         for component in components:
@@ -65,9 +115,10 @@ class UpdateManager(AbjadObject):
 
     @staticmethod
     def _update_all_leaf_indices_and_measure_numbers(score_root):
-        r'''Call only when updating offsets.
+        """
+        Call only when updating offsets.
         No separate state flags exist for leaf indices or measure numbers.
-        '''
+        """
         from abjad.tools import scoretools
         from abjad.tools.topleveltools import iterate
         if isinstance(score_root, scoretools.Context):
@@ -88,17 +139,53 @@ class UpdateManager(AbjadObject):
                 measure._measure_number = measure_number
 
     def _update_all_offsets(self, score_root):
-        r'''Updating offsets does not update indicators.
+        """
+        Updating offsets does not update indicators.
         Updating offsets does not update offsets in seconds.
-        '''
+        """
         for component in self._iterate_entire_score(score_root):
             self._update_component_offsets(component)
             component._offsets_are_current = True
 
     def _update_all_offsets_in_seconds(self, score_root):
+        self._update_all_offsets(score_root)
+        timespans = self._make_metronome_mark_map(score_root)
         for component in self._iterate_entire_score(score_root):
-            self._update_component_offsets_in_seconds(component)
+            self._update_clocktime_offsets(component, timespans)
             component._offsets_in_seconds_are_current = True
+
+    @staticmethod
+    def _update_clocktime_offsets(component, timespans):
+        from abjad.tools.datastructuretools.Offset import Offset
+        if not timespans:
+            return
+        for timespan in timespans:
+            if (timespan.start_offset <= component._start_offset <
+                timespan.stop_offset):
+                pair = timespan.annotation
+                clocktime_start_offset, clocktime_duration = pair
+                local_offset = component._start_offset - timespan.start_offset
+                multiplier = local_offset / timespan.duration
+                duration = multiplier * clocktime_duration
+                offset = clocktime_start_offset + duration
+                component._start_offset_in_seconds = Offset(offset)
+            if (timespan.start_offset <= component._stop_offset <
+                timespan.stop_offset):
+                pair = timespan.annotation
+                clocktime_start_offset, clocktime_duration = pair
+                local_offset = component._stop_offset - timespan.start_offset
+                multiplier = local_offset / timespan.duration
+                duration = multiplier * clocktime_duration
+                offset = clocktime_start_offset + duration
+                component._stop_offset_in_seconds = Offset(offset)
+                return
+        if component._stop_offset == timespans[-1].stop_offset:
+            pair = timespans[-1].annotation
+            clocktime_start_offset, clocktime_duration = pair
+            offset = clocktime_start_offset + clocktime_duration
+            component._stop_offset_in_seconds = Offset(offset)
+            return
+        raise Exception(f'can not find {stop_offset} in {timespans}.')
 
     @classmethod
     def _update_component_offsets(class_, component):
@@ -121,26 +208,25 @@ class UpdateManager(AbjadObject):
         component._timespan._start_offset = start_offset
         component._timespan._stop_offset = stop_offset
 
-    @staticmethod
-    def _update_component_offsets_in_seconds(component):
-        import abjad
-        try:
-            current_duration_in_seconds = \
-                component._get_duration(in_seconds=True)
-            previous = component._get_nth_component_in_time_order_from(-1)
-            if previous is not None:
-                component._start_offset_in_seconds = \
-                    abjad.inspect(previous).get_timespan(in_seconds=True).stop_offset
-            else:
-                component._start_offset_in_seconds = abjad.Offset(0)
-            # this one case is possible for containers only
-            if component._start_offset_in_seconds is None:
-                raise MissingMetronomeMarkError
-            component._stop_offset_in_seconds = \
-                component._start_offset_in_seconds + \
-                current_duration_in_seconds
-        except MissingMetronomeMarkError:
-            pass
+#    @staticmethod
+#    def _update_component_offsets_in_seconds(component):
+#        import abjad
+#        try:
+#            duration = component._get_duration(in_seconds=True)
+#            previous = component._get_nth_component_in_time_order_from(-1)
+#            if previous is not None:
+#                timespan = abjad.inspect(previous).get_timespan(
+#                    in_seconds=True)
+#                component._start_offset_in_seconds = timespan.stop_offset
+#            else:
+#                component._start_offset_in_seconds = abjad.Offset(0)
+#            # this one case is possible for containers only
+#            if component._start_offset_in_seconds is None:
+#                raise MissingMetronomeMarkError
+#            stop_offset = component._start_offset_in_seconds + duration
+#            component._stop_offset_in_seconds = stop_offset
+#        except MissingMetronomeMarkError:
+#            pass
 
     def _update_now(
         self,
@@ -173,7 +259,6 @@ class UpdateManager(AbjadObject):
             self._update_all_offsets_in_seconds(score_root)
         if indicators and not indicators_are_current:
             self._update_all_indicators(score_root)
-            self._update_all_offsets_in_seconds(score_root)
 
     ### EXPERIMENTAL ###
 
