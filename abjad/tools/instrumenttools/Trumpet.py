@@ -34,6 +34,7 @@ class Trumpet(Instrument):
 
     def __init__(
         self,
+        *,
         name='trumpet',
         short_name='tp.',
         markup=None,

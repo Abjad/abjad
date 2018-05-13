@@ -36,6 +36,7 @@ class AltoVoice(Instrument):
 
     def __init__(
         self,
+        *,
         name='alto',
         short_name='alto',
         markup=None,

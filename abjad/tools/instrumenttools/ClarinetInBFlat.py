@@ -36,6 +36,7 @@ class ClarinetInBFlat(Instrument):
 
     def __init__(
         self,
+        *,
         name='clarinet in B-flat',
         short_name='cl. in B-flat',
         markup=None,

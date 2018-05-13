@@ -127,6 +127,7 @@ class TimeSignature(AbjadValueObject):
     def __init__(
         self,
         pair: typing.Tuple[int, int] = (4, 4),
+        *,
         partial: Duration = None,
         hide: bool = None,
         ) -> None:

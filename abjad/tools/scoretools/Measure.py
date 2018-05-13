@@ -1,6 +1,6 @@
 import copy
-from abjad.tools.exceptiontools import OverfullContainerError
-from abjad.tools.exceptiontools import UnderfullContainerError
+from abjad.exceptions import OverfullContainerError
+from abjad.exceptions import UnderfullContainerError
 from .Container import Container
 
 

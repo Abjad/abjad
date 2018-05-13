@@ -36,6 +36,7 @@ class SopranoVoice(Instrument):
 
     def __init__(
         self,
+        *,
         name='soprano',
         short_name='sop.',
         markup=None,

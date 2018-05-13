@@ -1,5 +1,5 @@
 import typing
-from abjad import VerticalAlignment
+from abjad.enumerations import VerticalAlignment
 from abjad.tools.datastructuretools.String import String
 from .Spanner import Spanner
 

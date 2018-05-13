@@ -37,6 +37,7 @@ class Bassoon(Instrument):
 
     def __init__(
         self,
+        *,
         name='bassoon',
         short_name='bsn.',
         markup=None,

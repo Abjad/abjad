@@ -127,7 +127,7 @@ Use ``Up`` to force an articulation to appear above the staff:
 
 ..  abjad::
 
-    articulation = abjad.Articulation('turn', Up)
+    articulation = abjad.Articulation('turn', direction=abjad.Up)
     abjad.attach(articulation, staff[5])
 
 ..  abjad::
@@ -142,7 +142,7 @@ Use ``Down`` to force an articulation to appear below the staff:
 
 ..  abjad::
 
-    articulation = abjad.Articulation('turn', Down)
+    articulation = abjad.Articulation('turn', direction=Down)
     abjad.attach(articulation, staff[5])
 
 ..  abjad::
@@ -157,13 +157,13 @@ Articulations compare equal when name and direction strings compare equal:
 
 ..  abjad::
 
-    abjad.Articulation('staccato', Up) == abjad.Articulation('staccato', Up)
+    abjad.Articulation('staccato', direction=Up) == abjad.Articulation('staccato', direction=abjad.Up)
 
 Otherwise articulations do not compare equal:
 
 ..  abjad::
 
-    abjad.Articulation('staccato', Up) == abjad.Articulation('turn', Up)
+    abjad.Articulation('staccato', direction=abjad.Up) == abjad.Articulation('turn', direction=abjad.Up)
 
 (This chapter's musical examples are based on Haydn's piano sonata number 42, 
 Hob. XVI/27.)

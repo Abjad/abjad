@@ -1,7 +1,7 @@
 import collections
 import copy
 import typing
-from abjad import Left, Right
+from abjad.enumerations import Left, Right
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.datastructuretools.Duration import Duration
 from abjad.tools.scoretools.Leaf import Leaf

@@ -1,5 +1,5 @@
 import collections
-from abjad import Left, Right
+from abjad.enumerations import Left, Right
 from abjad.tools import abctools
 
 

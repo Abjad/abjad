@@ -31,6 +31,7 @@ class RotationCounter(TypedCounter):
 
     def __init__(
         self,
+        *,
         autoincrement=None,
         default=None,
         items=None,

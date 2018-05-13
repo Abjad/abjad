@@ -26,7 +26,7 @@ class Transposition(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, n=0):
+    def __init__(self, *, n=0):
         self._n = n
 
     ### SPECIAL METHODS ###

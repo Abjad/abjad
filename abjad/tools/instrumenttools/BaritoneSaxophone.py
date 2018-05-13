@@ -34,6 +34,7 @@ class BaritoneSaxophone(Instrument):
 
     def __init__(
         self,
+        *,
         name='baritone saxophone',
         short_name='bar. sax.',
         markup=None,

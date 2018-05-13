@@ -50,6 +50,7 @@ class Harpsichord(Instrument):
 
     def __init__(
         self,
+        *,
         name='harpsichord',
         short_name='hpschd.',
         markup=None,

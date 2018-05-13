@@ -60,6 +60,7 @@ class Tremolo(AbjadValueObject):
     def __init__(
         self,
         beam_count: int = 3,
+        *,
         is_slurred: bool = None,
         ) -> None:
         assert isinstance(beam_count, int), repr(beam_count)

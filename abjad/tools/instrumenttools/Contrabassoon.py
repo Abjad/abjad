@@ -37,6 +37,7 @@ class Contrabassoon(Instrument):
 
     def __init__(
         self,
+        *,
         name='contrabassoon',
         short_name='contrabsn.',
         markup=None,

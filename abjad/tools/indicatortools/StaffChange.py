@@ -1,4 +1,4 @@
-from abjad import HorizontalAlignment, Right
+from abjad.enumerations import HorizontalAlignment, Right
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.schemetools.Scheme import Scheme
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle

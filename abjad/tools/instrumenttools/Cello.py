@@ -39,6 +39,7 @@ class Cello(Instrument):
 
     def __init__(
         self,
+        *,
         name='cello',
         short_name='vc.',
         markup=None,

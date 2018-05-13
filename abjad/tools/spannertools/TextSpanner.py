@@ -1,9 +1,10 @@
 import typing
-from abjad import Center
+from abjad.enumerations import Center
 from abjad.tools.datastructuretools.OrderedDict import OrderedDict
 from abjad.tools.indicatortools.LineSegment import LineSegment
-from abjad.tools.lilypondnametools.LilyPondGrobOverride import \
-    LilyPondGrobOverride
+from abjad.tools.lilypondnametools.LilyPondGrobOverride import (
+    LilyPondGrobOverride,
+)
 from abjad.tools.markuptools.Markup import Markup
 from abjad.tools.scoretools.Leaf import Leaf
 from abjad.tools.systemtools.Tag import Tag

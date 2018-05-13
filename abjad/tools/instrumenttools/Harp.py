@@ -47,6 +47,7 @@ class Harp(Instrument):
 
     def __init__(
         self,
+        *,
         name='harp',
         short_name='hp.',
         markup=None,

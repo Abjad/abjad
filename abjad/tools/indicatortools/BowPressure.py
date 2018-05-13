@@ -34,10 +34,7 @@ class BowPressure(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        pressure: str = None,
-        ) -> None:
+    def __init__(self, pressure: str = None) -> None:
         self._pressure = pressure
 
     ### PUBLIC PROPERTIES ###

@@ -1,7 +1,7 @@
 import copy
 import math
 import re
-from abjad.tools.exceptiontools import AssignabilityError
+from abjad.exceptions import AssignabilityError
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.topleveltools.override import override

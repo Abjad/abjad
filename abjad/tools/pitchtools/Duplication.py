@@ -31,6 +31,7 @@ class Duplication(abctools.AbjadValueObject):
 
     def __init__(
         self,
+        *,
         counts=None,
         indices=None,
         period=None,

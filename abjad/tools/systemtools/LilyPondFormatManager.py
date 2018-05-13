@@ -1,4 +1,4 @@
-from abjad import Up, Down, Left, Right, Center
+from abjad.enumerations import Up, Down, Left, Right, Center
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 

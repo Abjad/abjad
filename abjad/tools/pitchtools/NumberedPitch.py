@@ -76,7 +76,7 @@ class NumberedPitch(Pitch):
 
     ### INITIALIZER ###
 
-    def __init__(self, number=0, arrow=None):
+    def __init__(self, number=0, *, arrow=None):
         import abjad
         try:
             number = number.number

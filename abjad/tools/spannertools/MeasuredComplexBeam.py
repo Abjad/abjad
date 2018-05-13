@@ -1,5 +1,5 @@
 import typing
-from abjad import HorizontalAlignment, VerticalAlignment
+from abjad.enumerations import HorizontalAlignment, VerticalAlignment
 from abjad.tools.scoretools.Measure import Measure
 from abjad.tools.topleveltools.inspect import inspect
 from .ComplexBeam import ComplexBeam

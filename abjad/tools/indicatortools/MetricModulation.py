@@ -1,6 +1,6 @@
 import collections
 import typing
-from abjad import Up
+from abjad.enumerations import Up
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.datastructuretools.Duration import Duration
 from abjad.tools.markuptools.Markup import Markup
@@ -604,6 +604,7 @@ class MetricModulation(AbjadValueObject):
 
     def __init__(
         self,
+        *,
         left_rhythm=None,
         right_rhythm=None,
         left_markup: Markup = None,

@@ -59,6 +59,7 @@ class NoteRhythmMaker(RhythmMaker):
 
     def __init__(
         self,
+        *,
         beam_specifier=None,
         burnish_specifier=None,
         division_masks=None,

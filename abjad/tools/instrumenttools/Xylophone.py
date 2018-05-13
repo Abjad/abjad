@@ -34,6 +34,7 @@ class Xylophone(Instrument):
 
     def __init__(
         self,
+        *,
         name='xylophone',
         short_name='xyl.',
         markup=None,

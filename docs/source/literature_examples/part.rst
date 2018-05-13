@@ -66,7 +66,7 @@ give them a 6/4 time signature, just so they line up properly.
 
     descents = durated_reservoir['First Violin'][:10]
     for i, descent in enumerate(descents[1:], 1):
-        markup = abjad.Markup(r'\rounded-box \bold {}'.format(i), Up)
+        markup = abjad.Markup(r'\rounded-box \bold {}'.format(i), direction=abjad.Up)
         abjad.attach(markup, descent[0])
 
 ..  abjad::
@@ -84,7 +84,7 @@ Let's look at the second violins too:
 
     descents = durated_reservoir['Second Violin'][:10]
     for i, descent in enumerate(descents[1:], 1):
-        markup = abjad.Markup(r'\rounded-box \bold {}'.format(i), Up)
+        markup = abjad.Markup(r'\rounded-box \bold {}'.format(i), direction=abjad.Up)
         abjad.attach(markup, descent[0])
 
 ..  abjad::
@@ -104,7 +104,7 @@ the bar lines accidentally:
 
     descents = durated_reservoir['Viola'][:10]
     for i, descent in enumerate(descents[1:], 1):
-        markup = abjad.Markup(r'\rounded-box \bold {}'.format(i), Up)
+        markup = abjad.Markup(r'\rounded-box \bold {}'.format(i), direction=abjad.Up)
         abjad.attach(markup, descent[0])
 
 ..  abjad::

@@ -5,7 +5,7 @@ import six
 import textwrap
 import typing
 import unicodedata
-from abjad import Center, Down, Up, VerticalAlignment
+from abjad.enumerations import VerticalAlignment
 from .TypedList import TypedList
 
 

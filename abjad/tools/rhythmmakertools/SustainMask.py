@@ -154,6 +154,7 @@ class SustainMask(AbjadValueObject):
     def __init__(
         self,
         pattern=None,
+        *,
         template=None,
         ):
         import abjad

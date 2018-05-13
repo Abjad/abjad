@@ -1,5 +1,5 @@
 import typing
-from abjad import Center, Down, Up, VerticalAlignment
+from abjad.enumerations import Center, Down, Up, VerticalAlignment
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
@@ -49,7 +49,11 @@ class Arpeggio(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, direction: VerticalAlignment = None) -> None:
+    def __init__(
+        self,
+        *,
+        direction: VerticalAlignment = None,
+        ) -> None:
         if direction is not None:
             assert direction in (Up, Down, Center)
         self._direction = direction

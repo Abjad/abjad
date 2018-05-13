@@ -25,6 +25,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
     def __init__(
         self,
+        *,
         denominators=[8],
         beam_specifier=None,
         burnish_specifier=None,

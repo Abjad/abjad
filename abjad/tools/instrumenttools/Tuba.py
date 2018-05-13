@@ -37,6 +37,7 @@ class Tuba(Instrument):
 
     def __init__(
         self,
+        *,
         name='tuba',
         short_name='tb.',
         markup=None,

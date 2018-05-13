@@ -34,6 +34,7 @@ class Marimba(Instrument):
 
     def __init__(
         self,
+        *,
         name='marimba',
         short_name='mb.',
         markup=None,

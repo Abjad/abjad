@@ -1,10 +1,13 @@
 import typing
-from abjad.tools import mathtools
-from abjad import Center, Down, HorizontalAlignment, Left, Right, Up, VerticalAlignment
+from abjad.enumerations import (
+    Center, Down, HorizontalAlignment, Left, Right, Up, VerticalAlignment,
+)
 from abjad.tools.datastructuretools.Duration import Duration
 from abjad.tools.datastructuretools.String import String
-from abjad.tools.lilypondnametools.LilyPondContextSetting import \
-    LilyPondContextSetting
+from abjad.tools.lilypondnametools.LilyPondContextSetting import (
+    LilyPondContextSetting,
+)
+from abjad.tools import mathtools
 from abjad.tools.scoretools.Chord import Chord
 from abjad.tools.scoretools.Leaf import Leaf
 from abjad.tools.scoretools.Note import Note

@@ -89,6 +89,7 @@ class Flute(Instrument):
 
     def __init__(
         self,
+        *,
         name='flute',
         short_name='fl.',
         markup=None,

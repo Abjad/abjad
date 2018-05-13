@@ -34,6 +34,7 @@ class FrenchHorn(Instrument):
 
     def __init__(
         self,
+        *,
         name='horn',
         short_name='hn.',
         markup=None,

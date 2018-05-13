@@ -1,5 +1,5 @@
 import typing
-from abjad import Down, Up, VerticalAlignment
+from abjad.enumerations import Down, Up, VerticalAlignment
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.datastructuretools.String import String
@@ -219,6 +219,7 @@ class Dynamic(AbjadValueObject):
     def __init__(
         self,
         name: typing.Union[str, 'Dynamic'] = 'f',
+        *,
         command: str = None,
         direction: VerticalAlignment = None,
         hide: bool = None,

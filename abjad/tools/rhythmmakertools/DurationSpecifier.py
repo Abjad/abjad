@@ -27,6 +27,7 @@ class DurationSpecifier(AbjadValueObject):
 
     def __init__(
         self,
+        *,
         decrease_monotonic: bool = True,
         forbid_meter_rewriting: bool = None,
         forbidden_duration: typing.Union[tuple, Duration] = None,

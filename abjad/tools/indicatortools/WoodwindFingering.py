@@ -208,6 +208,7 @@ class WoodwindFingering(AbjadObject):
     def __init__(
         self,
         name: typing.Union[str, 'WoodwindFingering'] = 'flute',
+        *,
         center_column: typing.Iterable = None,
         left_hand: typing.Iterable = None,
         right_hand: typing.Iterable = None,

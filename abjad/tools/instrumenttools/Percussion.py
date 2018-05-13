@@ -84,6 +84,7 @@ class Percussion(Instrument):
 
     def __init__(
         self,
+        *,
         name='percussion',
         short_name='perc.',
         markup=None,

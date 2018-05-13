@@ -195,7 +195,12 @@ class Clef(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, name: str = 'treble', hide: bool = None) -> None:
+    def __init__(
+        self,
+        name: str = 'treble',
+        *,
+        hide: bool = None,
+        ) -> None:
         if isinstance(name, str):
             self._name = name
         elif isinstance(name, type(self)):

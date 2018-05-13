@@ -1,5 +1,5 @@
 from ply import lex  # type: ignore
-from abjad.tools.exceptiontools import LilyPondParserError
+from abjad.exceptions import LilyPondParserError
 from abjad import Fraction
 from abjad.tools import datastructuretools
 from abjad.tools import indicatortools

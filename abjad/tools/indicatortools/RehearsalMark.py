@@ -56,6 +56,7 @@ class RehearsalMark(AbjadValueObject):
 
     def __init__(
         self,
+        *,
         number: int = None,
         markup: Markup = None,
         ) -> None:

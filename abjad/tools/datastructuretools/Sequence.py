@@ -4,7 +4,7 @@ import itertools
 import math
 import numbers
 import sys
-from abjad import Exact, Less, More
+from abjad.enumerations import Exact, Less, More
 from abjad.tools import abctools
 from abjad.tools import mathtools
 from abjad.tools.systemtools.Signature import Signature

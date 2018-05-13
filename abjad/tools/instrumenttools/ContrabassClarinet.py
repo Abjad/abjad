@@ -34,6 +34,7 @@ class ContrabassClarinet(Instrument):
 
     def __init__(
         self,
+        *,
         name='contrabass clarinet',
         short_name='cbass. cl.',
         markup=None,

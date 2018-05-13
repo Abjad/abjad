@@ -1,6 +1,5 @@
 import typing
-from .Spanner import Spanner
-from abjad import Center, Down
+from abjad.enumerations import Center, Down
 from abjad.tools.indicatortools.Accelerando import Accelerando
 from abjad.tools.indicatortools.ArrowLineSegment import ArrowLineSegment
 from abjad.tools.indicatortools.LineSegment import LineSegment
@@ -14,6 +13,7 @@ from abjad.tools.systemtools.LilyPondFormatManager import LilyPondFormatManager
 from abjad.tools.systemtools.Wrapper import Wrapper
 from abjad.tools.topleveltools.inspect import inspect
 from abjad.tools.topleveltools.new import new
+from .Spanner import Spanner
 Number = typing.Union[int, float]
 abjad_tags = Tags()
 

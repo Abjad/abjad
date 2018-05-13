@@ -39,6 +39,7 @@ class BaritoneVoice(Instrument):
 
     def __init__(
         self,
+        *,
         name='baritone',
         short_name='bar.',
         markup=None,

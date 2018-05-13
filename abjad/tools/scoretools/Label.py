@@ -1,6 +1,6 @@
 import collections
 import inspect
-from abjad import Up
+from abjad.enumerations import Up
 from abjad.tools import abctools
 from abjad.tools import schemetools
 
@@ -475,7 +475,7 @@ class Label(abctools.AbjadObject):
                 >>> chord = abjad.Chord([12, 14, 18, 21, 23], (1, 4))
                 >>> pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]]
                 >>> colors = ['red', 'blue', 'green']
-                >>> color_map = abjad.ColorMap(colors, pitches)
+                >>> color_map = abjad.ColorMap(colors=colors, pitch_iterables=pitches)
                 >>> abjad.label(chord).color_note_heads(color_map)
                 >>> abjad.show(chord) # doctest: +SKIP
 
@@ -500,7 +500,7 @@ class Label(abctools.AbjadObject):
                 >>> chord = abjad.Chord([12, 14, 18, 21, 23], (1, 4))
                 >>> pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]]
                 >>> colors = ['red', 'blue', 'green']
-                >>> color_map = abjad.ColorMap(colors, pitches)
+                >>> color_map = abjad.ColorMap(colors=colors, pitch_iterables=pitches)
                 >>> expression = abjad.label().color_note_heads(color_map)
                 >>> expression(chord)
                 >>> abjad.show(chord) # doctest: +SKIP
@@ -1866,7 +1866,7 @@ class Label(abctools.AbjadObject):
                     continue
                 pitch_numbers = [pitch.number for pitch in pitches]
                 pitch_numbers = [abjad.Markup(_) for _ in pitch_numbers]
-                label = abjad.Markup.column(pitch_numbers, direction)
+                label = abjad.Markup.column(pitch_numbers, direction=direction)
             elif prototype is abjad.NumberedPitchClass:
                 leaves = vertical_moment.leaves
                 pitches = abjad.PitchSegment.from_selection(leaves)
@@ -1878,7 +1878,7 @@ class Label(abctools.AbjadObject):
                 pitch_classes.reverse()
                 numbers = [str(_) for _ in pitch_classes]
                 markup = [abjad.Markup(_) for _ in numbers]
-                label = abjad.Markup.column(markup, direction)
+                label = abjad.Markup.column(markup, direction=direction)
             elif prototype is abjad.NumberedInterval:
                 leaves = vertical_moment.leaves
                 notes = [_ for _ in leaves if isinstance(_, abjad.Note)]
@@ -1897,7 +1897,7 @@ class Label(abctools.AbjadObject):
                     named_intervals.append(named_interval)
                 numbers = [x.number for x in named_intervals]
                 markup = [abjad.Markup(_) for _ in numbers]
-                label = abjad.Markup.column(markup, direction)
+                label = abjad.Markup.column(markup, direction=direction)
             elif prototype is abjad.NumberedIntervalClass:
                 leaves = vertical_moment.leaves
                 notes = [_ for _ in leaves if isinstance(_, abjad.Note)]
@@ -1917,7 +1917,7 @@ class Label(abctools.AbjadObject):
                     number = interval_class.number
                     numbers.append(number)
                 markup = [abjad.Markup(_) for _ in numbers]
-                label = abjad.Markup.column(markup, direction)
+                label = abjad.Markup.column(markup, direction=direction)
             elif prototype is abjad.IntervalClassVector:
                 leaves = vertical_moment.leaves
                 pitches = abjad.PitchSegment.from_selection(leaves)
@@ -3046,20 +3046,20 @@ class Label(abctools.AbjadObject):
                     next_leaf,
                     )
                 if prototype is abjad.NamedInterval:
-                    label = abjad.Markup(interval, direction)
+                    label = abjad.Markup(interval, direction=direction)
                 elif prototype is abjad.NamedIntervalClass:
                     label = abjad.NamedIntervalClass(interval)
-                    label = abjad.Markup(label, direction)
+                    label = abjad.Markup(label, direction=direction)
                 elif prototype is abjad.NumberedInterval:
                     label = abjad.NumberedInterval(interval)
-                    label = abjad.Markup(label, direction)
+                    label = abjad.Markup(label, direction=direction)
                 elif prototype is abjad.NumberedIntervalClass:
                     label = abjad.NumberedIntervalClass(interval)
-                    label = abjad.Markup(label, direction)
+                    label = abjad.Markup(label, direction=direction)
                 elif prototype is abjad.NumberedInversionEquivalentIntervalClass:
                     label = abjad.NumberedInversionEquivalentIntervalClass(
                         interval)
-                    label = abjad.Markup(label, direction)
+                    label = abjad.Markup(label, direction=direction)
                 if label is not None:
                     self._attach(label, note)
 

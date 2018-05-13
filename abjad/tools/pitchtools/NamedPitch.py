@@ -198,7 +198,7 @@ class NamedPitch(Pitch):
 
     ### INITIALIZER ###
 
-    def __init__(self, name="c'", arrow=None):
+    def __init__(self, name="c'", *, arrow=None):
         import abjad
         if self._is_pitch_name(name):
             pass

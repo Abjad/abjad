@@ -37,6 +37,7 @@ class TenorTrombone(Instrument):
 
     def __init__(
         self,
+        *,
         name='tenor trombone',
         short_name='ten. trb.',
         markup=None,

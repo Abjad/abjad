@@ -34,6 +34,7 @@ class AltoFlute(Instrument):
 
     def __init__(
         self,
+        *,
         name='alto flute',
         short_name='alt. fl.',
         markup=None,

@@ -83,6 +83,7 @@ class Repeat(AbjadValueObject):
 
     def __init__(
         self,
+        *,
         repeat_count: int = 2,
         repeat_type: str = 'volta',
         ) -> None:

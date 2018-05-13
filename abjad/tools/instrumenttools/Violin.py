@@ -36,6 +36,7 @@ class Violin(Instrument):
 
     def __init__(
         self,
+        *,
         name='violin',
         short_name='vn.',
         markup=None,

@@ -1,5 +1,5 @@
 import typing
-from abjad import Center, VerticalAlignment
+from abjad.enumerations import Center, VerticalAlignment
 from abjad.tools.markuptools.Markup import Markup
 from .LineSegment import LineSegment
 Number = typing.Union[int, float]
@@ -96,6 +96,7 @@ class ArrowLineSegment(LineSegment):
 
     def __init__(
         self,
+        *,
         arrow_width: Number = 0.25,
         dash_fraction: Number = 1,
         dash_period: Number = None,

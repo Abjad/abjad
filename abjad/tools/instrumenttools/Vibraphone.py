@@ -34,6 +34,7 @@ class Vibraphone(Instrument):
 
     def __init__(
         self,
+        *,
         name='vibraphone',
         short_name='vibr.',
         markup=None,

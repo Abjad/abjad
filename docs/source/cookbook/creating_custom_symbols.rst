@@ -180,7 +180,7 @@ Aligning markup on score components
 
 ..  abjad::
 
-    diagram = abjad.Markup(diagram, Up)
+    diagram = abjad.Markup(diagram, direction=abjad.Up)
     staff = abjad.Staff(r"\time 2/4 c'2 d'2 e'2")
     for leaf in staff:
         abjad.attach(diagram, leaf)

@@ -315,7 +315,7 @@ class RootedChordClass(PitchClassSet):
             inv = r" \raise #1 \fontsize #-3 \override #'(baseline-skip . 1.5)"
             inv += r' \column {{ {} }}'.format(' '.join(inversion.split('/')))
             markup += inv
-        return abjad.Markup(markup, abjad.Down)
+        return abjad.Markup(markup, direction=abjad.Down)
 
     @property
     def quality_pair(self):

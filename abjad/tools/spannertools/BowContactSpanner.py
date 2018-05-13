@@ -1,10 +1,11 @@
 import typing
-from abjad import Down, Up
+from abjad.enumerations import Down, Up
 from abjad.tools.indicatortools.Articulation import Articulation
 from abjad.tools.indicatortools.BowContactPoint import BowContactPoint
 from abjad.tools.indicatortools.BowMotionTechnique import BowMotionTechnique
-from abjad.tools.lilypondnametools.LilyPondGrobOverride import \
-    LilyPondGrobOverride
+from abjad.tools.lilypondnametools.LilyPondGrobOverride import (
+    LilyPondGrobOverride,
+)
 from abjad.tools.schemetools.Scheme import Scheme
 from abjad.tools.schemetools.SchemeSymbol import SchemeSymbol
 from abjad.tools.scoretools.Leaf import Leaf
@@ -351,9 +352,9 @@ class BowContactSpanner(Spanner):
                 string = r'^ \parenthesize \downbow'
         else:
             if direction_change is Up:
-                articulation = Articulation('upbow', Up)
+                articulation = Articulation('upbow', direction=Up)
             elif direction_change is Down:
-                articulation = Articulation('downbow', Up)
+                articulation = Articulation('downbow', direction=Up)
             string = str(articulation)
         bundle.right.articulations.append(string)
 

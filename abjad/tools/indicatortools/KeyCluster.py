@@ -1,4 +1,4 @@
-from abjad import Center, Down, Up, VerticalAlignment
+from abjad.enumerations import Center, Down, Up, VerticalAlignment
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.markuptools.Markup import Markup
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
@@ -52,6 +52,7 @@ class KeyCluster(AbjadValueObject):
 
     def __init__(
         self,
+        *,
         include_black_keys: bool = True,
         include_white_keys: bool = True,
         hide: bool = False,

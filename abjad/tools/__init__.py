@@ -7,7 +7,6 @@ from .import lilypondfiletools
 from .import schemetools
 from .import markuptools
 from .import documentationtools
-from .import exceptiontools
 from .import indicatortools
 from .import instrumenttools
 from .import lilypondnametools
