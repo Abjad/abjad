@@ -1,5 +1,7 @@
 import typing
-from abjad import HorizontalAlignment, Left, Right, VerticalAlignment
+from abjad.enumerations import (
+    HorizontalAlignment, Left, Right, VerticalAlignment,
+)
 from .Beam import Beam
 Number = typing.Union[int, float]
 

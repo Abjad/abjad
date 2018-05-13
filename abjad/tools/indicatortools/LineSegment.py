@@ -1,8 +1,9 @@
 import typing
-from abjad import Center, VerticalAlignment
+from abjad.enumerations import Center, VerticalAlignment
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.lilypondnametools.LilyPondGrobOverride import \
-    LilyPondGrobOverride
+from abjad.tools.lilypondnametools.LilyPondGrobOverride import (
+    LilyPondGrobOverride,
+)
 from abjad.tools.markuptools.Markup import Markup
 from abjad.tools.schemetools.Scheme import Scheme
 from abjad.tools.systemtools.LilyPondFormatManager import LilyPondFormatManager

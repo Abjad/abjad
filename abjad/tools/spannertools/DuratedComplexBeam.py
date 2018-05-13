@@ -1,6 +1,6 @@
 import collections
 import typing
-from abjad import HorizontalAlignment, VerticalAlignment
+from abjad.enumerations import HorizontalAlignment, VerticalAlignment
 from abjad.tools.datastructuretools.Duration import Duration
 from abjad.tools.datastructuretools.Offset import Offset
 from abjad.tools.scoretools.Leaf import Leaf

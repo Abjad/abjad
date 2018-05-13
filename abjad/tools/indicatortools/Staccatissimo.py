@@ -1,4 +1,6 @@
-from abjad import Center, Down, Right, Up, HorizontalAlignment, VerticalAlignment
+from abjad.enumerations import (
+    Center, Down, Right, Up, HorizontalAlignment, VerticalAlignment,
+)
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.datastructuretools.String import String
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle

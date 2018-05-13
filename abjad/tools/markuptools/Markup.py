@@ -1,6 +1,7 @@
 import collections
 import numbers
-from abjad import Center, Down, Fraction, Up
+from abjad import Fraction
+from abjad.enumerations import Center, Down, Up
 from abjad.tools import mathtools
 from abjad.tools import schemetools
 from abjad.tools.topleveltools import new

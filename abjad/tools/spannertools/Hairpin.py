@@ -1,6 +1,6 @@
 import typing
 from .Spanner import Spanner
-from abjad import VerticalAlignment
+from abjad.enumerations import VerticalAlignment
 from abjad.tools.datastructuretools.String import String
 from abjad.tools.indicatortools.Dynamic import Dynamic
 from abjad.tools.scoretools.Chord import Chord

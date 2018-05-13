@@ -1,3 +1,6 @@
+"""
+Tools for math.
+"""
 from .Enumerator import Enumerator
 from .Infinity import Infinity
 from .NegativeInfinity import NegativeInfinity

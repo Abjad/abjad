@@ -1,6 +1,6 @@
 import functools
 import typing
-from abjad import Up
+from abjad.enumerations import Up
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.markuptools.Markup import Markup

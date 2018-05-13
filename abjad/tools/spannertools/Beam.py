@@ -1,5 +1,5 @@
 import typing
-from abjad import VerticalAlignment
+from abjad.enumerations import VerticalAlignment
 from abjad.tools.datastructuretools.String import String
 from abjad.tools.topleveltools.inspect import inspect
 from abjad.tools.topleveltools.new import new

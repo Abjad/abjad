@@ -1,10 +1,10 @@
 import abc
 import copy
 import uqbar.graphs
-from abjad import Left, Right
-from abjad.exceptions import AssignabilityError
-from abjad.exceptions import MissingMetronomeMarkError
-from abjad.exceptions import MissingSpannerError
+from abjad.enumerations import Left, Right
+from abjad.exceptions import (
+    AssignabilityError, MissingMetronomeMarkError, MissingSpannerError,
+)
 from abjad.tools.datastructuretools.Duration import Duration
 from abjad.tools.datastructuretools.Multiplier import Multiplier
 from abjad.tools.indicatortools.MetronomeMark import MetronomeMark

@@ -1,6 +1,6 @@
 import collections
 import inspect
-from abjad import Up
+from abjad.enumerations import Up
 from abjad.tools import abctools
 from abjad.tools import schemetools
 

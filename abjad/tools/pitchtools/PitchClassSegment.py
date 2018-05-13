@@ -1,5 +1,5 @@
 import inspect
-from abjad import Up
+from abjad.enumerations import Up
 from abjad.tools import systemtools
 from abjad.tools.pitchtools.Segment import Segment
 from abjad.tools.topleveltools import new

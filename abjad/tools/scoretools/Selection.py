@@ -2,7 +2,7 @@ import collections
 import copy
 import inspect
 import itertools
-from abjad import Exact, Less, More
+from abjad.enumerations import Exact, Less, More
 from abjad.exceptions import ExtraSpannerError
 from abjad.exceptions import MissingSpannerError
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject

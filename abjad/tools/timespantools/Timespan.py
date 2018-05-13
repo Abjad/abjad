@@ -1,5 +1,5 @@
 import copy
-from abjad import Left, Right
+from abjad.enumerations import Left, Right
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.datastructuretools import Infinity, NegativeInfinity
 

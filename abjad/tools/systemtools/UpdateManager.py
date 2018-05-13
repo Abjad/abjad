@@ -1,4 +1,4 @@
-from abjad import Left
+from abjad.enumerations import Left
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.exceptions import MissingMetronomeMarkError
 

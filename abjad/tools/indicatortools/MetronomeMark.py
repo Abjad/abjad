@@ -7,7 +7,7 @@ except ImportError:
 import functools
 import math
 import typing
-from abjad import Down
+from abjad.enumerations import Down
 from abjad.exceptions import ImpreciseMetronomeMarkError
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject

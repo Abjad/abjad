@@ -1,5 +1,5 @@
 import typing
-from abjad import Center, Down, Up, VerticalAlignment
+from abjad.enumerations import Center, Down, Up, VerticalAlignment
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 

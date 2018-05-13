@@ -1,4 +1,4 @@
-from abjad import Right
+from abjad.enumerations import Right
 from abjad.tools import abctools
 
 

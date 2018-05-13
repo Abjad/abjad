@@ -1,6 +1,6 @@
 import typing
+from abjad.enumerations import VerticalAlignment
 from .Beam import Beam
-from abjad import VerticalAlignment
 Number = typing.Union[int, float]
 
 

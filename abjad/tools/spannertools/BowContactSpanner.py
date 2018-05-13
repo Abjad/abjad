@@ -1,10 +1,11 @@
 import typing
-from abjad import Down, Up
+from abjad.enumerations import Down, Up
 from abjad.tools.indicatortools.Articulation import Articulation
 from abjad.tools.indicatortools.BowContactPoint import BowContactPoint
 from abjad.tools.indicatortools.BowMotionTechnique import BowMotionTechnique
-from abjad.tools.lilypondnametools.LilyPondGrobOverride import \
-    LilyPondGrobOverride
+from abjad.tools.lilypondnametools.LilyPondGrobOverride import (
+    LilyPondGrobOverride,
+)
 from abjad.tools.schemetools.Scheme import Scheme
 from abjad.tools.schemetools.SchemeSymbol import SchemeSymbol
 from abjad.tools.scoretools.Leaf import Leaf
