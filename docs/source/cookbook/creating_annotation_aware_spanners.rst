@@ -11,7 +11,7 @@ Key points:
 #. Investigate the internals of Abjad's ``Spanner`` class.
 #. Create a simple annotative indicator.
 #. Build up a complex class, then refactor it.
-#. Learn about Abjad's ``LilyPondGrobOverride`` and ``Enumeration`` classes.
+#. Learn about Abjad's ``LilyPondGrobOverride`` class.
 #. Use rhythm-makers and selectors to help audition the custom spanner.
 
 ..  abjad::
@@ -19,9 +19,11 @@ Key points:
     :reveal-label: OscillationSpanner
     :strip-prompt:
 
+    import enum
+
     class OscillationSpanner(abjad.Spanner):
 
-        class Size(abjad.Enumeration):
+        class Size(enum.IntEnum):
             NONE = 0
             SMALL = 1
             MEDIUM = 2
@@ -290,7 +292,7 @@ A simple non-formatting annotation class
 ..  abjad::
     :strip-prompt:
 
-    class OscillationSize(abjad.Enumeration):
+    class OscillationSize(enum.IntEnum):
         NONE = 0
         SMALL = 1
         MEDIUM = 2

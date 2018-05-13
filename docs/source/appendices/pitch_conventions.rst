@@ -34,7 +34,7 @@ Abjad numbers pitches like this:
             treble_staff.append(rest)
             bass_staff.append(note)
         number = note.written_pitch.number
-        markup = abjad.Markup(str(number), Down)
+        markup = abjad.Markup(str(number), direction=abjad.Down)
         abjad.attach(markup, bass_staff[-1])
 
 ..  abjad::
@@ -93,7 +93,7 @@ Abjad numbers diatonic pitches like this:
             treble_staff.append(rest)
             bass_staff.append(note)
         number = note.written_pitch._get_diatonic_pitch_number()
-        markup = markuptools.Markup(str(number), Down)
+        markup = markuptools.Markup(str(number), direction=abjad.Down)
         abjad.attach(markup, bass_staff[-1])
 
 ..  abjad::
