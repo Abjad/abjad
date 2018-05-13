@@ -402,9 +402,9 @@ class Scale(PitchClassSegment):
         """
         import abjad
         foreign_pitch_class = abjad.NamedPitchClass(pitch_class)
-        letter = foreign_pitch_class._get_diatonic_pitch_class_name()
+        letter = foreign_pitch_class._get_diatonic_pc_name()
         for i, pc in enumerate(self):
-            if pc._get_diatonic_pitch_class_name() == letter:
+            if pc._get_diatonic_pc_name() == letter:
                 native_pitch_class = pc
                 scale_degree_index = i
                 number = scale_degree_index + 1

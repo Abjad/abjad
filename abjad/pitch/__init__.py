@@ -1,3 +1,4 @@
+from .constants import *
 from .Accidental import Accidental
 from .ColorMap import ColorMap
 from .CompoundOperator import CompoundOperator

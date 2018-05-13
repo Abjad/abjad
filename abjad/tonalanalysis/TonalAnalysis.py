@@ -77,7 +77,7 @@ class TonalAnalysis(abctools.AbjadObject):
         letters = ('c', 'e', 'g', 'b', 'd', 'f', 'a')
         for letter in letters:
             for npc in npcset:
-                if npc._get_diatonic_pitch_class_name() == letter:
+                if npc._get_diatonic_pc_name() == letter:
                     ordered_npcs.append(npc)
         ordered_npcs = abjad_pitch.PitchClassSegment(
             ordered_npcs, item_class=abjad_pitch.NamedPitchClass)

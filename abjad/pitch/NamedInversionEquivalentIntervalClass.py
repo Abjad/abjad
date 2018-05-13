@@ -1,5 +1,6 @@
 import numbers
 from abjad.pitch.NamedIntervalClass import NamedIntervalClass
+from . import constants
 
 
 class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
@@ -56,17 +57,16 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
     ### INITIALIZER ###
 
     def __init__(self, name='P1'):
-        import abjad
-        class_ = abjad.Interval
         if isinstance(name, str):
-            match = class_._interval_name_abbreviation_regex.match(name)
+            match = constants._interval_name_abbreviation_regex.match(name)
             if match is None:
                 message = 'can not intialize {} from {!r}.'
                 message = message.format(type(self).__name__, name)
                 raise Exception(message)
-            result = match.groups()
-            direction_string, quality_abbreviation, number_string = result
-            quality_string = self._quality_abbreviation_to_quality_string[
+            group_dict = match.groupdict()
+            quality_abbreviation = group_dict['quality']
+            number_string = group_dict['number']
+            quality_string = constants._quality_abbreviation_to_quality_string[
                 quality_abbreviation]
             number = int(number_string)
         elif isinstance(name, tuple) and len(name) == 2:

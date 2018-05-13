@@ -1,7 +1,9 @@
 import functools
-import re
+import numbers
+from abjad.enumerations import VerticalAlignment
 from abjad import mathtools
 from abjad.abctools.AbjadValueObject import AbjadValueObject
+from . import constants
 
 
 @functools.total_ordering
@@ -10,8 +12,8 @@ class Accidental(AbjadValueObject):
 
     ..  container:: example
 
-            >>> abjad.Accidental('ff')
-            Accidental('double flat')
+        >>> abjad.Accidental('ff')
+        Accidental('double flat')
 
         >>> abjad.Accidental('tqf')
         Accidental('three-quarters flat')
@@ -45,145 +47,6 @@ class Accidental(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
-    _abbreviation_to_name = {
-        'ss': 'double sharp',
-        'tqs': 'three-quarters sharp',
-        's': 'sharp',
-        'qs': 'quarter sharp',
-        '': 'natural',
-        'qf': 'quarter flat',
-        'f': 'flat',
-        'tqf': 'three-quarters flat',
-        'ff': 'double flat',
-        }
-
-    _abbreviation_to_semitones = {
-        'ff': -2,
-        'tqf': -1.5,
-        'f': -1,
-        'qf': -0.5,
-        '': 0,
-        'qs': 0.5,
-        's': 1,
-        'tqs': 1.5,
-        'ss': 2,
-        }
-
-    _abbreviation_to_symbol = {
-        'ff': 'bb',
-        'tqf': 'b~',
-        'f': 'b',
-        'qf': '~',
-        '': '',
-        'qs': '+',
-        's': '#',
-        'tqs': '#+',
-        'ss': '##',
-        }
-
-    _alphabetic_accidental_regex_body = """
-        (?P<alphabetic_accidental>
-        [s]*(qs)?
-        |[f]*(qf)?
-        |t?q?[fs]
-        |)
-        """
-
-    _alphabetic_accidental_regex = re.compile(
-        '^{}$'.format(_alphabetic_accidental_regex_body),
-        re.VERBOSE,
-        )
-
-    _comprehensive_regex_body = """
-        (?P<comprehensive_accidental>
-        [s]*(qs)?
-        |[f]*(qf)?
-        |t?q?[fs]
-        |[#]+[+]?
-        |[b]+[~]?
-        |[+]
-        |[~]
-        |
-        )
-        """
-
-    _comprehensive_accidental_regex = re.compile(
-        '^{}$'.format(_comprehensive_regex_body),
-        re.VERBOSE,
-        )
-
-    _name_to_abbreviation = {
-        'double sharp': 'ss',
-        'three-quarters sharp': 'tqs',
-        'sharp': 's',
-        'quarter sharp': 'qs',
-        'natural': '',
-        'quarter flat': 'qf',
-        'flat': 'f',
-        'three-quarters flat': 'tqf',
-        'double flat': 'ff',
-        }
-
-    _semitones_to_abbreviation = {
-        -2: 'ff',
-        -1.5: 'tqf',
-        -1: 'f',
-        -0.5: 'qf',
-        0: '',
-        0.5: 'qs',
-        1: 's',
-        1.5: 'tqs',
-        2: 'ss',
-        }
-
-    _symbol_regex_body = '''
-        (?P<symbol>
-        [#]+[+]?
-        |[b]+[~]?
-        |[+]
-        |[~]
-        |
-        )
-        '''
-
-    _symbol_regex = re.compile(
-        '^{}$'.format(_symbol_regex_body),
-        re.VERBOSE,
-        )
-
-    _symbol_to_abbreviation = {
-        'bb': 'ff',
-        'b~': 'tqf',
-        'b': 'f',
-        '~': 'qf',
-        '': '',
-        '!': '!',
-        '+': 'qs',
-        '#': 's',
-        '#+': 'tqs',
-        '##': 'ss',
-        }
-
-    _symbol_to_semitones = {
-        'bb': -2,
-        'b~': -1.5,
-        'b': -1,
-        '~': -0.5,
-        '': 0,
-        '+': 0.5,
-        '#': 1,
-        '#+': 1.5,
-        '##': 2,
-        'ff': -2,
-        'tqf': 1.5,
-        'f': -1,
-        'qf': -0.5,
-        'qs': 0.5,
-        's': 1,
-        'tqs': 1.5,
-        'ss': 2,
-        }
-
     __slots__ = (
         '_arrow',
         '_semitones',
@@ -193,63 +56,74 @@ class Accidental(AbjadValueObject):
 
     def __init__(self, name='', *, arrow=None):
         import abjad
+        semitones = 0
+        _arrow = None
         if name is None:
-            semitones = 0
+            pass
         elif isinstance(name, str):
-            semitones = 0
-            if self._is_abbreviation(name):
-                if name in self._abbreviation_to_semitones:
-                    semitones = self._abbreviation_to_semitones[name]
-                else:
-                    while name and name.startswith(('f', 's')):
-                        if name[0] == 's':
-                            semitones += 1
-                        else:
-                            semitones -= 1
-                        name = name[1:]
-                    if name == 'qs':
-                        semitones += 0.5
-                    elif name == 'qf':
-                        semitones -= 0.5
-            elif self._is_symbol(name):
-                if name in self._symbol_to_semitones:
-                    semitones = self._symbol_to_semitones[name]
-                else:
-                    while name and name.startswith(('b', '#')):
-                        if name[0] == '#':
-                            semitones += 1
-                        else:
-                            semitones -= 1
-                        name = name[1:]
-                    if name == '+':
-                        semitones += 0.5
-                    elif name == '~':
-                        semitones -= 0.5
-            elif name in self._name_to_abbreviation:
-                name = self._name_to_abbreviation[name]
-                semitones = self._abbreviation_to_semitones[name]
+            if name in constants._accidental_name_to_abbreviation:
+                name = constants._accidental_name_to_abbreviation[name]
+                semitones = constants._accidental_abbreviation_to_semitones[name]
             else:
-                message = 'can not initialize accidental from value: {!r}'
-                message = message.format(name)
-                raise ValueError(message)
-        elif isinstance(name, type(self)):
-            semitones = name.semitones
-        elif isinstance(name, (int, float)):
+                match = constants._comprehensive_accidental_regex.match(name)
+                if not match:
+                    try:
+                        pitch = abjad.NamedPitch(name)
+                        semitones = pitch.accidental.semitones
+                        _arrow = pitch.accidental.arrow
+                    except Exception:
+                        message = 'can not instantiate {} from {!r}.'
+                        message = message.format(type(self).__name__, name)
+                        raise TypeError(message)
+                else:
+                    group_dict = match.groupdict()
+                    if group_dict['alphabetic_accidental']:
+                        prefix, _, suffix = name.partition('q')
+                        if prefix.startswith('s'):
+                            semitones += len(prefix)
+                        elif prefix.startswith('f'):
+                            semitones -= len(prefix)
+                        if suffix == 's':
+                            semitones += 0.5
+                            if prefix == 't':
+                                semitones += 1
+                        elif suffix == 'f':
+                            semitones -= 0.5
+                            if prefix == 't':
+                                semitones -= 1
+                    elif group_dict['symbolic_accidental']:
+                        semitones += name.count('#')
+                        semitones -= name.count('b')
+                        if name.endswith('+'):
+                            semitones += 0.5
+                        elif name.endswith('~'):
+                            semitones -= 0.5
+        elif isinstance(name, numbers.Number):
             semitones = float(name)
             assert (semitones % 1.) in (0., 0.5)
         elif hasattr(name, 'accidental'):
+            _arrow = name.accidental.arrow
             semitones = name.accidental.semitones
+        elif isinstance(name, type(self)):
+            _arrow = name.arrow
+            semitones = name.semitones
         else:
-            message = 'can not initialize accidental from value: {!r}'
-            message = message.format(name)
-            raise ValueError(message)
+            try:
+                pitch = abjad.NamedPitch(name)
+                semitones = pitch.accidental.semitones
+                _arrow = pitch.accidental.arrow
+            except Exception:
+                message = 'can not initialize accidental from value: {!r}'
+                message = message.format(name)
+                raise ValueError(message)
         semitones = mathtools.integer_equivalent_number_to_integer(semitones)
         self._semitones = semitones
-        if arrow not in (None, abjad.Up, abjad.Down):
-            message = 'arrow must be none, up or down: {!r}.'
-            message = message.format(arrow)
-            raise TypeError(message)
-        self._arrow = arrow
+        self._arrow = _arrow
+        if arrow is not None:
+            arrow = VerticalAlignment.from_expr(arrow)
+            if arrow is VerticalAlignment.Center:
+                arrow = None
+            self._arrow = arrow
 
     ### SPECIAL METHODS ###
 
@@ -423,8 +297,8 @@ class Accidental(AbjadValueObject):
 
         Returns string.
         '''
-        if self.semitones in self._semitones_to_abbreviation:
-            return self._semitones_to_abbreviation[self.semitones]
+        if self.semitones in constants._accidental_semitones_to_abbreviation:
+            return constants._accidental_semitones_to_abbreviation[self.semitones]
         character = 's'
         if self.semitones < 0:
             character = 'f'
@@ -460,15 +334,15 @@ class Accidental(AbjadValueObject):
 
     @classmethod
     def _get_all_accidental_abbreviations(class_):
-        return list(class_._abbreviation_to_symbol.keys())
+        return list(constants._accidental_abbreviation_to_symbol.keys())
 
     @classmethod
     def _get_all_accidental_names(class_):
-        return list(class_._name_to_abbreviation.keys())
+        return list(constants._accidental_name_to_abbreviation.keys())
 
     @classmethod
     def _get_all_accidental_semitone_values(class_):
-        return list(class_._semitones_to_abbreviation.keys())
+        return list(constants._accidental_semitones_to_abbreviation.keys())
 
     def _get_format_specification(self):
         import abjad
@@ -487,13 +361,13 @@ class Accidental(AbjadValueObject):
     def _is_abbreviation(class_, argument):
         if not isinstance(argument, str):
             return False
-        return bool(class_._alphabetic_accidental_regex.match(argument))
+        return bool(constants._alphabetic_accidental_regex.match(argument))
 
     @classmethod
     def _is_symbol(class_, argument):
         if not isinstance(argument, str):
             return False
-        return bool(class_._symbol_regex.match(argument))
+        return bool(constants._symbolic_accidental_regex.match(argument))
 
     ### PUBLIC PROPERTIES ###
 
@@ -561,8 +435,8 @@ class Accidental(AbjadValueObject):
         Returns string.
         '''
         try:
-            abbreviation = self._semitones_to_abbreviation[self.semitones]
-            name = self._abbreviation_to_name[abbreviation]
+            abbreviation = constants._accidental_semitones_to_abbreviation[self.semitones]
+            name = constants._accidental_abbreviation_to_name[abbreviation]
         except KeyError:
             name = str(self)
         return name
@@ -633,8 +507,8 @@ class Accidental(AbjadValueObject):
 
         Returns string.
         '''
-        abbreviation = self._semitones_to_abbreviation[self.semitones]
-        symbol = self._abbreviation_to_symbol[abbreviation]
+        abbreviation = constants._accidental_semitones_to_abbreviation[self.semitones]
+        symbol = constants._accidental_abbreviation_to_symbol[abbreviation]
         return symbol
 
     ### PUBLIC METHODS ###

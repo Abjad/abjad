@@ -2,6 +2,7 @@ import copy
 import numbers
 from abjad import mathtools
 from abjad.pitch.Interval import Interval
+from . import constants
 
 
 class NamedInterval(Interval):
@@ -28,6 +29,20 @@ class NamedInterval(Interval):
         >>> abjad.NamedInterval(abjad.NamedInterval(-4))
         NamedInterval('-M3')
 
+    ..  container:: example
+
+        Initializes from numbered interval:
+
+        >>> abjad.NamedInterval(abjad.NumberedInterval(3))
+        NamedInterval('+m3')
+
+    ..  container:: example
+
+        Initializes from pair of quality and diatonic number:
+
+        >>> abjad.NamedInterval(('M', 3))
+        NamedInterval('+M3')
+
     '''
 
     ### CLASS VARIABLES ##
@@ -35,79 +50,14 @@ class NamedInterval(Interval):
     __slots__ = (
         '_number',
         '_quality_string',
+        '_octaves',
+        '_interval_class',
         )
-
-    _acceptable_quality_strings = (
-        'perfect',
-        'major',
-        'minor',
-        'diminished',
-        'augmented',
-        )
-
-    _quality_abbreviation_to_quality_string = {
-        'M': 'major',
-        'm': 'minor',
-        'P': 'perfect',
-        'aug': 'augmented',
-        'dim': 'diminished',
-        }
-
-    _semitones_to_quality_string_and_number = {
-        0: ('perfect', 1),
-        1: ('minor', 2),
-        2: ('major', 2),
-        3: ('minor', 3),
-        4: ('major', 3),
-        5: ('perfect', 4),
-        6: ('diminished', 5),
-        7: ('perfect', 5),
-        8: ('minor', 6),
-        9: ('major', 6),
-        10: ('minor', 7),
-        11: ('major', 7),
-        }
 
     ### INITIALIZER ###
 
     def __init__(self, name='P1'):
-        import abjad
-        named_prototype = (type(self), abjad.NamedIntervalClass)
-        numbered_prototype = (
-            numbers.Number,
-            abjad.NumberedInterval,
-            abjad.NumberedIntervalClass,
-            )
-        if isinstance(name, str):
-            match = Interval._interval_name_abbreviation_regex.match(name)
-            if match is None:
-                message = 'can not initialize {} from {!r}.'
-                message = message.format(type(self).__init__, name)
-                raise ValueError(message)
-            result = match.groups()
-            direction_string, quality_abbreviation, number_string = result
-            quality_string = self._quality_abbreviation_to_quality_string[
-                quality_abbreviation]
-            number = int(direction_string + number_string)
-        elif isinstance(name, named_prototype):
-            quality_string = name.quality_string
-            number = name.number
-        elif isinstance(name, numbered_prototype):
-            number = getattr(name, 'number', name)
-            number = int(number)
-            sign = mathtools.sign(number)
-            octaves, semitones = divmod(abs(number), 12)
-            pair = self._semitones_to_quality_string_and_number[semitones]
-            quality_string, number = pair
-            number += abs(octaves) * 7
-            if sign == -1:
-                number *= -1
-        else:
-            message = 'can not initialize {} from {!r}'
-            message = message.format(type(self).__init__, name)
-            raise ValueError(message)
-        self._quality_string = quality_string
-        self._number = number
+        super().__init__(name or 'P1')
 
     ### SPECIAL METHODS ###
 
@@ -197,6 +147,13 @@ class NamedInterval(Interval):
 
         '''
         return super(NamedInterval, self).__eq__(argument)
+
+    def __float__(self):
+        r'''Coerce to semitones as float.
+
+        Returns float.
+        '''
+        return float(self.semitones)
 
     def __hash__(self):
         r'''Hashes named interval.
@@ -348,47 +305,44 @@ class NamedInterval(Interval):
 
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _interval_string(self):
-        interval_to_string = {
-            1: 'unison',
-            2: 'second',
-            3: 'third',
-            4: 'fourth',
-            5: 'fifth',
-            6: 'sixth',
-            7: 'seventh',
-            8: 'octave',
-            9: 'ninth',
-            10: 'tenth',
-            11: 'eleventh',
-            12: 'twelth',
-            13: 'thirteenth',
-            14: 'fourteenth',
-            15: 'fifteenth',
-            }
+    def _from_direction_quality_and_diatonic_number(
+        self,
+        direction,
+        quality,
+        diatonic_number,
+        ):
+        import abjad
+        self._quality_string = constants._quality_abbreviation_to_quality_string[quality]
+        self._number = direction * diatonic_number
+        octaves, diatonic_pc_number = divmod(self._number, 8)
+        self._octaves = octaves
+        self._interval_class = abjad.NamedIntervalClass('{}{}{}'.format(
+            '-' if self._number < 0 else '',
+            constants._quality_string_to_quality_abbreviation[self._quality_string],
+            abs(self._number),
+            ))
+
+    def _from_number(self, argument):
+        direction, quality, diatonic_number = self._numbered_to_named(argument)
+        self._from_direction_quality_and_diatonic_number(
+            direction, quality, diatonic_number)
+
+    def _from_interval_or_interval_class(self, argument):
         try:
-            interval_string = interval_to_string[abs(self.number)]
-        except KeyError:
-            abs_number = abs(self.number)
-            residue = abs_number % 10
-            if residue == 1:
-                suffix = 'st'
-            elif residue == 2:
-                suffix = 'nd'
-            elif residue == 3:
-                suffix = 'rd'
-            else:
-                suffix = 'th'
-            interval_string = '%s%s' % (abs_number, suffix)
-        return interval_string
+            quality = constants._quality_string_to_quality_abbreviation[argument.quality_string]
+            diatonic_number = abs(argument.number)
+            direction = mathtools.sign(argument.number)
+        except AttributeError:
+            direction, quality, diatonic_number = self._numbered_to_named(argument)
+        self._from_direction_quality_and_diatonic_number(
+            direction, quality, diatonic_number)
 
     @property
     def _quality_abbreviation(self):
-        _quality_string_to_quality_abbreviation = {
+        constants._quality_string_to_quality_abbreviation = {
             'major': 'M', 'minor': 'm', 'perfect': 'P',
             'augmented': 'aug', 'diminished': 'dim'}
-        return _quality_string_to_quality_abbreviation[self.quality_string]
+        return constants._quality_string_to_quality_abbreviation[self.quality_string]
 
     ### PRIVATE METHODS ###
 
@@ -406,15 +360,15 @@ class NamedInterval(Interval):
     def _transpose_pitch(self, pitch):
         import abjad
         pitch_number = pitch.number + self.semitones
-        diatonic_pitch_class_number = pitch._get_diatonic_pitch_class_number()
-        diatonic_pitch_class_number += self.staff_spaces
-        diatonic_pitch_class_number %= 7
-        diatonic_pitch_class_name = \
-            abjad.PitchClass._diatonic_pitch_class_number_to_diatonic_pitch_class_name[
-                diatonic_pitch_class_number]
+        diatonic_pc_number = pitch._get_diatonic_pc_number()
+        diatonic_pc_number += self.staff_spaces
+        diatonic_pc_number %= 7
+        diatonic_pc_name = \
+            constants._diatonic_pc_number_to_diatonic_pc_name[
+                diatonic_pc_number]
         named_pitch = abjad.NamedPitch.from_pitch_number(
             pitch_number,
-            diatonic_pitch_class_name,
+            diatonic_pc_name,
             )
         return type(pitch)(named_pitch)
 
@@ -484,25 +438,7 @@ class NamedInterval(Interval):
 
         Returns named interval-class.
         '''
-        import abjad
-        quality_string, number = self._quality_string, self.number
-        return abjad.NamedIntervalClass.from_quality_and_number(
-            quality_string,
-            number,
-            )
-
-    @property
-    def interval_string(self):
-        r'''Gets interval string of named interval.
-
-        ..  container:: example
-
-            >>> abjad.NamedInterval('+M9').interval_string
-            'ninth'
-
-        Returns string.
-        '''
-        return self._interval_string
+        return self._interval_class
 
     @property
     def name(self):
@@ -533,18 +469,6 @@ class NamedInterval(Interval):
         Returns nonnegative number.
         '''
         return self._number
-
-    @property
-    def octaves(self):
-        r'''Gets octaves of named interval.
-
-        ..  container:: example
-
-            1
-
-        Returns nonnegative number.
-        '''
-        return self.semitones // 12
 
     @property
     def quality_string(self):
@@ -684,8 +608,8 @@ class NamedInterval(Interval):
         Returns named interval.
         '''
         import abjad
-        pitch_1 = abjad.NamedPitch.from_pitch_carrier(pitch_carrier_1)
-        pitch_2 = abjad.NamedPitch.from_pitch_carrier(pitch_carrier_2)
+        pitch_1 = abjad.NamedPitch(pitch_carrier_1)
+        pitch_2 = abjad.NamedPitch(pitch_carrier_2)
         degree_1 = pitch_1._get_diatonic_pitch_number()
         degree_2 = pitch_2._get_diatonic_pitch_number()
         named_interval_number = abs(degree_1 - degree_2) + 1

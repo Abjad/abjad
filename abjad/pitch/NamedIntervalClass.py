@@ -1,5 +1,6 @@
 from abjad import mathtools
 from abjad.pitch.IntervalClass import IntervalClass
+from . import constants
 
 
 class NamedIntervalClass(IntervalClass):
@@ -22,57 +23,22 @@ class NamedIntervalClass(IntervalClass):
         '_quality_string',
         )
 
-    _acceptable_quality_strings = (
-        'perfect',
-        'major',
-        'minor',
-        'diminished',
-        'augmented',
-        )
-
-    _interval_number_to_interval_string = {
-        1: 'unison',
-        2: 'second',
-        3: 'third',
-        4: 'fourth',
-        5: 'fifth',
-        6: 'sixth',
-        7: 'seventh',
-        8: 'octave',
-        }
-
-    _quality_abbreviation_to_quality_string = {
-        'M': 'major',
-        'm': 'minor',
-        'P': 'perfect',
-        'aug': 'augmented',
-        'dim': 'diminished',
-        }
-
-    _quality_string_to_quality_abbreviation = {
-        'major': 'M',
-        'minor': 'm',
-        'perfect': 'P',
-        'augmented': 'aug',
-        'diminished': 'dim',
-        }
-
     ### INITIALIZER ###
 
     def __init__(self, name='P1'):
         import abjad
         named_prototype = (abjad.NamedInterval, type(self))
         if isinstance(name, str):
-            class_ = abjad.Interval
-            match = class_._interval_name_abbreviation_regex.match(name)
+            match = constants._interval_name_abbreviation_regex.match(name)
             if match is None:
                 message = 'can not initialize {} from {!r}.'
                 message = message.format(type(self).__name__, name)
                 raise ValueError(message)
-            result = match.groups()
-            direction_string, quality_abbreviation, number_string = result
-            class_ = type(self)
-            quality_string = class_._quality_abbreviation_to_quality_string[
+            group_dict = match.groupdict()
+            direction_string = group_dict['direction']
+            quality_abbreviation = group_dict['quality']
+            number_string = group_dict['number']
+            quality_string = constants._quality_abbreviation_to_quality_string[
                 quality_abbreviation
                 ]
             number = int(direction_string + number_string)
@@ -85,8 +51,6 @@ class NamedIntervalClass(IntervalClass):
             message = 'can not initialize {} from {!r}.'
             message = message.format(type(self).__name__, name)
             raise TypeError(message)
-        if quality_string not in type(self)._acceptable_quality_strings:
-            raise Exception(repr(quality_string))
         assert isinstance(number, int), repr(number)
         if number == 0:
             message = 'must be nonzero: {!r}.'
@@ -208,7 +172,7 @@ class NamedIntervalClass(IntervalClass):
         import abjad
         try:
             argument = type(self)(argument)
-        except:
+        except Exception:
             return False
         if self.number == argument.number:
             self_semitones = abjad.NamedInterval(self).semitones
@@ -231,20 +195,8 @@ class NamedIntervalClass(IntervalClass):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _full_name(self):
-        strings = []
-        if self.direction_string:
-            strings.append(self.direction_string)
-        strings.extend([self._quality_string, self._interval_string])
-        return ' '.join(strings)
-
-    @property
-    def _interval_string(self):
-        return self._interval_number_to_interval_string[abs(self.number)]
-
-    @property
     def _quality_abbreviation(self):
-        return self._quality_string_to_quality_abbreviation[
+        return constants._quality_string_to_quality_abbreviation[
             self._quality_string]
 
     ### PRIVATE METHODS ###
@@ -462,8 +414,7 @@ class NamedIntervalClass(IntervalClass):
 
         Returns string.
         '''
-        class_ = NamedIntervalClass
-        abbreviation = class_._quality_string_to_quality_abbreviation[
+        abbreviation = constants._quality_string_to_quality_abbreviation[
             quality]
         if number == 1:
             direction = ''

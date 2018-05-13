@@ -3,6 +3,7 @@ import math
 import numbers
 import re
 from abjad.abctools.AbjadValueObject import AbjadValueObject
+from . import constants
 
 
 @functools.total_ordering
@@ -45,44 +46,46 @@ class Octave(AbjadValueObject):
         '_number',
         )
 
-    _octave_tick_regex_body = """
-        (,+     # one or more commas for octaves below the bass clef
-        |'+     # or one or more apostrophes for the octave of the treble clef
-        |)      # or empty string for the octave of the bass clef
-        """
-
-    _octave_tick_regex = re.compile(
-        '^{}$'.format(_octave_tick_regex_body),
-        re.VERBOSE,
-        )
-
     ### INITIALIZER ###
 
     def __init__(self, number=4):
         import abjad
-        if isinstance(number, numbers.Number):
-            number = int(number)
+        if number is None:
+            number = 4
         elif isinstance(number, str):
-            match = self._octave_tick_regex.match(number)
+            match = constants._comprehensive_octave_regex.match(number)
             if match is None:
-                message = 'can not instantiate octave: {!r}.'
-                message = message.format(number)
-                raise Exception(message)
-            group = match.group()
-            if group == '':
-                number = 3
-            elif group.startswith("'"):
-                number = 3 + len(group)
+                try:
+                    pitch = abjad.NamedPitch(number)
+                    number = pitch.octave.number
+                except Exception:
+                    message = 'can not instantiate {}: {!r}.'
+                    message = message.format(type(self), number)
+                    raise ValueError(message)
             else:
-                number = 3 - len(group)
-        elif isinstance(number, abjad.Pitch):
+                group_dict = match.groupdict()
+                number = 3
+                if group_dict['octave_number']:
+                    number = int(group_dict['octave_number'])
+                elif group_dict['octave_tick']:
+                    if group_dict['octave_tick'].startswith("'"):
+                        number += group_dict['octave_tick'].count("'")
+                    else:
+                        number -= group_dict['octave_tick'].count(',')
+        elif isinstance(number, numbers.Number):
+            number = int(number)
+        elif hasattr(number, 'octave'):
             number = number.octave.number
         elif isinstance(number, type(self)):
             number = number.number
         else:
-            message = 'can not instantiate {}: {!r}.'
-            message = message.format(type(self), number)
-            raise Exception(message)
+            try:
+                pitch = abjad.NamedPitch(number)
+                number = pitch.octave.number
+            except Exception:
+                message = 'can not instantiate {}: {!r}.'
+                message = message.format(type(self), number)
+                raise ValueError(message)
         self._number = number
 
     ### SPECIAL METHODS ###
@@ -121,12 +124,28 @@ class Octave(AbjadValueObject):
         '''
         return super(Octave, self).__eq__(argument)
 
+    def __float__(self):
+        """
+        Get octave number as float.
+
+        Returns float.
+        """
+        return float(self.number)
+
     def __hash__(self):
         r'''Hashes octave.
 
         Returns integer.
         '''
         return super(Octave, self).__hash__()
+
+    def __int__(self):
+        """
+        Get octave number integer.
+
+        Returns integer.
+        """
+        return int(self.number)
 
     def __lt__(self, argument):
         r'''Is true when octave is less than `argument`.

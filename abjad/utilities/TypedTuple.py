@@ -122,7 +122,7 @@ class TypedTuple(TypedCollection, collections.Sequence):
         """
         try:
             item = self._item_coercer(item)
-        except TypeError:
+        except (ValueError, TypeError):
             return 0
         return self._collection.count(item)
 

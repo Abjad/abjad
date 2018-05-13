@@ -1,5 +1,6 @@
 import functools
 import numbers
+from . import constants
 from abjad.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -130,7 +131,7 @@ class StaffPosition(AbjadValueObject):
         '''
         try:
             argument = type(self)(argument)
-        except:
+        except Exception:
             return False
         return self.number < argument.number
 
@@ -282,9 +283,9 @@ class StaffPosition(AbjadValueObject):
         offset_staff_position_number -= clef.middle_c_position.number
         offset_staff_position = type(self)(offset_staff_position_number)
         octave_number = offset_staff_position.number // 7 + 4
-        diatonic_pitch_class_number = offset_staff_position.number % 7
-        pitch_class_number = abjad.PitchClass._diatonic_pitch_class_number_to_pitch_class_number[
-            diatonic_pitch_class_number]
+        diatonic_pc_number = offset_staff_position.number % 7
+        pitch_class_number = constants._diatonic_pc_number_to_pitch_class_number[
+            diatonic_pc_number]
         pitch_number = 12 * (octave_number - 4)
         pitch_number += pitch_class_number
         named_pitch = abjad.NamedPitch(pitch_number)

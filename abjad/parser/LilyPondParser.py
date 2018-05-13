@@ -949,11 +949,11 @@ class LilyPondParser(abctools.Parser):
             pitch_c = abjad_pitch.NamedPitch(pitch_c)
         scale = [0., 2., 4., 5., 7., 9., 11.]
         a_oct, a_step, a_alt = pitch_a.octave.number, \
-            pitch_a._get_diatonic_pitch_class_number(), pitch_a.accidental.semitones
+            pitch_a._get_diatonic_pc_number(), pitch_a.accidental.semitones
         b_oct, b_step, b_alt = pitch_b.octave.number, \
-            pitch_b._get_diatonic_pitch_class_number(), pitch_b.accidental.semitones
+            pitch_b._get_diatonic_pc_number(), pitch_b.accidental.semitones
         c_oct, c_step, c_alt = pitch_c.octave.number, \
-            pitch_c._get_diatonic_pitch_class_number(), pitch_c.accidental.semitones
+            pitch_c._get_diatonic_pc_number(), pitch_c.accidental.semitones
         d_oct, d_step, d_alt, d_tones = b_oct - a_oct, b_step - a_step, \
             b_alt - a_alt, float(pitch_b.number) - float(pitch_a.number)
         tmp_alt = float(pitch_c.number) + d_tones
@@ -967,7 +967,7 @@ class LilyPondParser(abctools.Parser):
         # print 'NEW(norm):', new_oct, new_step, new_alt
         octave_ticks = str(abjad_pitch.Octave(new_oct))
         pitch_class_name = \
-            abjad_pitch.PitchClass._diatonic_pitch_class_number_to_diatonic_pitch_class_name[
+            abjad_pitch.constants._diatonic_pc_number_to_diatonic_pc_name[
                 new_step % 7]
         #pitch_class_name = str(abjad_pitch.NamedDiatonicPitchClass(
         #    int(new_step)))
@@ -984,7 +984,7 @@ class LilyPondParser(abctools.Parser):
         #pitch_class_name = str(abjad_pitch.NamedDiatonicPitchClass(
         #    int(new_step)))
         pitch_class_name = \
-            abjad_pitch.PitchClass._diatonic_pitch_class_number_to_diatonic_pitch_class_name[
+            abjad_pitch.constants._diatonic_pc_number_to_diatonic_pc_name[
                 new_step % 7]
         accidental = str(abjad_pitch.Accidental(new_alt))
         return abjad_pitch.NamedPitch(

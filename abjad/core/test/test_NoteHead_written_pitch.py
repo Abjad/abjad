@@ -32,16 +32,6 @@ def test_NoteHead_written_pitch_02():
 
 def test_NoteHead_written_pitch_03():
     """
-    Can not set note-head pitch to none.
-    """
-
-    note = abjad.Note(13, (1, 4))
-
-    assert pytest.raises(Exception, 'note.note_head.written_pitch = None')
-
-
-def test_NoteHead_written_pitch_04():
-    """
     Set note-head pitch from another note or note-head.
     Make sure this does not cause reference problems.
     """

@@ -1,6 +1,6 @@
-import numbers
-from abjad import mathtools
+from abjad.enumerations import VerticalAlignment
 from abjad.pitch.PitchClass import PitchClass
+from . import constants
 
 
 class NumberedPitchClass(PitchClass):
@@ -67,30 +67,19 @@ class NumberedPitchClass(PitchClass):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_arrow',
         '_number',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, number=0):
-        import abjad
-        prototype = (numbers.Number, abjad.NumberedPitch, type(self))
-        if isinstance(number, numbers.Number):
-            self._initialize_by_number(float(number))
-        elif isinstance(number, prototype):
-            self._initialize_by_number(float(number.number))
-        elif isinstance(number, abjad.NamedPitch):
-            self._initialize_by_named_pitch(number)
-        elif isinstance(number, abjad.NamedPitchClass):
-            self._initialize_by_named_pitch_class(number)
-        elif isinstance(number, str):
-            self._initialize_by_string(number)
-        elif abjad.Pitch._is_pitch_carrier(number):
-            self._initialize_by_pitch_carrier(number)
-        else:
-            message = 'can not instantiate {} from {!r}.'
-            message = message.format(type(self).__name__, number)
-            raise TypeError(message)
+    def __init__(self, number=0, *, arrow=None):
+        super().__init__(number or 0)
+        if arrow is not None:
+            arrow = VerticalAlignment.from_expr(arrow)
+            if arrow is VerticalAlignment.Center:
+                arrow = None
+            self._arrow = arrow
 
     ### SPECIAL METHODS ###
 
@@ -305,12 +294,30 @@ class NumberedPitchClass(PitchClass):
         semitones = self.number + accidental.semitones
         return type(self)(semitones)
 
-    def _get_diatonic_pitch_class_name(self):
+    def _from_dpc_number_and_alteration(self, dpc_number, alteration):
+        number = constants._diatonic_pc_number_to_pitch_class_number[dpc_number]
+        number += alteration
+        self._from_number(number)
+
+    def _from_number(self, number):
+        self._arrow = None
+        self._number = self._to_nearest_quarter_tone(number)
+
+    def _from_pitch_or_pitch_class(self, pitch_or_pitch_class):
+        self._arrow = pitch_or_pitch_class.arrow
+        self._number = self._to_nearest_quarter_tone(float(pitch_or_pitch_class))
+
+    def _get_alteration(self):
+        dpc_number = self._get_diatonic_pc_number()
+        pc_number = constants._diatonic_pc_number_to_pitch_class_number[dpc_number]
+        return float(self) - pc_number
+
+    def _get_diatonic_pc_name(self):
         return self.name[0]
 
-    def _get_diatonic_pitch_class_number(self):
-        return self._diatonic_pitch_class_name_to_diatonic_pitch_class_number[
-            self._get_diatonic_pitch_class_name()]
+    def _get_diatonic_pc_number(self):
+        return constants._diatonic_pc_name_to_diatonic_pc_number[
+            self._get_diatonic_pc_name()]
 
     def _get_format_specification(self):
         import abjad
@@ -320,33 +327,12 @@ class NumberedPitchClass(PitchClass):
             coerce_for_equality=True,
             storage_format_is_indented=False,
             storage_format_args_values=values,
+            storage_format_kwargs_names=[],
             )
 
-    def _initialize_by_named_pitch(self, argument):
-        self._number = argument.pitch_class.number
-
-    def _initialize_by_named_pitch_class(self, argument):
-        self._number = argument.number
-
-    def _initialize_by_number(self, argument):
-        argument = round((float(argument) % 12) * 4) / 4
-        div, mod = divmod(argument, 1)
-        if mod == 0.75:
-            div += 1
-        elif mod == 0.5:
-            div += 0.5
-        div %= 12
-        self._number = mathtools.integer_equivalent_number_to_integer(div)
-
-    def _initialize_by_pitch_carrier(self, argument):
+    def _get_lilypond_format(self):
         import abjad
-        named_pitch = abjad.NamedPitch.from_pitch_carrier(argument)
-        self._initialize_by_named_pitch(named_pitch)
-
-    def _initialize_by_string(self, argument):
-        import abjad
-        named_pitch_class = abjad.NamedPitchClass(argument)
-        self._initialize_by_named_pitch_class(named_pitch_class)
+        return format(abjad.NamedPitchClass(self), 'lilypond')
 
     ### PUBLIC PROPERTIES ###
 
@@ -365,6 +351,14 @@ class NumberedPitchClass(PitchClass):
         return abjad.NamedPitch(self.number).accidental
 
     @property
+    def arrow(self):
+        r'''Gets arrow of numbered pitch-class.
+
+        Returns up, down or none.
+        '''
+        return self._arrow
+
+    @property
     def name(self):
         r'''Gets name of numbered pitch-class.
 
@@ -378,12 +372,12 @@ class NumberedPitchClass(PitchClass):
         from abjad import abjad_configuration
         accidental_spelling = abjad_configuration['accidental_spelling']
         if accidental_spelling == 'mixed':
-            return self._pitch_class_number_to_pitch_class_name[self.number]
+            return constants._pitch_class_number_to_pitch_class_name[self.number]
         elif accidental_spelling == 'sharps':
-            return self._pitch_class_number_to_pitch_class_name_with_sharps[
+            return constants._pitch_class_number_to_pitch_class_name_with_sharps[
                 self.number]
         elif accidental_spelling == 'flats':
-            return self._pitch_class_number_to_pitch_class_name_with_flats[
+            return constants._pitch_class_number_to_pitch_class_name_with_flats[
                 self.number]
         else:
             message = 'unknown accidental spelling: {!r}.'
@@ -419,7 +413,7 @@ class NumberedPitchClass(PitchClass):
         Returns string.
         '''
         return '{}{}'.format(
-            self._get_diatonic_pitch_class_name().upper(),
+            self._get_diatonic_pc_name().upper(),
             self.accidental.symbol,
             )
 

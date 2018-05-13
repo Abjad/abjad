@@ -361,6 +361,7 @@ class StorageFormatManager(AbjadValueObject):
             <class 'abjad.instruments.Flute.Flute'>
             <class 'abjad.markups.Markup'>
             <class 'abjad.pitch.NamedPitch.NamedPitch'>
+            <class 'abjad.pitch.Octave.Octave'>
             <class 'abjad.pitch.PitchRange.PitchRange'>
 
         ..  container:: example
@@ -557,9 +558,9 @@ class StorageFormatManager(AbjadValueObject):
             >>> for line in agent.get_import_statements():
             ...     line
             ...
-            'from abjad.tools import instruments'
-            'from abjad.tools import markups'
-            'from abjad.tools import pitch'
+            'from abjad import instruments'
+            'from abjad import markup'
+            'from abjad import pitch'
 
         Returns tuple of strings.
         """
@@ -572,7 +573,7 @@ class StorageFormatManager(AbjadValueObject):
                 continue
             elif root_package_name == 'abjad':
                 tools_package_name = agent.get_tools_package_name()
-                import_statement = 'from abjad.tools import {}'.format(
+                import_statement = 'from abjad import {}'.format(
                     tools_package_name)
             else:
                 import_statement = 'import {}'.format(root_package_name)
