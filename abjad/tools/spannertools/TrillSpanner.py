@@ -101,15 +101,20 @@ class TrillSpanner(Spanner):
         '_pitch',
         )
 
+    _start_command = r'\startTrillSpan'
+
+    _stop_command = r'\stopTrillSpan'
+
     ### INITIALIZER ###
 
     def __init__(
         self,
         interval: typing.Union[str, NamedInterval] = None,
         is_harmonic: bool = None,
+        leak: bool = None,
         pitch: typing.Union[str, NamedPitch] = None,
         ) -> None:
-        Spanner.__init__(self)
+        Spanner.__init__(self, leak=leak)
         if interval is not None and pitch is not None:
             message = 'only pitch or interval, not both:'
             message += f' {interval!r} + {pitch!r}.'
@@ -133,7 +138,7 @@ class TrillSpanner(Spanner):
     def _get_lilypond_format_bundle(self, leaf):
         bundle = LilyPondFormatBundle()
         if len(self) == 1 and self._left_broken:
-            strings = [r'\stopTrillSpan']
+            strings = [self.stop_command()]
             strings = self._tag_show(strings)
             bundle.right.spanner_stops.extend(strings)
             return bundle
@@ -152,7 +157,7 @@ class TrillSpanner(Spanner):
                 pitch_string = str(pitch)
             else:
                 pitch_string = None
-            string = r'\startTrillSpan'
+            string = self.start_command()
             if pitch_string:
                 string += ' ' + pitch_string
             strings = [string]
@@ -178,7 +183,7 @@ class TrillSpanner(Spanner):
                 strings = self._tag_hide(strings)
             bundle.grob_reverts.extend(strings)
             if 1 < len(self):
-                strings = [r'\stopTrillSpan']
+                strings = [self.stop_command()]
                 if self._right_broken:
                     strings = self._tag_hide(strings)
                 bundle.right.spanner_stops.extend(strings)
@@ -565,6 +570,56 @@ class TrillSpanner(Spanner):
         return self._is_harmonic
 
     @property
+    def leak(self) -> typing.Optional[bool]:
+        r'''
+        Is true when spanner leaks one leaf to the right.
+
+        ..  container:: example
+
+            Without leak:
+
+            >>> staff = abjad.Staff("c'8 d'8 e'8 r8")
+            >>> trill = abjad.TrillSpanner()
+            >>> abjad.attach(trill, staff[:-1])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'8
+                    \startTrillSpan
+                    d'8
+                    e'8
+                    \stopTrillSpan
+                    r8
+                }
+
+            With leak:
+
+            >>> staff = abjad.Staff("c'8 d'8 e'8 r8")
+            >>> trill = abjad.TrillSpanner(leak=True)
+            >>> abjad.attach(trill, staff[:-1])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'8
+                    \startTrillSpan
+                    d'8
+                    e'8
+                    <> \stopTrillSpan
+                    r8
+                }
+
+        '''
+        return super(TrillSpanner, self).leak
+
+    @property
     def pitch(self) -> typing.Optional[NamedPitch]:
         r'''
         Gets pitch.
@@ -697,3 +752,36 @@ class TrillSpanner(Spanner):
         Returns named pitch or none.
         '''
         return self.pitch
+
+    ### PUBLIC METHODS ###
+
+    def start_command(self) -> typing.Optional[str]:
+        r'''
+        Gets start command.
+
+        ..  container:: example
+
+            >>> abjad.TrillSpanner().start_command()
+            '\\startTrillSpan'
+
+        '''
+        return super(TrillSpanner, self).start_command()
+
+    def stop_command(self) -> typing.Optional[str]:
+        r'''
+        Gets stop command.
+
+        ..  container:: example
+
+            >>> abjad.TrillSpanner().stop_command()
+            '\\stopTrillSpan'
+
+            With leak:
+
+            >>> abjad.TrillSpanner(leak=True).stop_command()
+            '<> \\stopTrillSpan'
+
+        '''
+        string = super(TrillSpanner, self).stop_command()
+        string = self._add_leak(string)
+        return string

@@ -138,6 +138,10 @@ class GeneralizedBeam(Spanner):
         '_vertical_direction',
         )
 
+    _start_command = '['
+
+    _stop_command = ']'
+
     ### INITIALIZER ###
 
     def __init__(
@@ -388,3 +392,29 @@ class GeneralizedBeam(Spanner):
         Gets vertical direction of beam.
         '''
         return self._vertical_direction
+
+    ### PUBLIC METHODS ###
+
+    def start_command(self) -> typing.Optional[str]:
+        '''
+        Gets start command.
+
+        ..  container:: example
+
+            >>> abjad.GeneralizedBeam().start_command()
+            '['
+
+        '''
+        return super(GeneralizedBeam, self).start_command()
+
+    def stop_command(self) -> typing.Optional[str]:
+        '''
+        Gets stop command.
+
+        ..  container:: example
+
+            >>> abjad.GeneralizedBeam().stop_command()
+            ']'
+
+        '''
+        return super(GeneralizedBeam, self).stop_command()

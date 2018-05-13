@@ -266,15 +266,13 @@ class WellformednessManager(AbjadObject):
                 raise Exception('too many hairpins')
             assert len(hairpins) == 2
             hairpins_are_enchained = False
-            if (hairpins[0]._is_my_last_leaf(leaf) and
-                hairpins[-1]._is_my_first_leaf(leaf)):
+            if leaf is hairpins[0][-1] and leaf is hairpins[-1][0]:
                 hairpins_are_enchained = True
-            if (hairpins[-1]._is_my_last_leaf(leaf) and
-                hairpins[0]._is_my_first_leaf(leaf)):
+            if leaf is hairpins[-1][-1] and leaf is hairpins[0][0]:
                 hairpins_are_enchained = True
             if not hairpins_are_enchained:
                 continue
-            if hairpins[0]._is_my_first_leaf(leaf):
+            if leaf is hairpins[0][0]:
                 first_hairpin = hairpins[-1]
                 second_hairpin = hairpins[0]
             else:

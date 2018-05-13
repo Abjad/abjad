@@ -222,6 +222,8 @@ class BowContactSpanner(Spanner):
 
     __slots__ = ()
 
+    _start_command = r'\glissando'
+
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format_bundle(self, leaf):
@@ -234,7 +236,7 @@ class BowContactSpanner(Spanner):
         if bow_contact_point.contact_point is None:
             self._make_pizzicato_overrides(bundle)
             return bundle
-        if self._is_my_only_leaf(leaf):
+        if self._is_my_only(leaf):
             return bundle
         self._make_bow_contact_point_overrides(
             bow_contact_point=bow_contact_point,
@@ -429,3 +431,27 @@ class BowContactSpanner(Spanner):
             tag=tag,
             wrapper=wrapper,
             )
+
+    def start_command(self) -> typing.Optional[str]:
+        r'''
+        Gets start command.
+
+        ..  container:: example
+
+            >>> abjad.BowContactSpanner().start_command()
+            '\\glissando'
+
+        '''
+        return super(BowContactSpanner, self).start_command()
+
+    def stop_command(self) -> typing.Optional[str]:
+        '''
+        Gets stop command.
+
+        ..  container:: example
+
+            >>> abjad.BowContactSpanner().stop_command() is None
+            True
+
+        '''
+        return super(BowContactSpanner, self).stop_command()

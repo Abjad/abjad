@@ -159,3 +159,29 @@ class MeasuredComplexBeam(ComplexBeam):
 
         '''
         return self._span_beam_count
+
+    ### PUBLIC METHODS ###
+
+    def start_command(self) -> typing.Optional[str]:
+        '''
+        Gets start command.
+
+        ..  container:: example
+
+            >>> abjad.MeasuredComplexBeam().start_command()
+            '['
+
+        '''
+        return super(MeasuredComplexBeam, self).start_command()
+
+    def stop_command(self) -> typing.Optional[str]:
+        '''
+        Gets stop command.
+
+        ..  container:: example
+
+            >>> abjad.MeasuredComplexBeam().stop_command()
+            ']'
+
+        '''
+        return super(MeasuredComplexBeam, self).stop_command()

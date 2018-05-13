@@ -140,7 +140,16 @@ def tweak(argument):
                 f'4
             }
 
-        ..  todo:: Remove courtesy autocolumn in favor of explicit tweaks?
+        ..  todo:: Refactor courtesty autocolumn to enclose markup object in
+            each ``\line`` (rather than raw string). This will allow tweaks
+            to be preserved on each piece of markup in courtesy autocolumn.
+
+    ..  container:: example
+
+        ..  todo:: Teach ``abjad.tweak()`` about grobs.
+
+        >>> staff = abjad.Staff("c'4 cs' d ds'")
+        >>> #abjad.tweak(staff[1]).accidental.color = 'red'
 
     ..  container:: example
 
