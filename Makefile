@@ -13,7 +13,7 @@ clean:
 	rm -Rif dist/
 
 docs:
-	make -C abjad/docs html
+	make -C docs html
 
 release:
 	make clean

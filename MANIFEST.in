@@ -1,9 +1,8 @@
-include README.rst
 include LICENSE
-include ez_setup.py
-include setup.py
 include MANIFEST.in
-recursive-include abjad *
-recursive-exclude abjad/docs/build *
-recursive-exclude abjad *.pyc
-recursive-exclude experimental *
+include README.rst
+include conftest.py
+include pytest.ini
+include setup.py
+recursive-include abjad/ *
+recursive-exclude docs/ *
