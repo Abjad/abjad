@@ -21,7 +21,7 @@ abjad_tags = Tags()
 
 
 class MetronomeMarkSpanner(Spanner):
-    r'''
+    r"""
     Metronome mark spanner.
 
     ..  container:: example
@@ -56,11 +56,10 @@ class MetronomeMarkSpanner(Spanner):
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    \time 3/8
+                    c'8.
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -78,20 +77,19 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
-                    \time 3/8
-                    c'8.
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     d'8.
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    e'4.
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -109,19 +107,18 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
-                    e'4.
-                    \stopTextSpan
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    g'8.
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -139,12 +136,13 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right.text =
-                    \markup {
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.right.text \markup {
                         \concat
                             {
                                 \hspace
@@ -168,12 +166,9 @@ class MetronomeMarkSpanner(Spanner):
                                     }
                             }
                         }
-                    \once \override TextSpanner.dash-period = 0
-                    g'8.
-                    \stopTextSpan
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     f'8.
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     ef'4.
                     \stopTextSpan
                 }
@@ -213,12 +208,10 @@ class MetronomeMarkSpanner(Spanner):
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    \time 3/8
+                    c'8.
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -236,23 +229,23 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-fraction = 0.25
-                    \once \override TextSpanner.dash-period = 1.5
-                    \time 3/8
-                    c'8.
+                    - \tweak arrow-width 0.25
+                    - \tweak dash-fraction 0.25
+                    - \tweak dash-period 1.5
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right.arrow ##t
+                    - \tweak bound-details.right-broken.arrow ##f
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     d'8.
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    e'4.
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -270,19 +263,18 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
-                    e'4.
-                    \stopTextSpan
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    g'8.
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -300,12 +292,13 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right.text =
-                    \markup {
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.right.text \markup {
                         \concat
                             {
                                 \hspace
@@ -329,12 +322,9 @@ class MetronomeMarkSpanner(Spanner):
                                     }
                             }
                         }
-                    \once \override TextSpanner.dash-period = 0
-                    g'8.
-                    \stopTextSpan
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     f'8.
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     ef'4.
                     \stopTextSpan
                 }
@@ -374,11 +364,10 @@ class MetronomeMarkSpanner(Spanner):
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    \time 3/8
+                    c'8.
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -396,20 +385,19 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
-                    \time 3/8
-                    c'8.
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     d'8.
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    e'4.
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -427,20 +415,18 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
-                    e'4.
-                    \stopTextSpan
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    g'8.
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -458,14 +444,17 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right.text =
-                    \markup {
+                    - \tweak arrow-width 0.25
+                    - \tweak dash-fraction 0.25
+                    - \tweak dash-period 1.5
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right.arrow ##t
+                    - \tweak bound-details.right-broken.arrow ##f
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.right.text \markup {
                         \concat
                             {
                                 \hspace
@@ -489,13 +478,9 @@ class MetronomeMarkSpanner(Spanner):
                                     }
                             }
                         }
-                    \once \override TextSpanner.dash-fraction = 0.25
-                    \once \override TextSpanner.dash-period = 1.5
-                    g'8.
-                    \stopTextSpan
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     f'8.
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     ef'4.
                     \stopTextSpan
                 }
@@ -537,12 +522,10 @@ class MetronomeMarkSpanner(Spanner):
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    \time 3/8
+                    c'8.
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -560,23 +543,23 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-fraction = 0.25
-                    \once \override TextSpanner.dash-period = 1.5
-                    \time 3/8
-                    c'8.
+                    - \tweak arrow-width 0.25
+                    - \tweak dash-fraction 0.25
+                    - \tweak dash-period 1.5
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right.arrow ##t
+                    - \tweak bound-details.right-broken.arrow ##f
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     d'8.
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    e'4.
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -594,20 +577,18 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
-                    e'4.
-                    \stopTextSpan
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    g'8.
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -625,14 +606,17 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right.text =
-                    \markup {
+                    - \tweak arrow-width 0.25
+                    - \tweak dash-fraction 0.25
+                    - \tweak dash-period 1.5
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right.arrow ##t
+                    - \tweak bound-details.right-broken.arrow ##f
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.right.text \markup {
                         \concat
                             {
                                 \hspace
@@ -656,13 +640,9 @@ class MetronomeMarkSpanner(Spanner):
                                     }
                             }
                         }
-                    \once \override TextSpanner.dash-fraction = 0.25
-                    \once \override TextSpanner.dash-period = 1.5
-                    g'8.
-                    \stopTextSpan
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     f'8.
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     ef'4.
                     \stopTextSpan
                 }
@@ -700,35 +680,33 @@ class MetronomeMarkSpanner(Spanner):
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    \time 3/8
+                    c'8.
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \large
                             \upright
                                 accel.
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-fraction = 0.25
-                    \once \override TextSpanner.dash-period = 1.5
-                    \time 3/8
-                    c'8.
+                    - \tweak arrow-width 0.25
+                    - \tweak dash-fraction 0.25
+                    - \tweak dash-period 1.5
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right.arrow ##t
+                    - \tweak bound-details.right-broken.arrow ##f
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     d'8.
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    e'4.
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -746,19 +724,18 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
-                    e'4.
-                    \stopTextSpan
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    g'8.
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -776,12 +753,13 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right.text =
-                    \markup {
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.right.text \markup {
                         \concat
                             {
                                 \hspace
@@ -805,12 +783,9 @@ class MetronomeMarkSpanner(Spanner):
                                     }
                             }
                         }
-                    \once \override TextSpanner.dash-period = 0
-                    g'8.
-                    \stopTextSpan
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     f'8.
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     ef'4.
                     \stopTextSpan
                 }
@@ -848,35 +823,33 @@ class MetronomeMarkSpanner(Spanner):
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    \time 3/8
+                    c'8.
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \large
                             \upright
                                 rit.
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-fraction = 0.25
-                    \once \override TextSpanner.dash-period = 1.5
-                    \time 3/8
-                    c'8.
+                    - \tweak arrow-width 0.25
+                    - \tweak dash-fraction 0.25
+                    - \tweak dash-period 1.5
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right.arrow ##t
+                    - \tweak bound-details.right-broken.arrow ##f
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     d'8.
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    e'4.
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -894,19 +867,18 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
-                    e'4.
-                    \stopTextSpan
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    g'8.
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -924,12 +896,13 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right.text =
-                    \markup {
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.right.text \markup {
                         \concat
                             {
                                 \hspace
@@ -953,12 +926,9 @@ class MetronomeMarkSpanner(Spanner):
                                     }
                             }
                         }
-                    \once \override TextSpanner.dash-period = 0
-                    g'8.
-                    \stopTextSpan
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     f'8.
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     ef'4.
                     \stopTextSpan
                 }
@@ -998,11 +968,10 @@ class MetronomeMarkSpanner(Spanner):
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    \time 3/8
+                    c'8.
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -1020,20 +989,19 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
-                    \time 3/8
-                    c'8.
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     d'8.
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    e'4.
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -1051,20 +1019,18 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
-                    e'4.
-                    \stopTextSpan
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    g'8.
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \override
                             #'(padding . 0.45)
                             \parenthesize
@@ -1088,14 +1054,17 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right.text =
-                    \markup {
+                    - \tweak arrow-width 0.25
+                    - \tweak dash-fraction 0.25
+                    - \tweak dash-period 1.5
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right.arrow ##t
+                    - \tweak bound-details.right-broken.arrow ##f
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.right.text \markup {
                         \concat
                             {
                                 \hspace
@@ -1119,13 +1088,9 @@ class MetronomeMarkSpanner(Spanner):
                                     }
                             }
                         }
-                    \once \override TextSpanner.dash-fraction = 0.25
-                    \once \override TextSpanner.dash-period = 1.5
-                    g'8.
-                    \stopTextSpan
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     f'8.
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     ef'4.
                     \stopTextSpan
                 }
@@ -1165,11 +1130,10 @@ class MetronomeMarkSpanner(Spanner):
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    \time 3/8
+                    c'8.
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -1187,20 +1151,19 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
-                    \time 3/8
-                    c'8.
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     d'8.
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    e'4.
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -1218,20 +1181,18 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
-                    e'4.
-                    \stopTextSpan
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    g'8.
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \override
                             #'(padding . 0.45)
                             \parenthesize
@@ -1255,14 +1216,17 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right.text =
-                    \markup {
+                    - \tweak arrow-width 0.25
+                    - \tweak dash-fraction 0.25
+                    - \tweak dash-period 1.5
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right.arrow ##t
+                    - \tweak bound-details.right-broken.arrow ##f
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.right.text \markup {
                         \concat
                             {
                                 \hspace
@@ -1286,13 +1250,9 @@ class MetronomeMarkSpanner(Spanner):
                                     }
                             }
                         }
-                    \once \override TextSpanner.dash-fraction = 0.25
-                    \once \override TextSpanner.dash-period = 1.5
-                    g'8.
-                    \stopTextSpan
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     f'8.
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     ef'4.
                     \stopTextSpan
                 }
@@ -1330,23 +1290,21 @@ class MetronomeMarkSpanner(Spanner):
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
                     \time 3/8
                     c'4.
+                    - \tweak Y-extent ##f
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
                     \startTextSpan
                     d'4.
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    e'4.
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -1364,26 +1322,26 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-fraction = 0.25
-                    \once \override TextSpanner.dash-period = 1.5
-                    e'4.
-                    \stopTextSpan
+                    - \tweak arrow-width 0.25
+                    - \tweak dash-fraction 0.25
+                    - \tweak dash-period 1.5
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right.arrow ##t
+                    - \tweak bound-details.right-broken.arrow ##f
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     f'4.
                     \break
                     g'4.
                     a'4.
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    b'4.
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -1401,13 +1359,13 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
-                    b'4.
-                    \stopTextSpan
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     c''4.
                     \stopTextSpan
@@ -1446,23 +1404,21 @@ class MetronomeMarkSpanner(Spanner):
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
                     \time 3/8
                     c'4.
+                    - \tweak Y-extent ##f
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
                     \startTextSpan
                     d'4.
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    e'4.
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -1480,26 +1436,26 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-fraction = 0.25
-                    \once \override TextSpanner.dash-period = 1.5
-                    e'4.
-                    \stopTextSpan
+                    - \tweak arrow-width 0.25
+                    - \tweak dash-fraction 0.25
+                    - \tweak dash-period 1.5
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right.arrow ##t
+                    - \tweak bound-details.right-broken.arrow ##f
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     f'4.
                     \break
                     g'4.
                     a'4.
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    b'4.
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -1517,13 +1473,13 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
-                    b'4.
-                    \stopTextSpan
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     c''4.
                     \stopTextSpan
@@ -1563,11 +1519,10 @@ class MetronomeMarkSpanner(Spanner):
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    \time 3/8
+                    c'8.
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -1585,21 +1540,20 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
-                    \time 3/8
-                    c'8.
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     d'8.
                     e'4.
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    g'8.
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -1699,13 +1653,13 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
-                    g'8.
-                    \stopTextSpan
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     f'8.
                     ef'4.
@@ -1749,11 +1703,10 @@ class MetronomeMarkSpanner(Spanner):
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    \time 3/8
+                    c'8.
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -1771,22 +1724,20 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
-                    \time 3/8
-                    c'8.
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     d'8.
                     e'4.
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    g'8.
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -1886,14 +1837,17 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right.text =
-                    \markup {
+                    - \tweak arrow-width 0.25
+                    - \tweak dash-fraction 0.25
+                    - \tweak dash-period 1.5
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right.arrow ##t
+                    - \tweak bound-details.right-broken.arrow ##f
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.right.text \markup {
                         \concat
                             {
                                 \hspace
@@ -1917,13 +1871,9 @@ class MetronomeMarkSpanner(Spanner):
                                     }
                             }
                         }
-                    \once \override TextSpanner.dash-fraction = 0.25
-                    \once \override TextSpanner.dash-period = 1.5
-                    g'8.
-                    \stopTextSpan
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     f'8.
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     ef'4.
                     \stopTextSpan
                 }
@@ -1936,6 +1886,7 @@ class MetronomeMarkSpanner(Spanner):
 
         >>> staff = abjad.Staff("c'8. d'8. e'4. g'8. f'8. ef'4.")
         >>> score = abjad.Score([staff])
+        >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
         >>> spanner = abjad.MetronomeMarkSpanner()
         >>> abjad.attach(spanner, staff[:])
         >>> abjad.override(staff).text_spanner.staff_padding = 3
@@ -1954,15 +1905,16 @@ class MetronomeMarkSpanner(Spanner):
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right.text =
-                    \markup {
+                    \time 3/8
+                    c'8.
+                    - \tweak Y-extent ##f
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.right.text \markup {
                         \concat
                             {
                                 \hspace
@@ -1986,20 +1938,18 @@ class MetronomeMarkSpanner(Spanner):
                                     }
                             }
                         }
-                    \once \override TextSpanner.dash-period = 0
-                    c'8.
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     d'8.
                     e'4.
                     g'8.
                     f'8.
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     ef'4.
                     \stopTextSpan
                 }
             >>
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -2051,13 +2001,12 @@ class MetronomeMarkSpanner(Spanner):
 
     def _add_last_leaf_metronome_mark(
         self,
-        bundle,
         last_leaf_metronome_mark,
         line_segment,
         ):
         last_leaf_wrapper = inspect(self[-1]).wrapper(MetronomeMark)
         assert last_leaf_wrapper.indicator is last_leaf_metronome_mark
-
+        result = []
         last_leaf_markup = last_leaf_metronome_mark._get_markup(
             stem_height=self.stem_height,
             )
@@ -2072,7 +2021,6 @@ class MetronomeMarkSpanner(Spanner):
         last_leaf_markup = new(last_leaf_markup, direction=None)
         override = LilyPondGrobOverride(
             grob_name='TextSpanner',
-            once=True,
             property_path=(
                 'bound-details',
                 'right',
@@ -2080,7 +2028,7 @@ class MetronomeMarkSpanner(Spanner):
                 ),
             value=last_leaf_markup,
             )
-        pieces = override.override_string.split('\n')
+        pieces = override.tweak_string().split('\n')
         tag = last_leaf_wrapper.tag
         deactivate = last_leaf_wrapper.deactivate
         if self._right_broken:
@@ -2092,7 +2040,7 @@ class MetronomeMarkSpanner(Spanner):
             tag=tag,
             )
         string = '\n'.join(pieces)
-        bundle.grob_overrides.append(string)
+        result.append(string)
         alternate = last_leaf_wrapper.alternate
         if alternate is not None:
             deactivate = not last_leaf_wrapper.deactivate
@@ -2101,7 +2049,6 @@ class MetronomeMarkSpanner(Spanner):
             last_leaf_markup = last_leaf_markup.with_color(color)
             override = LilyPondGrobOverride(
                 grob_name='TextSpanner',
-                once=True,
                 property_path=(
                     'bound-details',
                     'right',
@@ -2109,7 +2056,7 @@ class MetronomeMarkSpanner(Spanner):
                     ),
                 value=last_leaf_markup,
                 )
-            pieces = override.override_string.split('\n')
+            pieces = override.tweak_string().split('\n')
             if self._right_broken:
                 tag_ = abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS
                 tag = tag.append(tag_)
@@ -2119,13 +2066,14 @@ class MetronomeMarkSpanner(Spanner):
                 deactivate=deactivate,
                 )
             string = '\n'.join(pieces)
-            bundle.grob_overrides.append(string)
+            result.append(string)
+        return result
 
-    def _add_left_broken_text(self, bundle, current_tempo_trend):
+    def _add_left_broken_text(self, current_tempo_trend, leaf):
+        result = []
         if self.left_broken_text is False:
             override = LilyPondGrobOverride(
                 grob_name='TextSpanner',
-                once=True,
                 property_path=(
                     'bound-details',
                     'left-broken',
@@ -2133,8 +2081,11 @@ class MetronomeMarkSpanner(Spanner):
                     ),
                 value=False,
                 )
-            string = override.override_string
-            bundle.grob_overrides.append(string)
+            pieces = [override.tweak_string()]
+            if self._right_broken and leaf is self[-1]:
+                pieces = self._tag_show(pieces)
+            string = '\n'.join(pieces)
+            result.append(string)
         elif self.left_broken_text is True and current_tempo_trend is not None:
             markup = current_tempo_trend._get_markup()
             markup = markup.parenthesize()
@@ -2142,7 +2093,6 @@ class MetronomeMarkSpanner(Spanner):
             markup = markup + markup.hspace(self.left_hspace)
             override = LilyPondGrobOverride(
                 grob_name='TextSpanner',
-                once=True,
                 property_path=(
                     'bound-details',
                     'left-broken',
@@ -2150,16 +2100,15 @@ class MetronomeMarkSpanner(Spanner):
                     ),
                 value=markup,
                 )
-            pieces = override.override_string.split('\n')
+            pieces = override.tweak_string().split('\n')
             if self._right_broken and leaf is self[-1]:
                 pieces = self._tag_show(pieces)
             string = '\n'.join(pieces)
-            bundle.grob_overrides.append(string)
+            result.append(string)
         elif isinstance(self.left_broken_text, Markup):
             markup = self.left_broken_text
             override = LilyPondGrobOverride(
                 grob_name='TextSpanner',
-                once=True,
                 property_path=(
                     'bound-details',
                     'left-broken',
@@ -2167,34 +2116,29 @@ class MetronomeMarkSpanner(Spanner):
                     ),
                 value=markup,
                 )
-            pieces = override.override_string.split('\n')
+            pieces = override.tweak_string().split('\n')
             if self._right_broken and leaf is self[-1]:
                 pieces = self._tag_show(pieces)
             string = '\n'.join(pieces)
-            bundle.grob_overrides.append(string)
+            result.append(string)
+        return result
 
     def _add_no_indicators(self, bundle, leaf):
         if leaf is self[0]:
-            strings = [self.start_command()]
-            if self._left_broken:
-                strings = self._tag_hide(strings)
-            bundle.right.spanner_starts.extend(strings)
+            strings = []
             override = self._y_extent_false()
-            strings = [override.override_string]
-            if self._left_broken:
-                strings = self._tag_hide(strings)
-            bundle.grob_overrides.extend(strings)
+            strings.append(override.tweak_string())
             line_segment = self._make_invisible_line_segment()
             line_segment = new(
                 line_segment,
                 right_padding=self.right_padding,
                 )
-            # TODO: tweaks instead of overrides
-            #strings = line_segment._get_lilypond_grob_overrides(tweaks=True)
-            strings = line_segment._get_lilypond_grob_overrides()
+            strings_ = line_segment._get_lilypond_grob_overrides(tweaks=True)
+            strings.extend(strings_)
+            strings.append(self.start_command())
             if self._left_broken:
                 strings = self._tag_hide(strings)
-            bundle.grob_overrides.extend(strings)
+            bundle.right.spanner_starts.extend(strings)
         if leaf is self[-1]:
             strings = [self.stop_command()]
             if self._right_broken:
@@ -2231,33 +2175,24 @@ class MetronomeMarkSpanner(Spanner):
         markup = metronome_mark_markup + modulation_markup
         return markup
 
-    def _get_lilypond_format_bundle(self, leaf):
-        bundle = self._get_basic_lilypond_format_bundle(leaf)
-        if not 1 < len(self):
-            return bundle
-        if not self._wrappers:
-            return bundle
+    def _get_format_info(self, leaf):
         current_wrappers = self._get_piecewise_wrappers(leaf)
-        #
         current_metronome_mark_wrapper = current_wrappers[0]
         if current_metronome_mark_wrapper is not None:
             current_metronome_mark = current_metronome_mark_wrapper.indicator
         else:
             current_metronome_mark = None
-        #
         current_tempo_trend_wrapper = current_wrappers[1]
         if current_tempo_trend_wrapper is not None:
             current_tempo_trend = current_tempo_trend_wrapper.indicator
         else:
             current_tempo_trend = None
-        #
         current_metric_modulation_wrapper = current_wrappers[2]
         if current_metric_modulation_wrapper is not None:
             current_metric_modulation = \
                 current_metric_modulation_wrapper.indicator
         else:
             current_metric_modulation = None
-        #
         if self._should_format_last_leaf_markup(leaf):
             last_leaf_metronome_mark = inspect(self[-1]).get_piecewise(
                 self,
@@ -2270,13 +2205,11 @@ class MetronomeMarkSpanner(Spanner):
             current_metric_modulation,
             current_tempo_trend,
             )
-        has_own_indicators = any(_ is not None for _ in own_indicators)
-        indicators = own_indicators + (last_leaf_metronome_mark,)
-        has_indicators = any(_ is not None for _ in indicators)
-        if not has_indicators:
-            self._add_no_indicators(bundle, leaf)
-            return bundle
-        #
+        own_wrappers = (
+            current_metronome_mark_wrapper,
+            current_metric_modulation_wrapper,
+            current_tempo_trend_wrapper,
+            )
         previous_wrappers = self._get_previous_piecewise_wrappers(leaf)
         previous_metronome_mark_wrapper = previous_wrappers[0]
         if previous_metronome_mark_wrapper is not None:
@@ -2288,103 +2221,66 @@ class MetronomeMarkSpanner(Spanner):
             previous_tempo_trend = previous_tempo_trend_wrapper.indicator
         else:
             previous_tempo_trend = None
-        #
+        previous = (
+            previous_metronome_mark_wrapper,
+            previous_metronome_mark,
+            previous_tempo_trend_wrapper,
+            previous_tempo_trend,
+            )
+        indicators = own_indicators + (last_leaf_metronome_mark,)
+        return {
+            'current_metronome_mark': current_metronome_mark,
+            'current_metric_modulation': current_metric_modulation,
+            'current_tempo_trend': current_tempo_trend,
+            'current_metronome_mark_wrapper': current_metronome_mark_wrapper,
+            'current_metric_modulation_wrapper':
+                current_metric_modulation_wrapper,
+            'current_tempo_trend_wrapper': current_tempo_trend_wrapper,
+            'indicators': indicators,
+            'last_leaf_metronome_mark': last_leaf_metronome_mark,
+            'own_indicators': own_indicators,
+            'previous_metronome_mark_wrapper': previous_metronome_mark_wrapper,
+            'previous_metronome_mark': previous_metronome_mark,
+            'previous_tempo_trend_wrapper': previous_tempo_trend_wrapper,
+            'previous_tempo_trend': previous_tempo_trend,
+            }
+
+    def _get_lilypond_format_bundle(self, leaf):
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
+        if not 1 < len(self):
+            return bundle
+        if not self._wrappers:
+            return bundle
+        info = self._get_format_info(leaf)
+        has_own_indicators = any(_ is not None for _ in info['own_indicators'])
+        has_indicators = any(_ is not None for _ in info['indicators'])
+        if not has_indicators:
+            self._add_no_indicators(bundle, leaf)
+            return bundle
+        tweaks = self._get_tweaks(info, leaf)
+        # start- and stop-commands added after tweaks
         if has_indicators and leaf is not self[0]:
             if self._right_broken and leaf is self[-1]:
-                strings = [self.stop_command(), self.start_command()]
-                strings = self._tag_show(strings)
+                string = self.stop_command()
+                strings = self._tag_show([string])
+                bundle.right.spanner_stops.extend(strings)
+                bundle.right.spanner_stops.extend(tweaks)
+                string = self.start_command()
+                strings = self._tag_show([string])
                 bundle.right.spanner_stops.extend(strings)
             strings = [self.stop_command()]
             bundle.right.spanner_stops.extend(strings)
-        #
-        if (leaf is not self[-1] or
-            (self._right_broken and leaf is self[-1])):
-            strings = [self.start_command()]
+        if (leaf is not self[-1] or (self._right_broken and leaf is self[-1])):
             if self._right_broken and leaf is self[-1]:
                 pass
             else:
+                bundle.right.spanner_starts.extend(tweaks)
+                strings = [self.start_command()]
                 bundle.right.spanner_starts.extend(strings)
-            #
             if self._left_broken and leaf is self[0]:
                 strings = [self.stop_command()]
                 strings = self._tag_show(strings)
                 bundle.right.spanner_starts.extend(strings)
-            #
-            override = self._y_extent_false()
-            strings = [override.override_string]
-            if self._right_broken and leaf is self[-1]:
-                strings = self._tag_show(strings)
-            bundle.grob_overrides.extend(strings)
-            #
-            if current_metronome_mark or current_metric_modulation:
-                self._start_tempo_trend_spanner_with_explicit_start(
-                    leaf,
-                    bundle,
-                    current_metronome_mark_wrapper,
-                    current_metric_modulation_wrapper,
-                    )
-            elif current_tempo_trend is not None:
-                self._start_tempo_trend_spanner_with_implicit_start(
-                    leaf,
-                    bundle,
-                    current_tempo_trend_wrapper,
-                    previous_metronome_mark,
-                    )
-            if current_tempo_trend is None:
-                line_segment = self._make_invisible_line_segment()
-                line_segment = new(
-                    line_segment,
-                    right_padding=self.right_padding,
-                    )
-                # TODO: tweaks instead of overrides
-                #strings = line_segment._get_lilypond_grob_overrides(tweaks=True)
-                strings = line_segment._get_lilypond_grob_overrides()
-                if (leaf is self[0] and
-                    self._left_broken and
-                    not has_own_indicators):
-                    strings = self._tag_hide(strings)
-                    line_segment = self._make_dashed_arrow()
-                    line_segment = new(
-                        line_segment,
-                        right_padding=self.right_padding,
-                        )
-                    # TODO: tweaks instead of overrides
-                    #strings_ = line_segment._get_lilypond_grob_overrides(tweaks=True)
-                    strings_ = line_segment._get_lilypond_grob_overrides()
-                    strings_ = self._tag_show(strings_)
-                    strings.extend(strings_)
-            else:
-                line_segment = self._make_dashed_arrow()
-                line_segment = new(
-                    line_segment,
-                    right_padding=self.right_padding,
-                    )
-                # TODO: tweaks instead of overrides
-                #strings = line_segment._get_lilypond_grob_overrides(tweaks=True)
-                strings = line_segment._get_lilypond_grob_overrides()
-                #
-                if self._right_broken is True and leaf is self[-1]:
-                    strings = self._tag_show(strings)
-                elif self._right_broken == '-':
-                    strings = self._tag_hide(strings)
-                    line_segment = self._make_dashed_line_segment()
-                    line_segment = new(
-                        line_segment,
-                        right_padding=self.right_padding,
-                        )
-                    # TODO: tweaks instead of overrides
-                    #strings_ = line_segment._get_lilypond_grob_overrides(tweaks=True)
-                    strings_ = line_segment._get_lilypond_grob_overrides()
-                    strings_ = self._tag_show(strings_)
-                    strings.extend(strings_)
-            bundle.grob_overrides.extend(strings)
-        if last_leaf_metronome_mark is not None:
-            self._add_last_leaf_metronome_mark(
-                bundle,
-                last_leaf_metronome_mark,
-                line_segment,
-                )
-        self._add_left_broken_text(bundle, current_tempo_trend)
         return bundle
 
     def _get_piecewise_wrappers(self, leaf):
@@ -2421,6 +2317,90 @@ class MetronomeMarkSpanner(Spanner):
             if any(_ is not None for _ in indicators):
                 return wrappers
         return None, None, None
+
+    def _get_tweaks(self, info, leaf):
+        has_own_indicators = any(_ is not None for _ in info['own_indicators'])
+        tweaks = []
+        if (leaf is not self[-1] or (self._right_broken and leaf is self[-1])):
+            override = self._y_extent_false()
+            strings = [override.tweak_string()]
+            if self._right_broken and leaf is self[-1]:
+                strings = self._tag_show(strings)
+            tweaks.extend(strings)
+            if (info['current_metronome_mark'] or
+                info['current_metric_modulation']):
+                strings = self._start_tempo_trend_spanner_with_explicit_start(
+                    leaf,
+                    info['current_metronome_mark_wrapper'],
+                    info['current_metric_modulation_wrapper'],
+                    )
+                tweaks.extend(strings)
+            elif info['current_tempo_trend'] is not None:
+                strings = self._start_tempo_trend_spanner_with_implicit_start(
+                    leaf,
+                    info['current_tempo_trend_wrapper'],
+                    info['previous_metronome_mark'],
+                    )
+                tweaks.extend(strings)
+            if info['current_tempo_trend'] is None:
+                line_segment = self._make_invisible_line_segment()
+                line_segment = new(
+                    line_segment,
+                    right_padding=self.right_padding,
+                    )
+                strings = line_segment._get_lilypond_grob_overrides(
+                    tweaks=True
+                    )
+                if (leaf is self[0] and
+                    self._left_broken and
+                    not has_own_indicators):
+                    strings = self._tag_hide(strings)
+                    line_segment = self._make_dashed_arrow()
+                    line_segment = new(
+                        line_segment,
+                        right_padding=self.right_padding,
+                        )
+                    strings_ = line_segment._get_lilypond_grob_overrides(
+                        tweaks=True
+                        )
+                    strings_ = self._tag_show(strings_)
+                    strings.extend(strings_)
+            else:
+                line_segment = self._make_dashed_arrow()
+                line_segment = new(
+                    line_segment,
+                    right_padding=self.right_padding,
+                    )
+                strings = line_segment._get_lilypond_grob_overrides(
+                    tweaks=True
+                    )
+                if self._right_broken is True and leaf is self[-1]:
+                    strings = self._tag_show(strings)
+                elif self._right_broken == '-':
+                    strings = self._tag_hide(strings)
+                    line_segment = self._make_dashed_line_segment()
+                    line_segment = new(
+                        line_segment,
+                        right_padding=self.right_padding,
+                        )
+                    strings_ = line_segment._get_lilypond_grob_overrides(
+                        tweaks=True
+                        )
+                    strings_ = self._tag_show(strings_)
+                    strings.extend(strings_)
+            tweaks.extend(strings)
+        if info['last_leaf_metronome_mark'] is not None:
+            strings = self._add_last_leaf_metronome_mark(
+                info['last_leaf_metronome_mark'],
+                line_segment,
+                )
+            tweaks.extend(strings)
+        strings = self._add_left_broken_text(
+            info['current_tempo_trend'],
+            leaf,
+            )
+        tweaks.extend(strings)
+        return tweaks
 
     def _is_trending(self, leaf):
         if leaf not in self:
@@ -2506,10 +2486,10 @@ class MetronomeMarkSpanner(Spanner):
     def _start_tempo_trend_spanner_with_explicit_start(
         self,
         leaf,
-        bundle,
         current_metronome_mark_wrapper,
         current_metric_modulation_wrapper,
         ):
+        tweaks = []
         markup = self._combine_metronome_mark_and_metric_modulation(
             getattr(current_metronome_mark_wrapper, 'indicator', None),
             getattr(current_metric_modulation_wrapper, 'indicator', None),
@@ -2517,7 +2497,6 @@ class MetronomeMarkSpanner(Spanner):
         markup = markup + markup.hspace(self.left_hspace)
         override = LilyPondGrobOverride(
             grob_name='TextSpanner',
-            once=True,
             property_path=(
                 'bound-details',
                 'left',
@@ -2525,7 +2504,7 @@ class MetronomeMarkSpanner(Spanner):
                 ),
             value=markup,
             )
-        pieces = override.override_string.split('\n')
+        pieces = override.tweak_string().split('\n')
         tag = current_metronome_mark_wrapper.tag
         deactivate = current_metronome_mark_wrapper.deactivate
         if self._right_broken and leaf is self[-1]:
@@ -2538,7 +2517,7 @@ class MetronomeMarkSpanner(Spanner):
             deactivate=deactivate,
             )
         string = '\n'.join(pieces)
-        bundle.grob_overrides.append(string)
+        tweaks.append(string)
         alternate = current_metronome_mark_wrapper.alternate
         if alternate is not None:
             deactivate = not current_metronome_mark_wrapper.deactivate
@@ -2547,7 +2526,6 @@ class MetronomeMarkSpanner(Spanner):
             markup = markup.with_color(color)
             override = LilyPondGrobOverride(
                 grob_name='TextSpanner',
-                once=True,
                 property_path=(
                     'bound-details',
                     'left',
@@ -2555,7 +2533,7 @@ class MetronomeMarkSpanner(Spanner):
                     ),
                 value=markup,
                 )
-            pieces = override.override_string.split('\n')
+            pieces = override.tweak_string().split('\n')
             if self._right_broken and leaf is self[-1]:
                 tag_ = abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS
                 tag = tag.append(tag_)
@@ -2566,15 +2544,16 @@ class MetronomeMarkSpanner(Spanner):
                 deactivate=deactivate,
                 )
             string = '\n'.join(pieces)
-            bundle.grob_overrides.append(string)
+            tweaks.append(string)
+        return tweaks
 
     def _start_tempo_trend_spanner_with_implicit_start(
         self,
         leaf,
-        bundle,
         current_tempo_trend_wrapper,
         previous_metronome_mark,
         ):
+        tweaks = []
         if (self.parenthesize and previous_metronome_mark):
             markup = previous_metronome_mark._get_markup(
                 stem_height=self.stem_height,
@@ -2588,7 +2567,6 @@ class MetronomeMarkSpanner(Spanner):
             markup = markup + markup.hspace(self.left_hspace)
         override = LilyPondGrobOverride(
             grob_name='TextSpanner',
-            once=True,
             property_path=(
                 'bound-details',
                 'left',
@@ -2596,7 +2574,7 @@ class MetronomeMarkSpanner(Spanner):
                 ),
             value=markup,
             )
-        pieces = override.override_string.split('\n')
+        pieces = override.tweak_string().split('\n')
         tag = current_tempo_trend_wrapper.tag
         deactivate = current_tempo_trend_wrapper.deactivate
         if self._right_broken and leaf is self[-1]:
@@ -2609,7 +2587,7 @@ class MetronomeMarkSpanner(Spanner):
             tag=tag,
             )
         string = '\n'.join(pieces)
-        bundle.grob_overrides.append(string)
+        tweaks.append(string)
         alternate = current_tempo_trend_wrapper.alternate
         if alternate is not None:
             deactivate = not current_tempo_trend_wrapper.deactivate
@@ -2618,7 +2596,6 @@ class MetronomeMarkSpanner(Spanner):
             markup = markup.with_color(color)
             override = LilyPondGrobOverride(
                 grob_name='TextSpanner',
-                once=True,
                 property_path=(
                     'bound-details',
                     'left',
@@ -2626,7 +2603,7 @@ class MetronomeMarkSpanner(Spanner):
                     ),
                 value=markup,
                 )
-            pieces = override.override_string.split('\n')
+            pieces = override.tweak_string().split('\n')
             if self._right_broken and leaf is self[-1]:
                 tag_ = abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS
                 tag = tag.append(tag_)
@@ -2637,16 +2614,14 @@ class MetronomeMarkSpanner(Spanner):
                 deactivate=deactivate,
                 )
             string = '\n'.join(pieces)
-            bundle.grob_overrides.append(string)
+            tweaks.append(string)
+        return tweaks
 
     @staticmethod
     def _y_extent_false():
         return LilyPondGrobOverride(
             grob_name='TextSpanner',
-            once=True,
-            property_path=(
-                'Y-extent',
-                ),
+            property_path='Y-extent',
             value=False,
             )
             
@@ -2654,7 +2629,7 @@ class MetronomeMarkSpanner(Spanner):
 
     @property
     def cross_segment_examples(self):
-        r'''
+        r"""
         Cross-segment examples.
 
         ..  container:: example
@@ -2669,23 +2644,20 @@ class MetronomeMarkSpanner(Spanner):
             >>> spanner.attach(mark, spanner[0])
             >>> accelerando = abjad.Accelerando()
             >>> spanner.attach(accelerando, spanner[0])
-            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+            >>> abjad.show(segment_1, strict=60) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(segment_1, strict=50)
+                >>> abjad.f(segment_1, strict=60)
                 \context Voice = "MainVoice"
                 \with
                 {
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    c'4
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -2703,20 +2675,22 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-fraction = 0.25
-                    \once \override TextSpanner.dash-period = 1.5
-                    c'4
+                    - \tweak arrow-width 0.25
+                    - \tweak dash-fraction 0.25
+                    - \tweak dash-period 1.5
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right.arrow ##t
+                    - \tweak bound-details.right-broken.arrow ##f
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     d'4
                     e'4
                     f'4
-                    \stopTextSpan                                 %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    \stopTextSpan                                           %! HIDE_TO_JOIN_BROKEN_SPANNERS
                 }
 
             >>> segment_2 = abjad.Voice("g'4 a' b' c''", name='MainVoice')
@@ -2725,22 +2699,20 @@ class MetronomeMarkSpanner(Spanner):
             >>> abjad.override(segment_2).text_spanner.staff_padding = 3
             >>> mark = abjad.MetronomeMark((1, 4), 90)
             >>> spanner.attach(mark, spanner[0])
-            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+            >>> abjad.show(segment_2, strict=60) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(segment_2, strict=50)
+                >>> abjad.f(segment_2, strict=60)
                 \context Voice = "MainVoice"
                 \with
                 {
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    g'4
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -2758,14 +2730,15 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
-                    g'4
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
-                %@% \stopTextSpan                                 %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% \stopTextSpan                                           %! SHOW_TO_JOIN_BROKEN_SPANNERS
                     a'4
                     b'4
                     c''4
@@ -2791,12 +2764,9 @@ class MetronomeMarkSpanner(Spanner):
                         \override TextSpanner.staff-padding = #3
                     }
                     {
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.arrow-width = 0.25
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        c'4
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -2814,15 +2784,17 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.arrow = ##t
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-fraction = 0.25
-                        \once \override TextSpanner.dash-period = 1.5
-                        c'4
+                        - \tweak arrow-width 0.25
+                        - \tweak dash-fraction 0.25
+                        - \tweak dash-period 1.5
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right.arrow ##t
+                        - \tweak bound-details.right-broken.arrow ##f
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         d'4
                         e'4
@@ -2835,11 +2807,9 @@ class MetronomeMarkSpanner(Spanner):
                         \override TextSpanner.staff-padding = #3
                     }
                     {
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        g'4
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -2857,12 +2827,13 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-period = 0
-                        g'4
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         \stopTextSpan                             %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                         a'4
@@ -2885,23 +2856,20 @@ class MetronomeMarkSpanner(Spanner):
             >>> spanner.attach(mark, spanner[0])
             >>> accelerando = abjad.Accelerando()
             >>> spanner.attach(accelerando, spanner[0])
-            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+            >>> abjad.show(segment_1, strict=60) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(segment_1, strict=50)
+                >>> abjad.f(segment_1, strict=60)
                 \context Voice = "MainVoice"
                 \with
                 {
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    c'4
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -2919,20 +2887,22 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-fraction = 0.25
-                    \once \override TextSpanner.dash-period = 1.5
-                    c'4
+                    - \tweak arrow-width 0.25
+                    - \tweak dash-fraction 0.25
+                    - \tweak dash-period 1.5
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right.arrow ##t
+                    - \tweak bound-details.right-broken.arrow ##f
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     d'4
                     e'4
                     f'4
-                    \stopTextSpan                                 %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    \stopTextSpan                                           %! HIDE_TO_JOIN_BROKEN_SPANNERS
                 }
 
             >>> segment_2 = abjad.Voice("g'4 a' b' c''", name='MainVoice')
@@ -2941,32 +2911,31 @@ class MetronomeMarkSpanner(Spanner):
             >>> abjad.override(segment_2).text_spanner.staff_padding = 3
             >>> mark = abjad.MetronomeMark((1, 4), 90)
             >>> spanner.attach(mark, spanner[2])
-            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+            >>> abjad.show(segment_2, strict=60) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(segment_2, strict=50)
+                >>> abjad.f(segment_2, strict=60)
                 \context Voice = "MainVoice"
                 \with
                 {
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f    %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right.padding = 1 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.dash-period = 0   %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     g'4
-                    \startTextSpan                                %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak Y-extent ##f                                   %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak dash-period 0                                  %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.left.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right-broken.padding 0           %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right-broken.text ##f            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right.padding 1                  %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    \startTextSpan                                          %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     a'4
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    b'4
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -2984,13 +2953,13 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
-                    b'4
-                    \stopTextSpan
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     c''4
                     \stopTextSpan
@@ -3015,12 +2984,9 @@ class MetronomeMarkSpanner(Spanner):
                         \override TextSpanner.staff-padding = #3
                     }
                     {
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.arrow-width = 0.25
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        c'4
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -3038,15 +3004,17 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.arrow = ##t
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-fraction = 0.25
-                        \once \override TextSpanner.dash-period = 1.5
-                        c'4
+                        - \tweak arrow-width 0.25
+                        - \tweak dash-fraction 0.25
+                        - \tweak dash-period 1.5
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right.arrow ##t
+                        - \tweak bound-details.right-broken.arrow ##f
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         d'4
                         e'4
@@ -3059,21 +3027,20 @@ class MetronomeMarkSpanner(Spanner):
                         \override TextSpanner.staff-padding = #3
                     }
                     {
-                    %%% \once \override TextSpanner.Y-extent = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right-broken.padding = 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right-broken.text = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right.padding = 1 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.dash-period = 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
                         g'4
+                    %%% - \tweak Y-extent ##f                     %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak dash-period 0                    %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.left.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right-broken.padding 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right-broken.text ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right.padding 1    %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%% \startTextSpan                            %! HIDE_TO_JOIN_BROKEN_SPANNERS
                         a'4
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        b'4
+                        \stopTextSpan
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -3091,13 +3058,13 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-period = 0
-                        b'4
-                        \stopTextSpan
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         c''4
                         \stopTextSpan
@@ -3116,30 +3083,20 @@ class MetronomeMarkSpanner(Spanner):
             >>> spanner.attach(mark, spanner[0])
             >>> accelerando = abjad.Accelerando()
             >>> spanner.attach(accelerando, spanner[0])
-            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+            >>> abjad.show(segment_1, strict=60) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(segment_1, strict=50)
+                >>> abjad.f(segment_1, strict=60)
                 \context Voice = "MainVoice"
                 \with
                 {
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                %@% \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right-broken.padding = 0 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right-broken.text = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right.padding = 1 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.dash-fraction = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.dash-period = 1.5 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.arrow-width = 0.25 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    c'4
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -3157,20 +3114,29 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right.arrow = ##t %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right.padding = 1 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.dash-fraction = 0.25 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.dash-period = 1.5 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    c'4
+                    - \tweak arrow-width 0.25                               %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak dash-fraction 0.25                             %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak dash-period 1.5                                %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.left.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right.arrow ##t                  %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right-broken.arrow ##f           %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right-broken.padding 0           %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right-broken.text ##f            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right.padding 1                  %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak dash-fraction 0.25                             %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak dash-period 1.5                                %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.left.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right-broken.padding 0           %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right-broken.text ##f            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right.padding 1                  %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     d'4
                     e'4
                     f'4
-                    \stopTextSpan                                 %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    \stopTextSpan                                           %! HIDE_TO_JOIN_BROKEN_SPANNERS
                 }
 
             >>> segment_2 = abjad.Voice("g'4 a' b' c''", name='MainVoice')
@@ -3179,36 +3145,36 @@ class MetronomeMarkSpanner(Spanner):
             >>> abjad.override(segment_2).text_spanner.staff_padding = 3
             >>> mark = abjad.MetronomeMark((1, 4), 90)
             >>> spanner.attach(mark, spanner[-1])
-            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+            >>> abjad.show(segment_2, strict=60) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(segment_2, strict=50)
+                >>> abjad.f(segment_2, strict=60)
                 \context Voice = "MainVoice"
                 \with
                 {
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                %@% \once \override TextSpanner.arrow-width = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right-broken.arrow = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right-broken.padding = 0 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right-broken.text = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right.arrow = ##t %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right.padding = 1 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.dash-fraction = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.dash-period = 1.5 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right.padding = 1 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right.text =
-                    \markup {
+                    g'4
+                    - \tweak Y-extent ##f
+                    - \tweak dash-period 0                                  %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.left.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right-broken.padding 0           %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right-broken.text ##f            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right.padding 1                  %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak arrow-width 0.25                               %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak dash-fraction 0.25                             %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak dash-period 1.5                                %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.left.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right.arrow ##t                  %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right-broken.arrow ##f           %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right-broken.padding 0           %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right-broken.text ##f            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right.padding 1                  %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right.text \markup {
                         \concat
                             {
                                 \hspace
@@ -3232,13 +3198,11 @@ class MetronomeMarkSpanner(Spanner):
                                     }
                             }
                         }
-                    \once \override TextSpanner.dash-period = 0   %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    g'4
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
-                %@% \stopTextSpan                                 %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% \stopTextSpan                                           %! SHOW_TO_JOIN_BROKEN_SPANNERS
                     a'4
                     b'4
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     c''4
                     \stopTextSpan
                 }
@@ -3262,19 +3226,9 @@ class MetronomeMarkSpanner(Spanner):
                         \override TextSpanner.staff-padding = #3
                     }
                     {
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right.padding = 1 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.dash-fraction = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.dash-period = 1.5 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.Y-extent = ##f
-                    %%% \once \override TextSpanner.arrow-width = 0.25 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    %%% \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        c'4
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -3292,15 +3246,24 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                    %%% \once \override TextSpanner.bound-details.right-broken.arrow = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right-broken.padding = 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right-broken.text = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right.arrow = ##t %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right.padding = 1 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.dash-fraction = 0.25 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.dash-period = 1.5 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                        c'4
+                    %%% - \tweak arrow-width 0.25                 %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak dash-fraction 0.25               %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak dash-period 1.5                  %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.left.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right.arrow ##t    %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right-broken.arrow ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right-broken.padding 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right-broken.text ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right.padding 1    %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                        - \tweak dash-fraction 0.25               %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak dash-period 1.5                  %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.left.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right-broken.padding 0 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right-broken.text ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right.padding 1    %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         d'4
                         e'4
@@ -3313,25 +3276,25 @@ class MetronomeMarkSpanner(Spanner):
                         \override TextSpanner.staff-padding = #3
                     }
                     {
-                        \once \override TextSpanner.arrow-width = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right-broken.arrow = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right.arrow = ##t %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right.padding = 1 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.dash-fraction = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.dash-period = 1.5 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    %%% \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right-broken.padding = 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right-broken.text = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right.padding = 1 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                        \once \override TextSpanner.bound-details.right.text =
-                        \markup {
+                        g'4
+                        - \tweak Y-extent ##f
+                    %%% - \tweak dash-period 0                    %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.left.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right-broken.padding 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right-broken.text ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right.padding 1    %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                        - \tweak arrow-width 0.25                 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak dash-fraction 0.25               %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak dash-period 1.5                  %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.left.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right.arrow ##t    %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right-broken.arrow ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right-broken.padding 0 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right-broken.text ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right.padding 1    %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right.text \markup {
                             \concat
                                 {
                                     \hspace
@@ -3355,13 +3318,11 @@ class MetronomeMarkSpanner(Spanner):
                                         }
                                 }
                             }
-                    %%% \once \override TextSpanner.dash-period = 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                        g'4
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         \stopTextSpan                             %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                         a'4
                         b'4
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
                         c''4
                         \stopTextSpan
                     }
@@ -3379,33 +3340,31 @@ class MetronomeMarkSpanner(Spanner):
             >>> spanner.attach(mark, spanner[2])
             >>> accelerando = abjad.Accelerando()
             >>> spanner.attach(accelerando, spanner[2])
-            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+            >>> abjad.show(segment_1, strict=60) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(segment_1, strict=50)
+                >>> abjad.f(segment_1, strict=60)
                 \context Voice = "MainVoice"
                 \with
                 {
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
                     c'4
+                    - \tweak Y-extent ##f
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
                     \startTextSpan
                     d'4
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    e'4
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -3423,19 +3382,20 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-fraction = 0.25
-                    \once \override TextSpanner.dash-period = 1.5
-                    e'4
-                    \stopTextSpan
+                    - \tweak arrow-width 0.25
+                    - \tweak dash-fraction 0.25
+                    - \tweak dash-period 1.5
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right.arrow ##t
+                    - \tweak bound-details.right-broken.arrow ##f
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     f'4
-                    \stopTextSpan                                 %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    \stopTextSpan                                           %! HIDE_TO_JOIN_BROKEN_SPANNERS
                 }
 
             >>> segment_2 = abjad.Voice("g'4 a' b' c''", name='MainVoice')
@@ -3444,22 +3404,20 @@ class MetronomeMarkSpanner(Spanner):
             >>> abjad.override(segment_2).text_spanner.staff_padding = 3
             >>> mark = abjad.MetronomeMark((1, 4), 90)
             >>> spanner.attach(mark, spanner[0])
-            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+            >>> abjad.show(segment_2, strict=60) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(segment_2, strict=50)
+                >>> abjad.f(segment_2, strict=60)
                 \context Voice = "MainVoice"
                 \with
                 {
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    g'4
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -3477,14 +3435,15 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
-                    g'4
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
-                %@% \stopTextSpan                                 %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% \stopTextSpan                                           %! SHOW_TO_JOIN_BROKEN_SPANNERS
                     a'4
                     b'4
                     c''4
@@ -3510,22 +3469,20 @@ class MetronomeMarkSpanner(Spanner):
                         \override TextSpanner.staff-padding = #3
                     }
                     {
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-period = 0
                         c'4
+                        - \tweak Y-extent ##f
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
                         \startTextSpan
                         d'4
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.arrow-width = 0.25
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        e'4
+                        \stopTextSpan
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -3543,16 +3500,17 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.arrow = ##t
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-fraction = 0.25
-                        \once \override TextSpanner.dash-period = 1.5
-                        e'4
-                        \stopTextSpan
+                        - \tweak arrow-width 0.25
+                        - \tweak dash-fraction 0.25
+                        - \tweak dash-period 1.5
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right.arrow ##t
+                        - \tweak bound-details.right-broken.arrow ##f
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         f'4
                     %%% \stopTextSpan                             %! HIDE_TO_JOIN_BROKEN_SPANNERS
@@ -3563,11 +3521,9 @@ class MetronomeMarkSpanner(Spanner):
                         \override TextSpanner.staff-padding = #3
                     }
                     {
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        g'4
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -3585,12 +3541,13 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-period = 0
-                        g'4
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         \stopTextSpan                             %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                         a'4
@@ -3612,33 +3569,31 @@ class MetronomeMarkSpanner(Spanner):
             >>> spanner.attach(mark, spanner[2])
             >>> accelerando = abjad.Accelerando()
             >>> spanner.attach(accelerando, spanner[2])
-            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+            >>> abjad.show(segment_1, strict=60) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(segment_1, strict=50)
+                >>> abjad.f(segment_1, strict=60)
                 \context Voice = "MainVoice"
                 \with
                 {
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
                     c'4
+                    - \tweak Y-extent ##f
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
                     \startTextSpan
                     d'4
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    e'4
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -3656,19 +3611,20 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-fraction = 0.25
-                    \once \override TextSpanner.dash-period = 1.5
-                    e'4
-                    \stopTextSpan
+                    - \tweak arrow-width 0.25
+                    - \tweak dash-fraction 0.25
+                    - \tweak dash-period 1.5
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right.arrow ##t
+                    - \tweak bound-details.right-broken.arrow ##f
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     f'4
-                    \stopTextSpan                                 %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    \stopTextSpan                                           %! HIDE_TO_JOIN_BROKEN_SPANNERS
                 }
 
             >>> segment_2 = abjad.Voice("g'4 a' b' c''", name='MainVoice')
@@ -3677,32 +3633,31 @@ class MetronomeMarkSpanner(Spanner):
             >>> abjad.override(segment_2).text_spanner.staff_padding = 3
             >>> mark = abjad.MetronomeMark((1, 4), 90)
             >>> spanner.attach(mark, spanner[2])
-            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+            >>> abjad.show(segment_2, strict=60) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(segment_2, strict=50)
+                >>> abjad.f(segment_2, strict=60)
                 \context Voice = "MainVoice"
                 \with
                 {
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f    %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right.padding = 1 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.dash-period = 0   %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     g'4
-                    \startTextSpan                                %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak Y-extent ##f                                   %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak dash-period 0                                  %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.left.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right-broken.padding 0           %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right-broken.text ##f            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right.padding 1                  %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    \startTextSpan                                          %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     a'4
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    b'4
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -3720,13 +3675,13 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
-                    b'4
-                    \stopTextSpan
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     c''4
                     \stopTextSpan
@@ -3751,22 +3706,20 @@ class MetronomeMarkSpanner(Spanner):
                         \override TextSpanner.staff-padding = #3
                     }
                     {
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-period = 0
                         c'4
+                        - \tweak Y-extent ##f
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
                         \startTextSpan
                         d'4
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.arrow-width = 0.25
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        e'4
+                        \stopTextSpan
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -3784,16 +3737,17 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.arrow = ##t
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-fraction = 0.25
-                        \once \override TextSpanner.dash-period = 1.5
-                        e'4
-                        \stopTextSpan
+                        - \tweak arrow-width 0.25
+                        - \tweak dash-fraction 0.25
+                        - \tweak dash-period 1.5
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right.arrow ##t
+                        - \tweak bound-details.right-broken.arrow ##f
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         f'4
                     %%% \stopTextSpan                             %! HIDE_TO_JOIN_BROKEN_SPANNERS
@@ -3804,21 +3758,20 @@ class MetronomeMarkSpanner(Spanner):
                         \override TextSpanner.staff-padding = #3
                     }
                     {
-                    %%% \once \override TextSpanner.Y-extent = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right-broken.padding = 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right-broken.text = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right.padding = 1 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.dash-period = 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
                         g'4
+                    %%% - \tweak Y-extent ##f                     %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak dash-period 0                    %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.left.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right-broken.padding 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right-broken.text ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right.padding 1    %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%% \startTextSpan                            %! HIDE_TO_JOIN_BROKEN_SPANNERS
                         a'4
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        b'4
+                        \stopTextSpan
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -3836,13 +3789,13 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-period = 0
-                        b'4
-                        \stopTextSpan
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         c''4
                         \stopTextSpan
@@ -3861,40 +3814,31 @@ class MetronomeMarkSpanner(Spanner):
             >>> spanner.attach(mark, spanner[2])
             >>> accelerando = abjad.Accelerando()
             >>> spanner.attach(accelerando, spanner[2])
-            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+            >>> abjad.show(segment_1, strict=60) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(segment_1, strict=50)
+                >>> abjad.f(segment_1, strict=60)
                 \context Voice = "MainVoice"
                 \with
                 {
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
                     c'4
+                    - \tweak Y-extent ##f
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
                     \startTextSpan
                     d'4
-                %@% \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right-broken.padding = 0 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right-broken.text = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right.padding = 1 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.dash-fraction = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.dash-period = 1.5 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.arrow-width = 0.25 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    e'4
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -3912,19 +3856,27 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right.arrow = ##t %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right.padding = 1 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.dash-fraction = 0.25 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.dash-period = 1.5 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    e'4
-                    \stopTextSpan
+                    - \tweak arrow-width 0.25                               %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak dash-fraction 0.25                             %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak dash-period 1.5                                %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.left.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right.arrow ##t                  %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right-broken.arrow ##f           %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right-broken.padding 0           %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right-broken.text ##f            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right.padding 1                  %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak dash-fraction 0.25                             %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak dash-period 1.5                                %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.left.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right-broken.padding 0           %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right-broken.text ##f            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right.padding 1                  %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     f'4
-                    \stopTextSpan                                 %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    \stopTextSpan                                           %! HIDE_TO_JOIN_BROKEN_SPANNERS
                 }
 
             >>> segment_2 = abjad.Voice("g'4 a' b' c''", name='MainVoice')
@@ -3933,36 +3885,36 @@ class MetronomeMarkSpanner(Spanner):
             >>> abjad.override(segment_2).text_spanner.staff_padding = 3
             >>> mark = abjad.MetronomeMark((1, 4), 90)
             >>> spanner.attach(mark, spanner[-1])
-            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+            >>> abjad.show(segment_2, strict=60) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(segment_2, strict=50)
+                >>> abjad.f(segment_2, strict=60)
                 \context Voice = "MainVoice"
                 \with
                 {
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                %@% \once \override TextSpanner.arrow-width = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right-broken.arrow = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right-broken.padding = 0 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right-broken.text = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right.arrow = ##t %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right.padding = 1 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.dash-fraction = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.dash-period = 1.5 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right.padding = 1 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right.text =
-                    \markup {
+                    g'4
+                    - \tweak Y-extent ##f
+                    - \tweak dash-period 0                                  %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.left.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right-broken.padding 0           %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right-broken.text ##f            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right.padding 1                  %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak arrow-width 0.25                               %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak dash-fraction 0.25                             %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak dash-period 1.5                                %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.left.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right.arrow ##t                  %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right-broken.arrow ##f           %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right-broken.padding 0           %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right-broken.text ##f            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right.padding 1                  %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right.text \markup {
                         \concat
                             {
                                 \hspace
@@ -3986,13 +3938,11 @@ class MetronomeMarkSpanner(Spanner):
                                     }
                             }
                         }
-                    \once \override TextSpanner.dash-period = 0   %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    g'4
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
-                %@% \stopTextSpan                                 %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% \stopTextSpan                                           %! SHOW_TO_JOIN_BROKEN_SPANNERS
                     a'4
                     b'4
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     c''4
                     \stopTextSpan
                 }
@@ -4016,29 +3966,20 @@ class MetronomeMarkSpanner(Spanner):
                         \override TextSpanner.staff-padding = #3
                     }
                     {
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-period = 0
                         c'4
+                        - \tweak Y-extent ##f
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
                         \startTextSpan
                         d'4
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right.padding = 1 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.dash-fraction = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.dash-period = 1.5 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.Y-extent = ##f
-                    %%% \once \override TextSpanner.arrow-width = 0.25 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    %%% \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        e'4
+                        \stopTextSpan
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -4056,16 +3997,24 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                    %%% \once \override TextSpanner.bound-details.right-broken.arrow = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right-broken.padding = 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right-broken.text = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right.arrow = ##t %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right.padding = 1 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.dash-fraction = 0.25 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.dash-period = 1.5 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                        e'4
-                        \stopTextSpan
+                    %%% - \tweak arrow-width 0.25                 %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak dash-fraction 0.25               %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak dash-period 1.5                  %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.left.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right.arrow ##t    %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right-broken.arrow ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right-broken.padding 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right-broken.text ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right.padding 1    %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                        - \tweak dash-fraction 0.25               %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak dash-period 1.5                  %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.left.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right-broken.padding 0 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right-broken.text ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right.padding 1    %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         f'4
                     %%% \stopTextSpan                             %! HIDE_TO_JOIN_BROKEN_SPANNERS
@@ -4076,25 +4025,25 @@ class MetronomeMarkSpanner(Spanner):
                         \override TextSpanner.staff-padding = #3
                     }
                     {
-                        \once \override TextSpanner.arrow-width = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right-broken.arrow = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right.arrow = ##t %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right.padding = 1 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.dash-fraction = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.dash-period = 1.5 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    %%% \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right-broken.padding = 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right-broken.text = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right.padding = 1 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                        \once \override TextSpanner.bound-details.right.text =
-                        \markup {
+                        g'4
+                        - \tweak Y-extent ##f
+                    %%% - \tweak dash-period 0                    %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.left.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right-broken.padding 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right-broken.text ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right.padding 1    %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                        - \tweak arrow-width 0.25                 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak dash-fraction 0.25               %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak dash-period 1.5                  %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.left.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right.arrow ##t    %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right-broken.arrow ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right-broken.padding 0 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right-broken.text ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right.padding 1    %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right.text \markup {
                             \concat
                                 {
                                     \hspace
@@ -4118,13 +4067,11 @@ class MetronomeMarkSpanner(Spanner):
                                         }
                                 }
                             }
-                    %%% \once \override TextSpanner.dash-period = 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                        g'4
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         \stopTextSpan                             %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                         a'4
                         b'4
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
                         c''4
                         \stopTextSpan
                     }
@@ -4142,86 +4089,86 @@ class MetronomeMarkSpanner(Spanner):
             >>> spanner.attach(mark, spanner[-1])
             >>> accelerando = abjad.Accelerando()
             >>> spanner.attach(accelerando, spanner[-1])
-            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+            >>> abjad.show(segment_1, strict=60) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(segment_1, strict=50)
+                >>> abjad.f(segment_1, strict=60)
                 \context Voice = "MainVoice"
                 \with
                 {
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right.text = \markup { %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                        \concat                                   %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                            {                                     %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                \hspace                           %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                    #0.5                          %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                \line                             %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                    {                             %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                        \fontsize                 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                            #-6                   %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                            \general-align        %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                                #Y                %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                                #DOWN             %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                                \note-by-number   %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                                    #2            %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                                    #0            %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                                    #1            %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                        \upright                  %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                            {                     %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                                =                 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                                60                %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                            }                     %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                    }                             %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                            }                                     %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                        }                                         %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.dash-period = 0
                     c'4
+                    - \tweak Y-extent ##f
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.right.text \markup {             %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                        \concat                                             %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                            {                                               %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                \hspace                                     %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                    #0.5                                    %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                \line                                       %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                    {                                       %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                        \fontsize                           %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                            #-6                             %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                            \general-align                  %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                                #Y                          %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                                #DOWN                       %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                                \note-by-number             %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                                    #2                      %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                                    #0                      %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                                    #1                      %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                        \upright                            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                            {                               %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                                =                           %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                                60                          %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                            }                               %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                    }                                       %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                            }                                               %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                        }                                                   %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     d'4
                     e'4
-                %@% \once \override TextSpanner.Y-extent = ##f    %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.arrow-width = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.left.text = \markup { %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%     \fontsize                                 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%         #-6                                   %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%         \general-align                        %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%             #Y                                %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%             #DOWN                             %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%             \note-by-number                   %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%                 #2                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%                 #0                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%                 #1                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%     \upright                                  %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%         {                                     %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%             =                                 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%             60                                %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%         }                                     %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%     \hspace                                   %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%         #1                                    %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%     }                                         %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right-broken.arrow = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right-broken.padding = 0 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right-broken.text = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right.arrow = ##t %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right.padding = 1 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.dash-fraction = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.dash-period = 1.5 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     f'4
-                %@% \stopTextSpan                                 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \startTextSpan                                %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% \stopTextSpan                                           %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak Y-extent ##f                                   %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.left.text \markup {              %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%     \fontsize                                           %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%         #-6                                             %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%         \general-align                                  %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%             #Y                                          %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%             #DOWN                                       %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%             \note-by-number                             %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%                 #2                                      %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%                 #0                                      %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%                 #1                                      %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%     \upright                                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%         {                                               %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%             =                                           %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%             60                                          %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%         }                                               %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%     \hspace                                             %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%         #1                                              %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%     }                                                   %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak arrow-width 0.25                               %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak dash-fraction 0.25                             %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak dash-period 1.5                                %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.left.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right.arrow ##t                  %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right-broken.arrow ##f           %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right-broken.padding 0           %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right-broken.text ##f            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right.padding 1                  %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.left-broken.text ##f             %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% \startTextSpan                                          %! SHOW_TO_JOIN_BROKEN_SPANNERS
                     \stopTextSpan
                 }
             
@@ -4231,22 +4178,20 @@ class MetronomeMarkSpanner(Spanner):
             >>> abjad.override(segment_2).text_spanner.staff_padding = 3
             >>> mark = abjad.MetronomeMark((1, 4), 90)
             >>> spanner.attach(mark, spanner[0])
-            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+            >>> abjad.show(segment_2, strict=60) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(segment_2, strict=50)
+                >>> abjad.f(segment_2, strict=60)
                 \context Voice = "MainVoice"
                 \with
                 {
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    g'4
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -4264,14 +4209,15 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
-                    g'4
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
-                %@% \stopTextSpan                                 %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% \stopTextSpan                                           %! SHOW_TO_JOIN_BROKEN_SPANNERS
                     a'4
                     b'4
                     c''4
@@ -4297,14 +4243,15 @@ class MetronomeMarkSpanner(Spanner):
                         \override TextSpanner.staff-padding = #3
                     }
                     {
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    %%% \once \override TextSpanner.bound-details.right.text = \markup { %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                        c'4
+                        - \tweak Y-extent ##f
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                    %%% - \tweak bound-details.right.text \markup { %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%%     \concat                               %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%%         {                                 %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%%             \hspace                       %! HIDE_TO_JOIN_BROKEN_SPANNERS
@@ -4328,15 +4275,14 @@ class MetronomeMarkSpanner(Spanner):
                     %%%                 }                         %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%%         }                                 %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%%     }                                     %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                        \once \override TextSpanner.dash-period = 0
-                        c'4
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         d'4
                         e'4
-                        \once \override TextSpanner.Y-extent = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.arrow-width = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.left.text = \markup { %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        f'4
+                        \stopTextSpan                             %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak Y-extent ##f                     %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.left.text \markup { %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                             \fontsize                             %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                                 #-6                               %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                                 \general-align                    %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
@@ -4354,17 +4300,17 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace                               %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                                 #1                                %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                             }                                     %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right-broken.arrow = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right.arrow = ##t %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right.padding = 1 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.dash-fraction = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.dash-period = 1.5 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        f'4
-                        \stopTextSpan                             %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak arrow-width 0.25                 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak dash-fraction 0.25               %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak dash-period 1.5                  %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.left.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right.arrow ##t    %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right-broken.arrow ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right-broken.padding 0 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right-broken.text ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right.padding 1    %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.left-broken.text ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                         \startTextSpan                            %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                         \stopTextSpan
                     }
@@ -4374,10 +4320,9 @@ class MetronomeMarkSpanner(Spanner):
                         \override TextSpanner.staff-padding = #3
                     }
                     {
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text = \markup {
+                        g'4
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -4395,12 +4340,13 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-period = 0
-                        g'4
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         \stopTextSpan                             %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                         a'4
@@ -4422,86 +4368,86 @@ class MetronomeMarkSpanner(Spanner):
             >>> spanner.attach(mark, spanner[-1])
             >>> accelerando = abjad.Accelerando()
             >>> spanner.attach(accelerando, spanner[-1])
-            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+            >>> abjad.show(segment_1, strict=60) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(segment_1, strict=50)
+                >>> abjad.f(segment_1, strict=60)
                 \context Voice = "MainVoice"
                 \with
                 {
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right.text = \markup { %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                        \concat                                   %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                            {                                     %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                \hspace                           %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                    #0.5                          %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                \line                             %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                    {                             %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                        \fontsize                 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                            #-6                   %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                            \general-align        %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                                #Y                %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                                #DOWN             %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                                \note-by-number   %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                                    #2            %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                                    #0            %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                                    #1            %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                        \upright                  %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                            {                     %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                                =                 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                                60                %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                            }                     %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                    }                             %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                            }                                     %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                        }                                         %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.dash-period = 0
                     c'4
+                    - \tweak Y-extent ##f
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.right.text \markup {             %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                        \concat                                             %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                            {                                               %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                \hspace                                     %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                    #0.5                                    %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                \line                                       %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                    {                                       %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                        \fontsize                           %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                            #-6                             %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                            \general-align                  %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                                #Y                          %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                                #DOWN                       %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                                \note-by-number             %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                                    #2                      %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                                    #0                      %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                                    #1                      %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                        \upright                            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                            {                               %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                                =                           %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                                60                          %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                            }                               %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                    }                                       %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                            }                                               %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                        }                                                   %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     d'4
                     e'4
-                %@% \once \override TextSpanner.Y-extent = ##f    %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.arrow-width = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.left.text = \markup { %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%     \fontsize                                 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%         #-6                                   %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%         \general-align                        %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%             #Y                                %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%             #DOWN                             %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%             \note-by-number                   %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%                 #2                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%                 #0                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%                 #1                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%     \upright                                  %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%         {                                     %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%             =                                 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%             60                                %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%         }                                     %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%     \hspace                                   %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%         #1                                    %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%     }                                         %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right-broken.arrow = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right-broken.padding = 0 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right-broken.text = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right.arrow = ##t %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right.padding = 1 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.dash-fraction = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.dash-period = 1.5 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     f'4
-                %@% \stopTextSpan                                 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \startTextSpan                                %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% \stopTextSpan                                           %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak Y-extent ##f                                   %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.left.text \markup {              %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%     \fontsize                                           %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%         #-6                                             %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%         \general-align                                  %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%             #Y                                          %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%             #DOWN                                       %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%             \note-by-number                             %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%                 #2                                      %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%                 #0                                      %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%                 #1                                      %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%     \upright                                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%         {                                               %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%             =                                           %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%             60                                          %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%         }                                               %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%     \hspace                                             %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%         #1                                              %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%     }                                                   %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak arrow-width 0.25                               %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak dash-fraction 0.25                             %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak dash-period 1.5                                %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.left.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right.arrow ##t                  %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right-broken.arrow ##f           %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right-broken.padding 0           %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right-broken.text ##f            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right.padding 1                  %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.left-broken.text ##f             %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% \startTextSpan                                          %! SHOW_TO_JOIN_BROKEN_SPANNERS
                     \stopTextSpan
                 }
             
@@ -4511,32 +4457,31 @@ class MetronomeMarkSpanner(Spanner):
             >>> abjad.override(segment_2).text_spanner.staff_padding = 3
             >>> mark = abjad.MetronomeMark((1, 4), 90)
             >>> spanner.attach(mark, spanner[-2])
-            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+            >>> abjad.show(segment_2, strict=60) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(segment_2, strict=50)
+                >>> abjad.f(segment_2, strict=60)
                 \context Voice = "MainVoice"
                 \with
                 {
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f    %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right.padding = 1 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.dash-period = 0   %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     g'4
-                    \startTextSpan                                %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak Y-extent ##f                                   %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak dash-period 0                                  %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.left.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right-broken.padding 0           %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right-broken.text ##f            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right.padding 1                  %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    \startTextSpan                                          %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     a'4
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text =
-                    \markup {
+                    b'4
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {
                         \fontsize
                             #-6
                             \general-align
@@ -4554,13 +4499,13 @@ class MetronomeMarkSpanner(Spanner):
                         \hspace
                             #1
                         }
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
-                    b'4
-                    \stopTextSpan
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     c''4
                     \stopTextSpan
@@ -4585,14 +4530,15 @@ class MetronomeMarkSpanner(Spanner):
                         \override TextSpanner.staff-padding = #3
                     }
                     {
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    %%% \once \override TextSpanner.bound-details.right.text = \markup { %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                        c'4
+                        - \tweak Y-extent ##f
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                    %%% - \tweak bound-details.right.text \markup { %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%%     \concat                               %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%%         {                                 %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%%             \hspace                       %! HIDE_TO_JOIN_BROKEN_SPANNERS
@@ -4616,15 +4562,14 @@ class MetronomeMarkSpanner(Spanner):
                     %%%                 }                         %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%%         }                                 %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%%     }                                     %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                        \once \override TextSpanner.dash-period = 0
-                        c'4
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         d'4
                         e'4
-                        \once \override TextSpanner.Y-extent = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.arrow-width = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.left.text = \markup { %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        f'4
+                        \stopTextSpan                             %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak Y-extent ##f                     %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.left.text \markup { %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                             \fontsize                             %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                                 #-6                               %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                                 \general-align                    %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
@@ -4642,17 +4587,17 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace                               %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                                 #1                                %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                             }                                     %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right-broken.arrow = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right.arrow = ##t %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right.padding = 1 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.dash-fraction = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.dash-period = 1.5 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        f'4
-                        \stopTextSpan                             %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak arrow-width 0.25                 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak dash-fraction 0.25               %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak dash-period 1.5                  %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.left.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right.arrow ##t    %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right-broken.arrow ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right-broken.padding 0 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right-broken.text ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right.padding 1    %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.left-broken.text ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                         \startTextSpan                            %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                         \stopTextSpan
                     }
@@ -4662,20 +4607,20 @@ class MetronomeMarkSpanner(Spanner):
                         \override TextSpanner.staff-padding = #3
                     }
                     {
-                    %%% \once \override TextSpanner.Y-extent = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right-broken.padding = 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right-broken.text = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right.padding = 1 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.dash-period = 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
                         g'4
+                    %%% - \tweak Y-extent ##f                     %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak dash-period 0                    %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.left.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right-broken.padding 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right-broken.text ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right.padding 1    %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%% \startTextSpan                            %! HIDE_TO_JOIN_BROKEN_SPANNERS
                         a'4
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text = \markup {
+                        b'4
+                        \stopTextSpan
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -4693,13 +4638,13 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-period = 0
-                        b'4
-                        \stopTextSpan
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         c''4
                         \stopTextSpan
@@ -4718,93 +4663,93 @@ class MetronomeMarkSpanner(Spanner):
             >>> spanner.attach(mark, spanner[-1])
             >>> accelerando = abjad.Accelerando()
             >>> spanner.attach(accelerando, spanner[-1])
-            >>> abjad.show(segment_1, strict=50) # doctest: +SKIP
+            >>> abjad.show(segment_1, strict=60) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(segment_1, strict=50)
+                >>> abjad.f(segment_1, strict=60)
                 \context Voice = "MainVoice"
                 \with
                 {
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right.text = \markup { %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                        \concat                                   %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                            {                                     %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                \hspace                           %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                    #0.5                          %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                \line                             %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                    {                             %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                        \fontsize                 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                            #-6                   %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                            \general-align        %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                                #Y                %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                                #DOWN             %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                                \note-by-number   %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                                    #2            %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                                    #0            %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                                    #1            %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                        \upright                  %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                            {                     %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                                =                 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                                60                %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                            }                     %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                                    }                             %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                            }                                     %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                        }                                         %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.dash-period = 0
                     c'4
+                    - \tweak Y-extent ##f
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.right.text \markup {             %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                        \concat                                             %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                            {                                               %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                \hspace                                     %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                    #0.5                                    %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                \line                                       %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                    {                                       %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                        \fontsize                           %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                            #-6                             %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                            \general-align                  %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                                #Y                          %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                                #DOWN                       %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                                \note-by-number             %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                                    #2                      %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                                    #0                      %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                                    #1                      %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                        \upright                            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                            {                               %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                                =                           %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                                60                          %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                            }                               %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                                    }                                       %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                            }                                               %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                        }                                                   %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     d'4
                     e'4
-                %@% \once \override TextSpanner.Y-extent = ##f    %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.left.text = \markup { %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%     \fontsize                                 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%         #-6                                   %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%         \general-align                        %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%             #Y                                %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%             #DOWN                             %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%             \note-by-number                   %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%                 #2                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%                 #0                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%                 #1                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%     \upright                                  %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%         {                                     %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%             =                                 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%             60                                %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%         }                                     %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%     \hspace                                   %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%         #1                                    %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@%     }                                         %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right-broken.padding = 0 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right-broken.text = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right.padding = 1 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.dash-fraction = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.dash-period = 1.5 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.arrow-width = 0.25 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right.arrow = ##t %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right.padding = 1 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.dash-fraction = 0.25 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.dash-period = 1.5 %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     f'4
-                %@% \stopTextSpan                                 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \startTextSpan                                %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% \stopTextSpan                                           %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak Y-extent ##f                                   %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.left.text \markup {              %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%     \fontsize                                           %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%         #-6                                             %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%         \general-align                                  %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%             #Y                                          %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%             #DOWN                                       %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%             \note-by-number                             %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%                 #2                                      %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%                 #0                                      %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%                 #1                                      %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%     \upright                                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%         {                                               %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%             =                                           %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%             60                                          %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%         }                                               %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%     \hspace                                             %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%         #1                                              %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@%     }                                                   %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak arrow-width 0.25                               %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak dash-fraction 0.25                             %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak dash-period 1.5                                %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.left.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right.arrow ##t                  %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right-broken.arrow ##f           %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right-broken.padding 0           %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right-broken.text ##f            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right.padding 1                  %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak dash-fraction 0.25                             %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak dash-period 1.5                                %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.left.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right-broken.padding 0           %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right-broken.text ##f            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right.padding 1                  %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.left-broken.text ##f             %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% \startTextSpan                                          %! SHOW_TO_JOIN_BROKEN_SPANNERS
                     \stopTextSpan
                 }
             
@@ -4814,36 +4759,36 @@ class MetronomeMarkSpanner(Spanner):
             >>> abjad.override(segment_2).text_spanner.staff_padding = 3
             >>> mark = abjad.MetronomeMark((1, 4), 90)
             >>> spanner.attach(mark, spanner[-1])
-            >>> abjad.show(segment_2, strict=50) # doctest: +SKIP
+            >>> abjad.show(segment_2, strict=60) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(segment_2, strict=50)
+                >>> abjad.f(segment_2, strict=60)
                 \context Voice = "MainVoice"
                 \with
                 {
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                %@% \once \override TextSpanner.arrow-width = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right-broken.arrow = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right-broken.padding = 0 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right-broken.text = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right.arrow = ##t %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right.padding = 1 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.dash-fraction = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                %@% \once \override TextSpanner.dash-period = 1.5 %! SHOW_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right.padding = 1 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    \once \override TextSpanner.bound-details.right.text =
-                    \markup {
+                    g'4
+                    - \tweak Y-extent ##f
+                    - \tweak dash-period 0                                  %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.left.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right-broken.padding 0           %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right-broken.text ##f            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right.padding 1                  %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak arrow-width 0.25                               %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak dash-fraction 0.25                             %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak dash-period 1.5                                %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.left.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right.arrow ##t                  %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right-broken.arrow ##f           %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right-broken.padding 0           %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right-broken.text ##f            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right.padding 1                  %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% - \tweak bound-details.right.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                    - \tweak bound-details.right.text \markup {
                         \concat
                             {
                                 \hspace
@@ -4867,13 +4812,11 @@ class MetronomeMarkSpanner(Spanner):
                                     }
                             }
                         }
-                    \once \override TextSpanner.dash-period = 0   %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    g'4
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
-                %@% \stopTextSpan                                 %! SHOW_TO_JOIN_BROKEN_SPANNERS
+                %@% \stopTextSpan                                           %! SHOW_TO_JOIN_BROKEN_SPANNERS
                     a'4
                     b'4
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     c''4
                     \stopTextSpan
                 }
@@ -4897,14 +4840,15 @@ class MetronomeMarkSpanner(Spanner):
                         \override TextSpanner.staff-padding = #3
                     }
                     {
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    %%% \once \override TextSpanner.bound-details.right.text = \markup { %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                        c'4
+                        - \tweak Y-extent ##f
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                    %%% - \tweak bound-details.right.text \markup { %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%%     \concat                               %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%%         {                                 %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%%             \hspace                       %! HIDE_TO_JOIN_BROKEN_SPANNERS
@@ -4928,14 +4872,14 @@ class MetronomeMarkSpanner(Spanner):
                     %%%                 }                         %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%%         }                                 %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     %%%     }                                     %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                        \once \override TextSpanner.dash-period = 0
-                        c'4
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         d'4
                         e'4
-                        \once \override TextSpanner.Y-extent = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.left.text = \markup { %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        f'4
+                        \stopTextSpan                             %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak Y-extent ##f                     %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.left.text \markup { %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                             \fontsize                             %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                                 #-6                               %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                                 \general-align                    %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
@@ -4953,25 +4897,24 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace                               %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                                 #1                                %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                             }                                     %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right.padding = 1 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.dash-fraction = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.dash-period = 1.5 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                    %%% \once \override TextSpanner.arrow-width = 0.25 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    %%% \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right-broken.arrow = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right-broken.padding = 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right-broken.text = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right.arrow = ##t %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right.padding = 1 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.dash-fraction = 0.25 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.dash-period = 1.5 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                        f'4
-                        \stopTextSpan                             %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                    %%% - \tweak arrow-width 0.25                 %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak dash-fraction 0.25               %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak dash-period 1.5                  %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.left.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right.arrow ##t    %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right-broken.arrow ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right-broken.padding 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right-broken.text ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right.padding 1    %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                        - \tweak dash-fraction 0.25               %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak dash-period 1.5                  %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.left.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right-broken.padding 0 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right-broken.text ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right.padding 1    %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.left-broken.text ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                         \startTextSpan                            %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                         \stopTextSpan
                     }
@@ -4981,24 +4924,25 @@ class MetronomeMarkSpanner(Spanner):
                         \override TextSpanner.staff-padding = #3
                     }
                     {
-                        \once \override TextSpanner.arrow-width = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right-broken.arrow = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right.arrow = ##t %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right.padding = 1 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.dash-fraction = 0.25 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.dash-period = 1.5 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    %%% \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right-broken.padding = 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right-broken.text = ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right.padding = 1 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                    %%% \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                        \once \override TextSpanner.bound-details.right.text = \markup {
+                        g'4
+                        - \tweak Y-extent ##f
+                    %%% - \tweak dash-period 0                    %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.left.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right-broken.padding 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right-broken.text ##f %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right.padding 1    %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                    %%% - \tweak bound-details.right.stencil-align-dir-y #center %! HIDE_TO_JOIN_BROKEN_SPANNERS
+                        - \tweak arrow-width 0.25                 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak dash-fraction 0.25               %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak dash-period 1.5                  %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.left.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right.arrow ##t    %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right-broken.arrow ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right-broken.padding 0 %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right-broken.text ##f %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right.padding 1    %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right.stencil-align-dir-y #center %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
+                        - \tweak bound-details.right.text \markup {
                             \concat
                                 {
                                     \hspace
@@ -5022,24 +4966,22 @@ class MetronomeMarkSpanner(Spanner):
                                         }
                                 }
                             }
-                    %%% \once \override TextSpanner.dash-period = 0 %! HIDE_TO_JOIN_BROKEN_SPANNERS
-                        g'4
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         \stopTextSpan                             %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                         a'4
                         b'4
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
                         c''4
                         \stopTextSpan
                     }
                 }
 
-        '''
+        """
         pass
 
     @property
     def left_broken_padding(self) -> typing.Optional[Number]:
-        r'''
+        r"""
         Gets left broken padding of metronome mark spanner.
 
         ..  container:: example
@@ -5074,23 +5016,21 @@ class MetronomeMarkSpanner(Spanner):
                         \override TextSpanner.staff-padding = #3
                     }
                     {
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-period = 0
                         \time 3/8
                         c'4.
+                        - \tweak Y-extent ##f
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
                         \startTextSpan
                         d'4.
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.arrow-width = 0.25
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        e'4.
+                        \stopTextSpan
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -5108,26 +5048,26 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.arrow = ##t
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-fraction = 0.25
-                        \once \override TextSpanner.dash-period = 1.5
-                        e'4.
-                        \stopTextSpan
+                        - \tweak arrow-width 0.25
+                        - \tweak dash-fraction 0.25
+                        - \tweak dash-period 1.5
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right.arrow ##t
+                        - \tweak bound-details.right-broken.arrow ##f
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         f'4.
                         \break
                         g'4.
                         a'4.
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        b'4.
+                        \stopTextSpan
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -5145,13 +5085,13 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-period = 0
-                        b'4.
-                        \stopTextSpan
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         c''4.
                         \stopTextSpan
@@ -5194,23 +5134,21 @@ class MetronomeMarkSpanner(Spanner):
                         \override TextSpanner.staff-padding = #3
                     }
                     {
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-period = 0
                         \time 3/8
                         c'4.
+                        - \tweak Y-extent ##f
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
                         \startTextSpan
                         d'4.
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.arrow-width = 0.25
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        e'4.
+                        \stopTextSpan
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -5228,26 +5166,26 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.arrow = ##t
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-fraction = 0.25
-                        \once \override TextSpanner.dash-period = 1.5
-                        e'4.
-                        \stopTextSpan
+                        - \tweak arrow-width 0.25
+                        - \tweak dash-fraction 0.25
+                        - \tweak dash-period 1.5
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right.arrow ##t
+                        - \tweak bound-details.right-broken.arrow ##f
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         f'4.
                         \break
                         g'4.
                         a'4.
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        b'4.
+                        \stopTextSpan
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -5265,13 +5203,13 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-period = 0
-                        b'4.
-                        \stopTextSpan
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         c''4.
                         \stopTextSpan
@@ -5279,12 +5217,12 @@ class MetronomeMarkSpanner(Spanner):
                 >>
 
         Returns number or none.
-        '''
+        """
         return self._left_broken_padding
 
     @property
     def left_broken_text(self) -> typing.Union[bool, Markup]:
-        r'''
+        r"""
         Gets left broken text of metronome mark spanner.
 
         ..  container:: example
@@ -5319,23 +5257,21 @@ class MetronomeMarkSpanner(Spanner):
                         \override TextSpanner.staff-padding = #3
                     }
                     {
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-period = 0
                         \time 3/8
                         c'4.
+                        - \tweak Y-extent ##f
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
                         \startTextSpan
                         d'4.
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.arrow-width = 0.25
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        e'4.
+                        \stopTextSpan
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -5353,26 +5289,26 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.arrow = ##t
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-fraction = 0.25
-                        \once \override TextSpanner.dash-period = 1.5
-                        e'4.
-                        \stopTextSpan
+                        - \tweak arrow-width 0.25
+                        - \tweak dash-fraction 0.25
+                        - \tweak dash-period 1.5
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right.arrow ##t
+                        - \tweak bound-details.right-broken.arrow ##f
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         f'4.
                         \break
                         g'4.
                         a'4.
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        b'4.
+                        \stopTextSpan
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -5390,13 +5326,13 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-period = 0
-                        b'4.
-                        \stopTextSpan
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         c''4.
                         \stopTextSpan
@@ -5441,33 +5377,21 @@ class MetronomeMarkSpanner(Spanner):
                         \override TextSpanner.staff-padding = #3
                     }
                     {
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-period = 0
                         \time 3/8
                         c'4.
+                        - \tweak Y-extent ##f
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
                         \startTextSpan
                         d'4.
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.arrow-width = 0.25
-                        \once \override TextSpanner.bound-details.left-broken.text =
-                        \markup {
-                            \override
-                                #'(padding . 0.45)
-                                \parenthesize
-                                    \large
-                                        \upright
-                                            rit.
-                            \hspace
-                                #1
-                            }
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        e'4.
+                        \stopTextSpan
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -5485,25 +5409,35 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.arrow = ##t
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-fraction = 0.25
-                        \once \override TextSpanner.dash-period = 1.5
-                        e'4.
-                        \stopTextSpan
+                        - \tweak arrow-width 0.25
+                        - \tweak dash-fraction 0.25
+                        - \tweak dash-period 1.5
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right.arrow ##t
+                        - \tweak bound-details.right-broken.arrow ##f
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.left-broken.text \markup {
+                            \override
+                                #'(padding . 0.45)
+                                \parenthesize
+                                    \large
+                                        \upright
+                                            rit.
+                            \hspace
+                                #1
+                            }
                         \startTextSpan
                         f'4.
                         \break
                         g'4.
                         a'4.
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        b'4.
+                        \stopTextSpan
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -5521,13 +5455,12 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-period = 0
-                        b'4.
-                        \stopTextSpan
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
                         \startTextSpan
                         c''4.
                         \stopTextSpan
@@ -5572,24 +5505,21 @@ class MetronomeMarkSpanner(Spanner):
                         \override TextSpanner.staff-padding = #3
                     }
                     {
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-period = 0
                         \time 3/8
                         c'4.
+                        - \tweak Y-extent ##f
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
                         \startTextSpan
                         d'4.
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.arrow-width = 0.25
-                        \once \override TextSpanner.bound-details.left-broken.text =
-                        \markup { "(slowing significantly)" }
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        e'4.
+                        \stopTextSpan
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -5607,27 +5537,26 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.arrow = ##t
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-fraction = 0.25
-                        \once \override TextSpanner.dash-period = 1.5
-                        e'4.
-                        \stopTextSpan
+                        - \tweak arrow-width 0.25
+                        - \tweak dash-fraction 0.25
+                        - \tweak dash-period 1.5
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right.arrow ##t
+                        - \tweak bound-details.right-broken.arrow ##f
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.left-broken.text \markup { "(slowing significantly)" }
                         \startTextSpan
                         f'4.
                         \break
                         g'4.
                         a'4.
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left-broken.text =
-                        \markup { "(slowing significantly)" }
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        b'4.
+                        \stopTextSpan
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -5645,32 +5574,32 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-period = 0
-                        b'4.
-                        \stopTextSpan
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.left-broken.text \markup { "(slowing significantly)" }
                         \startTextSpan
                         c''4.
                         \stopTextSpan
                     }
                 >>
 
-        '''
+        """
         return self._left_broken_text
 
     @property
     def left_hspace(self) -> typing.Optional[Number]:
-        r'''
+        """
         Gets left hspace.
-        '''
+        """
         return self._left_hspace
 
     @property
     def parenthesize(self) -> typing.Optional[bool]:
-        r'''
+        r"""
         Is true when spanner starts with parenthesized metronome mark.
 
         ..  container:: example
@@ -5707,11 +5636,10 @@ class MetronomeMarkSpanner(Spanner):
                         \override TextSpanner.staff-padding = #3
                     }
                     {
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        \time 3/8
+                        c'8.
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -5729,20 +5657,19 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-period = 0
-                        \time 3/8
-                        c'8.
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         d'8.
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        e'4.
+                        \stopTextSpan
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -5760,34 +5687,35 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-period = 0
-                        e'4.
-                        \stopTextSpan
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.arrow-width = 0.25
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        g'8.
+                        \stopTextSpan
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \large
                                 \upright
                                     accel.
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.arrow = ##t
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.right.text =
-                        \markup {
+                        - \tweak arrow-width 0.25
+                        - \tweak dash-fraction 0.25
+                        - \tweak dash-period 1.5
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right.arrow ##t
+                        - \tweak bound-details.right-broken.arrow ##f
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.right.text \markup {
                             \concat
                                 {
                                     \hspace
@@ -5811,13 +5739,9 @@ class MetronomeMarkSpanner(Spanner):
                                         }
                                 }
                             }
-                        \once \override TextSpanner.dash-fraction = 0.25
-                        \once \override TextSpanner.dash-period = 1.5
-                        g'8.
-                        \stopTextSpan
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         f'8.
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
                         ef'4.
                         \stopTextSpan
                     }
@@ -5857,11 +5781,10 @@ class MetronomeMarkSpanner(Spanner):
                         \override TextSpanner.staff-padding = #3
                     }
                     {
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        \time 3/8
+                        c'8.
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -5879,20 +5802,19 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-period = 0
-                        \time 3/8
-                        c'8.
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         d'8.
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        e'4.
+                        \stopTextSpan
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -5910,20 +5832,18 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-period = 0
-                        e'4.
-                        \stopTextSpan
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.arrow-width = 0.25
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        g'8.
+                        \stopTextSpan
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \override
                                 #'(padding . 0.45)
                                 \parenthesize
@@ -5947,14 +5867,17 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.arrow = ##t
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.right.text =
-                        \markup {
+                        - \tweak arrow-width 0.25
+                        - \tweak dash-fraction 0.25
+                        - \tweak dash-period 1.5
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right.arrow ##t
+                        - \tweak bound-details.right-broken.arrow ##f
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.right.text \markup {
                             \concat
                                 {
                                     \hspace
@@ -5978,33 +5901,29 @@ class MetronomeMarkSpanner(Spanner):
                                         }
                                 }
                             }
-                        \once \override TextSpanner.dash-fraction = 0.25
-                        \once \override TextSpanner.dash-period = 1.5
-                        g'8.
-                        \stopTextSpan
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         f'8.
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
                         ef'4.
                         \stopTextSpan
                     }
                 >>
 
-        '''
+        """
         return self._parenthesize
 
     @property
     def right_padding(self) -> typing.Optional[Number]:
-        r'''
+        """
         Gets right padding.
-        '''
+        """
         return self._right_padding
 
     @property
     def stem_height(self) -> typing.Optional[Number]:
-        r'''
+        """
         Gets stem height.
-        '''
+        """
         return self._stem_height
 
     ### PUBLIC METHODS ###
@@ -6018,7 +5937,7 @@ class MetronomeMarkSpanner(Spanner):
         tag=None,
         wrapper=None,
         ) -> typing.Optional[Wrapper]:
-        r'''
+        r"""
         Attaches ``indicator`` to ``leaf`` in spanner.
 
         ..  container:: example
@@ -6054,11 +5973,10 @@ class MetronomeMarkSpanner(Spanner):
                         \override TextSpanner.staff-padding = #3
                     }
                     {
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        \time 3/8
+                        c'8.
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -6076,20 +5994,19 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-period = 0
-                        \time 3/8
-                        c'8.
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         d'8.
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        e'4.
+                        \stopTextSpan
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -6107,19 +6024,18 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.dash-period = 0
-                        e'4.
-                        \stopTextSpan
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
-                        \once \override TextSpanner.Y-extent = ##f
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.left.text =
-                        \markup {
+                        g'8.
+                        \stopTextSpan
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
                             \fontsize
                                 #-6
                                 \general-align
@@ -6137,12 +6053,13 @@ class MetronomeMarkSpanner(Spanner):
                             \hspace
                                 #1
                             }
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.padding = 1
-                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                        \once \override TextSpanner.bound-details.right.text =
-                        \markup {
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.right.text \markup {
                             \concat
                                 {
                                     \hspace
@@ -6166,12 +6083,9 @@ class MetronomeMarkSpanner(Spanner):
                                         }
                                 }
                             }
-                        \once \override TextSpanner.dash-period = 0
-                        g'8.
-                        \stopTextSpan
+                        - \tweak bound-details.left-broken.text ##f
                         \startTextSpan
                         f'8.
-                        \once \override TextSpanner.bound-details.left-broken.text = ##f
                         ef'4.
                         \stopTextSpan
                     }
@@ -6202,7 +6116,7 @@ class MetronomeMarkSpanner(Spanner):
             >>> spanner.attach(mark, spanner[5])
             >>> abjad.show(score) # doctest: +SKIP
 
-            >>> abjad.f(score, strict=50)
+            >>> abjad.f(score, strict=60)
             \new Score
             <<
                 \new Staff
@@ -6211,91 +6125,93 @@ class MetronomeMarkSpanner(Spanner):
                     \override TextSpanner.staff-padding = #3
                 }
                 {
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text = \markup { %! RED:M1
-                        \fontsize                             %! RED:M1
-                            #-6                               %! RED:M1
-                            \general-align                    %! RED:M1
-                                #Y                            %! RED:M1
-                                #DOWN                         %! RED:M1
-                                \note-by-number               %! RED:M1
-                                    #2                        %! RED:M1
-                                    #0                        %! RED:M1
-                                    #1                        %! RED:M1
-                        \upright                              %! RED:M1
-                            {                                 %! RED:M1
-                                =                             %! RED:M1
-                                60                            %! RED:M1
-                            }                                 %! RED:M1
-                        \hspace                               %! RED:M1
-                            #1                                %! RED:M1
-                        }                                     %! RED:M1
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
                     \time 3/8
                     c'8.
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {          %! RED:M1
+                        \fontsize                                       %! RED:M1
+                            #-6                                         %! RED:M1
+                            \general-align                              %! RED:M1
+                                #Y                                      %! RED:M1
+                                #DOWN                                   %! RED:M1
+                                \note-by-number                         %! RED:M1
+                                    #2                                  %! RED:M1
+                                    #0                                  %! RED:M1
+                                    #1                                  %! RED:M1
+                        \upright                                        %! RED:M1
+                            {                                           %! RED:M1
+                                =                                       %! RED:M1
+                                60                                      %! RED:M1
+                            }                                           %! RED:M1
+                        \hspace                                         %! RED:M1
+                            #1                                          %! RED:M1
+                        }                                               %! RED:M1
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     d'8.
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.left.text = \markup { %! BLUE
-                        \fontsize                             %! BLUE
-                            #-6                               %! BLUE
-                            \general-align                    %! BLUE
-                                #Y                            %! BLUE
-                                #DOWN                         %! BLUE
-                                \note-by-number               %! BLUE
-                                    #2                        %! BLUE
-                                    #0                        %! BLUE
-                                    #1                        %! BLUE
-                        \upright                              %! BLUE
-                            {                                 %! BLUE
-                                =                             %! BLUE
-                                90                            %! BLUE
-                            }                                 %! BLUE
-                        \hspace                               %! BLUE
-                            #1                                %! BLUE
-                        }                                     %! BLUE
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.dash-period = 0
                     e'4.
                     \stopTextSpan
+                    - \tweak Y-extent ##f
+                    - \tweak bound-details.left.text \markup {          %! BLUE
+                        \fontsize                                       %! BLUE
+                            #-6                                         %! BLUE
+                            \general-align                              %! BLUE
+                                #Y                                      %! BLUE
+                                #DOWN                                   %! BLUE
+                                \note-by-number                         %! BLUE
+                                    #2                                  %! BLUE
+                                    #0                                  %! BLUE
+                                    #1                                  %! BLUE
+                        \upright                                        %! BLUE
+                            {                                           %! BLUE
+                                =                                       %! BLUE
+                                90                                      %! BLUE
+                            }                                           %! BLUE
+                        \hspace                                         %! BLUE
+                            #1                                          %! BLUE
+                        }                                               %! BLUE
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
-                %@% \once \override TextSpanner.bound-details.left.text = \markup { %! YELLOW
-                %@%     \fontsize                             %! YELLOW
-                %@%         #-6                               %! YELLOW
-                %@%         \general-align                    %! YELLOW
-                %@%             #Y                            %! YELLOW
-                %@%             #DOWN                         %! YELLOW
-                %@%             \note-by-number               %! YELLOW
-                %@%                 #2                        %! YELLOW
-                %@%                 #0                        %! YELLOW
-                %@%                 #1                        %! YELLOW
-                %@%     \upright                              %! YELLOW
-                %@%         {                                 %! YELLOW
-                %@%             =                             %! YELLOW
-                %@%             72                            %! YELLOW
-                %@%         }                                 %! YELLOW
-                %@%     \hspace                               %! YELLOW
-                %@%         #1                                %! YELLOW
-                %@%     }                                     %! YELLOW
-                    \once \override TextSpanner.Y-extent = ##f
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.padding = 1
-                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
-                    \once \override TextSpanner.bound-details.right.text = \markup {
+                    g'8.
+                    \stopTextSpan
+                    - \tweak Y-extent ##f
+                %@% - \tweak bound-details.left.text \markup {          %! YELLOW
+                %@%     \fontsize                                       %! YELLOW
+                %@%         #-6                                         %! YELLOW
+                %@%         \general-align                              %! YELLOW
+                %@%             #Y                                      %! YELLOW
+                %@%             #DOWN                                   %! YELLOW
+                %@%             \note-by-number                         %! YELLOW
+                %@%                 #2                                  %! YELLOW
+                %@%                 #0                                  %! YELLOW
+                %@%                 #1                                  %! YELLOW
+                %@%     \upright                                        %! YELLOW
+                %@%         {                                           %! YELLOW
+                %@%             =                                       %! YELLOW
+                %@%             72                                      %! YELLOW
+                %@%         }                                           %! YELLOW
+                %@%     \hspace                                         %! YELLOW
+                %@%         #1                                          %! YELLOW
+                %@%     }                                               %! YELLOW
+                    - \tweak dash-period 0
+                    - \tweak bound-details.left.stencil-align-dir-y #center
+                    - \tweak bound-details.right-broken.padding 0
+                    - \tweak bound-details.right-broken.text ##f
+                    - \tweak bound-details.right.padding 1
+                    - \tweak bound-details.right.stencil-align-dir-y #center
+                    - \tweak bound-details.right.text \markup {
                         \concat
                             {
                                 \hspace
@@ -6319,12 +6235,9 @@ class MetronomeMarkSpanner(Spanner):
                                     }
                             }
                         }
-                    \once \override TextSpanner.dash-period = 0
-                    g'8.
-                    \stopTextSpan
+                    - \tweak bound-details.left-broken.text ##f
                     \startTextSpan
                     f'8.
-                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     ef'4.
                     \stopTextSpan
                 }
@@ -6349,7 +6262,7 @@ class MetronomeMarkSpanner(Spanner):
                 tag=abjad.Tag('YELLOW'),
                 )
 
-        '''
+        """
         return super(MetronomeMarkSpanner, self)._attach_piecewise(
             indicator,
             leaf,
@@ -6360,7 +6273,7 @@ class MetronomeMarkSpanner(Spanner):
             )
 
     def start_command(self) -> typing.Optional[str]:
-        r'''
+        r"""
         Gets start command.
 
         ..  container:: example
@@ -6368,11 +6281,11 @@ class MetronomeMarkSpanner(Spanner):
             >>> abjad.MetronomeMarkSpanner().start_command()
             '\\startTextSpan'
 
-        '''
+        """
         return super(MetronomeMarkSpanner, self).start_command()
 
     def stop_command(self) -> typing.Optional[str]:
-        r'''
+        r"""
         Gets stop command.
 
         ..  container:: example
@@ -6380,5 +6293,5 @@ class MetronomeMarkSpanner(Spanner):
             >>> abjad.MetronomeMarkSpanner().stop_command()
             '\\stopTextSpan'
 
-        '''
+        """
         return super(MetronomeMarkSpanner, self).stop_command()

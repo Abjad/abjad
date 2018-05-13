@@ -661,7 +661,7 @@ class Label(abctools.AbjadObject):
                     pc = abjad.NumberedPitchClass(number)
                     color = color_map.get(pc, None)
                     if color is not None:
-                        note_head.tweak.color = color
+                        note_head.tweaks.color = color
             elif isinstance(leaf, abjad.Note):
                 note_head = leaf.note_head
                 number = note_head.written_pitch.number

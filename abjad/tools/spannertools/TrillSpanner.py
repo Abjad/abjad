@@ -1,4 +1,6 @@
 import typing
+from abjad.tools.lilypondnametools.LilyPondGrobOverride import \
+    LilyPondGrobOverride
 from abjad.tools.pitchtools.NamedInterval import NamedInterval
 from abjad.tools.pitchtools.NamedPitch import NamedPitch
 from abjad.tools.schemetools.Scheme import Scheme
@@ -8,7 +10,7 @@ from .Spanner import Spanner
 
 
 class TrillSpanner(Spanner):
-    r'''
+    r"""
     Trill spanner.
 
     ..  container:: example
@@ -91,7 +93,7 @@ class TrillSpanner(Spanner):
                 \stopTrillSpan
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -143,13 +145,6 @@ class TrillSpanner(Spanner):
             bundle.right.spanner_stops.extend(strings)
             return bundle
         if leaf is self[0]:
-            strings = override(self)._list_format_contributions(
-                'override',
-                once=False,
-                )
-            if self._left_broken:
-                strings = self._tag_hide(strings)
-            bundle.grob_overrides.extend(strings)
             if self.pitch is not None:
                 pitch_string = str(self.pitch)
             elif self.interval is not None:
@@ -166,22 +161,22 @@ class TrillSpanner(Spanner):
             # important: pitch trill must start AFTER markup
             bundle.after.spanner_starts.extend(strings)
             if self.pitch is not None or self.interval is not None:
-                strings = [r'\pitchedTrill']
-                if self._left_broken:
-                    strings = self._tag_hide(strings)
-                bundle.opening.spanners.extend(strings)
                 if self.is_harmonic:
                     string = '(lambda (grob) (grob-interpret-markup grob'
                     string += r' #{ \markup \musicglyph #"noteheads.s0harmonic" #}))'
                     scheme = Scheme(string, verbatim=True)
-                    # TODO: use strings instead of override interface:
-                    override(leaf).trill_pitch_head.stencil = scheme
+                    override = LilyPondGrobOverride(
+                        grob_name='TrillPitchHead',
+                        property_path=('stencil',),
+                        value=scheme,
+                        )
+                    string = override.tweak_string(grob=True)
+                    bundle.right.spanner_starts.append(string)
+                strings = [r'\pitchedTrill']
+                if self._left_broken:
+                    strings = self._tag_hide(strings)
+                bundle.opening.spanners.extend(strings)
         if leaf is self[-1]:
-            manager = override(self)
-            strings = manager._list_format_contributions('revert')
-            if self._right_broken:
-                strings = self._tag_hide(strings)
-            bundle.grob_reverts.extend(strings)
             if 1 < len(self):
                 strings = [self.stop_command()]
                 if self._right_broken:
@@ -192,7 +187,7 @@ class TrillSpanner(Spanner):
     ### PUBLIC PROPERTIES ###
 
     def cross_segment_examples(self):
-        r'''
+        r"""
         Cross-segment examples.
 
         ..  container:: example
@@ -463,12 +458,12 @@ class TrillSpanner(Spanner):
                     }
                 }
 
-        '''
+        """
         pass
 
     @property
     def interval(self) -> typing.Optional[NamedInterval]:
-        r'''
+        r"""
         Gets interval of trill.
 
         ..  container:: example
@@ -526,12 +521,12 @@ class TrillSpanner(Spanner):
         Set to interval or none.
 
         Returns interval or none.
-        '''
+        """
         return self._interval
 
     @property
     def is_harmonic(self) -> typing.Optional[bool]:
-        r'''
+        r"""
         Is true when trill pitch note-head is harmonic.
 
         ..  container:: example
@@ -551,9 +546,9 @@ class TrillSpanner(Spanner):
                 >>> abjad.f(staff)
                 \new Staff
                 {
-                    \once \override TrillPitchHead.stencil = #(lambda (grob) (grob-interpret-markup grob #{ \markup \musicglyph #"noteheads.s0harmonic" #}))
                     \pitchedTrill
                     c'8
+                    - \tweak TrillPitchHead.stencil #(lambda (grob) (grob-interpret-markup grob #{ \markup \musicglyph #"noteheads.s0harmonic" #}))
                     \startTrillSpan d'
                     d'8
                     e'8
@@ -566,12 +561,12 @@ class TrillSpanner(Spanner):
         Set to true or false.
 
         Returns true or false.
-        '''
+        """
         return self._is_harmonic
 
     @property
     def leak(self) -> typing.Optional[bool]:
-        r'''
+        r"""
         Is true when spanner leaks one leaf to the right.
 
         ..  container:: example
@@ -616,12 +611,12 @@ class TrillSpanner(Spanner):
                     r8
                 }
 
-        '''
+        """
         return super(TrillSpanner, self).leak
 
     @property
     def pitch(self) -> typing.Optional[NamedPitch]:
-        r'''
+        r"""
         Gets pitch.
 
         ..  container:: example
@@ -683,12 +678,12 @@ class TrillSpanner(Spanner):
         Set to named pitch or none.
 
         Returns named pitch or none.
-        '''
+        """
         return self._pitch
 
     @property
     def written_pitch(self) -> typing.Optional[NamedPitch]:
-        r'''
+        r"""
         Gets written pitch of trill spanner.
 
         ..  container:: example
@@ -750,13 +745,13 @@ class TrillSpanner(Spanner):
         Property can not be set.
 
         Returns named pitch or none.
-        '''
+        """
         return self.pitch
 
     ### PUBLIC METHODS ###
 
     def start_command(self) -> typing.Optional[str]:
-        r'''
+        r"""
         Gets start command.
 
         ..  container:: example
@@ -764,11 +759,11 @@ class TrillSpanner(Spanner):
             >>> abjad.TrillSpanner().start_command()
             '\\startTrillSpan'
 
-        '''
+        """
         return super(TrillSpanner, self).start_command()
 
     def stop_command(self) -> typing.Optional[str]:
-        r'''
+        r"""
         Gets stop command.
 
         ..  container:: example
@@ -781,7 +776,7 @@ class TrillSpanner(Spanner):
             >>> abjad.TrillSpanner(leak=True).stop_command()
             '<> \\stopTrillSpan'
 
-        '''
+        """
         string = super(TrillSpanner, self).stop_command()
         string = self._add_leak(string)
         return string

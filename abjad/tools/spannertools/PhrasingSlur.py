@@ -5,7 +5,7 @@ from .Spanner import Spanner
 
 
 class PhrasingSlur(Spanner):
-    r'''
+    r"""
     Phrasing slur.
 
     ..  container:: example
@@ -43,7 +43,7 @@ class PhrasingSlur(Spanner):
           Requires at least two leaves.
           Not just Note("c'8").
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -98,7 +98,7 @@ class PhrasingSlur(Spanner):
 
     @property
     def direction(self) -> typing.Optional[String]:
-        r'''
+        r"""
         Gets direction.
 
         ..  container:: example
@@ -167,12 +167,12 @@ class PhrasingSlur(Spanner):
                     \)
                 }
 
-        '''
+        """
         return self._direction
 
     @property
     def leak(self):
-        r'''
+        r"""
         Is true when phrasing slur leaks one leaf to the right.
 
         ..  container:: example
@@ -239,13 +239,13 @@ class PhrasingSlur(Spanner):
                     f'8
                 }
 
-        '''
+        """
         return super(PhrasingSlur, self).leak
 
     ### PUBLIC METHODS ###
 
     def start_command(self) -> typing.Optional[str]:
-        r'''
+        r"""
         Gets start command.
 
         ..  container:: example
@@ -258,14 +258,14 @@ class PhrasingSlur(Spanner):
             >>> abjad.PhrasingSlur(direction=abjad.Up).start_command()
             '^ \\('
 
-        '''
+        """
         string = super(PhrasingSlur, self).start_command()
         if self.direction:
             string = f'{self.direction} {string}'
         return string
 
     def stop_command(self) -> typing.Optional[str]:
-        r'''
+        r"""
         Gets stop command.
 
         ..  container:: example
@@ -278,7 +278,7 @@ class PhrasingSlur(Spanner):
             >>> abjad.PhrasingSlur(leak=True).stop_command()
             '<> \\)'
 
-        '''
+        """
         string = super(PhrasingSlur, self).stop_command()
         if self.leak:
             string = f'{self._empty_chord} {string}'

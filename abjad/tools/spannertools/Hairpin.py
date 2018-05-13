@@ -3,6 +3,8 @@ from .Spanner import Spanner
 from abjad.enumerations import VerticalAlignment
 from abjad.tools.datastructuretools.String import String
 from abjad.tools.indicatortools.Dynamic import Dynamic
+from abjad.tools.lilypondnametools.LilyPondGrobOverride import \
+    LilyPondGrobOverride
 from abjad.tools.scoretools.Chord import Chord
 from abjad.tools.scoretools.Leaf import Leaf
 from abjad.tools.scoretools.Note import Note
@@ -13,7 +15,7 @@ from abjad.tools.topleveltools.select import select
 
 
 class Hairpin(Spanner):
-    r'''
+    r"""
     Hairpin.
 
     ..  note:: Conventional (nonpiecewise) hairpins are deprecated.
@@ -115,8 +117,8 @@ class Hairpin(Spanner):
             >>> abjad.f(voice)
             \new Voice
             {
-                \once \override Hairpin.circled-tip = ##t
                 c'2.
+                - \tweak circled-tip ##t
                 \>
                 \f
                 r4
@@ -141,8 +143,8 @@ class Hairpin(Spanner):
             >>> abjad.f(voice)
             \new Voice
             {
-                \once \override Hairpin.circled-tip = ##t
                 c'2.
+                - \tweak circled-tip ##t
                 \>
                 \f
                 r4
@@ -273,7 +275,7 @@ class Hairpin(Spanner):
         (Note("b'8"), Dynamic('"f"', direction=Down))
         (Rest('r8'), Dynamic('"f"', direction=Down))
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -345,7 +347,7 @@ class Hairpin(Spanner):
             self._stop_dynamic = None
 
     def __eq__(self, argument) -> bool:
-        r'''
+        r"""
         Is true when hairpin equals ``argument``.
 
         ..  container:: example
@@ -381,7 +383,7 @@ class Hairpin(Spanner):
             >>> hairpin_3 == hairpin_3
             True
 
-        '''
+        """
         if not isinstance(argument, type(self)):
             return False
         if (self.start_dynamic == argument.start_dynamic and
@@ -390,31 +392,31 @@ class Hairpin(Spanner):
         return False
 
     def __hash__(self) -> int:
-        '''
+        """
         Hashes hairpin.
 
         Redefined in tandem with __eq__.
-        '''
+        """
         return super(Hairpin, self).__hash__()
 
     ### PRIVATE METHODS ###
 
-    def _add_circled_tip_override(self, leaf, bundle):
-        string = r'\once \override Hairpin.circled-tip = ##t'
+    def _make_circled_tip_tweaks(self, leaf):
+        override = self._circled_tip()
+        string = override.tweak_string()
         if self._left_broken == 'niente' or self._right_broken == 'niente':
-            bundle.before.commands.append(string)
-            return
+            return [string]
         dynamic = self._get_piecewise_dynamic(leaf)
         if not dynamic:
-            return
+            return []
         if self._right_broken and dynamic.name == 'niente':
-            bundle.before.commands.append(string)
-            return
+            return [string]
         next_dynamic = self._get_next_piecewise_dynamic_from(leaf)
         if not next_dynamic:
-            return
+            return []
         if dynamic.name == 'niente' or next_dynamic.name == 'niente':
-            bundle.before.commands.append(string)
+            return [string]
+        return []
 
     def _add_dynamic(self, leaf, bundle):
         dynamic = self._get_piecewise_dynamic(leaf)
@@ -437,13 +439,14 @@ class Hairpin(Spanner):
         else:
             bundle.right.spanner_stops.append(string)
 
-    def _add_hairpin_start(self, leaf, bundle):
+    def _add_hairpin_start(self, leaf, bundle, tweaks):
         if (leaf is self[0] and
             self._left_broken is not None and
             1 < len(self)):
-            strings = ['\\' + self._left_broken]
+            string = '\\' + self._left_broken
+            string = self._add_direction(string)
+            strings = tweaks + [string]
             strings = self._tag_hide(strings)
-            string = strings[0]
         else:
             dynamic = self._get_piecewise_dynamic(leaf)
             if dynamic is None:
@@ -456,18 +459,25 @@ class Hairpin(Spanner):
                         right_broken = '>'
                     assert right_broken in ('<', '>')
                     string = '\\' + right_broken
+                    string = self._add_direction(string)
+                    strings = tweaks + [string]
                     if leaf is self[-1]:
-                        string = self._tag_show([string])[0]
+                        #string = self._tag_show([string])[0]
+                        strings = self._tag_show(strings)
                 else:
                     return
             elif dynamic.ordinal == next_dynamic.ordinal:
                 return
             elif dynamic.ordinal < next_dynamic.ordinal:
                 string = r'\<'
+                string = self._add_direction(string)
+                strings = tweaks + [string]
             elif next_dynamic.ordinal < dynamic.ordinal:
                 string = r'\>'
-        string = self._add_direction(string)
-        bundle.right.spanner_starts.append(string)
+                string = self._add_direction(string)
+                strings = tweaks + [string]
+        #bundle.right.spanner_starts.append(string)
+        bundle.right.spanner_starts.extend(strings)
 
     def _add_right_broken_hairpin_stop(self, leaf, bundle):
         if self._right_broken is None:
@@ -486,6 +496,15 @@ class Hairpin(Spanner):
         assert all(isinstance(_, Leaf) for _ in argument)
         leaves = select(argument).leaves()
         return 1 <= len(leaves)
+
+    @staticmethod
+    def _circled_tip():
+        return LilyPondGrobOverride(
+            grob_name='Hairpin',
+            once=True,
+            property_path='circled-tip',
+            value=True,
+            )
 
     def _copy_keyword_args(self, new):
         Spanner._copy_keyword_args(self, new)
@@ -514,8 +533,9 @@ class Hairpin(Spanner):
             bundle.right.spanner_starts.append(string)
             return bundle
         if leaf is self[0] and self._has_niente():
-            string = r'\once \override Hairpin.circled-tip = ##t'
-            bundle.before.commands.append(string)
+            override = self._circled_tip()
+            string = override.tweak_string()
+            bundle.right.spanner_starts.append(string)
         if leaf is self[0]:
             string = self.start_command()
             bundle.right.spanner_starts.append(string)
@@ -526,10 +546,6 @@ class Hairpin(Spanner):
             string = self.stop_command()
             if string is not None:
                 bundle.right.spanner_stops.append(string)
-        if leaf is self[0] and len(self) == 1:
-            raise Exception('CAN WE GET HERE?')
-            bundle.right.spanner_starts.extend(bundle.right.spanner_stops)
-            bundle.right.spanner_stops[:] = []
         return bundle
 
     def _get_next_piecewise_dynamic_from(self, leaf):
@@ -545,8 +561,8 @@ class Hairpin(Spanner):
 
     def _get_piecewise_lilypond_format_bundle(self, leaf):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
-        self._add_circled_tip_override(leaf, bundle)
-        self._add_hairpin_start(leaf, bundle)
+        tweaks = self._make_circled_tip_tweaks(leaf)
+        self._add_hairpin_start(leaf, bundle, tweaks)
         self._add_dynamic(leaf, bundle)
         self._add_right_broken_hairpin_stop(leaf, bundle)
         if self._is_my_only(leaf):
@@ -587,7 +603,7 @@ class Hairpin(Spanner):
 
     @staticmethod
     def _is_hairpin_token(argument):
-        '''
+        """
         Is true when ``argument`` is hairpin token.
 
         >>> abjad.Hairpin._is_hairpin_token(('', '<', ''))
@@ -602,7 +618,7 @@ class Hairpin(Spanner):
         >>> abjad.Hairpin._is_hairpin_token(('p', '>', 'f'))
         False
 
-        '''
+        """
         if (isinstance(argument, tuple) and
             len(argument) == 3 and
             (not argument[0] or Dynamic.is_dynamic_name(argument[0]))
@@ -693,7 +709,7 @@ class Hairpin(Spanner):
 
     @property
     def context(self) -> typing.Optional[str]:
-        r'''
+        r"""
         Gets context name (for piecewise attach).
 
         ..  container:: example
@@ -792,11 +808,11 @@ class Hairpin(Spanner):
             (Note('b2'), Dynamic('pp'))
             (Note('b8'), Dynamic('p'))
 
-        '''
+        """
         return self._context
 
     def cross_segment_examples(self):
-        r'''
+        r"""
         Cross-segment examples.
 
         ..  container:: example
@@ -1158,8 +1174,8 @@ class Hairpin(Spanner):
                     c'4
                     d'4
                     e'4
-                    \once \override Hairpin.circled-tip = ##t
                     f'4
+                %@% - \tweak circled-tip ##t                      %! SHOW_TO_JOIN_BROKEN_SPANNERS
                 %@% \<                                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
                 }
 
@@ -1203,8 +1219,8 @@ class Hairpin(Spanner):
                         c'4
                         d'4
                         e'4
-                        \once \override Hairpin.circled-tip = ##t
                         f'4
+                        - \tweak circled-tip ##t                  %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                         \<                                        %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                     }
                     \context Voice = "MainVoice"
@@ -1240,8 +1256,8 @@ class Hairpin(Spanner):
                     c'4
                     d'4
                     e'4
-                    \once \override Hairpin.circled-tip = ##t
                     f'4
+                %@% - \tweak circled-tip ##t                      %! SHOW_TO_JOIN_BROKEN_SPANNERS
                 %@% \<                                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
                 }
 
@@ -1286,8 +1302,8 @@ class Hairpin(Spanner):
                         c'4
                         d'4
                         e'4
-                        \once \override Hairpin.circled-tip = ##t
                         f'4
+                        - \tweak circled-tip ##t                  %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                         \<                                        %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                     }
                     \context Voice = "MainVoice"
@@ -1321,8 +1337,8 @@ class Hairpin(Spanner):
                     \override DynamicLineSpanner.staff-padding = #4
                 }
                 {
-                    \once \override Hairpin.circled-tip = ##t
                     c'4
+                    - \tweak circled-tip ##t
                     \<
                     d'4
                     e'4
@@ -1367,8 +1383,8 @@ class Hairpin(Spanner):
                         \override DynamicLineSpanner.staff-padding = #4
                     }
                     {
-                        \once \override Hairpin.circled-tip = ##t
                         c'4
+                        - \tweak circled-tip ##t
                         \<
                         d'4
                         e'4
@@ -1405,8 +1421,8 @@ class Hairpin(Spanner):
                     \override DynamicLineSpanner.staff-padding = #4
                 }
                 {
-                    \once \override Hairpin.circled-tip = ##t
                     c'4
+                    - \tweak circled-tip ##t
                     \<
                     d'4
                     e'4
@@ -1452,8 +1468,8 @@ class Hairpin(Spanner):
                         \override DynamicLineSpanner.staff-padding = #4
                     }
                     {
-                        \once \override Hairpin.circled-tip = ##t
                         c'4
+                        - \tweak circled-tip ##t
                         \<
                         d'4
                         e'4
@@ -1494,8 +1510,8 @@ class Hairpin(Spanner):
                     c'4
                     d'4
                     e'4
-                    \once \override Hairpin.circled-tip = ##t
                     f'4
+                %@% - \tweak circled-tip ##t                      %! SHOW_TO_JOIN_BROKEN_SPANNERS
                 %@% \>                                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
                     \p
                 }
@@ -1540,8 +1556,8 @@ class Hairpin(Spanner):
                         c'4
                         d'4
                         e'4
-                        \once \override Hairpin.circled-tip = ##t
                         f'4
+                        - \tweak circled-tip ##t                  %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                         \>                                        %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                         \p
                     }
@@ -1578,8 +1594,8 @@ class Hairpin(Spanner):
                     c'4
                     d'4
                     e'4
-                    \once \override Hairpin.circled-tip = ##t
                     f'4
+                %@% - \tweak circled-tip ##t                      %! SHOW_TO_JOIN_BROKEN_SPANNERS
                 %@% \>                                            %! SHOW_TO_JOIN_BROKEN_SPANNERS
                     \p
                 }
@@ -1625,8 +1641,8 @@ class Hairpin(Spanner):
                         c'4
                         d'4
                         e'4
-                        \once \override Hairpin.circled-tip = ##t
                         f'4
+                        - \tweak circled-tip ##t                  %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                         \>                                        %! SHOW_TO_JOIN_BROKEN_SPANNERS %@%
                         \p
                     }
@@ -1661,15 +1677,12 @@ class Hairpin(Spanner):
                     \override DynamicLineSpanner.staff-padding = #4
                 }
                 {
-                    \once \override Hairpin.circled-tip = ##t
                     c'4
+                    - \tweak circled-tip ##t
                     \>
                     \p
-                    \once \override Hairpin.circled-tip = ##t
                     d'4
-                    \once \override Hairpin.circled-tip = ##t
                     e'4
-                    \once \override Hairpin.circled-tip = ##t
                     f'4
                     \!                                            %! HIDE_TO_JOIN_BROKEN_SPANNERS
                 }
@@ -1711,15 +1724,12 @@ class Hairpin(Spanner):
                         \override DynamicLineSpanner.staff-padding = #4
                     }
                     {
-                        \once \override Hairpin.circled-tip = ##t
                         c'4
+                        - \tweak circled-tip ##t
                         \>
                         \p
-                        \once \override Hairpin.circled-tip = ##t
                         d'4
-                        \once \override Hairpin.circled-tip = ##t
                         e'4
-                        \once \override Hairpin.circled-tip = ##t
                         f'4
                     %%% \!                                        %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     }
@@ -1753,15 +1763,12 @@ class Hairpin(Spanner):
                     \override DynamicLineSpanner.staff-padding = #4
                 }
                 {
-                    \once \override Hairpin.circled-tip = ##t
                     c'4
+                    - \tweak circled-tip ##t
                     \>
                     \p
-                    \once \override Hairpin.circled-tip = ##t
                     d'4
-                    \once \override Hairpin.circled-tip = ##t
                     e'4
-                    \once \override Hairpin.circled-tip = ##t
                     f'4
                     \!                                            %! HIDE_TO_JOIN_BROKEN_SPANNERS
                 }
@@ -1804,15 +1811,12 @@ class Hairpin(Spanner):
                         \override DynamicLineSpanner.staff-padding = #4
                     }
                     {
-                        \once \override Hairpin.circled-tip = ##t
                         c'4
+                        - \tweak circled-tip ##t
                         \>
                         \p
-                        \once \override Hairpin.circled-tip = ##t
                         d'4
-                        \once \override Hairpin.circled-tip = ##t
                         e'4
-                        \once \override Hairpin.circled-tip = ##t
                         f'4
                     %%% \!                                        %! HIDE_TO_JOIN_BROKEN_SPANNERS
                     }
@@ -1827,12 +1831,12 @@ class Hairpin(Spanner):
                     }
                 }
 
-        '''
+        """
         pass
 
     @property
     def descriptor(self) -> typing.Optional[str]:
-        r'''
+        r"""
         Gets descriptor.
 
         ..  container:: example
@@ -1863,12 +1867,12 @@ class Hairpin(Spanner):
             >>> hairpin.descriptor
             'p < f'
 
-        '''
+        """
         return self._descriptor
 
     @property
     def direction(self) -> typing.Optional[String]:
-        r'''
+        r"""
         Gets direction.
 
         ..  container:: example
@@ -1899,12 +1903,12 @@ class Hairpin(Spanner):
             >>> hairpin.direction
             '^'
 
-        '''
+        """
         return self._direction
 
     @property
     def leak(self):
-        r'''
+        r"""
         Is true when hairpin leaks one leaf to the right.
 
         ..  container:: example
@@ -1925,8 +1929,8 @@ class Hairpin(Spanner):
                 >>> abjad.f(voice)
                 \new Voice
                 {
-                    \once \override Hairpin.circled-tip = ##t
                     c'2
+                    - \tweak circled-tip ##t
                     \>
                     \f
                     d'4
@@ -1948,8 +1952,8 @@ class Hairpin(Spanner):
                 >>> abjad.f(voice)
                 \new Voice
                 {
-                    \once \override Hairpin.circled-tip = ##t
                     c'2
+                    - \tweak circled-tip ##t
                     \>
                     \f
                     d'4
@@ -1973,8 +1977,8 @@ class Hairpin(Spanner):
                 >>> abjad.f(voice)
                 \new Voice
                 {
-                    \once \override Hairpin.circled-tip = ##t
                     c'2
+                    - \tweak circled-tip ##t
                     \>
                     \f
                     d'4
@@ -1994,8 +1998,8 @@ class Hairpin(Spanner):
                 >>> abjad.f(voice)
                 \new Voice
                 {
-                    \once \override Hairpin.circled-tip = ##t
                     c'2
+                    - \tweak circled-tip ##t
                     \>
                     \f
                     d'4
@@ -2003,12 +2007,12 @@ class Hairpin(Spanner):
                     r4
                 }
 
-        '''
+        """
         return super(Hairpin, self).leak
 
     @property
     def shape_string(self) -> str:
-        r'''
+        r"""
         Gets shape string.
 
         ..  container:: example
@@ -2039,12 +2043,12 @@ class Hairpin(Spanner):
             >>> hairpin.shape_string
             '<'
 
-        '''
+        """
         return self._shape_string
 
     @property
     def start_dynamic(self) -> typing.Optional[Dynamic]:
-        r'''
+        r"""
         Gets start dynamic.
 
         ..  container:: example
@@ -2075,12 +2079,12 @@ class Hairpin(Spanner):
             >>> hairpin.start_dynamic
             Dynamic('p')
 
-        '''
+        """
         return self._start_dynamic
 
     @property
     def start_dynamic_is_textual(self) -> typing.Optional[bool]:
-        r'''
+        r"""
         Is true when start dynamic is textual.
 
         ..  container:: example
@@ -2185,12 +2189,12 @@ class Hairpin(Spanner):
                 r8
             }
 
-        '''
+        """
         return self._start_dynamic_is_textual
 
     @property
     def stop_dynamic(self) -> typing.Optional[Dynamic]:
-        r'''
+        r"""
         Gets stop dynamic.
 
         ..  container:: example
@@ -2221,12 +2225,12 @@ class Hairpin(Spanner):
             >>> hairpin.stop_dynamic
             Dynamic('f')
 
-        '''
+        """
         return self._stop_dynamic
 
     @property
     def stop_dynamic_is_textual(self) -> typing.Optional[bool]:
-        r'''
+        r"""
         Is true when stop dynamic is textual.
 
         ..  container:: example
@@ -2298,7 +2302,7 @@ class Hairpin(Spanner):
                 r8
             }
 
-        '''
+        """
         return self._stop_dynamic_is_textual
 
     ### PUBLIC METHODS ###
@@ -2311,7 +2315,7 @@ class Hairpin(Spanner):
         tag: typing.Union[str, Tag] = None,
         wrapper: bool = None,
         ) -> typing.Optional[Wrapper]:
-        r'''
+        r"""
         Attaches ``indicator`` to ``leaf`` in spanner.
 
         ..  container:: example
@@ -2500,19 +2504,18 @@ class Hairpin(Spanner):
                     \override DynamicLineSpanner.staff-padding = #4
                 }
                 {
-                    \once \override Hairpin.circled-tip = ##t
                     c'8
+                    - \tweak circled-tip ##t
                     \>
                     \f
                     d'8
                     e'8
-                    \once \override Hairpin.circled-tip = ##t
                     r8
                     \!
                     r8
-                    \once \override Hairpin.circled-tip = ##t
                     f'8
                     \!
+                    - \tweak circled-tip ##t
                     \<
                     e'8
                     d'8
@@ -2533,7 +2536,7 @@ class Hairpin(Spanner):
             (Note("d'8"), Dynamic('niente', direction=Down, name_is_textual=True))
             (Note("c'8"), Dynamic('f'))
 
-        '''
+        """
         return super(Hairpin, self)._attach_piecewise(
             indicator,
             leaf,
@@ -2543,7 +2546,7 @@ class Hairpin(Spanner):
             )
 
     def start_command(self) -> typing.Optional[str]:
-        r'''
+        r"""
         Gets start command.
 
         ..  container:: example
@@ -2594,13 +2597,13 @@ class Hairpin(Spanner):
             >>> hairpin.start_command()
             '^ \\<'
 
-        '''
+        """
         string = rf'\{self.shape_string}'
         string = self._add_direction(string)
         return string
 
     def stop_command(self) -> typing.Optional[str]:
-        r'''
+        r"""
         Gets stop command.
 
         ..  container:: example
@@ -2680,7 +2683,7 @@ class Hairpin(Spanner):
             >>> hairpin.stop_command() is None
             True
 
-        '''
+        """
         leaf = self[-1]
         if self._has_sounding_stop_dynamic():
             string = self._get_directed_stop_dynamic()

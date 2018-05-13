@@ -109,32 +109,6 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___04():
     assert abjad.inspect(score).is_well_formed()
 
 
-def test_lilypondproxytools_LilyPondGrobNameManager___setattr___05():
-    r'''Override LilyPond Beam grob.
-    '''
-
-    voice = abjad.Voice("c'8 d'8 e'8 f'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, voice[:])
-    abjad.override(beam).beam.positions = (4, 4)
-
-    assert format(voice) == abjad.String.normalize(
-        r'''
-        \new Voice
-        {
-            \override Beam.positions = #'(4 . 4)
-            c'8
-            [
-            d'8
-            e'8
-            \revert Beam.positions
-            f'8
-            ]
-        }
-        '''
-        )
-
-
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___06():
     r'''Override LilyPond abjad.Clef grob.
     '''
@@ -226,33 +200,6 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___09():
         )
 
 
-def test_lilypondproxytools_LilyPondGrobNameManager___setattr___10():
-    r'''Override LilyPond abjad.DynamicLineSpanner grob.
-    '''
-
-    voice = abjad.Voice("c'8 d'8 e'8 f'8")
-    hairpin = abjad.Hairpin(descriptor='p < f')
-    abjad.attach(hairpin, voice[:])
-    abjad.override(hairpin).dynamic_line_spanner.staff_padding = 4
-
-    assert format(voice) == abjad.String.normalize(
-        r'''
-        \new Voice
-        {
-            \override DynamicLineSpanner.staff-padding = #4
-            c'8
-            \<
-            \p
-            d'8
-            e'8
-            \revert DynamicLineSpanner.staff-padding
-            f'8
-            \f
-        }
-        '''
-        )
-
-
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___11():
     r'''Override LilyPond abjad.DynamicLineSpanner grob.
     '''
@@ -277,39 +224,6 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___11():
         }
         '''
         )
-
-
-def test_lilypondproxytools_LilyPondGrobNameManager___setattr___12():
-    r'''Override LilyPond abjad.DynamicText grob.
-    '''
-
-    staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, staff[:])
-    dynamic = abjad.Dynamic('f')
-    abjad.attach(dynamic, staff[0])
-    spanner = abjad.Spanner()
-    abjad.override(spanner).dynamic_text.thickness = 3
-    abjad.attach(spanner, staff[:])
-
-    assert format(staff) == abjad.String.normalize(
-        r'''
-        \new Staff
-        {
-            \override DynamicText.thickness = #3
-            c'8
-            \f
-            [
-            d'8
-            e'8
-            \revert DynamicText.thickness
-            f'8
-            ]
-        }
-        '''
-        )
-
-    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___13():
@@ -358,33 +272,6 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___14():
             c'8
             d'8
             e'8
-            f'8
-        }
-        '''
-        )
-
-
-def test_lilypondproxytools_LilyPondGrobNameManager___setattr___15():
-    r'''Override LilyPond Glissando grob.
-    '''
-
-    voice = abjad.Voice("c'8 d'8 e'8 f'8")
-    glissando = abjad.Glissando()
-    abjad.attach(glissando, voice[:])
-    abjad.override(glissando).glissando.thickness = 3
-
-    assert format(voice) == abjad.String.normalize(
-        r'''
-        \new Voice
-        {
-            \override Glissando.thickness = #3
-            c'8
-            \glissando
-            d'8
-            \glissando
-            e'8
-            \glissando
-            \revert Glissando.thickness
             f'8
         }
         '''
@@ -617,11 +504,13 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___24():
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___25():
-    r'''Notehead style abjad.overrides are handled just like all other
-    note_head grob abjad.overrides, even for note_heads in chords.'''
+    '''
+    Notehead style abjad.overrides are handled just like all other
+    note_head grob abjad.overrides, even for note_heads in chords.
+    '''
 
     chord = abjad.Chord([1, 2, 3], (1, 4))
-    chord.note_heads[0].tweak.style = 'harmonic'
+    chord.note_heads[0].tweaks.style = 'harmonic'
 
     assert format(chord) == abjad.String.normalize(
         r'''
@@ -718,32 +607,6 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___29():
     assert abjad.inspect(voice).is_well_formed()
 
 
-def test_lilypondproxytools_LilyPondGrobNameManager___setattr___30():
-    r'''Override LilyPond OctavationBracket grob.
-    '''
-
-    voice = abjad.Voice("c'8 d'8 e'8 f'8")
-    octavation_spanner = abjad.OctavationSpanner(start=1)
-    abjad.attach(octavation_spanner, voice[:])
-    abjad.override(octavation_spanner).staff.ottava_bracket.staff_position = 4
-
-    assert format(voice) == abjad.String.normalize(
-        r'''
-        \new Voice
-        {
-            \ottava #1
-            \override Staff.OttavaBracket.staff-position = #4
-            c'8
-            d'8
-            e'8
-            \revert Staff.OttavaBracket.staff-position
-            f'8
-            \ottava #0
-        }
-        '''
-        )
-
-
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___31():
     r'''Override LilyPond RehearsalMark grob.
     '''
@@ -836,83 +699,6 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___34():
         }
         '''
         )
-
-
-def test_lilypondproxytools_LilyPondGrobNameManager___setattr___35():
-    r'''Override LilyPond SpacingSpanner grob.
-    '''
-
-    staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    beam = abjad.Beam()
-    abjad.attach(beam, staff[:])
-    abjad.override(beam).score.spacing_spanner.strict_grace_spacing = True
-    abjad.override(beam).score.spacing_spanner.strict_note_spacing = True
-    abjad.override(beam).score.spacing_spanner.uniform_stretching = True
-
-    assert format(staff) == abjad.String.normalize(
-        r'''
-        \new Staff
-        {
-            \override Score.SpacingSpanner.strict-grace-spacing = ##t
-            \override Score.SpacingSpanner.strict-note-spacing = ##t
-            \override Score.SpacingSpanner.uniform-stretching = ##t
-            c'8
-            [
-            d'8
-            e'8
-            \revert Score.SpacingSpanner.strict-grace-spacing
-            \revert Score.SpacingSpanner.strict-note-spacing
-            \revert Score.SpacingSpanner.uniform-stretching
-            f'8
-            ]
-        }
-        '''
-        )
-
-    assert abjad.inspect(staff).is_well_formed()
-
-
-def test_lilypondproxytools_LilyPondGrobNameManager___setattr___36():
-    r'''Override LilyPond SpacingSpanner grob on Abjad containers.
-    LilyPond SpacingSpanner lives at Score by default.
-    Abjad SpacingSpanner abjad.overrides usually
-    require context promotion.
-    '''
-
-    staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = abjad.select(staff).leaves()
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves)
-    abjad.override(beam).score.spacing_spanner.strict_grace_spacing = True
-    abjad.override(beam).score.spacing_spanner.strict_note_spacing = True
-    abjad.override(beam).score.spacing_spanner.uniform_stretching = True
-
-    assert format(staff) == abjad.String.normalize(
-        r'''
-        \new Staff
-        {
-            {   % measure
-                \time 2/8
-                \override Score.SpacingSpanner.strict-grace-spacing = ##t
-                \override Score.SpacingSpanner.strict-note-spacing = ##t
-                \override Score.SpacingSpanner.uniform-stretching = ##t
-                c'8
-                [
-                d'8
-            }   % measure
-            {   % measure
-                e'8
-                \revert Score.SpacingSpanner.strict-grace-spacing
-                \revert Score.SpacingSpanner.strict-note-spacing
-                \revert Score.SpacingSpanner.uniform-stretching
-                f'8
-                ]
-            }   % measure
-        }
-        '''
-        )
-
-    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___37():
@@ -1136,60 +922,6 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___44():
         )
 
 
-def test_lilypondproxytools_LilyPondGrobNameManager___setattr___45():
-    r'''Override LilyPond TextScript grob.
-    '''
-
-    staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    spanner = abjad.Spanner()
-    abjad.attach(spanner, staff[:])
-    abjad.override(spanner).text_script.color = 'red'
-
-    assert format(staff) == abjad.String.normalize(
-        r'''
-        \new Staff
-        {
-            \override TextScript.color = #red
-            c'8
-            d'8
-            e'8
-            \revert TextScript.color
-            f'8
-        }
-        '''
-        )
-
-    assert abjad.inspect(staff).is_well_formed()
-
-
-def test_lilypondproxytools_LilyPondGrobNameManager___setattr___46():
-    r'''Override LilyPond TextSpanner grob.
-    '''
-
-    staff = abjad.Staff("c'8 c'8 c'8 c'8")
-    text_spanner = abjad.TextSpanner()
-    abjad.attach(text_spanner, staff[:])
-    abjad.override(text_spanner).text_spanner.font_shape = 'italic'
-
-    assert format(staff) == abjad.String.normalize(
-        r'''
-        \new Staff
-        {
-            \override TextSpanner.font-shape = #'italic
-            c'8
-            \startTextSpan
-            c'8
-            c'8
-            \revert TextSpanner.font-shape
-            c'8
-            \stopTextSpan
-        }
-        '''
-        )
-
-    assert abjad.inspect(staff).is_well_formed()
-
-
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___47():
     r'''Override LilyPond Tie grob.
     '''
@@ -1294,32 +1026,6 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___51():
             d'8
             e'8
             f'8
-        }
-        '''
-        )
-
-
-def test_lilypondproxytools_LilyPondGrobNameManager___setattr___52():
-    r'''Override LilyPond TrillSpanner grob.
-    '''
-
-    voice = abjad.Voice("c'8 d'8 e'8 f'8")
-    trill = abjad.TrillSpanner()
-    abjad.attach(trill, voice[:])
-    abjad.override(trill).trill_spanner.color = 'red'
-
-    assert format(voice) == abjad.String.normalize(
-        r'''
-        \new Voice
-        {
-            \override TrillSpanner.color = #red
-            c'8
-            \startTrillSpan
-            d'8
-            e'8
-            \revert TrillSpanner.color
-            f'8
-            \stopTrillSpan
         }
         '''
         )

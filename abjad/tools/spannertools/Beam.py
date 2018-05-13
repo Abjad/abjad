@@ -8,7 +8,7 @@ Number = typing.Union[int, float]
 
 
 class Beam(Spanner):
-    r'''
+    r"""
     Beam.
 
     ..  container:: example
@@ -143,7 +143,7 @@ class Beam(Spanner):
             g'2
         }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -211,7 +211,7 @@ class Beam(Spanner):
 
     @staticmethod
     def _is_beamable(argument, beam_rests=False) -> bool:
-        '''
+        """
         Is true when ``argument`` is a beamable component.
 
         ..  container:: example
@@ -283,7 +283,7 @@ class Beam(Spanner):
             >>> abjad.Beam._is_beamable(rest, beam_rests=True)
             True
 
-        '''
+        """
         from abjad.tools.scoretools.Chord import Chord
         from abjad.tools.scoretools.MultimeasureRest import MultimeasureRest
         from abjad.tools.scoretools.Note import Note
@@ -305,14 +305,14 @@ class Beam(Spanner):
 
     @property
     def direction(self) -> typing.Optional[String]:
-        '''
+        """
         Gets direction.
-        '''
+        """
         return self._direction
         
     @property
     def leak(self):
-        r'''
+        r"""
         Is true when beam leaks one leaf to the right with LilyPond empty chord
         ``<>`` construct.
 
@@ -370,12 +370,12 @@ class Beam(Spanner):
                     g'2
                 }
 
-        '''
+        """
         return super(Beam, self).leak
 
     @property
     def stemlet_length(self) -> typing.Optional[Number]:
-        r'''
+        r"""
         Gets stemlet length.
 
         ..  container:: example
@@ -409,13 +409,13 @@ class Beam(Spanner):
                     g'2
                 }
 
-        '''
+        """
         return self._stemlet_length
 
     ### PUBLIC METHODS ###
 
     def start_command(self) -> typing.Optional[str]:
-        '''
+        """
         Gets start command.
 
         ..  container:: example
@@ -428,14 +428,13 @@ class Beam(Spanner):
             >>> abjad.Beam(direction=abjad.Up).start_command()
             '^ ['
 
-        '''
+        """
         string = super(Beam, self).start_command()
-        if self.direction:
-            string = f'{self.direction} {string}'
+        string = self._add_direction(string)
         return string
 
     def stop_command(self) -> typing.Optional[str]:
-        '''
+        """
         Gets stop command.
 
         ..  container:: example
@@ -448,8 +447,7 @@ class Beam(Spanner):
             >>> abjad.Beam(leak=True).stop_command()
             '<> ]'
 
-        '''
+        """
         string = super(Beam, self).stop_command()
-        if self.leak:
-            string = f'{self._empty_chord} {string}'
+        string = self._add_leak(string)
         return string

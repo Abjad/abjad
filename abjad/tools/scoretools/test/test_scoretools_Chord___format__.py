@@ -25,11 +25,12 @@ def test_scoretools_Chord___format___02():
 
 
 def test_scoretools_Chord___format___03():
-    r'''Format tweaked chord with LilyPond command.
+    '''
+    Formats tweaked chord with LilyPond command.
     '''
 
     chord = abjad.Chord("<d' ef' e'>4")
-    chord.note_heads[0].tweak.color = 'red'
+    chord.note_heads[0].tweaks.color = 'red'
     command = abjad.LilyPondLiteral(r'\glissando', 'right')
     abjad.attach(command, chord)
 
@@ -53,7 +54,7 @@ def test_scoretools_Chord___format___04():
     '''
 
     chord = abjad.Chord("<d' ef' e'>4")
-    chord.note_heads[0].tweak.transparent = True
+    chord.note_heads[0].tweaks.transparent = True
 
     assert format(chord) == abjad.String.normalize(
         r'''
@@ -72,7 +73,7 @@ def test_scoretools_Chord___format___05():
     '''
 
     chord = abjad.Chord("<d' ef' e'>4")
-    chord.note_heads[0].tweak.style = 'harmonic'
+    chord.note_heads[0].tweaks.style = 'harmonic'
 
     assert format(chord) == abjad.String.normalize(
         r'''

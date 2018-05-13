@@ -30,12 +30,10 @@ def test_scoretools_NoteHead___init___03():
 
 
 def test_scoretools_NoteHead___init___04():
-    r'''Initialize note-head with tweak pairs.
+    '''
+    Initialize note-head with tweak pais.
     '''
 
-    note_head = abjad.NoteHead("cs''", tweak_pairs=(('color', 'red'),))
-    tweak = abjad.lilypondnametools.LilyPondNameManager()
-    tweak.color = 'red'
+    note_head = abjad.NoteHead("cs''", tweaks=(('color', 'red'),))
 
-    assert note_head.written_pitch == abjad.NamedPitch("cs''")
-    assert note_head.tweak == tweak
+    assert format(note_head) == "\\tweak color #red\ncs''"

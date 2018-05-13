@@ -27,7 +27,7 @@ def test_scoretools_NoteHeadList___setitem___03():
 
     chord = abjad.Chord("<c' cs'' f''>4")
     note_head = abjad.NoteHead(3)
-    note_head.tweak.color = 'red'
+    note_head.tweaks.color = 'red'
     chord.note_heads[0] = note_head
 
     assert format(chord) == abjad.String.normalize(

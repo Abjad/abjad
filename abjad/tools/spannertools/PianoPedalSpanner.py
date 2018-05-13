@@ -6,7 +6,7 @@ from abjad.tools.schemetools.SchemeSymbol import SchemeSymbol
 
 
 class PianoPedalSpanner(Spanner):
-    r'''
+    r"""
     Piano pedal spanner.
 
     ..  container:: example
@@ -34,7 +34,7 @@ class PianoPedalSpanner(Spanner):
                 \sustainOff
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -110,7 +110,7 @@ class PianoPedalSpanner(Spanner):
 
     @property
     def kind(self) -> str:
-        r'''
+        r"""
         Gets kind of piano pedal spanner.
 
         ..  container:: example
@@ -205,12 +205,12 @@ class PianoPedalSpanner(Spanner):
             pedal-up indication unmodified.)
 
         Returns ``'sustain'``, ``'sostenuto'`` or ``'corda'``.
-        '''
+        """
         return self._kind
 
     @property
     def leak(self) -> typing.Optional[bool]:
-        r'''
+        r"""
         Is true when piano pedal spanner leaks one leaf to the right.
 
         ..  container:: example
@@ -261,12 +261,12 @@ class PianoPedalSpanner(Spanner):
                     f'8
                 }
 
-        '''
+        """
         return super(PianoPedalSpanner, self).leak
 
     @property
     def style(self) -> str:
-        r'''
+        r"""
         Gets style of piano pedal spanner.
 
         ..  container:: example
@@ -353,13 +353,13 @@ class PianoPedalSpanner(Spanner):
             pedal-up indication unmodified.)
 
         Returns ``'mixed'``, ``'bracket'`` or ``'text'``.
-        '''
+        """
         return self._style
 
     ### PUBLIC METHODS ###
 
     def start_command(self) -> typing.Optional[str]:
-        r'''
+        r"""
         Gets start command.
 
         ..  container:: example
@@ -373,11 +373,11 @@ class PianoPedalSpanner(Spanner):
             >>> abjad.PianoPedalSpanner(kind='corda').start_command()
             '\\unaCorda'
 
-        '''
+        """
         return self._kinds[self.kind][0]
 
     def stop_command(self) -> typing.Optional[str]:
-        r'''
+        r"""
         Gets stop command.
 
         ..  container:: example
@@ -405,7 +405,7 @@ class PianoPedalSpanner(Spanner):
             >>> spanner.stop_command()
             '<> \\treCorde'
 
-        '''
+        """
         string = self._kinds[self.kind][1]
         string = self._add_leak(string)
         return string

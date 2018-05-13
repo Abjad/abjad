@@ -15,7 +15,7 @@ from .Spanner import Spanner
 
 
 class Tie(Spanner):
-    r'''
+    r"""
     Tie.
 
     ..  container:: example
@@ -145,7 +145,7 @@ class Tie(Spanner):
                 r4
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -222,42 +222,30 @@ class Tie(Spanner):
             if leaf is self[-1]:
                 if not self._right_broken:
                     return bundle
-                elif self.direction is not None:
-                    strings = [f'{self.direction} ~']
-                else:
-                    strings = ['~']
+                strings = [self.start_command()]
                 strings = self._tag_show(strings)
                 bundle.right.spanners.extend(strings)
             elif isinstance(leaf._get_leaf(1), silent):
                 return bundle
-            elif self.direction is not None:
-                strings = [f'{self.direction} ~']
-                bundle.right.spanners.extend(strings)
             else:
-                strings = ['~']
+                strings = [self.start_command()]
                 bundle.right.spanners.extend(strings)
         else:
             if leaf is self[0]:
                 if not self._left_broken:
                     return bundle
-                elif self.direction is not None:
-                    strings = [r'{self.direction} \repeatTie']
-                else:
-                    strings = [r'\repeatTie']
+                strings = [self.stop_command()]
                 strings = self._tag_show(strings)
                 bundle.right.spanners.extend(strings)
-            elif self.direction is not None:
-                strings = [rf'{self.direction} \repeatTie']
-                bundle.right.spanners.extend(strings)
             else:
-                strings = [r'\repeatTie']
+                strings = [self.stop_command()]
                 bundle.right.spanners.extend(strings)
         return bundle
 
     ### PUBLIC PROPERTIES ###
 
     def cross_segment_examples(self):
-        r'''
+        r"""
         Cross-segment examples.
 
         ..  container:: example
@@ -796,12 +784,12 @@ class Tie(Spanner):
                     }
                 }
 
-        '''
+        """
         pass
 
     @property
     def direction(self) -> typing.Optional[String]:
-        r'''
+        r"""
         Gets direction.
 
         ..  container:: example
@@ -882,12 +870,12 @@ class Tie(Spanner):
             >>> tie.direction is None
             True
 
-        '''
+        """
         return self._direction
 
     @property
     def repeat(self) -> typing.Optional[bool]:
-        r'''
+        r"""
         Is true when tie should use the LilyPond ``\repeatTie`` command.
 
         ..  container:: example
@@ -911,13 +899,13 @@ class Tie(Spanner):
                     ^ \repeatTie
                 }
 
-        '''
+        """
         return self._repeat
 
     ### PUBLIC METHODS ###
 
     def start_command(self) -> typing.Optional[str]:
-        '''
+        """
         Gets start command.
 
         ..  container:: example
@@ -930,14 +918,15 @@ class Tie(Spanner):
             >>> abjad.Tie(repeat=True).start_command()
             ''
 
-        '''
+        """
         if self.repeat:
             return ''
-        else:
-            return '~'
+        string = '~'
+        string = self._add_direction(string)
+        return string
 
     def stop_command(self) -> typing.Optional[str]:
-        r'''
+        r"""
         Gets stop command.
 
         ..  container:: example
@@ -950,8 +939,10 @@ class Tie(Spanner):
             >>> abjad.Tie(repeat=True).stop_command()
             '\\repeatTie'
 
-        '''
+        """
         if self.repeat:
-            return r'\repeatTie'
+            string = r'\repeatTie'
+            string = self._add_direction(string)
+            return string
         else:
             return ''

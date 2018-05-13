@@ -15,7 +15,7 @@ from .Spanner import Spanner
 
 
 class TextSpanner(Spanner):
-    r'''
+    r"""
     Text spanner.
 
     ..  container:: example
@@ -501,7 +501,7 @@ class TextSpanner(Spanner):
                 ]
             )
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -550,7 +550,6 @@ class TextSpanner(Spanner):
             if component is self[0]:
                 if self._wrappers:
                     override = self._y_extent_false()
-                    #string = r'- \tweak Y-extent ##f'
                     string = override.tweak_string()
                     bundle.right.spanner_starts.append(string)
                     line_segment = self._make_invisible_line_segment()
@@ -567,7 +566,6 @@ class TextSpanner(Spanner):
             if self._wrappers:
                 override = self._y_extent_false()
                 string = override.tweak_string()
-                #string = r'- \tweak Y-extent ##f'
                 bundle.right.spanner_starts.append(string)
             if line_segment is None:
                 line_segment = self._make_invisible_line_segment()
@@ -609,7 +607,7 @@ class TextSpanner(Spanner):
                 )
             string = override.tweak_string()
             bundle.right.spanner_starts.append(string)
-        # all tweaks must appear immediately before start command:
+        # start- and stop-commands added after tweaks
         if not component is self[-1]:
             bundle.right.spanner_starts.append(self._start_command())
         return bundle
@@ -679,7 +677,7 @@ class TextSpanner(Spanner):
 
     @property
     def leak(self) -> typing.Optional[bool]:
-        r'''
+        r"""
         Is true when spanner leaks one leaf to the right.
 
         ..  container:: example
@@ -794,12 +792,12 @@ class TextSpanner(Spanner):
                     r4
                 }
 
-        '''
+        """
         return super(TextSpanner, self).leak
 
     @property
     def lilypond_id(self) -> typing.Optional[int]:
-        r'''
+        r"""
         Gets LilyPond ID.
 
         ..  container:: example
@@ -973,7 +971,7 @@ class TextSpanner(Spanner):
                     \stopTextSpan
                 }
 
-        '''
+        """
         return self._lilypond_id
 
     ### PUBLIC METHODS ###
@@ -986,9 +984,9 @@ class TextSpanner(Spanner):
         tag: typing.Union[str, Tag] = None,
         wrapper: bool = None,
         ) -> typing.Optional[Wrapper]:
-        '''
+        """
         Attaches ``indicator`` to ``leaf`` in spanner.
-        '''
+        """
         prototype = (LineSegment, Markup, Wrapper)
         assert isinstance(indicator, prototype), repr(indicator)
         assert isinstance(leaf, Leaf), repr(leaf)
@@ -1003,7 +1001,7 @@ class TextSpanner(Spanner):
             )
 
     def start_command(self) -> typing.Optional[str]:
-        r'''
+        r"""
         Gets start command.
 
         ..  container:: example
@@ -1011,11 +1009,11 @@ class TextSpanner(Spanner):
             >>> abjad.TextSpanner().start_command()
             '\\startTextSpan'
 
-        '''
+        """
         return self._start_command()
 
     def stop_command(self) -> typing.Optional[str]:
-        r'''
+        r"""
         Gets stop command.
 
         ..  container:: example
@@ -1028,7 +1026,7 @@ class TextSpanner(Spanner):
             >>> abjad.TextSpanner(leak=True).stop_command()
             '<> \\stopTextSpan'
 
-        '''
+        """
         string = self._stop_command()
         string = self._add_leak(string)
         return string

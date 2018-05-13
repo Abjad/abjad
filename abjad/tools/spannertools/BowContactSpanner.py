@@ -1,5 +1,6 @@
 import typing
-from abjad.enumerations import Down, Up
+from abjad.enumerations import Down
+from abjad.enumerations import Up
 from abjad.tools.indicatortools.Articulation import Articulation
 from abjad.tools.indicatortools.BowContactPoint import BowContactPoint
 from abjad.tools.indicatortools.BowMotionTechnique import BowMotionTechnique
@@ -9,14 +10,18 @@ from abjad.tools.lilypondnametools.LilyPondGrobOverride import (
 from abjad.tools.schemetools.Scheme import Scheme
 from abjad.tools.schemetools.SchemeSymbol import SchemeSymbol
 from abjad.tools.scoretools.Leaf import Leaf
+from abjad.tools.scoretools.MultimeasureRest import MultimeasureRest
+from abjad.tools.scoretools.Rest import Rest
+from abjad.tools.scoretools.Skip import Skip
 from abjad.tools.systemtools.Tag import Tag
 from abjad.tools.systemtools.Wrapper import Wrapper
 from abjad.tools.topleveltools.inspect import inspect
 from .Spanner import Spanner
 
 
+
 class BowContactSpanner(Spanner):
-    r'''
+    r"""
     Bow contact spanner.
 
     ..  container:: example
@@ -71,23 +76,23 @@ class BowContactSpanner(Spanner):
                 \override TimeSignature.stencil = ##f
             }
             {
-                \once \override Glissando.style = #'dotted-line
-                \once \override NoteHead.Y-offset = -1.0
-                \once \override NoteHead.stencil = #ly:text-interface::print
-                \once \override NoteHead.text = \markup {
+                \clef "percussion"
+                \tweak Y-offset #-1.0
+                \tweak stencil #ly:text-interface::print
+                \tweak text \markup {
                     \center-align
                         \vcenter
                             \fraction
                                 1
                                 4
                     }
-                \clef "percussion"
                 c'4.
                 ^\downbow
+                - \tweak style #'dotted-line
                 \glissando
-                \once \override NoteHead.Y-offset = 1.0
-                \once \override NoteHead.stencil = #ly:text-interface::print
-                \once \override NoteHead.text = \markup {
+                \tweak Y-offset #1.0
+                \tweak stencil #ly:text-interface::print
+                \tweak text \markup {
                     \center-align
                         \vcenter
                             \fraction
@@ -98,9 +103,9 @@ class BowContactSpanner(Spanner):
                 ^\upbow
                 \glissando
                 \times 2/3 {
-                    \once \override NoteHead.Y-offset = 0.0
-                    \once \override NoteHead.stencil = #ly:text-interface::print
-                    \once \override NoteHead.text = \markup {
+                    \tweak Y-offset #0.0
+                    \tweak stencil #ly:text-interface::print
+                    \tweak text \markup {
                         \center-align
                             \vcenter
                                 \fraction
@@ -110,10 +115,9 @@ class BowContactSpanner(Spanner):
                     c'4
                     ^\downbow
                     \glissando
-                    \once \override Glissando.style = #'zigzag
-                    \once \override NoteHead.Y-offset = 2.0
-                    \once \override NoteHead.stencil = #ly:text-interface::print
-                    \once \override NoteHead.text = \markup {
+                    \tweak Y-offset #2.0
+                    \tweak stencil #ly:text-interface::print
+                    \tweak text \markup {
                         \center-align
                             \vcenter
                                 \fraction
@@ -122,10 +126,11 @@ class BowContactSpanner(Spanner):
                         }
                     c'4
                     ^\upbow
+                    - \tweak style #'zigzag
                     \glissando
-                    \once \override NoteHead.Y-offset = -2.0
-                    \once \override NoteHead.stencil = #ly:text-interface::print
-                    \once \override NoteHead.text = \markup {
+                    \tweak Y-offset #-2.0
+                    \tweak stencil #ly:text-interface::print
+                    \tweak text \markup {
                         \center-align
                             \vcenter
                                 \fraction
@@ -190,9 +195,9 @@ class BowContactSpanner(Spanner):
                 \once \override NoteHead.style = #'cross
                 \clef "percussion"
                 c'4
-                \once \override NoteHead.Y-offset = 1.0
-                \once \override NoteHead.stencil = #ly:text-interface::print
-                \once \override NoteHead.text = \markup {
+                \tweak Y-offset #1.0
+                \tweak stencil #ly:text-interface::print
+                \tweak text \markup {
                     \center-align
                         \vcenter
                             \fraction
@@ -202,9 +207,9 @@ class BowContactSpanner(Spanner):
                 c'4
                 ^\upbow
                 \glissando
-                \once \override NoteHead.Y-offset = 0.0
-                \once \override NoteHead.stencil = #ly:text-interface::print
-                \once \override NoteHead.text = \markup {
+                \tweak Y-offset #0.0
+                \tweak stencil #ly:text-interface::print
+                \tweak text \markup {
                     \center-align
                         \vcenter
                             \fraction
@@ -216,7 +221,7 @@ class BowContactSpanner(Spanner):
                 c'4
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -238,21 +243,22 @@ class BowContactSpanner(Spanner):
             return bundle
         if self._is_my_only(leaf):
             return bundle
-        self._make_bow_contact_point_overrides(
+        tweaks = self._make_bow_contact_point_tweaks(
+            leaf,
             bow_contact_point=bow_contact_point,
-            bundle=bundle,
             )
         if self._next_leaf_is_bowed(leaf):
-            bundle.right.spanner_starts.append(r'\glissando')
             self._make_bow_direction_change_contributions(
                 bow_contact_point=bow_contact_point,
                 leaf=leaf,
                 bundle=bundle,
                 )
-            self._make_glissando_overrides(
+            # tweaks immediately before start command:
+            tweaks = self._make_glissando_tweaks(
                 bow_motion_technique=bow_motion_technique,
-                bundle=bundle,
                 )
+            bundle.right.spanner_starts.extend(tweaks)
+            bundle.right.spanner_starts.append(self.start_command())
         return bundle
 
     def _get_piecewise(self, leaf):
@@ -266,38 +272,20 @@ class BowContactSpanner(Spanner):
             bow_motion_technique,
             )
 
-    def _make_bow_contact_point_overrides(
+    def _make_bow_contact_point_tweaks(
         self,
+        leaf,
         bow_contact_point=None,
-        bundle=None,
         ):
+        import abjad
         if bow_contact_point is None:
-            return
-        override_ = LilyPondGrobOverride(
-            grob_name='NoteHead',
-            once=True,
-            property_path='stencil',
-            value=Scheme('ly:text-interface::print'),
-            )
-        string = override_.override_string
-        bundle.grob_overrides.append(string)
-        override_ = LilyPondGrobOverride(
-            grob_name='NoteHead',
-            once=True,
-            property_path='text',
-            value=bow_contact_point.markup,
-            )
-        string = override_.override_string
-        bundle.grob_overrides.append(string)
+            return tweaks
+        note_head = leaf.note_head
+        value = Scheme('ly:text-interface::print')
+        abjad.tweak(note_head).stencil = value
+        abjad.tweak(note_head).text = bow_contact_point.markup
         y_offset = float((4 * bow_contact_point.contact_point) - 2)
-        override_ = LilyPondGrobOverride(
-            grob_name='NoteHead',
-            once=True,
-            property_path='Y-offset',
-            value=y_offset,
-            )
-        string = override_.override_string
-        bundle.grob_overrides.append(string)
+        abjad.tweak(note_head).Y_offset = y_offset
 
     def _make_bow_direction_change_contributions(
         self,
@@ -360,21 +348,22 @@ class BowContactSpanner(Spanner):
             string = str(articulation)
         bundle.right.articulations.append(string)
 
-    def _make_glissando_overrides(
+    def _make_glissando_tweaks(
         self,
         bow_motion_technique=None,
-        bundle=None,
         ):
+        tweaks = []
         if bow_motion_technique is not None:
             style = SchemeSymbol(bow_motion_technique.glissando_style)
-            override_ = LilyPondGrobOverride(
+            override = LilyPondGrobOverride(
                 grob_name='Glissando',
                 once=True,
                 property_path='style',
                 value=style,
                 )
-            string = override_.override_string
-            bundle.grob_overrides.append(string)
+            string = override.tweak_string()
+            tweaks.append(string)
+        return tweaks
 
     def _make_pizzicato_overrides(
         self,
@@ -391,9 +380,6 @@ class BowContactSpanner(Spanner):
         bundle.grob_overrides.append(string)
 
     def _next_leaf_is_bowed(self, leaf):
-        from abjad.tools.scoretools.MultimeasureRest import MultimeasureRest
-        from abjad.tools.scoretools.Rest import Rest
-        from abjad.tools.scoretools.Skip import Skip
         if leaf is self[-1]:
             return False
         prototype = (
@@ -421,9 +407,9 @@ class BowContactSpanner(Spanner):
         tag: typing.Union[str, Tag] = None,
         wrapper: bool = None,
         ) -> typing.Optional[Wrapper]:
-        '''
+        """
         Attaches ``indicator`` to ``leaf`` in spanner.
-        '''
+        """
         return super(BowContactSpanner, self)._attach_piecewise(
             indicator,
             leaf,
@@ -433,7 +419,7 @@ class BowContactSpanner(Spanner):
             )
 
     def start_command(self) -> typing.Optional[str]:
-        r'''
+        r"""
         Gets start command.
 
         ..  container:: example
@@ -441,11 +427,11 @@ class BowContactSpanner(Spanner):
             >>> abjad.BowContactSpanner().start_command()
             '\\glissando'
 
-        '''
+        """
         return super(BowContactSpanner, self).start_command()
 
     def stop_command(self) -> typing.Optional[str]:
-        '''
+        """
         Gets stop command.
 
         ..  container:: example
@@ -453,5 +439,5 @@ class BowContactSpanner(Spanner):
             >>> abjad.BowContactSpanner().stop_command() is None
             True
 
-        '''
+        """
         return super(BowContactSpanner, self).stop_command()
