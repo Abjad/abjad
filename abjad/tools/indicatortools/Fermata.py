@@ -1,10 +1,13 @@
 import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.lilypondnametools.LilyPondTweakManager import (
+    LilyPondTweakManager,
+    )
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class Fermata(AbjadValueObject):
-    r'''
+    r"""
     Fermata.
 
     ..  container:: example
@@ -91,7 +94,7 @@ class Fermata(AbjadValueObject):
                 }
             >>
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -104,6 +107,7 @@ class Fermata(AbjadValueObject):
 
     __slots__ = (
         '_command',
+        '_lilypond_tweak_manager',
         )
 
     _context = 'Score'
@@ -112,14 +116,22 @@ class Fermata(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, command: str = 'fermata') -> None:
+    def __init__(
+        self,
+        command: str = 'fermata',
+        *,
+        tweaks: typing.Union[
+            typing.List[typing.Tuple], LilyPondTweakManager] = None,
+        ) -> None:
         assert command in self._allowable_commands, repr(command)
         self._command = command
+        self._lilypond_tweak_manager = None
+        LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
     def __str__(self) -> str:
-        r'''
+        r"""
         Gets string representation of fermata.
 
         ..  container:: example
@@ -137,7 +149,7 @@ class Fermata(AbjadValueObject):
             '\\longfermata'
 
         Returns string.
-        '''
+        """
         return rf'\{self.command}'
 
     ### PRIVATE PROPERTIES ###
@@ -153,6 +165,9 @@ class Fermata(AbjadValueObject):
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
+        if self.tweaks:
+            tweaks = self.tweaks._list_format_contributions()
+            bundle.right.articulations.extend(tweaks)
         bundle.right.articulations.append(self._get_lilypond_format())
         return bundle
 
@@ -160,7 +175,7 @@ class Fermata(AbjadValueObject):
 
     @staticmethod
     def list_allowable_commands() -> typing.Tuple[str, ...]:
-        '''
+        """
         Lists allowable commands:
 
         ..  container:: example
@@ -175,14 +190,14 @@ class Fermata(AbjadValueObject):
             'shortfermata'
             'verylongfermata'
 
-        '''
+        """
         return Fermata._allowable_commands
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def command(self) -> typing.Optional[str]:
-        '''
+        """
         Gets command of fermata.
 
         ..  container:: example
@@ -201,12 +216,12 @@ class Fermata(AbjadValueObject):
             >>> fermata.command
             'longfermata'
 
-        '''
+        """
         return self._command
 
     @property
     def context(self) -> str:
-        '''
+        """
         Gets (historically conventional) context.
 
         ..  container:: example
@@ -226,5 +241,42 @@ class Fermata(AbjadValueObject):
             'Score'
 
         Override with ``abjad.attach(..., context='...')``.
-        '''
+        """
         return self._context
+
+    @property
+    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+        r"""
+        Gets tweaks
+
+        ..  container:: example
+
+            >>> note = Note("c'4")
+            >>> fermata = abjad.Fermata()
+            >>> abjad.tweak(fermata).color = 'blue'
+            >>> abjad.attach(fermata, note)
+            >>> abjad.show(note) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(note)
+                c'4
+                - \tweak color #blue
+                \fermata
+
+        ..  container:: example
+
+            >>> note = Note("c'4")
+            >>> fermata = abjad.Fermata(tweaks=[('color', 'blue')])
+            >>> abjad.attach(fermata, note)
+            >>> abjad.show(note) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(note)
+                c'4
+                - \tweak color #blue
+                \fermata
+
+        """
+        return self._lilypond_tweak_manager

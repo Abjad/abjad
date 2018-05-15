@@ -2,8 +2,9 @@ import abjad
 
 
 def create_pitch_contour_reservoir():
-    r'''Creates pitch contour reservoir.
-    '''
+    """
+    Creates pitch contour reservoir.
+    """
 
     scale = abjad.tonalanalysistools.Scale(('a', 'minor'))
     pitch_ranges = {

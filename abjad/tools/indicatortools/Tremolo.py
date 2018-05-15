@@ -4,7 +4,7 @@ from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
 
 
 class Tremolo(AbjadValueObject):
-    r'''
+    r"""
     Tremolo (of exactly two notes).
 
     ..  container:: example
@@ -44,7 +44,7 @@ class Tremolo(AbjadValueObject):
     Tremolo affects the formatting of chords.
 
     Tremolo has no effect when attached to notes or rests.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -73,7 +73,7 @@ class Tremolo(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *arguments) -> 'Tremolo':
-        '''
+        """
         Copies tremolo.
 
         ..  container:: example
@@ -90,11 +90,11 @@ class Tremolo(AbjadValueObject):
             >>> tremolo_1 is not tremolo_2
             True
 
-        '''
+        """
         return super(Tremolo, self).__copy__(*arguments)
 
     def __format__(self, format_specification='') -> str:
-        '''
+        """
         Formats stem tremolo.
 
         ..  container:: example
@@ -117,14 +117,14 @@ class Tremolo(AbjadValueObject):
                 beam_count=3,
                 )
 
-        '''
+        """
         if format_specification in ('', 'storage'):
             return StorageFormatManager(self).get_storage_format()
         assert format_specification == 'lilypond'
         raise Exception('no LilyPond format available.')
 
     def __str__(self) -> str:
-        '''
+        """
         Gets string representation of tremolo.
 
         ..  container:: example
@@ -137,14 +137,14 @@ class Tremolo(AbjadValueObject):
             >>> str(tremolo)
             'Tremolo(beam_count=3)'
 
-        '''
+        """
         return super(Tremolo, self).__str__()
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def beam_count(self) -> int:
-        r'''
+        r"""
         Gets beam count of tremolo.
 
         ..  container:: example
@@ -181,12 +181,12 @@ class Tremolo(AbjadValueObject):
                 cs'32 e'32
                 }
 
-        '''
+        """
         return self._beam_count
 
     @property
     def is_slurred(self) -> typing.Optional[bool]:
-        r'''
+        r"""
         Is true when tremolo is slurred.
 
         ..  container:: example
@@ -223,5 +223,16 @@ class Tremolo(AbjadValueObject):
                 cs'32 \( e'32 \)
                 }
 
-        '''
+        """
         return self._is_slurred
+
+    @property
+    def tweaks(self) -> None:
+        r"""
+        Are not implemented on tremolo.
+        
+        The LilyPond ``\repeat tremolo`` command refuses tweaks.
+
+        Override the LilyPond ``Beam`` grob instead.
+        """
+        pass

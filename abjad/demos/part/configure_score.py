@@ -2,8 +2,9 @@ import abjad
 
 
 def configure_score(score):
-    r'''Configures score.
-    '''
+    """
+    Configures score.
+    """
 
     # configure bell staff
     bell_staff = score['Bell Staff']

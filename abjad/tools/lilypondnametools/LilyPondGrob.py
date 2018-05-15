@@ -4,7 +4,7 @@ from .LilyPondGrobInterface import LilyPondGrobInterface
 
 
 class LilyPondGrob(AbjadValueObject):
-    '''
+    """
     LilyPond grob.
 
     ..  container:: example
@@ -15,7 +15,7 @@ class LilyPondGrob(AbjadValueObject):
             name='Beam',
             )
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -46,7 +46,7 @@ class LilyPondGrob(AbjadValueObject):
 
     @property
     def interfaces(self) -> typing.Tuple[LilyPondGrobInterface, ...]:
-        '''
+        """
         Gets interfaces of LilyPond grob.
 
         ..  container:: example
@@ -62,7 +62,7 @@ class LilyPondGrob(AbjadValueObject):
             LilyPondGrobInterface(name='staff-symbol-referencer-interface')
             LilyPondGrobInterface(name='unbreakable-spanner-interface')
 
-        '''
+        """
         from abjad.ly import grob_interfaces
         return tuple(
             LilyPondGrobInterface(_)
@@ -71,7 +71,7 @@ class LilyPondGrob(AbjadValueObject):
 
     @property
     def name(self) -> str:
-        '''
+        """
         Gets name of LilyPond grob.
 
         ..  container:: example
@@ -80,12 +80,12 @@ class LilyPondGrob(AbjadValueObject):
             >>> grob.name
             'Beam'
 
-        '''
+        """
         return self._name
 
     @property
     def property_names(self) -> typing.Tuple[str, ...]:
-        '''
+        """
         Gets property names of LilyPond grob.
 
         ..  container:: example
@@ -157,7 +157,7 @@ class LilyPondGrob(AbjadValueObject):
             'whiteout'
             'whiteout-box'
 
-        '''
+        """
         property_names: typing.Set[str] = set()
         for interface in self.interfaces:
             property_names.update(interface.property_names)
@@ -167,7 +167,7 @@ class LilyPondGrob(AbjadValueObject):
 
     @staticmethod
     def list_all_grobs() -> typing.Tuple['LilyPondGrob', ...]:
-        '''
+        """
         Lists all grobs.
 
         ..  container:: example
@@ -315,6 +315,6 @@ class LilyPondGrob(AbjadValueObject):
             LilyPondGrob(name='VoltaBracket')
             LilyPondGrob(name='VoltaBracketSpanner')
 
-        '''
+        """
         from abjad.ly import grob_interfaces
         return tuple(LilyPondGrob(name) for name in sorted(grob_interfaces))

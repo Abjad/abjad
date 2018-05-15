@@ -2,16 +2,18 @@ import abjad
 
 
 class PartCantusScoreTemplate:
-    r'''Pärt Cantus score template.
-    '''
+    """
+    Pärt Cantus score template.
+    """
 
     ### SPECIAL METHODS ###
 
     def __call__(self):
-        '''Calls score template.
+        """
+        Calls score template.
 
         Returns LilyPond file.
-        '''
+        """
         # make bell voice and staff
         bell_voice = abjad.Voice(name='Bell Voice')
         bell_staff = abjad.Staff([bell_voice], name='Bell Staff')

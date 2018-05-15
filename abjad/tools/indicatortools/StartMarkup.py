@@ -6,7 +6,7 @@ from abjad.tools.topleveltools.new import new
 
 
 class StartMarkup(AbjadValueObject):
-    r'''
+    r"""
     Start markup.
 
     ..  container:: example
@@ -29,7 +29,7 @@ class StartMarkup(AbjadValueObject):
                 f'4
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -45,19 +45,25 @@ class StartMarkup(AbjadValueObject):
 
     def __init__(
         self,
+        markup: typing.Union[str, Markup] = 'instrument name',
         *,
         context: str = 'Staff',
         format_slot: str = 'before',
-        markup: Markup = None,
         ) -> None:
+        assert isinstance(context, str), repr(context)
         self._context = context
+        assert isinstance(format_slot, str), repr(format_slot)
         self._format_slot = format_slot
+        if isinstance(markup, str):
+            markup = Markup(markup)
+        assert isinstance(markup, Markup), repr(markup)
         self._markup = markup
 
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument) -> bool:
-        r'''Is true when ``argument`` is start markup with context and markup
+        """
+        Is true when ``argument`` is start markup with context and markup
         equal to those of this start markup.
 
         ..  container:: example
@@ -96,7 +102,7 @@ class StartMarkup(AbjadValueObject):
             >>> start_markup_3 == start_markup_3
             True
 
-        '''
+        """
         if not isinstance(argument, type(self)):
             return False
         if self.context == argument.context and self.markup == argument.markup:
@@ -104,7 +110,8 @@ class StartMarkup(AbjadValueObject):
         return False
 
     def __hash__(self) -> int:
-        r'''Hashes start markup.
+        """
+        Hashes start markup.
 
         ..  container:: example
 
@@ -118,7 +125,7 @@ class StartMarkup(AbjadValueObject):
             True
 
         Redefined in tandem with __eq__.
-        '''
+        """
         return super(StartMarkup, self).__hash__()
 
     ### PRIVATE PROPERTIES ###
@@ -163,7 +170,7 @@ class StartMarkup(AbjadValueObject):
 
     @property
     def context(self) -> str:
-        '''
+        """
         Gets default context of start markup.
 
         ..  container:: example
@@ -171,24 +178,42 @@ class StartMarkup(AbjadValueObject):
             >>> abjad.StartMarkup().context
             'Staff'
 
-        '''
+        """
         return self._context
 
     @property
     def format_slot(self) -> str:
-        '''Gets format slot.
+        """
+        Gets format slot.
 
         ..  container:: example
 
             >>> abjad.StartMarkup().format_slot
             'before'
 
-        '''
+        """
         return self._format_slot
 
     @property
-    def markup(self) -> typing.Optional[Markup]:
-        '''
+    def markup(self) -> Markup:
+        """
         Gets (instrument name) markup.
-        '''
+
+        ..  container:: example
+
+            >>> abjad.StartMarkup().markup
+            Markup(contents=['instrument name'])
+
+        """
         return self._markup
+
+    @property
+    def tweaks(self) -> None:
+        r"""
+        Are not implemented on start markup.
+        
+        The LilyPond ``\instrumentName`` command refuses tweaks.
+
+        Craft explicit markup instead.
+        """
+        pass

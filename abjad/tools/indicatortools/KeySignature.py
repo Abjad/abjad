@@ -1,11 +1,14 @@
+import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.lilypondnametools.LilyPondTweakManager import \
+    LilyPondTweakManager
 from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
 from abjad.tools.systemtools.FormatSpecification import FormatSpecification
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class KeySignature(AbjadValueObject):
-    r'''
+    r"""
     Key signature.
 
     ..  container:: example
@@ -46,11 +49,12 @@ class KeySignature(AbjadValueObject):
                 a'8
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_lilypond_tweak_manager',
         '_mode',
         '_tonic',
         )
@@ -65,15 +69,24 @@ class KeySignature(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, tonic: str = 'c', mode: str = 'major') -> None:
+    def __init__(
+        self,
+        tonic: str = 'c',
+        mode: str = 'major',
+        *,
+        tweaks: typing.Union[
+            typing.List[typing.Tuple], LilyPondTweakManager] = None,
+        ) -> None:
         from abjad.tools.tonalanalysistools.Mode import Mode
         self._tonic = NamedPitchClass(tonic)
         self._mode = Mode(mode)
+        self._lilypond_tweak_manager = None
+        LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
     def __str__(self) -> str:
-        '''
+        """
         Gets string representation of key signature.
 
         ..  container:: example
@@ -90,7 +103,7 @@ class KeySignature(AbjadValueObject):
             >>> str(abjad.KeySignature('e', 'minor'))
             'e-minor'
 
-        '''
+        """
         return f'{self.tonic!s}-{self.mode!s}'
 
     ### PRIVATE PROPERTIES ###
@@ -115,6 +128,9 @@ class KeySignature(AbjadValueObject):
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
+        if self.tweaks:
+            tweaks = self.tweaks._list_format_contributions(directed=False)
+            bundle.before.commands.extend(tweaks)
         bundle.before.commands.append(self._get_lilypond_format())
         return bundle
 
@@ -122,7 +138,7 @@ class KeySignature(AbjadValueObject):
 
     @property
     def context(self) -> str:
-        '''
+        """
         Gets (historically conventional) context.
 
         ..  container:: example
@@ -142,12 +158,12 @@ class KeySignature(AbjadValueObject):
             'Staff'
 
         Override with ``abjad.attach(..., context='...')``.
-        '''
+        """
         return self._context
 
     @property
     def mode(self):
-        '''
+        """
         Gets mode of key signature.
 
         ..  container:: example
@@ -167,12 +183,12 @@ class KeySignature(AbjadValueObject):
             Mode('minor')
 
         Returns mode.
-        '''
+        """
         return self._mode
 
     @property
     def name(self) -> str:
-        '''
+        """
         Gets name of key signature.
 
         ..  container:: example
@@ -191,7 +207,7 @@ class KeySignature(AbjadValueObject):
             >>> key_signature.name
             'e minor'
 
-        '''
+        """
         if self.mode.mode_name == 'major':
             tonic = str(self.tonic).upper()
         else:
@@ -200,7 +216,7 @@ class KeySignature(AbjadValueObject):
 
     @property
     def persistent(self) -> bool:
-        '''
+        """
         Is true.
 
         ..  container:: example
@@ -209,12 +225,12 @@ class KeySignature(AbjadValueObject):
             True
 
         Class constant.
-        '''
+        """
         return self._persistent
 
     @property
     def redraw(self) -> bool:
-        '''
+        """
         Is true.
 
         ..  container:: example
@@ -223,12 +239,12 @@ class KeySignature(AbjadValueObject):
             True
 
         Class constant.
-        '''
+        """
         return self._redraw
 
     @property
     def tonic(self) -> NamedPitchClass:
-        '''
+        """
         Gets tonic of key signature.
 
         ..  container:: example
@@ -247,5 +263,54 @@ class KeySignature(AbjadValueObject):
             >>> key_signature.tonic
             NamedPitchClass('e')
 
-        '''
+        """
         return self._tonic
+
+    @property
+    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+        r"""
+        Gets tweaks.
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> key = abjad.KeySignature('e', 'minor')
+            >>> abjad.tweak(key).color = 'blue'
+            >>> abjad.attach(key, staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    \tweak color #blue
+                    \key e \minor
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> key = abjad.KeySignature('e', 'minor', tweaks=[('color', 'blue')])
+            >>> abjad.attach(key, staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    \tweak color #blue
+                    \key e \minor
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+
+        """
+        return self._lilypond_tweak_manager

@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class LilyPondGrobInterface(AbjadValueObject):
-    '''
+    """
     LilyPond grob interface.
 
     ..  container:: example
@@ -12,7 +12,7 @@ class LilyPondGrobInterface(AbjadValueObject):
         >>> abjad.f(interface)
         LilyPondGrobInterface(name='beam-interface')
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -43,7 +43,7 @@ class LilyPondGrobInterface(AbjadValueObject):
 
     @staticmethod
     def list_all_interfaces() -> typing.Tuple['LilyPondGrobInterface', ...]:
-        '''
+        """
         Lists all interfaces.
 
         ..  container:: example
@@ -188,7 +188,7 @@ class LilyPondGrobInterface(AbjadValueObject):
             LilyPondGrobInterface(name='volta-bracket-interface')
             LilyPondGrobInterface(name='volta-interface')
 
-        '''
+        """
         from abjad.ly import interface_properties
         return tuple(
             LilyPondGrobInterface(_)
@@ -199,7 +199,7 @@ class LilyPondGrobInterface(AbjadValueObject):
 
     @property
     def name(self) -> str:
-        '''
+        """
         Gets name of LilyPond grob interface.
 
         ..  container:: example
@@ -208,12 +208,12 @@ class LilyPondGrobInterface(AbjadValueObject):
             >>> interface.name
             'beam-interface'
 
-        '''
+        """
         return self._name
 
     @property
     def property_names(self) -> typing.Tuple[str, ...]:
-        '''
+        """
         Gets property names of LilyPond grob interface.
 
         ..  container:: example
@@ -246,7 +246,7 @@ class LilyPondGrobInterface(AbjadValueObject):
             'positions'
             'skip-quanting'
 
-        '''
+        """
         from abjad.ly import interface_properties
         names = interface_properties[self.name]
         assert isinstance(names, list), repr(names)

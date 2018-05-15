@@ -2,8 +2,9 @@ import abjad
 
 
 def configure_lilypond_file(lilypond_file):
-    r'''Configures LilyPond file.
-    '''
+    """
+    Configures LilyPond file.
+    """
 
     lilypond_file._global_staff_size = 8
 
@@ -13,7 +14,7 @@ def configure_lilypond_file(lilypond_file):
     abjad.override(context_block).vertical_axis_group.remove_first = True
     lilypond_file.layout_block.items.append(context_block)
 
-    slash_separator = abjad.LilyPondCommand('slashSeparator')
+    slash_separator = abjad.LilyPondLiteral(r'\slashSeparator')
     lilypond_file.paper_block.system_separator_markup = slash_separator
 
     bottom_margin = abjad.LilyPondDimension(0.5, 'in')

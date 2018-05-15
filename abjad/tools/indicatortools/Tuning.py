@@ -9,7 +9,7 @@ from .StringNumber import StringNumber
 
 
 class Tuning(AbjadValueObject):
-    '''
+    """
     Tuning.
 
     ..  container:: example
@@ -30,7 +30,7 @@ class Tuning(AbjadValueObject):
                 ),
             )
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -59,7 +59,7 @@ class Tuning(AbjadValueObject):
 
     @property
     def pitch_ranges(self) -> typing.List[PitchRange]:
-        '''
+        """
         Gets two-octave pitch-ranges for each pitch in this tuning.
 
         ..  container:: example
@@ -72,7 +72,7 @@ class Tuning(AbjadValueObject):
             PitchRange('[A4, A6]')
             PitchRange('[E5, E7]')
 
-        '''
+        """
         result = []
         for pitch in self.pitches or []:
             pitch_range = PitchRange.from_pitches(pitch, pitch + 24)
@@ -81,7 +81,7 @@ class Tuning(AbjadValueObject):
 
     @property
     def pitches(self) -> typing.Optional[PitchSegment]:
-        '''
+        """
         Gets pitches of tuning.
 
         ..  container:: example
@@ -99,8 +99,15 @@ class Tuning(AbjadValueObject):
                 item_class=abjad.NamedPitch,
                 )
 
-        '''
+        """
         return self._pitches
+
+    @property
+    def tweaks(self) -> None:
+        """
+        Are not implemented on tuning.
+        """
+        pass
 
     ### PUBLIC METHODS ###
 
@@ -108,7 +115,7 @@ class Tuning(AbjadValueObject):
         self,
         string_number: StringNumber,
         ) -> typing.Tuple[PitchRange, ...]:
-        '''
+        """
         Gets tuning pitch ranges by string number.
 
         ..  container:: example
@@ -120,7 +127,7 @@ class Tuning(AbjadValueObject):
             >>> tuning.get_pitch_ranges_by_string_number(string_number)
             (PitchRange('[A4, A6]'), PitchRange('[D4, D6]'))
 
-        '''
+        """
         if not isinstance(string_number, StringNumber):
             string_number = StringNumber(string_number)
         assert isinstance(string_number, StringNumber)
@@ -136,7 +143,7 @@ class Tuning(AbjadValueObject):
         self,
         string_number: StringNumber,
         ) -> typing.Tuple[NamedPitch, ...]:
-        '''
+        """
         Gets tuning pitches by string number.
 
         ..  container:: example
@@ -148,7 +155,7 @@ class Tuning(AbjadValueObject):
             >>> tuning.get_pitches_by_string_number(string_number)
             (NamedPitch("a'"), NamedPitch("d'"))
 
-        '''
+        """
         if not isinstance(string_number, StringNumber):
             string_number = StringNumber(string_number)
         assert isinstance(string_number, StringNumber)

@@ -1,6 +1,7 @@
 def make_desordre_pitches():
-    r'''Makes Désordre pitches.
-    '''
+    """
+    Makes Désordre pitches.
+    """
 
     right_hand = [
         [[-1, 4, 5], [-1, 4, 5, 7, 9]],

@@ -7,7 +7,7 @@ from abjad.tools.markuptools.Markup import Markup
 
 @functools.total_ordering
 class BowContactPoint(AbjadValueObject):
-    '''
+    """
     Bow contact point.
 
     ..  container:: example
@@ -32,7 +32,7 @@ class BowContactPoint(AbjadValueObject):
 
     Contact points are measured from frog to tip as a fraction between ``0``
     and ``1``.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -57,7 +57,7 @@ class BowContactPoint(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __lt__(self, argument) -> bool:
-        '''
+        """
         Is true if `argument` is a bow contact point and this bow contact
         point is less than `argument`.
 
@@ -88,7 +88,7 @@ class BowContactPoint(AbjadValueObject):
             >>> point_3 < point_3
             False
 
-        '''
+        """
         if isinstance(argument, type(self)):
             self_contact_point = self.contact_point or 0
             argument_contact_point = argument.contact_point or 0
@@ -99,7 +99,7 @@ class BowContactPoint(AbjadValueObject):
 
     @property
     def contact_point(self) -> typing.Optional[Multiplier]:
-        '''
+        """
         Gets contact point of bow contact point.
 
         ..  container:: example
@@ -118,12 +118,12 @@ class BowContactPoint(AbjadValueObject):
             >>> point.contact_point
             Multiplier(3, 5)
 
-        '''
+        """
         return self._contact_point
 
     @property
     def markup(self) -> Markup:
-        r'''
+        r"""
         Gets markup of bow contact point.
 
         ..  container:: example
@@ -156,7 +156,7 @@ class BowContactPoint(AbjadValueObject):
                 }
             >>> abjad.show(indicator.markup) # doctest: +SKIP
 
-        '''
+        """
         if self.contact_point is None:
             contact_point = Multiplier(0, 1)
         else:
@@ -168,3 +168,10 @@ class BowContactPoint(AbjadValueObject):
         markup = markup.vcenter()
         markup = markup.center_align()
         return markup
+
+    @property
+    def tweaks(self) -> None:
+        """
+        Are not implemented on bow contact point.
+        """
+        pass

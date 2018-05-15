@@ -1,6 +1,7 @@
 def make_mozart_measure_corpus():
-    r'''Makes Mozart measure corpus.
-    '''
+    """
+    Makes Mozart measure corpus.
+    """
 
     return [
         [

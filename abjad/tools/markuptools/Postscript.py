@@ -4,7 +4,8 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Postscript(AbjadValueObject):
-    r'''Postscript session.
+    r"""
+    Postscript session.
 
     ..  note::
 
@@ -68,7 +69,7 @@ class Postscript(AbjadValueObject):
         >>> postscript = postscript.stroke()
         >>> abjad.show(postscript) # doctest: +SKIP
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -89,10 +90,11 @@ class Postscript(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __add__(self, argument):
-        r'''Adds postscript to `argument`.
+        """
+        Adds postscript to ``argument``.
 
         Returns new postscript.
-        '''
+        """
         assert isinstance(argument, type(self))
         self_operators = self.operators or ()
         argument_operators = argument.operators or ()
@@ -101,19 +103,21 @@ class Postscript(AbjadValueObject):
         return type(self)(operators)
 
     def __illustrate__(self):
-        r'''Illustrates Postscript.
+        """
+        Illustrates Postscript.
 
         Returns LilyPond file.
-        '''
+        """
         import abjad
         markup = abjad.Markup.postscript(self)
         return markup.__illustrate__()
 
     def __radd__(self, argument):
-        r'''Adds `argument` to postscript.
+        """
+        Adds ``argument`` to postscript.
 
         Returns new postscript.
-        '''
+        """
         assert isinstance(argument, type(self))
         self_operators = self.operators or ()
         argument_operators = argument.operators or ()
@@ -122,10 +126,11 @@ class Postscript(AbjadValueObject):
         return type(self)(operators)
 
     def __str__(self):
-        r'''Gets string representation of Postscript.
+        """
+        Gets string representation of Postscript.
 
         Return string.
-        '''
+        """
         if not self.operators:
             return ''
         return '\n'.join(str(_) for _ in self.operators)
@@ -160,7 +165,8 @@ class Postscript(AbjadValueObject):
     ### PUBLIC METHODS ###
 
     def as_markup(self):
-        r'''Converts postscript to markup.
+        r"""
+        Converts postscript to markup.
 
         ..  container:: example
 
@@ -199,12 +205,13 @@ class Postscript(AbjadValueObject):
                 }
 
         Returns new markup.
-        '''
+        """
         from abjad.tools import markuptools
         return markuptools.Markup.postscript(self)
 
     def charpath(self, text, modify_font=True):
-        r'''Postscript ``charpath`` operator.
+        """
+        Postscript ``charpath`` operator.
 
         ..  container:: example
 
@@ -236,7 +243,7 @@ class Postscript(AbjadValueObject):
             stroke
 
         Returns new Postscript.
-        '''
+        """
         from abjad.tools import markuptools
         text = str(text)
         modify_font = bool(modify_font)
@@ -248,7 +255,8 @@ class Postscript(AbjadValueObject):
         return self._with_operator(operator)
 
     def closepath(self):
-        r'''Postscript ``closepath`` operator.
+        """
+        Postscript ``closepath`` operator.
 
         ..  container:: example
 
@@ -280,13 +288,14 @@ class Postscript(AbjadValueObject):
             stroke
 
         Returns new Postscript.
-        '''
+        """
         from abjad.tools import markuptools
         operator = markuptools.PostscriptOperator('closepath')
         return self._with_operator(operator)
 
     def curveto(self, x1, y1, x2, y2, x3, y3):
-        r'''Postscript ``curveto`` operator.
+        """
+        Postscript ``curveto`` operator.
 
         ..  container:: example
 
@@ -296,7 +305,7 @@ class Postscript(AbjadValueObject):
             0 1 1.5 2 3 6 curveto
 
         Returns new Postscript.
-        '''
+        """
         from abjad.tools import markuptools
         x1 = float(x1)
         x2 = float(x2)
@@ -313,7 +322,8 @@ class Postscript(AbjadValueObject):
         return self._with_operator(operator)
 
     def fill(self):
-        r'''Postscript ``fill`` operator.
+        """
+        Postscript ``fill`` operator.
 
         ..  container:: example
 
@@ -345,13 +355,14 @@ class Postscript(AbjadValueObject):
             stroke
 
         Returns new Postscript.
-        '''
+        """
         from abjad.tools import markuptools
         operator = markuptools.PostscriptOperator('fill')
         return self._with_operator(operator)
 
     def findfont(self, font_name):
-        r'''Postscript ``findfont`` operator.
+        """
+        Postscript ``findfont`` operator.
 
         ..  container:: example
 
@@ -371,7 +382,7 @@ class Postscript(AbjadValueObject):
             (This is text.) show
 
         Returns new Postscript.
-        '''
+        """
         from abjad.tools import markuptools
         font_name = str(font_name)
         font_name = font_name.replace(' ', '-')
@@ -380,7 +391,8 @@ class Postscript(AbjadValueObject):
         return self._with_operator(operator)
 
     def grestore(self):
-        r'''Postscript ``grestore`` operator.
+        """
+        Postscript ``grestore`` operator.
 
         ..  container:: example
 
@@ -412,13 +424,14 @@ class Postscript(AbjadValueObject):
             stroke
 
         Returns new Postscript.
-        '''
+        """
         from abjad.tools import markuptools
         operator = markuptools.PostscriptOperator('grestore')
         return self._with_operator(operator)
 
     def gsave(self):
-        r'''Postscript ``gsave`` operator.
+        """
+        Postscript ``gsave`` operator.
 
         ..  container:: example
 
@@ -450,13 +463,14 @@ class Postscript(AbjadValueObject):
             stroke
 
         Returns new Postscript.
-        '''
+        """
         from abjad.tools import markuptools
         operator = markuptools.PostscriptOperator('gsave')
         return self._with_operator(operator)
 
     def lineto(self, x, y):
-        r'''Postscript ``lineto`` operator.
+        """
+        Postscript ``lineto`` operator.
 
         ..  container:: example
 
@@ -470,7 +484,7 @@ class Postscript(AbjadValueObject):
             stroke
 
         Returns new Postscript.
-        '''
+        """
         from abjad.tools import markuptools
         x = float(x)
         y = float(y)
@@ -478,7 +492,8 @@ class Postscript(AbjadValueObject):
         return self._with_operator(operator)
 
     def moveto(self, x, y):
-        r'''Postscript ``moveto`` operator.
+        """
+        Postscript ``moveto`` operator.
 
         ..  container:: example
 
@@ -501,7 +516,7 @@ class Postscript(AbjadValueObject):
             stroke
 
         Returns new Postscript.
-        '''
+        """
         from abjad.tools import markuptools
         x = float(x)
         y = float(y)
@@ -509,7 +524,8 @@ class Postscript(AbjadValueObject):
         return self._with_operator(operator)
 
     def newpath(self):
-        r'''Postscript ``newpath`` operator.
+        """
+        Postscript ``newpath`` operator.
 
         ..  container:: example
 
@@ -541,13 +557,14 @@ class Postscript(AbjadValueObject):
             stroke
 
         Returns new Postscript.
-        '''
+        """
         from abjad.tools import markuptools
         operator = markuptools.PostscriptOperator('newpath')
         return self._with_operator(operator)
 
     def rcurveto(self, dx1, dy1, dx2, dy2, dx3, dy3):
-        r'''Postscript ``rcurveto`` operator.
+        """
+        Postscript ``rcurveto`` operator.
 
         ..  container:: edxample
 
@@ -557,7 +574,7 @@ class Postscript(AbjadValueObject):
             0 1 1.5 2 3 6 rcurveto
 
         Returns new Postscript.
-        '''
+        """
         from abjad.tools import markuptools
         dx1 = float(dx1)
         dx2 = float(dx2)
@@ -574,7 +591,8 @@ class Postscript(AbjadValueObject):
         return self._with_operator(operator)
 
     def rlineto(self, dx, dy):
-        r'''Postscript ``rlineto`` operator.
+        """
+        Postscript ``rlineto`` operator.
 
         ..  container:: example
 
@@ -597,7 +615,7 @@ class Postscript(AbjadValueObject):
             stroke
 
         Returns new Postscript.
-        '''
+        """
         from abjad.tools import markuptools
         dx = float(dx)
         dy = float(dy)
@@ -605,7 +623,8 @@ class Postscript(AbjadValueObject):
         return self._with_operator(operator)
 
     def rmoveto(self, dx, dy):
-        r'''Postscript ``rmoveto`` operator.
+        """
+        Postscript ``rmoveto`` operator.
 
         ..  container:: example
 
@@ -628,7 +647,7 @@ class Postscript(AbjadValueObject):
             stroke
 
         Returns new Postscript.
-        '''
+        """
         from abjad.tools import markuptools
         dx = float(dx)
         dy = float(dy)
@@ -636,7 +655,8 @@ class Postscript(AbjadValueObject):
         return self._with_operator(operator)
 
     def rotate(self, degrees):
-        r'''Postscript ``restore`` operator.
+        """
+        Postscript ``restore`` operator.
 
         ..  container:: example
 
@@ -668,14 +688,15 @@ class Postscript(AbjadValueObject):
             stroke
 
         Returns new Postscript.
-        '''
+        """
         from abjad.tools import markuptools
         degrees = float(degrees)
         operator = markuptools.PostscriptOperator('rotate', degrees)
         return self._with_operator(operator)
 
     def scale(self, dx, dy):
-        r'''Postscript ``scale`` operator.
+        """
+        Postscript ``scale`` operator.
 
         ..  container:: example
 
@@ -707,7 +728,7 @@ class Postscript(AbjadValueObject):
             stroke
 
         Returns new Postscript.
-        '''
+        """
         from abjad.tools import markuptools
         dx = float(dx)
         dy = float(dy)
@@ -715,7 +736,8 @@ class Postscript(AbjadValueObject):
         return self._with_operator(operator)
 
     def scalefont(self, font_size):
-        r'''Postscript ``scalefont`` operator.
+        """
+        Postscript ``scalefont`` operator.
 
         ..  container:: example
 
@@ -735,14 +757,15 @@ class Postscript(AbjadValueObject):
             (This is text.) show
 
         Returns new Postscript.
-        '''
+        """
         from abjad.tools import markuptools
         font_size = float(font_size)
         operator = markuptools.PostscriptOperator('scalefont', font_size)
         return self._with_operator(operator)
 
     def setdash(self, array=None, offset=0):
-        r'''Postscript ``setdash`` operator.
+        """
+        Postscript ``setdash`` operator.
 
         ..  container:: example
 
@@ -771,7 +794,7 @@ class Postscript(AbjadValueObject):
             [ ] 0 setdash
 
         Returns new Postscript.
-        '''
+        """
         from abjad.tools import markuptools
         if array is None:
             array = ()
@@ -782,7 +805,8 @@ class Postscript(AbjadValueObject):
         return self._with_operator(operator)
 
     def setfont(self):
-        r'''Postscript ``setfont`` operator.
+        """
+        Postscript ``setfont`` operator.
 
         ..  container:: example
 
@@ -802,13 +826,14 @@ class Postscript(AbjadValueObject):
             (This is text.) show
 
         Returns new Postscript.
-        '''
+        """
         from abjad.tools import markuptools
         operator = markuptools.PostscriptOperator('setfont')
         return self._with_operator(operator)
 
     def setgray(self, gray_value):
-        r'''Postscript ``setgray`` operator.
+        """
+        Postscript ``setgray`` operator.
 
         ..  container:: example
 
@@ -840,7 +865,7 @@ class Postscript(AbjadValueObject):
             stroke
 
         Returns new Postscript.
-        '''
+        """
         from abjad.tools import markuptools
         gray_value = float(gray_value)
         assert 0 <= gray_value <= 1
@@ -848,7 +873,8 @@ class Postscript(AbjadValueObject):
         return self._with_operator(operator)
 
     def setlinewidth(self, width):
-        r'''Postscript ``setlinewidth`` operator.
+        """
+        Postscript ``setlinewidth`` operator.
 
         ..  container:: example
 
@@ -874,14 +900,15 @@ class Postscript(AbjadValueObject):
             stroke
 
         Returns new Postscript.
-        '''
+        """
         from abjad.tools import markuptools
         width = float(width)
         operator = markuptools.PostscriptOperator('setlinewidth', width)
         return self._with_operator(operator)
 
     def setrgbcolor(self, red, green, blue):
-        r'''Postscript ``setrgb`` operator.
+        """
+        Postscript ``setrgb`` operator.
 
         ..  container:: example
 
@@ -918,7 +945,7 @@ class Postscript(AbjadValueObject):
             stroke
 
         Returns new Postscript.
-        '''
+        """
         from abjad.tools import markuptools
         red = float(red)
         green = float(green)
@@ -935,7 +962,8 @@ class Postscript(AbjadValueObject):
         return self._with_operator(operator)
 
     def show(self, text):
-        r'''Postscript ``show`` operator.
+        """
+        Postscript ``show`` operator.
 
         ..  container:: example
 
@@ -955,14 +983,15 @@ class Postscript(AbjadValueObject):
             (This is text.) show
 
         Returns new Postscript.
-        '''
+        """
         from abjad.tools import markuptools
         text = str(text)
         operator = markuptools.PostscriptOperator('show', text)
         return self._with_operator(operator)
 
     def stroke(self):
-        r'''Postscript ``stroke`` operator.
+        """
+        Postscript ``stroke`` operator.
 
         ..  container:: example
 
@@ -982,13 +1011,14 @@ class Postscript(AbjadValueObject):
             stroke
 
         Returns new Postscript.
-        '''
+        """
         from abjad.tools import markuptools
         operator = markuptools.PostscriptOperator('stroke')
         return self._with_operator(operator)
 
     def translate(self, dx, dy):
-        r'''Postscript ``translate`` operator.
+        """
+        Postscript ``translate`` operator.
 
         ..  container:: example
 
@@ -1020,7 +1050,7 @@ class Postscript(AbjadValueObject):
             stroke
 
         Returns new Postscript.
-        '''
+        """
         from abjad.tools import markuptools
         dx = float(dx)
         dy = float(dy)
@@ -1031,8 +1061,9 @@ class Postscript(AbjadValueObject):
 
     @property
     def operators(self):
-        r'''Gets Postscript operators.
+        """
+        Gets Postscript operators.
 
         Returns tuple or none.
-        '''
+        """
         return self._operators

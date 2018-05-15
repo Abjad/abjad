@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class BowPressure(AbjadValueObject):
-    '''
+    """
     Bow pressure indicator.
 
     ..  container:: example
@@ -20,7 +20,7 @@ class BowPressure(AbjadValueObject):
             pressure='underpressure',
             )
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -41,7 +41,7 @@ class BowPressure(AbjadValueObject):
 
     @property
     def persistent(self) -> bool:
-        '''
+        """
         Is true.
 
         ..  container:: example
@@ -49,12 +49,12 @@ class BowPressure(AbjadValueObject):
             >>> abjad.BowPressure('overpressure').persistent
             True
 
-        '''
+        """
         return self._persistent
 
     @property
     def pressure(self) -> typing.Optional[str]:
-        '''
+        """
         Gets pressure of indicator.
 
         ..  container:: example
@@ -73,5 +73,12 @@ class BowPressure(AbjadValueObject):
             >>> bow_pressure.pressure
             'underpressure'
 
-        '''
+        """
         return self._pressure
+
+    @property
+    def tweaks(self) -> None:
+        """
+        Are not implemented on bow pressure.
+        """
+        pass

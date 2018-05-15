@@ -1,8 +1,10 @@
 from abjad.tools.datastructuretools.TypedList import TypedList
+from .Markup import Markup
 
 
 class MarkupList(TypedList):
-    '''Markup list.
+    """
+    Markup list.
 
     ..  container:: example
 
@@ -37,7 +39,7 @@ class MarkupList(TypedList):
                         }
                     }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -53,9 +55,8 @@ class MarkupList(TypedList):
         item_class=None,
         keep_sorted=None,
         ):
-        from abjad.tools import markuptools
         self._expression = None
-        item_class = item_class or markuptools.Markup
+        item_class = item_class or Markup
         TypedList.__init__(
             self,
             item_class=item_class,
@@ -66,8 +67,8 @@ class MarkupList(TypedList):
     ### SPECIAL METHODS ###
 
     def __contains__(self, item):
-        r'''Is true when markup markup list contains `item`.
-        Otherwise false.
+        """
+        Is true when markup markup list contains ``item``.
 
         ..  container:: example
 
@@ -80,12 +81,13 @@ class MarkupList(TypedList):
                 True
 
         Returns true or false.
-        '''
+        """
         superclass = super(MarkupList, self)
         return superclass.__contains__(item)
 
     def __format__(self, format_specification=''):
-        r'''Formats markup list.
+        """
+        Formats markup list.
 
         ..  container:: example
 
@@ -109,12 +111,13 @@ class MarkupList(TypedList):
                         )
 
         Returns string.
-        '''
+        """
         superclass = super(MarkupList, self)
         return superclass.__format__(format_specification=format_specification)
 
     def __iadd__(self, argument):
-        r'''Changes items in `argument` to items and extends markup list.
+        r"""
+        Changes items in ``argument`` to items and extends markup list.
 
         ..  container:: example
 
@@ -161,12 +164,13 @@ class MarkupList(TypedList):
                         }
 
         Returns none.
-        '''
+        """
         superclass = super(MarkupList, self)
         return superclass.__iadd__(argument)
 
     def __illustrate__(self):
-        r'''Illustrates markup markup list.
+        r"""
+        Illustrates markup markup list.
 
         ..  container:: example
 
@@ -200,7 +204,7 @@ class MarkupList(TypedList):
                         }
 
         Returns LilyPond file.
-        '''
+        """
         import abjad
         lilypond_file = abjad.LilyPondFile.new()
         for name in ('layout', 'paper', 'score'):
@@ -211,7 +215,8 @@ class MarkupList(TypedList):
         return lilypond_file
 
     def __setitem__(self, i, argument):
-        r'''Sets item `i` equal to `argument`.
+        r"""
+        Sets item ``i`` equal to ``argument``.
 
         ..  container:: example
 
@@ -246,7 +251,7 @@ class MarkupList(TypedList):
                         }
 
         Returns none.
-        '''
+        """
         superclass = super(MarkupList, self)
         return superclass.__setitem__(i, argument)
 
@@ -275,7 +280,8 @@ class MarkupList(TypedList):
 
     @property
     def item_class(self):
-        r'''Gets markup list item class.
+        """
+        Gets markup list item class.
 
         ..  container:: example
 
@@ -283,13 +289,14 @@ class MarkupList(TypedList):
             <class 'abjad.tools.markuptools.Markup.Markup'>
 
         Returns markup class.
-        '''
+        """
         superclass = super(MarkupList, self)
         return superclass.item_class
 
     @property
     def items(self):
-        r'''Gets markup list items.
+        """
+        Gets markup list items.
 
         ..  container:: example
 
@@ -316,14 +323,14 @@ class MarkupList(TypedList):
                 Markup(contents=['assai'])
 
         Returns tuple.
-        '''
+        """
         superclass = super(MarkupList, self)
         return superclass.items
 
     @property
     def keep_sorted(self):
-        r'''Is true when markup list keeps markups sorted.
-        Otherwise false.
+        r"""
+        Is true when markup list keeps markups sorted.
 
         ..  container:: example
 
@@ -372,7 +379,7 @@ class MarkupList(TypedList):
         Set to true, false or none.
 
         Returns true, false or none.
-        '''
+        """
         superclass = super(MarkupList, self)
         return superclass.keep_sorted
 
@@ -383,7 +390,8 @@ class MarkupList(TypedList):
     ### PUBLIC METHODS ###
 
     def append(self, item):
-        r'''Appends `item` to markup list.
+        """
+        Appends ``item`` to markup list.
 
         ..  container:: example
 
@@ -406,12 +414,13 @@ class MarkupList(TypedList):
                 >>> abjad.show(markup_list) # doctest: +SKIP
 
         Returns none.
-        '''
+        """
         superclass = super(MarkupList, self)
         superclass.append(item)
 
     def center_column(self, direction=None):
-        r'''LilyPond ``\center-column`` markup command.
+        r"""
+        LilyPond ``\center-column`` markup command.
 
         ..  container:: example
 
@@ -434,7 +443,7 @@ class MarkupList(TypedList):
                 >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
-        '''
+        """
         from abjad.tools import markuptools
         contents = []
         for markup in self:
@@ -444,7 +453,8 @@ class MarkupList(TypedList):
         return markuptools.Markup(contents=command, direction=direction)
 
     def column(self, direction=None):
-        r'''LilyPond ``\column`` markup command.
+        r"""
+        LilyPond ``\column`` markup command.
 
         ..  container:: example
 
@@ -466,7 +476,7 @@ class MarkupList(TypedList):
                 >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
-        '''
+        """
         import abjad
         contents = []
         for markup in self:
@@ -475,7 +485,8 @@ class MarkupList(TypedList):
         return abjad.Markup(contents=command, direction=direction)
 
     def combine(self, direction=None):
-        r'''LilyPond ``\combine`` markup command.
+        r"""
+        LilyPond ``\combine`` markup command.
 
         ..  container:: example
 
@@ -497,7 +508,7 @@ class MarkupList(TypedList):
                 >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
-        '''
+        """
         import abjad
         if not len(self) == 2:
             message = 'markup list must be length 2: {!r}.'
@@ -511,7 +522,8 @@ class MarkupList(TypedList):
         return abjad.Markup(contents=command, direction=direction)
 
     def concat(self, direction=None):
-        r'''LilyPond ``\concat`` markup command.
+        r"""
+        LilyPond ``\concat`` markup command.
 
         ..  container:: example
 
@@ -539,7 +551,7 @@ class MarkupList(TypedList):
                 >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
-        '''
+        """
         from abjad.tools import markuptools
         result = []
         for markup in self:
@@ -550,7 +562,8 @@ class MarkupList(TypedList):
         return markuptools.Markup(contents=command, direction=direction)
 
     def count(self, item):
-        r'''Counts `item` in markup list.
+        """
+        Counts ``item`` in markup list.
 
         ..  container:: example
 
@@ -567,12 +580,13 @@ class MarkupList(TypedList):
             0
 
         Returns none.
-        '''
+        """
         superclass = super(MarkupList, self)
         return superclass.count(item)
 
     def extend(self, items):
-        r'''Extends markup list with `items`.
+        r"""
+        Extends markup list with ``items``.
 
         ..  container:: example
 
@@ -606,12 +620,13 @@ class MarkupList(TypedList):
                         }
 
         Returns none.
-        '''
+        """
         superclass = super(MarkupList, self)
         superclass.extend(items)
 
     def index(self, item):
-        r'''Gets index of `item` in markup list.
+        r"""
+        Gets index of ``item`` in markup list.
 
         ..  container:: example
 
@@ -648,12 +663,13 @@ class MarkupList(TypedList):
             1
 
         Returns none.
-        '''
+        """
         superclass = super(MarkupList, self)
         return superclass.index(item)
 
     def insert(self, i, item):
-        r'''Inserts `item` in markup markup list.
+        """
+        Inserts ``item`` in markup markup list.
 
         ..  container:: example
 
@@ -676,12 +692,13 @@ class MarkupList(TypedList):
                 >>> abjad.show(markup_list) # doctest: +SKIP
 
         Returns markup class.
-        '''
+        """
         superclass = super(MarkupList, self)
         superclass.insert(i, item)
 
     def left_column(self, direction=None):
-        r'''LilyPond ``\left-column`` markup command.
+        r"""
+        LilyPond ``\left-column`` markup command.
 
         ..  container:: example
 
@@ -703,7 +720,7 @@ class MarkupList(TypedList):
                 >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
-        '''
+        """
         import abjad
         contents = []
         for markup in self:
@@ -712,7 +729,8 @@ class MarkupList(TypedList):
         return abjad.Markup(contents=command, direction=direction)
 
     def line(self, direction=None):
-        r'''LilyPond ``\line`` markup command.
+        r"""
+        LilyPond ``\line`` markup command.
 
         ..  container:: example
 
@@ -734,7 +752,7 @@ class MarkupList(TypedList):
                 >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
-        '''
+        """
         import abjad
         contents = []
         for markup in self:
@@ -743,7 +761,8 @@ class MarkupList(TypedList):
         return abjad.Markup(contents=command, direction=direction)
 
     def overlay(self, direction=None):
-        r'''LilyPond ``\overlay`` markup command.
+        r"""
+        LilyPond ``\overlay`` markup command.
 
         ..  container:: example
 
@@ -765,7 +784,7 @@ class MarkupList(TypedList):
                 >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
-        '''
+        """
         import abjad
         contents = []
         for markup in self:
@@ -774,7 +793,8 @@ class MarkupList(TypedList):
         return abjad.Markup(contents=command, direction=direction)
 
     def pop(self, i=-1):
-        r'''Pops item `i` from markup list.
+        r"""
+        Pops item ``i`` from markup list.
 
         ..  container:: example
 
@@ -797,12 +817,13 @@ class MarkupList(TypedList):
                 >>> abjad.show(markup_list) # doctest: +SKIP
 
         Returns none.
-        '''
+        """
         superclass = super(MarkupList, self)
         return superclass.pop(i=i)
 
     def remove(self, item):
-        r'''Removes `item` from markup list.
+        r"""
+        Removes ``item`` from markup list.
 
         ..  container:: example
 
@@ -833,12 +854,13 @@ class MarkupList(TypedList):
                         }
 
         Returns none.
-        '''
+        """
         superclass = super(MarkupList, self)
         superclass.remove(item)
 
     def right_column(self, direction=None):
-        r'''LilyPond ``\right-column`` markup command.
+        r"""
+        LilyPond ``\right-column`` markup command.
 
         ..  container:: example
 
@@ -860,7 +882,7 @@ class MarkupList(TypedList):
                 >>> abjad.show(markup) # doctest: +SKIP
 
         Returns new markup.
-        '''
+        """
         import abjad
         contents = []
         for markup in self:

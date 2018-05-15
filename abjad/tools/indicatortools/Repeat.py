@@ -3,7 +3,7 @@ from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class Repeat(AbjadValueObject):
-    r'''
+    r"""
     Repeat.
 
     ..  container:: example
@@ -62,7 +62,7 @@ class Repeat(AbjadValueObject):
                 }
             >>
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -96,7 +96,7 @@ class Repeat(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __str__(self) -> str:
-        r'''
+        r"""
         Gets string representation of repeat.
 
         ..  container:: example
@@ -113,7 +113,7 @@ class Repeat(AbjadValueObject):
             >>> str(abjad.Repeat(repeat_type='unfold'))
             '\\repeat unfold 2'
 
-        '''
+        """
         return rf'\repeat {self.repeat_type} {self.repeat_count}'
 
     ### PRIVATE METHODS ###
@@ -130,7 +130,7 @@ class Repeat(AbjadValueObject):
 
     @property
     def context(self):
-        '''
+        """
         Gets (historically conventional) context.
 
         ..  container:: example
@@ -150,12 +150,12 @@ class Repeat(AbjadValueObject):
             'Score'
 
         Override with ``abjad.attach(..., context='...')``.
-        '''
+        """
         return self._context
 
     @property
     def repeat_count(self) -> int:
-        '''
+        """
         Gets repeat count of repeat.
 
         ..  container:: example
@@ -174,12 +174,12 @@ class Repeat(AbjadValueObject):
             >>> repeat.repeat_count
             2
 
-        '''
+        """
         return self._repeat_count
 
     @property
     def repeat_type(self) -> str:
-        '''
+        """
         Gets repeat type of repeat.
 
         ..  container:: example
@@ -198,5 +198,16 @@ class Repeat(AbjadValueObject):
             >>> repeat.repeat_type
             'unfold'
 
-        '''
+        """
         return self._repeat_type
+
+    @property
+    def tweaks(self) -> None:
+        r"""
+        Are not implemented on repeat.
+        
+        The LilyPond ``\repeat`` command refuses tweaks.
+
+        Override the LilyPond ``BarLine`` grob instead.
+        """
+        pass

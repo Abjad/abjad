@@ -1,10 +1,14 @@
+import typing
 from abjad.enumerations import HorizontalAlignment, Right
+from abjad.tools.lilypondnametools.LilyPondTweakManager import (
+    LilyPondTweakManager,
+    )
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class BreathMark(AbjadValueObject):
-    r'''
+    r"""
     Breath mark.
 
     ..  container:: example
@@ -54,20 +58,33 @@ class BreathMark(AbjadValueObject):
                 \breathe
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        '_lilypond_tweak_manager',
+        )
 
     _format_slot = 'after'
 
     _time_orientation: HorizontalAlignment = HorizontalAlignment.Right
 
+    ### INITIALIZER ###
+
+    def __init__(
+        self,
+        *,
+        tweaks: typing.Union[
+            typing.List[typing.Tuple], LilyPondTweakManager] = None,
+        ) -> None:
+        self._lilypond_tweak_manager = None
+        LilyPondTweakManager.set_tweaks(self, tweaks)
+
     ### SPECIAL METHODS ###
 
     def __str__(self) -> str:
-        r'''
+        r"""
         Gets string representation of breath mark.
 
         ..  container:: example
@@ -75,7 +92,7 @@ class BreathMark(AbjadValueObject):
             >>> str(abjad.BreathMark())
             '\\breathe'
 
-        '''
+        """
         return r'\breathe'
 
     ### PRIVATE PROPERTIES ###
@@ -91,5 +108,47 @@ class BreathMark(AbjadValueObject):
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
+        if self.tweaks:
+            tweaks = self.tweaks._list_format_contributions(directed=False)
+            bundle.right.articulations.extend(tweaks)
         bundle.after.commands.append(self._get_lilypond_format())
         return bundle
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+        r"""
+        Gets tweaks
+
+        ..  container:: example
+
+            >>> note = abjad.Note("c'4")
+            >>> breath = abjad.BreathMark()
+            >>> abjad.tweak(breath).color = 'blue'
+            >>> abjad.attach(breath, note)
+            >>> abjad.show(note) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(note)
+                c'4
+                \tweak color #blue
+                \breathe
+
+        ..  container:: example
+
+            >>> note = abjad.Note("c'4")
+            >>> breath = abjad.BreathMark(tweaks=[('color', 'blue')])
+            >>> abjad.attach(breath, note)
+            >>> abjad.show(note) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(note)
+                c'4
+                \tweak color #blue
+                \breathe
+
+        """
+        return self._lilypond_tweak_manager

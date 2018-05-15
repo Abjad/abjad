@@ -5,7 +5,7 @@ from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class LilyPondGrobOverride(AbjadValueObject):
-    r'''
+    r"""
     LilyPond grob override.
 
     ..  container:: example
@@ -31,7 +31,7 @@ class LilyPondGrobOverride(AbjadValueObject):
                 }
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -81,18 +81,18 @@ class LilyPondGrobOverride(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument) -> bool:
-        '''
-        Is true when `argument` is a LilyPond grob override with equivalent
+        """
+        Is true when ``argument`` is a LilyPond grob override with equivalent
         keyword values.
-        '''
+        """
         return super(LilyPondGrobOverride, self).__eq__(argument)
 
     def __hash__(self) -> int:
-        '''
+        """
         Hashes LilyPond grob override.
 
         Redefined in tandem with __eq__.
-        '''
+        """
         return super(LilyPondGrobOverride, self).__hash__()
 
     ### PRIVATE METHODS ###
@@ -129,7 +129,7 @@ class LilyPondGrobOverride(AbjadValueObject):
 
     @property
     def lilypond_type(self) -> typing.Optional[str]:
-        r'''
+        r"""
         Gets LilyPond type of context.
 
         ..  container:: example
@@ -156,13 +156,13 @@ class LilyPondGrobOverride(AbjadValueObject):
             >>> override.lilypond_type is None
             True
 
-        '''
+        """
         return self._lilypond_type
 
     @property
     def grob_name(self) -> str:
-        r'''
-        LilyPond grob override grob name.
+        r"""
+        Gets grob name.
 
         ..  container:: example
 
@@ -174,12 +174,13 @@ class LilyPondGrobOverride(AbjadValueObject):
             >>> override.grob_name
             'Glissando'
 
-        '''
+        """
         return self._grob_name
 
     @property
     def once(self) -> typing.Optional[bool]:
-        r'''Is true if grob override is to be applied only once.
+        r"""
+        Is true when grob override is to be applied only once.
 
         ..  container:: example
 
@@ -205,12 +206,12 @@ class LilyPondGrobOverride(AbjadValueObject):
             >>> bool(override.once)
             False
 
-        '''
+        """
         return self._once
 
     @property
     def is_revert(self) -> typing.Optional[bool]:
-        r'''
+        r"""
         Is true if grob override is a grob revert.
 
         ..  container:: example
@@ -231,12 +232,12 @@ class LilyPondGrobOverride(AbjadValueObject):
             >>> bool(override.is_revert)
             True
 
-        '''
+        """
         return self._is_revert
 
     @property
     def override_format_pieces(self) -> typing.Tuple[str, ...]:
-        r'''
+        r"""
         Gets LilyPond grob override \override format pieces.
 
         ..  container:: example
@@ -263,7 +264,7 @@ class LilyPondGrobOverride(AbjadValueObject):
             '        }'
             '    }'
 
-        '''
+        """
         result = []
         if self.once:
             result.append(r'\once')
@@ -279,7 +280,7 @@ class LilyPondGrobOverride(AbjadValueObject):
 
     @property
     def override_string(self) -> str:
-        r'''
+        r"""
         Gets LilyPond grob override \override string.
 
         ..  container:: example
@@ -292,12 +293,12 @@ class LilyPondGrobOverride(AbjadValueObject):
             >>> override.override_string
             "\\override Glissando.style = #'zigzag"
 
-        '''
+        """
         return '\n'.join(self.override_format_pieces)
 
     @property
     def property_path(self) -> typing.Tuple[str, ...]:
-        r'''
+        r"""
         Gets LilyPond grob override property path.
 
         ..  container:: example
@@ -316,12 +317,12 @@ class LilyPondGrobOverride(AbjadValueObject):
             >>> override.property_path
             ('bound-details', 'left', 'text')
 
-        '''
+        """
         return self._property_path
 
     @property
     def revert_format_pieces(self) -> typing.Tuple[str, ...]:
-        r'''
+        r"""
         Gets LilyPond grob override \revert format pieces.
 
         ..  container:: example
@@ -334,13 +335,13 @@ class LilyPondGrobOverride(AbjadValueObject):
             >>> override.revert_format_pieces
             ('\\revert Glissando.style',)
 
-        '''
+        """
         result = rf'\revert {self._revert_property_path_string()}'
         return (result,)
 
     @property
     def revert_string(self) -> str:
-        r'''
+        r"""
         Gets LilyPond grob override \revert string.
 
         ..  container:: example
@@ -353,12 +354,12 @@ class LilyPondGrobOverride(AbjadValueObject):
             >>> override.revert_string
             '\\revert Glissando.style'
 
-        '''
+        """
         return '\n'.join(self.revert_format_pieces)
 
     @property
     def value(self) -> typing.Any:
-        r'''
+        r"""
         Gets value of LilyPond grob override.
 
         ..  container:: example
@@ -377,13 +378,13 @@ class LilyPondGrobOverride(AbjadValueObject):
             >>> override.value
             Markup(contents=[MarkupCommand('bold', ['over', 'pressure'])])
 
-        '''
+        """
         return self._value
 
     ### PUBLIC METHODS ###
 
-    def tweak_string(self, hyphen=True, grob=False) -> str:
-        r'''
+    def tweak_string(self, directed=True, grob=False) -> str:
+        r"""
         Gets LilyPond grob override \tweak string.
 
         ..  container:: example
@@ -403,11 +404,11 @@ class LilyPondGrobOverride(AbjadValueObject):
             ...     property_path='color',
             ...     value='red',
             ...     )
-            >>> override.tweak_string(hyphen=False)
+            >>> override.tweak_string(directed=False)
             '\\tweak color #red'
 
-        '''
-        if hyphen:
+        """
+        if directed:
             result = [r'- \tweak']
         else:
             result = [r'\tweak']

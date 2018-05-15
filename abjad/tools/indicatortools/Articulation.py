@@ -1,8 +1,14 @@
 import copy
 import typing
-from abjad.enumerations import Center, Down, Up, VerticalAlignment
+from abjad.enumerations import Center
+from abjad.enumerations import Down
+from abjad.enumerations import Up
+from abjad.enumerations import VerticalAlignment
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.datastructuretools.String import String
+from abjad.tools.lilypondnametools.LilyPondTweakManager import (
+    LilyPondTweakManager,
+    )
 from abjad.tools.systemtools.FormatSpecification import FormatSpecification
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
@@ -10,7 +16,7 @@ from abjad.tools.topleveltools.attach import attach
 
 
 class Articulation(AbjadValueObject):
-    r'''
+    r"""
     Articulation.
 
     ..  container:: example
@@ -62,13 +68,14 @@ class Articulation(AbjadValueObject):
         >>> abjad.new(abjad.Articulation('.'))
         Articulation('.')
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
         '_direction',
         '_format_slot',
+        '_lilypond_tweak_manager',
         '_name',
         )
 
@@ -140,6 +147,8 @@ class Articulation(AbjadValueObject):
         name: str = None,
         *,
         direction: typing.Union[str, VerticalAlignment] = None,
+        tweaks: typing.Union[
+            typing.List[typing.Tuple], LilyPondTweakManager] = None,
         ) -> None:
         if isinstance(name, type(self)):
             argument = name
@@ -157,15 +166,18 @@ class Articulation(AbjadValueObject):
             assert direction_ in (Up, Down, Center), repr(direction_)
         self._direction = direction_
         self._format_slot = 'right'
+        self._lilypond_tweak_manager = None
+        LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification='') -> str:
-        r'''Formats articulation.
+        """
+        Formats articulation.
 
         Set ``format_specification`` to `''`, `'lilypond`' or `'storage'`.
         Interprets `''` equal to `'storage'`.
-        '''
+        """
         if format_specification in ('', 'storage'):
             return StorageFormatManager(self).get_storage_format()
         else:
@@ -173,10 +185,11 @@ class Articulation(AbjadValueObject):
             return self._get_lilypond_format()
 
     def __illustrate__(self):
-        r'''Illustrates articulation.
+        """
+        Illustrates articulation.
 
         Returns LilyPond file.
-        '''
+        """
         note = abjad.Note("c'4")
         articulation = copy.copy(self)
         attach(articulation, note)
@@ -184,8 +197,9 @@ class Articulation(AbjadValueObject):
         return lilypond_file
 
     def __str__(self) -> str:
-        r'''Gets string representation of articulation.
-        '''
+        """
+        Gets string representation of articulation.
+        """
         if self.name:
             string = self._shortcut_to_word.get(self.name)
             if not string:
@@ -227,6 +241,9 @@ class Articulation(AbjadValueObject):
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
+        if self.tweaks:
+            tweaks = self.tweaks._list_format_contributions()
+            bundle.right.articulations.extend(tweaks)
         bundle.right.articulations.append(self._get_lilypond_format())
         return bundle
 
@@ -234,7 +251,7 @@ class Articulation(AbjadValueObject):
 
     @property
     def direction(self) -> typing.Optional[VerticalAlignment]:
-        '''
+        """
         Gets direction of articulation.
 
         ..  container:: example
@@ -253,12 +270,12 @@ class Articulation(AbjadValueObject):
             >>> articulation.direction
             Up
 
-        '''
+        """
         return self._direction
 
     @property
     def name(self) -> str:
-        '''
+        """
         Gets name of articulation.
 
         ..  container:: example
@@ -277,5 +294,45 @@ class Articulation(AbjadValueObject):
             >>> articulation.name
             'tenuto'
 
-        '''
+        """
         return self._name
+
+    @property
+    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+        r"""
+        Gets tweaks
+
+        ..  container:: example
+
+            >>> note = Note("c'4")
+            >>> articulation = abjad.Articulation('marcato')
+            >>> abjad.tweak(articulation).color = 'blue'
+            >>> abjad.attach(articulation, note)
+            >>> abjad.show(note) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(note)
+                c'4
+                - \tweak color #blue
+                -\marcato
+
+        ..  container:: example
+
+            >>> note = Note("c'4")
+            >>> articulation = abjad.Articulation(
+            ...     'marcato',
+            ...     tweaks=[('color', 'blue')],
+            ...     )
+            >>> abjad.attach(articulation, note)
+            >>> abjad.show(note) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(note)
+                c'4
+                - \tweak color #blue
+                -\marcato
+
+        """
+        return self._lilypond_tweak_manager

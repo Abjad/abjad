@@ -1,13 +1,17 @@
+import typing
 from abjad.enumerations import (
     Center, Down, Right, Up, HorizontalAlignment, VerticalAlignment,
 )
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.datastructuretools.String import String
+from abjad.tools.lilypondnametools.LilyPondTweakManager import (
+    LilyPondTweakManager,
+    )
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class Staccatissimo(AbjadValueObject):
-    r'''
+    r"""
     Staccatissimo.
 
     ..  container:: example
@@ -57,12 +61,13 @@ class Staccatissimo(AbjadValueObject):
                 \staccatissimo
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
         '_direction',
+        '_lilypond_tweak_manager',
         )
 
     _format_slot: HorizontalAlignment = HorizontalAlignment.Right
@@ -75,6 +80,8 @@ class Staccatissimo(AbjadValueObject):
         self,
         *,
         direction: VerticalAlignment = None,
+        tweaks: typing.Union[
+            typing.List[typing.Tuple], LilyPondTweakManager] = None,
         ) -> None:
         direction_ = String.to_tridirectional_ordinal_constant(direction)
         if direction_ is not None:
@@ -82,18 +89,20 @@ class Staccatissimo(AbjadValueObject):
             directions = (Up, Down, Center, None)
             assert direction_ in directions, repr(direction_)
         self._direction = direction_
+        self._lilypond_tweak_manager = None
+        LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
     def __str__(self) -> str:
-        r'''Gets string representation of staccatissimo.
+        r"""Gets string representation of staccatissimo.
 
         ..  container:: example
 
             >>> str(abjad.Staccatissimo())
             '\\staccatissimo'
 
-        '''
+        """
         return r'\staccatissimo'
 
     ### PRIVATE PROPERTIES ###
@@ -109,5 +118,66 @@ class Staccatissimo(AbjadValueObject):
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
+        if self.tweaks:
+            tweaks = self.tweaks._list_format_contributions()
+            bundle.after.commands.extend(tweaks)
         bundle.after.commands.append(self._get_lilypond_format())
         return bundle
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def direction(self) -> typing.Optional[VerticalAlignment]:
+        """
+        Gets direction of articulation.
+
+        ..  container:: example
+
+            Without direction:
+
+            >>> abjad.Staccatissimo().direction is None
+            True
+
+            >>> abjad.Staccatissimo(direction=abjad.Up).direction
+            Up
+
+        """
+        return self._direction
+
+
+    @property
+    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+        r"""
+        Gets tweaks
+
+        ..  container:: example
+
+            >>> note = Note("c'4")
+            >>> staccatissimo = abjad.Staccatissimo()
+            >>> abjad.tweak(staccatissimo).color = 'blue'
+            >>> abjad.attach(staccatissimo, note)
+            >>> abjad.show(note) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(note)
+                c'4
+                - \tweak color #blue
+                \staccatissimo
+
+        ..  container:: example
+
+            >>> note = Note("c'4")
+            >>> staccatissimo = abjad.Staccatissimo(tweaks=[('color', 'blue')])
+            >>> abjad.attach(staccatissimo, note)
+            >>> abjad.show(note) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(note)
+                c'4
+                - \tweak color #blue
+                \staccatissimo
+
+        """
+        return self._lilypond_tweak_manager

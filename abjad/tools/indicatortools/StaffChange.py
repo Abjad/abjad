@@ -5,7 +5,7 @@ from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class StaffChange(AbjadValueObject):
-    r'''
+    r"""
     Staff change.
 
     ..  container:: example
@@ -40,7 +40,7 @@ class StaffChange(AbjadValueObject):
                 }
             >>
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -68,7 +68,7 @@ class StaffChange(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __str__(self) -> str:
-        r'''
+        r"""
         Gets string representation of staff change.
 
         ..  container:: example
@@ -88,7 +88,7 @@ class StaffChange(AbjadValueObject):
             >>> print(str(staff_change))
             \change Staff = LHStaff
 
-        '''
+        """
         if self.staff is None:
             return r'\change Staff = ##f'
         value = Scheme.format_scheme_value(self.staff.name)
@@ -114,7 +114,7 @@ class StaffChange(AbjadValueObject):
 
     @property
     def context(self) -> str:
-        '''
+        """
         Gets ``'Staff'``.
 
         ..  container:: example
@@ -134,12 +134,12 @@ class StaffChange(AbjadValueObject):
             >>> staff_change.context
             'Staff'
 
-        '''
+        """
         return self._context
 
     @property
     def staff(self):
-        '''
+        """
         Gets staff of staff change.
 
         ..  container:: example
@@ -160,5 +160,12 @@ class StaffChange(AbjadValueObject):
             Staff('s2', name='LHStaff')
 
         Returns staff or none.
-        '''
+        """
         return self._staff
+
+    @property
+    def tweaks(self) -> None:
+        """
+        Are not implemented on staff change.
+        """
+        pass

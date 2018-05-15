@@ -2,12 +2,13 @@ import abjad
 
 
 def make_desordre_measure(pitches):
-    '''Makes a measure composed of *Désordre cells*.
+    """
+    Makes a measure composed of *Désordre cells*.
 
-    `pitches` is a list of lists of number (e.g., [[1, 2, 3], [2, 3, 4]])
+    ``pitches`` is a list of lists of number (e.g., [[1, 2, 3], [2, 3, 4]])
 
     Returns a measure.
-    '''
+    """
     for sequence in pitches:
         container = abjad.demos.ligeti.make_desordre_cell(sequence)
         time_signature = abjad.inspect(container).get_duration()

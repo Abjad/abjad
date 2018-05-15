@@ -2,8 +2,9 @@ import abjad
 
 
 def make_part_lilypond_file():
-    r'''Makes Pärt LilyPond file.
-    '''
+    """
+    Makes Pärt LilyPond file.
+    """
     score_template = abjad.demos.part.PartCantusScoreTemplate()
     score = score_template()
     abjad.demos.part.add_bell_music_to_score(score)

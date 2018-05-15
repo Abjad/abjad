@@ -2,8 +2,9 @@ import abjad
 
 
 def shadow_pitch_contour_reservoir(pitch_contour_reservoir):
-    r'''Shadows pitch contour reservoir.
-    '''
+    """
+    Shadows pitch contour reservoir.
+    """
 
     shadow_pitch_lookup = {
         abjad.NamedPitchClass('a'): -5, # add a P4 below

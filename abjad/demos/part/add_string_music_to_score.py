@@ -3,8 +3,9 @@ import copy
 
 
 def add_string_music_to_score(score):
-    r'''Adds string music to score.
-    '''
+    """
+    Adds string music to score.
+    """
 
     # generate some pitch and rhythm information
     pitch_contour_reservoir = \

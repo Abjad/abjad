@@ -3,6 +3,8 @@ import typing
 from abjad.enumerations import Up
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.lilypondnametools.LilyPondTweakManager import \
+    LilyPondTweakManager
 from abjad.tools.markuptools.Markup import Markup
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.tools.topleveltools.new import new
@@ -10,7 +12,7 @@ from abjad.tools.topleveltools.new import new
 
 @functools.total_ordering
 class ColorFingering(AbjadValueObject):
-    r'''
+    r"""
     Color fingering.
 
     ..  container:: example
@@ -59,11 +61,12 @@ class ColorFingering(AbjadValueObject):
 
     Color fingerings indicate alternate woodwind fingerings by amount of pitch
     of timbre deviation.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_lilypond_tweak_manager',
         '_number',
         )
 
@@ -76,18 +79,24 @@ class ColorFingering(AbjadValueObject):
     def __init__(
         self,
         number: int = None,
+        *,
+        tweaks: typing.Union[
+            typing.List[typing.Tuple], LilyPondTweakManager] = None,
         ) -> None:
         if number is not None:
             assert mathtools.is_positive_integer(number)
         self._number = number
+        self._lilypond_tweak_manager = None
+        LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ##
 
     def __format__(self, format_specification='') -> str:
-        r'''Formats color fingering.
+        r"""
+        Formats color fingering.
 
-        Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
+        Set ``format_specification`` to ``''``, ``'lilypond'`` or
+        ``'storage'``. Interprets ``''`` equal to ``'storage'``.
 
         ..  container:: example
 
@@ -97,7 +106,7 @@ class ColorFingering(AbjadValueObject):
                 number=1,
                 )
 
-        '''
+        """
         if format_specification == 'lilypond':
             return self._get_lilypond_format()
         return super(ColorFingering, self).__format__(
@@ -105,9 +114,9 @@ class ColorFingering(AbjadValueObject):
             )
 
     def __lt__(self, argument) -> bool:
-        '''
-        Is true if `argument` is a color fingering and the number of this color
-        fingering is less than that of `argument`.
+        """
+        Is true if ``argument`` is a color fingering and the number of this
+        color fingering is less than that of ``argument``.
 
         ..  container:: example
 
@@ -136,7 +145,7 @@ class ColorFingering(AbjadValueObject):
             >>> fingering_3 < fingering_3
             False
 
-        '''
+        """
         if isinstance(argument, type(self)):
             return (self.number or 0) < (argument.number or 0)
         raise TypeError('unorderable types')
@@ -154,6 +163,9 @@ class ColorFingering(AbjadValueObject):
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
+        if self.tweaks:
+            tweaks = self.tweaks._list_format_contributions()
+            bundle.right.markup.extend(tweaks)
         markup = self.markup
         markup = new(markup, direction=Up)
         markup_format_pieces = markup._get_format_pieces()
@@ -164,7 +176,7 @@ class ColorFingering(AbjadValueObject):
 
     @property
     def markup(self) -> typing.Optional[Markup]:
-        r'''
+        r"""
         Gets markup of color fingering.
 
         ..  container:: example
@@ -197,7 +209,7 @@ class ColorFingering(AbjadValueObject):
                 }
             >>> abjad.show(fingering.markup) # doctest: +SKIP
 
-        '''
+        """
         if self.number is None:
             return None
         markup = Markup(str(self.number))
@@ -208,7 +220,7 @@ class ColorFingering(AbjadValueObject):
 
     @property
     def number(self) -> typing.Optional[int]:
-        '''
+        """
         Gets number of color fingering.
 
         ..  container:: example
@@ -227,5 +239,67 @@ class ColorFingering(AbjadValueObject):
             >>> fingering.number
             2
 
-        '''
+        """
         return self._number
+
+    @property
+    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+        r"""
+        Gets tweaks.
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> fingering = abjad.ColorFingering(1)
+            >>> abjad.tweak(fingering).color = 'blue'
+            >>> abjad.attach(fingering, staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'4
+                    - \tweak color #blue
+                    ^ \markup {
+                        \override
+                            #'(circle-padding . 0.25)
+                            \circle
+                                \finger
+                                    1
+                        }
+                    d'4
+                    e'4
+                    f'4
+                }
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> fingering = abjad.ColorFingering(1, tweaks=[('color', 'blue')])
+            >>> abjad.attach(fingering, staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'4
+                    - \tweak color #blue
+                    ^ \markup {
+                        \override
+                            #'(circle-padding . 0.25)
+                            \circle
+                                \finger
+                                    1
+                        }
+                    d'4
+                    e'4
+                    f'4
+                }
+
+
+        """
+        return self._lilypond_tweak_manager

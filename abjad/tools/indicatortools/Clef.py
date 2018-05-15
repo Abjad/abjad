@@ -8,7 +8,7 @@ from abjad.tools.topleveltools.iterate import iterate
 
 
 class Clef(AbjadValueObject):
-    r'''
+    r"""
     Clef.
 
     ..  container:: example
@@ -152,7 +152,7 @@ class Clef(AbjadValueObject):
         (Note('b,,8'), Clef('bass'))
         (Note('a,,8'), Clef('bass'))
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -217,7 +217,7 @@ class Clef(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification='') -> str:
-        r'''
+        r"""
         Formats clef.
 
         Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
@@ -236,7 +236,7 @@ class Clef(AbjadValueObject):
             \clef "treble"
 
         Returns string.
-        '''
+        """
         if format_specification == 'lilypond':
             return self._get_lilypond_format()
         return super(Clef, self).__format__(
@@ -317,7 +317,7 @@ class Clef(AbjadValueObject):
 
     @staticmethod
     def from_selection(selection) -> 'Clef':
-        '''
+        """
         Makes clef from `selection`.
 
         ..  container:: example
@@ -331,7 +331,7 @@ class Clef(AbjadValueObject):
             Choses between treble and bass based on minimal number of ledger
             lines.
 
-        '''
+        """
         pitches = iterate(selection).pitches()
         diatonic_pitch_numbers = [
             pitch._get_diatonic_pitch_number() for pitch in pitches
@@ -358,7 +358,7 @@ class Clef(AbjadValueObject):
 
     @property
     def context(self) -> str:
-        '''
+        """
         Gets (historically conventional) context.
 
         ..  container:: example
@@ -368,12 +368,12 @@ class Clef(AbjadValueObject):
             'Staff'
 
         Override with ``abjad.attach(..., context='...')``.
-        '''
+        """
         return self._context
 
     @property
     def hide(self) -> typing.Optional[bool]:
-        r'''
+        r"""
         Is true when clef should not appear in output (but should still
         determine effective clef).
 
@@ -402,12 +402,12 @@ class Clef(AbjadValueObject):
             (Note("e'4"), Clef('alto', hide=True))
             (Note("f'4"), Clef('alto', hide=True))
 
-        '''
+        """
         return self._hide
 
     @property
     def middle_c_position(self) -> int:
-        '''
+        """
         Gets middle C position of clef.
 
         ..  container:: example
@@ -424,12 +424,12 @@ class Clef(AbjadValueObject):
             >>> abjad.Clef('alto').middle_c_position
             StaffPosition(0)
 
-        '''
+        """
         return self._middle_c_position
 
     @property
     def name(self) -> str:
-        '''
+        """
         Gets name of clef.
 
         ..  container:: example
@@ -446,12 +446,12 @@ class Clef(AbjadValueObject):
             >>> abjad.Clef('alto').name
             'alto'
 
-        '''
+        """
         return self._name
 
     @property
     def persistent(self) -> bool:
-        '''
+        """
         Is true.
 
         ..  container:: example
@@ -460,12 +460,12 @@ class Clef(AbjadValueObject):
             True
 
         Class constant.
-        '''
+        """
         return self._persistent
         
     @property
     def redraw(self) -> bool:
-        '''
+        """
         Is true.
 
         ..  container:: example
@@ -474,5 +474,16 @@ class Clef(AbjadValueObject):
             True
 
         Class constant.
-        '''
+        """
         return self._redraw
+
+    @property
+    def tweaks(self) -> None:
+        r"""
+        Are not implemented on clef.
+        
+        The LilyPond ``\clef`` command refuses tweaks.
+
+        Override the LilyPond ``Clef`` grob instead.
+        """
+        pass

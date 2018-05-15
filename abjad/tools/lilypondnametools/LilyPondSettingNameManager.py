@@ -4,7 +4,7 @@ from .LilyPondNameManager import LilyPondNameManager
 
 
 class LilyPondSettingNameManager(LilyPondNameManager):
-    '''
+    """
     LilyPond setting name manager.
 
     ..  container:: example
@@ -13,12 +13,12 @@ class LilyPondSettingNameManager(LilyPondNameManager):
         >>> abjad.setting(note)
         LilyPondSettingNameManager()
 
-    '''
+    """
 
     ### SPECIAL METHODS ###
 
     def __getattr__(self, name:str) -> typing.Any:
-        r'''
+        r"""
         Gets arbitrary object keyed to ``name``.
 
         ..  container:: example
@@ -49,7 +49,7 @@ class LilyPondSettingNameManager(LilyPondNameManager):
             >>> abjad.setting(staff).instrument_name
             Markup(contents=['Vn. I'])
 
-        '''
+        """
         from abjad.ly import contexts
         camel_name = String(name).to_upper_camel_case()
         if name.startswith('_'):

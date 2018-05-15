@@ -2,8 +2,9 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class SlotContributions(AbjadObject):
-    r'''Slot contributions.
-    '''
+    """
+    Slot contributions.
+    """
 
     __documentation_section__ = 'LilyPond formatting'
 
@@ -60,26 +61,30 @@ class SlotContributions(AbjadObject):
 
     @property
     def articulations(self):
-        r'''Gets articulations.
-        '''
+        """
+        Gets articulations.
+        """
         return self._articulations
 
     @property
     def commands(self):
-        r'''Gets commands.
-        '''
+        """
+        Gets commands.
+        """
         return self._commands
 
     @property
     def comments(self):
-        r'''Gets comments.
-        '''
+        """
+        Gets comments.
+        """
         return self._comments
 
     @property
     def has_contributions(self):
-        r'''Is true when has contributions.
-        '''
+        """
+        Is true when has contributions.
+        """
         contribution_categories = (
             'articulations',
             'commands',
@@ -97,57 +102,67 @@ class SlotContributions(AbjadObject):
 
     @property
     def indicators(self):
-        r'''Gets indicators.
-        '''
+        """
+        Gets indicators.
+        """
         return self._indicators
 
     @property
     def markup(self):
-        r'''Gets markup.
-        '''
+        """
+        Gets markup.
+        """
         return self._markup
 
     @property
     def spanner_starts(self):
-        r'''Gets spanner starts.
-        '''
+        """
+        Gets spanner starts.
+        """
         return self._spanner_starts
 
     @property
     def spanner_stops(self):
-        r'''Gets spanner stops.
-        '''
+        """
+        Gets spanner stops.
+        """
         return self._spanner_stops
 
     @property
     def spanners(self):
-        r'''Gets spanners.
-        '''
+        """
+        Gets spanners.
+        """
         return self._spanners
 
     @property
     def stem_tremolos(self):
-        r'''Gets stem tremolos.
-        '''
+        """
+        Gets stem tremolos.
+        """
         return self._stem_tremolos
 
     @property
     def trill_pitches(self):
-        '''Gets trill pitches.
-        '''
+        """
+        Gets trill pitches.
+        """
         return self._trill_pitches
 
     ### PUBLIC METHODS ###
 
     def get(self, identifier):
-        r'''Gets `identifier`.
-        '''
+        """
+        Gets ``identifier``.
+        """
         return getattr(self, identifier)
 
     def make_immutable(self):
-        r'''Makes contributions immutable.
-        '''
-        self._articulations = tuple(sorted(self.articulations))
+        """
+        Makes contributions immutable.
+        """
+        # sorting separates tweaks from articulations
+        self._articulations = tuple(self.articulations)
         self._commands = tuple(self.commands)
         self._comments = tuple(self.comments)
         self._indicators = tuple(self.indicators)
@@ -159,8 +174,9 @@ class SlotContributions(AbjadObject):
         self._trill_pitches = tuple(self.trill_pitches)
 
     def tag(self, tag, deactivate=None):
-        r'''Tags contributions.
-        '''
+        """
+        Tags contributions.
+        """
         import abjad
         self._articulations = abjad.LilyPondFormatManager.tag(
             self.articulations,
@@ -214,8 +230,9 @@ class SlotContributions(AbjadObject):
             )
 
     def update(self, slot_contributions):
-        r'''Updates contributions.
-        '''
+        """
+        Updates contributions.
+        """
         assert isinstance(slot_contributions, type(self))
         self.articulations.extend(slot_contributions.articulations)
         self.commands.extend(slot_contributions.commands)

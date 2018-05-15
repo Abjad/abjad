@@ -7,6 +7,7 @@ from abjad.tools.pitchtools.NamedPitch import NamedPitch
 from abjad.tools.lilypondnametools.LilyPondTweakManager import \
     LilyPondTweakManager
 from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
+from abjad.tools.topleveltools.tweak import tweak
 
 
 @functools.total_ordering
@@ -47,7 +48,7 @@ class NoteHead(AbjadObject):
         is_cautionary=None,
         is_forced=None,
         is_parenthesized=None,
-        tweaks=(),
+        tweaks=None,
         ):
         import abjad
         self._alternative = None
@@ -67,11 +68,7 @@ class NoteHead(AbjadObject):
         self.is_cautionary = is_cautionary
         self.is_forced = is_forced
         self.is_parenthesized = is_parenthesized
-        if not isinstance(tweaks, (list, tuple)):
-            tweaks = tweaks._get_attribute_pairs()
-        for tweak in tweaks or []:
-            key, value = tweak
-            setattr(self.tweaks, key, copy.copy(value))
+        LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -215,7 +212,7 @@ class NoteHead(AbjadObject):
         result = []
         if self.is_parenthesized:
             result.append(r'\parenthesize')
-        strings = self.tweaks._list_format_contributions(hyphen=False)
+        strings = self.tweaks._list_format_contributions(directed=False)
         result.extend(strings)
         kernel = format(self.written_pitch)
         if self.is_forced:
@@ -468,7 +465,7 @@ class NoteHead(AbjadObject):
     @property
     def tweaks(self) -> LilyPondTweakManager:
         r"""
-        Gets LilyPond tweak manager.
+        Gets tweaks.
 
         ..  container:: example
 
@@ -482,9 +479,7 @@ class NoteHead(AbjadObject):
             cs''
 
         """
-        if self._lilypond_tweak_manager is None:
-            self._lilypond_tweak_manager = LilyPondTweakManager()
-        return self._lilypond_tweak_manager
+        return tweak(self)
 
     @property
     def written_pitch(self) -> NamedPitch:

@@ -2,7 +2,8 @@ import abjad
 
 
 class FerneyhoughDemo(object):
-    r'''Ferneyhough demo.
+    r"""
+    Ferneyhough demo.
 
     ..  container:: example
 
@@ -705,15 +706,16 @@ class FerneyhoughDemo(object):
                 }
             >>
 
-    '''
+    """
 
     ### SPECIAL METHODS ###
 
     def __call__(self, tuplet_duration=(1, 4), row_count=11, column_count=6):
-        r'''Calls Ferneyhough demo.
+        """
+        Calls Ferneyhough demo.
 
         Returns LilyPond file.
-        '''
+        """
         lilypond_file = self.make_lilypond_file(
             tuplet_duration,
             row_count,
@@ -724,8 +726,9 @@ class FerneyhoughDemo(object):
     ### PUBLIC METHODS ###
 
     def configure_lilypond_file(self, lilypond_file):
-        r'''Configures LilyPond file.
-        '''
+        """
+        Configures LilyPond file.
+        """
         lilypond_file._default_paper_size = '11x17', 'portrait'
         lilypond_file._global_staff_size = 12
         lilypond_file.layout_block.indent = 0
@@ -735,8 +738,9 @@ class FerneyhoughDemo(object):
         lilypond_file.paper_block.system_system_spacing = spacing_vector
 
     def configure_score(self, score):
-        r'''Configures `score`.
-        '''
+        """
+        Configures ``score``.
+        """
         moment = abjad.SchemeMoment((1, 56))
         abjad.setting(score).proportional_notation_duration = moment
         abjad.setting(score).tuplet_full_length = True
@@ -751,8 +755,9 @@ class FerneyhoughDemo(object):
         abjad.override(score).tuplet_number.text = scheme
 
     def make_lilypond_file(self, tuplet_duration, row_count, column_count):
-        r'''Makes LilyPond file.
-        '''
+        """
+        Makes LilyPond file.
+        """
         score = self.make_score(
             tuplet_duration,
             row_count,
@@ -769,8 +774,9 @@ class FerneyhoughDemo(object):
         outer_tuplet_proportions,
         inner_tuplet_subdivision_count,
         ):
-        r'''Makes nested tuplet.
-        '''
+        """
+        Makes nested tuplet.
+        """
         outer_tuplet = abjad.Tuplet.from_duration_and_ratio(
             tuplet_duration,
             outer_tuplet_proportions,
@@ -788,8 +794,9 @@ class FerneyhoughDemo(object):
         outer_tuplet_proportions,
         column_count,
         ):
-        r'''Makes row of nested tuplets.
-        '''
+        """
+        Makes row of nested tuplets.
+        """
         assert 0 < column_count
         row_of_nested_tuplets = []
         for n in range(column_count):
@@ -808,8 +815,9 @@ class FerneyhoughDemo(object):
         row_count,
         column_count,
         ):
-        r'''Makes rows of nested tuplets.
-        '''
+        """
+        Makes rows of nested tuplets.
+        """
         assert 0 < row_count
         rows_of_nested_tuplets = []
         for n in range(row_count):
@@ -823,8 +831,9 @@ class FerneyhoughDemo(object):
         return rows_of_nested_tuplets
 
     def make_score(self, tuplet_duration, row_count, column_count):
-        r'''Makes score.
-        '''
+        """
+        Makes score.
+        """
         score = abjad.Score()
         rows_of_nested_tuplets = self.make_rows_of_nested_tuplets(
             tuplet_duration,

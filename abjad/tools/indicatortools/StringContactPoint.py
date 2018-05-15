@@ -3,7 +3,7 @@ from abjad.tools.markuptools.Markup import Markup
 
 
 class StringContactPoint(AbjadValueObject):
-    '''
+    """
     String contact point.
 
     ..  container:: example
@@ -26,7 +26,7 @@ class StringContactPoint(AbjadValueObject):
             contact_point='sul tasto',
             )
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -74,7 +74,7 @@ class StringContactPoint(AbjadValueObject):
 
     @property
     def contact_point(self) -> str:
-        '''
+        """
         Gets contact point of string contact point.
 
         ..  container:: example
@@ -94,12 +94,12 @@ class StringContactPoint(AbjadValueObject):
             'sul tasto'
 
         Set to known string.
-        '''
+        """
         return self._contact_point
 
     @property
     def markup(self) -> Markup:
-        r'''
+        r"""
         Gets markup of string contact point.
 
         ..  container:: example
@@ -132,7 +132,7 @@ class StringContactPoint(AbjadValueObject):
                         S.T.
                     }
 
-        '''
+        """
         string = self._contact_point_abbreviations[self.contact_point]
         string = string.title()
         markup = Markup(string)
@@ -141,7 +141,7 @@ class StringContactPoint(AbjadValueObject):
 
     @property
     def persistent(self) -> bool:
-        '''
+        """
         Is true.
 
         ..  container:: example
@@ -149,5 +149,12 @@ class StringContactPoint(AbjadValueObject):
             >>> abjad.StringContactPoint('sul tasto').persistent
             True
 
-        '''
+        """
         return self._persistent
+
+    @property
+    def tweaks(self) -> None:
+        """
+        Are not implemented on string contact point.
+        """
+        pass

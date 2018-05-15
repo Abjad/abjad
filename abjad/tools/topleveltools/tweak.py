@@ -2,8 +2,9 @@ from abjad.tools.lilypondnametools.LilyPondTweakManager import \
     LilyPondTweakManager
 
 
-def tweak(argument):
-    r'''Makes LilyPond tweak manager.
+def tweak(argument) -> LilyPondTweakManager:
+    r"""
+    Makes LilyPond tweak manager.
 
     ..  container:: example
 
@@ -146,17 +147,41 @@ def tweak(argument):
 
     ..  container:: example
 
-        ..  todo:: Teach ``abjad.tweak()`` about grobs.
+        Tweaks note-head:
 
-        >>> staff = abjad.Staff("c'4 cs' d ds'")
-        >>> #abjad.tweak(staff[1]).accidental.color = 'red'
+        >>> staff = abjad.Staff("c'4 cs' d' ds'")
+        >>> abjad.tweak(staff[1].note_head).color = 'red'
+        >>> abjad.show(staff) # doctest: +SKIP
 
-    ..  container:: example
+        ..  docs::
 
-        Returns LilyPond tweak manager:
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+                \tweak color #red
+                cs'4
+                d'4
+                ds'4
+            }
 
-        >>> abjad.tweak(markup_1)
-        LilyPondTweakManager(('color', 'red'))
+        Tweaks grob aggregated to note-head:
+
+        >>> staff = abjad.Staff("c'4 cs' d' ds'")
+        >>> abjad.tweak(staff[1].note_head).accidental.color = 'red'
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+                \tweak Accidental.color #red
+                cs'4
+                d'4
+                ds'4
+            }
 
     ..  container:: example
 
@@ -210,7 +235,14 @@ def tweak(argument):
                 \stopTextSpan
             }
 
-    '''
+    ..  container:: example
+
+        Returns LilyPond tweak manager:
+
+        >>> abjad.tweak(markup_1)
+        LilyPondTweakManager(('color', 'red'))
+
+    """
     if not hasattr(argument, '_lilypond_tweak_manager'):
         name = type(argument).__name__
         raise NotImplementedError(f'{name} does not allow tweaks (yet).')

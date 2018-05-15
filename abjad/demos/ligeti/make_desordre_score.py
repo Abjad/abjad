@@ -2,8 +2,9 @@ import abjad
 
 
 def make_desordre_score(pitches):
-    '''Makes Désordre score.
-    '''
+    """
+    Makes Désordre score.
+    """
 
     assert len(pitches) == 2
     staff_group = abjad.StaffGroup()

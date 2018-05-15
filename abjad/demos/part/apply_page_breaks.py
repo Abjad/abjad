@@ -2,8 +2,9 @@ import abjad
 
 
 def apply_page_breaks(score):
-    r'''Applies page breaks to score.
-    '''
+    """
+    Applies page breaks to score.
+    """
 
     bell_voice = score['Bell Voice']
 
@@ -13,5 +14,5 @@ def apply_page_breaks(score):
         ]
 
     for measure_index in measure_indices:
-        command = abjad.LilyPondCommand('break', 'after')
+        command = abjad.LilyPondLiteral(r'\break', 'after')
         abjad.attach(command, bell_voice[measure_index])

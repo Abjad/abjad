@@ -3,6 +3,9 @@ from abjad.enumerations import Down, Up, VerticalAlignment
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.datastructuretools.String import String
+from abjad.tools.lilypondnametools.LilyPondTweakManager import (
+    LilyPondTweakManager,
+    )
 from abjad.tools.mathtools.Infinity import Infinity
 from abjad.tools.mathtools.NegativeInfinity import NegativeInfinity
 from abjad.tools.systemtools.FormatSpecification import FormatSpecification
@@ -10,7 +13,7 @@ from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class Dynamic(AbjadValueObject):
-    r'''
+    r"""
     Dynamic.
 
     ..  container:: example
@@ -105,7 +108,7 @@ class Dynamic(AbjadValueObject):
         (Note("a'8"), Dynamic('f'))
         (Note("c'2"), Dynamic('mf'))
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -113,6 +116,7 @@ class Dynamic(AbjadValueObject):
         '_command',
         '_direction',
         '_hide',
+        '_lilypond_tweak_manager',
         '_name',
         '_name_is_textual',
         '_ordinal',
@@ -226,6 +230,8 @@ class Dynamic(AbjadValueObject):
         name_is_textual: bool = None,
         ordinal: typing.Union[int, Infinity, NegativeInfinity] = None,
         sforzando: bool = None,
+        tweaks: typing.Union[
+            typing.List[typing.Tuple], LilyPondTweakManager] = None,
         ) -> None:
         if name is not None:
             assert isinstance(name, (str, type(self))), repr(name)
@@ -260,11 +266,13 @@ class Dynamic(AbjadValueObject):
         if sforzando is not None:
             sforzando = bool(sforzando)
         self._sforzando = sforzando
+        self._lilypond_tweak_manager = None
+        LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument) -> bool:
-        '''
+        """
         Is true when ``argument`` equals dynamic.
 
         ..  container:: example
@@ -294,7 +302,7 @@ class Dynamic(AbjadValueObject):
             >>> dynamic_3 == dynamic_3
             True
 
-        '''
+        """
         if not isinstance(argument, type(self)):
             return False
         if self.name == argument.name and self.ordinal == argument.ordinal:
@@ -302,7 +310,7 @@ class Dynamic(AbjadValueObject):
         return False
 
     def __format__(self, format_specification='') -> str:
-        r'''
+        r"""
         Formats dynamic.
 
         ..  container:: example
@@ -319,7 +327,7 @@ class Dynamic(AbjadValueObject):
             >>> print(format(dynamic, 'lilypond'))
             \f
 
-        '''
+        """
         if format_specification == 'lilypond':
             if self.name == 'niente':
                 return ''
@@ -332,11 +340,11 @@ class Dynamic(AbjadValueObject):
             )
 
     def __hash__(self) -> int:
-        '''
+        """
         Hashes dynamic.
 
         Redefined in tandem with __eq__.
-        '''
+        """
         return super(Dynamic, self).__hash__()
 
     ### PRIVATE PROPERTIES ###
@@ -437,6 +445,9 @@ class Dynamic(AbjadValueObject):
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
+        if self.tweaks:
+            tweaks = self.tweaks._list_format_contributions()
+            bundle.right.articulations.extend(tweaks)
         if not self.hide:
             string = self._get_lilypond_format()
             bundle.right.articulations.append(string)
@@ -446,7 +457,7 @@ class Dynamic(AbjadValueObject):
 
     @property
     def command(self) -> typing.Optional[str]:
-        r'''
+        r"""
         Gets explicit command.
 
         ..  container:: example
@@ -459,12 +470,12 @@ class Dynamic(AbjadValueObject):
         nonstandard LilyPond dynamic. LilyPond will interpret the output above
         only when the command ``\sub_f`` is defined somewhere in an external
         stylesheet.)
-        '''
+        """
         return self._command
 
     @property
     def context(self) -> str:
-        '''
+        """
         Returns (historically conventional) context ``'Voice'``.
 
         ..  container:: example
@@ -475,12 +486,12 @@ class Dynamic(AbjadValueObject):
         Class constant.
 
         Override with ``abjad.attach(..., context='...')``.
-        '''
+        """
         return self._context
 
     @property
     def direction(self) -> typing.Optional[VerticalAlignment]:
-        '''
+        """
         Gets direction for effort dynamics only.
 
         ..  container:: example
@@ -495,7 +506,7 @@ class Dynamic(AbjadValueObject):
             >>> abjad.Dynamic('"f"', direction=abjad.Up).direction
             Up
 
-        '''
+        """
         if self._direction is not None:
             return self._direction
         elif self.name == 'niente' or self.effort:
@@ -505,7 +516,7 @@ class Dynamic(AbjadValueObject):
 
     @property
     def effort(self) -> typing.Optional[bool]:
-        r'''
+        r"""
         Is true when double quotes enclose dynamic.
 
         ..  container:: example
@@ -662,12 +673,12 @@ class Dynamic(AbjadValueObject):
                     r4
                 }
 
-        '''
+        """
         return bool(self.name) and self.name[0] == '"'
 
     @property
     def hide(self) -> typing.Optional[bool]:
-        r'''
+        r"""
         Is true when dynamic should not appear in output (but should still
         determine effective dynamic).
 
@@ -696,12 +707,12 @@ class Dynamic(AbjadValueObject):
             (Note("e'4"), Dynamic('mf', hide=True))
             (Note("f'4"), Dynamic('mf', hide=True))
 
-        '''
+        """
         return self._hide
 
     @property
     def name(self) -> str:
-        r'''
+        r"""
         Gets name.
 
         ..  container:: example
@@ -750,12 +761,12 @@ class Dynamic(AbjadValueObject):
                     \p
                 }
 
-        '''
+        """
         return self._name
 
     @property
     def name_is_textual(self) -> typing.Optional[bool]:
-        r'''
+        r"""
         Is true when name is textual.
 
         ..  container:: example
@@ -840,13 +851,13 @@ class Dynamic(AbjadValueObject):
             >>> abjad.new(dynamic)
             Dynamic('appena udibile', name_is_textual=True, sforzando=False)
 
-        '''
+        """
         return self._name_is_textual
 
     @property
     #def ordinal(self) -> typing.Union[int, Infinity, NegativeInfinity]:
     def ordinal(self):
-        '''
+        """
         Gets ordinal.
 
         ..  container:: example
@@ -898,7 +909,7 @@ class Dynamic(AbjadValueObject):
             >>> dynamic.ordinal is None
             True
 
-        '''
+        """
         if self._ordinal is not None:
             return self._ordinal
         name = None
@@ -912,7 +923,7 @@ class Dynamic(AbjadValueObject):
 
     @property
     def persistent(self) -> bool:
-        '''
+        """
         Is true.
 
         ..  container:: example
@@ -920,12 +931,12 @@ class Dynamic(AbjadValueObject):
             >>> abjad.Dynamic('f').persistent
             True
 
-        '''
+        """
         return self._persistent
 
     @property
     def sforzando(self) -> typing.Optional[bool]:
-        '''
+        """
         Is true when dynamic name begins in s- and ends in -z.
 
         ..  container:: example
@@ -948,7 +959,7 @@ class Dynamic(AbjadValueObject):
             >>> abjad.Dynamic('rfz').sforzando
             False
 
-        '''
+        """
         if self._sforzando is not None:
             return self._sforzando
         if (self.name and
@@ -961,7 +972,7 @@ class Dynamic(AbjadValueObject):
 
     @staticmethod
     def composite_dynamic_name_to_steady_state_dynamic_name(name) -> str:
-        '''
+        """
         Changes composite ``name`` to steady state dynamic name.
 
         ..  container:: example
@@ -972,7 +983,7 @@ class Dynamic(AbjadValueObject):
             >>> abjad.Dynamic.composite_dynamic_name_to_steady_state_dynamic_name('rfz')
             'f'
 
-        '''
+        """
         return Dynamic._composite_dynamic_name_to_steady_state_dynamic_name[
             name]
 
@@ -981,7 +992,7 @@ class Dynamic(AbjadValueObject):
     #    int, Infinity, NegativeInfinity,
     #    ]:
     def dynamic_name_to_dynamic_ordinal(name):
-        '''
+        """
         Changes ``name`` to dynamic ordinal.
 
         ..  container:: example
@@ -992,7 +1003,7 @@ class Dynamic(AbjadValueObject):
             >>> abjad.Dynamic.dynamic_name_to_dynamic_ordinal('niente')
             NegativeInfinity
 
-        '''
+        """
         try:
             return Dynamic._dynamic_name_to_dynamic_ordinal[name]
         except KeyError:
@@ -1002,7 +1013,7 @@ class Dynamic(AbjadValueObject):
 
     @staticmethod
     def dynamic_ordinal_to_dynamic_name(dynamic_ordinal) -> str:
-        '''
+        """
         Changes ``dynamic_ordinal`` to dynamic name.
 
         ..  container:: example
@@ -1014,7 +1025,7 @@ class Dynamic(AbjadValueObject):
             >>> abjad.Dynamic.dynamic_ordinal_to_dynamic_name(negative_infinity)
             'niente'
 
-        '''
+        """
         if dynamic_ordinal == NegativeInfinity():
             return 'niente'
         else:
@@ -1022,7 +1033,7 @@ class Dynamic(AbjadValueObject):
 
     @staticmethod
     def is_dynamic_name(argument) -> bool:
-        '''
+        """
         Is true when ``argument`` is dynamic name.
 
         ..  container:: example
@@ -1036,5 +1047,45 @@ class Dynamic(AbjadValueObject):
             >>> abjad.Dynamic.is_dynamic_name('niente')
             True
 
-        '''
+        """
         return argument in Dynamic._dynamic_names
+
+    @property
+    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+        r"""
+        Gets tweaks
+
+        ..  container:: example
+
+            >>> note = Note("c'4")
+            >>> dynamic = abjad.Dynamic('f')
+            >>> abjad.tweak(dynamic).color = 'blue'
+            >>> abjad.attach(dynamic, note)
+            >>> abjad.show(note) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(note)
+                c'4
+                - \tweak color #blue
+                \f
+
+        ..  container:: example
+
+            >>> note = Note("c'4")
+            >>> dynamic = abjad.Dynamic(
+            ...     'f',
+            ...     tweaks=[('color', 'blue')],
+            ...     )
+            >>> abjad.attach(dynamic, note)
+            >>> abjad.show(note) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(note)
+                c'4
+                - \tweak color #blue
+                \f
+
+        """
+        return self._lilypond_tweak_manager

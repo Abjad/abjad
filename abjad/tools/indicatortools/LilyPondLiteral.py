@@ -1,12 +1,14 @@
 import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.lilypondnametools.LilyPondTweakManager import \
+    LilyPondTweakManager
 from abjad.tools.systemtools.FormatSpecification import FormatSpecification
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
 
 
 class LilyPondLiteral(AbjadValueObject):
-    r'''
+    r"""
     LilyPond literal.
 
     ..  container:: example
@@ -121,13 +123,15 @@ class LilyPondLiteral(AbjadValueObject):
             )
         }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
         '_argument',
+        '_directed',
         '_format_slot',
+        '_lilypond_tweak_manager',
         )
 
     _allowable_format_slots = (
@@ -150,17 +154,26 @@ class LilyPondLiteral(AbjadValueObject):
         self,
         argument: typing.Union[str, typing.List[str]] = '',
         format_slot: str = 'opening',
+        *,
+        directed: bool = None,
+        tweaks: typing.Union[
+            typing.List[typing.Tuple], LilyPondTweakManager] = None,
         ) -> None:
         self._argument = argument
         assert format_slot in self._allowable_format_slots, repr(format_slot)
         self._format_slot = format_slot
+        if directed is not None:
+            directed = bool(directed)
+        self._directed = directed
+        self._lilypond_tweak_manager = None
+        LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification='') -> str:
-        '''
+        """
         Formats LilyPond literal.
-        '''
+        """
         if format_specification in ('', 'storage'):
             return StorageFormatManager(self).get_storage_format()
         assert format_specification == 'lilypond'
@@ -188,6 +201,11 @@ class LilyPondLiteral(AbjadValueObject):
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
         format_slot = bundle.get(self.format_slot)
+        if self.tweaks:
+            tweaks = self.tweaks._list_format_contributions(
+                directed=self.directed,
+                )
+            format_slot.commands.extend(tweaks)
         pieces = self._get_format_pieces()
         format_slot.commands.extend(pieces)
         return bundle
@@ -196,7 +214,7 @@ class LilyPondLiteral(AbjadValueObject):
 
     @property
     def argument(self) -> typing.Union[str, typing.List[str]]:
-        r'''
+        r"""
         Gets argument of LilyPond literal.
 
         ..  container:: example
@@ -205,12 +223,77 @@ class LilyPondLiteral(AbjadValueObject):
             >>> literal.argument
             '\\slurDotted'
 
-        '''
+        """
         return self._argument
 
     @property
+    def directed(self) -> typing.Optional[bool]:
+        r"""
+        Is true when literal is directed.
+
+        ..  container:: example
+
+            Directed literal:
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> literal = abjad.LilyPondLiteral(r'\f', 'after', directed=True)
+            >>> abjad.tweak(literal).color = 'blue'
+            >>> abjad.tweak(literal).dynamic_line_spanner.staff_padding = 5
+            >>> abjad.attach(literal, staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'4
+                    - \tweak DynamicLineSpanner.staff-padding #5
+                    - \tweak color #blue
+                    \f
+                    d'4
+                    e'4
+                    f'4
+                }
+
+        ..  container:: example
+
+            Nondirected literal:
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> literal = abjad.LilyPondLiteral(
+            ...     r'\breathe',
+            ...     'after',
+            ...     directed=False,
+            ...     )
+            >>> abjad.tweak(literal).color = 'blue'
+            >>> abjad.attach(literal, staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'4
+                    \tweak color #blue
+                    \breathe
+                    d'4
+                    e'4
+                    f'4
+                }
+
+        Proper use of the ``directed`` property entails searching the LilyPond
+        docs to understand whether LilyPond treats any particular command as
+        directed or not. Most LilyPond commands are directed. LilyPond insists
+        that a few commands (include ``\breathe``, ``\key``, ``\mark``) must
+        not be directed.
+        """
+        return self._directed
+
+    @property
     def format_slot(self) -> str:
-        '''
+        """
         Gets format slot of LilyPond literal.
 
         ..  container:: example
@@ -219,14 +302,47 @@ class LilyPondLiteral(AbjadValueObject):
             >>> literal.format_slot
             'opening'
 
-        '''
+        """
         return self._format_slot
+
+    @property
+    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+        r"""
+        Gets tweaks.
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> literal = abjad.LilyPondLiteral(
+            ...     r'\f',
+            ...     'after',
+            ...     directed=True,
+            ...     tweaks=[('color', 'blue')],
+            ...     )
+            >>> abjad.attach(literal, staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    c'4
+                    - \tweak color #blue
+                    \f
+                    d'4
+                    e'4
+                    f'4
+                }
+
+        """
+        return self._lilypond_tweak_manager
 
     ### PUBLIC METHODS ###
 
     @staticmethod
     def list_allowable_format_slots() -> typing.Tuple[str, ...]:
-        '''
+        """
         Lists allowable format slots.
 
         ..  container:: example
@@ -242,5 +358,5 @@ class LilyPondLiteral(AbjadValueObject):
             'opening'
             'right'
 
-        '''
+        """
         return LilyPondLiteral._allowable_format_slots
