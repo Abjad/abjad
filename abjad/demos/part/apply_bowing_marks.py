@@ -3,8 +3,9 @@ import copy
 
 
 def apply_bowing_marks(score):
-    r'''Applies bowing marks to score.
-    '''
+    """
+    Applies bowing marks to score.
+    """
 
     # apply alternating upbow and downbow for first two sounding bars
     # of the first violin

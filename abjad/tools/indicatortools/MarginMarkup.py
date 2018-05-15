@@ -6,7 +6,7 @@ from abjad.tools.topleveltools.new import new
 
 
 class MarginMarkup(AbjadValueObject):
-    r'''
+    r"""
     Margin markup.
 
     ..  container:: example
@@ -33,7 +33,7 @@ class MarginMarkup(AbjadValueObject):
                 f'4
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -67,7 +67,7 @@ class MarginMarkup(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument) -> bool:
-        '''
+        """
         Is true when `argument` is margin markup with context and markup equal
         to those of this margin markup.
 
@@ -107,7 +107,7 @@ class MarginMarkup(AbjadValueObject):
             >>> margin_markup_3 == margin_markup_3
             True
 
-        '''
+        """
         if not isinstance(argument, type(self)):
             return False
         if self.context == argument.context and self.markup == argument.markup:
@@ -115,7 +115,7 @@ class MarginMarkup(AbjadValueObject):
         return False
 
     def __hash__(self) -> int:
-        r'''Hashes margin markup.
+        r"""Hashes margin markup.
 
         Redefined in tandem with __eq__.
 
@@ -130,7 +130,7 @@ class MarginMarkup(AbjadValueObject):
             >>> isinstance(hash_, int)
             True
 
-        '''
+        """
         return super(MarginMarkup, self).__hash__()
 
     ### PRIVATE PROPERTIES ###
@@ -177,7 +177,7 @@ class MarginMarkup(AbjadValueObject):
 
     @property
     def context(self) -> str:
-        '''
+        """
         Gets default context of margin markup.
 
         ..  container:: example
@@ -185,12 +185,12 @@ class MarginMarkup(AbjadValueObject):
             >>> abjad.MarginMarkup().context
             'Staff'
 
-        '''
+        """
         return self._context
 
     @property
     def format_slot(self) -> str:
-        '''
+        """
         Gets format slot.
 
         ..  container:: example
@@ -198,12 +198,12 @@ class MarginMarkup(AbjadValueObject):
             >>> abjad.MarginMarkup().format_slot
             'before'
 
-        '''
+        """
         return self._format_slot
 
     @property
     def latent(self) -> bool:
-        '''Is true.
+        """Is true.
 
         ..  container::
 
@@ -214,19 +214,19 @@ class MarginMarkup(AbjadValueObject):
             True
 
         Class constant.
-        '''
+        """
         return self._latent
 
     @property
     def markup(self) -> typing.Optional[Markup]:
-        '''
+        """
         Gets (instrument name) markup.
-        '''
+        """
         return self._markup
 
     @property
     def persistent(self) -> bool:
-        '''
+        """
         Is true.
 
         ..  container:: example
@@ -238,12 +238,12 @@ class MarginMarkup(AbjadValueObject):
             True
 
         Class constant.
-        '''
+        """
         return self._persistent
 
     @property
     def redraw(self) -> bool:
-        '''
+        """
         Is true.
 
         ..  container:: example
@@ -255,5 +255,16 @@ class MarginMarkup(AbjadValueObject):
             True
 
         Class constant.
-        '''
+        """
         return self._redraw
+
+    @property
+    def tweaks(self) -> None:
+        """
+        Are not implemented on margin markup.
+        
+        The LilyPond ``\shortInstrumentName`` command refuses tweaks.
+
+        Craft explicit markup instead.
+        """
+        pass

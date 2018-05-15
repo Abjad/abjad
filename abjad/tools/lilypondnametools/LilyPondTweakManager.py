@@ -1,3 +1,4 @@
+import copy
 import typing
 from abjad.tools.datastructuretools.String import String
 from abjad.tools.systemtools.LilyPondFormatManager import LilyPondFormatManager
@@ -5,7 +6,7 @@ from .LilyPondNameManager import LilyPondNameManager
 
 
 class LilyPondTweakManager(LilyPondNameManager):
-    '''
+    """
     LilyPond tweak manager.
 
     ..  container:: example
@@ -38,14 +39,14 @@ class LilyPondTweakManager(LilyPondNameManager):
             ...
         AttributeError: 'LilyPondTweakManager' object has no attribute: 'foo'.
         
-    '''
+    """
 
     ### SPECIAL METHODS ###
 
     def __getattr__(self, name) -> typing.Union[
         LilyPondNameManager, typing.Any,
         ]:
-        r'''
+        r"""
         Gets LilyPondNameManager (or LilyPondGrobNameManager) keyed to 
         ``name``.
 
@@ -97,7 +98,7 @@ class LilyPondTweakManager(LilyPondNameManager):
                     \f
                 }
 
-        '''
+        """
         from abjad.ly import contexts
         from abjad.ly import grob_interfaces
         camel_name = String(name).to_upper_camel_case()
@@ -124,8 +125,8 @@ class LilyPondTweakManager(LilyPondNameManager):
 
     ### PRIVATE METHODS ###
 
-    def _get_attribute_tuples(self):
-        result = []
+    def _get_attribute_tuples(self) -> typing.List[typing.Tuple]:
+        result: typing.List[typing.Tuple] = []
         for name, value in vars(self).items():
             if type(value) is LilyPondNameManager:
                 grob_name = name
@@ -139,9 +140,9 @@ class LilyPondTweakManager(LilyPondNameManager):
                 attribute_value = value
                 pair = (attribute_name, attribute_value)
                 result.append(pair)
-        return tuple(result)
+        return result
 
-    def _list_format_contributions(self, hyphen=True):
+    def _list_format_contributions(self, directed=True):
         result = []
         for attribute_tuple in self._get_attribute_tuples():
             if len(attribute_tuple) == 2:
@@ -158,9 +159,53 @@ class LilyPondTweakManager(LilyPondNameManager):
             string = LilyPondFormatManager.make_lilypond_tweak_string(
                 attribute,
                 value,
+                directed=directed,
                 grob=grob,
-                hyphen=hyphen,
                 )
             result.append(string)
         result.sort()
         return result
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def set_tweaks(
+        argument,
+        tweaks: typing.Union[
+            typing.List[typing.Tuple],
+            'LilyPondTweakManager',
+            None,
+            ],
+        ) -> None:
+        """
+        Sets ``tweaks`` on ``argument``.
+        """
+        if not hasattr(argument, '_lilypond_tweak_manager'):
+            name = type(argument).__name__
+            raise NotImplementedError(f'{name} does not allow tweaks (yet).')
+        if not tweaks:
+            return
+        if isinstance(tweaks, LilyPondTweakManager):
+            tweaks = tweaks._get_attribute_tuples()
+        if not isinstance(tweaks, list):
+            raise Exception(f'tweaks must be list of tuples (not {tweaks!r}).')
+        assert all(isinstance(_, tuple) for _ in tweaks), repr(tweaks)
+        if not tweaks:
+            return
+        if argument._lilypond_tweak_manager is None:
+            argument._lilypond_tweak_manager = LilyPondTweakManager()
+        manager = argument._lilypond_tweak_manager
+        for tweak in tweaks:
+            if len(tweak) == 2:
+                attribute, value = tweak
+                value = copy.copy(value)
+                setattr(manager, attribute, value)
+            elif len(tweak) == 3:
+                grob, attribute, value = tweak
+                value = copy.copy(value)
+                grob = getattr(manager, grob)
+                setattr(grob, attribute, value)
+            else:
+                message = 'tweak tuple must have length 2 or 3'
+                message += f' (not {tweak!r}).'
+                raise ValueError(message)

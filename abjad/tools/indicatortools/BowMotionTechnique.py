@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class BowMotionTechnique(AbjadValueObject):
-    '''
+    """
     Bow motion technique.
 
     ..  container:: example
@@ -27,7 +27,7 @@ class BowMotionTechnique(AbjadValueObject):
             )
 
     Valid technique names include 'ordinario', 'jeté' and 'circular'.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -59,7 +59,7 @@ class BowMotionTechnique(AbjadValueObject):
 
     @property
     def glissando_style(self) -> str:
-        '''
+        """
         Gets glissando style of bow motion technique.
 
         ..  container:: example
@@ -67,7 +67,7 @@ class BowMotionTechnique(AbjadValueObject):
             >>> abjad.BowMotionTechnique('jete').glissando_style
             'dotted-line'
 
-        '''
+        """
         if self.technique_name == 'circular':
             return 'zigzag'
         elif self.technique_name == 'jete':
@@ -76,7 +76,7 @@ class BowMotionTechnique(AbjadValueObject):
 
     @property
     def persistent(self) -> bool:
-        '''
+        """
         Is true.
 
         ..  container:: example
@@ -84,12 +84,12 @@ class BowMotionTechnique(AbjadValueObject):
             >>> abjad.BowMotionTechnique('jete').persistent
             True
 
-        '''
+        """
         return self._persistent
 
     @property
     def technique_name(self) -> typing.Optional[str]:
-        '''
+        """
         Gets technique name of bow motion technique.
 
         ..  container:: example
@@ -97,5 +97,12 @@ class BowMotionTechnique(AbjadValueObject):
             >>> abjad.BowMotionTechnique('jete').technique_name
             'jete'
 
-        '''
+        """
         return self._technique_name
+
+    @property
+    def tweaks(self) -> None:
+        """
+        Are not implemented on bow motion technique.
+        """
+        pass

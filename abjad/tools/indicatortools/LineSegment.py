@@ -11,7 +11,7 @@ Number = typing.Union[int, float]
 
 
 class LineSegment(AbjadValueObject):
-    '''
+    """
     Line segment.
 
     Line segments format as text spanners.
@@ -25,7 +25,7 @@ class LineSegment(AbjadValueObject):
     .. todo:: Add examples.
 
     Use line segments to start a markup-terminated text spanner.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -320,113 +320,120 @@ class LineSegment(AbjadValueObject):
 
     @property
     def arrow_width(self) -> typing.Optional[Number]:
-        '''
+        """
         Gets arrow width of line segment.
-        '''
+        """
         return self._arrow_width
 
     @property
     def dash_fraction(self) -> typing.Optional[Number]:
-        '''
+        """
         Gets dash fraction of line segment.
-        '''
+        """
         return self._dash_fraction
 
     @property
     def dash_period(self) -> typing.Optional[Number]:
-        '''Gets dash period of line segment.
-        '''
+        """Gets dash period of line segment.
+        """
         return self._dash_period
 
     @property
     def left_broken_padding(self) -> typing.Optional[Number]:
-        '''
+        """
         Gets left broken padding of line segment.
-        '''
+        """
         return self._left_broken_padding
 
     @property
     def left_broken_text(self) -> typing.Union[bool, str, Markup, None]:
-        '''
+        """
         Gets left broken text of line segment.
-        '''
+        """
         return self._left_broken_text
 
     @property
     def left_hspace(self) -> typing.Optional[Number]:
-        '''
+        """
         Gets left hspace of line segment.
-        '''
+        """
         return self._left_hspace
 
     @property
     def left_padding(self) -> typing.Optional[Number]:
-        '''
+        """
         Gets left padding of line segment.
-        '''
+        """
         return self._left_padding
 
     @property
     def left_stencil_align_direction_y(self) -> typing.Union[
         Number, VerticalAlignment, None]:
-        '''
+        """
         Gets left stencil align direction Y of line segment.
-        '''
+        """
         return self._left_stencil_align_direction_y
 
     @property
     def right_arrow(self) -> typing.Optional[bool]:
-        '''
+        """
         Is true when right end of line segment carries an arrow.
-        '''
+        """
         return self._right_arrow
 
     @property
     def right_broken_arrow(self) -> typing.Optional[bool]:
-        '''
+        """
         Gets right broken arrow of line segment.
-        '''
+        """
         return self._right_broken_arrow
 
     @property
     def right_broken_padding(self) -> typing.Optional[Number]:
-        '''
+        """
         Gets right broken padding of line segment.
-        '''
+        """
         return self._right_broken_padding
 
     @property
     def right_broken_text(self) -> typing.Union[bool, str, Markup, None]:
-        '''
+        """
         Gets right broken text of line segment.
-        '''
+        """
         return self._right_broken_text
 
     @property
     def right_padding(self) -> typing.Optional[Number]:
-        '''
+        """
         Gets right padding of line segment.
-        '''
+        """
         return self._right_padding
 
     @property
     def right_stencil_align_direction_y(self) -> typing.Union[
         Number, VerticalAlignment, None]:
-        '''
+        """
         Gets right stencil align direction Y of line segment.
-        '''
+        """
         return self._right_stencil_align_direction_y
 
     @property
     def right_text(self) -> typing.Union[bool, str, Markup, None]:
-        '''
+        """
         Gets right text.
-        '''
+        """
         return self._right_text
 
     @property
     def style(self) -> typing.Optional[str]:
-        '''
+        """
         Gets style of line segment.
-        '''
+        """
         return self._style
+
+    @property
+    def tweaks(self) -> None:
+        """
+        Are not implemented on line segment.
+        """
+        pass

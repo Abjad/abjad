@@ -12,7 +12,7 @@ from abjad.tools.topleveltools.select import select
 
 
 class MetricModulation(AbjadValueObject):
-    r'''
+    r"""
     Metric modulation.
 
     ..  container:: example
@@ -583,7 +583,7 @@ class MetricModulation(AbjadValueObject):
                 }
             >>
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -604,9 +604,9 @@ class MetricModulation(AbjadValueObject):
 
     def __init__(
         self,
-        *,
         left_rhythm=None,
         right_rhythm=None,
+        *,
         left_markup: Markup = None,
         right_markup: Markup = None,
         ) -> None:
@@ -628,7 +628,7 @@ class MetricModulation(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument) -> bool:
-        '''
+        """
         Is true when `argument` is another metric modulation with the same
         ratio as this metric modulation.
 
@@ -677,7 +677,7 @@ class MetricModulation(AbjadValueObject):
             >>> metric_modulation_3 == metric_modulation_3
             True
 
-        '''
+        """
         # custom definition because input rhythms don't compare:
         if isinstance(argument, type(self)):
             if self.ratio == argument.ratio:
@@ -685,7 +685,7 @@ class MetricModulation(AbjadValueObject):
         return False
 
     def __format__(self, format_specification='') -> str:
-        '''
+        """
         Formats metric modulation.
 
         ..  container:: example
@@ -711,21 +711,21 @@ class MetricModulation(AbjadValueObject):
 
         Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
         Interprets `''` equal to `'storage'`.
-        '''
+        """
         return super(MetricModulation, self).__format__(
             format_specification=format_specification
             )
 
     def __hash__(self) -> int:
-        '''
+        """
         Hashes metric modulation.
 
         Redefined in tandem with __eq__.
-        '''
+        """
         return super(MetricModulation, self).__hash__()
 
     def __illustrate__(self):
-        r'''
+        r"""
         Illustrates metric modulation.
 
         ..  container:: example
@@ -819,14 +819,14 @@ class MetricModulation(AbjadValueObject):
                     }
 
         Returns LilyPond file.
-        '''
+        """
         import abjad
         lilypond_file = abjad.LilyPondFile.new()
         lilypond_file.items.append(self._get_markup())
         return lilypond_file
 
     def __str__(self) -> str:
-        r'''
+        r"""
         Gets string representation of metric modulation.
 
         ..  container:: example
@@ -914,7 +914,7 @@ class MetricModulation(AbjadValueObject):
                         }
                 }
 
-        '''
+        """
         return str(self._get_markup())
 
     ### PRIVATE PROPERTIES ###
@@ -980,7 +980,7 @@ class MetricModulation(AbjadValueObject):
 
     @property
     def context(self) -> str:
-        '''
+        """
         Gets (historically conventional) context.
 
         ..  container:: example
@@ -993,12 +993,12 @@ class MetricModulation(AbjadValueObject):
             'Score'
 
         Override with ``abjad.attach(..., context='...')``.
-        '''
+        """
         return self._context
 
     @property
     def left_markup(self) -> typing.Optional[Markup]:
-        '''
+        """
         Gets left markup of metric modulation.
 
         ..  container:: example
@@ -1009,12 +1009,12 @@ class MetricModulation(AbjadValueObject):
             ...     )
             >>> metric_modulation.left_markup
 
-        '''
+        """
         return self._left_markup
 
     @property
     def left_rhythm(self):
-        '''
+        """
         Gets left rhythm of metric modulation.
 
         ..  container:: example
@@ -1027,12 +1027,12 @@ class MetricModulation(AbjadValueObject):
             Selection([Note("c'4")])
 
         Returns selection.
-        '''
+        """
         return self._left_rhythm
 
     @property
     def persistent(self) -> str:
-        '''
+        """
         Is ``'abjad.MetronomeMark'``.
 
         ..  container:: example
@@ -1044,12 +1044,12 @@ class MetricModulation(AbjadValueObject):
             >>> metric_modulation.persistent
             'abjad.MetronomeMark'
 
-        '''
+        """
         return self._persistent
 
     @property
     def ratio(self) -> Ratio:
-        '''
+        """
         Gets ratio of metric modulation.
 
         ..  container:: example
@@ -1061,7 +1061,7 @@ class MetricModulation(AbjadValueObject):
             >>> metric_modulation.ratio
             Ratio((2, 3))
 
-        '''
+        """
         left_duration = inspect(self.left_rhythm).get_duration()
         right_duration = inspect(self.right_rhythm).get_duration()
         duration = left_duration / right_duration
@@ -1070,7 +1070,7 @@ class MetricModulation(AbjadValueObject):
 
     @property
     def right_markup(self) -> typing.Optional[Markup]:
-        r'''Gets right markup of metric modulation.
+        r"""Gets right markup of metric modulation.
 
         ..  container:: example
 
@@ -1080,12 +1080,12 @@ class MetricModulation(AbjadValueObject):
             ...     )
             >>> metric_modulation.right_markup
 
-        '''
+        """
         return self._right_markup
 
     @property
     def right_rhythm(self):
-        '''
+        """
         Gets right tempo of metric modulation.
 
         ..  container:: example
@@ -1097,5 +1097,12 @@ class MetricModulation(AbjadValueObject):
             >>> metric_modulation.right_rhythm
             Selection([Note("c'4.")])
 
-        '''
+        """
         return self._right_rhythm
+
+    @property
+    def tweaks(self) -> None:
+        """
+        Are not implemented on metric modulation.
+        """
+        pass

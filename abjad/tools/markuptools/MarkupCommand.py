@@ -2,7 +2,8 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class MarkupCommand(AbjadValueObject):
-    r'''LilyPond markup command.
+    r"""
+    LilyPond markup command.
 
     ..  container:: example
 
@@ -130,7 +131,7 @@ class MarkupCommand(AbjadValueObject):
                 f'4
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -159,7 +160,8 @@ class MarkupCommand(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a markup command with name and
+        """
+        Is true when ``argument`` is a markup command with name and
         arguments equal to those of this markup command. Otherwise false.
 
         ..  container:: example
@@ -188,7 +190,7 @@ class MarkupCommand(AbjadValueObject):
             True
 
         Returns true or false.
-        '''
+        """
         # defined explicitly because of initializer *arguments
         if isinstance(argument, type(self)):
             if self.name == argument.name:
@@ -197,7 +199,8 @@ class MarkupCommand(AbjadValueObject):
         return False
 
     def __format__(self, format_specification=''):
-        r'''Formats markup command.
+        r"""
+        Formats markup command.
 
         ..  container:: example
 
@@ -259,11 +262,11 @@ class MarkupCommand(AbjadValueObject):
                     #0.1
                     ##f
 
-        Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
+        Set ``format_specification`` to ``''``, ``'lilypond'`` or
+        ``'storage'``. Interprets ``''`` equal to ``'storage'``.
 
         Returns string.
-        '''
+        """
         import abjad
         if format_specification in ('', 'storage'):
             return abjad.StorageFormatManager(self).get_storage_format()
@@ -272,16 +275,16 @@ class MarkupCommand(AbjadValueObject):
         return str(self)
 
     def __hash__(self):
-        r'''Hashes markup command.
+        """
+        Hashes markup command.
 
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
+        Redefined in tandem with __eq__.
+        """
         return super(MarkupCommand, self).__hash__()
 
     def __repr__(self):
-        r'''Gets markup command interpreter representation.
+        r"""
+        Gets markup command interpreter representation.
 
         ..  container:: example
 
@@ -301,12 +304,13 @@ class MarkupCommand(AbjadValueObject):
                 )
 
         Returns string.
-        '''
+        """
         superclass = super(MarkupCommand, self)
         return superclass.__format__()
 
     def __str__(self):
-        r'''Gets string representation of markup command.
+        r"""
+        Gets string representation of markup command.
 
         ..  container:: example
 
@@ -332,7 +336,7 @@ class MarkupCommand(AbjadValueObject):
                     ##f
 
         Returns string.
-        '''
+        """
         return self._get_lilypond_format()
 
     ### PRIVATE METHODS ###
@@ -400,7 +404,8 @@ class MarkupCommand(AbjadValueObject):
 
     @property
     def arguments(self):
-        r'''Gets markup command arguments.
+        """
+        Gets markup command arguments.
 
         ..  container:: example
 
@@ -410,15 +415,16 @@ class MarkupCommand(AbjadValueObject):
             (1, 0.1, False)
 
         Returns tuple.
-        '''
+        """
         return self._arguments
 
     @property
     def deactivate(self):
-        r'''Is true when markup command deactivates tag.
+        """
+        Is true when markup command deactivates tag.
 
         Returns true, false or none.
-        '''
+        """
         return self._deactivate
 
     @deactivate.setter
@@ -429,7 +435,8 @@ class MarkupCommand(AbjadValueObject):
 
     @property
     def force_quotes(self):
-        r'''Is true when markup command should force quotes around arguments.
+        r"""
+        Is true when markup command should force quotes around arguments.
         Otherwise false.
 
         ..  container:: example
@@ -480,7 +487,7 @@ class MarkupCommand(AbjadValueObject):
         Defaults to false.
 
         Returns true or false.
-        '''
+        """
         return self._force_quotes
 
     @force_quotes.setter
@@ -490,7 +497,8 @@ class MarkupCommand(AbjadValueObject):
 
     @property
     def name(self):
-        r'''Gets markup command name.
+        """
+        Gets markup command name.
 
         ..  container:: example
 
@@ -500,13 +508,14 @@ class MarkupCommand(AbjadValueObject):
             'draw-circle'
 
         Returns string.
-        '''
+        """
         return self._name
 
     @property
     def tag(self):
-        r'''Gets tag.
-        '''
+        """
+        Gets tag.
+        """
         return self._tag
 
     @tag.setter
@@ -522,11 +531,12 @@ class MarkupCommand(AbjadValueObject):
 
     @staticmethod
     def combine_markup_commands(*commands):
-        r'''Combines markup command and / or strings.
+        r"""
+        Combines markup command and / or strings.
 
         LilyPond's '\combine' markup command can only take two arguments, so in
         order to combine more than two stencils, a cascade of '\combine'
-        commands must be employed.  `combine_markup_commands` simplifies this
+        commands must be employed.  ``combine_markup_commands`` simplifies this
         process.
 
         ..  container:: example
@@ -558,7 +568,7 @@ class MarkupCommand(AbjadValueObject):
 
         Returns a markup command instance, or a string if that was the only
         argument.
-        '''
+        """
         from abjad.tools import markuptools
 
         assert len(commands)

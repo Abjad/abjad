@@ -6,7 +6,7 @@ Number = typing.Union[int, float]
 
 
 class ArrowLineSegment(LineSegment):
-    r'''
+    r"""
     Arrow line segment.
 
     ..  container:: example
@@ -84,7 +84,7 @@ class ArrowLineSegment(LineSegment):
     Arrow line segment is a preconfigured line segment.
 
     Follow the piecewise definition protocol shown here.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -135,15 +135,15 @@ class ArrowLineSegment(LineSegment):
 
     ### PRIVATE METHODS ###
 
-    '''No _get_lilypond_format(), _get_lilypond_format_bundle()
+    """No _get_lilypond_format(), _get_lilypond_format_bundle()
     because class is used only by piecewise spanner.
-    '''
+    """
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def arrow_width(self) -> typing.Optional[Number]:
-        r'''
+        r"""
         Gets arrow width of arrow.
 
         ..  container:: example
@@ -347,12 +347,12 @@ class ArrowLineSegment(LineSegment):
             Results in very wide arrow head.
 
         Defaults to ``0.25``.
-        '''
+        """
         return super(ArrowLineSegment, self).arrow_width
 
     @property
     def dash_fraction(self) -> typing.Optional[Number]:
-        r'''
+        r"""
         Gets dash fraction of arrow.
 
         ..  container:: example
@@ -553,12 +553,12 @@ class ArrowLineSegment(LineSegment):
                 }
 
         Defaults to ``1``.
-        '''
+        """
         return super(ArrowLineSegment, self).dash_fraction
 
     @property
     def dash_period(self) -> typing.Optional[Number]:
-        r'''
+        r"""
         Gets dash period of arrow.
 
         ..  container:: example
@@ -772,12 +772,12 @@ class ArrowLineSegment(LineSegment):
             Results in coarse dashes.
 
         Defaults to none.
-        '''
+        """
         return super(ArrowLineSegment, self).dash_period
 
     @property
     def left_broken_text(self) -> typing.Union[bool, str, Markup, None]:
-        r'''
+        r"""
         Gets left broken text of arrow.
 
         ..  container:: example
@@ -998,12 +998,12 @@ class ArrowLineSegment(LineSegment):
                         \stopTextSpan
                     }
 
-        '''
+        """
         return self._left_broken_text
 
     @property
     def right_broken_arrow(self) -> typing.Optional[bool]:
-        r'''
+        r"""
         Is true when arrow should appear immediately before line break.
 
         ..  container:: example
@@ -1213,12 +1213,12 @@ class ArrowLineSegment(LineSegment):
                         \stopTextSpan
                     }
 
-        '''
+        """
         return self._right_broken_arrow
 
     @property
     def style(self) -> typing.Optional[str]:
-        r'''
+        r"""
         Gets style of arrow.
 
         ..  container:: example
@@ -1484,5 +1484,12 @@ class ArrowLineSegment(LineSegment):
                     \stopTextSpan
                 }
 
-        '''
+        """
         return super(ArrowLineSegment, self).style
+
+    @property
+    def tweaks(self) -> None:
+        """
+        Are not implemented on arrow line segment.
+        """
+        pass

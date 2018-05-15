@@ -1,11 +1,16 @@
-from abjad.enumerations import Center, Down, Up, VerticalAlignment
+from abjad.enumerations import (
+    Center,
+    Down,
+    Up,
+    VerticalAlignment,
+    )
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.markuptools.Markup import Markup
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class KeyCluster(AbjadValueObject):
-    r'''
+    r"""
     Key cluster.
 
     ..  container:: example
@@ -37,7 +42,7 @@ class KeyCluster(AbjadValueObject):
                         }
                 }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -97,7 +102,7 @@ class KeyCluster(AbjadValueObject):
 
     @property
     def hide(self) -> bool:
-        r'''
+        r"""
         Is true if key cluster hidees key markup.
 
         ..  container:: example
@@ -154,12 +159,12 @@ class KeyCluster(AbjadValueObject):
 
         ..  todo:: Remove?
 
-        '''
+        """
         return self._hide
 
     @property
     def include_black_keys(self) -> bool:
-        r'''
+        r"""
         Is true if key cluster includes black keys.
 
         ..  container:: example
@@ -224,12 +229,12 @@ class KeyCluster(AbjadValueObject):
 
         ..  todo:: Rename to ``include_flat_markup``.
 
-        '''
+        """
         return self._include_black_keys
 
     @property
     def include_white_keys(self) -> bool:
-        r'''
+        r"""
         Is true if key cluster includes white keys.
 
         ..  container:: example
@@ -294,12 +299,12 @@ class KeyCluster(AbjadValueObject):
 
         ..  todo:: Rename to ``include_natural_markup``.
 
-        '''
+        """
         return self._include_white_keys
 
     @property
     def markup_direction(self) -> VerticalAlignment:
-        r'''
+        r"""
         Gets markup direction.
 
         ..  container:: example
@@ -366,5 +371,43 @@ class KeyCluster(AbjadValueObject):
                             }
                     }
 
-        '''
+        """
         return self._markup_direction
+
+    @property
+    def tweaks(self) -> None:
+        r"""
+        Are not implemented on key cluster.
+
+        ..  container:: example
+
+            Key cluster formats LilyPond overrides instead of tweaks:
+
+            >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+            >>> key_cluster = abjad.KeyCluster()
+            >>> abjad.attach(key_cluster, chord)
+            >>> abjad.f(chord)
+            \once \override Accidental.stencil = ##f
+            \once \override AccidentalCautionary.stencil = ##f
+            \once \override Arpeggio.X-offset = #-2
+            \once \override NoteHead.stencil = #ly:text-interface::print
+            \once \override NoteHead.text = \markup {
+                \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+            }
+            <c' e' g' b' d'' f''>8
+            ^ \markup {
+                \center-align
+                    \concat
+                        {
+                            \natural
+                            \flat
+                        }
+                }
+
+            The reason for this is that chords contain multiple note-heads: if
+            key cluster formatted tweaks instead of overrides, the five format
+            commands shown above would need to be duplicated immediately before
+            each note-head.
+
+        """
+        pass

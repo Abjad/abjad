@@ -6,7 +6,7 @@ from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
 
 
 class StemTremolo(AbjadValueObject):
-    '''
+    """
     Stem tremolo.
 
     ..  container:: example
@@ -39,7 +39,7 @@ class StemTremolo(AbjadValueObject):
             c'4
             :32
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -63,7 +63,7 @@ class StemTremolo(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification='') -> str:
-        '''
+        """
         Formats stem tremolo.
 
         ..  container:: example
@@ -82,14 +82,14 @@ class StemTremolo(AbjadValueObject):
             >>> print(format(stem_tremolo))
             :32
 
-        '''
+        """
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
         assert format_specification == 'storage'
         return StorageFormatManager(self).get_storage_format()
 
     def __str__(self) -> str:
-        '''
+        """
         Gets string representation of stem tremolo.
 
         ..  container:: example
@@ -108,7 +108,7 @@ class StemTremolo(AbjadValueObject):
             >>> print(str(stem_tremolo))
             :32
 
-        '''
+        """
         return f':{self.tremolo_flags!s}'
 
     ### PRIVATE METHODS ###
@@ -131,7 +131,7 @@ class StemTremolo(AbjadValueObject):
 
     @property
     def tremolo_flags(self) -> int:
-        '''
+        """
         Gets tremolo flags of stem tremolo.
 
         ..  container:: example
@@ -151,5 +151,16 @@ class StemTremolo(AbjadValueObject):
             32
 
         Set to nonnegative integer power of 2.
-        '''
+        """
         return self._tremolo_flags
+
+    @property
+    def tweaks(self) -> None:
+        r"""
+        Are not implemented on stem tremolo.
+        
+        The LilyPond ``:`` command refuses tweaks.
+
+        Override the LilyPond ``StemTremolo`` grob instead.
+        """
+        pass

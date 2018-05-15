@@ -5,7 +5,7 @@ from .LilyPondNameManager import LilyPondNameManager
 
 
 class LilyPondGrobNameManager(LilyPondNameManager):
-    '''
+    """
     LilyPond grob name manager.
 
     ..  container:: example
@@ -17,16 +17,16 @@ class LilyPondGrobNameManager(LilyPondNameManager):
         >>> abjad.override(note)
         LilyPondGrobNameManager()
 
-    '''
+    """
 
     ### SPECIAL METHODS ###
 
     def __getattr__(self, name) -> typing.Union[
         LilyPondNameManager, 'LilyPondGrobNameManager'
         ]:
-        r'''
+        r"""
         Gets LilyPondNameManager (or LilyPondGrobNameManager) keyed to 
-        `name``.
+        ``name``.
 
         ..  container:: example
 
@@ -52,7 +52,7 @@ class LilyPondGrobNameManager(LilyPondNameManager):
         Note that the dot-chained user syntax is unproblematic. But the class
         of each manager returned in the chain is likely to be surprising at
         first encounter.
-        '''
+        """
         from abjad.ly import contexts
         from abjad.ly import grob_interfaces
         camel_name = String(name).to_upper_camel_case()
@@ -85,9 +85,9 @@ class LilyPondGrobNameManager(LilyPondNameManager):
                 raise AttributeError(message)
 
     def __setattr__(self, attribute, value) -> None:
-        '''
+        """
         Sets attribute ``attribute`` of grob name manager to ``value``.
-        '''
+        """
         # make sure attribute name is valid grob name before setting value
         object.__setattr__(self, attribute, value)
 

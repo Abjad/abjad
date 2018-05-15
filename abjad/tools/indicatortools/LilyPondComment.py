@@ -4,7 +4,7 @@ from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class LilyPondComment(AbjadValueObject):
-    r'''
+    r"""
     LilyPond comment.
 
     ..  container:: example
@@ -37,7 +37,7 @@ class LilyPondComment(AbjadValueObject):
             % yet another comment
             c'4
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -78,7 +78,7 @@ class LilyPondComment(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __str__(self) -> str:
-        '''
+        """
         Gets string representation of LilyPond comment.
 
         ..  container:: example
@@ -97,7 +97,7 @@ class LilyPondComment(AbjadValueObject):
             >>> str(comment)
             '% yet another comment'
 
-        '''
+        """
         return rf'% {self.string}'
 
     ### PRIVATE PROPERTIES ###
@@ -121,7 +121,7 @@ class LilyPondComment(AbjadValueObject):
 
     @property
     def string(self) -> str:
-        '''
+        """
         Gets string.
 
         ..  container:: example
@@ -140,12 +140,12 @@ class LilyPondComment(AbjadValueObject):
             >>> comment.string
             'yet another comment'
 
-        '''
+        """
         return self._string
 
     @property
     def format_slot(self) -> str:
-        '''
+        """
         Format slot of LilyPond comment.
 
         ..  container:: example
@@ -164,14 +164,21 @@ class LilyPondComment(AbjadValueObject):
             >>> comment.format_slot
             'before'
 
-        '''
+        """
         return self._format_slot
+
+    @property
+    def tweaks(self) -> None:
+        """
+        Are not implemented on LilyPond comment.
+        """
+        pass
 
     ### PUBLIC METHODS ###
 
     @staticmethod
     def list_allowable_format_slots() -> typing.Tuple[str, ...]:
-        '''
+        """
         Lists allowable format slots.
 
         ..  container:: example
@@ -186,5 +193,5 @@ class LilyPondComment(AbjadValueObject):
             'opening'
             'right'
 
-        '''
+        """
         return LilyPondComment._allowable_format_slots

@@ -2,8 +2,9 @@ import abjad
 
 
 def apply_dynamics(score):
-    r'''Applies dynamics to score.
-    '''
+    """
+    Applies dynamics to score.
+    """
 
     voice = score['Bell Voice']
     dynamic = abjad.Dynamic('ppp')

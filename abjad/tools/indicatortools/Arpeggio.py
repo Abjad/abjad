@@ -1,11 +1,19 @@
 import typing
-from abjad.enumerations import Center, Down, Up, VerticalAlignment
+from abjad.enumerations import (
+    Center,
+    Down,
+    Up,
+    VerticalAlignment,
+    )
+from abjad.tools.lilypondnametools.LilyPondTweakManager import (
+    LilyPondTweakManager,
+    )
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class Arpeggio(AbjadValueObject):
-    r'''
+    r"""
     Arpeggio.
 
     ..  container:: example
@@ -39,12 +47,13 @@ class Arpeggio(AbjadValueObject):
             <c' e' g' c''>4
             \arpeggio
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
         '_direction',
+        '_lilypond_tweak_manager',
         )
 
     ### INITIALIZER ###
@@ -53,10 +62,14 @@ class Arpeggio(AbjadValueObject):
         self,
         *,
         direction: VerticalAlignment = None,
+        tweaks: typing.Union[
+            typing.List[typing.Tuple], LilyPondTweakManager] = None,
         ) -> None:
         if direction is not None:
             assert direction in (Up, Down, Center)
         self._direction = direction
+        self._lilypond_tweak_manager = None
+        LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### PRIVATE METHODS ###
 
@@ -65,6 +78,9 @@ class Arpeggio(AbjadValueObject):
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
+        if self.tweaks:
+            tweaks = self.tweaks._list_format_contributions()
+            bundle.right.articulations.extend(tweaks)
         bundle.right.articulations.append(r'\arpeggio')
         if self.direction in (Up, Down):
             if self.direction is Up:
@@ -78,7 +94,7 @@ class Arpeggio(AbjadValueObject):
 
     @property
     def direction(self) -> typing.Optional[VerticalAlignment]:
-        '''
+        """
         Gets direction of arpeggio.
 
         ..  container:: example
@@ -97,5 +113,28 @@ class Arpeggio(AbjadValueObject):
             >>> arpeggio.direction
             Down
 
-        '''
+        """
         return self._direction
+
+    @property
+    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+        r"""
+        Gets tweaks
+
+        ..  container:: example
+
+            >>> chord = abjad.Chord("<c' e' g' c''>4")
+            >>> arpeggio = abjad.Arpeggio()
+            >>> abjad.tweak(arpeggio).color = 'blue'
+            >>> abjad.attach(arpeggio, chord)
+            >>> abjad.show(chord) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(chord)
+                <c' e' g' c''>4
+                - \tweak color #blue
+                \arpeggio
+
+        """
+        return self._lilypond_tweak_manager

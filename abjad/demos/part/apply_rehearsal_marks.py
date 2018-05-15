@@ -2,8 +2,9 @@ import abjad
 
 
 def apply_rehearsal_marks(score):
-    r'''Applies rehearsal marks to score.
-    '''
+    """
+    Applies rehearsal marks to score.
+    """
 
     bell_voice = score['Bell Voice']
 
@@ -13,5 +14,5 @@ def apply_rehearsal_marks(score):
         ]
 
     for measure_index in measure_indices:
-        command = abjad.LilyPondCommand(r'mark \default', 'before')
+        command = abjad.LilyPondLiteral(r'\mark \default', 'before')
         abjad.attach(command, bell_voice[measure_index])

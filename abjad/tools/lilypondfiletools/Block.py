@@ -218,7 +218,6 @@ class Block(AbjadObject):
         prototype = (
             abjad.Scheme,
             abjad.LilyPondDimension,
-            abjad.LilyPondCommand,
             #abjad.LilyPondLiteral,
             )
         for key in self._public_attribute_names:

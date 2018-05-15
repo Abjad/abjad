@@ -5,7 +5,7 @@ from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 
 
 class BarLine(AbjadValueObject):
-    r'''
+    r"""
     Bar line.
 
     ..  container:: example
@@ -32,7 +32,7 @@ class BarLine(AbjadValueObject):
                 \bar "|."
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -77,7 +77,7 @@ class BarLine(AbjadValueObject):
 
     @property
     def abbreviation(self) -> str:
-        r'''
+        r"""
         Gets abbreviation.
 
         ..  container:: example
@@ -86,12 +86,12 @@ class BarLine(AbjadValueObject):
             >>> bar_line.abbreviation
             '|.'
 
-        '''
+        """
         return self._abbreviation
 
     @property
     def context(self) -> str:
-        r'''
+        r"""
         Gets (historically conventional) context.
 
         ..  container:: example
@@ -103,5 +103,16 @@ class BarLine(AbjadValueObject):
         ..  todo:: Should return ``'Score'``.
 
         Override with ``abjad.attach(..., context='...')``.
-        '''
+        """
         return self._context
+
+    @property
+    def tweaks(self) -> None:
+        r"""
+        Are not implemented on bar line.
+        
+        The LilyPond ``\bar`` command refuses tweaks.
+
+        Use overrides instead.
+        """
+        pass

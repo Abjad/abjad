@@ -2,8 +2,9 @@ import abjad
 
 
 def durate_pitch_contour_reservoir(pitch_contour_reservoir):
-    r'''Durates pitch contour reservoir.
-    '''
+    """
+    Durates pitch contour reservoir.
+    """
     names = [
         'First Violin',
         'Second Violin',

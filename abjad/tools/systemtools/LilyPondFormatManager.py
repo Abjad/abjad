@@ -3,8 +3,9 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class LilyPondFormatManager(AbjadObject):
-    r'''Manages LilyPond formatting logic.
-    '''
+    """
+    Manages LilyPond formatting logic.
+    """
 
     ### CLASS VARIABLES ###
 
@@ -286,10 +287,11 @@ class LilyPondFormatManager(AbjadObject):
 
     @staticmethod
     def align_tags(string, n):
-        r'''Line-breaks `string` and aligns tags starting a column `n`.
+        """
+        Line-breaks ``string`` and aligns tags starting a column ``n``.
 
         Returns new string.
-        '''
+        """
         assert isinstance(n, int), repr(n)
         lines = []
         for line in string.split('\n'):
@@ -309,10 +311,11 @@ class LilyPondFormatManager(AbjadObject):
 
     @staticmethod
     def bundle_format_contributions(component):
-        r'''Gets all format contributions for `component`.
+        """
+        Gets all format contributions for ``component``.
 
         Returns LilyPond format bundle.
-        '''
+        """
         import abjad
         manager = LilyPondFormatManager
         bundle = abjad.LilyPondFormatBundle()
@@ -327,11 +330,11 @@ class LilyPondFormatManager(AbjadObject):
 
     @staticmethod
     def format_lilypond_attribute(attribute):
-        r'''Formats LilyPond attribute according to Scheme formatting
-        conventions.
+        """
+        Formats LilyPond attribute according to Scheme formatting conventions.
 
         Returns string.
-        '''
+        """
         assert isinstance(attribute, str), repr(attribute)
         attribute = attribute.replace('__', ".")
         result = attribute.replace('_', '-')
@@ -339,11 +342,12 @@ class LilyPondFormatManager(AbjadObject):
 
     @staticmethod
     def format_lilypond_context_setting_in_with_block(name, value):
-        r'''Formats LilyPond context setting `name` with `value`
-        in LilyPond with-block.
+        """
+        Formats LilyPond context setting ``name`` with ``value`` in LilyPond
+        with-block.
 
         Returns string.
-        '''
+        """
         assert isinstance(name, str), repr(name)
         name = name.split('_')
         first = name[0:1]
@@ -361,11 +365,12 @@ class LilyPondFormatManager(AbjadObject):
 
     @staticmethod
     def format_lilypond_context_setting_inline(name, value, context=None):
-        r'''Formats LilyPond context setting `name` with `value` in
-        `context`.
+        """
+        Formats LilyPond context setting ``name`` with ``value`` in
+        ``context``.
 
         Returns string.
-        '''
+        """
         name = name.split('_')
         first = name[0:1]
         rest = name[1:]
@@ -387,11 +392,12 @@ class LilyPondFormatManager(AbjadObject):
 
     @staticmethod
     def format_lilypond_value(argument):
-        r'''Formats LilyPond `argument` according to Scheme formatting
+        """
+        Formats LilyPond ``argument`` according to Scheme formatting
         conventions.
 
         Returns string.
-        '''
+        """
         import abjad
         if '_get_lilypond_format' in dir(argument) and not isinstance(argument, str):
             pass
@@ -417,10 +423,11 @@ class LilyPondFormatManager(AbjadObject):
 
     @staticmethod
     def left_shift_tags(text, realign=None):
-        r'''Left shifts tags in `strings` and realigns to column `realign`.
+        """
+        Left shifts tags in ``strings`` and realigns to column ``realign``.
 
         Returns new text.
-        '''
+        """
         import abjad
         strings = text.split('\n')
         strings_ = [] 
@@ -450,10 +457,11 @@ class LilyPondFormatManager(AbjadObject):
         context=None,
         once=False,
         ):
-        r'''Makes Lilypond override string.
+        """
+        Makes Lilypond override string.
 
         Returns string.
-        '''
+        """
         from abjad.tools.datastructuretools.String import String
         grob = String(grob).to_upper_camel_case()
         attribute = LilyPondFormatManager.format_lilypond_attribute(attribute)
@@ -472,7 +480,8 @@ class LilyPondFormatManager(AbjadObject):
 
     @staticmethod
     def make_lilypond_revert_string(grob, attribute, context=None) -> str:
-        r'''Makes LilyPond revert string.
+        r"""
+        Makes LilyPond revert string.
 
         ..  container:: example
 
@@ -482,7 +491,7 @@ class LilyPondFormatManager(AbjadObject):
             ...     )
             '\\revert Glissando.bound-details.right.arrow'
 
-        '''
+        """
         from abjad.tools.datastructuretools.String import String
         grob = String(grob).to_upper_camel_case()
         dotted = LilyPondFormatManager.format_lilypond_attribute(attribute)
@@ -499,13 +508,14 @@ class LilyPondFormatManager(AbjadObject):
     def make_lilypond_tweak_string(
         attribute,
         value,
+        directed=True,
         grob=None,
-        hyphen=True,
         ):
-        r'''Makes Lilypond \tweak string.
+        r"""
+        Makes Lilypond \tweak string.
 
         Returns string.
-        '''
+        """
         from abjad.tools.datastructuretools.String import String
         if grob is not None:
             grob = String(grob).to_upper_camel_case()
@@ -515,13 +525,14 @@ class LilyPondFormatManager(AbjadObject):
         attribute = LilyPondFormatManager.format_lilypond_attribute(attribute)
         value = LilyPondFormatManager.format_lilypond_value(value)
         string = rf'\tweak {grob}{attribute} {value}'
-        if hyphen:
+        if directed:
             string = '- ' + string
         return string
 
     @staticmethod
     def report_spanner_format_contributions(spanner):
-        r'''Reports spanner format contributions for every leaf in `spanner`.
+        """
+        Reports spanner format contributions for every leaf in ``spanner``.
 
         ..  container:: example
 
@@ -545,7 +556,7 @@ class LilyPondFormatManager(AbjadObject):
                     )
 
         Returns string or none.
-        '''
+        """
         result = []
         for leaf in spanner.leaves:
             bundle = spanner._get_lilypond_format_bundle(leaf)
@@ -558,10 +569,11 @@ class LilyPondFormatManager(AbjadObject):
 
     @staticmethod
     def tag(strings, tag, deactivate=None):
-        r'''Tags `strings` with `tag`.
+        """
+        Tags ``strings`` with ``tag``.
 
         Returns list of tagged strings.
-        '''
+        """
         if not tag:
             return strings
         if not strings:

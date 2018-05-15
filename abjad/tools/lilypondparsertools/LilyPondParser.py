@@ -89,8 +89,8 @@ class LilyPondParser(abctools.Parser):
                 ]
                 \stopTrillSpan
                 c''8
-                -\accent
                 \sfz
+                -\accent
                 )
             }
 
@@ -685,13 +685,11 @@ class LilyPondParser(abctools.Parser):
             else:
                 if isinstance(x, (
                     indicatortools.BarLine,
-                    indicatortools.PageBreak,
-                    indicatortools.LineBreak,
                     )):
                     apply_backward.append(x)
                 elif (
                     isinstance(x, indicatortools.LilyPondLiteral) and
-                    x.name in (r'\breathe',)
+                    x.name in (r'\break', r'\breathe', r'\pageBreak')
                     ):
                     apply_backward.append(x)
                 else:
@@ -798,11 +796,8 @@ class LilyPondParser(abctools.Parser):
                 indicatortools.Articulation,
                 indicatortools.BarLine,
                 indicatortools.Dynamic,
-                indicatortools.LilyPondCommand,
                 indicatortools.LilyPondLiteral,
-                indicatortools.PageBreak,
                 indicatortools.StemTremolo,
-                indicatortools.LineBreak,
                 markuptools.Markup,
                 )
             if hasattr(post_event, '_attach'):
@@ -879,7 +874,7 @@ class LilyPondParser(abctools.Parser):
         elif name == 'LaissezVibrerEvent':
             return indicatortools.LilyPondLiteral(r'\laissezVibrer', 'after')
         elif name == 'LineBreakEvent':
-            return indicatortools.LineBreak()
+            return indicatortools.LilyPondLiteral(r'\break')
         event = lilypondparsertools.LilyPondEvent(name)
         if 'span-direction' in lookup:
             if lookup['span-direction'] == -1:

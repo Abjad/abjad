@@ -2,8 +2,9 @@ import abjad
 
 
 def make_mozart_score():
-    r'''Makes Mozart score.
-    '''
+    """
+    Makes Mozart score.
+    """
 
     score_template = abjad.TwoStaffPianoScoreTemplate()
     score = score_template()
@@ -20,12 +21,14 @@ def make_mozart_score():
         bass_volta.append(bass)
 
     # abjad.attach indicators to the volta containers
-    command = abjad.LilyPondCommand(
-        'repeat volta 2', 'before'
+    command = abjad.LilyPondLiteral(
+        r'\repeat volta 2',
+        'before'
         )
     abjad.attach(command, treble_volta)
-    command = abjad.LilyPondCommand(
-        'repeat volta 2', 'before'
+    command = abjad.LilyPondLiteral(
+        r'\repeat volta 2',
+        'before'
         )
     abjad.attach(command, bass_volta)
 
@@ -42,12 +45,14 @@ def make_mozart_score():
         bass_alternative.append(bass)
 
     # abjad.attach indicators to the alternative containers
-    command = abjad.LilyPondCommand(
-        'alternative', 'before'
+    command = abjad.LilyPondLiteral(
+        r'\alternative',
+        'before'
         )
     abjad.attach(command, treble_alternative)
-    command = abjad.LilyPondCommand(
-        'alternative', 'before'
+    command = abjad.LilyPondLiteral(
+        r'\alternative',
+        'before'
         )
     abjad.attach(command, bass_alternative)
 

@@ -7,7 +7,7 @@ from abjad.tools.topleveltools.new import new
 
 
 class Ritardando(AbjadValueObject):
-    r'''
+    r"""
     Ritardando.
 
     ..  container:: example
@@ -79,7 +79,7 @@ class Ritardando(AbjadValueObject):
 
     Use ritardandi with a metronome mark spanner to generate dashed lines and
     other spanners.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -101,7 +101,7 @@ class Ritardando(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __str__(self) -> str:
-        r'''
+        r"""
         Gets string representation of ritardando.
 
         ..  container:: example
@@ -132,7 +132,7 @@ class Ritardando(AbjadValueObject):
                     }
                 }
 
-        '''
+        """
         return str(self._get_markup())
 
     ### PRIVATE PROPERTIES ###
@@ -167,7 +167,7 @@ class Ritardando(AbjadValueObject):
 
     @property
     def context(self):
-        r'''
+        r"""
         Gets (historically conventional) context.
 
         ..  container:: example
@@ -188,12 +188,12 @@ class Ritardando(AbjadValueObject):
             'Score'
 
         Override with ``abjad.attach(..., context='...')``.
-        '''
+        """
         return self._context
 
     @property
     def markup(self) -> typing.Optional[Markup]:
-        r'''
+        r"""
         Gets markup of ritardando.
 
         ..  container:: example
@@ -225,12 +225,12 @@ class Ritardando(AbjadValueObject):
                         }
                     }
 
-        '''
+        """
         return self._markup
 
     @property
     def persistent(self) -> str:
-        '''
+        """
         Is ``'abjad.MetronomeMark'``.
 
         ..  container:: example
@@ -238,5 +238,163 @@ class Ritardando(AbjadValueObject):
             >>> abjad.Ritardando().persistent
             'abjad.MetronomeMark'
 
-        '''
+        """
         return self._persistent
+
+    @property
+    def tweaks(self) -> None:
+        r"""
+        Are not implemented on ritardando.
+
+        ..  container:: example
+
+            Use ritardando as a piecewise part of metronome mark spanner:
+
+            >>> staff = abjad.Staff("c'8. d' e'4. g'8. f' ef'4.")
+            >>> score = abjad.Score([staff])
+            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
+            >>> spanner = abjad.MetronomeMarkSpanner()
+            >>> abjad.attach(spanner, staff[:])
+            >>> abjad.override(staff).text_spanner.staff_padding = 3
+
+            >>> string = r'\large \upright rit.'
+            >>> markup = abjad.Markup(string).with_color('blue')
+            >>> ritardando = abjad.Ritardando(markup=markup)
+            >>> spanner.attach(ritardando, spanner[0])
+
+            >>> mark = abjad.MetronomeMark((1, 4), 90)
+            >>> spanner.attach(mark, spanner[2])
+            >>> mark = abjad.MetronomeMark((1, 4), 72)
+            >>> spanner.attach(mark, spanner[3])
+            >>> mark = abjad.MetronomeMark((1, 4), 60)
+            >>> spanner.attach(mark, spanner[5])
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(score)
+                \new Score
+                <<
+                    \new Staff
+                    \with
+                    {
+                        \override TextSpanner.staff-padding = #3
+                    }
+                    {
+                        \time 3/8
+                        c'8.
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
+                            \with-color
+                                #blue
+                                \large
+                                    \upright
+                                        rit.
+                            \hspace
+                                #1
+                            }
+                        - \tweak arrow-width 0.25
+                        - \tweak dash-fraction 0.25
+                        - \tweak dash-period 1.5
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right.arrow ##t
+                        - \tweak bound-details.right-broken.arrow ##f
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.left-broken.text ##f
+                        \startTextSpan
+                        d'8.
+                        e'4.
+                        \stopTextSpan
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
+                            \fontsize
+                                #-6
+                                \general-align
+                                    #Y
+                                    #DOWN
+                                    \note-by-number
+                                        #2
+                                        #0
+                                        #1
+                            \upright
+                                {
+                                    =
+                                    90
+                                }
+                            \hspace
+                                #1
+                            }
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.left-broken.text ##f
+                        \startTextSpan
+                        g'8.
+                        \stopTextSpan
+                        - \tweak Y-extent ##f
+                        - \tweak bound-details.left.text \markup {
+                            \fontsize
+                                #-6
+                                \general-align
+                                    #Y
+                                    #DOWN
+                                    \note-by-number
+                                        #2
+                                        #0
+                                        #1
+                            \upright
+                                {
+                                    =
+                                    72
+                                }
+                            \hspace
+                                #1
+                            }
+                        - \tweak dash-period 0
+                        - \tweak bound-details.left.stencil-align-dir-y #center
+                        - \tweak bound-details.right-broken.padding 0
+                        - \tweak bound-details.right-broken.text ##f
+                        - \tweak bound-details.right.padding 1
+                        - \tweak bound-details.right.stencil-align-dir-y #center
+                        - \tweak bound-details.right.text \markup {
+                            \concat
+                                {
+                                    \hspace
+                                        #0.5
+                                    \line
+                                        {
+                                            \fontsize
+                                                #-6
+                                                \general-align
+                                                    #Y
+                                                    #DOWN
+                                                    \note-by-number
+                                                        #2
+                                                        #0
+                                                        #1
+                                            \upright
+                                                {
+                                                    =
+                                                    60
+                                                }
+                                        }
+                                }
+                            }
+                        - \tweak bound-details.left-broken.text ##f
+                        \startTextSpan
+                        f'8.
+                        ef'4.
+                        \stopTextSpan
+                    }
+                >>
+
+            See the metronome mark spanner API entry for further examples.
+
+        """
+        pass

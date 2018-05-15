@@ -2,8 +2,9 @@ import abjad
 
 
 def make_mozart_lilypond_file():
-    r'''Makes Mozart LilyPond file.
-    '''
+    """
+    Makes Mozart LilyPond file.
+    """
     score = abjad.demos.mozart.make_mozart_score()
     lilypond_file = abjad.LilyPondFile.new(
         music=score,

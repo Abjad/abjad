@@ -2,8 +2,9 @@ import abjad
 
 
 def make_desordre_lilypond_file(score):
-    '''Makes Désordre LilyPond file.
-    '''
+    """
+    Makes Désordre LilyPond file.
+    """
     lilypond_file = abjad.LilyPondFile.new(
         music=score,
         default_paper_size=('a4', 'letter'),

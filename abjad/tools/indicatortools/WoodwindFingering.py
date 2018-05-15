@@ -8,7 +8,7 @@ from abjad.tools.systemtools.StorageFormatManager import StorageFormatManager
 
 
 class WoodwindFingering(AbjadObject):
-    r'''
+    r"""
     Woodwind fingering.
 
     ..  container:: example
@@ -190,7 +190,7 @@ class WoodwindFingering(AbjadObject):
                 }
 
     Inspired by Mike Solomon's LilyPond woodwind diagrams.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -248,9 +248,9 @@ class WoodwindFingering(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self) -> MarkupCommand:
-        '''
+        """
         Calls woodwind fingering.
-        '''
+        """
         key_groups_as_scheme = []
         cc_scheme_pair = SchemePair(('cc', self._center_column))
         key_groups_as_scheme.append(cc_scheme_pair)
@@ -270,11 +270,11 @@ class WoodwindFingering(AbjadObject):
             )
 
     def __format__(self, format_specification='') -> str:
-        '''
+        """
         Formats woodwind fingering.
 
         Set ``format_specification`` to `''` or `'storage'`.
-        '''
+        """
         if format_specification in ('', 'storage'):
             return StorageFormatManager(self).get_storage_format()
         raise ValueError(format_specification)
@@ -297,7 +297,7 @@ class WoodwindFingering(AbjadObject):
     ### PUBLIC METHODS ###
 
     def print_guide(self) -> None:
-        '''
+        """
         Print read-only string containing instrument's valid key strings,
         instrument diagram, and syntax explanation.
 
@@ -418,7 +418,7 @@ class WoodwindFingering(AbjadObject):
             diagram explanation and key string index above
             <BLANKLINE>
 
-        '''
+        """
         if self._name == 'clarinet':
             lines = [
                 'list of valid key strings for clarinet:',
@@ -533,7 +533,7 @@ class WoodwindFingering(AbjadObject):
 
     @property
     def center_column(self) -> typing.Tuple[str, ...]:
-        '''
+        """
         Gets tuple of contents of key strings in center column key group.
 
         ..  container:: example
@@ -551,12 +551,12 @@ class WoodwindFingering(AbjadObject):
             >>> woodwind_fingering.center_column
             ('one', 'two', 'three', 'five')
 
-        '''
+        """
         return self._center_column
 
     @property
     def left_hand(self) -> typing.Tuple[str, ...]:
-        '''
+        """
         Gets tuple of contents of key strings in left hand key group.
 
         ..  container:: example
@@ -574,12 +574,12 @@ class WoodwindFingering(AbjadObject):
             >>> woodwind_fingering.left_hand
             ('R', 'thumb')
 
-        '''
+        """
         return self._left_hand
 
     @property
     def name(self) -> str:
-        '''
+        """
         Gets woodwind name.
 
         ..  container:: example
@@ -597,12 +597,12 @@ class WoodwindFingering(AbjadObject):
             >>> woodwind_fingering.name
             'clarinet'
 
-        '''
+        """
         return self._name
 
     @property
     def right_hand(self) -> typing.Tuple[str, ...]:
-        '''
+        """
         Gets tuple of contents of key strings in right hand key group.
 
         ..  container:: example
@@ -620,5 +620,14 @@ class WoodwindFingering(AbjadObject):
             >>> woodwind_fingering.right_hand
             ('e',)
 
-        '''
+        """
         return self._right_hand
+
+    @property
+    def tweaks(self) -> None:
+        """
+        Are not implemented on woodwind fingering.
+
+        Enclose woodwind fingering in markup and tweak markup instead.
+        """
+        pass

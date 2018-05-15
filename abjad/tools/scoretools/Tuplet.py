@@ -1,17 +1,22 @@
 import math
 import typing
-from .Container import Container
-from .Leaf import Leaf
 from abjad.exceptions import AssignabilityError
+from abjad.tools import mathtools
 from abjad.tools.datastructuretools.Duration import Duration
 from abjad.tools.datastructuretools.Multiplier import Multiplier
+from abjad.tools.lilypondnametools.LilyPondTweakManager import \
+    LilyPondTweakManager
 from abjad.tools.topleveltools.inspect import inspect
 from abjad.tools.topleveltools.iterate import iterate
-from abjad.tools import mathtools
+from abjad.tools.topleveltools.override import override
+from abjad.tools.topleveltools.tweak import tweak
+from .Container import Container
+from .Leaf import Leaf
 
 
 class Tuplet(Container):
-    r'''Tuplet.
+    r"""
+    Tuplet.
 
     ..  container:: example
 
@@ -89,7 +94,7 @@ class Tuplet(Container):
                 e'8
             }
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -99,6 +104,7 @@ class Tuplet(Container):
         '_denominator',
         '_force_fraction',
         '_hide',
+        '_lilypond_tweak_manager',
         '_multiplier',
         )
 
@@ -106,25 +112,30 @@ class Tuplet(Container):
 
     def __init__(
         self,
-        multiplier=None,
+        multiplier=(2, 3),
         components=None,
+        *,
         denominator: int = None,
         force_fraction: bool = None,
         hide: bool = None,
+        tweaks: typing.Union[
+            typing.List[typing.Tuple], LilyPondTweakManager] = None,
         ) -> None:
-        import abjad
         Container.__init__(self, components)
-        multiplier = multiplier or Multiplier(2, 3)
+        multiplier = Multiplier(multiplier)
         self.multiplier = multiplier
         self.denominator = denominator
         self.force_fraction = force_fraction
         self.hide = hide
+        self._lilypond_tweak_manager = None
+        LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
     def __getnewargs__(self) -> tuple:
-        '''Gets new arguments of tuplet.
-        '''
+        """
+        Gets new arguments of tuplet.
+        """
         return (self.multiplier,)
 
     ### PRIVATE METHODS ###
@@ -177,10 +188,9 @@ class Tuplet(Container):
         return self._format_slot_contributions_with_indent(result)
 
     def _format_lilypond_fraction_command_string(self):
-        import abjad
         if self.hide:
             return ''
-        if 'text' in vars(abjad.override(self).tuplet_number):
+        if 'text' in vars(override(self).tuplet_number):
             return ''
         if (self.augmentation() or
             not self._get_power_of_two_denominator() or
@@ -210,6 +220,12 @@ class Tuplet(Container):
                     self._get_edge_height_tweak_string()
                 if edge_height_tweak_string:
                     contributions.append(edge_height_tweak_string)
+
+                strings = tweak(self)._list_format_contributions(
+                    directed=False,
+                    )
+                contributions.extend(strings)
+
                 times_command_string = self._get_times_command_string()
                 contributions.append(times_command_string)
                 result.append([contributor, contributions])
@@ -223,11 +239,8 @@ class Tuplet(Container):
 
     def _get_compact_representation(self):
         if not self:
-            return '{{ {!s} }}'.format(self.multiplier)
-        return '{{ {!s} {} }}'.format(
-            self.multiplier,
-            self._get_contents_summary(),
-            )
+            return f'{{ {self.multiplier!s} }}'
+        return f'{{ {self.multiplier!s} {self._get_contents_summary()} }}'
 
     def _get_edge_height_tweak_string(self):
         import abjad
@@ -323,7 +336,8 @@ class Tuplet(Container):
 
     @property
     def denominator(self) -> typing.Optional[int]:
-        r'''Gets and sets preferred denominator of tuplet.
+        r"""
+        Gets and sets preferred denominator of tuplet.
 
         ..  container:: example
 
@@ -371,7 +385,7 @@ class Tuplet(Container):
                     e'8
                 }
 
-        '''
+        """
         return self._denominator
 
     @denominator.setter
@@ -385,7 +399,8 @@ class Tuplet(Container):
 
     @property
     def force_fraction(self) -> typing.Optional[bool]:
-        r'''Gets and sets force fraction flag.
+        r"""
+        Gets and sets force fraction flag.
 
         ..  container:: example
 
@@ -554,7 +569,7 @@ class Tuplet(Container):
                     \revert TupletNumber.text
                 }
 
-        '''
+        """
         return self._force_fraction
 
     @force_fraction.setter
@@ -567,7 +582,8 @@ class Tuplet(Container):
 
     @property
     def hide(self) -> typing.Optional[bool]:
-        r'''Is true when tuplet bracket hides.
+        r"""
+        Is true when tuplet bracket hides.
 
         ..  container:: example
 
@@ -631,7 +647,7 @@ class Tuplet(Container):
                 }
 
         Hides tuplet bracket and tuplet number when true.
-        '''
+        """
         return self._hide
 
     @hide.setter
@@ -641,7 +657,8 @@ class Tuplet(Container):
 
     @property
     def implied_prolation(self) -> Multiplier:
-        r'''Gets implied prolation of tuplet.
+        r"""
+        Gets implied prolation of tuplet.
 
         ..  container:: example
 
@@ -653,12 +670,13 @@ class Tuplet(Container):
             >>> tuplet.implied_prolation
             Multiplier(2, 3)
 
-        '''
+        """
         return self.multiplier
 
     @property
     def multiplied_duration(self) -> Duration:
-        r'''Multiplied duration of tuplet.
+        r"""
+        Gets multiplied duration of tuplet.
 
         ..  container:: example
 
@@ -669,12 +687,13 @@ class Tuplet(Container):
             >>> tuplet.multiplied_duration
             Duration(1, 4)
 
-        '''
+        """
         return self.multiplier * self._get_contents_duration()
 
     @property
     def multiplier(self) -> Multiplier:
-        r'''Gets and sets multiplier of tuplet.
+        r"""
+        Gets and sets multiplier of tuplet.
 
         ..  container:: example
 
@@ -703,7 +722,7 @@ class Tuplet(Container):
                     e'8
                 }
 
-        '''
+        """
         return self._multiplier
 
     @multiplier.setter
@@ -724,10 +743,76 @@ class Tuplet(Container):
             message = message.format(argument)
             raise ValueError(message)
 
+    @property
+    def tweaks(self):
+        r"""
+        Gets tweaks.
+
+        ..  container:: example
+
+            >>> tuplet_1 = abjad.Tuplet((2, 3), "c'4 ( d'4 e'4 )")
+            >>> abjad.tweak(tuplet_1).color = 'red'
+            >>> abjad.tweak(tuplet_1).staff_padding = 2
+
+            >>> tuplet_2 = abjad.Tuplet((2, 3), "c'4 ( d'4 e'4 )")
+            >>> abjad.tweak(tuplet_2).color = 'green'
+            >>> abjad.tweak(tuplet_2).staff_padding = 2
+
+            >>> tuplet_3 = abjad.Tuplet((5, 4), [tuplet_1, tuplet_2])
+            >>> abjad.tweak(tuplet_3).color = 'blue'
+            >>> abjad.tweak(tuplet_3).staff_padding = 4
+
+            >>> staff = abjad.Staff([tuplet_3])
+            >>> leaves = abjad.select(staff).leaves()
+            >>> abjad.attach(abjad.TimeSignature((5, 4)), leaves[0]) 
+            >>> literal = abjad.LilyPondLiteral(r'\set tupletFullLength = ##t')
+            >>> abjad.attach(literal, staff)
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    \set tupletFullLength = ##t
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \tweak color #blue
+                    \tweak staff-padding #4
+                    \times 5/4 {
+                        \tweak color #red
+                        \tweak staff-padding #2
+                        \times 2/3 {
+                            \time 5/4
+                            c'4
+                            (
+                            d'4
+                            e'4
+                            )
+                        }
+                        \tweak color #green
+                        \tweak staff-padding #2
+                        \times 2/3 {
+                            c'4
+                            (
+                            d'4
+                            e'4
+                            )
+                        }
+                    }
+                }
+
+            ..  todo:: Report LilyPond bug that results from removing
+                tupletFullLength in the example above: blue tuplet bracket
+                shrinks to encompass only the second underlying tuplet.
+
+        """
+        return tweak(self)
+
     ### PUBLIC METHODS ###
 
     def append(self, component, preserve_duration=False) -> None:
-        r'''Appends `component` to tuplet.
+        r"""
+        Appends ``component`` to tuplet.
 
         ..  container:: example
 
@@ -796,7 +881,7 @@ class Tuplet(Container):
                     e'4
                 }
 
-        '''
+        """
         import abjad
         if preserve_duration:
             old_duration = inspect(self).get_duration()
@@ -808,8 +893,8 @@ class Tuplet(Container):
             assert inspect(self).get_duration() == old_duration
 
     def augmentation(self) -> bool:
-        r'''Is true when tuplet multiplier is greater than ``1``.
-        Otherwise false.
+        r"""
+        Is true when tuplet multiplier is greater than ``1``.
 
         ..  container:: example
 
@@ -841,14 +926,15 @@ class Tuplet(Container):
             >>> tuplet.augmentation()
             False
 
-        '''
+        """
         if self.multiplier:
             return 1 < self.multiplier
         else:
             return False
 
     def diminution(self) -> bool:
-        r'''Is true when tuplet multiplier is less than ``1``.
+        r"""
+        Is true when tuplet multiplier is less than ``1``.
 
         ..  container:: example
 
@@ -880,14 +966,15 @@ class Tuplet(Container):
             >>> tuplet.diminution()
             False
 
-        '''
+        """
         if self.multiplier:
             return self.multiplier < 1
         else:
             return False
 
     def extend(self, argument, preserve_duration=False) -> None:
-        r'''Extends tuplet with `argument`.
+        r"""
+        Extends tuplet with ``argument``.
 
         ..  container:: example
 
@@ -962,7 +1049,7 @@ class Tuplet(Container):
                     e'16
                 }
 
-        '''
+        """
         import abjad
         if preserve_duration:
             old_duration = inspect(self).get_duration()
@@ -975,7 +1062,8 @@ class Tuplet(Container):
 
     @staticmethod
     def from_duration(duration, components):
-        r'''Makes tuplet from `duration` and `components`.
+        r"""
+        Makes tuplet from ``duration`` and ``components``.
 
         ..  container:: example
 
@@ -993,7 +1081,7 @@ class Tuplet(Container):
                     e'8
                 }
 
-        '''
+        """
         import abjad
         if not len(components):
             message = 'components must be nonempty: {!r}.'
@@ -1014,7 +1102,8 @@ class Tuplet(Container):
         decrease_monotonic=True,
         diminution=True,
         ):
-        r'''Makes tuplet from `duration` and `ratio`.
+        r"""
+        Makes tuplet from ``duration`` and ``ratio``.
 
         ..  container:: example
 
@@ -1332,7 +1421,7 @@ class Tuplet(Container):
         Interprets negative `ratio` as rests.
 
         Returns tuplet.
-        '''
+        """
         import abjad
         duration = abjad.Duration(duration)
         ratio = abjad.Ratio(ratio)
@@ -1379,7 +1468,8 @@ class Tuplet(Container):
 
     @staticmethod
     def from_leaf_and_ratio(leaf, ratio, diminution=True):
-        r'''Makes tuplet from `leaf` and `ratio`.
+        r"""
+        Makes tuplet from ``leaf`` and ``ratio``.
 
         >>> note = abjad.Note("c'8.")
 
@@ -1688,7 +1778,7 @@ class Tuplet(Container):
                 }
 
         Returns tuplet.
-        '''
+        """
         tuplet = leaf._to_tuplet_with_ratio(ratio, diminution=diminution)
         return tuplet
 
@@ -1698,7 +1788,8 @@ class Tuplet(Container):
         fraction,
         allow_trivial=False,
         ):
-        r'''Makes tuplet from nonreduced `ratio` and nonreduced `fraction`.
+        r"""
+        Makes tuplet from nonreduced ``ratio`` and nonreduced ``fraction``.
 
         ..  container:: example
 
@@ -1877,7 +1968,7 @@ class Tuplet(Container):
         Interprets `d` as tuplet denominator.
 
         Returns tuplet or container.
-        '''
+        """
         import abjad
         ratio = abjad.NonreducedRatio(ratio)
         if isinstance(fraction, tuple):
@@ -1948,7 +2039,8 @@ class Tuplet(Container):
             return abjad.Tuplet.from_duration(duration, components)
 
     def normalize_multiplier(self) -> None:
-        r'''Normalizes tuplet multiplier.
+        r"""
+        Normalizes tuplet multiplier.
 
         ..  container:: example
 
@@ -2050,7 +2142,7 @@ class Tuplet(Container):
             >>> tuplet.multiplier.normalized()
             True
 
-        '''
+        """
         import abjad
         # find tuplet multiplier
         integer_exponent = int(math.log(self.multiplier, 2))
@@ -2066,7 +2158,8 @@ class Tuplet(Container):
         self.multiplier *= multiplier
 
     def set_minimum_denominator(self, denominator) -> None:
-        r'''Sets preferred denominator of tuplet to at least `denominator`.
+        r"""
+        Sets preferred denominator of tuplet to at least ``denominator``.
 
         ..  container:: example
 
@@ -2102,7 +2195,7 @@ class Tuplet(Container):
                     g'2
                 }
 
-        '''
+        """
         assert mathtools.is_nonnegative_integer_power_of_two(denominator)
         self.force_fraction = True
         durations = [
@@ -2115,7 +2208,8 @@ class Tuplet(Container):
         self.denominator = nonreduced_fractions[1].numerator
 
     def toggle_prolation(self) -> None:
-        r'''Changes augmented tuplets to diminished;
+        r"""
+        Changes augmented tuplets to diminished;
         changes diminished tuplets to augmented.
 
         ..  container:: example
@@ -2183,7 +2277,7 @@ class Tuplet(Container):
             by the least power of ``2`` necessary to diminshed tuplet.
 
         Does not yet work with nested tuplets.
-        '''
+        """
         import abjad
         if self.diminution():
             while self.diminution():
@@ -2197,7 +2291,8 @@ class Tuplet(Container):
                     leaf.written_duration *= 2
 
     def trivial(self) -> bool:
-        r'''Is true when tuplet multiplier is equal to ``1`` and no multipliers
+        r"""
+        Is true when tuplet multiplier is equal to ``1`` and no multipliers
         attach to any leaves in tuplet.
 
         ..  container:: example
@@ -2240,15 +2335,16 @@ class Tuplet(Container):
             >>> tuplet.trivial()
             False
 
-        '''
+        """
         for leaf in iterate(self).leaves():
             if inspect(leaf).has_indicator(Multiplier):
                 return False
         return self.multiplier == 1
 
     def trivializable(self) -> bool:
-        r'''Is true when tuplet is trivializable (can be rewritten with a ratio
-        of 1:1). Otherwise false.
+        r"""
+        Is true when tuplet is trivializable (can be rewritten with a ratio of
+        1:1).
 
         ..  container:: example
 
@@ -2338,7 +2434,7 @@ class Tuplet(Container):
             >>> tuplet.trivializable()
             False
 
-        '''
+        """
         for component in self:
             if isinstance(component, Tuplet):
                 continue
@@ -2349,7 +2445,8 @@ class Tuplet(Container):
         return True
 
     def trivialize(self) -> None:
-        r'''Trivializes tuplet.
+        r"""
+        Trivializes tuplet.
 
         ..  container:: example
 
@@ -2378,7 +2475,7 @@ class Tuplet(Container):
                     c'4.
                 }
 
-        '''
+        """
         import abjad
         if not self.trivializable():
             return

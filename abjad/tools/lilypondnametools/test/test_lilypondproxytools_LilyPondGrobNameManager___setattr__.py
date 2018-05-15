@@ -3,14 +3,15 @@ import pytest
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___01():
-    r'''Override LilyPond Accidental grob.
-    '''
+    """
+    Override LilyPond Accidental grob.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.override(staff).accidental.color = 'red'
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         \with
         {
@@ -22,19 +23,20 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___01():
             e'8
             f'8
         }
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___02():
-    r'''Override LilyPond Accidental grob.
-    '''
+    """
+    Override LilyPond Accidental grob.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.override(staff[1]).accidental.color = 'red'
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -43,20 +45,21 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___02():
             e'8
             f'8
         }
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___03():
-    r'''Override LilyPond BarNumber grob.
-    '''
+    """
+    Override LilyPond BarNumber grob.
+    """
 
     score = abjad.Score([abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
     abjad.override(score).bar_number.break_visibility = \
         abjad.Scheme('end-of-line-invisible')
 
     assert format(score) == abjad.String.normalize(
-        r'''
+        r"""
         \new Score
         \with
         {
@@ -75,20 +78,21 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___03():
                 c''8
             }
         >>
-        '''
+        """
         )
     assert abjad.inspect(score).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___04():
-    r'''Override LilyPond BarNumber grob.
-    '''
+    """
+    Override LilyPond BarNumber grob.
+    """
 
     score = abjad.Score([abjad.Staff("c'8 d'8 e'8 f'8")])
     abjad.override(score).bar_number.color = 'red'
 
     assert format(score) == abjad.String.normalize(
-        r'''
+        r"""
         \new Score
         \with
         {
@@ -103,51 +107,54 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___04():
                 f'8
             }
         >>
-        '''
+        """
         )
 
     assert abjad.inspect(score).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___06():
-    r'''Override LilyPond abjad.Clef grob.
-    '''
+    """
+    Override LilyPond abjad.Clef grob.
+    """
 
     note = abjad.Note("c'4")
     abjad.override(note).clef.color = 'red'
 
     assert format(note) == abjad.String.normalize(
-        r'''
+        r"""
         \once \override Clef.color = #red
         c'4
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___07():
-    r'''Override LilyPond abjad.Clef grob.
-    '''
+    """
+    Override LilyPond abjad.Clef grob.
+    """
 
     note = abjad.Note("c'4")
     abjad.override(note).staff.clef.color = 'red'
 
     assert format(note) == abjad.String.normalize(
-        r'''
+        r"""
         \once \override Staff.Clef.color = #red
         c'4
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___08():
-    r'''Override LilyPond abjad.Clef grob.
-    '''
+    """
+    Override LilyPond abjad.Clef grob.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.override(staff).clef.color = 'red'
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         \with
         {
@@ -159,20 +166,21 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___08():
             e'8
             f'8
         }
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___09():
-    r'''Override LilyPond ClusterSpanner grob.
-    '''
+    """
+    Override LilyPond ClusterSpanner grob.
+    """
 
     cluster = abjad.Cluster(abjad.Note(1, (1, 4)) * 4)
     abjad.override(cluster).cluster_spanner.style = 'ramp'
     abjad.override(cluster).cluster_spanner.padding = 0.1
 
     assert format(cluster) == abjad.String.normalize(
-        r'''
+        r"""
         \makeClusters {
             \override ClusterSpanner.padding = #0.1
             \override ClusterSpanner.style = #'ramp
@@ -183,33 +191,34 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___09():
             \revert ClusterSpanner.padding
             \revert ClusterSpanner.style
         }
-        '''
+        """
         )
 
     del(abjad.override(cluster).cluster_spanner)
 
     assert format(cluster) == abjad.String.normalize(
-        r'''
+        r"""
         \makeClusters {
             cs'4
             cs'4
             cs'4
             cs'4
         }
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___11():
-    r'''Override LilyPond abjad.DynamicLineSpanner grob.
-    '''
+    """
+    Override LilyPond abjad.DynamicLineSpanner grob.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.override(staff).dynamic_line_spanner.staff_padding = 2
     abjad.override(staff).dynamic_line_spanner.Y_extent = (-1.5, 1.5)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         \with
         {
@@ -222,20 +231,21 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___11():
             e'8
             f'8
         }
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___13():
-    r'''Override LilyPond abjad.DynamicText grob.
-    '''
+    """
+    Override LilyPond abjad.DynamicText grob.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.override(staff).dynamic_text.staff_padding = 2
     abjad.override(staff).dynamic_text.Y_extent = (-1.5, 1.5)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         \with
         {
@@ -248,20 +258,21 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___13():
             e'8
             f'8
         }
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___14():
-    r'''Override LilyPond abjad.DynamicTextSpanner grob.
-    '''
+    """
+    Override LilyPond abjad.DynamicTextSpanner grob.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.override(staff).dynamic_text_spanner.staff_padding = 2
     abjad.override(staff).dynamic_text_spanner.Y_extent = (-1.5, 1.5)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         \with
         {
@@ -274,20 +285,21 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___14():
             e'8
             f'8
         }
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___16():
-    r'''Override LilyPond Hairpin grob.
-    '''
+    """
+    Override LilyPond Hairpin grob.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.override(staff).hairpin.staff_padding = 2
     abjad.override(staff).hairpin.Y_extent = (-1.5, 1.5)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         \with
         {
@@ -300,20 +312,21 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___16():
             e'8
             f'8
         }
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___17():
-    r'''Override LilyPond InstrumentName grob.
-    '''
+    """
+    Override LilyPond InstrumentName grob.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.setting(staff).instrument_name = abjad.Markup(r'\circle { V }')
     abjad.override(staff).instrument_name.color = 'red'
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         \with
         {
@@ -331,15 +344,16 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___17():
             e'8
             f'8
         }
-        ''',
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___18():
-    r'''Override LilyPond abjad.MetronomeMark grob.
-    '''
+    """
+    Override LilyPond abjad.MetronomeMark grob.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     score = abjad.Score([staff])
@@ -348,7 +362,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___18():
     abjad.override(score).metronome_mark.color = 'red'
 
     assert format(score) == abjad.String.normalize(
-        r'''
+        r"""
         \new Score
         \with
         {
@@ -364,21 +378,22 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___18():
                 f'8
             }
         >>
-        '''
+        """
         )
 
     assert abjad.inspect(score).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___19():
-    r'''Override LilyPond MultiMeasureRestGrob.
-    '''
+    """
+    Override LilyPond MultiMeasureRestGrob.
+    """
 
     staff = abjad.Staff([abjad.Note("c'4")])
     abjad.override(staff).multi_measure_rest.expand_limit = 12
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         \with
         {
@@ -387,20 +402,21 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___19():
         {
             c'4
         }
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___20():
-    r'''Override LilyPond NonMusicalPaperColumn grob.
-    '''
+    """
+    Override LilyPond NonMusicalPaperColumn grob.
+    """
 
     score = abjad.Score([abjad.Staff("c'8 d'8 e'8 f'8")])
     abjad.override(score).non_musical_paper_column.line_break_permission = False
     abjad.override(score).non_musical_paper_column.page_break_permission = False
 
     assert format(score) == abjad.String.normalize(
-        r'''
+        r"""
         \new Score
         \with
         {
@@ -416,38 +432,40 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___20():
                 f'8
             }
         >>
-        '''
+        """
         )
 
     assert abjad.inspect(score).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___21():
-    r'''Override LilyPond abjad.NoteColumn grob.
-    '''
+    """
+    Override LilyPond abjad.NoteColumn grob.
+    """
 
     note = abjad.Note("c'4")
     abjad.override(note).note_column.ignore_collision = True
 
     assert format(note) == abjad.String.normalize(
-        r'''
+        r"""
         \once \override NoteColumn.ignore-collision = ##t
         c'4
-        '''
+        """
         )
 
     assert abjad.inspect(note).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___22():
-    r'''Override LilyPond abjad.NoteColumn grob.
-    '''
+    """
+    Override LilyPond abjad.NoteColumn grob.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.override(staff).note_column.ignore_collision = True
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         \with
         {
@@ -459,25 +477,26 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___22():
             e'8
             f'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___23():
-    r'''Override LilyPond abjad.NoteHead grob.
-    '''
+    """
+    Override LilyPond abjad.NoteHead grob.
+    """
 
     note = abjad.Note(1, (1, 4))
     abjad.override(note).note_head.style = 'cross'
 
     assert abjad.override(note).note_head.style == 'cross'
     assert format(note) == abjad.String.normalize(
-        r'''
+        r"""
         \once \override NoteHead.style = #'cross
         cs'4
-        '''
+        """
         )
 
     del(abjad.override(note).note_head.style)
@@ -485,18 +504,19 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___23():
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___24():
-    r'''Notehead styles are handled just like all other grob abjad.overrides.
-    '''
+    """
+    Notehead styles are handled just like all other grob abjad.overrides.
+    """
 
     note = abjad.Note(1, (1, 4))
     abjad.override(note).note_head.style = 'mystrangehead'
 
     assert abjad.override(note).note_head.style == 'mystrangehead'
     assert format(note) == abjad.String.normalize(
-        r'''
+        r"""
         \once \override NoteHead.style = #'mystrangehead
         cs'4
-        '''
+        """
         )
 
     del(abjad.override(note).note_head.style)
@@ -504,39 +524,40 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___24():
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___25():
-    '''
+    """
     Notehead style abjad.overrides are handled just like all other
     note_head grob abjad.overrides, even for note_heads in chords.
-    '''
+    """
 
     chord = abjad.Chord([1, 2, 3], (1, 4))
     chord.note_heads[0].tweaks.style = 'harmonic'
 
     assert format(chord) == abjad.String.normalize(
-        r'''
+        r"""
         <
             \tweak style #'harmonic
             cs'
             d'
             ef'
         >4
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___26():
-    r'''Notehead shape style abjad.overrides are just normal grob abjad.overrides.
-    '''
+    """
+    Notehead shape style abjad.overrides are just normal grob abjad.overrides.
+    """
 
     note = abjad.Note(1, (1, 4))
     abjad.override(note).note_head.style = 'triangle'
 
     assert abjad.override(note).note_head.style == 'triangle'
     assert format(note) == abjad.String.normalize(
-        r'''
+        r"""
         \once \override NoteHead.style = #'triangle
         cs'4
-        '''
+        """
         )
 
     del(abjad.override(note).note_head.style)
@@ -544,18 +565,21 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___26():
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___27():
-    r'''Notehead solfege style abjad.overrides are just normal grob abjad.overrides.
-    Modern versions of LilyPond now handles solfege abjad.overrides correctly.'''
+    """
+    Notehead solfege style abjad.overrides are just normal grob abjad.overrides.
+    Modern versions of LilyPond now handles solfege abjad.overrides
+    correctly.
+    """
 
     note = abjad.Note(1, (1, 4))
     abjad.override(note).note_head.style = 'do'
 
     assert abjad.override(note).note_head.style == 'do'
     assert format(note) == abjad.String.normalize(
-        r'''
+        r"""
         \once \override NoteHead.style = #'do
         cs'4
-        '''
+        """
         )
 
     del(abjad.override(note).note_head.style)
@@ -563,18 +587,19 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___27():
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___28():
-    r'''Override LilyPond abjad.NoteHead grob.
-    '''
+    """
+    Override LilyPond abjad.NoteHead grob.
+    """
 
     note = abjad.Note(13, (1, 4))
     abjad.override(note).note_head.transparent = True
 
     assert abjad.override(note).note_head.transparent
     assert format(note) == abjad.String.normalize(
-        r'''
+        r"""
         \once \override NoteHead.transparent = ##t
         cs''4
-        '''
+        """
         )
 
     del(abjad.override(note).note_head.transparent)
@@ -582,14 +607,15 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___28():
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___29():
-    r'''Override LilyPond abjad.NoteHead grob.
-    '''
+    """
+    Override LilyPond abjad.NoteHead grob.
+    """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     abjad.override(voice).note_head.color = 'red'
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         \with
         {
@@ -601,22 +627,23 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___29():
             e'8
             f'8
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___31():
-    r'''Override LilyPond RehearsalMark grob.
-    '''
+    """
+    Override LilyPond RehearsalMark grob.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.override(staff).rehearsal_mark.staff_padding = 2
     abjad.override(staff).rehearsal_mark.Y_extent = (-1.5, 1.5)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         \with
         {
@@ -629,19 +656,20 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___31():
             e'8
             f'8
         }
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___32():
-    r'''Override LilyPond abjad.Rest grob.
-    '''
+    """
+    Override LilyPond abjad.Rest grob.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.override(staff).rest.transparent = True
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         \with
         {
@@ -653,13 +681,14 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___32():
             e'8
             f'8
         }
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___33():
-    r'''Override LilyPond Script grob.
-    '''
+    """
+    Override LilyPond Script grob.
+    """
 
     note = abjad.Note("c'4")
     articulation = abjad.Articulation('staccato')
@@ -667,24 +696,25 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___33():
     abjad.override(note).script.color = 'red'
 
     assert format(note) == abjad.String.normalize(
-        r'''
+        r"""
         \once \override Script.color = #red
         c'4
         -\staccato
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___34():
-    r'''Override LilyPond Script grob.
-    '''
+    """
+    Override LilyPond Script grob.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.override(staff).script.staff_padding = 2
     abjad.override(staff).script.Y_extent = (-1.5, 1.5)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         \with
         {
@@ -697,13 +727,14 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___34():
             e'8
             f'8
         }
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___37():
-    r'''Override LilyPond SpacingSpanner grob.
-    '''
+    """
+    Override LilyPond SpacingSpanner grob.
+    """
 
     score = abjad.Score([])
     abjad.override(score).spacing_spanner.strict_grace_spacing = True
@@ -711,7 +742,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___37():
     abjad.override(score).spacing_spanner.uniform_stretching = True
 
     assert format(score) == abjad.String.normalize(
-        r'''
+        r"""
         \new Score
         \with
         {
@@ -721,15 +752,16 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___37():
         }
         <<
         >>
-        '''
+        """
         )
 
     assert not len(score)
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___38():
-    r'''Override LilyPond SpanBar grob.
-    '''
+    """
+    Override LilyPond SpanBar grob.
+    """
 
     score, treble, bass = abjad.Score.make_piano_score()
     notes = [abjad.Note("c'8"), abjad.Note("d'8"), abjad.Note("e'8"), abjad.Note("f'8")]
@@ -741,7 +773,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___38():
     abjad.attach(abjad.Clef('bass'), bass[0])
 
     assert format(score) == abjad.String.normalize(
-        r'''
+        r"""
         \new Score
         \with
         {
@@ -768,21 +800,22 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___38():
                 }
             >>
         >>
-        '''
+        """
         )
 
     assert abjad.inspect(score).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___39():
-    r'''Override LilyPond StaffSymbol grob.
-    '''
+    """
+    Override LilyPond StaffSymbol grob.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.override(staff).staff_symbol.color = 'red'
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         \with
         {
@@ -794,19 +827,20 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___39():
             e'8
             f'8
         }
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___40():
-    r'''Override LilyPond StaffSymbol grob.
-    '''
+    """
+    Override LilyPond StaffSymbol grob.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.override(staff[2]).staff.staff_symbol.color = 'red'
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         {
             c'8
@@ -815,20 +849,21 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___40():
             e'8
             f'8
         }
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___41():
-    r'''Override LilyPond StaffSymbol grob.
-    '''
+    """
+    Override LilyPond StaffSymbol grob.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.override(staff).staff_symbol.line_positions = \
         abjad.SchemeVector([-4, -2, 2, 4])
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         \with
         {
@@ -840,36 +875,38 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___41():
             e'8
             f'8
         }
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___42():
-    r'''Override LilyPond Stem grob.
-    '''
+    """
+    Override LilyPond Stem grob.
+    """
 
     note = abjad.Note(0, (1, 16))
     abjad.override(note).stem.stroke_style = \
         abjad.Scheme('grace', force_quotes=True)
 
     assert format(note) == abjad.String.normalize(
-        r'''
+        r"""
         \once \override Stem.stroke-style = #"grace"
         c'16
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___43():
-    r'''Override LilyPond StemTremolo grob.
-    '''
+    """
+    Override LilyPond StemTremolo grob.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.override(staff).stem_tremolo.slope = 0.5
     abjad.override(staff).stem_tremolo.staff_padding = 2
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         \with
         {
@@ -882,20 +919,21 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___43():
             e'8
             f'8
         }
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___44():
-    r'''Override LilyPond SystemStartBar grob.
-    '''
+    """
+    Override LilyPond SystemStartBar grob.
+    """
 
     score = abjad.Score([abjad.StaffGroup([abjad.Staff("c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8")])])
     abjad.override(score).system_start_bar.collapse_height = 0
     abjad.override(score).system_start_bar.color = 'red'
 
     assert format(score) == abjad.String.normalize(
-        r'''
+        r"""
         \new Score
         \with
         {
@@ -918,34 +956,36 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___44():
                 }
             >>
         >>
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___47():
-    r'''Override LilyPond Tie grob.
-    '''
+    """
+    Override LilyPond Tie grob.
+    """
 
     note = abjad.Note("c'4")
     abjad.override(note).tie.color = 'red'
 
     assert format(note) == abjad.String.normalize(
-        r'''
+        r"""
         \once \override Tie.color = #red
         c'4
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___48():
-    r'''Override LilyPond abjad.TimeSignature grob.
-    '''
+    """
+    Override LilyPond abjad.TimeSignature grob.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.override(staff).time_signature.transparent = True
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         \with
         {
@@ -957,19 +997,20 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___48():
             e'8
             f'8
         }
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___49():
-    r'''Override LilyPond abjad.TimeSignature grob.
-    '''
+    """
+    Override LilyPond abjad.TimeSignature grob.
+    """
 
     measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
     abjad.override(measure).time_signature.transparent = True
 
     assert format(measure) == abjad.String.normalize(
-        r'''
+        r"""
         {   % measure
             \override TimeSignature.transparent = ##t
             \time 4/8
@@ -979,19 +1020,20 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___49():
             f'8
             \revert TimeSignature.transparent
         }   % measure
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___50():
-    r'''Override LilyPond abjad.TimeSignature grob.
-    '''
+    """
+    Override LilyPond abjad.TimeSignature grob.
+    """
 
     measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
     abjad.override(measure).staff.time_signature.transparent = True
 
     assert format(measure) == abjad.String.normalize(
-        r'''
+        r"""
         {   % measure
             \override Staff.TimeSignature.transparent = ##t
             \time 4/8
@@ -1001,20 +1043,21 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___50():
             f'8
             \revert Staff.TimeSignature.transparent
         }   % measure
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___51():
-    r'''Override LilyPond TrillPitchAccidental grob.
-    '''
+    """
+    Override LilyPond TrillPitchAccidental grob.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.override(staff).trill_pitch_accidental.staff_padding = 2
     abjad.override(staff).trill_pitch_accidental.Y_extent = (-1.5, 1.5)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         \with
         {
@@ -1027,13 +1070,14 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___51():
             e'8
             f'8
         }
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___53():
-    r'''Override LilyPond abjad.TupletBracket grob.
-    '''
+    """
+    Override LilyPond abjad.TupletBracket grob.
+    """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     beam = abjad.Beam()
@@ -1041,7 +1085,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___53():
     abjad.override(voice).tuplet_bracket.direction = abjad.Down
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         \with
         {
@@ -1055,15 +1099,16 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___53():
             f'8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___54():
-    r'''Override LilyPond abjad.TupletBracket grob.
-    '''
+    """
+    Override LilyPond abjad.TupletBracket grob.
+    """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     beam = abjad.Beam()
@@ -1071,7 +1116,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___54():
     abjad.override(voice[1]).tuplet_bracket.direction = abjad.Down
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -1082,21 +1127,22 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___54():
             f'8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___55():
-    r'''Override LilyPond abjad.TupletNumber grob.
-    '''
+    """
+    Override LilyPond abjad.TupletNumber grob.
+    """
 
     tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
     abjad.override(tuplet).tuplet_number.fraction = True
 
     assert format(tuplet) == abjad.String.normalize(
-        r'''
+        r"""
         \override TupletNumber.fraction = ##t
         \times 2/3 {
             c'8
@@ -1104,15 +1150,16 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___55():
             e'8
         }
         \revert TupletNumber.fraction
-        '''
+        """
         )
 
     assert abjad.inspect(tuplet).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___56():
-    r'''Override LilyPond abjad.TupletNumber grob.
-    '''
+    """
+    Override LilyPond abjad.TupletNumber grob.
+    """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     beam = abjad.Beam()
@@ -1120,7 +1167,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___56():
     abjad.override(voice).tuplet_number.fraction = True
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         \with
         {
@@ -1134,15 +1181,16 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___56():
             f'8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___57():
-    r'''Override LilyPond abjad.TupletNumber grob.
-    '''
+    """
+    Override LilyPond abjad.TupletNumber grob.
+    """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     beam = abjad.Beam()
@@ -1150,7 +1198,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___57():
     abjad.override(voice[1]).tuplet_number.fraction = True
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         {
             c'8
@@ -1161,15 +1209,16 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___57():
             f'8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___58():
-    r'''Override LilyPond abjad.TupletNumber grob.
-    '''
+    """
+    Override LilyPond abjad.TupletNumber grob.
+    """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     beam = abjad.Beam()
@@ -1177,7 +1226,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___58():
     abjad.override(voice).tuplet_number.text = abjad.Markup('6:4')
 
     assert format(voice) == abjad.String.normalize(
-        r'''
+        r"""
         \new Voice
         \with
         {
@@ -1191,22 +1240,23 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___58():
             f'8
             ]
         }
-        '''
+        """
         )
 
     assert abjad.inspect(voice).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___59():
-    r'''Override LilyPond VerticalAlignment grob.
-    '''
+    """
+    Override LilyPond VerticalAlignment grob.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.override(staff).vertical_alignment.staff_padding = 2
     abjad.override(staff).vertical_alignment.Y_extent = (-1.5, 1.5)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         \with
         {
@@ -1219,20 +1269,21 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___59():
             e'8
             f'8
         }
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___60():
-    r'''Override LilyPond VerticalAxis grob.
-    '''
+    """
+    Override LilyPond VerticalAxis grob.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.override(staff).vertical_axis_group.staff_padding = 2
     abjad.override(staff).vertical_axis_group.Y_extent = (-1.5, 1.5)
 
     assert format(staff) == abjad.String.normalize(
-        r'''
+        r"""
         \new Staff
         \with
         {
@@ -1245,13 +1296,14 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___60():
             e'8
             f'8
         }
-        '''
+        """
         )
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___61():
-    r'''InputSetExpression attribute on erroneous grob name raises exception.
-    '''
+    """
+    InputSetExpression attribute on erroneous grob name raises exception.
+    """
 
     note = abjad.Note("c'8")
     assert pytest.raises(Exception, 'override(note).foo = True')

@@ -1,14 +1,16 @@
 import copy
 import typing
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.lilypondnametools.LilyPondTweakManager import (
+    LilyPondTweakManager,
+    )
 from abjad.tools.markuptools.Markup import Markup
 from abjad.tools.systemtools.LilyPondFormatBundle import LilyPondFormatBundle
 from abjad.tools.topleveltools.new import new
-from abjad.tools.topleveltools.tweak import tweak
 
 
 class RehearsalMark(AbjadValueObject):
-    r'''
+    r"""
     Rehearsal mark.
 
     ..  container:: example
@@ -40,7 +42,7 @@ class RehearsalMark(AbjadValueObject):
                 }
             >>
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -59,15 +61,18 @@ class RehearsalMark(AbjadValueObject):
         *,
         number: int = None,
         markup: Markup = None,
+        tweaks: typing.Union[
+            typing.List[typing.Tuple], LilyPondTweakManager] = None,
         ) -> None:
         self._lilypond_tweak_manager = None
         self._markup = markup
         self._number = number
+        LilyPondTweakManager.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
     def __copy__(self, *arguments):
-        r'''
+        r"""
         Copies rehearsal mark.
 
         >>> import copy
@@ -113,13 +118,13 @@ class RehearsalMark(AbjadValueObject):
                     f'4
                 }
 
-        '''
+        """
         mark_ = new(self)
-        mark_._lilypond_tweak_manager = copy.copy(tweak(self))
+        mark_._lilypond_tweak_manager = copy.copy(self.tweaks)
         return mark_
 
     def __str__(self) -> str:
-        r'''
+        r"""
         Gets string representation of rehearsal mark.
 
         ..  container:: example
@@ -144,7 +149,7 @@ class RehearsalMark(AbjadValueObject):
             >>> str(mark)
             '\\mark #1'
 
-        '''
+        """
         return self._get_lilypond_format()
 
     ### PRIVATE PROPERTIES ###
@@ -166,8 +171,9 @@ class RehearsalMark(AbjadValueObject):
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
-        tweaks = tweak(self)._list_format_contributions(hyphen=False)
-        bundle.opening.commands.extend(tweaks)
+        if self.tweaks:
+            tweaks = self.tweaks._list_format_contributions(directed=False)
+            bundle.opening.commands.extend(tweaks)
         bundle.opening.commands.append(self._get_lilypond_format())
         return bundle
 
@@ -175,7 +181,7 @@ class RehearsalMark(AbjadValueObject):
 
     @property
     def context(self) -> str:
-        '''
+        """
         Is ``'Score'``.
 
         ..  container:: example
@@ -183,12 +189,12 @@ class RehearsalMark(AbjadValueObject):
             >>> abjad.RehearsalMark(number=1).context
             'Score'
 
-        '''
+        """
         return self._context
 
     @property
     def markup(self) -> typing.Optional[Markup]:
-        r'''
+        r"""
         Gets rehearsal mark markup.
 
         ..  container:: example
@@ -219,12 +225,12 @@ class RehearsalMark(AbjadValueObject):
                     f'4
                 }
 
-        '''
+        """
         return self._markup
 
     @property
     def number(self) -> typing.Optional[int]:
-        '''
+        """
         Gets rehearsal mark number.
 
         ..  container:: example
@@ -232,14 +238,54 @@ class RehearsalMark(AbjadValueObject):
             >>> abjad.RehearsalMark(number=1).number
             1
 
-        '''
+        """
         return self._number
+
+    @property
+    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+        r"""
+        Gets tweaks
+
+        ..  container:: example
+
+            >>> note = Note("c'4")
+            >>> mark = abjad.RehearsalMark(markup='A')
+            >>> abjad.tweak(mark).color = 'blue'
+            >>> abjad.attach(mark, note)
+            >>> abjad.show(note) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(note)
+                \tweak color #blue
+                \mark A
+                c'4
+
+        ..  container:: example
+
+            >>> note = Note("c'4")
+            >>> mark = abjad.RehearsalMark(
+            ...     markup='A',
+            ...     tweaks=[('color', 'blue')],
+            ...     )
+            >>> abjad.attach(mark, note)
+            >>> abjad.show(note) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(note)
+                \tweak color #blue
+                \mark A
+                c'4
+
+        """
+        return self._lilypond_tweak_manager
 
     ### PUBLIC METHODS ###
 
     @staticmethod
     def from_string(string) -> 'RehearsalMark':
-        '''
+        """
         Makes rehearsal mark from ``string``.
 
         ..  container:: example
@@ -267,7 +313,7 @@ class RehearsalMark(AbjadValueObject):
             >>> abjad.RehearsalMark.from_string('BB')
             RehearsalMark(number=54)
 
-        '''
+        """
         number = 0
         for place, letter in enumerate(reversed(string)):
             integer = ord(letter) - ord('A') + 1

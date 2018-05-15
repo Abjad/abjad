@@ -3,7 +3,8 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class PostscriptOperator(AbjadValueObject):
-    r'''Postscript operator.
+    """
+    Postscript operator.
 
     ..  container:: example
 
@@ -11,7 +12,7 @@ class PostscriptOperator(AbjadValueObject):
         >>> print(format(operator))
         abjad.PostscriptOperator('rmoveto', 1, 1.5)
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -33,7 +34,8 @@ class PostscriptOperator(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __str__(self):
-        r'''Gets string representation of Postscript operator.
+        """
+        Gets string representation of Postscript operator.
 
         ..  container:: example
 
@@ -42,7 +44,7 @@ class PostscriptOperator(AbjadValueObject):
             '1 1.5 rmoveto'
 
         Returns string.
-        '''
+        """
         from abjad.tools import markuptools
         parts = []
         if self.arguments:
@@ -67,16 +69,18 @@ class PostscriptOperator(AbjadValueObject):
 
     @property
     def arguments(self):
-        r'''Gets Postscript operator arguments.
+        """
+        Gets Postscript operator arguments.
 
         Returns tuple or none.
-        '''
+        """
         return self._arguments
 
     @property
     def name(self):
-        r'''Gets Postscript operator name.
+        """
+        Gets Postscript operator name.
 
         Returns string.
-        '''
+        """
         return self._name

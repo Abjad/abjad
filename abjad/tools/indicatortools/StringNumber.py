@@ -4,7 +4,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class StringNumber(AbjadValueObject):
-    '''
+    """
     String number.
 
     ..  container:: example
@@ -27,7 +27,7 @@ class StringNumber(AbjadValueObject):
             numbers=(2, 3),
             )
 
-    '''
+    """
 
     ### CLASS VARIABLES
 
@@ -58,7 +58,7 @@ class StringNumber(AbjadValueObject):
 
     @property
     def numbers(self) -> typing.Tuple[int, ...]:
-        '''
+        """
         Gets numbers.
 
         ..  container:: example
@@ -73,12 +73,12 @@ class StringNumber(AbjadValueObject):
             >>> indicator.numbers
             (2, 3)
 
-        '''
+        """
         return self._numbers
 
     @property
     def roman_numerals(self) -> typing.Tuple[str, ...]:
-        '''
+        """
         Gets roman numerals of string number indicator.
 
         ..  container:: example
@@ -97,10 +97,17 @@ class StringNumber(AbjadValueObject):
             >>> indicator.roman_numerals
             ('ii', 'iii')
 
-        '''
+        """
         numerals = ('i', 'ii', 'iii', 'iv', 'v', 'vi')
         result = []
         for number in self.numbers:
             numeral = numerals[number - 1]
             result.append(numeral)
         return tuple(result)
+
+    @property
+    def tweaks(self) -> None:
+        """
+        Are not implemented on string number.
+        """
+        pass

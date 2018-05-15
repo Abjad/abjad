@@ -5,7 +5,7 @@ from .LilyPondGrob import LilyPondGrob
 
 
 class LilyPondContext(AbjadValueObject):
-    r'''
+    r"""
     LilyPond context.
 
     ..  container:: example
@@ -64,7 +64,7 @@ class LilyPondContext(AbjadValueObject):
         [ ] [ ] [ ] [ ] [X] VaticanaVoice
         [ ] [ ] [ ] [ ] [X] Voice
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -99,7 +99,7 @@ class LilyPondContext(AbjadValueObject):
 
     @property
     def accepted_by(self) -> typing.Tuple['LilyPondContext', ...]:
-        r'''
+        r"""
         Gets contexts accepting LilyPond context.
 
         ..  container:: example
@@ -235,7 +235,7 @@ class LilyPondContext(AbjadValueObject):
                 RhythmicStaff,
                 Staff
 
-        '''
+        """
         from abjad.ly import contexts
         accepting_contexts = set()
         for lilypond_type, context_info in contexts.items():
@@ -247,7 +247,7 @@ class LilyPondContext(AbjadValueObject):
 
     @property
     def accepts(self) -> typing.Tuple['LilyPondContext', ...]:
-        r'''
+        r"""
         Gets contexts accepted by LilyPond context.
 
         ..  container:: example
@@ -260,7 +260,7 @@ class LilyPondContext(AbjadValueObject):
             LilyPondContext(name='MensuralVoice')
             LilyPondContext(name='NullVoice')
 
-        '''
+        """
         from abjad.ly import contexts
         dictionary = contexts[self.name]
         assert isinstance(dictionary, dict), repr(dictionary)
@@ -271,7 +271,7 @@ class LilyPondContext(AbjadValueObject):
 
     @property
     def alias(self) -> typing.Optional['LilyPondContext']:
-        r'''
+        r"""
         Gets alias of LilyPond context.
 
         ..  container:: example
@@ -280,7 +280,7 @@ class LilyPondContext(AbjadValueObject):
             >>> context.alias
             LilyPondContext(name='Staff')
 
-        '''
+        """
         from abjad.ly import contexts
         dictionary = contexts[self.name]
         assert isinstance(dictionary, dict)
@@ -294,7 +294,7 @@ class LilyPondContext(AbjadValueObject):
 
     @property
     def default_child(self) -> typing.Optional['LilyPondContext']:
-        r'''
+        r"""
         Gets default child of LilyPond context.
 
         ..  container:: example
@@ -357,7 +357,7 @@ class LilyPondContext(AbjadValueObject):
             VaticanaVoice:
             Voice:
 
-        '''
+        """
         from abjad.ly import contexts
         if self.is_bottom_context:
             return None
@@ -374,7 +374,7 @@ class LilyPondContext(AbjadValueObject):
 
     @property
     def engravers(self) -> typing.Tuple[LilyPondEngraver, ...]:
-        r'''
+        r"""
         Gets engravers belonging to LilyPond context.
 
         ..  container:: example
@@ -411,7 +411,7 @@ class LilyPondContext(AbjadValueObject):
             LilyPondEngraver(name='Staff_symbol_engraver')
             LilyPondEngraver(name='Time_signature_engraver')
 
-        '''
+        """
         from abjad.ly import contexts
         engravers = set()
         dictionary = contexts[self.name]
@@ -424,7 +424,7 @@ class LilyPondContext(AbjadValueObject):
 
     @property
     def grobs(self) -> typing.Tuple[LilyPondGrob, ...]:
-        r'''
+        r"""
         Gets grobs created by LilyPond context.
 
         ..  container:: example
@@ -471,7 +471,7 @@ class LilyPondContext(AbjadValueObject):
             LilyPondGrob(name='UnaCordaPedalLineSpanner')
             LilyPondGrob(name='VerticalAxisGroup')
 
-        '''
+        """
         grobs: typing.Set[LilyPondGrob] = set()
         for engraver in self.engravers:
             grobs.update(engraver.grobs)
@@ -479,7 +479,7 @@ class LilyPondContext(AbjadValueObject):
 
     @property
     def is_bottom_context(self) -> bool:
-        r'''
+        r"""
         Is true if LilyPond context is a bottom context.
 
         ..  container:: example
@@ -521,14 +521,14 @@ class LilyPondContext(AbjadValueObject):
             [X] VaticanaVoice
             [X] Voice
 
-        '''
+        """
         if not self.accepts:
             return True
         return False
 
     @property
     def is_custom(self) -> bool:
-        r'''
+        r"""
         Is true if LilyPond context is user-created.
 
         ..  container:: example
@@ -537,7 +537,7 @@ class LilyPondContext(AbjadValueObject):
             >>> context.is_custom
             False
 
-        '''
+        """
         from abjad.ly import contexts
         dictionary = contexts[self.name]
         assert isinstance(dictionary, dict), repr(dictionary)
@@ -545,7 +545,7 @@ class LilyPondContext(AbjadValueObject):
 
     @property
     def is_global_context(self) -> bool:
-        r'''
+        r"""
         Is true if LilyPond context is a global context.
 
         ..  container:: example
@@ -587,7 +587,7 @@ class LilyPondContext(AbjadValueObject):
             [ ] VaticanaVoice
             [ ] Voice
 
-        '''
+        """
         if not self.accepts:
             return False
         elif self is type(self)('Global'):
@@ -598,7 +598,7 @@ class LilyPondContext(AbjadValueObject):
 
     @property
     def is_score_context(self) -> bool:
-        r'''
+        r"""
         Is true if LilyPond context is a score context.
 
         ..  container:: example
@@ -640,7 +640,7 @@ class LilyPondContext(AbjadValueObject):
             [ ] VaticanaVoice
             [ ] Voice
 
-        '''
+        """
         if not self.accepts:
             return False
         elif self is type(self)('Score'):
@@ -651,7 +651,7 @@ class LilyPondContext(AbjadValueObject):
 
     @property
     def is_staff_context(self) -> bool:
-        r'''
+        r"""
         Is true if LilyPond context is a staff context.
 
         ..  container:: example
@@ -693,7 +693,7 @@ class LilyPondContext(AbjadValueObject):
             [ ] VaticanaVoice
             [ ] Voice
 
-        '''
+        """
         if not self.accepts:
             return False
         elif self is type(self)('Staff'):
@@ -704,7 +704,7 @@ class LilyPondContext(AbjadValueObject):
 
     @property
     def is_staff_group_context(self) -> bool:
-        r'''
+        r"""
         Is true if LilyPond context is a staff group context.
 
         ..  container:: example
@@ -746,7 +746,7 @@ class LilyPondContext(AbjadValueObject):
             [ ] VaticanaVoice
             [ ] Voice
 
-        '''
+        """
         return not any([
             self.is_global_context,
             self.is_score_context,
@@ -756,7 +756,7 @@ class LilyPondContext(AbjadValueObject):
 
     @property
     def name(self) -> str:
-        r'''
+        r"""
         Gets name of LilyPond context.
 
         ..  container:: example
@@ -765,12 +765,12 @@ class LilyPondContext(AbjadValueObject):
             >>> context.name
             'MensuralStaff'
 
-        '''
+        """
         return self._name
 
     @property
     def property_names(self) -> typing.Tuple[str, ...]:
-        r'''
+        r"""
         Gets property names of LilyPond context.
 
         ..  container:: example
@@ -839,7 +839,7 @@ class LilyPondContext(AbjadValueObject):
             'vocalName'
             'whichBar'
 
-        '''
+        """
         property_names: typing.Set[str] = set()
         for engraver in self.engravers:
             property_names.update(engraver.property_names)
@@ -849,7 +849,7 @@ class LilyPondContext(AbjadValueObject):
 
     @staticmethod
     def list_all_contexts() -> typing.Tuple['LilyPondContext', ...]:
-        r'''
+        r"""
         Lists all contexts.
 
         ..  container:: example
@@ -890,7 +890,7 @@ class LilyPondContext(AbjadValueObject):
             LilyPondContext(name='VaticanaVoice')
             LilyPondContext(name='Voice')
 
-        '''
+        """
         from abjad.ly import contexts
         return tuple(LilyPondContext(name=name) for name in sorted(contexts))
 
@@ -906,7 +906,7 @@ class LilyPondContext(AbjadValueObject):
         name: str = None,
         removes: typing.List[str] = None,
         ) -> 'LilyPondContext':
-        r'''
+        r"""
         Registers a new context.
 
         ..  container:: example
@@ -961,7 +961,7 @@ class LilyPondContext(AbjadValueObject):
 
             >>> custom_context.unregister()
 
-        '''
+        """
         from abjad.ly import contexts
         assert name not in contexts
         context_entry: typing.Dict = {}
@@ -1028,7 +1028,7 @@ class LilyPondContext(AbjadValueObject):
         self,
         context=None,
         ) -> None:
-        r'''
+        r"""
         Unregisters custom context.
 
         ..  container:: example
@@ -1090,7 +1090,7 @@ class LilyPondContext(AbjadValueObject):
             LilyPondContext(name='TabStaff')
             LilyPondContext(name='VaticanaStaff')
 
-        '''
+        """
         from abjad.ly import contexts
         assert self.is_custom
         del(contexts[self.name])

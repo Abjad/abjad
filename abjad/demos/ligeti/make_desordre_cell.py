@@ -3,8 +3,9 @@ import math
 
 
 def make_desordre_cell(pitches):
-    '''Makes a Désordre cell.
-    '''
+    """
+    Makes a Désordre cell.
+    """
 
     notes = [abjad.Note(pitch, (1, 8)) for pitch in pitches]
     notes = abjad.Selection(notes)
@@ -20,7 +21,7 @@ def make_desordre_cell(pitches):
     # make the lower voice
     lower_voice = abjad.Voice(notes)
     lower_voice.name = 'RH Lower Voice'
-    command = abjad.LilyPondCommand('voiceTwo')
+    command = abjad.LilyPondLiteral(r'\voiceTwo')
     abjad.attach(command, lower_voice)
     n = int(math.ceil(len(pitches) / 2.))
     chord = abjad.Chord([pitches[0], pitches[0] + 12], (n, 8))
@@ -30,7 +31,7 @@ def make_desordre_cell(pitches):
     # make the upper voice
     upper_voice = abjad.Voice([chord])
     upper_voice.name = 'RH Upper Voice'
-    command = abjad.LilyPondCommand('voiceOne')
+    command = abjad.LilyPondLiteral(r'\voiceOne')
     abjad.attach(command, upper_voice)
 
     # combine them together
